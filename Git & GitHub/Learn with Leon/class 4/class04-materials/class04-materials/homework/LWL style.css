@@ -1,0 +1,45 @@
+body{
+    background-color: lightskyblue;
+    border: 5px solid rgb(15, 156, 15);
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    text-indent: 30;
+    text-align: justify;
+    align-content: center;
+    margin: 30px;
+    padding: 40px;
+} 
+nav{
+    display: inline;
+    text-align: center;
+}
+ul li{
+    display: inline-block;
+}
+a{
+    color: rgb(15, 156, 15);
+}
+section{
+    background: lightskyblue;
+    color: white;
+    width: 100%;
+}
+img{
+    width: 200px;
+    height: 250px;
+    float: right;
+    object-fit: contain;
+}
+h1{
+    text-align: center;
+    font-style: italic;
+    background: lightskyblue;
+}
+ul{
+    text-align: center;
+    font-size: 20px;
+}
+footer ul{
+    color:rgb(15, 156, 15)
+}

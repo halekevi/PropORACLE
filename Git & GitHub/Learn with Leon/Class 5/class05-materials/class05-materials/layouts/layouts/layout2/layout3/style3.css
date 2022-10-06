@@ -1,0 +1,15 @@
+header, footer{
+    border: 2px solid;
+    height: 100px;
+    width: 100%;
+    clear: both;
+}
+section{
+    border: 2px solid;
+    height: 600px;
+    width: 356px;
+    float: left;
+}
+.two{
+    width: 800px;
+}

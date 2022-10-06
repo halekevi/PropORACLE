@@ -1,0 +1,24 @@
+header, footer{
+    border: 2px solid;
+    height: 100px;
+    width: 100%;
+    clear: both;
+}
+section{
+    border: 2px solid;
+    height: 400px;
+    width:100%;
+}
+.div{
+    width: 100%;
+}
+div section{
+    width: 34%;
+    border: 2px solid;
+    float: left;
+}
+.two{
+    width: 65%;
+    border: 2px solid;
+    FLoat: left
+}
