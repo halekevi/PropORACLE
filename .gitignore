@@ -76,3 +76,13 @@ dist/
 
 git_push_log.txt
 patch_replacement.txt
+
+# weird temp file
+$null
+
+# NBA cache files
+NBA/archive/schedule_cache_*.csv
+NBA/data/cache/game_context_cache_*.csv
+NBA/data/cache/schedule_cache_*.csv
+NBA/game_context_cache_*.csv
+NBA/schedule_cache_*.csv
