@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Caches / test / tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Environment / secrets
+.env
+.env.*
+*.env
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Archives
+*.zip
+*.7z
+*.rar
+
+# Excel temp files
+~$*.xlsx
+~$*.xls
+
+# Generated outputs
+outputs/
+ResultFiles/
+**/outputs/
+**/ResultFiles/
+grades/
+
+# Generated html/json artifacts if you don't want tracked
+# Uncomment these if they should stay local only
+# ui_runner/templates/slate_eval_*.html
+# ui_runner/templates/ticket_eval_*.html
+# ui_runner/templates/tickets_latest.json
+# ui_runner/templates/slate_latest.json
+# ui_runner/docs/tickets_latest.json
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Binary/media scratch
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+
+# Docs/temp/patch leftovers
+
+git_push_log.txt
+patch_replacement.txt

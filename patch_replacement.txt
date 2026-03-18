@@ -1,0 +1,41 @@
+let ALL_SLATE = [];
+const PLAYER_DATA = {};
+
+function getPD(name, line) {
+  if (PLAYER_DATA[name]) return PLAYER_DATA[name];
+  let s = 0;
+  for (let c of name) s = (s * 31 + c.charCodeAt(0)) % 1000;
+  return Array.from({length: 10}, (_, i) => {
+    s = (s * 9301 + 49297) % 233280;
+    return Math.max(0, Math.round((line + ((s / 233280) - 0.5) * line * 1.2) * 4) / 4);
+  });
+}
+
+async function loadSlateData() {
+  try {
+    const res = await fetch("/api/slate");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const d = await res.json();
+    ALL_SLATE = (d.picks || []).map(p => ({
+      sport: p.sport, initials: p.initials, player: p.player,
+      prop: p.prop, line: p.line, pick: p.pick,
+      dir: p.dir, hit: p.hit, edge: p.edge,
+    }));
+    for (const p of (d.picks || [])) {
+      if (p.player && !PLAYER_DATA[p.player]) {
+        const avg = p.l5_avg ?? p.season_avg ?? p.line;
+        const spread = p.line * 0.35;
+        let s = 0;
+        for (let c of p.player) s = (s * 31 + c.charCodeAt(0)) % 1000;
+        PLAYER_DATA[p.player] = Array.from({length: 10}, (_, i) => {
+          s = (s * 9301 + 49297) % 233280;
+          return Math.max(0, Math.round((avg + ((s / 233280) - 0.5) * spread * 2) * 4) / 4);
+        });
+      }
+    }
+    if (d.date) { const el = document.getElementById("slate-date"); if (el) el.textContent = d.date; }
+  } catch (err) { console.warn("loadSlateData failed:", err); }
+  renderEdges();
+  renderStreaks();
+}
+
