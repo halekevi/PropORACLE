@@ -992,7 +992,7 @@ def main() -> None:
         else:
             out_p = out_p  # treat as full file path
     else:
-        out_p = SCRIPT_DIR / out_name
+        out_p = ROOT_DIR / "ui_runner" / "templates" / out_name
 
     out_p.parent.mkdir(parents=True, exist_ok=True)
     out_p.write_text(html, encoding="utf-8")

@@ -140,6 +140,18 @@ def grade(row,actual):
     return result,None,round(actual-line if direction=='OVER' else line-actual,2)
 
 PROP_NORM_MAP={
+    # short code aliases (common in CBB pipeline files)
+    'pts':'points',
+    'reb':'rebounds',
+    'ast':'assists',
+    'stl':'steals',
+    'blk':'blocked shots',
+    'tov':'turnovers',
+    'fg3m':'3-pt made',
+    'pr':'pts+rebs',
+    'pa':'pts+asts',
+    'ra':'rebs+asts',
+    'stocks':'blks+stls',
     'pts+rebs+asts':'pts+rebs+asts','pra':'pts+rebs+asts',
     'pts+rebs':'pts+rebs','pts+asts':'pts+asts','rebs+asts':'rebs+asts','blks+stls':'blks+stls',
     'blocked shots':'blocked shots','blocks':'blocked shots',
@@ -267,12 +279,15 @@ def load_cbb(path: str) -> pd.DataFrame:
         "team_abbr":           "team",
         "prop_norm":           "prop_type_norm",   # FIX 2: use normalized prop, not verbose prop_type
         "final_bet_direction": "bet_direction",
-        "model_dir_5":         "bet_direction",
+        "model_dir_5":         "model_dir_5",
         "opp_def_tier":        "def_tier",          # prefer opp_def_tier if def_tier blank
         "OVERALL_DEF_RANK":    "def_rank",
         "rank_score":          "rank_score",
         "edge":                "edge",
     })
+    # Guard against duplicate column names after renames (e.g. bet_direction).
+    if df.columns.duplicated().any():
+        df = df.loc[:, ~df.columns.duplicated()]
 
     df = _alias_cols(df)
 
@@ -417,6 +432,8 @@ def breakdown(df,group_col):
         hr,h,m,v,dec=hit_rate(sub)
         rows.append({group_col:key,'total':len(sub),'hit':h,'miss':m,'void':v,'decided':dec,
                      'hit_rate':round(hr,4) if not np.isnan(hr) else np.nan})
+    if not rows:
+        return pd.DataFrame(columns=[group_col,'total','hit','miss','void','decided','hit_rate'])
     return pd.DataFrame(rows).sort_values('total',ascending=False)
 
 def write_flat_breakdown(wb,df_b,sheet_name,group_col,bg_hdr):

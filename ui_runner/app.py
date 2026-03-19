@@ -35,6 +35,7 @@ BASE_DIR      = Path(__file__).resolve().parent.parent  # repo root (one level a
 UI_DIR        = Path(__file__).resolve().parent         # all UI assets live here (ui_runner/)
 CONFIG_PATH   = UI_DIR / "commands.json"
 TEMPLATES_DIR = UI_DIR / "templates"
+ARCHIVE_DIR   = TEMPLATES_DIR / "archive"
 STATIC_DIR    = UI_DIR / "static"
 
 # Pipeline output paths (used by status + slate endpoints)
@@ -301,6 +302,13 @@ def serve_grade_report(date: str):
         response = send_from_directory(str(TEMPLATES_DIR), fname)
         response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
         response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+        return response
+    if ARCHIVE_DIR.exists() and (ARCHIVE_DIR / fname).exists():
+        response = send_from_directory(str(ARCHIVE_DIR), fname)
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
         return response
     abort(404)
 
@@ -313,6 +321,13 @@ def serve_ticket_eval_report(date: str):
         response = send_from_directory(str(TEMPLATES_DIR), fname)
         response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
         response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+        return response
+    if ARCHIVE_DIR.exists() and (ARCHIVE_DIR / fname).exists():
+        response = send_from_directory(str(ARCHIVE_DIR), fname)
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
         return response
     abort(404)
 

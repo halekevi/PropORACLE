@@ -180,6 +180,24 @@ def parse_ticket_sheet(tickets_xlsx: Path, sheet_name: str) -> pd.DataFrame:
     df = df.copy()
     df.rename(columns={first_col: "ticket_header"}, inplace=True)
 
+    # Column positions in Excel can change across writers/exports, so we key off
+    # header names instead of hard-coded indices. This fixes missing `sport`
+    # (and therefore missing NBA/Soccer aggregates).
+    def _norm_col(c) -> str:
+        return re.sub(r"\s+", " ", str(c)).strip().lower()
+
+    col_idx = {_norm_col(c): i for i, c in enumerate(df.columns)}
+
+    # Expected headers from combined_slate_tickets.py
+    idx_player = col_idx.get("player", 1)
+    idx_team = col_idx.get("team", 2)
+    idx_prop = col_idx.get("prop", 4)
+    idx_line = col_idx.get("line", 6)
+    idx_dir = col_idx.get("dir", 7)
+    idx_pick_type = col_idx.get("pick type", 5)
+    idx_def_tier = col_idx.get("def tier", 15)
+    idx_sport = col_idx.get("sport", 22)
+
     rows = []
     i = 0
     while i < len(df):
@@ -196,7 +214,7 @@ def parse_ticket_sheet(tickets_xlsx: Path, sheet_name: str) -> pd.DataFrame:
         # Find header row (2nd column == "Player")
         j = i + 1
         while j < len(df):
-            c1 = df.iloc[j, 1] if df.shape[1] > 1 else None
+            c1 = df.iloc[j, idx_player] if df.shape[1] > idx_player else None
             if isinstance(c1, str) and strip_norm(c1) == "player":
                 break
             nxt = df.at[j, "ticket_header"]
@@ -204,27 +222,29 @@ def parse_ticket_sheet(tickets_xlsx: Path, sheet_name: str) -> pd.DataFrame:
                 break
             j += 1
 
-        if j >= len(df) or not (isinstance(df.iloc[j, 1], str) and strip_norm(df.iloc[j, 1]) == "player"):
+        if j >= len(df) or not (
+            isinstance(df.iloc[j, idx_player], str) and strip_norm(df.iloc[j, idx_player]) == "player"
+        ):
             i += 1
             continue
 
         k = j + 1
         leg_no = 0
         while k < len(df):
-            player = df.iloc[k, 1] if df.shape[1] > 1 else None
+            player = df.iloc[k, idx_player] if df.shape[1] > idx_player else None
             if pd.isna(player) or strip_norm(player) == "":
                 break
             if isinstance(player, str) and strip_norm(player) == "player":
                 k += 1
                 continue
 
-            team = df.iloc[k, 2] if df.shape[1] > 2 else ""
-            prop = df.iloc[k, 4] if df.shape[1] > 4 else ""
-            line = df.iloc[k, 6] if df.shape[1] > 6 else np.nan
-            direction = df.iloc[k, 7] if df.shape[1] > 7 else ""
-            pick_type = df.iloc[k, 8] if df.shape[1] > 8 else ""
-            tier = df.iloc[k, 9] if df.shape[1] > 9 else ""
-            sport = df.iloc[k, 16] if df.shape[1] > 16 else ""
+            team = df.iloc[k, idx_team] if df.shape[1] > idx_team else ""
+            prop = df.iloc[k, idx_prop] if df.shape[1] > idx_prop else ""
+            line = df.iloc[k, idx_line] if df.shape[1] > idx_line else np.nan
+            direction = df.iloc[k, idx_dir] if df.shape[1] > idx_dir else ""
+            pick_type = df.iloc[k, idx_pick_type] if df.shape[1] > idx_pick_type else ""
+            tier = df.iloc[k, idx_def_tier] if df.shape[1] > idx_def_tier else ""
+            sport = df.iloc[k, idx_sport] if df.shape[1] > idx_sport else ""
 
             line_num = pd.to_numeric(line, errors="coerce")
             if pd.isna(line_num):
@@ -570,7 +590,8 @@ def main():
         for name, tab in tables.items():
             tab.to_excel(xw, index=False, sheet_name=name[:31])
 
-    print(f"✅ Wrote graded workbook → {out_xlsx}")
+    # Keep this ASCII-only so the script runs in non-UTF8 consoles.
+    print(f"Wrote graded workbook -> {out_xlsx}")
 
 
 if __name__ == "__main__":
