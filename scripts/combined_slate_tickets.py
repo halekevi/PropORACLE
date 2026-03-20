@@ -837,18 +837,18 @@ body::before{
 }
 
 /* scanlines */
-body::after{
-  content:'';position:fixed;inset:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.18) 2px,rgba(0,0,0,.18) 4px);
-  pointer-events:none;z-index:0;
-}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;}
 
 #app{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 20px 24px;}
 
 /* nav */
 nav{display:flex;align-items:center;gap:16px;padding:12px 0 14px;border-bottom:1px solid var(--border);flex-wrap:wrap;position:sticky;top:0;z-index:220;background:rgba(5,6,14,0.86);backdrop-filter:blur(22px) saturate(180%);}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.brain-wrap{position:relative;width:52px;height:52px;}
+.brain-wrap{display:none;}
+.nav-logo::before{
+  content:"";width:56px;height:56px;flex:0 0 56px;border-radius:12px;
+  background:url('/static/proporacle-logo-v3.png') center/contain no-repeat;
+}
 .brain-slate{position:absolute;inset:0;border-radius:7px;background:linear-gradient(145deg,#12122a 0%,#080818 100%);border:1px solid #252545;animation:slateBreak 3.5s ease-in-out infinite;}
 .brain-slate::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom right,transparent 47%,#c8ff0044 49%,transparent 51%),linear-gradient(to bottom left,transparent 44%,#c8ff0022 46%,transparent 48%),linear-gradient(to right,transparent 30%,#00e5ff22 31%,transparent 33%);border-radius:7px;animation:crackGlow 3.5s ease-in-out infinite;}
 @keyframes slateBreak{0%,100%{transform:scale(1);box-shadow:0 0 0px #c8ff0000;}48%{transform:scale(1.06) rotate(-0.5deg);box-shadow:0 0 24px #c8ff0055;}50%{transform:scale(1.10) rotate(0.5deg);box-shadow:0 0 40px #c8ff0088;}52%{transform:scale(1.06) rotate(-0.3deg);box-shadow:0 0 24px #c8ff0055;}}
@@ -891,8 +891,8 @@ nav{display:flex;align-items:center;gap:16px;padding:12px 0 14px;border-bottom:1
 .bspark:nth-child(27){top:50%;left:98%;--tx:24px; --ty:2px;  animation-delay:0.73s;}
 .bspark:nth-child(28){top:50%;left:0%; --tx:-24px;--ty:2px;  animation-delay:0.71s;}
 @keyframes bsparkFly{0%,47%{opacity:0;transform:translate(0,0) scale(0);}50%{opacity:1;transform:translate(0,0) scale(1);}75%{opacity:0.5;}95%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0.2);}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0);}}
-.brand{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.12em;color:var(--accent);line-height:1;}
-.brand span{color:var(--cyan);}
+.brand{font-family:'Inter',sans-serif;font-size:32px;font-weight:700;letter-spacing:-0.5px;color:#ffffff;line-height:1;}
+.brand span{color:var(--accent);font-weight:800;}
 .nav-links{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap;}
 .nav-links a{color:#aaa;text-decoration:none;font-size:13px;padding:6px 14px;border-radius:6px;border:1px solid transparent;transition:all .2s;}
 .nav-links a:hover{color:var(--text);border-color:var(--border);}
@@ -1084,12 +1084,12 @@ html[data-theme="light"] .ticket{
         <line x1="25" y1="38" x2="25" y2="43" stroke="#00e5ff55" stroke-width="0.7" stroke-dasharray="1.5,1.5"/>
       </svg>
     </div>
-    <div><div class="brand">Slate<span>IQ</span></div></div>
+    <div><div class="brand">Prop<span>ORACLE</span></div></div>
   </a>
   <div class="nav-links">
     <a href="/">Home</a>
-    <a href="/grades">Grades</a>
     <a href="/tickets" class="active">Tickets</a>
+    <a href="/grades">Grades</a>
     <a href="/payout">Payouts</a>
   </div>
 </nav>
