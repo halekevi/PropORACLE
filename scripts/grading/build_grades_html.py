@@ -851,7 +851,7 @@ def build_html(date_str: str, nba_rows: list[dict], cbb_rows: list[dict],
 <body>
 <header>
   <div class="logo">
-    <img src="/static/hybrid-logo.png?v=20260320" alt="PropORACLE logo" class="logo-icon"/>
+    <img src="/static/proporacle-logo-v3.png?v=20260320b" alt="PropORACLE logo" class="logo-icon"/>
     <div>
       <div class="logo-title">SLATE EVALUATION</div>
       <div class="logo-sub">POST-GAME GRADE REPORT</div>

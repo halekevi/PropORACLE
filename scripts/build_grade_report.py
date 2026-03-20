@@ -503,7 +503,7 @@ def build_html(df: pd.DataFrame, date_str: str) -> str:
 <body>
 <header>
   <div class="logo">
-    <img src="/static/hybrid-logo.png?v=20260320" alt="PropORACLE logo" class="logo-icon"/>
+    <img src="/static/proporacle-logo-v3.png?v=20260320b" alt="PropORACLE logo" class="logo-icon"/>
     <div>
       <div class="logo-title">SLATE EVALUATION</div>
       <div class="logo-sub">POST-GAME GRADE REPORT</div>
