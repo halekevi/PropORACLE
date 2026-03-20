@@ -102,6 +102,41 @@ DEMON_MAX_BOOST:      float = 2.50        # single-leg multiplier cap (2.5×)
 # Set slightly above 1.0 for a small profit margin cushion.
 MIN_TICKET_EV: float = 1.05              # ← tune me (1.0 = break-even)
 
+# 2026 NCAA tournament + AP Top 25 metadata (CBB enrichment).
+# Keys follow abbreviations used in our CBB files.
+CBB_TOURNEY_2026 = {
+    "DUKE": (1, "East"), "CONN": (2, "East"), "MSU": (3, "East"), "KU": (4, "East"),
+    "SJU": (5, "East"), "LOU": (6, "East"), "UCLA": (7, "East"), "OSU": (8, "East"),
+    "TCU": (9, "East"), "UCF": (10, "East"), "USF": (11, "East"), "UNI": (12, "East"),
+    "CBU": (13, "East"), "NDSU": (14, "East"), "FUR": (15, "East"), "SIEN": (16, "East"),
+    "ARIZ": (1, "West"), "PUR": (2, "West"), "GONZ": (3, "West"), "ARK": (4, "West"),
+    "WIS": (5, "West"), "BYU": (6, "West"), "MIA": (7, "West"), "VILL": (8, "West"),
+    "UST": (9, "West"), "MIZZ": (10, "West"), "TEX": (11, "West"), "NCSU": (11, "West"),
+    "HP": (12, "West"), "HAW": (13, "West"), "KSU": (14, "West"), "QUC": (15, "West"),
+    "LIU": (16, "West"),
+    "MICH": (1, "Midwest"), "ISU": (2, "Midwest"), "UVA": (3, "Midwest"), "ALA": (4, "Midwest"),
+    "TTU": (5, "Midwest"), "TENN": (6, "Midwest"), "UK": (7, "Midwest"), "UGA": (8, "Midwest"),
+    "SLU": (9, "Midwest"), "SCU": (10, "Midwest"), "M-OH": (11, "Midwest"), "SMU": (11, "Midwest"),
+    "AKR": (12, "Midwest"), "HOF": (13, "Midwest"), "WRST": (14, "Midwest"), "TNST": (15, "Midwest"),
+    "HOW": (16, "Midwest"), "UMBC": (16, "Midwest"),
+    "FLA": (1, "South"), "HOU": (2, "South"), "ILL": (3, "South"), "NEB": (4, "South"),
+    "VAN": (5, "South"), "UNC": (6, "South"), "SMC": (7, "South"), "CLEM": (8, "South"),
+    "IOWA": (9, "South"), "TA&M": (10, "South"), "VCU": (11, "South"), "MCN": (12, "South"),
+    "TROY": (13, "South"), "PENN": (14, "South"), "IDA": (15, "South"),
+    "PV": (16, "South"), "LEH": (16, "South"),
+}
+
+CBB_AP_TOP25_2026 = {
+    "DUKE": 1, "ARIZ": 2, "MICH": 3, "FLA": 4, "HOU": 5, "ISU": 6, "CONN": 7,
+    "PUR": 8, "UVA": 9, "SJU": 10, "MSU": 11, "GONZ": 12, "ILL": 13, "ARK": 14,
+    "NEB": 15, "VAN": 16, "KU": 17, "ALA": 18, "WIS": 19, "TTU": 20, "UNC": 21,
+    "SMC": 22, "LOU": 23, "MIA": 23, "TENN": 25,
+}
+
+
+def _norm_team_abbr(v: object) -> str:
+    return str(v or "").strip().upper()
+
 
 def calc_adjusted_payout(base_payout: float, legs: list) -> float:
     """
@@ -1194,8 +1229,8 @@ tr:hover td{background:rgba(200,255,0,.03);}
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(html_str)
 
-    print(f"✅ Web JSON  -> {json_path}")
-    print(f"✅ Web HTML  -> {html_path}")
+    print(f"[OK] Web JSON  -> {json_path}")
+    print(f"[OK] Web HTML  -> {html_path}")
 
 
 # ── Load & normalize NBA ───────────────────────────────────────────────────────
@@ -1228,6 +1263,8 @@ def load_nba(path: str) -> pd.DataFrame:
             "L5 Under": "l5_under",
             "Def Rank": "def_rank",
             "Def Tier": "def_tier",
+            "Pace Tier": "pace_tier",
+            "pace_tier": "pace_tier",
             "Min Tier": "min_tier",
             "Shot Role": "shot_role",
             "Usage Role": "usage_role",
@@ -1338,6 +1375,11 @@ def load_cbb(path: str) -> pd.DataFrame:
             "espn_player_id": "espn_player_id",
             "ESPN Player ID": "espn_player_id",
             "player_id": "espn_player_id",
+            # Optional NCAA ranking fields (when present in CBB pipeline output)
+            "NCAA Rank": "ncaa_rank",
+            "ncaa_rank": "ncaa_rank",
+            "OVERALL_DEF_RANK": "ncaa_rank",
+            "opp_def_rank": "ncaa_rank",
         }
     )
 
@@ -1365,6 +1407,24 @@ def load_cbb(path: str) -> pd.DataFrame:
 
     if "espn_player_id" in df.columns:
         df["espn_player_id"] = df["espn_player_id"].apply(_clean_id)
+
+    # Enrich CBB rows with tournament + AP metadata for team and opponent.
+    team_src = "team" if "team" in df.columns else ("pp_team" if "pp_team" in df.columns else "")
+    opp_src = "opp" if "opp" in df.columns else ("opp_team_abbr" if "opp_team_abbr" in df.columns else "")
+    if team_src:
+        t_abbr = df[team_src].map(_norm_team_abbr)
+        df["team_seed"] = t_abbr.map(lambda a: CBB_TOURNEY_2026.get(a, ("", ""))[0])
+        df["team_region"] = t_abbr.map(lambda a: CBB_TOURNEY_2026.get(a, ("", ""))[1])
+        df["team_ap_rank"] = t_abbr.map(lambda a: CBB_AP_TOP25_2026.get(a, ""))
+    if opp_src:
+        o_abbr = df[opp_src].map(_norm_team_abbr)
+        df["opp_seed"] = o_abbr.map(lambda a: CBB_TOURNEY_2026.get(a, ("", ""))[0])
+        df["opp_region"] = o_abbr.map(lambda a: CBB_TOURNEY_2026.get(a, ("", ""))[1])
+        df["opp_ap_rank"] = o_abbr.map(lambda a: CBB_AP_TOP25_2026.get(a, ""))
+
+    # Ensure NCAA rank is numeric when available.
+    if "ncaa_rank" in df.columns:
+        df["ncaa_rank"] = pd.to_numeric(df["ncaa_rank"], errors="coerce")
 
     return df
 
@@ -1574,6 +1634,13 @@ def build_combined_slate(nba: pd.DataFrame, cbb: pd.DataFrame, nhl: pd.DataFrame
         "player",
         "team",
         "opp",
+        "team_seed",
+        "team_region",
+        "team_ap_rank",
+        "opp_seed",
+        "opp_region",
+        "opp_ap_rank",
+        "ncaa_rank",
         "game_time",
         "prop_type",
         "pick_type",
@@ -1587,6 +1654,7 @@ def build_combined_slate(nba: pd.DataFrame, cbb: pd.DataFrame, nhl: pd.DataFrame
         "l5_over",
         "l5_under",
         "def_tier",
+        "pace_tier",
         "min_tier",
         "shot_role",
         "usage_role",
@@ -1636,6 +1704,68 @@ def filter_eligible(df: pd.DataFrame, min_hit_rate=0.55, min_edge=0.0, min_rank=
     if pick_types and "pick_type" in df.columns:
         mask &= df["pick_type"].isin(pick_types)
     return df[mask].copy()
+
+
+def apply_nba_context_confidence_filter(
+    df: pd.DataFrame,
+    enabled: bool = True,
+    min_context_score: int = 2,
+    min_l5_sample: int = 5,
+) -> pd.DataFrame:
+    """
+    Context-aware filter calibrated from NBA backtest tendencies:
+    - OVER performs better vs weaker defenses and faster pace
+    - UNDER performs better vs stronger defenses and normal/slower pace
+    - Require minimal recent sample size (L5 over+under count)
+
+    Applies only to NBA Standard picks. Other sports/pick-types pass through unchanged.
+    """
+    if not enabled or df.empty:
+        return df
+
+    out = df.copy()
+    if "sport" not in out.columns:
+        return out
+
+    sport = out["sport"].astype(str).str.upper()
+    if "pick_type" in out.columns:
+        pick = out["pick_type"].astype(str).str.title()
+    else:
+        pick = pd.Series(["Standard"] * len(out), index=out.index)
+
+    is_nba_standard = (sport == "NBA") & (pick == "Standard")
+    if not is_nba_standard.any():
+        return out
+
+    direction = out.get("direction", pd.Series("", index=out.index)).astype(str).str.upper()
+    def_tier = out.get("def_tier", pd.Series("", index=out.index)).astype(str).str.upper().str.strip()
+    pace_tier = out.get("pace_tier", pd.Series("", index=out.index)).astype(str).str.upper().str.strip()
+
+    l5_over = pd.to_numeric(out.get("l5_over", 0), errors="coerce").fillna(0)
+    l5_under = pd.to_numeric(out.get("l5_under", 0), errors="coerce").fillna(0)
+    l5_sample = l5_over + l5_under
+
+    def_over_good = def_tier.isin(["WEAK", "AVG", "ABOVE AVG", "AVERAGE"])
+    def_under_good = def_tier.isin(["ELITE", "SOLID"])
+    pace_over_good = pace_tier.eq("FAST")
+    pace_under_good = pace_tier.isin(["NORMAL", "SLOW"])
+
+    score = pd.Series(0, index=out.index, dtype="int64")
+    score += (l5_sample >= min_l5_sample).astype(int)
+    score += (((direction == "OVER") & def_over_good) | ((direction == "UNDER") & def_under_good)).astype(int)
+    score += (((direction == "OVER") & pace_over_good) | ((direction == "UNDER") & pace_under_good)).astype(int)
+
+    keep = (~is_nba_standard) | (score >= int(min_context_score))
+
+    kept_before = len(out)
+    out = out[keep].copy()
+    dropped = kept_before - len(out)
+    if dropped > 0:
+        print(
+            f"  [context_filter] Dropped {dropped} NBA standard rows "
+            f"(score < {min_context_score}, min_l5_sample={min_l5_sample})"
+        )
+    return out
 
 
 # ── Build tickets ──────────────────────────────────────────────────────────────
@@ -2087,6 +2217,13 @@ SLATE_COLS = [
     "player",
     "team",
     "opp",
+    "team_seed",
+    "team_region",
+    "team_ap_rank",
+    "opp_seed",
+    "opp_region",
+    "opp_ap_rank",
+    "ncaa_rank",
     "prop_type",
     "pick_type",
     "line",
@@ -2111,7 +2248,7 @@ SLATE_COLS = [
     "opp_vs_avg_pct",
     "game_time",
 ]
-SLATE_WIDTHS = [6, 5, 10, 20, 6, 6, 18, 10, 6, 8, 7, 10, 10, 8, 10, 7, 7, 10, 9, 10, 10, 8, 9, 8, 10, 7, 8, 10, 16]
+SLATE_WIDTHS = [6, 5, 10, 20, 6, 6, 7, 10, 8, 7, 10, 8, 10, 18, 10, 6, 8, 7, 10, 10, 8, 10, 7, 7, 10, 9, 10, 10, 8, 9, 8, 10, 7, 8, 10, 16]
 SLATE_HDRS = [
     "Sport",
     "Tier",
@@ -2119,6 +2256,13 @@ SLATE_HDRS = [
     "Player",
     "Team",
     "Opp",
+    "Team Seed",
+    "Team Region",
+    "Team AP",
+    "Opp Seed",
+    "Opp Region",
+    "Opp AP",
+    "NCAA Rank",
     "Prop",
     "Pick Type",
     "Line",
@@ -2328,10 +2472,30 @@ def write_ticket_sheet(wb, tickets, sheet_name, bg_hdr, label=""):
             def gv(field):
                 return row.get(field, "")
 
+            def _fmt_team_with_meta(team_val, seed_val, region_val, ap_val):
+                t = str(team_val or "").strip()
+                if not t:
+                    return ""
+                tags = []
+                ap_missing = ap_val in ("", None) or (isinstance(ap_val, float) and np.isnan(ap_val))
+                seed_missing = seed_val in ("", None) or (isinstance(seed_val, float) and np.isnan(seed_val))
+                region_missing = region_val in ("", None) or (isinstance(region_val, float) and np.isnan(region_val))
+                if not ap_missing:
+                    tags.append(f"AP#{int(ap_val)}")
+                if not seed_missing:
+                    try:
+                        s = int(seed_val)
+                    except Exception:
+                        s = seed_val
+                    tags.append(f"S{s}")
+                if not region_missing:
+                    tags.append(str(region_val))
+                return f"{t} ({' | '.join(tags)})" if tags else t
+
             dc(ws, ri, 1, leg_i, bg=bg, bold=True, align="center")
             dc(ws, ri, 2, gv("player"), bg=bg, align="left", bold=True)
-            dc(ws, ri, 3, gv("team"), bg=bg)
-            dc(ws, ri, 4, gv("opp"), bg=bg)
+            dc(ws, ri, 3, _fmt_team_with_meta(gv("team"), gv("team_seed"), gv("team_region"), gv("team_ap_rank")), bg=bg)
+            dc(ws, ri, 4, _fmt_team_with_meta(gv("opp"), gv("opp_seed"), gv("opp_region"), gv("opp_ap_rank")), bg=bg)
             dc(ws, ri, 5, gv("prop_type"), bg=bg, align="left")
             ptv = gv("pick_type")
             dc(ws, ri, 6, ptv, bg=pt_bg(str(ptv)), align="center")
@@ -2416,7 +2580,10 @@ def write_summary(wb, nba, cbb, combined, all_ticket_groups, date_str, threshold
         f"Min Hit Rate: {thresholds.get('min_hit_rate',0):.0%} | "
         f"Min Edge: {thresholds.get('min_edge',0)} | "
         f"Min Rank Score: {thresholds.get('min_rank','None')} | "
-        f"Pick Types: {thresholds.get('pick_types','ALL')}"
+        f"Pick Types: {thresholds.get('pick_types','ALL')} | "
+        f"Context Filter: {thresholds.get('context_filter', False)} "
+        f"(score>={thresholds.get('context_min_score', 2)}, "
+        f"L5 sample>={thresholds.get('context_min_l5_sample', 5)})"
     )
     c2.font = Font(bold=False, name="Arial", size=9, color="000000")
     c2.fill = PatternFill("solid", start_color=C["gold"])
@@ -2515,6 +2682,14 @@ def main():
     ap.add_argument("--min-rank", type=float, default=None, dest="min_rank")
     ap.add_argument("--pick-types", default="Goblin,Standard,Demon", dest="pick_types")  # Demon kept for Flex sheets; filtered out of 5/6-leg Power by build_tickets
     ap.add_argument("--max-tickets", type=int, default=20, dest="max_tickets")
+    ap.add_argument("--use-context-filter", action="store_true", dest="use_context_filter", default=True,
+                    help="Apply NBA direction+defense+pace context confidence filter")
+    ap.add_argument("--no-context-filter", action="store_false", dest="use_context_filter",
+                    help="Disable NBA direction+defense+pace context confidence filter")
+    ap.add_argument("--context-min-score", type=int, default=2, dest="context_min_score",
+                    help="Minimum NBA context score for Standard picks")
+    ap.add_argument("--context-min-l5-sample", type=int, default=5, dest="context_min_l5_sample",
+                    help="Minimum (L5 over+under) sample size for NBA context filter")
 
     # Web outputs
     ap.add_argument("--write-web", action="store_true", help="Write tickets_latest.html/json for GitHub Pages")
@@ -2534,6 +2709,9 @@ def main():
         "min_edge": args.min_edge,
         "min_rank": args.min_rank,
         "pick_types": args.pick_types,
+        "context_filter": args.use_context_filter,
+        "context_min_score": args.context_min_score,
+        "context_min_l5_sample": args.context_min_l5_sample,
     }
 
     print(f"Loading NBA slate from {args.nba}...")
@@ -2587,13 +2765,19 @@ def main():
         effective_min_rank = args.min_rank
         if sport == "CBB" and pt is not None and pt == ["Goblin"]:
             effective_min_rank = max(args.min_rank or 0, CBB_GOBLIN_MIN_RANK)
-        return filter_eligible(
+        base = filter_eligible(
             df,
             args.min_hit_rate,
             args.min_edge,
             effective_min_rank,
             tiers if tiers else None,
             pt if pt is not None else pick_types,
+        )
+        return apply_nba_context_confidence_filter(
+            base,
+            enabled=args.use_context_filter,
+            min_context_score=args.context_min_score,
+            min_l5_sample=args.context_min_l5_sample,
         )
 
     nba_pool = pool(nba)
@@ -2704,7 +2888,7 @@ def main():
             wb.move_sheet(wb[sname], offset=-(len(wb.sheetnames) - 1))
 
     wb.save(args.output)
-    print(f"\n✅ Saved -> {args.output}")
+    print(f"\n[OK] Saved -> {args.output}")
     print(f"   Sheets ({len(wb.sheetnames)}): {wb.sheetnames}")
 
     # Web output (FINAL only)
@@ -2725,7 +2909,7 @@ def main():
         write_slate_json(nba, cbb, nhl, soccer, args.date, args.web_outdir)
         if args.also_root:
             write_web_outputs(payload, outdir=".")
-        print("✅ Web outputs complete (FINAL only).")
+        print("[OK] Web outputs complete (FINAL only).")
 
 
 if __name__ == "__main__":
