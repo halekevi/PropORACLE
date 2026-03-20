@@ -84,6 +84,26 @@ nav{display:flex;align-items:center;gap:16px;padding:12px 0 14px;border-bottom:1
 .nav-links a{color:#aaa;text-decoration:none;font-size:13px;padding:6px 14px;border-radius:6px;border:1px solid transparent;transition:all .2s;}
 .nav-links a:hover{color:var(--text);border-color:var(--border);}
 .nav-links a.active{color:var(--accent);border-color:var(--accent);background:rgba(200,255,0,.06);}
+
+/* force PropOracle logo treatment to match home */
+.nav-logo{gap:14px;}
+.nav-logo .brain-wrap,.nav-logo .brand{display:none;}
+.nav-logo::before{
+  content:'';
+  width:58px;
+  height:58px;
+  background:url('/static/proporacle-logo-v3.png?v=20260320b') center/contain no-repeat;
+  filter:drop-shadow(0 0 8px rgba(212,175,55,0.45));
+  flex-shrink:0;
+}
+.nav-logo::after{
+  content:'PropORACLE';
+  font-family:'Inter',sans-serif;
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:.02em;
+  color:var(--accent);
+}
 /* player graph expand */
 .leg-row{cursor:pointer;transition:background .15s;}
 .leg-row:hover{background:rgba(200,255,0,.04);}
@@ -162,6 +182,19 @@ body::before{
     linear-gradient(180deg,#050507 0%,#0d0b12 50%,#141017 100%);
 }
 .ticket,.group,.filter-pill{backdrop-filter:blur(14px) saturate(160%);}
+/* card shell alignment with home/index glass cards */
+.filter-pill,.group,.ticket{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:18px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.ticket{
+  overflow:hidden;
+}
+.group-title,.ticket-no{
+  letter-spacing:.04em;
+}
 html[data-theme="light"]{
   --bg:#fdfcff;
   --surface:rgba(255,255,255,0.72);

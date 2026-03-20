@@ -94,6 +94,26 @@ nav{display:flex;align-items:center;gap:16px;padding:12px 0 16px;border-bottom:1
 .nav-links a:hover{color:var(--text);border-color:var(--border);}
 .nav-links a.active{color:var(--accent);border-color:var(--accent);background:rgba(212,175,55,.06);}
 
+/* force PropOracle logo treatment to match home */
+.nav-logo{gap:14px;}
+.nav-logo .brain-wrap,.nav-logo .brand{display:none;}
+.nav-logo::before{
+  content:'';
+  width:58px;
+  height:58px;
+  background:url('/static/proporacle-logo-v3.png?v=20260320b') center/contain no-repeat;
+  filter:drop-shadow(0 0 8px rgba(212,175,55,0.45));
+  flex-shrink:0;
+}
+.nav-logo::after{
+  content:'PropORACLE';
+  font-family:'Inter',sans-serif;
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:.02em;
+  color:var(--accent);
+}
+
 /* ── HERO ── */
 .hero{margin:28px 0 20px;}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,52px);letter-spacing:.08em;line-height:1;color:var(--accent);}
