@@ -8,6 +8,13 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Inter:wght@400;500;600;700&display=swap');
 :root{
+  /* Hybrid liquid-glass palette */
+  --bg-main:#050505;
+  --glass-bg:rgba(20,20,20,0.6);
+  --glass-border:rgba(212,175,55,0.15);
+  --text-primary:#ffffff;
+  --accent-gold:#d4af37;
+  --nebula-overlay:radial-gradient(circle at top right, #1a1a2e, #050505);
   --bg:#05050f;--bg2:rgba(255,255,255,0.03);--bg3:rgba(255,255,255,0.05);
   --border:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.14);
   --text:rgba(255,255,255,0.92);--muted:rgba(255,255,255,0.45);--muted2:rgba(255,255,255,0.25);
@@ -22,9 +29,19 @@
   --glass-shadow:0 8px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.06) inset;
   --glass-shadow-lg:0 20px 60px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.07) inset;
   --blur:blur(22px) saturate(180%);
+  /* Re-assert hybrid border after legacy token block */
+  --glass-border:rgba(212,175,55,0.15);
+}
+[data-theme='light']{
+  --bg-main:#f0f2f5;
+  --glass-bg:rgba(255,255,255,0.7);
+  --glass-border:rgba(255,255,255,0.4);
+  --text-primary:#1d1d1f;
+  --accent-gold:#c5a059;
+  --nebula-overlay:linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#05050f;color:var(--text);min-height:100vh;padding-bottom:80px;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:var(--bg-main);color:var(--text-primary);min-height:100vh;padding-bottom:80px;overflow-x:hidden;}
 /* Deep space background */
 body::before{content:'';position:fixed;inset:0;
   background:
@@ -66,12 +83,12 @@ body::after{content:'';position:fixed;inset:0;
 @keyframes bSpark{0%,47%{opacity:0;transform:translate(0,0) scale(0);}50%{opacity:1;transform:translate(0,0) scale(1);}75%{opacity:.5;}95%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2);}100%{opacity:0;}}
 
 /* nav */
-.snav{position:sticky;top:0;z-index:200;background:rgba(4,6,14,0.72);backdrop-filter:blur(40px) saturate(200%);-webkit-backdrop-filter:blur(40px) saturate(200%);border-bottom:1px solid rgba(255,255,255,0.07);box-shadow:0 1px 0 rgba(255,255,255,0.04),0 8px 32px rgba(0,0,0,0.4);padding:0 40px;display:flex;align-items:center;height:72px;gap:0;}
+.snav{position:sticky;top:1rem;z-index:200;background:var(--glass-bg);backdrop-filter:blur(40px) saturate(200%);-webkit-backdrop-filter:blur(40px) saturate(200%);border:1px solid var(--glass-border);box-shadow:0 1px 0 rgba(255,255,255,0.04),0 8px 32px rgba(0,0,0,0.4);padding:0 40px;display:flex;align-items:center;height:72px;gap:0;margin:1rem;border-radius:20px;}
 .nav-accent{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--lime,#c6ff00) 15%,var(--cyan) 40%,var(--purple) 65%,var(--lime,#c6ff00) 85%,transparent 100%);opacity:.7;animation:accentShift 6s ease-in-out infinite alternate;}
 @keyframes accentShift{from{opacity:.5;filter:hue-rotate(0deg);}to{opacity:.9;filter:hue-rotate(20deg);}}
 .snav-brand{display:flex;align-items:center;gap:14px;text-decoration:none;margin-right:48px;flex-shrink:0;}
-.snav-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;color:var(--text);}
-.snav-name span{color:var(--accent);}
+.snav-name{font-family:'Inter',sans-serif;font-size:22px;letter-spacing:1px;color:var(--text-primary);font-weight:700;}
+.snav-name span{color:var(--accent-gold);}
 .snav-links{display:flex;align-items:stretch;list-style:none;flex:1;gap:4px;}
 .snav-links li a{display:flex;align-items:center;gap:10px;padding:0 20px;height:72px;font-family:"Inter",sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#7a9ac8;text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s,background .2s;position:relative;}
 .snav-links li a:hover{color:var(--text);background:rgba(255,255,255,.02);}
@@ -109,6 +126,13 @@ body::after{content:'';position:fixed;inset:0;
 .mobile-menu.open{display:block;}
 .mobile-menu a{display:flex;align-items:center;gap:12px;padding:12px 24px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;border-left:3px solid transparent;transition:all .15s;}
 .mobile-menu a:hover,.mobile-menu a.active{color:var(--accent);border-left-color:var(--accent);background:rgba(200,255,0,.04);}
+
+/* Hybrid glass utility classes */
+.glass-card{background:var(--glass-bg);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border:1px solid var(--glass-border);border-radius:20px;box-shadow:0 8px 32px 0 rgba(0,0,0,0.2);}
+.gold-shimmer{background:linear-gradient(to bottom,#d4af37,#f7ef8a);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.insight-card{padding:24px;transition:transform .3s ease,border-color .3s ease;}
+.insight-card:hover{transform:translateY(-5px);border-color:var(--accent-gold);}
+.edge-badge{color:#00ffcc;font-weight:800;text-shadow:0 0 10px rgba(0,255,204,0.5);}
 
 /* shell */
 .shell{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:32px 28px;}
@@ -154,14 +178,14 @@ body::after{content:'';position:fixed;inset:0;
 .qp{border-color:rgba(57,255,110,.18);} .qp:hover{border-color:rgba(57,255,110,.35);box-shadow:0 16px 40px rgba(0,0,0,.45),0 0 40px rgba(57,255,110,.08);}
 
 /* edge cards */
-.edge-card{background:rgba(255,255,255,0.028);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,0.08);border-radius:18px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.3);}
+.edge-card{background:var(--glass-bg);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid var(--glass-border);border-radius:18px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.3);}
 .edge-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
 /* top shimmer edge */
 .edge-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);}
 .edge-card.over::before{background:var(--green);}
 .edge-card.under::before{background:var(--amber);}
 .edge-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.45);}
-.edge-card:hover.over{border-color:rgba(57,255,110,.22);}
+.edge-card:hover.over{border-color:var(--accent-gold);}
 .edge-card:hover.under{border-color:rgba(240,165,0,.22);}
 .edge-card-top{display:flex;align-items:center;gap:14px;padding:16px 18px;}
 .edge-avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:17px;flex-shrink:0;}
@@ -680,7 +704,7 @@ body{
 <body>
 
 <!-- Liquid Glass Orbs — provide depth for glass panels to refract -->
-<div style="position:fixed;top:-15%;left:-8%;width:600px;height:600px;class="orb-1" style="background:radial-gradient(circle,rgba(0,229,255,0.18) 0%,transparent 70%);filter:blur(120px);z-index:0;pointer-events:none;animation:orbDrift1 18s ease-in-out infinite alternate;"></div>
+<div class="orb-1" style="position:fixed;top:-15%;left:-8%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,229,255,0.18) 0%,transparent 70%);filter:blur(120px);z-index:0;pointer-events:none;animation:orbDrift1 18s ease-in-out infinite alternate;"></div>
 <div class="orb-1" style="position:fixed;top:20%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(200,255,0,0.10) 0%,transparent 70%);filter:blur(120px);z-index:0;pointer-events:none;animation:orbDrift2 22s ease-in-out infinite alternate;"></div>
 <div class="orb-2" style="position:fixed;bottom:5%;left:30%;width:580px;height:580px;background:radial-gradient(circle,rgba(167,139,250,0.08) 0%,transparent 70%);filter:blur(100px);z-index:0;pointer-events:none;animation:orbDrift3 26s ease-in-out infinite alternate;"></div>
 <style>
@@ -692,7 +716,7 @@ body{
 <div class="mesh-bg" aria-hidden="true"></div>
 <div class="grain-layer" aria-hidden="true"></div>
 
-<nav class="snav">
+<nav class="snav prop-nav glass-card">
   <div class="nav-accent"></div>
   <a class="snav-brand" href="/">
     <div class="brain-wrap">
@@ -729,7 +753,7 @@ body{
         <line x1="12" y1="28.5" x2="38" y2="28.5" stroke="#c8ff0030" stroke-width="0.6"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="1.9s" repeatCount="indefinite" begin="0.7s"/></line>
       </svg>
     </div>
-    <span class="snav-name">Prop<span>Oracle</span></span>
+    <span class="snav-name">prop<span class="gold-shimmer">ORACLE</span></span>
   </a>
   <ul class="snav-links">
     <li><a href="/" class="active"><span class="ni ni-ctrl"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L1 5.5V13h4V9h4v4h4V5.5L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/></svg></span> Home</a></li>
@@ -1333,7 +1357,7 @@ function buildEdgeCard(p, idx) {
   const sc=`sp-${p.sport.toLowerCase()}`, pc=p.pick==="Goblin"?"pick-goblin":"pick-standard";
   const hc=p.hit>=90?"var(--green)":p.hit>=75?"var(--amber)":"var(--red)";
   const div=document.createElement("div");
-  div.className=`edge-card ${dc}`;
+  div.className=`edge-card insight-card ${dc}`;
   const hitBar=Math.min(100,p.hit);
   const hitColor=p.hit>=90?'var(--green)':p.hit>=75?'var(--amber)':'var(--red)';
   div.innerHTML=`
@@ -1348,7 +1372,7 @@ function buildEdgeCard(p, idx) {
         </div>
       </div>
       <div class="edge-val">
-        <div class="edge-num ${dc}">${es}${p.edge.toFixed(2)}</div>
+        <div class="edge-num edge-badge ${dc}">${es}${p.edge.toFixed(2)}</div>
         <div class="edge-hr">${p.hit}% hit</div>
         <div class="edge-line-badge">Line ${p.line}</div>
       </div>
