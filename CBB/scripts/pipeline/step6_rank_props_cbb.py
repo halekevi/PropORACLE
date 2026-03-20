@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import math
 from typing import Optional
+from datetime import datetime
 
 import numpy as np
 import pandas as pd
@@ -233,10 +234,22 @@ def main():
     ap.add_argument("--output",     default="step6_ranked_props_cbb.xlsx")
     ap.add_argument("--output_csv", default="")
     ap.add_argument("--cache", default="cbb_boxscore_cache.csv", help="Path to CBB boxscore cache CSV")
+    ap.add_argument("--date", default="", help="Filter to YYYY-MM-DD using start_time")
     args = ap.parse_args()
 
     df = pd.read_csv(args.input, dtype=str).fillna("")
     print(f"→ Loaded: {args.input} | rows={len(df)}")
+
+    if "start_time" in df.columns:
+        target_date = (args.date or datetime.now().strftime("%Y-%m-%d")).strip()
+        start_dt = pd.to_datetime(df["start_time"], errors="coerce")
+        keep_mask = start_dt.dt.strftime("%Y-%m-%d").eq(target_date)
+        kept = int(keep_mask.sum())
+        total = len(df)
+        df = df.loc[keep_mask].copy()
+        print(f"[DateFilter] Kept {kept}/{total} rows for {target_date} (dropped {total - kept} rows)")
+        if df.empty:
+            print("⚠️ Date filter returned no rows; writing empty outputs.")
 
     # Only rank OK rows
     ok = df["stat_status"].astype(str).str.upper().eq("OK") if "stat_status" in df.columns else \

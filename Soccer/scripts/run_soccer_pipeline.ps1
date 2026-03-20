@@ -13,6 +13,8 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+$script:ProgressDone = 0
+$script:ProgressTotal = if ($SkipFetch) { 7 } else { 8 }
 
 # ── Resolve paths ─────────────────────────────────────────────────────────────
 # Support running from Soccer\ root OR from Soccer\scripts\
@@ -34,9 +36,15 @@ function Run-Step {
     Write-Host "        CMD: $Python `"$fullPath`" $($StepArgs -join ' ')" -ForegroundColor DarkGray
     & $Python $fullPath @StepArgs
     if ($LASTEXITCODE -ne 0) {
+        $script:ProgressDone = [Math]::Min($script:ProgressDone + 1, $script:ProgressTotal)
+        $pct = [int][Math]::Round(($script:ProgressDone / $script:ProgressTotal) * 100, 0)
+        Write-Progress -Id 3 -Activity "Soccer Pipeline" -Status "$Label [FAILED] ($script:ProgressDone/$script:ProgressTotal)" -PercentComplete $pct
         Write-Host "$tag FAILED (exit $LASTEXITCODE) - aborting." -ForegroundColor Red
         exit $LASTEXITCODE
     }
+    $script:ProgressDone = [Math]::Min($script:ProgressDone + 1, $script:ProgressTotal)
+    $pct = [int][Math]::Round(($script:ProgressDone / $script:ProgressTotal) * 100, 0)
+    Write-Progress -Id 3 -Activity "Soccer Pipeline" -Status "$Label [OK] ($script:ProgressDone/$script:ProgressTotal)" -PercentComplete $pct
     Write-Host "$tag OK" -ForegroundColor Green
 }
 
@@ -47,6 +55,7 @@ Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "  PropOracle Soccer Pipeline" -ForegroundColor Cyan
 Write-Host "  Root: $SoccerRoot" -ForegroundColor DarkGray
 Write-Host "========================================" -ForegroundColor Cyan
+Write-Progress -Id 3 -Activity "Soccer Pipeline" -Status "Starting..." -PercentComplete 0
 
 # ── S1: Fetch PrizePicks ──────────────────────────────────────────────────────
 if ($SkipFetch) {
@@ -127,3 +136,4 @@ Write-Host "  PropOracle Soccer Pipeline COMPLETE" -ForegroundColor Green
 Write-Host "  $OutputsDir\step7_soccer_ranked.xlsx" -ForegroundColor Green
 Write-Host "  $OutputsDir\step8_soccer_direction_clean.xlsx" -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Green
+Write-Progress -Id 3 -Activity "Soccer Pipeline" -Completed

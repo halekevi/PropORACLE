@@ -37,6 +37,9 @@ param(
 )
 
 $ErrorActionPreference = "Continue"
+$script:ProgressTotal = 0
+$script:ProgressDone  = 0
+$script:ProgressActivity = "PropOracle Pipeline"
 
 # -- Date ---------------------------------------------------------------------
 if (-not $Date) {
@@ -83,6 +86,27 @@ Write-Host "  PROP PIPELINE  -- $Date -- $(Get-Date -Format 'HH:mm:ss')" -Foregr
 Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host ""
 
+function Init-Progress {
+    param([int]$Total, [string]$Activity = "PropOracle Pipeline")
+    $script:ProgressTotal = [Math]::Max(1, $Total)
+    $script:ProgressDone = 0
+    $script:ProgressActivity = $Activity
+    Write-Progress -Id 1 -Activity $script:ProgressActivity -Status "Starting..." -PercentComplete 0
+}
+
+function Advance-Progress {
+    param([string]$Label, [bool]$Ok = $true)
+    if ($script:ProgressTotal -lt 1) { return }
+    $script:ProgressDone = [Math]::Min($script:ProgressDone + 1, $script:ProgressTotal)
+    $pct = [int][Math]::Round(($script:ProgressDone / $script:ProgressTotal) * 100, 0)
+    $state = if ($Ok) { "OK" } else { "FAILED" }
+    Write-Progress -Id 1 -Activity $script:ProgressActivity -Status "$Label [$state] ($script:ProgressDone/$script:ProgressTotal)" -PercentComplete $pct
+}
+
+function Complete-Progress {
+    Write-Progress -Id 1 -Activity $script:ProgressActivity -Completed
+}
+
 # -- Helper: auto-wipe ESPN cache if stale ------------------------------------
 function Check-AutoRefreshCache {
     $cacheFile = Join-Path $NBADir "nba_espn_boxscore_cache.csv"
@@ -115,10 +139,10 @@ function Run-Step {
         $output = Invoke-Expression $cmd 2>&1
         $exit   = $LASTEXITCODE
         foreach ($line in $output) { Write-Host "        $line" -ForegroundColor DarkGray }
-        if ($exit -ne 0) { Write-Host "      FAILED (exit $exit)" -ForegroundColor Red; return $false }
-        Write-Host "      OK" -ForegroundColor Green; return $true
+        if ($exit -ne 0) { Write-Host "      FAILED (exit $exit)" -ForegroundColor Red; Advance-Progress $Label $false; return $false }
+        Write-Host "      OK" -ForegroundColor Green; Advance-Progress $Label $true; return $true
     } catch {
-        Write-Host "      EXCEPTION: $_" -ForegroundColor Red; return $false
+        Write-Host "      EXCEPTION: $_" -ForegroundColor Red; Advance-Progress $Label $false; return $false
     } finally {
         Pop-Location
     }
@@ -201,6 +225,7 @@ function Run-Combined {
 # -- Helper: print elapsed + done banner --------------------------------------
 function Print-Done {
     $Elapsed = (Get-Date) - $StartTime
+    Complete-Progress
     Write-Host "======================================================" -ForegroundColor Cyan
     Write-Host ("  DONE  -- Elapsed: {0}" -f $Elapsed.ToString("mm\:ss")) -ForegroundColor Cyan
     Write-Host "======================================================" -ForegroundColor Cyan
@@ -211,6 +236,7 @@ function Print-Done {
 #  COMBINED ONLY  -- picks up every sport already on disk
 # =============================================================================
 if ($CombinedOnly) {
+    Init-Progress 1 "PropOracle Combined Only"
     Run-Combined "from existing outputs"
     Print-Done
     exit
@@ -220,9 +246,11 @@ if ($CombinedOnly) {
 #  WNBA ONLY
 # =============================================================================
 if ($WNBAOnly) {
+    Init-Progress 1 "PropOracle WNBA Delegation"
     Write-Host "[ WNBA PIPELINE ]" -ForegroundColor Magenta
     Write-Host "  Delegating to run_wnba_pipeline.ps1 ..." -ForegroundColor DarkGray
     & (Join-Path $Root "run_wnba_pipeline.ps1") -Date $Date
+    Advance-Progress "WNBA delegated run" ($LASTEXITCODE -eq 0)
     Print-Done
     exit
 }
@@ -231,6 +259,8 @@ if ($WNBAOnly) {
 #  NHL ONLY
 # =============================================================================
 if ($NHLOnly) {
+    $nhlSteps = if ($SkipFetch) { 8 } else { 9 }
+    Init-Progress $nhlSteps "PropOracle NHL Pipeline"
     Write-Host "[ NHL PIPELINE ]" -ForegroundColor Magenta
     Write-Host ""
     $ok = $true
@@ -253,6 +283,8 @@ if ($NHLOnly) {
 #  MLB ONLY
 # =============================================================================
 if ($MLBOnly) {
+    $mlbSteps = if ($SkipFetch) { 8 } else { 9 }
+    Init-Progress $mlbSteps "PropOracle MLB Pipeline"
     Write-Host "[ MLB PIPELINE ]" -ForegroundColor Magenta
     Write-Host ""
     $ok = $true
@@ -275,6 +307,8 @@ if ($MLBOnly) {
 #  SOCCER ONLY
 # =============================================================================
 if ($SoccerOnly) {
+    $soccerSteps = if ($SkipFetch) { 9 } else { 10 }
+    Init-Progress $soccerSteps "PropOracle Soccer Pipeline"
     Write-Host "[ SOCCER PIPELINE ]" -ForegroundColor Magenta
     Write-Host ""
     $ok = $true
@@ -298,6 +332,8 @@ if ($SoccerOnly) {
 #  CBB ONLY
 # =============================================================================
 if ($CBBOnly) {
+    $cbbSteps = if ($SkipFetch) { 6 } else { 7 }
+    Init-Progress $cbbSteps "PropOracle CBB Pipeline"
     Write-Host "[ CBB PIPELINE ]" -ForegroundColor Magenta
     Write-Host ""
     $ok = $true
@@ -306,7 +342,7 @@ if ($CBBOnly) {
     if ($ok) { $ok = Run-Step "CBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py"                 "--input step2_cbb.csv --defense data\reference\cbb_def_rankings.csv --output step3b_with_def_rankings_cbb.csv" }
     if ($ok) { $ok = Run-Step "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input step3b_with_def_rankings_cbb.csv --output step3_cbb.csv --master data/reference/ncaa_mbb_athletes_master.csv" }
     if ($ok) { $ok = Run-Step "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input step3_cbb.csv --output step5b_cbb.csv" }
-    if ($ok) { $ok = Run-Step "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input step5b_cbb.csv --output step6_ranked_cbb.xlsx" }
+    if ($ok) { $ok = Run-Step "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input step5b_cbb.csv --output step6_ranked_cbb.xlsx --date $Date" }
     Write-Host ""
     if ($ok) { Write-Host "  CBB complete." -ForegroundColor Green } else { Write-Host "  CBB FAILED." -ForegroundColor Red }
     if ($ok) { Run-Combined "after CBB" }
@@ -318,6 +354,8 @@ if ($CBBOnly) {
 #  NBA ONLY
 # =============================================================================
 if ($NBAOnly) {
+    $nbaSteps = if ($SkipFetch) { 12 } else { 13 }
+    Init-Progress $nbaSteps "PropOracle NBA Pipeline"
     Write-Host "[ NBA PIPELINE ]" -ForegroundColor Magenta
     Write-Host ""
 
@@ -345,7 +383,7 @@ if ($NBAOnly) {
     if ($ok) { $ok = Run-Step "NBA Step 6c - Schedule Flags (B2B)"   $NBADir ".\scripts\step6c_schedule_flags.py"               "--input data\outputs\step6b_with_game_context.csv --output data\outputs\step6c_with_schedule_flags.csv --date $Date --cache `"schedule_cache_$Date.csv`"" }
     if ($ok) { $ok = Run-Step "NBA Step 6d - H2H Matchup Stats"      $NBADir ".\scripts\step6d_attach_h2h_matchups.py"          "--input data\outputs\step6c_with_schedule_flags.csv --output data\outputs\step6d_with_h2h.csv" }
     if ($ok) { $ok = Run-Step "NBA Step 7 - Rank Props"              $NBADir ".\scripts\step7_rank_props.py"                    "--input data\outputs\step6d_with_h2h.csv --output data\outputs\step7_ranked_props.xlsx" }
-    if ($ok) { $ok = Run-Step "NBA Step 8 - Direction Context"       $NBADir ".\scripts\step8_add_direction_context.py"         "--input data\outputs\step7_ranked_props.xlsx --sheet ALL --output data\outputs\step8_all_direction.csv" }
+    if ($ok) { $ok = Run-Step "NBA Step 8 - Direction Context"       $NBADir ".\scripts\step8_add_direction_context.py"         "--input data\outputs\step7_ranked_props.xlsx --sheet ALL --output data\outputs\step8_all_direction.csv --date $Date" }
 
     if ($ok) { New-Item -ItemType File -Force -Path (Join-Path $NBADir "RUN_COMPLETE.flag") | Out-Null }
     Write-Host ""
@@ -369,6 +407,7 @@ if ($RefreshCache) {
 }
 
 if (Test-Path (Join-Path $NBADir "RUN_COMPLETE.flag")) { Remove-Item (Join-Path $NBADir "RUN_COMPLETE.flag") -Force }
+Init-Progress 3 "PropOracle Full Parallel Pipeline"
 
 # -- Backfill boxscore DB for last 3 days (all sports) ------------------------
 Write-Host "[ DB BACKFILL ]" -ForegroundColor Cyan
@@ -378,8 +417,10 @@ if (Test-Path $backfillScript) {
     $backfillOut = Invoke-Expression "py -3.14 `"$backfillScript`" --backfill --days 3 --sports nba cbb nhl soccer" 2>&1
     foreach ($line in $backfillOut) { Write-Host "  $line" -ForegroundColor DarkGray }
     Write-Host "  DB backfill complete." -ForegroundColor Green
+    Advance-Progress "DB backfill" $true
 } else {
     Write-Host "  WARNING: build_boxscore_ref.py not found -- skipping backfill" -ForegroundColor Yellow
+    Advance-Progress "DB backfill (skipped)" $false
 }
 Write-Host ""
 
@@ -418,7 +459,7 @@ $NBAJob = Start-Job -ScriptBlock {
     if ($ok) { $ok = Run-Step-Job "NBA Step 6c - Schedule Flags (B2B)"   $NBADir ".\scripts\step6c_schedule_flags.py"               "--input data\outputs\step6b_with_game_context.csv --output data\outputs\step6c_with_schedule_flags.csv --date $Date --cache `"schedule_cache_$Date.csv`"" }
     if ($ok) { $ok = Run-Step-Job "NBA Step 6d - H2H Matchup Stats"      $NBADir ".\scripts\step6d_attach_h2h_matchups.py"          "--input data\outputs\step6c_with_schedule_flags.csv --output data\outputs\step6d_with_h2h.csv" }
     if ($ok) { $ok = Run-Step-Job "NBA Step 7 - Rank Props"              $NBADir ".\scripts\step7_rank_props.py"                    "--input data\outputs\step6d_with_h2h.csv --output data\outputs\step7_ranked_props.xlsx" }
-    if ($ok) { $ok = Run-Step-Job "NBA Step 8 - Direction Context"       $NBADir ".\scripts\step8_add_direction_context.py"         "--input data\outputs\step7_ranked_props.xlsx --sheet ALL --output data\outputs\step8_all_direction.csv" }
+    if ($ok) { $ok = Run-Step-Job "NBA Step 8 - Direction Context"       $NBADir ".\scripts\step8_add_direction_context.py"         "--input data\outputs\step7_ranked_props.xlsx --sheet ALL --output data\outputs\step8_all_direction.csv --date $Date" }
     return $ok
 } -ArgumentList $NBADir, $Date, $OddsApiKey, $SkipFetch
 
@@ -446,7 +487,7 @@ $CBBJob = Start-Job -ScriptBlock {
     if ($ok) { $ok = Run-Step-Job "CBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py"                 "--input step2_cbb.csv --defense data\reference\cbb_def_rankings.csv --output step3b_with_def_rankings_cbb.csv" }
     if ($ok) { $ok = Run-Step-Job "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input step3b_with_def_rankings_cbb.csv --output step3_cbb.csv --master data/reference/ncaa_mbb_athletes_master.csv" }
     if ($ok) { $ok = Run-Step-Job "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input step3_cbb.csv --output step5b_cbb.csv" }
-    if ($ok) { $ok = Run-Step-Job "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input step5b_cbb.csv --output step6_ranked_cbb.xlsx" }
+    if ($ok) { $ok = Run-Step-Job "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input step5b_cbb.csv --output step6_ranked_cbb.xlsx --date $Date" }
     return $ok
 } -ArgumentList $CBBDir, $SkipFetch
 
@@ -518,10 +559,15 @@ Write-Host "  [Waiting for all pipelines to finish...]" -ForegroundColor DarkGra
 Write-Host ""
 
 while (($allJobs | Where-Object { $_.State -eq 'Running' }).Count -gt 0) {
+    $running = ($allJobs | Where-Object { $_.State -eq 'Running' }).Count
+    $doneJobs = 4 - $running
+    $phasePct = 33 + [int][Math]::Round(($doneJobs / 4.0) * 33, 0)
+    Write-Progress -Id 1 -Activity $script:ProgressActivity -Status "Parallel sports running ($doneJobs/4 finished)" -PercentComplete $phasePct
     foreach ($job in $allJobs) { $out = Receive-Job $job -ErrorAction SilentlyContinue; foreach ($line in $out) { Write-Host "    $line" -ForegroundColor DarkGray } }
     Start-Sleep -Milliseconds 500
 }
 foreach ($job in $allJobs) { $out = Receive-Job $job -ErrorAction SilentlyContinue; foreach ($line in $out) { Write-Host "    $line" -ForegroundColor DarkGray } }
+Advance-Progress "Parallel sports stage" $true
 
 # -- Results ------------------------------------------------------------------
 $NBASuccess    = Test-Path (Join-Path $NBADir    "data\outputs\step8_all_direction_clean.xlsx")

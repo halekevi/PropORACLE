@@ -20,6 +20,8 @@ $OutRoot = "$Root\outputs"
 
 if (-not $Date) { $Date = Get-Date -Format "yyyy-MM-dd" }
 $StartTime = Get-Date
+$script:ProgressDone = 0
+$script:ProgressTotal = if ($SkipFetch) { 9 } else { 10 }  # 9 pipeline/copy stages + optional fetch
 
 $env:PYTHONUTF8       = "1"
 $env:PYTHONIOENCODING = "utf-8"
@@ -35,6 +37,7 @@ Write-Host "======================================================" -ForegroundC
 Write-Host "  WNBA PIPELINE  |  $Date  |  $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor Cyan
 Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host ""
+Write-Progress -Id 2 -Activity "WNBA Pipeline" -Status "Starting..." -PercentComplete 0
 
 function Run-Step {
     param([string]$Label, [string]$Dir, [string]$Script, [string]$Arguments = "")
@@ -51,12 +54,21 @@ function Run-Step {
         $output | ForEach-Object { Write-Host "      | $_" -ForegroundColor DarkGray }
         if ($exit -ne 0) {
             Write-Host "      FAILED (exit $exit)" -ForegroundColor Red
+            $script:ProgressDone = [Math]::Min($script:ProgressDone + 1, $script:ProgressTotal)
+            $pct = [int][Math]::Round(($script:ProgressDone / $script:ProgressTotal) * 100, 0)
+            Write-Progress -Id 2 -Activity "WNBA Pipeline" -Status "$Label [FAILED] ($script:ProgressDone/$script:ProgressTotal)" -PercentComplete $pct
             return $false
         }
         Write-Host "      OK" -ForegroundColor Green
+        $script:ProgressDone = [Math]::Min($script:ProgressDone + 1, $script:ProgressTotal)
+        $pct = [int][Math]::Round(($script:ProgressDone / $script:ProgressTotal) * 100, 0)
+        Write-Progress -Id 2 -Activity "WNBA Pipeline" -Status "$Label [OK] ($script:ProgressDone/$script:ProgressTotal)" -PercentComplete $pct
         return $true
     } catch {
         Write-Host "      EXCEPTION: $_" -ForegroundColor Red
+        $script:ProgressDone = [Math]::Min($script:ProgressDone + 1, $script:ProgressTotal)
+        $pct = [int][Math]::Round(($script:ProgressDone / $script:ProgressTotal) * 100, 0)
+        Write-Progress -Id 2 -Activity "WNBA Pipeline" -Status "$Label [FAILED] ($script:ProgressDone/$script:ProgressTotal)" -PercentComplete $pct
         return $false
     } finally {
         Pop-Location
@@ -133,6 +145,9 @@ if ($ok) {
             Write-Host "  Copied: $f" -ForegroundColor Green
         }
     }
+    $script:ProgressDone = [Math]::Min($script:ProgressDone + 1, $script:ProgressTotal)
+    $pct = [int][Math]::Round(($script:ProgressDone / $script:ProgressTotal) * 100, 0)
+    Write-Progress -Id 2 -Activity "WNBA Pipeline" -Status "Copy outputs [OK] ($script:ProgressDone/$script:ProgressTotal)" -PercentComplete $pct
 }
 
 # =============================================================================
@@ -149,4 +164,5 @@ if ($ok) {
 }
 Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host ""
+Write-Progress -Id 2 -Activity "WNBA Pipeline" -Completed
 

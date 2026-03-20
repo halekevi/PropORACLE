@@ -23,6 +23,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 import os
+from datetime import datetime
 
 def _norm_pick_type(x: str) -> str:
     t = (str(x) if x is not None else "").strip().lower()
@@ -197,12 +198,26 @@ def main() -> None:
     ap.add_argument("--sheet", default="ALL")
     ap.add_argument("--output", default="step8_all_direction.csv")
     ap.add_argument("--xlsx", default="")  # optional override for xlsx path
+    ap.add_argument("--date", default="", help="Filter to YYYY-MM-DD based on start_time")
     args = ap.parse_args()
 
     print(f"→ Loading: {args.input} (sheet={args.sheet})")
     df = pd.read_excel(args.input, sheet_name=args.sheet, dtype=str).fillna("")
 
     out = df.copy()
+
+    # Keep only rows for target slate date when start_time is available.
+    # This prevents stale historical slates from leaking into today's output.
+    if "start_time" in out.columns:
+        target_date = (args.date or datetime.now().strftime("%Y-%m-%d")).strip()
+        start_dt = pd.to_datetime(out["start_time"], errors="coerce")
+        keep_mask = start_dt.dt.strftime("%Y-%m-%d").eq(target_date)
+        kept = int(keep_mask.sum())
+        total = len(out)
+        out = out.loc[keep_mask].copy()
+        print(f"[DateFilter] Kept {kept}/{total} rows for {target_date} (dropped {total - kept} rows)")
+        if out.empty:
+            print("⚠️ Date filter returned no rows; writing empty outputs.")
 
     if "edge" not in out.columns:
         proj = pd.to_numeric(out.get("projection", ""), errors="coerce")
