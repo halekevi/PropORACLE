@@ -1,0 +1,23 @@
+---
+description: PropOracle Standard-first ticket generation logic only for ticket builders
+globs: "{scripts/combined_slate_tickets.py,NBA/scripts/step9_build_tickets.py}"
+alwaysApply: false
+---
+
+# PropOracle Ticket Generation (Python)
+
+- Primary goal: maximize long-term ticket profitability with Standard-first selection.
+- Selection hierarchy: Edge % > Rank Score > L5 streak.
+- Build order:
+  1) Filter `pick_type == "Standard"` first.
+  2) Require Standard edge >= 12%.
+  3) Prioritize top-5 rank plays on the slate.
+  4) Validate with L5 trend: only 4/5 or 5/5 as confirmation.
+- Goblin usage:
+  - Goblins are secondary anchors only, never primary legs.
+  - Include Goblin only when needed for ticket floor/stability and it has 100% L5.
+- Naming:
+  - Tag Standards that meet edge/rank gates as `Max Conviction`.
+- Implementation preference:
+  - Keep filtering/scoring deterministic and explicit.
+  - Avoid ranking by hit-rate alone when edge/rank signals disagree.
