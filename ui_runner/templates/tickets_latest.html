@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>PropOracle — Tickets</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Inter:wght@600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --bg:#05050f;--surface:#0d0d1f;--card:#111128;--border:#1e1e3a;
@@ -86,8 +86,8 @@ nav{display:flex;align-items:center;gap:16px;padding:12px 0 14px;border-bottom:1
 .nav-links a.active{color:var(--accent);border-color:var(--accent);background:rgba(200,255,0,.06);}
 
 /* force PropOracle logo treatment to match home */
-.nav-logo{gap:14px;}
-.nav-logo .brain-wrap,.nav-logo .brand{display:none;}
+.nav-logo{gap:12px;}
+.nav-logo .brain-wrap{display:none;}
 .nav-logo::before{
   content:'';
   width:58px;
@@ -96,13 +96,29 @@ nav{display:flex;align-items:center;gap:16px;padding:12px 0 14px;border-bottom:1
   filter:drop-shadow(0 0 8px rgba(212,175,55,0.45));
   flex-shrink:0;
 }
-.nav-logo::after{
-  content:'PropORACLE';
+.nav-logo .brand{
+  position:relative;
+  display:flex;
+  align-items:baseline;
+  font-size:0;
+  letter-spacing:0;
+}
+.nav-logo .brand span{display:none;}
+.nav-logo .brand::before{
+  content:'Prop';
   font-family:'Inter',sans-serif;
-  font-size:26px;
+  font-size:38px;
+  font-weight:700;
+  letter-spacing:-0.5px;
+  color:#f2d070;
+}
+.nav-logo .brand::after{
+  content:'ORACLE';
+  font-family:'Inter',sans-serif;
+  font-size:38px;
   font-weight:800;
-  letter-spacing:.02em;
-  color:var(--accent);
+  letter-spacing:-0.5px;
+  color:#f2d070;
 }
 /* player graph expand */
 .leg-row{cursor:pointer;transition:background .15s;}
