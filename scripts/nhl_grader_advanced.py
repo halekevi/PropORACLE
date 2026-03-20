@@ -281,6 +281,18 @@ class NHLAnalytics:
                         "recommendation": "STRONG BUY" if hit_rate >= 0.75 else "BUY",
                     })
         
+        if not consistent:
+            return pd.DataFrame(
+                columns=[
+                    "player",
+                    "opponent",
+                    "prop_type",
+                    "hit_rate",
+                    "games",
+                    "avg_edge",
+                    "recommendation",
+                ]
+            )
         return pd.DataFrame(consistent).sort_values("hit_rate", ascending=False)
     
     @staticmethod
@@ -364,6 +376,10 @@ class NHLAnalytics:
                     "confidence": row["hit_rate"] * 100
                 })
         
+        if not recommendations:
+            return pd.DataFrame(
+                columns=["type", "player", "prop", "reason", "action", "confidence"]
+            )
         return pd.DataFrame(recommendations).sort_values("confidence", ascending=False)
 
 

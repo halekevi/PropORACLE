@@ -17,16 +17,6 @@ $NHLAdvancedGraderScript = Join-Path $Root "scripts\nhl_grader_advanced.py"
 $SoccerAdvancedGraderScript = Join-Path $Root "scripts\soccer_grader_advanced.py"
 $BuildGradesHtmlScript = Join-Path $Root "scripts\grading\build_grades_html.py"
 
-$NBASlateFile = Join-Path $Root "NBA\step8_all_direction_clean.xlsx"
-$NBASlateFileDateStep8 = Join-Path $DateDir "step8_nba_direction_clean_$Date.xlsx"
-$NBASlateFileExtracted = Join-Path $DateDir "nba_slate_extracted_$Date.xlsx"
-$CBBSlateXlsx = Join-Path $Root "CBB\step6_ranked_cbb.xlsx"
-$CBBSlateCsv = Join-Path $DateDir "cbb_slate_extracted_$Date.csv"
-$NHLSlateFileDateStep8 = Join-Path $DateDir "step8_nhl_direction_clean_$Date.xlsx"
-$NHLSlateFileRoot = Join-Path $Root "NHL\step8_nhl_direction_clean.xlsx"
-$SoccerSlateFileDateStep8 = Join-Path $DateDir "step8_soccer_direction_clean_$Date.xlsx"
-$SoccerSlateFileRoot = Join-Path $Root "Soccer\step8_soccer_direction_clean.xlsx"
-
 $NBAGradedFile = Join-Path $DateDir "graded_nba_$Date.xlsx"
 $CBBGradedFile = Join-Path $DateDir "graded_cbb_$Date.xlsx"
 $NHLGradedFile = Join-Path $DateDir "graded_nhl_$Date.xlsx"
@@ -75,6 +65,16 @@ function Run-Py {
     }
 
     Pop-Location
+}
+
+function Resolve-FirstExisting {
+    param([string[]]$Candidates)
+    foreach ($candidate in $Candidates) {
+        if ($candidate -and (Test-Path $candidate)) {
+            return $candidate
+        }
+    }
+    return $null
 }
 
 Write-Host "`n=====================================" -ForegroundColor Green
@@ -135,12 +135,27 @@ else {
 # =============================
 # Grade NBA/CBB + Build HTML
 # =============================
-if (Test-Path $NBASlateFileExtracted) {
-    $NBASlateFile = $NBASlateFileExtracted
-}
-elseif (Test-Path $NBASlateFileDateStep8) {
-    $NBASlateFile = $NBASlateFileDateStep8
-}
+$NBASlateFile = Resolve-FirstExisting @(
+    (Join-Path $DateDir "nba_slate_extracted_$Date.xlsx"),
+    (Join-Path $DateDir "step8_nba_direction_clean_$Date.xlsx"),
+    (Join-Path $Root "NBA\data\outputs\step8_all_direction_clean.xlsx"),
+    (Join-Path $Root "NBA\step8_all_direction_clean.xlsx")
+)
+$CBBSlateXlsx = Resolve-FirstExisting @(
+    (Join-Path $DateDir "step6_ranked_cbb_$Date.xlsx"),
+    (Join-Path $Root "CBB\step6_ranked_cbb.xlsx")
+)
+$CBBSlateCsv = Join-Path $DateDir "cbb_slate_extracted_$Date.csv"
+$NHLSlateFile = Resolve-FirstExisting @(
+    (Join-Path $DateDir "step8_nhl_direction_clean_$Date.xlsx"),
+    (Join-Path $Root "NHL\outputs\step8_nhl_direction_clean.xlsx"),
+    (Join-Path $Root "NHL\step8_nhl_direction_clean.xlsx")
+)
+$SoccerSlateFile = Resolve-FirstExisting @(
+    (Join-Path $DateDir "step8_soccer_direction_clean_$Date.xlsx"),
+    (Join-Path $Root "Soccer\outputs\step8_soccer_direction_clean.xlsx"),
+    (Join-Path $Root "Soccer\step8_soccer_direction_clean.xlsx")
+)
 
 if ((Test-Path $NBAActuals) -and (Test-Path $NBASlateFile) -and (Test-Path $SlateGraderScript)) {
     Run-Py "Grade NBA Slate" $Root $SlateGraderScript @(
@@ -175,14 +190,7 @@ else {
     Write-Host "Skipping CBB slate grading (missing slate/actuals/grader)." -ForegroundColor Yellow
 }
 
-if (Test-Path $NHLSlateFileDateStep8) {
-    $NHLSlateFile = $NHLSlateFileDateStep8
-}
-else {
-    $NHLSlateFile = $NHLSlateFileRoot
-}
-
-if ((Test-Path $NHLActuals) -and (Test-Path $NHLSlateFile) -and (Test-Path $NHLAdvancedGraderScript)) {
+if ((Test-Path $NHLActuals) -and $NHLSlateFile -and (Test-Path $NHLSlateFile) -and (Test-Path $NHLAdvancedGraderScript)) {
     Run-Py "Grade NHL Slate" $Root $NHLAdvancedGraderScript @(
         "--date", $Date,
         "--actuals", $NHLActuals,
@@ -194,14 +202,7 @@ else {
     Write-Host "Skipping NHL grading (missing slate/actuals/grader)." -ForegroundColor Yellow
 }
 
-if (Test-Path $SoccerSlateFileDateStep8) {
-    $SoccerSlateFile = $SoccerSlateFileDateStep8
-}
-else {
-    $SoccerSlateFile = $SoccerSlateFileRoot
-}
-
-if ((Test-Path $SoccerActuals) -and (Test-Path $SoccerSlateFile) -and (Test-Path $SoccerAdvancedGraderScript)) {
+if ((Test-Path $SoccerActuals) -and $SoccerSlateFile -and (Test-Path $SoccerSlateFile) -and (Test-Path $SoccerAdvancedGraderScript)) {
     Run-Py "Grade Soccer Slate" $Root $SoccerAdvancedGraderScript @(
         "--date", $Date,
         "--actuals", $SoccerActuals,
