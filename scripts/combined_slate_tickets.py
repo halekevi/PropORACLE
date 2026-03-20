@@ -577,6 +577,9 @@ def ticket_groups_to_payload(all_ticket_groups, date_str, thresholds):
                     "l5_under": _safe_float(gv("l5_under") or gv("L5 Under") or gv("line_hits_under_5")),
                     "l10_over": _safe_float(gv("l10_over") or gv("L10 Over") or gv("hit_rate_over_L10") or gv("over_L10")),
                     "l10_under": _safe_float(gv("l10_under") or gv("L10 Under") or gv("hit_rate_under_L10") or gv("under_L10")),
+                    "def_tier": str(gv("def_tier") or gv("Def Tier") or ""),
+                    "pace_tier": str(gv("pace_tier") or gv("Pace Tier") or ""),
+                    "context_score": _safe_float(gv("context_score")),
                 }
                 leg["image_url"] = compute_image_url(leg)
                 leg["initials"] = player_initials(leg.get("player", ""))
@@ -731,6 +734,73 @@ def write_web_outputs(payload, outdir: str):
         except Exception:
             return ""
 
+    def _to_float(v):
+        try:
+            if v is None or v == "":
+                return None
+            return float(v)
+        except Exception:
+            return None
+
+    def direction_signal(leg: dict):
+        """
+        User-facing decision helper.
+        Returns (signal_html, reason_text) based on available context.
+        """
+        sport = str(leg.get("sport", "")).upper()
+        direction = str(leg.get("direction", "")).upper()
+        def_tier = str(leg.get("def_tier", "")).upper().strip()
+        pace_tier = str(leg.get("pace_tier", "")).upper().strip()
+        l5o = _to_float(leg.get("l5_over"))
+        l5u = _to_float(leg.get("l5_under"))
+        l5_sample = int(round((l5o or 0) + (l5u or 0)))
+
+        # Explicit context score if pipeline already provides it
+        explicit_score = _to_float(leg.get("context_score"))
+        score = int(round(explicit_score)) if explicit_score is not None else 0
+        reasons = []
+
+        if explicit_score is None:
+            # Build a simple transparent score from known NBA findings.
+            if l5_sample >= 5:
+                score += 1
+                reasons.append("enough recent sample")
+
+            over_def_good = def_tier in {"WEAK", "AVG", "ABOVE AVG", "AVERAGE"}
+            under_def_good = def_tier in {"ELITE", "SOLID"}
+            if (direction == "OVER" and over_def_good) or (direction == "UNDER" and under_def_good):
+                score += 1
+                reasons.append(f"defense supports {direction}")
+
+            over_pace_good = pace_tier == "FAST"
+            under_pace_good = pace_tier in {"NORMAL", "SLOW"}
+            if (direction == "OVER" and over_pace_good) or (direction == "UNDER" and under_pace_good):
+                score += 1
+                reasons.append(f"pace supports {direction}")
+        else:
+            reasons.append(f"context score {int(round(explicit_score))}")
+            if l5_sample > 0:
+                reasons.append(f"L5 sample {l5_sample}")
+
+        # Fallback for non-NBA or sparse context
+        if sport != "NBA" and not reasons:
+            hr = _to_float(leg.get("hit_rate")) or 0.0
+            edge = _to_float(leg.get("edge")) or 0.0
+            if hr >= 0.62 and edge > 0:
+                score = 2
+                reasons.append("strong model profile")
+            elif hr >= 0.55:
+                score = 1
+                reasons.append("model lean")
+            else:
+                reasons.append("model-only read")
+
+        if score >= 3:
+            return "<span class='sig-strong'>STRONG</span>", " + ".join(reasons) or "aligned context"
+        if score >= 2:
+            return "<span class='sig-lean'>LEAN</span>", " + ".join(reasons) or "partial context"
+        return "<span class='sig-risk'>RISKY</span>", " + ".join(reasons) or "limited context support"
+
     # ── HTML ───────────────────────────────────────────────────────────────────
     filters = payload.get("filters", {})
     gen_at  = payload.get("generated_at", "")
@@ -874,6 +944,10 @@ tr:hover td{background:rgba(200,255,0,.03);}
 /* dir badges */
 .dir-over{background:rgba(57,255,110,.15);color:#39ff6e;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;}
 .dir-under{background:rgba(240,165,0,.15);color:#f0a500;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;}
+.sig-strong{background:rgba(57,255,110,.16);color:#39ff6e;border:1px solid rgba(57,255,110,.35);padding:3px 8px;border-radius:5px;font-size:11px;font-weight:700;display:inline-block;}
+.sig-lean{background:rgba(240,165,0,.16);color:#f0a500;border:1px solid rgba(240,165,0,.35);padding:3px 8px;border-radius:5px;font-size:11px;font-weight:700;display:inline-block;}
+.sig-risk{background:rgba(255,77,109,.16);color:#ff4d6d;border:1px solid rgba(255,77,109,.35);padding:3px 8px;border-radius:5px;font-size:11px;font-weight:700;display:inline-block;}
+.why-note{color:#bfc5d4;font-size:11px;line-height:1.25;}
 
 /* responsive */
 @media(max-width:640px){
@@ -1001,6 +1075,9 @@ tr:hover td{background:rgba(200,255,0,.03);}
   <strong>pick_types:</strong> {filters.get('pick_types','ALL')}
   &nbsp;&nbsp;<a href="tickets_latest.json" style="color:var(--cyan);">⬇ JSON</a>
 </div>
+<div class="filter-pill" style="margin-top:-12px;">
+  Quick read: <strong>STRONG</strong> means direction aligns with context (defense + pace + sample), <strong>LEAN</strong> means partial alignment, <strong>RISKY</strong> means weak context support.
+</div>
 """)
 
     for g in payload.get("groups", []):
@@ -1053,7 +1130,7 @@ tr:hover td{background:rgba(200,255,0,.03);}
           <thead><tr>
             <th>#</th><th>Sport</th><th>Player</th><th>Prop</th><th>Line</th>
             <th>Pick</th><th>Min</th><th>Shot</th><th>Usage</th>
-            <th>Dir</th><th>Hit%</th><th>Edge</th><th>Rank</th>
+            <th>Dir</th><th>Signal</th><th>Why</th><th>Hit%</th><th>Edge</th><th>Rank</th>
           </tr></thead>
           <tbody>
 """)
@@ -1091,6 +1168,7 @@ tr:hover td{background:rgba(200,255,0,.03);}
                 line_val   = leg.get("line")
                 dir_txt    = str(leg.get("direction") or "").upper()
                 row_id     = f"lgr-{id(leg)}-{i}"
+                sig_html, sig_reason = direction_signal(leg)
 
                 # stat pills
                 def _pill(label, val, fmt=None):
@@ -1129,7 +1207,7 @@ tr:hover td{background:rgba(200,255,0,.03);}
 
                 graph_row = f"""
 <tr class="leg-graph-row" id="{row_id}">
-  <td class="leg-graph-cell" colspan="13">
+  <td class="leg-graph-cell" colspan="15">
     <div class="graph-wrap">
       <div style="flex:1;min-width:200px;">
         <div style="font-size:11px;color:#888;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">{leg.get('player','')} · {leg.get('prop_type','')} · Line {fmt_line(line_val)}</div>
@@ -1204,6 +1282,8 @@ tr:hover td{background:rgba(200,255,0,.03);}
                     f"<td>{shot_role}</td>"
                     f"<td>{usg_role}</td>"
                     f"<td>{dir_span}</td>"
+                    f"<td>{sig_html}</td>"
+                    f"<td class='why-note'>{sig_reason}</td>"
                     f"<td style='color:{hr_c};font-weight:600;'>{hr_fmt}</td>"
                     f"<td>{fmt_2(leg.get('edge')) if leg.get('edge') is not None else '—'}</td>"
                     f"<td>{fmt_2(leg.get('rank_score')) if leg.get('rank_score') is not None else '—'}</td>"
