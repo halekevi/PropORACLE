@@ -39,10 +39,10 @@ body::after{
 }
 @keyframes gridScroll{from{background-position:0 0,0 0,0 0,0 0,0 0,0 0;}to{background-position:0 0,0 0,0 0,0 0,0 40px,0 40px;}}
 
-#app{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:24px 20px;}
+#app{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 20px 24px;}
 
 /* ── NAV (exact copy from tickets_latest.html) ── */
-nav{display:flex;align-items:center;gap:16px;padding:12px 0 24px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+nav{display:flex;align-items:center;gap:16px;padding:12px 0 16px;border-bottom:1px solid var(--border);flex-wrap:wrap;position:sticky;top:0;z-index:220;background:rgba(5,6,14,0.86);backdrop-filter:blur(22px) saturate(180%);}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
 .brain-wrap{position:relative;width:52px;height:52px;}
 .brain-slate{position:absolute;inset:0;border-radius:7px;background:linear-gradient(145deg,#12122a 0%,#080818 100%);border:1px solid #252545;animation:slateBreak 3.5s ease-in-out infinite;}
@@ -671,6 +671,27 @@ nav{display:flex;align-items:center;gap:16px;padding:14px 0 20px;border-bottom:1
       rgba(137,196,255,0.04) 360deg);
 }
 
+/* --- 2026-03 visual alignment pass (reference mockups) --- */
+:root{--accent:#e1bc65;}
+body::before{
+  background:
+    radial-gradient(ellipse at 14% 9%, rgba(159,205,255,0.08) 0%, transparent 36%),
+    radial-gradient(ellipse at 86% 8%, rgba(225,188,101,0.16) 0%, transparent 36%),
+    radial-gradient(ellipse at 50% 58%, rgba(183,168,255,0.08) 0%, transparent 44%),
+    linear-gradient(180deg,#050507 0%,#0d0b12 50%,#141017 100%);
+}
+[data-theme="light"] body,
+[data-theme="light"] body::before{
+  background:
+    radial-gradient(ellipse at 14% 10%, rgba(255,245,220,0.66) 0%, transparent 40%),
+    radial-gradient(ellipse at 86% 8%, rgba(255,233,185,0.52) 0%, transparent 38%),
+    radial-gradient(ellipse at 52% 60%, rgba(198,220,255,0.28) 0%, transparent 50%),
+    linear-gradient(180deg,#fdfcff 0%,#f6f8ff 48%,#eef3ff 100%);
+}
+[data-theme="light"] nav{
+  background:rgba(255,255,255,0.78) !important;
+}
+
 </style>
 </head>
 <body>
@@ -772,8 +793,8 @@ nav{display:flex;align-items:center;gap:16px;padding:14px 0 20px;border-bottom:1
   </a>
   <div class="nav-links">
     <a href="/">Home</a>
-    <a href="/grades">Grades</a>
     <a href="/tickets">Tickets</a>
+    <a href="/grades">Grades</a>
     <a href="/payout" class="active">Payouts</a>
     <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
   <span class="tt-icon tt-moon">🌙</span>

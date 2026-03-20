@@ -705,6 +705,43 @@ body{
       rgba(137,196,255,0.04) 360deg);
 }
 
+/* --- 2026-03 visual alignment pass (reference mockups) --- */
+.snav{
+  top:0;
+  margin:0 0 1rem 0;
+  border-radius:0;
+  border-left:none;
+  border-right:none;
+}
+.shell{padding-top:22px;}
+:root{
+  --accent-gold:#e1bc65;
+}
+body::before{
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(160,198,255,0.08) 0%, transparent 38%),
+    radial-gradient(ellipse at 88% 6%, rgba(225,188,101,0.18) 0%, transparent 36%),
+    radial-gradient(ellipse at 50% 55%, rgba(179,157,255,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 18% 86%, rgba(225,188,101,0.10) 0%, transparent 34%),
+    radial-gradient(ellipse at 82% 82%, rgba(159,204,255,0.10) 0%, transparent 30%),
+    linear-gradient(180deg,#050507 0%,#0d0b12 46%,#141017 100%);
+}
+[data-theme="light"] body,
+[data-theme="light"] body::before{
+  background:
+    radial-gradient(ellipse at 14% 10%, rgba(255,245,220,0.70) 0%, transparent 40%),
+    radial-gradient(ellipse at 86% 8%, rgba(255,233,185,0.52) 0%, transparent 38%),
+    radial-gradient(ellipse at 52% 60%, rgba(198,220,255,0.28) 0%, transparent 50%),
+    linear-gradient(180deg,#fdfcff 0%,#f6f8ff 48%,#eef3ff 100%);
+}
+[data-theme="light"] .hero,
+[data-theme="light"] .scard,
+[data-theme="light"] .qcard,
+[data-theme="light"] .edge-card{
+  background:rgba(255,255,255,0.74) !important;
+  border-color:rgba(196,166,107,0.22) !important;
+}
+
 </style>
 </head>
 <body>
