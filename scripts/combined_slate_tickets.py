@@ -1054,6 +1054,7 @@ tr:hover td{background:rgba(200,255,0,.03);}
                 l10_over   = leg.get("l10_over")
                 l10_under  = leg.get("l10_under")
                 line_val   = leg.get("line")
+                dir_txt    = str(leg.get("direction") or "").upper()
                 row_id     = f"lgr-{id(leg)}-{i}"
 
                 # stat pills
@@ -1066,7 +1067,9 @@ tr:hover td{background:rgba(200,255,0,.03);}
                     _pill("L5 Avg",     l5_avg,     lambda x: f"{x:.1f}"),
                     _pill("Season Avg", season_avg, lambda x: f"{x:.1f}"),
                     _pill("L5 Over",    l5_over,    lambda x: f"{int(round(x*5)) if x<=1 else int(x)}/5"),
+                    _pill("L5 Under",   l5_under,   lambda x: f"{int(round(x*5)) if x<=1 else int(x)}/5"),
                     _pill("L10 Over",   l10_over,   lambda x: f"{int(round(x*10)) if x<=1 else int(x)}/10"),
+                    _pill("L10 Under",  l10_under,  lambda x: f"{int(round(x*10)) if x<=1 else int(x)}/10"),
                     _pill("Hit Rate",   hr_val,     lambda x: f"{x*100:.0f}%"),
                 ])
 
@@ -1080,8 +1083,8 @@ tr:hover td{background:rgba(200,255,0,.03);}
 
                 chart_data = f"""{{
                   line: {line_val if line_val is not None else 'null'},
-                  l5hits: {_hits(l5_over, 5)},
-                  l10hits: {_hits(l10_over, 10)},
+                  l5hits: {_hits(l5_under, 5) if dir_txt == "UNDER" else _hits(l5_over, 5)},
+                  l10hits: {_hits(l10_under, 10) if dir_txt == "UNDER" else _hits(l10_over, 10)},
                   l5avg: {l5_avg if l5_avg is not None else 'null'},
                   seasonAvg: {season_avg if season_avg is not None else 'null'},
                   player: {repr(leg.get('player',''))},
@@ -1109,15 +1112,16 @@ tr:hover td{background:rgba(200,255,0,.03);}
       var hits10 = d.l10hits || d.l5hits || [];
       var labels = hits10.map((_,i)=>'G'+(i+1));
       var vals = hits10.map(()=>null); // placeholder — show avg lines only
-      // We'll just render a bar chart of recent hits vs line
-      var barVals = hits10.map((h,i)=>{{ return d.l5avg || (h ? (d.line||0)*1.15 : (d.line||0)*0.85); }});
+      // IMPORTANT: do not fabricate stat heights from line values.
+      // We only have hit/miss counts here, so render a truthful binary timeline.
+      var barVals = hits10.map(h => h ? 1 : 0);
       var colors = hits10.map(h=> h ? '#c8ff00' : '#ff4d6d');
       new Chart(ctx, {{
         type:'bar',
         data:{{
           labels: labels,
           datasets:[{{
-            label:'Est. Value',
+            label:'Hit Timeline',
             data: barVals,
             backgroundColor: colors,
             borderRadius:3,
@@ -1129,28 +1133,23 @@ tr:hover td{background:rgba(200,255,0,.03);}
           maintainAspectRatio:false,
           plugins:{{
             legend:{{display:false}},
-            tooltip:{{callbacks:{{label:function(c){{return hits10[c.dataIndex]?'OVER ✅':'UNDER ❌';}}}}}}
+            tooltip:{{callbacks:{{label:function(c){{return hits10[c.dataIndex] ? 'Hit' : 'Miss';}}}}}}
           }},
           scales:{{
             x:{{ticks:{{color:'#888',font:{{size:10}}}},grid:{{color:'#1a1f2e'}}}},
             y:{{
-              ticks:{{color:'#888',font:{{size:10}}}},
+              min: 0,
+              max: 1,
+              ticks:{{
+                stepSize: 1,
+                color:'#888',
+                font:{{size:10}},
+                callback: function(v){{ return v === 1 ? 'Hit' : 'Miss'; }}
+              }},
               grid:{{color:'#1a1f2e'}},
-              min: d.line ? d.line*0.5 : 0,
-              afterDataLimits(scale){{
-                if(d.line) scale.max = Math.max(scale.max, d.line*1.6);
-              }}
             }}
           }},
-          annotation:{{
-            annotations:{{
-              line1:{{
-                type:'line', yMin:d.line, yMax:d.line,
-                borderColor:'#c8ff00', borderWidth:2, borderDash:[6,3],
-                label:{{content:'Line '+d.line, enabled:true, color:'#c8ff00', font:{{size:10}}}}
-              }}
-            }}
-          }}
+          annotation:{{annotations:{{}}}}
         }}
       }});
     }})();

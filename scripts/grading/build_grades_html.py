@@ -731,7 +731,7 @@ body::after{content:'';position:fixed;bottom:-20%;right:-10%;width:50%;height:50
 
 header{background:rgba(7,10,16,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .logo{display:flex;align-items:center;gap:14px}
-.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#3b82f6,#10b981);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 20px rgba(59,130,246,.3)}
+.logo-icon{width:42px;height:42px;object-fit:contain;display:block;filter:drop-shadow(0 0 6px rgba(212,175,55,0.45))}
 .logo-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;background:linear-gradient(135deg,#fff 40%,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .logo-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2.5px;margin-top:2px}
 .date-badge{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);background:var(--bg3);border:1px solid var(--bd2);border-radius:8px;padding:6px 14px;letter-spacing:1px}
@@ -851,7 +851,7 @@ def build_html(date_str: str, nba_rows: list[dict], cbb_rows: list[dict],
 <body>
 <header>
   <div class="logo">
-    <div class="logo-icon">📊</div>
+    <img src="/static/hybrid-logo.png" alt="PropORACLE logo" class="logo-icon"/>
     <div>
       <div class="logo-title">SLATE EVALUATION</div>
       <div class="logo-sub">POST-GAME GRADE REPORT</div>
