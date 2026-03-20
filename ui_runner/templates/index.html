@@ -1119,7 +1119,16 @@ body::before{
       ▲ OVER EDGES
       <span class="sh-line" style="background:rgba(125,255,203,.2);"></span>
     </div>
-    <div id="over-edges" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;margin-bottom:32px;"></div>
+    <div class="sub-header" style="color:var(--cyan);margin-top:-2px;">
+      STANDARD OVERS
+      <span class="sh-line" style="background:rgba(127,199,217,.2);"></span>
+    </div>
+    <div id="over-edges-standard" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;margin-bottom:18px;"></div>
+    <div class="sub-header" style="color:var(--purple);margin-top:2px;">
+      GOBLIN OVERS
+      <span class="sh-line" style="background:rgba(183,168,255,.2);"></span>
+    </div>
+    <div id="over-edges-goblin" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;margin-bottom:32px;"></div>
 
     <!-- UNDER -->
     <div class="sub-header" style="color:var(--amber);">
@@ -1445,13 +1454,20 @@ function switchExpandTab(idx, tab, btn) {
 }
 
 function renderEdges() {
-  const oc=document.getElementById("over-edges"), uc=document.getElementById("under-edges");
-  oc.innerHTML=""; uc.innerHTML="";
+  const os=document.getElementById("over-edges-standard");
+  const og=document.getElementById("over-edges-goblin");
+  const uc=document.getElementById("under-edges");
+  os.innerHTML=""; og.innerHTML=""; uc.innerHTML="";
   // Sort by absolute edge descending
   [...ALL_SLATE].sort((a,b)=>Math.abs(b.edge)-Math.abs(a.edge)).forEach(p=>{
     const idx=ALL_SLATE.indexOf(p);
     const card=buildEdgeCard(p,idx);
-    if(p.dir==="OVER") oc.appendChild(card); else uc.appendChild(card);
+    if(p.dir==="OVER"){
+      if((p.pick||"").toLowerCase()==="goblin") og.appendChild(card);
+      else os.appendChild(card);
+    } else {
+      uc.appendChild(card);
+    }
   });
 }
 

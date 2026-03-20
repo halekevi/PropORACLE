@@ -193,6 +193,18 @@ POWER_MIN_TIER = {
     6: ["A", "B"],         # 6-leg power: Tier A/B only
 }
 
+# Cap fantasy-score concentration per ticket so slips are more diversified.
+MAX_FANTASY_LEGS = {
+    3: 1,
+    4: 2,
+    5: 2,
+    6: 2,
+}
+
+
+def _is_fantasy_prop(row: pd.Series) -> bool:
+    return "fantasy" in str(row.get("prop_type", "")).strip().lower()
+
 # Demon legs are only allowed in Flex-mode analysis (too low hit rate for Power)
 # This is enforced in build_tickets_smart() below
 
@@ -1769,6 +1781,9 @@ def build_combined_slate(nba: pd.DataFrame, cbb: pd.DataFrame, nhl: pd.DataFrame
 # ── Filter eligible props for tickets ─────────────────────────────────────────
 def filter_eligible(df: pd.DataFrame, min_hit_rate=0.55, min_edge=0.0, min_rank=None, tiers=None, pick_types=None):
     mask = pd.Series([True] * len(df), index=df.index)
+    if "prop_type" in df.columns:
+        # Temporarily exclude all fantasy-score props from tickets.
+        mask &= ~df["prop_type"].astype(str).str.contains("fantasy", case=False, na=False)
     # Always exclude NO_PROJECTION_OR_LINE rows from tickets (no line = can't bet)
     if "void_reason" in df.columns:
         void_str = df["void_reason"].astype(str).str.strip()
@@ -1886,6 +1901,7 @@ def build_tickets(pool: pd.DataFrame, n_legs: int, max_tickets=20, require_mix=F
     can_mix = require_mix and has_sport_col and len(sports_available) >= 2
 
     eligible = pool.sort_values("rank_score", ascending=False, na_position="last").reset_index(drop=True)
+    max_fantasy = MAX_FANTASY_LEGS.get(n_legs, n_legs)
 
     for _ in range(max_tickets * 5):
         if len(tickets) >= max_tickets:
@@ -1894,6 +1910,7 @@ def build_tickets(pool: pd.DataFrame, n_legs: int, max_tickets=20, require_mix=F
         ticket_rows = []
         ticket_players = set()
         sports_in_ticket = set()
+        fantasy_count = 0
 
         if can_mix:
             for sport in sports_available:
@@ -1911,9 +1928,13 @@ def build_tickets(pool: pd.DataFrame, n_legs: int, max_tickets=20, require_mix=F
                     break
                 player = str(row.get("player", "")).strip().lower()
                 if player and player not in ticket_players:
+                    if _is_fantasy_prop(row) and fantasy_count >= max_fantasy:
+                        continue
                     ticket_rows.append(row)
                     ticket_players.add(player)
                     sports_in_ticket.add(row.get("sport", ""))
+                    if _is_fantasy_prop(row):
+                        fantasy_count += 1
         else:
             for _, row in eligible.iterrows():
                 if len(ticket_rows) == n_legs:
@@ -1927,9 +1948,24 @@ def build_tickets(pool: pd.DataFrame, n_legs: int, max_tickets=20, require_mix=F
                                           if str(r.get("pick_type", "")) == "Demon")
                         if str(row.get("pick_type", "")) == "Demon" and demon_count >= 1:
                             continue
+                    if _is_fantasy_prop(row) and fantasy_count >= max_fantasy:
+                        continue
 
                     ticket_rows.append(row)
                     ticket_players.add(player)
+                    if _is_fantasy_prop(row):
+                        fantasy_count += 1
+
+        # If diversity cap was too strict to fill a ticket, backfill best remaining legs.
+        if len(ticket_rows) < n_legs:
+            for _, row in eligible.iterrows():
+                if len(ticket_rows) == n_legs:
+                    break
+                player = str(row.get("player", "")).strip().lower()
+                if player and player not in ticket_players:
+                    ticket_rows.append(row)
+                    ticket_players.add(player)
+                    sports_in_ticket.add(row.get("sport", ""))
 
         if len(ticket_rows) == n_legs:
             if can_mix and len(sports_in_ticket) < 2:
@@ -2018,6 +2054,7 @@ def build_mixed_picktype_tickets(pool_df: pd.DataFrame, n_legs: int, max_tickets
     tickets = []
     std_start = 0
     gob_start = 0
+    max_fantasy = MAX_FANTASY_LEGS.get(n_legs, n_legs)
     attempts = 0
     max_attempts = max_tickets * 50
 
@@ -2025,6 +2062,7 @@ def build_mixed_picktype_tickets(pool_df: pd.DataFrame, n_legs: int, max_tickets
         attempts += 1
         legs = []
         used_players = set()
+        fantasy_count = 0
 
         # 1) Required Standards first
         for _, r in std.iloc[std_start:].iterrows():
@@ -2032,8 +2070,12 @@ def build_mixed_picktype_tickets(pool_df: pd.DataFrame, n_legs: int, max_tickets
                 break
             p = str(r.get("player", "")).strip().lower()
             if p and p not in used_players:
+                if _is_fantasy_prop(r) and fantasy_count >= max_fantasy:
+                    continue
                 legs.append(r)
                 used_players.add(p)
+                if _is_fantasy_prop(r):
+                    fantasy_count += 1
 
         # 2) Fill remaining legs by best rank_score from (gob slice + std slice)
         combined_ranked = pd.concat([gob.iloc[gob_start:], std.iloc[std_start:]], ignore_index=True)
@@ -2044,8 +2086,22 @@ def build_mixed_picktype_tickets(pool_df: pd.DataFrame, n_legs: int, max_tickets
                 break
             p = str(r.get("player", "")).strip().lower()
             if p and p not in used_players:
+                if _is_fantasy_prop(r) and fantasy_count >= max_fantasy:
+                    continue
                 legs.append(r)
                 used_players.add(p)
+                if _is_fantasy_prop(r):
+                    fantasy_count += 1
+
+        # Backfill if diversity cap prevented filling all required legs.
+        if len(legs) < n_legs:
+            for _, r in combined_ranked.iterrows():
+                if len(legs) >= n_legs:
+                    break
+                p = str(r.get("player", "")).strip().lower()
+                if p and p not in used_players:
+                    legs.append(r)
+                    used_players.add(p)
 
         if len(legs) == n_legs:
             std_count = sum(1 for x in legs if str(x.get("pick_type", "")) == "Standard")
