@@ -32,10 +32,10 @@ from typing import Dict, List, Tuple, Optional
 import pandas as pd
 import requests
 
-# Ensure <repo>/SlateIQ is on sys.path so we can import SlateIQ-level helpers.
-_SLATEIQ_ROOT = Path(__file__).resolve().parents[3]
-if str(_SLATEIQ_ROOT) not in sys.path:
-    sys.path.insert(0, str(_SLATEIQ_ROOT))
+# Ensure <repo>/PropOracle is on sys.path so we can import PropOracle-level helpers.
+_PROPORACLE_ROOT = Path(__file__).resolve().parents[3]
+if str(_PROPORACLE_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROPORACLE_ROOT))
 
 from scripts.db_utils import log_pipeline_health
 

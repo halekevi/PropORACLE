@@ -2,7 +2,7 @@
 """
 unified_grader_with_analytics.py
 
-SlateIQ Unified Grader - Multi-Sport with Advanced Analytics
+PropOracle Unified Grader - Multi-Sport with Advanced Analytics
 
 PURPOSE:
   - Grade props from ALL sports (NBA, CBB, NHL, Soccer, MLB, WNBA)
@@ -362,7 +362,7 @@ class ReportGenerator:
         <!DOCTYPE html>
         <html>
         <head>
-            <title>SlateIQ Grading Report - {SPORT_CONFIG[sport]['name']} {date}</title>
+            <title>PropOracle Grading Report - {SPORT_CONFIG[sport]['name']} {date}</title>
             <meta charset="UTF-8">
             <style>
                 body {{ font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }}
@@ -383,7 +383,7 @@ class ReportGenerator:
         </head>
         <body>
             <div class="header">
-                <h1>SlateIQ Grading Report</h1>
+                <h1>PropOracle Grading Report</h1>
                 <p>{SPORT_CONFIG[sport]['name']} | {date}</p>
             </div>
             
@@ -453,7 +453,7 @@ class ReportGenerator:
 def main() -> None:
     ap = argparse.ArgumentParser(
         prog="unified_grader_with_analytics.py",
-        description="SlateIQ Unified Multi-Sport Grader with Analytics",
+        description="PropOracle Unified Multi-Sport Grader with Analytics",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     ap.add_argument("--sport", required=True, choices=list(SPORT_CONFIG.keys()),
@@ -467,7 +467,7 @@ def main() -> None:
 
     print(f"""
     ╔════════════════════════════════════════════════════════════════╗
-    ║           SlateIQ Unified Grader with Analytics               ║
+    ║           PropOracle Unified Grader with Analytics               ║
     ║                                                                ║
     ║  Sport: {SPORT_CONFIG[args.sport]['name']:30s} Date: {args.date}          ║
     ╚════════════════════════════════════════════════════════════════╝

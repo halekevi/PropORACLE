@@ -131,7 +131,7 @@ def main() -> None:
     df = pd.read_csv(args.input, low_memory=False, encoding="utf-8-sig")
 
     if df.empty:
-        print("❌ [SlateIQ-Soccer-S6] Empty input from S5 — aborting.")
+        print("❌ [PropOracle-Soccer-S6] Empty input from S5 — aborting.")
         sys.exit(1)
 
     # Normalize position to group
@@ -205,7 +205,7 @@ def main() -> None:
 
     df.to_csv(args.output, index=False, encoding="utf-8-sig")
     if df.empty:
-        print("❌ [SlateIQ-Soccer-S6] Output is empty — aborting.")
+        print("❌ [PropOracle-Soccer-S6] Output is empty — aborting.")
         sys.exit(1)
     print(f"✅ Saved → {args.output}  rows={len(df)}")
     if "position_group" in df.columns:

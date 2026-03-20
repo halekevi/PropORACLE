@@ -1,5 +1,5 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
-║                    SLATEIQ ADVANCED GRADER SYSTEM                          ║
+║                    PROPORACLE ADVANCED GRADER SYSTEM                          ║
 ║                       Complete Deployment Package                          ║
 ║                              March 2026                                    ║
 ╚════════════════════════════════════════════════════════════════════════════╝
@@ -82,9 +82,9 @@ COMPLETE & PRODUCTION READY: ✅ YES
 
 OPTION 1: "Just Want Grading to Work Better" (1 hour)
 ──────────────────────────────────────────────────────
-1. Copy run_grader_UPDATED.ps1 → SlateIQ/run_grader.ps1
-2. Create folder SlateIQ/grader/
-3. Copy 3 grader scripts to SlateIQ/grader/
+1. Copy run_grader_UPDATED.ps1 → PropOracle/run_grader.ps1
+2. Create folder PropOracle/grader/
+3. Copy 3 grader scripts to PropOracle/grader/
 4. Test: .\run_grader.ps1 -NHLOnly
 5. Done! You now have:
    - Confidence scoring
@@ -176,7 +176,7 @@ ROI Impact:
 FOLDER STRUCTURE AFTER DEPLOYMENT
 ═════════════════════════════════════════════════════════════════════════════
 
-SlateIQ/
+PropOracle/
 ├── grader/                              (NEW)
 │   ├── unified_grader_with_analytics.py
 │   ├── nhl_grader_advanced.py
@@ -216,7 +216,7 @@ Pre-Deployment:
   [ ] Verify pandas, numpy, matplotlib installed
 
 Deployment:
-  [ ] Create SlateIQ/grader/ folder
+  [ ] Create PropOracle/grader/ folder
   [ ] Copy 3 grader scripts to grader/ folder
   [ ] Update run_grader.ps1 (copy updated version)
   [ ] Test with -NHLOnly flag
@@ -307,7 +307,7 @@ Quick Questions:
 
 Common Issues:
   "Advanced graders not found"
-    → Copy 3 scripts to SlateIQ/grader/
+    → Copy 3 scripts to PropOracle/grader/
 
   "No recommendations CSV generated"
     → Check opponent cache exists

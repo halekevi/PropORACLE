@@ -2,7 +2,7 @@
 """
 nhl_grader_advanced.py
 
-SlateIQ Advanced NHL Grader with Opponent Comparison & Analytics
+PropOracle Advanced NHL Grader with Opponent Comparison & Analytics
 
 FEATURES:
   ✅ Full prop grading (HIT/MISS/PUSH/VOID)
@@ -371,7 +371,7 @@ class NHLAnalytics:
 
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="SlateIQ Advanced NHL Grader with Opponent Analysis",
+        description="PropOracle Advanced NHL Grader with Opponent Analysis",
     )
     ap.add_argument("--date", required=True, help="Date (YYYY-MM-DD)")
     ap.add_argument("--actuals", required=True, help="Actuals CSV")
@@ -382,7 +382,7 @@ def main() -> None:
     
     print(f"""
     ╔════════════════════════════════════════════════════════════════╗
-    ║              SlateIQ Advanced NHL Grader                       ║
+    ║              PropOracle Advanced NHL Grader                       ║
     ║           with Opponent Analysis & Recommendations            ║
     ║                                                                ║
     ║  Date: {args.date}                                               ║

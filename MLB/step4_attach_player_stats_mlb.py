@@ -36,10 +36,10 @@ import numpy as np
 import pandas as pd
 import requests
 
-# Ensure <repo>/SlateIQ is on sys.path so we can import SlateIQ-level helpers.
-_SLATEIQ_ROOT = Path(__file__).resolve().parents[1]
-if str(_SLATEIQ_ROOT) not in sys.path:
-    sys.path.insert(0, str(_SLATEIQ_ROOT))
+# Ensure <repo>/PropOracle is on sys.path so we can import PropOracle-level helpers.
+_PROPORACLE_ROOT = Path(__file__).resolve().parents[1]
+if str(_PROPORACLE_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROPORACLE_ROOT))
 
 from scripts.db_utils import ensure_mlb_schema, log_pipeline_health, open_db, upsert_rows
 
@@ -356,7 +356,7 @@ def main() -> None:
     ap.add_argument("--input",        required=True)
     ap.add_argument("--cache",        default="mlb_stats_cache.csv")
     ap.add_argument("--output",       required=True)
-    ap.add_argument("--db",           default="", help="Override DB path (default: data/cache/slateiq_ref.db)")
+    ap.add_argument("--db",           default="", help="Override DB path (default: data/cache/proporacle_ref.db)")
     ap.add_argument("--n",            type=int,   default=10, help="Games per player")
     ap.add_argument("--season",       default="2025")
     ap.add_argument("--debug_misses", default="")

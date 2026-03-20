@@ -1,5 +1,5 @@
 """
-build_grade_report.py  —  drop in SlateIQ root, next to run_grader.ps1
+build_grade_report.py  —  drop in PropOracle root, next to run_grader.ps1
 Reads graded_nba/cbb/nhl/soccer_DATE.xlsx → slate_eval_DATE.html
 """
 from __future__ import annotations
@@ -514,7 +514,7 @@ def build_html(df: pd.DataFrame, date_str: str) -> str:
 <div class="main">
   {summary}
   {sections}
-  <div class="footer">SLATEIQ · GENERATED {gen}</div>
+  <div class="footer">PROPORACLE · GENERATED {gen}</div>
 </div>
 </body>
 </html>"""

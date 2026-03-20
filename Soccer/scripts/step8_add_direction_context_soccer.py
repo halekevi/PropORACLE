@@ -204,7 +204,7 @@ def main() -> None:
     df  = pd.read_excel(args.input, sheet_name=args.sheet, dtype=str).fillna("")
 
     if df.empty:
-        print("❌ [SlateIQ-Soccer-S8] Empty input from S7 — aborting.")
+        print("❌ [PropOracle-Soccer-S8] Empty input from S7 — aborting.")
         sys.exit(1)
 
     # ── Date filter: keep only target date's games ───────────────────────────
@@ -267,7 +267,7 @@ def main() -> None:
     print(f"✅ Saved → {args.output}")
 
     if out.empty:
-        print("❌ [SlateIQ-Soccer-S8] Output is empty — aborting.")
+        print("❌ [PropOracle-Soccer-S8] Output is empty — aborting.")
         sys.exit(1)
 
     print("final_bet_direction counts:")

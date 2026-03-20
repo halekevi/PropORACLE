@@ -189,7 +189,7 @@ def main():
     _db_path = None
     _here = _Path(__file__).resolve().parent
     for _ in range(8):
-        _candidate = _here / "data" / "cache" / "slateiq_ref.db"
+        _candidate = _here / "data" / "cache" / "proporacle_ref.db"
         if _candidate.exists():
             _db_path = _candidate
             break

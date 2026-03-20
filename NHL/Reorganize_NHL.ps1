@@ -1,12 +1,12 @@
 # ============================================================
-#  SlateIQ — NHL Folder Reorganization
-#  Run from: SlateIQ root (where the NHL\ folder lives)
+#  PropOracle — NHL Folder Reorganization
+#  Run from: PropOracle root (where the NHL\ folder lives)
 # ============================================================
 
 $nhl = "NHL"
 
 Write-Host ""
-Write-Host "SlateIQ — NHL Reorganization" -ForegroundColor Cyan
+Write-Host "PropOracle — NHL Reorganization" -ForegroundColor Cyan
 Write-Host "============================================================" -ForegroundColor DarkGray
 
 # ── 1. Create subdirectories ─────────────────────────────────

@@ -1,4 +1,4 @@
-# SlateIQ Advanced Multi-Sport Grader System
+# PropOracle Advanced Multi-Sport Grader System
 ## Complete Implementation Guide
 
 **Status**: ✅ PRODUCTION READY  
@@ -193,7 +193,7 @@ La Liga   0.545     55.8            0.9
 ```
 Timeline: 1 hour
 
-1. Copy unified_grader_with_analytics.py to SlateIQ/grader/
+1. Copy unified_grader_with_analytics.py to PropOracle/grader/
 2. Test with NBA:
    py unified_grader_with_analytics.py \
      --sport nba \
@@ -210,7 +210,7 @@ Timeline: 1 hour
 
 **NHL** (2 hours):
 ```bash
-cp nhl_grader_advanced.py SlateIQ/grader/
+cp nhl_grader_advanced.py PropOracle/grader/
 py nhl_grader_advanced.py \
   --date 2026-02-21 \
   --actuals actuals_nhl_2026-02-21.csv \
@@ -225,7 +225,7 @@ Verify:
 
 **Soccer** (2 hours):
 ```bash
-cp soccer_grader_advanced.py SlateIQ/grader/
+cp soccer_grader_advanced.py PropOracle/grader/
 py soccer_grader_advanced.py \
   --date 2026-02-21 \
   --actuals actuals_soccer_2026-02-21.csv \

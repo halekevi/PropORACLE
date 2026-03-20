@@ -460,7 +460,7 @@ def main():
     print(f"\n✅ Saved → {args.out}  ({len(df)} teams, {df['league'].nunique()} leagues)")
     print(f"Sample pp_names: {df['pp_name'].head(10).tolist()}")
 
-    # ── Write to slateiq_ref.db ───────────────────────────────────────────────
+    # ── Write to proporacle_ref.db ───────────────────────────────────────────────
     try:
         import sys as _sys
         from pathlib import Path as _Path

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SlateIQ — Home</title>
+<title>PropOracle — Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Inter:wght@400;500;600;700&display=swap');
@@ -741,7 +741,7 @@ body{
   <span class="tt-icon tt-moon">🌙</span>
   <span class="tt-icon tt-sun" style="display:none">☀️</span>
 </button>
-    <div class="live-pill"><div class="live-dot"></div>SLATEIQ &nbsp;·&nbsp; LIVE</div>
+    <div class="live-pill"><div class="live-dot"></div>PROPORACLE &nbsp;·&nbsp; LIVE</div>
   </div>
   <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
@@ -1728,12 +1728,12 @@ document.addEventListener('click',e=>{ if(ham2&&mob2&&!ham2.contains(e.target)&&
 <script>
 (function(){
   // Persist theme preference across pages
-  const saved = localStorage.getItem('slateiq-theme') || 'dark';
+  const saved = localStorage.getItem('proporacle-theme') || 'dark';
   applyTheme(saved);
 })();
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('slateiq-theme', theme);
+  localStorage.setItem('proporacle-theme', theme);
   const moon = document.getElementById('theme-toggle')?.querySelector('.tt-moon');
   const sun  = document.getElementById('theme-toggle')?.querySelector('.tt-sun');
   if (moon) moon.style.display = theme === 'dark' ? '' : 'none';

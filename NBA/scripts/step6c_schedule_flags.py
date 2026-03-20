@@ -2,7 +2,7 @@
 """
 step6c_schedule_flags.py
 ─────────────────────────
-SlateIQ-NBA-S6c: Schedule Fatigue Flags (Back-to-Back & Rest Days)
+PropOracle-NBA-S6c: Schedule Fatigue Flags (Back-to-Back & Rest Days)
 
 PURPOSE:
   Computes days_rest and b2b_flag for every player/prop row based on the
@@ -38,7 +38,7 @@ USAGE:
     --output step6c_with_schedule_flags.csv \
     --date 2026-03-06
 
-AUTHOR: SlateIQ Pipeline
+AUTHOR: PropOracle Pipeline
 VERSION: 1.0 (March 2026)
 """
 
@@ -119,7 +119,7 @@ def fetch_espn_schedule(date_str: str) -> Optional[dict]:
     url = f"{ESPN_SCHEDULE_URL}?dates={compact}&limit=20"
     print(f"  [6c] Fetching ESPN schedule: {url}")
     try:
-        req = _urllib.Request(url, headers={"User-Agent": "SlateIQ/1.0"})
+        req = _urllib.Request(url, headers={"User-Agent": "PropOracle/1.0"})
         with _urllib.urlopen(req, timeout=15) as resp:
             return json.loads(resp.read().decode("utf-8"))
     except Exception as e:

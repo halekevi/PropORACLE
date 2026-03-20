@@ -1,4 +1,4 @@
-# run_soccer_pipeline.ps1  -  SlateIQ Soccer Pipeline
+# run_soccer_pipeline.ps1  -  PropOracle Soccer Pipeline
 #
 # Usage (run from Soccer\ root):
 #   .\scripts\run_soccer_pipeline.ps1
@@ -27,7 +27,7 @@ if (-not (Test-Path $OutputsDir)) { New-Item -ItemType Directory -Path $OutputsD
 
 function Run-Step {
     param([string]$Label, [string]$Script, [string[]]$StepArgs)
-    $tag     = "[ SlateIQ-Soccer-$Label ]"
+    $tag     = "[ PropOracle-Soccer-$Label ]"
     $fullPath = Join-Path $ScriptsDir $Script
     Write-Host ""
     Write-Host "$tag Starting..." -ForegroundColor Cyan
@@ -44,16 +44,16 @@ Set-Location $SoccerRoot
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "  SlateIQ Soccer Pipeline" -ForegroundColor Cyan
+Write-Host "  PropOracle Soccer Pipeline" -ForegroundColor Cyan
 Write-Host "  Root: $SoccerRoot" -ForegroundColor DarkGray
 Write-Host "========================================" -ForegroundColor Cyan
 
 # ── S1: Fetch PrizePicks ──────────────────────────────────────────────────────
 if ($SkipFetch) {
     Write-Host ""
-    Write-Host "[ SlateIQ-Soccer-S1 ] SKIPPED (--SkipFetch)" -ForegroundColor Yellow
+    Write-Host "[ PropOracle-Soccer-S1 ] SKIPPED (--SkipFetch)" -ForegroundColor Yellow
     if (-not (Test-Path (Join-Path $OutputsDir "step1_soccer_props.csv"))) {
-        Write-Host "[ SlateIQ-Soccer-S1 ] ERROR: outputs\step1_soccer_props.csv not found." -ForegroundColor Red
+        Write-Host "[ PropOracle-Soccer-S1 ] ERROR: outputs\step1_soccer_props.csv not found." -ForegroundColor Red
         exit 1
     }
 } else {
@@ -123,7 +123,7 @@ Run-Step "S8" "step8_add_direction_context_soccer.py" @(
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Green
-Write-Host "  SlateIQ Soccer Pipeline COMPLETE" -ForegroundColor Green
+Write-Host "  PropOracle Soccer Pipeline COMPLETE" -ForegroundColor Green
 Write-Host "  $OutputsDir\step7_soccer_ranked.xlsx" -ForegroundColor Green
 Write-Host "  $OutputsDir\step8_soccer_direction_clean.xlsx" -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Green

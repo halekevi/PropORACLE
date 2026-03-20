@@ -1,4 +1,4 @@
-# SlateIQ NBA Pipeline - Organized Structure
+# PropOracle NBA Pipeline - Organized Structure
 
 ## 📁 Folder Layout
 
@@ -54,7 +54,7 @@ NBA/
 
 ## 🚀 Quick Start
 
-From SlateIQ root:
+From PropOracle root:
 
 `powershell
 cd NBA

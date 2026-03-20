@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SlateIQ — Payout Calculator</title>
+<title>PropOracle — Payout Calculator</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -973,7 +973,7 @@ nav{display:flex;align-items:center;gap:16px;padding:14px 0 20px;border-bottom:1
 
 <script>
 const PP_BASE   = {2:3,3:6,4:10,5:20,6:37.5};
-const STORE_KEY = 'slateiq_payout_log_v5';
+const STORE_KEY = 'proporacle_payout_log_v5';
 const PROP_OPTS = ['Points','Rebounds','Assists','Pts+Reb+Ast','Pts+Reb','Pts+Ast','3-PT Made','Steals','Blocks','Turnovers','Fantasy Score','Other'];
 const SPORT_OPTS= ['NBA','CBB','NFL','MLB','WNBA','Soccer','Other'];
 
@@ -1280,12 +1280,12 @@ renderLogLegs();
 <script>
 (function(){
   // Persist theme preference across pages
-  const saved = localStorage.getItem('slateiq-theme') || 'dark';
+  const saved = localStorage.getItem('proporacle-theme') || 'dark';
   applyTheme(saved);
 })();
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('slateiq-theme', theme);
+  localStorage.setItem('proporacle-theme', theme);
   const moon = document.getElementById('theme-toggle')?.querySelector('.tt-moon');
   const sun  = document.getElementById('theme-toggle')?.querySelector('.tt-sun');
   if (moon) moon.style.display = theme === 'dark' ? '' : 'none';

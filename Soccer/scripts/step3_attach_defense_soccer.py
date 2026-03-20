@@ -72,7 +72,7 @@ def main() -> None:
     df = pd.read_csv(args.input, dtype=str, encoding="utf-8-sig").fillna("")
 
     if df.empty:
-        print("❌ [SlateIQ-Soccer-S3] Empty input from S2 — aborting.")
+        print("❌ [PropOracle-Soccer-S3] Empty input from S2 — aborting.")
         sys.exit(1)
 
     # ── Load defense: DB first, CSV fallback ─────────────────────────────────
@@ -338,7 +338,7 @@ def main() -> None:
     print(f"Rows: {len(out)} | Cols: {len(out.columns)}")
 
     if out.empty:
-        print("❌ [SlateIQ-Soccer-S3] Output is empty — aborting.")
+        print("❌ [PropOracle-Soccer-S3] Output is empty — aborting.")
         sys.exit(1)
 
     if "OVERALL_DEF_RANK" in out.columns:
@@ -346,7 +346,7 @@ def main() -> None:
         fill_pct = filled / len(out) if len(out) else 0
         print(f"Defense filled (OVERALL_DEF_RANK): {filled}/{len(out)} ({fill_pct:.0%})")
         if fill_pct < 0.50:
-            print(f"❌ [SlateIQ-Soccer-S3] Defense fill rate {fill_pct:.0%} below 50% threshold — aborting.")
+            print(f"❌ [PropOracle-Soccer-S3] Defense fill rate {fill_pct:.0%} below 50% threshold — aborting.")
             sys.exit(1)
 
 

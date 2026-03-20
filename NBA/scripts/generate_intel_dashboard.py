@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 generate_intel_dashboard.py
-SlateIQ Intelligence Dashboard Generator
+PropOracle Intelligence Dashboard Generator
 
-Reads directly from slateiq_ref.db to generate a live HTML dashboard showing:
+Reads directly from proporacle_ref.db to generate a live HTML dashboard showing:
   - Player consistency (Season Avg, L5, L10, CV%)
   - Team defense profiles (which teams give up which props)
   - H2H history (player vs specific opponent)
@@ -31,7 +31,7 @@ except Exception:
 _here = Path(__file__).resolve().parent
 DB_PATH = None
 for _ in range(6):
-    candidate = _here.parent / "data" / "cache" / "slateiq_ref.db"
+    candidate = _here.parent / "data" / "cache" / "proporacle_ref.db"
     if candidate.exists():
         DB_PATH = candidate
         break
@@ -251,7 +251,7 @@ def build_html(prop_key, con, min_gp, db_date_range):
 
     html = f"""<!DOCTYPE html>
 <html><head><meta charset="utf-8">
-<title>SlateIQ Intelligence — {prop_label}</title>
+<title>PropOracle Intelligence — {prop_label}</title>
 <style>
 *{{box-sizing:border-box;margin:0;padding:0}}
 body{{font-family:system-ui,sans-serif;background:#070a10;color:#e2e8f0;padding:20px;font-size:13px}}
@@ -285,8 +285,8 @@ tr:hover td{{background:#0f172a}}
 .up{{color:#34d399}}.down{{color:#f87171}}
 </style></head>
 <body>
-<h1>SlateIQ Intelligence Dashboard</h1>
-<div class="sub">DB: {db_date_range} · Live from slateiq_ref.db · Auto-updates nightly</div>
+<h1>PropOracle Intelligence Dashboard</h1>
+<div class="sub">DB: {db_date_range} · Live from proporacle_ref.db · Auto-updates nightly</div>
 
 <div class="tabs">
   <button class="tab active" onclick="showTab('consistency',this)">📊 Player Consistency</button>

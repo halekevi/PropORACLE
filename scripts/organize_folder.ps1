@@ -1,5 +1,5 @@
 # ============================================================
-#  SlateIQ  -  Folder Organizer
+#  PropOracle  -  Folder Organizer
 #  Run once to clean up root and archive old dated files
 #  Safe: never deletes anything — only moves
 # ============================================================
@@ -98,7 +98,7 @@ foreach ($f in $OldSlates) {
 }
 
 # Old graded xlsx files in root
-$OldGraded = Get-ChildItem "$Root\*graded*.xlsx" "$Root\SlateIQ_*.xlsx" -ErrorAction SilentlyContinue
+$OldGraded = Get-ChildItem "$Root\*graded*.xlsx" "$Root\PropOracle_*.xlsx" -ErrorAction SilentlyContinue
 foreach ($f in $OldGraded) {
     Move-Item $f.FullName "$Root\archive\graded\$($f.Name)" -Force
     Write-Host "  Archived: $($f.Name) -> archive\graded\" -ForegroundColor DarkGray
@@ -210,7 +210,7 @@ Write-Host "======================================================" -ForegroundC
 Write-Host "  DONE. Final structure:" -ForegroundColor Cyan
 Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "  SlateIQ\" -ForegroundColor White
+Write-Host "  PropOracle\" -ForegroundColor White
 Write-Host "  ├── run_pipeline.ps1          (master runner)" -ForegroundColor Green
 Write-Host "  ├── run_grader.ps1            (grader runner)" -ForegroundColor Green
 Write-Host "  ├── combined_slate_tickets_TODAY.xlsx" -ForegroundColor Green

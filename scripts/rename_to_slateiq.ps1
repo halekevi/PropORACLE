@@ -1,28 +1,28 @@
 # ============================================================
-#  rename_to_slateiq.ps1
+#  rename_to_proporacle.ps1
 #  Renames root folder and all sport subfolders to match
-#  SlateIQ architecture, then updates all path references
+#  PropOracle architecture, then updates all path references
 #  inside .ps1 and .py files automatically.
 #
 #  Renames:
-#    SlateIQ\          -> SlateIQ\          (parent folder)
-#    SlateIQ\NBA\ -> SlateIQ\NBA\
-#    SlateIQ\CBB\           -> SlateIQ\CBB\
-#    SlateIQ\NHL\            (created if not exists)
-#    SlateIQ\Soccer\         (created if not exists)
-#    SlateIQ\MLB\            (created if not exists)
-#    SlateIQ\WNBA\           (created if not exists)
+#    PropOracle\          -> PropOracle\          (parent folder)
+#    PropOracle\NBA\ -> PropOracle\NBA\
+#    PropOracle\CBB\           -> PropOracle\CBB\
+#    PropOracle\NHL\            (created if not exists)
+#    PropOracle\Soccer\         (created if not exists)
+#    PropOracle\MLB\            (created if not exists)
+#    PropOracle\WNBA\           (created if not exists)
 #
 #  Usage:
-#    .\rename_to_slateiq.ps1           # Preview mode
-#    .\rename_to_slateiq.ps1 -Execute  # Apply all changes
+#    .\rename_to_proporacle.ps1           # Preview mode
+#    .\rename_to_proporacle.ps1 -Execute  # Apply all changes
 # ============================================================
 param([switch]$Execute)
 
 $ScriptDir  = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $ParentDir  = Split-Path -Parent $ScriptDir
 $OldRoot    = $ScriptDir
-$NewRoot    = Join-Path $ParentDir "SlateIQ"
+$NewRoot    = Join-Path $ParentDir "PropOracle"
 
 # ── Subfolder rename map ──────────────────────────────────────────────────────
 $SubRenames = [ordered]@{
@@ -37,7 +37,7 @@ $EnsureFolders = @("NBA", "CBB", "NHL", "Soccer", "MLB", "WNBA")
 # Order matters — more specific replacements first
 $PathReplacements = [ordered]@{
     # Root folder name
-    "SlateIQ"      = "SlateIQ"
+    "PropOracle"      = "PropOracle"
     # Sport subfolder names
     "NBA"   = "NBA"
     "CBB"               = "CBB"
@@ -180,13 +180,13 @@ Write-Host ""
 
 $currentRootName = Split-Path $OldRoot -Leaf
 
-if ($currentRootName -eq "SlateIQ") {
-    Write-Info "Root is already named SlateIQ — skipping"
+if ($currentRootName -eq "PropOracle") {
+    Write-Info "Root is already named PropOracle — skipping"
 } elseif (Test-Path $NewRoot) {
-    Write-Warn "WARNING: SlateIQ\ already exists at $NewRoot"
+    Write-Warn "WARNING: PropOracle\ already exists at $NewRoot"
     Write-Warn "         Resolve conflict manually before renaming root."
 } else {
-    Write-Preview "RENAME  $currentRootName\  ->  SlateIQ\"
+    Write-Preview "RENAME  $currentRootName\  ->  PropOracle\"
     Write-Preview "        FROM: $OldRoot"
     Write-Preview "        TO:   $NewRoot"
     if ($Execute) {
@@ -195,7 +195,7 @@ if ($currentRootName -eq "SlateIQ") {
         Write-Host "  Run this command from the PARENT directory instead:" -ForegroundColor Cyan
         Write-Host ""
         Write-Host "    cd `"$ParentDir`"" -ForegroundColor White
-        Write-Host "    Rename-Item `"$OldRoot`" `"SlateIQ`"" -ForegroundColor White
+        Write-Host "    Rename-Item `"$OldRoot`" `"PropOracle`"" -ForegroundColor White
         Write-Host ""
         Write-Host "  All internal renames and reference updates are complete." -ForegroundColor Green
         Write-Host "  Only the root folder rename remains — run the two lines above." -ForegroundColor Green
@@ -212,7 +212,7 @@ if (-not $Execute) {
 } else {
     Write-Host "  DONE. Final structure:" -ForegroundColor Green
     Write-Host ""
-    Write-Host "  SlateIQ\"                      -ForegroundColor White
+    Write-Host "  PropOracle\"                      -ForegroundColor White
     Write-Host "  ├── run_pipeline.ps1"          -ForegroundColor Green
     Write-Host "  ├── run_grader.ps1"            -ForegroundColor Green
     Write-Host "  ├── scripts\"                  -ForegroundColor Yellow

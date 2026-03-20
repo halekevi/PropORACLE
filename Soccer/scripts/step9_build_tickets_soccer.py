@@ -341,7 +341,7 @@ def main() -> None:
     df["Pick Type"] = df["Pick Type"].astype(str).apply(_norm_pick_type)
 
     if df.empty:
-        print("❌ [SlateIQ-Soccer-S9] Empty input from S8 — aborting.")
+        print("❌ [PropOracle-Soccer-S9] Empty input from S8 — aborting.")
         sys.exit(1)
 
     # Pre-compute float columns ONCE (avoids per-row/per-combination re-parsing)

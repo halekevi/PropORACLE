@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-step4_db_reader.py — SlateIQ shared DB stat lookup module
+step4_db_reader.py — PropOracle shared DB stat lookup module
 
 Used by all 4 sport step4 scripts. Replaces all live ESPN/NHL API calls
-with indexed SQLite reads from data/cache/slateiq_ref.db.
+with indexed SQLite reads from data/cache/proporacle_ref.db.
 
 Key functions:
     open_db(db_path)                     → sqlite3.Connection
@@ -40,15 +40,15 @@ import pandas as pd
 
 # ── Default DB path ────────────────────────────────────────────────────────────
 _HERE = Path(__file__).resolve().parent
-DB_PATH = _HERE.parent / "data" / "cache" / "slateiq_ref.db"
+DB_PATH = _HERE.parent / "data" / "cache" / "proporacle_ref.db"
 
 
 def open_db(db_path: Optional[Path] = None) -> sqlite3.Connection:
-    """Open the SlateIQ reference DB (read-only safe, WAL mode)."""
+    """Open the PropOracle reference DB (read-only safe, WAL mode)."""
     path = Path(db_path) if db_path else DB_PATH
     if not path.exists():
         raise FileNotFoundError(
-            f"SlateIQ reference DB not found at {path}\n"
+            f"PropOracle reference DB not found at {path}\n"
             f"Run: py scripts/build_boxscore_ref.py --backfill --days 30"
         )
     con = sqlite3.connect(path)
@@ -514,7 +514,7 @@ def attach_stats(
 
 # ── DB health check ────────────────────────────────────────────────────────────
 def db_summary(con: sqlite3.Connection) -> None:
-    print("\n── SlateIQ Ref DB Summary ──────────────────────")
+    print("\n── PropOracle Ref DB Summary ──────────────────────")
     for table in ("nba", "cbb", "nhl", "soccer"):
         try:
             total   = con.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]

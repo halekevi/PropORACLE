@@ -319,7 +319,7 @@ def main():
     print("\nDEF_TIER breakdown:")
     print(df["DEF_TIER"].value_counts().to_string())
 
-    # ── Write to slateiq_ref.db ───────────────────────────────────────────────
+    # ── Write to proporacle_ref.db ───────────────────────────────────────────────
     try:
         import sys as _sys
         from pathlib import Path as _Path

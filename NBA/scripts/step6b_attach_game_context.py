@@ -2,7 +2,7 @@
 """
 step6b_attach_game_context.py
 ─────────────────────────────
-SlateIQ-NBA-S6b: Vegas Game Context (Totals, Spreads, Blowout Risk)
+PropOracle-NBA-S6b: Vegas Game Context (Totals, Spreads, Blowout Risk)
 
 PURPOSE:
   Fetches live Vegas odds (game total O/U, spread, implied team totals)
@@ -51,7 +51,7 @@ USAGE:
 
 GET YOUR FREE KEY: https://the-odds-api.com  (500 free requests/month)
 
-AUTHOR: SlateIQ Pipeline
+AUTHOR: PropOracle Pipeline
 VERSION: 1.0 (March 2026)
 """
 
@@ -150,7 +150,7 @@ def fetch_odds(api_key: str, date_str: str) -> Optional[list]:
 
     print(f"  [6b] Fetching odds from The Odds API…")
     try:
-        req = _urllib.Request(url, headers={"User-Agent": "SlateIQ/1.0"})
+        req = _urllib.Request(url, headers={"User-Agent": "PropOracle/1.0"})
         with _urllib.urlopen(req, timeout=20) as resp:
             remaining = resp.headers.get("x-requests-remaining", "?")
             used = resp.headers.get("x-requests-used", "?")

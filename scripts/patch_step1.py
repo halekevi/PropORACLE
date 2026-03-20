@@ -1,6 +1,6 @@
 import re
 
-path = r"C:\Users\halek\OneDrive\Desktop\Vision Board\SlateIQ\SlateIQ\NBA\step1_fetch_prizepicks_api.py"
+path = r"C:\Users\halek\OneDrive\Desktop\Vision Board\PropOracle\PropOracle\NBA\step1_fetch_prizepicks_api.py"
 
 with open(path, 'r', encoding='utf-8') as f:
     s = f.read()

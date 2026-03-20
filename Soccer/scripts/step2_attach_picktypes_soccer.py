@@ -390,7 +390,7 @@ def main() -> None:
     df = pd.read_csv(args.input, dtype=str, encoding="utf-8-sig").fillna("")
 
     if df.empty:
-        print("❌ [SlateIQ-Soccer-S2] Empty input from S1 — aborting.")
+        print("❌ [PropOracle-Soccer-S2] Empty input from S1 — aborting.")
         sys.exit(1)
 
     required = ["player", "team", "prop_type", "line"]
@@ -526,7 +526,7 @@ def main() -> None:
     out.to_csv(args.output, index=False, encoding="utf-8-sig")
 
     if out.empty:
-        print("❌ [SlateIQ-Soccer-S2] Output is empty — aborting.")
+        print("❌ [PropOracle-Soccer-S2] Output is empty — aborting.")
         sys.exit(1)
 
     print(f"✅ Saved → {args.output}  rows={len(out)}")

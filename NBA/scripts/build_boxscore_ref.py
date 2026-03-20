@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-build_boxscore_ref.py — SlateIQ Universal Boxscore Reference DB
+build_boxscore_ref.py — PropOracle Universal Boxscore Reference DB
 
 Pulls ESPN boxscores for one date across all 4 sports and appends them
-to a SQLite database at data/cache/slateiq_ref.db.
+to a SQLite database at data/cache/proporacle_ref.db.
 
 Called by run_grader.ps1 as Step 0 before any grading runs.
 
@@ -13,7 +13,7 @@ Usage:
     py -3 scripts/build_boxscore_ref.py --date 2026-03-09 --sports soccer
     py -3 scripts/build_boxscore_ref.py --backfill --days 30   # rebuild last 30 days
 
-Schema (one table per sport, all in slateiq_ref.db):
+Schema (one table per sport, all in proporacle_ref.db):
 
   nba / cbb:
     game_date, event_id, league, home_team, away_team,
@@ -51,7 +51,7 @@ from typing import Optional
 import requests
 
 # ── Config ────────────────────────────────────────────────────────────────────
-DB_PATH = Path(__file__).resolve().parent.parent / "data" / "cache" / "slateiq_ref.db"
+DB_PATH = Path(__file__).resolve().parent.parent / "data" / "cache" / "proporacle_ref.db"
 
 HEADERS = {
     "User-Agent": (
@@ -1014,7 +1014,7 @@ SPORT_FETCHERS = {
 
 def main():
     ap = argparse.ArgumentParser(
-        description="SlateIQ universal boxscore reference DB builder"
+        description="PropOracle universal boxscore reference DB builder"
     )
     ap.add_argument("--date",     default="",
                     help="YYYY-MM-DD to fetch (default: yesterday)")
@@ -1023,7 +1023,7 @@ def main():
                     choices=list(SPORT_FETCHERS.keys()),
                     help="Sports to fetch (default: all 4)")
     ap.add_argument("--db",       default="",
-                    help="Override DB path (default: data/cache/slateiq_ref.db)")
+                    help="Override DB path (default: data/cache/proporacle_ref.db)")
     ap.add_argument("--backfill", action="store_true",
                     help="Backfill mode: fetch --days days ending at --date")
     ap.add_argument("--days",     type=int, default=30,

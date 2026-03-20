@@ -1,4 +1,4 @@
-# SlateIQ Advanced Grader System: Executive Summary
+# PropOracle Advanced Grader System: Executive Summary
 
 **Status**: ✅ COMPLETE & READY TO DEPLOY  
 **Date**: March 2026  

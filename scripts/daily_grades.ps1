@@ -12,7 +12,7 @@ param(
     [string]$Date = ""
 )
 
-$ROOT     = "C:\Users\halek\OneDrive\Desktop\Vision Board\SlateIQ\SlateIQ"
+$ROOT     = "C:\Users\halek\OneDrive\Desktop\Vision Board\PropOracle\PropOracle"
 $GRADING  = "$ROOT\scripts\grading"
 $TEMPLATES = "$ROOT\ui_runner\templates"
 
@@ -22,7 +22,7 @@ if ($Date -eq "") {
 
 Write-Host ""
 Write-Host "============================================" -ForegroundColor Cyan
-Write-Host "  SlateIQ Daily Grades — $Date" -ForegroundColor Cyan
+Write-Host "  PropOracle Daily Grades — $Date" -ForegroundColor Cyan
 Write-Host "============================================" -ForegroundColor Cyan
 
 # ── Step 1: Build HTML ────────────────────────────────────────

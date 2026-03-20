@@ -1,6 +1,6 @@
 # ============================================================
 #  organize_root.ps1
-#  Moves loose files in SlateIQ root into proper folders
+#  Moves loose files in PropOracle root into proper folders
 #  Safe - only moves files, never deletes
 #  Usage:
 #    .\organize_root.ps1           # Preview

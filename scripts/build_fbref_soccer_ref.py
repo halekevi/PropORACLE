@@ -14,7 +14,7 @@ browser once per season and place them in data/cache/fbref_html/:
 To save: open the FBref URL in Chrome → Ctrl+S → "Webpage, Complete"
 Re-save once per season (or mid-season if you add new leagues).
 
-Players are stored in the `soccer` table in slateiq_ref.db using
+Players are stored in the `soccer` table in proporacle_ref.db using
 espn_player_id = 'fbref_<id>' as a synthetic key.
 step4_db_reader.get_vals_soccer() falls back to name matching for these.
 
@@ -37,7 +37,7 @@ import pandas as pd
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 _HERE     = Path(__file__).resolve().parent
-DB_PATH   = _HERE.parent / "data" / "cache" / "slateiq_ref.db"
+DB_PATH   = _HERE.parent / "data" / "cache" / "proporacle_ref.db"
 CACHE_DIR = _HERE.parent / "data" / "cache" / "fbref_html"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 

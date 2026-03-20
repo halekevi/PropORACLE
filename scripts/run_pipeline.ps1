@@ -372,7 +372,7 @@ if (Test-Path (Join-Path $NBADir "RUN_COMPLETE.flag")) { Remove-Item (Join-Path 
 
 # -- Backfill boxscore DB for last 3 days (all sports) ------------------------
 Write-Host "[ DB BACKFILL ]" -ForegroundColor Cyan
-Write-Host "  Syncing slateiq_ref.db for last 3 days..." -ForegroundColor DarkGray
+Write-Host "  Syncing proporacle_ref.db for last 3 days..." -ForegroundColor DarkGray
 $backfillScript = Join-Path $NBADir "scripts\build_boxscore_ref.py"
 if (Test-Path $backfillScript) {
     $backfillOut = Invoke-Expression "py -3.14 `"$backfillScript`" --backfill --days 3 --sports nba cbb nhl soccer" 2>&1

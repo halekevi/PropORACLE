@@ -1,4 +1,4 @@
-# SlateIQ run_grader.ps1 Update Guide
+# PropOracle run_grader.ps1 Update Guide
 ## How to Integrate Advanced Multi-Sport Graders into Root Script
 
 **Status**: OPTIONAL UPDATE (backward compatible)  
@@ -51,7 +51,7 @@ Run-Py "NHL Advanced Grade" ... nhl_grader_advanced.py ...
 
 Create folder structure:
 ```
-SlateIQ/
+PropOracle/
 ├── grader/                          (NEW FOLDER)
 │   ├── unified_grader_with_analytics.py
 │   ├── nhl_grader_advanced.py
@@ -64,12 +64,12 @@ SlateIQ/
 **Commands**:
 ```powershell
 # Create grader folder if not exists
-if (!(Test-Path "SlateIQ\grader")) { New-Item -ItemType Directory -Path "SlateIQ\grader" }
+if (!(Test-Path "PropOracle\grader")) { New-Item -ItemType Directory -Path "PropOracle\grader" }
 
 # Copy advanced graders (from outputs folder)
-Copy-Item "graded_files\unified_grader_with_analytics.py" "SlateIQ\grader\"
-Copy-Item "graded_files\nhl_grader_advanced.py" "SlateIQ\grader\"
-Copy-Item "graded_files\soccer_grader_advanced.py" "SlateIQ\grader\"
+Copy-Item "graded_files\unified_grader_with_analytics.py" "PropOracle\grader\"
+Copy-Item "graded_files\nhl_grader_advanced.py" "PropOracle\grader\"
+Copy-Item "graded_files\soccer_grader_advanced.py" "PropOracle\grader\"
 ```
 
 ### Step 2: Update run_grader.ps1
@@ -77,10 +77,10 @@ Copy-Item "graded_files\soccer_grader_advanced.py" "SlateIQ\grader\"
 **Option A: Replace Entire File** (Recommended)
 ```powershell
 # Backup current
-Copy-Item "SlateIQ\run_grader.ps1" "SlateIQ\run_grader_BACKUP.ps1"
+Copy-Item "PropOracle\run_grader.ps1" "PropOracle\run_grader_BACKUP.ps1"
 
 # Copy updated version
-Copy-Item "graded_files\run_grader_UPDATED.ps1" "SlateIQ\run_grader.ps1"
+Copy-Item "graded_files\run_grader_UPDATED.ps1" "PropOracle\run_grader.ps1"
 ```
 
 **Option B: Manual Integration** (Cautious)
@@ -91,11 +91,11 @@ See "Key Changes" section below for specific line changes.
 
 ```powershell
 # Check folder layout
-ls -Recurse SlateIQ\grader\*.py
+ls -Recurse PropOracle\grader\*.py
 # Should show 3 files: unified, nhl_advanced, soccer_advanced
 
 # Check run_grader.ps1 has new variables
-grep -n "AdvancedMode" SlateIQ\run_grader.ps1
+grep -n "AdvancedMode" PropOracle\run_grader.ps1
 # Should show ~4 hits
 ```
 
@@ -103,7 +103,7 @@ grep -n "AdvancedMode" SlateIQ\run_grader.ps1
 
 ```powershell
 # Test with NHL (uses new advanced grader)
-cd SlateIQ
+cd PropOracle
 .\run_grader.ps1 -NHLOnly -Date 2026-02-21
 
 # Check outputs
@@ -160,7 +160,7 @@ if ((-not (Test-Path $UnifiedGrader)) -or (-not (Test-Path $NHLAdvGrader))) {
 
 **Replace existing header**:
 ```powershell
-Write-Host "  SlateIQ ADVANCED GRADER  |  $Date  |  $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor Cyan
+Write-Host "  PropOracle ADVANCED GRADER  |  $Date  |  $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor Cyan
 if ($AdvancedMode -and -not $LegacyMode) {
     Write-Host "  Mode: ADVANCED (opponent analysis, confidence scoring)" -ForegroundColor Green
 } else {
@@ -398,7 +398,7 @@ if ((-not (Test-Path $UnifiedGrader)) -or (-not (Test-Path $NHLAdvGrader))) {
 **Fix**:
 ```powershell
 # Verify files exist
-ls SlateIQ/grader/*.py
+ls PropOracle/grader/*.py
 
 # Should show:
 #   - unified_grader_with_analytics.py
@@ -406,7 +406,7 @@ ls SlateIQ/grader/*.py
 #   - soccer_grader_advanced.py
 
 # If missing, copy from outputs:
-cp grader_files/*.py SlateIQ/grader/
+cp grader_files/*.py PropOracle/grader/
 ```
 
 ### Issue: "Can't find opponent cache"
@@ -468,7 +468,7 @@ pip install pandas numpy openpyxl matplotlib
 
 | Step | Time | Action |
 |------|------|--------|
-| 1 | 5 min | Create `SlateIQ/grader/` folder |
+| 1 | 5 min | Create `PropOracle/grader/` folder |
 | 2 | 2 min | Copy 3 advanced grader scripts |
 | 3 | 10 min | Update `run_grader.ps1` (or replace) |
 | 4 | 5 min | Test with NHL only |

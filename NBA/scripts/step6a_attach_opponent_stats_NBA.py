@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 step6a_attach_opponent_stats_NBA.py  (DB version)
-SlateIQ-NBA-S6a: Opponent-Specific Player Performance Stats
+PropOracle-NBA-S6a: Opponent-Specific Player Performance Stats
 
-Migrated from flat CSV cache to slateiq_ref.db.
+Migrated from flat CSV cache to proporacle_ref.db.
 Queries the nba table directly — no nba_espn_boxscore_cache.csv needed.
 
 OUTPUT COLUMNS (unchanged):
@@ -32,9 +32,9 @@ import pandas as pd
 
 # ── DB path resolution (walk-up pattern matching step4_db_reader) ─────────────
 _here = Path(__file__).resolve().parent
-DB_PATH = Path("data/cache/slateiq_ref.db")
+DB_PATH = Path("data/cache/proporacle_ref.db")
 for _ in range(6):
-    candidate = _here / "data" / "cache" / "slateiq_ref.db"
+    candidate = _here / "data" / "cache" / "proporacle_ref.db"
     if candidate.exists():
         DB_PATH = candidate
         break
@@ -169,7 +169,7 @@ def _compute_opp_stats(games: pd.DataFrame) -> dict:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="SlateIQ-NBA-S6a: Opponent Stats (DB version)")
+    ap = argparse.ArgumentParser(description="PropOracle-NBA-S6a: Opponent Stats (DB version)")
     ap.add_argument("--input",     required=True)
     ap.add_argument("--output",    required=True)
     ap.add_argument("--db",        default="", help="Override DB path")
@@ -180,7 +180,7 @@ def main() -> None:
 
     print("""
 ╔════════════════════════════════════════════════════════════════════════════╗
-║          SlateIQ-NBA-S6a: Opponent Stats  (DB version)                     ║
+║          PropOracle-NBA-S6a: Opponent Stats  (DB version)                     ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 """)
 

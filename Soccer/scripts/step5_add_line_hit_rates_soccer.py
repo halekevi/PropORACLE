@@ -68,7 +68,7 @@ def main() -> None:
     df = pd.read_csv(args.input, low_memory=False, encoding="utf-8-sig").copy()
 
     if df.empty:
-        print("❌ [SlateIQ-Soccer-S5] Empty input from S4 — aborting.")
+        print("❌ [PropOracle-Soccer-S5] Empty input from S4 — aborting.")
         sys.exit(1)
 
     if args.line_col not in df.columns:
@@ -146,7 +146,7 @@ def main() -> None:
 
     df.to_csv(args.output, index=False, encoding="utf-8-sig")
     if df.empty:
-        print("❌ [SlateIQ-Soccer-S5] Output is empty — aborting.")
+        print("❌ [PropOracle-Soccer-S5] Output is empty — aborting.")
         sys.exit(1)
     print(f"✅ Saved → {args.output}  rows={len(df)}")
     filled = int(pd.to_numeric(df["line_hit_rate_over_ou_5"], errors="coerce").notna().sum())

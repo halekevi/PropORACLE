@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SlateIQ — Tickets</title>
+<title>PropOracle — Tickets</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -12945,12 +12945,12 @@ tr:hover td{background:rgba(200,255,0,0.04)!important;}
 <script>
 (function(){
   // Persist theme preference across pages
-  const saved = localStorage.getItem('slateiq-theme') || 'dark';
+  const saved = localStorage.getItem('proporacle-theme') || 'dark';
   applyTheme(saved);
 })();
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('slateiq-theme', theme);
+  localStorage.setItem('proporacle-theme', theme);
   const moon = document.getElementById('theme-toggle')?.querySelector('.tt-moon');
   const sun  = document.getElementById('theme-toggle')?.querySelector('.tt-sun');
   if (moon) moon.style.display = theme === 'dark' ? '' : 'none';

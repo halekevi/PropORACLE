@@ -2,7 +2,7 @@
 """
 step4_attach_player_stats_cbb.py  (DB version)
 
-CBB step4 — reads from slateiq_ref.db instead of live ESPN API calls.
+CBB step4 — reads from proporacle_ref.db instead of live ESPN API calls.
 Same structure as NBA step4 but queries the cbb table.
 
 Usage:

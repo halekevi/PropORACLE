@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 step6e_attach_intel.py
-SlateIQ-NBA-S6e: Attach Intel Layer
+PropOracle-NBA-S6e: Attach Intel Layer
 
-Reads directly from slateiq_ref.db (same DB used by step4/step6d) to compute:
+Reads directly from proporacle_ref.db (same DB used by step4/step6d) to compute:
   1. Season hit rate at the exact line being offered
   2. L5 / L10 / season avg from full-season DB (accurate, not truncated)
   3. Consistency score (CV%) — how variable the player is on this prop
@@ -55,9 +55,9 @@ import pandas as pd
 
 # ── DB path resolution ────────────────────────────────────────────────────────
 _here = Path(__file__).resolve().parent
-DB_PATH = Path("data/cache/slateiq_ref.db")
+DB_PATH = Path("data/cache/proporacle_ref.db")
 for _ in range(6):
-    candidate = _here.parent / "data" / "cache" / "slateiq_ref.db"
+    candidate = _here.parent / "data" / "cache" / "proporacle_ref.db"
     if candidate.exists():
         DB_PATH = candidate
         break

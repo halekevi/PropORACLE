@@ -1,9 +1,9 @@
-# SlateIQ - Organized Structure
+# PropOracle - Organized Structure
 
 ## 📁 Folder Layout
 
 `
-SlateIQ/
+PropOracle/
 ├── scripts/              # All pipeline & utility scripts
 │   ├── run_pipeline.ps1
 │   ├── run_grader.ps1
@@ -69,7 +69,7 @@ SlateIQ/
 ## 🚀 Quick Start
 
 `powershell
-cd "C:\Users\halek\OneDrive\Desktop\Vision Board\SlateIQ\SlateIQ"
+cd "C:\Users\halek\OneDrive\Desktop\Vision Board\PropOracle\PropOracle"
 
 # Run full pipeline
 .\scripts\run_pipeline.ps1 -Date 2026-03-09
@@ -120,7 +120,8 @@ NBA/data/cache/nba_espn_boxscore_cache.csv
 
 - All intermediate CSV files can be regenerated
 - Cache files should be backed up periodically
-- Use un_pipeline.ps1 -RefreshCache to rebuild ESPN cache
+- Use 
+un_pipeline.ps1 -RefreshCache to rebuild ESPN cache
 - Daily tasks can auto-run via Register_Daily_Task.ps1
 
 ---

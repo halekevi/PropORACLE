@@ -1,5 +1,5 @@
 """
-slateiq_intelligence.py
+proporacle_intelligence.py
 =======================
 Builds a full player intelligence layer from the ESPN boxscore cache.
 
@@ -10,9 +10,9 @@ Produces four analyses:
   4. Intelligence CSV    — one row per player/prop with all signals merged
 
 Usage:
-    python slateiq_intelligence.py
+    python proporacle_intelligence.py
 
-Outputs (in your SlateIQ directory):
+Outputs (in your PropOracle directory):
     intel_player_consistency.csv
     intel_team_defense.csv
     intel_h2h.csv
@@ -23,8 +23,8 @@ import pandas as pd
 import numpy as np
 import os
 
-CACHE_PATH = r"C:\Users\halek\OneDrive\Desktop\Vision Board\SlateIQ\SlateIQ\espn_boxscores_cache.csv"
-OUT_DIR    = r"C:\Users\halek\OneDrive\Desktop\Vision Board\SlateIQ\SlateIQ"
+CACHE_PATH = r"C:\Users\halek\OneDrive\Desktop\Vision Board\PropOracle\PropOracle\espn_boxscores_cache.csv"
+OUT_DIR    = r"C:\Users\halek\OneDrive\Desktop\Vision Board\PropOracle\PropOracle"
 
 # Props we care about and their display names
 PROPS = {
@@ -416,7 +416,7 @@ tr:hover td{background:#1e293b}
 
     html = f"""<!DOCTYPE html>
 <html><head><meta charset="utf-8">
-<title>SlateIQ Intelligence Dashboard</title>
+<title>PropOracle Intelligence Dashboard</title>
 <style>{css}
 .tab-btn{{background:#1e293b;border:1px solid #334155;color:#94a3b8;
           padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;margin-right:4px}}
@@ -424,7 +424,7 @@ tr:hover td{background:#1e293b}
 .section{{margin-bottom:28px}}
 </style></head>
 <body>
-<h1>SlateIQ Intelligence Dashboard</h1>
+<h1>PropOracle Intelligence Dashboard</h1>
 <p>Season-long ESPN boxscore data · L5/L10/Season/H2H · Team defense profiles</p>
 
 <div class="section">

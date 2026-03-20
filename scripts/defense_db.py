@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-defense_db.py  — shared helper for reading/writing defense ratings to slateiq_ref.db
+defense_db.py  — shared helper for reading/writing defense ratings to proporacle_ref.db
 
 Used by:
   - defense_report.py (NBA/WNBA)    → write after generating CSV
@@ -31,16 +31,16 @@ from typing import Optional
 import pandas as pd
 
 # ── DB path resolution ────────────────────────────────────────────────────────
-# Walks up from this file's location to find data/cache/slateiq_ref.db
+# Walks up from this file's location to find data/cache/proporacle_ref.db
 def _find_db() -> Path:
     here = Path(__file__).resolve().parent
     for _ in range(6):
-        candidate = here / "data" / "cache" / "slateiq_ref.db"
+        candidate = here / "data" / "cache" / "proporacle_ref.db"
         if candidate.exists():
             return candidate
         here = here.parent
     # Return default even if not found yet — init_db will create it
-    return Path(__file__).resolve().parent.parent / "data" / "cache" / "slateiq_ref.db"
+    return Path(__file__).resolve().parent.parent / "data" / "cache" / "proporacle_ref.db"
 
 DB_PATH = _find_db()
 

@@ -778,7 +778,7 @@ def build_html(xlsx_path: Path) -> str:
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SlateIQ — Tickets {display_date}</title>
+<title>PropOracle — Tickets {display_date}</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
 <style>{CSS}</style>
 </head>
@@ -844,7 +844,7 @@ def build_html(xlsx_path: Path) -> str:
 </div>
 
 <div class="page-header">
-  <div class="page-title">SLATEIQ TICKETS</div>
+  <div class="page-title">PROPORACLE TICKETS</div>
   <div class="page-subtitle">MULTI-SPORT PROP INTELLIGENCE · NBA · CBB · NHL · SOCCER</div>
   <div class="page-meta">
     <span class="date-chip">📅 {display_date}</span>
@@ -906,7 +906,7 @@ def build_html(xlsx_path: Path) -> str:
   {combo_section}
   {mix_section}
 
-  <div class="footer">SLATEIQ &nbsp;·&nbsp; GENERATED {generated} &nbsp;·&nbsp; {h(xlsx_path.name)}</div>
+  <div class="footer">PROPORACLE &nbsp;·&nbsp; GENERATED {generated} &nbsp;·&nbsp; {h(xlsx_path.name)}</div>
 </div>
 
 <button class="back-top" id="back-top" onclick="window.scrollTo({{top:0,behavior:'smooth'}})">↑</button>

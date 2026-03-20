@@ -3,7 +3,7 @@
 step4_attach_player_stats_soccer.py  (DB version)
 
 Replaces live ESPN summary API calls (was 30+ min, 1000+ API calls)
-with indexed reads from slateiq_ref.db.
+with indexed reads from proporacle_ref.db.
 
 The DB is populated nightly by build_boxscore_ref.py (called from run_grader.ps1).
 

@@ -853,7 +853,7 @@ tr:hover td{background:rgba(200,255,0,.03);}
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SlateIQ — Tickets</title>
+<title>PropOracle — Tickets</title>
 <style>{CSS}</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js"></script>

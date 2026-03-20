@@ -1,6 +1,6 @@
 # ============================================================
 #  PIPELINE FOLDER CLEANUP SCRIPT
-#  Run from: SlateIQ root
+#  Run from: PropOracle root
 #
 #  Usage:
 #    .\cleanup_pipeline.ps1           # Preview mode (safe, no changes)

@@ -29,7 +29,7 @@ def analyze_performance(file_path):
     # 2. Binary Outcome
     df['is_hit'] = df['Result'].astype(str).str.upper().apply(lambda x: 1 if x == 'HIT' else 0)
 
-    print("\n--- 📊 SLATEIQ PERFORMANCE AUDIT ---")
+    print("\n--- 📊 PROPORACLE PERFORMANCE AUDIT ---")
 
     # 3. Feature Correlations
     features = ['Edge', 'L5_Avg', 'Season_Avg', 'Rank_Score', 'OVERALL_DEF_RANK']

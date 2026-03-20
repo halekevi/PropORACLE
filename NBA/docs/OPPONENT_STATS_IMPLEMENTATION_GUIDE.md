@@ -1,4 +1,4 @@
-# SlateIQ: Opponent-Specific Stats Feature (Step 6a)
+# PropOracle: Opponent-Specific Stats Feature (Step 6a)
 ## Multi-Sport Implementation Guide
 
 **Status**: Ready for implementation across NBA, CBB, NHL, Soccer, MLB  
@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This feature adds **opponent-specific player performance metrics** to Step 6 (Context) across all SlateIQ pipelines. Instead of using only overall season stats, we now enrich each proposition with:
+This feature adds **opponent-specific player performance metrics** to Step 6 (Context) across all PropOracle pipelines. Instead of using only overall season stats, we now enrich each proposition with:
 
 1. **Last 10 Games vs This Opponent** (L10 avg PTS, REB, AST, etc.)
 2. **Previous Game vs This Opponent** (most recent matchup stats)
@@ -26,11 +26,11 @@ This dramatically improves accuracy because:
 
 ## Architecture Alignment
 
-According to **SlateIQ Pipeline Architecture v3**:
+According to **PropOracle Pipeline Architecture v3**:
 
 | Aspect | Integration |
 |--------|-------------|
-| **Step ID** | `SlateIQ-[SPORT]-S6a` (inserted between S6 Context and S7 Rank) |
+| **Step ID** | `PropOracle-[SPORT]-S6a` (inserted between S6 Context and S7 Rank) |
 | **Input** | Step 6 output (`s6_[sport]_context.csv`) |
 | **Output** | Step 6a output (`s6a_[sport]_opp_stats.csv`) |
 | **Cache** | Sport-specific `[sport]_opp_stats_cache.csv` |
@@ -50,7 +50,7 @@ According to **SlateIQ Pipeline Architecture v3**:
 **Effort**: 3 hours  
 **Blocker**: None  
 
-Create: `SlateIQ/NBA/step6a_attach_opponent_stats.py`
+Create: `PropOracle/NBA/step6a_attach_opponent_stats.py`
 
 ```
 Inputs:
@@ -80,7 +80,7 @@ Key Logic:
 **Effort**: 2.5 hours  
 **Blocker**: NCAA stats cache needs opponent identification
 
-Create: `SlateIQ/CBB/step6a_attach_opponent_stats.py`
+Create: `PropOracle/CBB/step6a_attach_opponent_stats.py`
 
 ```
 Inputs:
@@ -102,7 +102,7 @@ Differences from NBA:
 **Effort**: 2 hours  
 **Blocker**: None
 
-Create: `SlateIQ/NHL/step6a_attach_opponent_stats.py`
+Create: `PropOracle/NHL/step6a_attach_opponent_stats.py`
 
 ```
 Inputs:
@@ -126,7 +126,7 @@ Key Notes:
 **Effort**: 3.5 hours  
 **Blocker**: Multi-league cache coordination
 
-Create: `SlateIQ/Soccer/step6a_attach_opponent_stats.py`
+Create: `PropOracle/Soccer/step6a_attach_opponent_stats.py`
 
 ```
 Inputs:
@@ -155,7 +155,7 @@ Position-Specific Windows:
 **Effort**: 2.5 hours  
 **Blocker**: None
 
-Create: `SlateIQ/MLB/step6a_attach_opponent_stats.py`
+Create: `PropOracle/MLB/step6a_attach_opponent_stats.py`
 
 ```
 Inputs:
@@ -187,12 +187,12 @@ This is the **template** for all other sports. Here's the actual code structure:
 
 ### Step 6a: NBA Opponent Stats
 
-**File**: `SlateIQ/NBA/step6a_attach_opponent_stats.py`
+**File**: `PropOracle/NBA/step6a_attach_opponent_stats.py`
 
 ```python
 #!/usr/bin/env python3
 """
-SlateIQ-NBA-S6a: Attach Opponent-Specific Player Stats
+PropOracle-NBA-S6a: Attach Opponent-Specific Player Stats
 
 Enriches Step 6 context with player performance vs specific opponents.
 Uses cached ESPN boxscore data to compute:
@@ -349,18 +349,18 @@ def get_opp_stats(player_norm, opp_team, opp_idx, before_date=None):
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
 def main():
-    ap = argparse.ArgumentParser(description="SlateIQ-NBA-S6a: Opponent Stats")
+    ap = argparse.ArgumentParser(description="PropOracle-NBA-S6a: Opponent Stats")
     ap.add_argument("--input", required=True, help="s6_nba_context.csv")
     ap.add_argument("--cache", default="nba_espn_boxscore_cache.csv")
     ap.add_argument("--output", required=True, help="s6a_nba_opp_stats.csv")
     ap.add_argument("--opp-cache", default="s6a_nba_opp_stats_cache.csv")
     args = ap.parse_args()
     
-    print(f"[SlateIQ-NBA-S6a] Loading {args.input}...")
+    print(f"[PropOracle-NBA-S6a] Loading {args.input}...")
     df = pd.read_csv(args.input, low_memory=False, encoding="utf-8-sig")
     print(f"  Rows: {len(df)}")
     
-    print(f"[SlateIQ-NBA-S6a] Loading cache {args.cache}...")
+    print(f"[PropOracle-NBA-S6a] Loading cache {args.cache}...")
     try:
         cache = pd.read_csv(args.cache, low_memory=False, encoding="utf-8")
         print(f"  Rows: {len(cache)}")
@@ -370,7 +370,7 @@ def main():
         print(f"✅ {args.output}")
         return
     
-    print(f"[SlateIQ-NBA-S6a] Building opponent index...")
+    print(f"[PropOracle-NBA-S6a] Building opponent index...")
     opp_idx = build_opponent_index(cache)
     print(f"  Indexed {len(opp_idx)} player-opponent pairs")
     
@@ -384,7 +384,7 @@ def main():
         df[col] = np.nan
     
     # Compute for each row
-    print(f"[SlateIQ-NBA-S6a] Computing opponent stats...")
+    print(f"[PropOracle-NBA-S6a] Computing opponent stats...")
     for idx, row in df.iterrows():
         if (idx + 1) % 500 == 0:
             print(f"  {idx + 1}/{len(df)}")
@@ -556,7 +556,7 @@ opp_games_played     (int)   Games vs opponent team
 Each sport maintains a persistent cache to avoid re-computing daily:
 
 ```
-SlateIQ/NBA/s6a_nba_opp_stats_cache.csv
+PropOracle/NBA/s6a_nba_opp_stats_cache.csv
   Format: player_norm | opp_team | opp_l10_pts | opp_l10_reb | ... | last_updated_date
   Size: ~2-5 MB (grows ~100 KB/month as new matchups occur)
   Append: Daily S6a appends new matchups, drops rows older than 2 years

@@ -378,7 +378,7 @@ def main() -> None:
     out = pd.read_csv(args.input, low_memory=False, encoding="utf-8-sig").fillna("")
 
     if out.empty:
-        print("❌ [SlateIQ-Soccer-S7] Empty input from S6 — aborting.")
+        print("❌ [PropOracle-Soccer-S7] Empty input from S6 — aborting.")
         sys.exit(1)
 
     out["pick_type"] = out.get("pick_type", pd.Series(["Standard"] * len(out))).astype(str).apply(_norm_pick_type)
@@ -585,7 +585,7 @@ def main() -> None:
                 out.loc[_mask].to_excel(w, sheet_name=f"Tier {_tier}", index=False)
 
     if elig_mask.sum() == 0:
-        print("❌ [SlateIQ-Soccer-S7] No eligible props after scoring — aborting.")
+        print("❌ [PropOracle-Soccer-S7] No eligible props after scoring — aborting.")
         sys.exit(1)
 
     print(f"✅ Saved → {args.output}")

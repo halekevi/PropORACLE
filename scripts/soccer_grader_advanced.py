@@ -2,7 +2,7 @@
 """
 soccer_grader_advanced.py
 
-SlateIQ Advanced Soccer Grader with Multi-League & Opponent Analysis
+PropOracle Advanced Soccer Grader with Multi-League & Opponent Analysis
 
 COVERAGE:
   ✅ 7 leagues: EPL, UCL, MLS, La Liga, Bundesliga, Serie A, Ligue 1
@@ -344,7 +344,7 @@ class SoccerAnalytics:
 
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="SlateIQ Advanced Soccer Grader (Multi-League)",
+        description="PropOracle Advanced Soccer Grader (Multi-League)",
     )
     ap.add_argument("--date", required=True, help="Date (YYYY-MM-DD)")
     ap.add_argument("--actuals", required=True, help="Actuals CSV")
@@ -355,7 +355,7 @@ def main() -> None:
     
     print(f"""
     ╔════════════════════════════════════════════════════════════════╗
-    ║          SlateIQ Advanced Soccer Grader                        ║
+    ║          PropOracle Advanced Soccer Grader                        ║
     ║     with Multi-League & Position-Specific Analysis            ║
     ║                                                                ║
     ║  Date: {args.date}  |  7 Leagues Supported                       ║

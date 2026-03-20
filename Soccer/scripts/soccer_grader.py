@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
 soccer_grader.py
-SlateIQ Soccer Grader
+PropOracle Soccer Grader
 
 Grades yesterday's (or any date's) soccer props against actual results
-pulled directly from slateiq_ref.db. Outputs a per-prop graded Excel
+pulled directly from proporacle_ref.db. Outputs a per-prop graded Excel
 file into Soccer/outputs/graded/.
 
 Supported props (ESPN provides these reliably):
@@ -48,11 +48,11 @@ except Exception:
 _here = Path(__file__).resolve().parent
 DB_PATH = None
 for _ in range(6):
-    candidate = _here.parent / "NBA" / "data" / "cache" / "slateiq_ref.db"
+    candidate = _here.parent / "NBA" / "data" / "cache" / "proporacle_ref.db"
     if candidate.exists():
         DB_PATH = candidate
         break
-    candidate2 = _here / "NBA" / "data" / "cache" / "slateiq_ref.db"
+    candidate2 = _here / "NBA" / "data" / "cache" / "proporacle_ref.db"
     if candidate2.exists():
         DB_PATH = candidate2
         break

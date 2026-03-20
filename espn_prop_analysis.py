@@ -3,9 +3,9 @@ espn_prop_analysis.py
 =====================
 Pulls every NBA boxscore from the 2025-26 season via ESPN's public API,
 computes per-game stats for every player, then cross-references against
-your graded SlateIQ prop data to produce true season-long hit rates.
+your graded PropOracle prop data to produce true season-long hit rates.
 
-Usage (from your SlateIQ directory):
+Usage (from your PropOracle directory):
     python espn_prop_analysis.py
 
 Outputs:
@@ -23,14 +23,14 @@ import pandas as pd
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 
 # Path to your graded files — adjust if needed
-GRADED_DIR = r"C:\Users\halek\OneDrive\Desktop\Vision Board\SlateIQ\SlateIQ"
+GRADED_DIR = r"C:\Users\halek\OneDrive\Desktop\Vision Board\PropOracle\PropOracle"
 GRADED_GLOB = os.path.join(GRADED_DIR, "**", "*graded*.xlsx")
 
 # ESPN season dates — 2025-26 regular season
 SEASON_START = "20251022"   # Oct 22 2025
 SEASON_END   = "20260413"   # Apr 13 2026 (approx end)
 
-# Prop name mapping: SlateIQ prop_norm → ESPN stat key
+# Prop name mapping: PropOracle prop_norm → ESPN stat key
 PROP_MAP = {
     "points":       "points",
     "rebounds":     "totalRebounds",
@@ -52,7 +52,7 @@ PROP_MAP = {
     "blks+stls":    ["blocks","steals"],
 }
 
-HEADERS = {"User-Agent": "Mozilla/5.0 (SlateIQ research tool)"}
+HEADERS = {"User-Agent": "Mozilla/5.0 (PropOracle research tool)"}
 
 # ── STEP 1: Fetch all game IDs for the season ─────────────────────────────────
 
@@ -365,7 +365,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>SlateIQ — Season Hit Rate Analysis</title>
+<title>PropOracle — Season Hit Rate Analysis</title>
 <style>
 body{{font-family:system-ui,sans-serif;background:#070a10;color:#e0e0e0;margin:0;padding:20px}}
 h1{{color:#a78bfa;margin-bottom:4px}}
@@ -380,8 +380,8 @@ tr:hover td{{background:#111827}}
 </style>
 </head>
 <body>
-<h1>SlateIQ — Season Prop Hit Rate Analysis</h1>
-<p>Season-long ESPN boxscore data cross-referenced with your graded SlateIQ tickets</p>
+<h1>PropOracle — Season Prop Hit Rate Analysis</h1>
+<p>Season-long ESPN boxscore data cross-referenced with your graded PropOracle tickets</p>
 <input type="text" id="search" placeholder="Filter by player..." oninput="filterTable()">
 <table id="tbl">
 <thead><tr>

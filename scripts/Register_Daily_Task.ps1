@@ -1,6 +1,6 @@
 # ============================================================
 #  Register_Daily_Task.ps1
-#  SlateIQ – Master Pipeline  (all sports, daily 8 AM)
+#  PropOracle – Master Pipeline  (all sports, daily 8 AM)
 #
 #  Run ONCE from an elevated (Administrator) PowerShell prompt:
 #    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -10,7 +10,7 @@
 # ─── CONFIGURATION ───────────────────────────────────────────
 
 # Root folder that contains run_pipeline.ps1
-$PipelineRoot   = "C:\Users\halek\OneDrive\Desktop\Vision Board\NbaPropPipelines\SlateIQ"
+$PipelineRoot   = "C:\Users\halek\OneDrive\Desktop\Vision Board\NbaPropPipelines\PropOracle"
 
 # The master runner
 $MasterScript   = Join-Path $PipelineRoot "run_pipeline.ps1"
@@ -25,8 +25,8 @@ $RunHour        = 8
 $RunMinute      = 0
 
 # Task identity
-$TaskName       = "SlateIQ - Master Pipeline Daily"
-$TaskDesc       = "SlateIQ daily prop pipeline: NBA + CBB + NHL + Soccer + Combined at 8 AM"
+$TaskName       = "PropOracle - Master Pipeline Daily"
+$TaskDesc       = "PropOracle daily prop pipeline: NBA + CBB + NHL + Soccer + Combined at 8 AM"
 # ─────────────────────────────────────────────────────────────
 
 if (-not (Test-Path $MasterScript)) {

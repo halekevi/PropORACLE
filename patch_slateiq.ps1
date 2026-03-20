@@ -1,7 +1,7 @@
-# SlateIQ index.html + app.py patcher
-# Run from repo root: .\patch_slateiq.ps1
+# PropOracle index.html + app.py patcher
+# Run from repo root: .\patch_proporacle.ps1
 
-$Root      = "C:\Users\halek\OneDrive\Desktop\Vision Board\SlateIQ\SlateIQ"
+$Root      = "C:\Users\halek\OneDrive\Desktop\Vision Board\PropOracle\PropOracle"
 $indexPath = "$Root\ui_runner\templates\index.html"
 $appPath   = "$Root\ui_runner\app.py"
 $repTxt    = "$Root\patch_replacement.txt"

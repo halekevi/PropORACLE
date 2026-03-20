@@ -1,4 +1,4 @@
-# SlateIQ Complete Implementation Package
+# PropOracle Complete Implementation Package
 
 **Date**: March 2026  
 **Status**: ✅ Ready for Production  
@@ -49,7 +49,7 @@
 ```
 Timeline: 30 minutes total
 
-1. Copy step7_rank_props.py to SlateIQ/NBA/
+1. Copy step7_rank_props.py to PropOracle/NBA/
 2. Run test pipeline: .\\run_pipeline.ps1 -NBAOnly
 3. Verify Dončić appears correctly in output XLSX
 4. Done! ✅
@@ -65,7 +65,7 @@ Timeline: 30 minutes total
 Timeline: 3 hours
 
 1. Read OPPONENT_STATS_EXECUTIVE_SUMMARY.md (5 min)
-2. Copy step6a_attach_opponent_stats_NBA.py to SlateIQ/NBA/
+2. Copy step6a_attach_opponent_stats_NBA.py to PropOracle/NBA/
 3. Test: py step6a_attach_opponent_stats_NBA.py --input s6_nba_context.csv --output s6a_nba_opp_stats.csv
 4. Verify output has 13 new columns, ~78% fill rate
 5. Optional: Wire into step7_rank_nba.py to blend opponent edge signal
@@ -121,7 +121,7 @@ Each sport: Test independently, monitor 1-2 days, then deploy next
 
 ### "Just Fix the Character Encoding"
 1. Read: `SOLUTION_SUMMARY.md` (5 min)
-2. Copy: `step7_rank_props.py` → `SlateIQ/NBA/`
+2. Copy: `step7_rank_props.py` → `PropOracle/NBA/`
 3. Test: `.\\run_pipeline.ps1 -NBAOnly`
 4. Verify: Dončić & Jokić display correctly ✅
 
@@ -132,7 +132,7 @@ Each sport: Test independently, monitor 1-2 days, then deploy next
 
 ### "Implement Opponent Stats for NBA Only"
 1. Read: `OPPONENT_STATS_EXECUTIVE_SUMMARY.md` (5 min)
-2. Copy: `step6a_attach_opponent_stats_NBA.py` → `SlateIQ/NBA/`
+2. Copy: `step6a_attach_opponent_stats_NBA.py` → `PropOracle/NBA/`
 3. Test: 
    ```bash
    py step6a_attach_opponent_stats_NBA.py \
@@ -287,7 +287,7 @@ Row Loss: 0% (100% pass-through)
 
 ## 🎓 Architecture Alignment
 
-Per **SlateIQ Pipeline Architecture v3**:
+Per **PropOracle Pipeline Architecture v3**:
 
 ✅ **Character Encoding Fix**
 - Updates existing S7 script (step7_rank_props.py)
@@ -296,7 +296,7 @@ Per **SlateIQ Pipeline Architecture v3**:
 - Backward compatible (works with old S6 outputs)
 
 ✅ **Opponent Stats Feature**
-- Adds new S6a step (standard SlateIQ-[SPORT]-S6a naming)
+- Adds new S6a step (standard PropOracle-[SPORT]-S6a naming)
 - Inserts between S6 and S7 in job order
 - Independent per sport (one sport failing doesn't block others)
 - Follows standard 8-step contract (add columns, pass through)
@@ -338,7 +338,7 @@ Per **SlateIQ Pipeline Architecture v3**:
 ## ✨ Final Checklist
 
 Before you start, confirm:
-- [ ] You have SlateIQ/ project folder
+- [ ] You have PropOracle/ project folder
 - [ ] You have existing `s6_nba_context.csv` (or similar for other sports)
 - [ ] You have `nba_espn_boxscore_cache.csv` (from Step 4)
 - [ ] Python 3.8+ installed with pandas, numpy

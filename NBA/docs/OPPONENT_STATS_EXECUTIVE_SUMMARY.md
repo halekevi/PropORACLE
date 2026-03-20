@@ -1,8 +1,8 @@
-# SlateIQ Opponent Stats Feature: Executive Summary
+# PropOracle Opponent Stats Feature: Executive Summary
 
 ## What You're Getting
 
-A **production-ready feature** that adds opponent-specific player performance metrics to your SlateIQ pipeline across all 5 sports (NBA, CBB, NHL, Soccer, MLB).
+A **production-ready feature** that adds opponent-specific player performance metrics to your PropOracle pipeline across all 5 sports (NBA, CBB, NHL, Soccer, MLB).
 
 **Key Benefit**: Players often perform dramatically differently against specific opponents. This feature captures that signal and improves prop accuracy by 1-2% on average (some matchups see 5-10% improvement).
 
@@ -70,12 +70,12 @@ Step 9 (Tickets, if applicable)
 
 ### 1. Drop the script into your NBA folder
 ```bash
-Copy: step6a_attach_opponent_stats_NBA.py → SlateIQ/NBA/
+Copy: step6a_attach_opponent_stats_NBA.py → PropOracle/NBA/
 ```
 
 ### 2. Test it
 ```bash
-cd SlateIQ/NBA/
+cd PropOracle/NBA/
 py -3.14 step6a_attach_opponent_stats_NBA.py \
   --input s6_nba_context.csv \
   --output s6a_nba_opp_stats.csv \
@@ -273,7 +273,7 @@ py step6a_attach_opponent_stats_NBA.py ...
 ## Next Steps
 
 1. **Read** `OPPONENT_STATS_IMPLEMENTATION_GUIDE.md` (full spec)
-2. **Copy** `step6a_attach_opponent_stats_NBA.py` to `SlateIQ/NBA/`
+2. **Copy** `step6a_attach_opponent_stats_NBA.py` to `PropOracle/NBA/`
 3. **Test** with existing `s6_nba_context.csv` (template above)
 4. **Wire** into Step 7 (optional blending)
 5. **Monitor** first week for cache performance

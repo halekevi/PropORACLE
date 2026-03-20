@@ -697,7 +697,7 @@ def find_graded_file(sport: str, date_str: str) -> Path | None:
         Path.cwd(),
         Path.cwd() / "outputs",
         Path.cwd() / "outputs" / date_str,
-        # project root outputs/{date}/ — e.g. SlateIQ/outputs/2026-03-06/
+        # project root outputs/{date}/ — e.g. PropOracle/outputs/2026-03-06/
         ROOT_DIR / "outputs" / date_str,
         ROOT_DIR / "outputs",
         ROOT_DIR,

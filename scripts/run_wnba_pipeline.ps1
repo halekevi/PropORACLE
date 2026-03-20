@@ -14,7 +14,7 @@ param(
 )
 
 $ErrorActionPreference = "Continue"
-$Root    = Split-Path -Parent $MyInvocation.MyCommand.Definition  # SlateIQ root
+$Root    = Split-Path -Parent $MyInvocation.MyCommand.Definition  # PropOracle root
 $WNBADir = "$Root\WNBA"
 $OutRoot = "$Root\outputs"
 

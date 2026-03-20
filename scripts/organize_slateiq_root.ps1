@@ -1,20 +1,20 @@
-# organize_slateiq_root.ps1
-# Reorganizes SlateIQ root folder into clean structure
+# organize_proporacle_root.ps1
+# Reorganizes PropOracle root folder into clean structure
 
 param(
-    [string]$SlateIQRoot = "C:\Users\halek\OneDrive\Desktop\Vision Board\SlateIQ\SlateIQ"
+    [string]$PropOracleRoot = "C:\Users\halek\OneDrive\Desktop\Vision Board\PropOracle\PropOracle"
 )
 
 Write-Host ""
 Write-Host "=====================================================" -ForegroundColor Cyan
-Write-Host "  SlateIQ Root Folder Organizer" -ForegroundColor Cyan
+Write-Host "  PropOracle Root Folder Organizer" -ForegroundColor Cyan
 Write-Host "=====================================================" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "Target: $SlateIQRoot" -ForegroundColor Yellow
+Write-Host "Target: $PropOracleRoot" -ForegroundColor Yellow
 Write-Host ""
 
-if (-not (Test-Path $SlateIQRoot)) {
-    Write-Host "ERROR: SlateIQ root folder not found!" -ForegroundColor Red
+if (-not (Test-Path $PropOracleRoot)) {
+    Write-Host "ERROR: PropOracle root folder not found!" -ForegroundColor Red
     exit 1
 }
 
@@ -35,7 +35,7 @@ $folders = @(
 )
 
 foreach ($folder in $folders) {
-    $path = Join-Path $SlateIQRoot $folder
+    $path = Join-Path $PropOracleRoot $folder
     if (-not (Test-Path $path)) {
         New-Item -ItemType Directory -Force -Path $path | Out-Null
         Write-Host "  ✓ Created: $folder" -ForegroundColor Green
@@ -57,16 +57,16 @@ $scripts = @(
     "cleanup_pipeline.ps1",
     "organize_folder.ps1",
     "organize_root.ps1",
-    "rename_to_slateiq.ps1",
+    "rename_to_proporacle.ps1",
     "Register_Daily_Task.ps1",
     "daily_grades.ps1",
     "TEST_DATE_PARSING.ps1"
 )
 
 foreach ($script in $scripts) {
-    $path = Join-Path $SlateIQRoot $script
+    $path = Join-Path $PropOracleRoot $script
     if (Test-Path $path) {
-        Move-Item -Path $path -Destination (Join-Path $SlateIQRoot "scripts") -Force
+        Move-Item -Path $path -Destination (Join-Path $PropOracleRoot "scripts") -Force
         Write-Host "    ✓ $script" -ForegroundColor Gray
     }
 }
@@ -89,9 +89,9 @@ $pyScripts = @(
 )
 
 foreach ($pattern in $pyScripts) {
-    Get-ChildItem -Path $SlateIQRoot -Filter $pattern -File -ErrorAction SilentlyContinue | 
+    Get-ChildItem -Path $PropOracleRoot -Filter $pattern -File -ErrorAction SilentlyContinue | 
     ForEach-Object {
-        Move-Item -Path $_.FullName -Destination (Join-Path $SlateIQRoot "scripts") -Force
+        Move-Item -Path $_.FullName -Destination (Join-Path $PropOracleRoot "scripts") -Force
         Write-Host "    ✓ $($_.Name)" -ForegroundColor Gray
     }
 }
@@ -104,20 +104,20 @@ $docs = @(
 )
 
 foreach ($pattern in $docs) {
-    Get-ChildItem -Path $SlateIQRoot -Filter $pattern -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
+    Get-ChildItem -Path $PropOracleRoot -Filter $pattern -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
     Where-Object { $_.Name -notlike ".git*" } |
     ForEach-Object {
-        Move-Item -Path $_.FullName -Destination (Join-Path $SlateIQRoot "docs") -Force
+        Move-Item -Path $_.FullName -Destination (Join-Path $PropOracleRoot "docs") -Force
         Write-Host "    ✓ $($_.Name)" -ForegroundColor Gray
     }
 }
 
 # Move template files to ui_runner/templates/
 Write-Host "  → UI templates..." -ForegroundColor Yellow
-if (Test-Path "$SlateIQRoot\ui_runner\templates") {
-    Get-ChildItem -Path "$SlateIQRoot\ui_runner" -Filter "*.html" -File -ErrorAction SilentlyContinue | 
+if (Test-Path "$PropOracleRoot\ui_runner\templates") {
+    Get-ChildItem -Path "$PropOracleRoot\ui_runner" -Filter "*.html" -File -ErrorAction SilentlyContinue | 
     ForEach-Object {
-        Move-Item -Path $_.FullName -Destination "$SlateIQRoot\ui_runner\templates" -Force
+        Move-Item -Path $_.FullName -Destination "$PropOracleRoot\ui_runner\templates" -Force
         Write-Host "    ✓ $($_.Name)" -ForegroundColor Gray
     }
 }
@@ -132,44 +132,44 @@ $cacheFiles = @(
 )
 
 foreach ($pattern in $cacheFiles) {
-    Get-ChildItem -Path $SlateIQRoot -Filter $pattern -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
+    Get-ChildItem -Path $PropOracleRoot -Filter $pattern -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
     ForEach-Object {
-        Move-Item -Path $_.FullName -Destination (Join-Path $SlateIQRoot "data\cache") -Force
+        Move-Item -Path $_.FullName -Destination (Join-Path $PropOracleRoot "data\cache") -Force
         Write-Host "    ✓ $($_.Name)" -ForegroundColor Gray
     }
 }
 
 # Move output files to archive (if not in subdirectories)
 Write-Host "  → Archive old outputs..." -ForegroundColor Yellow
-Get-ChildItem -Path $SlateIQRoot -Filter "combined_*.xlsx" -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
+Get-ChildItem -Path $PropOracleRoot -Filter "combined_*.xlsx" -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
 ForEach-Object {
-    Move-Item -Path $_.FullName -Destination (Join-Path $SlateIQRoot "archive\old_outputs") -Force
+    Move-Item -Path $_.FullName -Destination (Join-Path $PropOracleRoot "archive\old_outputs") -Force
     Write-Host "    ✓ $($_.Name)" -ForegroundColor Gray
 }
 
-Get-ChildItem -Path $SlateIQRoot -Filter "best_*.xlsx" -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
+Get-ChildItem -Path $PropOracleRoot -Filter "best_*.xlsx" -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
 ForEach-Object {
-    Move-Item -Path $_.FullName -Destination (Join-Path $SlateIQRoot "archive\old_outputs") -Force
+    Move-Item -Path $_.FullName -Destination (Join-Path $PropOracleRoot "archive\old_outputs") -Force
     Write-Host "    ✓ $($_.Name)" -ForegroundColor Gray
 }
 
 # Archive old patches and fixes
 Write-Host "  → Archive old patches..." -ForegroundColor Yellow
-Get-ChildItem -Path $SlateIQRoot -Filter "patch_*.py" -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
+Get-ChildItem -Path $PropOracleRoot -Filter "patch_*.py" -File -MaxDepth 1 -ErrorAction SilentlyContinue | 
 ForEach-Object {
-    Move-Item -Path $_.FullName -Destination (Join-Path $SlateIQRoot "archive\old_scripts") -Force
+    Move-Item -Path $_.FullName -Destination (Join-Path $PropOracleRoot "archive\old_scripts") -Force
     Write-Host "    ✓ $($_.Name)" -ForegroundColor Gray
 }
 
 # Move .git files appropriately
 Write-Host "  → Git files..." -ForegroundColor Yellow
-if (Test-Path "$SlateIQRoot\.gitignore") {
-    Move-Item -Path "$SlateIQRoot\.gitignore" -Destination (Join-Path $SlateIQRoot "docs") -Force
+if (Test-Path "$PropOracleRoot\.gitignore") {
+    Move-Item -Path "$PropOracleRoot\.gitignore" -Destination (Join-Path $PropOracleRoot "docs") -Force
     Write-Host "    ✓ .gitignore" -ForegroundColor Gray
 }
 
-if (Test-Path "$SlateIQRoot\.gitattributes") {
-    Move-Item -Path "$SlateIQRoot\.gitattributes" -Destination (Join-Path $SlateIQRoot "docs") -Force
+if (Test-Path "$PropOracleRoot\.gitattributes") {
+    Move-Item -Path "$PropOracleRoot\.gitattributes" -Destination (Join-Path $PropOracleRoot "docs") -Force
     Write-Host "    ✓ .gitattributes" -ForegroundColor Gray
 }
 
@@ -177,12 +177,12 @@ Write-Host ""
 Write-Host "Creating README..." -ForegroundColor Green
 
 $readme = @"
-# SlateIQ - Organized Structure
+# PropOracle - Organized Structure
 
 ## 📁 Folder Layout
 
 ```
-SlateIQ/
+PropOracle/
 ├── scripts/              # All pipeline & utility scripts
 │   ├── run_pipeline.ps1
 │   ├── run_grader.ps1
@@ -248,7 +248,7 @@ SlateIQ/
 ## 🚀 Quick Start
 
 ```powershell
-cd "C:\Users\halek\OneDrive\Desktop\Vision Board\SlateIQ\SlateIQ"
+cd "C:\Users\halek\OneDrive\Desktop\Vision Board\PropOracle\PropOracle"
 
 # Run full pipeline
 .\scripts\run_pipeline.ps1 -Date 2026-03-09
@@ -308,8 +308,8 @@ NBA/data/cache/nba_espn_boxscore_cache.csv
 **Version:** 1.0 Organized
 "@
 
-$readme | Out-File -FilePath "$SlateIQRoot\SLATEIQ_README.md" -Encoding UTF8
-Write-Host "  ✓ Created: SLATEIQ_README.md" -ForegroundColor Green
+$readme | Out-File -FilePath "$PropOracleRoot\PROPORACLE_README.md" -Encoding UTF8
+Write-Host "  ✓ Created: PROPORACLE_README.md" -ForegroundColor Green
 
 Write-Host ""
 Write-Host "=====================================================" -ForegroundColor Cyan
@@ -318,12 +318,12 @@ Write-Host "=====================================================" -ForegroundCo
 Write-Host ""
 
 Write-Host "Root-level folders:" -ForegroundColor Yellow
-Get-ChildItem -Path $SlateIQRoot -Directory -ErrorAction SilentlyContinue | 
+Get-ChildItem -Path $PropOracleRoot -Directory -ErrorAction SilentlyContinue | 
 Select-Object Name | Format-Table -AutoSize
 
 Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Yellow
 Write-Host "  1. Run: .\scripts\run_pipeline.ps1 -Date 2026-03-09" -ForegroundColor Gray
 Write-Host "  2. Run: .\scripts\run_grader.ps1 -Date 2026-03-08" -ForegroundColor Gray
-Write-Host "  3. See SLATEIQ_README.md for details" -ForegroundColor Gray
+Write-Host "  3. See PROPORACLE_README.md for details" -ForegroundColor Gray
 Write-Host ""

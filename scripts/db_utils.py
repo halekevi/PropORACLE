@@ -10,20 +10,20 @@ from typing import Any, Optional
 def find_db_path(start: Optional[Path] = None) -> Path:
     """
     Resolve central DB path using only relative discovery.
-    Walk upward until we find data/cache/slateiq_ref.db; otherwise return default
-    at <repo_root>/data/cache/slateiq_ref.db (created on first write).
+    Walk upward until we find data/cache/proporacle_ref.db; otherwise return default
+    at <repo_root>/data/cache/proporacle_ref.db (created on first write).
     """
     here = (start or Path(__file__)).resolve()
     if here.is_file():
         here = here.parent
 
     for _ in range(8):
-        candidate = here / "data" / "cache" / "slateiq_ref.db"
+        candidate = here / "data" / "cache" / "proporacle_ref.db"
         if candidate.exists():
             return candidate
         here = here.parent
 
-    return Path(__file__).resolve().parent.parent / "data" / "cache" / "slateiq_ref.db"
+    return Path(__file__).resolve().parent.parent / "data" / "cache" / "proporacle_ref.db"
 
 
 def open_db(db_path: Optional[Path] = None) -> sqlite3.Connection:
@@ -120,7 +120,7 @@ def log_pipeline_health(
     """
     try:
         db_path = find_db_path(start=start or Path(__file__))
-        repo_root = db_path.parent.parent  # <root>/data/cache/slateiq_ref.db
+        repo_root = db_path.parent.parent  # <root>/data/cache/proporacle_ref.db
         log_dir = repo_root / "logs"
         log_dir.mkdir(parents=True, exist_ok=True)
         log_path = log_dir / "pipeline_health.log"

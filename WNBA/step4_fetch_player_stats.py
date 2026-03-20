@@ -48,10 +48,10 @@ import numpy as np
 import pandas as pd
 import requests
 
-# Ensure <repo>/SlateIQ is on sys.path so we can import SlateIQ-level helpers.
-_SLATEIQ_ROOT = Path(__file__).resolve().parents[1]
-if str(_SLATEIQ_ROOT) not in sys.path:
-    sys.path.insert(0, str(_SLATEIQ_ROOT))
+# Ensure <repo>/PropOracle is on sys.path so we can import PropOracle-level helpers.
+_PROPORACLE_ROOT = Path(__file__).resolve().parents[1]
+if str(_PROPORACLE_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROPORACLE_ROOT))
 
 from scripts.db_utils import ensure_wnba_schema, log_pipeline_health, open_db, upsert_rows
 
@@ -344,7 +344,7 @@ def main():
     ap.add_argument("--date",     default="")
     ap.add_argument("--days",     type=int,   default=35)
     ap.add_argument("--cache",    default="wnba_espn_cache.csv")
-    ap.add_argument("--db",       default="", help="Override DB path (default: data/cache/slateiq_ref.db)")
+    ap.add_argument("--db",       default="", help="Override DB path (default: data/cache/proporacle_ref.db)")
     ap.add_argument("--season",   default="2026")
     ap.add_argument("--n",        type=int,   default=10)
     ap.add_argument("--sleep",    type=float, default=0.8)

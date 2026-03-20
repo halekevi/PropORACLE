@@ -2,7 +2,7 @@
 """
 step4_attach_player_stats_nhl.py  (DB version)
 
-Replaces api-web.nhle.com live fetching with indexed reads from slateiq_ref.db.
+Replaces api-web.nhle.com live fetching with indexed reads from proporacle_ref.db.
 The DB is populated nightly by build_boxscore_ref.py.
 
 Usage:

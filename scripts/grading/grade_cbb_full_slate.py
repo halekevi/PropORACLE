@@ -576,7 +576,7 @@ def main():
     dxpt_df    = _get_block("Def Tier x Pick Type")
     dxtier_df  = _get_block("Def Tier x Model Tier")
 
-    # ── SlateIQ color palette (matches NBA graded file exactly) ───────────────
+    # ── PropOracle color palette (matches NBA graded file exactly) ───────────────
     _C = {
         "hdr_dark":   "FF1C1C1C",
         "hdr_blue":   "FF1A5276",
