@@ -819,23 +819,22 @@ def write_web_outputs(payload, outdir: str):
     date    = payload.get("date", "")
 
     CSS = """
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Inter:wght@600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --bg:#05050f;--surface:#0d0d1f;--card:#111128;--border:#1e1e3a;
-  --accent:#c8ff00;--cyan:#00e5ff;--muted:#999;--text:#e8e8f0;
+  --accent:#e1bc65;--cyan:#93cfff;--muted:#999;--text:#e8e8f0;
 }
 body{background:var(--bg);color:var(--text);font-family:'Share Tech Mono',monospace;min-height:100vh;overflow-x:hidden;}
 
-/* scrolling grid */
 body::before{
   content:'';position:fixed;inset:0;
-  background-image:linear-gradient(rgba(200,255,0,.03) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(200,255,0,.03) 1px,transparent 1px);
-  background-size:40px 40px;
-  animation:gridScroll 20s linear infinite;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(1200px 720px at -10% -20%, rgba(66,129,255,.25) 0%, transparent 55%),
+    radial-gradient(980px 620px at 108% -8%, rgba(255,186,77,.20) 0%, transparent 52%),
+    radial-gradient(760px 520px at 50% 112%, rgba(110,79,255,.14) 0%, transparent 58%);
+  pointer-events:none;z-index:0;
 }
-@keyframes gridScroll{from{background-position:0 0;}to{background-position:0 40px;}}
 
 /* scanlines */
 body::after{
@@ -844,10 +843,10 @@ body::after{
   pointer-events:none;z-index:0;
 }
 
-#app{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:24px 20px;}
+#app{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 20px 24px;}
 
 /* nav */
-nav{display:flex;align-items:center;gap:16px;padding:12px 0 24px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+nav{display:flex;align-items:center;gap:16px;padding:12px 0 14px;border-bottom:1px solid var(--border);flex-wrap:wrap;position:sticky;top:0;z-index:220;background:rgba(5,6,14,0.86);backdrop-filter:blur(22px) saturate(180%);}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
 .brain-wrap{position:relative;width:52px;height:52px;}
 .brain-slate{position:absolute;inset:0;border-radius:7px;background:linear-gradient(145deg,#12122a 0%,#080818 100%);border:1px solid #252545;animation:slateBreak 3.5s ease-in-out infinite;}
@@ -919,17 +918,17 @@ canvas.leg-chart{width:100%!important;height:140px!important;}
 .meta{color:var(--muted);font-size:12px;margin-top:4px;}
 
 /* filter pill */
-.filter-pill{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:12px;color:#888;margin-bottom:24px;}
+.filter-pill{background:rgba(14,18,34,.72);border:1px solid rgba(196,166,107,.20);border-radius:12px;padding:10px 16px;font-size:12px;color:#9aa4b2;margin-bottom:24px;backdrop-filter:blur(10px);}
 .filter-pill strong{color:var(--cyan);}
 
 /* group */
-.group{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:24px;}
+.group{background:rgba(14,18,34,.72);border:1px solid rgba(196,166,107,.20);border-radius:16px;padding:20px;margin-bottom:24px;box-shadow:0 14px 32px rgba(0,0,0,.28);backdrop-filter:blur(12px);}
 .group-hdr{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
 .group-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--accent);}
 .group-meta{color:var(--muted);font-size:12px;}
 
 /* ticket card */
-.ticket{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.ticket{background:rgba(14,18,34,.70);border:1px solid rgba(196,166,107,.18);border-radius:14px;margin-bottom:16px;overflow:hidden;transition:transform .2s,box-shadow .2s;backdrop-filter:blur(10px);}
 .ticket:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(200,255,0,.08);}
 .ticket-accent{width:5px;background:linear-gradient(180deg,var(--accent),var(--cyan));flex-shrink:0;}
 .ticket-inner{display:flex;}
@@ -947,6 +946,30 @@ th{background:rgba(200,255,0,.06);color:var(--accent);font-family:'Bebas Neue',s
 td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:rgba(200,255,0,.03);}
+
+html[data-theme="light"] body{
+  background:
+    radial-gradient(1200px 760px at -12% -22%, rgba(213,225,255,.76) 0%, transparent 56%),
+    radial-gradient(980px 640px at 108% -8%, rgba(255,227,190,.72) 0%, transparent 54%),
+    linear-gradient(180deg,#fcfdff 0%,#f6f8ff 45%,#f8f2e8 100%);
+  color:#1f2430;
+}
+html[data-theme="light"] body::before{
+  background:
+    radial-gradient(1200px 760px at -12% -22%, rgba(213,225,255,.76) 0%, transparent 56%),
+    radial-gradient(980px 640px at 108% -8%, rgba(255,227,190,.72) 0%, transparent 54%);
+}
+html[data-theme="light"] body::after{display:none;}
+html[data-theme="light"] nav{
+  background:rgba(255,255,255,.84);
+  border-bottom:1px solid rgba(196,166,107,.24);
+}
+html[data-theme="light"] .filter-pill,
+html[data-theme="light"] .group,
+html[data-theme="light"] .ticket{
+  background:rgba(255,255,255,.74);
+  border:1px solid rgba(196,166,107,.22);
+}
 
 /* player cell */
 .pwrap{display:flex;gap:8px;align-items:center;}
