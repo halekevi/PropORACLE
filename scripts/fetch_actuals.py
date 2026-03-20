@@ -263,6 +263,8 @@ CBB_CONF_GROUPS = [
 # ── NHL ESPN URL paths ────────────────────────────────────────────────────────
 NHL_SCOREBOARD_URL  = "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates={date_espn}"
 NHL_SUMMARY_URL     = "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary?event={event_id}"
+NHL_API_SCHEDULE_URL = "https://api-web.nhle.com/v1/schedule/{date_iso}"
+NHL_API_BOX_URL      = "https://api-web.nhle.com/v1/gamecenter/{game_id}/boxscore"
 
 # ── Soccer ESPN URL paths ─────────────────────────────────────────────────────
 SOCCER_LEAGUES = [
@@ -606,8 +608,151 @@ def fetch_nhl(date_str):
     df["actual"] = pd.to_numeric(df["actual"], errors="coerce")
     df = (df.sort_values("actual", ascending=False)
             .drop_duplicates(subset=["player", "team", "prop_type"], keep="first"))
+
+    # Enrich with official NHL API for stats ESPN frequently misses/inconsistently
+    # exposes (notably Hits and Faceoffs Won).
+    nhl_api_df = fetch_nhl_api_enrichment(date_str)
+    if not nhl_api_df.empty:
+        df = pd.concat([df, nhl_api_df], ignore_index=True)
+        df["actual"] = pd.to_numeric(df["actual"], errors="coerce")
+        df = (df.sort_values("actual", ascending=False)
+                .drop_duplicates(subset=["player", "team", "prop_type"], keep="first"))
+        print(f"  NHL API enrichment rows merged: {len(nhl_api_df)}")
+
     print(f"\n  Total: {len(df)} NHL player-prop actuals")
     return df
+
+
+def _nhl_player_rows_from_team_block(team_block, team_abbr):
+    """Flatten NHL API team block into prop rows for skaters."""
+    rows = []
+    if not isinstance(team_block, dict):
+        return rows
+
+    # NHL API typically separates skaters into forwards/defensemen and goalies.
+    skater_groups = []
+    for key in ("forwards", "defense", "defencemen", "defensemen", "skaters"):
+        group = team_block.get(key, [])
+        if isinstance(group, list) and group:
+            skater_groups.extend(group)
+
+    for p in skater_groups:
+        if not isinstance(p, dict):
+            continue
+
+        name = str(p.get("name", {}).get("default", "") or p.get("name", "")).strip()
+        if not name:
+            name = str(p.get("firstName", {}).get("default", "") or "").strip()
+            last = str(p.get("lastName", {}).get("default", "") or "").strip()
+            name = f"{name} {last}".strip()
+        if not name:
+            continue
+
+        def _num(v):
+            try:
+                return float(v)
+            except (TypeError, ValueError):
+                return None
+
+        g = _num(p.get("goals"))
+        a = _num(p.get("assists"))
+        pts = _num(p.get("points"))
+        sog = _num(p.get("sog") if p.get("sog") is not None else p.get("shots"))
+        hits = _num(p.get("hits"))
+        blocks = _num(p.get("blockedShots") if p.get("blockedShots") is not None else p.get("blocks"))
+        pim = _num(p.get("pim"))
+        plus_minus = _num(p.get("plusMinus"))
+        fow = _num(p.get("faceoffWins") if p.get("faceoffWins") is not None else p.get("faceoffsWon"))
+
+        if pts is None and g is not None and a is not None:
+            pts = g + a
+
+        prop_map = {
+            "Shots On Goal": sog,
+            "Goals": g,
+            "Assists": a,
+            "Points": pts,
+            "Hits": hits,
+            "Blocked Shots": blocks,
+            "PIM": pim,
+            "Plus/Minus": plus_minus,
+            "Faceoffs Won": fow,
+        }
+        for prop_type, actual in prop_map.items():
+            if actual is None:
+                continue
+            rows.append({
+                "player": name,
+                "team": team_abbr,
+                "prop_type": prop_type,
+                "actual": round(float(actual), 1),
+            })
+    return rows
+
+
+def fetch_nhl_api_enrichment(date_str):
+    """
+    Pull NHL player box stats from api-web.nhle.com and return long-format rows.
+    This is especially important for Hits and Faceoffs Won coverage.
+    """
+    out_rows = []
+    try:
+        sr = requests.get(NHL_API_SCHEDULE_URL.format(date_iso=date_str), headers=HEADERS, timeout=20)
+        sr.raise_for_status()
+        sched = sr.json()
+    except Exception as e:
+        print(f"  WARNING: NHL API schedule fetch failed: {e}")
+        return pd.DataFrame()
+
+    games = []
+    if isinstance(sched, dict):
+        if isinstance(sched.get("gameWeek"), list):
+            for day in sched.get("gameWeek", []):
+                if not isinstance(day, dict):
+                    continue
+                if str(day.get("date", ""))[:10] != date_str:
+                    continue
+                games.extend(day.get("games", []) or [])
+        elif isinstance(sched.get("games"), list):
+            games = sched.get("games", [])
+
+    if not games:
+        return pd.DataFrame()
+    print(f"  NHL API schedule games on {date_str}: {len(games)}")
+    for g in games:
+        if not isinstance(g, dict):
+            continue
+        game_id = g.get("id") or g.get("gameId")
+        if not game_id:
+            continue
+
+        # Respect final-state only.
+        game_state = str(g.get("gameState", "")).upper()
+        if game_state and game_state not in ("FINAL", "OFF", "GAMEOVER"):
+            continue
+
+        away_abbr = str((g.get("awayTeam") or {}).get("abbrev", "")).upper()
+        home_abbr = str((g.get("homeTeam") or {}).get("abbrev", "")).upper()
+
+        try:
+            br = requests.get(NHL_API_BOX_URL.format(game_id=game_id), headers=HEADERS, timeout=20)
+            br.raise_for_status()
+            box = br.json()
+        except Exception as e:
+            print(f"    NHL API boxscore failed ({game_id}): {e}")
+            continue
+
+        pstats = box.get("playerByGameStats", {}) if isinstance(box, dict) else {}
+        away_block = pstats.get("awayTeam", {}) if isinstance(pstats, dict) else {}
+        home_block = pstats.get("homeTeam", {}) if isinstance(pstats, dict) else {}
+
+        out_rows.extend(_nhl_player_rows_from_team_block(away_block, away_abbr))
+        out_rows.extend(_nhl_player_rows_from_team_block(home_block, home_abbr))
+        time.sleep(0.2)
+
+    if not out_rows:
+        return pd.DataFrame()
+    return pd.DataFrame(out_rows)
 
 
 # ── Parse Soccer ESPN box score ───────────────────────────────────────────────
@@ -897,6 +1042,25 @@ def fetch_soccer(date_str):
     df = (df.sort_values(["_has_id", "actual"], ascending=[False, False])
             .drop_duplicates(subset=["player", "team", "prop_type"], keep="first")
             .drop(columns=["_has_id"]))
+
+    # Build combo prop from existing component stats.
+    combo = (df[df["prop_type"].isin(["Goals", "Assists"])]
+               .pivot_table(index=["player", "team"], columns="prop_type", values="actual",
+                            aggfunc="max", fill_value=0)
+               .reset_index())
+    if not combo.empty:
+        combo["actual"] = combo.get("Goals", 0) + combo.get("Assists", 0)
+        combo = combo[["player", "team", "actual"]].copy()
+        combo["prop_type"] = "Goal + Assist"
+        # Carry ID/league when available from existing rows.
+        meta = (df.sort_values("actual", ascending=False)
+                  .drop_duplicates(subset=["player", "team"], keep="first")
+                  [["player", "team", "league", "espn_player_id"]])
+        combo = combo.merge(meta, on=["player", "team"], how="left")
+        df = pd.concat([df, combo], ignore_index=True)
+        df = (df.sort_values(["player", "team", "prop_type", "actual"], ascending=[True, True, True, False])
+                .drop_duplicates(subset=["player", "team", "prop_type"], keep="first"))
+
     print(f"\n  Total: {len(df)} Soccer player-prop actuals across {len(seen_event_ids)} games")
     return df
 

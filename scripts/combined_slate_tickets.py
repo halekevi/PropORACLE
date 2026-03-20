@@ -1459,6 +1459,16 @@ def load_nhl(path: str) -> pd.DataFrame:
     if "edge" not in df.columns:
         df["edge"] = 0.0
 
+    # Faceoff wins are currently not sourced with reliable per-player counts
+    # in our actuals pipeline; exclude until a stable source is added.
+    if "prop_type" in df.columns:
+        before = len(df)
+        p = df["prop_type"].astype(str).str.lower()
+        df = df[~p.str.contains(r"faceoff", regex=True, na=False)].copy()
+        dropped = before - len(df)
+        if dropped > 0:
+            print(f"  [load_nhl] Dropped {dropped} unreliable faceoff props")
+
     df = df[df["line"].notna() & (df["line"] > 0)]
     # Convert all pandas NA/NaT to None so openpyxl can handle them
     df = df.astype(object).where(df.notna(), other=None)

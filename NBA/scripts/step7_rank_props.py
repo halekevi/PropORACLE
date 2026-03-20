@@ -277,6 +277,10 @@ def main() -> None:
 
     out["edge"]     = proj - line_num
     out["abs_edge"] = out["edge"].abs()
+    # Normalized edge keeps cross-prop comparisons on the same scale
+    # (e.g., Fantasy Score vs Points).
+    line_safe = line_num.replace(0, np.nan)
+    out["edge_norm"] = out["edge"] / line_safe
 
     # ── FORCED OVER / BET DIRECTION ───────────────────────────────────────────
     forced = pick_type_s.isin(["Goblin", "Demon"]).astype(int)
@@ -364,7 +368,7 @@ def main() -> None:
     elig_mask = eligible.eq(1)
 
     # ── VECTORIZED EDGE TRANSFORM ─────────────────────────────────────────────
-    out["edge_dr"] = _edge_transform_series(_to_num(out["edge"]))
+    out["edge_dr"] = _edge_transform_series(_to_num(out["edge_norm"]))
 
     # ── VECTORIZED LINE HIT RATE ──────────────────────────────────────────────
     # Direction-aware: pick the right column priority
@@ -468,9 +472,10 @@ def main() -> None:
         1.0 + def_adj + ctx_adj + rest_adj + pace_adj_dr + opp_prop_adj_dr
     )
     out["edge_adj"]       = out["projection_adj"] - line_num
+    out["edge_adj_norm"]  = out["edge_adj"] / line_safe
 
     # ── VECTORIZED EDGE_ADJ_DR (direction-aware) ──────────────────────────────
-    edge_adj_signed = np.where(bet_is_under, -_to_num(out["edge_adj"]), _to_num(out["edge_adj"]))
+    edge_adj_signed = np.where(bet_is_under, -_to_num(out["edge_adj_norm"]), _to_num(out["edge_adj_norm"]))
     out["edge_adj_dr"] = _edge_transform_series(pd.Series(edge_adj_signed, index=out.index))
 
     # ── VECTORIZED DEF RANK SIGNAL ────────────────────────────────────────────
@@ -488,8 +493,6 @@ def main() -> None:
     # ── VECTORIZED AVG VS LINE ────────────────────────────────────────────────
     for col in ("stat_last5_avg", "stat_last10_avg", "stat_season_avg"):
         out[col + "_num"] = _to_num(out[col]) if col in out.columns else pd.Series(np.nan, index=out.index)
-
-    line_safe = line_num.replace(0, np.nan)
 
     def _avg_vs_line_vec(avg_col: str, w: float) -> pd.Series:
         v = _to_num(out[avg_col + "_num"]) if (avg_col + "_num") in out.columns else pd.Series(np.nan, index=out.index)
@@ -531,7 +534,7 @@ def main() -> None:
             return (x - mu) / sd
         return result
 
-    out["edge_z"]        = zcol(out["edge"],           direction_aware=True)
+    out["edge_z"]        = zcol(out["edge_norm"],      direction_aware=True)
     out["line_hit_z"]    = zcol(out["line_hit_rate"],   direction_aware=True)
     out["min_z"]         = zcol(out["minutes_certainty"])
     out["def_rank_z"]    = zcol(out["def_rank_signal"],  direction_aware=True)

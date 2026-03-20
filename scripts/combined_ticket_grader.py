@@ -96,8 +96,50 @@ def strip_norm(s: str) -> str:
     return s
 
 
+def nhl_player_aliases(player: str) -> List[str]:
+    """
+    Generate NHL-friendly name aliases for matching ticket names against
+    API sources that often abbreviate first names (e.g., "Timo Meier" vs "T. Meier").
+    """
+    p = strip_norm(player)
+    if not p:
+        return []
+    parts = [x for x in p.split(" ") if x]
+    aliases = [p]
+    if len(parts) >= 2:
+        first = parts[0]
+        last = " ".join(parts[1:])
+        aliases.append(f"{first[:1]}. {last}".strip())
+        aliases.append(f"{first[:1]} {last}".strip())
+    # preserve order, unique only
+    seen = set()
+    out = []
+    for a in aliases:
+        if a and a not in seen:
+            seen.add(a)
+            out.append(a)
+    return out
+
+
 def prop_norm_from_label(prop: str) -> str:
     p = strip_norm(prop)
+    # NHL normalization (ticket labels vs actuals CSV wording differ)
+    if "shots on goal" in p or p == "shots_on_goal":
+        return "shots_on_goal"
+    if "faceoff" in p and "won" in p:
+        return "faceoffs_won"
+
+    # Soccer normalization (ticket tokens vs actuals CSV wording differ)
+    if "goalie saves" in p or "goalkeeper saves" in p:
+        return "goalie saves"
+    if "shots on target (combo)" in p:
+        return "shots on target"
+    if "shots on target" in p:
+        return "shots on target"
+    if p == "shots":
+        # Soccer actuals appear to use a generic "shots" label.
+        return "shots on target"
+
     if "pts+reb+ast" in p or p == "pra":
         return "pra"
     if "pts+reb" in p or p == "pr":
@@ -307,7 +349,10 @@ def build_lookup(act: pd.DataFrame):
 
 
 def lookup_actual(sport: str, player: str, team: str, prop_norm: str,
-                  nba_lpt, nba_lp, cbb_lpt, cbb_lp) -> float:
+                  nba_lpt, nba_lp,
+                  cbb_lpt, cbb_lp,
+                  nhl_lpt=None, nhl_lp=None,
+                  soccer_lpt=None, soccer_lp=None) -> float:
     sport = (sport or "").upper()
     player_n = strip_norm(player)
     team_n = strip_norm(team)
@@ -319,7 +364,8 @@ def lookup_actual(sport: str, player: str, team: str, prop_norm: str,
         if key1 in nba_lp:
             return float(nba_lp[key1][0]["actual"])
         return np.nan
-    else:
+
+    if sport == "CBB":
         # FIX 5: For CBB, team in ticket is an abbreviation (e.g. "COLO") but actuals
         # may use a different format. Try player+prop first (most reliable), then
         # team-keyed as secondary. This is the reverse of NBA priority for CBB.
@@ -330,6 +376,33 @@ def lookup_actual(sport: str, player: str, team: str, prop_norm: str,
         if key2 in cbb_lpt:
             return float(cbb_lpt[key2][0]["actual"])
         return np.nan
+
+    if sport == "NHL":
+        if nhl_lpt is None or nhl_lp is None:
+            return np.nan
+        # NHL feeds often abbreviate first names in actuals (e.g. "T. Meier"),
+        # while tickets contain full names (e.g. "Timo Meier"), so try aliases.
+        for pn in nhl_player_aliases(player):
+            key2 = (pn, team_n, prop_norm)
+            if key2 in nhl_lpt:
+                return float(nhl_lpt[key2][0]["actual"])
+            key1 = (pn, prop_norm)
+            if key1 in nhl_lp:
+                return float(nhl_lp[key1][0]["actual"])
+        return np.nan
+
+    if sport == "SOCCER":
+        if soccer_lpt is None or soccer_lp is None:
+            return np.nan
+        key2 = (player_n, team_n, prop_norm)
+        if key2 in soccer_lpt:
+            return float(soccer_lpt[key2][0]["actual"])
+        key1 = (player_n, prop_norm)
+        if key1 in soccer_lp:
+            return float(soccer_lp[key1][0]["actual"])
+        return np.nan
+
+    return np.nan
 
 
 # -----------------------------
@@ -443,6 +516,8 @@ def main():
     ap.add_argument("--tickets", required=True, help="combined_slate_tickets_YYYY-MM-DD.xlsx")
     ap.add_argument("--nba_actuals", required=True, help="actuals_nba_YYYY-MM-DD.csv")
     ap.add_argument("--cbb_actuals", required=True, help="actuals_cbb_YYYY-MM-DD.csv")
+    ap.add_argument("--nhl_actuals", default="", help="actuals_nhl_YYYY-MM-DD.csv (optional, for NHL legs)")
+    ap.add_argument("--soccer_actuals", default="", help="actuals_soccer_YYYY-MM-DD.csv (optional, for Soccer legs)")
     ap.add_argument("--out", default="", help="Output graded workbook (default: <tickets>_GRADED.xlsx)")
     ap.add_argument("--mode", choices=["power", "flex", "both"], default="both")
     ap.add_argument("--stake", type=float, default=20.0)
@@ -478,6 +553,17 @@ def main():
     nba_lp, nba_lpt = build_lookup(nba_act)
     cbb_lp, cbb_lpt = build_lookup(cbb_act)
 
+    nhl_lp = nhl_lpt = None
+    soccer_lp = soccer_lpt = None
+    if args.nhl_actuals:
+        nhl_csv = Path(args.nhl_actuals)
+        nhl_act = prep_actuals(nhl_csv, "NHL")
+        nhl_lp, nhl_lpt = build_lookup(nhl_act)
+    if args.soccer_actuals:
+        soccer_csv = Path(args.soccer_actuals)
+        soccer_act = prep_actuals(soccer_csv, "SOCCER")
+        soccer_lp, soccer_lpt = build_lookup(soccer_act)
+
     # ticket sheets
     xls = pd.ExcelFile(tickets_xlsx)
     ticket_sheets = [s for s in xls.sheet_names if re.search(r"\b\d-?Leg\b", s, re.IGNORECASE)]
@@ -495,7 +581,13 @@ def main():
 
     # grade legs
     legs_df["actual"] = legs_df.apply(
-        lambda r: lookup_actual(r["sport"], r["player"], r["team"], r["prop_norm"], nba_lpt, nba_lp, cbb_lpt, cbb_lp),
+        lambda r: lookup_actual(
+            r["sport"], r["player"], r["team"], r["prop_norm"],
+            nba_lpt, nba_lp,
+            cbb_lpt, cbb_lp,
+            nhl_lpt=nhl_lpt, nhl_lp=nhl_lp,
+            soccer_lpt=soccer_lpt, soccer_lp=soccer_lp
+        ),
         axis=1,
     )
     legs_df["leg_result"] = legs_df.apply(lambda r: grade_leg(r["dir"], r["line"], r["actual"]), axis=1)
