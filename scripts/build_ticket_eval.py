@@ -52,7 +52,10 @@ if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
 from player_name_norm import fold_player_name as _fold_player_name  # noqa: E402
 from espn_injuries import canon_team_abbr  # noqa: E402
-from utils.proporacle_data_root import persistent_data_dir  # noqa: E402
+from utils.proporacle_data_root import (  # noqa: E402
+    load_best_grade_history_runs,
+    persistent_data_dir,
+)
 
 TEMPLATES_DIR = REPO_ROOT / "ui_runner" / "templates"
 TICKET_EVAL_SLATE_JSON = TEMPLATES_DIR / "ticket_eval_slate_latest.json"
@@ -1512,16 +1515,9 @@ def _append_grade_history(record: dict[str, Any]) -> None:
     """Append (or replace same-date+track) run summary to persistent data/grade_history.json (see utils.proporacle_data_root)."""
     path = persistent_data_dir(REPO_ROOT) / "grade_history.json"
     path.parent.mkdir(parents=True, exist_ok=True)
-    runs: list[Any] = []
-    if path.is_file():
-        try:
-            raw = json.loads(path.read_text(encoding="utf-8"))
-            if isinstance(raw, list):
-                runs = list(raw)
-            elif isinstance(raw, dict) and isinstance(raw.get("runs"), list):
-                runs = list(raw["runs"])
-        except (OSError, json.JSONDecodeError):
-            runs = []
+    runs: list[Any] = list(
+        load_best_grade_history_runs(REPO_ROOT, templates_dir=TEMPLATES_DIR)
+    )
     ds = str(record.get("date") or "")[:10]
     track = str(record.get("track") or "graded_main").strip().lower()
     runs = [

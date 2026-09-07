@@ -71,6 +71,7 @@ from utils.income_sport_breakdown import (
     read_cached_payload,
     refresh_cache as refresh_income_sport_breakdown_cache,
 )
+from utils.income_tracks import G70_START, is_card_track
 from utils.proporacle_data_root import (
     grade_history_read_paths,
     load_best_grade_history_runs,
@@ -6546,6 +6547,28 @@ def _load_grade_history_rows() -> list[dict[str, Any]]:
     return rows
 
 
+def _income_summary_from_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    total_tickets = sum(_to_int(r.get("tickets"), 0) for r in rows)
+    total_decided = sum(_to_int(r.get("decided"), 0) for r in rows)
+    total_paid = sum(_to_int(r.get("paid"), 0) for r in rows)
+    total_net = round(sum(_to_float(r.get("net_dollars"), 0.0) for r in rows), 2)
+    win_rate = (total_paid / total_decided) if total_decided > 0 else None
+    roi_pct = (total_net / (total_tickets * 10.0) * 100.0) if total_tickets > 0 else 0.0
+    dates = [str(r.get("date") or "")[:10] for r in rows if r.get("date")]
+    return {
+        "total_tickets": total_tickets,
+        "decided_tickets": total_decided,
+        "paid_tickets": total_paid,
+        "win_rate": win_rate,
+        "net_pnl": total_net,
+        "roi_pct": round(roi_pct, 2),
+        "streak": _current_streak_label(rows),
+        "date_min": min(dates) if dates else None,
+        "date_max": max(dates) if dates else None,
+        "g70_start": G70_START,
+    }
+
+
 def _parse_sports_tokens(raw: Any) -> list[str]:
     s = str(raw or "").upper()
     if not s:
@@ -6752,36 +6775,16 @@ def _load_sport_breakdown_rows(*, stake_per_pick: float = 10.0) -> list[dict[str
 @app.get("/income")
 def page_income():
     rows_asc = _load_grade_history_rows()
-    total_tickets = sum(_to_int(r.get("tickets"), 0) for r in rows_asc)
-    total_decided = sum(_to_int(r.get("decided"), 0) for r in rows_asc)
-    total_paid = sum(_to_int(r.get("paid"), 0) for r in rows_asc)
-    total_net = round(sum(_to_float(r.get("net_dollars"), 0.0) for r in rows_asc), 2)
-    win_rate = (total_paid / total_decided) if total_decided > 0 else None
-    roi_pct = (total_net / (total_tickets * 10.0) * 100.0) if total_tickets > 0 else 0.0
-    streak = _current_streak_label(rows_asc)
-
-    cum = 0.0
-    cum_points: list[dict[str, Any]] = []
-    for r in rows_asc:
-        cum += _to_float(r.get("net_dollars"), 0.0)
-        cum_points.append({"date": r.get("date"), "cum_net": round(cum, 2)})
-
+    card_rows = [r for r in rows_asc if is_card_track(r.get("track"))]
+    summary = _income_summary_from_rows(card_rows or rows_asc)
     rows_desc = list(reversed(rows_asc))
     sport_bundle = _load_sport_breakdown_bundle(stake_per_pick=10.0)
     return render_template(
         "dashboard_income.html",
         ui_build_id=_UI_BUILD_ID,
-        summary={
-            "total_tickets": total_tickets,
-            "decided_tickets": total_decided,
-            "paid_tickets": total_paid,
-            "win_rate": win_rate,
-            "net_pnl": total_net,
-            "roi_pct": round(roi_pct, 2),
-            "streak": streak,
-        },
+        summary=summary,
         daily_rows=rows_desc,
-        chart_points=Markup(json.dumps(cum_points)),
+        chart_points=Markup(json.dumps([])),
         sport_rows=sport_bundle["rows"],
         sport_monthly_rows=sport_bundle["monthly_rows"],
     )

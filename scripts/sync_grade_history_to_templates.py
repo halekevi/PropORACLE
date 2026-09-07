@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Copy the newest existing grade_history.json into ui_runner/templates/grade_history.json.
+Copy the merged grade_history.json into ui_runner/templates/grade_history.json.
+
+Merges data/ + templates/ (+ sibling PropORACLE_main_cp) by (date, track) so a
+thin recent file cannot replace the Apr+ log.
 
 Run after build_ticket_eval.py so Railway/git deploys pick up fresh P&L rows when the app
 falls back to the bundled template (no persistent volume).

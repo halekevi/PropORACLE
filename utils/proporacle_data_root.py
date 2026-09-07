@@ -27,6 +27,16 @@ def grade_history_read_paths(repo_root: Path, *, templates_dir: Path | None = No
     _add(repo_root / "data" / "grade_history.json")
     if templates_dir is not None:
         _add(templates_dir / "grade_history.json")
+    else:
+        _add(repo_root / "ui_runner" / "templates" / "grade_history.json")
+    sibling = repo_root.parent / "PropORACLE_main_cp"
+    try:
+        same = sibling.resolve() == repo_root.resolve()
+    except OSError:
+        same = False
+    if sibling.is_dir() and not same:
+        _add(sibling / "data" / "grade_history.json")
+        _add(sibling / "ui_runner" / "templates" / "grade_history.json")
     return out
 
 
@@ -52,6 +62,34 @@ def _parse_grade_history_runs(raw: Any) -> list[dict[str, Any]]:
     return []
 
 
+def _grade_history_key(r: dict[str, Any]) -> tuple[str, str]:
+    d = str(r.get("date") or "").strip()[:10]
+    tr = str(r.get("track") or "").strip()
+    return (d, tr)
+
+
+def merge_grade_history_runs(*run_lists: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Union runs by (date, track). Keep the row with more tickets on a clash."""
+    by_key: dict[tuple[str, str], dict[str, Any]] = {}
+    for runs in run_lists:
+        for r in runs or []:
+            if not isinstance(r, dict):
+                continue
+            d, tr = _grade_history_key(r)
+            if len(d) != 10 or d[4] != "-" or d[7] != "-":
+                continue
+            key = (d, tr)
+            prev = by_key.get(key)
+            if prev is None:
+                by_key[key] = r
+                continue
+            n_new = int(r.get("n_tickets") or 0)
+            n_old = int(prev.get("n_tickets") or 0)
+            if n_new > n_old:
+                by_key[key] = r
+    return [by_key[k] for k in sorted(by_key)]
+
+
 def _grade_history_last_date(runs: list[dict[str, Any]]) -> str:
     dates = [str(r.get("date") or "").strip()[:10] for r in runs]
     dates = [d for d in dates if len(d) == 10 and d[4] == "-" and d[7] == "-"]
@@ -62,12 +100,12 @@ def load_best_grade_history_runs(
     repo_root: Path, *, templates_dir: Path | None = None
 ) -> list[dict[str, Any]]:
     """
-    Load grade_history from all candidate paths and return the copy whose latest
-    ``date`` is newest. Avoids a stale Railway volume masking a fresher bundled
-    ``ui_runner/templates/grade_history.json``.
+    Load and merge grade_history from all candidate paths.
+
+    A thin recent file (new Railway volume, new worktree) must not hide the
+    long Apr+ log just because its last ``date`` is newer.
     """
-    best_runs: list[dict[str, Any]] = []
-    best_last = ""
+    lists: list[list[dict[str, Any]]] = []
     for path in grade_history_read_paths(repo_root, templates_dir=templates_dir):
         if not path.is_file():
             continue
@@ -75,9 +113,5 @@ def load_best_grade_history_runs(
             raw = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        runs = _parse_grade_history_runs(raw)
-        last = _grade_history_last_date(runs)
-        if last > best_last:
-            best_last = last
-            best_runs = runs
-    return best_runs
+        lists.append(_parse_grade_history_runs(raw))
+    return merge_grade_history_runs(*lists)
