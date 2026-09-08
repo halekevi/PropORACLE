@@ -4,12 +4,13 @@
   Scheduled 1:00 AM update fetch: git pull main, pipeline + publish (no grader).
 
 .NOTES
-  Initial scrape + live publish is 9PM day-ahead (run_daily_day_ahead.ps1).
+  Initial scrape + live publish is 9PM day-ahead (soccer/tennis/etc.).
+  MLB Fill 11PM / 12AM discover tomorrow's MLB when PrizePicks posts it.
   This job is the overnight **update** + payout CDP republish of that slate.
   Grader + A1 historical actuals run separately at 3AM (unchanged).
   Always -SkipGrader -SkipHistoricalActuals. Live CDP runs after publish (same
   STEP D-payout as 8AM+), so 1AM writes payout_patch / rate cards for that board.
-  Empty no_slate at 1AM is normal (MLB/soccer/WNBA often post later); 5AM/8AM keep updating.
+  Empty MLB at 9PM is normal; 11PM/12AM/1AM/5AM keep filling as the board appears.
   Registered by scripts\Register_Daily_Task.ps1 as "PropOracle - Daily 1AM".
 #>
 param()

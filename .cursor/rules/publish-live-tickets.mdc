@@ -9,9 +9,9 @@ The Railway site reads `ui_runner/templates/tickets_latest.json` from **origin/m
 
 **Always both sets.** `/tickets` is Goblin-70 groups first, then the graded-main mixer under them. Never publish Goblin-70-only or mixer-only after combined.
 
-**Payout rates:** first Force scrape of slate **D** is **D-1 9PM** (`run_daily_day_ahead.ps1`). Later windows re-scrape missing `live_cdp` / moved lines. Default capture `-Date` follows `tickets_latest.json`.
+**Payout rates:** first Force scrape of slate **D** is **D-1 9PM** for sports that are posted (`run_daily_day_ahead.ps1`). MLB often posts later — **MLB Fill 11PM / 12AM** discover that board; 1AM+ continue filling. Later windows re-scrape missing `live_cdp` / moved lines. Default capture `-Date` follows `tickets_latest.json`.
 
-Order on every slate (9PM day-ahead / 1AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30):
+Order on every slate (9PM day-ahead / 11PM MLB / 12AM MLB / 1AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30):
 
 1. Combined writes the mixer
 2. `scripts/build_goblin70_tickets.py --write-web` rebuilds Goblin-70 + merges mixer

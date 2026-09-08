@@ -6,7 +6,9 @@
 .NOTES
   First scrape of slate D happens the evening of D-1. Most of today's props have
   already started or finished by 9PM ET, so this job publishes tomorrow's dual
-  card (Goblin-70 + mixer) to Railway. 1AM / 5AM / 8AM+ on day D are updates.
+  card (Goblin-70 + mixer) to Railway — soccer/tennis/etc. are usually ready.
+  PrizePicks often has NOT posted tomorrow's MLB yet at 9PM; MLB Fill 11PM /
+  12AM discover that board, then 1AM / 5AM / 8AM+ continue filling.
   Grader 3AM is unchanged (yesterday).
 
   Registered by scripts\Register_Daily_Task.ps1 as "PropOracle - DayAhead 9PM".
