@@ -136,20 +136,26 @@ if (Test-Path -LiteralPath $goblin70) {
     }
 }
 
-# Initial payout scrape on the dual card (full Force if no prior ok flag; else changed+missing).
+# Initial payout scrape on the dual card — first scrape of slate D is always Force
+# (runs the evening of D-1). Later 1AM/5AM/8AM+ use Auto (missing + changed only).
 $livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
 $dualTickets = Join-Path $Root "ui_runner\templates\tickets_latest.json"
-if (Test-Path -LiteralPath $livePayScript) {
-    Write-Host "[DAY-AHEAD] Live payout CDP after initial fetch (dual card)..." -ForegroundColor Cyan
+if (-not (Test-Path -LiteralPath $dualTickets)) {
+    $dualTickets = Join-Path $Root "ui_runner\data\tickets_latest.json"
+}
+if ((Test-Path -LiteralPath $livePayScript) -and (Test-Path -LiteralPath $dualTickets)) {
+    Write-Host "[DAY-AHEAD] Live payout CDP Force scrape for slate $SlateDate (night-before initial)..." -ForegroundColor Cyan
     try {
         & pwsh -NoProfile -File $livePayScript -Date $SlateDate -Root $Root -TicketsPath $dualTickets `
-            -RescrapeMode Auto -Window "9PM" -RebuildRateCard -FillMissingTickets
+            -RescrapeMode Force -Window "9PM" -RebuildRateCard -FillMissingTickets
         Write-Host "[DAY-AHEAD] Payout scrape exit $LASTEXITCODE" -ForegroundColor DarkGray
     } catch {
         Write-Host "[DAY-AHEAD] WARN: payout scrape failed (non-blocking): $($_.Exception.Message)" -ForegroundColor Yellow
     }
-} else {
+} elseif (-not (Test-Path -LiteralPath $livePayScript)) {
     Write-Host "[DAY-AHEAD] WARN: run_live_payout_capture.ps1 missing — tickets stay pending_live" -ForegroundColor Yellow
+} else {
+    Write-Host "[DAY-AHEAD] WARN: no tickets_latest.json for payout scrape — skip CDP" -ForegroundColor Yellow
 }
 
 $newTickets = Join-Path $Root "ui_runner\templates\tickets_latest.json"

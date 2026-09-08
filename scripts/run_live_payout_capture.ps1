@@ -2,10 +2,11 @@
 # ============================================================
 #  Live PrizePicks payout capture (post-ticket step)
 #
-#  Two-tier model:
-#    First successful ticket scrape of the day: full Force scrape + timestamps.
-#    Later 5AM / 8AM / 9 / 9:45 / 10:30 / 1PM / 4:30: re-scrape only slips that
-#    are missing live_cdp OR whose legs had a line/type change this fetch.
+#  Two-tier model (keyed to slate date, not calendar midnight):
+#    First scrape of slate D = 9PM day-ahead on D-1 (Force) + timestamps.
+#    Later 1AM / 5AM / 8AM / 9 / 9:45 / 10:30 / 1PM / 4:30: re-scrape only slips
+#    missing live_cdp OR whose legs had a line/type change this fetch.
+#    Default -Date = live tickets_latest.json date (tomorrow after 9PM).
 #    -UpdateOnly is incremental catchup only (manual / CDP-down audit).
 #    -Force always re-scrapes the whole dual card.
 #
@@ -63,8 +64,35 @@ if (-not $Root) {
         $Root = (Get-Location).Path
     }
 }
+
+function Get-LiveTicketsSlateDate {
+    param([string]$RepoRoot)
+    foreach ($rel in @(
+        "ui_runner\templates\tickets_latest.json",
+        "ui_runner\runtime\tickets_latest.json",
+        "ui_runner\data\tickets_latest.json"
+    )) {
+        $p = Join-Path $RepoRoot $rel
+        if (-not (Test-Path -LiteralPath $p)) { continue }
+        try {
+            $hdr = Get-Content -LiteralPath $p -Raw -Encoding UTF8 | ConvertFrom-Json
+            $d = [string]$hdr.date
+            if ($d.Length -ge 10 -and $d.Substring(0, 10) -match '^\d{4}-\d{2}-\d{2}$') {
+                return $d.Substring(0, 10)
+            }
+        } catch { }
+    }
+    return $null
+}
+
 if (-not $Date) {
-    $Date = (Get-Date).ToString("yyyy-MM-dd")
+    # Prefer the live /tickets slate date (day-ahead publishes tomorrow's card the night before).
+    $Date = Get-LiveTicketsSlateDate -RepoRoot $Root
+    if (-not $Date) {
+        $Date = (Get-Date).ToString("yyyy-MM-dd")
+    } else {
+        Write-Host "  [PAYOUT] Date from live tickets slate: $Date" -ForegroundColor DarkGray
+    }
 }
 $Date = $Date.Substring(0, [Math]::Min(10, $Date.Length))
 if (-not "$Window".Trim()) { $Window = "$($env:PROPORACLE_BET_WINDOW)".Trim() }

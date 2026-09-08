@@ -1960,17 +1960,102 @@ def apply_payout_patch_to_payload(payload: dict) -> int:
     if not date_str:
         return 0
     path = os.path.join(REPO_ROOT, "data", "reports", f"payout_patch_{date_str}.json")
-    if not os.path.isfile(path):
+    n = 0
+    if os.path.isfile(path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                patch = json.load(f)
+        except Exception:
+            patch = None
+        if isinstance(patch, dict):
+            by_id = patch.get("by_ticket_id") if isinstance(patch.get("by_ticket_id"), dict) else {}
+            by_sig = patch.get("by_leg_sig") if isinstance(patch.get("by_leg_sig"), dict) else {}
+            for g in payload.get("groups") or []:
+                if not isinstance(g, dict):
+                    continue
+                for t in g.get("tickets") or []:
+                    if not isinstance(t, dict):
+                        continue
+                    tid = str(t.get("ticket_id") or "").strip()
+                    entry = by_id.get(tid) if tid else None
+                    if entry is None:
+                        entry = by_sig.get(_leg_sig_key_for_payout_patch(t.get("legs")))
+                    if not isinstance(entry, dict):
+                        continue
+                    min_x = _safe_positive_float(entry.get("power_min_x") or entry.get("display_min_x"))
+                    if min_x is None:
+                        continue
+                    pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+                    pay = dict(pay)
+                    if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
+                        pay["model_min_payout_x"] = pay.get("min_payout_x")
+                    pay["power_min_x"] = round(min_x, 4)
+                    pay["display_min_x"] = round(min_x, 4)
+                    pay["payout_source"] = "live_cdp"
+                    if entry.get("power_first_x") is not None:
+                        pay["power_first_x"] = entry.get("power_first_x")
+                    if entry.get("captured_at"):
+                        pay["captured_at"] = entry.get("captured_at")
+                    # Prefer N-correct map from the overnight scrape when present.
+                    nc = entry.get("n_correct")
+                    if isinstance(nc, dict) and nc:
+                        pay["n_correct"] = nc
+                    refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
+                    t["payout"] = pay
+                    t["display_min_x"] = pay["display_min_x"]
+                    n += 1
+    # Day-ahead archive (scraped the night before) fills gaps the patch file missed.
+    n += seed_live_cdp_from_day_ahead_archive(payload)
+    return n
+
+
+def seed_live_cdp_from_day_ahead_archive(payload: dict) -> int:
+    """
+    Re-apply live_cdp floors from outputs/<date>/tickets_day_ahead.json (9PM D-1 archive)
+    onto matching slips that still lack live_cdp after patch apply / G70 rebuild.
+    """
+    if not isinstance(payload, dict):
         return 0
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            patch = json.load(f)
-    except Exception:
+    date_str = str(payload.get("date") or "").strip()[:10]
+    if not date_str:
         return 0
-    if not isinstance(patch, dict):
+    candidates = [
+        os.path.join(REPO_ROOT, "outputs", date_str, "tickets_day_ahead.json"),
+        os.path.join(REPO_ROOT, "ui_runner", "data", "tickets_day_ahead.json"),
+    ]
+    prior = None
+    for path in candidates:
+        if not os.path.isfile(path):
+            continue
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                prior = json.load(f)
+        except Exception:
+            prior = None
+        if isinstance(prior, dict) and str(prior.get("date") or "").strip()[:10] == date_str:
+            break
+        prior = None
+    if not isinstance(prior, dict):
         return 0
-    by_id = patch.get("by_ticket_id") if isinstance(patch.get("by_ticket_id"), dict) else {}
-    by_sig = patch.get("by_leg_sig") if isinstance(patch.get("by_leg_sig"), dict) else {}
+
+    by_id: dict[str, dict] = {}
+    by_sig: dict[str, dict] = {}
+    for g in prior.get("groups") or []:
+        if not isinstance(g, dict):
+            continue
+        for t in g.get("tickets") or []:
+            if not isinstance(t, dict):
+                continue
+            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+            if str(pay.get("payout_source") or "").strip().lower() != "live_cdp":
+                continue
+            tid = str(t.get("ticket_id") or "").strip()
+            if tid:
+                by_id[tid] = t
+            sig = _leg_sig_key_for_payout_patch(t.get("legs"))
+            if sig:
+                by_sig[sig] = t
+
     n = 0
     for g in payload.get("groups") or []:
         if not isinstance(g, dict):
@@ -1978,30 +2063,40 @@ def apply_payout_patch_to_payload(payload: dict) -> int:
         for t in g.get("tickets") or []:
             if not isinstance(t, dict):
                 continue
-            tid = str(t.get("ticket_id") or "").strip()
-            entry = by_id.get(tid) if tid else None
-            if entry is None:
-                entry = by_sig.get(_leg_sig_key_for_payout_patch(t.get("legs")))
-            if not isinstance(entry, dict):
+            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+            if str(pay.get("payout_source") or "").strip().lower() == "live_cdp":
                 continue
-            min_x = _safe_positive_float(entry.get("power_min_x") or entry.get("display_min_x"))
+            tid = str(t.get("ticket_id") or "").strip()
+            src_t = by_id.get(tid) if tid else None
+            if src_t is None:
+                src_t = by_sig.get(_leg_sig_key_for_payout_patch(t.get("legs")))
+            if not isinstance(src_t, dict):
+                continue
+            src_pay = src_t.get("payout") if isinstance(src_t.get("payout"), dict) else {}
+            min_x = _safe_positive_float(
+                src_pay.get("display_min_x")
+                or src_pay.get("power_min_x")
+                or src_pay.get("min_payout_x")
+                or src_pay.get("payout")
+            )
             if min_x is None:
                 continue
-            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
             pay = dict(pay)
-            if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
-                pay["model_min_payout_x"] = pay.get("min_payout_x")
             pay["power_min_x"] = round(min_x, 4)
             pay["display_min_x"] = round(min_x, 4)
             pay["payout_source"] = "live_cdp"
-            if entry.get("power_first_x") is not None:
-                pay["power_first_x"] = entry.get("power_first_x")
-            if entry.get("captured_at"):
-                pay["captured_at"] = entry.get("captured_at")
+            if src_pay.get("captured_at"):
+                pay["captured_at"] = src_pay.get("captured_at")
+            if isinstance(src_pay.get("n_correct"), dict) and src_pay.get("n_correct"):
+                pay["n_correct"] = src_pay["n_correct"]
+            if src_pay.get("payout_note"):
+                pay["payout_note"] = src_pay.get("payout_note")
             refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
             t["payout"] = pay
             t["display_min_x"] = pay["display_min_x"]
             n += 1
+    if n:
+        print(f"  [payout] seeded live_cdp from day-ahead archive on {n} tickets")
     return n
 
 
