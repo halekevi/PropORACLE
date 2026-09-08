@@ -218,6 +218,19 @@ from utils.goblin_demon_multiplier import (
     multiplier_summary as gd_multiplier_summary,
 )
 from utils.ticket_diversity import apply_diversity_filter
+from utils.ticket_70_pool import (
+    _is_earned_runs as _t70_is_earned_runs,
+    era_half_gate as _t70_era_half_gate,
+    goblin_70_eligible as _t70_goblin_70_eligible,
+    hitter_counting_gate as _t70_hitter_counting_gate,
+    skip_hitter_counting as _t70_is_hitter_counting,
+)
+from utils.mlb_keep_gates import mlb_goblin_keep_eligible as _mlb_keep_eligible
+from utils.soccer_keep_gates import soccer_keep_prop as _soccer_keep_prop
+from utils.tennis_keep_gates import (
+    tennis_goblin_keep_eligible as _tennis_keep_eligible,
+    tennis_standard_under_serve_eligible as _tennis_serve_under_eligible,
+)
 from utils.pipeline_read_enrichment import (
     READ_SLATE_EXPORT_KEYS,
     enrich_read_fields_dataframe,
@@ -313,6 +326,7 @@ _TICKET_MODELS_BY_SPORT: dict[str, dict[str, Any]] = {}
 DEFAULT_NBA_PATH = os.path.join(REPO_ROOT, "Sports", "NBA", "data", "outputs", "step8_all_direction_clean.xlsx")
 DEFAULT_CBB_PATH = os.path.join(REPO_ROOT, "Sports", "CBB", "step6_ranked_cbb.xlsx")
 DEFAULT_CFB_PATH = os.path.join(REPO_ROOT, "Sports", "CFB", "outputs", "step8_cfb_direction_clean.xlsx")
+DEFAULT_CFB1H_PATH = os.path.join(REPO_ROOT, "Sports", "CFB", "outputs", "step8_cfb1h_direction_clean.xlsx")
 DEFAULT_NBA1H_PATH = os.path.join(REPO_ROOT, "Sports", "NBA", "step8_nba1h_direction_clean.xlsx")
 DEFAULT_NBA1Q_PATH = os.path.join(REPO_ROOT, "Sports", "NBA", "step8_nba1q_direction_clean.xlsx")
 DEFAULT_WCBB_PATH = os.path.join(REPO_ROOT, "Sports", "CBB", "step6_ranked_wcbb.xlsx")
@@ -723,6 +737,14 @@ def apply_default_sport_inputs(args: argparse.Namespace) -> None:
             os.path.join(REPO_ROOT, "CFB", "step6_ranked_cfb.xlsx"),
         )
 
+    if not str(getattr(args, "cfb1h", "") or "").strip():
+        args.cfb1h = _first_existing_path(
+            os.path.join(out, "cfb1h", "step8_cfb1h_direction_clean.xlsx"),
+            os.path.join(out, "cfb1h", f"step8_cfb1h_direction_clean_{d}.xlsx"),
+            os.path.join(REPO_ROOT, "Sports", "CFB", "outputs", "step8_cfb1h_direction_clean.xlsx"),
+            DEFAULT_CFB1H_PATH,
+        )
+
 
 def print_combined_slate_input_paths(args: argparse.Namespace) -> None:
     """Echo resolved inputs so missing step8 files are obvious before loading."""
@@ -771,6 +793,7 @@ def print_combined_slate_input_paths(args: argparse.Namespace) -> None:
     _line("WNBA1Q", getattr(args, "wnba1q", ""), optional=True)
     _line("NFL", args.nfl, optional=True)
     _line("CFB", getattr(args, "cfb", ""), optional=True)
+    _line("CFB1H", getattr(args, "cfb1h", ""), optional=True)
 
 
 DIVERSITY_CONFIG_PATH = os.path.join(REPO_ROOT, "config", "diversity_config.json")
@@ -2073,17 +2096,102 @@ def apply_payout_patch_to_payload(payload: dict) -> int:
     if not date_str:
         return 0
     path = os.path.join(REPO_ROOT, "data", "reports", f"payout_patch_{date_str}.json")
-    if not os.path.isfile(path):
+    n = 0
+    if os.path.isfile(path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                patch = json.load(f)
+        except Exception:
+            patch = None
+        if isinstance(patch, dict):
+            by_id = patch.get("by_ticket_id") if isinstance(patch.get("by_ticket_id"), dict) else {}
+            by_sig = patch.get("by_leg_sig") if isinstance(patch.get("by_leg_sig"), dict) else {}
+            for g in payload.get("groups") or []:
+                if not isinstance(g, dict):
+                    continue
+                for t in g.get("tickets") or []:
+                    if not isinstance(t, dict):
+                        continue
+                    tid = str(t.get("ticket_id") or "").strip()
+                    entry = by_id.get(tid) if tid else None
+                    if entry is None:
+                        entry = by_sig.get(_leg_sig_key_for_payout_patch(t.get("legs")))
+                    if not isinstance(entry, dict):
+                        continue
+                    min_x = _safe_positive_float(entry.get("power_min_x") or entry.get("display_min_x"))
+                    if min_x is None:
+                        continue
+                    pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+                    pay = dict(pay)
+                    if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
+                        pay["model_min_payout_x"] = pay.get("min_payout_x")
+                    pay["power_min_x"] = round(min_x, 4)
+                    pay["display_min_x"] = round(min_x, 4)
+                    pay["payout_source"] = "live_cdp"
+                    if entry.get("power_first_x") is not None:
+                        pay["power_first_x"] = entry.get("power_first_x")
+                    if entry.get("captured_at"):
+                        pay["captured_at"] = entry.get("captured_at")
+                    # Prefer N-correct map from the overnight scrape when present.
+                    nc = entry.get("n_correct")
+                    if isinstance(nc, dict) and nc:
+                        pay["n_correct"] = nc
+                    refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
+                    t["payout"] = pay
+                    t["display_min_x"] = pay["display_min_x"]
+                    n += 1
+    # Day-ahead archive (scraped the night before) fills gaps the patch file missed.
+    n += seed_live_cdp_from_day_ahead_archive(payload)
+    return n
+
+
+def seed_live_cdp_from_day_ahead_archive(payload: dict) -> int:
+    """
+    Re-apply live_cdp floors from outputs/<date>/tickets_day_ahead.json (9PM D-1 archive)
+    onto matching slips that still lack live_cdp after patch apply / G70 rebuild.
+    """
+    if not isinstance(payload, dict):
         return 0
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            patch = json.load(f)
-    except Exception:
+    date_str = str(payload.get("date") or "").strip()[:10]
+    if not date_str:
         return 0
-    if not isinstance(patch, dict):
+    candidates = [
+        os.path.join(REPO_ROOT, "outputs", date_str, "tickets_day_ahead.json"),
+        os.path.join(REPO_ROOT, "ui_runner", "data", "tickets_day_ahead.json"),
+    ]
+    prior = None
+    for path in candidates:
+        if not os.path.isfile(path):
+            continue
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                prior = json.load(f)
+        except Exception:
+            prior = None
+        if isinstance(prior, dict) and str(prior.get("date") or "").strip()[:10] == date_str:
+            break
+        prior = None
+    if not isinstance(prior, dict):
         return 0
-    by_id = patch.get("by_ticket_id") if isinstance(patch.get("by_ticket_id"), dict) else {}
-    by_sig = patch.get("by_leg_sig") if isinstance(patch.get("by_leg_sig"), dict) else {}
+
+    by_id: dict[str, dict] = {}
+    by_sig: dict[str, dict] = {}
+    for g in prior.get("groups") or []:
+        if not isinstance(g, dict):
+            continue
+        for t in g.get("tickets") or []:
+            if not isinstance(t, dict):
+                continue
+            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+            if str(pay.get("payout_source") or "").strip().lower() != "live_cdp":
+                continue
+            tid = str(t.get("ticket_id") or "").strip()
+            if tid:
+                by_id[tid] = t
+            sig = _leg_sig_key_for_payout_patch(t.get("legs"))
+            if sig:
+                by_sig[sig] = t
+
     n = 0
     for g in payload.get("groups") or []:
         if not isinstance(g, dict):
@@ -2091,30 +2199,40 @@ def apply_payout_patch_to_payload(payload: dict) -> int:
         for t in g.get("tickets") or []:
             if not isinstance(t, dict):
                 continue
-            tid = str(t.get("ticket_id") or "").strip()
-            entry = by_id.get(tid) if tid else None
-            if entry is None:
-                entry = by_sig.get(_leg_sig_key_for_payout_patch(t.get("legs")))
-            if not isinstance(entry, dict):
+            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+            if str(pay.get("payout_source") or "").strip().lower() == "live_cdp":
                 continue
-            min_x = _safe_positive_float(entry.get("power_min_x") or entry.get("display_min_x"))
+            tid = str(t.get("ticket_id") or "").strip()
+            src_t = by_id.get(tid) if tid else None
+            if src_t is None:
+                src_t = by_sig.get(_leg_sig_key_for_payout_patch(t.get("legs")))
+            if not isinstance(src_t, dict):
+                continue
+            src_pay = src_t.get("payout") if isinstance(src_t.get("payout"), dict) else {}
+            min_x = _safe_positive_float(
+                src_pay.get("display_min_x")
+                or src_pay.get("power_min_x")
+                or src_pay.get("min_payout_x")
+                or src_pay.get("payout")
+            )
             if min_x is None:
                 continue
-            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
             pay = dict(pay)
-            if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
-                pay["model_min_payout_x"] = pay.get("min_payout_x")
             pay["power_min_x"] = round(min_x, 4)
             pay["display_min_x"] = round(min_x, 4)
             pay["payout_source"] = "live_cdp"
-            if entry.get("power_first_x") is not None:
-                pay["power_first_x"] = entry.get("power_first_x")
-            if entry.get("captured_at"):
-                pay["captured_at"] = entry.get("captured_at")
+            if src_pay.get("captured_at"):
+                pay["captured_at"] = src_pay.get("captured_at")
+            if isinstance(src_pay.get("n_correct"), dict) and src_pay.get("n_correct"):
+                pay["n_correct"] = src_pay["n_correct"]
+            if src_pay.get("payout_note"):
+                pay["payout_note"] = src_pay.get("payout_note")
             refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
             t["payout"] = pay
             t["display_min_x"] = pay["display_min_x"]
             n += 1
+    if n:
+        print(f"  [payout] seeded live_cdp from day-ahead archive on {n} tickets")
     return n
 
 
@@ -3568,7 +3686,7 @@ def _soccer_ticket_pool_exclusion_mask(df: pd.DataFrame) -> tuple[pd.Series, int
 
 
 def soccer_allowed_leg(leg) -> bool:
-    """Soccer hygiene only: no Demon, no Goblin UNDER, no excluded props. Same OVER/UNDER mix as other sports."""
+    """Soccer hygiene: no Demon, no Goblin UNDER, keep props only (Shots/SOT/Saves)."""
     if isinstance(leg, dict):
         row = leg
     else:
@@ -3581,8 +3699,11 @@ def soccer_allowed_leg(leg) -> bool:
         return False
     if not goblin_direction_ok(row):
         return False
-    prop = _norm_prop_label(row.get("prop_type") or row.get("prop") or "")
-    if prop in SOCCER_EXCLUDED_PROPS:
+    keep_row = dict(row)
+    keep_row["sport"] = "Soccer"
+    if "prop" not in keep_row or not keep_row.get("prop"):
+        keep_row["prop"] = row.get("prop_type") or row.get("prop") or ""
+    if not _soccer_keep_prop(keep_row):
         return False
     return True
 
@@ -3989,6 +4110,17 @@ def attach_alt_book_lines(
                 print(f"  [alt-books] Vegas lines joined (nearest): {v_n} / {len(out)} rows ({v_path})")
         except Exception as e:
             print(f"  [alt-books] WARN Vegas merge skipped: {e}")
+
+    # Odds API has no 1Q/1H player markets. Full-game Vegas on a period line
+    # (e.g. 1Q points 7.5 vs game 26.5) poisons cross_edge and tickets.
+    from utils.pp_vegas_gap import PERIOD_SPORTS as _PERIOD_SPORTS
+
+    _period = out["sport"].map(lambda x: str(x or "").strip().upper() in _PERIOD_SPORTS)
+    if _period.any():
+        _cleared = int(pd.to_numeric(out.loc[_period, "line_vegas"], errors="coerce").notna().sum())
+        out.loc[_period, "line_vegas"] = np.nan
+        if _cleared:
+            print(f"  [alt-books] cleared full-game Vegas on {_cleared} period-slate row(s)")
 
     if "line_underdog" not in out.columns:
         out["line_underdog"] = np.nan
@@ -4911,6 +5043,24 @@ def _tennis_is_serve_junk(prop_label: str) -> bool:
     return any(frag in p for frag in TENNIS_SERVE_JUNK_FRAGMENTS)
 
 
+def _tennis_directional_l10_hits(leg) -> float:
+    """Directional L10 hit count (0–10). Missing → 0."""
+    if isinstance(leg, dict):
+        row = leg
+    else:
+        row = leg
+    direction = str(row.get("direction") or row.get("over_under") or row.get("side") or "").upper()
+    if direction == "UNDER":
+        keys = ("l10_under", "last10_under", "line_hits_under_10", "L10 Under")
+    else:
+        keys = ("l10_over", "last10_over", "line_hits_over_10", "L10 Over")
+    for k in keys:
+        v = pd.to_numeric(row.get(k), errors="coerce")
+        if pd.notna(v):
+            return float(v)
+    return 0.0
+
+
 def _tennis_directional_l5_hits(leg) -> float:
     """Directional L5 hit count (0–5). Missing → 0."""
     if isinstance(leg, dict):
@@ -4934,12 +5084,12 @@ def nhl_allowed_leg(leg) -> bool:
     if isinstance(leg, dict):
         sport = str(leg.get("sport", "")).upper()
         pick_type = str(leg.get("pick_type", "")).strip().lower()
-        direction = str(leg.get("direction") or leg.get("over_under") or "").upper()
+        direction = str(leg.get("direction") or leg.get("over_under") or leg.get("side") or "").upper()
         row = leg
     else:
         sport = str(leg.get("sport", "")).upper()
         pick_type = str(leg.get("pick_type", "")).strip().lower()
-        direction = str(leg.get("direction") or leg.get("over_under") or "").upper()
+        direction = str(leg.get("direction") or leg.get("over_under") or leg.get("side") or "").upper()
         row = leg
     if sport != "NHL":
         return True
@@ -4963,12 +5113,12 @@ def _tennis_prop_label_series(df: pd.DataFrame) -> pd.Series:
 
 
 def _tennis_allowed_mask(df: pd.DataFrame) -> pd.Series:
-    """Vectorized tennis_allowed_leg: totals-only; Ace/DF hard-banned; L5 floors."""
+    """Vectorized tennis_allowed_leg: Goblin totals keep + Standard UNDER Aces/DF."""
     if df.empty:
         return pd.Series(dtype=bool, index=df.index)
     pick = df.get("pick_type", pd.Series("", index=df.index)).astype(str).str.strip().str.lower()
     direction = pd.Series("OVER", index=df.index)
-    for c in ("direction", "over_under"):
+    for c in ("direction", "over_under", "side"):
         if c in df.columns:
             direction = df[c].astype(str).str.upper().str.strip()
             break
@@ -4980,78 +5130,86 @@ def _tennis_allowed_mask(df: pd.DataFrame) -> pd.Series:
     eligible_prop = eligible_prop & ~serve_junk
     l5_over = pd.to_numeric(df.get("l5_over", df.get("last5_over", 0)), errors="coerce").fillna(0.0)
     l5_under = pd.to_numeric(df.get("l5_under", df.get("last5_under", 0)), errors="coerce").fillna(0.0)
+    l10_over = pd.to_numeric(df.get("l10_over", df.get("last10_over", 0)), errors="coerce").fillna(0.0)
+    if "line_hits_over_10" in df.columns:
+        l10_over = l10_over.where(l10_over > 0, pd.to_numeric(df["line_hits_over_10"], errors="coerce").fillna(0.0))
+    l10_under = pd.to_numeric(df.get("l10_under", df.get("last10_under", 0)), errors="coerce").fillna(0.0)
     l5_side = pd.Series(
         np.where(direction.eq("UNDER"), l5_under, l5_over),
         index=df.index,
         dtype=float,
     )
+    l10_side = pd.Series(
+        np.where(direction.eq("UNDER"), l10_under, l10_over),
+        index=df.index,
+        dtype=float,
+    )
+    is_games_won = prop_label.str.contains("games won", na=False)
+    is_total_games = eligible_prop & ~is_games_won
+    keep_ok = (is_games_won & l10_side.ge(8.0)) | (
+        is_total_games & l5_side.ge(float(TENNIS_GOBLIN_MIN_L5_HITS)) & l10_side.ge(8.0)
+    )
     goblin_ok = (
         (pick == "goblin")
         & direction.eq("OVER")
         & eligible_prop
-        & l5_side.ge(float(TENNIS_GOBLIN_MIN_L5_HITS))
+        & keep_ok
     )
-    std_ok = (
-        (pick == "standard")
-        & direction.isin(["UNDER", "OVER"])
-        & eligible_prop
-        & l5_side.ge(float(TENNIS_STD_MIN_L5_HITS))
-    )
-    allowed = goblin_ok.copy()
-    if std_ok.any():
-        sub_idx = std_ok[std_ok].index
-        tier_pass = ~tier_defense_exclusion_mask(df.loc[sub_idx], sport="TENNIS")
-        allowed.loc[sub_idx] = tier_pass
+    std_under_serve = (pick == "standard") & direction.eq("UNDER") & serve_junk
+    allowed = goblin_ok | std_under_serve
     over_rank_drop = tennis_opp_rank_over_exclusion_mask(df)
-    allowed = allowed & ~over_rank_drop
+    allowed = allowed & ~(over_rank_drop & ~std_under_serve)
     return allowed.fillna(False)
 
 
 def tennis_allowed_leg(leg) -> bool:
     """
     Tennis ticket gate:
-    - Hard-ban Ace / Double Faults.
-    - Goblin OVER on Total Games / Games Won only, L5 floor + opponent-rank fades
-      (Games Won vs top-10; Total Games vs 11–25).
-    - Standard OVER/UNDER on those totals (tier×def + L5 + same rank fades on OVER).
+    - Goblin OVER on Total Games / Games Won only, keep gates + opponent-rank fades
+      (Games Won L10>=8; Total Games L5>=4 and L10>=8; Games Won vs top-10;
+      Total Games vs 11–25).
+    - Standard UNDER Aces / Double Faults (ungated 90%+). Goblin OVER and
+      Standard OVER Ace/DF stay banned.
+    - Other Standard tennis stays off (no games cell >=70% at n>=40).
     """
     if isinstance(leg, dict):
         sport = str(leg.get("sport", "")).upper()
         pick_type = str(leg.get("pick_type", "")).strip().lower()
-        direction = str(leg.get("direction") or leg.get("over_under") or "").upper()
+        direction = str(leg.get("direction") or leg.get("over_under") or leg.get("side") or "").upper()
         row = leg
     else:
         sport = str(leg.get("sport", "")).upper()
         pick_type = str(leg.get("pick_type", "")).strip().lower()
-        direction = str(leg.get("direction") or leg.get("over_under") or "").upper()
+        direction = str(leg.get("direction") or leg.get("over_under") or leg.get("side") or "").upper()
         row = leg
     if sport != "TENNIS":
         return False
     if not goblin_direction_ok(row):
         return False
     prop_label = _tennis_leg_prop_label(leg)
+    keep_row = dict(row) if isinstance(row, dict) else dict(row)
+    keep_row["sport"] = "TENNIS"
+    keep_row["side"] = direction or keep_row.get("side") or ""
+    if pick_type == "standard":
+        keep_row["pick_type"] = "Standard"
+        if _tennis_serve_under_eligible(keep_row):
+            return True
     if _tennis_is_serve_junk(prop_label):
         return False
     if not any(p in prop_label for p in TENNIS_ELIGIBLE_PROPS):
         return False
-    l5_hits = _tennis_directional_l5_hits(row)
     opp_rank = row.get("opponent_rank")
     if opp_rank is None:
         opp_rank = row.get("opponent_def_rank")
     if tennis_total_games_over_blocked_by_l5(row):
         return False
     if pick_type == "goblin" and direction == "OVER":
-        if l5_hits < float(TENNIS_GOBLIN_MIN_L5_HITS):
+        keep_row = dict(row) if isinstance(row, dict) else dict(row)
+        keep_row["side"] = direction or "OVER"
+        keep_row["pick_type"] = "Goblin"
+        if not _tennis_keep_eligible(keep_row):
             return False
         return not tennis_over_blocked_by_opp_rank(prop_label, opp_rank, pick_type="goblin")
-    if pick_type == "standard" and direction in ("UNDER", "OVER"):
-        if l5_hits < float(TENNIS_STD_MIN_L5_HITS):
-            return False
-        if direction == "OVER" and tennis_over_blocked_by_opp_rank(
-            prop_label, opp_rank, pick_type="standard"
-        ):
-            return False
-        return leg_passes_tier_defense_gate(leg, sport="TENNIS")
     return False
 
 
@@ -5066,7 +5224,7 @@ def _apply_tier_defense_pool_gate(df: pd.DataFrame, sport: str) -> pd.DataFrame:
     return out
 
 # Pipelines that emit step8 boards into combined slate (reference for docs / tooling).
-ACTIVE_SPORTS = ("NBA", "NHL", "SOCCER", "TENNIS", "WNBA", "WNBA1H", "WNBA1Q", "MLB", "NBA1H", "NBA1Q", "WCBB", "NFL", "CFB", "GOLF")
+ACTIVE_SPORTS = ("NBA", "NHL", "SOCCER", "TENNIS", "WNBA", "WNBA1H", "WNBA1Q", "MLB", "NBA1H", "NBA1Q", "WCBB", "NFL", "CFB", "CFB1H", "GOLF")
 # NFL regular season + CFB ticket from step8. Grades land in graded_props via GRADED_JSON_SPORTS.
 # NFL — scaffold gate stays on until season resume (MAIN calendar also excludes until Kickoff).
 # Regular-season NFL stays gated until MAIN resume. NFLP preseason is live
@@ -5900,21 +6058,31 @@ MAIN_BANNED_GOBLIN_PROP_NORMS: dict[str, frozenset[str]] = {
             "triples",
             "hitterstrikeouts",
             "batterstrikeouts",
+            "earnedrunsallowed",
+            "earnedruns",
+            "earnedrun",
         }
     ),
 }
 
-# MLB Goblin OVER props still allowed on MAIN (pitcher-centric).
+# MLB Goblin OVER props still allowed on MAIN.
+# Hits / TB / ERA 0.5 are allowlisted but construction-gated (L10+D+cover / L5=5).
 MAIN_MLB_GOBLIN_OVER_ALLOW_NORMS: frozenset[str] = frozenset(
     {
         "strikeouts",  # pitcher Ks when not tagged hitter/batter
         "pitchesthrown",
         "pitchingouts",
-        "earnedrunsallowed",
         "hitsallowed",
         "walksallowed",
         "outs",
         "pitchingstrikeouts",
+        "hits",
+        "totalbases",
+        "earnedrunsallowed",
+        "earnedruns",
+        "earnedrun",
+        "hitsrunsrbis",
+        "hitterstrikeouts",
     }
 )
 
@@ -5938,6 +6106,9 @@ _STANDARD_PROP_GATE_BAN: frozenset[tuple[str, str, str]] = frozenset(
         ("MLB", "totalbases", "OVER"),
         ("MLB", "hits", "OVER"),
         ("MLB", "earnedrunsallowed", "OVER"),
+        ("MLB", "earnedrunsallowed", "UNDER"),
+        ("MLB", "earnedruns", "OVER"),
+        ("MLB", "earnedruns", "UNDER"),
         ("MLB", "hitsallowed", "OVER"),
         ("MLB", "plateappearances", "UNDER"),
         # WNBA
@@ -6229,9 +6400,15 @@ def _leg_standard_prop_direction_gated(row_d: dict | pd.Series) -> bool:
 
 
 def _main_mlb_prop_is_hitter_core(prop_norm: str) -> bool:
-    """True for MLB counting props that drove Jul-18 OVER 0.5 miss volume."""
+    """True for MLB counting props that drove Jul-18 OVER 0.5 miss volume.
+
+    Hits/TB can ticket when the Goblin-70 gate passes, but same-game stacks
+    are still the hitter-core correlation we audit.
+    """
     if not prop_norm:
         return False
+    if prop_norm in {"hits", "totalbases"}:
+        return True
     if prop_norm in MAIN_MLB_GOBLIN_OVER_ALLOW_NORMS:
         return False
     return prop_norm in MAIN_BANNED_GOBLIN_PROP_NORMS.get("MLB", frozenset())
@@ -6258,13 +6435,84 @@ def _leg_mlb_standard_over_banned(row_d: dict) -> bool:
     return _leg_standard_prop_direction_gated(row_d)
 
 
+_ERA_PROP_NORMS: frozenset[str] = frozenset(
+    {"earnedrunsallowed", "earnedruns", "earnedrun", "er"}
+)
+
+
+def _ticket70_row(row_d: dict) -> dict:
+    """Map a mixer/STRONG leg onto ticket_70_pool field names."""
+    side = str(row_d.get("direction") or row_d.get("side") or "").strip().upper()
+    if side in ("O", "OVER"):
+        side = "OVER"
+    elif side in ("U", "UNDER"):
+        side = "UNDER"
+    pt_raw = str(row_d.get("pick_type") or "").strip()
+    pt_l = pt_raw.lower()
+    if "goblin" in pt_l:
+        pick = "Goblin"
+    elif "demon" in pt_l:
+        pick = "Demon"
+    elif pt_raw:
+        pick = "Standard"
+    else:
+        pick = ""
+    return {
+        "sport": row_d.get("sport") or "MLB",
+        "prop": row_d.get("prop") or row_d.get("prop_type") or "",
+        "side": side,
+        "pick_type": pick,
+        "line": row_d.get("line"),
+        "l5_over": row_d.get("l5_over") or row_d.get("L5 Over") or row_d.get("last5_over"),
+        "l5_under": row_d.get("l5_under") or row_d.get("L5 Under") or row_d.get("last5_under"),
+        "l10_over": row_d.get("l10_over") or row_d.get("L10 Over") or row_d.get("last10_over"),
+        "l10_under": row_d.get("l10_under") or row_d.get("L10 Under") or row_d.get("last10_under"),
+        "cover": row_d.get("cover") if row_d.get("cover") is not None else row_d.get("dist_l5"),
+        "dist_l5": row_d.get("dist_l5"),
+        "def": row_d.get("def") or row_d.get("def_tier") or row_d.get("DEF_TIER") or "",
+        "checks": row_d.get("checks") or {},
+        "team": row_d.get("team") or row_d.get("Team") or "",
+        "opp_team": row_d.get("opp_team") or row_d.get("Opp") or "",
+        "def_axis": row_d.get("def_axis") or "",
+        "own_def_tier": row_d.get("own_def_tier") or row_d.get("team_def_tier") or "",
+        "own_off_hits_tier": row_d.get("own_off_hits_tier")
+        or row_d.get("team_off_hits_tier")
+        or "",
+        "opp_off_hits_tier": row_d.get("opp_off_hits_tier")
+        or row_d.get("OFF_HITS_TIER")
+        or "",
+        "opp_def_tier": row_d.get("opp_def_tier") or "",
+        "player": row_d.get("player") or row_d.get("player_name") or "",
+        "mlb_player_id": row_d.get("mlb_player_id") or "",
+        "batting_avg": row_d.get("batting_avg") if row_d.get("batting_avg") not in (None, "") else row_d.get("ba"),
+        "k_rate": row_d.get("k_rate") if row_d.get("k_rate") not in (None, "") else row_d.get("k_pct"),
+        "ab": row_d.get("ab") or row_d.get("at_bats"),
+    }
+
+
+def _leg_earned_runs_banned(row_d: dict) -> bool:
+    """ERA stays off unless Goblin 0.5 clears L5=5 (era_half_gate)."""
+    rec = _ticket70_row(row_d)
+    if not _t70_is_earned_runs(rec):
+        return False
+    return not _t70_era_half_gate(rec)
+
+
+def _leg_hitter_counting_filter_banned(row_d: dict) -> bool:
+    """Hits/TB Goblin need BA>=.275 + L5=5 + leaky opp pitch. Standard stays off."""
+    rec = _ticket70_row(row_d)
+    if not _t70_is_hitter_counting(rec):
+        return False
+    if str(rec.get("pick_type") or "") != "Goblin" or rec.get("side") != "OVER":
+        return True
+    return not _t70_hitter_counting_gate(rec)
+
+
 def _leg_mlb_construction_banned(row_d: dict | pd.Series) -> bool:
     """
     Shared hygiene for MAIN / FINAL / long-parlay builders:
-    Fantasy Score exclusion + Standard prop×direction ledger gates +
-    MLB Standard OVER at perfect L5.
-
-    MLB hitter / Tennis Ace·DF Goblin sport bans are intentionally not applied.
+    Fantasy Score exclusion + ERA/TB/Hits ticket_70 gates + Standard
+    prop×direction ledger gates + MLB Standard OVER at perfect L5.
     """
     if isinstance(row_d, pd.Series):
         row_d = row_d.to_dict()
@@ -6272,9 +6520,26 @@ def _leg_mlb_construction_banned(row_d: dict | pd.Series) -> bool:
         row_d = dict(row_d)
     return (
         _main_leg_prop_banned(row_d)
+        or _leg_earned_runs_banned(row_d)
+        or _leg_hitter_counting_filter_banned(row_d)
         or _leg_standard_prop_direction_gated(row_d)
         or _leg_mlb_std_over_perfect_l5_avoid(row_d)
+        or _leg_mlb_keep_banned(row_d)
     )
+
+
+
+def _leg_mlb_keep_banned(row_d: dict) -> bool:
+    """MLB mixer legs must clear keep props 1-10. Standard stays off."""
+    rec = _ticket70_row(row_d)
+    if str(rec.get("sport") or "").strip().upper() != "MLB":
+        return False
+    pt = str(rec.get("pick_type") or "")
+    if pt == "Standard":
+        return True
+    if pt == "Goblin" and rec.get("side") == "OVER":
+        return not _mlb_keep_eligible(rec)
+    return False
 
 
 def _ticket_rows_mlb_construction_banned(rows: list) -> bool:
@@ -11587,7 +11852,7 @@ def publish_wnba_slate_merge_into_web(
 def write_slate_json(nba, cbb, nhl, soccer, date_str, outdir,
                      wcbb=None, mlb=None, nba1q=None, nba1h=None, tennis=None, golf=None, nfl=None, wnba=None, cfb=None,
                      tennis_date=None, soccer_date=None, wnba_date=None, mlb_date=None,
-                     wnba1h=None, wnba1q=None):
+                     wnba1h=None, wnba1q=None, cfb1h=None):
     """Write full per-sport ranked slate to slate_latest.json for the web UI.
 
     Sport keys in ``sports`` are lowercase (nba, nfl, …) so /api/slate-sport and the
@@ -11600,6 +11865,7 @@ def write_slate_json(nba, cbb, nhl, soccer, date_str, outdir,
             "nba":    dataframe_to_slate_sport_rows(nba),
             "cbb":    dataframe_to_slate_sport_rows(cbb),
             "cfb":    dataframe_to_slate_sport_rows(cfb),
+            "cfb1h":  dataframe_to_slate_sport_rows(cfb1h),
             "nhl":    dataframe_to_slate_sport_rows(nhl),
             "soccer": dataframe_to_slate_sport_rows(soccer),
             "tennis": dataframe_to_slate_sport_rows(tennis),
@@ -13255,6 +13521,24 @@ def load_cfb(path: str) -> pd.DataFrame:
         df["team_seed"] = df["team_playoff_seed"]
 
     return df
+
+
+def load_cfb1h(path: str) -> pd.DataFrame:
+    """College Football 1H step8. Same D table as CFB; sport stays CFB1H."""
+    raw = str(path or "").strip()
+    if not raw:
+        return pd.DataFrame()
+    resolved = resolve_input_path(raw, fallback_filename="step8_cfb1h_direction_clean.xlsx")
+    key = str(resolved or raw).lower().replace("\\", "/")
+    if "cfb1h" not in key:
+        print(f"  [CFB1H] skip — path is not a 1H workbook: {resolved or raw}")
+        return pd.DataFrame()
+    df = load_cfb(resolved)
+    if df is None or len(df) == 0:
+        return df
+    out = df.copy()
+    out["sport"] = "CFB1H"
+    return out
 
 
 def _fill_nhl_l5_season_avgs(df: pd.DataFrame) -> pd.DataFrame:
@@ -15338,6 +15622,7 @@ def build_combined_slate(
     nba1h: pd.DataFrame = None,
     nfl: pd.DataFrame = None,
     cfb: pd.DataFrame = None,
+    cfb1h: pd.DataFrame = None,
     wnba1h: pd.DataFrame = None,
     wnba1q: pd.DataFrame = None,
 ) -> pd.DataFrame:
@@ -15495,6 +15780,8 @@ def build_combined_slate(
         frames.append(_prep_for_combined(nfl))
     if cfb is not None and len(cfb) > 0:
         frames.append(_prep_for_combined(cfb))
+    if cfb1h is not None and len(cfb1h) > 0:
+        frames.append(_prep_for_combined(cfb1h))
     combined = pd.concat(frames, ignore_index=True)
 
     if "rank_score" in combined.columns:
@@ -16065,7 +16352,7 @@ CORE_BUILD_FIRST_DEFAULT: bool = os.getenv(
 # Prop focus for CORE boards (Jul-20 win autopsy + existing MAIN/STRONG gates).
 # Norms use the same keying as _norm_main_prop_key.
 CORE_PROP_FOCUS_NORMS: dict[str, frozenset[str]] = {
-    # MLB Goblin OVER — pitcher only (Hits Allowed led wins; avoid hitter Hits/TB).
+    # MLB Goblin OVER — pitcher core plus Hits/TB/ERA 0.5 when ticket_70 gates pass.
     "MLB": frozenset(MAIN_MLB_GOBLIN_OVER_ALLOW_NORMS),
     # WNBA Goblin — assists / 3PT led wins; rebounds OK on Goblin (Std rebounds OVER banned).
     "WNBA": frozenset(
@@ -17189,18 +17476,25 @@ STRONG_BUILDER_CORE_PROPS_NORM: frozenset[str] = frozenset(
 STRONG_BUILDER_MLB_PROPS_NORM: frozenset[str] = frozenset(
     x.replace("+", "").replace(" ", "")
     for x in (
-        # hits / total bases removed 2026-07-18 — dominate miss volume on OVER Goblin
         "strikeouts",  # pitcher Ks preferred; hitter Ks still need leg_prob floor
         "pitches thrown",
         "pitchesthrown",
         "pitching outs",
         "pitchingouts",
-        "earned runs allowed",
-        "earnedrunsallowed",
         "hits allowed",
         "hitsallowed",
         "walks allowed",
         "walksallowed",
+        "hits",
+        "total bases",
+        "totalbases",
+        "earned runs allowed",
+        "earnedrunsallowed",
+        "earnedruns",
+        "hits+runs+rbis",
+        "hitsrunsrbis",
+        "hitter strikeouts",
+        "hitterstrikeouts",
     )
 )
 # Min leg_prob for STRONG candidates (MLB Goblin OVER uses the higher floor).
@@ -17396,6 +17690,9 @@ def _strong_sport_leg_allowed(row: dict | pd.Series) -> bool:
         return bool(tennis_allowed_leg(row_d))
     if sp == "NHL":
         return bool(nhl_allowed_leg(row_d))
+    if sp == "MLB":
+        rec = _ticket70_row(row_d)
+        return bool(_t70_goblin_70_eligible(rec))
     return True
 
 
@@ -20285,6 +20582,11 @@ def main():
             f"then {DEFAULT_CFB_PATH} (step6 fallback)"
         ),
     )
+    ap.add_argument(
+        "--cfb1h",
+        default="",
+        help="CFB 1st Half step8 (separate board; first-half PBP L5). Optional.",
+    )
     ap.add_argument("--output", default="")
     ap.add_argument(
         "--date",
@@ -21140,6 +21442,27 @@ def main():
     else:
         print("  [CFB] skipped (empty --cfb / no default file)")
 
+    cfb1h = None
+    cfb1h_path = str(getattr(args, "cfb1h", "") or "").strip()
+    if cfb1h_path:
+        try:
+            cfb1h = load_cfb1h(cfb1h_path)
+            if cfb1h is not None and len(cfb1h) > 0:
+                cfb1h = enforce_target_date(
+                    cfb1h, "CFB1H", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+                )
+                cfb1h = attach_standard_refs(cfb1h)
+                print(f"  {len(cfb1h)} CFB1H props loaded")
+                _load_audit_row("CFB1H", cfb1h_path, cfb1h)
+            else:
+                cfb1h = None
+                print("  [CFB1H] skipped (empty workbook)")
+        except Exception as e:
+            print(f"  WARNING: Could not load CFB1H file: {e}")
+            cfb1h = None
+    else:
+        print("  [CFB1H] skipped (empty --cfb1h / no default file)")
+
     # ✅ Attach Standard sibling refs AFTER normalized columns exist
     nba = attach_standard_refs(nba)
     cbb = attach_standard_refs(cbb)
@@ -21291,6 +21614,7 @@ def main():
         extra_dates=extra_match_dates_for_sport("NFL", args),
     )
     cfb = drop_stale_rows(cfb, args.date, "CFB", allow_cross_date_fallback=_date_fb)
+    cfb1h = drop_stale_rows(cfb1h, args.date, "CFB1H", allow_cross_date_fallback=_date_fb)
 
     # Apply teammate-absence usage redistribution before ticket eligibility filtering.
     nba = apply_usage_redistribution(nba, "NBA", args.date, REPO_ROOT)
@@ -21323,6 +21647,7 @@ def main():
     nba1h = drop_demon_over_rows(nba1h, "NBA1H")
     nfl = drop_demon_over_rows(nfl, "NFL")
     cfb = drop_demon_over_rows(cfb, "CFB")
+    cfb1h = drop_demon_over_rows(cfb1h, "CFB1H")
 
     if bool(getattr(args, "write_slate_web_only", False)):
         write_slate_json(
@@ -21343,6 +21668,7 @@ def main():
             wnba1h=wnba1h,
             wnba1q=wnba1q,
             cfb=cfb,
+            cfb1h=cfb1h,
             tennis_date=getattr(args, "tennis_date", None),
             soccer_date=getattr(args, "soccer_date", None),
             wnba_date=getattr(args, "wnba_date", None),
@@ -21357,7 +21683,7 @@ def main():
                                     golf=golf,
                                     wnba=wnba,
                                     wcbb=wcbb, mlb=mlb, nba1q=nba1q, nba1h=nba1h,
-                                    nfl=nfl, cfb=cfb, wnba1h=wnba1h, wnba1q=wnba1q)
+                                    nfl=nfl, cfb=cfb, cfb1h=cfb1h, wnba1h=wnba1h, wnba1q=wnba1q)
     reliability_index = _load_prop_reliability_index()
     if reliability_index:
         print(f"  [reliability] loaded {len(reliability_index)} prop-direction buckets from {PROP_RELIABILITY_LATEST_PATH}")
@@ -21603,7 +21929,7 @@ def main():
         if sport == "TENNIS":
             print(
                 f"  [main-pool] tennis allowed: {n_tennis_allowed} legs "
-                f"(totals Goblin OVER / Std O|U + L5 floors; Ace/DF banned)"
+                f"(Goblin totals keep + Std UNDER Aces/DF; Goblin/Std OVER Ace/DF banned)"
             )
         if sport in ("SOCCER", "SOC") and soccer_over_ex_n:
             print(f"  [main-pool] soccer excluded props: {soccer_over_ex_n}")
@@ -23004,6 +23330,10 @@ def main():
         write_slate_sheet(wb, nba1h, "NBA1H Slate", C["hdr_nba1h"], "NBA1H")
     if nfl is not None and len(nfl) > 0:
         write_slate_sheet(wb, nfl, "NFL Slate", C["hdr_nfl"], "NFL")
+    if cfb is not None and len(cfb) > 0:
+        write_slate_sheet(wb, cfb, "CFB Slate", C.get("hdr_nfl", C["hdr"]), "CFB")
+    if cfb1h is not None and len(cfb1h) > 0:
+        write_slate_sheet(wb, cfb1h, "CFB1H Slate", C.get("hdr_nba1h", C["hdr"]), "CFB1H")
 
     _prio_hit = False
     _ticket_sort = str(args.ticket_candidate_sort)
@@ -23493,7 +23823,7 @@ def main():
         )
         write_slate_json(nba, cbb, nhl, soccer, args.date, args.web_outdir,
                          wcbb=wcbb, mlb=mlb, nba1q=nba1q, nba1h=nba1h, tennis=tennis, golf=golf,
-                         nfl=nfl, wnba=wnba, wnba1h=wnba1h, wnba1q=wnba1q, cfb=cfb,
+                         nfl=nfl, wnba=wnba, wnba1h=wnba1h, wnba1q=wnba1q, cfb=cfb, cfb1h=cfb1h,
                          tennis_date=getattr(args, "tennis_date", None),
                          soccer_date=getattr(args, "soccer_date", None),
                          wnba_date=getattr(args, "wnba_date", None),
@@ -23602,7 +23932,9 @@ from utils.tickets_render import (  # noqa: E402
     _TICKETS_BUILT_PAYOUT_CSS,
     _cap_ticket_groups_for_ui,
     _group_is_goblin70,
+    _group_sport,
     _h,
+    _sport_accent,
     _ticket_fingerprint,
     render_tickets_body_html,
 )

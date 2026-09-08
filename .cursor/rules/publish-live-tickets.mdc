@@ -11,12 +11,16 @@ The Android app is **remote Railway** (`capacitor.config.js` `server.url`). Do n
 
 **Always both sets.** `/tickets` is Goblin-70 groups first, then the graded-main mixer under them. Never publish Goblin-70-only or mixer-only after combined.
 
-Order on every slate (1AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30):
+**Payout rates:** scrape PrizePicks N-correct via CDP **after** the dual card exists (post Goblin-70 `--write-web`). First Force scrape of slate **D** runs on **D-1 at 9PM** (`run_daily_day_ahead.ps1`), not calendar-morning of D. Later windows (1AM / 5AM / 8AM+) re-scrape missing `live_cdp` and tickets whose lines/types moved. Default capture `-Date` follows `tickets_latest.json` (tomorrow after day-ahead). Do not leave fallback floors on `/tickets` when CDP is up.
+
+Order on every **live** slate (9PM day-ahead / 1AM / 5AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30):
 
 1. Combined writes the mixer
-2. CDP / payout engine may patch mixer floors
-3. `scripts/build_goblin70_tickets.py --write-web` rebuilds Goblin-70, patches mixer **lines** from this fetch, then merges the **full** graded-main grade pool underneath. Do not drop mixer groups because a game already started or a prop left the live board.
+2. `scripts/build_goblin70_tickets.py --write-web` rebuilds Goblin-70, patches mixer **lines** from this fetch, then merges the **full** graded-main grade pool underneath. Do not drop mixer groups because a game already started or a prop left the live board.
+3. CDP / payout engine patches mixer + Goblin-70 floors (`run_live_payout_capture.ps1` Auto/Force)
 4. `Publish-LiveSite.ps1`
+
+**9PM day-ahead** (`run_daily_day_ahead.ps1`) is the initial scrape **and live publish** for Eastern tomorrow. Most of today’s props have started or finished by 9PM ET, so `/tickets` flips to tomorrow’s dual card. 1AM / 5AM / 8AM+ are updates of that same slate. Grader 3AM still grades yesterday.
 
 A 9:00 or 10:30 refetch must update live tickets when the board changed. Do not leave 1AM lines on `/tickets` after those jobs.
 
