@@ -3,9 +3,11 @@
 #  Live PrizePicks payout capture (post-ticket step)
 #
 #  Two-tier model:
-#    1AM / 5AM daily (run_daily STEP D-payout): Force re-scrape dual card + timestamps.
-#    8AM / 9 / 9:45 / 10:30 / 1PM / 4:30 (run_nba_late_fetch): Force after line-move rebuild.
+#    First successful ticket scrape of the day: full Force scrape + timestamps.
+#    Later 5AM / 8AM / 9 / 9:45 / 10:30 / 1PM / 4:30: re-scrape only slips that
+#    are missing live_cdp OR whose legs had a line/type change this fetch.
 #    -UpdateOnly is incremental catchup only (manual / CDP-down audit).
+#    -Force always re-scrapes the whole dual card.
 #
 #  Steps:
 #    1) CDP scrape of generated MAIN/STRONG slips → power_min_x
@@ -47,7 +49,11 @@ param(
     [switch]$RebuildRateCard,
     [switch]$Gentle,
     # Wall-clock budget for the CDP scrape (minutes). 0 = auto (25 MAIN / 15 UPDATE).
-    [int]$MaxRuntimeMinutes = 0
+    [int]$MaxRuntimeMinutes = 0,
+    [string]$Window = "",
+    [string]$FetchSince = "",
+    [ValidateSet("Auto", "Force", "Changed")]
+    [string]$RescrapeMode = "Auto"
 )
 
 $ErrorActionPreference = "Continue"
@@ -61,16 +67,34 @@ if (-not $Date) {
     $Date = (Get-Date).ToString("yyyy-MM-dd")
 }
 $Date = $Date.Substring(0, [Math]::Min(10, $Date.Length))
+if (-not "$Window".Trim()) { $Window = "$($env:PROPORACLE_BET_WINDOW)".Trim() }
+if ("$Window".Trim()) {
+    $Window = $Window.Trim()
+    $env:PROPORACLE_BET_WINDOW = $Window
+}
+if ($Force) { $RescrapeMode = "Force" }
 
 $payoutScript = Join-Path $Root "scripts\collect_payout_data.py"
 $payoutOut = Join-Path $Root "data\reports\payout_capture_$Date.json"
 $mixGridOut = Join-Path $Root "data\reports\payout_mix_grid_$Date.json"
 $rateCardOut = Join-Path $Root "data\reports\payout_rate_card.json"
 $ticketsLatest = Join-Path $Root "ui_runner\templates\tickets_latest.json"
-$mobileTickets = Join-Path $Root "mobile\www\tickets_latest.json"
+$runtimeTickets = Join-Path $Root "ui_runner\runtime\tickets_latest.json"
 $verifyScript = Join-Path $Root "scripts\verify_ticket_payout_rates.py"
 $lockDir = Join-Path $Root "data\cache"
 $lockFile = Join-Path $lockDir "payout_capture.lock"
+$initialFlag = Join-Path $lockDir "payout_initial_ok_$Date.flag"
+if (-not (Test-Path -LiteralPath $initialFlag) -and (Test-Path -LiteralPath $payoutOut)) {
+    try {
+        $priorCap = Get-Content -LiteralPath $payoutOut -Raw | ConvertFrom-Json
+        $priorOk = 0
+        if ($null -ne $priorCap.summary) { $priorOk = [int]($priorCap.summary.n_ok) }
+        if ($priorOk -gt 0) {
+            Set-Content -LiteralPath $initialFlag -Value ("seeded from capture n_ok={0}" -f $priorOk) -Encoding utf8
+            Write-Host "  [PAYOUT] initial scrape already on disk (n_ok=$priorOk) — later runs are changed-only" -ForegroundColor DarkGray
+        }
+    } catch { }
+}
 $lockTtlHours = 2
 $script:PayoutLockHeld = $false
 
@@ -191,11 +215,14 @@ $env:PROPORACLE_PAYOUT_LOCK_HELD = "1"
 Write-Host "  [PAYOUT] Lock acquired" -ForegroundColor DarkGray
 
 if (-not $TicketsPath) {
+    $latestRuntime = Join-Path $Root "ui_runner\runtime\tickets_latest.json"
     $latest = Join-Path $Root "ui_runner\templates\tickets_latest.json"
     $latestData = Join-Path $Root "ui_runner\data\tickets_latest.json"
     $combined = Join-Path $Root "ui_runner\data\combined_slate_tickets_$Date.json"
     $combinedOut = Join-Path $Root "outputs\$Date\combined_slate_tickets_$Date.json"
-    if (Test-Path -LiteralPath $latest) {
+    if (Test-Path -LiteralPath $latestRuntime) {
+        $TicketsPath = $latestRuntime
+    } elseif (Test-Path -LiteralPath $latest) {
         $TicketsPath = $latest
     } elseif (Test-Path -LiteralPath $latestData) {
         $TicketsPath = $latestData
@@ -323,8 +350,8 @@ function Invoke-PayoutVerify {
 }
 
 Write-Host ""
-$payoutMode = if ($Force) { "MAIN (full re-scrape)" } elseif ($UpdateOnly) { "UPDATE (only-missing)" } else { "UPDATE (only-missing default)" }
-Write-Host "[LIVE PAYOUT] $payoutMode — PrizePicks scrape ($Date)" -ForegroundColor Magenta
+$payoutMode = if ($Force -or $RescrapeMode -eq "Force") { "MAIN (full re-scrape)" } elseif ($UpdateOnly) { "UPDATE (only-missing)" } elseif ($RescrapeMode -eq "Changed") { "CHANGED (moved lines/types + missing live)" } else { "AUTO (initial Force, then changed-only)" }
+Write-Host "[LIVE PAYOUT] $payoutMode — PrizePicks scrape ($Date) window=$Window" -ForegroundColor Magenta
 if (-not (Test-Path -LiteralPath $payoutScript)) {
     Write-Host "  [PAYOUT] ERROR: collect_payout_data.py missing" -ForegroundColor Red
     Clear-PayoutCaptureLock
@@ -387,9 +414,53 @@ try {
 
     $skippedFullCapture = $false
     $onlyMissingLive = $true
-    # Skip CDP when ticket set fingerprint is unchanged AND every slip already has live_cdp.
-    # Otherwise scrape only slips missing live floors (unless -Force → full re-scrape).
-    if (-not $Force) {
+    $ticketIdsFile = ""
+    $doInitialForce = $false
+    if ($UpdateOnly) {
+        $onlyMissingLive = $true
+    }
+    elseif ($Force -or $RescrapeMode -eq "Force") {
+        $onlyMissingLive = $false
+        $doInitialForce = $true
+        Write-Host "  [PAYOUT] -Force: full re-scrape (including slips that already have live_cdp)" -ForegroundColor Cyan
+    }
+    elseif ($RescrapeMode -eq "Changed" -or ($RescrapeMode -eq "Auto" -and (Test-Path -LiteralPath $initialFlag))) {
+        $planScript = Join-Path $Root "scripts\plan_payout_rescrape.py"
+        $onlyMissingLive = $false
+        if (Test-Path -LiteralPath $planScript) {
+            try {
+                $planArgs = @("-3.14", "-X", "utf8", $planScript, "--tickets", $TicketsPath, "--date", $Date)
+                if ("$FetchSince".Trim()) { $planArgs += @("--since", $FetchSince.Trim()) }
+                $planRaw = & py @planArgs
+                $plan = ($planRaw | Out-String) | ConvertFrom-Json
+                Write-Host ("  [PAYOUT] changed-props={0} missing_live={1} scrape={2} reason={3}" -f `
+                    $plan.n_changed_props, $plan.n_missing_live, $plan.n_scrape, $plan.reason) -ForegroundColor DarkGray
+                if ($plan.skip_scrape -eq $true) {
+                    Write-Host "  [PAYOUT] no line/type moves and all slips have live_cdp — skip CDP" -ForegroundColor DarkGray
+                    $skippedFullCapture = $true
+                }
+                elseif ($plan.ticket_ids) {
+                    $ticketIdsFile = Join-Path $env:TEMP ("proporacle_scrape_ids_{0}_{1}.json" -f $Date, $PID)
+                    $idList = @($plan.ticket_ids)
+                    @{ ticket_ids = $idList } | ConvertTo-Json -Compress | Set-Content -LiteralPath $ticketIdsFile -Encoding utf8
+                    Write-Host ("  [PAYOUT] incremental scrape {0} ticket(s) -> {1}" -f $idList.Count, $ticketIdsFile) -ForegroundColor Cyan
+                }
+            } catch {
+                Write-Host "  [PAYOUT] WARN: changed-prop plan failed ($($_.Exception.Message)); falling back to missing-live" -ForegroundColor Yellow
+                $onlyMissingLive = $true
+            }
+        } else {
+            Write-Host "  [PAYOUT] WARN: plan_payout_rescrape.py missing — missing-live only" -ForegroundColor Yellow
+            $onlyMissingLive = $true
+        }
+    }
+    else {
+        # Auto and no initial flag: this is the day's first ticket scrape.
+        $onlyMissingLive = $false
+        $doInitialForce = $true
+        Write-Host "  [PAYOUT] first scrape of $Date — full board (then later runs are changed-only)" -ForegroundColor Cyan
+    }
+    if (-not $Force -and -not $doInitialForce -and -not $ticketIdsFile -and -not $skippedFullCapture -and $onlyMissingLive) {
         try {
             $checkRaw = & py -3.14 -X utf8 $payoutScript `
                 --tickets $TicketsPath `
@@ -410,9 +481,6 @@ try {
         } catch {
             Write-Host "  [PAYOUT] WARN: fingerprint check failed ($($_.Exception.Message)); will scrape missing" -ForegroundColor Yellow
         }
-    } else {
-        $onlyMissingLive = $false
-        Write-Host "  [PAYOUT] -Force: full re-scrape (including slips that already have live_cdp)" -ForegroundColor Cyan
     }
 
     $capExit = 0
@@ -433,6 +501,10 @@ try {
         if ($AllowLineFallback) { $ticketArgs += "--allow-line-fallback" }
         if ($Gentle) { $ticketArgs += "--gentle" }
         if ($onlyMissingLive) { $ticketArgs += "--only-missing-live" }
+        if ("$Window".Trim()) { $ticketArgs += @("--window", $Window.Trim()) }
+        if ($ticketIdsFile -and (Test-Path -LiteralPath $ticketIdsFile)) {
+            $ticketArgs += @("--ticket-ids-file", $ticketIdsFile)
+        }
         # Soft backstop above Python's own max-runtime so a hung CDP call cannot idle forever.
         $capExit = Invoke-PyWithTimeout -ArgumentList $ticketArgs -TimeoutSec ($runtimeSec + 90) -Label "ticket-capture"
 
@@ -452,11 +524,28 @@ try {
         }
 
         if ($capExit -eq 0 -and $nOk -gt 0) {
-            if ((Test-Path -LiteralPath $ticketsLatest) -and (Test-Path (Split-Path $mobileTickets -Parent))) {
-                Copy-Item $ticketsLatest $mobileTickets -Force -ErrorAction SilentlyContinue
-                Write-Host "  [PAYOUT] mirrored -> mobile/www/tickets_latest.json" -ForegroundColor Green
+            $mirrorSrc = $null
+            if (Test-Path -LiteralPath $ticketsLatest) { $mirrorSrc = $ticketsLatest }
+            elseif (Test-Path -LiteralPath $runtimeTickets) { $mirrorSrc = $runtimeTickets }
+            if ($mirrorSrc) {
+                $rtDir = Split-Path $runtimeTickets -Parent
+                if (-not (Test-Path -LiteralPath $rtDir)) {
+                    New-Item -ItemType Directory -Path $rtDir -Force | Out-Null
+                }
+                if ($mirrorSrc -ne $runtimeTickets) {
+                    Copy-Item $mirrorSrc $runtimeTickets -Force -ErrorAction SilentlyContinue
+                    Write-Host "  [PAYOUT] mirrored -> ui_runner/runtime/tickets_latest.json" -ForegroundColor Green
+                }
             }
             Write-Host "  [PAYOUT] Live floors applied (payout_source=live_cdp on patched slips)" -ForegroundColor Green
+            if ($nOk -gt 0) {
+                try {
+                    if (-not (Test-Path -LiteralPath $lockDir)) {
+                        New-Item -ItemType Directory -Path $lockDir -Force | Out-Null
+                    }
+                    Set-Content -LiteralPath $initialFlag -Value ("{0} window={1} ok={2}" -f (Get-Date -Format "yyyy-MM-ddTHH:mm:ss"), $Window, $nOk) -Encoding utf8
+                } catch { }
+            }
             $rateCardsScript = Join-Path $Root "scripts\build_payout_rate_cards.py"
             if (Test-Path -LiteralPath $rateCardsScript) {
                 & py -3.14 -X utf8 $rateCardsScript | Out-Host
@@ -468,7 +557,7 @@ try {
             Write-Host "  [PAYOUT] WARN: capture exit $capExit (non-blocking)" -ForegroundColor Yellow
         }
 
-        if ($capExit -eq 0 -and (Test-Path -LiteralPath $payoutOut)) {
+        if ($capExit -eq 0 -and $nOk -gt 0 -and (Test-Path -LiteralPath $payoutOut)) {
             try {
                 Write-Host "  [PAYOUT] Pruning unplayable slips from live tickets_latest..." -ForegroundColor Cyan
                 py -3.14 -X utf8 (Join-Path $Root "scripts\ticket_run_archive.py") `
@@ -476,6 +565,8 @@ try {
             } catch {
                 Write-Host "  [PAYOUT] WARN: live prune failed: $($_.Exception.Message)" -ForegroundColor Yellow
             }
+        } elseif ($capExit -eq 0 -and $nOk -le 0) {
+            Write-Host "  [PAYOUT] skip live prune (n_ok=0) — keep dual card" -ForegroundColor DarkGray
         }
     }
 
@@ -485,9 +576,12 @@ try {
         if ($UpdateOnly) {
             $doFill = $FillMissingTickets.IsPresent
             $doRebuild = $RebuildRateCard.IsPresent -or ($nOk -gt 0)
-        } else {
-            $doFill = $FillMissingTickets -or $Force -or $cdpUp
+        } elseif ($doInitialForce -or $Force) {
+            $doFill = $FillMissingTickets -or $Force -or $doInitialForce
             $doRebuild = $RebuildRateCard -or $doFill
+        } else {
+            $doFill = $FillMissingTickets.IsPresent
+            $doRebuild = $RebuildRateCard.IsPresent -or ($nOk -gt 0)
         }
         Invoke-PayoutVerify -VerifyRoot $Root -VerifyDate $Date -VerifyTickets $TicketsPath `
             -VerifyCdp $CdpUrl -DoFill:$doFill -DoRebuild:$doRebuild -DoGentle:$Gentle.IsPresent

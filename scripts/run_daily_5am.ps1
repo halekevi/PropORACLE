@@ -4,10 +4,10 @@
   Unscheduled or scheduled full daily: git pull main, run_daily.ps1 (today's pipeline + publish), prop snapshot.
 
 .NOTES
-  Scheduled 5:00 AM fetch + line snapshot + live payout CDP. Grader/A1 stay at 3AM
-  when overnight stamps exist. 1AM already fetched overnight; this recaptures the
-  pre-lock board (lines + payout_patch / rate cards) before 8AM.
-  Refresh cadence after this: 8 / 9:45 / 10:30 / 1 / 4:30.
+  Scheduled 5:00 AM juice-window update + line snapshot + live payout CDP. Grader/A1 stay at 3AM
+  when overnight stamps exist. 9PM started and published the slate; 1AM republishes the update; this recaptures
+  Goblin juice before 8AM steam.
+  Refresh cadence after this: 8 / 9 / 9:45 / 10:30 / 1 / 4:30.
 #>
 param()
 
@@ -164,6 +164,36 @@ if ($healthExit -ne 0) {
     Write-Host "[5AM DAILY] HEALTH CHECK FAILED (exit $healthExit) — Task Scheduler will show non-zero LastTaskResult" -ForegroundColor Red
     try { Stop-Transcript | Out-Null } catch { }
     exit $healthExit
+}
+
+# Dual card + payout write-back, then republish so Railway gets live N-correct floors.
+$goblin70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
+if (Test-Path -LiteralPath $goblin70) {
+    Write-Host "[5AM DAILY] Goblin-70 + mixer dual card for $Today..." -ForegroundColor Cyan
+    & py -3.14 $goblin70 --date $Today --write-web
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[5AM DAILY] WARN: Goblin-70 dual card exit $LASTEXITCODE" -ForegroundColor Yellow
+    }
+}
+$livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
+$dualTickets = Join-Path $Root "ui_runner\templates\tickets_latest.json"
+if (Test-Path -LiteralPath $livePayScript) {
+    Write-Host "[5AM DAILY] Payout CDP update (missing live + changed props)..." -ForegroundColor Cyan
+    try {
+        & pwsh -NoProfile -File $livePayScript -Date $Today -Root $Root -TicketsPath $dualTickets `
+            -RescrapeMode Auto -Window "5AM" -RebuildRateCard -FillMissingTickets
+        Write-Host "[5AM DAILY] Payout scrape exit $LASTEXITCODE" -ForegroundColor DarkGray
+    } catch {
+        Write-Host "[5AM DAILY] WARN: payout scrape failed (non-blocking): $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+}
+$publish = Join-Path $Root "scripts\Publish-LiveSite.ps1"
+if (Test-Path -LiteralPath $publish) {
+    Write-Host "[5AM DAILY] Publishing live site JSON to origin/main..." -ForegroundColor Cyan
+    & pwsh -NoProfile -File $publish -RepoRoot $Root -CommitMessage "chore: live tickets/slate $Today 5AM"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[5AM DAILY] LIVE SITE PUBLISH FAILED (exit $LASTEXITCODE)" -ForegroundColor Red
+    }
 }
 
 $AssertFresh = Join-Path $Root "scripts\Assert-ActiveSportsFresh.ps1"

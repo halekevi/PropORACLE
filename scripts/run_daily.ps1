@@ -6,19 +6,20 @@
 .NOTES
   Order: (A1) Refresh historical game logs → (A) Grader for yesterday → (A1b) build_ticket_eval for yesterday → (A1b-sync) grade_history → templates → (A1c) optional CLV Excel columns → (A2) consistency
          → (B) Archive outputs\<yesterday>\ step8 copies → (C0) fetch game lines → (C0b) rolling NBA 1Q/2Q DB sync
-         → (C) run_pipeline for today → (D) combined_slate (-SkipLivePayoutCapture)
+         → (D) combined_slate (-SkipLivePayoutCapture) → (D-G70) Goblin-70 dual card
          → (D-ME) matchup edge → (D-MOBILE) → (E) git commit/push → (E1) optional payout hand CSV
-         → (D-payout) live CDP FillMissing (AFTER publish so tickets go live first)
+         → (D-payout) live CDP on dual card (AFTER publish so tickets go live first; updates write-back)
          → (F) optional night poll of historical actuals.
          Board floors require exact per-ticket live_cdp (peer SG-Δ rate cards off by default).
-         STEP D-payout: after STEP E; 1AM, 5AM, and 8AM+ Force-scrape live CDP with timestamps.
-         Every cadence window (1AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30) writes scrape logs.
-         A1 + grader run at Grader 3AM (run_grader_evening.ps1); Daily 1AM is fetch + payout CDP.
+         STEP D-payout: after STEP E; first scrape of the day is full Force; later windows re-scrape
+         missing live_cdp + tickets whose lines/types moved. 9PM day-ahead scrapes after its G70 rebuild.
+         Every cadence window (9PM / 1AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30) writes scrape logs.
+         A1 + grader run at Grader 3AM (run_grader_evening.ps1); 9PM is initial fetch + live publish for tomorrow; Daily 1AM is update + payout CDP.
          Disk preflight logs to run_daily_<date>.log first and only aborts if C: AND the repo drive are both critical.
          11:00 / 15:00 Payout CDP tasks are catchup only.
-         Tennis: -TennisDate defaults to same day as -Date (1AM full daily + 8AM+ refreshes); override when needed.
+         Tennis: -TennisDate defaults to same day as -Date (9PM day-ahead + 1AM/8AM+ refreshes); override when needed.
          Set env PROPORACLE_PAYOUT_EXPORT_URL (e.g. https://<app>.up.railway.app/api/payout/export-log-hand) to merge Railway volume logs into data\payout_samples\payout_log_hand.csv after STEP E.
-         Combined slate (STEP D via run_pipeline.ps1) fetches Underdog + DraftKings by default; set PROPORACLE_SKIP_ALT_BOOKS=1 or pass -SkipAltBooks to run_pipeline to disable.
+         Combined slate (STEP D via run_pipeline.ps1) fetches Underdog + DraftKings by default and always fetches Vegas player props (PP vs sharp). Set PROPORACLE_SKIP_ALT_BOOKS=1 or -SkipAltBooks to skip UD/DK. Set PROPORACLE_SKIP_VEGAS=1 or -SkipVegas to skip Odds API.
          Use -SkipFetch to skip A1 and C0b. -SkipGameLines skips C0. -SkipPeriodHistorySync skips C0b only.
          Use -PollHistoricalActuals to re-run fetch_historical_actuals.py every 90 min (4 passes) after 21:00 ET (see -PollSkip9pmWait).
          -WeeklyAnalysis runs synthetic + full consistency rebuild after analyze_grader.
@@ -355,6 +356,7 @@ function Get-MissingTodaySlateOutputs {
         "step8_soccer_direction_clean_$RunDate.xlsx"  = @{ key = "soccer"; step1 = (Join-Path $outDir "soccer\step1_soccer_props.csv") }
         "step8_mlb_direction_clean_$RunDate.xlsx"     = @{ key = "mlb";    step1 = (Join-Path $outDir "mlb\step1_mlb_props.csv") }
         "step8_tennis_direction_clean_$tennisDated.xlsx" = @{ key = "tennis"; step1 = (Join-Path $outDir "tennis\step1_tennis_props.csv") }
+        "step8_golf_direction_clean_$RunDate.xlsx" = @{ key = "golf"; step1 = (Join-Path $outDir "golf\step1_golf_props.csv") }
         "step8_wnba_direction_clean_$RunDate.xlsx"    = @{ key = "wnba";   step1 = (Join-Path $outDir "wnba\step1_wnba_props.csv") }
         "step6_ranked_cbb_$RunDate.xlsx"              = @{ key = "cbb";    step1 = (Join-Path $outDir "cbb\step1_cbb.csv") }
         "step6_ranked_wcbb_$RunDate.xlsx"             = @{ key = "wcbb";   step1 = (Join-Path $outDir "wcbb\step1_wcbb.csv") }
@@ -362,7 +364,8 @@ function Get-MissingTodaySlateOutputs {
     $required = @(
         "step8_soccer_direction_clean_$RunDate.xlsx",
         "step8_mlb_direction_clean_$RunDate.xlsx",
-        "step8_tennis_direction_clean_$tennisDated.xlsx"
+        "step8_tennis_direction_clean_$tennisDated.xlsx",
+        "step8_golf_direction_clean_$RunDate.xlsx"
     )
     # NBA / NHL / period boards: keep exemption wiring, but do not require during off-season.
     if ($RunDate -ge $NBA_SEASON_RESUME) {
@@ -422,6 +425,11 @@ function Get-MissingTodaySlateOutputs {
             (Join-Path $outDir "tennis\step8_tennis_direction_clean.xlsx"),
             (Join-Path $SportsRoot "Tennis\outputs\step8_tennis_direction_clean.xlsx"),
             (Join-Path $SportsRoot "Tennis\step8_tennis_direction_clean.xlsx")
+        )
+        "step8_golf_direction_clean_$RunDate.xlsx" = @(
+            (Join-Path $outDir "golf\step8_golf_direction_clean.xlsx"),
+            (Join-Path $outDir "golf\step8_golf_direction_clean_$RunDate.xlsx"),
+            (Join-Path $SportsRoot "Golf\outputs\step8_golf_direction_clean.xlsx")
         )
         "step8_wnba_direction_clean_$RunDate.xlsx" = @(
             (Join-Path $SportsRoot "WNBA\step8_wnba_direction_clean.xlsx"),
@@ -1385,10 +1393,44 @@ if (Test-Path $d2xScript) {
 }
 
 # =============================================================================
-# STEP D-payout — deferred until AFTER STEP E publish (tickets live first).
-# Mid-day refreshes / 11AM Payout CDP still own Force re-scrape; 5AM uses -SkipLivePayout.
+# STEP D-G70 — Goblin-70 + graded-main dual card (before publish)
+# Live /tickets must never ship mixer-only after a combined rebuild.
+# Payout CDP (after STEP E) scrapes this dual card; later windows re-scrape
+# missing live_cdp and slips whose lines/types moved.
 # =============================================================================
-Write-Log "STEP D-payout - deferred until after STEP E (publish-first)"
+if ($script:PipelineFailed) {
+    Write-Log "STEP D-G70 - Goblin-70 dual card: SKIPPED (pipeline failed)"
+}
+else {
+    $goblin70Script = Join-Path $Root "scripts\build_goblin70_tickets.py"
+    if (Test-Path -LiteralPath $goblin70Script) {
+        Write-Log "STEP D-G70 - Goblin-70 dual card: START"
+        try {
+            & py -3.14 -X utf8 $goblin70Script --date $Today --write-web
+            if ($LASTEXITCODE -ne 0) {
+                Write-Warning "Goblin-70 dual card failed (non-fatal, exit $LASTEXITCODE)"
+                Write-Log "STEP D-G70 - Goblin-70 dual card: WARN (py exit $LASTEXITCODE)"
+            }
+            else {
+                Write-Log "STEP D-G70 - Goblin-70 dual card: OK"
+            }
+        }
+        catch {
+            Write-Warning "Goblin-70 dual card error: $($_.Exception.Message)"
+            Write-Log "STEP D-G70 - Goblin-70 dual card: WARN ($($_.Exception.Message))"
+        }
+    }
+    else {
+        Write-Log "STEP D-G70 - Goblin-70 dual card: SKIP (build_goblin70_tickets.py missing)"
+    }
+}
+
+# =============================================================================
+# STEP D-payout — deferred until AFTER STEP E publish (tickets live first).
+# Scrapes the dual card from D-G70. Mid-day refreshes re-scrape on line moves /
+# missing live_cdp. 5AM may use -SkipLivePayout when a parent owns CDP.
+# =============================================================================
+Write-Log "STEP D-payout - deferred until after STEP E (publish-first; scrape dual card)"
 
 # =============================================================================
 # STEP D1 — Ticket-level ML refresh + eval history + ultimate tickets
@@ -1732,6 +1774,7 @@ else {
                         soccer = @((Join-Path $Root "outputs\$Today\step8_soccer_direction_clean_$Today.xlsx"), (Join-Path $SportsRoot "Soccer\outputs\step8_soccer_direction_clean.xlsx"))
                         mlb = @((Join-Path $Root "outputs\$Today\step8_mlb_direction_clean_$Today.xlsx"), (Join-Path $SportsRoot "MLB\step8_mlb_direction_clean.xlsx"), (Join-Path $SportsRoot "MLB\outputs\step8_mlb_direction_clean.xlsx"))
                         tennis = @((Join-Path $Root "outputs\$Today\step8_tennis_direction_clean_$TennisDate.xlsx"), (Join-Path $SportsRoot "Tennis\outputs\step8_tennis_direction_clean.xlsx"))
+                        golf = @((Join-Path $Root "outputs\$Today\golf\step8_golf_direction_clean.xlsx"), (Join-Path $Root "outputs\$Today\golf\step8_golf_direction_clean_$Today.xlsx"), (Join-Path $SportsRoot "Golf\outputs\step8_golf_direction_clean.xlsx"))
                         nba1q = @((Join-Path $Root "outputs\$Today\step8_nba1q_direction_clean_$Today.xlsx"), (Join-Path $SportsRoot "NBA\step8_nba1q_direction_clean.xlsx"))
                         nba1h = @((Join-Path $Root "outputs\$Today\step8_nba1h_direction_clean_$Today.xlsx"), (Join-Path $SportsRoot "NBA\step8_nba1h_direction_clean.xlsx"))
                         cbb = @((Join-Path $SportsRoot "CBB\step6_ranked_cbb.xlsx"))
@@ -1760,7 +1803,7 @@ else {
                             "--nba-structured-variants", "4",
                             "--min-prop-quality", "0.0"
                         )
-                        foreach ($opt in @("nhl", "soccer", "mlb", "tennis", "nba1q", "nba1h", "cbb")) {
+                        foreach ($opt in @("nhl", "soccer", "mlb", "tennis", "golf", "nba1q", "nba1h", "cbb")) {
                             if ($resolved.ContainsKey($opt)) {
                                 $controlArgs += @("--$opt", $resolved[$opt])
                             }
@@ -1803,7 +1846,9 @@ $railwayCopies = @(
     @{ Src = "Sports\Soccer\outputs\step8_soccer_direction_clean.xlsx"; Dst = "Sports\Soccer\step8_soccer_direction_clean.xlsx" },
     @{ Src = "outputs\$Today\mlb\step8_mlb_direction_clean.xlsx"; Dst = "Sports\MLB\step8_mlb_direction_clean.xlsx" },
     @{ Src = "Sports\MLB\outputs\step8_mlb_direction_clean.xlsx"; Dst = "Sports\MLB\step8_mlb_direction_clean.xlsx" },
-    @{ Src = "Sports\Tennis\outputs\step8_tennis_direction_clean.xlsx"; Dst = "Sports\Tennis\step8_tennis_direction_clean.xlsx" }
+    @{ Src = "Sports\Tennis\outputs\step8_tennis_direction_clean.xlsx"; Dst = "Sports\Tennis\step8_tennis_direction_clean.xlsx" },
+    @{ Src = "outputs\$Today\golf\step8_golf_direction_clean.xlsx"; Dst = "Sports\Golf\outputs\step8_golf_direction_clean.xlsx" },
+    @{ Src = "Sports\Golf\outputs\step8_golf_direction_clean.xlsx"; Dst = "Sports\Golf\step8_golf_direction_clean.xlsx" }
 )
 foreach ($rc in $railwayCopies) {
     $srcPath = Join-Path $Root $rc.Src
@@ -2133,6 +2178,8 @@ else {
                 "Sports\Soccer\step8_soccer_direction_clean.xlsx",
                 "Sports\MLB\step8_mlb_direction_clean.xlsx",
                 "Sports\Tennis\step8_tennis_direction_clean.xlsx",
+                "Sports\Golf\outputs\step8_golf_direction_clean.xlsx",
+                "Sports\Golf\step8_golf_direction_clean.xlsx",
                 "Sports\NHL\outputs\step8_nhl_direction_clean.xlsx",
                 # Keep STRONG builder on main so 7am daily (main worktree) builds longer slips.
                 "scripts\combined_slate_tickets.py",
@@ -2336,8 +2383,8 @@ else {
 # STEP D-payout — Live PrizePicks payout capture (AFTER publish)
 # Exact per-ticket live_cdp only — peer SG-Δ rate cards are not trusted.
 # Runs after STEP E so tickets/slate hit Railway even if CDP hangs.
-# 1AM / 5AM daily and 8AM+ refreshes Force re-scrape so timestamps land on
-# every window (not only 9:45 / 10:30 / 1PM / 4:30).
+# First successful scrape of the day is a full board capture. Later 5AM / 8AM+
+# refreshes re-scrape only missing live_cdp slips and tickets whose lines/types moved.
 # =============================================================================
 if ($script:PipelineFailed) {
     Write-Log "STEP D-payout - Live payout capture: SKIPPED (pipeline failed)"
@@ -2373,9 +2420,10 @@ else {
         Write-Log "STEP D-payout - Live payout capture: SKIPPED (helper missing)"
     }
     else {
-        Write-Log "STEP D-payout - Live payout capture + verify: START (Force scrape window=$($env:PROPORACLE_BET_WINDOW); post-publish)"
+        Write-Log "STEP D-payout - Live payout capture + verify: START (window=$($env:PROPORACLE_BET_WINDOW); post-publish)"
         try {
-            & $livePayScript -Date $Today -Root $Root -TicketsPath $payoutTickets -Force -FillMissingTickets -RebuildRateCard
+            $fetchSince = $script:DailyStart.ToUniversalTime().ToString("o")
+            & $livePayScript -Date $Today -Root $Root -TicketsPath $payoutTickets -RescrapeMode Auto -FetchSince $fetchSince -RebuildRateCard
             Write-Log "STEP D-payout - Live payout capture + verify: DONE (exit $LASTEXITCODE)"
         }
         catch {
@@ -2585,8 +2633,8 @@ try {
     }
     elseif (Test-Path -LiteralPath $slateStatusPath) {
         $ss = Get-Content -LiteralPath $slateStatusPath -Raw -ErrorAction Stop | ConvertFrom-Json
-        $active = @("mlb", "soccer", "tennis")
-        if (-not (Test-WnbaAllStarPause -SlateDate $Today)) { $active = @("mlb", "wnba", "soccer", "tennis") }
+        $active = @("mlb", "soccer", "tennis", "golf")
+        if (-not (Test-WnbaAllStarPause -SlateDate $Today)) { $active = @("mlb", "wnba", "soccer", "tennis", "golf") }
         $completeCount = 0
         foreach ($sk in $active) {
             if ($ss.sports -and "$($ss.sports.$sk)" -eq "complete") { $completeCount++ }
@@ -2597,7 +2645,7 @@ try {
             foreach ($sk in $active) {
                 $st = ""
                 if ($ss.sports) { $st = "$($ss.sports.$sk)" }
-                if ($st -notin @("complete", "off_season")) {
+                if ($st -notin @("complete", "off_season", "no_slate")) {
                     $todaySlateNeedsCatchup = $true
                     break
                 }

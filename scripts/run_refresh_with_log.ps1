@@ -1,6 +1,7 @@
 #requires -Version 5.1
 <#
-  Line-move refresh (8 AM primary lock, 9:00, 9:45, 10:30, 1 PM, 4:30 PM).
+  Line-move refresh (8 AM morning update, 9:00, 9:45, 10:30, 1 PM, 4:30 PM).
+  Initial scrape + live publish is 9PM day-ahead; 1AM / 8AM+ are updates.
   Every window: fetch + line timestamps + live publish.
   Payout Force timestamps only when lines moved vs the previous/initial stamp.
   Wait for refresh.lock instead of skipping (9AM/10:30 must still stamp + publish).
@@ -53,19 +54,19 @@ function Test-TodaySlateNeedsCatchup {
     try {
         $ss = Get-Content -LiteralPath $statusPath -Raw | ConvertFrom-Json
         $complete = 0
-        $active = @("mlb", "soccer", "tennis")
+        $active = @("mlb", "soccer", "tennis", "golf")
         $wnbaResume = "2026-07-28"
         if ($env:WNBA_RESUME_DATE) { $wnbaResume = $env:WNBA_RESUME_DATE.Trim() }
         $wnbaPause = "2026-07-19"
         if ($env:WNBA_PAUSE_START) { $wnbaPause = $env:WNBA_PAUSE_START.Trim() }
         if (-not (($today -ge $wnbaPause) -and ($today -lt $wnbaResume))) {
-            $active = @("mlb", "wnba", "soccer", "tennis")
+            $active = @("mlb", "wnba", "soccer", "tennis", "golf")
         }
         foreach ($sk in $active) {
             $st = if ($ss.sports) { "$($ss.sports.$sk)" } else { "" }
-            if ($st -eq "complete" -or $st -eq "off_season") { $complete++ }
+            # Golf (and tennis) empty boards are no_slate, not a failed fetch.
+            if ($st -eq "complete" -or $st -eq "off_season" -or $st -eq "no_slate") { $complete++ }
         }
-        # Any in-season sport still empty/pending (incl. no_slate) means 8AM should keep going.
         return ($complete -lt $active.Count)
     } catch {
         return $true
@@ -154,6 +155,15 @@ function Publish-RefreshWindow {
     if (-not (Test-Path -LiteralPath $publish)) {
         Write-Host "[REFRESH $Label] WARN: Publish-LiveSite.ps1 missing — site may stay on prior board" -ForegroundColor Yellow
         return
+    }
+    # Publish-LiveSite rebuilds Goblin-70 if the card drifted to mixer-only.
+    $g70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
+    if (Test-Path -LiteralPath $g70) {
+        Write-Host "[REFRESH $Label] Ensuring Goblin-70 dual card before publish..." -ForegroundColor Cyan
+        & py -3.14 $g70 --date $Date --write-web
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "[REFRESH $Label] WARN: Goblin-70 rebuild exit $LASTEXITCODE" -ForegroundColor Yellow
+        }
     }
     $msg = "chore: live tickets/slate $Date $Label"
     if ($Suffix) { $msg = "$msg $Suffix" }
@@ -252,33 +262,34 @@ if (Test-Path -LiteralPath $deltaPath) {
             $delta.window, $delta.n_moved_this_window, $delta.n_moved_from_initial, $delta.force_payout) -ForegroundColor DarkGray
     } catch { }
 }
-if ($forcePayout) {
-    $livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
-    if (Test-Path -LiteralPath $livePayScript) {
-        Write-Host "[REFRESH $RunLabel] Lines moved vs previous/initial stamp — Force payout scrape" -ForegroundColor Cyan
-        $dualTickets = Join-Path $Root "ui_runner\templates\tickets_latest.json"
-        try {
-            $liveSrc = Get-Content -LiteralPath $livePayScript -Raw -ErrorAction SilentlyContinue
-            $payArgs = @(
-                "-Date", $todayEt, "-Root", $Root, "-TicketsPath", $dualTickets,
-                "-RebuildRateCard", "-FillMissingTickets"
-            )
-            if ("$liveSrc" -match '\$Window') { $payArgs += @("-Window", $RunLabel) }
-            if ("$liveSrc" -match 'RescrapeMode') {
-                $payArgs += @("-RescrapeMode", "Auto")
-            } else {
-                $payArgs += "-Force"
-            }
-            & pwsh -NoProfile -File $livePayScript @payArgs
-            Write-Host "[REFRESH $RunLabel] Payout scrape exit $LASTEXITCODE" -ForegroundColor DarkGray
-        } catch {
-            Write-Host "[REFRESH $RunLabel] WARN: payout scrape failed: $($_.Exception.Message)" -ForegroundColor Yellow
+$livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
+if (Test-Path -LiteralPath $livePayScript) {
+    # Always Auto after a refresh: scrape missing live_cdp + slips whose lines/types
+    # moved this fetch. Force when the line stamp says props moved (re-price all).
+    $rescrapeMode = if ($forcePayout) { "Force" } else { "Auto" }
+    Write-Host "[REFRESH $RunLabel] Payout CDP after fetch (RescrapeMode=$rescrapeMode)" -ForegroundColor Cyan
+    $dualTickets = Join-Path $Root "ui_runner\templates\tickets_latest.json"
+    try {
+        $liveSrc = Get-Content -LiteralPath $livePayScript -Raw -ErrorAction SilentlyContinue
+        $payArgs = @(
+            "-Date", $todayEt, "-Root", $Root, "-TicketsPath", $dualTickets,
+            "-RebuildRateCard", "-FillMissingTickets"
+        )
+        if ("$liveSrc" -match '\$Window') { $payArgs += @("-Window", $RunLabel) }
+        if ("$liveSrc" -match 'RescrapeMode') {
+            $payArgs += @("-RescrapeMode", $rescrapeMode)
+        } elseif ($forcePayout) {
+            $payArgs += "-Force"
         }
-        Publish-RefreshWindow -Date $todayEt -Label $RunLabel -Suffix "payout"
+        & pwsh -NoProfile -File $livePayScript @payArgs
+        Write-Host "[REFRESH $RunLabel] Payout scrape exit $LASTEXITCODE" -ForegroundColor DarkGray
+    } catch {
+        Write-Host "[REFRESH $RunLabel] WARN: payout scrape failed: $($_.Exception.Message)" -ForegroundColor Yellow
     }
+    Publish-RefreshWindow -Date $todayEt -Label $RunLabel -Suffix "payout"
 }
 else {
-    Write-Host "[REFRESH $RunLabel] No line changes vs previous stamp — skip Force payout (line timestamps + publish already done)" -ForegroundColor DarkGray
+    Write-Host "[REFRESH $RunLabel] WARN: run_live_payout_capture.ps1 missing — skip payout" -ForegroundColor Yellow
 }
 
 try { Stop-Transcript | Out-Null } catch { }

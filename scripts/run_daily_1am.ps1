@@ -1,14 +1,15 @@
 #requires -Version 5.1
 <#
 .SYNOPSIS
-  Scheduled 1:00 AM complete all-sport fetch: git pull main, pipeline + publish (no grader).
+  Scheduled 1:00 AM update fetch: git pull main, pipeline + publish (no grader).
 
 .NOTES
-  Overnight fetch + live payout CDP. Grader + A1 historical actuals run separately
-  at 3AM (run_grader_evening.ps1) so the two jobs do not share RAM/CPU.
+  Initial scrape + live publish is 9PM day-ahead (run_daily_day_ahead.ps1).
+  This job is the overnight **update** + payout CDP republish of that slate.
+  Grader + A1 historical actuals run separately at 3AM (unchanged).
   Always -SkipGrader -SkipHistoricalActuals. Live CDP runs after publish (same
   STEP D-payout as 8AM+), so 1AM writes payout_patch / rate cards for that board.
-  Empty no_slate at 1AM is normal (MLB/soccer/WNBA often post later); 8AM is the same-day lock.
+  Empty no_slate at 1AM is normal (MLB/soccer/WNBA often post later); 5AM/8AM keep updating.
   Registered by scripts\Register_Daily_Task.ps1 as "PropOracle - Daily 1AM".
 #>
 param()
@@ -118,10 +119,10 @@ if ($LASTEXITCODE -ne 0) {
 
 $Health = Join-Path $Root "scripts\Write-DailyRunHealth.ps1"
 if (Test-Path -LiteralPath $Health) {
-    Write-Host "[1AM DAILY] Writing health stamp (empty no_slate is OK at 1AM; 8AM is the lock)..." -ForegroundColor Cyan
+    Write-Host "[1AM DAILY] Writing health stamp (empty no_slate is OK at 1AM; 5AM/8AM keep updating)..." -ForegroundColor Cyan
     & pwsh -NoProfile -File $Health -RepoRoot $Root -Label "1AM"
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "[1AM DAILY] Health stamp not green (exit $LASTEXITCODE) — continuing; 8AM owns same-day lock" -ForegroundColor Yellow
+        Write-Host "[1AM DAILY] Health stamp not green (exit $LASTEXITCODE) — continuing; later windows update" -ForegroundColor Yellow
     }
 }
 else {
@@ -134,6 +135,29 @@ if (Test-Path -LiteralPath $stampPy) {
     $todayOut = Join-Path $Root "outputs\$Today"
     if ($dailyExit -ne 0 -and (Test-Path -LiteralPath $todayOut)) { $stampArgs += "--restamp-csvs" }
     & py @stampArgs
+}
+
+# Ensure dual card + fresh N-correct after the overnight update (run_daily already
+# builds G70 + D-payout; re-run G70/payout here so write-back lands before publish).
+$goblin70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
+if (Test-Path -LiteralPath $goblin70) {
+    Write-Host "[1AM DAILY] Goblin-70 + mixer dual card for $Today..." -ForegroundColor Cyan
+    & py -3.14 $goblin70 --date $Today --write-web
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[1AM DAILY] WARN: Goblin-70 dual card exit $LASTEXITCODE" -ForegroundColor Yellow
+    }
+}
+$livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
+$dualTickets = Join-Path $Root "ui_runner\templates\tickets_latest.json"
+if (Test-Path -LiteralPath $livePayScript) {
+    Write-Host "[1AM DAILY] Payout CDP update (missing live + changed props)..." -ForegroundColor Cyan
+    try {
+        & pwsh -NoProfile -File $livePayScript -Date $Today -Root $Root -TicketsPath $dualTickets `
+            -RescrapeMode Auto -Window "1AM" -RebuildRateCard -FillMissingTickets
+        Write-Host "[1AM DAILY] Payout scrape exit $LASTEXITCODE" -ForegroundColor DarkGray
+    } catch {
+        Write-Host "[1AM DAILY] WARN: payout scrape failed (non-blocking): $($_.Exception.Message)" -ForegroundColor Yellow
+    }
 }
 
 $publish = Join-Path $Root "scripts\Publish-LiveSite.ps1"
