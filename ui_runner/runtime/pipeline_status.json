@@ -44,14 +44,14 @@
   "soccer": {
     "slate": {
       "exists": true,
-      "modified": "2026-09-08 04:10:33",
+      "modified": "2026-08-30 16:12:36",
       "no_slate": false
     }
   },
   "mlb": {
     "slate": {
       "exists": true,
-      "modified": "2026-09-08 04:10:33",
+      "modified": "2026-08-30 16:12:36",
       "no_slate": false
     }
   },
@@ -65,42 +65,42 @@
   "tennis": {
     "slate": {
       "exists": true,
-      "modified": "2026-09-08 04:10:33",
+      "modified": "2026-08-30 16:12:36",
       "no_slate": false
     }
   },
   "golf": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-08-30 16:12:36",
+      "no_slate": false
     }
   },
   "wnba": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-08-30 16:12:36",
+      "no_slate": false
     }
   },
   "wnba1h": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-08-30 16:12:36",
+      "no_slate": false
     }
   },
   "wnba1q": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-08-30 16:12:36",
+      "no_slate": false
     }
   },
   "combined": {
     "slate": {
       "exists": true,
-      "modified": "2026-09-08 04:10:33",
+      "modified": "2026-08-30 16:12:36",
       "no_slate": false
     }
   }
