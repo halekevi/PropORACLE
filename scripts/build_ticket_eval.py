@@ -2226,9 +2226,12 @@ def _prop_match_key_from_display(raw: str) -> str:
     Stable prop key for index lookups: alias map (CBB etc.) then alphanumeric fold like
     nhl_soccer_grader._norm_prop so 'Total Bases' and 'totalbases' both become 'totalbases'.
     """
-    if raw is None or not str(raw).strip():
+    if raw is None:
         return ""
-    return re.sub(r"[^a-z0-9]", "", _norm_prop_type(str(raw).strip()))
+    s = str(raw).strip()
+    if not s or s.lower() in {"nan", "none", "null", "<na>"}:
+        return ""
+    return re.sub(r"[^a-z0-9]", "", _norm_prop_type(s))
 
 
 def _row_has_finite_actual_value(actual: object) -> bool:
