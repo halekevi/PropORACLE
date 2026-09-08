@@ -1676,10 +1676,25 @@ if (Test-Path $TicketEvalBuilderScript) {
     }
 
     # STRONG Recombo shadow (4-6L from STRONG 2-3L legs) — validation only, never MAIN.
+    # Never bake strong_recombo_shadow_latest.json into ticket_eval_strong_recombo_$Date.html
+    # unless its payload "date" matches $Date (that bug cloned Aug-31 slips onto Sep 2–4).
     $RecomboStrongShadowJson = Join-Path $Root "ui_runner\data\combined_slate_tickets_strong_recombo_$Date.json"
     $RecomboStrongShadowLatest = Join-Path $Root "ui_runner\data\strong_recombo_shadow_latest.json"
     if (-not (Test-Path $RecomboStrongShadowJson) -and (Test-Path $RecomboStrongShadowLatest)) {
-        $RecomboStrongShadowJson = $RecomboStrongShadowLatest
+        $latestDate = $null
+        try {
+            $hdr = Get-Content -LiteralPath $RecomboStrongShadowLatest -Raw -Encoding UTF8 | ConvertFrom-Json
+            $latestDate = [string]$hdr.date
+            if ($latestDate.Length -ge 10) { $latestDate = $latestDate.Substring(0, 10) }
+        } catch {
+            $latestDate = $null
+        }
+        if ($latestDate -eq $Date) {
+            $RecomboStrongShadowJson = $RecomboStrongShadowLatest
+        }
+        else {
+            Write-Host "[GRADER] Skip STRONG Recombo shadow for $Date (no dated JSON; latest is '$latestDate')." -ForegroundColor Yellow
+        }
     }
     if (Test-Path $RecomboStrongShadowJson) {
         $TeRecomboStrongOut = Join-Path $TemplatesDir "ticket_eval_strong_recombo_$Date.html"

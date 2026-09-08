@@ -2619,7 +2619,12 @@ def _payload_pool_mode(hdr: dict[str, Any] | None) -> str:
         return pm
     filters = hdr.get("filters")
     if isinstance(filters, dict):
-        return str(filters.get("pool_mode") or "").strip().lower()
+        fpm = str(filters.get("pool_mode") or "").strip().lower()
+        if fpm:
+            return fpm
+    mode = str(hdr.get("mode") or "").strip().lower()
+    if mode in ("goblin70", "goblin70+graded_main", "goblin_70"):
+        return mode
     return ""
 
 
@@ -3365,9 +3370,44 @@ def _group_is_high_prob_main_shipped(group_name: str) -> bool:
     n = str(group_name or "").strip()
     if _group_is_strong_shipped(n):
         return True
+    # Live mixer titles often append OVER/UNDER (e.g. "MLB 2-Leg Goblin OVER").
+    if re.match(
+        r"^[A-Za-z0-9]+\s+\d+-Leg (Goblin|Standard|Mixed)(?:\s+(OVER|UNDER))?$",
+        n,
+        re.I,
+    ):
+        return True
+    # Also "TENNIS Standard 2-Leg #1" style (sport + type + N-Leg).
+    n2 = re.sub(r"\s+#\d+\s*$", "", n).strip()
     return bool(
         re.match(
-            r"^[A-Za-z0-9]+\s+\d+-Leg (Goblin|Standard|Mixed)$",
+            r"^[A-Za-z0-9]+\s+(Goblin|Standard|Mixed)\s+\d+-Leg(?:\s+(OVER|UNDER))?$",
+            n2,
+            re.I,
+        )
+    )
+
+
+def _group_is_core_power_shipped(group_name: str) -> bool:
+    """Mixer Core Power / Core Standard tabs: 'MLB Core Power 2 #1'."""
+    n = re.sub(r"\s+#\d+\s*$", "", str(group_name or "").strip()).strip()
+    return bool(
+        re.match(
+            r"^[A-Za-z0-9]+\s+Core\s+(Power|Standard)\s+\d+$",
+            n,
+            re.I,
+        )
+    )
+
+
+def _group_is_goblin70_shipped(group_name: str) -> bool:
+    """Goblin-70 dual-card groups (+ YOLO), e.g. 'X-Sport Goblin-70 Power 3'."""
+    n = str(group_name or "").strip()
+    if re.match(r"^YOLO\b", n, re.I):
+        return True
+    return bool(
+        re.match(
+            r"^(?:X-Sport|[A-Za-z0-9]+)\s+Goblin-70\s+(?:Power|Flex)\s+\d+$",
             n,
             re.I,
         )
@@ -3392,10 +3432,23 @@ def _group_is_allowed(group_name: str, *, pool_mode: str = "") -> bool:
         return True
     if _group_is_strong_recombo(group_name):
         return True
-    if pool_mode == "high_prob_std_gob" and _group_is_high_prob_main_shipped(group_name):
+    # Goblin-70 / Core / OVER-suffixed mixer titles are first-class live cards.
+    if _group_is_goblin70_shipped(group_name) or _group_is_core_power_shipped(group_name):
         return True
-    if pool_mode in ("goblin_only", "goblin_only_3leg") and _group_is_goblin_only_3leg_shipped(
+    if pool_mode in ("goblin70", "goblin70+graded_main", "goblin_70") and _group_is_goblin70_shipped(
         group_name
+    ):
+        return True
+    if pool_mode == "high_prob_std_gob" and (
+        _group_is_high_prob_main_shipped(group_name)
+        or _group_is_core_power_shipped(group_name)
+        or _group_is_goblin70_shipped(group_name)
+    ):
+        return True
+    if pool_mode in ("goblin_only", "goblin_only_3leg") and (
+        _group_is_goblin_only_3leg_shipped(group_name)
+        or _group_is_high_prob_main_shipped(group_name)
+        or _group_is_goblin70_shipped(group_name)
     ):
         return True
     if pool_mode == "standard_only" and _group_is_high_prob_main_shipped(group_name):
@@ -3405,6 +3458,8 @@ def _group_is_allowed(group_name: str, *, pool_mode: str = "") -> bool:
     if not pool_mode and (
         _group_is_goblin_only_3leg_shipped(group_name)
         or _group_is_high_prob_main_shipped(group_name)
+        or _group_is_core_power_shipped(group_name)
+        or _group_is_goblin70_shipped(group_name)
     ):
         return True
     n = str(group_name or "").strip()
