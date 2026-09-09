@@ -1,26 +1,170 @@
 {
-  "date": "2026-09-08",
-  "generated_at": "2026-09-08T10:11:37-04:00",
-  "line_pulls": [],
-  "payout_scrapes": [
+  "date": "2026-09-09",
+  "generated_at": "2026-09-09T08:18:08-04:00",
+  "line_pulls": [
     {
-      "window": "8AM",
-      "n_scrapes": 1,
-      "median_power_x": 2.0,
-      "min_power_x": 2.0,
-      "max_power_x": 2.0,
-      "first_captured_at": "2026-09-08T08:52:55-04:00",
-      "last_captured_at": "2026-09-08T08:52:55-04:00"
+      "fetched_at": "2026-09-08T23:14:10-04:00",
+      "window": "23:14",
+      "n_props": 4646,
+      "n_moved": 0
     },
     {
-      "window": "9PM",
-      "n_scrapes": 2,
-      "median_power_x": 1.5,
-      "min_power_x": 1.5,
-      "max_power_x": 1.5,
-      "first_captured_at": "2026-09-07T22:58:56-04:00",
-      "last_captured_at": "2026-09-07T22:58:56-04:00"
+      "fetched_at": "2026-09-09T00:02:55-04:00",
+      "window": "00:02",
+      "n_props": 5592,
+      "n_moved": 54
+    },
+    {
+      "fetched_at": "2026-09-09T00:05:20-04:00",
+      "window": "00:05",
+      "n_props": 5494,
+      "n_moved": 1
+    },
+    {
+      "fetched_at": "2026-09-09T01:05:52-04:00",
+      "window": "1AM",
+      "n_props": 13428,
+      "n_moved": 147
+    },
+    {
+      "fetched_at": "2026-09-09T01:07:11-04:00",
+      "window": "1AM",
+      "n_props": 553,
+      "n_moved": 29
+    },
+    {
+      "fetched_at": "2026-09-09T01:09:06-04:00",
+      "window": "1AM",
+      "n_props": 8691,
+      "n_moved": 5
+    },
+    {
+      "fetched_at": "2026-09-09T01:09:20-04:00",
+      "window": "1AM",
+      "n_props": 6727,
+      "n_moved": 54
+    },
+    {
+      "fetched_at": "2026-09-09T01:28:52-04:00",
+      "window": "1AM",
+      "n_props": 13425,
+      "n_moved": 5
+    },
+    {
+      "fetched_at": "2026-09-09T01:29:02-04:00",
+      "window": "1AM",
+      "n_props": 569,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-09-09T01:29:19-04:00",
+      "window": "1AM",
+      "n_props": 8691,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-09T01:32:22-04:00",
+      "window": "1AM",
+      "n_props": 7159,
+      "n_moved": 20
+    },
+    {
+      "fetched_at": "2026-09-09T01:33:03-04:00",
+      "window": "1AM",
+      "n_props": 8690,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-09T05:24:16-04:00",
+      "window": "05:24",
+      "n_props": 13207,
+      "n_moved": 58
+    },
+    {
+      "fetched_at": "2026-09-09T05:25:45-04:00",
+      "window": "05:25",
+      "n_props": 7504,
+      "n_moved": 196
+    },
+    {
+      "fetched_at": "2026-09-09T05:26:01-04:00",
+      "window": "05:26",
+      "n_props": 8718,
+      "n_moved": 28
+    },
+    {
+      "fetched_at": "2026-09-09T05:39:08-04:00",
+      "window": "05:39",
+      "n_props": 13217,
+      "n_moved": 5
+    },
+    {
+      "fetched_at": "2026-09-09T05:39:18-04:00",
+      "window": "05:39",
+      "n_props": 545,
+      "n_moved": 6
+    },
+    {
+      "fetched_at": "2026-09-09T05:39:35-04:00",
+      "window": "05:39",
+      "n_props": 8714,
+      "n_moved": 4
+    },
+    {
+      "fetched_at": "2026-09-09T05:43:49-04:00",
+      "window": "05:43",
+      "n_props": 7523,
+      "n_moved": 6
+    },
+    {
+      "fetched_at": "2026-09-09T05:46:34-04:00",
+      "window": "05:46",
+      "n_props": 8713,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-09T06:26:36-04:00",
+      "window": "06:26",
+      "n_props": 13207,
+      "n_moved": 24
+    },
+    {
+      "fetched_at": "2026-09-09T06:31:07-04:00",
+      "window": "06:31",
+      "n_props": 7563,
+      "n_moved": 32
+    },
+    {
+      "fetched_at": "2026-09-09T08:10:05-04:00",
+      "window": "8AM",
+      "n_props": 13089,
+      "n_moved": 40
+    },
+    {
+      "fetched_at": "2026-09-09T08:10:17-04:00",
+      "window": "8AM",
+      "n_props": 594,
+      "n_moved": 7
+    },
+    {
+      "fetched_at": "2026-09-09T08:10:36-04:00",
+      "window": "8AM",
+      "n_props": 8724,
+      "n_moved": 20
+    },
+    {
+      "fetched_at": "2026-09-09T08:15:29-04:00",
+      "window": "8AM",
+      "n_props": 7757,
+      "n_moved": 50
+    },
+    {
+      "fetched_at": "2026-09-09T08:18:05-04:00",
+      "window": "8AM",
+      "n_props": 8722,
+      "n_moved": 1
     }
   ],
+  "payout_scrapes": [],
   "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
 }
