@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-09 15:04:21 UTC",
+  "generated_at": "2026-09-09 15:52:04 UTC",
   "date": "2026-09-09",
   "tennis_date": "2026-09-09",
   "filters": {
@@ -2223,7 +2223,7 @@
             "payout_adjustment": 1.0,
             "p_all_win": 0.5633,
             "p_miss_1": 0.3588,
-            "ev": -0.0988,
+            "ev": -0.0987,
             "recommendation": "STRONG",
             "entry_10_to_win_guarantee": 16.0,
             "entry_20_to_win_guarantee": 32.0,
@@ -2232,13 +2232,18 @@
             "audit_all_hit_x": 6.0,
             "entry_10_to_win_sweep": 16.0,
             "payout_confidence_score": 0.9013,
-            "payout_source": "pending_live",
+            "payout_source": "live_cdp",
             "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "model_min_payout_x": 1.6
+            "model_min_payout_x": 1.6,
+            "power_min_x": 1.6,
+            "display_min_x": 1.6,
+            "power_first_x": 6.0,
+            "captured_at": "2026-09-09T11:07:06"
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
-          "empirical_recommendation": "STRONG"
+          "empirical_recommendation": "STRONG",
+          "display_min_x": 1.6
         }
       ],
       "hot_legs": 3,
@@ -2552,29 +2557,34 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.8794,
-            "min_guarantee": 1.8794,
-            "min_payout_x": 1.8794,
+            "payout": 1.3,
+            "min_guarantee": 1.3,
+            "min_payout_x": 1.3,
             "min_guarantee_adjustment": 1.0,
             "payout_adjustment": 1.0,
             "p_all_win": 0.7072,
             "p_miss_1": 0.2698,
-            "ev": 0.3291,
+            "ev": -0.0806,
             "recommendation": "STRONG",
-            "entry_10_to_win_guarantee": 18.79,
-            "entry_20_to_win_guarantee": 37.59,
-            "sweep_payout": 1.8794,
-            "sweep_payout_x": 1.8794,
+            "entry_10_to_win_guarantee": 13.0,
+            "entry_20_to_win_guarantee": 26.0,
+            "sweep_payout": 1.3,
+            "sweep_payout_x": 1.3,
             "audit_all_hit_x": 1.8794,
-            "entry_10_to_win_sweep": 18.79,
+            "entry_10_to_win_sweep": 13.0,
             "payout_confidence_score": 1.3291,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.88 - 1.0",
-            "model_min_payout_x": 1.8794
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.30 - 1.0",
+            "model_min_payout_x": 1.8794,
+            "power_min_x": 1.3,
+            "display_min_x": 1.3,
+            "power_first_x": 3.0,
+            "captured_at": "2026-09-09T11:06:01"
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
-          "empirical_recommendation": "STRONG"
+          "empirical_recommendation": "STRONG",
+          "display_min_x": 1.3
         },
         {
           "web_group_name": "STRONG 2-Leg",
@@ -8883,7 +8893,7 @@
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
     "goblin_70": 18,
-    "goblin_70_raw": 36,
+    "goblin_70_raw": 38,
     "standard_allowlist": 25,
     "standard_allowlist_raw": 88,
     "nflp_goblin": 0,
