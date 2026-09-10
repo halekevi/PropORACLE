@@ -153260,7 +153260,7 @@
       "void_reason": "",
       "result": "HIT",
       "pp_projection_id": "",
-      "ticket_id": "2026-09-10|MLB Goblin-70 Power 2|1",
+      "ticket_id": "2026-09-10|MLB Goblin-70 Power 3|1",
       "on_ticket": true,
       "on_shadow_ticket": false,
       "hit": 1,
@@ -554046,7 +554046,7 @@
       "tier": "B",
       "edge": "2.5",
       "ml_prob": "0.58",
-      "actual_value": "15.0",
+      "actual_value": "8.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -554088,12 +554088,12 @@
       "actual_source_conflict": "",
       "over_under": "OVER",
       "void_reason": "",
-      "result": "HIT",
+      "result": "MISS",
       "pp_projection_id": "",
       "ticket_id": null,
       "on_ticket": false,
       "on_shadow_ticket": false,
-      "hit": 1,
+      "hit": 0,
       "graded_at": ""
     },
     {
@@ -554666,7 +554666,7 @@
       "tier": "B",
       "edge": "0.5",
       "ml_prob": "0.58",
-      "actual_value": "15.0",
+      "actual_value": "8.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -554708,12 +554708,12 @@
       "actual_source_conflict": "",
       "over_under": "OVER",
       "void_reason": "",
-      "result": "HIT",
+      "result": "MISS",
       "pp_projection_id": "",
       "ticket_id": null,
       "on_ticket": false,
       "on_shadow_ticket": false,
-      "hit": 1,
+      "hit": 0,
       "graded_at": ""
     },
     {
@@ -554790,7 +554790,7 @@
       "tier": "B",
       "edge": "0.5",
       "ml_prob": "0.58",
-      "actual_value": "13.0",
+      "actual_value": "5.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -554832,12 +554832,12 @@
       "actual_source_conflict": "",
       "over_under": "OVER",
       "void_reason": "",
-      "result": "HIT",
+      "result": "MISS",
       "pp_projection_id": "",
       "ticket_id": null,
       "on_ticket": false,
       "on_shadow_ticket": false,
-      "hit": 1,
+      "hit": 0,
       "graded_at": ""
     },
     {
@@ -556774,7 +556774,7 @@
       "tier": "B",
       "edge": "0",
       "ml_prob": "0.58",
-      "actual_value": "17.0",
+      "actual_value": "18.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -565020,7 +565020,7 @@
       "tier": "B",
       "edge": "-2.9",
       "ml_prob": "0.58",
-      "actual_value": "19.0",
+      "actual_value": "20.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -565578,7 +565578,7 @@
       "tier": "C",
       "edge": "1.5",
       "ml_prob": "0.58",
-      "actual_value": "15.0",
+      "actual_value": "8.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -565620,12 +565620,12 @@
       "actual_source_conflict": "",
       "over_under": "OVER",
       "void_reason": "",
-      "result": "HIT",
+      "result": "MISS",
       "pp_projection_id": "",
       "ticket_id": null,
       "on_ticket": false,
       "on_shadow_ticket": false,
-      "hit": 1,
+      "hit": 0,
       "graded_at": ""
     },
     {
@@ -565764,7 +565764,7 @@
       "tier": "C",
       "edge": "0.7",
       "ml_prob": "0.58",
-      "actual_value": "19.0",
+      "actual_value": "35.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -565806,12 +565806,12 @@
       "actual_source_conflict": "",
       "over_under": "OVER",
       "void_reason": "",
-      "result": "MISS",
+      "result": "HIT",
       "pp_projection_id": "",
       "ticket_id": null,
       "on_ticket": false,
       "on_shadow_ticket": false,
-      "hit": 0,
+      "hit": 1,
       "graded_at": ""
     },
     {
@@ -566632,7 +566632,7 @@
       "tier": "B",
       "edge": "0",
       "ml_prob": "0.58",
-      "actual_value": "17.0",
+      "actual_value": "18.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -566694,7 +566694,7 @@
       "tier": "C",
       "edge": "0",
       "ml_prob": "0.58",
-      "actual_value": "17.0",
+      "actual_value": "18.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -568120,7 +568120,7 @@
       "tier": "C",
       "edge": "0",
       "ml_prob": "0.58",
-      "actual_value": "12.0",
+      "actual_value": "3.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -568162,12 +568162,12 @@
       "actual_source_conflict": "",
       "over_under": "OVER",
       "void_reason": "",
-      "result": "HIT",
+      "result": "MISS",
       "pp_projection_id": "",
       "ticket_id": null,
       "on_ticket": false,
       "on_shadow_ticket": false,
-      "hit": 1,
+      "hit": 0,
       "graded_at": ""
     },
     {
@@ -570352,7 +570352,7 @@
       "tier": "C",
       "edge": "-0.9",
       "ml_prob": "0.58",
-      "actual_value": "12.0",
+      "actual_value": "17.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -570394,12 +570394,12 @@
       "actual_source_conflict": "",
       "over_under": "OVER",
       "void_reason": "",
-      "result": "MISS",
+      "result": "HIT",
       "pp_projection_id": "",
       "ticket_id": null,
       "on_ticket": false,
       "on_shadow_ticket": false,
-      "hit": 0,
+      "hit": 1,
       "graded_at": ""
     },
     {
@@ -570538,7 +570538,7 @@
       "tier": "C",
       "edge": "-0.3",
       "ml_prob": "0.4726",
-      "actual_value": "19.0",
+      "actual_value": "35.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -570580,12 +570580,12 @@
       "actual_source_conflict": "",
       "over_under": "UNDER",
       "void_reason": "",
-      "result": "HIT",
+      "result": "MISS",
       "pp_projection_id": "",
       "ticket_id": null,
       "on_ticket": false,
       "on_shadow_ticket": false,
-      "hit": 1,
+      "hit": 0,
       "graded_at": ""
     },
     {
@@ -571034,7 +571034,7 @@
       "tier": "A",
       "edge": "-1.4",
       "ml_prob": "0.6937",
-      "actual_value": "19.0",
+      "actual_value": "20.0",
       "margin": "",
       "def_tier": "",
       "consistency_grade": "",
@@ -599742,7 +599742,7 @@
       "tier": "B",
       "def": "avg",
       "decided": 17,
-      "hits": 15
+      "hits": 14
     },
     {
       "prop": "Walks Allowed",
@@ -599846,7 +599846,7 @@
       "tier": "C",
       "def": "avg",
       "decided": 13,
-      "hits": 5
+      "hits": 6
     },
     {
       "prop": "Aces",
@@ -600166,7 +600166,7 @@
       "tier": "B",
       "def": "avg",
       "decided": 13,
-      "hits": 11
+      "hits": 10
     },
     {
       "prop": "Walks",
@@ -600262,7 +600262,7 @@
       "tier": "C",
       "def": "avg",
       "decided": 2,
-      "hits": 1
+      "hits": 2
     },
     {
       "prop": "Total Games Won",
@@ -600270,7 +600270,7 @@
       "tier": "C",
       "def": "avg",
       "decided": 14,
-      "hits": 12
+      "hits": 10
     },
     {
       "prop": "Walks Allowed",
@@ -600518,7 +600518,7 @@
       "tier": "B",
       "def": "avg",
       "decided": 6,
-      "hits": 5
+      "hits": 4
     },
     {
       "prop": "receiving_yards",
@@ -600854,7 +600854,7 @@
       "tier": "C",
       "def": "avg",
       "decided": 1,
-      "hits": 1
+      "hits": 0
     },
     {
       "prop": "Total Games Won",
