@@ -31,10 +31,10 @@
     },
     {
       "sport": "MLB",
-      "decided": 390822,
-      "paid": 107542,
-      "win_rate": 0.2751687468975646,
-      "net_dollars": -1757380.0
+      "decided": 391235,
+      "paid": 107787,
+      "win_rate": 0.2755044921850039,
+      "net_dollars": -1756610.0
     },
     {
       "sport": "SOCCER",
@@ -46,9 +46,9 @@
     {
       "sport": "TENNIS",
       "decided": 23912,
-      "paid": 6442,
-      "win_rate": 0.2694044831047173,
-      "net_dollars": -110280.0
+      "paid": 6433,
+      "win_rate": 0.2690281030444965,
+      "net_dollars": -110460.0
     },
     {
       "sport": "NHL",
@@ -59,10 +59,10 @@
     },
     {
       "sport": "NFL",
-      "decided": 0,
-      "paid": 0,
-      "win_rate": null,
-      "net_dollars": 0.0
+      "decided": 213,
+      "paid": 123,
+      "win_rate": 0.5774647887323944,
+      "net_dollars": 330.0
     }
   ],
   "monthly_rows": [
@@ -93,10 +93,10 @@
     {
       "sport": "MLB",
       "month": "2026-09",
-      "decided": 68712,
-      "paid": 19089,
-      "win_rate": 0.2778117359413203,
-      "net_dollars": -305340.0
+      "decided": 69125,
+      "paid": 19334,
+      "win_rate": 0.27969620253164557,
+      "net_dollars": -304570.0
     },
     {
       "sport": "MLB",
@@ -142,9 +142,9 @@
       "sport": "TENNIS",
       "month": "2026-09",
       "decided": 6392,
-      "paid": 1576,
-      "win_rate": 0.246558197747184,
-      "net_dollars": -32400.0
+      "paid": 1567,
+      "win_rate": 0.24515018773466835,
+      "net_dollars": -32580.0
     },
     {
       "sport": "TENNIS",
@@ -161,9 +161,17 @@
       "paid": 1049,
       "win_rate": 0.2472307329719538,
       "net_dollars": -21450.0
+    },
+    {
+      "sport": "NFL",
+      "month": "2026-09",
+      "decided": 213,
+      "paid": 123,
+      "win_rate": 0.5774647887323944,
+      "net_dollars": 330.0
     }
   ],
   "source": "graded_props_json",
-  "signature": "n=64:mt=1789005554402298700",
-  "updated_at": "2026-09-10T02:09:10Z"
+  "signature": "n=64:mt=1789010858769595400",
+  "updated_at": "2026-09-10T03:36:21Z"
 }

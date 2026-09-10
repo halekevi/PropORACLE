@@ -1,6 +1,6 @@
 {
   "date": "2026-09-10",
-  "generated_at": "2026-09-09T22:30:42-04:00",
+  "generated_at": "2026-09-09T23:59:10-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-09-09T20:46:54-04:00",
@@ -13,6 +13,18 @@
       "window": "21:06",
       "n_props": 1012,
       "n_moved": 3
+    },
+    {
+      "fetched_at": "2026-09-09T23:01:00-04:00",
+      "window": "23:01",
+      "n_props": 1779,
+      "n_moved": 13
+    },
+    {
+      "fetched_at": "2026-09-09T23:01:43-04:00",
+      "window": "23:01",
+      "n_props": 1729,
+      "n_moved": 0
     }
   ],
   "payout_scrapes": [
