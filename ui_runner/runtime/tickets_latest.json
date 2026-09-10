@@ -35,7 +35,6 @@
           "flex_payout": null,
           "base_power_payout": 2.0,
           "ev_power": -0.173,
-          "display_min_x": 2.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + S/A or FGA + cover)",
@@ -158,24 +157,25 @@
             "payout": 2.0,
             "min_guarantee": 2.0,
             "min_payout_x": 2.0,
-            "display_min_x": 2.0,
             "p_all_win": 0.413,
             "p_miss_1": 0.0,
             "ev": -0.173,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 20.0,
             "entry_20_to_win_guarantee": 40.0,
             "sweep_payout": 2.0,
             "sweep_payout_x": 2.0,
             "audit_all_hit_x": 2.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "0S+3G Power fallback 2x",
             "n_correct": {
               "3": 2.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 2.0
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -324,21 +324,26 @@
             "display_min_x": 2.0,
             "p_all_win": 0.413,
             "p_miss_1": 0.0,
-            "ev": -0.173,
-            "recommendation": "OK",
+            "ev": -0.174,
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 20.0,
             "entry_20_to_win_guarantee": 40.0,
             "sweep_payout": 2.0,
             "sweep_payout_x": 2.0,
             "audit_all_hit_x": 2.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "live_cdp",
             "payout_note": "0S+3G Power fallback 2x",
             "n_correct": {
               "3": 2.0
             },
-            "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "ev_formula": "EV = P(all)*2.00 - 1.0",
+            "captured_at": "2026-09-09T22:29:43",
+            "model_min_payout_x": 2.0,
+            "power_min_x": 2.0,
+            "power_first_x": 6.0,
+            "entry_10_to_win_sweep": 20.0
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -361,7 +366,7 @@
           "flex_payout": null,
           "base_power_payout": 2.2,
           "ev_power": 0.221,
-          "display_min_x": 2.2,
+          "display_min_x": 1.5,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + S/A or FGA + cover)",
@@ -445,27 +450,32 @@
           "play": "Power",
           "payout": {
             "ticket_type": "power",
-            "payout": 2.2,
-            "min_guarantee": 2.2,
-            "min_payout_x": 2.2,
-            "display_min_x": 2.2,
+            "payout": 1.5,
+            "min_guarantee": 1.5,
+            "min_payout_x": 1.5,
+            "display_min_x": 1.5,
             "p_all_win": 0.555,
             "p_miss_1": 0.0,
-            "ev": 0.221,
-            "recommendation": "OK",
-            "entry_10_to_win_guarantee": 22.0,
-            "entry_20_to_win_guarantee": 44.0,
-            "sweep_payout": 2.2,
-            "sweep_payout_x": 2.2,
+            "ev": -0.1675,
+            "recommendation": "SKIP",
+            "entry_10_to_win_guarantee": 15.0,
+            "entry_20_to_win_guarantee": 30.0,
+            "sweep_payout": 1.5,
+            "sweep_payout_x": 1.5,
             "audit_all_hit_x": 2.2,
-            "payout_source": "n_correct_median",
+            "payout_source": "live_cdp",
             "payout_note": "0S+2G Power fallback 2.2x — confirm on the slip",
             "n_correct": {
               "2": 2.2
             },
-            "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "ev_formula": "EV = P(all)*1.50 - 1.0",
+            "captured_at": "2026-09-09T22:28:43",
+            "model_min_payout_x": 2.2,
+            "power_min_x": 1.5,
+            "power_first_x": 3.0,
+            "entry_10_to_win_sweep": 15.0
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -488,7 +498,6 @@
           "flex_payout": 2.25,
           "base_power_payout": null,
           "ev_power": 0.323,
-          "display_min_x": 2.25,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + S/A or FGA + cover)",
@@ -611,7 +620,6 @@
             "payout": 2.25,
             "min_guarantee": 2.25,
             "min_payout_x": 2.25,
-            "display_min_x": 2.25,
             "p_all_win": 0.343,
             "p_miss_1": 0.441,
             "ev": 0.323,
@@ -621,15 +629,17 @@
             "sweep_payout": 2.25,
             "sweep_payout_x": 2.25,
             "audit_all_hit_x": 2.25,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "3S Flex canonical 2.25x / 1.25x",
             "n_correct": {
               "3": 2.25,
               "2": 1.25
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 2.25
+          },
+          "empirical_recommendation": "OK"
         }
       ]
     },
@@ -1222,29 +1232,34 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.8794,
-            "min_guarantee": 1.8794,
-            "min_payout_x": 1.8794,
+            "payout": 2.4,
+            "min_guarantee": 2.4,
+            "min_payout_x": 2.4,
             "min_guarantee_adjustment": 1.0,
             "payout_adjustment": 1.0,
             "p_all_win": 0.7057,
             "p_miss_1": 0.2706,
-            "ev": 0.3263,
-            "recommendation": "OK",
-            "entry_10_to_win_guarantee": 18.79,
-            "entry_20_to_win_guarantee": 37.59,
-            "sweep_payout": 1.8794,
-            "sweep_payout_x": 1.8794,
+            "ev": 0.6937,
+            "recommendation": "STRONG",
+            "entry_10_to_win_guarantee": 24.0,
+            "entry_20_to_win_guarantee": 48.0,
+            "sweep_payout": 2.4,
+            "sweep_payout_x": 2.4,
             "audit_all_hit_x": 1.8794,
-            "entry_10_to_win_sweep": 18.79,
+            "entry_10_to_win_sweep": 24.0,
             "payout_confidence_score": 1.3263,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.88 - 1.0",
-            "model_min_payout_x": 1.8794
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*2.40 - 1.0",
+            "model_min_payout_x": 1.8794,
+            "power_min_x": 2.4,
+            "display_min_x": 2.4,
+            "power_first_x": 3.0,
+            "captured_at": "2026-09-09T22:07:21"
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
-          "empirical_recommendation": "OK"
+          "empirical_recommendation": "STRONG",
+          "display_min_x": 2.4
         }
       ],
       "hot_legs": 2,
@@ -1842,29 +1857,34 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.8794,
-            "min_guarantee": 1.8794,
-            "min_payout_x": 1.8794,
+            "payout": 1.7,
+            "min_guarantee": 1.7,
+            "min_payout_x": 1.7,
             "min_guarantee_adjustment": 1.0,
             "payout_adjustment": 1.0,
             "p_all_win": 0.637,
             "p_miss_1": 0.33,
-            "ev": 0.1972,
+            "ev": 0.0829,
             "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 18.79,
-            "entry_20_to_win_guarantee": 37.59,
-            "sweep_payout": 1.8794,
-            "sweep_payout_x": 1.8794,
+            "entry_10_to_win_guarantee": 17.0,
+            "entry_20_to_win_guarantee": 34.0,
+            "sweep_payout": 1.7,
+            "sweep_payout_x": 1.7,
             "audit_all_hit_x": 1.8794,
-            "entry_10_to_win_sweep": 18.79,
+            "entry_10_to_win_sweep": 17.0,
             "payout_confidence_score": 1.1972,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.88 - 1.0",
-            "model_min_payout_x": 1.8794
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.70 - 1.0",
+            "model_min_payout_x": 1.8794,
+            "power_min_x": 1.7,
+            "display_min_x": 1.7,
+            "power_first_x": 3.0,
+            "captured_at": "2026-09-09T22:08:13"
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
-          "empirical_recommendation": "SKIP"
+          "empirical_recommendation": "SKIP",
+          "display_min_x": 1.7
         }
       ],
       "hot_legs": 2,
@@ -2181,29 +2201,34 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.8794,
-            "min_guarantee": 1.8794,
-            "min_payout_x": 1.8794,
+            "payout": 2.3,
+            "min_guarantee": 2.3,
+            "min_payout_x": 2.3,
             "min_guarantee_adjustment": 1.0,
             "payout_adjustment": 1.0,
             "p_all_win": 0.6424,
             "p_miss_1": 0.3182,
-            "ev": 0.2073,
-            "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 18.79,
-            "entry_20_to_win_guarantee": 37.59,
-            "sweep_payout": 1.8794,
-            "sweep_payout_x": 1.8794,
+            "ev": 0.4775,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 23.0,
+            "entry_20_to_win_guarantee": 46.0,
+            "sweep_payout": 2.3,
+            "sweep_payout_x": 2.3,
             "audit_all_hit_x": 1.8794,
-            "entry_10_to_win_sweep": 18.79,
+            "entry_10_to_win_sweep": 23.0,
             "payout_confidence_score": 1.2073,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.88 - 1.0",
-            "model_min_payout_x": 1.8794
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*2.30 - 1.0",
+            "model_min_payout_x": 1.8794,
+            "power_min_x": 2.3,
+            "display_min_x": 2.3,
+            "power_first_x": 3.0,
+            "captured_at": "2026-09-09T22:09:13"
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
-          "empirical_recommendation": "SKIP"
+          "empirical_recommendation": "OK",
+          "display_min_x": 2.3
         }
       ],
       "hot_legs": 2,
@@ -2522,31 +2547,36 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.7,
-            "min_guarantee": 1.7,
-            "min_payout_x": 1.7,
+            "payout": 1.3,
+            "min_guarantee": 1.3,
+            "min_payout_x": 1.3,
             "min_guarantee_adjustment": 0.5667,
             "payout_adjustment": 1.0,
             "p_all_win": 0.591,
             "p_miss_1": 0.361,
-            "ev": 0.0046,
+            "ev": -0.2317,
             "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 17.0,
-            "entry_20_to_win_guarantee": 34.0,
-            "sweep_payout": 1.7,
-            "sweep_payout_x": 1.7,
+            "entry_10_to_win_guarantee": 13.0,
+            "entry_20_to_win_guarantee": 26.0,
+            "sweep_payout": 1.3,
+            "sweep_payout_x": 1.3,
             "audit_all_hit_x": 3.0,
-            "entry_10_to_win_sweep": 17.0,
+            "entry_10_to_win_sweep": 13.0,
             "payout_confidence_score": 1.0047,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.70 - 1.0",
-            "model_min_payout_x": 1.7
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.30 - 1.0",
+            "model_min_payout_x": 1.7,
+            "power_min_x": 1.3,
+            "display_min_x": 1.3,
+            "power_first_x": 3.0,
+            "captured_at": "2026-09-09T22:05:48"
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
           "win_rate_score": 0.349039,
           "floor_ev": -0.650961,
-          "empirical_recommendation": "SKIP"
+          "empirical_recommendation": "SKIP",
+          "display_min_x": 1.3
         }
       ],
       "hot_legs": 2,
@@ -8028,20 +8058,20 @@
   "hot_legs": 44,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 0.5071,
+    "strong": 0.6689499999999999,
     "ok": 0.3167,
-    "marginal": 0.3003
+    "marginal": 0.3167
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 0.32342,
+      "strong": 0.5058049999999997,
       "ok": 0.3167,
       "marginal": 0.3167
     },
     "3": {
-      "strong": 2.9253,
-      "ok": 0.47730000000000056,
-      "marginal": -0.17535
+      "strong": 0.6689499999999999,
+      "ok": 0.3167,
+      "marginal": 0.3167
     }
   },
   "tier_ev_percentiles": {
@@ -8064,7 +8094,7 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 13,
+    "legs_checked": 15,
     "failed_goblin": 0,
     "failed_tier": 13,
     "failed_streak": 0
