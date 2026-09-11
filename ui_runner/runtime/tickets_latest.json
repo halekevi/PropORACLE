@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11 03:54:50 UTC",
+  "generated_at": "2026-09-11 04:45:02 UTC",
   "date": "2026-09-11",
   "tennis_date": "2026-09-11",
   "filters": {
@@ -822,7 +822,7 @@
           "ticket_track": "goblin70",
           "mode": "goblin70",
           "avg_hit_rate": 1.0,
-          "est_win_prob": 0.8967,
+          "est_win_prob": 0.8889,
           "est_flex_cash_prob": 0.73,
           "power_payout": null,
           "flex_payout": 1.9,
@@ -850,8 +850,8 @@
               "abs_edge": 1.6,
               "pick_platform": "prizepicks",
               "hit_rate": 1.0,
-              "ml_prob": 0.9763086063200932,
-              "standard_line": null,
+              "ml_prob": 0.9678264290762898,
+              "standard_line": 1.5,
               "line_underdog": null,
               "line_draftkings": null,
               "line_vegas": null,
@@ -4955,7 +4955,7 @@
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
     "goblin_70": 21,
-    "goblin_70_raw": 34,
+    "goblin_70_raw": 35,
     "standard_allowlist": 13,
     "standard_allowlist_raw": 44,
     "nflp_goblin": 0,
