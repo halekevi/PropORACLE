@@ -1,352 +1,123 @@
 {
-  "fetched_at": "2026-08-30T12:09:51.094174+00:00",
+  "fetched_at": "2026-09-12T01:14:20.354570+00:00",
   "season": 2026,
-  "start_date": "2026-08-30",
-  "end_date": "2026-09-12",
+  "start_date": "2026-09-12",
+  "end_date": "2026-09-25",
   "by_team": {
-    "WSH": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 822688,
-        "is_home": true,
-        "opponent": "MIA",
-        "starter_id": 674841,
-        "starter_name": "Andrew Alvarez",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 822689,
-        "is_home": true,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 822687,
-        "is_home": true,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 822686,
-        "is_home": true,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823905,
-        "is_home": false,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823904,
-        "is_home": false,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823903,
-        "is_home": false,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823254,
-        "is_home": false,
-        "opponent": "SD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823250,
-        "is_home": false,
-        "opponent": "SD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823251,
-        "is_home": false,
-        "opponent": "SD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 822684,
-        "is_home": true,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
+    "DET": [
       {
         "date": "2026-09-12",
-        "game_pk": 822685,
-        "is_home": true,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "MIA": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 822688,
-        "is_home": false,
-        "opponent": "WSH",
-        "starter_id": 676083,
-        "starter_name": "Janson Junk",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 822689,
-        "is_home": false,
-        "opponent": "WSH",
-        "starter_id": 687473,
-        "starter_name": "Ryan Gusto",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824070,
-        "is_home": false,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824068,
-        "is_home": false,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824069,
-        "is_home": false,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823824,
-        "is_home": true,
-        "opponent": "CHC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823823,
-        "is_home": true,
-        "opponent": "CHC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823822,
-        "is_home": true,
-        "opponent": "CHC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823820,
-        "is_home": true,
-        "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823821,
-        "is_home": true,
-        "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823818,
-        "is_home": true,
-        "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823817,
-        "is_home": true,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 823819,
-        "is_home": true,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "ATL": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 824876,
+        "game_pk": 824224,
         "is_home": true,
         "opponent": "COL",
-        "starter_id": 641816,
-        "starter_name": "Tyler Mahle",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824911,
-        "is_home": true,
-        "opponent": "SF",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-01",
-        "game_pk": 822687,
+        "date": "2026-09-13",
+        "game_pk": 824225,
+        "is_home": true,
+        "opponent": "COL",
+        "starter_id": 695549,
+        "starter_name": "Jackson Jobe",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 822765,
         "is_home": false,
+        "opponent": "TOR",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 822762,
+        "is_home": false,
+        "opponent": "TOR",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 822763,
+        "is_home": false,
+        "opponent": "TOR",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 824548,
+        "is_home": false,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824547,
+        "is_home": false,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824545,
+        "is_home": false,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824546,
+        "is_home": false,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-21",
+        "game_pk": 824221,
+        "is_home": true,
         "opponent": "WSH",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-02",
-        "game_pk": 822686,
-        "is_home": false,
+        "date": "2026-09-22",
+        "game_pk": 824222,
+        "is_home": true,
         "opponent": "WSH",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-04",
-        "game_pk": 823418,
-        "is_home": false,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823419,
-        "is_home": false,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823417,
-        "is_home": false,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823415,
-        "is_home": false,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824875,
+        "date": "2026-09-23",
+        "game_pk": 824223,
         "is_home": true,
-        "opponent": "TB",
+        "opponent": "WSH",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-09",
-        "game_pk": 824871,
+        "date": "2026-09-25",
+        "game_pk": 824220,
         "is_home": true,
-        "opponent": "TB",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 824872,
-        "is_home": true,
-        "opponent": "TB",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824873,
-        "is_home": true,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 824870,
-        "is_home": true,
-        "opponent": "PHI",
+        "opponent": "PIT",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
@@ -354,109 +125,118 @@
     ],
     "COL": [
       {
-        "date": "2026-08-30",
-        "game_pk": 824876,
-        "is_home": false,
-        "opponent": "ATL",
-        "starter_id": 690279,
-        "starter_name": "Mason Adams",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824314,
-        "is_home": true,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824313,
-        "is_home": true,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824312,
-        "is_home": true,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824311,
-        "is_home": true,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824310,
-        "is_home": true,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824309,
-        "is_home": true,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823500,
-        "is_home": false,
-        "opponent": "NYY",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823497,
-        "is_home": false,
-        "opponent": "NYY",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 823499,
-        "is_home": false,
-        "opponent": "NYY",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824227,
-        "is_home": false,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
         "date": "2026-09-12",
         "game_pk": 824224,
         "is_home": false,
         "opponent": "DET",
+        "starter_id": 685299,
+        "starter_name": "Tanner Gordon",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 824225,
+        "is_home": false,
+        "opponent": "DET",
+        "starter_id": 687312,
+        "starter_name": "Gabriel Hughes",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 824308,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824307,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824306,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 824305,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824303,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824304,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824300,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824302,
+        "is_home": true,
+        "opponent": "AZ",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824301,
+        "is_home": true,
+        "opponent": "AZ",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824298,
+        "is_home": true,
+        "opponent": "AZ",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 824544,
+        "is_home": false,
+        "opponent": "CWS",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
@@ -464,1600 +244,53 @@
     ],
     "NYY": [
       {
-        "date": "2026-08-30",
-        "game_pk": 823502,
-        "is_home": true,
-        "opponent": "BOS",
-        "starter_id": 701542,
-        "starter_name": "Will Warren",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 823982,
-        "is_home": false,
-        "opponent": "LAA",
-        "starter_id": 695684,
-        "starter_name": "Elmer Rodr\u00edguez",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 823984,
-        "is_home": false,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 823983,
-        "is_home": false,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823256,
-        "is_home": false,
-        "opponent": "SD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823257,
-        "is_home": false,
-        "opponent": "SD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823253,
-        "is_home": false,
-        "opponent": "SD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823500,
-        "is_home": true,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823497,
-        "is_home": true,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 823499,
-        "is_home": true,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823498,
-        "is_home": true,
-        "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
         "date": "2026-09-12",
         "game_pk": 823496,
         "is_home": true,
         "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
+        "starter_id": 543037,
+        "starter_name": "Gerrit Cole",
         "starter_hand": ""
-      }
-    ],
-    "BOS": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 823502,
-        "is_home": false,
-        "opponent": "NYY",
-        "starter_id": 624133,
-        "starter_name": "Ranger Suarez",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824719,
-        "is_home": true,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824716,
-        "is_home": true,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824717,
-        "is_home": true,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824796,
-        "is_home": false,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824797,
-        "is_home": false,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824795,
-        "is_home": false,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824794,
-        "is_home": false,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 824715,
-        "is_home": true,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824714,
-        "is_home": true,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824713,
-        "is_home": true,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824711,
-        "is_home": true,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 824712,
-        "is_home": true,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "TOR": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 822766,
-        "is_home": true,
-        "opponent": "SEA",
-        "starter_id": 453286,
-        "starter_name": "Max Scherzer",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824391,
-        "is_home": false,
-        "opponent": "CLE",
-        "starter_id": 681293,
-        "starter_name": "Spencer Arrighetti",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824390,
-        "is_home": false,
-        "opponent": "CLE",
-        "starter_id": 656302,
-        "starter_name": "Dylan Cease",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824388,
-        "is_home": false,
-        "opponent": "CLE",
-        "starter_id": 667755,
-        "starter_name": "Jos\u00e9 Soriano",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824067,
-        "is_home": false,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824066,
-        "is_home": false,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824065,
-        "is_home": false,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 824958,
-        "is_home": false,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824957,
-        "is_home": false,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824956,
-        "is_home": false,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 822767,
-        "is_home": true,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 822768,
-        "is_home": true,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "SEA": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 822766,
-        "is_home": false,
-        "opponent": "TOR",
-        "starter_id": 669302,
-        "starter_name": "Logan Gilbert",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824719,
-        "is_home": false,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824716,
-        "is_home": false,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824717,
-        "is_home": false,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 823095,
-        "is_home": true,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823093,
-        "is_home": true,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823094,
-        "is_home": true,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823091,
-        "is_home": true,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823092,
-        "is_home": true,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823090,
-        "is_home": true,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 823088,
-        "is_home": true,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824954,
-        "is_home": false,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 824955,
-        "is_home": false,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "CLE": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 824393,
-        "is_home": true,
-        "opponent": "KC",
-        "starter_id": 800048,
-        "starter_name": "Parker Messick",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824391,
-        "is_home": true,
-        "opponent": "TOR",
-        "starter_id": 668909,
-        "starter_name": "Gavin Williams",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824390,
-        "is_home": true,
-        "opponent": "TOR",
-        "starter_id": 676282,
-        "starter_name": "Joey Cantillo",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824388,
-        "is_home": true,
-        "opponent": "TOR",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824424,
-        "is_home": true,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824387,
-        "is_home": true,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824389,
-        "is_home": true,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824385,
-        "is_home": true,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 824793,
-        "is_home": false,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824792,
-        "is_home": false,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824791,
-        "is_home": false,
-        "opponent": "BAL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823659,
-        "is_home": false,
-        "opponent": "MIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 823657,
-        "is_home": false,
-        "opponent": "MIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "KC": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 824393,
-        "is_home": false,
-        "opponent": "CLE",
-        "starter_id": 607625,
-        "starter_name": "Seth Lugo",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824070,
-        "is_home": true,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824068,
-        "is_home": true,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824069,
-        "is_home": true,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824067,
-        "is_home": true,
-        "opponent": "TOR",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824066,
-        "is_home": true,
-        "opponent": "TOR",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824065,
-        "is_home": true,
-        "opponent": "TOR",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 824062,
-        "is_home": true,
-        "opponent": "AZ",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824063,
-        "is_home": true,
-        "opponent": "AZ",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824064,
-        "is_home": true,
-        "opponent": "AZ",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824711,
-        "is_home": false,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 824712,
-        "is_home": false,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "DET": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 824232,
-        "is_home": true,
-        "opponent": "LAD",
-        "starter_id": 664285,
-        "starter_name": "Framber Valdez",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 823663,
-        "is_home": false,
-        "opponent": "MIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 823661,
-        "is_home": false,
-        "opponent": "MIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 823660,
-        "is_home": false,
-        "opponent": "MIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824424,
-        "is_home": false,
-        "opponent": "CLE",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824387,
-        "is_home": false,
-        "opponent": "CLE",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824389,
-        "is_home": false,
-        "opponent": "CLE",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824385,
-        "is_home": false,
-        "opponent": "CLE",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 824229,
-        "is_home": true,
-        "opponent": "MIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824228,
-        "is_home": true,
-        "opponent": "MIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824226,
-        "is_home": true,
-        "opponent": "MIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824227,
-        "is_home": true,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 824224,
-        "is_home": true,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "LAD": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 824232,
-        "is_home": false,
-        "opponent": "DET",
-        "starter_id": 607192,
-        "starter_name": "Tyler Glasnow",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 823908,
-        "is_home": true,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 823906,
-        "is_home": true,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 823907,
-        "is_home": true,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823905,
-        "is_home": true,
-        "opponent": "WSH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823904,
-        "is_home": true,
-        "opponent": "WSH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823903,
-        "is_home": true,
-        "opponent": "WSH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823902,
-        "is_home": true,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823901,
-        "is_home": true,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823900,
-        "is_home": true,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823817,
-        "is_home": false,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 823819,
-        "is_home": false,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "TB": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 822933,
-        "is_home": true,
-        "opponent": "SD",
-        "starter_id": 656876,
-        "starter_name": "Drew Rasmussen",
-        "starter_hand": ""
       },
       {
-        "date": "2026-08-31",
-        "game_pk": 822932,
+        "date": "2026-09-13",
+        "game_pk": 823495,
         "is_home": true,
         "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
+        "starter_id": 693645,
+        "starter_name": "Cam Schlittler",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-01",
-        "game_pk": 822929,
-        "is_home": true,
-        "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 822931,
-        "is_home": true,
-        "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 822853,
-        "is_home": false,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 822852,
-        "is_home": false,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 822850,
-        "is_home": false,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 822848,
-        "is_home": false,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824875,
-        "is_home": false,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824871,
-        "is_home": false,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 824872,
-        "is_home": false,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 822930,
-        "is_home": true,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 822927,
-        "is_home": true,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "SD": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 822933,
-        "is_home": false,
-        "opponent": "TB",
-        "starter_id": 592662,
-        "starter_name": "Robbie Ray",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824473,
-        "is_home": false,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824472,
-        "is_home": false,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824470,
-        "is_home": false,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823256,
-        "is_home": true,
-        "opponent": "NYY",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823257,
-        "is_home": true,
-        "opponent": "NYY",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823253,
-        "is_home": true,
-        "opponent": "NYY",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823254,
-        "is_home": true,
-        "opponent": "WSH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823250,
-        "is_home": true,
-        "opponent": "WSH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823251,
-        "is_home": true,
-        "opponent": "WSH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823173,
-        "is_home": false,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 823170,
-        "is_home": false,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "MIN": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 823662,
-        "is_home": true,
-        "opponent": "CWS",
-        "starter_id": 805673,
-        "starter_name": "Zebby Matthews",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 823663,
-        "is_home": true,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 823661,
-        "is_home": true,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 823660,
-        "is_home": true,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824554,
-        "is_home": false,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824553,
-        "is_home": false,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824552,
-        "is_home": false,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 824229,
-        "is_home": false,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824228,
-        "is_home": false,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824226,
-        "is_home": false,
-        "opponent": "DET",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823659,
-        "is_home": true,
-        "opponent": "CLE",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 823657,
-        "is_home": true,
-        "opponent": "CLE",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "CWS": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 823662,
+        "date": "2026-09-14",
+        "game_pk": 823656,
         "is_home": false,
         "opponent": "MIN",
-        "starter_id": 663855,
-        "starter_name": "Jordan Hicks",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824149,
-        "is_home": false,
-        "opponent": "HOU",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-01",
-        "game_pk": 824148,
+        "date": "2026-09-15",
+        "game_pk": 823654,
         "is_home": false,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824147,
-        "is_home": false,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824144,
-        "is_home": false,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824554,
-        "is_home": true,
         "opponent": "MIN",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-05",
-        "game_pk": 824553,
-        "is_home": true,
+        "date": "2026-09-16",
+        "game_pk": 823655,
+        "is_home": false,
         "opponent": "MIN",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-06",
-        "game_pk": 824552,
-        "is_home": true,
-        "opponent": "MIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824551,
-        "is_home": true,
-        "opponent": "PIT",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824549,
-        "is_home": true,
-        "opponent": "PIT",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 824550,
-        "is_home": true,
-        "opponent": "PIT",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823012,
-        "is_home": false,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 823009,
-        "is_home": false,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "MIL": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 823740,
-        "is_home": true,
-        "opponent": "TEX",
-        "starter_id": 669160,
-        "starter_name": "Dustin May",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824635,
-        "is_home": false,
-        "opponent": "CHC",
-        "starter_id": 690986,
-        "starter_name": "Kyle Harrison",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824633,
-        "is_home": false,
-        "opponent": "CHC",
-        "starter_id": 688107,
-        "starter_name": "Robert Gasser",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824634,
-        "is_home": false,
-        "opponent": "CHC",
-        "starter_id": 694819,
-        "starter_name": "Jacob Misiorowski",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824632,
-        "is_home": false,
-        "opponent": "CHC",
-        "starter_id": 701656,
-        "starter_name": "Logan Henderson",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824471,
-        "is_home": false,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824468,
-        "is_home": false,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824469,
-        "is_home": false,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823742,
-        "is_home": true,
-        "opponent": "CHC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823738,
-        "is_home": true,
-        "opponent": "CHC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823739,
-        "is_home": true,
-        "opponent": "CHC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823736,
-        "is_home": true,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 823737,
-        "is_home": true,
-        "opponent": "CIN",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "TEX": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 823740,
-        "is_home": false,
-        "opponent": "MIL",
-        "starter_id": 677958,
-        "starter_name": "Kumar Rocker",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 822855,
-        "is_home": true,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 822854,
-        "is_home": true,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 822851,
-        "is_home": true,
-        "opponent": "ATH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 822853,
-        "is_home": true,
-        "opponent": "TB",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 822852,
-        "is_home": true,
-        "opponent": "TB",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 822850,
-        "is_home": true,
-        "opponent": "TB",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 822848,
-        "is_home": true,
-        "opponent": "TB",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823092,
-        "is_home": false,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823090,
-        "is_home": false,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 823088,
-        "is_home": false,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 825036,
+        "date": "2026-09-18",
+        "game_pk": 825032,
         "is_home": false,
         "opponent": "AZ",
         "starter_id": null,
@@ -2065,230 +298,64 @@
         "starter_hand": ""
       },
       {
-        "date": "2026-09-12",
-        "game_pk": 825035,
+        "date": "2026-09-19",
+        "game_pk": 825029,
         "is_home": false,
         "opponent": "AZ",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
-      }
-    ],
-    "STL": [
+      },
       {
-        "date": "2026-08-30",
-        "game_pk": 823010,
+        "date": "2026-09-20",
+        "game_pk": 825028,
+        "is_home": false,
+        "opponent": "AZ",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823543,
         "is_home": true,
-        "opponent": "PIT",
-        "starter_id": 669461,
-        "starter_name": "Matthew Liberatore",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 823908,
-        "is_home": false,
-        "opponent": "LAD",
+        "opponent": "TB",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-02",
-        "game_pk": 823906,
-        "is_home": false,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 823907,
-        "is_home": false,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824311,
-        "is_home": false,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824310,
-        "is_home": false,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824309,
-        "is_home": false,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823175,
-        "is_home": false,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823174,
-        "is_home": false,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823172,
-        "is_home": false,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823012,
+        "date": "2026-09-22",
+        "game_pk": 823494,
         "is_home": true,
-        "opponent": "CWS",
+        "opponent": "TB",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-12",
-        "game_pk": 823009,
+        "date": "2026-09-23",
+        "game_pk": 823492,
         "is_home": true,
-        "opponent": "CWS",
+        "opponent": "TB",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
-      }
-    ],
-    "PIT": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 823010,
-        "is_home": false,
-        "opponent": "STL",
-        "starter_id": 677952,
-        "starter_name": "Braxton Ashcraft",
-        "starter_hand": ""
       },
       {
-        "date": "2026-09-01",
-        "game_pk": 823340,
+        "date": "2026-09-24",
+        "game_pk": 823493,
         "is_home": true,
-        "opponent": "SF",
+        "opponent": "TB",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-02",
-        "game_pk": 823339,
+        "date": "2026-09-25",
+        "game_pk": 823491,
         "is_home": true,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 823337,
-        "is_home": true,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823338,
-        "is_home": true,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823335,
-        "is_home": true,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823336,
-        "is_home": true,
-        "opponent": "LAA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824551,
-        "is_home": false,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824549,
-        "is_home": false,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 824550,
-        "is_home": false,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824631,
-        "is_home": false,
-        "opponent": "CHC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 824630,
-        "is_home": false,
-        "opponent": "CHC",
+        "opponent": "BAL",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
@@ -2296,695 +363,118 @@
     ],
     "NYM": [
       {
-        "date": "2026-08-30",
-        "game_pk": 823580,
-        "is_home": true,
-        "opponent": "HOU",
+        "date": "2026-09-12",
+        "game_pk": 823496,
+        "is_home": false,
+        "opponent": "NYY",
         "starter_id": 804267,
         "starter_name": "Zac Thornton",
         "starter_hand": ""
       },
       {
-        "date": "2026-08-31",
-        "game_pk": 822932,
+        "date": "2026-09-13",
+        "game_pk": 823495,
         "is_home": false,
-        "opponent": "TB",
-        "starter_id": 476594,
-        "starter_name": "Robert Stock",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 822929,
-        "is_home": false,
-        "opponent": "TB",
-        "starter_id": 640455,
-        "starter_name": "Sean Manaea",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 822931,
-        "is_home": false,
-        "opponent": "TB",
+        "opponent": "NYY",
         "starter_id": 681035,
         "starter_name": "Christian Scott",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-04",
-        "game_pk": 823579,
-        "is_home": true,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823577,
-        "is_home": true,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823578,
-        "is_home": true,
-        "opponent": "SF",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823820,
-        "is_home": false,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823821,
-        "is_home": false,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823818,
-        "is_home": false,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823498,
-        "is_home": false,
-        "opponent": "NYY",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 823496,
-        "is_home": false,
-        "opponent": "NYY",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "HOU": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 823580,
-        "is_home": false,
-        "opponent": "NYM",
-        "starter_id": 814490,
-        "starter_name": "Ethan Pecko",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824149,
-        "is_home": true,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824148,
-        "is_home": true,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824147,
-        "is_home": true,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824144,
-        "is_home": true,
-        "opponent": "CWS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824146,
-        "is_home": true,
-        "opponent": "AZ",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824145,
-        "is_home": true,
-        "opponent": "AZ",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824142,
-        "is_home": true,
-        "opponent": "AZ",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823414,
-        "is_home": false,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823416,
-        "is_home": false,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 823413,
-        "is_home": false,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 822930,
-        "is_home": false,
-        "opponent": "TB",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 822927,
-        "is_home": false,
-        "opponent": "TB",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "ATH": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 824959,
+        "date": "2026-09-14",
+        "game_pk": 823575,
         "is_home": true,
         "opponent": "BAL",
-        "starter_id": 605488,
-        "starter_name": "Jeffrey Springs",
+        "starter_id": 804636,
+        "starter_name": "Jonah Tong",
         "starter_hand": ""
       },
       {
-        "date": "2026-08-31",
-        "game_pk": 822855,
-        "is_home": false,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 822854,
-        "is_home": false,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 822851,
-        "is_home": false,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 823095,
-        "is_home": false,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823093,
-        "is_home": false,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823094,
-        "is_home": false,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823091,
-        "is_home": false,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 824958,
+        "date": "2026-09-15",
+        "game_pk": 823574,
         "is_home": true,
-        "opponent": "TOR",
-        "starter_id": null,
-        "starter_name": "",
+        "opponent": "BAL",
+        "starter_id": 640455,
+        "starter_name": "Sean Manaea",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-08",
-        "game_pk": 824957,
+        "date": "2026-09-16",
+        "game_pk": 823576,
         "is_home": true,
-        "opponent": "TOR",
+        "opponent": "BAL",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-09",
-        "game_pk": 824956,
-        "is_home": true,
-        "opponent": "TOR",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824954,
-        "is_home": true,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 824955,
-        "is_home": true,
-        "opponent": "SEA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "BAL": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 824959,
-        "is_home": false,
-        "opponent": "ATH",
-        "starter_id": 605135,
-        "starter_name": "Chris Bassitt",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824314,
-        "is_home": false,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824313,
-        "is_home": false,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824312,
-        "is_home": false,
-        "opponent": "COL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824796,
-        "is_home": true,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824797,
-        "is_home": true,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824795,
-        "is_home": true,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824794,
-        "is_home": true,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 824793,
-        "is_home": true,
-        "opponent": "CLE",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824792,
-        "is_home": true,
-        "opponent": "CLE",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824791,
-        "is_home": true,
-        "opponent": "CLE",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 822767,
-        "is_home": false,
-        "opponent": "TOR",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 822768,
-        "is_home": false,
-        "opponent": "TOR",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "LAA": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 823987,
+        "date": "2026-09-17",
+        "game_pk": 823573,
         "is_home": true,
         "opponent": "PHI",
-        "starter_id": 579328,
-        "starter_name": "Yusei Kikuchi",
+        "starter_id": null,
+        "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-08-31",
-        "game_pk": 823982,
+        "date": "2026-09-18",
+        "game_pk": 823572,
         "is_home": true,
-        "opponent": "NYY",
+        "opponent": "PHI",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-01",
-        "game_pk": 823984,
+        "date": "2026-09-19",
+        "game_pk": 823571,
         "is_home": true,
-        "opponent": "NYY",
+        "opponent": "PHI",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-02",
-        "game_pk": 823983,
+        "date": "2026-09-20",
+        "game_pk": 823570,
         "is_home": true,
-        "opponent": "NYY",
+        "opponent": "PHI",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-04",
-        "game_pk": 823338,
+        "date": "2026-09-22",
+        "game_pk": 822840,
         "is_home": false,
-        "opponent": "PIT",
+        "opponent": "TEX",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-05",
-        "game_pk": 823335,
+        "date": "2026-09-23",
+        "game_pk": 822841,
         "is_home": false,
-        "opponent": "PIT",
+        "opponent": "TEX",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-06",
-        "game_pk": 823336,
+        "date": "2026-09-24",
+        "game_pk": 822842,
         "is_home": false,
-        "opponent": "PIT",
+        "opponent": "TEX",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-07",
-        "game_pk": 824715,
-        "is_home": false,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824714,
-        "is_home": false,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824713,
-        "is_home": false,
-        "opponent": "BOS",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 822684,
+        "date": "2026-09-25",
+        "game_pk": 822681,
         "is_home": false,
         "opponent": "WSH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 822685,
-        "is_home": false,
-        "opponent": "WSH",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      }
-    ],
-    "PHI": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 823987,
-        "is_home": false,
-        "opponent": "LAA",
-        "starter_id": 554430,
-        "starter_name": "Zack Wheeler",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 825040,
-        "is_home": false,
-        "opponent": "AZ",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 825038,
-        "is_home": false,
-        "opponent": "AZ",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 825037,
-        "is_home": false,
-        "opponent": "AZ",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823418,
-        "is_home": true,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823419,
-        "is_home": true,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823417,
-        "is_home": true,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823415,
-        "is_home": true,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823414,
-        "is_home": true,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823416,
-        "is_home": true,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-10",
-        "game_pk": 823413,
-        "is_home": true,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824873,
-        "is_home": false,
-        "opponent": "ATL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-12",
-        "game_pk": 824870,
-        "is_home": false,
-        "opponent": "ATL",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
@@ -2992,228 +482,659 @@
     ],
     "CHC": [
       {
-        "date": "2026-08-30",
-        "game_pk": 824636,
-        "is_home": true,
-        "opponent": "CIN",
-        "starter_id": 684007,
-        "starter_name": "Shota Imanaga",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824635,
-        "is_home": true,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824633,
-        "is_home": true,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824634,
-        "is_home": true,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-03",
-        "game_pk": 824632,
-        "is_home": true,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823824,
-        "is_home": false,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823823,
-        "is_home": false,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823822,
-        "is_home": false,
-        "opponent": "MIA",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823742,
-        "is_home": false,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823738,
-        "is_home": false,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823739,
-        "is_home": false,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 824631,
-        "is_home": true,
-        "opponent": "PIT",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
         "date": "2026-09-12",
         "game_pk": 824630,
         "is_home": true,
         "opponent": "PIT",
+        "starter_id": 605280,
+        "starter_name": "Clay Holmes",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 824628,
+        "is_home": true,
+        "opponent": "PIT",
+        "starter_id": 571510,
+        "starter_name": "Matthew Boyd",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 824629,
+        "is_home": true,
+        "opponent": "ATL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824627,
+        "is_home": true,
+        "opponent": "ATL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824626,
+        "is_home": true,
+        "opponent": "ATL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824463,
+        "is_home": false,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824461,
+        "is_home": false,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824462,
+        "is_home": false,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824624,
+        "is_home": true,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824625,
+        "is_home": true,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824623,
+        "is_home": true,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 824706,
+        "is_home": false,
+        "opponent": "BOS",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       }
     ],
-    "CIN": [
-      {
-        "date": "2026-08-30",
-        "game_pk": 824636,
-        "is_home": false,
-        "opponent": "CHC",
-        "starter_id": 695505,
-        "starter_name": "Chase Burns",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-08-31",
-        "game_pk": 824473,
-        "is_home": true,
-        "opponent": "SD",
-        "starter_id": 663903,
-        "starter_name": "Brady Singer",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 824472,
-        "is_home": true,
-        "opponent": "SD",
-        "starter_id": 666157,
-        "starter_name": "Nick Lodolo",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 824470,
-        "is_home": true,
-        "opponent": "SD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824471,
-        "is_home": true,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824468,
-        "is_home": true,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824469,
-        "is_home": true,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823902,
-        "is_home": false,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823901,
-        "is_home": false,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823900,
-        "is_home": false,
-        "opponent": "LAD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823736,
-        "is_home": false,
-        "opponent": "MIL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
+    "PIT": [
       {
         "date": "2026-09-12",
-        "game_pk": 823737,
+        "game_pk": 824630,
         "is_home": false,
+        "opponent": "CHC",
+        "starter_id": 694973,
+        "starter_name": "Paul Skenes",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 824628,
+        "is_home": false,
+        "opponent": "CHC",
+        "starter_id": 696149,
+        "starter_name": "Bubba Chandler",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 823333,
+        "is_home": true,
         "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 823332,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 823334,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823331,
+        "is_home": true,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823330,
+        "is_home": true,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823329,
+        "is_home": true,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823328,
+        "is_home": true,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823327,
+        "is_home": true,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 823326,
+        "is_home": true,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 824220,
+        "is_home": false,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "TOR": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 822768,
+        "is_home": true,
+        "opponent": "BAL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 822764,
+        "is_home": true,
+        "opponent": "BAL",
+        "starter_id": 656302,
+        "starter_name": "Dylan Cease",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 822765,
+        "is_home": true,
+        "opponent": "DET",
+        "starter_id": 667755,
+        "starter_name": "Jos\u00e9 Soriano",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 822762,
+        "is_home": true,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 822763,
+        "is_home": true,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 822847,
+        "is_home": false,
+        "opponent": "TEX",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 822843,
+        "is_home": false,
+        "opponent": "TEX",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 822844,
+        "is_home": false,
+        "opponent": "TEX",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-21",
+        "game_pk": 824787,
+        "is_home": false,
+        "opponent": "BAL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824785,
+        "is_home": false,
+        "opponent": "BAL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824784,
+        "is_home": false,
+        "opponent": "BAL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 822760,
+        "is_home": true,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "BAL": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 822768,
+        "is_home": false,
+        "opponent": "TOR",
+        "starter_id": 680694,
+        "starter_name": "Kyle Bradish",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 822764,
+        "is_home": false,
+        "opponent": "TOR",
+        "starter_id": 669432,
+        "starter_name": "Trevor Rogers",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 823575,
+        "is_home": false,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 823574,
+        "is_home": false,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 823576,
+        "is_home": false,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824790,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824788,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824789,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-21",
+        "game_pk": 824787,
+        "is_home": true,
+        "opponent": "TOR",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824785,
+        "is_home": true,
+        "opponent": "TOR",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824784,
+        "is_home": true,
+        "opponent": "TOR",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823491,
+        "is_home": false,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "WSH": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 822685,
+        "is_home": true,
+        "opponent": "LAA",
+        "starter_id": 674841,
+        "starter_name": "Andrew Alvarez",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 822682,
+        "is_home": true,
+        "opponent": "LAA",
+        "starter_id": 663623,
+        "starter_name": "Jake Irvin",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 822683,
+        "is_home": true,
+        "opponent": "PHI",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 822680,
+        "is_home": true,
+        "opponent": "PHI",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823005,
+        "is_home": false,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823003,
+        "is_home": false,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823001,
+        "is_home": false,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-21",
+        "game_pk": 824221,
+        "is_home": false,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824222,
+        "is_home": false,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824223,
+        "is_home": false,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 822681,
+        "is_home": true,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "LAA": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 822685,
+        "is_home": false,
+        "opponent": "WSH",
+        "starter_id": 700712,
+        "starter_name": "Walbert Ure\u00f1a",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 822682,
+        "is_home": false,
+        "opponent": "WSH",
+        "starter_id": 680570,
+        "starter_name": "Grayson Rodriguez",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 823981,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 823980,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 823979,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 823978,
+        "is_home": true,
+        "opponent": "MIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823977,
+        "is_home": true,
+        "opponent": "MIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823976,
+        "is_home": true,
+        "opponent": "MIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823975,
+        "is_home": true,
+        "opponent": "MIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824953,
+        "is_home": false,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824951,
+        "is_home": false,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 823087,
+        "is_home": false,
+        "opponent": "SEA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823085,
+        "is_home": false,
+        "opponent": "SEA",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
@@ -3221,8 +1142,1335 @@
     ],
     "SF": [
       {
-        "date": "2026-08-31",
-        "game_pk": 824911,
+        "date": "2026-09-12",
+        "game_pk": 823170,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": 702885,
+        "starter_name": "Cesar Perdomo",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823171,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": 657277,
+        "starter_name": "Logan Webb",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 823006,
+        "is_home": false,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 823007,
+        "is_home": false,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 823004,
+        "is_home": false,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823898,
+        "is_home": false,
+        "opponent": "LAD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823899,
+        "is_home": false,
+        "opponent": "LAD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823896,
+        "is_home": false,
+        "opponent": "LAD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-21",
+        "game_pk": 823169,
+        "is_home": true,
+        "opponent": "MIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823166,
+        "is_home": true,
+        "opponent": "MIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823168,
+        "is_home": true,
+        "opponent": "MIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823167,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "SD": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 823170,
+        "is_home": false,
+        "opponent": "SF",
+        "starter_id": 650633,
+        "starter_name": "Michael King",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823171,
+        "is_home": false,
+        "opponent": "SF",
+        "starter_id": 601713,
+        "starter_name": "Nick Pivetta",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 824308,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824307,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824306,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 824305,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823252,
+        "is_home": true,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823249,
+        "is_home": true,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823247,
+        "is_home": true,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823897,
+        "is_home": false,
+        "opponent": "LAD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823894,
+        "is_home": false,
+        "opponent": "LAD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 823895,
+        "is_home": false,
+        "opponent": "LAD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823248,
+        "is_home": true,
+        "opponent": "AZ",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "BOS": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 824712,
+        "is_home": true,
+        "opponent": "KC",
+        "starter_id": 624133,
+        "starter_name": "Ranger Suarez",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 824708,
+        "is_home": true,
+        "opponent": "KC",
+        "starter_id": 801139,
+        "starter_name": "Payton Tolle",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 822849,
+        "is_home": false,
+        "opponent": "TEX",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 822846,
+        "is_home": false,
+        "opponent": "TEX",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 822845,
+        "is_home": false,
+        "opponent": "TEX",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 822923,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 822921,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 822922,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824709,
+        "is_home": true,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824710,
+        "is_home": true,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824707,
+        "is_home": true,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 824706,
+        "is_home": true,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "KC": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 824712,
+        "is_home": false,
+        "opponent": "BOS",
+        "starter_id": 677976,
+        "starter_name": "Randy Dobnak",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 824708,
+        "is_home": false,
+        "opponent": "BOS",
+        "starter_id": 702070,
+        "starter_name": "Noah Cameron",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824143,
+        "is_home": false,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824140,
+        "is_home": false,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 824141,
+        "is_home": false,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823331,
+        "is_home": false,
+        "opponent": "PIT",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823330,
+        "is_home": false,
+        "opponent": "PIT",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823329,
+        "is_home": false,
+        "opponent": "PIT",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824061,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824060,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824059,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 824058,
+        "is_home": true,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "MIN": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 823657,
+        "is_home": true,
+        "opponent": "CLE",
+        "starter_id": 687570,
+        "starter_name": "Connor Prielipp",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823658,
+        "is_home": true,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 823656,
+        "is_home": true,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 823654,
+        "is_home": true,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 823655,
+        "is_home": true,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 823978,
+        "is_home": false,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823977,
+        "is_home": false,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823976,
+        "is_home": false,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823975,
+        "is_home": false,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-21",
+        "game_pk": 823169,
+        "is_home": false,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823166,
+        "is_home": false,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823168,
+        "is_home": false,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823652,
+        "is_home": true,
+        "opponent": "TEX",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "CLE": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 823657,
+        "is_home": false,
+        "opponent": "MIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823658,
+        "is_home": false,
+        "opponent": "MIN",
+        "starter_id": 676440,
+        "starter_name": "Tanner Bibee",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 824386,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824384,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824382,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824383,
+        "is_home": true,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824380,
+        "is_home": true,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824381,
+        "is_home": true,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824709,
+        "is_home": false,
+        "opponent": "BOS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824710,
+        "is_home": false,
+        "opponent": "BOS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824707,
+        "is_home": false,
+        "opponent": "BOS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 824058,
+        "is_home": false,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "MIA": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 823819,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": 663969,
+        "starter_name": "Tyler Phillips",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823815,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": 691587,
+        "starter_name": "Eury P\u00e9rez",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 825034,
+        "is_home": false,
+        "opponent": "AZ",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 825030,
+        "is_home": false,
+        "opponent": "AZ",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 825031,
+        "is_home": false,
+        "opponent": "AZ",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823252,
+        "is_home": false,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823249,
+        "is_home": false,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823247,
+        "is_home": false,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824624,
+        "is_home": false,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824625,
+        "is_home": false,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824623,
+        "is_home": false,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823816,
+        "is_home": true,
+        "opponent": "ATL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "LAD": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 823819,
+        "is_home": false,
+        "opponent": "MIA",
+        "starter_id": 607192,
+        "starter_name": "Tyler Glasnow",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823815,
+        "is_home": false,
+        "opponent": "MIA",
+        "starter_id": 680736,
+        "starter_name": "Justin Wrobleski",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 824465,
+        "is_home": false,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824466,
+        "is_home": false,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824467,
+        "is_home": false,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 824464,
+        "is_home": false,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823898,
+        "is_home": true,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823899,
+        "is_home": true,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823896,
+        "is_home": true,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823897,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823894,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 823895,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823167,
+        "is_home": false,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "TB": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 822927,
+        "is_home": true,
+        "opponent": "HOU",
+        "starter_id": 693855,
+        "starter_name": "Ian Seymour",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 822928,
+        "is_home": true,
+        "opponent": "HOU",
+        "starter_id": 642547,
+        "starter_name": "Freddy Peralta",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 822925,
+        "is_home": true,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 822926,
+        "is_home": true,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 822924,
+        "is_home": true,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 822923,
+        "is_home": true,
+        "opponent": "BOS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 822921,
+        "is_home": true,
+        "opponent": "BOS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 822922,
+        "is_home": true,
+        "opponent": "BOS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823543,
+        "is_home": false,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823494,
+        "is_home": false,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823492,
+        "is_home": false,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 823493,
+        "is_home": false,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823409,
+        "is_home": false,
+        "opponent": "PHI",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "HOU": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 822927,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": 663567,
+        "starter_name": "Peter Lambert",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 822928,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": 669713,
+        "starter_name": "Hayden Wesneski",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824143,
+        "is_home": true,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824140,
+        "is_home": true,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 824141,
+        "is_home": true,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824138,
+        "is_home": true,
+        "opponent": "ATL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824137,
+        "is_home": true,
+        "opponent": "ATL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824139,
+        "is_home": true,
+        "opponent": "ATL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823089,
+        "is_home": false,
+        "opponent": "SEA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823086,
+        "is_home": false,
+        "opponent": "SEA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824950,
+        "is_home": false,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 824947,
+        "is_home": false,
+        "opponent": "ATH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "MIL": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 823737,
+        "is_home": true,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823734,
+        "is_home": true,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 823333,
+        "is_home": false,
+        "opponent": "PIT",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 823332,
+        "is_home": false,
+        "opponent": "PIT",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 823334,
+        "is_home": false,
+        "opponent": "PIT",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824790,
+        "is_home": false,
+        "opponent": "BAL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824788,
+        "is_home": false,
+        "opponent": "BAL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824789,
+        "is_home": false,
+        "opponent": "BAL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823412,
+        "is_home": false,
+        "opponent": "PHI",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823410,
+        "is_home": false,
+        "opponent": "PHI",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 823411,
+        "is_home": false,
+        "opponent": "PHI",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823735,
+        "is_home": true,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "CIN": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 823737,
+        "is_home": false,
+        "opponent": "MIL",
+        "starter_id": 663903,
+        "starter_name": "Brady Singer",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823734,
+        "is_home": false,
+        "opponent": "MIL",
+        "starter_id": 695505,
+        "starter_name": "Chase Burns",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 824465,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": 666157,
+        "starter_name": "Nick Lodolo",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824466,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": 695076,
+        "starter_name": "Rhett Lowder",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824467,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 824464,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824463,
+        "is_home": true,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824461,
+        "is_home": true,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824462,
+        "is_home": true,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824867,
         "is_home": false,
         "opponent": "ATL",
         "starter_id": null,
@@ -3230,100 +2478,477 @@
         "starter_hand": ""
       },
       {
-        "date": "2026-09-01",
-        "game_pk": 823340,
+        "date": "2026-09-23",
+        "game_pk": 824868,
         "is_home": false,
-        "opponent": "PIT",
+        "opponent": "ATL",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-02",
-        "game_pk": 823339,
+        "date": "2026-09-24",
+        "game_pk": 824866,
         "is_home": false,
-        "opponent": "PIT",
+        "opponent": "ATL",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
       },
       {
-        "date": "2026-09-03",
-        "game_pk": 823337,
+        "date": "2026-09-25",
+        "game_pk": 822760,
         "is_home": false,
-        "opponent": "PIT",
+        "opponent": "TOR",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 823579,
-        "is_home": false,
-        "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 823577,
-        "is_home": false,
-        "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 823578,
-        "is_home": false,
-        "opponent": "NYM",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 823175,
-        "is_home": true,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 823174,
-        "is_home": true,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 823172,
-        "is_home": true,
-        "opponent": "STL",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 823173,
-        "is_home": true,
-        "opponent": "SD",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
+      }
+    ],
+    "ATL": [
       {
         "date": "2026-09-12",
-        "game_pk": 823170,
+        "game_pk": 824870,
         "is_home": true,
-        "opponent": "SD",
+        "opponent": "PHI",
+        "starter_id": 641816,
+        "starter_name": "Tyler Mahle",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 824869,
+        "is_home": true,
+        "opponent": "PHI",
+        "starter_id": 656550,
+        "starter_name": "Grant Holmes",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 824629,
+        "is_home": false,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824627,
+        "is_home": false,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824626,
+        "is_home": false,
+        "opponent": "CHC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824138,
+        "is_home": false,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824137,
+        "is_home": false,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824139,
+        "is_home": false,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824867,
+        "is_home": true,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824868,
+        "is_home": true,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824866,
+        "is_home": true,
+        "opponent": "CIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823816,
+        "is_home": false,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "PHI": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 824870,
+        "is_home": false,
+        "opponent": "ATL",
+        "starter_id": 666200,
+        "starter_name": "Jes\u00fas Luzardo",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 824869,
+        "is_home": false,
+        "opponent": "ATL",
+        "starter_id": 691725,
+        "starter_name": "Andrew Painter",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 822683,
+        "is_home": false,
+        "opponent": "WSH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 822680,
+        "is_home": false,
+        "opponent": "WSH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 823573,
+        "is_home": false,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823572,
+        "is_home": false,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823571,
+        "is_home": false,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823570,
+        "is_home": false,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823412,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823410,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 823411,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823409,
+        "is_home": true,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "STL": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 823009,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": 681517,
+        "starter_name": "Kyle Leahy",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823008,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": 700241,
+        "starter_name": "Michael McGreevy",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 823006,
+        "is_home": true,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 823007,
+        "is_home": true,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 823004,
+        "is_home": true,
+        "opponent": "SF",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 823005,
+        "is_home": true,
+        "opponent": "WSH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 823003,
+        "is_home": true,
+        "opponent": "WSH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 823001,
+        "is_home": true,
+        "opponent": "WSH",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823328,
+        "is_home": false,
+        "opponent": "PIT",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823327,
+        "is_home": false,
+        "opponent": "PIT",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 823326,
+        "is_home": false,
+        "opponent": "PIT",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823735,
+        "is_home": false,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "CWS": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 823009,
+        "is_home": false,
+        "opponent": "STL",
+        "starter_id": 622491,
+        "starter_name": "Luis Castillo",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 823008,
+        "is_home": false,
+        "opponent": "STL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 824386,
+        "is_home": false,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 824384,
+        "is_home": false,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 824382,
+        "is_home": false,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 824548,
+        "is_home": true,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824547,
+        "is_home": true,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824545,
+        "is_home": true,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824546,
+        "is_home": true,
+        "opponent": "DET",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824061,
+        "is_home": false,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824060,
+        "is_home": false,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824059,
+        "is_home": false,
+        "opponent": "KC",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 824544,
+        "is_home": true,
+        "opponent": "COL",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
@@ -3331,100 +2956,439 @@
     ],
     "AZ": [
       {
-        "date": "2026-08-31",
-        "game_pk": 825040,
-        "is_home": true,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-01",
-        "game_pk": 825038,
-        "is_home": true,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-02",
-        "game_pk": 825037,
-        "is_home": true,
-        "opponent": "PHI",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-04",
-        "game_pk": 824146,
-        "is_home": false,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-05",
-        "game_pk": 824145,
-        "is_home": false,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-06",
-        "game_pk": 824142,
-        "is_home": false,
-        "opponent": "HOU",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-07",
-        "game_pk": 824062,
-        "is_home": false,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-08",
-        "game_pk": 824063,
-        "is_home": false,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-09",
-        "game_pk": 824064,
-        "is_home": false,
-        "opponent": "KC",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
-        "date": "2026-09-11",
-        "game_pk": 825036,
-        "is_home": true,
-        "opponent": "TEX",
-        "starter_id": null,
-        "starter_name": "",
-        "starter_hand": ""
-      },
-      {
         "date": "2026-09-12",
         "game_pk": 825035,
         "is_home": true,
         "opponent": "TEX",
+        "starter_id": 694297,
+        "starter_name": "Brandon Pfaadt",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 825033,
+        "is_home": true,
+        "opponent": "TEX",
+        "starter_id": 593958,
+        "starter_name": "Eduardo Rodriguez",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 825034,
+        "is_home": true,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 825030,
+        "is_home": true,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 825031,
+        "is_home": true,
+        "opponent": "MIA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 825032,
+        "is_home": true,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 825029,
+        "is_home": true,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 825028,
+        "is_home": true,
+        "opponent": "NYY",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824302,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824301,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824298,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823248,
+        "is_home": false,
+        "opponent": "SD",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "TEX": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 825035,
+        "is_home": false,
+        "opponent": "AZ",
+        "starter_id": 677958,
+        "starter_name": "Kumar Rocker",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 825033,
+        "is_home": false,
+        "opponent": "AZ",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 822849,
+        "is_home": true,
+        "opponent": "BOS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 822846,
+        "is_home": true,
+        "opponent": "BOS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 822845,
+        "is_home": true,
+        "opponent": "BOS",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 822847,
+        "is_home": true,
+        "opponent": "TOR",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 822843,
+        "is_home": true,
+        "opponent": "TOR",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 822844,
+        "is_home": true,
+        "opponent": "TOR",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 822840,
+        "is_home": true,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 822841,
+        "is_home": true,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 822842,
+        "is_home": true,
+        "opponent": "NYM",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823652,
+        "is_home": false,
+        "opponent": "MIN",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "ATH": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 824955,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": 695611,
+        "starter_name": "Gage Jump",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 824952,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": 682052,
+        "starter_name": "Jacob Lopez",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 822925,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 822926,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-17",
+        "game_pk": 822924,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824383,
+        "is_home": false,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824380,
+        "is_home": false,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824381,
+        "is_home": false,
+        "opponent": "CLE",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 824953,
+        "is_home": true,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 824951,
+        "is_home": true,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 824950,
+        "is_home": true,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 824947,
+        "is_home": true,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "SEA": [
+      {
+        "date": "2026-09-12",
+        "game_pk": 824955,
+        "is_home": false,
+        "opponent": "ATH",
+        "starter_id": 693433,
+        "starter_name": "Bryan Woo",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-13",
+        "game_pk": 824952,
+        "is_home": false,
+        "opponent": "ATH",
+        "starter_id": 682243,
+        "starter_name": "Bryce Miller",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-14",
+        "game_pk": 823981,
+        "is_home": false,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-15",
+        "game_pk": 823980,
+        "is_home": false,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-16",
+        "game_pk": 823979,
+        "is_home": false,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-18",
+        "game_pk": 824303,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-19",
+        "game_pk": 824304,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-20",
+        "game_pk": 824300,
+        "is_home": false,
+        "opponent": "COL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-22",
+        "game_pk": 823089,
+        "is_home": true,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-23",
+        "game_pk": 823086,
+        "is_home": true,
+        "opponent": "HOU",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-24",
+        "game_pk": 823087,
+        "is_home": true,
+        "opponent": "LAA",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-09-25",
+        "game_pk": 823085,
+        "is_home": true,
+        "opponent": "LAA",
         "starter_id": null,
         "starter_name": "",
         "starter_hand": ""
@@ -3432,420 +3396,536 @@
     ]
   },
   "by_date": {
-    "2026-08-30": {
-      "WSH": {
-        "date": "2026-08-30",
-        "game_pk": 822688,
+    "2026-09-12": {
+      "COL": {
+        "date": "2026-09-12",
+        "game_pk": 824224,
+        "is_home": false,
+        "opponent": "DET",
+        "starter_id": 685299,
+        "starter_name": "Tanner Gordon",
+        "starter_hand": ""
+      },
+      "NYY": {
+        "date": "2026-09-12",
+        "game_pk": 823496,
         "is_home": true,
-        "opponent": "MIA",
+        "opponent": "NYM",
+        "starter_id": 543037,
+        "starter_name": "Gerrit Cole",
+        "starter_hand": ""
+      },
+      "NYM": {
+        "date": "2026-09-12",
+        "game_pk": 823496,
+        "is_home": false,
+        "opponent": "NYY",
+        "starter_id": 804267,
+        "starter_name": "Zac Thornton",
+        "starter_hand": ""
+      },
+      "CHC": {
+        "date": "2026-09-12",
+        "game_pk": 824630,
+        "is_home": true,
+        "opponent": "PIT",
+        "starter_id": 605280,
+        "starter_name": "Clay Holmes",
+        "starter_hand": ""
+      },
+      "PIT": {
+        "date": "2026-09-12",
+        "game_pk": 824630,
+        "is_home": false,
+        "opponent": "CHC",
+        "starter_id": 694973,
+        "starter_name": "Paul Skenes",
+        "starter_hand": ""
+      },
+      "BAL": {
+        "date": "2026-09-12",
+        "game_pk": 822768,
+        "is_home": false,
+        "opponent": "TOR",
+        "starter_id": 680694,
+        "starter_name": "Kyle Bradish",
+        "starter_hand": ""
+      },
+      "WSH": {
+        "date": "2026-09-12",
+        "game_pk": 822685,
+        "is_home": true,
+        "opponent": "LAA",
         "starter_id": 674841,
         "starter_name": "Andrew Alvarez",
         "starter_hand": ""
       },
-      "MIA": {
-        "date": "2026-08-30",
-        "game_pk": 822688,
+      "LAA": {
+        "date": "2026-09-12",
+        "game_pk": 822685,
         "is_home": false,
         "opponent": "WSH",
-        "starter_id": 676083,
-        "starter_name": "Janson Junk",
+        "starter_id": 700712,
+        "starter_name": "Walbert Ure\u00f1a",
         "starter_hand": ""
       },
-      "ATL": {
-        "date": "2026-08-30",
-        "game_pk": 824876,
+      "SF": {
+        "date": "2026-09-12",
+        "game_pk": 823170,
         "is_home": true,
-        "opponent": "COL",
-        "starter_id": 641816,
-        "starter_name": "Tyler Mahle",
+        "opponent": "SD",
+        "starter_id": 702885,
+        "starter_name": "Cesar Perdomo",
         "starter_hand": ""
       },
-      "COL": {
-        "date": "2026-08-30",
-        "game_pk": 824876,
+      "SD": {
+        "date": "2026-09-12",
+        "game_pk": 823170,
         "is_home": false,
-        "opponent": "ATL",
-        "starter_id": 690279,
-        "starter_name": "Mason Adams",
-        "starter_hand": ""
-      },
-      "NYY": {
-        "date": "2026-08-30",
-        "game_pk": 823502,
-        "is_home": true,
-        "opponent": "BOS",
-        "starter_id": 701542,
-        "starter_name": "Will Warren",
+        "opponent": "SF",
+        "starter_id": 650633,
+        "starter_name": "Michael King",
         "starter_hand": ""
       },
       "BOS": {
-        "date": "2026-08-30",
-        "game_pk": 823502,
-        "is_home": false,
-        "opponent": "NYY",
+        "date": "2026-09-12",
+        "game_pk": 824712,
+        "is_home": true,
+        "opponent": "KC",
         "starter_id": 624133,
         "starter_name": "Ranger Suarez",
         "starter_hand": ""
       },
-      "TOR": {
-        "date": "2026-08-30",
-        "game_pk": 822766,
-        "is_home": true,
-        "opponent": "SEA",
-        "starter_id": 453286,
-        "starter_name": "Max Scherzer",
-        "starter_hand": ""
-      },
-      "SEA": {
-        "date": "2026-08-30",
-        "game_pk": 822766,
-        "is_home": false,
-        "opponent": "TOR",
-        "starter_id": 669302,
-        "starter_name": "Logan Gilbert",
-        "starter_hand": ""
-      },
-      "CLE": {
-        "date": "2026-08-30",
-        "game_pk": 824393,
-        "is_home": true,
-        "opponent": "KC",
-        "starter_id": 800048,
-        "starter_name": "Parker Messick",
-        "starter_hand": ""
-      },
       "KC": {
-        "date": "2026-08-30",
-        "game_pk": 824393,
+        "date": "2026-09-12",
+        "game_pk": 824712,
         "is_home": false,
-        "opponent": "CLE",
-        "starter_id": 607625,
-        "starter_name": "Seth Lugo",
+        "opponent": "BOS",
+        "starter_id": 677976,
+        "starter_name": "Randy Dobnak",
         "starter_hand": ""
       },
-      "DET": {
-        "date": "2026-08-30",
-        "game_pk": 824232,
+      "MIN": {
+        "date": "2026-09-12",
+        "game_pk": 823657,
+        "is_home": true,
+        "opponent": "CLE",
+        "starter_id": 687570,
+        "starter_name": "Connor Prielipp",
+        "starter_hand": ""
+      },
+      "MIA": {
+        "date": "2026-09-12",
+        "game_pk": 823819,
         "is_home": true,
         "opponent": "LAD",
-        "starter_id": 664285,
-        "starter_name": "Framber Valdez",
+        "starter_id": 663969,
+        "starter_name": "Tyler Phillips",
         "starter_hand": ""
       },
       "LAD": {
-        "date": "2026-08-30",
-        "game_pk": 824232,
+        "date": "2026-09-12",
+        "game_pk": 823819,
         "is_home": false,
-        "opponent": "DET",
+        "opponent": "MIA",
         "starter_id": 607192,
         "starter_name": "Tyler Glasnow",
         "starter_hand": ""
       },
       "TB": {
-        "date": "2026-08-30",
-        "game_pk": 822933,
-        "is_home": true,
-        "opponent": "SD",
-        "starter_id": 656876,
-        "starter_name": "Drew Rasmussen",
-        "starter_hand": ""
-      },
-      "SD": {
-        "date": "2026-08-30",
-        "game_pk": 822933,
-        "is_home": false,
-        "opponent": "TB",
-        "starter_id": 592662,
-        "starter_name": "Robbie Ray",
-        "starter_hand": ""
-      },
-      "MIN": {
-        "date": "2026-08-30",
-        "game_pk": 823662,
-        "is_home": true,
-        "opponent": "CWS",
-        "starter_id": 805673,
-        "starter_name": "Zebby Matthews",
-        "starter_hand": ""
-      },
-      "CWS": {
-        "date": "2026-08-30",
-        "game_pk": 823662,
-        "is_home": false,
-        "opponent": "MIN",
-        "starter_id": 663855,
-        "starter_name": "Jordan Hicks",
-        "starter_hand": ""
-      },
-      "MIL": {
-        "date": "2026-08-30",
-        "game_pk": 823740,
-        "is_home": true,
-        "opponent": "TEX",
-        "starter_id": 669160,
-        "starter_name": "Dustin May",
-        "starter_hand": ""
-      },
-      "TEX": {
-        "date": "2026-08-30",
-        "game_pk": 823740,
-        "is_home": false,
-        "opponent": "MIL",
-        "starter_id": 677958,
-        "starter_name": "Kumar Rocker",
-        "starter_hand": ""
-      },
-      "STL": {
-        "date": "2026-08-30",
-        "game_pk": 823010,
-        "is_home": true,
-        "opponent": "PIT",
-        "starter_id": 669461,
-        "starter_name": "Matthew Liberatore",
-        "starter_hand": ""
-      },
-      "PIT": {
-        "date": "2026-08-30",
-        "game_pk": 823010,
-        "is_home": false,
-        "opponent": "STL",
-        "starter_id": 677952,
-        "starter_name": "Braxton Ashcraft",
-        "starter_hand": ""
-      },
-      "NYM": {
-        "date": "2026-08-30",
-        "game_pk": 823580,
+        "date": "2026-09-12",
+        "game_pk": 822927,
         "is_home": true,
         "opponent": "HOU",
-        "starter_id": 804267,
-        "starter_name": "Zac Thornton",
+        "starter_id": 693855,
+        "starter_name": "Ian Seymour",
         "starter_hand": ""
       },
       "HOU": {
-        "date": "2026-08-30",
-        "game_pk": 823580,
+        "date": "2026-09-12",
+        "game_pk": 822927,
         "is_home": false,
-        "opponent": "NYM",
-        "starter_id": 814490,
-        "starter_name": "Ethan Pecko",
-        "starter_hand": ""
-      },
-      "ATH": {
-        "date": "2026-08-30",
-        "game_pk": 824959,
-        "is_home": true,
-        "opponent": "BAL",
-        "starter_id": 605488,
-        "starter_name": "Jeffrey Springs",
-        "starter_hand": ""
-      },
-      "BAL": {
-        "date": "2026-08-30",
-        "game_pk": 824959,
-        "is_home": false,
-        "opponent": "ATH",
-        "starter_id": 605135,
-        "starter_name": "Chris Bassitt",
-        "starter_hand": ""
-      },
-      "LAA": {
-        "date": "2026-08-30",
-        "game_pk": 823987,
-        "is_home": true,
-        "opponent": "PHI",
-        "starter_id": 579328,
-        "starter_name": "Yusei Kikuchi",
-        "starter_hand": ""
-      },
-      "PHI": {
-        "date": "2026-08-30",
-        "game_pk": 823987,
-        "is_home": false,
-        "opponent": "LAA",
-        "starter_id": 554430,
-        "starter_name": "Zack Wheeler",
-        "starter_hand": ""
-      },
-      "CHC": {
-        "date": "2026-08-30",
-        "game_pk": 824636,
-        "is_home": true,
-        "opponent": "CIN",
-        "starter_id": 684007,
-        "starter_name": "Shota Imanaga",
+        "opponent": "TB",
+        "starter_id": 663567,
+        "starter_name": "Peter Lambert",
         "starter_hand": ""
       },
       "CIN": {
-        "date": "2026-08-30",
-        "game_pk": 824636,
+        "date": "2026-09-12",
+        "game_pk": 823737,
         "is_home": false,
-        "opponent": "CHC",
-        "starter_id": 695505,
-        "starter_name": "Chase Burns",
-        "starter_hand": ""
-      }
-    },
-    "2026-08-31": {
-      "CIN": {
-        "date": "2026-08-31",
-        "game_pk": 824473,
-        "is_home": true,
-        "opponent": "SD",
+        "opponent": "MIL",
         "starter_id": 663903,
         "starter_name": "Brady Singer",
         "starter_hand": ""
       },
-      "NYM": {
-        "date": "2026-08-31",
-        "game_pk": 822932,
-        "is_home": false,
-        "opponent": "TB",
-        "starter_id": 476594,
-        "starter_name": "Robert Stock",
+      "ATL": {
+        "date": "2026-09-12",
+        "game_pk": 824870,
+        "is_home": true,
+        "opponent": "PHI",
+        "starter_id": 641816,
+        "starter_name": "Tyler Mahle",
         "starter_hand": ""
       },
-      "MIA": {
-        "date": "2026-08-31",
-        "game_pk": 822689,
+      "PHI": {
+        "date": "2026-09-12",
+        "game_pk": 824870,
+        "is_home": false,
+        "opponent": "ATL",
+        "starter_id": 666200,
+        "starter_name": "Jes\u00fas Luzardo",
+        "starter_hand": ""
+      },
+      "STL": {
+        "date": "2026-09-12",
+        "game_pk": 823009,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": 681517,
+        "starter_name": "Kyle Leahy",
+        "starter_hand": ""
+      },
+      "CWS": {
+        "date": "2026-09-12",
+        "game_pk": 823009,
+        "is_home": false,
+        "opponent": "STL",
+        "starter_id": 622491,
+        "starter_name": "Luis Castillo",
+        "starter_hand": ""
+      },
+      "AZ": {
+        "date": "2026-09-12",
+        "game_pk": 825035,
+        "is_home": true,
+        "opponent": "TEX",
+        "starter_id": 694297,
+        "starter_name": "Brandon Pfaadt",
+        "starter_hand": ""
+      },
+      "TEX": {
+        "date": "2026-09-12",
+        "game_pk": 825035,
+        "is_home": false,
+        "opponent": "AZ",
+        "starter_id": 677958,
+        "starter_name": "Kumar Rocker",
+        "starter_hand": ""
+      },
+      "ATH": {
+        "date": "2026-09-12",
+        "game_pk": 824955,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": 695611,
+        "starter_name": "Gage Jump",
+        "starter_hand": ""
+      },
+      "SEA": {
+        "date": "2026-09-12",
+        "game_pk": 824955,
+        "is_home": false,
+        "opponent": "ATH",
+        "starter_id": 693433,
+        "starter_name": "Bryan Woo",
+        "starter_hand": ""
+      }
+    },
+    "2026-09-13": {
+      "DET": {
+        "date": "2026-09-13",
+        "game_pk": 824225,
+        "is_home": true,
+        "opponent": "COL",
+        "starter_id": 695549,
+        "starter_name": "Jackson Jobe",
+        "starter_hand": ""
+      },
+      "COL": {
+        "date": "2026-09-13",
+        "game_pk": 824225,
+        "is_home": false,
+        "opponent": "DET",
+        "starter_id": 687312,
+        "starter_name": "Gabriel Hughes",
+        "starter_hand": ""
+      },
+      "BOS": {
+        "date": "2026-09-13",
+        "game_pk": 824708,
+        "is_home": true,
+        "opponent": "KC",
+        "starter_id": 801139,
+        "starter_name": "Payton Tolle",
+        "starter_hand": ""
+      },
+      "KC": {
+        "date": "2026-09-13",
+        "game_pk": 824708,
+        "is_home": false,
+        "opponent": "BOS",
+        "starter_id": 702070,
+        "starter_name": "Noah Cameron",
+        "starter_hand": ""
+      },
+      "WSH": {
+        "date": "2026-09-13",
+        "game_pk": 822682,
+        "is_home": true,
+        "opponent": "LAA",
+        "starter_id": 663623,
+        "starter_name": "Jake Irvin",
+        "starter_hand": ""
+      },
+      "LAA": {
+        "date": "2026-09-13",
+        "game_pk": 822682,
         "is_home": false,
         "opponent": "WSH",
-        "starter_id": 687473,
-        "starter_name": "Ryan Gusto",
+        "starter_id": 680570,
+        "starter_name": "Grayson Rodriguez",
         "starter_hand": ""
       },
-      "MIL": {
-        "date": "2026-08-31",
-        "game_pk": 824635,
+      "ATL": {
+        "date": "2026-09-13",
+        "game_pk": 824869,
+        "is_home": true,
+        "opponent": "PHI",
+        "starter_id": 656550,
+        "starter_name": "Grant Holmes",
+        "starter_hand": ""
+      },
+      "PHI": {
+        "date": "2026-09-13",
+        "game_pk": 824869,
         "is_home": false,
-        "opponent": "CHC",
-        "starter_id": 690986,
-        "starter_name": "Kyle Harrison",
+        "opponent": "ATL",
+        "starter_id": 691725,
+        "starter_name": "Andrew Painter",
         "starter_hand": ""
       },
       "NYY": {
-        "date": "2026-08-31",
-        "game_pk": 823982,
-        "is_home": false,
-        "opponent": "LAA",
-        "starter_id": 695684,
-        "starter_name": "Elmer Rodr\u00edguez",
-        "starter_hand": ""
-      }
-    },
-    "2026-09-01": {
-      "CIN": {
-        "date": "2026-09-01",
-        "game_pk": 824472,
+        "date": "2026-09-13",
+        "game_pk": 823495,
         "is_home": true,
-        "opponent": "SD",
-        "starter_id": 666157,
-        "starter_name": "Nick Lodolo",
+        "opponent": "NYM",
+        "starter_id": 693645,
+        "starter_name": "Cam Schlittler",
         "starter_hand": ""
       },
       "NYM": {
-        "date": "2026-09-01",
-        "game_pk": 822929,
+        "date": "2026-09-13",
+        "game_pk": 823495,
         "is_home": false,
-        "opponent": "TB",
-        "starter_id": 640455,
-        "starter_name": "Sean Manaea",
-        "starter_hand": ""
-      },
-      "CLE": {
-        "date": "2026-09-01",
-        "game_pk": 824391,
-        "is_home": true,
-        "opponent": "TOR",
-        "starter_id": 668909,
-        "starter_name": "Gavin Williams",
-        "starter_hand": ""
-      },
-      "TOR": {
-        "date": "2026-09-01",
-        "game_pk": 824391,
-        "is_home": false,
-        "opponent": "CLE",
-        "starter_id": 681293,
-        "starter_name": "Spencer Arrighetti",
-        "starter_hand": ""
-      },
-      "MIL": {
-        "date": "2026-09-01",
-        "game_pk": 824633,
-        "is_home": false,
-        "opponent": "CHC",
-        "starter_id": 688107,
-        "starter_name": "Robert Gasser",
-        "starter_hand": ""
-      }
-    },
-    "2026-09-02": {
-      "NYM": {
-        "date": "2026-09-02",
-        "game_pk": 822931,
-        "is_home": false,
-        "opponent": "TB",
+        "opponent": "NYY",
         "starter_id": 681035,
         "starter_name": "Christian Scott",
         "starter_hand": ""
       },
-      "CLE": {
-        "date": "2026-09-02",
-        "game_pk": 824390,
-        "is_home": true,
-        "opponent": "TOR",
-        "starter_id": 676282,
-        "starter_name": "Joey Cantillo",
-        "starter_hand": ""
-      },
       "TOR": {
-        "date": "2026-09-02",
-        "game_pk": 824390,
-        "is_home": false,
-        "opponent": "CLE",
+        "date": "2026-09-13",
+        "game_pk": 822764,
+        "is_home": true,
+        "opponent": "BAL",
         "starter_id": 656302,
         "starter_name": "Dylan Cease",
         "starter_hand": ""
       },
-      "MIL": {
-        "date": "2026-09-02",
-        "game_pk": 824634,
+      "BAL": {
+        "date": "2026-09-13",
+        "game_pk": 822764,
+        "is_home": false,
+        "opponent": "TOR",
+        "starter_id": 669432,
+        "starter_name": "Trevor Rogers",
+        "starter_hand": ""
+      },
+      "TB": {
+        "date": "2026-09-13",
+        "game_pk": 822928,
+        "is_home": true,
+        "opponent": "HOU",
+        "starter_id": 642547,
+        "starter_name": "Freddy Peralta",
+        "starter_hand": ""
+      },
+      "HOU": {
+        "date": "2026-09-13",
+        "game_pk": 822928,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": 669713,
+        "starter_name": "Hayden Wesneski",
+        "starter_hand": ""
+      },
+      "MIA": {
+        "date": "2026-09-13",
+        "game_pk": 823815,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": 691587,
+        "starter_name": "Eury P\u00e9rez",
+        "starter_hand": ""
+      },
+      "LAD": {
+        "date": "2026-09-13",
+        "game_pk": 823815,
+        "is_home": false,
+        "opponent": "MIA",
+        "starter_id": 680736,
+        "starter_name": "Justin Wrobleski",
+        "starter_hand": ""
+      },
+      "CLE": {
+        "date": "2026-09-13",
+        "game_pk": 823658,
+        "is_home": false,
+        "opponent": "MIN",
+        "starter_id": 676440,
+        "starter_name": "Tanner Bibee",
+        "starter_hand": ""
+      },
+      "CIN": {
+        "date": "2026-09-13",
+        "game_pk": 823734,
+        "is_home": false,
+        "opponent": "MIL",
+        "starter_id": 695505,
+        "starter_name": "Chase Burns",
+        "starter_hand": ""
+      },
+      "STL": {
+        "date": "2026-09-13",
+        "game_pk": 823008,
+        "is_home": true,
+        "opponent": "CWS",
+        "starter_id": 700241,
+        "starter_name": "Michael McGreevy",
+        "starter_hand": ""
+      },
+      "CHC": {
+        "date": "2026-09-13",
+        "game_pk": 824628,
+        "is_home": true,
+        "opponent": "PIT",
+        "starter_id": 571510,
+        "starter_name": "Matthew Boyd",
+        "starter_hand": ""
+      },
+      "PIT": {
+        "date": "2026-09-13",
+        "game_pk": 824628,
         "is_home": false,
         "opponent": "CHC",
-        "starter_id": 694819,
-        "starter_name": "Jacob Misiorowski",
+        "starter_id": 696149,
+        "starter_name": "Bubba Chandler",
+        "starter_hand": ""
+      },
+      "ATH": {
+        "date": "2026-09-13",
+        "game_pk": 824952,
+        "is_home": true,
+        "opponent": "SEA",
+        "starter_id": 682052,
+        "starter_name": "Jacob Lopez",
+        "starter_hand": ""
+      },
+      "SEA": {
+        "date": "2026-09-13",
+        "game_pk": 824952,
+        "is_home": false,
+        "opponent": "ATH",
+        "starter_id": 682243,
+        "starter_name": "Bryce Miller",
+        "starter_hand": ""
+      },
+      "AZ": {
+        "date": "2026-09-13",
+        "game_pk": 825033,
+        "is_home": true,
+        "opponent": "TEX",
+        "starter_id": 593958,
+        "starter_name": "Eduardo Rodriguez",
+        "starter_hand": ""
+      },
+      "SF": {
+        "date": "2026-09-13",
+        "game_pk": 823171,
+        "is_home": true,
+        "opponent": "SD",
+        "starter_id": 657277,
+        "starter_name": "Logan Webb",
+        "starter_hand": ""
+      },
+      "SD": {
+        "date": "2026-09-13",
+        "game_pk": 823171,
+        "is_home": false,
+        "opponent": "SF",
+        "starter_id": 601713,
+        "starter_name": "Nick Pivetta",
         "starter_hand": ""
       }
     },
-    "2026-09-03": {
+    "2026-09-14": {
+      "CIN": {
+        "date": "2026-09-14",
+        "game_pk": 824465,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": 666157,
+        "starter_name": "Nick Lodolo",
+        "starter_hand": ""
+      },
       "TOR": {
-        "date": "2026-09-03",
-        "game_pk": 824388,
-        "is_home": false,
-        "opponent": "CLE",
+        "date": "2026-09-14",
+        "game_pk": 822765,
+        "is_home": true,
+        "opponent": "DET",
         "starter_id": 667755,
         "starter_name": "Jos\u00e9 Soriano",
         "starter_hand": ""
       },
-      "MIL": {
-        "date": "2026-09-03",
-        "game_pk": 824632,
-        "is_home": false,
-        "opponent": "CHC",
-        "starter_id": 701656,
-        "starter_name": "Logan Henderson",
+      "NYM": {
+        "date": "2026-09-14",
+        "game_pk": 823575,
+        "is_home": true,
+        "opponent": "BAL",
+        "starter_id": 804636,
+        "starter_name": "Jonah Tong",
         "starter_hand": ""
       }
     },
-    "2026-09-04": {},
-    "2026-09-05": {},
-    "2026-09-06": {},
-    "2026-09-07": {},
-    "2026-09-08": {},
-    "2026-09-09": {},
-    "2026-09-10": {},
-    "2026-09-11": {},
-    "2026-09-12": {}
+    "2026-09-15": {
+      "CIN": {
+        "date": "2026-09-15",
+        "game_pk": 824466,
+        "is_home": true,
+        "opponent": "LAD",
+        "starter_id": 695076,
+        "starter_name": "Rhett Lowder",
+        "starter_hand": ""
+      },
+      "NYM": {
+        "date": "2026-09-15",
+        "game_pk": 823574,
+        "is_home": true,
+        "opponent": "BAL",
+        "starter_id": 640455,
+        "starter_name": "Sean Manaea",
+        "starter_hand": ""
+      }
+    },
+    "2026-09-16": {},
+    "2026-09-17": {},
+    "2026-09-18": {},
+    "2026-09-19": {},
+    "2026-09-20": {},
+    "2026-09-21": {},
+    "2026-09-22": {},
+    "2026-09-23": {},
+    "2026-09-24": {},
+    "2026-09-25": {}
   }
 }

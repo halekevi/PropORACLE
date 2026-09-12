@@ -1,20 +1,421 @@
 {
-  "updated_at": "2026-08-09T22:12:16.011462Z",
-  "days_tracked": 14,
+  "updated_at": "2026-09-11T09:10:36.956792Z",
+  "days_tracked": 10,
   "aggregate": {
-    "hit": 5,
-    "miss": 8,
+    "hit": 2,
+    "miss": 0,
     "void": 0,
     "push": 0,
-    "pending": 2,
-    "no_match": 9,
-    "total": 24
+    "pending": 0,
+    "no_match": 47,
+    "total": 49
   },
-  "aggregate_hit_rate": 0.3846,
+  "aggregate_hit_rate": 1.0,
   "recent": [
     {
-      "slate_date": "2026-08-09",
-      "graded_at": "2026-08-09T22:12:15.905035Z",
+      "slate_date": "2026-09-10",
+      "graded_at": "2026-09-11T09:10:36.887124Z",
+      "summary": {
+        "hit": 0,
+        "miss": 0,
+        "void": 0,
+        "push": 0,
+        "pending": 0,
+        "no_match": 2,
+        "total": 2
+      },
+      "hit_rate": null,
+      "decided": 0,
+      "results": [
+        {
+          "player": "Cam Smith",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7308,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 18,
+            "total": 25,
+            "hit_rate": 0.72
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Mat\u00edas Soul\u00e9",
+          "sport": "Soccer",
+          "tier": "low",
+          "hit_rate": 0.7692,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 10,
+            "total": 13,
+            "hit_rate": 0.7692
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        }
+      ]
+    },
+    {
+      "slate_date": "2026-09-08",
+      "graded_at": "2026-09-09T09:18:29.676928Z",
+      "summary": {
+        "hit": 0,
+        "miss": 0,
+        "void": 0,
+        "push": 0,
+        "pending": 0,
+        "no_match": 9,
+        "total": 9
+      },
+      "hit_rate": null,
+      "decided": 0,
+      "results": [
+        {
+          "player": "Jake Burger",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.8571,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 21,
+            "total": 25,
+            "hit_rate": 0.84
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Jake McCarthy",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.75,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 24,
+            "total": 29,
+            "hit_rate": 0.8276
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Sam Antonacci",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7333,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 19,
+            "total": 26,
+            "hit_rate": 0.7308
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Teoscar Hern\u00e1ndez",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7333,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 22,
+            "total": 29,
+            "hit_rate": 0.7586
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Tristan Peters",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.72,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 18,
+            "total": 25,
+            "hit_rate": 0.72
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Coby Mayo",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7143,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 20,
+            "total": 27,
+            "hit_rate": 0.7407
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Serhou Guirassy",
+          "sport": "Soccer",
+          "tier": "low",
+          "hit_rate": 0.7692,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 10,
+            "total": 13,
+            "hit_rate": 0.7692
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Jarrod Bowen",
+          "sport": "Soccer",
+          "tier": "low",
+          "hit_rate": 0.75,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 8,
+            "total": 11,
+            "hit_rate": 0.7273
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Lautaro Mart\u00ednez",
+          "sport": "Soccer",
+          "tier": "low",
+          "hit_rate": 0.75,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 9,
+            "total": 12,
+            "hit_rate": 0.75
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        }
+      ]
+    },
+    {
+      "slate_date": "2026-09-07",
+      "graded_at": "2026-09-08T09:15:50.520881Z",
+      "summary": {
+        "hit": 0,
+        "miss": 0,
+        "void": 0,
+        "push": 0,
+        "pending": 0,
+        "no_match": 3,
+        "total": 3
+      },
+      "hit_rate": null,
+      "decided": 0,
+      "results": [
+        {
+          "player": "Eli White",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7692,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 17,
+            "total": 23,
+            "hit_rate": 0.7391
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Elly De La Cruz",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7419,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 22,
+            "total": 29,
+            "hit_rate": 0.7586
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Heriberto Hern\u00e1ndez",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7419,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 21,
+            "total": 28,
+            "hit_rate": 0.75
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        }
+      ]
+    },
+    {
+      "slate_date": "2026-09-06",
+      "graded_at": "2026-09-07T09:19:25.773033Z",
+      "summary": {
+        "hit": 0,
+        "miss": 0,
+        "void": 0,
+        "push": 0,
+        "pending": 0,
+        "no_match": 3,
+        "total": 3
+      },
+      "hit_rate": null,
+      "decided": 0,
+      "results": [
+        {
+          "player": "Riley Greene",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.8148,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 22,
+            "total": 26,
+            "hit_rate": 0.8462
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Jonathan Aranda",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7419,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 21,
+            "total": 27,
+            "hit_rate": 0.7778
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Federico Vi\u00f1as",
+          "sport": "Soccer",
+          "tier": "low",
+          "hit_rate": 0.7,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 7,
+            "total": 10,
+            "hit_rate": 0.7
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        }
+      ]
+    },
+    {
+      "slate_date": "2026-09-05",
+      "graded_at": "2026-09-06T09:13:21.456620Z",
+      "summary": {
+        "hit": 0,
+        "miss": 0,
+        "void": 0,
+        "push": 0,
+        "pending": 0,
+        "no_match": 0,
+        "total": 0
+      },
+      "hit_rate": null,
+      "decided": 0,
+      "results": []
+    },
+    {
+      "slate_date": "2026-09-04",
+      "graded_at": "2026-09-05T09:13:59.305276Z",
+      "summary": {
+        "hit": 0,
+        "miss": 0,
+        "void": 0,
+        "push": 0,
+        "pending": 0,
+        "no_match": 3,
+        "total": 3
+      },
+      "hit_rate": null,
+      "decided": 0,
+      "results": [
+        {
+          "player": "Sean Murphy",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.8077,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 21,
+            "total": 25,
+            "hit_rate": 0.84
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Ronald Acu\u00f1a Jr.",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7576,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 23,
+            "total": 29,
+            "hit_rate": 0.7931
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Max Clark",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 18,
+            "total": 26,
+            "hit_rate": 0.6923
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        }
+      ]
+    },
+    {
+      "slate_date": "2026-09-03",
+      "graded_at": "2026-09-04T09:08:43.463160Z",
       "summary": {
         "hit": 0,
         "miss": 0,
@@ -28,133 +429,121 @@
       "decided": 0,
       "results": [
         {
-          "player": "Carles Gil",
-          "sport": "Soccer",
+          "player": "Henry Bolte",
+          "sport": "MLB",
           "tier": "medium",
-          "hit_rate": 0.5405,
+          "hit_rate": 0.7586,
           "display_prop": {
-            "prop_type": "Goal + Assist",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 3,
-            "total": 4,
+            "hits": 22,
+            "total": 28,
+            "hit_rate": 0.7857
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Javier Sanoja",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7241,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 21,
+            "total": 28,
             "hit_rate": 0.75
           },
           "result": "NO_MATCH",
           "grade_source": null
         },
         {
-          "player": "Lionel Messi",
-          "sport": "Soccer",
+          "player": "Jackson Chourio",
+          "sport": "MLB",
           "tier": "medium",
-          "hit_rate": 0.5,
+          "hit_rate": 0.7188,
           "display_prop": {
-            "prop_type": "Goal + Assist",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 2,
-            "total": 3,
-            "hit_rate": 0.6667
-          },
-          "slate_line": 0.5,
-          "slate_pick_type": "Goblin",
-          "team": "INTER MIAMI",
-          "opp": "MONTERREY",
-          "result": "NO_MATCH",
-          "grade_source": null
-        },
-        {
-          "player": "Dor Turgeman",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.4595,
-          "display_prop": {
-            "prop_type": "Goal + Assist",
-            "direction": "OVER",
-            "hits": 4,
-            "total": 5,
-            "hit_rate": 0.8
+            "hits": 23,
+            "total": 30,
+            "hit_rate": 0.7667
           },
           "result": "NO_MATCH",
           "grade_source": null
         },
         {
-          "player": "Luca Langoni",
-          "sport": "Soccer",
+          "player": "Mookie Betts",
+          "sport": "MLB",
           "tier": "medium",
-          "hit_rate": 0.375,
+          "hit_rate": 0.7143,
           "display_prop": {
-            "prop_type": "Assists",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 2,
-            "total": 4,
-            "hit_rate": 0.5
+            "hits": 19,
+            "total": 27,
+            "hit_rate": 0.7037
           },
           "result": "NO_MATCH",
           "grade_source": null
         },
         {
-          "player": "Peyton Miller",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.3667,
+          "player": "Thomas Saggese",
+          "sport": "MLB",
+          "tier": "low",
+          "hit_rate": 0.8095,
           "display_prop": {
-            "prop_type": "Shots",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 8,
-            "total": 16,
-            "hit_rate": 0.5
-          },
-          "slate_line": 1.5,
-          "slate_pick_type": "Goblin",
-          "team": "NEW ENGLAND",
-          "opp": "HOUSTON",
-          "result": "NO_MATCH",
-          "grade_source": null
-        },
-        {
-          "player": "Germ\u00e1n Berterame",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.3611,
-          "display_prop": {
-            "prop_type": "Assists",
-            "direction": "OVER",
-            "hits": 2,
-            "total": 4,
-            "hit_rate": 0.5
+            "hits": 17,
+            "total": 20,
+            "hit_rate": 0.85
           },
           "result": "NO_MATCH",
           "grade_source": null
         },
         {
-          "player": "Griffin Yow",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.36,
+          "player": "Alika Williams",
+          "sport": "MLB",
+          "tier": "low",
+          "hit_rate": 0.7917,
           "display_prop": {
-            "prop_type": "Shots On Target",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 2,
-            "total": 3,
-            "hit_rate": 0.6667
+            "hits": 18,
+            "total": 23,
+            "hit_rate": 0.7826
           },
-          "slate_line": 0.5,
-          "slate_pick_type": "Goblin",
-          "team": "NEW ENGLAND",
-          "opp": "HOUSTON",
           "result": "NO_MATCH",
           "grade_source": null
         },
         {
-          "player": "Alhassan Yusuf",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.32,
+          "player": "Michael Wacha",
+          "sport": "MLB",
+          "tier": "low",
+          "hit_rate": 0.7143,
           "display_prop": {
-            "prop_type": "Goals",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 1,
-            "total": 3,
-            "hit_rate": 0.3333
+            "hits": 14,
+            "total": 19,
+            "hit_rate": 0.7368
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Cal Quantrill",
+          "sport": "MLB",
+          "tier": "low",
+          "hit_rate": 0.7,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 13,
+            "total": 18,
+            "hit_rate": 0.7222
           },
           "result": "NO_MATCH",
           "grade_source": null
@@ -162,115 +551,346 @@
       ]
     },
     {
-      "slate_date": "2026-08-08",
-      "graded_at": "2026-08-09T08:02:43.792607Z",
+      "slate_date": "2026-09-02",
+      "graded_at": "2026-09-03T09:12:02.257779Z",
       "summary": {
-        "hit": 5,
-        "miss": 8,
+        "hit": 0,
+        "miss": 0,
         "void": 0,
         "push": 0,
-        "pending": 2,
-        "no_match": 1,
-        "total": 16
+        "pending": 0,
+        "no_match": 8,
+        "total": 8
       },
-      "hit_rate": 0.3846,
-      "decided": 13,
+      "hit_rate": null,
+      "decided": 0,
       "results": [
         {
-          "player": "Kyle Bradish",
+          "player": "Royce Lewis",
           "sport": "MLB",
           "tier": "medium",
-          "hit_rate": 0.6154,
+          "hit_rate": 0.8276,
           "display_prop": {
-            "prop_type": "Walks Allowed",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 3,
-            "total": 3,
-            "hit_rate": 1.0
+            "hits": 21,
+            "total": 25,
+            "hit_rate": 0.84
           },
-          "slate_line": 1.5,
-          "slate_pick_type": "Goblin",
-          "team": "BAL",
-          "opp": "TEX",
-          "result": "MISS",
-          "actual": 0.0,
-          "line": 1.5,
-          "margin": -1.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
+          "result": "NO_MATCH",
+          "grade_source": null
         },
         {
-          "player": "Bubba Chandler",
+          "player": "Jordan Walker",
           "sport": "MLB",
           "tier": "medium",
-          "hit_rate": 0.5714,
+          "hit_rate": 0.8,
           "display_prop": {
-            "prop_type": "Walks Allowed",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 4,
-            "total": 4,
-            "hit_rate": 1.0
+            "hits": 24,
+            "total": 29,
+            "hit_rate": 0.8276
           },
-          "slate_line": 1.5,
-          "slate_pick_type": "Standard",
-          "team": "PIT",
-          "opp": "NYM",
-          "result": "MISS",
-          "actual": 1.0,
-          "line": 2.5,
-          "margin": -1.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
+          "result": "NO_MATCH",
+          "grade_source": null
         },
         {
-          "player": "Gavin Williams",
+          "player": "Jazz Chisholm Jr.",
           "sport": "MLB",
           "tier": "medium",
-          "hit_rate": 0.5588,
+          "hit_rate": 0.8,
           "display_prop": {
-            "prop_type": "Pitcher Strikeouts",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 11,
-            "total": 16,
-            "hit_rate": 0.6875
+            "hits": 20,
+            "total": 25,
+            "hit_rate": 0.8
           },
-          "slate_line": 4.5,
-          "slate_pick_type": "Goblin",
-          "team": "CLE",
-          "opp": "CWS",
-          "result": "MISS",
-          "actual": 7.0,
-          "line": 7.5,
-          "margin": -0.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
+          "result": "NO_MATCH",
+          "grade_source": null
         },
         {
-          "player": "Carles Gil",
-          "sport": "Soccer",
+          "player": "Paul Goldschmidt",
+          "sport": "MLB",
           "tier": "medium",
-          "hit_rate": 0.5405,
+          "hit_rate": 0.7419,
           "display_prop": {
-            "prop_type": "Goal + Assist",
+            "prop_type": "All Overs",
             "direction": "OVER",
-            "hits": 3,
-            "total": 4,
+            "hits": 21,
+            "total": 27,
+            "hit_rate": 0.7778
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Yandy D\u00edaz",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7241,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 19,
+            "total": 26,
+            "hit_rate": 0.7308
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Brandon Lowe",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7143,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 20,
+            "total": 27,
+            "hit_rate": 0.7407
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Angel Mart\u00ednez",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7037,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 19,
+            "total": 27,
+            "hit_rate": 0.7037
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Brian Serven",
+          "sport": "MLB",
+          "tier": "low",
+          "hit_rate": 0.7826,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 18,
+            "total": 23,
+            "hit_rate": 0.7826
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        }
+      ]
+    },
+    {
+      "slate_date": "2026-09-01",
+      "graded_at": "2026-09-02T09:11:33.103903Z",
+      "summary": {
+        "hit": 0,
+        "miss": 0,
+        "void": 0,
+        "push": 0,
+        "pending": 0,
+        "no_match": 8,
+        "total": 8
+      },
+      "hit_rate": null,
+      "decided": 0,
+      "results": [
+        {
+          "player": "Randy Arozarena",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.8333,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 22,
+            "total": 27,
+            "hit_rate": 0.8148
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Alex Bregman",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7778,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 20,
+            "total": 26,
+            "hit_rate": 0.7692
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Vaughn Grissom",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.75,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 21,
+            "total": 27,
+            "hit_rate": 0.7778
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Ryan Jeffers",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7333,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 19,
+            "total": 26,
+            "hit_rate": 0.7308
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Chase DeLauter",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7143,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 20,
+            "total": 27,
+            "hit_rate": 0.7407
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Jo Adell",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7037,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 19,
+            "total": 26,
+            "hit_rate": 0.7308
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Carson Kelly",
+          "sport": "MLB",
+          "tier": "low",
+          "hit_rate": 0.8182,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 18,
+            "total": 22,
+            "hit_rate": 0.8182
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Tyrone Taylor",
+          "sport": "MLB",
+          "tier": "low",
+          "hit_rate": 0.75,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 18,
+            "total": 24,
             "hit_rate": 0.75
           },
-          "result": "MISS",
-          "actual": 0.0,
-          "line": 1.5,
-          "margin": -1.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
-        },
+          "result": "NO_MATCH",
+          "grade_source": null
+        }
+      ]
+    },
+    {
+      "slate_date": "2026-08-31",
+      "graded_at": "2026-09-01T09:16:21.195007Z",
+      "summary": {
+        "hit": 2,
+        "miss": 0,
+        "void": 0,
+        "push": 0,
+        "pending": 0,
+        "no_match": 3,
+        "total": 5
+      },
+      "hit_rate": 1.0,
+      "decided": 2,
+      "results": [
         {
-          "player": "Aaron Nola",
+          "player": "Carson Kelly",
           "sport": "MLB",
           "tier": "medium",
-          "hit_rate": 0.5111,
+          "hit_rate": 0.8846,
           "display_prop": {
-            "prop_type": "Walks Allowed",
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 23,
+            "total": 26,
+            "hit_rate": 0.8846
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Gunnar Henderson",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7273,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 22,
+            "total": 29,
+            "hit_rate": 0.7586
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "Ezequiel Duran",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7143,
+          "display_prop": {
+            "prop_type": "All Overs",
+            "direction": "OVER",
+            "hits": 20,
+            "total": 28,
+            "hit_rate": 0.7143
+          },
+          "result": "NO_MATCH",
+          "grade_source": null
+        },
+        {
+          "player": "William Contreras",
+          "sport": "MLB",
+          "tier": "medium",
+          "hit_rate": 0.7037,
+          "display_prop": {
+            "prop_type": "Hits+Runs+Rbis",
             "direction": "OVER",
             "hits": 5,
             "total": 6,
@@ -278,54 +898,8 @@
           },
           "slate_line": 0.5,
           "slate_pick_type": "Goblin",
-          "team": "PHI",
-          "opp": "TOR",
-          "result": "HIT",
-          "actual": 2.0,
-          "line": 0.5,
-          "margin": 1.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
-        },
-        {
-          "player": "Anthony Kay",
-          "sport": "MLB",
-          "tier": "high",
-          "hit_rate": 0.5,
-          "display_prop": {
-            "prop_type": "Hits Allowed",
-            "direction": "OVER",
-            "hits": 11,
-            "total": 20,
-            "hit_rate": 0.55
-          },
-          "slate_line": 4.5,
-          "slate_pick_type": "Goblin",
-          "team": "CWS",
-          "opp": "CLE",
-          "result": "HIT",
-          "actual": 6.0,
-          "line": 5.5,
-          "margin": 0.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
-        },
-        {
-          "player": "Gabriel Moreno",
-          "sport": "MLB",
-          "tier": "medium",
-          "hit_rate": 0.5,
-          "display_prop": {
-            "prop_type": "Hitter Strikeouts",
-            "direction": "OVER",
-            "hits": 4,
-            "total": 6,
-            "hit_rate": 0.6667
-          },
-          "slate_line": 1.5,
-          "slate_pick_type": "Demon",
-          "team": "AZ",
-          "opp": "LAD",
+          "team": "MIL",
+          "opp": "CHC",
           "result": "HIT",
           "actual": 1.0,
           "line": 0.5,
@@ -334,386 +908,30 @@
           "grade_source": "graded_props"
         },
         {
-          "player": "Lionel Messi",
-          "sport": "Soccer",
+          "player": "Junior Caminero",
+          "sport": "MLB",
           "tier": "medium",
-          "hit_rate": 0.5,
+          "hit_rate": 0.7,
           "display_prop": {
-            "prop_type": "Goal + Assist",
+            "prop_type": "Hits+Runs+Rbis",
             "direction": "OVER",
-            "hits": 2,
-            "total": 3,
-            "hit_rate": 0.6667
+            "hits": 5,
+            "total": 6,
+            "hit_rate": 0.8333
           },
           "slate_line": 0.5,
           "slate_pick_type": "Goblin",
-          "team": "INTER MIAMI",
-          "opp": "MONTERREY",
-          "result": "PENDING",
-          "actual": null,
-          "line": 0.5,
-          "margin": null,
-          "void_reason": "PENDING",
-          "grade_source": "graded_props"
-        },
-        {
-          "player": "Matthew Liberatore",
-          "sport": "MLB",
-          "tier": "medium",
-          "hit_rate": 0.4839,
-          "display_prop": {
-            "prop_type": "Hits Allowed",
-            "direction": "OVER",
-            "hits": 7,
-            "total": 10,
-            "hit_rate": 0.7
-          },
-          "slate_line": 3.5,
-          "slate_pick_type": "Goblin",
-          "team": "STL",
-          "opp": "COL",
+          "team": "TB",
+          "opp": "NYM",
           "result": "HIT",
-          "actual": 9.0,
-          "line": 6.5,
-          "margin": 2.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
-        },
-        {
-          "player": "Matt Olson",
-          "sport": "MLB",
-          "tier": "high",
-          "hit_rate": 0.4759,
-          "display_prop": {
-            "prop_type": "Hits",
-            "direction": "OVER",
-            "hits": 35,
-            "total": 65,
-            "hit_rate": 0.5385
-          },
-          "slate_line": 0.5,
-          "slate_pick_type": "Goblin",
-          "team": "ATL",
-          "opp": "NYY",
-          "result": "MISS",
-          "actual": 0.0,
+          "actual": 1.0,
           "line": 0.5,
-          "margin": -0.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
-        },
-        {
-          "player": "Dor Turgeman",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.4595,
-          "display_prop": {
-            "prop_type": "Goal + Assist",
-            "direction": "OVER",
-            "hits": 4,
-            "total": 5,
-            "hit_rate": 0.8
-          },
-          "result": "MISS",
-          "actual": 0.0,
-          "line": 0.5,
-          "margin": -0.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
-        },
-        {
-          "player": "Luca Langoni",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.375,
-          "display_prop": {
-            "prop_type": "Assists",
-            "direction": "OVER",
-            "hits": 2,
-            "total": 4,
-            "hit_rate": 0.5
-          },
-          "result": "PENDING",
-          "actual": null,
-          "line": 0.5,
-          "margin": null,
-          "void_reason": "PENDING",
-          "grade_source": "graded_props"
-        },
-        {
-          "player": "Peyton Miller",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.3667,
-          "display_prop": {
-            "prop_type": "Shots",
-            "direction": "OVER",
-            "hits": 8,
-            "total": 16,
-            "hit_rate": 0.5
-          },
-          "slate_line": 1.5,
-          "slate_pick_type": "Goblin",
-          "team": "NEW ENGLAND",
-          "opp": "HOUSTON",
-          "result": "HIT",
-          "actual": 2.0,
-          "line": 1.5,
           "margin": 0.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
-        },
-        {
-          "player": "Germ\u00e1n Berterame",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.3611,
-          "display_prop": {
-            "prop_type": "Assists",
-            "direction": "OVER",
-            "hits": 2,
-            "total": 4,
-            "hit_rate": 0.5
-          },
-          "result": "NO_MATCH",
-          "grade_source": null
-        },
-        {
-          "player": "Griffin Yow",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.36,
-          "display_prop": {
-            "prop_type": "Shots On Target",
-            "direction": "OVER",
-            "hits": 2,
-            "total": 3,
-            "hit_rate": 0.6667
-          },
-          "slate_line": 0.5,
-          "slate_pick_type": "Goblin",
-          "team": "NEW ENGLAND",
-          "opp": "HOUSTON",
-          "result": "MISS",
-          "actual": 0.0,
-          "line": 0.5,
-          "margin": -0.5,
-          "void_reason": "",
-          "grade_source": "graded_props"
-        },
-        {
-          "player": "Alhassan Yusuf",
-          "sport": "Soccer",
-          "tier": "medium",
-          "hit_rate": 0.32,
-          "display_prop": {
-            "prop_type": "Goals",
-            "direction": "OVER",
-            "hits": 1,
-            "total": 3,
-            "hit_rate": 0.3333
-          },
-          "result": "MISS",
-          "actual": 0.0,
-          "line": 0.5,
-          "margin": -0.5,
           "void_reason": "",
           "grade_source": "graded_props"
         }
       ]
-    },
-    {
-      "slate_date": "2026-08-02",
-      "graded_at": "2026-08-03T09:25:19.015235Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-08-01",
-      "graded_at": "2026-08-02T09:34:21.039483Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-31",
-      "graded_at": "2026-08-01T09:26:00.828086Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-30",
-      "graded_at": "2026-07-31T09:19:58.232416Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-29",
-      "graded_at": "2026-07-30T09:21:22.611593Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-28",
-      "graded_at": "2026-07-29T09:14:16.501073Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-25",
-      "graded_at": "2026-07-26T13:05:05.865611Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-20",
-      "graded_at": "2026-07-21T09:13:01.781839Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-19",
-      "graded_at": "2026-07-20T09:16:01.266508Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-18",
-      "graded_at": "2026-07-19T12:50:05.543702Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-17",
-      "graded_at": "2026-07-18T09:19:05.143530Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
-    },
-    {
-      "slate_date": "2026-07-16",
-      "graded_at": "2026-07-17T11:32:53.492613Z",
-      "summary": {
-        "hit": 0,
-        "miss": 0,
-        "void": 0,
-        "push": 0,
-        "pending": 0,
-        "no_match": 0,
-        "total": 0
-      },
-      "hit_rate": null,
-      "decided": 0,
-      "results": []
     }
   ],
-  "latest_graded_date": "2026-08-09"
+  "latest_graded_date": "2026-09-10"
 }

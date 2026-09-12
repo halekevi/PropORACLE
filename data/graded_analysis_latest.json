@@ -1,181 +1,121 @@
 {
-  "generated_at": "2026-08-30T09:02:31.724408+00:00",
+  "generated_at": "2026-09-12T01:02:46.556425+00:00",
   "date_range": {
-    "min": "2026-08-29",
-    "max": "2026-08-29"
+    "min": "2026-09-10",
+    "max": "2026-09-10"
   },
-  "total_props": 11769,
-  "overall_hit_rate": 0.2121,
+  "total_props": 3028,
+  "overall_hit_rate": 0.245,
   "top_slices": [
     {
-      "sport": "MLB",
-      "pick_type": "goblin",
-      "direction": "OVER",
-      "tier": "C",
-      "hit_rate": 0.6824,
-      "n": 170,
-      "mean_edge": 1.155,
+      "sport": "NFL",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "tier": "D",
+      "hit_rate": 0.9324,
+      "n": 74,
+      "mean_edge": -18.306,
       "priority": 1
-    },
-    {
-      "sport": "TENNIS",
-      "pick_type": "goblin",
-      "direction": "OVER",
-      "tier": "B",
-      "hit_rate": 0.6607,
-      "n": 56,
-      "mean_edge": 1.132,
-      "priority": 2
-    },
-    {
-      "sport": "MLB",
-      "pick_type": "goblin",
-      "direction": "OVER",
-      "tier": "A",
-      "hit_rate": 0.6415,
-      "n": 53,
-      "mean_edge": -1.56,
-      "priority": 3
     },
     {
       "sport": "MLB",
       "pick_type": "standard",
       "direction": "UNDER",
       "tier": "A",
-      "hit_rate": 0.586,
-      "n": 215,
-      "mean_edge": -1.275,
-      "priority": 4
+      "hit_rate": 0.6104,
+      "n": 77,
+      "mean_edge": -1.636,
+      "priority": 2
     },
     {
       "sport": "MLB",
       "pick_type": "goblin",
       "direction": "OVER",
       "tier": "B",
-      "hit_rate": 0.5834,
-      "n": 737,
-      "mean_edge": 0.548,
+      "hit_rate": 0.5278,
+      "n": 288,
+      "mean_edge": 0.598,
+      "priority": 3
+    },
+    {
+      "sport": "NFL",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "tier": "A",
+      "hit_rate": 0.4737,
+      "n": 57,
+      "mean_edge": 22.851,
+      "priority": 4
+    },
+    {
+      "sport": "NFL",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "tier": "D",
+      "hit_rate": 0.39,
+      "n": 100,
+      "mean_edge": 1.247,
       "priority": 5
     },
     {
       "sport": "MLB",
-      "pick_type": "goblin",
+      "pick_type": "standard",
       "direction": "OVER",
-      "tier": "D",
-      "hit_rate": 0.496,
-      "n": 125,
-      "mean_edge": 0.242,
+      "tier": "A",
+      "hit_rate": 0.3607,
+      "n": 61,
+      "mean_edge": 0.643,
       "priority": 6
     },
     {
       "sport": "MLB",
-      "pick_type": "standard",
+      "pick_type": "demon",
       "direction": "OVER",
       "tier": "A",
-      "hit_rate": 0.4576,
-      "n": 177,
-      "mean_edge": 0.675,
+      "hit_rate": 0.1875,
+      "n": 112,
+      "mean_edge": -0.721,
       "priority": 7
     },
     {
       "sport": "MLB",
-      "pick_type": "standard",
+      "pick_type": "demon",
       "direction": "OVER",
-      "tier": "D",
-      "hit_rate": 0.3966,
-      "n": 58,
-      "mean_edge": 0.3,
+      "tier": "B",
+      "hit_rate": 0.1338,
+      "n": 157,
+      "mean_edge": -2.418,
       "priority": 8
     },
     {
-      "sport": "SOCCER",
-      "pick_type": "goblin",
+      "sport": "MLB",
+      "pick_type": "demon",
       "direction": "OVER",
-      "tier": "C",
-      "hit_rate": 0.3892,
-      "n": 627,
-      "mean_edge": -0.031,
+      "tier": "D",
+      "hit_rate": 0.1314,
+      "n": 1659,
+      "mean_edge": -1.194,
       "priority": 9
     },
     {
-      "sport": "SOCCER",
+      "sport": "TENNIS",
       "pick_type": "demon",
       "direction": "OVER",
-      "tier": "A",
-      "hit_rate": 0.2542,
-      "n": 177,
-      "mean_edge": -0.528,
+      "tier": "B",
+      "hit_rate": 0.0617,
+      "n": 81,
+      "mean_edge": 0.073,
       "priority": 10
     },
     {
-      "sport": "TENNIS",
+      "sport": "MLB",
       "pick_type": "demon",
       "direction": "OVER",
-      "tier": "B",
-      "hit_rate": 0.2333,
-      "n": 60,
-      "mean_edge": -0.6,
+      "tier": "C",
+      "hit_rate": 0.0471,
+      "n": 85,
+      "mean_edge": -4.418,
       "priority": 11
-    },
-    {
-      "sport": "MLB",
-      "pick_type": "demon",
-      "direction": "OVER",
-      "tier": "A",
-      "hit_rate": 0.2226,
-      "n": 310,
-      "mean_edge": -0.752,
-      "priority": 12
-    },
-    {
-      "sport": "MLB",
-      "pick_type": "demon",
-      "direction": "OVER",
-      "tier": "D",
-      "hit_rate": 0.1555,
-      "n": 4591,
-      "mean_edge": -1.13,
-      "priority": 13
-    },
-    {
-      "sport": "MLB",
-      "pick_type": "demon",
-      "direction": "OVER",
-      "tier": "B",
-      "hit_rate": 0.1046,
-      "n": 478,
-      "mean_edge": -2.364,
-      "priority": 14
-    },
-    {
-      "sport": "SOCCER",
-      "pick_type": "demon",
-      "direction": "OVER",
-      "tier": "D",
-      "hit_rate": 0.0855,
-      "n": 3205,
-      "mean_edge": -1.261,
-      "priority": 15
-    },
-    {
-      "sport": "TENNIS",
-      "pick_type": "demon",
-      "direction": "OVER",
-      "tier": "C",
-      "hit_rate": 0.0714,
-      "n": 112,
-      "mean_edge": -2.912,
-      "priority": 16
-    },
-    {
-      "sport": "MLB",
-      "pick_type": "demon",
-      "direction": "OVER",
-      "tier": "C",
-      "hit_rate": 0.0328,
-      "n": 244,
-      "mean_edge": -4.595,
-      "priority": 17
     }
   ],
   "avoid_slices": [
@@ -184,29 +124,29 @@
       "pick_type": "demon",
       "direction": "OVER",
       "tier": "C",
-      "hit_rate": 0.0328,
-      "n": 244,
-      "mean_edge": -4.595,
+      "hit_rate": 0.0471,
+      "n": 85,
+      "mean_edge": -4.418,
       "priority": 1
     },
     {
       "sport": "TENNIS",
       "pick_type": "demon",
       "direction": "OVER",
-      "tier": "C",
-      "hit_rate": 0.0714,
-      "n": 112,
-      "mean_edge": -2.912,
+      "tier": "B",
+      "hit_rate": 0.0617,
+      "n": 81,
+      "mean_edge": 0.073,
       "priority": 2
     },
     {
-      "sport": "SOCCER",
+      "sport": "MLB",
       "pick_type": "demon",
       "direction": "OVER",
       "tier": "D",
-      "hit_rate": 0.0855,
-      "n": 3205,
-      "mean_edge": -1.261,
+      "hit_rate": 0.1314,
+      "n": 1659,
+      "mean_edge": -1.194,
       "priority": 3
     },
     {
@@ -214,340 +154,227 @@
       "pick_type": "demon",
       "direction": "OVER",
       "tier": "B",
-      "hit_rate": 0.1046,
-      "n": 478,
-      "mean_edge": -2.364,
+      "hit_rate": 0.1338,
+      "n": 157,
+      "mean_edge": -2.418,
       "priority": 4
     },
     {
       "sport": "MLB",
       "pick_type": "demon",
       "direction": "OVER",
-      "tier": "D",
-      "hit_rate": 0.1555,
-      "n": 4591,
-      "mean_edge": -1.13,
+      "tier": "A",
+      "hit_rate": 0.1875,
+      "n": 112,
+      "mean_edge": -0.721,
       "priority": 5
-    },
-    {
-      "sport": "MLB",
-      "pick_type": "demon",
-      "direction": "OVER",
-      "tier": "A",
-      "hit_rate": 0.2226,
-      "n": 310,
-      "mean_edge": -0.752,
-      "priority": 6
-    },
-    {
-      "sport": "TENNIS",
-      "pick_type": "demon",
-      "direction": "OVER",
-      "tier": "B",
-      "hit_rate": 0.2333,
-      "n": 60,
-      "mean_edge": -0.6,
-      "priority": 7
-    },
-    {
-      "sport": "SOCCER",
-      "pick_type": "demon",
-      "direction": "OVER",
-      "tier": "A",
-      "hit_rate": 0.2542,
-      "n": 177,
-      "mean_edge": -0.528,
-      "priority": 8
-    },
-    {
-      "sport": "SOCCER",
-      "pick_type": "goblin",
-      "direction": "OVER",
-      "tier": "C",
-      "hit_rate": 0.3892,
-      "n": 627,
-      "mean_edge": -0.031,
-      "priority": 9
     },
     {
       "sport": "MLB",
       "pick_type": "standard",
       "direction": "OVER",
+      "tier": "A",
+      "hit_rate": 0.3607,
+      "n": 61,
+      "mean_edge": 0.643,
+      "priority": 6
+    },
+    {
+      "sport": "NFL",
+      "pick_type": "standard",
+      "direction": "OVER",
       "tier": "D",
-      "hit_rate": 0.3966,
-      "n": 58,
-      "mean_edge": 0.3,
+      "hit_rate": 0.39,
+      "n": 100,
+      "mean_edge": 1.247,
+      "priority": 7
+    },
+    {
+      "sport": "NFL",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "tier": "A",
+      "hit_rate": 0.4737,
+      "n": 57,
+      "mean_edge": 22.851,
+      "priority": 8
+    },
+    {
+      "sport": "MLB",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "tier": "B",
+      "hit_rate": 0.5278,
+      "n": 288,
+      "mean_edge": 0.598,
+      "priority": 9
+    },
+    {
+      "sport": "MLB",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "tier": "A",
+      "hit_rate": 0.6104,
+      "n": 77,
+      "mean_edge": -1.636,
       "priority": 10
     }
   ],
   "prop_type_rankings": [
     {
-      "prop_type": "Hits",
-      "direction": "UNDER",
-      "hit_rate": 0.6125,
-      "n": 80,
-      "mean_edge": -0.355
-    },
-    {
       "prop_type": "Total Games Won",
       "direction": "OVER",
-      "hit_rate": 0.557,
-      "n": 158,
-      "mean_edge": -0.095
+      "hit_rate": 0.5965,
+      "n": 57,
+      "mean_edge": 1.061
     },
     {
-      "prop_type": "Pitching Outs",
+      "prop_type": "Receiving",
       "direction": "OVER",
-      "hit_rate": 0.4302,
-      "n": 86,
-      "mean_edge": -2.456
-    },
-    {
-      "prop_type": "Plate Appearances",
-      "direction": "OVER",
-      "hit_rate": 0.375,
-      "n": 112,
-      "mean_edge": -0.327
+      "hit_rate": 0.5152,
+      "n": 66,
+      "mean_edge": 16.612
     },
     {
       "prop_type": "Strikeouts",
       "direction": "OVER",
-      "hit_rate": 0.3271,
-      "n": 1125,
-      "mean_edge": -0.545
+      "hit_rate": 0.3514,
+      "n": 424,
+      "mean_edge": -0.555
     },
     {
       "prop_type": "Singles",
       "direction": "OVER",
-      "hit_rate": 0.3113,
-      "n": 408,
-      "mean_edge": -0.192
+      "hit_rate": 0.2171,
+      "n": 129,
+      "mean_edge": -0.205
     },
     {
       "prop_type": "Hits",
       "direction": "OVER",
-      "hit_rate": 0.2313,
-      "n": 1751,
-      "mean_edge": -1.324
+      "hit_rate": 0.178,
+      "n": 663,
+      "mean_edge": -1.359
     },
     {
       "prop_type": "Total Bases",
       "direction": "OVER",
-      "hit_rate": 0.222,
-      "n": 1464,
-      "mean_edge": -1.357
+      "hit_rate": 0.1734,
+      "n": 519,
+      "mean_edge": -1.371
     },
     {
       "prop_type": "Runs",
       "direction": "OVER",
-      "hit_rate": 0.1745,
-      "n": 762,
-      "mean_edge": -0.737
-    },
-    {
-      "prop_type": "Fouls",
-      "direction": "OVER",
-      "hit_rate": 0.1623,
-      "n": 462,
-      "mean_edge": -0.978
-    },
-    {
-      "prop_type": "Shots",
-      "direction": "OVER",
-      "hit_rate": 0.1544,
-      "n": 2260,
-      "mean_edge": -1.323
-    },
-    {
-      "prop_type": "Goals",
-      "direction": "OVER",
-      "hit_rate": 0.145,
-      "n": 731,
-      "mean_edge": -0.627
-    },
-    {
-      "prop_type": "RBIs",
-      "direction": "OVER",
-      "hit_rate": 0.1361,
-      "n": 617,
-      "mean_edge": -0.888
-    },
-    {
-      "prop_type": "Assists",
-      "direction": "OVER",
-      "hit_rate": 0.1066,
-      "n": 647,
-      "mean_edge": -0.503
-    },
-    {
-      "prop_type": "Double Faults",
-      "direction": "OVER",
-      "hit_rate": 0.1057,
-      "n": 369,
-      "mean_edge": -0.707
+      "hit_rate": 0.1326,
+      "n": 264,
+      "mean_edge": -0.661
     },
     {
       "prop_type": "Stolen Bases",
       "direction": "OVER",
-      "hit_rate": 0.0772,
-      "n": 246,
-      "mean_edge": -0.429
+      "hit_rate": 0.1096,
+      "n": 73,
+      "mean_edge": -0.437
+    },
+    {
+      "prop_type": "RBIs",
+      "direction": "OVER",
+      "hit_rate": 0.1028,
+      "n": 214,
+      "mean_edge": -0.85
+    },
+    {
+      "prop_type": "Double Faults",
+      "direction": "OVER",
+      "hit_rate": 0.0497,
+      "n": 161,
+      "mean_edge": -0.223
     },
     {
       "prop_type": "Aces",
       "direction": "OVER",
       "hit_rate": 0.0,
-      "n": 59,
-      "mean_edge": -1.983
-    },
-    {
-      "prop_type": "Triples",
-      "direction": "OVER",
-      "hit_rate": 0.0,
-      "n": 51,
-      "mean_edge": -0.48
+      "n": 60,
+      "mean_edge": 0.0
     }
   ],
   "player_rankings": {
     "top_30": [
       {
-        "player": "Carson Kelly",
+        "player": "Deebo Samuel Sr.",
+        "sport": "NFL",
+        "hit_rate": 0.7727,
+        "n": 22,
+        "primary_prop_type": "Receiving",
+        "consistency": 0.581
+      },
+      {
+        "player": "Kyren Williams",
+        "sport": "NFL",
+        "hit_rate": 0.7727,
+        "n": 22,
+        "primary_prop_type": "Receiving",
+        "consistency": 0.581
+      },
+      {
+        "player": "Anthony Volpe",
         "sport": "MLB",
-        "hit_rate": 0.8636,
+        "hit_rate": 0.7273,
         "n": 22,
         "primary_prop_type": "Hits",
-        "consistency": 0.657
+        "consistency": 0.555
       },
       {
-        "player": "Andrew Benintendi",
+        "player": "Cam Smith",
         "sport": "MLB",
-        "hit_rate": 0.8182,
+        "hit_rate": 0.6818,
         "n": 22,
         "primary_prop_type": "Hits",
-        "consistency": 0.614
+        "consistency": 0.534
       },
       {
-        "player": "Isabelle Harrison",
-        "sport": "WNBA",
-        "hit_rate": 0.8,
-        "n": 20,
-        "primary_prop_type": "Rebounds",
-        "consistency": 0.6
+        "player": "Brock Purdy",
+        "sport": "NFL",
+        "hit_rate": 0.6667,
+        "n": 21,
+        "primary_prop_type": "Passing",
+        "consistency": 0.529
       },
       {
-        "player": "Seiya Suzuki",
+        "player": "Ben Shelton",
+        "sport": "TENNIS",
+        "hit_rate": 0.6087,
+        "n": 23,
+        "primary_prop_type": "Total Games",
+        "consistency": 0.512
+      },
+      {
+        "player": "Oneil Cruz",
         "sport": "MLB",
-        "hit_rate": 0.7692,
-        "n": 26,
+        "hit_rate": 0.6087,
+        "n": 23,
         "primary_prop_type": "Hits",
-        "consistency": 0.579
+        "consistency": 0.512
       },
       {
-        "player": "Alex Bregman",
+        "player": "Cody Bellinger",
         "sport": "MLB",
-        "hit_rate": 0.75,
-        "n": 24,
+        "hit_rate": 0.6,
+        "n": 25,
         "primary_prop_type": "Hits",
-        "consistency": 0.567
+        "consistency": 0.51
       },
       {
-        "player": "Pete Crow-Armstrong",
+        "player": "Zack Wheeler",
         "sport": "MLB",
-        "hit_rate": 0.7333,
+        "hit_rate": 0.5667,
         "n": 30,
-        "primary_prop_type": "Hits",
-        "consistency": 0.558
-      },
-      {
-        "player": "Cal Quantrill",
-        "sport": "MLB",
-        "hit_rate": 0.7,
-        "n": 20,
         "primary_prop_type": "Strikeouts",
-        "consistency": 0.542
+        "consistency": 0.504
       },
       {
-        "player": "Cal Raleigh",
-        "sport": "MLB",
-        "hit_rate": 0.6667,
-        "n": 21,
-        "primary_prop_type": "Hits",
-        "consistency": 0.529
-      },
-      {
-        "player": "Tyrone Taylor",
-        "sport": "MLB",
-        "hit_rate": 0.6667,
-        "n": 21,
-        "primary_prop_type": "Total Bases",
-        "consistency": 0.529
-      },
-      {
-        "player": "Kevin Gausman",
-        "sport": "MLB",
-        "hit_rate": 0.6522,
-        "n": 23,
-        "primary_prop_type": "Strikeouts",
-        "consistency": 0.524
-      },
-      {
-        "player": "William Contreras",
-        "sport": "MLB",
-        "hit_rate": 0.6522,
-        "n": 23,
-        "primary_prop_type": "Hits",
-        "consistency": 0.524
-      },
-      {
-        "player": "Brandon Nimmo",
-        "sport": "MLB",
-        "hit_rate": 0.6364,
-        "n": 22,
-        "primary_prop_type": "Hits",
-        "consistency": 0.519
-      },
-      {
-        "player": "Angel Martínez",
-        "sport": "MLB",
-        "hit_rate": 0.6154,
-        "n": 26,
-        "primary_prop_type": "Hits",
-        "consistency": 0.513
-      },
-      {
-        "player": "Yandy Díaz",
-        "sport": "MLB",
-        "hit_rate": 0.5833,
-        "n": 24,
-        "primary_prop_type": "Hits",
-        "consistency": 0.507
-      },
-      {
-        "player": "Leody Taveras",
-        "sport": "MLB",
-        "hit_rate": 0.5833,
-        "n": 24,
-        "primary_prop_type": "Hits",
-        "consistency": 0.507
-      },
-      {
-        "player": "Ty France",
-        "sport": "MLB",
-        "hit_rate": 0.5833,
-        "n": 24,
-        "primary_prop_type": "Hits",
-        "consistency": 0.507
-      },
-      {
-        "player": "Jared Young",
-        "sport": "MLB",
-        "hit_rate": 0.5714,
-        "n": 21,
-        "primary_prop_type": "Hits",
-        "consistency": 0.505
-      },
-      {
-        "player": "Brandon Lowe",
+        "player": "Kyle Karros",
         "sport": "MLB",
         "hit_rate": 0.5652,
         "n": 23,
@@ -555,262 +382,325 @@
         "consistency": 0.504
       },
       {
-        "player": "Nick Martinez",
+        "player": "Julio Rodríguez",
         "sport": "MLB",
-        "hit_rate": 0.55,
-        "n": 20,
+        "hit_rate": 0.56,
+        "n": 25,
+        "primary_prop_type": "Hits",
+        "consistency": 0.504
+      },
+      {
+        "player": "Logan Gilbert",
+        "sport": "MLB",
+        "hit_rate": 0.5312,
+        "n": 32,
         "primary_prop_type": "Strikeouts",
-        "consistency": 0.503
-      },
-      {
-        "player": "Colton Cowser",
-        "sport": "MLB",
-        "hit_rate": 0.5417,
-        "n": 24,
-        "primary_prop_type": "Hits",
-        "consistency": 0.502
-      },
-      {
-        "player": "Trea Turner",
-        "sport": "MLB",
-        "hit_rate": 0.5385,
-        "n": 26,
-        "primary_prop_type": "Hits",
         "consistency": 0.501
       },
       {
-        "player": "Eugenio Suárez",
-        "sport": "MLB",
+        "player": "Coco Gauff",
+        "sport": "TENNIS",
         "hit_rate": 0.5238,
         "n": 21,
-        "primary_prop_type": "Hits",
+        "primary_prop_type": "Total Games",
         "consistency": 0.501
       },
       {
-        "player": "Sal Stewart",
+        "player": "Joc Pederson",
         "sport": "MLB",
-        "hit_rate": 0.52,
+        "hit_rate": 0.5,
+        "n": 24,
+        "primary_prop_type": "Hits",
+        "consistency": 0.5
+      },
+      {
+        "player": "Spencer Jones",
+        "sport": "MLB",
+        "hit_rate": 0.48,
         "n": 25,
         "primary_prop_type": "Hits",
         "consistency": 0.5
       },
       {
-        "player": "Yordan Alvarez",
+        "player": "Jake McCarthy",
         "sport": "MLB",
-        "hit_rate": 0.5185,
-        "n": 27,
-        "primary_prop_type": "Hits",
-        "consistency": 0.5
-      },
-      {
-        "player": "Pedro Ramirez",
-        "sport": "MLB",
-        "hit_rate": 0.5,
-        "n": 24,
-        "primary_prop_type": "Hits",
-        "consistency": 0.5
-      },
-      {
-        "player": "Kyle Stowers",
-        "sport": "MLB",
-        "hit_rate": 0.5,
-        "n": 24,
-        "primary_prop_type": "Hits",
-        "consistency": 0.5
-      },
-      {
-        "player": "José Soriano",
-        "sport": "MLB",
-        "hit_rate": 0.5,
-        "n": 22,
-        "primary_prop_type": "Strikeouts",
-        "consistency": 0.5
-      },
-      {
-        "player": "Lars Nootbaar",
-        "sport": "MLB",
-        "hit_rate": 0.5,
+        "hit_rate": 0.4231,
         "n": 26,
         "primary_prop_type": "Hits",
-        "consistency": 0.5
-      },
-      {
-        "player": "Nick Loftin",
-        "sport": "MLB",
-        "hit_rate": 0.5,
-        "n": 24,
-        "primary_prop_type": "Hits",
-        "consistency": 0.5
-      },
-      {
-        "player": "Rafael Flores Jr.",
-        "sport": "MLB",
-        "hit_rate": 0.5,
-        "n": 22,
-        "primary_prop_type": "Total Bases",
-        "consistency": 0.5
-      }
-    ],
-    "bottom_20": [
-      {
-        "player": "Braden Montgomery",
-        "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 25,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "Christian Moore",
-        "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 21,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "Christian Walker",
-        "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 20,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "Evan Carter",
-        "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 21,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "Edwin Arroyo",
-        "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 20,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "JJ Wetherholt",
-        "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 26,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "Yainer Diaz",
-        "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 20,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "Austin Hedges",
-        "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 20,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "Mike Yastrzemski",
-        "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 20,
-        "primary_prop_type": "Hits"
+        "consistency": 0.506
       },
       {
         "player": "Luis García Jr.",
         "sport": "MLB",
-        "hit_rate": 0.0,
+        "hit_rate": 0.4231,
         "n": 26,
+        "primary_prop_type": "Hits",
+        "consistency": 0.506
+      },
+      {
+        "player": "Taylor Trammell",
+        "sport": "MLB",
+        "hit_rate": 0.4167,
+        "n": 24,
+        "primary_prop_type": "Hits",
+        "consistency": 0.507
+      },
+      {
+        "player": "Ryan Feltner",
+        "sport": "MLB",
+        "hit_rate": 0.4,
+        "n": 30,
+        "primary_prop_type": "Strikeouts",
+        "consistency": 0.51
+      },
+      {
+        "player": "Austin Riley",
+        "sport": "MLB",
+        "hit_rate": 0.4,
+        "n": 20,
+        "primary_prop_type": "Hits",
+        "consistency": 0.51
+      },
+      {
+        "player": "Ha-Seong Kim",
+        "sport": "MLB",
+        "hit_rate": 0.4,
+        "n": 20,
+        "primary_prop_type": "Hits",
+        "consistency": 0.51
+      },
+      {
+        "player": "Martín Pérez",
+        "sport": "MLB",
+        "hit_rate": 0.3793,
+        "n": 29,
+        "primary_prop_type": "Strikeouts",
+        "consistency": 0.515
+      },
+      {
+        "player": "Dominic Canzone",
+        "sport": "MLB",
+        "hit_rate": 0.375,
+        "n": 24,
+        "primary_prop_type": "Hits",
+        "consistency": 0.516
+      },
+      {
+        "player": "Jared Jones",
+        "sport": "MLB",
+        "hit_rate": 0.3636,
+        "n": 33,
+        "primary_prop_type": "Strikeouts",
+        "consistency": 0.519
+      },
+      {
+        "player": "Ryan McMahon",
+        "sport": "MLB",
+        "hit_rate": 0.3636,
+        "n": 22,
+        "primary_prop_type": "Hits",
+        "consistency": 0.519
+      },
+      {
+        "player": "Max Fried",
+        "sport": "MLB",
+        "hit_rate": 0.3548,
+        "n": 31,
+        "primary_prop_type": "Strikeouts",
+        "consistency": 0.522
+      },
+      {
+        "player": "Jacob deGrom",
+        "sport": "MLB",
+        "hit_rate": 0.3548,
+        "n": 31,
+        "primary_prop_type": "Strikeouts",
+        "consistency": 0.522
+      },
+      {
+        "player": "Cal Raleigh",
+        "sport": "MLB",
+        "hit_rate": 0.3478,
+        "n": 23,
+        "primary_prop_type": "Hits",
+        "consistency": 0.524
+      },
+      {
+        "player": "Cristian Javier",
+        "sport": "MLB",
+        "hit_rate": 0.3333,
+        "n": 24,
+        "primary_prop_type": "Strikeouts",
+        "consistency": 0.529
+      },
+      {
+        "player": "Ezequiel Tovar",
+        "sport": "MLB",
+        "hit_rate": 0.3333,
+        "n": 21,
+        "primary_prop_type": "Hits",
+        "consistency": 0.529
+      }
+    ],
+    "bottom_20": [
+      {
+        "player": "Brewer Hicklen",
+        "sport": "MLB",
+        "hit_rate": 0.0,
+        "n": 20,
         "primary_prop_type": "Hits"
       },
       {
-        "player": "Ryan Ritter",
+        "player": "Braden Montgomery",
+        "sport": "MLB",
+        "hit_rate": 0.0,
+        "n": 21,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Chandler Simpson",
         "sport": "MLB",
         "hit_rate": 0.0,
         "n": 22,
         "primary_prop_type": "Hits"
       },
       {
-        "player": "Luis Robert Jr.",
+        "player": "Jonathan Aranda",
         "sport": "MLB",
         "hit_rate": 0.0,
-        "n": 21,
+        "n": 22,
         "primary_prop_type": "Hits"
       },
       {
-        "player": "Luis Arraez",
+        "player": "Jacob Gonzalez",
         "sport": "MLB",
         "hit_rate": 0.0,
-        "n": 24,
+        "n": 22,
         "primary_prop_type": "Hits"
       },
       {
-        "player": "Jose Trevino",
+        "player": "Mauricio Dubón",
         "sport": "MLB",
         "hit_rate": 0.0,
-        "n": 21,
+        "n": 20,
         "primary_prop_type": "Hits"
       },
       {
-        "player": "Jonah Cox",
+        "player": "Nick Fortes",
         "sport": "MLB",
         "hit_rate": 0.0,
-        "n": 24,
+        "n": 20,
         "primary_prop_type": "Hits"
       },
       {
-        "player": "Jazz Chisholm Jr.",
+        "player": "Junior Caminero",
         "sport": "MLB",
-        "hit_rate": 0.0,
-        "n": 21,
+        "hit_rate": 0.037,
+        "n": 27,
         "primary_prop_type": "Hits"
       },
       {
-        "player": "Drew Gilbert",
+        "player": "Ronald Acuña Jr.",
         "sport": "MLB",
         "hit_rate": 0.0385,
         "n": 26,
         "primary_prop_type": "Hits"
       },
       {
-        "player": "Jordan Walker",
-        "sport": "MLB",
-        "hit_rate": 0.0385,
-        "n": 26,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "Tommy White",
-        "sport": "MLB",
-        "hit_rate": 0.0385,
-        "n": 26,
-        "primary_prop_type": "Hits"
-      },
-      {
-        "player": "Dominic Canzone",
+        "player": "Munetaka Murakami",
         "sport": "MLB",
         "hit_rate": 0.04,
         "n": 25,
         "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Trea Turner",
+        "sport": "MLB",
+        "hit_rate": 0.04,
+        "n": 25,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Michael Harris II",
+        "sport": "MLB",
+        "hit_rate": 0.0435,
+        "n": 23,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Jake Mangum",
+        "sport": "MLB",
+        "hit_rate": 0.0435,
+        "n": 23,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Daulton Varsho",
+        "sport": "MLB",
+        "hit_rate": 0.0435,
+        "n": 23,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Brandon Lowe",
+        "sport": "MLB",
+        "hit_rate": 0.0435,
+        "n": 23,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Cedric Mullins",
+        "sport": "MLB",
+        "hit_rate": 0.0455,
+        "n": 22,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Jorge Mateo",
+        "sport": "MLB",
+        "hit_rate": 0.0455,
+        "n": 22,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Andrew Benintendi",
+        "sport": "MLB",
+        "hit_rate": 0.0455,
+        "n": 22,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "Henry Davis",
+        "sport": "MLB",
+        "hit_rate": 0.0476,
+        "n": 21,
+        "primary_prop_type": "Hits"
+      },
+      {
+        "player": "J.P. Crawford",
+        "sport": "MLB",
+        "hit_rate": 0.0476,
+        "n": 21,
+        "primary_prop_type": "Total Bases"
       }
     ]
   },
   "edge_correlations": {
     "per_sport": {
-      "MLB": -0.13076131192379045,
-      "SOCCER": -0.09679937814763294,
-      "TENNIS": 0.016057027552036186,
-      "WNBA": 0.22290898934977288
+      "MLB": -0.07317268555709318,
+      "NFL": 0.10697392292443057,
+      "TENNIS": 0.35365493621261357
     },
-    "strongest_sport": "WNBA",
-    "strongest_r": 0.22290898934977288,
+    "strongest_sport": "TENNIS",
+    "strongest_r": 0.35365493621261357,
     "monotonic": false,
-    "avg_r": 0.0028513317075964245,
-    "verdict": "NO"
+    "avg_r": 0.12915205785998365,
+    "verdict": "WEAK"
   },
   "streak_signals": {
     "verdict": "YES",
-    "hot_hr": 0.5659224494566828,
-    "cold_hr": 0.06029277215689249,
+    "hot_hr": 0.7125,
+    "cold_hr": 0.15868893011750154,
     "best_streak_signal": "MLB UNDER"
   }
 }

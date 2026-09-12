@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-08-30",
-  "generated_at": "2026-08-30T14:29:38.738066Z",
+  "date": "2026-09-11",
+  "generated_at": "2026-09-11T21:58:22.850964Z",
   "rows": [
     {
       "date": "2026-07-12",
@@ -217,6 +217,195 @@
       "_dedupe_key": "2026-08-27|alec burleson|hits+runs+rbis|over|0.500||cody bellinger|hits+runs+rbis|over|0.500|1.7"
     },
     {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.6",
+      "flex_payout_x": "1.6",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB 2-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB 2-Leg Goblin OVER|1",
+      "captured_at": "2026-09-07T12:08:32",
+      "first_captured_at": "2026-09-07T05:45:23",
+      "last_captured_at": "2026-09-07T12:08:32",
+      "window": "",
+      "_dedupe_key": "2026-09-07|brett bateman|hits+runs+rbis|over|0.500||matt olson|hitter strikeouts|over|0.500|1.6"
+    },
+    {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.7",
+      "flex_payout_x": "1.7",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB 2-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB 2-Leg Goblin OVER|1",
+      "captured_at": "2026-09-07T12:07:17",
+      "first_captured_at": "2026-09-07T08:50:19",
+      "last_captured_at": "2026-09-07T12:07:17",
+      "window": "",
+      "_dedupe_key": "2026-09-07|brett bateman|hits+runs+rbis|over|0.500||matt olson|hitter strikeouts|over|0.500|1.7"
+    },
+    {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.5",
+      "flex_payout_x": "1.5",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB 2-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB 2-Leg Goblin OVER|1",
+      "captured_at": "2026-09-07T10:01:36",
+      "first_captured_at": "2026-09-07T08:53:07",
+      "last_captured_at": "2026-09-07T10:01:36",
+      "window": "",
+      "_dedupe_key": "2026-09-07|brett bateman|hits+runs+rbis|over|0.500||matt olson|hitter strikeouts|over|0.500|1.5"
+    },
+    {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.4",
+      "flex_payout_x": "1.4",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB 2-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB 2-Leg Goblin OVER|1",
+      "captured_at": "2026-09-07T12:10:52",
+      "first_captured_at": "2026-09-07T12:09:42",
+      "last_captured_at": "2026-09-07T12:10:52",
+      "window": "",
+      "_dedupe_key": "2026-09-07|brett bateman|hits+runs+rbis|over|0.500||matt olson|hitter strikeouts|over|0.500|1.4"
+    },
+    {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.6",
+      "flex_payout_x": "1.6",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB Core Power 2 #1|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB Core Power 2 #1|1",
+      "captured_at": "2026-09-07T05:51:02",
+      "first_captured_at": "2026-09-07T01:37:20",
+      "last_captured_at": "2026-09-07T05:51:02",
+      "window": "",
+      "_dedupe_key": "2026-09-07|mookie betts|hits+runs+rbis|over|0.500||ronald acuña jr.|hits+runs+rbis|over|0.500|1.6"
+    },
+    {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.7",
+      "flex_payout_x": "1.7",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB Core Power 2 #1|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB Core Power 2 #1|1",
+      "captured_at": "2026-09-07T12:12:06",
+      "first_captured_at": "2026-09-07T08:55:32",
+      "last_captured_at": "2026-09-07T12:12:06",
+      "window": "",
+      "_dedupe_key": "2026-09-07|mookie betts|hits+runs+rbis|over|0.500||ronald acuña jr.|hits+runs+rbis|over|0.500|1.7"
+    },
+    {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.6",
+      "flex_payout_x": "1.6",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB Core Power 2 #2|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB Core Power 2 #2|1",
+      "captured_at": "2026-09-07T12:12:33",
+      "first_captured_at": "2026-09-07T12:12:33",
+      "last_captured_at": "2026-09-07T12:12:33",
+      "window": "",
+      "_dedupe_key": "2026-09-07|brett bateman|hits+runs+rbis|over|0.500||ronald acuña jr.|hits+runs+rbis|over|0.500|1.6"
+    },
+    {
+      "date": "2026-09-08",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.6",
+      "flex_payout_x": "1.6",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-08|MLB 2-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-08|MLB 2-Leg Goblin OVER|1",
+      "captured_at": "2026-09-08T11:48:57",
+      "first_captured_at": "2026-09-08T05:54:08",
+      "last_captured_at": "2026-09-08T11:48:57",
+      "window": "",
+      "_dedupe_key": "2026-09-08|jose altuve|hits+runs+rbis|over|0.500||tarik skubal|earned runs allowed|over|0.500|1.6"
+    },
+    {
+      "date": "2026-09-10",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.3",
+      "flex_payout_x": "1.3",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-10|MLB 2-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-10|MLB 2-Leg Goblin OVER|1",
+      "captured_at": "2026-09-09T22:05:48",
+      "first_captured_at": "2026-09-09T22:05:48",
+      "last_captured_at": "2026-09-09T22:05:48",
+      "window": "22:05",
+      "_dedupe_key": "2026-09-10|jacob degrom|walks allowed|over|0.500||logan gilbert|walks allowed|over|0.500|1.3"
+    },
+    {
       "date": "2026-08-08",
       "n_legs": "2",
       "leg_composition": "0S+2G+0D",
@@ -407,6 +596,111 @@
       "notes": "ticket_id=2026-08-26|MLB Core Power 2 #3|1; sports=MLB; CDP power_min_x Min Guarantee",
       "ticket_id": "2026-08-26|MLB Core Power 2 #3|1",
       "_dedupe_key": "2026-08-26|alec burleson|hits+runs+rbis|over|0.500||connor norby|hits+runs+rbis|over|0.500|1.7"
+    },
+    {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.6",
+      "flex_payout_x": "1.6",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB 2-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB 2-Leg Goblin OVER|1",
+      "captured_at": "2026-09-07T01:27:43",
+      "first_captured_at": "2026-09-07T01:26:04",
+      "last_captured_at": "2026-09-07T01:27:43",
+      "window": "",
+      "_dedupe_key": "2026-09-07|brett bateman|hits|over|0.500||ronald acuña jr.|hits+runs+rbis|over|0.500|1.6"
+    },
+    {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.8",
+      "flex_payout_x": "1.8",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB 2-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB 2-Leg Goblin OVER|1",
+      "captured_at": "2026-09-07T01:27:16",
+      "first_captured_at": "2026-09-07T01:27:16",
+      "last_captured_at": "2026-09-07T01:27:16",
+      "window": "",
+      "_dedupe_key": "2026-09-07|brett bateman|hits|over|0.500||ronald acuña jr.|hits+runs+rbis|over|0.500|1.8"
+    },
+    {
+      "date": "2026-09-07",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.8",
+      "flex_payout_x": "1.8",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-07|MLB Core Power 2 #3|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-07|MLB Core Power 2 #3|1",
+      "captured_at": "2026-09-07T12:12:59",
+      "first_captured_at": "2026-09-07T12:12:59",
+      "last_captured_at": "2026-09-07T12:12:59",
+      "window": "",
+      "_dedupe_key": "2026-09-07|nathan lukes|hits+runs+rbis|over|0.500||ronald acuña jr.|hits+runs+rbis|over|0.500|1.8"
+    },
+    {
+      "date": "2026-09-09",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.7",
+      "flex_payout_x": "1.7",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-09|MLB Core Power 2 #3|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-09|MLB Core Power 2 #3|1",
+      "captured_at": "2026-09-09T09:39:53",
+      "first_captured_at": "2026-09-09T09:39:53",
+      "last_captured_at": "2026-09-09T09:39:53",
+      "window": "8AM",
+      "_dedupe_key": "2026-09-09|manny machado|hits+runs+rbis|over|0.500||trea turner|total bases|over|0.500|1.7"
+    },
+    {
+      "date": "2026-09-11",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.5",
+      "flex_payout_x": "1.5",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-11|MLB Core Power 2 #1|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-11|MLB Core Power 2 #1|1",
+      "captured_at": "2026-09-10T22:31:12",
+      "first_captured_at": "2026-09-10T22:28:51",
+      "last_captured_at": "2026-09-10T22:31:12",
+      "window": "22:31",
+      "_dedupe_key": "2026-09-11|jackson chourio|hits+runs+rbis|over|0.500||nathan lukes|hits+runs+rbis|over|0.500|1.5"
     },
     {
       "date": "2026-08-09",
@@ -1336,6 +1630,153 @@
       "_dedupe_key": "2026-08-29|francisco alvarez|hitter strikeouts|over|0.500||heriberto hernández|total bases|over|0.500|1.8"
     },
     {
+      "date": "2026-09-06",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.2",
+      "flex_payout_x": "1.2",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-06|STRONG 2-Leg|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-06|STRONG 2-Leg|1",
+      "captured_at": "2026-09-06T05:46:42",
+      "first_captured_at": "2026-09-06T05:46:42",
+      "last_captured_at": "2026-09-06T05:46:42",
+      "window": "",
+      "_dedupe_key": "2026-09-06|bryan woo|hits allowed|over|2.500||tyler mahle|hits allowed|over|2.500|1.2"
+    },
+    {
+      "date": "2026-09-09",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.3",
+      "flex_payout_x": "1.3",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-09|STRONG 2-Leg|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-09|STRONG 2-Leg|1",
+      "captured_at": "2026-09-09T11:06:01",
+      "first_captured_at": "2026-09-09T11:06:01",
+      "last_captured_at": "2026-09-09T11:06:01",
+      "window": "9AM",
+      "_dedupe_key": "2026-09-09|hunter brown|hits allowed|over|2.500||walker buehler|earned runs allowed|over|0.500|1.3"
+    },
+    {
+      "date": "2026-09-10",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "2.4",
+      "flex_payout_x": "2.4",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-10|MLB Core Power 2 #1|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-10|MLB Core Power 2 #1|1",
+      "captured_at": "2026-09-09T22:07:21",
+      "first_captured_at": "2026-09-09T22:07:21",
+      "last_captured_at": "2026-09-09T22:07:21",
+      "window": "22:07",
+      "_dedupe_key": "2026-09-10|cal raleigh|hits+runs+rbis|over|0.500||jake burger|hits+runs+rbis|over|0.500|2.4"
+    },
+    {
+      "date": "2026-09-10",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.7",
+      "flex_payout_x": "1.7",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-10|MLB Core Power 2 #2|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-10|MLB Core Power 2 #2|1",
+      "captured_at": "2026-09-09T22:08:13",
+      "first_captured_at": "2026-09-09T22:08:13",
+      "last_captured_at": "2026-09-09T22:08:13",
+      "window": "22:08",
+      "_dedupe_key": "2026-09-10|cal raleigh|hits+runs+rbis|over|0.500||jake burger|hitter strikeouts|over|0.500|1.7"
+    },
+    {
+      "date": "2026-09-10",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "2.3",
+      "flex_payout_x": "2.3",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-10|MLB Core Power 2 #3|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-10|MLB Core Power 2 #3|1",
+      "captured_at": "2026-09-09T22:09:13",
+      "first_captured_at": "2026-09-09T22:09:13",
+      "last_captured_at": "2026-09-09T22:09:13",
+      "window": "22:09",
+      "_dedupe_key": "2026-09-10|corey seager|total bases|over|0.500||jake burger|hits+runs+rbis|over|0.500|2.3"
+    },
+    {
+      "date": "2026-09-11",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.4",
+      "flex_payout_x": "1.4",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-11|MLB Core Power 2 #2|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-11|MLB Core Power 2 #2|1",
+      "captured_at": "2026-09-10T22:32:07",
+      "first_captured_at": "2026-09-10T22:32:07",
+      "last_captured_at": "2026-09-10T22:32:07",
+      "window": "22:32",
+      "_dedupe_key": "2026-09-11|alejandro kirk|hits+runs+rbis|over|0.500||jackson chourio|hits+runs+rbis|over|0.500|1.4"
+    },
+    {
+      "date": "2026-09-11",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.4",
+      "flex_payout_x": "1.4",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-11|MLB Core Power 2 #3|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-11|MLB Core Power 2 #3|1",
+      "captured_at": "2026-09-10T22:33:01",
+      "first_captured_at": "2026-09-10T22:33:01",
+      "last_captured_at": "2026-09-10T22:33:01",
+      "window": "22:33",
+      "_dedupe_key": "2026-09-11|jackson chourio|hits+runs+rbis|over|0.500||yandy díaz|hits+runs+rbis|over|0.500|1.4"
+    },
+    {
       "date": "2026-08-08",
       "n_legs": "2",
       "leg_composition": "0S+2G+0D",
@@ -1979,6 +2420,48 @@
       "last_captured_at": "2026-08-30T06:11:44",
       "window": "5AM",
       "_dedupe_key": "2026-08-30|chris bassitt|earned runs allowed|over|0.500||shota imanaga|earned runs allowed|over|0.500|1.2"
+    },
+    {
+      "date": "2026-09-09",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "2"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.3",
+      "flex_payout_x": "1.3",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-09|STRONG 2-Leg|2; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-09|STRONG 2-Leg|2",
+      "captured_at": "2026-09-09T09:30:42",
+      "first_captured_at": "2026-09-09T09:30:42",
+      "last_captured_at": "2026-09-09T09:30:42",
+      "window": "8AM",
+      "_dedupe_key": "2026-09-09|foster griffin|walks allowed|over|0.500||hunter brown|earned runs allowed|over|0.500|1.3"
+    },
+    {
+      "date": "2026-09-11",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "2"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.3",
+      "flex_payout_x": "1.3",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-11|STRONG 2-Leg|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-11|STRONG 2-Leg|1",
+      "captured_at": "2026-09-10T22:27:38",
+      "first_captured_at": "2026-09-10T22:27:38",
+      "last_captured_at": "2026-09-10T22:27:38",
+      "window": "22:27",
+      "_dedupe_key": "2026-09-11|george kirby|earned runs allowed|over|0.500||max scherzer|walks allowed|over|0.500|1.3"
     },
     {
       "date": "2026-08-10",
@@ -2846,6 +3329,28 @@
       "_dedupe_key": "2026-08-08|bubba chandler|walks allowed|over|0.500||jacob degrom|earned runs allowed|over|0.500||michael king|earned runs allowed|over|0.500|1.4"
     },
     {
+      "date": "2026-09-11",
+      "n_legs": "3",
+      "leg_composition": "0S+3G+0D",
+      "goblin_deltas": [
+        "1",
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.9",
+      "flex_payout_x": "",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-11|MLB 3-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-11|MLB 3-Leg Goblin OVER|1",
+      "captured_at": "2026-09-10T22:30:43",
+      "first_captured_at": "2026-09-10T22:30:43",
+      "last_captured_at": "2026-09-10T22:30:43",
+      "window": "22:30",
+      "_dedupe_key": "2026-09-11|cal raleigh|hits+runs+rbis|over|0.500||jackson chourio|hits+runs+rbis|over|0.500||nathan lukes|hits+runs+rbis|over|0.500|1.9"
+    },
+    {
       "date": "2026-07-13",
       "n_legs": "3",
       "leg_composition": "0S+3G+0D",
@@ -2976,6 +3481,28 @@
       "notes": "ticket_id=2026-08-27|STRONG 3-Leg|2; sports=MLB; CDP power_min_x Min Guarantee",
       "ticket_id": "2026-08-27|STRONG 3-Leg|2",
       "_dedupe_key": "2026-08-27|gabriel hughes|walks allowed|over|0.500||jake irvin|earned runs allowed|over|1.500||spencer arrighetti|earned runs allowed|over|0.500|1.7"
+    },
+    {
+      "date": "2026-09-09",
+      "n_legs": "3",
+      "leg_composition": "0S+3G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.6",
+      "flex_payout_x": "",
+      "flex_n_correct": {},
+      "source": "live_cdp",
+      "notes": "ticket_id=2026-09-09|STRONG 3-Leg|1; sports=MLB; CDP power_min_x Min Guarantee",
+      "ticket_id": "2026-09-09|STRONG 3-Leg|1",
+      "captured_at": "2026-09-09T11:07:06",
+      "first_captured_at": "2026-09-09T11:07:06",
+      "last_captured_at": "2026-09-09T11:07:06",
+      "window": "9AM",
+      "_dedupe_key": "2026-09-09|foster griffin|walks allowed|over|0.500||hunter brown|hits allowed|over|2.500||walker buehler|earned runs allowed|over|0.500|1.6"
     },
     {
       "date": "2026-08-08",

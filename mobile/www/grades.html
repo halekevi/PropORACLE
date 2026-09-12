@@ -5187,24 +5187,11 @@ async function probeTicketEval(dateStr) {
 
 async function resolveTicketEvalLoadDate(dateStr) {
   if (!dateStr) return { load: null, fallback: null };
+  // Exact date only — never borrow an older ticket_eval_*.html (that made Sep 2–5
+  // look identical when they fell back to 2026-08-31).
   if (await probeTicketEval(dateStr)) {
     return { load: dateStr, fallback: null };
   }
-  const metaFb = latestTicketReportDateOnOrBefore(dateStr);
-  if (metaFb && metaFb !== dateStr && (await probeTicketEval(metaFb))) {
-    return { load: metaFb, fallback: { requested: dateStr, showing: metaFb } };
-  }
-  const caps = availableDates.filter(function (ds) {
-    return /^\d{4}-\d{2}-\d{2}$/.test(ds) && ds < dateStr;
-  });
-  caps.sort().reverse();
-  for (let i = 0; i < caps.length; i++) {
-    const ds = caps[i];
-    if (await probeTicketEval(ds)) {
-      return { load: ds, fallback: { requested: dateStr, showing: ds } };
-    }
-  }
-  // Last resort: HTML exists but is an empty shell — still load so builder/KPI chrome show.
   try {
     const res = await fetch(ticketEvalUrl(dateStr), {
       method: 'HEAD',

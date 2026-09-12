@@ -18,6 +18,7 @@ if ([string]::IsNullOrWhiteSpace($ExpectedRoot)) {
 }
 $ExpectedRoot = $ExpectedRoot.TrimEnd('\')
 $names = @(
+    "PropOracle - DayAhead 9PM",
     "PropOracle - Daily 1AM",
     "PropOracle - Grader 3AM",
     "PropOracle - Daily 5AM",
