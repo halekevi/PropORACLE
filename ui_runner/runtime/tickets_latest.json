@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13 16:28:13 UTC",
+  "generated_at": "2026-09-13 17:51:08 UTC",
   "date": "2026-09-13",
   "tennis_date": "2026-09-13",
   "filters": {
@@ -1678,9 +1678,9 @@
               "prop_type": "longest_completion",
               "pick_type": "Standard",
               "direction": "UNDER",
-              "line": 59.5,
-              "edge": -59.5,
-              "abs_edge": 59.5,
+              "line": 33.5,
+              "edge": -33.5,
+              "abs_edge": 33.5,
               "pick_platform": "prizepicks",
               "hit_rate": 1.0,
               "ml_prob": null,
@@ -1689,7 +1689,7 @@
               "line_draftkings": null,
               "line_vegas": null,
               "best_cross_book": "PP",
-              "best_cross_line": 59.5,
+              "best_cross_line": 33.5,
               "cross_edge_vs_pp": 0.0,
               "tier": "D",
               "def_tier": "Above Avg",
@@ -1698,10 +1698,10 @@
               "l5_side_hit_rate": 1.0,
               "leg_prob_used": 0.7,
               "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_160d19a82b74d4a468da",
+              "canonical_leg_id": "leg_372dccc6c3e4ad0fa3e9",
               "game_date": "2026-09-13",
               "badge": "Silver",
-              "cover": -59.5,
+              "cover": -33.5,
               "matchup": "PIT vs ATL (NFL)"
             }
           ],
@@ -9170,9 +9170,9 @@
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
     "goblin_70": 17,
-    "goblin_70_raw": 36,
-    "standard_allowlist": 103,
-    "standard_allowlist_raw": 354,
+    "goblin_70_raw": 37,
+    "standard_allowlist": 66,
+    "standard_allowlist_raw": 201,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
