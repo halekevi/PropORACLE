@@ -91,8 +91,88 @@ def test_tickets_html_keeps_goblin70_visible_when_skip():
     html, _title = m.render_tickets_body_html(payload)
     assert 'data-track="goblin70"' in html
     assert "function isGoblin70" in html
-    assert "if(hideSkip && !isGoblin70(g))" in html
+    assert "function isYolo" in html
+    assert "if(hideSkip && !isGoblin70(g) && !isYolo(g))" in html
     assert "if(isGoblin70(group)) return true;" in html
+
+
+def test_group_is_yolo_and_goblin70():
+    yolo = {
+        "group_name": "YOLO Goblin-70 Power 6",
+        "tickets": [{"ticket_track": "goblin70_yolo", "exclude_from_winrate": True}],
+    }
+    assert m._group_is_goblin70(yolo, "YOLO Goblin-70 Power 6")
+    from utils.tickets_render import _group_data_track, _group_is_yolo
+
+    assert _group_is_yolo(yolo, "YOLO Goblin-70 Power 6")
+    assert _group_data_track(yolo, "YOLO Goblin-70 Power 6") == "goblin70_yolo"
+
+
+def test_tickets_html_keeps_yolo_visible_when_skip():
+    payload = {
+        "date": "2026-09-13",
+        "generated_at": "2026-09-13 17:00:00 UTC",
+        "groups": [
+            {
+                "group_name": "YOLO Goblin-70 Power 6",
+                "n_legs": 6,
+                "power_payout": 20.0,
+                "tickets": [
+                    {
+                        "ticket_id": "yolo-1",
+                        "ticket_no": 1,
+                        "ticket_track": "goblin70_yolo",
+                        "exclude_from_winrate": True,
+                        "est_win_prob": 0.04,
+                        "ev_power": -0.82,
+                        "payout": {"recommendation": "SKIP", "ev": -0.82, "p_all_win": 0.04},
+                        "legs": [
+                            {
+                                "sport": "MLB",
+                                "player": "Shohei Ohtani",
+                                "prop_type": "Hits+Runs+RBIs",
+                                "pick_type": "Goblin",
+                                "direction": "OVER",
+                                "line": 1.5,
+                            }
+                        ],
+                    }
+                ],
+            },
+            {
+                "group_name": "MLB Core Power 2 #3",
+                "n_legs": 2,
+                "power_payout": 1.8,
+                "tickets": [
+                    {
+                        "ticket_id": "core-1",
+                        "ticket_no": 1,
+                        "ticket_track": "graded_main",
+                        "est_win_prob": 0.52,
+                        "ev_power": 0.37,
+                        "payout": {"recommendation": "SKIP", "ev": -0.2, "p_all_win": 0.2},
+                        "legs": [
+                            {
+                                "sport": "MLB",
+                                "player": "Lawrence Butler",
+                                "prop_type": "Hits+Runs+RBIs",
+                                "pick_type": "Goblin",
+                                "direction": "OVER",
+                                "line": 0.5,
+                            }
+                        ],
+                    }
+                ],
+            },
+        ],
+    }
+    html, _title = m.render_tickets_body_html(payload)
+    assert 'data-track="goblin70_yolo"' in html
+    assert 'data-pick="yolo"' in html
+    assert 'data-filter="yolo"' in html
+    assert "YOLO Goblin-70 Power 6" in html
+    assert 'class="yolo-chip"' in html
+    assert "function isYolo" in html
 
 
 def test_tickets_render_does_not_import_mixer():
