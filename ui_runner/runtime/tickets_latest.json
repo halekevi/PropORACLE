@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13 14:20:17 UTC",
+  "generated_at": "2026-09-13 14:51:32 UTC",
   "date": "2026-09-13",
   "tennis_date": "2026-09-13",
   "filters": {
@@ -404,7 +404,7 @@
               "pick_platform": "prizepicks",
               "hit_rate": 1.0,
               "ml_prob": 0.58,
-              "standard_line": 20.5,
+              "standard_line": 21.5,
               "line_underdog": null,
               "line_draftkings": null,
               "line_vegas": null,
@@ -1390,7 +1390,7 @@
               "pick_platform": "prizepicks",
               "hit_rate": 1.0,
               "ml_prob": 0.58,
-              "standard_line": 20.5,
+              "standard_line": 21.5,
               "line_underdog": null,
               "line_draftkings": null,
               "line_vegas": null,
@@ -9170,9 +9170,9 @@
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
     "goblin_70": 17,
-    "goblin_70_raw": 32,
-    "standard_allowlist": 102,
-    "standard_allowlist_raw": 343,
+    "goblin_70_raw": 36,
+    "standard_allowlist": 103,
+    "standard_allowlist_raw": 354,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
