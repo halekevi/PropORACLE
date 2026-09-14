@@ -4360,8 +4360,12 @@ def enrich_ticket_curve_payouts(ticket: dict, stake_unit: float = 1.0) -> None:
         ticket["empirical_min_guarantee"] = emp["min_guarantee"]
         ticket["empirical_min_guarantee_adjustment"] = emp["min_guarantee_adjustment"]
         ticket["empirical_recommendation"] = emp["recommendation"]
-    except Exception:
-        pass
+    except Exception as exc:
+        _log_slate.warning(
+            "empirical EV attach failed for %s-leg ticket: %s",
+            n,
+            exc,
+        )
     if abs(mult_err) > 1.0:
         _log_slate.warning(
             "Ticket curve mult_error %.4f (>1.0 vs flat base): %s-leg slip",
@@ -7248,8 +7252,12 @@ def build_win_rate_ticket_groups(
             seeded = prefer_best_props_seed(wr_df, prefer_gold_silver=True, min_preferred=4)
             if seeded is not None and not seeded.empty:
                 wr_df = sort_ticket_seed_pool(seeded)
-        except Exception:
-            pass
+        except Exception as exc:
+            _log_slate.warning(
+                "prefer_best_props_seed failed for win-rate pool %s (using unseeded order): %s",
+                label,
+                exc,
+            )
         for n in build_leg_counts:
             if len(wr_df) < n:
                 continue
@@ -16575,8 +16583,12 @@ def _prepare_core_pipeline_pool(sport_label: str, pool_df: pd.DataFrame) -> pd.D
         seeded = prefer_best_props_seed(out, prefer_gold_silver=True, min_preferred=4)
         if seeded is not None and not seeded.empty:
             out = sort_ticket_seed_pool(seeded)
-    except Exception:
-        pass
+    except Exception as exc:
+        _log_slate.warning(
+            "prefer_best_props_seed failed for core pool %s (using unseeded order): %s",
+            sp,
+            exc,
+        )
     return _filter_df_main_goblin_recency(out.reset_index(drop=True))
 
 

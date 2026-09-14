@@ -217,6 +217,7 @@ app = Flask(
     template_folder=str(TEMPLATES_DIR),
     static_folder=str(STATIC_DIR),
 )
+_log = logging.getLogger(__name__)
 
 
 def _on_railway() -> bool:
@@ -1509,16 +1510,16 @@ def _slim_slate_sport_payload(payload: dict) -> dict:
             rows = enrich_slate_rows([r for r in rows if isinstance(r, dict)], str(k), repo=BASE_DIR) + [
                 r for r in rows if not isinstance(r, dict)
             ]
-        except Exception:
-            pass
+        except Exception as exc:
+            _log.warning("slate team_share enrich failed for sport=%s: %s", k, exc)
         try:
             from utils.matchup_edge.slate_rank_overlay import enrich_slate_rows_with_category_ranks
 
             dict_rows = [r for r in rows if isinstance(r, dict)]
             other = [r for r in rows if not isinstance(r, dict)]
             rows = enrich_slate_rows_with_category_ranks(dict_rows, str(k), repo=BASE_DIR) + other
-        except Exception:
-            pass
+        except Exception as exc:
+            _log.warning("slate category-rank enrich failed for sport=%s: %s", k, exc)
         slim_rows: list[Any] = []
         for r in rows:
             if isinstance(r, dict):
@@ -5849,8 +5850,8 @@ def api_slate_sport_single(sport: str):
                 enrich_slate_rows([r], sk, repo=BASE_DIR)
                 enriched.append(r)
             rows = enriched + other
-        except Exception:
-            pass
+        except Exception as exc:
+            _log.warning("slate team_share enrich failed for sport=%s: %s", sport_key, exc)
         slim_rows = [_slim_slate_sport_row(r) if isinstance(r, dict) else r for r in rows]
         if not slim_rows and sport_key == "wnba":
             slim_rows = _wnba_slate_rows_from_step8_fallback()
