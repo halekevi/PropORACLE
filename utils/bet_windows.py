@@ -1,7 +1,7 @@
 """Slate-day bet windows: line pulls + payout scrapes with timestamps.
 
-Used to see when lines and N-correct floors moved (1AM / 8AM / 9AM / 9:45 /
-10:30 / 1PM / 4:30). Never uses 1st-place multipliers.
+Used to see when lines and N-correct floors moved (9PM day-ahead / 1AM / 5AM /
+8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30). Never uses 1st-place multipliers.
 """
 from __future__ import annotations
 
@@ -24,12 +24,14 @@ STAMP_RUNTIME = ROOT / "ui_runner" / "runtime" / "last_fetch_window.json"
 
 WINDOWS: tuple[tuple[int, int, str], ...] = (
     (1, 0, "1AM"),
+    (5, 0, "5AM"),
     (8, 0, "8AM"),
     (9, 0, "9AM"),
     (9, 45, "9:45"),
     (10, 30, "10:30"),
     (13, 0, "1PM"),
     (16, 30, "4:30"),
+    (21, 0, "9PM"),
 )
 
 # Scheduled-job labels (1AM / 8AM included) so a long run still buckets correctly.
@@ -38,6 +40,10 @@ WINDOW_ALIASES: dict[str, str] = {
     "DAILY1AM": "1AM",
     "5AM": "5AM",
     "8AM": "8AM",
+    "9PM": "9PM",
+    "21:00": "9PM",
+    "DAYAHEAD": "9PM",
+    "DAY_AHEAD": "9PM",
     "DAILY8AM": "8AM",
     "9AM": "9AM",
     "945AM": "9:45",
@@ -294,8 +300,9 @@ def summarize_fetch_window(
     """Did this scheduled window stamp lines, and should payout Force run?
 
     Line timestamps are recorded on every fetch (including n_moved=0).
-    Force payout when this is the day's first stamp, or this window moved
-    lines vs the previous pull (changes off the last / initial stamp).
+    Force payout / rebuild tickets when this is the day's first stamp, or this
+    window moved lines vs the previous pull. Empty payout jsonl alone does not
+    Force — Auto still fills missing live_cdp.
     """
     date_s = str(date or datetime.now(ET).strftime("%Y-%m-%d"))[:10]
     win = normalize_window_label(window) or job_window_label()
@@ -319,9 +326,12 @@ def summarize_fetch_window(
         this = [p for p in pulls if str(p.get("fetched_at") or "") == str(pulls[-1].get("fetched_at") or "")]
         n_moved_this = sum(int(p.get("n_moved") or 0) for p in this)
         is_initial = len({str(p.get("fetched_at") or "") for p in pulls}) == 1
+    # Force full CDP only when this is the day's first stamp or lines moved.
+    # Do NOT Force just because payout_scrape_log_*.jsonl is empty — mid-day Auto
+    # still fills missing live_cdp / changed slips. Empty jsonl was forcing ~1h
+    # Force rescrapes on quiet 8AM/9AM boards.
     force_payout = bool(no_pulls or is_initial or n_moved_this > 0)
-    if not _payout_windows(date_s):
-        force_payout = True
+    rebuild_tickets = bool(no_pulls or is_initial or n_moved_this > 0)
     return {
         "date": date_s,
         "window": win or "other",
@@ -331,7 +341,7 @@ def summarize_fetch_window(
         "n_moved_from_initial": n_moved_from_initial,
         "is_initial_stamp": is_initial or no_pulls,
         "force_payout": force_payout,
-        "rebuild_tickets": force_payout,
+        "rebuild_tickets": rebuild_tickets,
         "latest_fetched_at": str((latest or {}).get("fetched_at") or ""),
         "initial_fetched_at": str((initial or {}).get("fetched_at") or ""),
     }

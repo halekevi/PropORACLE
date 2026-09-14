@@ -17,13 +17,16 @@
 param(
     [switch]$NoOverwrite,
     [string]$RunLabel = "",
-    [switch]$SkipPayout
+    [switch]$SkipPayout,
+    [string]$Date = ""
 )
 
 $ErrorActionPreference = "Continue"
 $Root = Split-Path $PSScriptRoot -Parent
 $SportsRoot = Join-Path $Root "Sports"
 Set-Location $Root
+$cascade = Join-Path $PSScriptRoot "prizepicks_step1_cascade.ps1"
+if (Test-Path -LiteralPath $cascade) { . $cascade }
 $script:FetchStarted = (Get-Date).ToUniversalTime().ToString("o")
 
 $env:PYTHONUTF8 = "1"
@@ -69,7 +72,7 @@ function Copy-Step1Mirror {
 
 Write-Host "[LATE_FETCH] Starting full slate re-fetch $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
 
-$PipeDate = Resolve-PipelineSlateDate
+$PipeDate = if ($Date -and $Date.Trim()) { $Date.Trim() } else { Resolve-PipelineSlateDate }
 Write-Host "[LATE_FETCH] Pipeline slate date: $PipeDate" -ForegroundColor Cyan
 
 # Keep in sync with run_pipeline.ps1 summer off-season gates. Fetching off-season
@@ -269,20 +272,28 @@ function Copy-SiblingDatedStep1 {
 $MaxRetries = Resolve-LateFetchMaxRetries -Label $RunLabel
 $Quiet403 = ($MaxRetries -le 2)
 $CdpUrl = if ($env:PROPORACLE_MLB_CDP_URL) { "$($env:PROPORACLE_MLB_CDP_URL)".Trim() } else { "http://127.0.0.1:9222" }
-$CdpReachable = Test-LateFetchCdp -BaseUrl $CdpUrl
-if (-not $CdpReachable) {
+$httpUp = if (Get-Command Test-PrizePicksCdpHttp -ErrorAction SilentlyContinue) {
+    Test-PrizePicksCdpHttp -CdpUrl $CdpUrl
+} else {
+    Test-LateFetchCdp -BaseUrl $CdpUrl
+}
+if (-not $httpUp) {
     $ppChromePs1 = Join-Path $Root "scripts\launch_prizepicks_chrome_cdp.ps1"
     if (Test-Path -LiteralPath $ppChromePs1) {
         Write-Host "[LATE_FETCH] CDP down ($CdpUrl) — launching PP Chrome (same as daily STEP C0a)" -ForegroundColor Yellow
         & pwsh -NoProfile -File $ppChromePs1 -OpenBoard -LeagueId 2
         Start-Sleep -Seconds 8
-        $CdpReachable = Test-LateFetchCdp -BaseUrl $CdpUrl
-        if ($CdpReachable) {
-            Write-Host "[LATE_FETCH] CDP ready after launch" -ForegroundColor Green
-        } else {
-            Write-Host "[LATE_FETCH] CDP still down after launch — HTTP/fail-fast (empty boards likely)" -ForegroundColor Yellow
-        }
     }
+}
+$CdpReachable = if (Get-Command Test-PrizePicksCdpReachable -ErrorAction SilentlyContinue) {
+    Test-PrizePicksCdpReachable -CdpUrl $CdpUrl
+} else {
+    Test-LateFetchCdp -BaseUrl $CdpUrl
+}
+if ($CdpReachable) {
+    Write-Host "[LATE_FETCH] CDP attach OK at $CdpUrl" -ForegroundColor Green
+} else {
+    Write-Host "[LATE_FETCH] CDP attach failed — HTTP/fail-fast (empty boards likely)" -ForegroundColor Yellow
 }
 if ($RunLabel) {
     Write-Host "[LATE_FETCH] RunLabel=$RunLabel max_retries=$MaxRetries quiet_403=$Quiet403 cdp=$CdpReachable" -ForegroundColor DarkGray
@@ -436,6 +447,34 @@ elseif ((Get-CsvDataRowCount -CsvPath $tennisStep1) -gt 0) {
     Copy-Step1Mirror -Source $tennisStep1 -MirrorPath (Join-Path $TennisDir "outputs\step1_tennis_props.csv")
 }
 
+# Golf — PGA board moves Thu–Sun; empty Mon–Wed is no_slate (do not treat 0 rows as fetch fail).
+Write-Host "[LATE_FETCH] Fetching Golf props..."
+$GolfDir = Join-Path $SportsRoot "Golf"
+$golfRunOut = Ensure-RunOutDir -SportTag "golf"
+$golfStep1 = Join-Path $golfRunOut "step1_golf_props.csv"
+$golfArgs = @(
+    "-3.14", ".\scripts\step1_fetch_prizepicks_golf.py",
+    "--league_id", "1",
+    "--output", $golfStep1,
+    "--retries", "$MaxRetries",
+    "--fail-fast",
+    "--replace"
+)
+if ($CdpReachable) {
+    $golfArgs += @("--cdp", $CdpUrl)
+    Write-Host "[LATE_FETCH] Golf: CDP reachable — in-page fetch" -ForegroundColor DarkGray
+}
+$golfTimeout = if ($CdpReachable) { 240 } else { 150 }
+$golfExit = Invoke-TimedCommand -Label "Golf step1" -FilePath "py" -ArgumentList $golfArgs -WorkingDirectory $GolfDir -TimeoutSec $golfTimeout
+$golfFailed = ($golfExit -ne 0)
+if ($golfFailed) {
+    [void](Resolve-Step1MorningFallback -Sport "Golf" -Step1Path $golfStep1 -MaxRetries $MaxRetries -FetchFailed $true)
+    [void](Copy-SiblingDatedStep1 -Sport "Golf" -SportTag "golf" -FileName "step1_golf_props.csv" -Step1Path $golfStep1)
+}
+elseif ((Get-CsvDataRowCount -CsvPath $golfStep1) -gt 0) {
+    Copy-Step1Mirror -Source $golfStep1 -MirrorPath (Join-Path $GolfDir "outputs\step1_golf_props.csv")
+}
+
 # NFL — NFL (9) and NFLP (44) together. After preseason, NFLP is empty and that is fine.
 $NFL_SEASON_RESUME = "2026-08-13"
 $NFLOffSeason = ($PipeDate -lt $NFL_SEASON_RESUME)
@@ -467,6 +506,37 @@ else {
     }
     elseif ((Get-CsvDataRowCount -CsvPath $nflStep1) -gt 0) {
         Copy-Step1Mirror -Source $nflStep1 -MirrorPath (Join-Path $NFLDir "outputs\step1_pp_props_today.csv")
+    }
+}
+
+# CFB — Week 1+ boards move all morning; without this, 8AM/9AM refreshes keep overnight lines.
+$CFB_SEASON_RESUME = "2026-08-18"
+$CFBOffSeason = ($PipeDate -lt $CFB_SEASON_RESUME)
+if ($CFBOffSeason) {
+    Write-Host "[LATE_FETCH] Skipping CFB fetch (off-season until $CFB_SEASON_RESUME)" -ForegroundColor DarkGray
+}
+else {
+    Write-Host "[LATE_FETCH] Fetching CFB props..."
+    $CFBDir = Join-Path $SportsRoot "CFB"
+    $cfbRunOut = Ensure-RunOutDir -SportTag "cfb"
+    $cfbStep1 = Join-Path $cfbRunOut "step1_cfb.csv"
+    $cfbArgs = @(
+        "-3.14", ".\scripts\pipeline\step1_pp_cfb_scraper.py",
+        "--out", $cfbStep1,
+        "--fail-fast"
+    )
+    # HTTP only: CFB is prizepools + combos. CDP in-page fetch is pickem/single_stat
+    # and returns 0 rows, which would keep overnight lines via morning fallback.
+    Write-Host "[LATE_FETCH] CFB: HTTP (prizepools) — not CDP pickem" -ForegroundColor DarkGray
+    $cfbTimeout = 150
+    $cfbExit = Invoke-TimedCommand -Label "CFB step1" -FilePath "py" -ArgumentList $cfbArgs -WorkingDirectory $CFBDir -TimeoutSec $cfbTimeout
+    $cfbFailed = ($cfbExit -ne 0) -or ((Get-CsvDataRowCount -CsvPath $cfbStep1) -eq 0)
+    if ($cfbFailed) {
+        [void](Resolve-Step1MorningFallback -Sport "CFB" -Step1Path $cfbStep1 -MaxRetries $MaxRetries -FetchFailed $true)
+        [void](Copy-SiblingDatedStep1 -Sport "CFB" -SportTag "cfb" -FileName "step1_cfb.csv" -Step1Path $cfbStep1)
+    }
+    elseif ((Get-CsvDataRowCount -CsvPath $cfbStep1) -gt 0) {
+        Copy-Step1Mirror -Source $cfbStep1 -MirrorPath (Join-Path $CFBDir "outputs\step1_cfb.csv")
     }
 }
 
@@ -588,7 +658,7 @@ if (-not $rebuildTickets) {
 else {
 Write-Host "[LATE_FETCH] Running full pipeline -SkipFetch -SkipLivePayoutCapture -TicketGenStarts $middayTicketStarts -Date $PipeDate..."
 # Pipeline skips embedded CDP (keeps rebuild fast). Parent publishes then scrapes
-# payouts after refresh.lock is released so the next window can still fetch.
+# payouts while still holding refresh.lock so 9AM cannot fetch during 8AM CDP.
 if ($NoOverwrite) {
     $preserveTargets = @(
         (Join-Path $Root "outputs\$PipeDate\combined_slate_tickets_$PipeDate.xlsx"),
@@ -603,7 +673,9 @@ if ($NoOverwrite) {
         (Join-Path $Root "Sports\Soccer\step8_soccer_direction_clean.xlsx"),
         (Join-Path $Root "Sports\MLB\data\outputs\step8_mlb_direction_clean.xlsx"),
         (Join-Path $Root "Sports\MLB\step8_mlb_direction_clean.xlsx"),
-        (Join-Path $Root "Sports\Tennis\step8_tennis_direction_clean.xlsx")
+        (Join-Path $Root "Sports\Tennis\step8_tennis_direction_clean.xlsx"),
+        (Join-Path $Root "Sports\Golf\outputs\step8_golf_direction_clean.xlsx"),
+        (Join-Path $Root "Sports\Golf\step8_golf_direction_clean.xlsx")
     )
     foreach ($pt in $preserveTargets) {
         Preserve-ExistingFile -Path $pt -Reason "pre-LATE_FETCH pipeline snapshot"
@@ -629,7 +701,7 @@ if (Test-Path -LiteralPath $goblin70) {
 
 $livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
 if ($SkipPayout) {
-    Write-Host "[LATE_FETCH] SkipPayout — parent scrapes after live publish + lock release" -ForegroundColor DarkGray
+    Write-Host "[LATE_FETCH] SkipPayout — parent scrapes after live publish while still holding refresh.lock" -ForegroundColor DarkGray
 }
 elseif (Test-Path -LiteralPath $livePayScript) {
     # New tickets after a line-move rebuild need fresh live_cdp (≥1.5x) or the web

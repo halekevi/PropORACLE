@@ -8,8 +8,8 @@
 #   - 3:00 AM  grader + A1 historical actuals (yesterday) — unchanged
 #   - 5:00 AM  juice-window update + line snapshot + live payout CDP (NO grader when 3AM done)
 #   - 8:00 AM  morning line update (not the first scrape)
-#   - 9:00 AM  first morning refetch — patches live tickets if lines/props moved
-#   - 9:45 AM  follow-up if 8AM still held refresh.lock at 9:00
+#   - 9:00 AM  first morning refetch — waits for 8AM (fetch+payout); skips stacked fetch if it waited 20+ min
+#   - 9:45 AM  follow-up refetch after a long 8AM (9AM may have stamped without fetching)
 #   - 10:30 AM PrizePicks morning move window (rebuild + patch tickets)
 #   - 1:00 PM  afternoon line-move
 #   - 4:30 PM  evening lock for 7pm WNBA/MLB boards
@@ -190,14 +190,14 @@ Register-PropTask `
 
 Register-PropTask `
     -TaskName "PropOracle - Refresh 9AM" `
-    -Description "Morning refetch. Updates live tickets when the fetch moves lines or drops props. Skips if 8AM still holds refresh.lock." `
+    -Description "Morning refetch. Waits for 8AM refresh.lock through payout CDP. Skips stacked fetch if it queued 20+ min (9:45 follows up)." `
     -ScriptPath $ScriptRefresh `
     -At "09:00" `
     -ExtraArgs "-RunLabel 9AM"
 
 Register-PropTask `
     -TaskName "PropOracle - Refresh 945AM" `
-    -Description "Follow-up lock after 8AM (lets long 8AM finish). Fetch/refresh + Force CDP + live site publish." `
+    -Description "Follow-up refetch after a long 8AM. Waits for refresh.lock through payout; fetch/refresh + live site publish." `
     -ScriptPath $ScriptRefresh `
     -At "09:45" `
     -ExtraArgs "-RunLabel 945AM"
