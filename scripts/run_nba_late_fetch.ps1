@@ -658,7 +658,7 @@ if (-not $rebuildTickets) {
 else {
 Write-Host "[LATE_FETCH] Running full pipeline -SkipFetch -SkipLivePayoutCapture -TicketGenStarts $middayTicketStarts -Date $PipeDate..."
 # Pipeline skips embedded CDP (keeps rebuild fast). Parent publishes then scrapes
-# payouts after refresh.lock is released so the next window can still fetch.
+# payouts while still holding refresh.lock so 9AM cannot fetch during 8AM CDP.
 if ($NoOverwrite) {
     $preserveTargets = @(
         (Join-Path $Root "outputs\$PipeDate\combined_slate_tickets_$PipeDate.xlsx"),
@@ -701,7 +701,7 @@ if (Test-Path -LiteralPath $goblin70) {
 
 $livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
 if ($SkipPayout) {
-    Write-Host "[LATE_FETCH] SkipPayout — parent scrapes after live publish + lock release" -ForegroundColor DarkGray
+    Write-Host "[LATE_FETCH] SkipPayout — parent scrapes after live publish while still holding refresh.lock" -ForegroundColor DarkGray
 }
 elseif (Test-Path -LiteralPath $livePayScript) {
     # New tickets after a line-move rebuild need fresh live_cdp (≥1.5x) or the web
