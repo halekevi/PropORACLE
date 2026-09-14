@@ -1,6 +1,6 @@
 {
   "date": "2026-09-14",
-  "generated_at": "2026-09-14T01:56:39-04:00",
+  "generated_at": "2026-09-14T05:31:22-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-09-13T21:08:28-04:00",
@@ -55,6 +55,30 @@
       "window": "1AM",
       "n_props": 729,
       "n_moved": 13
+    },
+    {
+      "fetched_at": "2026-09-14T05:25:40-04:00",
+      "window": "05:25",
+      "n_props": 3896,
+      "n_moved": 21
+    },
+    {
+      "fetched_at": "2026-09-14T05:25:57-04:00",
+      "window": "05:25",
+      "n_props": 1193,
+      "n_moved": 16
+    },
+    {
+      "fetched_at": "2026-09-14T05:29:06-04:00",
+      "window": "05:29",
+      "n_props": 732,
+      "n_moved": 4
+    },
+    {
+      "fetched_at": "2026-09-14T05:31:21-04:00",
+      "window": "05:31",
+      "n_props": 5013,
+      "n_moved": 103
     }
   ],
   "payout_scrapes": [
