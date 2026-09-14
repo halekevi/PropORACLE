@@ -4278,7 +4278,13 @@ def enrich_ticket_curve_payouts(ticket: dict, stake_unit: float = 1.0) -> None:
     Mutates ticket dict in place.
     """
     rows = ticket.get("rows") or []
-    n = int(ticket.get("n_legs", len(rows)) or 0) or len(rows)
+    n_raw = ticket.get("n_legs", len(rows))
+    try:
+        n = int(n_raw) if not _scalar_blank(n_raw) else len(rows)
+    except (TypeError, ValueError):
+        n = len(rows)
+    if n <= 0:
+        n = len(rows)
     legs_payload: list[dict] = []
     using_fb = False
     for r in rows:
@@ -4286,12 +4292,13 @@ def enrich_ticket_curve_payouts(ticket: dict, stake_unit: float = 1.0) -> None:
         sl = rd.get("standard_line")
         ln = rd.get("line")
         dp = gd_leg_delta_pct(ln, sl)
-        pt = str(rd.get("pick_type") or "Standard")
+        pt_val = rd.get("pick_type")
+        pt = "Standard" if _scalar_blank(pt_val) else str(pt_val).strip()
         pl = pt.lower()
         if ("goblin" in pl or "demon" in pl) and dp is None:
             using_fb = True
         pr = rd.get("leg_prob_used")
-        if pr is None:
+        if _scalar_blank(pr):
             pr = rd.get("ml_prob")
         legs_payload.append(
             {
@@ -4326,7 +4333,8 @@ def enrich_ticket_curve_payouts(ticket: dict, stake_unit: float = 1.0) -> None:
         emp_legs: list[dict] = []
         for r in rows:
             rd = r if isinstance(r, dict) else dict(r)
-            pt_raw = str(rd.get("pick_type") or "Standard")
+            pt_val = rd.get("pick_type")
+            pt_raw = "Standard" if _scalar_blank(pt_val) else str(pt_val).strip()
             pll = pt_raw.lower()
             if "goblin" in pll:
                 pt_e = "goblin"
@@ -4338,21 +4346,22 @@ def enrich_ticket_curve_payouts(ticket: dict, stake_unit: float = 1.0) -> None:
             try:
                 sl = rd.get("standard_line")
                 ln = rd.get("line")
-                if sl is not None and ln is not None and str(sl).strip() != "" and str(ln).strip() != "":
+                if not _scalar_blank(sl) and not _scalar_blank(ln):
                     ld = abs(float(sl) - float(ln))
             except (TypeError, ValueError):
                 ld = 0.0
             pr = rd.get("leg_prob_used")
-            if pr is None:
+            if _scalar_blank(pr):
                 pr = rd.get("ml_prob")
             try:
-                prf = float(pr)
+                prf = float(pr) if not _scalar_blank(pr) else 0.52
             except (TypeError, ValueError):
                 prf = 0.52
             if not (0.0 < prf <= 1.0):
                 prf = 0.52
             emp_legs.append({"pick_type": pt_e, "line_distance": ld, "hit_prob": prf})
-        flow = str(ticket.get("flow") or "power").strip().lower()
+        flow_val = ticket.get("flow")
+        flow = "power" if _scalar_blank(flow_val) else str(flow_val).strip().lower()
         tt = "flex" if flow == "flex" else "power"
         emp = compute_ticket_ev(emp_legs, tt, n)
         ticket["empirical_ev"] = emp["ev"]
@@ -6191,7 +6200,7 @@ def _leg_prob_for_p_win_from_mapping(
         cap = MAX_LEG_PROB_FOR_P_WIN
     for key in ("leg_prob_used", "composite_hit_rate", "hit_rate", "ml_prob"):
         raw = leg.get(key)
-        if raw is None or raw == "":
+        if _scalar_blank(raw):
             continue
         try:
             v = float(raw)

@@ -44,20 +44,42 @@ SEED_TIER_LABELS = {
 MIN_PREFERRED_LEGS = 8
 
 
+def _is_blank(v: object) -> bool:
+    """True for None / NaN / pandas NA / empty string (safe in ``if``)."""
+    if v is None:
+        return True
+    try:
+        if pd.isna(v):
+            return True
+    except (TypeError, ValueError):
+        pass
+    return v == ""
+
+
 def _pick(v: object) -> str:
-    s = str(v or "").strip().lower()
+    if _is_blank(v):
+        return "Unknown"
+    s = str(v).strip().lower()
     if "dem" in s:
         return "Demon"
     if "gob" in s:
         return "Goblin"
     if "std" in s or s == "standard":
         return "Standard"
-    return str(v or "").strip() or "Unknown"
+    return str(v).strip() or "Unknown"
 
 
 def _dir(r: dict | pd.Series) -> str:
     for c in ("final_bet_direction", "bet_direction", "direction", "over_under", "model_dir"):
-        s = str(r.get(c) or "").strip().upper()
+        raw = r.get(c) if hasattr(r, "get") else None
+        if raw is None and hasattr(r, "__getitem__"):
+            try:
+                raw = r[c]
+            except Exception:
+                raw = None
+        if _is_blank(raw):
+            continue
+        s = str(raw).strip().upper()
         if s in ("OVER", "HIGHER"):
             return "OVER"
         if s in ("UNDER", "LOWER"):
@@ -66,15 +88,18 @@ def _dir(r: dict | pd.Series) -> str:
 
 
 def _model_dir(r: dict | pd.Series) -> str:
-    s = str(r.get("model_dir") or "").strip().upper()
+    raw = r.get("model_dir") if hasattr(r, "get") else None
+    if _is_blank(raw):
+        return ""
+    s = str(raw).strip().upper()
     return s if s in ("OVER", "UNDER") else ""
 
 
 def _num(v: object) -> int | None:
     try:
-        if v is None or (isinstance(v, float) and pd.isna(v)):
+        if _is_blank(v):
             return None
-        if str(v).strip() in ("", "nan", "None"):
+        if str(v).strip().lower() in ("nan", "none", "<na>"):
             return None
         return int(float(v))
     except Exception:
@@ -83,9 +108,9 @@ def _num(v: object) -> int | None:
 
 def _flt(v: object) -> float | None:
     try:
-        if v is None or (isinstance(v, float) and pd.isna(v)):
+        if _is_blank(v):
             return None
-        if str(v).strip() in ("", "nan", "None"):
+        if str(v).strip().lower() in ("nan", "none", "<na>"):
             return None
         return float(v)
     except Exception:
@@ -93,10 +118,10 @@ def _flt(v: object) -> float | None:
 
 
 def _clean(v: object) -> str:
-    if v is None or (isinstance(v, float) and pd.isna(v)):
+    if _is_blank(v):
         return ""
     s = str(v).strip()
-    return "" if s.lower() in ("", "nan", "none") else s
+    return "" if s.lower() in ("", "nan", "none", "<na>") else s
 
 
 def _delta_need(line: float) -> float:
@@ -119,11 +144,11 @@ def _atp_tier_from_rank(rank: object) -> str:
 
 
 def _opp_name(r: dict | pd.Series) -> str:
-    return _clean(r.get("opp_team") or r.get("opp") or "").lower()
+    return (_clean(r.get("opp_team")) or _clean(r.get("opp"))).lower()
 
 
 def _def_rank(r: dict | pd.Series) -> float | None:
-    sport = str(r.get("sport") or "").strip().upper()
+    sport = _clean(r.get("sport")).upper()
     if sport == "TENNIS":
         if _opp_name(r) in _UNKNOWN_OPP:
             return None
@@ -147,7 +172,7 @@ def _n_teams(df: pd.DataFrame) -> int | None:
 
 
 def _def_tier(r: dict | pd.Series) -> str:
-    sport = str(r.get("sport") or "").strip().upper()
+    sport = _clean(r.get("sport")).upper()
     if sport == "TENNIS":
         return _atp_tier_from_rank(_def_rank(r))
     raw = (
@@ -305,7 +330,7 @@ def _seed_tier(l5: int | None, d_ok: bool) -> int:
 
 def row_to_best_props_rec(r: dict | pd.Series, n_teams: int | None = None) -> dict[str, Any] | None:
     """Build a best-props rec for one slate/ticket row, or None if not list-eligible."""
-    prop = str(r.get("prop_type") or r.get("prop") or "").strip()
+    prop = _clean(r.get("prop_type")) or _clean(r.get("prop"))
     if prop.lower() in SKIP_PROPS:
         return None
     pick_type = _pick(r.get("pick_type"))
@@ -331,8 +356,8 @@ def row_to_best_props_rec(r: dict | pd.Series, n_teams: int | None = None) -> di
 
     l5_dir = l5o if side == "OVER" else l5u
     rec: dict[str, Any] = {
-        "sport": str(r.get("sport") or "").strip().upper(),
-        "player": str(r.get("player") or "").strip(),
+        "sport": _clean(r.get("sport")).upper(),
+        "player": _clean(r.get("player")),
         "prop": prop,
         "line": r.get("line") if line is None else line,
         "pick_type": pick_type,
@@ -369,7 +394,11 @@ def annotate_best_props_pool(df: pd.DataFrame) -> pd.DataFrame:
     keep_idx: list[Any] = []
     for idx in df.index:
         row = df.loc[idx]
-        rec = row_to_best_props_rec(row, n_teams)
+        try:
+            rec = row_to_best_props_rec(row, n_teams)
+        except Exception:
+            # One bad cell (e.g. pandas NA in a direction field) must not wipe the pool.
+            continue
         if rec is None:
             continue
         keep_idx.append(idx)

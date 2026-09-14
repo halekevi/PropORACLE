@@ -952,13 +952,15 @@ def attach_share_fields(
 ) -> dict[str, Any]:
     if not share_payload or not share_payload.get("applicable"):
         return player_obj
-    prop_name = prop or CAT_ID_TO_PROP.get(str(category_id or "").strip().lower(), "")
+    from utils.slate_context_fill import _cell_text
+
+    prop_name = _cell_text(prop) or CAT_ID_TO_PROP.get(str(category_id or "").strip().lower(), "")
     if not prop_name:
         return player_obj
     hit = lookup_player_share(
         share_payload,
         team=team,
-        player=player_obj.get("player") or player_obj.get("player_norm") or "",
+        player=_cell_text(player_obj.get("player")) or _cell_text(player_obj.get("player_norm")),
         prop=prop_name,
     )
     if not hit:
@@ -969,7 +971,8 @@ def attach_share_fields(
     use_line = line
     if use_line is None:
         try:
-            use_line = float(player_obj["pp_line"]) if player_obj.get("pp_line") is not None else None
+            lt = _cell_text(player_obj.get("pp_line"))
+            use_line = float(lt) if lt else None
         except Exception:
             use_line = None
     if use_line is not None and hit.get("team_avg"):
@@ -1037,13 +1040,16 @@ def enrich_slate_rows(
     share = load_share_payload(sport, repo)
     if not share or not share.get("applicable") or not rows:
         return rows
+    from utils.slate_context_fill import _cell_text
+
     for r in rows:
         if not isinstance(r, dict):
             continue
-        team = str(r.get("team") or "").strip().upper()
-        prop = str(r.get("prop") or r.get("prop_type") or "")
+        team = _cell_text(r.get("team")).upper()
+        prop = _cell_text(r.get("prop")) or _cell_text(r.get("prop_type"))
         try:
-            line = float(r.get("line")) if r.get("line") is not None else None
+            lt = _cell_text(r.get("line"))
+            line = float(lt) if lt else None
         except Exception:
             line = None
         attach_share_fields(r, share, team=team, prop=prop, line=line)

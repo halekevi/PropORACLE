@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from utils.matchup_edge.slate_io import norm_player_name, norm_prop
+from utils.slate_context_fill import _cell_text
 
 _REPO = Path(__file__).resolve().parents[2]
 
@@ -100,17 +101,21 @@ def enrich_slate_rows_with_category_ranks(
     for row in rows:
         if not isinstance(row, dict):
             continue
-        if row.get("league_rank") is not None and row.get("category_rank_label"):
+        if row.get("league_rank") is not None and _cell_text(row.get("category_rank_label")):
             continue
-        pn = norm_player_name(row.get("player") or row.get("player_name"))
-        prop = row.get("prop") or row.get("prop_type") or row.get("prop_norm")
-        cid = norm_prop(prop) or _PROP_TO_CAT.get(str(prop or "").strip().lower(), "")
+        pn = norm_player_name(_cell_text(row.get("player")) or _cell_text(row.get("player_name")))
+        prop = (
+            _cell_text(row.get("prop"))
+            or _cell_text(row.get("prop_type"))
+            or _cell_text(row.get("prop_norm"))
+        )
+        cid = norm_prop(prop) or _PROP_TO_CAT.get(prop.lower(), "")
         hit = lookup.get((pn, cid))
         if not hit:
             continue
         for k, v in hit.items():
-            if v is None or v == "":
+            if v is None or _cell_text(v) == "":
                 continue
-            if row.get(k) is None or row.get(k) == "":
+            if row.get(k) is None or _cell_text(row.get(k)) == "":
                 row[k] = v
     return rows

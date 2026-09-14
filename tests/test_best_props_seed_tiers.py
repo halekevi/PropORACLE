@@ -59,3 +59,33 @@ def test_prefer_seed_orders_l5_5_d_first():
     assert tiers["D4"] == SEED_TIER_L5_4_D
     assert tiers["NoD5"] == SEED_TIER_L5_NO_D
     assert tiers["NoD4"] == SEED_TIER_L5_NO_D
+
+
+def test_prefer_seed_survives_pandas_na_cells():
+    """pd.NA in direction/sport must not abort the whole seed (TypeError on ``x or ''``)."""
+    df = pd.DataFrame(
+        [
+            _row(player="Good", l5_over=5, def_tier="Weak", opponent_def_rank=28, OVERALL_DEF_RANK=28),
+            _row(
+                player="NaDir",
+                direction=pd.NA,
+                model_dir=pd.NA,
+                l5_over=5,
+                def_tier="Weak",
+                opponent_def_rank=27,
+                OVERALL_DEF_RANK=27,
+            ),
+            _row(
+                player="NaSport",
+                sport=pd.NA,
+                l5_over=4,
+                def_tier="Weak",
+                opponent_def_rank=26,
+                OVERALL_DEF_RANK=26,
+            ),
+        ]
+    )
+    out = prefer_best_props_seed(df, prefer_gold_silver=False, min_preferred=1)
+    assert "Good" in list(out["player"])
+    # NA direction row is not OVER-eligible for Goblin; must be skipped, not crash.
+    assert "NaDir" not in list(out["player"])
