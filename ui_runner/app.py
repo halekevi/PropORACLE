@@ -765,6 +765,48 @@ def read_json_cached(path: Path, ttl: float | None = None) -> Any:
         return data
 
 
+# ── Excel read cache (mirrors read_json_cached above) ──────────────────────────
+# openpyxl parsing is slow; without this, endpoints that read a workbook re-parse
+# it from disk on every request. Keyed on (path, sheet_name); invalidated on mtime
+# change, same as the JSON cache, so a fresh pipeline run is picked up automatically.
+_excel_file_cache: dict[str, dict[str, Any]] = {}
+_EXCEL_FILE_CACHE_LOCK = threading.Lock()
+
+
+def read_excel_cached(path: Path, *, sheet_name: Any = 0, ttl: float | None = None, **read_kwargs: Any):
+    """Load an Excel sheet from disk with an in-process mtime-based cache.
+
+    Returns a copy of the cached DataFrame so callers are free to mutate
+    (e.g. reassign ``df.columns``) without corrupting the shared cache entry.
+    """
+    import pandas as pd
+
+    if ttl is None:
+        ttl = _PIPELINE_JSON_TTL
+    path = Path(path)
+    key = f"{path.resolve()}::{sheet_name}"
+    now = time.time()
+    try:
+        disk_mtime = path.stat().st_mtime
+    except OSError:
+        disk_mtime = None
+
+    with _EXCEL_FILE_CACHE_LOCK:
+        entry = _excel_file_cache.get(key)
+        if (
+            entry is not None
+            and now - entry["ts"] <= ttl
+            and disk_mtime is not None
+            and entry.get("mtime") == disk_mtime
+        ):
+            return entry["data"].copy()
+
+    df = pd.read_excel(str(path), sheet_name=sheet_name, **read_kwargs)
+    with _EXCEL_FILE_CACHE_LOCK:
+        _excel_file_cache[key] = {"data": df, "ts": now, "mtime": disk_mtime}
+    return df.copy()
+
+
 # ── Pre-serialized + pre-gzipped response cache ───────────────────────────────
 # Avoids re-serializing and re-compressing large payloads on every request.
 _gz_cache: dict[str, tuple[bytes, float]] = {}
@@ -6277,8 +6319,7 @@ def api_full_slate():
         return jsonify({"error": "combined slate Excel not found", "date": None, "columns": [], "rows": []}), 404
 
     try:
-        import pandas as pd
-        df = pd.read_excel(str(path), sheet_name="Full Slate", dtype=object, engine="openpyxl")
+        df = read_excel_cached(path, sheet_name="Full Slate", dtype=object, engine="openpyxl")
     except Exception as e:
         return jsonify({"error": f"Could not read Full Slate sheet: {e}", "date": run_date, "columns": [], "rows": []}), 500
 
