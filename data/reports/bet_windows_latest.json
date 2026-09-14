@@ -1,10 +1,10 @@
 {
   "date": "2026-09-14",
-  "generated_at": "2026-09-14T13:14:49-04:00",
+  "generated_at": "2026-09-14T14:37:04-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-09-13T21:08:28-04:00",
-      "window": "21:08",
+      "window": "9PM",
       "n_props": 2806,
       "n_moved": 0
     },
@@ -58,25 +58,25 @@
     },
     {
       "fetched_at": "2026-09-14T05:25:40-04:00",
-      "window": "05:25",
+      "window": "5AM",
       "n_props": 3896,
       "n_moved": 21
     },
     {
       "fetched_at": "2026-09-14T05:25:57-04:00",
-      "window": "05:25",
+      "window": "5AM",
       "n_props": 1193,
       "n_moved": 16
     },
     {
       "fetched_at": "2026-09-14T05:29:06-04:00",
-      "window": "05:29",
+      "window": "5AM",
       "n_props": 732,
       "n_moved": 4
     },
     {
       "fetched_at": "2026-09-14T05:31:21-04:00",
-      "window": "05:31",
+      "window": "5AM",
       "n_props": 5013,
       "n_moved": 103
     },
