@@ -205,6 +205,7 @@ from utils.goblin_demon_multiplier import (
     multiplier_summary as gd_multiplier_summary,
 )
 from utils.ticket_diversity import apply_diversity_filter
+from utils.soccer_keep_gates import soccer_keep_prop as _soccer_keep_prop
 from utils.pipeline_read_enrichment import (
     READ_SLATE_EXPORT_KEYS,
     enrich_read_fields_dataframe,
@@ -3548,7 +3549,7 @@ def _soccer_ticket_pool_exclusion_mask(df: pd.DataFrame) -> tuple[pd.Series, int
 
 
 def soccer_allowed_leg(leg) -> bool:
-    """Soccer hygiene only: no Demon, no Goblin UNDER, no excluded props. Same OVER/UNDER mix as other sports."""
+    """Soccer hygiene: no Demon, no Goblin UNDER, keep props only (Shots/SOT/Saves)."""
     if isinstance(leg, dict):
         row = leg
     else:
@@ -3561,8 +3562,11 @@ def soccer_allowed_leg(leg) -> bool:
         return False
     if not goblin_direction_ok(row):
         return False
-    prop = _norm_prop_label(row.get("prop_type") or row.get("prop") or "")
-    if prop in SOCCER_EXCLUDED_PROPS:
+    keep_row = dict(row)
+    keep_row["sport"] = "Soccer"
+    if "prop" not in keep_row or not keep_row.get("prop"):
+        keep_row["prop"] = row.get("prop_type") or row.get("prop") or ""
+    if not _soccer_keep_prop(keep_row):
         return False
     return True
 
@@ -14132,6 +14136,15 @@ def _load_step8_board_like(
         "Days Rest":        "days_rest",
         "days_rest":        "days_rest",
         "rest_days":        "days_rest",
+        "Opp Hand":         "opponent_hand",
+        "opponent_hand":    "opponent_hand",
+        "opp_hand":         "opponent_hand",
+        "Opp Lefty":        "opp_lefty",
+        "opp_lefty":        "opp_lefty",
+        "vs_lefty":         "opp_lefty",
+        "L5 2nd Won %":     "l5_second_won_pct",
+        "l5_second_won_pct": "l5_second_won_pct",
+        "second_won_l5":    "l5_second_won_pct",
         "Opp Rest":         "opp_days_rest",
         "opp_days_rest":    "opp_days_rest",
         "Rank Score Penalized": "rank_score_penalized",
@@ -20445,7 +20458,9 @@ def write_ticket_sheet(wb, tickets, sheet_name, bg_hdr, label=""):
 # ── Write SUMMARY sheet ───────────────────────────────────────────────────────
 def write_summary(wb, nba, cbb, combined, all_ticket_groups, date_str, thresholds,
                   nhl=None, soccer=None, tennis=None, wcbb=None, mlb=None, nba1q=None, nba1h=None,
-                  nfl=None):
+                  wnba1h=None, wnba1q=None, nfl=None):
+    if _XLSX_FAST.get("on"):
+        return
     ws = wb.create_sheet("SUMMARY", 0)
     sw(ws, [28, 14, 10, 10, 10, 10, 10, 12, 18])
 
@@ -22024,6 +22039,20 @@ def main():
         # MLB: allow both OVER and UNDER; directional edge + L5 consistency now controls selection.
 
         # NHL/Soccer demon pool inclusion requires quality gate.
+        def _fmt(val, ndigits=2):
+            # Small numeric formatter for the demon-sample log line below (was
+            # referenced but never defined; fixed to avoid a NameError crash
+            # whenever an NHL DEMON-tier prop passes the quality gate).
+            try:
+                if val is None:
+                    return "None"
+                fv = float(val)
+                if fv != fv:  # NaN
+                    return "None"
+                return f"{fv:.{ndigits}f}"
+            except (TypeError, ValueError):
+                return "None"
+
         if sport == "NHL" and "pick_type" in filtered_df.columns:
             _pt = filtered_df["pick_type"].astype(str).str.strip().str.upper()
             _is_demon = _pt.eq("DEMON")
@@ -23405,7 +23434,7 @@ def main():
 
     write_summary(wb, nba, cbb, combined, all_ticket_groups, args.date, thresholds,
                   nhl=nhl, soccer=soccer, tennis=tennis, wcbb=wcbb, mlb=mlb, nba1q=nba1q, nba1h=nba1h,
-                  nfl=nfl)
+                  wnba1h=wnba1h, wnba1q=wnba1q, nfl=nfl)
 
     # Reorder: put SUMMARY + slate sheets at the front
     desired_first = [

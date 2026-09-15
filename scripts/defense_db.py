@@ -159,7 +159,7 @@ def write_defense_to_db(
             _float_or_none(row.get("opp_gaa")),
             _float_or_none(row.get("opp_saa")),
             _float_or_none(row.get("opp_pk_pct")),
-            _float_or_none(row.get("opp_gf_per_game")),
+            _float_or_none(row.get("opp_gf_per_game") or row.get("goals_for_pg")),
             _float_or_none(row.get("opp_sf_per_game")),
             _float_or_none(row.get("opp_pp_pct")),
             _float_or_none(row.get("opp_wins")),

@@ -32,6 +32,7 @@ _SOC_REPO = Path(__file__).resolve().parents[3]
 if str(_SOC_REPO) not in sys.path:
     sys.path.insert(0, str(_SOC_REPO))
 from utils.defense_tiers import assert_def_tier_column, format_def_tier_counts
+from utils.soccer_prop_defense import assign_prop_aware_def_tier
 
 
 def _col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
@@ -131,6 +132,37 @@ def main() -> None:
     d[key] = d[key].astype(str).str.strip().str.upper()
     def_cols = [c for c in d.columns if c != key]
 
+    # Own-team attack/defense columns (keeper Saves polarity + matchup Off).
+    _OWN_SRC = [
+        "DEF_TIER",
+        "def_tier",
+        "OVERALL_DEF_RANK",
+        "SHOTS_DEF_TIER",
+        "SHOTS_DEF_RANK",
+        "OFF_TIER",
+        "OFF_RANK",
+        "GOALS_OFF_TIER",
+        "GOALS_OFF_RANK",
+        "goals_for_pg",
+        "opp_gf_per_game",
+        "goals_conceded_pg",
+    ]
+    own_src = [c for c in _OWN_SRC if c in d.columns]
+    own_rename = {
+        "DEF_TIER": "OWN_DEF_TIER",
+        "def_tier": "OWN_DEF_TIER",
+        "OVERALL_DEF_RANK": "OWN_DEF_RANK",
+        "SHOTS_DEF_TIER": "OWN_SHOTS_DEF_TIER",
+        "SHOTS_DEF_RANK": "OWN_SHOTS_DEF_RANK",
+        "OFF_TIER": "OWN_OFF_TIER",
+        "OFF_RANK": "OWN_OFF_RANK",
+        "GOALS_OFF_TIER": "OWN_OFF_TIER",
+        "GOALS_OFF_RANK": "OWN_OFF_RANK",
+        "goals_for_pg": "OWN_GF_PG",
+        "opp_gf_per_game": "OWN_GF_PG",
+        "goals_conceded_pg": "OWN_GA_PG",
+    }
+
     if "opp_team" not in df.columns:
         df["opp_team"] = ""
     df["opp_team"] = df["opp_team"].astype(str).str.strip().str.upper()
@@ -176,18 +208,27 @@ def main() -> None:
         "CHELSEA":              "CHELSEA",
         "ARSENAL":              "ARSENAL",
         "MAN CITY":             "MAN CITY",
-        "MAN UTD":              "MANCHESTER UNITED",
+        "MAN UTD":              "MAN UNITED",
+        "MANCHESTER UNITED":    "MAN UNITED",
         "NEWCASTLE":            "NEWCASTLE",
         "SPURS":                "SPURS",
         "LIVERPOOL":            "LIVERPOOL",
         "ASTON VILLA":          "ASTON VILLA",
+        "VILLA":                "ASTON VILLA",
         "WEST HAM":             "WEST HAM",
         "CRYSTAL PALACE":       "CRYSTAL PALACE",
         "LEEDS":                "LEEDS",
         # EFL Championship
         "COVENTRY":             "COVENTRY CITY",
+        "BRISTOL C":            "BRISTOL CITY",
+        "BRISTOL CITY":         "BRISTOL CITY",
+        "LINCOLN":              "LINCOLN CITY",
         "OXFORD":               "OXFORD UNITED",
         "PRESTON":              "PRESTON NORTH END",
+        # Spain / Brazil short names
+        "SANTANDER":            "RACING SANTANDER",
+        "GRÊMIO":               "GREMIO",
+        "GREMIO":               "GREMIO",
         # MLS
         "SOUNDERS":             "SEATTLE",
         "GALAXY":               "LA GALAXY",
@@ -250,6 +291,10 @@ def main() -> None:
     df["opp_team"] = apply_team_aliases(df["opp_team"], merged_aliases)
     df = fill_opp_team_column(df)
     df["opp_team"] = apply_team_aliases(df["opp_team"], merged_aliases)
+    # Own-team merge uses the same PrizePicks short names → pp_name map.
+    if "team" in df.columns:
+        df["team"] = df["team"].astype(str).str.strip().str.upper()
+        df["team"] = apply_team_aliases(df["team"], merged_aliases)
 
     filled = (df["opp_team"].astype(str).str.strip() != "").sum()
     print(f"  ✅ opp_team filled after alias + game pairing: {filled}/{len(df)}")
@@ -267,6 +312,35 @@ def main() -> None:
                             left_on="opp_team", right_on=key)
     if key in singles.columns:
         singles.drop(columns=[key], inplace=True)
+    # Opp merge brings OFF_TIER = opponent attack — rename for keep gates.
+    if "OFF_TIER" in singles.columns:
+        singles = singles.rename(columns={"OFF_TIER": "OPP_OFF_TIER", "OFF_RANK": "OPP_OFF_RANK"})
+    if "GOALS_OFF_TIER" in singles.columns and "OPP_OFF_TIER" not in singles.columns:
+        singles = singles.rename(
+            columns={"GOALS_OFF_TIER": "OPP_OFF_TIER", "GOALS_OFF_RANK": "OPP_OFF_RANK"}
+        )
+    # Own team attach (keeper own D / own attack).
+    if own_src and "team" in singles.columns:
+        own_df = d[[key] + own_src].copy()
+        rename = {c: own_rename[c] for c in own_src if c in own_rename}
+        # Prefer DEF_TIER over def_tier if both present.
+        own_df = own_df.rename(columns=rename)
+        own_df = own_df.loc[:, ~own_df.columns.duplicated()].copy()
+        singles["team"] = singles["team"].astype(str).str.strip().str.upper()
+        singles = singles.merge(own_df, how="left", left_on="team", right_on=key, suffixes=("", "_OWNDUP"))
+        if key in singles.columns:
+            singles.drop(columns=[key], inplace=True)
+        drop_own_dup = [c for c in singles.columns if c.endswith("_OWNDUP")]
+        if drop_own_dup:
+            singles.drop(columns=drop_own_dup, inplace=True)
+        def _tier_filled(series: pd.Series) -> int:
+            s = series.astype(str).str.strip()
+            return int((s.ne("") & s.str.lower().ne("nan") & series.notna()).sum())
+
+        own_fill = _tier_filled(singles["OWN_DEF_TIER"]) if "OWN_DEF_TIER" in singles.columns else 0
+        print(f"  ✅ OWN_DEF_TIER filled: {own_fill}/{len(singles)}")
+        opp_off = _tier_filled(singles["OPP_OFF_TIER"]) if "OPP_OFF_TIER" in singles.columns else 0
+        print(f"  ✅ OPP_OFF_TIER filled: {opp_off}/{len(singles)}")
 
     # ── Combos ──
     combos = df.loc[combos_mask].copy()
@@ -307,6 +381,18 @@ def main() -> None:
     # Normalize lowercase def_tier from DB read-back to canonical uppercase DEF_TIER
     if "def_tier" in out.columns and "DEF_TIER" not in out.columns:
         out = out.rename(columns={"def_tier": "DEF_TIER"})
+
+    # Prop-aware D: shots / SoT → SHOTS_DEF_* when present; else goals overall.
+    before_shots = 0
+    if "SHOTS_DEF_RANK" in out.columns:
+        before_shots = int(pd.to_numeric(out["SHOTS_DEF_RANK"], errors="coerce").notna().sum())
+    out = assign_prop_aware_def_tier(out)
+    if "def_metric" in out.columns:
+        shot_rows = int((out["def_metric"].astype(str) == "shots_conceded").sum())
+        print(
+            f"[Soccer step3] prop-aware D: shots_metric_rows={shot_rows}/{len(out)} "
+            f"(SHOTS_DEF_RANK filled={before_shots})"
+        )
 
     desired_front = ["espn_player_id", "player", "pos", "team", "opp_team",
                      "league", "line", "prop_type", "prop_norm", "pick_type"]

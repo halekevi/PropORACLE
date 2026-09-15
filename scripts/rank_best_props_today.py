@@ -3,8 +3,9 @@
 
 Always prints four sports: WNBA, MLB, Soccer, Tennis. Thin pools are listed
 as empty, never omitted. NFL + NFLP share one step8 workbook and print as
-an extra NFL section when that file exists. CFB and Golf print as extra
-sections when their step8 workbooks exist.
+an extra NFL section when that file exists. CFB, CFB1H, and Golf print as extra
+sections when their step8 workbooks exist. CFB1H is a separate board (first-half
+PBP L5) and is never merged into full-game CFB.
 
 Season cover (badge) = season/L10 mean of that exact prop minus the posted
 line. List ranking uses last-5 mean first, then L10, then season as
@@ -15,6 +16,9 @@ List gate (hard): directional L5 >= 4. D is NOT a hard filter — a D miss
   only costs a badge (typically Silver if D is the only miss).
   NFLP (preseason) exception: 2025 L5 is not a lock. Sit/cameo skill overs
   are dropped; backup overs need D; kickers still use L5 >= 4.
+  MLB Goblin OVER uses keep props 1-10. Tennis Goblin OVER uses keep gates
+  (Games Won Standard−Goblin >=4; Total Games L5>=4 and L10>=8). Tennis
+  Standard UNDER Aces/DF ungated; other tennis Standard off.
 
 Badge = how many of six checks miss (N/A skipped, not a miss):
   L5 (>=4 on the play side), Cover (avg on the right side of the line),
@@ -39,6 +43,7 @@ Badge = how many of six checks miss (N/A skipped, not a miss):
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import sys
 from collections import Counter
@@ -74,6 +79,11 @@ from prop_hit_tiers import (  # noqa: E402
     norm_sport,
     sort_key_tier_then_badge,
 )
+from utils.ticket_70_pool import skip_earned_runs  # noqa: E402
+from utils.mlb_keep_gates import mlb_goblin_keep_eligible  # noqa: E402
+from utils.mlb_prop_matchup import format_mlb_matchup, mlb_matchup_parts  # noqa: E402
+from utils.soccer_keep_gates import soccer_list_eligible  # noqa: E402
+from utils.tennis_keep_gates import tennis_list_eligible  # noqa: E402
 
 WEAK = {"weak", "easy", "easiest"}
 ELITE = {"elite", "hard", "hardest", "tough"}
@@ -259,7 +269,7 @@ def _def_rank(r):
 
 def _n_teams(df: pd.DataFrame):
     if "sport" in df.columns and len(df):
-        if str(df["sport"].iloc[0] or "").strip().upper() == "CFB":
+        if str(df["sport"].iloc[0] or "").strip().upper() in ("CFB", "CFB1H"):
             return CFB_N_TEAMS
     for c in ("OVERALL_DEF_RANK", "stat_def_rank", "def_rank", "Def Rank"):
         if c not in df.columns:
@@ -702,6 +712,8 @@ def load_sport(root: Path, date: str, sport: str, folder: str, fname: str) -> pd
 
 def load_nfl(root: Path, date: str) -> pd.DataFrame:
     """NFL + NFLP share one step8 workbook (preseason is the same D table)."""
+    if _skip_inactive_slate(root, date, "nfl"):
+        return pd.DataFrame()
     candidates = [
         root / "outputs" / date / "nfl" / "step8_nfl_direction_clean.xlsx",
         root / "outputs" / date / "nfl" / f"step8_nfl_direction_clean_{date}.xlsx",
@@ -728,6 +740,21 @@ def load_cfb(root: Path, date: str) -> pd.DataFrame:
         return pd.DataFrame()
     df = read_table(path, sheet_order=("ALL",))
     df["sport"] = "CFB"
+    return df
+
+
+def load_cfb1h(root: Path, date: str) -> pd.DataFrame:
+    """CFB first-half board — separate from full-game CFB; L5 is Q1+Q2 PBP."""
+    candidates = [
+        root / "outputs" / date / "cfb1h" / "step8_cfb1h_direction_clean.xlsx",
+        root / "outputs" / date / "cfb1h" / f"step8_cfb1h_direction_clean_{date}.xlsx",
+        root / "Sports" / "CFB" / "outputs" / "step8_cfb1h_direction_clean.xlsx",
+    ]
+    path = next((p for p in candidates if table_exists(p)), None)
+    if path is None:
+        return pd.DataFrame()
+    df = read_table(path, sheet_order=("ALL",))
+    df["sport"] = "CFB1H"
     return df
 
 
@@ -779,6 +806,25 @@ def load_wcbb(root: Path, date: str) -> pd.DataFrame:
     return _load_cbb_family(root, date, "WCBB", "wcbb")
 
 
+def _pipeline_sport_status(root: Path, date: str, sport_key: str) -> str:
+    path = root / "outputs" / date / "pipeline_slate_status.json"
+    if not path.is_file():
+        return ""
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError, TypeError):
+        return ""
+    sports = payload.get("sports") if isinstance(payload, dict) else None
+    if not isinstance(sports, dict):
+        return ""
+    return str(sports.get(str(sport_key or "").strip().lower()) or "").strip().lower()
+
+
+def _skip_inactive_slate(root: Path, date: str, sport_key: str) -> bool:
+    """Honor pipeline_slate_status: off_season / no_slate boards are not today."""
+    return _pipeline_sport_status(root, date, sport_key) in {"off_season", "no_slate"}
+
+
 def _load_folder_step8(
     root: Path,
     date: str,
@@ -787,6 +833,8 @@ def _load_folder_step8(
     sports_rel: tuple[str, ...],
 ) -> pd.DataFrame:
     """Period / NBA step8: outputs/<date>/<folder>/ then Sports/<rel>/ static copy."""
+    if _skip_inactive_slate(root, date, folder):
+        return pd.DataFrame()
     stem = f"step8_{folder}_direction_clean"
     candidates = [
         root / "outputs" / date / folder / f"{stem}.xlsx",
@@ -880,10 +928,66 @@ def recs(df: pd.DataFrame) -> list[dict]:
             )
             or "",
             "league": league,
+            "team": team,
+            "opp_team": opp,
+            "def_axis": _clean(r.get("def_axis")),
+            "own_def_tier": _clean(r.get("own_def_tier") or r.get("team_def_tier")),
+            "own_off_hits_tier": _clean(
+                r.get("own_off_hits_tier") or r.get("team_off_hits_tier")
+            ),
+            "opp_pitching_tier": _clean(
+                r.get("opp_pitching_tier") or r.get("opp_pitch_tier")
+            ),
+            "opp_off_hits_tier": _clean(
+                r.get("opp_off_hits_tier") or r.get("OFF_HITS_TIER")
+            ),
+            "shot_volume": _clean(
+                r.get("shot_volume")
+                or r.get("Shot Volume")
+                or r.get("shot_role")
+                or r.get("Shot Role")
+            ),
+            "starter_tier": _clean(r.get("starter_tier") or r.get("Starter Tier")),
+            "pass_role": _clean(r.get("pass_role") or r.get("Pass Role")),
+            "usage_tier": _clean(
+                r.get("usage_tier") or r.get("Usage Tier") or r.get("star_tier")
+            ),
+            "minutes_tier": _clean(
+                r.get("minutes_tier") or r.get("min_tier") or r.get("Min Tier")
+            ),
+            "opp_lefty": _clean(r.get("opp_lefty") or r.get("Opp Lefty")),
+            "opponent_hand": _clean(
+                r.get("opponent_hand") or r.get("Opp Hand") or r.get("opp_hand")
+            ),
+            "l5_second_won_pct": _flt(
+                r.get("l5_second_won_pct")
+                or r.get("L5 2nd Won %")
+                or r.get("second_won_l5")
+            ),
+            "is_franchise_star": r.get("is_franchise_star"),
+            "team_top3_rank": r.get("team_top3_rank")
+            if r.get("team_top3_rank") is not None
+            else r.get("Team Top3 Rank"),
+            "own_def_tier": _clean(
+                r.get("own_def_tier")
+                or r.get("OWN_DEF_TIER")
+                or r.get("Own Def Tier")
+            ),
+            "opp_off_tier": _clean(
+                r.get("opp_off_tier")
+                or r.get("OPP_OFF_TIER")
+                or r.get("Opp Off Tier")
+                or r.get("OFF_TIER")
+            ),
         }
         rec["starter_policy"] = policy_from_row({**dict(r), **rec})
         rec["expected_snaps"] = expected_snaps_bucket(rec["starter_policy"])
         rec.update(_badge(rec, n_teams))
+        if str(rec.get("sport") or "").upper() == "MLB":
+            parts = mlb_matchup_parts(rec)
+            rec["batting_strength"] = parts.get("batting_strength") or ""
+            rec["opp_pitching"] = parts.get("opp_pitching") or ""
+            rec["mlb_matchup"] = parts.get("text") or ""
         rec["l10"] = rec["l10_over"] if rec["side"] == "OVER" else rec["l10_under"]
         rec["season_hr"] = _season_hr(r)
         rec["season_n"] = _season_n(r) or 0
@@ -921,7 +1025,6 @@ def recs(df: pd.DataFrame) -> list[dict]:
                 d_ok=bool((rec.get("checks") or {}).get("D") is True),
             )
         )
-        rec["team"] = team
         if (
             rec.get("sport") == "CFB"
             and rec.get("side") == "OVER"
@@ -942,11 +1045,29 @@ recs = recs  # diamond_2x_tickets import alias
 
 
 def _clears_list_gate(r: dict) -> bool:
-    """L5 >= 4 for in-season sports. NFLP uses playing-time + D instead of 2025 L5."""
+    """L5 >= 4 for in-season sports. NFLP uses playing-time + D instead of 2025 L5.
+
+    MLB Goblin OVER uses keep props 1-10. MLB Standard stays off the list.
+    Tennis Goblin OVER uses keep gates (Games Won Std-Goblin >=4 or
+    L10>=8+(lefty|2nd-won>=45.7); Total Games L5>=4+L10>=8 or L10>=8+lefty).
+    Tennis Standard UNDER Aces/DF pass ungated; Standard OVER Games Won uses
+    L10>=8+(gap|2nd-won). Other tennis Standard stays off. Soccer uses keep
+    gates (Shots L5=5+L10; SOT L5>=4+Off; Saves L5>=4+D). Other soccer props
+    stay off.
+    """
     pt = r.get("pick_type")
     side = r.get("side") or ""
     if pt == "Demon":
         return False
+    sport_u = str(r.get("sport") or "").strip().upper()
+    if sport_u == "MLB":
+        if pt == "Goblin" and side == "OVER":
+            return mlb_goblin_keep_eligible(r)
+        return False
+    if sport_u == "TENNIS":
+        return tennis_list_eligible(r)
+    if sport_u in {"SOCCER", "SOC"}:
+        return soccer_list_eligible(r)
     if str(r.get("sport") or "").upper() == "NFL" and is_nflp(r.get("league")):
         d_ok = bool((r.get("checks") or {}).get("D") is True)
         return nflp_list_eligible(
@@ -1003,6 +1124,10 @@ def _fmt(r: dict, side: str) -> str:
     d = r.get("def") or "no-D"
     rk = r.get("def_rank")
     d_s = f"{d}#{rk}" if rk else d
+    if str(r.get("sport") or "").upper() == "MLB":
+        labeled = r.get("mlb_matchup") or format_mlb_matchup(r)
+        if labeled:
+            d_s = labeled
     avg = r.get("season_avg")
     cover = r.get("cover")
     l5a = r.get("avg_l5")
@@ -1073,6 +1198,9 @@ def _row_for_xlsx(r: dict, category: str) -> dict:
         "Cover": r.get("cover"),
         "D": r.get("def") or "",
         "D_rank": r.get("def_rank"),
+        "Batting_strength": r.get("batting_strength") or "",
+        "Opp_pitching": r.get("opp_pitching") or "",
+        "Matchup_D": r.get("mlb_matchup") or "",
         "Misses": r.get("miss_s") or "",
         "Matchup": r.get("matchup") or "",
         "Note": r.get("matchup_note") or "",
@@ -1085,11 +1213,15 @@ def _row_for_xlsx(r: dict, category: str) -> dict:
 def sport_rows_for_xlsx(sport: str, std_o, std_u, gob) -> list[dict]:
     rows: list[dict] = []
     for r in std_o:
+        if skip_earned_runs(r):
+            continue
         rows.append(_row_for_xlsx(r, "Standard OVER"))
     for r in std_u:
+        if skip_earned_runs(r):
+            continue
         rows.append(_row_for_xlsx(r, "Standard UNDER"))
     for r in gob:
-        if "earned run" in str(r.get("prop") or "").lower() and float(r.get("line") or 99) <= 0.5:
+        if skip_earned_runs(r):
             continue
         rows.append(_row_for_xlsx(r, "Goblin OVER"))
     return rows
@@ -1185,15 +1317,12 @@ def print_sport(sport: str, std_o, std_u, gob, n_o=None, n_u=None, n_g=None) -> 
         print(empty)
     else:
         _print_capped(std_u, "UNDER", n_u)
-    print(f"Goblin OVER    (n={len(gob)})")
-    if not gob:
+    vis = [r for r in gob if not skip_earned_runs(r)]
+    print(f"Goblin OVER    (n={len(vis)})")
+    if not vis:
         print(empty)
         return
 
-    def _skip_er(r):
-        return "earned run" in str(r.get("prop") or "").lower() and float(r.get("line") or 99) <= 0.5
-
-    vis = [r for r in gob if not _skip_er(r)]
     hot = [r for r in vis if r.get("prop_tier") in ("S", "A")]
     other = [r for r in vis if r.get("prop_tier") not in ("S", "A")]
     _print_capped(hot + other, "OVER", None if n_g is None else (len(hot) + n_g))
@@ -1269,6 +1398,15 @@ def main() -> int:
         so, su, gob = bucket(all_rows, "CFB")
         print_sport("CFB", so, su, gob, n_o=20, n_u=20, n_g=20)
         by_sport["CFB"] = sport_rows_for_xlsx("CFB", so, su, gob)
+    df_cfb1h = load_cfb1h(root, date)
+    if df_cfb1h.empty:
+        print("\n===== CFB1H =====\n  (no step8 file)")
+        by_sport["CFB1H"] = []
+    else:
+        all_rows.extend(recs(df_cfb1h))
+        so, su, gob = bucket(all_rows, "CFB1H")
+        print_sport("CFB1H", so, su, gob, n_o=20, n_u=20, n_g=20)
+        by_sport["CFB1H"] = sport_rows_for_xlsx("CFB1H", so, su, gob)
     df_golf = load_golf(root, date)
     if df_golf.empty:
         print("\n===== GOLF =====\n  (no step8 file)")

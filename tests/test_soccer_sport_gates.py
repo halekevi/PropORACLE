@@ -1,4 +1,4 @@
-"""Soccer ticket hygiene: Demon / Goblin UNDER / excluded props only."""
+"""Soccer ticket hygiene: Demon / Goblin UNDER / keep props only."""
 from __future__ import annotations
 
 import sys
@@ -94,6 +94,18 @@ def test_soccer_excluded_prop_rejected():
     )
 
 
+def test_soccer_goals_rejected():
+    assert not soccer_allowed_leg(
+        {
+            "sport": "SOCCER",
+            "pick_type": "Goblin",
+            "direction": "OVER",
+            "prop_type": "Goals",
+            "hit_rate": 0.90,
+        }
+    )
+
+
 def test_soccer_demon_rejected():
     assert not soccer_allowed_leg(
         {
@@ -105,4 +117,13 @@ def test_soccer_demon_rejected():
             "abs_edge": 1.0,
             "ml_prob": 0.90,
         }
+    )
+
+
+def test_soccer_demon_under_never_ok():
+    assert not goblin_direction_ok(
+        {"pick_type": "Demon", "direction": "UNDER"}
+    )
+    assert goblin_direction_ok(
+        {"pick_type": "Demon", "direction": "OVER"}
     )

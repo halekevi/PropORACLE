@@ -45,10 +45,10 @@
     },
     {
       "sport": "TENNIS",
-      "decided": 24898,
-      "paid": 6625,
-      "win_rate": 0.2660856293678207,
-      "net_dollars": -116480.0
+      "decided": 17391,
+      "paid": 7774,
+      "win_rate": 0.4470128227243977,
+      "net_dollars": -18430.0
     },
     {
       "sport": "NHL",
@@ -59,10 +59,10 @@
     },
     {
       "sport": "NFL",
-      "decided": 889,
-      "paid": 487,
-      "win_rate": 0.547806524184477,
-      "net_dollars": 850.0
+      "decided": 987,
+      "paid": 547,
+      "win_rate": 0.5542046605876393,
+      "net_dollars": 1070.0
     }
   ],
   "monthly_rows": [
@@ -141,37 +141,37 @@
     {
       "sport": "TENNIS",
       "month": "2026-09",
-      "decided": 7378,
-      "paid": 1759,
-      "win_rate": 0.23841149362970995,
-      "net_dollars": -38600.0
+      "decided": 3545,
+      "paid": 1790,
+      "win_rate": 0.5049365303244006,
+      "net_dollars": 350.0
     },
     {
       "sport": "TENNIS",
       "month": "2026-08",
-      "decided": 13277,
-      "paid": 3817,
-      "win_rate": 0.2874896437448219,
-      "net_dollars": -56430.0
+      "decided": 10370,
+      "paid": 4609,
+      "win_rate": 0.44445515911282546,
+      "net_dollars": -11520.0
     },
     {
       "sport": "TENNIS",
       "month": "2026-07",
-      "decided": 4243,
-      "paid": 1049,
-      "win_rate": 0.2472307329719538,
-      "net_dollars": -21450.0
+      "decided": 3476,
+      "paid": 1375,
+      "win_rate": 0.39556962025316456,
+      "net_dollars": -7260.0
     },
     {
       "sport": "NFL",
       "month": "2026-09",
-      "decided": 889,
-      "paid": 487,
-      "win_rate": 0.547806524184477,
-      "net_dollars": 850.0
+      "decided": 987,
+      "paid": 547,
+      "win_rate": 0.5542046605876393,
+      "net_dollars": 1070.0
     }
   ],
   "source": "graded_props_json",
-  "signature": "n=69:mt=1789484522658886700",
-  "updated_at": "2026-09-15T15:14:59Z"
+  "signature": "n=69:mt=1789495867078972400",
+  "updated_at": "2026-09-15T18:19:41Z"
 }
