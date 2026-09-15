@@ -1043,6 +1043,26 @@ def main() -> None:
     # Wind-out hot rank_score soft boost (+0.15); not a hard gate / direction flip
     _woh = out.get("wind_out_hot", pd.Series(0, index=out.index)).astype(int).eq(1)
     out.loc[_woh, "rank_score"] = pd.to_numeric(out.loc[_woh, "rank_score"], errors="coerce") + 0.15
+    # L10>=8 boost: counting Goblin OVER gets +0.15 when L10>=8 (pushes H+R+RBI/TB/Hits toward 70%)
+    # Evidence: MLB Goblin OVER 69.6%->71.9% with L5>=4+L10>=8 (n=3980)
+    _l10_col = "l10_over" if "l10_over" in out.columns else "L10 Over"
+    _counting_props = {"hits_runs_rbi", "total_bases", "hits", "home_runs", "rbi", "runs"}
+    _dir = out["bet_direction"] if "bet_direction" in out.columns else pd.Series("", index=out.index)
+    if "final_bet_direction" in out.columns:
+        _dir = out["final_bet_direction"].where(
+            out["final_bet_direction"].astype(str).str.strip().ne(""), _dir
+        )
+    l10_boost_mask = (
+        (pd.to_numeric(out.get(_l10_col, pd.Series(0, index=out.index)), errors="coerce").fillna(0) >= 8)
+        & out.get("prop_norm", pd.Series("", index=out.index)).astype(str).str.lower().isin(_counting_props)
+        & (out.get("pick_type", pd.Series("", index=out.index)).astype(str).str.lower() == "goblin")
+        & (out.get("player_type", pd.Series("", index=out.index)).astype(str).str.lower() == "hitter")
+        & (_dir.astype(str).str.upper() == "OVER")
+    )
+    out.loc[l10_boost_mask, "rank_score"] = (
+        pd.to_numeric(out.loc[l10_boost_mask, "rank_score"], errors="coerce") + 0.15
+    )
+    print(f"[step7] l10>=8 boost: {int(l10_boost_mask.sum())} rows")
 
     # ── ML blend (activates when model file exists; graceful fallback otherwise) ─
     out = build_feature_vector(out, "MLB")   # must run before ML inference
