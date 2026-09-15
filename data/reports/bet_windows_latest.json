@@ -1,6 +1,6 @@
 {
   "date": "2026-09-15",
-  "generated_at": "2026-09-15T00:05:22-04:00",
+  "generated_at": "2026-09-15T00:26:47-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-09-14T21:12:38-04:00",
@@ -33,6 +33,16 @@
       "n_moved": 15
     }
   ],
-  "payout_scrapes": [],
+  "payout_scrapes": [
+    {
+      "window": "9PM",
+      "n_scrapes": 2,
+      "median_power_x": 1.7,
+      "min_power_x": 1.4,
+      "max_power_x": 1.7,
+      "first_captured_at": "2026-09-14T23:23:16",
+      "last_captured_at": "2026-09-14T23:27:25"
+    }
+  ],
   "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
 }
