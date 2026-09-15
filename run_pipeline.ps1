@@ -2169,6 +2169,22 @@ if ($MLBOnly) {
             Pop-Location
         }
     }
+    # Step 4c — Open-Meteo weather at first pitch (wind/temp); non-fatal
+    if ($ok) {
+        Write-Host "  --> MLB Step 4c - Weather Context" -ForegroundColor Cyan
+        $MlbStep4c = Join-Path $MLBDir "scripts\step4c_attach_weather.py"
+        Push-Location $Root
+        try {
+            & py -3.14 $MlbStep4c `
+                --input  "$MLBRunOutDir\step4_mlb_with_stats.csv" `
+                --output "$MLBRunOutDir\step4_mlb_with_stats.csv"
+            if ($LASTEXITCODE -ne 0) {
+                Write-Warning "[MLB] step4c weather context failed — continuing without weather flags"
+            }
+        } finally {
+            Pop-Location
+        }
+    }
     # Step 4d — Injury / IL context (ESPN); non-fatal
     if ($ok) {
         Write-Host "  --> MLB Step 4d - Injury Context" -ForegroundColor Cyan
@@ -3826,6 +3842,19 @@ $MLBJob = Start-Job -ScriptBlock {
                 --output "$MLBRunOutDir\step4_mlb_with_stats.csv"
             if ($LASTEXITCODE -ne 0) {
                 Write-Output "[MLB] step4b lineup context WARN (exit $LASTEXITCODE) — continuing"
+            }
+        } finally { Pop-Location }
+    }
+    if ($ok) {
+        Write-Output "[MLB] Step 4c - Weather Context"
+        $MlbStep4c = Join-Path $MLBDir "scripts\step4c_attach_weather.py"
+        Push-Location $RepoRoot
+        try {
+            & py -3.14 $MlbStep4c `
+                --input  "$MLBRunOutDir\step4_mlb_with_stats.csv" `
+                --output "$MLBRunOutDir\step4_mlb_with_stats.csv"
+            if ($LASTEXITCODE -ne 0) {
+                Write-Output "[MLB] step4c weather context WARN (exit $LASTEXITCODE) — continuing"
             }
         } finally { Pop-Location }
     }
