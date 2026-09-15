@@ -229,6 +229,7 @@ from utils.mlb_keep_gates import mlb_goblin_keep_eligible as _mlb_keep_eligible
 from utils.soccer_keep_gates import soccer_keep_prop as _soccer_keep_prop
 from utils.tennis_keep_gates import (
     tennis_goblin_keep_eligible as _tennis_keep_eligible,
+    tennis_standard_games_won_over_eligible as _tennis_std_games_won_eligible,
     tennis_standard_under_serve_eligible as _tennis_serve_under_eligible,
 )
 from utils.pipeline_read_enrichment import (
@@ -5146,7 +5147,13 @@ def _tennis_allowed_mask(df: pd.DataFrame) -> pd.Series:
     )
     is_games_won = prop_label.str.contains("games won", na=False)
     is_total_games = eligible_prop & ~is_games_won
-    keep_ok = (is_games_won & l10_side.ge(8.0)) | (
+    line_v = pd.to_numeric(df.get("line", np.nan), errors="coerce")
+    std_v = pd.to_numeric(df.get("standard_line", df.get("std_line", np.nan)), errors="coerce")
+    if "Standard Line" in df.columns:
+        std_v = std_v.where(std_v.notna(), pd.to_numeric(df["Standard Line"], errors="coerce"))
+    std_disc = std_v - line_v
+    games_won_ok = is_games_won & std_disc.ge(4.0)
+    keep_ok = games_won_ok | (
         is_total_games & l5_side.ge(float(TENNIS_GOBLIN_MIN_L5_HITS)) & l10_side.ge(8.0)
     )
     goblin_ok = (
@@ -5156,9 +5163,25 @@ def _tennis_allowed_mask(df: pd.DataFrame) -> pd.Series:
         & keep_ok
     )
     std_under_serve = (pick == "standard") & direction.eq("UNDER") & serve_junk
-    allowed = goblin_ok | std_under_serve
+    dist_l5 = pd.to_numeric(df.get("dist_l5", df.get("Dist_L5", np.nan)), errors="coerce")
+    l5_avg = pd.to_numeric(
+        df.get("stat_last5_avg", df.get("Last 5 Avg", df.get("last5_avg", np.nan))),
+        errors="coerce",
+    )
+    l5_gap = dist_l5.where(dist_l5.notna(), l5_avg - line_v)
+    std_gw_over = (
+        (pick == "standard")
+        & direction.eq("OVER")
+        & is_games_won
+        & l10_side.ge(8.0)
+        & l5_gap.ge(5.0)
+    )
+    allowed = goblin_ok | std_under_serve | std_gw_over
     over_rank_drop = tennis_opp_rank_over_exclusion_mask(df)
-    allowed = allowed & ~(over_rank_drop & ~std_under_serve)
+    allowed = allowed & ~(over_rank_drop & ~(std_under_serve | std_gw_over))
+    # Still apply Games Won top-10 fade to Standard OVER Games Won.
+    gw_rank_drop = over_rank_drop & std_gw_over
+    allowed = allowed & ~gw_rank_drop
     return allowed.fillna(False)
 
 
@@ -5166,8 +5189,8 @@ def tennis_allowed_leg(leg) -> bool:
     """
     Tennis ticket gate:
     - Goblin OVER on Total Games / Games Won only, keep gates + opponent-rank fades
-      (Games Won L10>=8; Total Games L5>=4 and L10>=8; Games Won vs top-10;
-      Total Games vs 11–25).
+      (Games Won Standard−Goblin >=4; Total Games L5>=4 and L10>=8; Games Won vs
+      top-10; Total Games vs 11–25).
     - Standard UNDER Aces / Double Faults (ungated 90%+). Goblin OVER and
       Standard OVER Ace/DF stay banned.
     - Other Standard tennis stays off (no games cell >=70% at n>=40).
@@ -14040,6 +14063,15 @@ def _load_step8_board_like(
         "Days Rest":        "days_rest",
         "days_rest":        "days_rest",
         "rest_days":        "days_rest",
+        "Opp Hand":         "opponent_hand",
+        "opponent_hand":    "opponent_hand",
+        "opp_hand":         "opponent_hand",
+        "Opp Lefty":        "opp_lefty",
+        "opp_lefty":        "opp_lefty",
+        "vs_lefty":         "opp_lefty",
+        "L5 2nd Won %":     "l5_second_won_pct",
+        "l5_second_won_pct": "l5_second_won_pct",
+        "second_won_l5":    "l5_second_won_pct",
         "Opp Rest":         "opp_days_rest",
         "opp_days_rest":    "opp_days_rest",
         "Rank Score Penalized": "rank_score_penalized",
@@ -20368,7 +20400,7 @@ def write_ticket_sheet(wb, tickets, sheet_name, bg_hdr, label=""):
 # ── Write SUMMARY sheet ───────────────────────────────────────────────────────
 def write_summary(wb, nba, cbb, combined, all_ticket_groups, date_str, thresholds,
                   nhl=None, soccer=None, tennis=None, wcbb=None, mlb=None, nba1q=None, nba1h=None,
-                  nfl=None):
+                  wnba1h=None, wnba1q=None, nfl=None):
     if _XLSX_FAST.get("on"):
         return
     ws = wb.create_sheet("SUMMARY", 0)
@@ -22096,6 +22128,20 @@ def main():
         # MLB: allow both OVER and UNDER; directional edge + L5 consistency now controls selection.
 
         # NHL/Soccer demon pool inclusion requires quality gate.
+        def _fmt(val, ndigits=2):
+            # Small numeric formatter for the demon-sample log line below (was
+            # referenced but never defined; fixed to avoid a NameError crash
+            # whenever an NHL DEMON-tier prop passes the quality gate).
+            try:
+                if val is None:
+                    return "None"
+                fv = float(val)
+                if fv != fv:  # NaN
+                    return "None"
+                return f"{fv:.{ndigits}f}"
+            except (TypeError, ValueError):
+                return "None"
+
         if sport == "NHL" and "pick_type" in filtered_df.columns:
             _pt = filtered_df["pick_type"].astype(str).str.strip().str.upper()
             _is_demon = _pt.eq("DEMON")
@@ -23473,7 +23519,7 @@ def main():
 
     write_summary(wb, nba, cbb, combined, all_ticket_groups, args.date, thresholds,
                   nhl=nhl, soccer=soccer, tennis=tennis, wcbb=wcbb, mlb=mlb, nba1q=nba1q, nba1h=nba1h,
-                  nfl=nfl)
+                  wnba1h=wnba1h, wnba1q=wnba1q, nfl=nfl)
 
     # Reorder: put SUMMARY + slate sheets at the front
     desired_first = [

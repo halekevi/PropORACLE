@@ -41,6 +41,7 @@ SPORT_NORM = {
     "NFL": "NFL",
     "NFLP": "NFL",
     "CFB": "CFB",
+    "CFB1H": "CFB1H",
     "CBB": "CBB",
     "WCBB": "WCBB",
     "NHL": "NHL",
@@ -62,6 +63,7 @@ GOBLIN_FLOOR = {
     "NHL": 0.5,
     "NFL": 1.0,
     "CFB": 1.0,
+    "CFB1H": 1.0,
     "Golf": 1.0,
 }
 # Typical |last5-line| for that market (u=1). Sport-wide +2 treated PRA and
@@ -157,6 +159,10 @@ PROP_COVER_UNIT.update(
         ("Golf", "finish_pos"): 5.0,
     }
 )
+_CFB1H_SCALE = 0.5
+for _sp_prop, _u in list(PROP_COVER_UNIT.items()):
+    if _sp_prop[0] == "CFB":
+        PROP_COVER_UNIT[("CFB1H", _sp_prop[1])] = round(float(_u) * _CFB1H_SCALE, 2)
 ACTIVE = frozenset(
     {
         "WNBA",
@@ -173,6 +179,7 @@ ACTIVE = frozenset(
         "WCBB",
         "NFL",
         "CFB",
+        "CFB1H",
         "Golf",
     }
 )
@@ -202,6 +209,8 @@ A_KEYS = frozenset(
         ("Tennis", "Goblin OVER", "match_total_games"),
         ("Tennis", "Goblin OVER", "games_won"),
         ("Soccer", "Goblin OVER", "saves"),
+        ("Soccer", "Goblin OVER", "shots"),
+        ("Soccer", "Goblin OVER", "sog"),
         ("NBA", "Goblin OVER", "points"),
         ("NBA", "Goblin OVER", "pra"),
         ("NBA", "Goblin OVER", "pts+reb"),
@@ -209,6 +218,8 @@ A_KEYS = frozenset(
         ("NBA", "Goblin OVER", "assists"),
         ("NBA", "Goblin OVER", "threes"),
         ("NBA", "Goblin OVER", "steals"),
+        ("Tennis", "Standard UNDER", "aces"),
+        ("Tennis", "Standard UNDER", "double_faults"),
     }
 )
 B_KEYS = frozenset(
@@ -236,10 +247,7 @@ SHADOW_KEYS = frozenset(
     {
         ("Tennis", "Goblin OVER", "aces"),
         ("Tennis", "Goblin OVER", "double_faults"),
-        ("Tennis", "Standard UNDER", "aces"),
         ("Tennis", "Standard UNDER", "games_won"),
-        ("Soccer", "Goblin OVER", "shots on target"),
-        ("Soccer", "Goblin OVER", "sog"),
         ("Soccer", "Standard UNDER", "shots"),
         ("Soccer", "Standard UNDER", "shots on target"),
         ("Soccer", "Standard UNDER", "sog"),
@@ -276,11 +284,8 @@ def canon_prop(sport: str, prop: str) -> str:
 
 
 def _soccer_shadow(book: str, prop: str) -> bool:
+    """Standard UNDER shots stay faded. Goblin SOT is a keep prop (L5>=4+Off)."""
     p = (prop or "").lower()
-    if book == "Goblin OVER" and (
-        "shot on" in p or p in {"sog", "shots on goal", "shots on target"}
-    ):
-        return True
     if book == "Standard UNDER":
         if "save" in p:
             return False

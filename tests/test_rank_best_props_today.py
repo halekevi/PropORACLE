@@ -89,6 +89,7 @@ def _row(**kwargs):
         "line": 21.5,
         "l5_over": 5,
         "l5_under": 0,
+        "l10_over": 8,
         "opp_team": "Rival",
         "opponent_rank": 80,
         "stat_season_avg": 24.0,
@@ -99,7 +100,7 @@ def _row(**kwargs):
 
 
 def test_tennis_unknown_opp_does_not_pass_d():
-    """Unknown opp fails D (badge miss) but still clears the L5 list gate."""
+    """Unknown opp fails D (badge miss) but still clears the tennis keep gate."""
     df = pd.DataFrame([_row(opp_team="UNKNOWN_OPP", opponent_rank=75)])
     so, su, gob = bucket(recs(df), "TENNIS")
     assert so == []
@@ -129,6 +130,7 @@ def test_tennis_total_games_under_vs_nakashima_band_gets_tight_note():
                 line=25.5,
                 l5_over=0,
                 l5_under=5,
+                l10_under=8,
                 opp_team="Brandon Nakashima",
                 opponent_rank=22,
                 stat_season_avg=22.3,
@@ -136,12 +138,14 @@ def test_tennis_total_games_under_vs_nakashima_band_gets_tight_note():
             )
         ]
     )
-    _so, su, _gob = bucket(recs(df), "TENNIS")
-    assert len(su) == 1
-    note = su[0].get("matchup_note") or ""
+    rows = recs(df)
+    assert len(rows) == 1
+    note = rows[0].get("matchup_note") or ""
     assert "Nakashima" in note
     assert "OVER fades" in note
     assert "UNDER also fades" in note
+    _so, su, _gob = bucket(rows, "TENNIS")
+    assert su == []
 
 
 def test_tennis_fills_opp_rank_from_slate_player_and_skips_placeholder():
@@ -512,4 +516,20 @@ def test_l10_reads_tennis_line_hits_over_10():
     assert _l10(row, False) == 0
     named = {"l10_over": 8, "line_hits_over_10": 10}
     assert _l10(named, True) == 8
+
+
+def test_load_nba_skips_off_season_slate(tmp_path: Path):
+    from rank_best_props_today import load_nba, load_nba1q, load_nba1h
+
+    day = "2026-09-07"
+    out = tmp_path / "outputs" / day
+    out.mkdir(parents=True)
+    (out / "pipeline_slate_status.json").write_text(
+        '{"sports": {"nba": "off_season", "nba1q": "off_season", "nba1h": "off_season"}}',
+        encoding="utf-8",
+    )
+    (out / "step8_nba_direction_clean_2026-09-07.xlsx").write_bytes(b"not-used")
+    assert load_nba(tmp_path, day).empty
+    assert load_nba1q(tmp_path, day).empty
+    assert load_nba1h(tmp_path, day).empty
 
