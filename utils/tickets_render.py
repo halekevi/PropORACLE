@@ -1334,9 +1334,9 @@ def _tickets_filter_pills_html(attr_rows: list[dict], *, slate_date: str = "") -
         )
     )
     chunks.append(
-        '<label class="ticket-filter-sort-wrap" for="ticket-sort-select" title="Sort groups. Payout uses N-correct board rate, not 1st-place.">'
+        '<label class="ticket-filter-sort-wrap" for="ticket-sort-select" title="Sort groups. Payout rate = N-correct board x (not 1st-place). v20260915">'
         '<span class="ticket-filter-sort-label">Sort</span>'
-        '<select id="ticket-sort-select" class="ticket-filter-sort" aria-label="Sort ticket groups">'
+        '<!-- payout-sort-v20260915 --><select id="ticket-sort-select" class="ticket-filter-sort" aria-label="Sort ticket groups">'
         '<option value="ev_desc" selected>EV ↓</option>'
         '<option value="ev_asc">EV ↑</option>'
         '<option value="payout_desc">Payout rate ↓</option>'
