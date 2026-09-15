@@ -70,7 +70,7 @@ def test_hits_allowed_hrrbi_hitter_ks_counting():
         **{"def": "Elite"},
     )
     assert mlb_goblin_keep_eligible(hk)
-    assert goblin_70_eligible(hk)
+    assert not goblin_70_eligible(hk)  # ticket hard-fade; list keep-gate still on
     assert _clears_list_gate(hk)
     assert not mlb_goblin_keep_eligible(dict(hk, **{"def": "Weak"}))
     assert not mlb_goblin_keep_eligible(dict(hk, k_rate=0.20))

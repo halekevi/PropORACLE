@@ -3,7 +3,8 @@
 Soft-boosts direction×prop×pick cells that hit ≥60% (n≥10) on 2026-07-22 graded
 non-Demon props, and/or rolling category_hr ≥60% with meaningful n.
 
-Soft-downranks known weak lanes (Soccer OVER Shots Goblin, Tennis Ace/DF Goblin, …).
+Soft-downranks known weak lanes (Soccer OVER Shots Goblin, Tennis Ace/DF Goblin,
+WNBA PRA Goblin, MLB hitter_ks Goblin, Tennis games_won Goblin, …).
 """
 
 from __future__ import annotations
@@ -24,6 +25,8 @@ DEFAULT_JUL22_PATH = os.path.join(
 # Soft additive rank_score deltas (same units as category_hr_boost / graded_history).
 PRIORITY_BOOST = float(os.getenv("PROPORACLE_CELL_HR_PRIORITY_BOOST", "0.10"))
 WEAK_PENALTY = float(os.getenv("PROPORACLE_CELL_HR_WEAK_PENALTY", "0.14"))
+# Bundle fade (PRA / hitter_ks / games_won): −0.20 on MAIN rank_score.
+BUNDLE_WEAK_PENALTY = float(os.getenv("PROPORACLE_CELL_HR_BUNDLE_WEAK_PENALTY", "0.20"))
 # Tennis Ace/DF Goblin: soft −0.14 was not enough for slate ranking — hard downrank.
 TENNIS_SERVE_WEAK_PENALTY = float(
     os.getenv("PROPORACLE_CELL_HR_TENNIS_SERVE_WEAK_PENALTY", "0.35")
@@ -32,6 +35,33 @@ ROLLING_HR_FLOOR = float(os.getenv("PROPORACLE_CELL_HR_ROLLING_FLOOR", "0.60"))
 ROLLING_HR_MIN_N = int(os.getenv("PROPORACLE_CELL_HR_ROLLING_MIN_N", "10"))
 
 _TENNIS_SERVE_WEAK_PROPS = frozenset({"aces", "ace", "doublefaults", "doublefault"})
+# Goblin OVER lanes demoted from Jul-22 priority after strict-gate backtest.
+_BUNDLE_WEAK_PROP_NORMS = frozenset(
+    {
+        "pra",
+        "ptsrebsasts",
+        "pointsreboundsassists",
+        "hitterks",
+        "hitterstrikeouts",
+        "gameswon",
+        "totalgameswon",
+    }
+)
+
+
+def _is_bundle_weak(key: tuple[str, str, str, str]) -> bool:
+    sport, prop_norm, pick, direction = key
+    if pick != "Goblin" or direction != "OVER":
+        return False
+    if prop_norm not in _BUNDLE_WEAK_PROP_NORMS:
+        return False
+    if sport == "WNBA" and prop_norm in {"pra", "ptsrebsasts", "pointsreboundsassists"}:
+        return True
+    if sport == "MLB" and prop_norm in {"hitterks", "hitterstrikeouts"}:
+        return True
+    if sport == "TENNIS" and prop_norm in {"gameswon", "totalgameswon"}:
+        return True
+    return False
 
 
 def _weak_penalty_for_key(key: tuple[str, str, str, str]) -> float:
@@ -43,6 +73,8 @@ def _weak_penalty_for_key(key: tuple[str, str, str, str]) -> float:
         and prop_norm in _TENNIS_SERVE_WEAK_PROPS
     ):
         return float(TENNIS_SERVE_WEAK_PENALTY)
+    if _is_bundle_weak(key):
+        return float(BUNDLE_WEAK_PENALTY)
     return float(WEAK_PENALTY)
 
 
@@ -134,17 +166,30 @@ def load_jul22_cell_sets(
                 ("SOCCER", "goalassist", "Goblin", "OVER"),
                 ("TENNIS", "aces", "Goblin", "OVER"),
                 ("TENNIS", "doublefaults", "Goblin", "OVER"),
+                ("WNBA", "ptsrebsasts", "Goblin", "OVER"),
+                ("MLB", "hitterstrikeouts", "Goblin", "OVER"),
+                ("TENNIS", "totalgameswon", "Goblin", "OVER"),
             }
         )
     if not priority:
         priority.update(
             {
                 ("TENNIS", "totalgames", "Goblin", "OVER"),
-                ("TENNIS", "totalgameswon", "Goblin", "OVER"),
                 ("TENNIS", "totalgameswon", "Standard", "OVER"),
                 ("TENNIS", "totalgames", "Standard", "OVER"),
             }
         )
+    # Always demote bundle lanes even if Jul-22 JSON still lists them as priority.
+    for key in (
+        ("WNBA", "ptsrebsasts", "Goblin", "OVER"),
+        ("WNBA", "pra", "Goblin", "OVER"),
+        ("MLB", "hitterstrikeouts", "Goblin", "OVER"),
+        ("MLB", "hitterks", "Goblin", "OVER"),
+        ("TENNIS", "totalgameswon", "Goblin", "OVER"),
+        ("TENNIS", "gameswon", "Goblin", "OVER"),
+    ):
+        priority.discard(key)
+        weak.add(key)
     return frozenset(priority), frozenset(weak)
 
 
@@ -157,7 +202,8 @@ def cell_hr_priority_boost_series(
     Additive rank_score boost/penalty for MAIN / combined slate ranking.
 
     +PRIORITY_BOOST when Jul-22 allowlist match OR category_hr>=60% with n>=10
-    -WEAK_PENALTY when weak-cell match (overrides priority for that leg)
+    -WEAK_PENALTY / -BUNDLE_WEAK_PENALTY (-0.20) when weak-cell match
+    (overrides priority for that leg)
     """
     if df is None or df.empty:
         return pd.Series(dtype=float)

@@ -17,6 +17,12 @@ def test_jul22_priority_and_weak_sets_load():
     assert ("SOCCER", "shots", "Goblin", "OVER") in weak
     assert ("TENNIS", "aces", "Goblin", "OVER") in weak
     assert ("TENNIS", "doublefaults", "Goblin", "OVER") in weak
+    # Bundle demote: PRA / hitter_ks / games_won Goblin OVER
+    assert ("WNBA", "ptsrebsasts", "Goblin", "OVER") in weak
+    assert ("WNBA", "ptsrebsasts", "Goblin", "OVER") not in priority
+    assert ("MLB", "hitterstrikeouts", "Goblin", "OVER") in weak
+    assert ("TENNIS", "totalgameswon", "Goblin", "OVER") in weak
+    assert ("TENNIS", "totalgameswon", "Goblin", "OVER") not in priority
 
 
 def test_boost_priority_and_penalize_weak():
@@ -65,4 +71,26 @@ def test_boost_priority_and_penalize_weak():
     assert float(boost.iloc[1]) < 0  # Soccer OVER Shots weak
     assert float(boost.iloc[2]) <= -0.30  # Tennis Ace Goblin hard downrank
     assert float(boost.iloc[3]) > 0  # rolling category_hr ≥60% n≥10
-    assert float(boost.iloc[4]) > 0  # Tennis totals priority
+    assert float(boost.iloc[4]) <= -0.20  # Tennis games_won Goblin demoted
+
+
+def test_bundle_weak_penalty():
+    df = pd.DataFrame(
+        [
+            {
+                "sport": "WNBA",
+                "prop_type": "Pts+Rebs+Asts",
+                "pick_type": "Goblin",
+                "direction": "OVER",
+            },
+            {
+                "sport": "MLB",
+                "prop_type": "Hitter Strikeouts",
+                "pick_type": "Goblin",
+                "direction": "OVER",
+            },
+        ]
+    )
+    boost = cell_hr_priority_boost_series(df)
+    assert float(boost.iloc[0]) <= -0.20
+    assert float(boost.iloc[1]) <= -0.20

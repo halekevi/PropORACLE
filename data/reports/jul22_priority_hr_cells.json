@@ -2,9 +2,9 @@
   "date": "2026-07-22",
   "source": "ui_runner/templates/graded_props_2026-07-22.json",
   "criteria": {
-    "priority": "non-Demon direction\u00d7prop\u00d7pick cells with HR>=60% and n>=10",
-    "weak": "seeded weak lanes: Soccer OVER Shots/Goal+Assist Goblin; Tennis OVER Aces/Double Faults Goblin (hard ticket ban + -0.35 rank)",
-    "tennis_prefer": "Total Games / Total Games Won Goblin+Standard OVER"
+    "priority": "non-Demon direction×prop×pick cells with HR>=60% and n>=10",
+    "weak": "seeded weak lanes: Soccer OVER Shots/Goal+Assist Goblin; Tennis OVER Aces/Double Faults Goblin (hard ticket ban + -0.35 rank); WNBA PRA Goblin / MLB hitter_ks Goblin / Tennis games_won Goblin (−0.20 MAIN rank_score, 2026-09-15)",
+    "tennis_prefer": "Total Games Goblin+Standard OVER; Total Games Won Standard OVER (Goblin games_won demoted)"
   },
   "priority_cells": [
     {
@@ -102,18 +102,6 @@
       "n": 72,
       "hr": 0.7361,
       "hr_pct": 73.6
-    },
-    {
-      "sport": "WNBA",
-      "sport_key": "WNBA",
-      "direction": "OVER",
-      "prop": "Pts+Rebs+Asts",
-      "pick_type": "Goblin",
-      "hit": 76,
-      "miss": 29,
-      "n": 105,
-      "hr": 0.7238,
-      "hr_pct": 72.4
     },
     {
       "sport": "MLB",
@@ -215,18 +203,6 @@
       "sport": "MLB",
       "sport_key": "MLB",
       "direction": "OVER",
-      "prop": "Hitter Strikeouts",
-      "pick_type": "Goblin",
-      "hit": 126,
-      "miss": 72,
-      "n": 198,
-      "hr": 0.6364,
-      "hr_pct": 63.6
-    },
-    {
-      "sport": "MLB",
-      "sport_key": "MLB",
-      "direction": "OVER",
       "prop": "Hits+Runs+RBIs",
       "pick_type": "Goblin",
       "hit": 201,
@@ -311,19 +287,6 @@
       "sport": "Tennis",
       "sport_key": "TENNIS",
       "direction": "OVER",
-      "prop": "Total Games Won",
-      "pick_type": "Goblin",
-      "hit": 6,
-      "miss": 2,
-      "n": 8,
-      "hr": 0.75,
-      "hr_pct": 75.0,
-      "note": "Jul-22 non-Demon totals lane (prefer over Ace/DF)"
-    },
-    {
-      "sport": "Tennis",
-      "sport_key": "TENNIS",
-      "direction": "OVER",
       "prop": "Total Games",
       "pick_type": "Goblin",
       "hit": 5,
@@ -395,6 +358,45 @@
       "n": 268,
       "hr": 0.3769,
       "hr_pct": 37.7
+    },
+    {
+      "sport": "WNBA",
+      "sport_key": "WNBA",
+      "direction": "OVER",
+      "prop": "Pts+Rebs+Asts",
+      "pick_type": "Goblin",
+      "hit": 76,
+      "miss": 29,
+      "n": 105,
+      "hr": 0.7238,
+      "hr_pct": 72.4,
+      "note": "demoted 2026-09-15: strict-gate bundle fade (−0.20 MAIN rank_score)"
+    },
+    {
+      "sport": "MLB",
+      "sport_key": "MLB",
+      "direction": "OVER",
+      "prop": "Hitter Strikeouts",
+      "pick_type": "Goblin",
+      "hit": 126,
+      "miss": 72,
+      "n": 198,
+      "hr": 0.6364,
+      "hr_pct": 63.6,
+      "note": "demoted 2026-09-15: strict-gate bundle fade (−0.20 MAIN rank_score)"
+    },
+    {
+      "sport": "Tennis",
+      "sport_key": "TENNIS",
+      "direction": "OVER",
+      "prop": "Total Games Won",
+      "pick_type": "Goblin",
+      "hit": 6,
+      "miss": 2,
+      "n": 8,
+      "hr": 0.75,
+      "hr_pct": 75.0,
+      "note": "Jul-22 non-Demon totals lane (prefer over Ace/DF) | demoted 2026-09-15: strict-gate bundle fade (−0.20 MAIN rank_score)"
     }
   ]
 }

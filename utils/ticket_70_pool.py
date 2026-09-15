@@ -5,20 +5,23 @@ directional D (OVER Weak|Below Avg; UNDER Elite|Above Avg; Avg/unknown fail;
 MLB hitter Ks invert). Tennis Goblin OVER uses utils.tennis_keep_gates
 (Games Won Std−Goblin>=4 or L10>=8+(lefty|2nd-won>=45.7); Total Games
 L5>=4+L10>=8 or L10>=8+lefty; no D). Tennis Standard UNDER Aces / Double
-Faults is ungated 90%+ keep; Standard OVER Games Won uses L10>=8+(gap|2nd-won).
-Other tennis Standard stays off. Soccer uses utils.soccer_keep_gates
+Faults is faded after serve-actual backfill (missing→0 had inflated ~90%).
+Standard OVER Games Won uses L10>=8+(gap|2nd-won). Other tennis Standard
+stays off. Soccer uses utils.soccer_keep_gates
 (Shots L5=5+L10>=8; SOT L5>=4+Off; Saves L5>=4+D). Golf has no opponent D,
 so it uses L5 = 5 + L10 >= 8 without D.
 
 MLB Goblin OVER uses the locked keep props 1–10 in utils.mlb_keep_gates
 (not the global L5=5 card). H+R+RBI / Hits / TB: BA>=.275 + L5=5 + Opp
-pitch Weak|Below. Hitter Ks: K%>=28 + L10>=8 + Opp pitch Elite|Above.
-MLB Standard stays off. Cover floor still
-applies on other sports. WNBA Goblin PRA also needs Off (usage HIGH/STAR
-or minutes HIGH) on top of L5=5+L10>=8+D (80.6% n=36). No Demons, no shadow. NFLP stays on its own
-playing-time track. NFL regular-season Standard tickets are UNDER-heavy
-(rec yards / receptions / sacks / kick pts / pass+rush yards) until a
-Goblin sample exists; Standard OVER stays off except rush yards.
+pitch Weak|Below. Hitter Ks stay on the list keep-gate but are hard-faded
+from Goblin-70 tickets (52% n=23 under the stack). MLB Standard stays off.
+Cover floor still applies on other sports. WNBA Goblin PRA needs Off
+(usage HIGH/STAR or minutes HIGH) AND prop_tier S/A on top of
+L5=5+L10>=8+D (Off-only residual was 69% n=310). Premium YOLO sleeve:
+WNBA FGA / reb+ast / threes / threes_att. No Demons, no shadow. NFLP stays
+on its own playing-time track. NFL regular-season Standard tickets are
+UNDER-heavy (rec yards / receptions / sacks / kick pts / pass+rush yards)
+until a Goblin sample exists; Standard OVER stays off except rush yards.
 
 List gate remains L5 >= 4 (D badge-only) except MLB and soccer, which use the
 same keep gates as Goblin-70. Tennis list uses tennis keep gates. Live
@@ -42,7 +45,12 @@ if str(_ROOT) not in sys.path:
 import prop_hit_tiers as T  # noqa: E402
 from utils.defense_tiers import d_aligned  # noqa: E402
 from utils.mlb_keep_gates import mlb_goblin_keep_eligible  # noqa: E402
-from utils.nfl_keep_gates import nfl_standard_ticket_eligible, nfl_ticket_priority  # noqa: E402
+from utils.nfl_keep_gates import (  # noqa: E402
+    NFL_GOBLIN_TICKETS_ENABLED,
+    nfl_goblin_ticket_eligible,
+    nfl_standard_ticket_eligible,
+    nfl_ticket_priority,
+)
 from utils.soccer_keep_gates import soccer_ticket_gate_passes  # noqa: E402
 from utils.tennis_keep_gates import (  # noqa: E402
     tennis_skip_cover_floor,
@@ -335,13 +343,37 @@ def wnba_pra_off_ok(r: dict[str, Any]) -> bool:
     return mt == "HIGH"
 
 
+def wnba_pra_sa_ok(r: dict[str, Any]) -> bool:
+    """Prop-tier S or A (catalog / stamped). B-tier PRA fails even with Off."""
+    stamped = str(r.get("prop_tier") or "").strip().upper()
+    if stamped in {"S", "A"}:
+        return True
+    if stamped:
+        return False
+    cover = r.get("cover")
+    if cover is None:
+        cover = r.get("dist_l5")
+    info = T.assign_tier(
+        sport=_sport(r),
+        pick_type=_pick(r) or "Goblin",
+        side=_side(r) or "OVER",
+        prop=_prop(r),
+        cover=cover,
+        d_ok=_d_ok(r),
+    )
+    return str(info.get("prop_tier") or "") in {"S", "A"}
+
+
 def _wnba_pra_ticket_cut(r: dict[str, Any]) -> bool:
-    """Goblin OVER PRA on full-game WNBA needs Off on top of L5/L10/D."""
+    """Goblin OVER PRA on full-game WNBA needs Off + S/A on top of L5/L10/D."""
     if _sport(r) != "WNBA":
         return False
     if _pick(r) != "Goblin" or _side(r) != "OVER":
         return False
     return _prop(r) == "pra"
+
+
+PREMIUM_WNBA_PROPS = frozenset({"fga", "reb+ast", "threes", "threes_att"})
 
 
 def ticket_gate_passes(r: dict[str, Any]) -> bool:
@@ -377,18 +409,20 @@ def ticket_gate_passes(r: dict[str, Any]) -> bool:
         return True
     if not _d_ok(r):
         return False
-    if _wnba_pra_ticket_cut(r) and not wnba_pra_off_ok(r):
-        return False
+    if _wnba_pra_ticket_cut(r):
+        if not wnba_pra_off_ok(r) or not wnba_pra_sa_ok(r):
+            return False
     return True
 
 
 def goblin_70_eligible(r: dict[str, Any]) -> bool:
     """Goblin OVER ticket gate: L5=5+L10>=8+D (tennis keep gates; golf no D).
 
-    WNBA Goblin PRA also needs Off (high usage or HIGH minutes).
-    MLB uses keep props 1-10 (including hitter Ks on that gate). ``ml_prob``
-    is never a gate or sort key. A 0.99 score cannot rescue a failed
-    L5/L10/D/cover row; a 0.10 score cannot drop a clear one.
+    WNBA Goblin PRA also needs Off (high usage or HIGH minutes) AND prop_tier
+    S/A. MLB uses keep props 1-10 on the list, but hitter_ks is hard-faded
+    from Goblin-70 tickets. ``ml_prob`` is never a gate or sort key. A 0.99
+    score cannot rescue a failed L5/L10/D/cover row; a 0.10 score cannot
+    drop a clear one.
     """
     if _pick(r) != "Goblin" or _side(r) != "OVER":
         return False
@@ -397,13 +431,22 @@ def goblin_70_eligible(r: dict[str, Any]) -> bool:
     if skip_combo_player(r):
         return False
     sport = _sport(r)
+    prop = _prop(r)
+    # NFL Goblin OVER held until tagged unique-game ledger answers keep questions.
+    if sport == "NFL":
+        if not NFL_GOBLIN_TICKETS_ENABLED:
+            return False
+        if not nfl_goblin_ticket_eligible(r):
+            return False
     if sport == "MLB":
+        # Keep-gate still admits hitter_ks for the printed list; tickets fade it.
+        if prop == "hitter_ks":
+            return False
         return mlb_goblin_keep_eligible(r)
     if skip_earned_runs(r):
         return False
     if not ticket_gate_passes(r):
         return False
-    prop = _prop(r)
     if is_shadow(sport, "Goblin OVER", prop):
         return False
     if prop == "hitter_ks":
@@ -416,6 +459,15 @@ def goblin_70_eligible(r: dict[str, Any]) -> bool:
     if not cover_clears_floor(sport, gap, "OVER", prop):
         return False
     return True
+
+
+def premium_goblin_eligible(r: dict[str, Any]) -> bool:
+    """WNBA FGA / reb+ast / threes / threes_att that already clear Goblin-70."""
+    if _sport(r) != "WNBA":
+        return False
+    if _prop(r) not in PREMIUM_WNBA_PROPS:
+        return False
+    return goblin_70_eligible(r)
 
 
 def _player_fill_key(name: str) -> str:
@@ -571,8 +623,14 @@ def goblin_sort_key(r: dict[str, Any]) -> tuple:
 
     Not ml_prob. 70% gate is eligibility; badge is the extra Gold-stack
     filter (season HR and/or L10 already required for G70).
+    Tennis games_won fills last: one tier bucket worse than stamped tier.
     """
     tier = str(r.get("prop_tier") or "")
+    tier_rank = TIER_RANK.get(tier, 9)
+    # Soft fade: treat Games Won as one letter worse so Total Games / other
+    # keep props pack ahead of it on the short card.
+    if _is_tennis(_sport(r)) and _prop(r) == "games_won":
+        tier_rank = min(tier_rank + 1, 5)
     l5 = int(_l5(r) or 0)
     cover = r.get("cover")
     try:
@@ -591,12 +649,22 @@ def goblin_sort_key(r: dict[str, Any]) -> tuple:
     )
     return (
         badge_band,
-        TIER_RANK.get(tier, 9),
+        tier_rank,
         0 if l5 >= 5 else 1,
         promo_rank,
         cov,
         str(r.get("player") or ""),
     )
+
+
+def premium_goblin_sort_key(r: dict[str, Any]) -> tuple:
+    """YOLO pack order: premium WNBA sleeve first, then normal goblin_sort_key.
+
+    Premium = WNBA FGA / reb+ast / threes / threes_att (79–83% under the stack).
+    Leading 0 puts them above Diamond/Platinum on the YOLO path only.
+    """
+    prem = 0 if _prop(r) in PREMIUM_WNBA_PROPS and _sport(r) == "WNBA" else 1
+    return (prem,) + goblin_sort_key(r)
 
 
 def ticket_excluded_from_winrate(t: dict[str, Any], group_name: str = "") -> bool:

@@ -1,10 +1,19 @@
 #!/usr/bin/env python3
 """Build Goblin-70 tickets and publish the playable card to /tickets.
 
-Main card (app): Goblin OVER with L5=5 + L10>=8 + directional D (tennis L5=5
-only; golf L5=5+L10>=8, no opponent D). Cover floor, no Demons, no shadow,
-no hitter Ks. Standard Over/Under that clear the same gate ticket as Flex
-groups — not mixed onto Goblin Power.
+Main card (app): Goblin OVER with L5=5 + L10>=8 + directional D (tennis keep
+gates: Games Won Standard-Goblin >=4, Total Games L5>=4 and L10>=8, no D; golf L5=5+L10>=8,
+no opponent D). Cover floor, no Demons, no shadow, no hitter Ks. Standard
+Over/Under that clear the same gate ticket as Flex groups — not mixed onto
+Goblin Power 3. Tennis Standard UNDER Aces/DF ticket ungated; other tennis
+Standard stays off. YOLO Power 4/5/6 may mix one Standard onto Power.
+
+The playable card stays short (Power 3, Flex 4, sport Power 2–3). On top of that,
+YOLO Power 4/5/6 slips pack premium WNBA Goblin-70 legs (FGA / reb+ast /
+threes / threes_att) first, then Diamond/Platinum seeds, and mix in one
+Standard gate leg when the Standard pool is non-empty. YOLO uses its own taken
+set so it does not steal legs from the short card, and those slips are excluded
+from ticket win-rate / grade_history.
 
 NFLP stays on its own playing-time track. N-correct / To Win only.
 """
@@ -40,6 +49,9 @@ from utils.ticket_70_pool import (  # noqa: E402
     nflp_std_over_eligible,
     nflp_ticket_eligible,
     nflp_ticket_p,
+    premium_goblin_eligible,
+    premium_goblin_sort_key,
+    standard_flex_kind,
     standard_sort_key,
     standard_ticket_eligible,
     standard_ticket_p,
@@ -92,6 +104,7 @@ def load_today_board(date: str) -> list[dict]:
     for loader_name in (
         "load_nfl",
         "load_cfb",
+        "load_cfb1h",
         "load_golf",
         "load_cbb",
         "load_wcbb",
@@ -122,6 +135,7 @@ SPORT_PURE = (
     ("NBA", 3, "Power", 2),
     ("NHL", 3, "Power", 2),
     ("CFB", 3, "Power", 2),
+    ("CFB1H", 3, "Power", 2),
     ("NFL", 3, "Power", 2),
     ("CBB", 3, "Power", 2),
     ("GOLF", 3, "Power", 2),
@@ -137,6 +151,7 @@ SPORT_TID_PREFIX = {
     "WNBA1H": "W1H",
     "NBA1Q": "N1Q",
     "NBA1H": "N1H",
+    "CFB1H": "C1H",
     "WCBB": "WCB",
     "GOLF": "GLF",
     "TENNIS": "TEN",
@@ -154,6 +169,9 @@ MAIN_CARD = (
     ("F4-3", 4, "Flex", "goblin"),
     ("F4-4", 4, "Flex", "goblin"),
 )
+# Long-shot sleeve only. Prefer 6, fall back to 5. Max two slips.
+YOLO_MAX_TICKETS = 3
+YOLO_PREF_LEGS = (6, 5, 4)
 
 WEB_SPORT = {
     "TENNIS": "Tennis",
@@ -272,6 +290,52 @@ def pack(
     return combo if len(combo) == n else []
 
 
+def pack_yolo(
+    gob: list[dict],
+    std: list[dict] | None = None,
+    *,
+    max_tickets: int = YOLO_MAX_TICKETS,
+) -> list[list[dict]]:
+    """Power 6, then 5, then 4. One Standard at the front when available.
+
+    Own taken set so Power 3 / Flex 4 keep their legs.
+
+    Premium sleeve seeds first: WNBA FGA / reb+ast / threes / threes_att that
+    already clear goblin_70_eligible (premium_goblin_sort_key ranks them above
+    Diamond/Platinum). Remaining Goblin-70 pool follows goblin_sort_key order.
+    """
+    taken: set[str] = set()
+    out: list[list[dict]] = []
+    std_pool = list(std or [])
+    # Premium YOLO seed order (comment marker for sleeve entry point).
+    premium = sorted(
+        (r for r in gob if premium_goblin_eligible(r)),
+        key=premium_goblin_sort_key,
+    )
+    rest = [r for r in gob if not premium_goblin_eligible(r)]
+    ordered_gob = premium + rest
+    for n in YOLO_PREF_LEGS:
+        if len(out) >= max(0, int(max_tickets)):
+            break
+        seeds: list[dict] = []
+        for s in std_pool:
+            pn = fold_name(s.get("player"))
+            if pn and pn not in taken:
+                seeds.append(s)
+                break
+        # Premium pool seeds in here (before Diamond/Platinum rest of gob).
+        seeds.extend(r for r in ordered_gob if fold_name(r.get("player")) not in taken)
+        combo = pack(seeds, n, taken, mix_sports=True, wnba_cap=1)
+        if len(combo) != n:
+            combo = pack(seeds, n, taken, mix_sports=True, wnba_cap=2)
+        if len(combo) != n:
+            continue
+        for r in combo:
+            taken.add(fold_name(r.get("player")))
+        out.append(combo)
+    return out
+
+
 def binomial(n: int, k: int, p: float) -> float:
     if k < 0 or k > n:
         return 0.0
@@ -377,7 +441,9 @@ def _sweep_x(ticket: dict) -> float:
         return 0.0
 
 
-def _leg_to_web(leg: dict, *, ticket_id: str, date: str) -> dict:
+def _leg_to_web(
+    leg: dict, *, ticket_id: str, date: str, ticket_track: str = "goblin70"
+) -> dict:
     player = str(leg.get("player") or "").strip()
     sport = web_sport(leg.get("sport"))
     team, opp = split_matchup(leg.get("matchup"), player, leg.get("team"))
@@ -455,7 +521,7 @@ def _leg_to_web(leg: dict, *, ticket_id: str, date: str) -> dict:
     )
     return {
         "ticket_id": ticket_id,
-        "ticket_track": "goblin70",
+        "ticket_track": ticket_track,
         "sport": sport,
         "player": player,
         "team": team,
@@ -504,24 +570,31 @@ def _ticket_to_web(ticket: dict, *, date: str, ticket_no: int, group_name: str) 
     gn = re.sub(r"[|]+", "_", group_name)[:80]
     ticket_id = f"{date}|{gn}|{ticket_no}"
     n_correct = {int(k): float(v) for k, v in (ticket.get("n_correct") or {}).items()}
-    legs = [_leg_to_web(leg, ticket_id=ticket_id, date=date) for leg in ticket.get("legs") or []]
+    yolo = "YOLO" in group_name.upper() or bool(ticket.get("exclude_from_winrate"))
+    track = "goblin70_yolo" if yolo else "goblin70"
+    legs = [
+        _leg_to_web(leg, ticket_id=ticket_id, date=date, ticket_track=track)
+        for leg in ticket.get("legs") or []
+    ]
     hrs = [float(x["hit_rate"]) for x in legs if x.get("hit_rate") is not None]
-    mls = [float(x["ml_prob"]) for x in legs if x.get("ml_prob") is not None]
     avg_hr = (sum(hrs) / len(hrs)) if hrs else mean_p
-    if legs and len(mls) == len(legs):
-        ml_win = 1.0
-        for m in mls:
-            ml_win *= m
-    else:
-        ml_win = sweep_pct
+    core_recipe = "goblin70_yolo" if yolo else "goblin70"
+    core_label = (
+        "YOLO Power 4/5/6 (Goblin-70 + Standard mix; off ticket win-rate)"
+        if yolo
+        else "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)"
+    )
+    # Ticket win% is the historical Goblin-70 gate rate (mean_leg_p), not XGBoost.
+    # ml_prob stays on each leg for display only. YOLO is display-only vs win-rate.
     return {
         "web_group_name": group_name,
         "ticket_id": ticket_id,
         "ticket_no": ticket_no,
-        "ticket_track": "goblin70",
+        "ticket_track": track,
         "mode": "goblin70",
+        "exclude_from_winrate": bool(yolo),
         "avg_hit_rate": round(avg_hr, 4),
-        "est_win_prob": round(ml_win, 4),
+        "est_win_prob": round(sweep_pct, 4),
         "est_flex_cash_prob": round(cash_pct, 4) if tt == "flex" else None,
         "power_payout": sweep if tt == "power" else None,
         "flex_payout": sweep if tt == "flex" else None,
@@ -529,8 +602,8 @@ def _ticket_to_web(ticket: dict, *, date: str, ticket_no: int, group_name: str) 
         "ev_power": ev,
         "display_min_x": sweep,
         "core_build": True,
-        "core_recipe": "goblin70",
-        "core_label": "Goblin-70 (L5=5 + L10>=8 + S/A or FGA + cover)",
+        "core_recipe": core_recipe,
+        "core_label": core_label,
         "pool_policy": "goblin70",
         "strong_builder": False,
         "legs": legs,
@@ -608,7 +681,10 @@ def to_web_payload(payload: dict) -> dict:
             "note": (
                 "L5=5 + L10>=8 + directional D. Tennis L5=5 only. Golf L5=5+L10>=8 "
                 "(no opponent D). Goblin OVER on Power; Standard O/U Flex. "
-                "No Demons, no shadow, no hitter Ks. Cover floor still applies. "
+                "YOLO Power 4/5/6 from Diamond/Platinum Goblin-70 seeds "
+                "(one Standard mix-in when the Standard pool is non-empty). "
+                "YOLO is off ticket win-rate. "
+                "No Demons, no shadow. Cover floor still applies. "
                 "NFLP is a separate playing-time track. N-correct / To Win only."
             ),
         },
@@ -627,7 +703,8 @@ def is_g70_group(group: dict) -> bool:
         return True
     tickets = group.get("tickets") or []
     if tickets and isinstance(tickets[0], dict):
-        return str(tickets[0].get("ticket_track") or "").lower() == "goblin70"
+        tr = str(tickets[0].get("ticket_track") or "").lower()
+        return tr in {"goblin70", "goblin70_yolo"}
     return False
 
 
@@ -1021,8 +1098,8 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
         if fold_name(r.get("player")) in SKIP_PLAYERS:
             continue
         rec = dict(r)
-        rec["std_kind"] = "gate"
-        rec["p"] = standard_ticket_p("gate")
+        rec["std_kind"] = standard_flex_kind(r) or "gate"
+        rec["p"] = standard_ticket_p(rec["std_kind"])
         std_raw.append(rec)
     for r in gob_raw:
         r["p"] = goblin_ticket_p(r)
@@ -1042,7 +1119,7 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
         note = (
             "L5=5 Goblin juice cut + sport cover floor. Power OK."
             if l5_eq_5
-            else "All-Goblin (L5=5 + L10>=8 + D; tennis L5=5; golf L5=5+L10)."
+            else "All-Goblin (L5=5 + L10>=8 + D; tennis keep gates; golf L5=5+L10)."
         )
         if len(combo) != n and l5_eq_5:
             combo = pack(gob, n, taken, mix_sports=True, wnba_cap=2)
@@ -1060,7 +1137,30 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
                 family,
                 note,
             )
-            )
+        )
+
+    # YOLO sleeve: Power 4/5/6. Mix one Standard when available. Own taken
+    # set so Power 3 / Flex 4 still get those legs. Off ticket win-rate.
+    # Premium WNBA (FGA / reb+ast / threes / threes_att) seeds before
+    # Diamond/Platinum inside pack_yolo.
+    for i, combo in enumerate(pack_yolo(gob, std), start=1):
+        n_use = len(combo)
+        n_std = sum(1 for x in combo if str(x.get("pick_type") or "") == "Standard")
+        family = "mix" if n_std else "goblin"
+        slip = _ticket(
+            f"Y{n_use}-{i}",
+            [compact(x, std=x.get("pick_type") == "Standard") for x in combo],
+            "Power",
+            family,
+            (
+                "YOLO Power. Off ticket win-rate. Goblin-70 + "
+                f"{'one Standard mix-in' if n_std else 'all Goblin'}; "
+                f"{n_use} legs. Prefer Platinum. Confirm N-correct on the slip."
+            ),
+            web_group=f"YOLO Goblin-70 Power {n_use}",
+        )
+        slip["exclude_from_winrate"] = True
+        tickets.append(slip)
 
     # Named sport groups so /tickets WNBA and NFL pills are not empty.
     # Mixed X-Sport slips tag as CROSS; these groups use the sport in the title.
@@ -1089,7 +1189,7 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
                     [compact(x) for x in combo],
                     prod,
                     "goblin",
-                    f"{sport} Goblin-70 (L5=5 + L10>=8 + D; tennis L5=5).",
+                    f"{sport} Goblin-70 (L5=5 + L10>=8 + D; tennis keep gates).",
                     web_group=f"{sport} Goblin-70 {prod} {n_use}",
                 )
             )
@@ -1160,7 +1260,7 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
                     [compact(x, std=True) for x in s3],
                     "Flex",
                     "standard",
-                    "Flex only. Standard O/U that cleared L5=5 + L10>=8 + D (tennis L5=5).",
+                    "Flex only. Standard O/U that cleared L5=5 + L10>=8 + D (tennis Standard off).",
                 )
             )
 
