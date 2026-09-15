@@ -483,6 +483,19 @@ def attach_stat_defense_columns(df: pd.DataFrame, *, csv_path: str = "") -> pd.D
 
 
 # --- Prop-aware tier selection (Shots vs goals-conceded) ---
+SHOT_RELATED_PROPS = frozenset(
+    {
+        "shots",
+        "shots_on_target",
+        "shots_assisted",
+        "shot",
+        "sot",
+        "sh",
+        "sog",
+    }
+)
+
+
 def _norm_prop(raw: object) -> str:
     s = str(raw or "").strip().lower()
     s = re.sub(r"[^a-z0-9]+", "_", s)
