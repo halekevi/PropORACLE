@@ -592,29 +592,6 @@ _TICKETS_BUILT_PAYOUT_CSS = """<style>
 .tickets-built .ticket-group-section.group-rec-ok .ticket-group-header { border-left: 4px solid #f0a500; }
 .tickets-built .ticket-group-section.group-rec-marginal .ticket-group-header { border-left: 4px solid #ff9f43; }
 .tickets-built .ticket-group-section.group-rec-skip .ticket-group-header { border-left: 4px solid #ff5c5c; opacity: 0.78; }
-.tickets-built .ticket-group-section[data-track="goblin70_yolo"] .ticket-group-header,
-.tickets-built .ticket-group-section[data-pick="yolo"] .ticket-group-header {
-  border-left: 4px solid #ff6b2c;
-  opacity: 1;
-  background: linear-gradient(90deg, rgba(255,107,44,.14), transparent 42%);
-}
-.tickets-built .yolo-chip {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 8px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  font-weight: 700;
-  color: #ffd4c2;
-  border: 1px solid rgba(255,107,44,.55);
-  background: rgba(255,107,44,.16);
-}
-.tickets-built .ticket-filter-pill[data-filter="yolo"].active {
-  border-color: rgba(255,107,44,0.55);
-  color: #ffb089;
-}
 .tickets-built .best-ticket-row {
   display: flex;
   align-items: center;
@@ -938,33 +915,6 @@ def _h(v) -> str:
     return _html.escape(str(v)) if v is not None else ""
 
 
-def _leg_vs_def_label(leg: dict) -> str:
-    sport = str(leg.get("sport") or "").strip().upper()
-    if sport == "MLB":
-        from utils.mlb_prop_matchup import format_mlb_matchup
-
-        labeled = format_mlb_matchup(
-            {
-                "sport": "MLB",
-                "prop": leg.get("prop_type") or leg.get("prop") or "",
-                "prop_type": leg.get("prop_type") or leg.get("prop") or "",
-                "player_type": leg.get("player_type") or "",
-                "team": leg.get("team") or "",
-                "opp_team": leg.get("opp") or leg.get("opp_team") or "",
-                "def": leg.get("def_tier") or leg.get("def") or "",
-                "def_tier": leg.get("def_tier") or "",
-                "def_axis": leg.get("def_axis") or "",
-                "def_rank": leg.get("def_rank"),
-                "own_off_hits_tier": leg.get("own_off_hits_tier") or "",
-                "own_def_tier": leg.get("own_def_tier") or "",
-                "opp_pitching_tier": leg.get("opp_pitching_tier") or "",
-            }
-        )
-        if labeled:
-            return labeled
-    return str(leg.get("def_tier") or "")
-
-
 def _pct(v, decimals: int = 0) -> str:
     try:
         return f"{float(v) * 100:.{decimals}f}%"
@@ -1039,55 +989,21 @@ _TICKET_GROUP_SPORT_SORT_ORDER: dict[str, int] = {
 }
 
 
-def _group_is_yolo(group: dict | None, group_name: str = "") -> bool:
-    """True for the YOLO Power 4/5/6 sleeve (off ticket win-rate)."""
-    name = str(group_name or (group or {}).get("group_name") or "")
-    if "YOLO" in name.upper():
-        return True
-    for t in (group or {}).get("tickets") or []:
-        if not isinstance(t, dict):
-            continue
-        track = str(t.get("ticket_track") or t.get("core_recipe") or "").lower()
-        if "yolo" in track:
-            return True
-        if t.get("exclude_from_winrate"):
-            return True
-    return False
-
-
 def _group_is_goblin70(group: dict | None, group_name: str = "") -> bool:
-    """True for the 70% Goblin card, YOLO sleeve, and NFL Power fill."""
-    if _group_is_yolo(group, group_name):
-        return True
+    """True for the 70% Goblin card (plus NFL Power fill from that builder)."""
     name = str(group_name or (group or {}).get("group_name") or "")
     if "Goblin-70" in name or "GOBLIN-70" in name.upper():
         return True
     if name.upper().startswith("NFL POWER"):
         return True
     for t in (group or {}).get("tickets") or []:
-        if not isinstance(t, dict):
-            continue
-        tr = str(t.get("ticket_track") or "").lower()
-        if tr in {"goblin70", "goblin70_yolo"}:
+        if isinstance(t, dict) and str(t.get("ticket_track") or "").lower() == "goblin70":
             return True
     return False
 
 
-def _group_data_track(group: dict | None, group_name: str = "") -> str:
-    if _group_is_yolo(group, group_name):
-        return "goblin70_yolo"
-    if _group_is_goblin70(group, group_name):
-        return "goblin70"
-    tickets = (group or {}).get("tickets") or []
-    if tickets and isinstance(tickets[0], dict):
-        return str(tickets[0].get("ticket_track") or "").lower()
-    return ""
-
-
 def _ticket_group_sort_rank(group_name: str) -> int:
     name = (group_name or "").upper()
-    if "YOLO" in name:
-        return -305
     if "GOBLIN-70" in name:
         return -300
     if name.startswith("NFL POWER"):
@@ -1158,6 +1074,7 @@ def _group_payout_confidence_score(tickets: list) -> float:
         except (TypeError, ValueError):
             continue
     return best
+
 
 
 def _group_payout_rate_score(group: dict) -> float:
@@ -1263,9 +1180,7 @@ def _ticket_group_filter_slugs(
     else:
         type_sl = "power"
 
-    if "YOLO" in name_u:
-        pick_sl = "yolo"
-    elif "GOBLIN" in name_u:
+    if "GOBLIN" in name_u:
         pick_sl = "goblin"
     elif "DEMON" in name_u:
         pick_sl = "demon"
@@ -1337,7 +1252,7 @@ def _tickets_filter_pills_html(attr_rows: list[dict], *, slate_date: str = "") -
     """Dynamic filter bar from group-derived slugs (sport / power / flex / goblin / demon / strong)."""
     sports_seen: list[str] = []
     seen_sp: set[str] = set()
-    has_power = has_flex = has_goblin = has_demon = has_strong = has_yolo = False
+    has_power = has_flex = has_goblin = has_demon = has_strong = False
     for row in attr_rows:
         sp = str(row.get("sport") or "").strip().lower()
         for token in sp.split():
@@ -1357,8 +1272,6 @@ def _tickets_filter_pills_html(attr_rows: list[dict], *, slate_date: str = "") -
             has_demon = True
         if row.get("ev") == "strong":
             has_strong = True
-        if row.get("pick") == "yolo":
-            has_yolo = True
 
     sport_order = (
         "nba",
@@ -1407,14 +1320,6 @@ def _tickets_filter_pills_html(attr_rows: list[dict], *, slate_date: str = "") -
         chunks.append(_pill("power", "POWER"))
     if has_flex:
         chunks.append(_pill("flex", "FLEX"))
-    if has_yolo:
-        chunks.append(
-            _pill(
-                "yolo",
-                "YOLO",
-                title_attr=' title="YOLO Power 4/5/6. Off ticket win-rate."',
-            )
-        )
     if has_goblin:
         chunks.append(_pill("goblin", "GOBLIN"))
     if has_demon:
@@ -2104,18 +2009,12 @@ def render_tickets_body_html(
         rec_cls = d_ev if d_ev in ("strong", "ok", "marginal", "low", "skip") else "skip"
         d_plat = _ticket_group_platforms_attr(group)
         d_n_legs = int(n_legs) if n_legs else _ticket_group_leg_count(group_name)
-        d_track = _group_data_track(group, group_name)
-        yolo_chip = (
-            '<span class="yolo-chip" title="YOLO sleeve. Off ticket win-rate and Income card.">YOLO</span>'
-            if _group_is_yolo(group, group_name) or d_pick == "yolo"
-            else ""
-        )
+        d_track = "goblin70" if _group_is_goblin70(group, group_name) else ""
 
         parts.append(f'''
 <div class="ticket-group-section collapsed group-rec-{_h(rec_cls)}" data-sport="{_h(d_sport)}" data-type="{_h(d_type)}" data-pick="{_h(d_pick)}" data-ev="{_h(d_ev)}" data-ev-score="{_fmt(d_ev_score, 4)}" data-p-win="{_fmt(d_p_win_score, 6)}" data-hit-score="{_fmt(d_hit_score, 4)}" data-payout-confidence="{_fmt(d_pc, 2)}" data-payout-rate="{_fmt(d_pay_rate, 4)}" data-n-legs="{d_n_legs}" data-original-index="{d_oi}" data-platforms="{_h(d_plat)}" data-group-name="{_h(group_name)}" data-track="{_h(d_track)}">
   <div class="ticket-group-header collapsible-header" role="button" tabindex="0" aria-expanded="false">
     <span class="group-title" style="color:{accent};">{_h(group_name)}</span>
-    {yolo_chip}
     <span class="group-meta">{group_meta_html}</span>
     {ev_badge_html}
     <button type="button" class="ticket-copy-btn ticket-copy-btn--group" data-copy="group" title="Copy every slip in this group to paste while building on PrizePicks">Copy group</button>
@@ -2293,7 +2192,7 @@ def render_tickets_body_html(
                 hit_rate = leg.get("hit_rate")
                 ml_prob = leg.get("ml_prob")
                 edge = leg.get("edge")
-                def_tier = _leg_vs_def_label(leg)
+                def_tier = safe_str(leg.get("def_tier"), "")
                 best_book = str(leg.get("best_cross_book") or "").strip()
                 best_line = leg.get("best_cross_line")
                 cross_edge_vs_pp = leg.get("cross_edge_vs_pp")
@@ -2363,11 +2262,7 @@ def render_tickets_body_html(
 
                 hr_disp = (
                     f"Hit rate {_pct(hit_rate)} · ML {_pct(ml_prob)} · Edge {_fmt(edge, 2)}"
-                    + (
-                        f" · {def_tier}"
-                        if def_tier and str(def_tier).startswith(("Bat ", "Opp ", "Own "))
-                        else (f" · Def {def_tier}" if def_tier else "")
-                    )
+                    + (f" · Def {def_tier}" if def_tier else "")
                 )
 
                 parts.append(f'''
@@ -2475,26 +2370,9 @@ def render_tickets_body_html(
   var sortMode = 'ev_desc';
   var hideSkip = true;
 
-  function revealTicketPaint(){
-    document.querySelectorAll('.tickets-built .ticket, .tickets-built .ticket-body, .tickets-built .ticket-legs-table-wrapper').forEach(function(el){
-      el.style.contentVisibility = 'visible';
-      el.style.contain = 'none';
-    });
-  }
-
-  function isYolo(group){
-    var track = (group.getAttribute('data-track') || '').toLowerCase();
-    if(track === 'goblin70_yolo' || track.indexOf('yolo') >= 0) return true;
-    var pick = (group.getAttribute('data-pick') || '').toLowerCase();
-    if(pick === 'yolo') return true;
-    var name = (group.getAttribute('data-group-name') || '').toLowerCase();
-    return name.indexOf('yolo') >= 0;
-  }
-
   function isGoblin70(group){
-    if(isYolo(group)) return true;
     var track = (group.getAttribute('data-track') || '').toLowerCase();
-    if(track === 'goblin70' || track === 'goblin70_yolo') return true;
+    if(track === 'goblin70') return true;
     var name = (group.getAttribute('data-group-name') || '').toLowerCase();
     return name.indexOf('goblin-70') >= 0 || name.indexOf('nfl power') === 0;
   }
@@ -2514,16 +2392,12 @@ def render_tickets_body_html(
       });
       return;
     }
-    var yolo = [];
+
     var g70 = [];
     var rest = [];
     groups.forEach(function(g){
-      if(isYolo(g)) yolo.push(g);
-      else if(isGoblin70(g)) g70.push(g);
+      if(isGoblin70(g)) g70.push(g);
       else rest.push(g);
-    });
-    yolo.sort(function(a,b){
-      return parseNum(a, 'data-original-index') - parseNum(b, 'data-original-index');
     });
     g70.sort(function(a,b){
       return parseNum(a, 'data-original-index') - parseNum(b, 'data-original-index');
@@ -2563,7 +2437,7 @@ def render_tickets_body_html(
     }
     sortRest(sortMode);
     groups.length = 0;
-    yolo.concat(g70, rest).forEach(function(g){ groups.push(g); });
+    g70.concat(rest).forEach(function(g){ groups.push(g); });
   }
 
   function sortTicketsInGroup(group){
@@ -2614,7 +2488,7 @@ def render_tickets_body_html(
     var allGroups = Array.from(shell.querySelectorAll('.ticket-group-section'));
     var visible = allGroups.filter(function(g){
       if(!matchesFilter(g, activeFilter)) return false;
-      if(hideSkip && !isGoblin70(g) && !isYolo(g)){
+      if(hideSkip && !isGoblin70(g)){
         var rec = (g.getAttribute('data-ev') || '').toLowerCase();
         if(rec === 'skip' || rec === 'low') return false;
       }
@@ -2628,8 +2502,8 @@ def render_tickets_body_html(
       visible = visible.slice(0, 3);
     } else {
       sortGroups(visible);
-    }
     visible.forEach(function(g){ sortTicketsInGroup(g); });
+    }
 
     allGroups.forEach(function(g){ g.style.display = 'none'; });
     var frag = document.createDocumentFragment();
@@ -2644,7 +2518,6 @@ def render_tickets_body_html(
     } else {
       shell.appendChild(frag);
     }
-    revealTicketPaint();
   }
 
   var filterBar = document.querySelector('.ticket-filter-bar');
@@ -2683,7 +2556,6 @@ def render_tickets_body_html(
     section.classList.toggle('collapsed');
     var hdr = section.querySelector('.collapsible-header');
     if(hdr) hdr.setAttribute('aria-expanded', section.classList.contains('collapsed') ? 'false' : 'true');
-    if(!section.classList.contains('collapsed')) revealTicketPaint();
   }
 
   document.querySelectorAll('.tickets-built .collapsible-header').forEach(function(header){
@@ -2709,7 +2581,6 @@ def render_tickets_body_html(
       var h = s.querySelector('.collapsible-header');
       if(h) h.setAttribute('aria-expanded', 'true');
     });
-    revealTicketPaint();
   });
   var col = document.getElementById('collapse-all');
   if(col) col.addEventListener('click', function(ev){
