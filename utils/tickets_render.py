@@ -1160,6 +1160,38 @@ def _group_payout_confidence_score(tickets: list) -> float:
     return best
 
 
+def _group_payout_rate_score(group: dict) -> float:
+    """N-correct board payout x for /tickets sort (never 1st-place sweep)."""
+    tickets = group.get("tickets") or []
+    best = 0.0
+    for t in tickets:
+        if not isinstance(t, dict):
+            continue
+        pay = t.get("payout") if isinstance(t.get("payout"), dict) else None
+        x = _resolve_ticket_display_min_x(pay, t)
+        if x is None:
+            continue
+        try:
+            v = float(x)
+        except (TypeError, ValueError):
+            continue
+        if math.isfinite(v) and v > best:
+            best = v
+    if best > 0:
+        return best
+    for k in ("power_payout", "flex_payout", "display_min_x"):
+        raw = group.get(k)
+        if raw is None:
+            continue
+        try:
+            v = float(raw)
+        except (TypeError, ValueError):
+            continue
+        if math.isfinite(v) and v > best:
+            best = v
+    return best
+
+
 def _slip_display_payout_multiplier(
     payout: dict | None, ticket: dict, group: dict
 ) -> float | None:
@@ -1397,11 +1429,13 @@ def _tickets_filter_pills_html(attr_rows: list[dict], *, slate_date: str = "") -
         )
     )
     chunks.append(
-        '<label class="ticket-filter-sort-wrap" for="ticket-sort-select">'
+        '<label class="ticket-filter-sort-wrap" for="ticket-sort-select" title="Sort groups. Payout uses N-correct board rate, not 1st-place.">'
         '<span class="ticket-filter-sort-label">Sort</span>'
-        '<select id="ticket-sort-select" class="ticket-filter-sort">'
+        '<select id="ticket-sort-select" class="ticket-filter-sort" aria-label="Sort ticket groups">'
         '<option value="ev_desc" selected>EV ↓</option>'
         '<option value="ev_asc">EV ↑</option>'
+        '<option value="payout_desc">Payout rate ↓</option>'
+        '<option value="payout_asc">Payout rate ↑</option>'
         '<option value="pwin_desc">P(WIN) ↓</option>'
         '<option value="pwin_asc">P(WIN) ↑</option>'
         '<option value="legs_desc">Legs ↓</option>'
@@ -1986,6 +2020,7 @@ def render_tickets_body_html(
         ds, dt, dpk = _ticket_group_filter_slugs(gn, tickets)
         ev_a = _group_ev_data_attr(tickets)
         pc_max = _group_payout_confidence_score(tickets)
+        pay_rate = _group_payout_rate_score(group)
         prepared.append(
             {
                 "group": group,
@@ -1998,6 +2033,7 @@ def render_tickets_body_html(
                 "p_win_score": _group_max_p_win(group),
                 "original_index": original_index,
                 "payout_confidence": pc_max,
+                "payout_rate": pay_rate,
             }
         )
 
@@ -2063,6 +2099,7 @@ def render_tickets_body_html(
         d_hit_score = float(ent.get("hit_score") or 0.0)
         d_p_win_score = float(ent.get("p_win_score") or 0.0)
         d_pc = float(ent.get("payout_confidence") or 0.0)
+        d_pay_rate = float(ent.get("payout_rate") or 0.0)
         d_oi = int(ent.get("original_index", 0))
         rec_cls = d_ev if d_ev in ("strong", "ok", "marginal", "low", "skip") else "skip"
         d_plat = _ticket_group_platforms_attr(group)
@@ -2075,7 +2112,7 @@ def render_tickets_body_html(
         )
 
         parts.append(f'''
-<div class="ticket-group-section collapsed group-rec-{_h(rec_cls)}" data-sport="{_h(d_sport)}" data-type="{_h(d_type)}" data-pick="{_h(d_pick)}" data-ev="{_h(d_ev)}" data-ev-score="{_fmt(d_ev_score, 4)}" data-p-win="{_fmt(d_p_win_score, 6)}" data-hit-score="{_fmt(d_hit_score, 4)}" data-payout-confidence="{_fmt(d_pc, 2)}" data-n-legs="{d_n_legs}" data-original-index="{d_oi}" data-platforms="{_h(d_plat)}" data-group-name="{_h(group_name)}" data-track="{_h(d_track)}">
+<div class="ticket-group-section collapsed group-rec-{_h(rec_cls)}" data-sport="{_h(d_sport)}" data-type="{_h(d_type)}" data-pick="{_h(d_pick)}" data-ev="{_h(d_ev)}" data-ev-score="{_fmt(d_ev_score, 4)}" data-p-win="{_fmt(d_p_win_score, 6)}" data-hit-score="{_fmt(d_hit_score, 4)}" data-payout-confidence="{_fmt(d_pc, 2)}" data-payout-rate="{_fmt(d_pay_rate, 4)}" data-n-legs="{d_n_legs}" data-original-index="{d_oi}" data-platforms="{_h(d_plat)}" data-group-name="{_h(group_name)}" data-track="{_h(d_track)}">
   <div class="ticket-group-header collapsible-header" role="button" tabindex="0" aria-expanded="false">
     <span class="group-title" style="color:{accent};">{_h(group_name)}</span>
     {yolo_chip}
@@ -2189,7 +2226,7 @@ def render_tickets_body_html(
             fp = _ticket_fingerprint(legs)
 
             parts.append(f'''
-<div class="ticket" style="border-left:4px solid {accent};" data-group-name="{_h(group_name)}" data-ticket-no="{_h(ticket_no)}" data-fp="{_h(fp)}">
+<div class="ticket" style="border-left:4px solid {accent};" data-group-name="{_h(group_name)}" data-ticket-no="{_h(ticket_no)}" data-fp="{_h(fp)}" data-payout-rate="{_fmt(_safe_positive_float(kpi_payout) or 0.0, 4)}">
   <div class="ticket-body">
       <div class="ticket-hdr">
         <span class="ticket-no">#{_h(ticket_no)}</span>
@@ -2438,6 +2475,13 @@ def render_tickets_body_html(
   var sortMode = 'ev_desc';
   var hideSkip = true;
 
+  function revealTicketPaint(){
+    document.querySelectorAll('.tickets-built .ticket, .tickets-built .ticket-body, .tickets-built .ticket-legs-table-wrapper').forEach(function(el){
+      el.style.contentVisibility = 'visible';
+      el.style.contain = 'none';
+    });
+  }
+
   function isYolo(group){
     var track = (group.getAttribute('data-track') || '').toLowerCase();
     if(track === 'goblin70_yolo' || track.indexOf('yolo') >= 0) return true;
@@ -2462,6 +2506,14 @@ def render_tickets_body_html(
   }
 
   function sortGroups(groups){
+    if(sortMode === 'payout_desc' || sortMode === 'payout_asc'){
+      groups.sort(function(a,b){
+        var d = parseNum(a, 'data-payout-rate') - parseNum(b, 'data-payout-rate');
+        if(d === 0) d = parseNum(a, 'data-ev-score') - parseNum(b, 'data-ev-score');
+        return sortMode === 'payout_asc' ? d : -d;
+      });
+      return;
+    }
     var yolo = [];
     var g70 = [];
     var rest = [];
@@ -2514,6 +2566,19 @@ def render_tickets_body_html(
     yolo.concat(g70, rest).forEach(function(g){ groups.push(g); });
   }
 
+  function sortTicketsInGroup(group){
+    if(sortMode !== 'payout_desc' && sortMode !== 'payout_asc') return;
+    var body = group.querySelector('.ticket-group-body');
+    if(!body) return;
+    var tickets = Array.from(body.querySelectorAll(':scope > .ticket'));
+    if(tickets.length < 2) return;
+    tickets.sort(function(a,b){
+      var d = parseNum(a, 'data-payout-rate') - parseNum(b, 'data-payout-rate');
+      return sortMode === 'payout_asc' ? d : -d;
+    });
+    tickets.forEach(function(t){ body.appendChild(t); });
+  }
+
   function matchesFilter(group, filter){
     if(filter === 'all') return true;
     if(filter === 'top-payout') return true;
@@ -2564,6 +2629,7 @@ def render_tickets_body_html(
     } else {
       sortGroups(visible);
     }
+    visible.forEach(function(g){ sortTicketsInGroup(g); });
 
     allGroups.forEach(function(g){ g.style.display = 'none'; });
     var frag = document.createDocumentFragment();
@@ -2578,6 +2644,7 @@ def render_tickets_body_html(
     } else {
       shell.appendChild(frag);
     }
+    revealTicketPaint();
   }
 
   var filterBar = document.querySelector('.ticket-filter-bar');
@@ -2616,6 +2683,7 @@ def render_tickets_body_html(
     section.classList.toggle('collapsed');
     var hdr = section.querySelector('.collapsible-header');
     if(hdr) hdr.setAttribute('aria-expanded', section.classList.contains('collapsed') ? 'false' : 'true');
+    if(!section.classList.contains('collapsed')) revealTicketPaint();
   }
 
   document.querySelectorAll('.tickets-built .collapsible-header').forEach(function(header){
@@ -2641,6 +2709,7 @@ def render_tickets_body_html(
       var h = s.querySelector('.collapsible-header');
       if(h) h.setAttribute('aria-expanded', 'true');
     });
+    revealTicketPaint();
   });
   var col = document.getElementById('collapse-all');
   if(col) col.addEventListener('click', function(ev){
