@@ -803,6 +803,24 @@ def main() -> None:
         ),
         "",
     )
+
+    # Wind-out hot badge (soft boost for hitter Goblin OVER in hitter-friendly weather)
+    # Conditions: wind_out_to_cf=True + wind_speed_mph>=10 + temp_f>=75
+    # Markets: H+R+RBI, Total Bases, Hits, Home Runs (not pitchers, not Standard)
+    # Evidence: +12-14pp vs neutral on n>=53 (ungated Goblin OVER)
+    _wind_hitter_props = {'hits_runs_rbi', 'total_bases', 'hits', 'home_runs'}
+    wind_out_hot_mask = (
+        out.get('wind_out_to_cf', pd.Series(False, index=out.index)).fillna(False).astype(bool)
+        & (pd.to_numeric(out.get('wind_speed_mph', pd.Series(0, index=out.index)), errors='coerce').fillna(0) >= 10)
+        & (pd.to_numeric(out.get('temp_f', pd.Series(0, index=out.index)), errors='coerce').fillna(0) >= 75)
+        & out.get('prop_norm', pd.Series('', index=out.index)).astype(str).str.lower().isin(_wind_hitter_props)
+        & (out.get('pick_type', pd.Series('', index=out.index)).astype(str).str.lower() == 'goblin')
+        & (out.get('player_type', pd.Series('', index=out.index)).astype(str).str.lower() == 'hitter')
+    )
+    out['wind_out_hot'] = wind_out_hot_mask.astype(int)
+    _ov_empty = out['direction_override'].isna() | (out['direction_override'].astype(str).str.strip() == '')
+    out.loc[wind_out_hot_mask & _ov_empty, 'direction_override'] = 'WIND_OUT_HOT'
+    print(f'[step7] wind_out_hot badge: {int(wind_out_hot_mask.sum())} rows')
     n_fade = int(fade.sum())
     n_flip = int((fade & forced.eq(0)).sum())
     n_starter = int(starter_fade.sum())
@@ -1022,6 +1040,9 @@ def main() -> None:
     score = score.where(elig_mask & ((_eadr > 0.0) | _is_dem | _is_std_under), np.nan)
 
     out["rank_score"] = score
+    # Wind-out hot rank_score soft boost (+0.15); not a hard gate / direction flip
+    _woh = out.get("wind_out_hot", pd.Series(0, index=out.index)).astype(int).eq(1)
+    out.loc[_woh, "rank_score"] = pd.to_numeric(out.loc[_woh, "rank_score"], errors="coerce") + 0.15
 
     # ── ML blend (activates when model file exists; graceful fallback otherwise) ─
     out = build_feature_vector(out, "MLB")   # must run before ML inference
