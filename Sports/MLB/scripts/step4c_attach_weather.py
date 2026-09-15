@@ -279,12 +279,12 @@ def main() -> None:
     )
     filled = df["weather_flag"].notna().sum()
     print(f"Weather attached: {filled}/{len(df)} rows")
-    print(f"✅ Saved → {args.output}")
+    print(f"Saved -> {args.output}")
 
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"❌ MLB step4c failed. {type(e).__name__}: {e}")
+        print(f"MLB step4c failed. {type(e).__name__}: {e}", file=sys.stderr)
         sys.exit(1)
