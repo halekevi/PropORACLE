@@ -5,37 +5,42 @@
 | Tier | Construction rule | Where |
 |--|--|--|
 | **Goblin** | Hard floor on `hit_prob_actionable` **0.35** (retuned from 0.50). Curve is a step ~0.30 then plateau — floor is the correct lever, not shrinkage. Selectivity by raw `model_prob` still helps (+~10pp vs population). | `data/pipeline_read_checklist.json` → `filter_eligible` Goblin-only |
-| **Standard** | **Player-history shrinkage** on ranking + leg prob: `w=n/(n+k)`, `shrunk = w·p + (1−w)·baseline`, default `k=150`. Demotes thin-history overconfident tails. | `utils/player_prob_shrinkage.py` → `_resolve_leg_prob` + `_attach_ticket_pick_order` (Standard only) |
-| **Sports** | Everything allowed except thin-history competitions (`utils/competition_history.py`, e.g. WORLDCUP*). Cross-sport Standard is a validated strategy, not a fallback. | Soccer packing gate + general competition helper |
+| **Standard ranking** | Player-history shrinkage on **sort keys only**, gated by `PROPORACLE_STANDARD_PLAYER_SHRINK` (**default OFF** until shadow validates on live slates). | `utils/player_prob_shrinkage.py` → `_attach_ticket_pick_order` |
+| **Standard EV/display** | `est_win_prob` / `leg_prob_used` / Kelly / `ev_power` stay **raw** unless `PROPORACLE_STANDARD_PLAYER_SHRINK_EV=1` (default OFF). Shrinking those is a separate signed-off change. | `_resolve_leg_prob` (`mode=ev`) |
+| **Standard shadow** | Each `--write-web` emit compares top-40 Standard raw vs forced-shrunk sort (Jaccard, sport mix, MLB share, mean pri). Does not inject into MAIN. | `ui_runner/data/standard_player_shrink_shadow_latest.json` |
+| **Sports** | Everything allowed except thin-history competitions. Cross-sport Standard is a validated strategy. Mixer MAIN/FINAL already **hard-bans MLB Standard** (`_leg_mlb_keep_banned`) — shrink is not what keeps MLB Std off that track. | Soccer packing gate + competition helper |
 
-Env knobs (Standard shrink):
+Env knobs:
 
-- `PROPORACLE_STANDARD_PLAYER_SHRINK=1` (default on; `0`/`off` to disable)
-- `PROPORACLE_STANDARD_PLAYER_SHRINK_PRIOR=150`
+| Var | Default | Effect |
+|--|--|--|
+| `PROPORACLE_STANDARD_PLAYER_SHRINK` | `0` | Ranking shrink on Standard `__ts_pri` |
+| `PROPORACLE_STANDARD_PLAYER_SHRINK_EV` | `0` | Shrink `_resolve_leg_prob` → est_win_prob / leg_prob_used / EV |
+| `PROPORACLE_STANDARD_PLAYER_SHRINK_SHADOW` | `1` | Emit raw-vs-shrunk shadow compare |
+| `PROPORACLE_STANDARD_PLAYER_SHRINK_PRIOR` | `150` | `k` in `n/(n+k)` |
+
+## Pre-main checklist
+
+1. **Shadow before default-on** — leave rank/EV off; read `standard_player_shrink_shadow_*.json` for a few days (composition + mean shrunk pri vs raw). Flip `PROPORACLE_STANDARD_PLAYER_SHRINK=1` only after that looks healthy.
+2. **est_win_prob scope** — not ranking-only if EV flag is on. Default keeps pricing/display honest-raw; turn EV on only as a coordinated change.
+3. **MLB Standard** — MAIN already bans it hard. Shadow `mlb_share_*` on the *pre-ban* Standard pool shows whether shrink alone would deprioritize; if shrunk MLB share stays high, something else is not the issue for MAIN (ban already covers it). Watch Excel/cross-sport paths that might still assemble Standard without that hygiene.
 
 ## Proven but scoped
 
 | Finding | Scope |
 |--|--|
 | Cross-sport 3–4 leg Standard, player-shrunk | Clears breakeven in May–June backtest |
-| MLB-only Standard, player-shrunk | Does **not** clear BE yet (~22 prior props/player) — more season data, not more logic |
-| 5–6 leg player-shrunk | **Untested** — do not assume closed |
+| MLB-only Standard, player-shrunk | Does **not** clear BE yet (~22 prior props/player) |
+| 5–6 leg player-shrunk | Untested |
 | 2–4 leg calibrated-only (pre-shrink) | Unresolved; needs ≫61 days |
 
-## Blind spots (low volume, unexamined)
+## Blind spots
 
-- Mixed-tier tickets (~179 / 10,589)
-- Demon tickets (~138 / 10,589)
-- June ops flip toward Standard demand (confirmed demand-side; not blocking now that floor + shrink are live)
+- Mixed-tier / Demon (<3% volume)
+- June ops flip toward Standard demand
 
 ## Intentionally unchanged
 
-- Goblin / Demon: no player-history shrink (Goblin uses floor; Demon unexamined)
-- Goblin-70 ticket sleeve: still L5=5+L10≥8+D (and sport keep-gates); bypasses mixer Goblin floor
-- Correlation packing: still rejected as the bleed explanation
-
-## Smoke
-
-```powershell
-py -3.14 -c "from utils.player_prob_shrinkage import shrink_prob_toward_baseline, apply_standard_player_shrinkage; print(shrink_prob_toward_baseline(0.9, 10, 0.55, 150))"
-```
+- Goblin / Demon: no player-history shrink
+- Goblin-70 sleeve: L5=5+L10≥8+D keep-gates; bypasses mixer Goblin floor
+- Correlation packing: rejected as bleed explanation

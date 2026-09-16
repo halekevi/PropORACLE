@@ -9,7 +9,7 @@ Started as: does leg correlation explain the bleed? **No.**
 | Lever A (same-player block) | Shipped earlier this thread |
 | Thin-competition / WC gate | Shipped earlier this thread |
 | **Goblin floor `0.50` → `0.35`** | **Shipped** in `data/pipeline_read_checklist.json` — real step location on `hit_prob_actionable`, not a guess. See `goblin_floor_decile_read.md`, `goblin_floor_plateau_and_june2_volume.md`. |
-| **Standard player-history shrinkage** | **Shipped live** — `utils/player_prob_shrinkage.py` wired into `_resolve_leg_prob` + Standard sort keys in `combined_slate_tickets.py`. Backtest mode remains `rank_by=player_shrunk` in `build_leg_correlation_matrix.py`. See `construction_picture_live.md`. |
+| **Standard player-history shrinkage** | **Wired, default OFF for production.** Ranking flag `PROPORACLE_STANDARD_PLAYER_SHRINK=0`; EV/display flag `PROPORACLE_STANDARD_PLAYER_SHRINK_EV=0`. Shadow compare default ON (`…_SHADOW=1`) → `standard_player_shrink_shadow_latest.json`. See `construction_picture_live.md`. |
 
 ## Two different curve shapes → two different fixes
 

@@ -233,8 +233,12 @@ from utils.tennis_keep_gates import (
     tennis_standard_under_serve_eligible as _tennis_serve_under_eligible,
 )
 from utils.player_prob_shrinkage import (
+    SHRINK_EV_ENABLED as _SHRINK_EV_ENABLED,
+    SHRINK_RANK_ENABLED as _SHRINK_RANK_ENABLED,
+    SHRINK_SHADOW_ENABLED as _SHRINK_SHADOW_ENABLED,
     apply_standard_player_shrinkage as _apply_standard_player_shrinkage,
     attach_player_prior_n as _attach_player_prior_n,
+    build_standard_shrink_shadow_report as _build_standard_shrink_shadow_report,
     is_standard_pick as _is_standard_pick_shrink,
 )
 from utils.pipeline_read_enrichment import (
@@ -5526,7 +5530,9 @@ def _scalar_rank_to_prob_for_sort(x: object) -> float:
         return DEFAULT_LEG_PROB_FALLBACK
 
 
-def _attach_ticket_pick_order(df: pd.DataFrame, mode: str) -> pd.DataFrame:
+def _attach_ticket_pick_order(
+    df: pd.DataFrame, mode: str, *, apply_standard_shrink: bool = True
+) -> pd.DataFrame:
     """
     Add __ts_pri / __ts_sec for descending sort when assembling tickets.
     rank: primary = rank_score; ml: primary = ml_prob (missing last);
@@ -5535,6 +5541,10 @@ def _attach_ticket_pick_order(df: pd.DataFrame, mode: str) -> pd.DataFrame:
     with Demon legs deprioritized.
     hot_hr: directional L10/L5 + composite HR (ignore edge) — preferred for MLB Goblin.
     winrate: category_hr prior + recent form + model + matchup + HOT (fantasy → -9).
+
+    apply_standard_shrink: when True (default), Standard __ts_pri is player-history
+    shrunk if PROPORACLE_STANDARD_PLAYER_SHRINK=1. Shadow compare passes False then
+    forces shrink separately.
     """
     out = df.copy()
     if out.empty:
@@ -5562,7 +5572,9 @@ def _attach_ticket_pick_order(df: pd.DataFrame, mode: str) -> pd.DataFrame:
         out["__ts_pri"] = _winrate_priority_series(out)
         cat = pd.to_numeric(out.get("category_hr"), errors="coerce")
         out["__ts_sec"] = cat.fillna(-1.0)
-        return _shrink_standard_ticket_sort_keys(out)
+        if apply_standard_shrink:
+            return _shrink_standard_ticket_sort_keys(out)
+        return out
     if m == "ml":
         out["__ts_pri"] = ml.fillna(-1.0)
         out["__ts_sec"] = rs.fillna(-1e9)
@@ -5703,7 +5715,9 @@ def _attach_ticket_pick_order(df: pd.DataFrame, mode: str) -> pd.DataFrame:
     else:
         out["__ts_pri"] = rs.fillna(-1e9)
         out["__ts_sec"] = ml.fillna(-1.0)
-    return _shrink_standard_ticket_sort_keys(out)
+    if apply_standard_shrink:
+        return _shrink_standard_ticket_sort_keys(out)
+    return out
 
 
 def get_edge_threshold(sport: str, prop_type: str, pick_type: str) -> float:
@@ -6043,16 +6057,26 @@ def _resolve_leg_prob_raw(row: pd.Series) -> tuple[float, str]:
 
 
 def _resolve_leg_prob(row: pd.Series) -> tuple[float, str]:
-    """Resolve leg prob; Standard-only player-history shrinkage (Goblin/Demon unchanged)."""
+    """Resolve leg prob for est_win_prob / EV / display.
+
+    Standard player-history shrink on this path is gated by
+    PROPORACLE_STANDARD_PLAYER_SHRINK_EV (default off). Ranking uses a separate
+    gate on sort keys (PROPORACLE_STANDARD_PLAYER_SHRINK).
+    """
     p, src = _resolve_leg_prob_raw(row)
-    return _apply_standard_player_shrinkage(p, src, row)
+    return _apply_standard_player_shrinkage(p, src, row, mode="ev")
 
 
-def _shrink_standard_ticket_sort_keys(df: pd.DataFrame) -> pd.DataFrame:
+def _shrink_standard_ticket_sort_keys(
+    df: pd.DataFrame, *, force_enabled: bool | None = None
+) -> pd.DataFrame:
     """Demote thin-history Standard overconfidence in __ts_pri (Goblin/Demon untouched)."""
     if df is None or df.empty or "__ts_pri" not in df.columns:
         return df
     if "pick_type" not in df.columns:
+        return df
+    enabled = _SHRINK_RANK_ENABLED if force_enabled is None else bool(force_enabled)
+    if not enabled:
         return df
     out = df
     for idx in out.index:
@@ -6064,9 +6088,10 @@ def _shrink_standard_ticket_sort_keys(df: pd.DataFrame) -> pd.DataFrame:
         except (TypeError, ValueError):
             continue
         if not math.isfinite(pri) or pri < 0.0:
-            # Fantasy sink / missing — leave alone
             continue
-        shrunk, _ = _apply_standard_player_shrinkage(pri, "sort_pri", row)
+        shrunk, _ = _apply_standard_player_shrinkage(
+            pri, "sort_pri", row, enabled=True, mode="rank"
+        )
         out.at[idx, "__ts_pri"] = float(shrunk)
     return out
 
@@ -10065,6 +10090,72 @@ def _write_winrate_mlb_goblin_shadow_snapshot(payload: dict, date_str: str) -> N
         f"  [OK] Win-rate MLB Goblin shadow -> {dated} ({n_slips} slips; "
         "production main unchanged)"
     )
+
+
+def _write_standard_player_shrink_shadow_snapshot(report: dict, date_str: str) -> None:
+    """Persist Standard player-shrink rank compare (production construction unchanged)."""
+    dated = os.path.join(
+        REPO_ROOT,
+        "ui_runner",
+        "data",
+        f"standard_player_shrink_shadow_{date_str}.json",
+    )
+    latest = os.path.join(
+        REPO_ROOT,
+        "ui_runner",
+        "data",
+        "standard_player_shrink_shadow_latest.json",
+    )
+    report_path = os.path.join(
+        REPO_ROOT,
+        "data",
+        "reports",
+        f"standard_player_shrink_shadow_{date_str}.json",
+    )
+    _write_json_file(dated, report)
+    _write_json_file(latest, report)
+    try:
+        os.makedirs(os.path.dirname(report_path), exist_ok=True)
+        _write_json_file(report_path, report)
+    except OSError:
+        pass
+    print(
+        f"  [OK] Standard player-shrink shadow -> {dated} "
+        f"(jaccard_top={report.get('jaccard_top')}, "
+        f"mlb_raw={report.get('mlb_share_raw_top')}, "
+        f"mlb_shrunk={report.get('mlb_share_shrunk_top')}; "
+        f"rank_on={report.get('production_rank_shrink')}, "
+        f"ev_on={report.get('production_ev_shrink')})"
+    )
+
+
+def _emit_standard_player_shrink_shadow(
+    combined: pd.DataFrame | None,
+    *,
+    date_str: str,
+    ticket_sort_mode: str = "winrate",
+) -> None:
+    """Shadow-only: compare Standard top-N raw vs player-shrunk sort. No live injection."""
+    if _skip_ticket_sidecars():
+        return
+    if not _SHRINK_SHADOW_ENABLED:
+        print("  [shadow-std-shrink] skipped (PROPORACLE_STANDARD_PLAYER_SHRINK_SHADOW off)")
+        return
+    if combined is None or len(combined) == 0:
+        print("  [shadow-std-shrink] skipped (empty combined)")
+        return
+
+    def _attach_raw(df: pd.DataFrame, mode: str) -> pd.DataFrame:
+        return _attach_ticket_pick_order(df, mode, apply_standard_shrink=False)
+
+    report = _build_standard_shrink_shadow_report(
+        combined,
+        date_str=date_str,
+        sort_mode=str(ticket_sort_mode or "winrate"),
+        top_n=40,
+        attach_sort_fn=_attach_raw,
+    )
+    _write_standard_player_shrink_shadow_snapshot(report, date_str)
 
 
 def _write_strong_standard_shadow_snapshot(payload: dict, date_str: str) -> None:
@@ -21800,7 +21891,10 @@ def main():
         print(
             f"  [player-shrink] attached player_prior_n "
             f"({_n_prior}/{len(combined)} with history>0; "
-            f"Standard packing shrinks toward baseline, Goblin/Demon unchanged)"
+            f"rank={'ON' if _SHRINK_RANK_ENABLED else 'OFF'} "
+            f"ev={'ON' if _SHRINK_EV_ENABLED else 'OFF'} "
+            f"shadow={'ON' if _SHRINK_SHADOW_ENABLED else 'OFF'}; "
+            f"Goblin/Demon untouched)"
         )
     except Exception as _pse:
         print(f"  [player-shrink] prior attach skipped: {_pse}")
@@ -23701,6 +23795,11 @@ def main():
                 pool_fn=lambda f: pool(f, for_win_rate=True),
                 graded_analysis=_load_graded_analysis(),
             )
+            _emit_standard_player_shrink_shadow(
+                combined,
+                date_str=str(args.date),
+                ticket_sort_mode=str(args.ticket_candidate_sort),
+            )
             _std_shadow_frames = [
                 nba1q,
                 nba,
@@ -23874,6 +23973,11 @@ def main():
                 curve_stake_usd=float(args.curve_stake_usd),
                 pool_fn=lambda f: pool(f, for_win_rate=True),
                 graded_analysis=_load_graded_analysis(),
+            )
+            _emit_standard_player_shrink_shadow(
+                combined,
+                date_str=str(args.date),
+                ticket_sort_mode=str(args.ticket_candidate_sort),
             )
             _std_shadow_frames = [
                 nba1q,
