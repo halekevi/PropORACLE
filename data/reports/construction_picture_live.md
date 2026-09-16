@@ -23,7 +23,7 @@ Env knobs:
 
 1. **Shadow before default-on** — leave rank/EV off; read `standard_player_shrink_shadow_*.json` for a few days (composition + mean shrunk pri vs raw). Flip `PROPORACLE_STANDARD_PLAYER_SHRINK=1` only after that looks healthy.
 2. **est_win_prob scope** — not ranking-only if EV flag is on. Default keeps pricing/display honest-raw; turn EV on only as a coordinated change.
-3. **MLB Standard** — MAIN already bans it hard. Shadow `mlb_share_*` on the *pre-ban* Standard pool shows whether shrink alone would deprioritize; if shrunk MLB share stays high, something else is not the issue for MAIN (ban already covers it). Watch Excel/cross-sport paths that might still assemble Standard without that hygiene.
+3. **MLB Standard** — MAIN/FINAL already hard-bans all MLB Standard via `_leg_mlb_keep_banned` (**2026-09-08**, after May–June). That ban is **newer than** the tickets this thread analyzed: May–June MLB Standard volume lived on the MAIN mixer (`MLB Standard N-Leg` / `MLB Mixed N-Leg` in `combined_slate_tickets_*.json`), not Goblin-70. An OVER-only ban on 2026-07-19 already collapsed volume before the full ban. See `mlb_standard_ban_reconciliation.md`. Shrinkage is **not** the MLB-Standard MAIN fix; its live value is cross-sport / non-MLB Standard ranking.
 
 ## Proven but scoped
 
