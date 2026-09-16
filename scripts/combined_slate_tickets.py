@@ -232,6 +232,11 @@ from utils.tennis_keep_gates import (
     tennis_standard_games_won_over_eligible as _tennis_std_games_won_eligible,
     tennis_standard_under_serve_eligible as _tennis_serve_under_eligible,
 )
+from utils.player_prob_shrinkage import (
+    apply_standard_player_shrinkage as _apply_standard_player_shrinkage,
+    attach_player_prior_n as _attach_player_prior_n,
+    is_standard_pick as _is_standard_pick_shrink,
+)
 from utils.pipeline_read_enrichment import (
     READ_SLATE_EXPORT_KEYS,
     enrich_read_fields_dataframe,
@@ -3248,6 +3253,7 @@ def _load_diversity_config(path: str = DIVERSITY_CONFIG_PATH) -> dict[str, Any]:
         "max_leg_exposure": 4,
         "max_player_exposure": 8,
         "max_player_prop_exposure": 1,
+        "block_same_player_multistat": True,
         "void_risk_min_sample": 10,
         "max_jaccard_overlap": 0.8,
         "exposure_penalty_weight": 0.1,
@@ -3687,13 +3693,17 @@ def _soccer_ticket_pool_exclusion_mask(df: pd.DataFrame) -> tuple[pd.Series, int
 
 
 def soccer_allowed_leg(leg) -> bool:
-    """Soccer hygiene: no Demon, no Goblin UNDER, keep props only (Shots/SOT/Saves)."""
+    """Soccer hygiene: no Demon, no Goblin UNDER, keep props only (Shots/SOT/Saves).
+
+    Also drops thin-history competitions (World Cup / Olympics / …) via
+    ``utils.competition_history`` when ``league`` is present on the row.
+    """
     if isinstance(leg, dict):
         row = leg
     else:
         row = leg.to_dict() if hasattr(leg, "to_dict") else dict(leg)
     sport = str(row.get("sport", "")).upper().strip()
-    if sport not in ("SOCCER", "SOC"):
+    if sport not in ("SOCCER", "SOC") and not sport.startswith("WORLDCUP"):
         return True
     pick = str(row.get("pick_type", "")).strip().lower()
     if "demon" in pick:
@@ -3706,6 +3716,13 @@ def soccer_allowed_leg(leg) -> bool:
         keep_row["prop"] = row.get("prop_type") or row.get("prop") or ""
     if not _soccer_keep_prop(keep_row):
         return False
+    try:
+        from utils.competition_history import row_competition_ok as _row_comp_ok
+
+        if not _row_comp_ok(keep_row):
+            return False
+    except Exception:
+        pass
     return True
 
 
@@ -5545,7 +5562,7 @@ def _attach_ticket_pick_order(df: pd.DataFrame, mode: str) -> pd.DataFrame:
         out["__ts_pri"] = _winrate_priority_series(out)
         cat = pd.to_numeric(out.get("category_hr"), errors="coerce")
         out["__ts_sec"] = cat.fillna(-1.0)
-        return out
+        return _shrink_standard_ticket_sort_keys(out)
     if m == "ml":
         out["__ts_pri"] = ml.fillna(-1.0)
         out["__ts_sec"] = rs.fillna(-1e9)
@@ -5686,7 +5703,7 @@ def _attach_ticket_pick_order(df: pd.DataFrame, mode: str) -> pd.DataFrame:
     else:
         out["__ts_pri"] = rs.fillna(-1e9)
         out["__ts_sec"] = ml.fillna(-1.0)
-    return out
+    return _shrink_standard_ticket_sort_keys(out)
 
 
 def get_edge_threshold(sport: str, prop_type: str, pick_type: str) -> float:
@@ -5864,9 +5881,9 @@ def _resolve_l5_cols(row: pd.Series, direction: str) -> tuple[float, float]:
     return hits, gp
 
 
-def _resolve_leg_prob(row: pd.Series) -> tuple[float, str]:
+def _resolve_leg_prob_raw(row: pd.Series) -> tuple[float, str]:
     """
-    Selection / est_win_prob leg probability.
+    Selection / est_win_prob leg probability (pre-shrinkage).
     Prefer pipeline_read enrichment (hit_prob_actionable); else empirical/ML/rank/edge chain.
     Tennis: skip enrichment HR proxies when calibrated ml_prob exists — actionable/selected
     often mirror perfect L5 (0.95–1.0) and overstate ticket P(win).
@@ -6023,6 +6040,35 @@ def _resolve_leg_prob(row: pd.Series) -> tuple[float, str]:
             return _clip_prob(float(hit_rate_shrunk), "hit_rate"), "hit_rate"
 
     return DEFAULT_LEG_PROB_FALLBACK, "fallback_const"
+
+
+def _resolve_leg_prob(row: pd.Series) -> tuple[float, str]:
+    """Resolve leg prob; Standard-only player-history shrinkage (Goblin/Demon unchanged)."""
+    p, src = _resolve_leg_prob_raw(row)
+    return _apply_standard_player_shrinkage(p, src, row)
+
+
+def _shrink_standard_ticket_sort_keys(df: pd.DataFrame) -> pd.DataFrame:
+    """Demote thin-history Standard overconfidence in __ts_pri (Goblin/Demon untouched)."""
+    if df is None or df.empty or "__ts_pri" not in df.columns:
+        return df
+    if "pick_type" not in df.columns:
+        return df
+    out = df
+    for idx in out.index:
+        row = out.loc[idx]
+        if not _is_standard_pick_shrink(row.get("pick_type")):
+            continue
+        try:
+            pri = float(out.at[idx, "__ts_pri"])
+        except (TypeError, ValueError):
+            continue
+        if not math.isfinite(pri) or pri < 0.0:
+            # Fantasy sink / missing — leave alone
+            continue
+        shrunk, _ = _apply_standard_player_shrinkage(pri, "sort_pri", row)
+        out.at[idx, "__ts_pri"] = float(shrunk)
+    return out
 
 
 def win_prob(
@@ -21748,6 +21794,16 @@ def main():
 
     combined = drop_stale_rows(combined, args.date, "Combined", allow_cross_date_fallback=_date_fb)
     combined = enrich_read_fields_dataframe(combined)
+    try:
+        combined = _attach_player_prior_n(combined, slate_date=str(args.date))
+        _n_prior = int(pd.to_numeric(combined.get("player_prior_n"), errors="coerce").fillna(0).gt(0).sum())
+        print(
+            f"  [player-shrink] attached player_prior_n "
+            f"({_n_prior}/{len(combined)} with history>0; "
+            f"Standard packing shrinks toward baseline, Goblin/Demon unchanged)"
+        )
+    except Exception as _pse:
+        print(f"  [player-shrink] prior attach skipped: {_pse}")
 
     # Per-sport Excel sheets use SLATE_COLS — propagate UD/DK lines from combined onto each.
     nba = propagate_alt_book_lines_to_sport_frame(nba, combined, ("NBA",))
