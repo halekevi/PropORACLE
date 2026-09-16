@@ -5668,7 +5668,7 @@ def main() -> int:
             print(f"  Mobile copy -> {mobile_dst}")
         except OSError as e:
             print(f"  WARN: mobile copy failed: {e}")
-    print("  (Serve /tickets from tickets_latest.json; graded view: Grades → Ticket evaluation.)")
+    print("  (Serve /tickets from tickets_latest.json; graded view: Grades -> Ticket evaluation.)")
 
     if args.debug_ungraded:
         debug_ungraded_report(
