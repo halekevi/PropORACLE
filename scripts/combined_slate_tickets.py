@@ -10818,20 +10818,23 @@ def filter_main_high_prob_payload(payload: dict) -> dict:
         for t in g.get("tickets") or []:
             if not isinstance(t, dict):
                 continue
+            # MLB keep/construction hygiene applies to every MAIN slip (CORE, STRONG,
+            # mixer). Sep-15 published BA<.275 / L5<5 hitter Goblins when CORE/STRONG
+            # short-circuited past this check.
+            legs = [leg for leg in (t.get("legs") or []) if isinstance(leg, dict)]
+            if any(_leg_mlb_construction_banned(leg) for leg in legs):
+                continue
             # STRONG bypasses pick-mix rules (builder already caps ≤ STRONG_MAX_LEGS).
             # CORE respects max_keep so mixed MAIN stays ≤3 while Goblin-only / long
             # boards (max_keep=GOBLIN_MAX_LEGS) can keep WNBA Flex 4–6 CORE slips.
             if t.get("strong_builder"):
                 kept.append(t)
                 continue
-            legs = [leg for leg in (t.get("legs") or []) if isinstance(leg, dict)]
             n = len(legs)
             if n < MAIN_GRADED_MIN_LEGS or n > max_keep:
                 continue
             if t.get("core_build"):
                 kept.append(t)
-                continue
-            if any(_leg_mlb_construction_banned(leg) for leg in legs):
                 continue
             leg_sports = {
                 str(leg.get("sport") or "").strip().upper()
@@ -16659,6 +16662,14 @@ def _prepare_core_pipeline_pool(sport_label: str, pool_df: pd.DataFrame) -> pd.D
                 f"  [core] {sp}: prop focus kept {len(focused)}/{len(out)} "
                 f"(below {min_keep}) — using broader pool"
             )
+    # MLB CORE: enforce keep gates here too (not only MAIN payload filter).
+    if sp == "MLB" and not out.empty:
+        before = len(out)
+        keep_m = out.apply(lambda r: not _leg_mlb_construction_banned(r.to_dict()), axis=1)
+        out = out.loc[keep_m].copy()
+        dropped = before - len(out)
+        if dropped:
+            print(f"  [core] MLB: dropped {dropped} leg(s) failing mlb keep/construction gates")
     return _filter_df_main_goblin_recency(out.reset_index(drop=True))
 
 
