@@ -1,0 +1,23 @@
+sport,pick_type,direction,prop,base_l5,base_l10,base_d,cut,feature,op,threshold,find_n,find_hits,find_hr,find_wilson,find_lift_pp,oos_n,oos_hits,oos_hr,oos_wilson,oos_lift_pp,base_find_hr,base_oos_hr
+WNBA,Goblin,OVER,points,5.0,8.0,False,minutes_tier <= LOW (0),minutes_tier,<=,0.0,145,112,0.7724,0.6977,-0.4,216,176,0.8148,0.7577,1.48,0.7764,0.8
+WNBA,Goblin,OVER,points,5.0,8.0,False,def_tier <= Below Avg (3),def_tier,<=,3.0,133,107,0.8045,0.729,2.81,210,171,0.8143,0.7562,1.43,0.7764,0.8
+WNBA,Goblin,OVER,points,5.0,8.0,False,ml_prob <= 0.846095,ml_prob,<=,0.846095,155,119,0.7677,0.6953,-0.87,255,204,0.8,0.7466,0.0,0.7764,0.8
+WNBA,Goblin,OVER,points,5.0,8.0,False,def_tier >= Above Avg (1),def_tier,>=,1.0,136,105,0.7721,0.6947,-0.43,188,152,0.8085,0.7463,0.85,0.7764,0.8
+WNBA,Goblin,OVER,points,5.0,8.0,False,edge <= 10.4498,edge,<=,10.449846153846151,151,118,0.7815,0.709,0.51,243,194,0.7984,0.7434,-0.16,0.7764,0.8
+WNBA,Goblin,OVER,points,5.0,8.0,False,role_tier <= SECONDARY (1),role_tier,<=,1.0,57,48,0.8421,0.7264,6.57,89,74,0.8315,0.7404,3.15,0.7764,0.8
+WNBA,Goblin,OVER,points,5.0,8.0,False,edge >= 5.72154,edge,>=,5.721538461538461,83,66,0.7952,0.6962,1.88,127,102,0.8031,0.7255,0.31,0.7764,0.8
+WNBA,Goblin,OVER,points,5.0,8.0,False,role_tier >= PRIMARY (2),role_tier,>=,2.0,104,77,0.7404,0.6486,-3.6,166,130,0.7831,0.7144,-1.69,0.7764,0.8
+WNBA,Goblin,OVER,pts+ast,5.0,8.0,False,def_tier >= Above Avg (1),def_tier,>=,1.0,50,36,0.72,0.5833,-0.88,60,52,0.8667,0.7583,6.9,0.7288,0.7976
+WNBA,Goblin,OVER,pts+ast,5.0,8.0,False,minutes_tier <= LOW (0),minutes_tier,<=,0.0,40,31,0.775,0.625,4.62,57,48,0.8421,0.7264,4.45,0.7288,0.7976
+WNBA,Goblin,OVER,pts+ast,5.0,8.0,False,role_tier >= PRIMARY (2),role_tier,>=,2.0,58,42,0.7241,0.598,-0.47,79,64,0.8101,0.7101,1.25,0.7288,0.7976
+WNBA,Goblin,OVER,pts+ast,5.0,8.0,False,ml_prob <= 0.8356,ml_prob,<=,0.8356,56,41,0.7321,0.6041,0.33,84,67,0.7976,0.6996,0.0,0.7288,0.7976
+WNBA,Goblin,OVER,pts+ast,5.0,8.0,False,edge <= 12.9685,edge,<=,12.968461538461536,54,40,0.7407,0.6107,1.19,79,63,0.7975,0.696,-0.02,0.7288,0.7976
+WNBA,Goblin,OVER,pts+ast,5.0,8.0,False,ml_prob >= 0.644955,ml_prob,>=,0.6449553846153846,36,32,0.8889,0.7468,16.01,58,47,0.8103,0.6915,1.27,0.7288,0.7976
+WNBA,Goblin,OVER,pts+ast,5.0,8.0,False,edge >= 6.69515,edge,>=,6.695153846153846,44,34,0.7727,0.6301,4.39,58,46,0.7931,0.6723,-0.45,0.7288,0.7976
+WNBA,Goblin,OVER,pts+ast,5.0,8.0,False,def_tier <= Below Avg (3),def_tier,<=,3.0,45,33,0.7333,0.5896,0.45,69,53,0.7681,0.656,-2.95,0.7288,0.7976
+WNBA,Goblin,OVER,threes,5.0,8.0,False,edge >= 1.05,edge,>=,1.05,46,37,0.8043,0.6683,4.07,55,43,0.7818,0.6563,3.61,0.7636,0.7458
+WNBA,Goblin,OVER,threes,5.0,8.0,False,edge <= 2.9,edge,<=,2.9,54,42,0.7778,0.6506,1.41,59,44,0.7458,0.622,0.0,0.7636,0.7458
+WNBA,Goblin,OVER,threes,5.0,8.0,False,ml_prob >= 0.647606,ml_prob,>=,0.6476057692307692,47,38,0.8085,0.6746,4.49,59,44,0.7458,0.622,0.0,0.7636,0.7458
+WNBA,Goblin,OVER,threes,5.0,8.0,False,ml_prob <= 0.81823,ml_prob,<=,0.81823,52,39,0.75,0.6179,-1.36,59,44,0.7458,0.622,0.0,0.7636,0.7458
+WNBA,Goblin,OVER,threes,5.0,8.0,False,def_tier <= Below Avg (3),def_tier,<=,3.0,39,28,0.7179,0.5622,-4.57,51,38,0.7451,0.6113,-0.07,0.7636,0.7458
+WNBA,Goblin,OVER,threes,5.0,8.0,False,def_tier >= Above Avg (1),def_tier,>=,1.0,45,37,0.8222,0.6867,5.86,41,30,0.7317,0.5807,-1.41,0.7636,0.7458
