@@ -63,9 +63,28 @@ Quick residual volume: August snapshots already near-zero before the full ban;
 post–Sep-8 MAIN should stay at zero. Worth a one-line assert in CI/smoke if you
 want this locked: `mlb_standard_tickets == 0` on MAIN payload.
 
-## Bottom line
+## Convergent validation (OVER vs UNDER)
 
-MLB Standard on MAIN is **already fixed by an independent, later ban** (OVER
-2026-07-19 → all-Standard 2026-09-08). The shrinkage work should not be sold as
-the MLB-Standard fix; its value is cross-sport / non-MLB Standard ranking, with
-MLB MAIN treated as a closed case unless a bypass path reappears.
+May’s 11,134 MLB Standard legs were **100% OVER**. The Jul-19 partial fix banned
+**OVER only**, not UNDER. That matches this thread’s Standard calibration read:
+overconfidence lives in the OVER tail; UNDER stayed well-calibrated.
+
+Production removed the miscalibrated half through an unrelated process; this
+thread’s deciles independently explain why that fix worked. Two methods, same
+asymmetry — stronger than either alone.
+
+August leftovers (11 tickets, mostly UNDER on `MLB 3-Leg Mixed`) sat in the
+OVER-only-ban window. Given UNDER’s calibration, that was the correctly-surviving
+half, not a gap. Moot after Sep-8 anyway.
+
+## Final scope (locked)
+
+| Item | Status |
+|--|--|
+| World Cup / thin-competition gate | Shipped |
+| Goblin floor 0.50 → 0.35 | Shipped |
+| Player-history shrinkage | Wired; shadow-first; ranking vs EV split; value = **cross-sport Standard ranking** |
+| MLB MAIN Standard | **Closed by production gates** (Jul-19 OVER → Sep-8 all-Standard) — unrelated to shrinkage |
+
+Shrinkage does not need to “cover MLB” on MAIN. Its validated lever is cross-sport
+Standard ranking. Investigation complete.

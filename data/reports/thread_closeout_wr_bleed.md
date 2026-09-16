@@ -34,4 +34,8 @@ Why June packing flipped toward Standard (demand-side confirmed; `31b51ab6b` + w
 
 ## Outcome
 
-Wrong starting hypothesis → two construction rules shipped (Goblin floor + Standard shrink), Goblin threshold diagnosed and retuned with an exact number, Standard rescue mechanism with a known boundary, live regression caught to commit. Better return than if correlation had worked.
+Wrong starting hypothesis (correlation) → two construction rules (Goblin floor +
+Standard shrink), WC/thin gate earlier, MLB MAIN Standard confirmed closed by
+production’s own OVER→all-Standard bans with independent OVER/UNDER calibration
+confirmation. Shrinkage’s locked value: **cross-sport Standard ranking**, not MLB MAIN.
+Investigation complete.
