@@ -1,0 +1,3261 @@
+{
+  "export": "H:\\PropORACLE\\data\\reports\\discover_gates_mlb_export.csv",
+  "n_rows": 198160,
+  "cover": {
+    "availability": {
+      "overall_rate": 0.311,
+      "monthly": [
+        {
+          "month": "2026-03",
+          "n": 688,
+          "pop": 0,
+          "rate": 0.0
+        },
+        {
+          "month": "2026-04",
+          "n": 14165,
+          "pop": 0,
+          "rate": 0.0
+        },
+        {
+          "month": "2026-05",
+          "n": 26438,
+          "pop": 0,
+          "rate": 0.0
+        },
+        {
+          "month": "2026-06",
+          "n": 48288,
+          "pop": 0,
+          "rate": 0.0
+        },
+        {
+          "month": "2026-07",
+          "n": 39346,
+          "pop": 20533,
+          "rate": 0.5219
+        },
+        {
+          "month": "2026-08",
+          "n": 42012,
+          "pop": 13876,
+          "rate": 0.3303
+        },
+        {
+          "month": "2026-09",
+          "n": 27223,
+          "pop": 27223,
+          "rate": 1.0
+        }
+      ],
+      "onset_7d_ge50pct": "2026-07-23",
+      "early_half": {
+        "n": 67791,
+        "pop": 0,
+        "rate": 0.0
+      },
+      "late_half": {
+        "n": 130369,
+        "pop": 61632,
+        "rate": 0.4728
+      }
+    },
+    "post_onset_gates": [
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "gate": "cover>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2670,
+            "hits": 1932,
+            "hr": 0.7236,
+            "wilson_low": 0.7063
+          },
+          "populated_ungated": {
+            "n": 1522,
+            "hits": 1126,
+            "hr": 0.7398,
+            "wilson_low": 0.7172
+          },
+          "gated": {
+            "n": 178,
+            "hits": 160,
+            "hr": 0.8989,
+            "wilson_low": 0.8458
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1797,
+            "hits": 1286,
+            "hr": 0.7156,
+            "wilson_low": 0.6943
+          },
+          "populated_ungated": {
+            "n": 649,
+            "hits": 480,
+            "hr": 0.7396,
+            "wilson_low": 0.7045
+          },
+          "gated": {
+            "n": 67,
+            "hits": 59,
+            "hr": 0.8806,
+            "wilson_low": 0.7817
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 873,
+            "hits": 646,
+            "hr": 0.74,
+            "wilson_low": 0.7099
+          },
+          "populated_ungated": {
+            "n": 873,
+            "hits": 646,
+            "hr": 0.74,
+            "wilson_low": 0.7099
+          },
+          "gated": {
+            "n": 111,
+            "hits": 101,
+            "hr": 0.9099,
+            "wilson_low": 0.8421
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1699,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "gate": "L10>=8 + cover>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2856,
+            "hits": 2013,
+            "hr": 0.7048,
+            "wilson_low": 0.6878
+          },
+          "populated_ungated": {
+            "n": 1806,
+            "hits": 1292,
+            "hr": 0.7154,
+            "wilson_low": 0.6941
+          },
+          "gated": {
+            "n": 163,
+            "hits": 145,
+            "hr": 0.8896,
+            "wilson_low": 0.8322
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1954,
+            "hits": 1364,
+            "hr": 0.6981,
+            "wilson_low": 0.6773
+          },
+          "populated_ungated": {
+            "n": 904,
+            "hits": 643,
+            "hr": 0.7113,
+            "wilson_low": 0.6809
+          },
+          "gated": {
+            "n": 69,
+            "hits": 62,
+            "hr": 0.8986,
+            "wilson_low": 0.8051
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 902,
+            "hits": 649,
+            "hr": 0.7195,
+            "wilson_low": 0.6893
+          },
+          "populated_ungated": {
+            "n": 902,
+            "hits": 649,
+            "hr": 0.7195,
+            "wilson_low": 0.6893
+          },
+          "gated": {
+            "n": 94,
+            "hits": 83,
+            "hr": 0.883,
+            "wilson_low": 0.8025
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1635,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      }
+    ]
+  },
+  "season_cushion_dir": {
+    "availability": {
+      "overall_rate": 0.3107,
+      "monthly": [
+        {
+          "month": "2026-03",
+          "n": 688,
+          "pop": 0,
+          "rate": 0.0
+        },
+        {
+          "month": "2026-04",
+          "n": 14165,
+          "pop": 0,
+          "rate": 0.0
+        },
+        {
+          "month": "2026-05",
+          "n": 26438,
+          "pop": 0,
+          "rate": 0.0
+        },
+        {
+          "month": "2026-06",
+          "n": 48288,
+          "pop": 0,
+          "rate": 0.0
+        },
+        {
+          "month": "2026-07",
+          "n": 39346,
+          "pop": 20508,
+          "rate": 0.5212
+        },
+        {
+          "month": "2026-08",
+          "n": 42012,
+          "pop": 13872,
+          "rate": 0.3302
+        },
+        {
+          "month": "2026-09",
+          "n": 27223,
+          "pop": 27193,
+          "rate": 0.9989
+        }
+      ],
+      "onset_7d_ge50pct": "2026-07-23",
+      "early_half": {
+        "n": 67791,
+        "pop": 0,
+        "rate": 0.0
+      },
+      "late_half": {
+        "n": 130369,
+        "pop": 61573,
+        "rate": 0.4723
+      }
+    },
+    "onset_used": "2026-07-23",
+    "post_onset_gates": [
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "gate": "season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2670,
+            "hits": 1932,
+            "hr": 0.7236,
+            "wilson_low": 0.7063
+          },
+          "populated_ungated": {
+            "n": 1517,
+            "hits": 1125,
+            "hr": 0.7416,
+            "wilson_low": 0.719
+          },
+          "gated": {
+            "n": 852,
+            "hits": 683,
+            "hr": 0.8016,
+            "wilson_low": 0.7735
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1797,
+            "hits": 1286,
+            "hr": 0.7156,
+            "wilson_low": 0.6943
+          },
+          "populated_ungated": {
+            "n": 646,
+            "hits": 479,
+            "hr": 0.7415,
+            "wilson_low": 0.7064
+          },
+          "gated": {
+            "n": 363,
+            "hits": 284,
+            "hr": 0.7824,
+            "wilson_low": 0.7371
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 873,
+            "hits": 646,
+            "hr": 0.74,
+            "wilson_low": 0.7099
+          },
+          "populated_ungated": {
+            "n": 871,
+            "hits": 646,
+            "hr": 0.7417,
+            "wilson_low": 0.7116
+          },
+          "gated": {
+            "n": 489,
+            "hits": 399,
+            "hr": 0.816,
+            "wilson_low": 0.7792
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0743,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "gate": "season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2670,
+            "hits": 1932,
+            "hr": 0.7236,
+            "wilson_low": 0.7063
+          },
+          "populated_ungated": {
+            "n": 1517,
+            "hits": 1125,
+            "hr": 0.7416,
+            "wilson_low": 0.719
+          },
+          "gated": {
+            "n": 349,
+            "hits": 298,
+            "hr": 0.8539,
+            "wilson_low": 0.813
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1797,
+            "hits": 1286,
+            "hr": 0.7156,
+            "wilson_low": 0.6943
+          },
+          "populated_ungated": {
+            "n": 646,
+            "hits": 479,
+            "hr": 0.7415,
+            "wilson_low": 0.7064
+          },
+          "gated": {
+            "n": 142,
+            "hits": 116,
+            "hr": 0.8169,
+            "wilson_low": 0.7452
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 873,
+            "hits": 646,
+            "hr": 0.74,
+            "wilson_low": 0.7099
+          },
+          "populated_ungated": {
+            "n": 871,
+            "hits": 646,
+            "hr": 0.7417,
+            "wilson_low": 0.7116
+          },
+          "gated": {
+            "n": 207,
+            "hits": 182,
+            "hr": 0.8792,
+            "wilson_low": 0.8278
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1375,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "gate": "L10>=8 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2670,
+            "hits": 1932,
+            "hr": 0.7236,
+            "wilson_low": 0.7063
+          },
+          "populated_ungated": {
+            "n": 1517,
+            "hits": 1125,
+            "hr": 0.7416,
+            "wilson_low": 0.719
+          },
+          "gated": {
+            "n": 490,
+            "hits": 408,
+            "hr": 0.8327,
+            "wilson_low": 0.797
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1797,
+            "hits": 1286,
+            "hr": 0.7156,
+            "wilson_low": 0.6943
+          },
+          "populated_ungated": {
+            "n": 646,
+            "hits": 479,
+            "hr": 0.7415,
+            "wilson_low": 0.7064
+          },
+          "gated": {
+            "n": 184,
+            "hits": 147,
+            "hr": 0.7989,
+            "wilson_low": 0.7352
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 873,
+            "hits": 646,
+            "hr": 0.74,
+            "wilson_low": 0.7099
+          },
+          "populated_ungated": {
+            "n": 871,
+            "hits": 646,
+            "hr": 0.7417,
+            "wilson_low": 0.7116
+          },
+          "gated": {
+            "n": 306,
+            "hits": 261,
+            "hr": 0.8529,
+            "wilson_low": 0.8089
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1112,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "gate": "L10>=8 + season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2670,
+            "hits": 1932,
+            "hr": 0.7236,
+            "wilson_low": 0.7063
+          },
+          "populated_ungated": {
+            "n": 1517,
+            "hits": 1125,
+            "hr": 0.7416,
+            "wilson_low": 0.719
+          },
+          "gated": {
+            "n": 283,
+            "hits": 244,
+            "hr": 0.8622,
+            "wilson_low": 0.8172
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1797,
+            "hits": 1286,
+            "hr": 0.7156,
+            "wilson_low": 0.6943
+          },
+          "populated_ungated": {
+            "n": 646,
+            "hits": 479,
+            "hr": 0.7415,
+            "wilson_low": 0.7064
+          },
+          "gated": {
+            "n": 102,
+            "hits": 83,
+            "hr": 0.8137,
+            "wilson_low": 0.7273
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 873,
+            "hits": 646,
+            "hr": 0.74,
+            "wilson_low": 0.7099
+          },
+          "populated_ungated": {
+            "n": 871,
+            "hits": 646,
+            "hr": 0.7417,
+            "wilson_low": 0.7116
+          },
+          "gated": {
+            "n": 181,
+            "hits": 161,
+            "hr": 0.8895,
+            "wilson_low": 0.8355
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1478,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "gate": "L5=5 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2670,
+            "hits": 1932,
+            "hr": 0.7236,
+            "wilson_low": 0.7063
+          },
+          "populated_ungated": {
+            "n": 1517,
+            "hits": 1125,
+            "hr": 0.7416,
+            "wilson_low": 0.719
+          },
+          "gated": {
+            "n": 245,
+            "hits": 212,
+            "hr": 0.8653,
+            "wilson_low": 0.8169
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1797,
+            "hits": 1286,
+            "hr": 0.7156,
+            "wilson_low": 0.6943
+          },
+          "populated_ungated": {
+            "n": 646,
+            "hits": 479,
+            "hr": 0.7415,
+            "wilson_low": 0.7064
+          },
+          "gated": {
+            "n": 100,
+            "hits": 85,
+            "hr": 0.85,
+            "wilson_low": 0.7672
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 873,
+            "hits": 646,
+            "hr": 0.74,
+            "wilson_low": 0.7099
+          },
+          "populated_ungated": {
+            "n": 871,
+            "hits": 646,
+            "hr": 0.7417,
+            "wilson_low": 0.7116
+          },
+          "gated": {
+            "n": 145,
+            "hits": 127,
+            "hr": 0.8759,
+            "wilson_low": 0.8123
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1342,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "gate": "season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2856,
+            "hits": 2013,
+            "hr": 0.7048,
+            "wilson_low": 0.6878
+          },
+          "populated_ungated": {
+            "n": 1801,
+            "hits": 1289,
+            "hr": 0.7157,
+            "wilson_low": 0.6944
+          },
+          "gated": {
+            "n": 1106,
+            "hits": 848,
+            "hr": 0.7667,
+            "wilson_low": 0.7409
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1954,
+            "hits": 1364,
+            "hr": 0.6981,
+            "wilson_low": 0.6773
+          },
+          "populated_ungated": {
+            "n": 903,
+            "hits": 642,
+            "hr": 0.711,
+            "wilson_low": 0.6806
+          },
+          "gated": {
+            "n": 559,
+            "hits": 425,
+            "hr": 0.7603,
+            "wilson_low": 0.7232
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 902,
+            "hits": 649,
+            "hr": 0.7195,
+            "wilson_low": 0.6893
+          },
+          "populated_ungated": {
+            "n": 898,
+            "hits": 647,
+            "hr": 0.7205,
+            "wilson_low": 0.6902
+          },
+          "gated": {
+            "n": 547,
+            "hits": 423,
+            "hr": 0.7733,
+            "wilson_low": 0.7364
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0528,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "gate": "season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2856,
+            "hits": 2013,
+            "hr": 0.7048,
+            "wilson_low": 0.6878
+          },
+          "populated_ungated": {
+            "n": 1801,
+            "hits": 1289,
+            "hr": 0.7157,
+            "wilson_low": 0.6944
+          },
+          "gated": {
+            "n": 508,
+            "hits": 413,
+            "hr": 0.813,
+            "wilson_low": 0.7768
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1954,
+            "hits": 1364,
+            "hr": 0.6981,
+            "wilson_low": 0.6773
+          },
+          "populated_ungated": {
+            "n": 903,
+            "hits": 642,
+            "hr": 0.711,
+            "wilson_low": 0.6806
+          },
+          "gated": {
+            "n": 250,
+            "hits": 203,
+            "hr": 0.812,
+            "wilson_low": 0.759
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 902,
+            "hits": 649,
+            "hr": 0.7195,
+            "wilson_low": 0.6893
+          },
+          "populated_ungated": {
+            "n": 898,
+            "hits": 647,
+            "hr": 0.7205,
+            "wilson_low": 0.6902
+          },
+          "gated": {
+            "n": 258,
+            "hits": 210,
+            "hr": 0.814,
+            "wilson_low": 0.762
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0935,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "gate": "L10>=8 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2856,
+            "hits": 2013,
+            "hr": 0.7048,
+            "wilson_low": 0.6878
+          },
+          "populated_ungated": {
+            "n": 1801,
+            "hits": 1289,
+            "hr": 0.7157,
+            "wilson_low": 0.6944
+          },
+          "gated": {
+            "n": 645,
+            "hits": 519,
+            "hr": 0.8047,
+            "wilson_low": 0.7723
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1954,
+            "hits": 1364,
+            "hr": 0.6981,
+            "wilson_low": 0.6773
+          },
+          "populated_ungated": {
+            "n": 903,
+            "hits": 642,
+            "hr": 0.711,
+            "wilson_low": 0.6806
+          },
+          "gated": {
+            "n": 304,
+            "hits": 252,
+            "hr": 0.8289,
+            "wilson_low": 0.7826
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 902,
+            "hits": 649,
+            "hr": 0.7195,
+            "wilson_low": 0.6893
+          },
+          "populated_ungated": {
+            "n": 898,
+            "hits": 647,
+            "hr": 0.7205,
+            "wilson_low": 0.6902
+          },
+          "gated": {
+            "n": 341,
+            "hits": 267,
+            "hr": 0.783,
+            "wilson_low": 0.7362
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0625,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "gate": "L10>=8 + season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2856,
+            "hits": 2013,
+            "hr": 0.7048,
+            "wilson_low": 0.6878
+          },
+          "populated_ungated": {
+            "n": 1801,
+            "hits": 1289,
+            "hr": 0.7157,
+            "wilson_low": 0.6944
+          },
+          "gated": {
+            "n": 395,
+            "hits": 331,
+            "hr": 0.838,
+            "wilson_low": 0.7984
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1954,
+            "hits": 1364,
+            "hr": 0.6981,
+            "wilson_low": 0.6773
+          },
+          "populated_ungated": {
+            "n": 903,
+            "hits": 642,
+            "hr": 0.711,
+            "wilson_low": 0.6806
+          },
+          "gated": {
+            "n": 182,
+            "hits": 156,
+            "hr": 0.8571,
+            "wilson_low": 0.7989
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 902,
+            "hits": 649,
+            "hr": 0.7195,
+            "wilson_low": 0.6893
+          },
+          "populated_ungated": {
+            "n": 898,
+            "hits": 647,
+            "hr": 0.7205,
+            "wilson_low": 0.6902
+          },
+          "gated": {
+            "n": 213,
+            "hits": 175,
+            "hr": 0.8216,
+            "wilson_low": 0.7646
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1011,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "gate": "L5=5 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2856,
+            "hits": 2013,
+            "hr": 0.7048,
+            "wilson_low": 0.6878
+          },
+          "populated_ungated": {
+            "n": 1801,
+            "hits": 1289,
+            "hr": 0.7157,
+            "wilson_low": 0.6944
+          },
+          "gated": {
+            "n": 355,
+            "hits": 310,
+            "hr": 0.8732,
+            "wilson_low": 0.8346
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1954,
+            "hits": 1364,
+            "hr": 0.6981,
+            "wilson_low": 0.6773
+          },
+          "populated_ungated": {
+            "n": 903,
+            "hits": 642,
+            "hr": 0.711,
+            "wilson_low": 0.6806
+          },
+          "gated": {
+            "n": 184,
+            "hits": 165,
+            "hr": 0.8967,
+            "wilson_low": 0.8444
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 902,
+            "hits": 649,
+            "hr": 0.7195,
+            "wilson_low": 0.6893
+          },
+          "populated_ungated": {
+            "n": 898,
+            "hits": 647,
+            "hr": 0.7205,
+            "wilson_low": 0.6902
+          },
+          "gated": {
+            "n": 171,
+            "hits": 145,
+            "hr": 0.848,
+            "wilson_low": 0.7865
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1275,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "gate": "season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1432,
+            "hits": 1101,
+            "hr": 0.7689,
+            "wilson_low": 0.7463
+          },
+          "populated_ungated": {
+            "n": 842,
+            "hits": 637,
+            "hr": 0.7565,
+            "wilson_low": 0.7264
+          },
+          "gated": {
+            "n": 375,
+            "hits": 309,
+            "hr": 0.824,
+            "wilson_low": 0.7822
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 947,
+            "hits": 730,
+            "hr": 0.7709,
+            "wilson_low": 0.743
+          },
+          "populated_ungated": {
+            "n": 358,
+            "hits": 267,
+            "hr": 0.7458,
+            "wilson_low": 0.6983
+          },
+          "gated": {
+            "n": 163,
+            "hits": 132,
+            "hr": 0.8098,
+            "wilson_low": 0.7427
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 485,
+            "hits": 371,
+            "hr": 0.7649,
+            "wilson_low": 0.7252
+          },
+          "populated_ungated": {
+            "n": 484,
+            "hits": 370,
+            "hr": 0.7645,
+            "wilson_low": 0.7247
+          },
+          "gated": {
+            "n": 212,
+            "hits": 177,
+            "hr": 0.8349,
+            "wilson_low": 0.7791
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0704,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "gate": "season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1432,
+            "hits": 1101,
+            "hr": 0.7689,
+            "wilson_low": 0.7463
+          },
+          "populated_ungated": {
+            "n": 842,
+            "hits": 637,
+            "hr": 0.7565,
+            "wilson_low": 0.7264
+          },
+          "gated": {
+            "n": 25,
+            "hits": 23,
+            "hr": 0.92,
+            "wilson_low": 0.7503
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 947,
+            "hits": 730,
+            "hr": 0.7709,
+            "wilson_low": 0.743
+          },
+          "populated_ungated": {
+            "n": 358,
+            "hits": 267,
+            "hr": 0.7458,
+            "wilson_low": 0.6983
+          },
+          "gated": {
+            "n": 10,
+            "hits": 10,
+            "hr": 1.0,
+            "wilson_low": 0.7225
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 485,
+            "hits": 371,
+            "hr": 0.7649,
+            "wilson_low": 0.7252
+          },
+          "populated_ungated": {
+            "n": 484,
+            "hits": 370,
+            "hr": 0.7645,
+            "wilson_low": 0.7247
+          },
+          "gated": {
+            "n": 15,
+            "hits": 13,
+            "hr": 0.8667,
+            "wilson_low": 0.6212
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1022,
+        "verdict": "WEAK_OR_NULL"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "gate": "L10>=8 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1432,
+            "hits": 1101,
+            "hr": 0.7689,
+            "wilson_low": 0.7463
+          },
+          "populated_ungated": {
+            "n": 842,
+            "hits": 637,
+            "hr": 0.7565,
+            "wilson_low": 0.7264
+          },
+          "gated": {
+            "n": 269,
+            "hits": 224,
+            "hr": 0.8327,
+            "wilson_low": 0.7835
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 947,
+            "hits": 730,
+            "hr": 0.7709,
+            "wilson_low": 0.743
+          },
+          "populated_ungated": {
+            "n": 358,
+            "hits": 267,
+            "hr": 0.7458,
+            "wilson_low": 0.6983
+          },
+          "gated": {
+            "n": 103,
+            "hits": 83,
+            "hr": 0.8058,
+            "wilson_low": 0.719
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 485,
+            "hits": 371,
+            "hr": 0.7649,
+            "wilson_low": 0.7252
+          },
+          "populated_ungated": {
+            "n": 484,
+            "hits": 370,
+            "hr": 0.7645,
+            "wilson_low": 0.7247
+          },
+          "gated": {
+            "n": 166,
+            "hits": 141,
+            "hr": 0.8494,
+            "wilson_low": 0.7871
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0849,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "gate": "L10>=8 + season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1432,
+            "hits": 1101,
+            "hr": 0.7689,
+            "wilson_low": 0.7463
+          },
+          "populated_ungated": {
+            "n": 842,
+            "hits": 637,
+            "hr": 0.7565,
+            "wilson_low": 0.7264
+          },
+          "gated": {
+            "n": 17,
+            "hits": 15,
+            "hr": 0.8824,
+            "wilson_low": 0.6566
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 947,
+            "hits": 730,
+            "hr": 0.7709,
+            "wilson_low": 0.743
+          },
+          "populated_ungated": {
+            "n": 358,
+            "hits": 267,
+            "hr": 0.7458,
+            "wilson_low": 0.6983
+          },
+          "gated": {
+            "n": 5,
+            "hits": 5,
+            "hr": 1.0,
+            "wilson_low": 0.5655
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 485,
+            "hits": 371,
+            "hr": 0.7649,
+            "wilson_low": 0.7252
+          },
+          "populated_ungated": {
+            "n": 484,
+            "hits": 370,
+            "hr": 0.7645,
+            "wilson_low": 0.7247
+          },
+          "gated": {
+            "n": 12,
+            "hits": 10,
+            "hr": 0.8333,
+            "wilson_low": 0.552
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0688,
+        "verdict": "WEAK_OR_NULL"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "gate": "L5=5 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1432,
+            "hits": 1101,
+            "hr": 0.7689,
+            "wilson_low": 0.7463
+          },
+          "populated_ungated": {
+            "n": 842,
+            "hits": 637,
+            "hr": 0.7565,
+            "wilson_low": 0.7264
+          },
+          "gated": {
+            "n": 170,
+            "hits": 148,
+            "hr": 0.8706,
+            "wilson_low": 0.8118
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 947,
+            "hits": 730,
+            "hr": 0.7709,
+            "wilson_low": 0.743
+          },
+          "populated_ungated": {
+            "n": 358,
+            "hits": 267,
+            "hr": 0.7458,
+            "wilson_low": 0.6983
+          },
+          "gated": {
+            "n": 67,
+            "hits": 54,
+            "hr": 0.806,
+            "wilson_low": 0.6958
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 485,
+            "hits": 371,
+            "hr": 0.7649,
+            "wilson_low": 0.7252
+          },
+          "populated_ungated": {
+            "n": 484,
+            "hits": 370,
+            "hr": 0.7645,
+            "wilson_low": 0.7247
+          },
+          "gated": {
+            "n": 103,
+            "hits": 94,
+            "hr": 0.9126,
+            "wilson_low": 0.8422
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1481,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2396,
+            "hits": 1726,
+            "hr": 0.7204,
+            "wilson_low": 0.7021
+          },
+          "populated_ungated": {
+            "n": 1469,
+            "hits": 1059,
+            "hr": 0.7209,
+            "wilson_low": 0.6974
+          },
+          "gated": {
+            "n": 887,
+            "hits": 687,
+            "hr": 0.7745,
+            "wilson_low": 0.7459
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1659,
+            "hits": 1182,
+            "hr": 0.7125,
+            "wilson_low": 0.6902
+          },
+          "populated_ungated": {
+            "n": 736,
+            "hits": 516,
+            "hr": 0.7011,
+            "wilson_low": 0.667
+          },
+          "gated": {
+            "n": 452,
+            "hits": 340,
+            "hr": 0.7522,
+            "wilson_low": 0.7104
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 737,
+            "hits": 544,
+            "hr": 0.7381,
+            "wilson_low": 0.7052
+          },
+          "populated_ungated": {
+            "n": 733,
+            "hits": 543,
+            "hr": 0.7408,
+            "wilson_low": 0.7079
+          },
+          "gated": {
+            "n": 435,
+            "hits": 347,
+            "hr": 0.7977,
+            "wilson_low": 0.7574
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0569,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2396,
+            "hits": 1726,
+            "hr": 0.7204,
+            "wilson_low": 0.7021
+          },
+          "populated_ungated": {
+            "n": 1469,
+            "hits": 1059,
+            "hr": 0.7209,
+            "wilson_low": 0.6974
+          },
+          "gated": {
+            "n": 290,
+            "hits": 245,
+            "hr": 0.8448,
+            "wilson_low": 0.7987
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1659,
+            "hits": 1182,
+            "hr": 0.7125,
+            "wilson_low": 0.6902
+          },
+          "populated_ungated": {
+            "n": 736,
+            "hits": 516,
+            "hr": 0.7011,
+            "wilson_low": 0.667
+          },
+          "gated": {
+            "n": 154,
+            "hits": 127,
+            "hr": 0.8247,
+            "wilson_low": 0.7569
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 737,
+            "hits": 544,
+            "hr": 0.7381,
+            "wilson_low": 0.7052
+          },
+          "populated_ungated": {
+            "n": 733,
+            "hits": 543,
+            "hr": 0.7408,
+            "wilson_low": 0.7079
+          },
+          "gated": {
+            "n": 136,
+            "hits": 118,
+            "hr": 0.8676,
+            "wilson_low": 0.8005
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1268,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L10>=8 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2396,
+            "hits": 1726,
+            "hr": 0.7204,
+            "wilson_low": 0.7021
+          },
+          "populated_ungated": {
+            "n": 1469,
+            "hits": 1059,
+            "hr": 0.7209,
+            "wilson_low": 0.6974
+          },
+          "gated": {
+            "n": 495,
+            "hits": 406,
+            "hr": 0.8202,
+            "wilson_low": 0.7839
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1659,
+            "hits": 1182,
+            "hr": 0.7125,
+            "wilson_low": 0.6902
+          },
+          "populated_ungated": {
+            "n": 736,
+            "hits": 516,
+            "hr": 0.7011,
+            "wilson_low": 0.667
+          },
+          "gated": {
+            "n": 244,
+            "hits": 194,
+            "hr": 0.7951,
+            "wilson_low": 0.74
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 737,
+            "hits": 544,
+            "hr": 0.7381,
+            "wilson_low": 0.7052
+          },
+          "populated_ungated": {
+            "n": 733,
+            "hits": 543,
+            "hr": 0.7408,
+            "wilson_low": 0.7079
+          },
+          "gated": {
+            "n": 251,
+            "hits": 212,
+            "hr": 0.8446,
+            "wilson_low": 0.7946
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1038,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L10>=8 + season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2396,
+            "hits": 1726,
+            "hr": 0.7204,
+            "wilson_low": 0.7021
+          },
+          "populated_ungated": {
+            "n": 1469,
+            "hits": 1059,
+            "hr": 0.7209,
+            "wilson_low": 0.6974
+          },
+          "gated": {
+            "n": 229,
+            "hits": 194,
+            "hr": 0.8472,
+            "wilson_low": 0.7949
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1659,
+            "hits": 1182,
+            "hr": 0.7125,
+            "wilson_low": 0.6902
+          },
+          "populated_ungated": {
+            "n": 736,
+            "hits": 516,
+            "hr": 0.7011,
+            "wilson_low": 0.667
+          },
+          "gated": {
+            "n": 110,
+            "hits": 91,
+            "hr": 0.8273,
+            "wilson_low": 0.7459
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 737,
+            "hits": 544,
+            "hr": 0.7381,
+            "wilson_low": 0.7052
+          },
+          "populated_ungated": {
+            "n": 733,
+            "hits": 543,
+            "hr": 0.7408,
+            "wilson_low": 0.7079
+          },
+          "gated": {
+            "n": 119,
+            "hits": 103,
+            "hr": 0.8655,
+            "wilson_low": 0.7927
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1247,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L5=5 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-01",
+        "val_dates": "2026-09-02..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 2396,
+            "hits": 1726,
+            "hr": 0.7204,
+            "wilson_low": 0.7021
+          },
+          "populated_ungated": {
+            "n": 1469,
+            "hits": 1059,
+            "hr": 0.7209,
+            "wilson_low": 0.6974
+          },
+          "gated": {
+            "n": 286,
+            "hits": 252,
+            "hr": 0.8811,
+            "wilson_low": 0.8385
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1659,
+            "hits": 1182,
+            "hr": 0.7125,
+            "wilson_low": 0.6902
+          },
+          "populated_ungated": {
+            "n": 736,
+            "hits": 516,
+            "hr": 0.7011,
+            "wilson_low": 0.667
+          },
+          "gated": {
+            "n": 144,
+            "hits": 123,
+            "hr": 0.8542,
+            "wilson_low": 0.7873
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 737,
+            "hits": 544,
+            "hr": 0.7381,
+            "wilson_low": 0.7052
+          },
+          "populated_ungated": {
+            "n": 733,
+            "hits": 543,
+            "hr": 0.7408,
+            "wilson_low": 0.7079
+          },
+          "gated": {
+            "n": 142,
+            "hits": 129,
+            "hr": 0.9085,
+            "wilson_low": 0.8497
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1677,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "gate": "season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1687,
+            "hits": 1233,
+            "hr": 0.7309,
+            "wilson_low": 0.7092
+          },
+          "populated_ungated": {
+            "n": 1063,
+            "hits": 790,
+            "hr": 0.7432,
+            "wilson_low": 0.7161
+          },
+          "gated": {
+            "n": 532,
+            "hits": 432,
+            "hr": 0.812,
+            "wilson_low": 0.7766
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1134,
+            "hits": 820,
+            "hr": 0.7231,
+            "wilson_low": 0.6963
+          },
+          "populated_ungated": {
+            "n": 512,
+            "hits": 378,
+            "hr": 0.7383,
+            "wilson_low": 0.6985
+          },
+          "gated": {
+            "n": 251,
+            "hits": 202,
+            "hr": 0.8048,
+            "wilson_low": 0.7513
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 553,
+            "hits": 413,
+            "hr": 0.7468,
+            "wilson_low": 0.709
+          },
+          "populated_ungated": {
+            "n": 551,
+            "hits": 412,
+            "hr": 0.7477,
+            "wilson_low": 0.7098
+          },
+          "gated": {
+            "n": 281,
+            "hits": 230,
+            "hr": 0.8185,
+            "wilson_low": 0.7692
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0708,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "gate": "season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1687,
+            "hits": 1233,
+            "hr": 0.7309,
+            "wilson_low": 0.7092
+          },
+          "populated_ungated": {
+            "n": 1063,
+            "hits": 790,
+            "hr": 0.7432,
+            "wilson_low": 0.7161
+          },
+          "gated": {
+            "n": 354,
+            "hits": 307,
+            "hr": 0.8672,
+            "wilson_low": 0.8279
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1134,
+            "hits": 820,
+            "hr": 0.7231,
+            "wilson_low": 0.6963
+          },
+          "populated_ungated": {
+            "n": 512,
+            "hits": 378,
+            "hr": 0.7383,
+            "wilson_low": 0.6985
+          },
+          "gated": {
+            "n": 165,
+            "hits": 139,
+            "hr": 0.8424,
+            "wilson_low": 0.7791
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 553,
+            "hits": 413,
+            "hr": 0.7468,
+            "wilson_low": 0.709
+          },
+          "populated_ungated": {
+            "n": 551,
+            "hits": 412,
+            "hr": 0.7477,
+            "wilson_low": 0.7098
+          },
+          "gated": {
+            "n": 189,
+            "hits": 168,
+            "hr": 0.8889,
+            "wilson_low": 0.8361
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1412,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "gate": "L10>=8 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1687,
+            "hits": 1233,
+            "hr": 0.7309,
+            "wilson_low": 0.7092
+          },
+          "populated_ungated": {
+            "n": 1063,
+            "hits": 790,
+            "hr": 0.7432,
+            "wilson_low": 0.7161
+          },
+          "gated": {
+            "n": 362,
+            "hits": 303,
+            "hr": 0.837,
+            "wilson_low": 0.7955
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1134,
+            "hits": 820,
+            "hr": 0.7231,
+            "wilson_low": 0.6963
+          },
+          "populated_ungated": {
+            "n": 512,
+            "hits": 378,
+            "hr": 0.7383,
+            "wilson_low": 0.6985
+          },
+          "gated": {
+            "n": 158,
+            "hits": 130,
+            "hr": 0.8228,
+            "wilson_low": 0.7558
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 553,
+            "hits": 413,
+            "hr": 0.7468,
+            "wilson_low": 0.709
+          },
+          "populated_ungated": {
+            "n": 551,
+            "hits": 412,
+            "hr": 0.7477,
+            "wilson_low": 0.7098
+          },
+          "gated": {
+            "n": 204,
+            "hits": 173,
+            "hr": 0.848,
+            "wilson_low": 0.7924
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1003,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "gate": "L10>=8 + season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1687,
+            "hits": 1233,
+            "hr": 0.7309,
+            "wilson_low": 0.7092
+          },
+          "populated_ungated": {
+            "n": 1063,
+            "hits": 790,
+            "hr": 0.7432,
+            "wilson_low": 0.7161
+          },
+          "gated": {
+            "n": 286,
+            "hits": 252,
+            "hr": 0.8811,
+            "wilson_low": 0.8385
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1134,
+            "hits": 820,
+            "hr": 0.7231,
+            "wilson_low": 0.6963
+          },
+          "populated_ungated": {
+            "n": 512,
+            "hits": 378,
+            "hr": 0.7383,
+            "wilson_low": 0.6985
+          },
+          "gated": {
+            "n": 123,
+            "hits": 104,
+            "hr": 0.8455,
+            "wilson_low": 0.7713
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 553,
+            "hits": 413,
+            "hr": 0.7468,
+            "wilson_low": 0.709
+          },
+          "populated_ungated": {
+            "n": 551,
+            "hits": 412,
+            "hr": 0.7477,
+            "wilson_low": 0.7098
+          },
+          "gated": {
+            "n": 163,
+            "hits": 148,
+            "hr": 0.908,
+            "wilson_low": 0.8537
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1603,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "gate": "L5=5 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-23..2026-09-16",
+        "train_dates": "2026-07-23..2026-09-02",
+        "val_dates": "2026-09-03..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 1687,
+            "hits": 1233,
+            "hr": 0.7309,
+            "wilson_low": 0.7092
+          },
+          "populated_ungated": {
+            "n": 1063,
+            "hits": 790,
+            "hr": 0.7432,
+            "wilson_low": 0.7161
+          },
+          "gated": {
+            "n": 168,
+            "hits": 149,
+            "hr": 0.8869,
+            "wilson_low": 0.8301
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 1134,
+            "hits": 820,
+            "hr": 0.7231,
+            "wilson_low": 0.6963
+          },
+          "populated_ungated": {
+            "n": 512,
+            "hits": 378,
+            "hr": 0.7383,
+            "wilson_low": 0.6985
+          },
+          "gated": {
+            "n": 86,
+            "hits": 71,
+            "hr": 0.8256,
+            "wilson_low": 0.732
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 553,
+            "hits": 413,
+            "hr": 0.7468,
+            "wilson_low": 0.709
+          },
+          "populated_ungated": {
+            "n": 551,
+            "hits": 412,
+            "hr": 0.7477,
+            "wilson_low": 0.7098
+          },
+          "gated": {
+            "n": 82,
+            "hits": 78,
+            "hr": 0.9512,
+            "wilson_low": 0.8812
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.2035,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "gate": "season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-24..2026-09-16",
+        "train_dates": "2026-07-24..2026-09-03",
+        "val_dates": "2026-09-04..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 821,
+            "hits": 593,
+            "hr": 0.7223,
+            "wilson_low": 0.6907
+          },
+          "populated_ungated": {
+            "n": 532,
+            "hits": 370,
+            "hr": 0.6955,
+            "wilson_low": 0.6551
+          },
+          "gated": {
+            "n": 315,
+            "hits": 230,
+            "hr": 0.7302,
+            "wilson_low": 0.6786
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 568,
+            "hits": 427,
+            "hr": 0.7518,
+            "wilson_low": 0.7146
+          },
+          "populated_ungated": {
+            "n": 279,
+            "hits": 204,
+            "hr": 0.7312,
+            "wilson_low": 0.6763
+          },
+          "gated": {
+            "n": 180,
+            "hits": 135,
+            "hr": 0.75,
+            "wilson_low": 0.682
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "populated_ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "gated": {
+            "n": 135,
+            "hits": 95,
+            "hr": 0.7037,
+            "wilson_low": 0.6219
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0476,
+        "verdict": "LIFT_BUT_BELOW_TICKET_BAR"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "gate": "season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-24..2026-09-16",
+        "train_dates": "2026-07-24..2026-09-03",
+        "val_dates": "2026-09-04..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 821,
+            "hits": 593,
+            "hr": 0.7223,
+            "wilson_low": 0.6907
+          },
+          "populated_ungated": {
+            "n": 532,
+            "hits": 370,
+            "hr": 0.6955,
+            "wilson_low": 0.6551
+          },
+          "gated": {
+            "n": 280,
+            "hits": 201,
+            "hr": 0.7179,
+            "wilson_low": 0.6625
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 568,
+            "hits": 427,
+            "hr": 0.7518,
+            "wilson_low": 0.7146
+          },
+          "populated_ungated": {
+            "n": 279,
+            "hits": 204,
+            "hr": 0.7312,
+            "wilson_low": 0.6763
+          },
+          "gated": {
+            "n": 161,
+            "hits": 118,
+            "hr": 0.7329,
+            "wilson_low": 0.6597
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "populated_ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "gated": {
+            "n": 119,
+            "hits": 83,
+            "hr": 0.6975,
+            "wilson_low": 0.6098
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.0414,
+        "verdict": "LIFT_BUT_BELOW_TICKET_BAR"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "gate": "L10>=8 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-24..2026-09-16",
+        "train_dates": "2026-07-24..2026-09-03",
+        "val_dates": "2026-09-04..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 821,
+            "hits": 593,
+            "hr": 0.7223,
+            "wilson_low": 0.6907
+          },
+          "populated_ungated": {
+            "n": 532,
+            "hits": 370,
+            "hr": 0.6955,
+            "wilson_low": 0.6551
+          },
+          "gated": {
+            "n": 159,
+            "hits": 128,
+            "hr": 0.805,
+            "wilson_low": 0.7366
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 568,
+            "hits": 427,
+            "hr": 0.7518,
+            "wilson_low": 0.7146
+          },
+          "populated_ungated": {
+            "n": 279,
+            "hits": 204,
+            "hr": 0.7312,
+            "wilson_low": 0.6763
+          },
+          "gated": {
+            "n": 91,
+            "hits": 72,
+            "hr": 0.7912,
+            "wilson_low": 0.6968
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "populated_ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "gated": {
+            "n": 68,
+            "hits": 56,
+            "hr": 0.8235,
+            "wilson_low": 0.7164
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1674,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "gate": "L10>=8 + season_cush>=2",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-24..2026-09-16",
+        "train_dates": "2026-07-24..2026-09-03",
+        "val_dates": "2026-09-04..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 821,
+            "hits": 593,
+            "hr": 0.7223,
+            "wilson_low": 0.6907
+          },
+          "populated_ungated": {
+            "n": 532,
+            "hits": 370,
+            "hr": 0.6955,
+            "wilson_low": 0.6551
+          },
+          "gated": {
+            "n": 154,
+            "hits": 123,
+            "hr": 0.7987,
+            "wilson_low": 0.7285
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 568,
+            "hits": 427,
+            "hr": 0.7518,
+            "wilson_low": 0.7146
+          },
+          "populated_ungated": {
+            "n": 279,
+            "hits": 204,
+            "hr": 0.7312,
+            "wilson_low": 0.6763
+          },
+          "gated": {
+            "n": 90,
+            "hits": 71,
+            "hr": 0.7889,
+            "wilson_low": 0.6937
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "populated_ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "gated": {
+            "n": 64,
+            "hits": 52,
+            "hr": 0.8125,
+            "wilson_low": 0.7003
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.1564,
+        "verdict": "SIGNAL_HOLDS_POST_ONSET"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "gate": "L5=5 + season_cush>=1",
+        "onset": "2026-07-23",
+        "post_dates": "2026-07-24..2026-09-16",
+        "train_dates": "2026-07-24..2026-09-03",
+        "val_dates": "2026-09-04..2026-09-16",
+        "post_all": {
+          "ungated": {
+            "n": 821,
+            "hits": 593,
+            "hr": 0.7223,
+            "wilson_low": 0.6907
+          },
+          "populated_ungated": {
+            "n": 532,
+            "hits": 370,
+            "hr": 0.6955,
+            "wilson_low": 0.6551
+          },
+          "gated": {
+            "n": 64,
+            "hits": 51,
+            "hr": 0.7969,
+            "wilson_low": 0.6829
+          }
+        },
+        "train_post": {
+          "ungated": {
+            "n": 568,
+            "hits": 427,
+            "hr": 0.7518,
+            "wilson_low": 0.7146
+          },
+          "populated_ungated": {
+            "n": 279,
+            "hits": 204,
+            "hr": 0.7312,
+            "wilson_low": 0.6763
+          },
+          "gated": {
+            "n": 42,
+            "hits": 32,
+            "hr": 0.7619,
+            "wilson_low": 0.6147
+          }
+        },
+        "val_post": {
+          "ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "populated_ungated": {
+            "n": 253,
+            "hits": 166,
+            "hr": 0.6561,
+            "wilson_low": 0.5957
+          },
+          "gated": {
+            "n": 22,
+            "hits": 19,
+            "hr": 0.8636,
+            "wilson_low": 0.6666
+          }
+        },
+        "val_lift_vs_populated_ungated": 0.2075,
+        "verdict": "WEAK_OR_NULL"
+      }
+    ],
+    "verdict_counts": {
+      "SIGNAL_HOLDS_POST_ONSET": 25,
+      "WEAK_OR_NULL": 3,
+      "LIFT_BUT_BELOW_TICKET_BAR": 2
+    }
+  },
+  "recommendation": {
+    "cover": "Do not wire. Hits Allowed null under post-onset control; Pitcher Ks+cover often untestable.",
+    "season_cushion": "Wire only cells with SIGNAL_HOLDS_POST_ONSET; treat NULL_DATE_ARTIFACT / UNTESTABLE as do-not-wire."
+  },
+  "mature_sep_2026": {
+    "note": "Sep 2026 monthly cover_dir and season_cushion_dir rates are ~100%. Gate vs ungated here cannot be driven by feature availability.",
+    "mature_start": "2026-09-01",
+    "results": [
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "window": "sep_2026_mature",
+        "gate": "cover>=1",
+        "ungated": {
+          "n": 935,
+          "hits": 694,
+          "hr": 0.7422,
+          "wilson_low": 0.7133
+        },
+        "gated": {
+          "n": 117,
+          "hits": 107,
+          "hr": 0.9145,
+          "wilson_low": 0.8498
+        },
+        "lift": 0.1723,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + cover>=1",
+        "ungated": {
+          "n": 935,
+          "hits": 694,
+          "hr": 0.7422,
+          "wilson_low": 0.7133
+        },
+        "gated": {
+          "n": 92,
+          "hits": 84,
+          "hr": 0.913,
+          "wilson_low": 0.8377
+        },
+        "lift": 0.1708,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=1",
+        "ungated": {
+          "n": 935,
+          "hits": 694,
+          "hr": 0.7422,
+          "wilson_low": 0.7133
+        },
+        "gated": {
+          "n": 521,
+          "hits": 426,
+          "hr": 0.8177,
+          "wilson_low": 0.7822
+        },
+        "lift": 0.0755,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=2",
+        "ungated": {
+          "n": 935,
+          "hits": 694,
+          "hr": 0.7422,
+          "wilson_low": 0.7133
+        },
+        "gated": {
+          "n": 222,
+          "hits": 195,
+          "hr": 0.8784,
+          "wilson_low": 0.8288
+        },
+        "lift": 0.1362,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=1",
+        "ungated": {
+          "n": 935,
+          "hits": 694,
+          "hr": 0.7422,
+          "wilson_low": 0.7133
+        },
+        "gated": {
+          "n": 324,
+          "hits": 278,
+          "hr": 0.858,
+          "wilson_low": 0.8158
+        },
+        "lift": 0.1158,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=2",
+        "ungated": {
+          "n": 935,
+          "hits": 694,
+          "hr": 0.7422,
+          "wilson_low": 0.7133
+        },
+        "gated": {
+          "n": 192,
+          "hits": 172,
+          "hr": 0.8958,
+          "wilson_low": 0.8446
+        },
+        "lift": 0.1536,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "window": "sep_2026_mature",
+        "gate": "L5=5 + season_cush>=1",
+        "ungated": {
+          "n": 935,
+          "hits": 694,
+          "hr": 0.7422,
+          "wilson_low": 0.7133
+        },
+        "gated": {
+          "n": 154,
+          "hits": 136,
+          "hr": 0.8831,
+          "wilson_low": 0.8228
+        },
+        "lift": 0.1409,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "window": "sep_2026_mature",
+        "gate": "cover>=1",
+        "ungated": {
+          "n": 967,
+          "hits": 696,
+          "hr": 0.7198,
+          "wilson_low": 0.6906
+        },
+        "gated": {
+          "n": 134,
+          "hits": 114,
+          "hr": 0.8507,
+          "wilson_low": 0.7807
+        },
+        "lift": 0.1309,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + cover>=1",
+        "ungated": {
+          "n": 967,
+          "hits": 696,
+          "hr": 0.7198,
+          "wilson_low": 0.6906
+        },
+        "gated": {
+          "n": 104,
+          "hits": 92,
+          "hr": 0.8846,
+          "wilson_low": 0.8091
+        },
+        "lift": 0.1648,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=1",
+        "ungated": {
+          "n": 967,
+          "hits": 696,
+          "hr": 0.7198,
+          "wilson_low": 0.6906
+        },
+        "gated": {
+          "n": 588,
+          "hits": 456,
+          "hr": 0.7755,
+          "wilson_low": 0.7401
+        },
+        "lift": 0.0557,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=2",
+        "ungated": {
+          "n": 967,
+          "hits": 696,
+          "hr": 0.7198,
+          "wilson_low": 0.6906
+        },
+        "gated": {
+          "n": 281,
+          "hits": 230,
+          "hr": 0.8185,
+          "wilson_low": 0.7692
+        },
+        "lift": 0.0987,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=1",
+        "ungated": {
+          "n": 967,
+          "hits": 696,
+          "hr": 0.7198,
+          "wilson_low": 0.6906
+        },
+        "gated": {
+          "n": 370,
+          "hits": 293,
+          "hr": 0.7919,
+          "wilson_low": 0.7476
+        },
+        "lift": 0.0721,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=2",
+        "ungated": {
+          "n": 967,
+          "hits": 696,
+          "hr": 0.7198,
+          "wilson_low": 0.6906
+        },
+        "gated": {
+          "n": 235,
+          "hits": 194,
+          "hr": 0.8255,
+          "wilson_low": 0.7719
+        },
+        "lift": 0.1057,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "window": "sep_2026_mature",
+        "gate": "L5=5 + season_cush>=1",
+        "ungated": {
+          "n": 967,
+          "hits": 696,
+          "hr": 0.7198,
+          "wilson_low": 0.6906
+        },
+        "gated": {
+          "n": 187,
+          "hits": 159,
+          "hr": 0.8503,
+          "wilson_low": 0.7921
+        },
+        "lift": 0.1305,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "window": "sep_2026_mature",
+        "gate": "cover>=1",
+        "ungated": {
+          "n": 790,
+          "hits": 580,
+          "hr": 0.7342,
+          "wilson_low": 0.7023
+        },
+        "gated": {
+          "n": 457,
+          "hits": 373,
+          "hr": 0.8162,
+          "wilson_low": 0.7781
+        },
+        "lift": 0.082,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + cover>=1",
+        "ungated": {
+          "n": 790,
+          "hits": 580,
+          "hr": 0.7342,
+          "wilson_low": 0.7023
+        },
+        "gated": {
+          "n": 265,
+          "hits": 226,
+          "hr": 0.8528,
+          "wilson_low": 0.8051
+        },
+        "lift": 0.1186,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=1",
+        "ungated": {
+          "n": 790,
+          "hits": 580,
+          "hr": 0.7342,
+          "wilson_low": 0.7023
+        },
+        "gated": {
+          "n": 469,
+          "hits": 371,
+          "hr": 0.791,
+          "wilson_low": 0.752
+        },
+        "lift": 0.0568,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=2",
+        "ungated": {
+          "n": 790,
+          "hits": 580,
+          "hr": 0.7342,
+          "wilson_low": 0.7023
+        },
+        "gated": {
+          "n": 150,
+          "hits": 128,
+          "hr": 0.8533,
+          "wilson_low": 0.7879
+        },
+        "lift": 0.1191,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=1",
+        "ungated": {
+          "n": 790,
+          "hits": 580,
+          "hr": 0.7342,
+          "wilson_low": 0.7023
+        },
+        "gated": {
+          "n": 271,
+          "hits": 226,
+          "hr": 0.8339,
+          "wilson_low": 0.785
+        },
+        "lift": 0.0997,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=2",
+        "ungated": {
+          "n": 790,
+          "hits": 580,
+          "hr": 0.7342,
+          "wilson_low": 0.7023
+        },
+        "gated": {
+          "n": 130,
+          "hits": 112,
+          "hr": 0.8615,
+          "wilson_low": 0.7917
+        },
+        "lift": 0.1273,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "window": "sep_2026_mature",
+        "gate": "L5=5 + season_cush>=1",
+        "ungated": {
+          "n": 790,
+          "hits": 580,
+          "hr": 0.7342,
+          "wilson_low": 0.7023
+        },
+        "gated": {
+          "n": 150,
+          "hits": 132,
+          "hr": 0.88,
+          "wilson_low": 0.8183
+        },
+        "lift": 0.1458,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "window": "sep_2026_mature",
+        "gate": "cover>=1",
+        "ungated": {
+          "n": 522,
+          "hits": 400,
+          "hr": 0.7663,
+          "wilson_low": 0.7281
+        },
+        "gated": {
+          "n": 287,
+          "hits": 241,
+          "hr": 0.8397,
+          "wilson_low": 0.7928
+        },
+        "lift": 0.0734,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + cover>=1",
+        "ungated": {
+          "n": 522,
+          "hits": 400,
+          "hr": 0.7663,
+          "wilson_low": 0.7281
+        },
+        "gated": {
+          "n": 194,
+          "hits": 171,
+          "hr": 0.8814,
+          "wilson_low": 0.8284
+        },
+        "lift": 0.1151,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=1",
+        "ungated": {
+          "n": 522,
+          "hits": 400,
+          "hr": 0.7663,
+          "wilson_low": 0.7281
+        },
+        "gated": {
+          "n": 222,
+          "hits": 185,
+          "hr": 0.8333,
+          "wilson_low": 0.7787
+        },
+        "lift": 0.067,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=2",
+        "ungated": {
+          "n": 522,
+          "hits": 400,
+          "hr": 0.7663,
+          "wilson_low": 0.7281
+        },
+        "gated": {
+          "n": 15,
+          "hits": 13,
+          "hr": 0.8667,
+          "wilson_low": 0.6212
+        },
+        "lift": 0.1004,
+        "verdict": "THIN"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=1",
+        "ungated": {
+          "n": 522,
+          "hits": 400,
+          "hr": 0.7663,
+          "wilson_low": 0.7281
+        },
+        "gated": {
+          "n": 173,
+          "hits": 148,
+          "hr": 0.8555,
+          "wilson_low": 0.7954
+        },
+        "lift": 0.0892,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=2",
+        "ungated": {
+          "n": 522,
+          "hits": 400,
+          "hr": 0.7663,
+          "wilson_low": 0.7281
+        },
+        "gated": {
+          "n": 12,
+          "hits": 10,
+          "hr": 0.8333,
+          "wilson_low": 0.552
+        },
+        "lift": 0.067,
+        "verdict": "THIN"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "window": "sep_2026_mature",
+        "gate": "L5=5 + season_cush>=1",
+        "ungated": {
+          "n": 522,
+          "hits": 400,
+          "hr": 0.7663,
+          "wilson_low": 0.7281
+        },
+        "gated": {
+          "n": 109,
+          "hits": 100,
+          "hr": 0.9174,
+          "wilson_low": 0.8505
+        },
+        "lift": 0.1511,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "window": "sep_2026_mature",
+        "gate": "cover>=1",
+        "ungated": {
+          "n": 643,
+          "hits": 468,
+          "hr": 0.7278,
+          "wilson_low": 0.6922
+        },
+        "gated": {
+          "n": 6,
+          "hits": 6,
+          "hr": 1.0,
+          "wilson_low": 0.6097
+        },
+        "lift": 0.2722,
+        "verdict": "THIN"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + cover>=1",
+        "ungated": {
+          "n": 643,
+          "hits": 468,
+          "hr": 0.7278,
+          "wilson_low": 0.6922
+        },
+        "gated": {
+          "n": 6,
+          "hits": 6,
+          "hr": 1.0,
+          "wilson_low": 0.6097
+        },
+        "lift": 0.2722,
+        "verdict": "THIN"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=1",
+        "ungated": {
+          "n": 643,
+          "hits": 468,
+          "hr": 0.7278,
+          "wilson_low": 0.6922
+        },
+        "gated": {
+          "n": 331,
+          "hits": 265,
+          "hr": 0.8006,
+          "wilson_low": 0.7542
+        },
+        "lift": 0.0728,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=2",
+        "ungated": {
+          "n": 643,
+          "hits": 468,
+          "hr": 0.7278,
+          "wilson_low": 0.6922
+        },
+        "gated": {
+          "n": 222,
+          "hits": 194,
+          "hr": 0.8739,
+          "wilson_low": 0.8238
+        },
+        "lift": 0.1461,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=1",
+        "ungated": {
+          "n": 643,
+          "hits": 468,
+          "hr": 0.7278,
+          "wilson_low": 0.6922
+        },
+        "gated": {
+          "n": 234,
+          "hits": 195,
+          "hr": 0.8333,
+          "wilson_low": 0.7803
+        },
+        "lift": 0.1055,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=2",
+        "ungated": {
+          "n": 643,
+          "hits": 468,
+          "hr": 0.7278,
+          "wilson_low": 0.6922
+        },
+        "gated": {
+          "n": 188,
+          "hits": 167,
+          "hr": 0.8883,
+          "wilson_low": 0.8353
+        },
+        "lift": 0.1605,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "window": "sep_2026_mature",
+        "gate": "L5=5 + season_cush>=1",
+        "ungated": {
+          "n": 643,
+          "hits": 468,
+          "hr": 0.7278,
+          "wilson_low": 0.6922
+        },
+        "gated": {
+          "n": 93,
+          "hits": 87,
+          "hr": 0.9355,
+          "wilson_low": 0.8663
+        },
+        "lift": 0.2077,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "window": "sep_2026_mature",
+        "gate": "cover>=1",
+        "ungated": {
+          "n": 306,
+          "hits": 204,
+          "hr": 0.6667,
+          "wilson_low": 0.6121
+        },
+        "gated": {
+          "n": 0,
+          "hits": 0,
+          "hr": null,
+          "wilson_low": null
+        },
+        "lift": null,
+        "verdict": "THIN"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + cover>=1",
+        "ungated": {
+          "n": 306,
+          "hits": 204,
+          "hr": 0.6667,
+          "wilson_low": 0.6121
+        },
+        "gated": {
+          "n": 0,
+          "hits": 0,
+          "hr": null,
+          "wilson_low": null
+        },
+        "lift": null,
+        "verdict": "THIN"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=1",
+        "ungated": {
+          "n": 306,
+          "hits": 204,
+          "hr": 0.6667,
+          "wilson_low": 0.6121
+        },
+        "gated": {
+          "n": 169,
+          "hits": 119,
+          "hr": 0.7041,
+          "wilson_low": 0.6314
+        },
+        "lift": 0.0374,
+        "verdict": "LIFT_SOFT"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "window": "sep_2026_mature",
+        "gate": "season_cush>=2",
+        "ungated": {
+          "n": 306,
+          "hits": 204,
+          "hr": 0.6667,
+          "wilson_low": 0.6121
+        },
+        "gated": {
+          "n": 150,
+          "hits": 104,
+          "hr": 0.6933,
+          "wilson_low": 0.6155
+        },
+        "lift": 0.0266,
+        "verdict": "WEAK"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=1",
+        "ungated": {
+          "n": 306,
+          "hits": 204,
+          "hr": 0.6667,
+          "wilson_low": 0.6121
+        },
+        "gated": {
+          "n": 86,
+          "hits": 69,
+          "hr": 0.8023,
+          "wilson_low": 0.706
+        },
+        "lift": 0.1356,
+        "verdict": "HOLDS"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "window": "sep_2026_mature",
+        "gate": "L10>=8 + season_cush>=2",
+        "ungated": {
+          "n": 306,
+          "hits": 204,
+          "hr": 0.6667,
+          "wilson_low": 0.6121
+        },
+        "gated": {
+          "n": 82,
+          "hits": 65,
+          "hr": 0.7927,
+          "wilson_low": 0.6928
+        },
+        "lift": 0.126,
+        "verdict": "LIFT_SOFT"
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitches_thrown",
+        "window": "sep_2026_mature",
+        "gate": "L5=5 + season_cush>=1",
+        "ungated": {
+          "n": 306,
+          "hits": 204,
+          "hr": 0.6667,
+          "wilson_low": 0.6121
+        },
+        "gated": {
+          "n": 28,
+          "hits": 22,
+          "hr": 0.7857,
+          "wilson_low": 0.6046
+        },
+        "lift": 0.119,
+        "verdict": "LIFT_SOFT"
+      }
+    ]
+  },
+  "agreement_with_user_cover_availability_test": {
+    "user_test": "cover populated vs ungated in post-onset \u2014 identical HR (availability null)",
+    "replication_sep_chron_val": "cover populated == ungated at 74.0% when coverage saturated",
+    "threshold_distinct": "cover>=1 threshold is a different test from availability; Sep mature numbers below decide whether the threshold itself holds"
+  }
+}

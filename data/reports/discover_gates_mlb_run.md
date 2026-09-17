@@ -73,7 +73,36 @@ full Mar–Sep pool until that.
 ERA L5=5 + L10≥8 + line_0.5 ≈ **89.9% n=247** (OOS 92%/194) — reinforces keeping
 ERA on the L5∩L10 path rather than L10-only. Unaffected by the cover confound.
 
-## Intentionally not wired from this run
+## Cover vs season_cushion — mature-window follow-up (2026-09-17 evening)
 
-No keep-gate code changes — export + ranked table only. Cover/season_cush stays
-candidate until post-onset apples-to-apples (or historical cover backfill).
+Independent pass correctly showed **cover availability** is a date confound:
+populated vs ungated in a coverage-saturated slice are identical (Sep chron-val
+both 74.0%). That kills the “having cover data” story behind the pooled 88%.
+
+`season_cushion_dir` has the **same rollout as cover_dir** (Mar–Jun 0%, onset
+~2026-07-23, Sep ~100%). Same test required before any cushion gate.
+
+| Test | What it answers |
+|---|---|
+| Populated vs ungated post-onset | Availability confound (cover + cush: null when saturated) |
+| Threshold (`cover≥1`, `season_cush≥1`) in **Sep-only** (100% coverage) | Does the cut add lift when availability cannot differ? |
+
+Sep-only (availability fixed) still shows threshold lift — e.g. Hits Allowed
+`cover≥1` 91.5% n=117 vs ungated 74.2%; `season_cush≥2` 87.8% n=222. That is
+**not** the same as the availability-null result, and Sep is only ~2 weeks with
+no chron holdout inside the mature era.
+
+**Still do not wire cover or season_cush.** Reasons to hold:
+
+1. Pooled ranked-table lift was era-confounded (settled).
+2. Pitcher Ks `L10≥8+cover` remains thin/unstable in early post-onset train.
+3. Sep-mature threshold lifts are in-sample on a short mature calendar — need
+   more cover/cush-mature weeks (or a chron split entirely inside mature dates)
+   before either threshold is answerable the way L10-primary was.
+
+L10-primary pitcher keeps (no cover/cush) stay the validated MLB result from
+this pass.
+
+Artifacts: `discover_gates_mlb_cover_oos_check.json`,
+`discover_gates_mlb_season_cush_onset_check.json`,
+`scripts/audit_mlb_feature_onset_gates.py`.
