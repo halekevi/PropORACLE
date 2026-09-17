@@ -14,22 +14,32 @@ Ticket priority (UNDER-heavy until Goblins exist):
   6 rushing_yards (OVER or UNDER)
   everything else gated out
 
-Active monitors (not allowlisted):
-  - sacks_taken UNDER — 3/3 Week 1, ungated; need unique n>=15 + Elite/Above D
-    vs high-sack pass rush before diversifying off defensive sacks.
-  - fantasy_score skill UNDER — ~78% unique n=27; revisit at n>=40 after Week 3.
-    Kicker fantasy is a kick-pts duplicate — stay off.
+**NFL Goblin OVER stays unissued** (``NFL_GOBLIN_TICKETS_ENABLED = False``) until
+a tagged Goblin unique-game ledger answers:
+  1. OVER vs UNDER split by chip — does cross-sport Goblin-70 OVER skew hold,
+     or does Week 1 UNDER bias persist on Goblin lines?
+  2. Extreme-low lines (sacks/TDs/FG 0.5) — need a minimum line floor separate
+     from cover?
+  3. Do L10>=8 + D filter, or is the low Goblin line doing all the work?
+  4. Cover floor — Standard uses absolute floors (pass +15, rush-rec +8);
+     Goblin may need cover as **% of line** (absolute +8 on a 12.5 Goblin is
+     meaningful; on a 4.5 reception Goblin it is not).
 
-Goblin OVER (when odds_type is scraped): same universal ticket gate as other
-sports — L5=5 + L10>=8 + directional D + cover floor. Week 1 had no Goblin
-rows because step1 dropped odds_type; Week 2+ fetches keep pick_type. Goblin
-ledger rates must use unique-game dedup (ladder boards concentrate on high-usage
-players).
+Active monitors (not allowlisted):
+  - sacks_taken UNDER — need unique n>=15 + Elite/Above D vs high-sack pass rush.
+  - fantasy_score skill UNDER — revisit at unique n>=40; kicker fantasy = kick-pts
+    duplicate, stay off.
+
+Goblin rates must use unique-game dedup (ladder boards concentrate on high-usage
+players). Extreme-low Goblin OVER + L5=5 alone is not an edge.
 """
 
 from __future__ import annotations
 
 from typing import Any
+
+# Flip only after Week 2+ Goblin unique-game ledger answers the questions above.
+NFL_GOBLIN_TICKETS_ENABLED = False
 
 # Ticket allowlist + pack order (lower = earlier).
 NFL_TICKET_PRIORITY: tuple[tuple[str, str], ...] = (
@@ -86,6 +96,19 @@ NFL_STD_OVER_FADE = frozenset(
     }
 )
 
+# Extreme-low Goblin OVER chips — evaluate min-line floor in Week 2 ledger.
+NFL_GOBLIN_EXTREME_LOW_PROPS = frozenset(
+    {
+        "sacks",
+        "player_touchdowns",
+        "fg_made",
+        "passing_tds",
+        "rushing_tds",
+        "receiving_tds",
+    }
+)
+NFL_GOBLIN_EXTREME_LOW_LINE = 0.5
+
 _PRIORITY_INDEX = {
     (prop, side): i for i, (prop, side) in enumerate(NFL_TICKET_PRIORITY)
 }
@@ -130,12 +153,40 @@ def nfl_standard_ticket_eligible(r: dict[str, Any]) -> bool:
     prop = _prop(r)
     if prop in NFL_STD_PASS_YARDS_OFF:
         return False
+    ok = False
     if side == "UNDER":
-        return prop in NFL_STD_UNDER_KEEP
-    if side == "OVER":
-        return prop in NFL_STD_OVER_KEEP
-    return False
+        ok = prop in NFL_STD_UNDER_KEEP
+    elif side == "OVER":
+        ok = prop in NFL_STD_OVER_KEEP
+    if not ok:
+        return False
+    # Soft-first: participation_gate_check is a no-op until HARD flag flips.
+    from utils.nfl_route_participation_gate import participation_gate_check
+
+    allowed, _reason = participation_gate_check(r)
+    return bool(allowed)
 
 
 def nfl_standard_over_is_fade(r: dict[str, Any]) -> bool:
     return _side(r) == "OVER" and _prop(r) in NFL_STD_OVER_FADE
+
+
+def nfl_goblin_ticket_eligible(r: dict[str, Any]) -> bool:
+    """NFL Goblin OVER ticket gate — off until Week 2+ ledger unlocks it."""
+    if not NFL_GOBLIN_TICKETS_ENABLED:
+        return False
+    if _pick(r) != "Goblin" or _side(r) != "OVER":
+        return False
+    return True
+
+
+def nfl_goblin_is_extreme_low_line(r: dict[str, Any]) -> bool:
+    """True for 0.5-class Goblin OVER counting chips (sacks/TDs/FG)."""
+    if _pick(r) != "Goblin" or _side(r) != "OVER":
+        return False
+    if _prop(r) not in NFL_GOBLIN_EXTREME_LOW_PROPS:
+        return False
+    try:
+        return float(r.get("line") or r.get("Line") or 0) <= NFL_GOBLIN_EXTREME_LOW_LINE + 1e-9
+    except (TypeError, ValueError):
+        return False

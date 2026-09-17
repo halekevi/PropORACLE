@@ -1,0 +1,24 @@
+{
+  "season": 2026,
+  "through_week": 1,
+  "built_at": "2026-09-17T20:09:03.070089+00:00",
+  "players": 384,
+  "game_rows": 384,
+  "path": "Sports\\NFL\\data\\nfl_route_participation.csv",
+  "games_path": "Sports\\NFL\\data\\nfl_route_participation_games.csv",
+  "pbp_participation": {
+    "available": false,
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/pbp_participation/pbp_participation_2026.csv",
+    "error": "HTTP Error 404: Not Found"
+  },
+  "sources": [
+    "snap_counts_2026.csv.gz",
+    "stats_player_week_2026.csv.gz"
+  ],
+  "notes": [
+    "WOPR from nflverse stats_player_week (1.5*tgt_share + 0.7*air_share).",
+    "route_pct currently snap_pct proxy for WR/TE/RB until GSIS participation explode.",
+    "Soft context first \u2014 hard gates behind PARTICIPATION_HARD_GATES_ENABLED.",
+    "Name join uses utils.nfl_player_names.norm_nfl_player_name (DJ\u2194D.J., drop III)."
+  ]
+}

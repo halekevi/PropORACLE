@@ -284,10 +284,12 @@ def main() -> None:
     from utils.nfl_team_unit_ranks import attach_nfl_unit_ranks
     from utils.nfl_scoring_vehicles import attach_nfl_identity_and_share
     from utils.nfl_unit_line_ranks import attach_nfl_unit_line_ranks
+    from utils.nfl_route_participation_gate import attach_participation
 
     df = attach_nfl_unit_ranks(df, _REPO_ROOT)
     df = attach_nfl_identity_and_share(df, _REPO_ROOT)
     df = attach_nfl_unit_line_ranks(df, _REPO_ROOT)
+    df = attach_participation(df, _REPO_ROOT)
 
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)

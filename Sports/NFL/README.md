@@ -99,6 +99,7 @@ First-time step1 fetch needs a Playwright browser profile (see `scripts/capture_
 | division | `data/nfl_team_unit_ranks.csv` — league + division O/D ranks; `nfl_divisional_tightness.json` |
 | unit lines | `data/nfl_ol_ranks.csv` / `nfl_dl_ranks.csv` / `nfl_secondary_ranks.csv` / `nfl_box_ranks.csv` — free nflverse PFR+NGS+FTN; see `nfl_unit_rank_prop_map.md` + `nfl_free_context_build_order.md` |
 | pace | `data/nfl_pace_ranks.csv` — plays/game, sec/play, no-huddle from pbp (`build_nfl_pace_ranks.py`) |
+| route / WOPR | `data/nfl_route_participation.csv` — snap% + WOPR + target share (`build_nfl_route_participation.py`; see `nfl_route_participation_readme.md`) |
 | vehicles | `data/nfl_scoring_vehicles.csv` — PASS/RUN/FG/BALANCED identity; `nfl_game_script_leans.json` |
 | share | `data/nfl_player_prop_share.csv` + `nfl_team_share.json` — player % of team per prop |
 | 6 | `data/outputs/step6_hit_rates.csv` |

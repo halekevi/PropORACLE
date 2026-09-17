@@ -79,3 +79,13 @@ First validation to run when Goblin grades land:
 - Cross-tab **sacks_taken UNDER** hit rate by offense ``pass_block`` / ``own_ol_tier``.
 - If Elite OL UNDER > Weak OL UNDER at usable n, that is the unlock to promote OL pressure into a gate condition.
 
+## Player route / target participation (`nfl_route_participation`)
+
+| Column | Higher when | Prop impact |
+|--------|-------------|-------------|
+| `snap_pct_L3` / `route_pct_L3` | more offensive snaps | Floor for all skill props; `<40%` hard-suppress when enabled |
+| `wopr_L3` | more targets + air yards | Receiving yards OVER needs volume; `<0.50` blocks OVER when hard-on |
+| `target_share_L3` | share of team targets | Receptions OVER floor (`<0.20` blocks when hard-on) |
+
+Soft attach via `utils.nfl_route_participation_gate.attach_participation`. See `nfl_route_participation_readme.md`.
+

@@ -30,6 +30,8 @@ Refresh:
 ```powershell
 py -3.14 Sports/NFL/scripts/build_nfl_unit_line_ranks.py --season 2026
 py -3.14 Sports/NFL/scripts/build_nfl_pace_ranks.py --season 2026
+py -3.14 Sports/NFL/scripts/build_nfl_route_participation.py --season 2026 --week 2
+py -3.14 Sports/NFL/scripts/build_nfl_snap_pct_cache.py --season 2026
 ```
 
 ## Still free, next to wire
@@ -41,7 +43,7 @@ py -3.14 Sports/NFL/scripts/build_nfl_pace_ranks.py --season 2026
 | 3 | Pace (plays/game, sec/play) | **done** `build_nfl_pace_ranks.py` | — |
 | 4 | True Zone/Man charting (if free source appears) | — | M |
 | 5 | Referee crew tendencies | nflverse `officials` | S |
-| 6 | Route participation | nflverse pbp_participation | M |
+| 6 | Route participation | **done** `build_nfl_route_participation.py` (snap+WOPR; route%=snap proxy until participation) | — |
 | 7 | Home/away prop splits | graded ledger | M |
 
 ## Paid — only if free stack plateaus
