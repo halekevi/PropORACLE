@@ -1589,7 +1589,7 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-nba1q-val">Checking...</div>
       </div>
 
-      <div class="scard loading inactive-sport" id="sc-cbb" onclick="toggleSlatePanel('cbb')">
+      <div class="scard loading inactive-sport" id="sc-cbb" data-offseason-resume="2026-11-01" onclick="toggleSlatePanel('cbb')">
         <div class="scard-head">
           <div class="scard-icon cbb">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#7fc7d9" stroke-width="1.5">
@@ -1604,7 +1604,7 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-cbb-val">Checking...</div>
       </div>
 
-      <div class="scard loading inactive-sport" id="sc-cfb" onclick="toggleSlatePanel('cfb')">
+      <div class="scard loading inactive-sport" id="sc-cfb" data-offseason-resume="2026-08-27" onclick="toggleSlatePanel('cfb')">
         <div class="scard-head">
           <div class="scard-icon cfb">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#e8c88a" stroke-width="1.5">
@@ -1664,7 +1664,7 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-mlb-val">Checking...</div>
       </div>
 
-      <div class="scard loading inactive-sport" id="sc-nfl" onclick="toggleSlatePanel('nfl')">
+      <div class="scard loading inactive-sport" id="sc-nfl" data-offseason-resume="2026-09-09" onclick="toggleSlatePanel('nfl')">
         <div class="scard-head">
           <div class="scard-icon nfl">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#00c896" stroke-width="1.5">
@@ -3847,12 +3847,16 @@ function ymdInEastern(d) {
   }).format(d);
 }
 
-/** Match run_pipeline.ps1 / combined_slate_tickets season resume dates (ET). */
+/** Match combined_slate_tickets._MAIN_SEASON_RESUME_DEFAULTS / pipeline season windows (ET). */
 const SPORT_SEASON_RESUME = {
   nba: "2026-10-01",
   nba1h: "2026-10-01",
   nba1q: "2026-10-01",
   nhl: "2026-09-01",
+  nfl: "2026-09-09",
+  cfb: "2026-08-27",
+  cbb: "2026-11-01",
+  wcbb: "2026-11-01",
 };
 function isSportDateOffSeason(sportId) {
   const resume = SPORT_SEASON_RESUME[String(sportId || "").toLowerCase()];
@@ -3864,8 +3868,8 @@ function isNbaFamilyOffSeason() {
   return isSportDateOffSeason("nba");
 }
 function getOffseasonSportIds() {
-  const ids = ["cbb", "cfb", "nfl", "wcbb"];
-  for (const sport of ["nba", "nba1h", "nba1q", "nhl"]) {
+  const ids = [];
+  for (const sport of ["cbb", "cfb", "nfl", "wcbb", "nba", "nba1h", "nba1q", "nhl"]) {
     if (isSportDateOffSeason(sport)) ids.push(sport);
   }
   return ids;
@@ -3873,7 +3877,7 @@ function getOffseasonSportIds() {
 function getDefaultBootSlateSport() {
   if (!isSportDateOffSeason("nba")) return "nba";
   const off = new Set(getOffseasonSportIds());
-  for (const sport of ["wnba", "soccer", "mlb", "tennis"]) {
+  for (const sport of ["wnba", "soccer", "mlb", "nfl", "cfb", "tennis", "nhl"]) {
     if (!off.has(sport)) return sport;
   }
   return "wnba";
@@ -3931,16 +3935,17 @@ function syncHeroLiveChips() {
 
 function applyOffseasonSportCards() {
   const today = ymdInEastern(new Date());
-  ["cbb", "cfb", "nfl", "wcbb"].forEach((id) => {
-    document.getElementById(`sc-${id}`)?.classList.add("inactive-sport");
+  document.querySelectorAll("#slate-panel-header-row .scard[id^='sc-']").forEach((el) => {
+    const id = String(el.id || "").replace(/^sc-/, "");
+    if (!id || id === "combined") return;
+    const resume =
+      String(el.getAttribute("data-offseason-resume") || "").trim() ||
+      SPORT_SEASON_RESUME[id] ||
+      "";
+    if (!resume || !today) return;
+    if (today < resume) el.classList.add("inactive-sport");
+    else el.classList.remove("inactive-sport");
   });
-  if (today) {
-    document.querySelectorAll("#slate-panel-header-row [data-offseason-resume]").forEach((el) => {
-      const resume = String(el.getAttribute("data-offseason-resume") || "").trim();
-      if (resume && today < resume) el.classList.add("inactive-sport");
-      else el.classList.remove("inactive-sport");
-    });
-  }
   syncHeroLiveChips();
 }
 
