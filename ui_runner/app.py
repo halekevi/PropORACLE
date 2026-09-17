@@ -617,6 +617,19 @@ def _merge_grade_report_date_lists(*lists: Sequence[str]) -> list[str]:
     return sorted(non_future if non_future else out)
 
 
+def _filter_grade_report_dates_to_html(dates: Sequence[str], prefix: str) -> list[str]:
+    """Drop advertised dates that have no matching templates/ (or archive/) HTML."""
+    keep: list[str] = []
+    for d in dates:
+        fname = f"{prefix}{d}.html"
+        if (TEMPLATES_DIR / fname).is_file():
+            keep.append(d)
+            continue
+        if ARCHIVE_DIR.is_dir() and (ARCHIVE_DIR / fname).is_file():
+            keep.append(d)
+    return keep
+
+
 def _grades_report_dates_payload() -> dict[str, list[str]]:
     """Disk scan + optional grades_report_dates.json (GitHub on Railway)."""
     slate_disk = _grade_report_dates_on_disk("slate")
@@ -644,20 +657,25 @@ def _grades_report_dates_payload() -> dict[str, list[str]]:
                     ticket_high_leg_extra = [str(x) for x in j["ticket_eval_high_leg_dates"]]
         except Exception:
             pass
-    ticket_long_parlay_dates = _merge_grade_report_date_lists(
-        ticket_long_parlay_disk, ticket_long_parlay_extra
+    ticket_high_leg_dates = _filter_grade_report_dates_to_html(
+        _merge_grade_report_date_lists(ticket_high_leg_disk, ticket_high_leg_extra),
+        "ticket_eval_high_leg_",
+    )
+    ticket_long_parlay_dates = _filter_grade_report_dates_to_html(
+        _merge_grade_report_date_lists(ticket_long_parlay_disk, ticket_long_parlay_extra),
+        "ticket_eval_long_parlay_",
     )
     if not ticket_long_parlay_dates:
-        ticket_long_parlay_dates = _merge_grade_report_date_lists(
-            ticket_high_leg_disk, ticket_high_leg_extra
-        )
+        ticket_long_parlay_dates = ticket_high_leg_dates
     return {
-        "slate_eval_dates": _merge_grade_report_date_lists(slate_disk, slate_extra),
-        "ticket_eval_dates": _merge_grade_report_date_lists(ticket_disk, ticket_extra),
-        "ticket_eval_long_parlay_dates": ticket_long_parlay_dates,
-        "ticket_eval_high_leg_dates": _merge_grade_report_date_lists(
-            ticket_high_leg_disk, ticket_high_leg_extra
+        "slate_eval_dates": _filter_grade_report_dates_to_html(
+            _merge_grade_report_date_lists(slate_disk, slate_extra), "slate_eval_"
         ),
+        "ticket_eval_dates": _filter_grade_report_dates_to_html(
+            _merge_grade_report_date_lists(ticket_disk, ticket_extra), "ticket_eval_"
+        ),
+        "ticket_eval_long_parlay_dates": ticket_long_parlay_dates,
+        "ticket_eval_high_leg_dates": ticket_high_leg_dates,
     }
 
 

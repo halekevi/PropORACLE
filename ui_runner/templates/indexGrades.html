@@ -743,6 +743,38 @@ html.page-grades-root body.page-grades[data-grades-active-tab="tickets"] .iframe
   z-index:-1!important;
   background:transparent!important;
 }
+/* Missing ticket_eval_*.html: hide about:blank (paints white) and show the empty card. */
+html.page-grades-root body.page-grades .iframe-shell-stage[data-grades-tab="tickets"].ticket-eval-missing{
+  min-height:420px!important;
+  height:420px!important;
+  position:relative!important;
+  background:transparent!important;
+}
+html.page-grades-root body.page-grades .iframe-shell-stage[data-grades-tab="tickets"].ticket-eval-missing > #ticket-frame,
+.iframe-shell-stage[data-grades-tab="tickets"].ticket-eval-missing #ticket-frame,
+.iframe-shell-stage[data-grades-tab="tickets"].ticket-eval-missing #ticket-frame-inline{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  pointer-events:none!important;
+  opacity:0!important;
+}
+.iframe-shell-stage[data-grades-tab="tickets"].ticket-eval-missing #ticket-empty-state,
+.iframe-shell-stage[data-grades-tab="tickets"].ticket-eval-missing .empty-state#ticket-empty-state{
+  display:flex!important;
+  visibility:visible!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:auto!important;
+  pointer-events:auto!important;
+  opacity:1!important;
+  z-index:8!important;
+  background:rgba(6,8,20,0.72)!important;
+  position:absolute!important;
+  inset:0!important;
+}
 .iframe-shell-stage[data-grades-tab="slate"] #grade-frame,
 .iframe-shell-stage[data-grades-tab="slate"] #grade-frame-inline{
   display:block !important;
@@ -1802,6 +1834,10 @@ select option,
     <div class="empty-icon">🎟</div>
     <div class="empty-title">No ticket evaluation</div>
     <div class="empty-sub">Nothing is available for <strong><span id="ticket-empty-date-label"></span></strong> yet. Use the report date pills or <strong>Jump to date</strong> to pick a day that already has graded tickets.</div>
+    <div class="empty-actions" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+      <button type="button" class="date-go-btn" id="ticket-empty-open-latest" onclick="openLatestAvailableTicketReport()">Open latest report</button>
+    </div>
+    <div class="empty-hint">Looking for ticket_eval_<span id="ticket-empty-date-file"></span>.html</div>
   </div>
   <iframe class="grade-frame" id="grade-frame" src="about:blank" title="Grade Report"></iframe>
   <iframe class="grade-frame" id="ticket-frame" src="about:blank" title="Ticket Evaluation" scrolling="yes" style="display:none;"></iframe>
@@ -4867,7 +4903,14 @@ function switchTab(tab) {
   if (tpl) tpl.classList.toggle('active', tab === 'players');
   const pe = document.getElementById('props-eval-panel');
   setGradesHubFrameDisplay('grade-frame', tab === 'slate');
-  setGradesHubFrameDisplay('ticket-frame', tab === 'tickets');
+  if (tab !== 'tickets') {
+    setGradesHubFrameDisplay('ticket-frame', false);
+    const stageOff = document.querySelector('.iframe-shell-stage');
+    if (stageOff) {
+      stageOff.classList.remove('ticket-eval-missing');
+      stageOff.classList.remove('ticket-eval-loaded');
+    }
+  }
   if (pe) {
     pe.hidden = tab !== 'props';
     if (tab === 'props') {
@@ -4887,7 +4930,7 @@ function switchTab(tab) {
     window.PlayerEvaluator.hide();
   }
   const tEmpty = document.getElementById('ticket-empty-state');
-  if (tEmpty) tEmpty.hidden = true;
+  if (tEmpty && tab !== 'tickets') tEmpty.hidden = true;
 
   try {
     window.resetGradesBarsScrollState();
@@ -4937,7 +4980,6 @@ function switchTab(tab) {
     }, 0);
   } else if (tab === 'tickets') {
     hideGradesHubLoadOverlay();
-    hideGradesTicketTabStageOverlays();
     const es1 = document.getElementById('empty-state');
     if (es1) es1.hidden = true;
     const ds = currentDateStr || gradesEl('date-jump')?.value || yesterdayStr();
@@ -4969,10 +5011,7 @@ function switchTab(tab) {
     }, 0);
   } else {
     const es = document.getElementById('empty-state');
-    if (es) {
-      if (slateReportMissing) clearForcedOverlayHide(es);
-      es.hidden = !slateReportMissing;
-    }
+    if (es) es.hidden = !slateReportMissing;
     try {
       const sf = document.getElementById('grade-frame');
       const slo = document.getElementById('load-overlay');
@@ -5191,19 +5230,63 @@ async function probeTicketEval(dateStr) {
 async function resolveTicketEvalLoadDate(dateStr) {
   if (!dateStr) return { load: null, fallback: null };
   // Exact date only — never borrow an older ticket_eval_*.html (that made Sep 2–5
-  // look identical when they fell back to 2026-08-31).
+  // look identical when they fell back to 2026-08-31). HEAD-ok is not enough:
+  // a 200 stub still paints a white iframe.
   if (await probeTicketEval(dateStr)) {
     return { load: dateStr, fallback: null };
   }
-  try {
-    const res = await fetch(ticketEvalUrl(dateStr), {
-      method: 'HEAD',
-      cache: 'no-cache',
-      signal: gradesFetchSignal(10000),
-    });
-    if (res.ok) return { load: dateStr, fallback: null };
-  } catch (_e) {}
   return { load: null, fallback: null };
+}
+
+function markTicketEvalMissing(dateStr) {
+  const stage = document.querySelector('.iframe-shell-stage');
+  if (stage) {
+    stage.classList.add('ticket-eval-missing');
+    stage.classList.remove('ticket-eval-loaded');
+    stage.style.removeProperty('height');
+    stage.style.removeProperty('min-height');
+  }
+  const tf = document.getElementById('ticket-frame');
+  if (tf) {
+    tf.onload = null;
+    tf.src = 'about:blank';
+    tf.style.setProperty('display', 'none', 'important');
+    tf.style.setProperty('visibility', 'hidden', 'important');
+    tf.style.setProperty('height', '0', 'important');
+    tf.style.setProperty('min-height', '0', 'important');
+  }
+  const tEmpty = document.getElementById('ticket-empty-state');
+  if (tEmpty) {
+    tEmpty.hidden = false;
+    tEmpty.classList.remove('hidden');
+    tEmpty.removeAttribute('aria-hidden');
+    tEmpty.style.removeProperty('display');
+    tEmpty.style.removeProperty('visibility');
+    tEmpty.style.removeProperty('pointer-events');
+    tEmpty.style.removeProperty('height');
+    tEmpty.style.removeProperty('max-height');
+    tEmpty.style.removeProperty('overflow');
+    tEmpty.style.removeProperty('opacity');
+    tEmpty.style.removeProperty('z-index');
+    tEmpty.style.removeProperty('background');
+  }
+  if (dateStr) syncEmptyStateDateHints(dateStr);
+}
+
+function markTicketEvalLoaded() {
+  const stage = document.querySelector('.iframe-shell-stage');
+  if (stage) {
+    stage.classList.remove('ticket-eval-missing');
+    stage.classList.add('ticket-eval-loaded');
+  }
+  const tEmpty = document.getElementById('ticket-empty-state');
+  if (tEmpty) {
+    tEmpty.hidden = true;
+    tEmpty.classList.add('hidden');
+  }
+  if (activeTab === 'tickets') {
+    setGradesHubFrameDisplay('ticket-frame', true);
+  }
 }
 
 async function loadTicketEval(dateStr) {
@@ -5215,19 +5298,17 @@ async function loadTicketEval(dateStr) {
   ticketEvalFallbackNotice = resolved.fallback;
   refreshControlsSummary();
   if (!resolved.load) {
-    tf.style.display = 'none';
-    clearForcedOverlayHide(tEmpty);
-    tEmpty.hidden = false;
-    syncEmptyStateDateHints(dateStr);
-    tf.src = 'about:blank';
+    markTicketEvalMissing(dateStr);
     return;
   }
   const loadDate = resolved.load;
   const url = ticketEvalUrl(loadDate);
   tEmpty.hidden = true;
-  tf.style.display = 'block';
   tf.onload = function(){
     function completeTicketFrameLoad() {
+      try {
+        markTicketEvalLoaded();
+      } catch (_e0load) {}
       try {
         hideGradesTicketTabStageOverlays();
       } catch (_e0a) {}
@@ -5291,20 +5372,15 @@ async function loadTicketEval(dateStr) {
   try {
     const abs = new URL(url, window.location.href).href;
     const cur = String(tf.getAttribute('src') || tf.src || '');
-    // Track-aware: a date-only Main path check matched the already-loaded Main
-    // iframe when switching to long_parlay, so the reload was skipped.
-    const trackFrag =
-      ticketEvalTrack === 'long_parlay'
-        ? '/grades/ticket_eval_long_parlay_' + loadDate + '.html'
-        : '/grades/ticket_eval_' + loadDate + '.html';
     sameDoc =
-      (cur === abs || cur.includes(trackFrag)) &&
+      (cur === abs || cur.includes('/grades/ticket_eval_' + loadDate + '.html')) &&
       ticketIframeDocLooksReady(tf.contentDocument);
   } catch (_e6) {
     sameDoc = false;
   }
   if (sameDoc) {
     try {
+      markTicketEvalLoaded();
       hideGradesTicketTabStageOverlays();
       applyTicketEvalGradesEmbed(tf.contentDocument);
       ensureTicketEvalSportStatsBar(tf.contentDocument);
@@ -5438,9 +5514,11 @@ function syncEmptyStateDateHints(dateStr) {
   const ed = document.querySelector('.grades-page #empty-date');
   const edl = document.querySelector('.grades-page #empty-date-label');
   const ted = document.querySelector('.grades-page #ticket-empty-date-label');
+  const tedf = document.querySelector('.grades-page #ticket-empty-date-file');
   if (ed) ed.textContent = d;
   if (edl) edl.textContent = formatLabel(d) + ', ' + d.slice(0, 4);
   if (ted) ted.textContent = formatLabel(d) + ', ' + d.slice(0, 4);
+  if (tedf) tedf.textContent = d;
 }
 
 /** Probe newest candidate dates until one exists; used by empty-state CTA + init recovery. */
@@ -5483,6 +5561,48 @@ async function openLatestAvailableSlateReport() {
   }
 }
 window.openLatestAvailableSlateReport = openLatestAvailableSlateReport;
+async function openLatestAvailableTicketReport() {
+  const btn = document.getElementById('ticket-empty-open-latest');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Searching…';
+  }
+  try {
+    const cap = currentDateStr || easternYesterdayStr();
+    const hit = await findLatestReachableTicketDate(cap);
+    if (hit) {
+      if (activeTab !== 'tickets') {
+        try { switchTab('tickets'); } catch (_eTab) {}
+      }
+      loadDate(hit);
+      return;
+    }
+    if (btn) btn.textContent = 'No reports online';
+  } catch (_e) {
+    if (btn) btn.textContent = 'Search failed';
+  } finally {
+    setTimeout(function () {
+      if (!btn) return;
+      btn.disabled = false;
+      btn.textContent = 'Open latest report';
+    }, 1600);
+  }
+}
+window.openLatestAvailableTicketReport = openLatestAvailableTicketReport;
+async function findLatestReachableTicketDate(capYmd) {
+  const cap = capYmd && /^\d{4}-\d{2}-\d{2}$/.test(capYmd) ? capYmd : easternYesterdayStr();
+  const pool = ticketEvalDatesForTrack()
+    .filter(function (ds) { return /^\d{4}-\d{2}-\d{2}$/.test(ds) && ds <= cap; })
+    .slice()
+    .sort()
+    .reverse()
+    .slice(0, 24);
+  for (let i = 0; i < pool.length; i++) {
+    // eslint-disable-next-line no-await-in-loop
+    if (await probeTicketEval(pool[i])) return pool[i];
+  }
+  return latestTicketReportDateOnOrBefore(cap);
+}
 /** Newest ticket_eval date known to the server that is <= cap (defaults to ET yesterday). */
 function latestTicketReportDateOnOrBefore(capYmd) {
   const cap = capYmd && /^\d{4}-\d{2}-\d{2}$/.test(capYmd) ? capYmd : easternYesterdayStr();
@@ -5793,20 +5913,11 @@ function scheduleSyncPropsEvalHeight() {
   });
 }
 
-function clearForcedOverlayHide(el) {
-  if (!el) return;
-  el.classList.remove('hidden');
-  el.removeAttribute('aria-hidden');
-  el.style.removeProperty('display');
-  el.style.removeProperty('visibility');
-  el.style.removeProperty('pointer-events');
-  el.style.removeProperty('height');
-  el.style.removeProperty('max-height');
-  el.style.removeProperty('overflow');
-}
-
 function hideGradesTicketTabStageOverlays() {
+  const stage = document.querySelector('.iframe-shell-stage');
+  const skipTicketEmpty = !!(stage && stage.classList.contains('ticket-eval-missing'));
   ['load-overlay', 'empty-state', 'ticket-empty-state'].forEach(function (id) {
+    if (id === 'ticket-empty-state' && skipTicketEmpty) return;
     const el = document.getElementById(id);
     if (!el) return;
     el.hidden = true;
@@ -5824,6 +5935,10 @@ function hideGradesTicketTabStageOverlays() {
 function applyTicketFrameHeightPx(frame, h) {
   if (activeTab !== 'tickets') return;
   if (!frame || frame.id !== 'ticket-frame') return;
+  const src = String(frame.getAttribute('src') || frame.src || '');
+  if (!src || /about:blank/i.test(src)) return;
+  const stageMiss = document.querySelector('.iframe-shell-stage');
+  if (stageMiss && stageMiss.classList.contains('ticket-eval-missing')) return;
   let px = Math.max(320, Math.ceil(Number(h) || 0));
   try {
     const doc = frame.contentDocument;
@@ -6239,10 +6354,7 @@ function loadDate(dateStr){
   frame.onerror = function(){
     if (Number(frame.dataset.slateLoadGen) !== loadGen) return;
     finishGradesSlateLoadUI();
-    if (emptyState) {
-      clearForcedOverlayHide(emptyState);
-      emptyState.hidden = false;
-    }
+    if (emptyState) emptyState.hidden = false;
     syncEmptyStateDateHints(dateStr);
   };
 
@@ -6303,10 +6415,7 @@ function loadDate(dateStr){
       slateReportMissing = true;
       frame.src = 'about:blank';
       finishGradesSlateLoadUI();
-      if (emptyState) {
-        clearForcedOverlayHide(emptyState);
-        emptyState.hidden = false;
-      }
+      if (emptyState) emptyState.hidden = false;
       syncEmptyStateDateHints(dateStr);
     }
   });
