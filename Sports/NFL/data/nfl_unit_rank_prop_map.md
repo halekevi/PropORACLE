@@ -35,13 +35,15 @@ Source tables (built by `Sports/NFL/scripts/build_nfl_unit_line_ranks.py` from f
 | `completion_pct_allowed` | low | Completions / pass yards UNDER |
 | `adot_allowed` / `air_yards_allowed` | context | Deep-ball / longest reception |
 | `slot_rank` / `outside_rank` | (mirrors coverage until splits) | Slot vs X/Z alignment later |
-| `coverage_scheme` | Zone/Man/Mixed | Man → contested / separation; Zone → YAC |
+| `coverage_scheme` | Man-lean / Zone-lean / Mixed | **Proxy only** from FTN contested-rate terciles (free pbp has no Zone/Man label). Man-lean → receptions UNDER lean; Zone-lean → more short catches / YAC. Revisit when true coverage charting is free. |
+| `contested_rate` | high ≈ Man | Supports scheme lean; soft badge |
 
 ## Opp box (`nfl_box_ranks`)
 
 | Column | Better D when | Prop impact |
 |--------|---------------|-------------|
 | `box_rank` / `run_stop_rank` | low | Opp rush UNDER |
+| `avg_box_players` | high | Opp rush UNDER (FTN×pbp) |
 | `blitz_rate` | high | More pressures + checkdowns (rec UNDER on X, OVER on TE/RB dumps — monitor) |
 | `yards_after_contact_allowed` | low | Opp rush UNDER after contact |
 

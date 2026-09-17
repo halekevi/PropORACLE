@@ -103,6 +103,7 @@ def attach_nfl_unit_line_ranks(
             "coverage_rank": "opp_coverage_rank",
             "yards_per_target": "opp_yards_per_target",
             "completion_pct_allowed": "opp_completion_pct_allowed",
+            "contested_rate": "opp_contested_rate",
             "tier": "opp_secondary_tier",
             "coverage_scheme": "opp_coverage_scheme",
         },
@@ -114,6 +115,7 @@ def attach_nfl_unit_line_ranks(
         renames={
             "box_rank": "opp_box_rank",
             "blitz_rate": "opp_blitz_rate",
+            "avg_box_players": "opp_avg_box_players",
             "tier": "opp_box_tier",
             "yards_after_contact_allowed": "opp_yac_allowed",
         },

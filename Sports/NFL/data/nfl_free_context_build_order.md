@@ -35,9 +35,9 @@ py -3.14 Sports/NFL/scripts/build_nfl_unit_line_ranks.py --season 2026
 | Priority | Layer | Source | Effort |
 |----------|-------|--------|--------|
 | 1 | Attach unit ranks onto step3/7 props | join CSVs | S |
-| 2 | FTN box size by defense (pbp possession join) | `ftn_charting` + pbp | M |
-| 3 | Coverage scheme Zone/Man/Mixed | NGS / FTN | M |
-| 4 | Pace (plays/game, sec/play) | nflverse pbp / team stats | S |
+| 2 | FTN×pbp box + contested scheme lean | **done in builder** | — |
+| 3 | Pace (plays/game, sec/play) | nflverse pbp | S |
+| 4 | True Zone/Man charting (if free source appears) | — | M |
 | 5 | Referee crew tendencies | nflverse `officials` | S |
 | 6 | Route participation | nflverse pbp_participation | M |
 | 7 | Home/away prop splits | graded ledger | M |

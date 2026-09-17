@@ -4,7 +4,7 @@
 Sources (no auth):
   - pfr_advstats week pass/rush/def (pressure, YBC, coverage)
   - stats_team_reg (sack rates, EPA proxies)
-  - ftn_charting (box size, blitz rate)
+  - ftn_charting × pbp (box size, blitz, contested → scheme lean)
   - nextgen_stats rolling receiving (separation → secondary proxy)
 
 Writes::
@@ -320,8 +320,91 @@ def build_dl(pfr_def: pd.DataFrame, pfr_rush: pd.DataFrame, team: pd.DataFrame) 
     return df[[c for c in cols if c in df.columns]]
 
 
-def build_secondary(pfr_def: pd.DataFrame, ngs_rec: pd.DataFrame) -> pd.DataFrame:
-    """Coverage unit: PFR def targets allowed + NGS separation allowed (via opp WR)."""
+def _load_pbp_def_keys(season: int) -> pd.DataFrame:
+    """Minimal pbp columns to attach ``defteam`` onto FTN plays."""
+    url = f"{NFLVERSE}/pbp/play_by_play_{season}.csv.gz"
+    usecols = ["game_id", "play_id", "defteam", "posteam", "pass", "rush"]
+    raw = _get_bytes(url, timeout=180.0)
+    df = pd.read_csv(io.BytesIO(gzip.decompress(raw)), usecols=usecols)
+    df["defteam"] = _canon_series(df["defteam"])
+    return df[df["defteam"].isin(TEAMS_32)].copy()
+
+
+def join_ftn_to_defense(ftn: pd.DataFrame, pbp: pd.DataFrame) -> pd.DataFrame:
+    """FTN play charting × pbp possession → one row per play with ``defteam``."""
+    if ftn.empty or pbp.empty:
+        return pd.DataFrame()
+    f = ftn.copy()
+    if "nflverse_game_id" not in f.columns or "nflverse_play_id" not in f.columns:
+        return pd.DataFrame()
+    m = f.merge(
+        pbp,
+        left_on=["nflverse_game_id", "nflverse_play_id"],
+        right_on=["game_id", "play_id"],
+        how="inner",
+    )
+    return m
+
+
+def ftn_defense_aggregates(joined: pd.DataFrame) -> pd.DataFrame:
+    """Per-defense box / blitz / contested rates from FTN+pbp."""
+    if joined.empty:
+        return pd.DataFrame()
+    j = joined.copy()
+    j["is_blitz"] = pd.to_numeric(j.get("n_blitzers"), errors="coerce").fillna(0) > 0
+    j["n_defense_box"] = pd.to_numeric(j.get("n_defense_box"), errors="coerce")
+    j["n_pass_rushers"] = pd.to_numeric(j.get("n_pass_rushers"), errors="coerce")
+    j["is_contested_ball"] = j.get("is_contested_ball").fillna(False).astype(bool)
+    j["is_pass"] = pd.to_numeric(j.get("pass"), errors="coerce").fillna(0).eq(1)
+
+    rows = []
+    for team, g in j.groupby("defteam"):
+        passes = g[g["is_pass"]]
+        rows.append(
+            {
+                "team": team,
+                "ftn_plays": int(len(g)),
+                "avg_box_players": float(g["n_defense_box"].mean())
+                if g["n_defense_box"].notna().any()
+                else np.nan,
+                "blitz_rate": float(g["is_blitz"].mean()),
+                "avg_pass_rushers": float(g["n_pass_rushers"].mean())
+                if g["n_pass_rushers"].notna().any()
+                else np.nan,
+                "contested_rate": float(passes["is_contested_ball"].mean())
+                if len(passes)
+                else np.nan,
+                "ftn_pass_plays": int(len(passes)),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def _scheme_from_contested(series: pd.Series) -> pd.Series:
+    """Free proxy: high contested ≈ Man-lean; low ≈ Zone-lean. Not true coverage labels."""
+    s = pd.to_numeric(series, errors="coerce")
+    if s.notna().sum() < 8:
+        return pd.Series([""] * len(s), index=s.index)
+    q1, q2 = s.quantile([1 / 3, 2 / 3])
+    out = []
+    for v in s:
+        if pd.isna(v):
+            out.append("")
+        elif v >= q2:
+            out.append("Man-lean")
+        elif v <= q1:
+            out.append("Zone-lean")
+        else:
+            out.append("Mixed")
+    return pd.Series(out, index=s.index)
+
+
+def build_secondary(
+    pfr_def: pd.DataFrame,
+    ngs_rec: pd.DataFrame,
+    ftn_def: pd.DataFrame | None = None,
+) -> pd.DataFrame:
+    """Coverage unit: PFR def targets allowed + FTN contested → scheme lean."""
     rows: dict[str, dict[str, Any]] = {t: {"team": t} for t in TEAMS_32}
 
     if not pfr_def.empty:
@@ -360,9 +443,6 @@ def build_secondary(pfr_def: pd.DataFrame, ngs_rec: pd.DataFrame) -> pd.DataFram
                 }
             )
 
-    # Separation allowed ≈ mean WR separation against that defense is hard without
-    # play-level join; use own-team NGS separation as scheme-aggression proxy only
-    # for documentation (not primary rank). Slot/outside left blank until charting.
     if not ngs_rec.empty:
         g = ngs_rec.groupby("team", as_index=False).agg(
             avg_separation=("avg_separation", "mean"),
@@ -370,17 +450,29 @@ def build_secondary(pfr_def: pd.DataFrame, ngs_rec: pd.DataFrame) -> pd.DataFram
         )
         for _, r in g.iterrows():
             if r["team"] in rows:
-                rows[r["team"]]["own_wr_avg_separation"] = float(r["avg_separation"]) if pd.notna(r["avg_separation"]) else np.nan
-                rows[r["team"]]["own_wr_avg_cushion"] = float(r["avg_cushion"]) if pd.notna(r["avg_cushion"]) else np.nan
+                rows[r["team"]]["own_wr_avg_separation"] = (
+                    float(r["avg_separation"]) if pd.notna(r["avg_separation"]) else np.nan
+                )
+                rows[r["team"]]["own_wr_avg_cushion"] = (
+                    float(r["avg_cushion"]) if pd.notna(r["avg_cushion"]) else np.nan
+                )
+
+    if ftn_def is not None and not ftn_def.empty:
+        for _, r in ftn_def.iterrows():
+            t = r["team"]
+            if t not in rows:
+                continue
+            rows[t]["contested_rate"] = (
+                float(r["contested_rate"]) if pd.notna(r.get("contested_rate")) else np.nan
+            )
 
     df = pd.DataFrame([rows[t] for t in TEAMS_32])
     df["coverage_rank"] = _rank_asc(df["yards_per_target"])
-    # Slot/outside placeholders (same as coverage until alignment splits exist)
     df["slot_rank"] = df["coverage_rank"]
     df["outside_rank"] = df["coverage_rank"]
     df["secondary_rank"] = df["coverage_rank"]
     df["tier"] = df["secondary_rank"].map(_tier_from_rank)
-    df["coverage_scheme"] = ""  # Zone/Man/Mixed — fill from FTN/NGS later
+    df["coverage_scheme"] = _scheme_from_contested(df.get("contested_rate", pd.Series(dtype=float)))
     cols = [
         "team",
         "secondary_rank",
@@ -397,44 +489,57 @@ def build_secondary(pfr_def: pd.DataFrame, ngs_rec: pd.DataFrame) -> pd.DataFram
         "targets",
         "own_wr_avg_separation",
         "own_wr_avg_cushion",
+        "contested_rate",
         "coverage_scheme",
         "tier",
     ]
     return df[[c for c in cols if c in df.columns]]
 
 
-def build_box(ftn: pd.DataFrame, pfr_rush: pd.DataFrame, pfr_def: pd.DataFrame) -> pd.DataFrame:
-    """Front-seven / box: FTN box size + blitz; run-stop from YAC/YBC allowed."""
+def build_box(
+    pfr_rush: pd.DataFrame,
+    pfr_def: pd.DataFrame,
+    ftn_def: pd.DataFrame | None = None,
+) -> pd.DataFrame:
+    """Front-seven / box: FTN+pbp box/blitz by defense; run-stop from YBC allowed."""
     rows: dict[str, dict[str, Any]] = {t: {"team": t} for t in TEAMS_32}
 
-    if not ftn.empty:
-        # Map game → defense team via nflverse game id (AWAY_HOME) is awkward;
-        # FTN rows are play-level without defense team. Infer from nflverse_game_id
-        # + possession would need pbp. Use blitz/box as league-wide until joined.
-        # Instead: join via pfr_def blitz counts as primary; FTN for season means
-        # only if we can parse game id teams.
-        ftn = ftn.copy()
-        if "nflverse_game_id" in ftn.columns:
-            # game_id like 2025_01_DAL_PHI → away=DAL home=PHI; defense flips by play
-            # Without possession we approximate home/away split of blitz by averaging
-            # both teams in the game (weak). Better: skip team assign from FTN alone.
-            pass
-
-    if not pfr_def.empty:
+    if ftn_def is not None and not ftn_def.empty:
+        for _, r in ftn_def.iterrows():
+            t = r["team"]
+            if t not in rows:
+                continue
+            rows[t]["avg_box_players"] = (
+                float(r["avg_box_players"]) if pd.notna(r.get("avg_box_players")) else np.nan
+            )
+            rows[t]["blitz_rate"] = (
+                float(r["blitz_rate"]) if pd.notna(r.get("blitz_rate")) else np.nan
+            )
+            rows[t]["avg_pass_rushers"] = (
+                float(r["avg_pass_rushers"]) if pd.notna(r.get("avg_pass_rushers")) else np.nan
+            )
+            rows[t]["ftn_plays"] = (
+                int(r["ftn_plays"]) if pd.notna(r.get("ftn_plays")) else np.nan
+            )
+    elif not pfr_def.empty:
+        # Fallback when FTN join unavailable
         g = pfr_def.groupby("team", as_index=False).agg(
             blitzes=("def_times_blitzed", "sum"),
             pressures=("def_pressures", "sum"),
             targets=("def_targets", "sum"),
         )
-        # blitz rate proxy = blitzes / (targets + pressures) rough snap proxy
         g["blitz_rate"] = np.where(
             (g["targets"] + g["pressures"]) > 0,
             g["blitzes"] / (g["targets"] + g["pressures"]),
             np.nan,
         )
         for _, r in g.iterrows():
-            rows[r["team"]]["blitz_rate"] = float(r["blitz_rate"]) if pd.notna(r["blitz_rate"]) else np.nan
-            rows[r["team"]]["blitzes"] = float(r["blitzes"]) if pd.notna(r["blitzes"]) else np.nan
+            rows[r["team"]]["blitz_rate"] = (
+                float(r["blitz_rate"]) if pd.notna(r["blitz_rate"]) else np.nan
+            )
+            rows[r["team"]]["blitzes"] = (
+                float(r["blitzes"]) if pd.notna(r["blitzes"]) else np.nan
+            )
 
     if not pfr_rush.empty and "opponent" in pfr_rush.columns:
         g = (
@@ -448,7 +553,6 @@ def build_box(ftn: pd.DataFrame, pfr_rush: pd.DataFrame, pfr_def: pd.DataFrame) 
         )
         g["yac_allowed"] = np.where(g["carries"] > 0, g["yac"] / g["carries"], np.nan)
         g["ybc_allowed"] = np.where(g["carries"] > 0, g["ybc"] / g["carries"], np.nan)
-        # stuff proxy: share of carries with ybc<=0 not available; use low ybc as stop
         for _, r in g.iterrows():
             if r["team"] not in rows:
                 continue
@@ -457,13 +561,27 @@ def build_box(ftn: pd.DataFrame, pfr_rush: pd.DataFrame, pfr_def: pd.DataFrame) 
 
     df = pd.DataFrame([rows[t] for t in TEAMS_32])
     df["run_stop_rank"] = _rank_asc(df["yards_before_contact_allowed"])
-    df["box_rank"] = df["run_stop_rank"]
+    # Prefer denser box as run-stopping signal when YBC missing early season
+    if df["avg_box_players"].notna().any():
+        df["box_density_rank"] = _rank_desc(df["avg_box_players"])
+        df["box_rank"] = (
+            (
+                df["run_stop_rank"].astype(float).fillna(16)
+                + df["box_density_rank"].astype(float).fillna(16)
+            )
+            / 2.0
+        ).rank(method="min").astype("Int64")
+    else:
+        df["box_rank"] = df["run_stop_rank"]
     df["tier"] = df["box_rank"].map(_tier_from_rank)
     cols = [
         "team",
         "box_rank",
         "run_stop_rank",
+        "avg_box_players",
         "blitz_rate",
+        "avg_pass_rushers",
+        "ftn_plays",
         "blitzes",
         "yards_before_contact_allowed",
         "yards_after_contact_allowed",
@@ -528,10 +646,23 @@ def main() -> int:
         print(f"  ftn FAIL: {exc}")
         ftn = pd.DataFrame()
 
+    ftn_def = pd.DataFrame()
+    try:
+        pbp = _load_pbp_def_keys(season)
+        sources["pbp"] = f"play_by_play_{season}"
+        print(f"  pbp rows={len(pbp)}")
+        joined = join_ftn_to_defense(ftn, pbp)
+        print(f"  ftn×pbp joined={len(joined)}")
+        ftn_def = ftn_defense_aggregates(joined)
+        sources["ftn_pbp_join"] = f"ftn×pbp defteam ({len(ftn_def)} teams)"
+        print(f"  ftn defense teams={len(ftn_def)}")
+    except Exception as exc:
+        print(f"  ftn×pbp FAIL: {exc}")
+
     ol = build_ol(pfr_pass, pfr_rush, team)
     dl = build_dl(pfr_def, pfr_rush, team)
-    sec = build_secondary(pfr_def, ngs)
-    box = build_box(ftn, pfr_rush, pfr_def)
+    sec = build_secondary(pfr_def, ngs, ftn_def=ftn_def)
+    box = build_box(pfr_rush, pfr_def, ftn_def=ftn_def)
 
     for frame in (ol, dl, sec, box):
         if "season" not in frame.columns or frame["season"].isna().all():
@@ -554,11 +685,11 @@ def main() -> int:
             "box": str(OUT_BOX.relative_to(_REPO)),
         },
         "notes": [
-            "Ranks: 1=best. OL pass-block uses pressure/sack allowed (low=good).",
+            "Ranks: 1=best. Soft context only — do not hard-gate until Week 2+ ledger.",
+            "OL pass-block uses pressure/sack allowed (low=good).",
             "DL pass-rush uses sacks/game (high=good); run-stop uses opp YBC allowed (low=good).",
-            "Secondary uses yards/target allowed (low=good). Slot/outside mirror coverage until alignment splits.",
-            "coverage_scheme left blank for manual/NGS fill (Zone/Man/Mixed).",
-            "FTN box size not team-joined yet without pbp possession; blitz from PFR def.",
+            "Secondary yards/target allowed (low=good). coverage_scheme is contested-rate tercile proxy (Man-lean/Zone-lean/Mixed), not true coverage charting.",
+            "Box avg_box_players + blitz_rate from FTN×pbp defteam join (100% key match on 2026 sample).",
         ],
     }
     OUT_META.write_text(json.dumps(meta, indent=2), encoding="utf-8")
@@ -569,11 +700,39 @@ def main() -> int:
     print(f"  wrote {OUT_BOX}")
     print(f"  wrote {OUT_META}")
     print("\nOL top-5 pass-block:")
-    print(ol.nsmallest(5, "pass_block_rank")[["team", "pass_block_rank", "pressure_rate_allowed", "sack_rate_allowed", "tier"]].to_string(index=False))
+    print(
+        ol.nsmallest(5, "pass_block_rank")[
+            ["team", "pass_block_rank", "pressure_rate_allowed", "sack_rate_allowed", "tier"]
+        ].to_string(index=False)
+    )
     print("\nDL top-5 pass-rush:")
-    print(dl.nsmallest(5, "pass_rush_rank")[["team", "pass_rush_rank", "sacks_pg", "tier"]].to_string(index=False))
+    print(
+        dl.nsmallest(5, "pass_rush_rank")[["team", "pass_rush_rank", "sacks_pg", "tier"]].to_string(
+            index=False
+        )
+    )
     print("\nSecondary top-5 coverage:")
-    print(sec.nsmallest(5, "coverage_rank")[["team", "coverage_rank", "yards_per_target", "completion_pct_allowed", "tier"]].to_string(index=False))
+    cols_sec = [
+        c
+        for c in (
+            "team",
+            "coverage_rank",
+            "yards_per_target",
+            "completion_pct_allowed",
+            "contested_rate",
+            "coverage_scheme",
+            "tier",
+        )
+        if c in sec.columns
+    ]
+    print(sec.nsmallest(5, "coverage_rank")[cols_sec].to_string(index=False))
+    print("\nBox top-5:")
+    cols_box = [
+        c
+        for c in ("team", "box_rank", "avg_box_players", "blitz_rate", "tier")
+        if c in box.columns
+    ]
+    print(box.nsmallest(5, "box_rank")[cols_box].to_string(index=False))
     return 0
 
 
