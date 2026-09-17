@@ -57,12 +57,25 @@ Do **not** replace existing `def_tier` pass/rush axes yet. Attach as badges / so
 
 Existing coarse D stays in `utils/nfl_prop_defense.py` (pass/rush/kick from `defense_rankings.csv`).
 
+## Own pace (`nfl_pace_ranks`)
+
+| Column | Faster when | Prop impact |
+|--------|-------------|-------------|
+| `pace_rank` / `tier` | low rank / Fast | Own **receptions / rush attempts / pass volume OVER**; Slow supports UNDERs |
+| `plays_per_game` | high | Volume props OVER |
+| `sec_per_play` | low | Same — compresses clock, more plays |
+| `no_huddle_rate` | high | Fast-script lean |
+
+Opp pace columns (`opp_pace_*`) describe the **opponent offense** tempo (how many plays they force you to defend / how the game script may run). Soft badge only — do not hard-gate until Week 2+ ledger.
+
+Distinct from step6b ``pace_tier`` (that one is Vegas total HIGH/NORMAL/LOW, not actual snaps).
+
 ## Soft context only (do not hard-gate yet)
 
 Unit ranks attach as badge/context columns. Do **not** promote into Gate70 until a Week 2+ unique-game ledger shows tier splits move hit rates beyond L5/L10/D.
 
 First validation to run when Goblin grades land:
 
-- Cross-tab **sacks_taken UNDER** hit rate by offense `pass_block` / `own_ol_tier`.
+- Cross-tab **sacks_taken UNDER** hit rate by offense ``pass_block`` / ``own_ol_tier``.
 - If Elite OL UNDER > Weak OL UNDER at usable n, that is the unlock to promote OL pressure into a gate condition.
 

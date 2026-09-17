@@ -1,6 +1,9 @@
-"""Load / attach NFL OL·DL·secondary·box unit ranks onto prop frames.
+"""Load / attach NFL OL·DL·secondary·box·pace unit ranks onto prop frames.
 
-Built by ``Sports/NFL/scripts/build_nfl_unit_line_ranks.py``.
+Built by:
+  - ``Sports/NFL/scripts/build_nfl_unit_line_ranks.py``
+  - ``Sports/NFL/scripts/build_nfl_pace_ranks.py``
+
 Does not change ``def_tier`` — soft context columns only.
 """
 
@@ -32,6 +35,7 @@ def load_unit_line_tables(root: Path | None = None) -> dict[str, pd.DataFrame]:
         "dl": _read(base / "nfl_dl_ranks.csv"),
         "secondary": _read(base / "nfl_secondary_ranks.csv"),
         "box": _read(base / "nfl_box_ranks.csv"),
+        "pace": _read(base / "nfl_pace_ranks.csv"),
     }
 
 
@@ -61,7 +65,7 @@ def attach_nfl_unit_line_ranks(
     team_col: str = "team",
     opp_col: str = "opp_team",
 ) -> pd.DataFrame:
-    """Left-join own OL + opp DL/secondary/box. Safe no-op if CSVs missing."""
+    """Left-join own OL/pace + opp DL/secondary/box/pace. Safe no-op if CSVs missing."""
     if df is None or df.empty:
         return df
     tables = load_unit_line_tables(root)
@@ -79,6 +83,19 @@ def attach_nfl_unit_line_ranks(
             "sack_rate_allowed": "own_sack_rate_allowed",
             "pressure_rate_allowed": "own_pressure_rate_allowed",
             "yards_before_contact": "own_yards_before_contact",
+        },
+    )
+    out = _merge_on(
+        out,
+        tables["pace"],
+        left_key=team_col,
+        renames={
+            "pace_rank": "own_pace_rank",
+            "plays_per_game": "own_plays_per_game",
+            "plays_per_drive": "own_plays_per_drive",
+            "sec_per_play": "own_sec_per_play",
+            "no_huddle_rate": "own_no_huddle_rate",
+            "tier": "own_pace_tier",
         },
     )
     out = _merge_on(
@@ -118,6 +135,17 @@ def attach_nfl_unit_line_ranks(
             "avg_box_players": "opp_avg_box_players",
             "tier": "opp_box_tier",
             "yards_after_contact_allowed": "opp_yac_allowed",
+        },
+    )
+    out = _merge_on(
+        out,
+        tables["pace"],
+        left_key=opp_col,
+        renames={
+            "pace_rank": "opp_pace_rank",
+            "plays_per_game": "opp_plays_per_game",
+            "sec_per_play": "opp_sec_per_play",
+            "tier": "opp_pace_tier",
         },
     )
     return out

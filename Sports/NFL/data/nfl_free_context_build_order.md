@@ -21,13 +21,15 @@ Maximize **free** signal before any paid feed (PFF / TruMedia).
 | `nfl_ol_ranks.csv` | `build_nfl_unit_line_ranks.py` | nflverse PFR adv + team stats |
 | `nfl_dl_ranks.csv` | same | PFR def + opp rush YBC |
 | `nfl_secondary_ranks.csv` | same | PFR def coverage + NGS separation |
-| `nfl_box_ranks.csv` | same | PFR blitz + run-stop |
+| `nfl_box_ranks.csv` | same | PFR blitz + FTN×pbp box |
+| `nfl_pace_ranks.csv` | `build_nfl_pace_ranks.py` | nflverse pbp tempo |
 | `nfl_unit_rank_prop_map.md` | docs | prop → column map |
 
 Refresh:
 
 ```powershell
 py -3.14 Sports/NFL/scripts/build_nfl_unit_line_ranks.py --season 2026
+py -3.14 Sports/NFL/scripts/build_nfl_pace_ranks.py --season 2026
 ```
 
 ## Still free, next to wire
@@ -36,7 +38,7 @@ py -3.14 Sports/NFL/scripts/build_nfl_unit_line_ranks.py --season 2026
 |----------|-------|--------|--------|
 | 1 | Attach unit ranks onto step3/7 props | join CSVs | S |
 | 2 | FTN×pbp box + contested scheme lean | **done in builder** | — |
-| 3 | Pace (plays/game, sec/play) | nflverse pbp | S |
+| 3 | Pace (plays/game, sec/play) | **done** `build_nfl_pace_ranks.py` | — |
 | 4 | True Zone/Man charting (if free source appears) | — | M |
 | 5 | Referee crew tendencies | nflverse `officials` | S |
 | 6 | Route participation | nflverse pbp_participation | M |
@@ -50,5 +52,6 @@ PFF grades, TruMedia alignment splits, proprietary pressure models.
 
 1. Keep step6b odds + weather on every slate  
 2. Refresh snap cache Mondays  
-3. Run `build_nfl_unit_line_ranks.py` after each week’s nflverse PFR drop  
-4. Do not gate tickets on unit ranks until Week 2+ unique ledger validates
+3. Run `build_nfl_unit_line_ranks.py` after each week’s nflverse PFR/FTN drop  
+4. Run `build_nfl_pace_ranks.py` after each week’s pbp drop  
+5. Do not gate tickets on unit/pace ranks until Week 2+ unique ledger validates

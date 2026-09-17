@@ -1,0 +1,11 @@
+{
+  "season": 2026,
+  "built_at": "2026-09-17T19:41:07.057306+00:00",
+  "source": "play_by_play_2026.csv.gz",
+  "path": "Sports\\NFL\\data\\nfl_pace_ranks.csv",
+  "notes": [
+    "pace_rank 1=fastest (high plays/game + low sec/play).",
+    "Soft context only \u2014 do not hard-gate until Week 2+ ledger.",
+    "Supports rec/rush UNDER when opp or game script is Slow; OVERs when Fast."
+  ]
+}
