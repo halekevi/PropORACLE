@@ -20459,8 +20459,6 @@ def write_ticket_sheet(wb, tickets, sheet_name, bg_hdr, label=""):
 def write_summary(wb, nba, cbb, combined, all_ticket_groups, date_str, thresholds,
                   nhl=None, soccer=None, tennis=None, wcbb=None, mlb=None, nba1q=None, nba1h=None,
                   wnba1h=None, wnba1q=None, nfl=None):
-    if _XLSX_FAST.get("on"):
-        return
     ws = wb.create_sheet("SUMMARY", 0)
     sw(ws, [28, 14, 10, 10, 10, 10, 10, 12, 18])
 
@@ -23434,7 +23432,7 @@ def main():
 
     write_summary(wb, nba, cbb, combined, all_ticket_groups, args.date, thresholds,
                   nhl=nhl, soccer=soccer, tennis=tennis, wcbb=wcbb, mlb=mlb, nba1q=nba1q, nba1h=nba1h,
-                  wnba1h=wnba1h, wnba1q=wnba1q, nfl=nfl)
+                  nfl=nfl)
 
     # Reorder: put SUMMARY + slate sheets at the front
     desired_first = [

@@ -2167,12 +2167,15 @@ function slateEvalUrl(dateStr) {
 const TICKET_EVAL_URL_TEMPLATE = '/grades/ticket_eval_{date}.html';
 const TICKET_EVAL_LONG_PARLAY_URL_TEMPLATE = '/grades/ticket_eval_long_parlay_{date}.html';
 /** Keep ticket iframe fresh too (prevents stale/blank cache edge-cases after deploy). */
-function ticketEvalUrl(dateStr) {
+function ticketEvalPathForDate(dateStr) {
   const tpl =
     ticketEvalTrack === 'long_parlay'
       ? TICKET_EVAL_LONG_PARLAY_URL_TEMPLATE
       : TICKET_EVAL_URL_TEMPLATE;
-  return tpl.replace('{date}', dateStr) + '?cb=' + Date.now();
+  return tpl.replace('{date}', dateStr);
+}
+function ticketEvalUrl(dateStr) {
+  return ticketEvalPathForDate(dateStr) + '?cb=' + Date.now();
 }
 
 /** True when slate_eval HTML looks loaded (selectors evolve; avoid false “empty” from narrow checks). */
@@ -5370,10 +5373,14 @@ async function loadTicketEval(dateStr) {
   };
   let sameDoc = false;
   try {
-    const abs = new URL(url, window.location.href).href;
-    const cur = String(tf.getAttribute('src') || tf.src || '');
+    const wantPath = ticketEvalPathForDate(loadDate);
+    const curRaw = String(tf.getAttribute('src') || tf.src || '');
+    let curPath = curRaw.split('?')[0];
+    try {
+      curPath = new URL(curRaw, window.location.href).pathname;
+    } catch (_ePath) {}
     sameDoc =
-      (cur === abs || cur.includes('/grades/ticket_eval_' + loadDate + '.html')) &&
+      curPath === wantPath &&
       ticketIframeDocLooksReady(tf.contentDocument);
   } catch (_e6) {
     sameDoc = false;
