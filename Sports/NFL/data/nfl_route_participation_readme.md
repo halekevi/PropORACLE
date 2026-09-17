@@ -55,7 +55,9 @@ step8 surfaces: **Snap L3**, **WOPR L3**, **Tgt Share L3**, **Route % L3**.
 
 `PARTICIPATION_HARD_GATES_ENABLED = False` in `utils/nfl_route_participation_gate.py`.
 
-When flipped after Week 2+ ledger:
+Keep soft until **Week 3+**. After Week 2 grades, cross-tab WOPR tier vs UNDER hit rate on receiving yards / receptions. Flip hard only if Elite|Above secondary + Low WOPR UNDER clears well above the ~82-87% baseline. High WOPR alone must not open gated OVERs — wait for a Goblin sample.
+
+When flipped:
 
 | Rule | Effect |
 |------|--------|
