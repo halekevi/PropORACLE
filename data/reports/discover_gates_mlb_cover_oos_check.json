@@ -1,0 +1,1594 @@
+{
+  "oos_window": {
+    "start": "2026-07-26",
+    "dates": [
+      "2026-07-26",
+      "2026-07-27",
+      "2026-07-28",
+      "2026-07-29",
+      "2026-07-30",
+      "2026-07-31",
+      "2026-08-01",
+      "2026-08-02",
+      "2026-08-04",
+      "2026-08-05",
+      "2026-08-06",
+      "2026-08-07",
+      "2026-08-08",
+      "2026-08-09",
+      "2026-08-10",
+      "2026-08-11",
+      "2026-08-12",
+      "2026-08-13",
+      "2026-08-14",
+      "2026-08-15",
+      "2026-08-18",
+      "2026-08-19",
+      "2026-08-20",
+      "2026-08-21",
+      "2026-08-22",
+      "2026-08-23",
+      "2026-08-25",
+      "2026-08-26",
+      "2026-08-27",
+      "2026-08-28",
+      "2026-08-29",
+      "2026-08-30",
+      "2026-08-31",
+      "2026-09-01",
+      "2026-09-02",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-06",
+      "2026-09-07",
+      "2026-09-08",
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16"
+    ]
+  },
+  "cover_missingness": {
+    "overall_rate": 0.311,
+    "early_half": {
+      "dates": "2026-03-30..2026-06-19",
+      "n": 67791,
+      "cover_n": 0,
+      "rate": 0.0
+    },
+    "late_half": {
+      "dates": "2026-06-20..2026-09-16",
+      "n": 130369,
+      "cover_n": 61632,
+      "rate": 0.4728
+    },
+    "train": {
+      "n": 121206,
+      "cover_n": 15777,
+      "rate": 0.1302
+    },
+    "oos": {
+      "n": 76954,
+      "cover_n": 45855,
+      "rate": 0.5959
+    },
+    "late_minus_early": 0.4728,
+    "oos_minus_train": 0.4657,
+    "coverage_onset_7d_ge50pct": "2026-07-23",
+    "pre_onset": {
+      "n": 117277,
+      "cover_n": 11848,
+      "rate": 0.101
+    },
+    "post_onset": {
+      "n": 80883,
+      "cover_n": 49784,
+      "rate": 0.6155
+    },
+    "monthly": [
+      {
+        "month": "2026-03",
+        "n": 688,
+        "cover_n": 0,
+        "cover_rate": 0.0
+      },
+      {
+        "month": "2026-04",
+        "n": 14165,
+        "cover_n": 0,
+        "cover_rate": 0.0
+      },
+      {
+        "month": "2026-05",
+        "n": 26438,
+        "cover_n": 0,
+        "cover_rate": 0.0
+      },
+      {
+        "month": "2026-06",
+        "n": 48288,
+        "cover_n": 0,
+        "cover_rate": 0.0
+      },
+      {
+        "month": "2026-07",
+        "n": 39346,
+        "cover_n": 20533,
+        "cover_rate": 0.5219
+      },
+      {
+        "month": "2026-08",
+        "n": 42012,
+        "cover_n": 13876,
+        "cover_rate": 0.3303
+      },
+      {
+        "month": "2026-09",
+        "n": 27223,
+        "cover_n": 27223,
+        "cover_rate": 1.0
+      }
+    ],
+    "verdict": "CONFOUNDED_DATE_SKEW"
+  },
+  "gate_restatement": [
+    {
+      "book": "Goblin OVER",
+      "prop": "hits_allowed",
+      "gate": "cover>=1",
+      "splits": {
+        "all": {
+          "base_n": 5678,
+          "base_hr": 0.6958,
+          "gate_n": 214,
+          "gate_hits": 190,
+          "gate_hr": 0.8879
+        },
+        "train": {
+          "base_n": 3150,
+          "base_hr": 0.6721,
+          "gate_n": 51,
+          "gate_hits": 43,
+          "gate_hr": 0.8431
+        },
+        "oos": {
+          "base_n": 2528,
+          "base_hr": 0.7255,
+          "gate_n": 163,
+          "gate_hits": 147,
+          "gate_hr": 0.9018
+        },
+        "cover_present": {
+          "base_n": 1964,
+          "base_hr": 0.7296,
+          "gate_n": 214,
+          "gate_hits": 190,
+          "gate_hr": 0.8879
+        },
+        "cover_missing": {
+          "base_n": 3714,
+          "base_hr": 0.678,
+          "gate_n": 0,
+          "gate_hits": 0,
+          "gate_hr": null
+        },
+        "oos_cover_present": {
+          "base_n": 1380,
+          "base_hr": 0.7449,
+          "gate_n": 163,
+          "gate_hits": 147,
+          "gate_hr": 0.9018
+        },
+        "post_onset": {
+          "base_n": 2670,
+          "base_hr": 0.7236,
+          "gate_n": 178,
+          "gate_hits": 160,
+          "gate_hr": 0.8989
+        },
+        "oos_post_onset": {
+          "base_n": 2528,
+          "base_hr": 0.7255,
+          "gate_n": 163,
+          "gate_hits": 147,
+          "gate_hr": 0.9018
+        },
+        "cover_present_vs_missing_base": {
+          "present_hr": 0.7296,
+          "present_n": 1964,
+          "missing_hr": 0.678,
+          "missing_n": 3714,
+          "delta_hr": 0.0516
+        }
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "pitcher_ks",
+      "gate": "L10>=8 + cover>=1",
+      "splits": {
+        "all": {
+          "base_n": 6025,
+          "base_hr": 0.6976,
+          "gate_n": 196,
+          "gate_hits": 172,
+          "gate_hr": 0.8776
+        },
+        "train": {
+          "base_n": 3315,
+          "base_hr": 0.692,
+          "gate_n": 41,
+          "gate_hits": 33,
+          "gate_hr": 0.8049
+        },
+        "oos": {
+          "base_n": 2710,
+          "base_hr": 0.7044,
+          "gate_n": 155,
+          "gate_hits": 139,
+          "gate_hr": 0.8968
+        },
+        "cover_present": {
+          "base_n": 2237,
+          "base_hr": 0.726,
+          "gate_n": 196,
+          "gate_hits": 172,
+          "gate_hr": 0.8776
+        },
+        "cover_missing": {
+          "base_n": 3788,
+          "base_hr": 0.6808,
+          "gate_n": 0,
+          "gate_hits": 0,
+          "gate_hr": null
+        },
+        "oos_cover_present": {
+          "base_n": 1660,
+          "base_hr": 0.7157,
+          "gate_n": 155,
+          "gate_hits": 139,
+          "gate_hr": 0.8968
+        },
+        "post_onset": {
+          "base_n": 2856,
+          "base_hr": 0.7048,
+          "gate_n": 163,
+          "gate_hits": 145,
+          "gate_hr": 0.8896
+        },
+        "oos_post_onset": {
+          "base_n": 2710,
+          "base_hr": 0.7044,
+          "gate_n": 155,
+          "gate_hits": 139,
+          "gate_hr": 0.8968
+        },
+        "cover_present_vs_missing_base": {
+          "present_hr": 0.726,
+          "present_n": 2237,
+          "missing_hr": 0.6808,
+          "missing_n": 3788,
+          "delta_hr": 0.0452
+        }
+      }
+    }
+  ],
+  "pitcher_goblin_daily_cover": [
+    {
+      "date": "2026-04-03",
+      "n": 16,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-04",
+      "n": 71,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-05",
+      "n": 11,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-08",
+      "n": 12,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-09",
+      "n": 21,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-10",
+      "n": 49,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-11",
+      "n": 9,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-13",
+      "n": 7,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-14",
+      "n": 105,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-17",
+      "n": 69,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-18",
+      "n": 124,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-20",
+      "n": 69,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-21",
+      "n": 39,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-22",
+      "n": 52,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-23",
+      "n": 21,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-25",
+      "n": 5,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-26",
+      "n": 10,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-27",
+      "n": 48,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-28",
+      "n": 55,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-29",
+      "n": 12,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-03",
+      "n": 66,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-04",
+      "n": 66,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-05",
+      "n": 131,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-06",
+      "n": 134,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-07",
+      "n": 36,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-08",
+      "n": 98,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-10",
+      "n": 100,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-11",
+      "n": 37,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-12",
+      "n": 97,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-13",
+      "n": 20,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-14",
+      "n": 67,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-15",
+      "n": 98,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-16",
+      "n": 145,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-17",
+      "n": 157,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-18",
+      "n": 128,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-19",
+      "n": 1,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-20",
+      "n": 27,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-21",
+      "n": 106,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-22",
+      "n": 104,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-24",
+      "n": 3,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-25",
+      "n": 136,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-26",
+      "n": 37,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-27",
+      "n": 105,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-28",
+      "n": 67,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-29",
+      "n": 66,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-30",
+      "n": 154,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-31",
+      "n": 151,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-01",
+      "n": 73,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-02",
+      "n": 144,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-03",
+      "n": 109,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-04",
+      "n": 84,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-05",
+      "n": 97,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-06",
+      "n": 115,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-07",
+      "n": 143,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-08",
+      "n": 72,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-09",
+      "n": 140,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-10",
+      "n": 123,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-11",
+      "n": 65,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-12",
+      "n": 146,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-13",
+      "n": 140,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-14",
+      "n": 94,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-15",
+      "n": 84,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-16",
+      "n": 177,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-17",
+      "n": 112,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-18",
+      "n": 90,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-19",
+      "n": 142,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-20",
+      "n": 135,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-21",
+      "n": 134,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-22",
+      "n": 118,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-23",
+      "n": 149,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-24",
+      "n": 248,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-25",
+      "n": 137,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-26",
+      "n": 166,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-27",
+      "n": 154,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-28",
+      "n": 229,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-29",
+      "n": 224,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-30",
+      "n": 195,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-01",
+      "n": 191,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-02",
+      "n": 144,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-03",
+      "n": 225,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-04",
+      "n": 232,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-05",
+      "n": 246,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-06",
+      "n": 98,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-07",
+      "n": 228,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-08",
+      "n": 165,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-09",
+      "n": 20,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-10",
+      "n": 29,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-11",
+      "n": 29,
+      "cover_n": 29,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-12",
+      "n": 182,
+      "cover_n": 182,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-16",
+      "n": 13,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-17",
+      "n": 271,
+      "cover_n": 271,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-18",
+      "n": 224,
+      "cover_n": 224,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-19",
+      "n": 288,
+      "cover_n": 288,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-20",
+      "n": 293,
+      "cover_n": 293,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-21",
+      "n": 206,
+      "cover_n": 206,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-22",
+      "n": 239,
+      "cover_n": 239,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-23",
+      "n": 79,
+      "cover_n": 79,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-24",
+      "n": 273,
+      "cover_n": 273,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-25",
+      "n": 259,
+      "cover_n": 259,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-26",
+      "n": 289,
+      "cover_n": 289,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-07-27",
+      "n": 37,
+      "cover_n": 37,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-07-29",
+      "n": 205,
+      "cover_n": 202,
+      "cover_rate": 0.9854,
+      "split": "oos"
+    },
+    {
+      "date": "2026-07-30",
+      "n": 173,
+      "cover_n": 162,
+      "cover_rate": 0.9364,
+      "split": "oos"
+    },
+    {
+      "date": "2026-07-31",
+      "n": 255,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-01",
+      "n": 243,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-02",
+      "n": 221,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-04",
+      "n": 256,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-05",
+      "n": 311,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-06",
+      "n": 169,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-07",
+      "n": 262,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-08",
+      "n": 292,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-09",
+      "n": 222,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-10",
+      "n": 202,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-11",
+      "n": 303,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-12",
+      "n": 259,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-13",
+      "n": 161,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-14",
+      "n": 243,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-15",
+      "n": 285,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-18",
+      "n": 281,
+      "cover_n": 10,
+      "cover_rate": 0.0356,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-19",
+      "n": 267,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-20",
+      "n": 180,
+      "cover_n": 44,
+      "cover_rate": 0.2444,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-21",
+      "n": 274,
+      "cover_n": 100,
+      "cover_rate": 0.365,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-22",
+      "n": 292,
+      "cover_n": 224,
+      "cover_rate": 0.7671,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-25",
+      "n": 297,
+      "cover_n": 297,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-26",
+      "n": 264,
+      "cover_n": 264,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-27",
+      "n": 125,
+      "cover_n": 125,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-28",
+      "n": 198,
+      "cover_n": 198,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-29",
+      "n": 189,
+      "cover_n": 189,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-30",
+      "n": 178,
+      "cover_n": 178,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-31",
+      "n": 155,
+      "cover_n": 155,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-01",
+      "n": 204,
+      "cover_n": 204,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-02",
+      "n": 259,
+      "cover_n": 259,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-03",
+      "n": 177,
+      "cover_n": 177,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-04",
+      "n": 309,
+      "cover_n": 309,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-05",
+      "n": 311,
+      "cover_n": 311,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-06",
+      "n": 313,
+      "cover_n": 313,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-07",
+      "n": 212,
+      "cover_n": 212,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-08",
+      "n": 303,
+      "cover_n": 303,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-09",
+      "n": 285,
+      "cover_n": 285,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-10",
+      "n": 97,
+      "cover_n": 97,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-11",
+      "n": 295,
+      "cover_n": 295,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-12",
+      "n": 277,
+      "cover_n": 277,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-13",
+      "n": 318,
+      "cover_n": 318,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-14",
+      "n": 201,
+      "cover_n": 201,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-15",
+      "n": 285,
+      "cover_n": 285,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-16",
+      "n": 317,
+      "cover_n": 317,
+      "cover_rate": 1.0,
+      "split": "oos"
+    }
+  ],
+  "date_cover_sample": [
+    {
+      "date": "2026-03-30",
+      "n": 358,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-03",
+      "n": 364,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-07",
+      "n": 367,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-11",
+      "n": 366,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-15",
+      "n": 505,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-19",
+      "n": 296,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-23",
+      "n": 627,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-04-27",
+      "n": 692,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-01",
+      "n": 659,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-05",
+      "n": 866,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-09",
+      "n": 761,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-13",
+      "n": 707,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-17",
+      "n": 1135,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-21",
+      "n": 855,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-25",
+      "n": 1004,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-05-29",
+      "n": 760,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-02",
+      "n": 1627,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-06",
+      "n": 1573,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-10",
+      "n": 1552,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-14",
+      "n": 1490,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-18",
+      "n": 1015,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-22",
+      "n": 1457,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-26",
+      "n": 2046,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-06-30",
+      "n": 2150,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-04",
+      "n": 2411,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-08",
+      "n": 1523,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-12",
+      "n": 1517,
+      "cover_n": 1517,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-19",
+      "n": 1675,
+      "cover_n": 1675,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-23",
+      "n": 466,
+      "cover_n": 466,
+      "cover_rate": 1.0,
+      "split": "train"
+    },
+    {
+      "date": "2026-07-27",
+      "n": 371,
+      "cover_n": 371,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-07-31",
+      "n": 1784,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-05",
+      "n": 1898,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-09",
+      "n": 1616,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-13",
+      "n": 884,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-19",
+      "n": 1729,
+      "cover_n": 0,
+      "cover_rate": 0.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-23",
+      "n": 847,
+      "cover_n": 136,
+      "cover_rate": 0.1606,
+      "split": "oos"
+    },
+    {
+      "date": "2026-08-28",
+      "n": 1715,
+      "cover_n": 1715,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-01",
+      "n": 1791,
+      "cover_n": 1791,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-05",
+      "n": 2062,
+      "cover_n": 2062,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-09",
+      "n": 1840,
+      "cover_n": 1840,
+      "cover_rate": 1.0,
+      "split": "oos"
+    },
+    {
+      "date": "2026-09-13",
+      "n": 1926,
+      "cover_n": 1926,
+      "cover_rate": 1.0,
+      "split": "oos"
+    }
+  ]
+}

@@ -35,6 +35,9 @@ def test_walks_pitches_era_pitcher_ks():
     assert goblin_70_eligible(_mlb())
     assert _clears_list_gate(_mlb())
     assert not mlb_goblin_keep_eligible(_mlb(own_def_tier="Elite"))
+    # L10-primary: weak L5 still clears when L10>=8 + leaky staff
+    assert mlb_goblin_keep_eligible(_mlb(l5_over=2, l10_over=8, own_def_tier="Weak"))
+    assert not mlb_goblin_keep_eligible(_mlb(l5_over=5, l10_over=7, own_def_tier="Weak"))
     assert mlb_goblin_keep_eligible(
         _mlb(prop="Pitches Thrown", l5_over=2, own_def_tier="Below Avg")
     )
@@ -42,16 +45,19 @@ def test_walks_pitches_era_pitcher_ks():
     assert mlb_goblin_keep_eligible(era)
     assert not mlb_goblin_keep_eligible(dict(era, l10_over=6))
     assert not mlb_goblin_keep_eligible(dict(era, line=1.5, l10_over=10))
-    ks = _mlb(prop="Pitcher Strikeouts", l5_over=5, own_def_tier="Elite")
+    ks = _mlb(prop="Pitcher Strikeouts", l5_over=2, l10_over=8, own_def_tier="Elite")
     assert mlb_goblin_keep_eligible(ks)
     assert not mlb_goblin_keep_eligible(dict(ks, own_def_tier="Weak"))
+    assert not mlb_goblin_keep_eligible(dict(ks, l10_over=7))
 
 
 def test_hits_allowed_hrrbi_hitter_ks_counting():
-    ha = _mlb(prop="Hits Allowed", l5_over=4, **{"def": "Weak"})
+    ha = _mlb(prop="Hits Allowed", l5_over=2, l10_over=8, **{"def": "Weak"})
     assert mlb_goblin_keep_eligible(ha)
-    outs = _mlb(prop="Pitching Outs", l5_over=5, own_def_tier="Elite")
+    assert not mlb_goblin_keep_eligible(dict(ha, l10_over=7))
+    outs = _mlb(prop="Pitching Outs", l5_over=2, l10_over=8, own_def_tier="Elite")
     assert mlb_goblin_keep_eligible(outs)
+    assert not mlb_goblin_keep_eligible(dict(outs, l10_over=7, l5_over=5))
     hrrbi = _mlb(
         prop="Hits+Runs+RBIs",
         l5_over=5,

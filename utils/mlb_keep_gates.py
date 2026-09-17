@@ -3,12 +3,15 @@
 Fade 11–21 (Runs, Singles, batter Walks, PA, RBIs, 1st-inning, HR/2B/3B/SB),
 Standard, and Demons. Same gate for the printed Goblin list and Goblin-70.
 
-  1 Walks Allowed:     L5>=4 + L10>=8 + Own pitch Weak|Below (leaky staff)
+Pitcher-side volume props use **L10≥8-primary** (L5 dropped): catalog shows
+L10 alone at real n beats L5=5+L10≥8 at near-zero joint n, and L5 often hurts.
+
+  1 Walks Allowed:     L10>=8 + Own pitch Weak|Below (leaky staff)
   2 Pitches Thrown:    L10>=8 + Own pitch Weak|Below
-  3 ERA:               Goblin 0.5 + L5=5 + L10>=8 (no rank)
-  4 Pitcher Ks:        L5=5 + L10>=8 + Own pitch Elite|Above (stingy staff)
-  5 Hits Allowed:      L5>=4 + L10>=8 + Opp bats Strong|Above
-  6 Pitching Outs:     L5=5 + Own pitch Elite|Above
+  3 ERA:               Goblin 0.5 + L5=5 + L10>=8 (no rank; line-bound)
+  4 Pitcher Ks:        L10>=8 + Own pitch Elite|Above (stingy staff)
+  5 Hits Allowed:      L10>=8 + Opp bats Strong|Above
+  6 Pitching Outs:     L10>=8 + Own pitch Elite|Above
   7 H+R+RBI:           BA>=.275 + L5=5 + Opp pitch Weak|Below (80.8% n=104)
   8 Hitter Ks:         K%>=28 + L10>=8 + Opp pitch Elite|Above (76.6% n=325)
   9 Hits / 10 TB:      BA>=.275 + L5=5 + Opp pitch Weak|Below (71% n~170)
@@ -393,13 +396,7 @@ def mlb_goblin_keep_eligible(r: dict[str, Any]) -> bool:
     l10 = _l10(r)
 
     if prop == "walks_allowed":
-        return (
-            l5 is not None
-            and l5 >= 4
-            and l10 is not None
-            and l10 >= 8
-            and _own_pitch(r) in PROD
-        )
+        return l10 is not None and l10 >= 8 and _own_pitch(r) in PROD
     if prop == "pitches_thrown":
         return l10 is not None and l10 >= 8 and _own_pitch(r) in PROD
     if prop == "earned_runs":
@@ -411,23 +408,11 @@ def mlb_goblin_keep_eligible(r: dict[str, Any]) -> bool:
             return False
         return l5 is not None and l5 >= 5 and l10 is not None and l10 >= 8
     if prop == "pitcher_ks":
-        return (
-            l5 is not None
-            and l5 >= 5
-            and l10 is not None
-            and l10 >= 8
-            and _own_pitch(r) in STINGY
-        )
+        return l10 is not None and l10 >= 8 and _own_pitch(r) in STINGY
     if prop == "hits_allowed":
-        return (
-            l5 is not None
-            and l5 >= 4
-            and l10 is not None
-            and l10 >= 8
-            and _opp_bats_strong(r)
-        )
+        return l10 is not None and l10 >= 8 and _opp_bats_strong(r)
     if prop == "pitching_outs":
-        return l5 is not None and l5 >= 5 and _own_pitch(r) in STINGY
+        return l10 is not None and l10 >= 8 and _own_pitch(r) in STINGY
     if prop == "hits+runs+rbis":
         return l5 is not None and l5 >= 5 and _ba_ok(r) and _opp_pitch(r) in PROD
     if prop == "hitter_ks":

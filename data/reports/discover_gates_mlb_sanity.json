@@ -1,0 +1,1344 @@
+{
+  "cells": [
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "n": 3406,
+      "n_with_actual": 3406,
+      "zero_n": 535,
+      "zero_rate": 0.1571,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 2.49,
+      "mean_line": 1.144,
+      "actual_over_line": 2.176,
+      "hr_all": 0.7102
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "first_inning_walks",
+      "n": 15,
+      "n_with_actual": 15,
+      "zero_n": 5,
+      "zero_rate": 0.3333,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.133,
+      "mean_line": 0.5,
+      "actual_over_line": 2.267,
+      "hr_all": 0.6667
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "n": 32484,
+      "n_with_actual": 32484,
+      "zero_n": 13164,
+      "zero_rate": 0.4052,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.862,
+      "mean_line": 0.5,
+      "actual_over_line": 1.722,
+      "hr_all": 0.5946,
+      "flags": [
+        "high_zero_actuals zero_rate=40.5%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits+runs+rbis",
+      "n": 29167,
+      "n_with_actual": 29167,
+      "zero_n": 9762,
+      "zero_rate": 0.3347,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.812,
+      "mean_line": 0.656,
+      "actual_over_line": 2.763,
+      "hr_all": 0.6331
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits_allowed",
+      "n": 5678,
+      "n_with_actual": 5678,
+      "zero_n": 55,
+      "zero_rate": 0.0097,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 4.965,
+      "mean_line": 3.751,
+      "actual_over_line": 1.323,
+      "hr_all": 0.6958
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hitter_ks",
+      "n": 25790,
+      "n_with_actual": 25790,
+      "zero_n": 9730,
+      "zero_rate": 0.3773,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.908,
+      "mean_line": 0.505,
+      "actual_over_line": 1.798,
+      "hr_all": 0.6211,
+      "flags": [
+        "high_zero_actuals zero_rate=37.7%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hitterfantasyscore",
+      "n": 3039,
+      "n_with_actual": 3039,
+      "zero_n": 818,
+      "zero_rate": 0.2692,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 6.633,
+      "mean_line": 2.273,
+      "actual_over_line": 2.918,
+      "hr_all": 0.666
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "pitcher_ks",
+      "n": 6025,
+      "n_with_actual": 6025,
+      "zero_n": 99,
+      "zero_rate": 0.0164,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 5.0,
+      "mean_line": 3.738,
+      "actual_over_line": 1.338,
+      "hr_all": 0.6976
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "pitcherfantasyscore",
+      "n": 817,
+      "n_with_actual": 817,
+      "zero_n": 6,
+      "zero_rate": 0.0073,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 26.693,
+      "mean_line": 20.041,
+      "actual_over_line": 1.332,
+      "hr_all": 0.6756
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "pitches_thrown",
+      "n": 1721,
+      "n_with_actual": 1721,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "zero_as_hit": 0,
+      "zero_hit_rate": null,
+      "mean_actual": 88.813,
+      "mean_line": 85.534,
+      "actual_over_line": 1.038,
+      "hr_all": 0.7042
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "pitching_outs",
+      "n": 2570,
+      "n_with_actual": 2570,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "zero_as_hit": 0,
+      "zero_hit_rate": null,
+      "mean_actual": 15.624,
+      "mean_line": 14.537,
+      "actual_over_line": 1.075,
+      "hr_all": 0.7023
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "plate_appearances",
+      "n": 1994,
+      "n_with_actual": 1994,
+      "zero_n": 5,
+      "zero_rate": 0.0025,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 4.401,
+      "mean_line": 4.456,
+      "actual_over_line": 0.988,
+      "hr_all": 0.5145
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "rbis",
+      "n": 4,
+      "n_with_actual": 4,
+      "zero_n": 2,
+      "zero_rate": 0.5,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.25,
+      "mean_line": 0.5,
+      "actual_over_line": 2.5,
+      "hr_all": 0.5,
+      "flags": [
+        "high_zero_actuals zero_rate=50.0%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "runs",
+      "n": 1121,
+      "n_with_actual": 1121,
+      "zero_n": 531,
+      "zero_rate": 0.4737,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.72,
+      "mean_line": 0.5,
+      "actual_over_line": 1.44,
+      "hr_all": 0.5263,
+      "flags": [
+        "high_zero_actuals zero_rate=47.4%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "singles",
+      "n": 3143,
+      "n_with_actual": 3143,
+      "zero_n": 1447,
+      "zero_rate": 0.4604,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.74,
+      "mean_line": 0.5,
+      "actual_over_line": 1.481,
+      "hr_all": 0.5396,
+      "flags": [
+        "high_zero_actuals zero_rate=46.0%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "n": 32234,
+      "n_with_actual": 32234,
+      "zero_n": 13001,
+      "zero_rate": 0.4033,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.437,
+      "mean_line": 0.508,
+      "actual_over_line": 2.826,
+      "hr_all": 0.5946,
+      "flags": [
+        "high_zero_actuals zero_rate=40.3%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "walks",
+      "n": 284,
+      "n_with_actual": 284,
+      "zero_n": 139,
+      "zero_rate": 0.4894,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.715,
+      "mean_line": 0.5,
+      "actual_over_line": 1.43,
+      "hr_all": 0.5106,
+      "flags": [
+        "high_zero_actuals zero_rate=48.9%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "walks_allowed",
+      "n": 2966,
+      "n_with_actual": 2966,
+      "zero_n": 486,
+      "zero_rate": 0.1639,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.767,
+      "mean_line": 0.913,
+      "actual_over_line": 1.936,
+      "hr_all": 0.739
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "earned_runs",
+      "n": 365,
+      "n_with_actual": 365,
+      "zero_n": 57,
+      "zero_rate": 0.1562,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 2.529,
+      "mean_line": 2.316,
+      "actual_over_line": 1.092,
+      "hr_all": 0.4904
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "first_inning_runs",
+      "n": 62,
+      "n_with_actual": 62,
+      "zero_n": 38,
+      "zero_rate": 0.6129,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.677,
+      "mean_line": 0.5,
+      "actual_over_line": 1.355,
+      "hr_all": 0.3871,
+      "flags": [
+        "high_zero_actuals zero_rate=61.3%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "first_inning_walks",
+      "n": 19,
+      "n_with_actual": 19,
+      "zero_n": 11,
+      "zero_rate": 0.5789,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.526,
+      "mean_line": 0.5,
+      "actual_over_line": 1.053,
+      "hr_all": 0.4211,
+      "flags": [
+        "high_zero_actuals zero_rate=57.9%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "hits",
+      "n": 1684,
+      "n_with_actual": 1684,
+      "zero_n": 876,
+      "zero_rate": 0.5202,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.632,
+      "mean_line": 0.505,
+      "actual_over_line": 1.253,
+      "hr_all": 0.4774,
+      "flags": [
+        "high_zero_actuals zero_rate=52.0%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "hits+runs+rbis",
+      "n": 5176,
+      "n_with_actual": 5176,
+      "zero_n": 1604,
+      "zero_rate": 0.3099,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.918,
+      "mean_line": 1.444,
+      "actual_over_line": 1.329,
+      "hr_all": 0.4921
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "hits_allowed",
+      "n": 516,
+      "n_with_actual": 516,
+      "zero_n": 4,
+      "zero_rate": 0.0078,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 4.764,
+      "mean_line": 4.849,
+      "actual_over_line": 0.982,
+      "hr_all": 0.4632
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "hitter_ks",
+      "n": 1030,
+      "n_with_actual": 1030,
+      "zero_n": 534,
+      "zero_rate": 0.5184,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.624,
+      "mean_line": 0.544,
+      "actual_over_line": 1.148,
+      "hr_all": 0.4631,
+      "flags": [
+        "high_zero_actuals zero_rate=51.8%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "hitterfantasyscore",
+      "n": 2026,
+      "n_with_actual": 2026,
+      "zero_n": 540,
+      "zero_rate": 0.2665,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 6.88,
+      "mean_line": 4.819,
+      "actual_over_line": 1.428,
+      "hr_all": 0.4886
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "pitcher_ks",
+      "n": 1545,
+      "n_with_actual": 1545,
+      "zero_n": 25,
+      "zero_rate": 0.0162,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 5.027,
+      "mean_line": 4.849,
+      "actual_over_line": 1.037,
+      "hr_all": 0.5003
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "pitcherfantasyscore",
+      "n": 448,
+      "n_with_actual": 448,
+      "zero_n": 1,
+      "zero_rate": 0.0022,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 27.424,
+      "mean_line": 28.1,
+      "actual_over_line": 0.976,
+      "hr_all": 0.5156
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "pitches_thrown",
+      "n": 544,
+      "n_with_actual": 544,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "zero_as_hit": 0,
+      "zero_hit_rate": null,
+      "mean_actual": 89.796,
+      "mean_line": 91.717,
+      "actual_over_line": 0.979,
+      "hr_all": 0.5037
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "pitching_outs",
+      "n": 482,
+      "n_with_actual": 482,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "zero_as_hit": 0,
+      "zero_hit_rate": null,
+      "mean_actual": 16.147,
+      "mean_line": 16.364,
+      "actual_over_line": 0.987,
+      "hr_all": 0.5021
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "plate_appearances",
+      "n": 218,
+      "n_with_actual": 218,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "zero_as_hit": 0,
+      "zero_hit_rate": null,
+      "mean_actual": 4.326,
+      "mean_line": 4.5,
+      "actual_over_line": 0.961,
+      "hr_all": 0.3899
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "rbis",
+      "n": 46,
+      "n_with_actual": 46,
+      "zero_n": 23,
+      "zero_rate": 0.5,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.696,
+      "mean_line": 0.5,
+      "actual_over_line": 1.391,
+      "hr_all": 0.5,
+      "flags": [
+        "high_zero_actuals zero_rate=50.0%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "runs",
+      "n": 2230,
+      "n_with_actual": 2230,
+      "zero_n": 1213,
+      "zero_rate": 0.5439,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.596,
+      "mean_line": 0.5,
+      "actual_over_line": 1.193,
+      "hr_all": 0.4561,
+      "flags": [
+        "high_zero_actuals zero_rate=54.4%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "singles",
+      "n": 4280,
+      "n_with_actual": 4280,
+      "zero_n": 2199,
+      "zero_rate": 0.5138,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.638,
+      "mean_line": 0.5,
+      "actual_over_line": 1.277,
+      "hr_all": 0.4862,
+      "flags": [
+        "high_zero_actuals zero_rate=51.4%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "total_bases",
+      "n": 3393,
+      "n_with_actual": 3393,
+      "zero_n": 1603,
+      "zero_rate": 0.4724,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.209,
+      "mean_line": 0.807,
+      "actual_over_line": 1.498,
+      "hr_all": 0.4503,
+      "flags": [
+        "high_zero_actuals zero_rate=47.2%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "walks",
+      "n": 511,
+      "n_with_actual": 511,
+      "zero_n": 258,
+      "zero_rate": 0.5049,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.679,
+      "mean_line": 0.5,
+      "actual_over_line": 1.358,
+      "hr_all": 0.4951,
+      "flags": [
+        "high_zero_actuals zero_rate=50.5%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "walks_allowed",
+      "n": 507,
+      "n_with_actual": 507,
+      "zero_n": 93,
+      "zero_rate": 0.1834,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.696,
+      "mean_line": 1.581,
+      "actual_over_line": 1.073,
+      "hr_all": 0.499
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "earned_runs",
+      "n": 376,
+      "n_with_actual": 376,
+      "zero_n": 68,
+      "zero_rate": 0.1809,
+      "zero_as_hit": 68,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 2.335,
+      "mean_line": 2.396,
+      "actual_over_line": 0.974,
+      "hr_all": 0.5798
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "first_inning_runs",
+      "n": 17,
+      "n_with_actual": 17,
+      "zero_n": 5,
+      "zero_rate": 0.2941,
+      "zero_as_hit": 5,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 1.588,
+      "mean_line": 0.5,
+      "actual_over_line": 3.176,
+      "hr_all": 0.2941,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=29.4%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "first_inning_walks",
+      "n": 13,
+      "n_with_actual": 13,
+      "zero_n": 7,
+      "zero_rate": 0.5385,
+      "zero_as_hit": 7,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.692,
+      "mean_line": 0.5,
+      "actual_over_line": 1.385,
+      "hr_all": 0.5385,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=53.8%",
+        "high_zero_actuals zero_rate=53.8%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hits",
+      "n": 2159,
+      "n_with_actual": 2159,
+      "zero_n": 1195,
+      "zero_rate": 0.5535,
+      "zero_as_hit": 1195,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.579,
+      "mean_line": 0.502,
+      "actual_over_line": 1.153,
+      "hr_all": 0.5553,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=55.3%",
+        "high_zero_actuals zero_rate=55.3%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hits+runs+rbis",
+      "n": 3384,
+      "n_with_actual": 3384,
+      "zero_n": 1116,
+      "zero_rate": 0.3298,
+      "zero_as_hit": 1116,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 1.832,
+      "mean_line": 1.506,
+      "actual_over_line": 1.216,
+      "hr_all": 0.5349,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=33.0%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hits_allowed",
+      "n": 700,
+      "n_with_actual": 700,
+      "zero_n": 8,
+      "zero_rate": 0.0114,
+      "zero_as_hit": 8,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 5.073,
+      "mean_line": 4.951,
+      "actual_over_line": 1.025,
+      "hr_all": 0.4929
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hitter_ks",
+      "n": 734,
+      "n_with_actual": 734,
+      "zero_n": 376,
+      "zero_rate": 0.5123,
+      "zero_as_hit": 376,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.655,
+      "mean_line": 0.595,
+      "actual_over_line": 1.101,
+      "hr_all": 0.5504,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=51.2%",
+        "high_zero_actuals zero_rate=51.2%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hitterfantasyscore",
+      "n": 1061,
+      "n_with_actual": 1061,
+      "zero_n": 300,
+      "zero_rate": 0.2828,
+      "zero_as_hit": 300,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 6.424,
+      "mean_line": 4.736,
+      "actual_over_line": 1.356,
+      "hr_all": 0.5325,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=28.3%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "pitcher_ks",
+      "n": 1339,
+      "n_with_actual": 1339,
+      "zero_n": 20,
+      "zero_rate": 0.0149,
+      "zero_as_hit": 20,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 4.859,
+      "mean_line": 4.843,
+      "actual_over_line": 1.003,
+      "hr_all": 0.5235
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "pitcherfantasyscore",
+      "n": 372,
+      "n_with_actual": 372,
+      "zero_n": 5,
+      "zero_rate": 0.0134,
+      "zero_as_hit": 5,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 25.82,
+      "mean_line": 27.247,
+      "actual_over_line": 0.948,
+      "hr_all": 0.5081
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "pitches_thrown",
+      "n": 1184,
+      "n_with_actual": 1184,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "zero_as_hit": 0,
+      "zero_hit_rate": null,
+      "mean_actual": 88.409,
+      "mean_line": 90.887,
+      "actual_over_line": 0.973,
+      "hr_all": 0.5228
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "pitching_outs",
+      "n": 732,
+      "n_with_actual": 732,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "zero_as_hit": 0,
+      "zero_hit_rate": null,
+      "mean_actual": 15.74,
+      "mean_line": 16.238,
+      "actual_over_line": 0.969,
+      "hr_all": 0.4945
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "plate_appearances",
+      "n": 611,
+      "n_with_actual": 611,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "zero_as_hit": 0,
+      "zero_hit_rate": null,
+      "mean_actual": 4.309,
+      "mean_line": 4.482,
+      "actual_over_line": 0.961,
+      "hr_all": 0.5663
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "rbis",
+      "n": 23,
+      "n_with_actual": 23,
+      "zero_n": 8,
+      "zero_rate": 0.3478,
+      "zero_as_hit": 8,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 1.043,
+      "mean_line": 0.5,
+      "actual_over_line": 2.087,
+      "hr_all": 0.3478,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=34.8%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "runs",
+      "n": 1759,
+      "n_with_actual": 1759,
+      "zero_n": 953,
+      "zero_rate": 0.5418,
+      "zero_as_hit": 953,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.603,
+      "mean_line": 0.501,
+      "actual_over_line": 1.204,
+      "hr_all": 0.5424,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=54.2%",
+        "high_zero_actuals zero_rate=54.2%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "singles",
+      "n": 2901,
+      "n_with_actual": 2901,
+      "zero_n": 1558,
+      "zero_rate": 0.5371,
+      "zero_as_hit": 1558,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.596,
+      "mean_line": 0.5,
+      "actual_over_line": 1.193,
+      "hr_all": 0.5371,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=53.7%",
+        "high_zero_actuals zero_rate=53.7%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "total_bases",
+      "n": 2461,
+      "n_with_actual": 2461,
+      "zero_n": 1177,
+      "zero_rate": 0.4783,
+      "zero_as_hit": 1177,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 1.27,
+      "mean_line": 0.786,
+      "actual_over_line": 1.616,
+      "hr_all": 0.5372,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=47.8%",
+        "high_zero_actuals zero_rate=47.8%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "walks",
+      "n": 437,
+      "n_with_actual": 437,
+      "zero_n": 223,
+      "zero_rate": 0.5103,
+      "zero_as_hit": 223,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.632,
+      "mean_line": 0.5,
+      "actual_over_line": 1.263,
+      "hr_all": 0.5103,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=51.0%",
+        "high_zero_actuals zero_rate=51.0%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "walks_allowed",
+      "n": 357,
+      "n_with_actual": 357,
+      "zero_n": 60,
+      "zero_rate": 0.1681,
+      "zero_as_hit": 60,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 1.731,
+      "mean_line": 1.59,
+      "actual_over_line": 1.089,
+      "hr_all": 0.5014
+    }
+  ],
+  "flagged": [
+    {
+      "book": "Standard OVER",
+      "prop": "first_inning_runs",
+      "n": 62,
+      "n_with_actual": 62,
+      "zero_n": 38,
+      "zero_rate": 0.6129,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.677,
+      "mean_line": 0.5,
+      "actual_over_line": 1.355,
+      "hr_all": 0.3871,
+      "flags": [
+        "high_zero_actuals zero_rate=61.3%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "first_inning_walks",
+      "n": 19,
+      "n_with_actual": 19,
+      "zero_n": 11,
+      "zero_rate": 0.5789,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.526,
+      "mean_line": 0.5,
+      "actual_over_line": 1.053,
+      "hr_all": 0.4211,
+      "flags": [
+        "high_zero_actuals zero_rate=57.9%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hits",
+      "n": 2159,
+      "n_with_actual": 2159,
+      "zero_n": 1195,
+      "zero_rate": 0.5535,
+      "zero_as_hit": 1195,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.579,
+      "mean_line": 0.502,
+      "actual_over_line": 1.153,
+      "hr_all": 0.5553,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=55.3%",
+        "high_zero_actuals zero_rate=55.3%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "runs",
+      "n": 2230,
+      "n_with_actual": 2230,
+      "zero_n": 1213,
+      "zero_rate": 0.5439,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.596,
+      "mean_line": 0.5,
+      "actual_over_line": 1.193,
+      "hr_all": 0.4561,
+      "flags": [
+        "high_zero_actuals zero_rate=54.4%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "runs",
+      "n": 1759,
+      "n_with_actual": 1759,
+      "zero_n": 953,
+      "zero_rate": 0.5418,
+      "zero_as_hit": 953,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.603,
+      "mean_line": 0.501,
+      "actual_over_line": 1.204,
+      "hr_all": 0.5424,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=54.2%",
+        "high_zero_actuals zero_rate=54.2%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "first_inning_walks",
+      "n": 13,
+      "n_with_actual": 13,
+      "zero_n": 7,
+      "zero_rate": 0.5385,
+      "zero_as_hit": 7,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.692,
+      "mean_line": 0.5,
+      "actual_over_line": 1.385,
+      "hr_all": 0.5385,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=53.8%",
+        "high_zero_actuals zero_rate=53.8%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "singles",
+      "n": 2901,
+      "n_with_actual": 2901,
+      "zero_n": 1558,
+      "zero_rate": 0.5371,
+      "zero_as_hit": 1558,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.596,
+      "mean_line": 0.5,
+      "actual_over_line": 1.193,
+      "hr_all": 0.5371,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=53.7%",
+        "high_zero_actuals zero_rate=53.7%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "hits",
+      "n": 1684,
+      "n_with_actual": 1684,
+      "zero_n": 876,
+      "zero_rate": 0.5202,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.632,
+      "mean_line": 0.505,
+      "actual_over_line": 1.253,
+      "hr_all": 0.4774,
+      "flags": [
+        "high_zero_actuals zero_rate=52.0%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "hitter_ks",
+      "n": 1030,
+      "n_with_actual": 1030,
+      "zero_n": 534,
+      "zero_rate": 0.5184,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.624,
+      "mean_line": 0.544,
+      "actual_over_line": 1.148,
+      "hr_all": 0.4631,
+      "flags": [
+        "high_zero_actuals zero_rate=51.8%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "singles",
+      "n": 4280,
+      "n_with_actual": 4280,
+      "zero_n": 2199,
+      "zero_rate": 0.5138,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.638,
+      "mean_line": 0.5,
+      "actual_over_line": 1.277,
+      "hr_all": 0.4862,
+      "flags": [
+        "high_zero_actuals zero_rate=51.4%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hitter_ks",
+      "n": 734,
+      "n_with_actual": 734,
+      "zero_n": 376,
+      "zero_rate": 0.5123,
+      "zero_as_hit": 376,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.655,
+      "mean_line": 0.595,
+      "actual_over_line": 1.101,
+      "hr_all": 0.5504,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=51.2%",
+        "high_zero_actuals zero_rate=51.2%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "walks",
+      "n": 437,
+      "n_with_actual": 437,
+      "zero_n": 223,
+      "zero_rate": 0.5103,
+      "zero_as_hit": 223,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 0.632,
+      "mean_line": 0.5,
+      "actual_over_line": 1.263,
+      "hr_all": 0.5103,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=51.0%",
+        "high_zero_actuals zero_rate=51.0%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "walks",
+      "n": 511,
+      "n_with_actual": 511,
+      "zero_n": 258,
+      "zero_rate": 0.5049,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.679,
+      "mean_line": 0.5,
+      "actual_over_line": 1.358,
+      "hr_all": 0.4951,
+      "flags": [
+        "high_zero_actuals zero_rate=50.5%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "rbis",
+      "n": 46,
+      "n_with_actual": 46,
+      "zero_n": 23,
+      "zero_rate": 0.5,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.696,
+      "mean_line": 0.5,
+      "actual_over_line": 1.391,
+      "hr_all": 0.5,
+      "flags": [
+        "high_zero_actuals zero_rate=50.0%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "rbis",
+      "n": 4,
+      "n_with_actual": 4,
+      "zero_n": 2,
+      "zero_rate": 0.5,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.25,
+      "mean_line": 0.5,
+      "actual_over_line": 2.5,
+      "hr_all": 0.5,
+      "flags": [
+        "high_zero_actuals zero_rate=50.0%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "walks",
+      "n": 284,
+      "n_with_actual": 284,
+      "zero_n": 139,
+      "zero_rate": 0.4894,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.715,
+      "mean_line": 0.5,
+      "actual_over_line": 1.43,
+      "hr_all": 0.5106,
+      "flags": [
+        "high_zero_actuals zero_rate=48.9%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "total_bases",
+      "n": 2461,
+      "n_with_actual": 2461,
+      "zero_n": 1177,
+      "zero_rate": 0.4783,
+      "zero_as_hit": 1177,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 1.27,
+      "mean_line": 0.786,
+      "actual_over_line": 1.616,
+      "hr_all": 0.5372,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=47.8%",
+        "high_zero_actuals zero_rate=47.8%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "runs",
+      "n": 1121,
+      "n_with_actual": 1121,
+      "zero_n": 531,
+      "zero_rate": 0.4737,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.72,
+      "mean_line": 0.5,
+      "actual_over_line": 1.44,
+      "hr_all": 0.5263,
+      "flags": [
+        "high_zero_actuals zero_rate=47.4%"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "total_bases",
+      "n": 3393,
+      "n_with_actual": 3393,
+      "zero_n": 1603,
+      "zero_rate": 0.4724,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.209,
+      "mean_line": 0.807,
+      "actual_over_line": 1.498,
+      "hr_all": 0.4503,
+      "flags": [
+        "high_zero_actuals zero_rate=47.2%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "singles",
+      "n": 3143,
+      "n_with_actual": 3143,
+      "zero_n": 1447,
+      "zero_rate": 0.4604,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.74,
+      "mean_line": 0.5,
+      "actual_over_line": 1.481,
+      "hr_all": 0.5396,
+      "flags": [
+        "high_zero_actuals zero_rate=46.0%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "n": 32484,
+      "n_with_actual": 32484,
+      "zero_n": 13164,
+      "zero_rate": 0.4052,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.862,
+      "mean_line": 0.5,
+      "actual_over_line": 1.722,
+      "hr_all": 0.5946,
+      "flags": [
+        "high_zero_actuals zero_rate=40.5%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "n": 32234,
+      "n_with_actual": 32234,
+      "zero_n": 13001,
+      "zero_rate": 0.4033,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 1.437,
+      "mean_line": 0.508,
+      "actual_over_line": 2.826,
+      "hr_all": 0.5946,
+      "flags": [
+        "high_zero_actuals zero_rate=40.3%"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hitter_ks",
+      "n": 25790,
+      "n_with_actual": 25790,
+      "zero_n": 9730,
+      "zero_rate": 0.3773,
+      "zero_as_hit": 0,
+      "zero_hit_rate": 0.0,
+      "mean_actual": 0.908,
+      "mean_line": 0.505,
+      "actual_over_line": 1.798,
+      "hr_all": 0.6211,
+      "flags": [
+        "high_zero_actuals zero_rate=37.7%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "rbis",
+      "n": 23,
+      "n_with_actual": 23,
+      "zero_n": 8,
+      "zero_rate": 0.3478,
+      "zero_as_hit": 8,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 1.043,
+      "mean_line": 0.5,
+      "actual_over_line": 2.087,
+      "hr_all": 0.3478,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=34.8%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hits+runs+rbis",
+      "n": 3384,
+      "n_with_actual": 3384,
+      "zero_n": 1116,
+      "zero_rate": 0.3298,
+      "zero_as_hit": 1116,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 1.832,
+      "mean_line": 1.506,
+      "actual_over_line": 1.216,
+      "hr_all": 0.5349,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=33.0%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "first_inning_runs",
+      "n": 17,
+      "n_with_actual": 17,
+      "zero_n": 5,
+      "zero_rate": 0.2941,
+      "zero_as_hit": 5,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 1.588,
+      "mean_line": 0.5,
+      "actual_over_line": 3.176,
+      "hr_all": 0.2941,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=29.4%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hitterfantasyscore",
+      "n": 1061,
+      "n_with_actual": 1061,
+      "zero_n": 300,
+      "zero_rate": 0.2828,
+      "zero_as_hit": 300,
+      "zero_hit_rate": 1.0,
+      "mean_actual": 6.424,
+      "mean_line": 4.736,
+      "actual_over_line": 1.356,
+      "hr_all": 0.5325,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=28.3%"
+      ]
+    }
+  ]
+}
