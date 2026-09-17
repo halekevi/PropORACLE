@@ -4969,7 +4969,10 @@ function switchTab(tab) {
     }, 0);
   } else {
     const es = document.getElementById('empty-state');
-    if (es) es.hidden = !slateReportMissing;
+    if (es) {
+      if (slateReportMissing) clearForcedOverlayHide(es);
+      es.hidden = !slateReportMissing;
+    }
     try {
       const sf = document.getElementById('grade-frame');
       const slo = document.getElementById('load-overlay');
@@ -5226,6 +5229,7 @@ async function loadTicketEval(dateStr) {
   refreshControlsSummary();
   if (!resolved.load) {
     tf.style.display = 'none';
+    clearForcedOverlayHide(tEmpty);
     tEmpty.hidden = false;
     syncEmptyStateDateHints(dateStr);
     tf.src = 'about:blank';
@@ -5300,8 +5304,14 @@ async function loadTicketEval(dateStr) {
   try {
     const abs = new URL(url, window.location.href).href;
     const cur = String(tf.getAttribute('src') || tf.src || '');
+    // Track-aware: a date-only Main path check matched the already-loaded Main
+    // iframe when switching to long_parlay, so the reload was skipped.
+    const trackFrag =
+      ticketEvalTrack === 'long_parlay'
+        ? '/grades/ticket_eval_long_parlay_' + loadDate + '.html'
+        : '/grades/ticket_eval_' + loadDate + '.html';
     sameDoc =
-      (cur === abs || cur.includes('/grades/ticket_eval_' + loadDate + '.html')) &&
+      (cur === abs || cur.includes(trackFrag)) &&
       ticketIframeDocLooksReady(tf.contentDocument);
   } catch (_e6) {
     sameDoc = false;
@@ -5796,6 +5806,18 @@ function scheduleSyncPropsEvalHeight() {
   });
 }
 
+function clearForcedOverlayHide(el) {
+  if (!el) return;
+  el.classList.remove('hidden');
+  el.removeAttribute('aria-hidden');
+  el.style.removeProperty('display');
+  el.style.removeProperty('visibility');
+  el.style.removeProperty('pointer-events');
+  el.style.removeProperty('height');
+  el.style.removeProperty('max-height');
+  el.style.removeProperty('overflow');
+}
+
 function hideGradesTicketTabStageOverlays() {
   ['load-overlay', 'empty-state', 'ticket-empty-state'].forEach(function (id) {
     const el = document.getElementById(id);
@@ -6230,7 +6252,10 @@ function loadDate(dateStr){
   frame.onerror = function(){
     if (Number(frame.dataset.slateLoadGen) !== loadGen) return;
     finishGradesSlateLoadUI();
-    if (emptyState) emptyState.hidden = false;
+    if (emptyState) {
+      clearForcedOverlayHide(emptyState);
+      emptyState.hidden = false;
+    }
     syncEmptyStateDateHints(dateStr);
   };
 
@@ -6291,7 +6316,10 @@ function loadDate(dateStr){
       slateReportMissing = true;
       frame.src = 'about:blank';
       finishGradesSlateLoadUI();
-      if (emptyState) emptyState.hidden = false;
+      if (emptyState) {
+        clearForcedOverlayHide(emptyState);
+        emptyState.hidden = false;
+      }
       syncEmptyStateDateHints(dateStr);
     }
   });
