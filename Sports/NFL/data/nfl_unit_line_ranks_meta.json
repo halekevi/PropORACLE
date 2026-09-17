@@ -1,0 +1,25 @@
+{
+  "season": 2026,
+  "built_at": "2026-09-17T19:10:11.972005+00:00",
+  "sources": {
+    "pfr_pass": "advstats_week_pass_2026",
+    "pfr_rush": "advstats_week_rush_2026",
+    "pfr_def": "advstats_week_def_2026",
+    "stats_team": "stats_team_reg_2026",
+    "ngs_receiving": "ngs_receiving.csv.gz",
+    "ftn": "ftn_charting_2026"
+  },
+  "paths": {
+    "ol": "Sports\\NFL\\data\\nfl_ol_ranks.csv",
+    "dl": "Sports\\NFL\\data\\nfl_dl_ranks.csv",
+    "secondary": "Sports\\NFL\\data\\nfl_secondary_ranks.csv",
+    "box": "Sports\\NFL\\data\\nfl_box_ranks.csv"
+  },
+  "notes": [
+    "Ranks: 1=best. OL pass-block uses pressure/sack allowed (low=good).",
+    "DL pass-rush uses sacks/game (high=good); run-stop uses opp YBC allowed (low=good).",
+    "Secondary uses yards/target allowed (low=good). Slot/outside mirror coverage until alignment splits.",
+    "coverage_scheme left blank for manual/NGS fill (Zone/Man/Mixed).",
+    "FTN box size not team-joined yet without pbp possession; blitz from PFR def."
+  ]
+}
