@@ -77,6 +77,8 @@ from utils.proporacle_data_root import (
     load_best_grade_history_runs,
     persistent_data_dir,
 )
+from utils.ui_live_json import disk_path as live_json_disk_path
+from utils.ui_live_json import is_live_json_name
 from scripts.payout_leg_resolver import PayoutLegResolver
 
 UI_DIR        = Path(__file__).resolve().parent         # all UI assets live here (ui_runner/)
@@ -87,6 +89,7 @@ if _cfg_json_env:
 else:
     CONFIG_PATH = UI_DIR / "commands.json"
 TEMPLATES_DIR = UI_DIR / "templates"
+RUNTIME_DIR   = UI_DIR / "runtime"  # canonical disk copy of live JSON; GitHub raw still templates/
 ARCHIVE_DIR   = TEMPLATES_DIR / "archive"
 STATIC_DIR    = UI_DIR / "static"
 # Bundled graded-prop exports for deploy hosts without data/cache/*_props_history.db (see scripts/export_grades_props_bundle.py).
@@ -198,6 +201,18 @@ WNBA_SLATE = _first_existing_file(
         BASE_DIR / "WNBA" / "step8_wnba_direction.xlsx",
     ]
 )
+WNBA1H_SLATE = _first_existing_file(
+    [
+        WNBA_DIR / "step8_wnba1h_direction_clean.xlsx",
+        BASE_DIR / "Sports" / "WNBA" / "step8_wnba1h_direction_clean.xlsx",
+    ]
+)
+WNBA1Q_SLATE = _first_existing_file(
+    [
+        WNBA_DIR / "step8_wnba1q_direction_clean.xlsx",
+        BASE_DIR / "Sports" / "WNBA" / "step8_wnba1q_direction_clean.xlsx",
+    ]
+)
 NFL_DIR       = BASE_DIR / "NFL"
 # NFL step8 target: same convention as NHL — sport folder + outputs/ (not repo-root outputs/).
 # Pipeline should write: NFL/outputs/step8_nfl_direction_clean.xlsx
@@ -217,7 +232,6 @@ app = Flask(
     template_folder=str(TEMPLATES_DIR),
     static_folder=str(STATIC_DIR),
 )
-_log = logging.getLogger(__name__)
 
 
 def _on_railway() -> bool:
@@ -332,7 +346,6 @@ except ImportError:
     _APP_USES_FLASK_COMPRESS = False
 
 # Visible on every response (curl -I); bump when you need to confirm Railway shipped new code.
-# cache-bust: 2026-08-18te3 Top Edges
 _UI_BUILD_ID = os.environ.get("RAILWAY_GIT_COMMIT_SHA", "2026-05-16-pp-ud-btns")[:12] or "2026-05-16-pp-ud-btns"
 
 
@@ -617,19 +630,6 @@ def _merge_grade_report_date_lists(*lists: Sequence[str]) -> list[str]:
     return sorted(non_future if non_future else out)
 
 
-def _filter_grade_report_dates_to_html(dates: Sequence[str], prefix: str) -> list[str]:
-    """Drop advertised dates that have no matching templates/ (or archive/) HTML."""
-    keep: list[str] = []
-    for d in dates:
-        fname = f"{prefix}{d}.html"
-        if (TEMPLATES_DIR / fname).is_file():
-            keep.append(d)
-            continue
-        if ARCHIVE_DIR.is_dir() and (ARCHIVE_DIR / fname).is_file():
-            keep.append(d)
-    return keep
-
-
 def _grades_report_dates_payload() -> dict[str, list[str]]:
     """Disk scan + optional grades_report_dates.json (GitHub on Railway)."""
     slate_disk = _grade_report_dates_on_disk("slate")
@@ -657,30 +657,39 @@ def _grades_report_dates_payload() -> dict[str, list[str]]:
                     ticket_high_leg_extra = [str(x) for x in j["ticket_eval_high_leg_dates"]]
         except Exception:
             pass
-    ticket_high_leg_dates = _filter_grade_report_dates_to_html(
-        _merge_grade_report_date_lists(ticket_high_leg_disk, ticket_high_leg_extra),
-        "ticket_eval_high_leg_",
-    )
-    ticket_long_parlay_dates = _filter_grade_report_dates_to_html(
-        _merge_grade_report_date_lists(ticket_long_parlay_disk, ticket_long_parlay_extra),
-        "ticket_eval_long_parlay_",
+    ticket_long_parlay_dates = _merge_grade_report_date_lists(
+        ticket_long_parlay_disk, ticket_long_parlay_extra
     )
     if not ticket_long_parlay_dates:
-        ticket_long_parlay_dates = ticket_high_leg_dates
+        ticket_long_parlay_dates = _merge_grade_report_date_lists(
+            ticket_high_leg_disk, ticket_high_leg_extra
+        )
     return {
-        "slate_eval_dates": _filter_grade_report_dates_to_html(
-            _merge_grade_report_date_lists(slate_disk, slate_extra), "slate_eval_"
-        ),
-        "ticket_eval_dates": _filter_grade_report_dates_to_html(
-            _merge_grade_report_date_lists(ticket_disk, ticket_extra), "ticket_eval_"
-        ),
+        "slate_eval_dates": _merge_grade_report_date_lists(slate_disk, slate_extra),
+        "ticket_eval_dates": _merge_grade_report_date_lists(ticket_disk, ticket_extra),
         "ticket_eval_long_parlay_dates": ticket_long_parlay_dates,
-        "ticket_eval_high_leg_dates": ticket_high_leg_dates,
+        "ticket_eval_high_leg_dates": _merge_grade_report_date_lists(
+            ticket_high_leg_disk, ticket_high_leg_extra
+        ),
     }
+
+
+def _resolve_template_json_path(path: Path) -> Path:
+    """Live latest JSON: prefer ui_runner/runtime/, else templates/ (GitHub-raw mirror)."""
+    if is_live_json_name(path.name):
+        rt = RUNTIME_DIR / path.name
+        if rt.is_file():
+            return rt
+        return TEMPLATES_DIR / path.name
+    return path
 
 
 def _template_json_available(filename: str) -> bool:
     """True if JSON can be loaded from disk or from a configured remote URL (Railway)."""
+    if is_live_json_name(filename):
+        return live_json_disk_path(filename, BASE_DIR).is_file() or bool(
+            _DATA_FILE_URL_MAP.get(filename)
+        )
     return (TEMPLATES_DIR / filename).exists() or bool(_DATA_FILE_URL_MAP.get(filename))
 
 
@@ -702,8 +711,8 @@ def _github_raw_fetch_url(url: str) -> str:
 
 
 def _template_json_disk_mtime(name: str) -> float | None:
-    """Return st_mtime for templates/<name>, or None if missing/unreadable."""
-    p = TEMPLATES_DIR / name
+    """Return st_mtime for runtime/<name> (else templates/<name>), or None if missing."""
+    p = live_json_disk_path(name, BASE_DIR) if is_live_json_name(name) else TEMPLATES_DIR / name
     try:
         return p.stat().st_mtime
     except OSError:
@@ -721,6 +730,7 @@ def _explorer_json_gz_bust_token() -> str:
 
 def read_json_cached(path: Path, ttl: float | None = None) -> Any:
     """Load JSON from disk (or remote URL) with an in-process TTL."""
+    path = _resolve_template_json_path(path)
     if ttl is None:
         ttl = _PIPELINE_JSON_TTL
     key = str(path.resolve())
@@ -1233,6 +1243,12 @@ def _selected_slate_sport_payload() -> dict:
 _SLATE_SPORT_UI_KEYS = frozenset(
     {
         "tier",
+        "edge_tier",
+        "prop_tier",
+        "prop_tier_base",
+        "prop_shadow",
+        "prop_promoted",
+        "prop_promote_reason",
         "rank_score",
         "player",
         "team",
@@ -1275,6 +1291,7 @@ _SLATE_SPORT_UI_KEYS = frozenset(
         "pick_platform",
         "line_underdog",
         "line_draftkings",
+        "line_vegas",
         "cross_edge_vs_pp",
         "best_cross_book",
         "actual_series",
@@ -1286,6 +1303,21 @@ _SLATE_SPORT_UI_KEYS = frozenset(
         "avg_vs_line",
         "share_lean",
         "line_as_pct_of_team",
+        "off_identity",
+        "team_vehicle",
+        "is_run_team",
+        "is_pass_team",
+        "is_fg_team",
+        "is_balanced",
+        "team_rush_share",
+        "team_pass_share",
+        "team_fg_pg",
+        "prop_share_pct",
+        "rush_yds_share_pct",
+        "rush_att_share_pct",
+        "rec_yds_share_pct",
+        "rec_tgt_share_pct",
+        "pass_yds_share_pct",
         *(f"g{i}" for i in range(1, 11)),
         *(f"stat_g{i}" for i in range(1, 11)),
         *(f"line_g{i}" for i in range(1, 11)),
@@ -1306,10 +1338,12 @@ def _merged_combined_slim_rows(payload: dict) -> list[dict[str, Any]]:
         for r in v:
             if not isinstance(r, dict):
                 continue
-            slim = _slim_slate_sport_row(r)
+            rr = dict(r)
+            if not rr.get("sport"):
+                rr["sport"] = sk.upper()
+            slim = _slim_slate_sport_row(rr)
             if "sport" not in slim:
-                lab = str(r.get("sport") or "").strip().upper()
-                slim["sport"] = lab or sk.upper()
+                slim["sport"] = sk.upper()
             out.append(slim)
 
     def _rank(x: dict[str, Any]) -> float:
@@ -1431,6 +1465,17 @@ def _slim_slate_sport_cell(key: str, v: Any) -> Any:
 
 def _slim_slate_sport_row(r: dict) -> dict:
     """One slate row: only UI keys, omit nulls / blanks after coercion."""
+    if isinstance(r, dict):
+        try:
+            scripts_dir = str(BASE_DIR / "scripts")
+            if scripts_dir not in sys.path:
+                sys.path.insert(0, scripts_dir)
+            from prop_hit_tiers import stamp_prop_tier_on_slate_row
+
+            sport_hint = str(r.get("sport") or "")
+            stamp_prop_tier_on_slate_row(r, sport_hint=sport_hint)
+        except Exception:
+            pass
     slim: dict[str, Any] = {}
     for kk in _SLATE_SPORT_UI_KEYS:
         if kk not in r:
@@ -1528,19 +1573,21 @@ def _slim_slate_sport_payload(payload: dict) -> dict:
             rows = enrich_slate_rows([r for r in rows if isinstance(r, dict)], str(k), repo=BASE_DIR) + [
                 r for r in rows if not isinstance(r, dict)
             ]
-        except Exception as exc:
-            _log.warning("slate team_share enrich failed for sport=%s: %s", k, exc)
+        except Exception:
+            pass
         try:
             from utils.matchup_edge.slate_rank_overlay import enrich_slate_rows_with_category_ranks
 
             dict_rows = [r for r in rows if isinstance(r, dict)]
             other = [r for r in rows if not isinstance(r, dict)]
             rows = enrich_slate_rows_with_category_ranks(dict_rows, str(k), repo=BASE_DIR) + other
-        except Exception as exc:
-            _log.warning("slate category-rank enrich failed for sport=%s: %s", k, exc)
+        except Exception:
+            pass
         slim_rows: list[Any] = []
         for r in rows:
             if isinstance(r, dict):
+                if not r.get("sport"):
+                    r = {**r, "sport": str(k).upper()}
                 slim_rows.append(_slim_slate_sport_row(r))
             else:
                 slim_rows.append(r)
@@ -1603,7 +1650,7 @@ def _sport_slate_status(
     # Empty boards (All-Star break, off-day soccer) previously fell through to
     # leftover step8 files and looked "STALE" even when correctly empty today.
     if cnt <= 0:
-        return {"exists": False, "modified": None, "size_kb": None}
+        return {"exists": False, "modified": None, "size_kb": None, "no_slate": True}
 
     direct = _file_info(path)
     if cnt > 0 and json_disp:
@@ -1709,7 +1756,7 @@ a{color:#00e5ff;} code{background:#1a1a2e;padding:2px 7px;border-radius:4px;font
 <h1>Built slips not available</h1>
 <p>This page shows <strong>today&rsquo;s generated slips</strong> from <code>tickets_latest.json</code>. The file was not found on disk and no remote JSON URL is configured (on Railway, <code>TICKETS_JSON_URL</code> defaults to raw GitHub when <code>RAILWAY_*</code> env is set).</p>
 <p><strong>Graded</strong> results (actuals, hits/misses, ticket KPI bar) are under <a href="/grades">Grades</a> &rarr; Ticket evaluation — not here.</p>
-<p>Run the combined slate script with <code>--write-web</code>, commit <code>ui_runner/templates/tickets_latest.json</code>, and redeploy.</p>
+<p>Run the combined slate script with <code>--write-web</code>, then <code>Publish-LiveSite.ps1</code> so GitHub <code>ui_runner/templates/tickets_latest.json</code> (Railway raw) is current.</p>
 <p><a href="/">Home</a></p>
 </body></html>"""
     r = make_response(body, 404)
@@ -1840,13 +1887,14 @@ def api_uniform_tickets_for_date(date_str: str):
 @app.get("/tickets")
 def page_tickets():
     """
-    Today's built ticket slips from tickets_latest.json (combined_slate_tickets --write-web).
+    Today's built ticket slips from tickets_latest.json (Goblin-70 groups first,
+    graded-main mixer under). Writer: build_goblin70_tickets.py --write-web after
+    combined_slate_tickets.py. Render: utils.tickets_render (not the mixer).
+    Live site reads origin/main, not this checkout.
 
     Graded legs, actuals, and hit/miss summaries live under Grades (/grades hub, or
     /grades/YYYY-MM-DD for ticket_eval_*.html from build_ticket_eval.py), not on this route.
     """
-    import importlib.util
-
     json_path = TEMPLATES_DIR / "tickets_latest.json"
     has_json = _template_json_available("tickets_latest.json")
 
@@ -1854,59 +1902,33 @@ def page_tickets():
         if not has_json:
             return None
         payload = read_json_cached(json_path)
-        cst_path = BASE_DIR / "scripts" / "combined_slate_tickets.py"
-        if not cst_path.exists():
-            raise FileNotFoundError("scripts/combined_slate_tickets.py not in repo")
-        scripts_dir = str(BASE_DIR / "scripts")
-        path_inserted = False
-        if scripts_dir not in sys.path:
-            sys.path.insert(0, scripts_dir)
-            path_inserted = True
-        try:
-            spec = importlib.util.spec_from_file_location("combined_slate_tickets", cst_path)
-            if spec is None or spec.loader is None:
-                raise RuntimeError("could not load combined_slate_tickets spec")
-            mod = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(mod)
-            # tickets_latest.json is authoritative (EV gate applied only when combined is built with strict web mode).
-            winrate_payload = None
-            if _template_json_available("tickets_winrate_latest.json"):
-                try:
-                    winrate_payload = read_json_cached(
-                        TEMPLATES_DIR / "tickets_winrate_latest.json"
-                    )
-                except Exception as wr_exc:
-                    current_app.logger.warning(
-                        "/tickets: tickets_winrate_latest.json load failed: %s",
-                        wr_exc,
-                    )
-            body, page_title = mod.render_tickets_body_html(
-                payload,
-                _non_ev_slips_removed=0,
-                winrate_payload=winrate_payload,
-            )
-            board_meta = _home_board_display_meta(payload, None)
-            stale_banner = ""
-            td = str(board_meta.get("tickets_date") or "").strip()
-            sd = str(board_meta.get("slate_date") or "").strip()
-            if td and sd and td < sd:
-                stale_banner = (
-                    f"These slips are from {td}. Prop Explorer is already on {sd}. "
-                    "A combined ticket rebuild is required before /tickets can show today's board."
+        from utils.tickets_render import render_tickets_body_html
+
+        winrate_payload = None
+        if _template_json_available("tickets_winrate_latest.json"):
+            try:
+                winrate_payload = read_json_cached(
+                    TEMPLATES_DIR / "tickets_winrate_latest.json"
                 )
-            return render_template(
-                "tickets_built.html",
-                tickets_body=Markup(body),
-                page_title=page_title,
-                tickets_stale_banner=stale_banner,
-                ui_build_id=_UI_BUILD_ID,
-                deploy_git_sha=(
-                    os.environ.get("RAILWAY_GIT_COMMIT_SHA") or os.environ.get("GIT_COMMIT") or ""
-                )[:40],
-            )
-        finally:
-            if path_inserted and sys.path and sys.path[0] == scripts_dir:
-                sys.path.pop(0)
+            except Exception as wr_exc:
+                current_app.logger.warning(
+                    "/tickets: tickets_winrate_latest.json load failed: %s",
+                    wr_exc,
+                )
+        body, page_title = render_tickets_body_html(
+            payload,
+            _non_ev_slips_removed=0,
+            winrate_payload=winrate_payload,
+        )
+        return render_template(
+            "tickets_built.html",
+            tickets_body=Markup(body),
+            page_title=page_title,
+            ui_build_id=_UI_BUILD_ID,
+            deploy_git_sha=(
+                os.environ.get("RAILWAY_GIT_COMMIT_SHA") or os.environ.get("GIT_COMMIT") or ""
+            )[:40],
+        )
 
     try:
         html = _render_slips_from_json()
@@ -1929,7 +1951,7 @@ def page_tickets():
         return _no_store_headers(_tickets_built_slips_missing_html())
     return _no_store_headers(
         make_response(
-            "Could not render /tickets from tickets_latest.json. Check combined_slate_tickets.render_tickets_body_html "
+            "Could not render /tickets from tickets_latest.json. Check utils.tickets_render.render_tickets_body_html "
             "and JSON shape.",
             500,
         )
@@ -4097,6 +4119,24 @@ def api_pipeline_status():
         WNBA_DIR / "step8_wnba_direction_clean.xlsx",
         WNBA_DIR / "step8_wnba_direction.xlsx",
     )
+    wnba1h_slate_p = _resolve_outputs_artifact(
+        days,
+        [
+            "wnba1h/step8_wnba1h_direction_clean.xlsx",
+            "step8_wnba1h_direction_clean_{d}.xlsx",
+        ],
+        WNBA1H_SLATE,
+        WNBA_DIR / "step8_wnba1h_direction_clean.xlsx",
+    )
+    wnba1q_slate_p = _resolve_outputs_artifact(
+        days,
+        [
+            "wnba1q/step8_wnba1q_direction_clean.xlsx",
+            "step8_wnba1q_direction_clean_{d}.xlsx",
+        ],
+        WNBA1Q_SLATE,
+        WNBA_DIR / "step8_wnba1q_direction_clean.xlsx",
+    )
     nfl_slate_p = _resolve_outputs_artifact(
         days,
         "step8_nfl_direction_clean_{d}.xlsx",
@@ -4138,14 +4178,20 @@ def api_pipeline_status():
     if len(soccer_override_date) != 10:
         soccer_override_date = None
     soccer_match_day = soccer_override_date or et_today
+    wnba_override_date = str((slate_payload or {}).get("wnba_date") or "").strip()[:10]
+    if len(wnba_override_date) != 10:
+        wnba_override_date = None
+    wnba_match_day = wnba_override_date or et_today
     # Strict game-day sports (matches index.html SLATE_STRICT_GAME_DAY_SPORTS + tennis).
-    _game_day_sports = ("nhl", "nfl", "mlb", "nba1h", "nba1q", "soccer", "wnba", "tennis")
+    _game_day_sports = ("nhl", "nfl", "mlb", "nba1h", "nba1q", "soccer", "wnba", "wnba1h", "wnba1q", "tennis")
     game_day: dict[str, bool | None] = {}
     for sid in _game_day_sports:
         if sid == "tennis":
             target = tennis_match_day
         elif sid == "soccer":
             target = soccer_match_day
+        elif sid in ("wnba", "wnba1h", "wnba1q"):
+            target = wnba_match_day
         else:
             target = et_today
         game_day[sid] = _sport_rows_have_game_on_ymd(slate_payload, sid, target)
@@ -4194,6 +4240,12 @@ def api_pipeline_status():
         "wnba": {
             "slate": _sport_slate_status(wnba_slate_p, "wnba", slate_counts, slate_disk_info, status_js_ts, card_disp),
         },
+        "wnba1h": {
+            "slate": _sport_slate_status(wnba1h_slate_p, "wnba1h", slate_counts, slate_disk_info, status_js_ts, card_disp),
+        },
+        "wnba1q": {
+            "slate": _sport_slate_status(wnba1q_slate_p, "wnba1q", slate_counts, slate_disk_info, status_js_ts, card_disp),
+        },
         "nfl": {
             "slate": _sport_slate_status(nfl_slate_p, "nfl", slate_counts, slate_disk_info, status_js_ts, card_disp),
         },
@@ -4206,6 +4258,7 @@ def api_pipeline_status():
         "et_today": et_today,
         "tennis_match_day": tennis_match_day,
         "soccer_match_day": soccer_match_day,
+        "wnba_match_day": wnba_match_day,
         "game_day": game_day,
         "tickets_date": board_meta.get("tickets_date"),
         "slate_date": board_meta.get("slate_date"),
@@ -5803,7 +5856,7 @@ def api_slate_sport():
         return jsonify({"error": str(e), "sports": {}}), 404
     try:
         return _gz_json_response(
-            f"slate-sport-slim-v3:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-slim-v4:{_explorer_json_gz_bust_token()}",
             lambda: _slim_slate_sport_payload(_selected_slate_sport_payload()),
             ttl=_PIPELINE_JSON_TTL,
         )
@@ -5868,9 +5921,17 @@ def api_slate_sport_single(sport: str):
                 enrich_slate_rows([r], sk, repo=BASE_DIR)
                 enriched.append(r)
             rows = enriched + other
-        except Exception as exc:
-            _log.warning("slate team_share enrich failed for sport=%s: %s", sport_key, exc)
-        slim_rows = [_slim_slate_sport_row(r) if isinstance(r, dict) else r for r in rows]
+        except Exception:
+            pass
+        slim_rows = []
+        for r in rows:
+            if not isinstance(r, dict):
+                slim_rows.append(r)
+                continue
+            rr = dict(r)
+            if not rr.get("sport"):
+                rr["sport"] = str(sport_key).upper()
+            slim_rows.append(_slim_slate_sport_row(rr))
         if not slim_rows and sport_key == "wnba":
             slim_rows = _wnba_slate_rows_from_step8_fallback()
         slim_rows = _filter_slate_explorer_rows(slim_rows)
@@ -5883,7 +5944,7 @@ def api_slate_sport_single(sport: str):
 
     try:
         return _gz_json_response(
-            f"slate-sport-single-v1:{sport_key}:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-single-v2:{sport_key}:{_explorer_json_gz_bust_token()}",
             _build,
             ttl=60.0,
         )
@@ -6222,7 +6283,6 @@ def serve_data_json(filename: str):
                     if n.endswith("_matchup_edge.json"):
                         sport_key = n[: -len("_matchup_edge.json")].strip().lower()
                         payload = _enrich_matchup_edge_opponents(payload, sport_key)
-                        payload = _enrich_matchup_edge_team_share(payload, sport_key)
                     return payload
 
                 sport_key = (
@@ -6251,7 +6311,7 @@ def api_matchup_edge(sport: str):
 
     try:
         return _gz_json_response(
-            f"matchup-edge-v5:{sport_key}:{_template_json_disk_mtime(json_name) or 0}:{_matchup_edge_slate_mtime(sport_key)}",
+            f"matchup-edge-v4:{sport_key}:{_template_json_disk_mtime(json_name) or 0}:{_matchup_edge_slate_mtime(sport_key)}",
             _build,
             ttl=120.0,
         )
@@ -6287,6 +6347,8 @@ def api_slate_excel():
             "Soccer Slate":"soccer",
             "Tennis Slate": "tennis",
             "WNBA Slate":  "wnba",
+            "WNBA1H Slate": "wnba1h",
+            "WNBA1Q Slate": "wnba1q",
             "WCBB Slate":  "wcbb",
             "MLB Slate":   "mlb",
             "NFL Slate":   "nfl",

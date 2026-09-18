@@ -58,7 +58,7 @@ function Ensure-DualCardTickets {
     $kind = Get-TicketsCardKind -TicketsPath $tpl
     if ($kind -eq "dual") { return $true }
 
-    Write-Host "[PUBLISH] tickets card is '$kind' — rebuilding Goblin-70 dual card before push" -ForegroundColor Yellow
+    Write-Host ('[PUBLISH] tickets card is ''{0}'' - rebuilding Goblin-70 dual card before push' -f $kind) -ForegroundColor Yellow
     $slateDate = (Get-Date).ToString("yyyy-MM-dd")
     try {
         $tz = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
@@ -76,12 +76,12 @@ function Ensure-DualCardTickets {
     }
     $g70 = Join-Path $RepoRoot "scripts\build_goblin70_tickets.py"
     if (-not (Test-Path -LiteralPath $g70)) {
-        Write-Host "[PUBLISH] FAILED: build_goblin70_tickets.py missing" -ForegroundColor Red
+        Write-Host '[PUBLISH] FAILED: build_goblin70_tickets.py missing' -ForegroundColor Red
         return $false
     }
     & py -3.14 $g70 --date $slateDate --write-web
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "[PUBLISH] FAILED: Goblin-70 rebuild exit $LASTEXITCODE" -ForegroundColor Red
+        Write-Host ('[PUBLISH] FAILED: Goblin-70 rebuild exit {0}' -f $LASTEXITCODE) -ForegroundColor Red
         return $false
     }
     if ((Test-Path -LiteralPath $tpl) -and (Test-Path -LiteralPath (Split-Path $rt -Parent))) {
@@ -89,20 +89,20 @@ function Ensure-DualCardTickets {
     }
     $kind2 = Get-TicketsCardKind -TicketsPath $tpl
     if ($kind2 -ne "dual") {
-        Write-Host "[PUBLISH] FAILED: after rebuild card is still '$kind2' (need Goblin-70 + mixer)" -ForegroundColor Red
+        Write-Host ('[PUBLISH] FAILED: after rebuild card is still ''{0}'' (need Goblin-70 + mixer)' -f $kind2) -ForegroundColor Red
         return $false
     }
-    Write-Host "[PUBLISH] dual card OK ($slateDate)" -ForegroundColor Green
+    Write-Host ('[PUBLISH] dual card OK ({0})' -f $slateDate) -ForegroundColor Green
     return $true
 }
 
 $MainRoot = Get-MainWorktreeRoot
 if (-not $MainRoot) {
-    Write-Host "[PUBLISH] FAILED: no worktree has main checked out" -ForegroundColor Red
+    Write-Host '[PUBLISH] FAILED: no worktree has main checked out' -ForegroundColor Red
     exit 1
 }
 
-Write-Host "[PUBLISH] Live site JSON -> origin/main ($MainRoot)" -ForegroundColor Cyan
+Write-Host ('[PUBLISH] Live site JSON -> origin/main ({0})' -f $MainRoot) -ForegroundColor Cyan
 
 # Hard gate: never push mixer-only / Goblin-only to Railway.
 if (-not (Ensure-DualCardTickets -RepoRoot $Root)) {
@@ -118,19 +118,19 @@ if (-not (Test-Path -LiteralPath $assertPy)) {
     }
 }
 if (Test-Path -LiteralPath $assertPy) {
-    Write-Host "[PUBLISH] assert dual-card + runtime/templates sync" -ForegroundColor DarkGray
+    Write-Host '[PUBLISH] assert dual-card + runtime/templates sync' -ForegroundColor DarkGray
     & py -3.14 $assertPy --root $Root --fix
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "[PUBLISH] FAILED: live JSON guard (Goblin-70+mixer, matching dates)" -ForegroundColor Red
+        Write-Host '[PUBLISH] FAILED: live JSON guard (Goblin-70+mixer, matching dates)' -ForegroundColor Red
         exit 1
     }
 } else {
     $kind = Get-TicketsCardKind -TicketsPath (Join-Path $Root "ui_runner\templates\tickets_latest.json")
     if ($kind -ne "dual") {
-        Write-Host "[PUBLISH] FAILED: assert_live_publish.py missing and card is '$kind'" -ForegroundColor Red
+        Write-Host ('[PUBLISH] FAILED: assert_live_publish.py missing and card is ''{0}''' -f $kind) -ForegroundColor Red
         exit 1
     }
-    Write-Host "[PUBLISH] dual-card PowerShell guard OK (assert script missing)" -ForegroundColor DarkGray
+    Write-Host '[PUBLISH] dual-card PowerShell guard OK (assert script missing)' -ForegroundColor DarkGray
 }
 
 # templates/ = GitHub raw contract (Railway). runtime/ = canonical disk copy.
@@ -163,7 +163,7 @@ foreach ($rel in $liveRel) {
     if (Test-Path -LiteralPath $full) { $toPublish += $rel }
 }
 if (-not $toPublish.Count) {
-    Write-Host "[PUBLISH] No live site JSON found" -ForegroundColor Yellow
+    Write-Host '[PUBLISH] No live site JSON found' -ForegroundColor Yellow
     exit 0
 }
 
@@ -197,13 +197,13 @@ try {
         $pushOut = git push origin main 2>&1
         foreach ($line in $pushOut) { Write-Host "    $line" -ForegroundColor DarkGray }
         if ($LASTEXITCODE -eq 0) {
-            Write-Host "[PUBLISH] OK — origin/main updated" -ForegroundColor Green
+            Write-Host '[PUBLISH] OK - origin/main updated' -ForegroundColor Green
             exit 0
         }
-        Write-Host "[PUBLISH] FAILED: git push origin main" -ForegroundColor Red
+        Write-Host '[PUBLISH] FAILED: git push origin main' -ForegroundColor Red
         exit 1
     }
-    Write-Host "[PUBLISH] no JSON changes vs main" -ForegroundColor DarkGray
+    Write-Host '[PUBLISH] no JSON changes vs main' -ForegroundColor DarkGray
     exit 0
 } finally {
     Pop-Location
