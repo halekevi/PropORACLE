@@ -2342,6 +2342,7 @@ body > nav.snav.glass-card {
       </div>
       <div class="slate-table-wrap"><table class="slate-table" id="st-combined">
         <thead><tr><th style="color:var(--muted2);">Loading…</th></tr></thead>
+        <tbody id="stb-combined"></tbody>
       </table></div>
     </div>
 
@@ -5662,7 +5663,8 @@ async function loadSlatePicks() {
 }
 
 function loadSlateSport(sport) {
-  if (sport === 'combined') { loadSlateExcel(); return; }
+  // Combined Full Slate: JSON merge is the live source (Excel sheet often absent on Railway).
+  if (sport === 'combined') { loadCombinedFromMergedJson(); return; }
   if (SLATE_SPORT_CACHE[sport] && SLATE_DATA[sport]) { scheduleRenderSlateTable(sport); return; }
   fetchSlateSport(sport).then(() => scheduleRenderSlateTable(sport));
 }
@@ -5932,13 +5934,23 @@ function ensureFixedCombinedTheadFromNbaTemplate() {
   const nba = document.getElementById('st-nba');
   if (!table || !nba) return;
   const src = nba.querySelector('thead tr');
-  const dst = table.querySelector('thead');
+  let dst = table.querySelector('thead');
   if (!src || !dst) return;
   dst.innerHTML = src.innerHTML.replace(/sortSlate\('nba'/g, "sortSlate('combined'");
+  // Older markup omitted tbody — renderSlateTable looks up #stb-combined and no-ops without it.
+  if (!document.getElementById('stb-combined')) {
+    const tb = document.createElement('tbody');
+    tb.id = 'stb-combined';
+    table.appendChild(tb);
+  }
 }
 
 async function loadCombinedFromMergedJson() {
-  const tbody = document.getElementById('stb-combined');
+  let tbody = document.getElementById('stb-combined');
+  if (!tbody) {
+    ensureFixedCombinedTheadFromNbaTemplate();
+    tbody = document.getElementById('stb-combined');
+  }
   try {
     void loadSlateData().catch(() => {});
     let d = null;
