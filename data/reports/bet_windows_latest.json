@@ -1,6 +1,6 @@
 {
   "date": "2026-09-18",
-  "generated_at": "2026-09-18T00:55:29-04:00",
+  "generated_at": "2026-09-18T03:12:00-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-09-17T19:28:08-04:00",
@@ -103,6 +103,108 @@
       "window": "1AM",
       "n_props": 824,
       "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-18T01:05:45-04:00",
+      "window": "1AM",
+      "n_props": 7145,
+      "n_moved": 213
+    },
+    {
+      "fetched_at": "2026-09-18T01:06:20-04:00",
+      "window": "1AM",
+      "n_props": 4150,
+      "n_moved": 10
+    },
+    {
+      "fetched_at": "2026-09-18T01:06:36-04:00",
+      "window": "1AM",
+      "n_props": 405,
+      "n_moved": 4
+    },
+    {
+      "fetched_at": "2026-09-18T01:09:28-04:00",
+      "window": "1AM",
+      "n_props": 6582,
+      "n_moved": 11
+    },
+    {
+      "fetched_at": "2026-09-18T01:09:50-04:00",
+      "window": "1AM",
+      "n_props": 6583,
+      "n_moved": 1
+    },
+    {
+      "fetched_at": "2026-09-18T01:10:33-04:00",
+      "window": "1AM",
+      "n_props": 930,
+      "n_moved": 38
+    },
+    {
+      "fetched_at": "2026-09-18T01:12:57-04:00",
+      "window": "1AM",
+      "n_props": 152,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-09-18T01:13:01-04:00",
+      "window": "1AM",
+      "n_props": 6641,
+      "n_moved": 75
+    },
+    {
+      "fetched_at": "2026-09-18T01:35:30-04:00",
+      "window": "1AM",
+      "n_props": 940,
+      "n_moved": 4
+    },
+    {
+      "fetched_at": "2026-09-18T01:41:02-04:00",
+      "window": "1AM",
+      "n_props": 4153,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-09-18T01:41:11-04:00",
+      "window": "1AM",
+      "n_props": 419,
+      "n_moved": 1
+    },
+    {
+      "fetched_at": "2026-09-18T01:41:18-04:00",
+      "window": "1AM",
+      "n_props": 115,
+      "n_moved": 8
+    },
+    {
+      "fetched_at": "2026-09-18T01:41:35-04:00",
+      "window": "1AM",
+      "n_props": 6586,
+      "n_moved": 9
+    },
+    {
+      "fetched_at": "2026-09-18T01:44:43-04:00",
+      "window": "1AM",
+      "n_props": 6796,
+      "n_moved": 15
+    },
+    {
+      "fetched_at": "2026-09-18T01:47:08-04:00",
+      "window": "1AM",
+      "n_props": 6587,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-09-18T01:47:28-04:00",
+      "window": "1AM",
+      "n_props": 6584,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-09-18T01:47:59-04:00",
+      "window": "1AM",
+      "n_props": 941,
+      "n_moved": 2
     }
   ],
   "payout_scrapes": [],
