@@ -1,6 +1,6 @@
 {
   "date": "2026-09-18",
-  "generated_at": "2026-09-18T17:42:45-04:00",
+  "generated_at": "2026-09-18T21:39:33-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-09-17T19:28:08-04:00",
@@ -547,6 +547,144 @@
       "window": "4:30",
       "n_props": 1279,
       "n_moved": 26
+    },
+    {
+      "fetched_at": "2026-09-18T18:20:43-04:00",
+      "window": "18:20",
+      "n_props": 7679,
+      "n_moved": 573
+    },
+    {
+      "fetched_at": "2026-09-18T18:21:13-04:00",
+      "window": "18:21",
+      "n_props": 2569,
+      "n_moved": 8
+    },
+    {
+      "fetched_at": "2026-09-18T18:21:30-04:00",
+      "window": "18:21",
+      "n_props": 310,
+      "n_moved": 4
+    },
+    {
+      "fetched_at": "2026-09-18T18:24:19-04:00",
+      "window": "18:24",
+      "n_props": 8074,
+      "n_moved": 79
+    },
+    {
+      "fetched_at": "2026-09-18T18:24:47-04:00",
+      "window": "18:24",
+      "n_props": 8080,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-09-18T18:26:29-04:00",
+      "window": "18:26",
+      "n_props": 252,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-18T18:33:21-04:00",
+      "window": "18:33",
+      "n_props": 252,
+      "n_moved": 16
+    },
+    {
+      "fetched_at": "2026-09-18T18:49:38-04:00",
+      "window": "18:49",
+      "n_props": 6470,
+      "n_moved": 29
+    },
+    {
+      "fetched_at": "2026-09-18T18:54:02-04:00",
+      "window": "18:54",
+      "n_props": 252,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-18T18:56:13-04:00",
+      "window": "18:56",
+      "n_props": 8117,
+      "n_moved": 17
+    },
+    {
+      "fetched_at": "2026-09-18T18:56:50-04:00",
+      "window": "18:56",
+      "n_props": 8120,
+      "n_moved": 1
+    },
+    {
+      "fetched_at": "2026-09-18T18:56:53-04:00",
+      "window": "18:56",
+      "n_props": 252,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-18T21:07:13-04:00",
+      "window": "9PM",
+      "n_props": 7316,
+      "n_moved": 188
+    },
+    {
+      "fetched_at": "2026-09-18T21:07:44-04:00",
+      "window": "9PM",
+      "n_props": 2285,
+      "n_moved": 7
+    },
+    {
+      "fetched_at": "2026-09-18T21:09:37-04:00",
+      "window": "9PM",
+      "n_props": 104,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-09-18T21:11:06-04:00",
+      "window": "9PM",
+      "n_props": 8209,
+      "n_moved": 60
+    },
+    {
+      "fetched_at": "2026-09-18T21:11:55-04:00",
+      "window": "9PM",
+      "n_props": 8209,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-18T21:11:57-04:00",
+      "window": "9PM",
+      "n_props": 274,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-18T21:13:51-04:00",
+      "window": "9PM",
+      "n_props": 2557,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-18T21:19:57-04:00",
+      "window": "9PM",
+      "n_props": 234,
+      "n_moved": 1
+    },
+    {
+      "fetched_at": "2026-09-18T21:34:55-04:00",
+      "window": "9PM",
+      "n_props": 274,
+      "n_moved": 1
+    },
+    {
+      "fetched_at": "2026-09-18T21:38:12-04:00",
+      "window": "9PM",
+      "n_props": 8227,
+      "n_moved": 11
+    },
+    {
+      "fetched_at": "2026-09-18T21:39:30-04:00",
+      "window": "9PM",
+      "n_props": 8224,
+      "n_moved": 3
     }
   ],
   "payout_scrapes": [],

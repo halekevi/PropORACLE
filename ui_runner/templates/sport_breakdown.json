@@ -17,10 +17,10 @@
     },
     {
       "sport": "CFB",
-      "decided": 909,
-      "paid": 567,
-      "win_rate": 0.6237623762376238,
-      "net_dollars": 2250.0
+      "decided": 1342,
+      "paid": 810,
+      "win_rate": 0.6035767511177347,
+      "net_dollars": 2780.0
     },
     {
       "sport": "WNBA",
@@ -69,10 +69,10 @@
     {
       "sport": "CFB",
       "month": "2026-09",
-      "decided": 909,
-      "paid": 567,
-      "win_rate": 0.6237623762376238,
-      "net_dollars": 2250.0
+      "decided": 1342,
+      "paid": 810,
+      "win_rate": 0.6035767511177347,
+      "net_dollars": 2780.0
     },
     {
       "sport": "WNBA",
@@ -172,6 +172,6 @@
     }
   ],
   "source": "graded_props_json",
-  "signature": "n=72:mt=1789722458352655600",
-  "updated_at": "2026-09-18T09:15:27Z"
+  "signature": "n=72:mt=1789740968998011100",
+  "updated_at": "2026-09-18T22:14:58Z"
 }
