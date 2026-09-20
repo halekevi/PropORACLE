@@ -8,23 +8,29 @@ L5>=4+L10>=8 or L10>=8+lefty; no D). Tennis Standard UNDER Aces / Double
 Faults is faded after serve-actual backfill (missing→0 had inflated ~90%).
 Standard OVER Games Won uses L10>=8+(gap|2nd-won). Other tennis Standard
 stays off. Soccer uses utils.soccer_keep_gates
-(Shots L5=5+L10>=8; SOT L5>=4+Off; Saves L5>=4+D). Golf has no opponent D,
+(Shots L5=5+L10>=8; SOT L5>=4+Off; Saves L5>=4+D). CFB uses
+utils.cfb_keep_gates: Pass Yards Goblin OVER skips D (still L5=5+L10>=8
++cover); Player TDs fade from the L5=5 stack; Standard Rec Yards UNDER
+fades from the cover-stack; Standard Rush Yards UNDER keeps the full
+stack; Rush Attempts / Kicking Points Goblin OVER stay off. Golf has no opponent D,
 so it uses L5 = 5 + L10 >= 8 without D.
 
 MLB Goblin OVER uses the locked keep props 1–10 in utils.mlb_keep_gates
 (not the global L5=5 card). H+R+RBI / Hits / TB: BA>=.275 + L5=5 + Opp
 pitch Weak|Below. Hitter Ks stay on the list keep-gate but are hard-faded
 from Goblin-70 tickets (52% n=23 under the stack). MLB Standard stays off.
-Cover floor still applies on other sports. WNBA Goblin PRA needs Off
-(usage HIGH/STAR or minutes HIGH) AND prop_tier S/A on top of
-L5=5+L10>=8+D (Off-only residual was 69% n=310). Premium YOLO sleeve:
+Cover floor still applies on other sports. WNBA Goblin PRA tickets still
+need Off AND prop_tier S/A on top of L5=5+L10>=8+D. Off-without-S/A is
+observe-only (78.1% n=32 in-sample; live path unchanged). Catalog PRA is
+B, so S/A currently zeros the live sleeve. Premium YOLO sleeve:
 WNBA FGA / reb+ast / threes / threes_att. No Demons, no shadow. NFLP stays
 on its own playing-time track. NFL regular-season Standard tickets are
 UNDER-heavy (rec yards / receptions / sacks / kick pts / pass+rush yards)
 until a Goblin sample exists; Standard OVER stays off except rush yards.
 
 List gate remains L5 >= 4 (D badge-only) except MLB and soccer, which use the
-same keep gates as Goblin-70. Tennis list uses tennis keep gates. Live
+same keep gates as Goblin-70. Tennis list uses tennis keep gates. CFB list
+drops Goblin OVER rush_att / kick_pts only. Live
 PrizePicks fill must use live_board_fill_ok:
 same player + same canon prop + same line as a goblin_70_eligible row.
 Do not take L5=4 Gold from the printed list, and do not swap Total Games
@@ -46,12 +52,17 @@ import prop_hit_tiers as T  # noqa: E402
 from utils.defense_tiers import d_aligned  # noqa: E402
 from utils.mlb_keep_gates import mlb_goblin_keep_eligible  # noqa: E402
 from utils.nfl_keep_gates import (  # noqa: E402
+    nfl_current_season_l5_ok,
     NFL_GOBLIN_TICKETS_ENABLED,
     nfl_goblin_ticket_eligible,
     nfl_standard_ticket_eligible,
     nfl_ticket_priority,
 )
 from utils.soccer_keep_gates import soccer_ticket_gate_passes  # noqa: E402
+from utils.cfb_keep_gates import (  # noqa: E402
+    cfb_pass_yards_goblin_skip_d,
+    cfb_ticket_fade,
+)
 from utils.tennis_keep_gates import (  # noqa: E402
     tennis_skip_cover_floor,
     tennis_standard_games_won_over_eligible,
@@ -365,12 +376,31 @@ def wnba_pra_sa_ok(r: dict[str, Any]) -> bool:
 
 
 def _wnba_pra_ticket_cut(r: dict[str, Any]) -> bool:
-    """Goblin OVER PRA on full-game WNBA needs Off + S/A on top of L5/L10/D."""
+    """Goblin OVER PRA on full-game WNBA needs Off + S/A on top of L5/L10/D.
+
+    Off-without-S/A is logged by wnba_pra_off_observe_eligible; it does not
+    pass goblin_70_eligible while catalog PRA stays B.
+    """
     if _sport(r) != "WNBA":
         return False
     if _pick(r) != "Goblin" or _side(r) != "OVER":
         return False
     return _prop(r) == "pra"
+
+
+def wnba_pra_off_observe_eligible(r: dict[str, Any]) -> bool:
+    """True if this row would ticket after dropping the PRA S/A cut.
+
+    Live goblin_70_eligible is unchanged (still Off + S/A). This is the
+    observe sleeve: Goblin OVER PRA + L5=5+L10>=8+D+cover+Off.
+    """
+    if not _wnba_pra_ticket_cut(r):
+        return False
+    if not wnba_pra_off_ok(r):
+        return False
+    rec = dict(r)
+    rec["prop_tier"] = "A"
+    return goblin_70_eligible(rec)
 
 
 PREMIUM_WNBA_PROPS = frozenset({"fga", "reb+ast", "threes", "threes_att"})
@@ -399,13 +429,20 @@ def ticket_gate_passes(r: dict[str, Any]) -> bool:
         return hitter_counting_gate(r)
     if sport not in TICKET_SPORTS:
         return False
+    if sport in {"CFB", "CFB1H"} and cfb_ticket_fade(r):
+        return False
     l5 = _l5(r)
     if l5 is None or l5 < 5:
+        return False
+    # NFL: PRIOR_SEASON_FILL can make face L5=5; tickets need current-season n>=5.
+    if sport == "NFL" and not nfl_current_season_l5_ok(r):
         return False
     l10 = _l10(r)
     if l10 is None or l10 < 8:
         return False
     if _is_golf(sport):
+        return True
+    if cfb_pass_yards_goblin_skip_d(r):
         return True
     if not _d_ok(r):
         return False
@@ -419,7 +456,8 @@ def goblin_70_eligible(r: dict[str, Any]) -> bool:
     """Goblin OVER ticket gate: L5=5+L10>=8+D (tennis keep gates; golf no D).
 
     WNBA Goblin PRA also needs Off (high usage or HIGH minutes) AND prop_tier
-    S/A. MLB uses keep props 1-10 on the list, but hitter_ks is hard-faded
+    S/A. Off-without-S/A is observe-only (wnba_pra_off_observe_eligible).
+    MLB uses keep props 1-10 on the list, but hitter_ks is hard-faded
     from Goblin-70 tickets. ``ml_prob`` is never a gate or sort key. A 0.99
     score cannot rescue a failed L5/L10/D/cover row; a 0.10 score cannot
     drop a clear one.

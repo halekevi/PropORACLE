@@ -7,9 +7,9 @@ alwaysApply: true
 
 ## Decision (explicit)
 
-Season-cut step8 L5 that is thin or empty (0/1, `THIN_*`, no L5≥4 clears) is the **honest** answer — same as Tennis Standard going to zero after serve backfill. Do **not** rebuild ticket eligibility from last-season / preseason `nfl_boxscore_cache` just because the fixed pool is thin.
+Weeks 1–3 step5 may **PRIOR_SEASON_FILL** face L5/L10 from last year's boxes for display / list consistency (`l5_sample_n` stays current-season). That is not ticket eligibility.
 
-`utils.nfl_keep_gates.NFL_WIDER_WINDOW_TICKET_L5_ENABLED` stays **False**. Call `assert_nfl_ticket_l5_source(...)` before any cache-based L5 for tickets; it raises `NflWiderWindowTicketBlocked`.
+Ticket Gate70 still needs current-season depth via `nfl_current_season_l5_ok` (rejects `PRIOR_*` / `THIN_*` / `l5_sample_n < 5`). Do **not** flip `NFL_WIDER_WINDOW_TICKET_L5_ENABLED` to manufacture READY. Call `assert_nfl_ticket_l5_source(...)` before any cache-based L5 for tickets; it raises `NflWiderWindowTicketBlocked`.
 
 Sit-list and n=1 hand-checks (Shough OT caution, Bateman DNP-zero fade, Monangai hard-line fades, etc.) live **outside** `nfl_standard_ticket_eligible`. Any path that bypasses the hand-checked list bypasses that judgment with no flag — same shape as the unguarded manual-submit door.
 

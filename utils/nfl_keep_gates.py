@@ -44,8 +44,10 @@ NFL_GOBLIN_TICKETS_ENABLED = False
 # Week 2 2026 decision (explicit — do not quietly work around the Sep-1 season cut):
 # step8 current-season L5 is honestly thin (often 0/1 / THIN_*). That empty/thin
 # answer is correct, same posture as Tennis Standard going to zero after backfill.
-# Do NOT pad ticket L5 from last-season / preseason boxscore cache to manufacture
-# a Gate70 or "READY" slip. Sit-list / n=1 hand-checks live outside this module;
+# step5 may PRIOR_SEASON_FILL display L5 in weeks 1–3; tickets still use
+# nfl_current_season_l5_ok (current n>=5). Do NOT flip
+# NFL_WIDER_WINDOW_TICKET_L5_ENABLED to manufacture READY. Sit-list /
+# n=1 hand-checks live outside this module;
 # any path that bypasses the hand-checked list bypasses that judgment too.
 # Flip only after an explicit product decision, not because tonight's pool is thin.
 NFL_WIDER_WINDOW_TICKET_L5_ENABLED = False
@@ -196,6 +198,29 @@ def _pick(r: dict[str, Any]) -> str:
         if k in r and r.get(k) not in (None, ""):
             return str(r.get(k) or "").strip().title()
     return "Standard"
+
+
+
+def nfl_current_season_l5_ok(r: dict[str, Any]) -> bool:
+    """Ticket Gate70 needs current-season sample depth; prior-fill is display-only.
+
+    Weeks 1–3 step5 may set L5=5 via PRIOR_SEASON_FILL (last year mixed in).
+    Tickets still require ``l5_sample_n >= 5`` on current-season games, and reject
+    PRIOR_* / THIN_* / NO_CURRENT_SEASON flags.
+    """
+    flag = str(r.get("season_l5_flag") or r.get("Season L5 Flag") or "").strip().upper()
+    if flag in {"PRIOR_SEASON_FILL", "PRIOR_SEASON_L5", "NO_CURRENT_SEASON"}:
+        return False
+    if flag.startswith("THIN_"):
+        return False
+    raw = r.get("l5_sample_n")
+    if raw in (None, ""):
+        raw = r.get("L5 Sample N")
+    try:
+        n = float(raw) if raw not in (None, "") else 0.0
+    except (TypeError, ValueError):
+        n = 0.0
+    return n >= 5.0
 
 
 def nfl_ticket_priority(r: dict[str, Any]) -> int:

@@ -32,7 +32,11 @@ def main() -> None:
     if "--cache" not in argv:
         argv.extend(["--cache", "data/cache/nfl_boxscore_cache.csv"])
     if "--days" not in argv:
-        argv.extend(["--days", "120"])
+        # Fetch window stays wide so the cache covers last season for NFLP
+        # (Mar–Aug) and weeks 1–3 PRIOR_SEASON_FILL. Sep 1 boundary still
+        # drives games_used / l5_sample_n / THIN_*; face L5 may mix prior.
+        # NFLP and NFL share the same ESPN NFL game logs.
+        argv.extend(["--days", "400"])
     sys.argv = argv
     runpy.run_path(str(_ENGINE), run_name="__main__")
 
