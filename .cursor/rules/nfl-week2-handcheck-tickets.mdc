@@ -1,0 +1,38 @@
+---
+description: NFL Week-2 tickets — hand-check only; no wider-window L5; line shelf life
+alwaysApply: true
+---
+
+# NFL Week 2 ticket construction (2026)
+
+## Decision (explicit)
+
+Season-cut step8 L5 that is thin or empty (0/1, `THIN_*`, no L5≥4 clears) is the **honest** answer — same as Tennis Standard going to zero after serve backfill. Do **not** rebuild ticket eligibility from last-season / preseason `nfl_boxscore_cache` just because the fixed pool is thin.
+
+`utils.nfl_keep_gates.NFL_WIDER_WINDOW_TICKET_L5_ENABLED` stays **False**. Call `assert_nfl_ticket_l5_source(...)` before any cache-based L5 for tickets; it raises `NflWiderWindowTicketBlocked`.
+
+Sit-list and n=1 hand-checks (Shough OT caution, Bateman DNP-zero fade, Monangai hard-line fades, etc.) live **outside** `nfl_standard_ticket_eligible`. Any path that bypasses the hand-checked list bypasses that judgment with no flag — same shape as the unguarded manual-submit door.
+
+## n=1 hand-check shelf life
+
+An n=1 hand-check is a verdict on **player + prop + a specific line at a specific moment**, not a durable rating on the player. When the board moves, the old line’s verdict expires.
+
+Durable store: **player + prop + Week-1 (or sample) actual**. Line comparison is always done **fresh** against whatever Goblin/Standard faces are live now. Marks clearing **O25.5** vs a 42-yard Week 1 game does **not** auto-clear **24.5 / 19.5 / 9.5** — re-ask gap-to-line for each posted number (trivial arithmetic, but required; an easier line changes what “clears comfortably” means).
+
+Never auto-substitute the nearest face to keep a ticket READY. Leave incomplete until each live line is re-checked against the durable actual.
+
+Do **not** hard-code checked lines (25.5, 36.5, …) into this rule or into builders as permanent eligibility — those numbers go stale the same way a day-prior `utils` copy did.
+
+## READY slips
+
+An NFL PrizePicks slip may print **READY** only when `ticket_source` is hand-check (`assert_nfl_ready_source`). Algorithmic keep-packer / wider-window fills must not claim READY or invite submit.
+
+## Tonight’s hand-check seeds (durable facts, not lines)
+
+| Player | Prop | Week-1 actual |
+|---|---|---|
+| Woody Marks | Rush Yards | 42 |
+| Mack Hollins | Rec Yards | 51 |
+| Devaughn Vele | Rec Yards | 69 |
+
+Plus tennis A/B as already built. Re-pull live Goblin faces and compare each to the actual above before marking NFL C READY. Sit-list names (Bateman, etc.) stay off.

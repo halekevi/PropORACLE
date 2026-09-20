@@ -1,10 +1,13 @@
 """NFL Standard UNDER-heavy ticket gate + Week 1 priority order."""
 
 from utils.nfl_keep_gates import (
+    NFL_GOBLIN_TICKETS_ENABLED,
+    nfl_goblin_is_extreme_low_line,
+    nfl_goblin_ticket_eligible,
     nfl_standard_ticket_eligible,
     nfl_ticket_priority,
 )
-from utils.ticket_70_pool import standard_sort_key, standard_ticket_eligible
+from utils.ticket_70_pool import goblin_70_eligible, standard_sort_key, standard_ticket_eligible
 
 
 def _row(**kwargs):
@@ -53,3 +56,26 @@ def test_rec_under_keep_over_fade():
     assert nfl_standard_ticket_eligible(
         _row(side="OVER", prop="receiving_yards", def_tier="Weak", cover=12, dist_l5=12)
     ) is False
+
+
+def test_nfl_goblin_unissued_until_flag():
+    assert NFL_GOBLIN_TICKETS_ENABLED is False
+    gob = _row(
+        pick_type="Goblin",
+        side="OVER",
+        prop="receiving_yards",
+        def_tier="Weak",
+        cover=12,
+        dist_l5=12,
+    )
+    assert nfl_goblin_ticket_eligible(gob) is False
+    assert goblin_70_eligible(gob) is False
+
+
+def test_extreme_low_goblin_line_helper():
+    assert nfl_goblin_is_extreme_low_line(
+        _row(pick_type="Goblin", side="OVER", prop="sacks", line=0.5)
+    )
+    assert not nfl_goblin_is_extreme_low_line(
+        _row(pick_type="Goblin", side="OVER", prop="receiving_yards", line=12.5)
+    )

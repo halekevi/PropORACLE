@@ -41,6 +41,65 @@ from typing import Any
 # Flip only after Week 2+ Goblin unique-game ledger answers the questions above.
 NFL_GOBLIN_TICKETS_ENABLED = False
 
+# Week 2 2026 decision (explicit — do not quietly work around the Sep-1 season cut):
+# step8 current-season L5 is honestly thin (often 0/1 / THIN_*). That empty/thin
+# answer is correct, same posture as Tennis Standard going to zero after backfill.
+# Do NOT pad ticket L5 from last-season / preseason boxscore cache to manufacture
+# a Gate70 or "READY" slip. Sit-list / n=1 hand-checks live outside this module;
+# any path that bypasses the hand-checked list bypasses that judgment too.
+# Flip only after an explicit product decision, not because tonight's pool is thin.
+NFL_WIDER_WINDOW_TICKET_L5_ENABLED = False
+
+# Construction sources allowed to mark an NFL slip READY tonight.
+NFL_HANDCHECK_TICKET_SOURCES = frozenset({"handcheck", "hand_check", "n1_handcheck"})
+
+
+class NflWiderWindowTicketBlocked(RuntimeError):
+    """Raised when ticket construction tries to use padded/wider-window L5."""
+
+
+class NflTicketSourceBlocked(RuntimeError):
+    """Raised when an NFL slip would be READY without a hand-check source tag."""
+
+
+def assert_nfl_ticket_l5_source(source: str) -> None:
+    """Loud refuse for the unguarded wider-window door into NFL ticket L5.
+
+    Call before any NFL slip build that would compute directional L5 from
+    ``nfl_boxscore_cache`` (or any non-step8 season-cut window) for eligibility.
+    """
+    src = str(source or "").strip().lower().replace("-", "_").replace(" ", "_")
+    if src in {
+        "wider_window",
+        "wider_window_l5",
+        "boxscore_cache",
+        "last_season",
+        "preseason",
+        "padded_l5",
+        "fallback_l5",
+        "cache_l5",
+    }:
+        if not NFL_WIDER_WINDOW_TICKET_L5_ENABLED:
+            raise NflWiderWindowTicketBlocked(
+                f"NFL_WIDER_WINDOW_TICKET_BLOCKED source={source!r}. "
+                "Season-cut step8 thin/empty is the honest answer; do not rebuild "
+                "ticket L5 from boxscore cache. Use the hand-checked list only. "
+                "Set NFL_WIDER_WINDOW_TICKET_L5_ENABLED only after an explicit decision."
+            )
+
+
+def assert_nfl_ready_source(source: str) -> None:
+    """NFL slips may not print READY unless tagged as hand-check construction."""
+    src = str(source or "").strip().lower().replace("-", "_").replace(" ", "_")
+    if src in NFL_HANDCHECK_TICKET_SOURCES:
+        return
+    raise NflTicketSourceBlocked(
+        f"NFL_TICKET_SOURCE_BLOCKED source={source!r}. "
+        "READY requires ticket_source in NFL_HANDCHECK_TICKET_SOURCES "
+        f"({sorted(NFL_HANDCHECK_TICKET_SOURCES)}). "
+        "Algorithmic / wider-window / keep-packer fills are not submit-ready."
+    )
+
 # Ticket allowlist + pack order (lower = earlier).
 NFL_TICKET_PRIORITY: tuple[tuple[str, str], ...] = (
     ("receiving_yards", "UNDER"),
