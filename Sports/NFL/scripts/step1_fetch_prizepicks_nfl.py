@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """
-NFL step1 — PrizePicks direct API fetch (league_id=9).
+NFL step1 — PrizePicks fetch for NFL (9) and NFLP (44) together.
 
-Cloned from Sports/NBA/scripts/step1_fetch_prizepicks_api.py (curl_cffi + pagination).
 Writes: Sports/NFL/data/step1_pp_nfl_{YYYY-MM-DD}.csv
+NFLSZN season-long totals are off by default (--include-season to opt in).
+Weekly boards keep posted future games unless --same-day-only.
+NFLP is always fetched with NFL; after preseason it returns 0 rows.
+--include-halves adds NFL1H/2H/1Q/4Q.
 
 Usage:
   py Sports/NFL/scripts/step1_fetch_prizepicks_nfl.py --date today
@@ -27,7 +30,7 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 import requests
 
-_CURL_IMPERSONATE = (os.environ.get("PROPORACLE_CURL_IMPERSONATE") or "chrome120").strip()
+_CURL_IMPERSONATE = (os.environ.get("PROPORACLE_CURL_IMPERSONATE") or "chrome131").strip()
 try:
     from curl_cffi.requests import Session as _CurlCffiSession
 
@@ -44,26 +47,48 @@ _REPO_ROOT = _SCRIPT_DIR.resolve().parents[2]
 _NFL_DATA_DIR = _NFL_ROOT / "data"
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
+if str(_NFL_ROOT) not in sys.path:
+    sys.path.insert(0, str(_NFL_ROOT))
 
 from utils.step1_slate_date_filter import apply_game_date_filter, no_props_log_line
+from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
+from utils.nfl_espn_context import canon_nfl_abbr
+from utils.nfl_prop_defense import opp_from_game_text
+from scripts.line_history_archive import try_archive_lines
+from prizepicks_league_ids import (
+    NFL as NFL_LEAGUE_ID,
+    SEASON_BOARD_IDS,
+    resolve_nfl_fetch_boards,
+)
 
-LEAGUE_ID = "9"
+LEAGUE_ID = NFL_LEAGUE_ID
 DEFAULT_TZ = "America/New_York"
 BOARD_SIZE_MIN = 5
 
 OUTPUT_COLS = [
+    "projection_id",
     "player_id",
     "player_name",
     "team",
     "opp_team",
+    "home_team",
+    "away_team",
     "prop_type",
     "line",
+    "line_score",
+    "standard_line",
+    "pick_type",
     "start_time",
     "game_id",
     "position",
+    "league",
     "league_id",
     "fetch_date",
+    "fetched_at",
+    "pp_updated_at",
 ]
+
+PICKTYPE_MAP = {"standard": "Standard", "goblin": "Goblin", "demon": "Demon"}
 
 # Explicit PP display names → snake_case (unmapped → lowercased + underscored)
 NFL_PROP_TYPE_MAP: Dict[str, str] = {
@@ -95,6 +120,7 @@ NFL_PROP_TYPE_MAP: Dict[str, str] = {
 }
 
 BASE_URL = "https://api.prizepicks.com/projections"
+PARTNER_URL = "https://partner-api.prizepicks.com/projections"
 DEFAULT_SESSION_JITTER: Tuple[float, float] = (5.0, 12.0)
 DEFAULT_INTER_PAGE_DELAY: Tuple[float, float] = (6.0, 14.0)
 DEFAULT_WAVE_GAP: Tuple[float, float] = (12.0, 28.0)
@@ -161,6 +187,15 @@ def _resolve_date_arg(raw: str) -> str:
 
 def _default_output_path(fetch_date: str) -> Path:
     return _NFL_DATA_DIR / f"step1_pp_nfl_{fetch_date}.csv"
+
+
+def norm_nfl_pick_type(raw: object) -> str:
+    key = str(raw or "standard").strip().lower()
+    if "gob" in key:
+        return "Goblin"
+    if "dem" in key:
+        return "Demon"
+    return PICKTYPE_MAP.get(key, "Standard")
 
 
 def norm_nfl_prop_type(raw: str) -> str:
@@ -244,11 +279,23 @@ def _api_get(
                 time.sleep(random.uniform(2.5, 6.5) + min(5.0, attempt * 0.45))
             r = session.get(full_url, timeout=timeout)
             if r.status_code == 429:
+                if retries <= 2:
+                    print(
+                        f"  [429] Rate limited — fail-fast, not waiting "
+                        f"({attempt}/{retries})"
+                    )
+                    raise RuntimeError(f"HTTP_429_FAIL_FAST: {url}")
                 wait = random.uniform(60.0, 120.0)
                 print(f"  [429] Rate limited — waiting {wait:.0f}s ({attempt}/{retries})")
                 time.sleep(wait)
                 continue
             if r.status_code == 403:
+                if retries <= 2:
+                    print(
+                        f"  [403] Forbidden — fail-fast, not stacking cooldowns "
+                        f"({attempt}/{retries})"
+                    )
+                    raise RuntimeError(f"HTTP_403_FAIL_FAST: {url}")
                 consecutive_403 += 1
                 try:
                     session.cookies.clear()
@@ -267,6 +314,8 @@ def _api_get(
                 continue
             r.raise_for_status()
             return r.json()
+        except RuntimeError:
+            raise
         except Exception as e:
             last_exc = e
             time.sleep(min(30.0, (2 ** (attempt - 1)) * 2.0) + random.uniform(1.0, 3.0))
@@ -274,6 +323,38 @@ def _api_get(
 
 
 def fetch_projections(
+    league_id: str,
+    per_page: int = 250,
+    max_pages: int = 10,
+    retries: int = 5,
+    *,
+    first_page_waves: int = 3,
+) -> Tuple[List[dict], List[dict]]:
+    try:
+        print("  Trying partner-api.prizepicks.com ...")
+        data, included = _fetch_projections_from(
+            PARTNER_URL,
+            league_id,
+            per_page=per_page,
+            max_pages=max_pages,
+            retries=max(2, min(retries, 3)),
+            first_page_waves=1,
+        )
+        return data, included
+    except Exception as e:
+        print(f"  [WARN] partner-api failed ({e}); falling back to api.prizepicks.com")
+    return _fetch_projections_from(
+        BASE_URL,
+        league_id,
+        per_page=per_page,
+        max_pages=max_pages,
+        retries=retries,
+        first_page_waves=first_page_waves,
+    )
+
+
+def _fetch_projections_from(
+    base_url: str,
     league_id: str,
     per_page: int = 250,
     max_pages: int = 10,
@@ -308,7 +389,7 @@ def fetch_projections(
         session = _make_session(session_jitter=jitter)
         print(f"  Fetching page 1 (league_id={league_id}, wave {wave + 1}/{waves})...")
         try:
-            payload = _api_get(session, BASE_URL, params, retries=retries)
+            payload = _api_get(session, base_url, params, retries=retries)
             break
         except RuntimeError as e:
             if wave + 1 >= waves:
@@ -367,7 +448,7 @@ def _safe_get(d: Any, path: list, default: Any = "") -> Any:
 
 
 def _norm_team(s: Any) -> str:
-    return str(s or "").strip().upper()
+    return canon_nfl_abbr(s) or str(s or "").strip().upper()
 
 
 def _included_index(included: List[dict]) -> Dict[Tuple[str, str], dict]:
@@ -380,7 +461,14 @@ def _included_index(included: List[dict]) -> Dict[Tuple[str, str], dict]:
     return idx
 
 
-def build_nfl_rows(data: List[dict], included: List[dict], *, fetch_date: str) -> List[dict]:
+def build_nfl_rows(
+    data: List[dict],
+    included: List[dict],
+    *,
+    fetch_date: str,
+    league_id: str,
+    league: str,
+) -> List[dict]:
     inc = _included_index(included)
     rows: List[dict] = []
 
@@ -394,17 +482,37 @@ def build_nfl_rows(data: List[dict], included: List[dict], *, fetch_date: str) -
         raw_prop = str(attrs.get("stat_type", attrs.get("projection_type", attrs.get("name", "")))).strip()
         prop_type = norm_nfl_prop_type(raw_prop)
         line = attrs.get("line_score", attrs.get("line"))
+        try:
+            line_f = float(line) if line is not None and str(line).strip() != "" else None
+        except (TypeError, ValueError):
+            line_f = None
+        pick_type = norm_nfl_pick_type(attrs.get("odds_type") or attrs.get("pick_type") or "standard")
+        # Goblin/Demon chips often omit a separate standard_line; leave blank when unknown.
+        std_line = attrs.get("standard_line", attrs.get("flash_sale_line"))
+        try:
+            std_line_f = float(std_line) if std_line is not None and str(std_line).strip() != "" else None
+        except (TypeError, ValueError):
+            std_line_f = None
+        if pick_type == "Standard" and std_line_f is None:
+            std_line_f = line_f
 
         player_id = _safe_get(rel, ["new_player", "data", "id"], "") or ""
         player_type = _safe_get(rel, ["new_player", "data", "type"], "new_player")
         player_obj = inc.get((str(player_type), str(player_id))) if player_id else None
+        if player_obj is None and player_id:
+            # Fallback: match on id alone if type string drifts.
+            player_obj = next(
+                (obj for (t, i), obj in inc.items() if i == str(player_id) and "player" in t),
+                None,
+            )
 
         player_name = position = team = ""
         if isinstance(player_obj, dict):
             pa = player_obj.get("attributes") or {}
-            player_name = str(pa.get("display_name", pa.get("name", ""))).strip()
-            position = str(pa.get("position", "")).strip()
-            team = _norm_team(pa.get("team", ""))
+            # PP often ships display_name="" for stars; name still has the real label.
+            player_name = str(pa.get("display_name") or pa.get("name") or "").strip()
+            position = str(pa.get("position") or "").strip()
+            team = _norm_team(pa.get("team") or "")
 
         game_id = _safe_get(rel, ["new_game", "data", "id"], "") or _safe_get(rel, ["game", "data", "id"], "")
         game_type = _safe_get(rel, ["new_game", "data", "type"], "") or _safe_get(rel, ["game", "data", "type"], "")
@@ -422,11 +530,13 @@ def build_nfl_rows(data: List[dict], included: List[dict], *, fetch_date: str) -
         opp_team = ""
         if team and home and away:
             opp_team = away if team == home else (home if team == away else "")
-        elif not opp_team:
+        if not opp_team:
             desc = str(attrs.get("description", "") or "")
-            m = re.search(r"\bvs\.?\s+([A-Za-z]{2,4})\b", desc)
-            if m:
-                opp_team = _norm_team(m.group(1))
+            opp_team = opp_from_game_text(desc, team)
+            if not opp_team:
+                m = re.search(r"\bvs\.?\s+([A-Za-z]{2,4})\b", desc)
+                if m:
+                    opp_team = _norm_team(m.group(1))
 
         rows.append(
             {
@@ -435,13 +545,20 @@ def build_nfl_rows(data: List[dict], included: List[dict], *, fetch_date: str) -
                 "player_name": player_name,
                 "team": team,
                 "opp_team": opp_team,
+                "home_team": home,
+                "away_team": away,
                 "prop_type": prop_type,
-                "line": line,
+                "line": line_f if line_f is not None else line,
+                "line_score": line_f if line_f is not None else line,
+                "standard_line": std_line_f,
+                "pick_type": pick_type,
                 "start_time": start_time,
                 "game_id": str(game_id or "").strip(),
                 "position": position,
-                "league_id": LEAGUE_ID,
+                "league": league,
+                "league_id": str(league_id),
                 "fetch_date": fetch_date,
+                "pp_updated_at": extract_pp_updated_at(attrs),
             }
         )
     return rows
@@ -456,6 +573,19 @@ def _log_health(df: pd.DataFrame) -> None:
     n = len(df)
     n_players = df["player_name"].astype(str).replace("", pd.NA).dropna().nunique() if n else 0
     print(f"\n[NFL step1] Health: total_props={n} unique_players={n_players}")
+    if n and "league" in df.columns:
+        leagues = df["league"].astype(str).value_counts().to_dict()
+        print(f"[NFL step1] Boards: {leagues}")
+    if n and "pick_type" in df.columns:
+        picks = (
+            df["pick_type"]
+            .astype(str)
+            .str.strip()
+            .replace({"": "Standard", "nan": "Standard", "None": "Standard"})
+            .value_counts()
+            .to_dict()
+        )
+        print(f"[NFL step1] pick_type breakdown: {picks}")
     if n:
         breakdown = df["prop_type"].value_counts().to_dict()
         print(f"[NFL step1] Prop type breakdown ({len(breakdown)} types):")
@@ -463,8 +593,81 @@ def _log_health(df: pd.DataFrame) -> None:
             print(f"    {prop}: {cnt}")
 
 
+def assert_pick_type_persisted(
+    out_path: Path,
+    *,
+    min_rows_for_mixed: int = 100,
+    allow_standard_only: bool = False,
+    min_goblin_share: float = 0.05,
+) -> dict[str, int]:
+    """Re-read step1 CSV and refuse to continue if pick_type was not stored.
+
+    Week 1 hole: odds_type never landed on disk, so every row looked Standard and
+    Goblin grades were impossible after the live board expired. Fail fast here.
+
+    Live NFL boards (~15% Goblin) should not land as 100% Standard. Also WARN when
+    Goblin share is anomalously low (< min_goblin_share) so a partial odds_type
+    pull is visible before step2.
+    """
+    if not out_path.is_file():
+        raise SystemExit(f"[NFL step1] FATAL: output missing after write → {out_path}")
+    disk = pd.read_csv(out_path, encoding="utf-8-sig")
+    if "pick_type" not in disk.columns:
+        raise SystemExit(
+            f"[NFL step1] FATAL: pick_type column missing on disk → {out_path}. "
+            "Do not continue the pipeline."
+        )
+    raw = disk["pick_type"].astype(str).str.strip()
+    blank = raw.isin(["", "nan", "None", "NaN", "<NA>"])
+    if len(disk) and int(blank.sum()) == len(disk):
+        raise SystemExit(
+            f"[NFL step1] FATAL: pick_type is all empty on disk → {out_path}. "
+            "Do not continue the pipeline."
+        )
+    counts = {"Standard": 0, "Goblin": 0, "Demon": 0}
+    for v in raw:
+        if str(v) in ("", "nan", "None", "NaN", "<NA>"):
+            counts["Standard"] += 1
+        else:
+            key = norm_nfl_pick_type(v)
+            counts[key] = counts.get(key, 0) + 1
+    n = len(disk)
+    shares = {k: (100.0 * v / n if n else 0.0) for k, v in counts.items()}
+    print(
+        f"[NFL step1] pick_type ON DISK (re-read): {counts} "
+        f"({shares['Standard']:.1f}%S / {shares['Goblin']:.1f}%G / {shares['Demon']:.1f}%D) "
+        f"→ {out_path}"
+    )
+    if (
+        not allow_standard_only
+        and n >= int(min_rows_for_mixed)
+        and counts.get("Goblin", 0) == 0
+        and counts.get("Demon", 0) == 0
+    ):
+        raise SystemExit(
+            f"[NFL step1] FATAL: {n} rows on disk but pick_type is 100% Standard "
+            "(no Goblin/Demon). Refusing to continue — this is the Week 1 hole. "
+            "Re-fetch with odds_type wired, or pass --allow-standard-only for a known "
+            "Standard-only board."
+        )
+    goblin_share = (counts.get("Goblin", 0) / n) if n else 0.0
+    if (
+        not allow_standard_only
+        and n >= int(min_rows_for_mixed)
+        and goblin_share < float(min_goblin_share)
+    ):
+        print(
+            f"[NFL step1] WARN: Goblin share {100.0 * goblin_share:.1f}% "
+            f"(n={counts.get('Goblin', 0)}) is below expected ~15% live-board mix "
+            f"(floor {100.0 * min_goblin_share:.0f}%). Inspect odds_type before step2."
+        )
+    return counts
+
+
 def main() -> int:
-    ap = argparse.ArgumentParser(description="NFL PrizePicks step1 — direct API (league_id=9)")
+    ap = argparse.ArgumentParser(
+        description="NFL PrizePicks step1 — NFL (9) + NFLP (44) together; NFLSZN opt-in"
+    )
     ap.add_argument("--output", default="", help="Output CSV (default: Sports/NFL/data/step1_pp_nfl_{date}.csv)")
     ap.add_argument("--date", default="today", help="Target slate date (YYYY-MM-DD or 'today')")
     ap.add_argument("--tz", default=DEFAULT_TZ)
@@ -474,7 +677,12 @@ def main() -> int:
     ap.add_argument(
         "--allow-nearest-future",
         action="store_true",
-        help="Skip same-day date filter (keep full API board; explicit opt-in only).",
+        help="Keep posted future games (default for weekly NFL; passed by the pipeline).",
+    )
+    ap.add_argument(
+        "--same-day-only",
+        action="store_true",
+        help="Filter game boards to --date only (drops Week 1 cards posted early).",
     )
     ap.add_argument(
         "--merge",
@@ -485,6 +693,31 @@ def main() -> int:
     )
     ap.add_argument("--replace", action="store_true", help="Overwrite output with this fetch only.")
     ap.add_argument("--raw_json", default="", help="Optional raw API JSON dump path")
+    ap.add_argument("--fail-fast", action="store_true")
+    ap.add_argument("--cdp", default="")
+    ap.add_argument("--playwright", action="store_true")
+    ap.add_argument(
+        "--allow-standard-only",
+        action="store_true",
+        help="Allow step1 CSV with no Goblin/Demon pick_type (skip Week-1-hole gate).",
+    )
+    ap.add_argument(
+        "--include-season",
+        action="store_true",
+        help="Also fetch NFLSZN season-long board 163 (off; Combined drops it anyway).",
+    )
+    ap.add_argument(
+        "--no-season",
+        action="store_true",
+        help="Deprecated no-op: NFLSZN is already off unless --include-season.",
+    )
+    ap.add_argument("--no-preseason", action="store_true", help="Skip NFLP preseason board 44.")
+    ap.add_argument("--include-halves", action="store_true", help="Also fetch NFL1H/2H/1Q/4Q boards.")
+    ap.add_argument(
+        "--league_id",
+        default="",
+        help="Fetch a single league_id. NFL (9) or NFLP (44) still pulls both game boards.",
+    )
     args = ap.parse_args()
     _ensure_utf8_stdio()
 
@@ -493,22 +726,64 @@ def main() -> int:
     if not out_path.is_absolute():
         out_path = (_REPO_ROOT / out_path).resolve() if str(out_path).startswith("Sports") else (_NFL_ROOT / out_path).resolve()
 
-    print(f"[NFL step1] PrizePicks fetch | league_id={LEAGUE_ID} | date={fetch_date}")
+    boards = resolve_nfl_fetch_boards(
+        include_season=bool(args.include_season and not args.no_season),
+        include_preseason=not bool(args.no_preseason),
+        include_halves=bool(args.include_halves),
+        league_id=str(args.league_id or "").strip(),
+    )
+
+    print(f"[NFL step1] PrizePicks fetch | boards={boards} | date={fetch_date}")
     print(f"[NFL step1] Output → {out_path}")
 
-    try:
-        data, included = fetch_projections(
-            league_id=LEAGUE_ID,
-            per_page=args.per_page,
-            max_pages=args.max_pages,
-            retries=args.retries,
-        )
-    except Exception as e:
-        print(f"[NFL step1] WARN: fetch failed ({e}) — writing empty board CSV")
-        _write_empty(out_path)
-        return 0
+    cdp_url = str(args.cdp or "").strip()
+    all_rows: List[dict] = []
+    raw_dump: dict[str, Any] = {}
+    any_fetch_ok = False
+    for lid, league_name in boards.items():
+        print(f"[NFL step1] --- board {league_name} league_id={lid} ---")
+        try:
+            if cdp_url or args.playwright:
+                from utils.prizepicks_cdp import session_fetch_projections
 
-    if not data:
+                data, included, _st = session_fetch_projections(
+                    lid,
+                    cdp_url=cdp_url,
+                    playwright=bool(args.playwright) and not cdp_url,
+                    per_page=int(args.per_page),
+                    max_pages=int(args.max_pages),
+                )
+            else:
+                pages = int(args.max_pages)
+                if args.fail_fast and lid not in SEASON_BOARD_IDS:
+                    pages = min(4, pages)
+                data, included = fetch_projections(
+                    league_id=lid,
+                    per_page=args.per_page,
+                    max_pages=pages,
+                    retries=min(2, args.retries) if args.fail_fast else args.retries,
+                    first_page_waves=1 if args.fail_fast else 3,
+                )
+            any_fetch_ok = True
+        except Exception as e:
+            print(f"[NFL step1] WARN: {league_name} fetch failed ({e})")
+            if args.fail_fast and not any_fetch_ok:
+                print(f"[NFL step1] fetch failed ({e})")
+                sys.exit(1)
+            continue
+        print(f"[NFL step1] {league_name}: {len(data)} projections")
+        if args.raw_json:
+            raw_dump[lid] = {"league": league_name, "data": data, "included": included}
+        all_rows.extend(
+            build_nfl_rows(
+                data, included, fetch_date=fetch_date, league_id=lid, league=league_name
+            )
+        )
+
+    if not all_rows:
+        if (args.fail_fast or cdp_url or args.playwright) and not any_fetch_ok:
+            print("[NFL step1] fetch failed on all boards")
+            sys.exit(1)
         print("[NFL step1] WARN: empty board — API returned 0 projections (off-season or no lines)")
         _write_empty(out_path)
         return 0
@@ -516,30 +791,37 @@ def main() -> int:
     if args.raw_json:
         try:
             with open(args.raw_json, "w", encoding="utf-8") as f:
-                json.dump({"data": data, "included": included}, f, ensure_ascii=False)
+                json.dump(raw_dump, f, ensure_ascii=False)
             print(f"[NFL step1] Raw JSON → {args.raw_json}")
         except Exception as e:
             print(f"  [WARN] raw_json write failed: {e}")
 
-    rows = build_nfl_rows(data, included, fetch_date=fetch_date)
-    df = pd.DataFrame(rows).fillna("")
+    df = pd.DataFrame(all_rows).fillna("")
     if "projection_id" in df.columns:
         df = df.drop_duplicates(subset=["projection_id"], keep="first").reset_index(drop=True)
+    pull_ts = now_et_iso()
+    df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
+    try_archive_lines(df, sport="NFL", only_fetched_at=pull_ts)
 
-    # Date filter
     fetched_rows = len(df)
-    filtered_df, _fallback = apply_game_date_filter(
-        df,
-        target_date=fetch_date,
-        tz_name=str(args.tz).strip() or DEFAULT_TZ,
-        allow_nearest_future=bool(args.allow_nearest_future),
-    )
+    szn_mask = df.get("league_id", pd.Series("", index=df.index)).astype(str).isin(SEASON_BOARD_IDS)
+    szn_df = df.loc[szn_mask].copy() if bool(szn_mask.any()) else df.iloc[0:0].copy()
+    game_df = df.loc[~szn_mask].copy() if bool((~szn_mask).any()) else df.iloc[0:0].copy()
+    keep_future_games = (not bool(args.same_day_only)) or bool(args.allow_nearest_future)
+    if len(game_df):
+        game_df, _fallback = apply_game_date_filter(
+            game_df,
+            target_date=fetch_date,
+            tz_name=str(args.tz).strip() or DEFAULT_TZ,
+            allow_nearest_future=keep_future_games,
+        )
+    df = pd.concat([game_df, szn_df], ignore_index=True)
     print(
-        f"[NFL step1] Date filter {fetch_date}: fetched={fetched_rows} survived={len(filtered_df)}"
+        f"[NFL step1] Date filter {fetch_date}: fetched={fetched_rows} "
+        f"game_survived={len(game_df)} season_kept={len(szn_df)}"
     )
-    if args.allow_nearest_future:
-        print("[NFL step1] allow-nearest-future: skipping date filter")
-    df = filtered_df
+    if len(szn_df):
+        print(f"[NFL step1] NFLSZN kept without game-date filter ({len(szn_df)} rows)")
 
     if len(df) == 0:
         print(no_props_log_line("NFL", fetch_date))
@@ -567,6 +849,15 @@ def main() -> int:
     elif args.replace:
         print("[NFL step1] --replace: fetch-only write")
 
+    if not args.include_season:
+        lid = df.get("league_id", pd.Series("", index=df.index)).astype(str)
+        lg = df.get("league", pd.Series("", index=df.index)).astype(str).str.upper()
+        szn = lid.isin(SEASON_BOARD_IDS) | lg.eq("NFLSZN")
+        n_szn = int(szn.sum()) if len(df) else 0
+        if n_szn:
+            df = df.loc[~szn].reset_index(drop=True)
+            print(f"[NFL step1] Dropped {n_szn} NFLSZN rows (season-long not used)")
+
     n_props = len(df)
     if n_props < BOARD_SIZE_MIN:
         print(
@@ -583,6 +874,10 @@ def main() -> int:
     out_df.to_csv(out_path, index=False, encoding="utf-8-sig")
     _log_health(out_df)
     print(f"\n[NFL step1] Saved → {out_path} ({len(out_df)} rows)")
+    assert_pick_type_persisted(
+        out_path,
+        allow_standard_only=bool(args.allow_standard_only),
+    )
     return 0
 
 
