@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21 01:28:21 UTC",
+  "generated_at": "2026-09-21 05:20:38 UTC",
   "date": "2026-09-21",
   "tennis_date": "2026-09-21",
   "filters": {
@@ -1845,8 +1845,8 @@
   "web_supplement_sports": [
     "MLB"
   ],
-  "construction_hygiene_dropped": 3,
-  "run_id": "20260921_012821_663211",
+  "construction_hygiene_dropped": 5,
+  "run_id": "20260921_052038_976219",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7
