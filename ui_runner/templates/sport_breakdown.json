@@ -24,17 +24,17 @@
     },
     {
       "sport": "WNBA",
-      "decided": 27237,
-      "paid": 15612,
-      "win_rate": 0.5731908800528692,
-      "net_dollars": 39870.0
+      "decided": 27797,
+      "paid": 15930,
+      "win_rate": 0.5730834262690219,
+      "net_dollars": 40630.0
     },
     {
       "sport": "MLB",
-      "decided": 478817,
-      "paid": 132158,
-      "win_rate": 0.2760094148703993,
-      "net_dollars": -2145010.0
+      "decided": 487357,
+      "paid": 134374,
+      "win_rate": 0.2757198521822812,
+      "net_dollars": -2186090.0
     },
     {
       "sport": "SOCCER",
@@ -45,10 +45,10 @@
     },
     {
       "sport": "TENNIS",
-      "decided": 20904,
-      "paid": 8372,
-      "win_rate": 0.40049751243781095,
-      "net_dollars": -41600.0
+      "decided": 21103,
+      "paid": 8437,
+      "win_rate": 0.39980097616452637,
+      "net_dollars": -42290.0
     },
     {
       "sport": "NHL",
@@ -77,10 +77,10 @@
     {
       "sport": "WNBA",
       "month": "2026-09",
-      "decided": 2053,
-      "paid": 1161,
-      "win_rate": 0.5655138821237213,
-      "net_dollars": 2690.0
+      "decided": 2613,
+      "paid": 1479,
+      "win_rate": 0.56601607347876,
+      "net_dollars": 3450.0
     },
     {
       "sport": "WNBA",
@@ -101,10 +101,10 @@
     {
       "sport": "MLB",
       "month": "2026-09",
-      "decided": 156707,
-      "paid": 43705,
-      "win_rate": 0.27889628414812356,
-      "net_dollars": -692970.0
+      "decided": 165247,
+      "paid": 45921,
+      "win_rate": 0.2778930933693199,
+      "net_dollars": -734050.0
     },
     {
       "sport": "MLB",
@@ -149,10 +149,10 @@
     {
       "sport": "TENNIS",
       "month": "2026-09",
-      "decided": 7058,
-      "paid": 2388,
-      "win_rate": 0.33833947293850947,
-      "net_dollars": -22820.0
+      "decided": 7257,
+      "paid": 2453,
+      "win_rate": 0.33801846493041204,
+      "net_dollars": -23510.0
     },
     {
       "sport": "TENNIS",
@@ -180,6 +180,6 @@
     }
   ],
   "source": "graded_props_json",
-  "signature": "n=77:mt=1790139637916847000",
-  "updated_at": "2026-09-23T05:02:35Z"
+  "signature": "n=78:mt=1790240433537978100",
+  "updated_at": "2026-09-24T09:02:09Z"
 }
