@@ -1,5 +1,5 @@
 @startuml PropORACLE_Ticket_Design
-' Ticket design — dual card + publish
+' Ticket design — dual card + publish (reality + known gaps)
 ' Render: PlantUML extension or https://www.plantuml.com/plantuml
 
 title PropORACLE — Ticket design (Goblin-70 + mixer)
@@ -11,7 +11,25 @@ note right
   Graded-main mixer / grade pool.
   Does not own live /tickets alone.
 end note
-:build_goblin70_tickets.py --write-web;
+
+if (Caller routes through\nInvoke-G70WriteWebStandalone?) then (yes)
+  :build_goblin70_tickets.py --write-web\n(via Invoke-G70WriteWebStandalone);
+  note right
+    Day-ahead / 1AM / 5AM / MLB fill /
+    late_fetch / refresh / Publish-LiveSite
+    use the helper (Tee-Object fallback
+    if Invoke-LoggedPwsh.ps1 missing).
+  end note
+else (no — known gap)
+  :build_goblin70_tickets.py --write-web\n(direct py in run_daily.ps1 STEP D-G70);
+  note right
+    **Gap:** run_daily.ps1 still invokes py
+    directly — not the standalone helper.
+    Ordering/logging may diverge from
+    the wrapped path.
+  end note
+endif
+
 note right
   Goblin-70 groups **first**.
   Patch mixer **lines** from this fetch.
@@ -20,26 +38,43 @@ note right
 end note
 
 fork
-  :Goblin Power 3\n(all-Goblin, L5=5 + L10>=8 + D\n+ sport keep / cover);
+  :Goblin Power 3\n(all-Goblin);
 fork again
   :Flex 4\n(all-Standard or 1 Std + Goblin leftovers);
 fork again
-  :YOLO Power 4/5/6\n(Diamond/Platinum seeds;\nexcluded from ticket WR / Income);
+  :YOLO Power 4/5/6\n(Diamond/Platinum seeds;\n**excluded from ticket WR / Income**);
 end fork
 
 :tickets_latest.json\n(disk: ui_runner/runtime/\nGitHub: ui_runner/templates/);
-:run_live_payout_capture.ps1\n(N-correct floors);
+
+fork
+  :run_live_payout_capture.ps1\n(N-correct floors);
+fork again
+  :scrub_goblin70_keep_live.py\n(interval keep revalidation);
+  note right
+    **Not on rebuild path.** Lightweight
+    drop of published G70 legs that now
+    fail keep gates (Mesa Jr. class).
+    Off-board legs left alone.
+    Registered via run_g70_keep_scrub.ps1.
+  end note
+end fork
+
 :Publish-LiveSite.ps1 → origin/main;
 :Railway GET /tickets\nrenders prebuilt JSON;
 
 stop
 
 note bottom
-  Hard gates (70% engine): directional L5=5, L10>=8, D
-  (OVER Weak|Below; UNDER Elite|Above; MLB hitter Ks invert).
-  Exceptions: MLB Standard off; tennis/soccer/CFB keep-gate files;
-  WNBA L5=5 list; Golf no D; YOLO not in win-rate.
+  **Gates (keep files can REPLACE the generic stack, not only add):**
+  Baseline 70% engine: directional L5=5 + L10>=8 + D + cover.
+  Keep-file overrides (examples):
+  · MLB pitcher Goblins → L10-primary (not L5=5 stack)
+  · MLB Standard → hard-banned on G70
+  · CFB Pass Yards Goblin OVER → D is N/A (skipped)
+  · Tennis / Soccer / CFB / WNBA → sport keep modules
   Payout figure = N-correct (Flex/Power), never 1st place.
+  Checkout gate changes are not live until main_cp rebuild + Publish-LiveSite.
 end note
 
 @enduml
