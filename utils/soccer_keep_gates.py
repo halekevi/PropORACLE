@@ -5,22 +5,32 @@ Graded Std+Goblin combo catalog (listed L5/L10/D/Off stacks):
 - Shots: L5=5 and L10>=8 (76.2% 16/21). D is thinner (4/5) — not required.
 - Shots On Target (sog): L5>=4 and Off (67.6% 46/68). Off = STARTER or
   HIGH_VOL or team top-3. D does not beat that cell at n>=20.
-- Goalie Saves: L5>=4 and directional D on the *keeper's own* defense
-  (Weak|Below for OVER; Elite|Above for UNDER). Opp D was the wrong
-  polarity (leaky opp D cut shots faced). When OWN_DEF_TIER is missing,
-  fall back to opp DEF_TIER so older boards still score. Optional
-  OPP_OFF_TIER (Elite|Above for OVER) tightens when filled.
+- Goalie Saves: L5>=4 + own D (OWN_DEF_TIER: Weak|Below OVER, Elite|Above
+  UNDER). Own-team DEF is attached in soccer step3. Opponent DEF_TIER is
+  the wrong polarity (leaky opp D cuts shots faced) — never fall back to
+  it. Optional OPP_OFF_TIER / opp attack (Elite|Above for OVER; Weak|Below
+  for UNDER) tightens when filled; missing or Avg still pass.
+  Watch (2026-09-24): rebuilt-history own-leaky OVER was weak (5/14) while
+  legacy opp-D blanks looked strong — likely join contamination + possible
+  goals-against capping of saves. Do not revert; recheck with
+  ``scripts/_soccer_best_gate_od_alignment.py --forward-from 2026-09-15
+  --own-d-only`` once forward OWN_DEF n is 30-40+.
 - Goals / G+A / assists / fouls / volume props: best gated cell is 20-41%.
   Fade. Demons fade. Combos fade.
 
 Same gates for the printed list and Goblin-70 / Standard Flex.
 Mixer hygiene still allows these three props without the L5/L10/D/Off
 cut (combined seed stays L5>=4 until that mixer is retuned).
+
+Thin-history competitions (World Cup, Olympics, …) are blocked via
+``utils.competition_history`` when ``league`` has too little prior depth —
+not a hardcoded WORLDCUP allowlist.
 """
 from __future__ import annotations
 
 from typing import Any
 
+from utils.competition_history import row_competition_ok
 from utils.defense_tiers import d_aligned, normalize_def_tier_label
 from utils.prop_norm import canon_prop as _canon
 
@@ -120,31 +130,6 @@ def _off_ok(r: dict[str, Any]) -> bool:
     return rank is not None and rank <= 3
 
 
-def _d_ok(r: dict[str, Any]) -> bool:
-    """Opponent D (badge / Shots-style). Not used for Saves keep."""
-    checks = r.get("checks") or {}
-    if checks.get("D") is True:
-        return True
-    if checks.get("D") is False:
-        return False
-    raw = r.get("def") or r.get("d") or r.get("def_tier") or r.get("DEF_TIER")
-    return d_aligned("Soccer", _side(r), raw, _prop(r))
-
-
-def _own_def_tier(r: dict[str, Any]) -> str:
-    for k in (
-        "own_def_tier",
-        "OWN_DEF_TIER",
-        "Own Def Tier",
-        "own_shots_def_tier",
-        "OWN_SHOTS_DEF_TIER",
-    ):
-        label = normalize_def_tier_label(r.get(k))
-        if label:
-            return label
-    return ""
-
-
 def _opp_off_tier(r: dict[str, Any]) -> str:
     for k in (
         "opp_off_tier",
@@ -159,12 +144,17 @@ def _opp_off_tier(r: dict[str, Any]) -> str:
     return ""
 
 
-def _saves_d_ok(r: dict[str, Any]) -> bool:
-    """Keeper D: own defense polarity. Fall back to opp D when own missing."""
-    own = _own_def_tier(r)
-    if own:
-        return d_aligned("Soccer", _side(r), own, SAVES)
-    return _d_ok(r)
+def _own_def_tier(r: dict[str, Any]) -> str:
+    for k in ("own_def_tier", "OWN_DEF_TIER", "Own Def Tier"):
+        label = normalize_def_tier_label(r.get(k))
+        if label:
+            return label
+    return ""
+
+
+def _saves_own_d_ok(r: dict[str, Any]) -> bool:
+    """Required: OVER Weak|Below; UNDER Elite|Above. Own D only — never opp DEF_TIER."""
+    return d_aligned("Soccer", _side(r), _own_def_tier(r), "saves")
 
 
 def _saves_opp_off_ok(r: dict[str, Any]) -> bool:
@@ -195,7 +185,7 @@ def _saves_gate(r: dict[str, Any]) -> bool:
     l5 = _l5(r)
     if l5 is None or l5 < 4:
         return False
-    if not _saves_d_ok(r):
+    if not _saves_own_d_ok(r):
         return False
     return _saves_opp_off_ok(r)
 
@@ -214,6 +204,8 @@ def _prop_gate(r: dict[str, Any]) -> bool:
 def soccer_keep_eligible(r: dict[str, Any]) -> bool:
     """Goblin OVER or Standard O/U on Shots / SOT / Saves with that prop's best gate."""
     if not _sport_ok(r):
+        return False
+    if not row_competition_ok(r):
         return False
     pick = _pick(r)
     if pick == "Demon":

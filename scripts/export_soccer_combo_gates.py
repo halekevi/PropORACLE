@@ -172,6 +172,7 @@ def load_step6() -> pd.DataFrame:
         "pass_role",
         "player",
         "team",
+        "opp_team",
         "line",
         "stat_last5_avg",
     ]
