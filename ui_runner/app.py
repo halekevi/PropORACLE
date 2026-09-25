@@ -3984,16 +3984,20 @@ def _grade_report_dates_on_disk(which: str) -> list[str]:
 
 
 _TICKET_EVAL_MIN_BYTES = 5000
+_TICKET_CARD_MARKERS = (
+    b'<article class="ticket-card',
+    b"<article class='ticket-card",
+)
 
 
-def _ticket_eval_html_size(date_str: str, *, allow_remote: bool = True) -> int:
-    """Byte size of ticket_eval_{date}.html on disk, else GitHub raw when configured."""
+def _ticket_eval_html_bytes(date_str: str, *, allow_remote: bool = True) -> bytes:
+    """Raw ticket_eval_{date}.html on disk, else GitHub raw when configured."""
     fname = f"ticket_eval_{date_str}.html"
     for base in (TEMPLATES_DIR, ARCHIVE_DIR):
         p = base / fname
         try:
             if p.is_file():
-                return int(p.stat().st_size)
+                return p.read_bytes()
         except OSError:
             continue
     if allow_remote and _GRADES_HTML_RAW_BASE:
@@ -4001,16 +4005,30 @@ def _ticket_eval_html_size(date_str: str, *, allow_remote: bool = True) -> int:
             f"grades-html:{fname}", f"{_GRADES_HTML_RAW_BASE}/{fname}"
         )
         if body:
-            return len(body)
-    return 0
+            return body
+    return b""
+
+
+def _ticket_eval_html_size(date_str: str, *, allow_remote: bool = True) -> int:
+    """Byte size of ticket_eval_{date}.html on disk, else GitHub raw when configured."""
+    return len(_ticket_eval_html_bytes(date_str, allow_remote=allow_remote))
 
 
 def _ticket_eval_has_cards(date_str: str, *, allow_remote: bool = True) -> bool:
-    return _ticket_eval_html_size(date_str, allow_remote=allow_remote) > _TICKET_EVAL_MIN_BYTES
+    """True only when the HTML is large enough *and* contains ticket cards.
+
+    Empty shells (CSS + manual builder, ~58KB, zero ``<article class="ticket-card">``)
+    must not win the Grades hub over an older date that actually has cards.
+    """
+    body = _ticket_eval_html_bytes(date_str, allow_remote=allow_remote)
+    if len(body) <= _TICKET_EVAL_MIN_BYTES:
+        return False
+    low = body.lower()
+    return any(mark in low for mark in _TICKET_CARD_MARKERS)
 
 
 def _best_grades_date() -> str | None:
-    """Newest date whose ticket_eval HTML exists and is large enough to hold cards.
+    """Newest date whose ticket_eval HTML contains real ticket cards.
 
     /grades itself is a hub (indexGrades.html), not a redirect. The hub should
     land on this date when the Tickets tab is active, instead of ET yesterday

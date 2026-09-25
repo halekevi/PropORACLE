@@ -11,7 +11,9 @@ CARD_TRACKS = frozenset(
         "legacy",
         "unknown",
         "graded_main",
+        "high_prob_std_gob",
         "goblin70",
+        "goblin_only",
         "goblin_only_3leg",
     }
 )
@@ -22,11 +24,15 @@ def norm_track(raw: object) -> str:
 
 
 def is_card_track(raw: object) -> bool:
-    """MAIN / Goblin-70 / unlabeled early days. Not shadows, long parlays, or YOLO."""
+    """MAIN / Goblin-70 / unlabeled early days. Not shadows, long parlays, or YOLO.
+
+    ``high_prob_std_gob`` is the shipped MAIN pool_mode name that ticket eval
+    writes from 2026-09-19 onward (same card as ``graded_main``).
+    """
     t = norm_track(raw)
     if "yolo" in t:
         return False
-    if t in {"long_parlay", "high_prob_std_gob", "goblin70_yolo"}:
+    if t in {"long_parlay", "goblin70_yolo"}:
         return False
     if t.startswith("strong_") or t.startswith("winrate_"):
         return False

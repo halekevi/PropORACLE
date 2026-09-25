@@ -2682,21 +2682,46 @@ def _ticket_json_has_ticket_groups(path: Path) -> bool:
         return False
 
 
+def _xlsx_has_ticket_tabs(path: Path) -> bool:
+    """True when the workbook has sheets that are actual ticket groups, not sport slates."""
+    try:
+        from openpyxl import load_workbook
+    except ImportError:
+        return True
+    try:
+        wb = load_workbook(path, read_only=True, data_only=True)
+        try:
+            return any(not _skip_xlsx_ticket_sheet(n) for n in wb.sheetnames)
+        finally:
+            wb.close()
+    except Exception:
+        return False
+
+
 def find_ticket_payload_path(
     arg_date: str, override: Path | None = None
 ) -> Path | None:
     """Resolve combined slate for Grades ticket eval.
 
-    Prefer the issued ``combined_slate_tickets_{date}.xlsx`` (full Standard/Goblin
-    N-Leg tabs). High-prob MAIN JSON is a filtered ship pool and omits many
-    Standard 2-Leg slips — using it alone left yesterday's tickets UNGRADED/empty.
+    Prefer the issued ``combined_slate_tickets_{date}.xlsx`` when it still has
+    N-Leg ticket tabs. After ~Sep 2026 those workbooks are often sport-slate
+    only (Full Slate / NBA Slate / …); using them yields 0 tickets and skips
+    the dated JSON that still has the issued card. Fall through to JSON then.
     """
     if override is not None:
         p = override.expanduser().resolve()
         return p if p.is_file() else None
     wb = find_ticket_json(arg_date, override=None)
     if wb is not None:
-        return wb
+        if wb.suffix.lower() in {".xlsx", ".xlsm"}:
+            if _xlsx_has_ticket_tabs(wb):
+                return wb
+            print(
+                f"[ticket_eval] skip slate-only workbook {wb.name}; falling back to JSON",
+                flush=True,
+            )
+        else:
+            return wb
     goblin_json = find_goblin_only_3leg_ticket_json(arg_date)
     if goblin_json is not None:
         return goblin_json
@@ -3396,7 +3421,7 @@ def _group_is_core_power_shipped(group_name: str) -> bool:
     n = re.sub(r"\s+#\d+\s*$", "", str(group_name or "").strip()).strip()
     return bool(
         re.match(
-            r"^[A-Za-z0-9]+\s+Core\s+(Power|Standard)\s+\d+$",
+            r"^[A-Za-z0-9]+\s+Core\s+(Power|Standard|Flex)\s+\d+$",
             n,
             re.I,
         )

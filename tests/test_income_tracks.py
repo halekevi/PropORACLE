@@ -6,6 +6,8 @@ def test_card_track_keeps_main_and_unlabeled():
     assert is_card_track("")
     assert is_card_track("goblin70")
     assert is_card_track("goblin_only_3leg")
+    assert is_card_track("high_prob_std_gob")
+    assert is_card_track("goblin_only")
 
 
 def test_card_track_drops_shadows_yolo_long():
