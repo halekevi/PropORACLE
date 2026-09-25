@@ -10,8 +10,8 @@
   --po-mobile-bottom-bar-bg: rgba(12, 12, 20, 0.94);
   --po-mobile-bottom-bar-border: rgba(255, 255, 255, 0.12);
   --po-mobile-bottom-bar-shadow: 0 -8px 28px rgba(0, 0, 0, 0.45);
-  --po-mobile-nav-clearance: calc(82px + env(safe-area-inset-bottom, 0px));
-  --po-mobile-body-pad-extra: calc(74px + env(safe-area-inset-bottom, 0px));
+  --po-mobile-nav-clearance: calc(88px + env(safe-area-inset-bottom, 0px));
+  --po-mobile-body-pad-extra: calc(80px + env(safe-area-inset-bottom, 0px));
 }
 
 /* Home only uses .shell — 98% band on all viewports (loads after index.html inline CSS) */
@@ -1321,7 +1321,11 @@ nav.snav .mobile-menu a {
   #app,
   .wrap.ticket-eval-main,
   .income-wrap,
-  .page-ev {
+  .page-ev,
+  .page-content,
+  .tickets-built-main,
+  .grades-json-wrap,
+  main {
     padding-bottom: var(--po-mobile-nav-clearance) !important;
   }
 
@@ -1438,8 +1442,6 @@ nav.snav .mobile-menu a {
     font-size: 9px !important;
     letter-spacing: 0.12em !important;
   }
-}
-
 }
 
 /* ── Fix 1: Landscape mode — collapse top bar to save vertical space (v20260522landscape) ── */
@@ -1874,5 +1876,98 @@ nav.snav .mobile-menu a {
   }
   .slate-expand .slate-table:not(#st-combined) tbody tr.slate-row-clickable td.scol-player {
     font-size: 16px !important;
+  }
+}
+
+/* ── Sep 24 2026 phone audit (390px) — nav date, pills scroll, tickets squeeze ── */
+@media (max-width: 480px) {
+  .nav-datetime-block,
+  .nav-datetime,
+  .site-nav-datetime {
+    display: none !important;
+  }
+
+  .grades-date-pills,
+  .report-date-pills,
+  .date-pills {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 6px !important;
+    padding-bottom: 8px !important;
+    scrollbar-width: none !important;
+  }
+
+  .grades-date-pills::-webkit-scrollbar,
+  .report-date-pills::-webkit-scrollbar,
+  .date-pills::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .grades-date-pill,
+  .date-pills .dpill,
+  .dpill {
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+    min-width: max-content !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  .ticket-group-header,
+  .tickets-built .ticket-group-header.collapsible-header {
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+  }
+
+  .group-ev-badge,
+  .tickets-built .group-ev-badge {
+    font-size: 10px !important;
+    flex-basis: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .ticket-legs-table-wrapper,
+  .tickets-built .ticket-legs-table-wrapper {
+    overflow-x: hidden !important;
+  }
+
+  .ticket-payout-block,
+  .payout-row-inline,
+  .tickets-built .ticket-payout {
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+
+  .ticket-filter-bar,
+  .tickets-built .ticket-filter-bar {
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    scrollbar-width: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-content,
+  .tickets-built-main,
+  .grades-json-wrap,
+  main,
+  #app,
+  .shell,
+  .wrap {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  /* Keep clearance above bottom tabs (overrides plain 60px when larger). */
+  body:not(.page-grades) .shell,
+  body:not(.page-grades) .wrap,
+  body:not(.page-grades) #app,
+  body.page-income .income-wrap,
+  body.page-payout #app {
+    padding-bottom: var(--po-mobile-nav-clearance) !important;
   }
 }

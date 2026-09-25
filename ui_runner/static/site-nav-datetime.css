@@ -77,6 +77,24 @@
   object-fit: contain !important;
 }
 
+/* Phone portrait: hide slate/clock block so it cannot cover Account. */
+@media (max-width: 480px) {
+  .nav-datetime-block,
+  .nav-datetime,
+  .site-nav-datetime,
+  .nav-live-cluster .nav-datetime-block {
+    display: none !important;
+  }
+}
+
+/* Phone bottom-tab shell (≤768): same — Account stays tappable. */
+@media (max-width: 768px) {
+  nav.snav .nav-datetime-block,
+  .snav .nav-datetime-block {
+    display: none !important;
+  }
+}
+
 /* Desktop/half-screen: force single-row shell nav (beats critical fallback wrap). */
 @media (min-width: 769px) {
   nav.snav,

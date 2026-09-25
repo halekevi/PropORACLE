@@ -848,8 +848,13 @@ html.page-grades-root body.page-grades .iframe-shell-stage[data-grades-tab="tick
   .date-bar-right{display:none !important;}
   .date-pills .dpill{
     flex:0 0 auto !important;
+    flex-shrink:0 !important;
     max-width:none !important;
+    min-width:max-content !important;
+    width:auto !important;
     white-space:nowrap !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
   }
   .date-pills{
     flex:1 1 auto !important;
@@ -859,7 +864,8 @@ html.page-grades-root body.page-grades .iframe-shell-stage[data-grades-tab="tick
     -webkit-overflow-scrolling:touch;
     overscroll-behavior-x:contain;
     scroll-snap-type:x proximity;
-    gap:8px;
+    gap:6px;
+    padding-bottom:8px;
     min-height:36px;
     min-width:0 !important;
     align-items:center;
@@ -1698,8 +1704,8 @@ select option,
 </style>
 <link rel="stylesheet" href="static/site-nav-unified.css?v=20260720halfnav1"/>
 <link rel="stylesheet" href="static/nav-mobile-shared.css?v=20260430schemapage"/>
-<link rel="stylesheet" href="static/mobile-content-width.css?v=20260719alllanes1"/>
-<link rel="stylesheet" href="static/site-nav-datetime.css?v=20260720halfnav1"/>
+<link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
+<link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 </head>
 <body class="page-grades" data-latest-with-tickets="{{ latest_with_tickets|default('', true) }}">
 <!-- Ambient orbs — match Home (static, no drift animation) -->
@@ -2695,7 +2701,7 @@ function ensureGradesToolbarStylesInFrame(doc) {
     const link = doc.createElement('link');
     link.id = 'grades-iframe-toolbar-link';
     link.rel = 'stylesheet';
-    link.href = 'static/grades-iframe-toolbar.css?v=20260719vdense1';
+    link.href = 'static/grades-iframe-toolbar.css?v=20260924phone1';
     doc.head.appendChild(link);
   }
   // Inline critical labels/chrome so missing/cached CSS cannot show double tab text.
@@ -2710,7 +2716,8 @@ function ensureGradesToolbarStylesInFrame(doc) {
       '.tab-label-full{display:none!important}.tab-label-short{display:inline!important}',
       '.date-bar-right,.date-bar-label{display:none!important}',
       '.date-bar{overflow-x:hidden!important;flex-wrap:nowrap!important}',
-      '.date-pills{min-width:0!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch}',
+      '.date-pills{min-width:0!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch;flex-wrap:nowrap!important;gap:6px;padding-bottom:8px;scrollbar-width:none}',
+      '.date-pills .dpill{flex:0 0 auto!important;flex-shrink:0!important;white-space:nowrap!important;min-width:max-content!important;overflow:visible!important;text-overflow:clip!important}',
       '}',
     ].join('');
     doc.head.appendChild(style);

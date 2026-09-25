@@ -1100,9 +1100,9 @@ body > nav.snav.glass-card {
 
 </style>
 <link rel="stylesheet" href="/static/nav-mobile-shared.css?v=20260430schemapage"/>
-<link rel="stylesheet" href="/static/mobile-content-width.css?v=20260831fivecol"/>
+<link rel="stylesheet" href="/static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="/static/matchup-edge.css?v=20260821tight1"/>
-<link rel="stylesheet" href="/static/site-nav-datetime.css?v=20260720halfnav1"/>
+<link rel="stylesheet" href="/static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="/static/player-consistency.css?v=20260525hotprop"/>
 </head>
 <body>
@@ -2180,7 +2180,7 @@ body > nav.snav.glass-card {
     </div>
 
     <div class="slate-expand" id="sp-wnba">
-      <details class="wnba-me-panel" id="wnba-matchup-edge-panel" open>
+      <details class="wnba-me-panel" id="wnba-matchup-edge-panel">
         <summary>Matchup Edge — WNBA defense lookup</summary>
         <div class="wnba-me-body">
           <div class="wnba-me-loading" id="wnba-me-loading">Loading matchup data…</div>
@@ -3896,21 +3896,78 @@ function getOffseasonSportIds() {
   return ids;
 }
 function getDefaultBootSlateSport() {
-  if (!isSportDateOffSeason("nba")) return "nba";
+  // Prefer first sport with live/today slate props (not a hardcoded WNBA park).
+  const preference = ["nba", "nfl", "mlb", "soccer", "nhl", "tennis", "wnba", "cfb", "cbb", "wnba1h", "wnba1q"];
   const off = new Set(getOffseasonSportIds());
-  for (const sport of ["wnba", "soccer", "mlb", "nfl", "cfb", "tennis", "nhl"]) {
+
+  function cardOk(sport) {
+    if (off.has(sport)) return false;
+    const card = document.getElementById("sc-" + sport);
+    if (!card) return !off.has(sport);
+    if (card.classList.contains("inactive-sport")) return false;
+    if (card.classList.contains("empty-board")) return false;
+    return true;
+  }
+
+  for (const sport of preference) {
+    const card = document.getElementById("sc-" + sport);
+    if (!cardOk(sport)) continue;
+    if (card && card.classList.contains("fresh")) return sport;
+  }
+  for (const sport of preference) {
+    const card = document.getElementById("sc-" + sport);
+    if (!cardOk(sport)) continue;
+    if (card && (card.classList.contains("stale") || card.classList.contains("fresh"))) return sport;
+  }
+  if (!isSportDateOffSeason("nba")) return "nba";
+  for (const sport of preference) {
     if (!off.has(sport)) return sport;
   }
-  return "wnba";
+  return "mlb";
+}
+
+/** True when sport slate payload has at least one prop row. */
+async function sportHasSlateProps(sport) {
+  try {
+    let res = await fetch("/api/slate-sport/" + sport, { cache: "no-store" });
+    if (!res.ok) res = await fetch("slate_sport_" + sport + ".json", { cache: "no-store" });
+    if (!res.ok) return false;
+    const data = await res.json();
+    const rows = typeof slateRowsFromPayload === "function" ? slateRowsFromPayload(data) : (data && data.rows) || [];
+    return Array.isArray(rows) && rows.length > 0;
+  } catch (_) {
+    return false;
+  }
+}
+
+/** Pick first preference sport with props; fall back to calendar default. */
+async function resolveBootSlateSport() {
+  const preference = ["nba", "nfl", "mlb", "soccer", "nhl", "tennis", "wnba", "cfb"];
+  const off = new Set(getOffseasonSportIds());
+  for (const sport of preference) {
+    if (off.has(sport)) continue;
+    // eslint-disable-next-line no-await-in-loop
+    if (await sportHasSlateProps(sport)) return sport;
+  }
+  return getDefaultBootSlateSport();
 }
 
 /** Open the default in-season sport panel so fetched props are visible without an extra click. */
-function autoOpenBootSlatePanel() {
-  const sport = getDefaultBootSlateSport();
-  const panel = document.getElementById(`sp-${sport}`);
-  if (!panel || panel.classList.contains("open")) return;
+async function autoOpenBootSlatePanel() {
+  let sport = getDefaultBootSlateSport();
   try {
-    toggleSlatePanel(sport);
+    sport = await resolveBootSlateSport();
+  } catch (e) {
+    console.warn("resolveBootSlateSport:", e);
+  }
+  const panel = document.getElementById(`sp-${sport}`);
+  if (!panel) return;
+  if (panel.classList.contains("open") && openSlatePanel === sport) return;
+  try {
+    if (openSlatePanel && openSlatePanel !== sport) {
+      toggleSlatePanel(openSlatePanel);
+    }
+    if (!panel.classList.contains("open")) toggleSlatePanel(sport);
   } catch (e) {
     console.warn("autoOpenBootSlatePanel:", e);
   }
@@ -6183,8 +6240,14 @@ function sortSlateDynamic(sport, key) {
   try {
     injectSlatePlatformButtons();
     injectSlateL5Buttons();
-    fetchSlateSport(getDefaultBootSlateSport());
-    autoOpenBootSlatePanel();
+    (async function () {
+      let sport = getDefaultBootSlateSport();
+      try {
+        sport = await resolveBootSlateSport();
+      } catch (_) {}
+      fetchSlateSport(sport);
+      await autoOpenBootSlatePanel();
+    })();
     const warmFullSlate = () => {
       try {
         loadSlateData().catch((e) => console.warn("deferred loadSlateData:", e));

@@ -280,9 +280,40 @@
 }
 
 @media (max-width: 480px) {
-  .tickets-built .ticket-payout {
+  .tickets-built .ticket-group-header,
+  .tickets-built .ticket-group-header.collapsible-header {
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 4px 8px;
+  }
+
+  .tickets-built .group-ev-badge {
+    font-size: 10px;
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .tickets-built .ticket-legs-table-wrapper {
+    overflow-x: hidden;
+  }
+
+  .tickets-built .ticket-payout,
+  .tickets-built .payout-row-inline {
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tickets-built .ticket-filter-bar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tickets-built .ticket-filter-bar::-webkit-scrollbar {
+    display: none;
   }
 }
 
