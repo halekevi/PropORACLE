@@ -1,0 +1,40 @@
+@startuml PropORACLE_Payout_Scrape
+' Scraping payout rates — PrizePicks N-correct via CDP
+' Render: PlantUML extension or https://www.plantuml.com/plantuml
+
+title PropORACLE — Payout scrape (N-correct only)
+
+start
+:Dual card exists\n(Goblin-70 + mixer --write-web);
+
+if (First scrape of slate D?) then (yes: D-1 9PM Force)
+  :CDP scrape **all** generated slips;
+else (1AM / 5AM / 8AM / 9 / 9:45 / 10:30 / 1PM / 4:30)
+  if (missing live_cdp OR line/type moved?) then (yes)
+    :Re-scrape those slips only;
+  else (no)
+    :Skip CDP;
+  endif
+endif
+
+:Chrome :9222 → PrizePicks slip;
+:Read **N-correct pays Xx**\n(Flex 5-correct / 4-correct,\nPower N-correct);
+note right
+  NEVER store 1st-place multiplier.
+  That is a decoy / fantasy tier.
+end note
+
+:payout_patch_<date>.json;
+:write-back display_min_x\npayout_source=live_cdp;
+:Publish-LiveSite.ps1;
+
+stop
+
+note bottom
+  scripts/run_live_payout_capture.ps1
+  -Force = full dual-card re-scrape
+  -UpdateOnly = incremental (manual / CDP-down)
+  Single-flight lock; skip if CDP down
+end note
+
+@enduml

@@ -1,0 +1,69 @@
+@startuml PropORACLE_Grading
+' Grading — 3AM grader + void-aware ticket eval (reality + known gaps)
+' Render: PlantUML extension or https://www.plantuml.com/plantuml
+
+title PropORACLE — Grading
+
+actor Sched as "Task Scheduler\n(3AM)"
+participant "run_grader.ps1" as Grader
+participant "Sport actuals\n(ESPN / boxes / period CSVs)" as Actuals
+participant "find_ticket_payload_path" as Resolve
+participant "combined_ticket_grader.py" as TickGrade
+participant "build_ticket_eval.py" as Eval
+participant "grade_history.json" as Hist
+participant "/grades · /income" as UI
+
+Sched -> Grader : yesterday's slate
+Grader -> Actuals : fetch / join actuals\n(WNBA1H/1Q never fall back to full-game)
+Actuals --> Grader : per-prop actuals
+
+Grader -> Resolve : resolve ticket card for date
+note right of Resolve
+  **Current code order (build_ticket_eval.py):**
+  1) combined_slate_tickets_{date}.xlsx
+     (prefer fullest workbook)
+  2) goblin-only JSON fallbacks
+  3) combined_slate_tickets_{date}.json
+     (nonempty groups preferred)
+  4) tickets_latest.json if date matches
+
+  **Gap (Sep 19–23 class):**
+  xlsx-first can beat a good JSON when the
+  workbook is empty / sport-slate only →
+  UNGRADED / empty Income day.
+  Intended harden: nonempty JSON before
+  empty xlsx (not fully flipped yet).
+end note
+Resolve --> Grader : path (xlsx or JSON)
+
+Grader -> TickGrade : grade slips vs actuals
+TickGrade --> Grader : WIN / LOSS / VOID per leg
+
+note right of TickGrade
+  VOID / NO_ACTUAL → drop leg,
+  pay **reduced N-correct** tier
+  (payouts change, not hygiene only —
+  e.g. NFL anytime_td alias voids,
+  NO_FG_MADE classification).
+  <2 playable → refund / no contest.
+  Unacceptable voids flagged
+  (validate_unacceptable_voids.py).
+end note
+
+Grader -> Eval : ticket_eval_<date>.html\ngraded_props_<date>.json
+Eval -> Hist : append W/L/voids
+note right of Hist
+  Tracks: main Goblin-70 + mixer → Income WR.
+  standard_yolo + goblin70_yolo → separate;
+  **not** in day-to-day Income / ~23% WR.
+end note
+Eval --> UI : Grades hub + income
+Grader -> Grader : Publish eval artifacts
+
+note over Grader, UI
+  Published G70 cards are **not** re-gated inside grading.
+  Keep revalidation is scrub_goblin70_keep_live.py
+  (ticket-design side path), not the 3AM grader.
+end note
+
+@enduml
