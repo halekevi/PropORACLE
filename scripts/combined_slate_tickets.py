@@ -275,6 +275,8 @@ from utils.l5_recency_policy import (
     L5_GE4_MIN as _L5_GE4_MIN,
     L5_PERFECT as _STANDARD_PROP_GATE_L5_PERFECT,
     L5_PERFECT_GATE_CLEAR_SPORTS as _STANDARD_PROP_GATE_L5_CLEAR_SPORTS,
+    WNBA_L5_MIN as _WNBA_L5_MIN,
+    is_wnba_family as _is_wnba_family,
     l5_clears_standard_prop_gate as _l5_clears_standard_prop_gate,
     l5_perfect_gate_clear_sport as _l5_perfect_gate_clear_sport,
     mlb_standard_over_perfect_l5 as _mlb_standard_over_perfect_l5,
@@ -1938,28 +1940,10 @@ def attach_display_min_x(ticket: dict) -> dict:
     return ticket
 
 
-def _leg_sig_key_for_payout_patch(legs: list | None) -> str:
-    parts: list[str] = []
-    for leg in legs or []:
-        if not isinstance(leg, dict):
-            continue
-        player = re.sub(r"\s+", " ", str(leg.get("player") or "").strip().lower())
-        prop = re.sub(
-            r"\s+",
-            " ",
-            str(leg.get("prop_type") or leg.get("prop") or "").strip().lower(),
-        )
-        direction = re.sub(
-            r"\s+",
-            " ",
-            str(leg.get("direction") or leg.get("dir") or "over").strip().lower(),
-        )
-        try:
-            line = f"{float(leg.get('line')):.3f}"
-        except (TypeError, ValueError):
-            line = ""
-        parts.append(f"{player}|{prop}|{direction}|{line}")
-    return "||".join(sorted(p for p in parts if p and p != "|||"))
+def _leg_sig_key_for_payout_patch(legs: list | None, ticket: dict | None = None) -> str:
+    from utils.payout_ticket_sig import ticket_payout_sig
+
+    return ticket_payout_sig(ticket, legs=legs if isinstance(legs, list) else None)
 
 
 def harvest_live_cdp_entries(payload: dict) -> tuple[dict, dict]:
@@ -2001,7 +1985,7 @@ def harvest_live_cdp_entries(payload: dict) -> tuple[dict, dict]:
             tid = str(t.get("ticket_id") or "").strip()
             if tid:
                 by_id[tid] = entry
-            sig = _leg_sig_key_for_payout_patch(t.get("legs"))
+            sig = _leg_sig_key_for_payout_patch(t.get("legs"), ticket=t)
             if sig:
                 by_sig[sig] = entry
     return by_id, by_sig
@@ -2011,43 +1995,54 @@ def preserve_live_cdp_onto_payload(payload: dict, source_payload: dict) -> int:
     """Copy live_cdp floors from source onto matching tickets in payload (id or leg sig)."""
     if not isinstance(payload, dict) or not isinstance(source_payload, dict):
         return 0
+    from utils.payout_ticket_sig import ambiguous_sig_keys, ticket_payout_sig
+
     by_id, by_sig = harvest_live_cdp_entries(source_payload)
     if not by_id and not by_sig:
         return 0
-    n = 0
+    dest_tickets: list[dict] = []
     for g in payload.get("groups") or []:
         if not isinstance(g, dict):
             continue
         for t in g.get("tickets") or []:
-            if not isinstance(t, dict):
+            if isinstance(t, dict):
+                dest_tickets.append(t)
+    ambiguous = ambiguous_sig_keys(dest_tickets)
+    n = 0
+    for t in dest_tickets:
+        pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+        if str(pay.get("payout_source") or "").strip().lower() == "live_cdp":
+            if _safe_positive_float(pay.get("power_min_x") or pay.get("display_min_x")):
                 continue
-            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
-            if str(pay.get("payout_source") or "").strip().lower() == "live_cdp":
-                if _safe_positive_float(pay.get("power_min_x") or pay.get("display_min_x")):
-                    continue
-            tid = str(t.get("ticket_id") or "").strip()
-            entry = by_id.get(tid) if tid else None
-            if entry is None:
-                entry = by_sig.get(_leg_sig_key_for_payout_patch(t.get("legs")))
-            if not isinstance(entry, dict):
-                continue
-            min_x = _safe_positive_float(entry.get("power_min_x") or entry.get("display_min_x"))
-            if min_x is None:
-                continue
-            pay = dict(pay)
-            if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
-                pay["model_min_payout_x"] = pay.get("min_payout_x")
-            pay["power_min_x"] = round(min_x, 4)
-            pay["display_min_x"] = round(min_x, 4)
-            pay["payout_source"] = "live_cdp"
-            if entry.get("power_first_x") is not None:
-                pay["power_first_x"] = entry.get("power_first_x")
-            if entry.get("captured_at"):
-                pay["captured_at"] = entry.get("captured_at")
-            refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
-            t["payout"] = pay
-            t["display_min_x"] = pay["display_min_x"]
-            n += 1
+        tid = str(t.get("ticket_id") or "").strip()
+        entry = by_id.get(tid) if tid else None
+        if entry is None:
+            sig = ticket_payout_sig(t)
+            if sig and sig not in ambiguous:
+                entry = by_sig.get(sig)
+            else:
+                entry = None
+        if entry is None:
+            continue
+        if not isinstance(entry, dict):
+            continue
+        min_x = _safe_positive_float(entry.get("power_min_x") or entry.get("display_min_x"))
+        if min_x is None:
+            continue
+        pay = dict(pay)
+        if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
+            pay["model_min_payout_x"] = pay.get("min_payout_x")
+        pay["power_min_x"] = round(min_x, 4)
+        pay["display_min_x"] = round(min_x, 4)
+        pay["payout_source"] = "live_cdp"
+        if entry.get("power_first_x") is not None:
+            pay["power_first_x"] = entry.get("power_first_x")
+        if entry.get("captured_at"):
+            pay["captured_at"] = entry.get("captured_at")
+        refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
+        t["payout"] = pay
+        t["display_min_x"] = pay["display_min_x"]
+        n += 1
     return n
 
 
@@ -2114,42 +2109,51 @@ def apply_payout_patch_to_payload(payload: dict) -> int:
         except Exception:
             patch = None
         if isinstance(patch, dict):
+            from utils.payout_ticket_sig import ambiguous_sig_keys, ticket_payout_sig
+
             by_id = patch.get("by_ticket_id") if isinstance(patch.get("by_ticket_id"), dict) else {}
             by_sig = patch.get("by_leg_sig") if isinstance(patch.get("by_leg_sig"), dict) else {}
+            dest_tickets: list[dict] = []
             for g in payload.get("groups") or []:
                 if not isinstance(g, dict):
                     continue
                 for t in g.get("tickets") or []:
-                    if not isinstance(t, dict):
-                        continue
-                    tid = str(t.get("ticket_id") or "").strip()
-                    entry = by_id.get(tid) if tid else None
-                    if entry is None:
-                        entry = by_sig.get(_leg_sig_key_for_payout_patch(t.get("legs")))
-                    if not isinstance(entry, dict):
-                        continue
-                    min_x = _safe_positive_float(entry.get("power_min_x") or entry.get("display_min_x"))
-                    if min_x is None:
-                        continue
-                    pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
-                    pay = dict(pay)
-                    if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
-                        pay["model_min_payout_x"] = pay.get("min_payout_x")
-                    pay["power_min_x"] = round(min_x, 4)
-                    pay["display_min_x"] = round(min_x, 4)
-                    pay["payout_source"] = "live_cdp"
-                    if entry.get("power_first_x") is not None:
-                        pay["power_first_x"] = entry.get("power_first_x")
-                    if entry.get("captured_at"):
-                        pay["captured_at"] = entry.get("captured_at")
-                    # Prefer N-correct map from the overnight scrape when present.
-                    nc = entry.get("n_correct")
-                    if isinstance(nc, dict) and nc:
-                        pay["n_correct"] = nc
-                    refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
-                    t["payout"] = pay
-                    t["display_min_x"] = pay["display_min_x"]
-                    n += 1
+                    if isinstance(t, dict):
+                        dest_tickets.append(t)
+            ambiguous = ambiguous_sig_keys(dest_tickets)
+            for t in dest_tickets:
+                tid = str(t.get("ticket_id") or "").strip()
+                entry = by_id.get(tid) if tid else None
+                if entry is None:
+                    sig = ticket_payout_sig(t)
+                    if sig and sig not in ambiguous:
+                        entry = by_sig.get(sig)
+                    else:
+                        entry = None
+                if not isinstance(entry, dict):
+                    continue
+                min_x = _safe_positive_float(entry.get("power_min_x") or entry.get("display_min_x"))
+                if min_x is None:
+                    continue
+                pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+                pay = dict(pay)
+                if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
+                    pay["model_min_payout_x"] = pay.get("min_payout_x")
+                pay["power_min_x"] = round(min_x, 4)
+                pay["display_min_x"] = round(min_x, 4)
+                pay["payout_source"] = "live_cdp"
+                if entry.get("power_first_x") is not None:
+                    pay["power_first_x"] = entry.get("power_first_x")
+                if entry.get("captured_at"):
+                    pay["captured_at"] = entry.get("captured_at")
+                # Prefer N-correct map from the overnight scrape when present.
+                nc = entry.get("n_correct")
+                if isinstance(nc, dict) and nc:
+                    pay["n_correct"] = nc
+                refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
+                t["payout"] = pay
+                t["display_min_x"] = pay["display_min_x"]
+                n += 1
     # Day-ahead archive (scraped the night before) fills gaps the patch file missed.
     n += seed_live_cdp_from_day_ahead_archive(payload)
     return n
@@ -2198,49 +2202,58 @@ def seed_live_cdp_from_day_ahead_archive(payload: dict) -> int:
             tid = str(t.get("ticket_id") or "").strip()
             if tid:
                 by_id[tid] = t
-            sig = _leg_sig_key_for_payout_patch(t.get("legs"))
+            sig = _leg_sig_key_for_payout_patch(t.get("legs"), ticket=t)
             if sig:
                 by_sig[sig] = t
 
     n = 0
+    from utils.payout_ticket_sig import ambiguous_sig_keys, ticket_payout_sig
+
+    dest_tickets: list[dict] = []
     for g in payload.get("groups") or []:
         if not isinstance(g, dict):
             continue
         for t in g.get("tickets") or []:
-            if not isinstance(t, dict):
-                continue
-            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
-            if str(pay.get("payout_source") or "").strip().lower() == "live_cdp":
-                continue
-            tid = str(t.get("ticket_id") or "").strip()
-            src_t = by_id.get(tid) if tid else None
-            if src_t is None:
-                src_t = by_sig.get(_leg_sig_key_for_payout_patch(t.get("legs")))
-            if not isinstance(src_t, dict):
-                continue
-            src_pay = src_t.get("payout") if isinstance(src_t.get("payout"), dict) else {}
-            min_x = _safe_positive_float(
-                src_pay.get("display_min_x")
-                or src_pay.get("power_min_x")
-                or src_pay.get("min_payout_x")
-                or src_pay.get("payout")
-            )
-            if min_x is None:
-                continue
-            pay = dict(pay)
-            pay["power_min_x"] = round(min_x, 4)
-            pay["display_min_x"] = round(min_x, 4)
-            pay["payout_source"] = "live_cdp"
-            if src_pay.get("captured_at"):
-                pay["captured_at"] = src_pay.get("captured_at")
-            if isinstance(src_pay.get("n_correct"), dict) and src_pay.get("n_correct"):
-                pay["n_correct"] = src_pay["n_correct"]
-            if src_pay.get("payout_note"):
-                pay["payout_note"] = src_pay.get("payout_note")
-            refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
-            t["payout"] = pay
-            t["display_min_x"] = pay["display_min_x"]
-            n += 1
+            if isinstance(t, dict):
+                dest_tickets.append(t)
+    ambiguous = ambiguous_sig_keys(dest_tickets)
+    for t in dest_tickets:
+        pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+        if str(pay.get("payout_source") or "").strip().lower() == "live_cdp":
+            continue
+        tid = str(t.get("ticket_id") or "").strip()
+        src_t = by_id.get(tid) if tid else None
+        if src_t is None:
+            sig = ticket_payout_sig(t)
+            if sig and sig not in ambiguous:
+                src_t = by_sig.get(sig)
+            else:
+                src_t = None
+        if not isinstance(src_t, dict):
+            continue
+        src_pay = src_t.get("payout") if isinstance(src_t.get("payout"), dict) else {}
+        min_x = _safe_positive_float(
+            src_pay.get("display_min_x")
+            or src_pay.get("power_min_x")
+            or src_pay.get("min_payout_x")
+            or src_pay.get("payout")
+        )
+        if min_x is None:
+            continue
+        pay = dict(pay)
+        pay["power_min_x"] = round(min_x, 4)
+        pay["display_min_x"] = round(min_x, 4)
+        pay["payout_source"] = "live_cdp"
+        if src_pay.get("captured_at"):
+            pay["captured_at"] = src_pay.get("captured_at")
+        if isinstance(src_pay.get("n_correct"), dict) and src_pay.get("n_correct"):
+            pay["n_correct"] = src_pay["n_correct"]
+        if src_pay.get("payout_note"):
+            pay["payout_note"] = src_pay.get("payout_note")
+        refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
+        t["payout"] = pay
+        t["display_min_x"] = pay["display_min_x"]
+        n += 1
     if n:
         print(f"  [payout] seeded live_cdp from day-ahead archive on {n} tickets")
     return n
@@ -4424,8 +4437,15 @@ TICKET_PROB_CAP = 0.999
 RANK_SCORE_SIGMOID_SCALE = 0.4
 DEFAULT_LEG_PROB_FALLBACK = 0.50
 
-# Limit how many distinct generated slips may include the same player (reduces single-leg cascade risk).
-MAX_SLIPS_PER_PLAYER = 4
+# Flat total ceiling — SUPERSEDED as primary policy by utils.slate_exposure_ledger
+# (anchor-cap 1 + non-anchor 1). Kept as derived max_total so construction-time
+# _ticket_cap_can_add stays aligned; do not raise back to 4 (McGreevy×4 on 9/19).
+try:
+    from utils.slate_exposure_ledger import max_total_tickets_per_player as _slate_max_total
+
+    MAX_SLIPS_PER_PLAYER = int(_slate_max_total())
+except Exception:  # pragma: no cover — ledger import must not break ticket build
+    MAX_SLIPS_PER_PLAYER = int(os.getenv("PROPORACLE_MAX_SLIPS_PER_PLAYER", "2"))
 
 
 def _player_name_atoms(player: object) -> list[str]:
@@ -4503,7 +4523,7 @@ def _ticket_cap_can_add(rows: list, counts: dict[str, int] | None, cap: int = MA
 
 
 def _ticket_cap_register(rows: list, counts: dict[str, int] | None) -> None:
-    if not counts:
+    if counts is None:
         return
     for p in _ticket_cap_players_from_rows(rows):
         counts[p] = int(counts.get(p, 0)) + 1
@@ -5184,10 +5204,21 @@ def _tennis_allowed_mask(df: pd.DataFrame) -> pd.Series:
         & keep_ok
     )
     std_under_serve = (pick == "standard") & direction.eq("UNDER") & serve_junk
-    dist_l5 = pd.to_numeric(df.get("dist_l5", df.get("Dist_L5", np.nan)), errors="coerce")
-    l5_avg = pd.to_numeric(
-        df.get("stat_last5_avg", df.get("Last 5 Avg", df.get("last5_avg", np.nan))),
-        errors="coerce",
+    # df.get(..., np.nan) returns a scalar when the column is missing — force Series.
+    if "dist_l5" in df.columns:
+        dist_l5 = pd.to_numeric(df["dist_l5"], errors="coerce")
+    elif "Dist_L5" in df.columns:
+        dist_l5 = pd.to_numeric(df["Dist_L5"], errors="coerce")
+    else:
+        dist_l5 = pd.Series(np.nan, index=df.index, dtype=float)
+    _l5_src = next(
+        (c for c in ("stat_last5_avg", "Last 5 Avg", "last5_avg", "l5_avg") if c in df.columns),
+        None,
+    )
+    l5_avg = (
+        pd.to_numeric(df[_l5_src], errors="coerce")
+        if _l5_src
+        else pd.Series(np.nan, index=df.index, dtype=float)
     )
     l5_gap = dist_l5.where(dist_l5.notna(), l5_avg - line_v)
     std_gw_over = (
@@ -6352,6 +6383,8 @@ def _row_main_goblin_l5_ok(row_d: dict, *, min_hits: float | None = None) -> boo
     if sport not in MAIN_GOBLIN_L5_SPORTS:
         return True
     floor = float(MAIN_GOBLIN_MIN_L5_HITS if min_hits is None else min_hits)
+    if _is_wnba_family(sport):
+        floor = max(floor, float(_WNBA_L5_MIN))
     soccer = sport in ("SOCCER", "SOC")
     if floor > 0:
         hits = _row_directional_l5_hits(row_d)
@@ -6397,6 +6430,8 @@ def _row_main_standard_recency_ok(row_d: dict) -> bool:
         l5_floor = float(MAIN_STANDARD_OVER_MIN_L5_HITS)
     else:
         return False
+    if _is_wnba_family(sport):
+        l5_floor = max(l5_floor, float(_WNBA_L5_MIN))
     soccer = sport in ("SOCCER", "SOC")
     if l5_floor > 0:
         hits = _row_directional_l5_hits(row_d)
@@ -6476,7 +6511,7 @@ def _leg_standard_prop_direction_gated(row_d: dict | pd.Series) -> bool:
     gate those props tightly while leaving easier Goblin hits alone.
 
     Exception: directional L5 clears the gate for clear-eligible sports
-    (basketball/Soccer L5>=4; NFL/CFB/NHL/Tennis/Golf L5=5). MLB never
+    (NBA/CBB/Soccer L5>=4; WNBA family + NFL/CFB/NHL/Tennis/Golf L5=5). MLB never
     clears via L5.
     """
     if isinstance(row_d, pd.Series):
@@ -7603,8 +7638,14 @@ def build_win_rate_ticket_groups(
     goblin_only: bool = False,
     goblin_only_3leg: bool = False,
     standard_only: bool = False,
+    player_ticket_counts: dict[str, int] | None = None,
 ) -> list[tuple[str, list, None]]:
     """Build win-rate slips sorted by p_win (3-leg primary; Goblin-only may also emit 4–6)."""
+    # One shared cap across sports × leg sizes. Candidate gen must not register
+    # (that would burn the cap on unpicked slips) — only _try_pick registers.
+    slip_player_counts: dict[str, int] = (
+        player_ticket_counts if player_ticket_counts is not None else defaultdict(int)
+    )
     graded_ctx = _graded_analysis_context(graded_analysis)
     goblin_only_3leg = bool(goblin_only_3leg)
     standard_only = bool(standard_only)
@@ -7685,7 +7726,9 @@ def build_win_rate_ticket_groups(
                     if str(label).strip().upper() in ("MLB", "TENNIS", "SOCCER", "SOC", "NHL")
                     else "rank"
                 ),
-                player_ticket_counts=defaultdict(int),
+                # Do not register during candidate gen — shared slip_player_counts
+                # is applied only when a slip is actually picked below.
+                player_ticket_counts=None,
             )
             for t in built:
                 rows = list(t.get("rows") or [])
@@ -7735,10 +7778,13 @@ def build_win_rate_ticket_groups(
             return False
         if not _ticket_passes_main_four_leg_gate(rows):
             return False
+        if not _ticket_cap_can_add(rows, slip_player_counts):
+            return False
         key = _ticket_row_dedup_key(rows)
         if key in seen:
             return False
         seen.add(key)
+        _ticket_cap_register(rows, slip_player_counts)
         picked.append(ticket)
         return True
 
@@ -10790,15 +10836,140 @@ def filter_main_goblin_only_3leg_payload(payload: dict) -> dict:
     return filter_main_high_prob_payload(payload)
 
 
+def _ticket_is_goblin70_family(ticket: dict, group_name: str = "") -> bool:
+    """True for Goblin-70 / YOLO slips (own pack gates; not MAIN structure rules)."""
+    if not isinstance(ticket, dict):
+        return False
+    track = str(ticket.get("ticket_track") or "").strip().lower()
+    if track.startswith("goblin70"):
+        return True
+    policy = str(ticket.get("pool_policy") or ticket.get("core_recipe") or "").strip().lower()
+    if policy.startswith("goblin70"):
+        return True
+    mode = str(ticket.get("mode") or "").strip().lower()
+    if mode.startswith("goblin70"):
+        return True
+    gn = str(group_name or "").upper()
+    return "GOBLIN-70" in gn or "YOLO" in gn
+
+
+def scrub_payload_construction_hygiene(payload: dict) -> dict:
+    """
+    Drop slips whose legs fail MLB keep/construction bans.
+
+    Applies to CORE / STRONG / mixer on every card — including dual-card
+    ``pool_mode=goblin70``. Goblin-70 family slips are left alone here (they
+    are rebuilt from the board on each G70 --write-web; published web legs
+    often lack L10/own-def and would false-fail a keep re-check).
+    """
+    if not isinstance(payload, dict):
+        return payload
+    out = dict(payload)
+    new_groups: list[dict] = []
+    dropped = 0
+    for g in out.get("groups") or []:
+        if not isinstance(g, dict):
+            continue
+        gname = str(g.get("group_name") or "")
+        kept: list[dict] = []
+        for t in g.get("tickets") or []:
+            if not isinstance(t, dict):
+                continue
+            if _ticket_is_goblin70_family(t, gname):
+                kept.append(t)
+                continue
+            legs = [leg for leg in (t.get("legs") or []) if isinstance(leg, dict)]
+            if any(_leg_mlb_construction_banned(leg) for leg in legs):
+                dropped += 1
+                continue
+            kept.append(t)
+        if not kept:
+            continue
+        ng = dict(g)
+        ng["tickets"] = kept
+        ng["n_legs"] = int(ng.get("n_legs") or _slip_leg_count(kept[0], ng))
+        new_groups.append(ng)
+    out["groups"] = new_groups
+    if dropped:
+        out["construction_hygiene_dropped"] = int(dropped)
+    return out
+
+
+def trim_payload_max_slips_per_player(
+    payload: dict,
+    *,
+    cap: int = MAX_SLIPS_PER_PLAYER,
+) -> dict:
+    """
+    Enforce slate exposure across the full dual card (Goblin-70 + mixer).
+
+    Primary policy is the anchor-cap ledger (utils.slate_exposure_ledger /
+    .cursor/rules/cross-ticket-anchor-cap.mdc). ``cap`` is the derived total
+    (anchor + non-anchor); it is not a separate competing rule. Goblin-70 is
+    included so STRONG/Core and G70 share one ledger (fixes 9/19 McGreevy×4).
+    """
+    if not isinstance(payload, dict):
+        return payload
+    try:
+        from utils.slate_exposure_ledger import trim_payload_slate_exposure
+
+        out = trim_payload_slate_exposure(payload, include_goblin70=True)
+        for g in out.get("groups") or []:
+            if isinstance(g, dict) and (g.get("tickets") or []):
+                g["n_legs"] = int(g.get("n_legs") or _slip_leg_count(g["tickets"][0], g))
+        out["player_slip_cap"] = int(cap if cap > 0 else MAX_SLIPS_PER_PLAYER)
+        return out
+    except Exception:
+        pass
+    # Fallback: flat total only (still tightened vs legacy 4).
+    if cap <= 0:
+        return payload
+    counts: dict[str, int] = defaultdict(int)
+    out = dict(payload)
+    new_groups: list[dict] = []
+    dropped = 0
+    for g in out.get("groups") or []:
+        if not isinstance(g, dict):
+            continue
+        kept: list[dict] = []
+        for t in g.get("tickets") or []:
+            if not isinstance(t, dict):
+                continue
+            legs = [leg for leg in (t.get("legs") or []) if isinstance(leg, dict)]
+            if not _ticket_cap_can_add(legs, counts, cap=cap):
+                dropped += 1
+                continue
+            _ticket_cap_register(legs, counts)
+            kept.append(t)
+        if not kept:
+            continue
+        ng = dict(g)
+        ng["tickets"] = kept
+        ng["n_legs"] = int(ng.get("n_legs") or _slip_leg_count(kept[0], ng))
+        new_groups.append(ng)
+    out["groups"] = new_groups
+    if dropped:
+        out["player_slip_cap_dropped"] = int(dropped)
+    out["player_slip_cap"] = int(cap)
+    return out
+
+
 def filter_main_high_prob_payload(payload: dict) -> dict:
     """
     Keep high-prob MAIN slips: Goblin and/or Standard.
     Mixed / standard-only: 2–3 legs. Goblin-only: 2–GOBLIN_MAX_LEGS (Long Goblin 4–6).
     4+ legs still require every leg to clear the Tier-A HOT floor at build time.
     Drops Demon / banned props / excluded sports.
+
+    ``pool_mode`` routes MAIN *structure* rules (leg caps / pick mix). It does
+    **not** disable construction hygiene — dual-card ``goblin70`` still scrubs
+    CORE/mixer keep failures (Sep-15 one-way door).
     """
     mode_raw = str(payload.get("pool_mode") or "").strip().lower()
+    # Always scrub CORE/mixer construction bans, including dual-card goblin70.
+    payload = scrub_payload_construction_hygiene(payload)
     if mode_raw and mode_raw not in MAIN_POOL_MODES:
+        # Dual card / non-MAIN: hygiene only. Preserve pool_mode for routing.
         return payload
     mode = _normalize_main_pool_mode(mode_raw)
     goblin_only = mode == MAIN_POOL_MODE_GOBLIN or bool(payload.get("goblin_only"))
@@ -10818,9 +10989,7 @@ def filter_main_high_prob_payload(payload: dict) -> dict:
         for t in g.get("tickets") or []:
             if not isinstance(t, dict):
                 continue
-            # MLB keep/construction hygiene applies to every MAIN slip (CORE, STRONG,
-            # mixer). Sep-15 published BA<.275 / L5<5 hitter Goblins when CORE/STRONG
-            # short-circuited past this check.
+            # Construction hygiene already ran above; re-check is cheap insurance.
             legs = [leg for leg in (t.get("legs") or []) if isinstance(leg, dict)]
             if any(_leg_mlb_construction_banned(leg) for leg in legs):
                 continue
@@ -11127,7 +11296,9 @@ def inject_core_build_tickets(full_payload: dict, main_payload: dict) -> dict:
         break
     out["groups"] = groups[:strong_idx] + core_groups + groups[strong_idx:]
     out["core_build_count"] = sum(len(g.get("tickets") or []) for g in core_groups)
-    return out
+    # CORE + win-rate mixer never shared a counter at build time; enforce the
+    # stated MAX_SLIPS_PER_PLAYER on the assembled MAIN card (CORE preferred).
+    return trim_payload_max_slips_per_player(out)
 
 
 def _web_supplement_group_priority(group_name: str, sport_key: str) -> tuple[int, str]:
@@ -11829,6 +12000,13 @@ def dataframe_to_slate_sport_rows(df: Optional[pd.DataFrame]) -> List[dict]:
             if l5a is not None:
                 row["projection"] = l5a
 
+        try:
+            from prop_hit_tiers import stamp_prop_tier_on_slate_row
+
+            stamp_prop_tier_on_slate_row(row, sport_hint=sport_val)
+        except Exception:
+            pass
+
         rows.append({k: v for k, v in row.items() if v is not None})
     return rows
 
@@ -11997,10 +12175,23 @@ def publish_wnba_slate_merge_into_web(
         payload["sports"] = sports
         if not str(payload.get("date") or "").strip():
             payload["date"] = d
+        # Match-day stamp for Strict game-day FRESH (day-ahead Fri board on Thu night).
+        gd_counts: dict[str, int] = {}
+        for r in rows:
+            if not isinstance(r, dict):
+                continue
+            gd = str(r.get("game_date") or "").strip()[:10]
+            if len(gd) == 10:
+                gd_counts[gd] = gd_counts.get(gd, 0) + 1
+        match_ymd = max(gd_counts, key=gd_counts.get) if gd_counts else d
+        payload["wnba_date"] = match_ymd
         payload["generated_at"] = gen_at
         _write_json_file(slate_path, payload)
         sport_path = os.path.join(outdir, "slate_sport_wnba.json")
-        _write_json_file(sport_path, {"ok": True, "sport": "wnba", "rows": rows})
+        _write_json_file(
+            sport_path,
+            {"ok": True, "sport": "wnba", "date": match_ymd, "generated_at": gen_at, "rows": rows},
+        )
         n_tot = sum(len(v or []) for v in (payload.get("sports") or {}).values() if isinstance(v, list))
         extra = "".join(f", {k}={len(v)}" for k, v in period_rows.items())
         print(f"  [wnba-slate-web] {slate_path}  (wnba={len(rows)} rows{extra}, all_sports={n_tot} props)")
@@ -13653,6 +13844,32 @@ def load_cfb(path: str) -> pd.DataFrame:
     if df is None or len(df) == 0:
         return df
     df = df.copy()
+    # CFB step8 clean is title-case display (Prop/Player/…), same shape as NBA step8.
+    # load_cbb only renames snake_case ranked cols — without this, concat leaves
+    # prop_type=NA on every CFB row and attach_alt_book_lines dies on pd.NA.
+    _cfb_display = {
+        "Prop": "prop_type",
+        "Player": "player",
+        "Team": "team",
+        "Opp": "opp",
+        "Pick Type": "pick_type",
+        "Line": "line",
+        "Direction": "direction",
+        "Game Time": "game_time",
+        "Game Date": "game_date",
+        "Tier": "tier",
+        "Rank Score": "rank_score",
+        "Edge": "edge",
+        "Projection": "projection",
+        "Pos": "pos",
+    }
+    df = df.rename(
+        columns={
+            src: dst
+            for src, dst in _cfb_display.items()
+            if src in df.columns and dst not in df.columns
+        }
+    )
     df["sport"] = "CFB"
 
     team_src = "team" if "team" in df.columns else ("pp_team" if "pp_team" in df.columns else "")
@@ -16265,6 +16482,10 @@ def filter_eligible(
                 std_under_l10 = float(MAIN_STANDARD_UNDER_MIN_L10_HITS)
                 std_over_l5 = float(MAIN_STANDARD_OVER_MIN_L5_HITS)
                 std_under_l5 = float(MAIN_STANDARD_UNDER_MIN_L5_HITS)
+                if _is_wnba_family(sport):
+                    gob_floor = max(gob_floor, float(_WNBA_L5_MIN))
+                    std_over_l5 = max(std_over_l5, float(_WNBA_L5_MIN))
+                    std_under_l5 = max(std_under_l5, float(_WNBA_L5_MIN))
                 std_l10_n = float(MAIN_STANDARD_MIN_L10_SAMPLE)
                 is_standard = pick_s.str.contains("standard", na=False) & ~is_goblin
                 l10_over = pd.to_numeric(grp.get("l10_over"), errors="coerce").fillna(0)
@@ -24153,6 +24374,10 @@ from utils.tickets_render import (  # noqa: E402
     _h,
     _sport_accent,
     _ticket_fingerprint,
+    _ticket_group_leg_count,
+    _ticket_group_picktype_rank,
+    _ticket_group_serial,
+    _ticket_group_sort_rank,
     render_tickets_body_html,
 )
 

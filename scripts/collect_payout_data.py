@@ -3277,12 +3277,18 @@ def load_main_strong_tickets(
             if len(legs) < 2:
                 continue
             is_strong = bool(t.get("strong_builder"))
+            play = str(t.get("play") or t.get("product") or "").strip()
+            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+            if not play and isinstance(pay, dict):
+                play = str(pay.get("ticket_type") or "").strip()
             slips.append(
                 {
                     "ticket_id": str(t.get("ticket_id") or ""),
                     "group_name": group_name,
                     "strong_builder": is_strong,
                     "slip_type": "strong" if is_strong else "main",
+                    "product": play or "Power",
+                    "play": play or "Power",
                     "n_legs": len(legs),
                     "legs": legs,
                     "date": str(data.get("date") or "")[:10],
@@ -3345,22 +3351,17 @@ def _project_capture_fields(rec: dict, fields: list[str]) -> dict:
     return out
 
 
-def _leg_sig_key(legs: list[dict] | None) -> str:
-    parts: list[str] = []
-    for leg in legs or []:
-        if not isinstance(leg, dict):
-            continue
-        parts.append(
-            "|".join(
-                [
-                    _norm(leg.get("player")),
-                    _norm(leg.get("prop_type") or leg.get("prop")),
-                    _norm(leg.get("direction") or leg.get("dir") or "over"),
-                    _line_key(leg.get("line")),
-                ]
-            )
-        )
-    return "||".join(sorted(p for p in parts if p and p != "|||"))
+def _leg_sig_key(
+    legs: list[dict] | None,
+    *,
+    product: str | None = None,
+    n_legs: int | None = None,
+    ticket: dict | None = None,
+) -> str:
+    """Payout sig for leg list (+ optional ticket Power/Flex). Prefer ticket_payout_sig."""
+    from utils.payout_ticket_sig import ticket_payout_sig
+
+    return ticket_payout_sig(ticket, legs=legs, product=product, n_legs=n_legs)
 
 
 def main_strong_tickets_fingerprint(tickets_path: Path | str) -> dict[str, Any]:
@@ -3392,7 +3393,10 @@ def main_strong_tickets_fingerprint(tickets_path: Path | str) -> dict[str, Any]:
             if len(raw_legs) < 2:
                 continue
             tid = str(t.get("ticket_id") or "").strip()
-            sig = _leg_sig_key(raw_legs)
+            sig = _leg_sig_key(
+                t.get("legs") if isinstance(t.get("legs"), list) else [],
+                ticket=t,
+            )
             rows.append(f"{tid}\t{sig}")
             if _ticket_already_has_live_cdp(t):
                 n_live += 1
@@ -3519,7 +3523,10 @@ def write_payout_patch_and_apply_to_tickets(
                     tid = str(t.get("ticket_id") or "").strip()
                     if tid and tid not in prior_by_id:
                         prior_by_id[tid] = entry
-                    sig = _leg_sig_key(t.get("legs") if isinstance(t.get("legs"), list) else [])
+                    sig = _leg_sig_key(
+                        t.get("legs") if isinstance(t.get("legs"), list) else [],
+                        ticket=t,
+                    )
                     if sig and sig not in prior_by_sig:
                         prior_by_sig[sig] = entry
         except Exception as e:
@@ -3561,7 +3568,12 @@ def write_payout_patch_and_apply_to_tickets(
         if tid:
             patch["by_ticket_id"][tid] = entry
             n_new += 1
-        sig = _leg_sig_key(rec.get("legs") if isinstance(rec.get("legs"), list) else [])
+        sig = _leg_sig_key(
+            rec.get("legs") if isinstance(rec.get("legs"), list) else [],
+            ticket=rec,
+            n_legs=rec.get("n_legs"),
+            product=str(rec.get("ticket_type_captured") or rec.get("product") or "") or None,
+        )
         if sig:
             patch["by_leg_sig"][sig] = entry
 
@@ -3662,136 +3674,159 @@ def apply_payout_patch_entries_to_payload(
 ) -> dict[str, int]:
     """Paint floors onto tickets that exist on ``data``. Mutates in place.
 
-    Missing ticket IDs (scrubbed / rebuilt away) are skipped — this never
-    re-inserts slips. Returns ``n_patched`` / ``n_kept_live`` / ``n_fallback``.
+    Resolution order:
+      1) ticket_id exact match
+      2) full payout sig (legs + pick_type + Power/Flex + n_legs) **only when
+         exactly one** current ticket has that sig — ambiguous sigs are skipped
+
+    Missing / ambiguous tickets stay without a painted floor (next CDP window
+    fills them). Never re-inserts scrubbed slips.
     """
+    from utils.payout_ticket_sig import ambiguous_sig_keys, ticket_payout_sig
+
     by_id = patch.get("by_ticket_id") if isinstance(patch.get("by_ticket_id"), dict) else {}
     by_sig = patch.get("by_leg_sig") if isinstance(patch.get("by_leg_sig"), dict) else {}
     mix_avg = mix_avg or {}
     n_patched = 0
     n_fallback = 0
     n_kept_live = 0
+    n_sig_ambiguous = 0
 
+    all_tickets: list[dict] = []
     for g in data.get("groups") or []:
         if not isinstance(g, dict):
             continue
         for t in g.get("tickets") or []:
-            if not isinstance(t, dict):
-                continue
-            tid = str(t.get("ticket_id") or "").strip()
-            entry = by_id.get(tid) if tid else None
-            if entry is None:
-                entry = by_sig.get(_leg_sig_key(t.get("legs") if isinstance(t.get("legs"), list) else []))
-            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
-            pay = dict(pay)
-            if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
-                pay["model_min_payout_x"] = pay.get("min_payout_x")
-            if isinstance(entry, dict):
-                try:
-                    min_x = float(entry.get("power_min_x") or entry.get("display_min_x") or 0)
-                except (TypeError, ValueError):
-                    min_x = 0.0
-                if min_x > 0:
-                    pay["power_min_x"] = entry.get("power_min_x", min_x)
-                    pay["display_min_x"] = entry.get("display_min_x", min_x)
-                    pay["payout_source"] = "live_cdp"
-                    if entry.get("power_first_x") is not None:
-                        pay["power_first_x"] = entry["power_first_x"]
-                    if entry.get("captured_at"):
-                        pay["captured_at"] = entry["captured_at"]
-                    try:
-                        from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
+            if isinstance(t, dict):
+                all_tickets.append(t)
+    ambiguous = ambiguous_sig_keys(all_tickets)
 
-                        refresh_ticket_ev_from_min_guarantee(
-                            pay, float(pay["display_min_x"]), update_recommendation=False
-                        )
-                    except Exception:
-                        pass
-                    t["payout"] = pay
-                    t["display_min_x"] = pay["display_min_x"]
-                    n_patched += 1
-                    continue
-
-            # Do NOT downgrade an existing live_cdp floor to board-avg on miss.
-            src_now = str(pay.get("payout_source") or "").strip().lower()
-            live_keep = None
-            try:
-                live_keep = float(pay.get("power_min_x") or pay.get("display_min_x") or 0)
-            except (TypeError, ValueError):
-                live_keep = None
-            if src_now == "live_cdp" and live_keep and live_keep > 0:
-                pay["display_min_x"] = float(live_keep)
-                pay["power_min_x"] = float(live_keep)
-                pay["payout_source"] = "live_cdp"
-                try:
-                    from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
-
-                    refresh_ticket_ev_from_min_guarantee(
-                        pay, float(live_keep), update_recommendation=False
-                    )
-                except Exception:
-                    pass
-                t["payout"] = pay
-                t["display_min_x"] = float(live_keep)
-                n_kept_live += 1
-                continue
-
-            require_live = True
-            try:
-                import combined_slate_tickets as _cst
-
-                require_live = bool(_cst.require_live_payout_display())
-            except Exception:
-                require_live = (
-                    str(os.environ.get("PROPORACLE_REQUIRE_LIVE_PAYOUT") or "1")
-                    .strip()
-                    .lower()
-                    not in ("0", "false", "no", "off")
-                )
-            if require_live:
-                pay["payout_source"] = "pending_live"
-                pay.pop("display_min_x", None)
-                t.pop("display_min_x", None)
-                t["payout"] = pay
-                n_fallback += 1
-                continue
-
-            legs = t.get("legs") if isinstance(t.get("legs"), list) else []
-            n_legs = len(legs) or int(t.get("n_legs") or 0)
-            avg = mix_avg.get((int(n_legs), int(_goblin_leg_count(legs))))
-            if avg is not None and float(avg) > 0:
-                pay["display_min_x"] = float(avg)
-                pay["payout_source"] = "mix_grid_average"
-                try:
-                    from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
-
-                    refresh_ticket_ev_from_min_guarantee(
-                        pay, float(avg), update_recommendation=False
-                    )
-                except Exception:
-                    pass
-                t["payout"] = pay
-                t["display_min_x"] = float(avg)
-                n_fallback += 1
+    for t in all_tickets:
+        tid = str(t.get("ticket_id") or "").strip()
+        entry = by_id.get(tid) if tid else None
+        used_sig = False
+        if entry is None:
+            sig = ticket_payout_sig(t)
+            if sig and sig in ambiguous:
+                n_sig_ambiguous += 1
+                entry = None
+            elif sig:
+                entry = by_sig.get(sig)
+                used_sig = entry is not None
             else:
+                entry = None
+        pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+        pay = dict(pay)
+        if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
+            pay["model_min_payout_x"] = pay.get("min_payout_x")
+        if isinstance(entry, dict):
+            try:
+                min_x = float(entry.get("power_min_x") or entry.get("display_min_x") or 0)
+            except (TypeError, ValueError):
+                min_x = 0.0
+            if min_x > 0:
+                pay["power_min_x"] = entry.get("power_min_x", min_x)
+                pay["display_min_x"] = entry.get("display_min_x", min_x)
+                pay["payout_source"] = "live_cdp"
+                if entry.get("power_first_x") is not None:
+                    pay["power_first_x"] = entry["power_first_x"]
+                if entry.get("captured_at"):
+                    pay["captured_at"] = entry["captured_at"]
                 try:
-                    model = float(pay.get("min_payout_x") or t.get("power_payout") or 0)
-                except (TypeError, ValueError):
-                    model = 0.0
-                if model > 0:
-                    pay["display_min_x"] = model
-                    pay["payout_source"] = "fallback_estimate"
-                    try:
-                        from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
+                    from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
 
-                        refresh_ticket_ev_from_min_guarantee(
-                            pay, float(model), update_recommendation=False
-                        )
-                    except Exception:
-                        pass
-                    t["payout"] = pay
-                    t["display_min_x"] = model
-                    n_fallback += 1
+                    refresh_ticket_ev_from_min_guarantee(
+                        pay, float(pay["display_min_x"]), update_recommendation=False
+                    )
+                except Exception:
+                    pass
+                t["payout"] = pay
+                t["display_min_x"] = pay["display_min_x"]
+                n_patched += 1
+                if used_sig:
+                    pay["payout_match"] = "leg_sig"
+                continue
+
+        # Do NOT downgrade an existing live_cdp floor to board-avg on miss.
+        src_now = str(pay.get("payout_source") or "").strip().lower()
+        live_keep = None
+        try:
+            live_keep = float(pay.get("power_min_x") or pay.get("display_min_x") or 0)
+        except (TypeError, ValueError):
+            live_keep = None
+        if src_now == "live_cdp" and live_keep and live_keep > 0:
+            pay["display_min_x"] = float(live_keep)
+            pay["power_min_x"] = float(live_keep)
+            pay["payout_source"] = "live_cdp"
+            try:
+                from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
+
+                refresh_ticket_ev_from_min_guarantee(
+                    pay, float(live_keep), update_recommendation=False
+                )
+            except Exception:
+                pass
+            t["payout"] = pay
+            t["display_min_x"] = float(live_keep)
+            n_kept_live += 1
+            continue
+
+        require_live = True
+        try:
+            import combined_slate_tickets as _cst
+
+            require_live = bool(_cst.require_live_payout_display())
+        except Exception:
+            require_live = (
+                str(os.environ.get("PROPORACLE_REQUIRE_LIVE_PAYOUT") or "1")
+                .strip()
+                .lower()
+                not in ("0", "false", "no", "off")
+            )
+        if require_live:
+            pay["payout_source"] = "pending_live"
+            pay.pop("display_min_x", None)
+            t.pop("display_min_x", None)
+            t["payout"] = pay
+            n_fallback += 1
+            continue
+
+        legs = t.get("legs") if isinstance(t.get("legs"), list) else []
+        n_legs = len(legs) or int(t.get("n_legs") or 0)
+        avg = mix_avg.get((int(n_legs), int(_goblin_leg_count(legs))))
+        if avg is not None and float(avg) > 0:
+            pay["display_min_x"] = float(avg)
+            pay["payout_source"] = "mix_grid_average"
+            try:
+                from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
+
+                refresh_ticket_ev_from_min_guarantee(
+                    pay, float(avg), update_recommendation=False
+                )
+            except Exception:
+                pass
+            t["payout"] = pay
+            t["display_min_x"] = float(avg)
+            n_fallback += 1
+        else:
+            try:
+                model = float(pay.get("min_payout_x") or t.get("power_payout") or 0)
+            except (TypeError, ValueError):
+                model = 0.0
+            if model > 0:
+                pay["display_min_x"] = model
+                pay["payout_source"] = "fallback_estimate"
+                try:
+                    from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
+
+                    refresh_ticket_ev_from_min_guarantee(
+                        pay, float(model), update_recommendation=False
+                    )
+                except Exception:
+                    pass
+                t["payout"] = pay
+                t["display_min_x"] = model
+                n_fallback += 1
 
     try:
         from utils.ticket_ev_tiers import apply_slate_ev_tier_recommendations
@@ -3799,11 +3834,18 @@ def apply_payout_patch_entries_to_payload(
         apply_slate_ev_tier_recommendations(data, log=False)
     except Exception:
         pass
-    return {
+    out = {
         "n_patched": n_patched,
         "n_kept_live": n_kept_live,
         "n_fallback": n_fallback,
+        "n_sig_ambiguous": n_sig_ambiguous,
     }
+    if n_sig_ambiguous:
+        print(
+            f"[PAYOUT] skipped {n_sig_ambiguous} ticket(s) with ambiguous payout sig "
+            "(missing floors safer than a wrong live_cdp)"
+        )
+    return out
 
 
 def merge_payout_floors_onto_tickets_file(
@@ -4179,6 +4221,8 @@ def capture_tickets_from_board(
                 "group_name": slip.get("group_name"),
                 "n_legs": slip.get("n_legs"),
                 "legs": slip.get("legs"),
+                "product": slip.get("product") or slip.get("play") or "Power",
+                "play": slip.get("play") or slip.get("product") or "Power",
                 "status": "failed",
                 "error": None,
                 "ticket_type_captured": "power",
@@ -5269,7 +5313,7 @@ def sync_captures_to_payout_ladder_live(
         if not row:
             continue
         legs = rec.get("legs") if isinstance(rec.get("legs"), list) else []
-        sig = _leg_sig_key(legs)
+        sig = _leg_sig_key(legs, ticket=rec)
         min_x = row.get("power_payout_x") or ""
         key = f"{date_str}|{sig}|{min_x}"
         row["_dedupe_key"] = key
