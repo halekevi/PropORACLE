@@ -1,15 +1,35 @@
 @startuml PropORACLE_Ticket_Design
-' Ticket design — dual card + publish (reality + known gaps)
+' Ticket design — dual card build, construction rules, publish
+' Scheduled re-publishers (payout capture, keep scrub) are separate flows below.
 ' Render: PlantUML extension or https://www.plantuml.com/plantuml
 
 title PropORACLE — Ticket design (Goblin-70 + mixer)
 
+|Build (per run_daily / refresh / late_fetch)|
 start
-:Sport step8 workbooks;
+:Sport step8 workbooks\n(step8_*_direction_clean.xlsx);
+
 :combined_slate_tickets.py --write-web;
 note right
   Graded-main mixer / grade pool.
+  Eligibility = mixer ""filter_eligible""
+  (pipeline_read_checklist.json) —
+  **not** the G70 gate stack.
   Does not own live /tickets alone.
+end note
+
+:Construction rules (mixer);
+note right
+  1. MLB construction ban runs **first**
+     for every MAIN slip (ce04cad8c),
+     before core_build / strong_builder.
+  2. Same-player multistat hard block
+     (utils/ticket_diversity.py).
+  3. Diversity filter
+     (config/diversity_config.json).
+  4. Cross-ticket anchor cap.
+     VERIFY: covers leg reuse across
+     CORE + mixer + G70 (Wood x8 class)
 end note
 
 if (Caller routes through\nInvoke-G70WriteWebStandalone?) then (yes)
@@ -17,64 +37,78 @@ if (Caller routes through\nInvoke-G70WriteWebStandalone?) then (yes)
   note right
     Day-ahead / 1AM / 5AM / MLB fill /
     late_fetch / refresh / Publish-LiveSite
-    use the helper (Tee-Object fallback
-    if Invoke-LoggedPwsh.ps1 missing).
+    (Tee-Object fallback if
+    Invoke-LoggedPwsh.ps1 missing).
   end note
 else (no — known gap)
   :build_goblin70_tickets.py --write-web\n(direct py in run_daily.ps1 STEP D-G70);
   note right
-    **Gap:** run_daily.ps1 still invokes py
-    directly — not the standalone helper.
-    Ordering/logging may diverge from
-    the wrapped path.
+    **Gap:** run_daily.ps1 still calls py
+    directly, not the standalone helper.
+    Ordering / logging may diverge.
   end note
 endif
 
+:Assemble dual card;
 note right
   Goblin-70 groups **first**.
   Patch mixer **lines** from this fetch.
   Merge **full** graded-main pool under.
-  Do not drop mixer groups that left the live board.
+  Keep mixer groups that left the live board.
 end note
 
 fork
   :Goblin Power 3\n(all-Goblin);
 fork again
-  :Flex 4\n(all-Standard or 1 Std + Goblin leftovers);
+  :Flex 4\n(all-Standard or 1 Std +\nGoblin leftovers);
 fork again
   :YOLO Power 4/5/6\n(Diamond/Platinum seeds;\n**excluded from ticket WR / Income**);
 end fork
 
 :tickets_latest.json\n(disk: ui_runner/runtime/\nGitHub: ui_runner/templates/);
-
-fork
-  :run_live_payout_capture.ps1\n(N-correct floors);
-fork again
-  :scrub_goblin70_keep_live.py\n(interval keep revalidation);
-  note right
-    **Not on rebuild path.** Lightweight
-    drop of published G70 legs that now
-    fail keep gates (Mesa Jr. class).
-    Off-board legs left alone.
-    Registered via run_g70_keep_scrub.ps1.
-  end note
-end fork
-
 :Publish-LiveSite.ps1 → origin/main;
-:Railway GET /tickets\nrenders prebuilt JSON;
-
+:Railway GET /tickets\nrenders prebuilt JSON\n(no rebuild at request time);
 stop
 
-note bottom
-  **Gates (keep files can REPLACE the generic stack, not only add):**
+|Scheduled re-publishers|
+start
+:Task Scheduler window;
+split
+  :run_live_payout_capture.ps1;
+  note right
+    See payout-scrape.puml.
+    Writes N-correct floors,
+    then **publishes on its own**.
+  end note
+split again
+  :scrub_goblin70_keep_live.py\n(run_g70_keep_scrub.ps1);
+  note right
+    Drops published G70 legs that now
+    fail keep gates (Mesa Jr. class).
+    Off-board legs left alone.
+    **Not on the rebuild path.**
+    A dropped leg changes the N-correct
+    pay → should trigger payout re-scrape.
+  end note
+end split
+:Publish-LiveSite.ps1 → origin/main;
+note right
+  Capture publishes itself (confirmed).
+  VERIFY: whether the scrub publishes
+  directly or waits for the next publisher.
+end note
+stop
+
+legend bottom
+  **Gates — keep files can REPLACE the generic stack, not only add**
   Baseline 70% engine: directional L5=5 + L10>=8 + D + cover.
   Keep-file overrides (examples):
-  · MLB pitcher Goblins → L10-primary (not L5=5 stack)
-  · MLB Standard → hard-banned on G70
-  · CFB Pass Yards Goblin OVER → D is N/A (skipped)
-  · Tennis / Soccer / CFB / WNBA → sport keep modules
-  Payout figure = N-correct (Flex/Power), never 1st place.
-  Checkout gate changes are not live until main_cp rebuild + Publish-LiveSite.
-end note
+    · MLB pitcher Goblins → L10-primary (not the L5=5 stack)
+    · MLB Standard → hard-banned on G70
+    · CFB Pass Yards Goblin OVER → D skipped
+    · Tennis / Soccer / CFB / WNBA / NFL → sport keep modules
+  Payout figure = N-correct (Flex / Power), never 1st place.
+  Checkout gate changes are **not live** until main_cp rebuild + Publish-LiveSite.
+endlegend
 
 @enduml
