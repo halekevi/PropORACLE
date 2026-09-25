@@ -2333,7 +2333,13 @@ function copyLogCsvRow(){
 }
 function deleteEntry(id){logEntries=logEntries.filter(e=>e.id!==id);saveLog(logEntries);renderLogTable();updateLogCount();}
 function clearAllLog(){if(!logEntries.length||!confirm('Delete all?'))return;logEntries=[];saveLog(logEntries);renderLogTable();updateLogCount();}
-function updateLogCount(){const n=logEntries.length;document.getElementById('log-count').textContent=n;document.getElementById('log-table-count').textContent=n;}
+function updateLogCount(){
+  const n=logEntries.length;
+  const a=document.getElementById('log-count');
+  const b=document.getElementById('log-table-count');
+  if(a) a.textContent=n;
+  if(b) b.textContent=n;
+}
 
 function renderLogTable(){
   const w=document.getElementById('log-table-wrap');
@@ -2659,16 +2665,18 @@ document.addEventListener('paste',e=>{
 
 /* ─── INIT ─── */
 renderCalcLegs();
-updateLogCount();
-composerLoadPrefill();
-renderLogTable();
-loadLogDraft();
-onLogSlipTypeChange();
-renderLogLegs();
-refreshLogSummary();
-bindTopDecimals();
-renderGoblinDiscountTable();
 loadSlateTicketOptions();
+try{
+  updateLogCount();
+  composerLoadPrefill();
+  renderLogTable();
+  loadLogDraft();
+  onLogSlipTypeChange();
+  renderLogLegs();
+  refreshLogSummary();
+  bindTopDecimals();
+  renderGoblinDiscountTable();
+}catch(_e){}
 </script>
 
 <script src="/static/site-nav-chrome.js?v=20260412" defer></script>

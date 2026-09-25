@@ -71,6 +71,8 @@ def test_payout_page_has_one_subnav_and_no_tab_bar():
     init = html.split("/* ─── INIT")[-1]
     assert "addCalcLeg('standard')" not in init
     assert "addCalcLeg('goblin')" not in init
+    assert "loadSlateTicketOptions()" in init.split("try{")[0]
+    assert "if(a) a.textContent=n;" in html
     log = Path("ui_runner/templates/payout_log.html").read_text(encoding="utf-8")
     assert 'class="tab-bar"' not in log
     sub = Path("ui_runner/templates/_payout_subnav.html").read_text(encoding="utf-8")
