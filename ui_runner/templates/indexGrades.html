@@ -1701,7 +1701,7 @@ select option,
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260719alllanes1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260720halfnav1"/>
 </head>
-<body class="page-grades">
+<body class="page-grades" data-latest-with-tickets="{{ latest_with_tickets|default('', true) }}">
 <!-- Ambient orbs — match Home (static, no drift animation) -->
 <div class="po-orb" style="top:-15%;left:-8%;width:min(520px,85vw);height:min(520px,85vw);background:radial-gradient(circle,rgba(127,199,217,0.16) 0%,transparent 70%);filter:blur(72px);"></div>
 <div class="po-orb" style="top:18%;right:-10%;width:min(560px,90vw);height:min(560px,90vw);background:radial-gradient(circle,rgba(212,175,55,0.09) 0%,transparent 70%);filter:blur(72px);"></div>
@@ -4985,7 +4985,20 @@ function switchTab(tab) {
     hideGradesHubLoadOverlay();
     const es1 = document.getElementById('empty-state');
     if (es1) es1.hidden = true;
-    const ds = currentDateStr || gradesEl('date-jump')?.value || yesterdayStr();
+    let ds = currentDateStr || gradesEl('date-jump')?.value || yesterdayStr();
+    const latestT = gradeReportMeta.latestWithTickets
+      || String((document.body && document.body.getAttribute('data-latest-with-tickets')) || '')
+          .trim()
+          .slice(0, 10);
+    if (
+      /^\d{4}-\d{2}-\d{2}$/.test(latestT) &&
+      /^\d{4}-\d{2}-\d{2}$/.test(ds) &&
+      ds !== latestT &&
+      ds > latestT
+    ) {
+      loadDate(latestT);
+      return;
+    }
     loadTicketEval(ds);
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
@@ -5423,7 +5436,7 @@ let ticketEvalTrack = 'main';
 const MIN_REPORT_DATE_PILLS = 6;
 const GRADES_REPORT_TZ = 'America/New_York';
 /** Last /api/grades/report_dates payload (slate vs ticket lists differ on partial deploys). */
-let gradeReportMeta = { slate: [], ticket: [], ticketLongParlay: [] };
+let gradeReportMeta = { slate: [], ticket: [], ticketLongParlay: [], latestWithTickets: null };
 
 function ticketEvalDatesForTrack() {
   if (ticketEvalTrack === 'long_parlay') {
@@ -5509,6 +5522,8 @@ function cacheGradeReportMeta(j) {
     : Array.isArray(j.ticket_eval_high_leg_dates)
       ? j.ticket_eval_high_leg_dates.slice()
       : [];
+  var latest = String(j.latest_with_tickets || '').trim().slice(0, 10);
+  gradeReportMeta.latestWithTickets = /^\d{4}-\d{2}-\d{2}$/.test(latest) ? latest : null;
 }
 /** Keep empty-state hints in sync (avoids blank slate_eval_.html before async probe finishes). */
 function syncEmptyStateDateHints(dateStr) {
@@ -5544,6 +5559,21 @@ async function findLatestReachableSlateDate(capYmd) {
   return null;
 }
 
+async function fetchLatestDateWithTicketCards() {
+  try {
+    const res = await fetch('/api/grades/latest-with-tickets', {
+      cache: 'no-store',
+      signal: gradesFetchSignal(12000),
+    });
+    if (!res.ok) return null;
+    const j = await res.json();
+    const d = String((j && j.date) || '').trim().slice(0, 10);
+    return /^\d{4}-\d{2}-\d{2}$/.test(d) ? d : null;
+  } catch (_e) {
+    return gradeReportMeta.latestWithTickets || null;
+  }
+}
+
 async function openLatestAvailableSlateReport() {
   const btn = document.getElementById('empty-open-latest');
   if (btn) {
@@ -5551,6 +5581,13 @@ async function openLatestAvailableSlateReport() {
     btn.textContent = 'Searching…';
   }
   try {
+    if (activeTab === 'tickets') {
+      const ticketHit = await fetchLatestDateWithTicketCards();
+      if (ticketHit) {
+        loadDate(ticketHit);
+        return;
+      }
+    }
     const hit = await findLatestReachableSlateDate(easternYesterdayStr());
     if (hit) {
       loadDate(hit);
@@ -5791,6 +5828,17 @@ async function _decidedPropsCountForDate(dateStr) {
 
 async function pickBestDefaultGradesDate(found, yest) {
   if (!Array.isArray(found) || !found.length) return yest;
+  // Tickets tab: land on the newest date that actually has ticket_eval HTML.
+  if (activeTab === 'tickets') {
+    const boot = (document.body && document.body.getAttribute('data-latest-with-tickets')) || '';
+    const bootDate = String(boot).trim().slice(0, 10);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(bootDate) && bootDate <= yest) return bootDate;
+    const fromApi = await fetchLatestDateWithTicketCards();
+    if (fromApi && fromApi <= yest) return fromApi;
+    if (gradeReportMeta.latestWithTickets && gradeReportMeta.latestWithTickets <= yest) {
+      return gradeReportMeta.latestWithTickets;
+    }
+  }
   // Slate tab is default — prefer newest slate_eval date (ticket-only dates 404 in iframe).
   try {
     const rr = await fetch('/api/grades/report_dates', {
@@ -5800,6 +5848,9 @@ async function pickBestDefaultGradesDate(found, yest) {
     if (rr.ok) {
       const rj = await rr.json();
       cacheGradeReportMeta(rj);
+      if (activeTab === 'tickets' && gradeReportMeta.latestWithTickets && gradeReportMeta.latestWithTickets <= yest) {
+        return gradeReportMeta.latestWithTickets;
+      }
       const sds = gradeReportMeta.slate
         .filter(function (ds) { return /^\d{4}-\d{2}-\d{2}$/.test(ds) && ds <= yest && found.includes(ds); })
         .sort();
@@ -6488,6 +6539,9 @@ window.addEventListener('pageshow', function (ev) {
     restoreGradesToolbarToParent();
   } catch (_e0) {}
   const yest = easternYesterdayStr();
+  const bootTicketDate = String(
+    (document.body && document.body.getAttribute('data-latest-with-tickets')) || ''
+  ).trim().slice(0, 10);
   currentDateStr = yest;
   syncEmptyStateDateHints(yest);
   const dj0 = gradesEl('date-jump');
@@ -6512,9 +6566,17 @@ window.addEventListener('pageshow', function (ev) {
   } catch (_eTabBoot) {}
   syncGradesTabStage(initialTab);
 
-  // Optimistic load for yesterday while report-date discovery runs.
+  // Optimistic load while report-date discovery runs. Tickets tab lands on a
+  // date that already has ticket_eval HTML, not ET yesterday's empty iframe.
+  const optimisticDate =
+    initialTab === 'tickets' && /^\d{4}-\d{2}-\d{2}$/.test(bootTicketDate)
+      ? bootTicketDate
+      : yest;
+  currentDateStr = optimisticDate;
+  syncEmptyStateDateHints(optimisticDate);
+  if (dj0) dj0.value = optimisticDate;
   try {
-    loadDate(yest);
+    loadDate(optimisticDate);
   } catch (_earlyLoad) {}
 
   function finishInitGradesUi() {

@@ -588,6 +588,14 @@ _TICKETS_BUILT_PAYOUT_CSS = """<style>
   border-color: rgba(255, 86, 86, 0.45);
   color: #ff8a8a;
 }
+.tickets-built.tickets-hide-skip .ticket-group-section[data-ev="skip"],
+.tickets-built.tickets-hide-skip .ticket-group-section[data-ev="low"] {
+  display: none !important;
+}
+.tickets-built .ticket-group-section[data-ev="skip"].show-skip,
+.tickets-built .ticket-group-section[data-ev="low"].show-skip {
+  display: block !important;
+}
 .tickets-built .ticket-group-section.group-rec-strong .ticket-group-header { border-left: 4px solid #00ff88; }
 .tickets-built .ticket-group-section.group-rec-ok .ticket-group-header { border-left: 4px solid #f0a500; }
 .tickets-built .ticket-group-section.group-rec-marginal .ticket-group-header { border-left: 4px solid #ff9f43; }
@@ -1350,7 +1358,7 @@ def _tickets_filter_pills_html(attr_rows: list[dict], *, slate_date: str = "") -
         '</label>'
     )
     chunks.append(
-        '<button type="button" class="ticket-filter-bar-action active" id="toggle-skip" '
+        '<button type="button" class="ticket-filter-bar-action active" id="show-skip-toggle" '
         'style="border-radius:999px;" aria-pressed="true">SHOW SKIP</button>'
     )
     chunks.append('<button type="button" class="ticket-filter-bar-action" id="expand-all" style="border-radius:999px;">EXPAND ALL</button>')
@@ -1826,7 +1834,7 @@ def render_tickets_body_html(
     page_title = f"PropOracle Tickets — {date_str}"
 
     parts: list[str] = []
-    parts.append(f'<div class="tickets-built shell" data-slate-date="{_h(date_declared or date_str)}">')
+    parts.append(f'<div class="tickets-built shell tickets-hide-skip" data-slate-date="{_h(date_declared or date_str)}">')
     parts.append(_TICKETS_BUILT_PAYOUT_CSS)
 
     # ── Hero ──────────────────────────────────────────────────────────────────
@@ -1859,7 +1867,7 @@ def render_tickets_body_html(
   </div>
   <div class="hero-meta-row" role="group" aria-label="Slate summary">
     <span class="hero-meta-date">{_h(date_str)}{date_note_html}</span>
-    <span class="hero-meta-counts">{counts_line}</span>
+    <span class="hero-meta-counts" id="ticket-hero-counts">{counts_line}</span>
     {built_html}
   </div>
 </div>''')
@@ -2488,7 +2496,7 @@ def render_tickets_body_html(
     var allGroups = Array.from(shell.querySelectorAll('.ticket-group-section'));
     var visible = allGroups.filter(function(g){
       if(!matchesFilter(g, activeFilter)) return false;
-      if(hideSkip && !isGoblin70(g)){
+      if(hideSkip){
         var rec = (g.getAttribute('data-ev') || '').toLowerCase();
         if(rec === 'skip' || rec === 'low') return false;
       }
@@ -2502,10 +2510,10 @@ def render_tickets_body_html(
       visible = visible.slice(0, 3);
     } else {
       sortGroups(visible);
-    visible.forEach(function(g){ sortTicketsInGroup(g); });
     }
+    visible.forEach(function(g){ sortTicketsInGroup(g); });
 
-    allGroups.forEach(function(g){ g.style.display = 'none'; });
+    allGroups.forEach(function(g){ g.style.display = 'none'; g.classList.toggle('show-skip', !hideSkip); });
     var frag = document.createDocumentFragment();
     visible.forEach(function(g){ g.style.display = ''; frag.appendChild(g); });
     if(bar){
@@ -2518,6 +2526,26 @@ def render_tickets_body_html(
     } else {
       shell.appendChild(frag);
     }
+    updateVisibleCounts(visible, allGroups);
+  }
+
+  function updateVisibleCounts(visible, allGroups){
+    var el = document.getElementById('ticket-hero-counts');
+    if(!el) return;
+    var slips = 0;
+    visible.forEach(function(g){
+      slips += g.querySelectorAll(':scope > .ticket-group-body > .ticket').length;
+    });
+    var skipHidden = 0;
+    if(hideSkip){
+      (allGroups || []).forEach(function(g){
+        var rec = (g.getAttribute('data-ev') || '').toLowerCase();
+        if(rec === 'skip' || rec === 'low') skipHidden += 1;
+      });
+    }
+    var line = visible.length + ' groups \\u00a0·\\u00a0 ' + slips + ' slips';
+    if(skipHidden) line += ' (' + skipHidden + ' SKIP hidden)';
+    el.textContent = line;
   }
 
   var filterBar = document.querySelector('.ticket-filter-bar');
@@ -2540,13 +2568,15 @@ def render_tickets_body_html(
     });
   }
 
-  var tSkip = document.getElementById('toggle-skip');
+  var tSkip = document.getElementById('show-skip-toggle') || document.getElementById('toggle-skip');
   if(tSkip){
     tSkip.addEventListener('click', function(){
       hideSkip = !hideSkip;
       tSkip.classList.toggle('active', hideSkip);
       tSkip.setAttribute('aria-pressed', hideSkip ? 'true' : 'false');
       tSkip.textContent = hideSkip ? 'SHOW SKIP' : 'HIDE SKIP';
+      var shellSkip = document.querySelector('.tickets-built.shell');
+      if(shellSkip) shellSkip.classList.toggle('tickets-hide-skip', hideSkip);
       applyGroupView();
     });
   }

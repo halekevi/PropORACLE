@@ -306,6 +306,8 @@ body::after{content:'';position:fixed;inset:0;
 }
 #slate-panel-header-row .scard.inactive-sport{display:none!important;}
 #slate-panel-header-row.show-inactive .scard.inactive-sport{display:flex!important;}
+#slate-panel-header-row .scard.empty-board{display:none!important;}
+#slate-panel-header-row.show-inactive .scard.empty-board{display:flex!important;}
 
 /* edge cards */
 .edge-card{background:var(--glass-bg);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid var(--glass-border);border-radius:18px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.3);}
@@ -1244,6 +1246,8 @@ body > nav.snav.glass-card {
   .scard.fresh { border-color: rgba(212,175,55,0.35) !important; box-shadow: 0 0 0 1px rgba(212,175,55,0.15), var(--glass-shadow); }
   .scard.inactive-sport { display: none !important; }
   #slate-panel-header-row.show-inactive .scard.inactive-sport { display: flex !important; }
+  .scard.empty-board { display: none !important; }
+  #slate-panel-header-row.show-inactive .scard.empty-board { display: flex !important; }
   .slate-panel-header-row .scard-toggle{font-size:14px;color:var(--muted);transition:transform .25s;flex-shrink:0;line-height:1;}
   .slate-panel-header-row .scard.active .scard-toggle{transform:rotate(180deg);}
   /* expand area */
@@ -4034,19 +4038,21 @@ function applyStatusCard(id, info, _label, opts) {
         val = document.getElementById(`sc-${id}-val`),
         badge = document.getElementById(`sc-${id}-badge`);
   if (!card || !val || !badge) return;
-  card.classList.remove("fresh","stale","missing","loading");
+  card.classList.remove("fresh","stale","missing","loading","empty-board");
   badge.classList.remove("fresh","stale","missing","loading");
   // Missing endpoint field or no artifact yet → neutral pending (not "stale").
   if (info && info.no_slate) {
     card.classList.add("loading"); badge.classList.add("loading");
     val.textContent = "Empty board";
     badge.textContent = "NO SLATE";
+    if (id !== "combined") card.classList.add("empty-board");
     return;
   }
   if (!info || !info.exists) {
     card.classList.add("loading"); badge.classList.add("loading");
     val.textContent = "Not Yet Run";
     badge.textContent = "PENDING";
+    if (id !== "combined") card.classList.add("empty-board");
     return;
   }
   const modUtc = parsePipelineModifiedAsUtc(info.modified || "");
