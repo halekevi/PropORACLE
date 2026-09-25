@@ -552,20 +552,10 @@ try {
         }
 
         if ($capExit -eq 0 -and $nOk -gt 0) {
-            $mirrorSrc = $null
-            if (Test-Path -LiteralPath $ticketsLatest) { $mirrorSrc = $ticketsLatest }
-            elseif (Test-Path -LiteralPath $runtimeTickets) { $mirrorSrc = $runtimeTickets }
-            if ($mirrorSrc) {
-                $rtDir = Split-Path $runtimeTickets -Parent
-                if (-not (Test-Path -LiteralPath $rtDir)) {
-                    New-Item -ItemType Directory -Path $rtDir -Force | Out-Null
-                }
-                if ($mirrorSrc -ne $runtimeTickets) {
-                    Copy-Item $mirrorSrc $runtimeTickets -Force -ErrorAction SilentlyContinue
-                    Write-Host "  [PAYOUT] mirrored -> ui_runner/runtime/tickets_latest.json" -ForegroundColor Green
-                }
-            }
-            Write-Host "  [PAYOUT] Live floors applied (payout_source=live_cdp on patched slips)" -ForegroundColor Green
+            # Floors were merge-applied in Python (re-read + paint by ticket_id).
+            # Do not Copy-Item a full tickets_latest snapshot over runtime — that
+            # can revert a scrub/rebuild that landed while capture was running.
+            Write-Host "  [PAYOUT] Live floors merge-applied (payout_source=live_cdp on matching slips)" -ForegroundColor Green
             if ($nOk -gt 0) {
                 try {
                     if (-not (Test-Path -LiteralPath $lockDir)) {

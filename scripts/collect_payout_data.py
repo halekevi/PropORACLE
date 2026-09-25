@@ -28,12 +28,16 @@ import pandas as pd
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 SAMPLES_DIR = ROOT / "data" / "payout_samples"
 PAYOUT_LADDER_LIVE_CDP_PATH = ROOT / "ui_runner" / "data" / "payout_ladder_live_cdp.json"
 DEBUG_DIR = ROOT / "data" / "debug"
 PAYOUT_LOCK_PATH = ROOT / "data" / "cache" / "payout_capture.lock"
 PAYOUT_LOCK_TTL_HOURS = 2.0
 _PAYOUT_LOCK_HELD_BY_US = False
+# Set for the duration of capture_tickets_from_board so stamps/jsonl get 1AM/8AM/…
+_CAPTURE_WINDOW = ""
 
 
 def _release_payout_capture_lock() -> None:
@@ -332,24 +336,135 @@ def load_nba_legs(top_n: int = 30) -> list[dict]:
     return out
 
 
+# Last PP page we successfully drove (URL). Focus can lie when Chrome is
+# backgrounded; this is the secondary tiebreak after /board + focus.
+_LAST_USED_PP_URL: str = ""
+
+
+def _page_has_focus(page) -> bool:
+    """Tab-level focus only — flaky when the OS window is in the background."""
+    try:
+        return bool(page.evaluate("() => document.hasFocus()"))
+    except Exception:
+        return False
+
+
+def _page_board_signal(page) -> int:
+    """0–30 bonus from live DOM (not URL). Stale /board after a hang scores low."""
+    try:
+        return int(
+            page.evaluate(
+                """() => {
+                  const text = (document.body && document.body.innerText) || '';
+                  let s = 0;
+                  const hasSearch = !!document.querySelector(
+                    "input[aria-label='search'], input[placeholder*='Search']"
+                  );
+                  const hasMore = Array.from(document.querySelectorAll('button'))
+                    .some(b => ((b.innerText || '').trim() === 'More'));
+                  if (hasSearch) s += 10;
+                  if (hasMore) s += 10;
+                  if (text.includes('Submit Lineup') || text.includes('Current Lineup')
+                      || text.includes('No Players Selected')) s += 5;
+                  if (/\\b(MLB|NBA|NFL|CFB|WNBA|NHL)\\b/.test(text) && text.includes('Popular'))
+                    s += 5;
+                  // Prefer richer boards when focus ties.
+                  s += Math.min(Math.floor(text.length / 4000), 5);
+                  return s;
+                }"""
+            )
+            or 0
+        )
+    except Exception:
+        return 0
+
+
+def pick_prizepicks_page(browser, *, prefer_board: bool = True):
+    """Deterministic PP tab picker. Never opens a tab.
+
+    Prefer focused app.prizepicks.com/board with live DOM signal, then any
+    /board, then any prizepicks.com tab. Tiebreak: last-used URL, then DOM
+    richness (focus alone is unreliable when Chrome is backgrounded).
+    Returns (page, context) or (None, None).
+    """
+    global _LAST_USED_PP_URL
+    scored: list[tuple[int, Any, Any]] = []
+    try:
+        contexts = list(browser.contexts)
+    except Exception:
+        return None, None
+    for ctx in contexts:
+        try:
+            pages = list(ctx.pages)
+        except Exception:
+            continue
+        for pg in pages:
+            try:
+                url = (pg.url or "").lower()
+            except Exception:
+                continue
+            if "prizepicks.com" not in url:
+                continue
+            score = 10 if "app.prizepicks.com" in url else 5
+            if prefer_board and "/board" in url:
+                score += 20
+            elif "/board" in url:
+                score += 10
+            if _page_has_focus(pg):
+                score += 40  # helpful, not decisive — OS focus disagrees often
+            score += _page_board_signal(pg)
+            if _LAST_USED_PP_URL and url == _LAST_USED_PP_URL.lower():
+                score += 30
+            scored.append((score, pg, ctx))
+    if not scored:
+        return None, None
+    scored.sort(key=lambda t: t[0], reverse=True)
+    page, ctx = scored[0][1], scored[0][2]
+    try:
+        _LAST_USED_PP_URL = str(page.url or "")
+    except Exception:
+        pass
+    return page, ctx
+
+
 def connect_existing_browser(cdp_url: str, *, cdp_timeout_ms: int = 45_000):
     try:
         p = sync_playwright().start()
         browser = p.chromium.connect_over_cdp(cdp_url, timeout=cdp_timeout_ms)
         if not browser.contexts:
             raise RuntimeError("No contexts found in CDP Chrome.")
-        context = browser.contexts[0]
-        page = context.pages[0] if context.pages else context.new_page()
-        for pg in context.pages:
-            if "prizepicks" in (pg.url or "").lower():
-                page = pg
-                break
+        page, context = pick_prizepicks_page(browser, prefer_board=True)
+        opened_new = False
+        if page is None:
+            # Only spawn when literally zero PrizePicks tabs exist.
+            context = browser.contexts[0]
+            page = context.new_page()
+            opened_new = True
+            print("[CDP] No PrizePicks tab found — opened new_page() (log in if needed)")
+        else:
+            print(f"[CDP] Reusing PrizePicks tab: {page.url}")
+            try:
+                page.bring_to_front()
+            except Exception:
+                pass
         # Prevent Playwright ops from hanging forever when Chrome/CDP is half-dead.
+        # Soccer prop chips schedule SPA navigations that never reach "load";
+        # 45s nav timeout made Shots-filter lookups stall the whole capture.
         try:
-            page.set_default_timeout(20_000)
-            page.set_default_navigation_timeout(45_000)
+            page.set_default_timeout(12_000)
+            page.set_default_navigation_timeout(8_000)
         except Exception:
             pass
+        if opened_new:
+            try:
+                page.goto(
+                    "https://app.prizepicks.com/board",
+                    wait_until="domcontentloaded",
+                    timeout=45_000,
+                )
+                page.wait_for_timeout(1500)
+            except Exception as e:
+                print(f"[CDP] WARN: initial board goto failed: {e}")
         return p, browser, context, page
     except Exception as e:
         print("Could not attach to Chrome CDP (timed out or refused).")
@@ -369,18 +484,23 @@ def _safe_name(s: str) -> str:
 
 def _scroll_board_for_lazy_load(page):
     # Load additional projection cards before lookup.
+    # Use time.sleep — Playwright wait_for_timeout blocks on in-flight SPA nav.
     for _ in range(3):
         try:
             page.mouse.wheel(0, 4000)
         except Exception:
             pass
-        page.wait_for_timeout(1000)
+        time.sleep(0.35)
 
 
 def find_prizepicks_frame(page):
     """Find the frame that contains the actual projection board content."""
+    skip_bits = ("online-metrix", "doubleclick", "googletagmanager", "hotjar", "facebook")
     for frame in page.frames:
         try:
+            url = str(frame.url or "").lower()
+            if any(b in url for b in skip_bits):
+                continue
             # Bound hung iframes — evaluate alone can idle forever on a dead CDP target.
             frame.wait_for_function(
                 "() => !!(document.body && document.body.innerText)",
@@ -500,8 +620,9 @@ def prop_type_to_board_filter(prop: str) -> str:
         "points+rebounds": "Pts+Rebs",
         "pts+asts": "Pts+Asts",
         "points+assists": "Pts+Asts",
-        "rebs+asts": "Reb+Asts",
-        "rebounds+assists": "Reb+Asts",
+        "rebs+asts": "Rebs+Asts",
+        "reb+asts": "Rebs+Asts",
+        "rebounds+assists": "Rebs+Asts",
         "pts+reb+ast": "Pts+Reb+Ast",
         "pts+reb+asts": "Pts+Reb+Ast",
         "pra": "Pts+Reb+Ast",
@@ -537,12 +658,29 @@ def _switch_board_filter(frame, page, tab: str) -> bool:
         return False
     try:
         dismiss_modal(frame, page)
-        tloc = frame.get_by_text(tab, exact=True).first
-        if tloc.count() == 0:
-            tloc = frame.get_by_text(tab, exact=False).first
-        tloc.click(force=True, timeout=2000)
-        frame.wait_for_timeout(900)
-        _scroll_board_for_lazy_load(page)
+        # JS click so Playwright does not wait on the SPA navigation the
+        # Shots/Saves/etc. chips schedule (that wait is what hung soccer).
+        clicked = frame.locator("body").evaluate(
+            """(tab) => {
+              const want = String(tab || '').trim().toLowerCase();
+              if (!want) return false;
+              const els = Array.from(document.querySelectorAll('button, [role="tab"], a, div, span'));
+              const el = els.find(e => {
+                const t = (e.innerText || '').trim().split('\\n')[0].trim();
+                return t && t.toLowerCase() === want;
+              });
+              if (!el) return false;
+              el.click();
+              return true;
+            }""",
+            tab,
+            timeout=8000,
+        )
+        time.sleep(1.0)
+        if not clicked:
+            tloc = frame.get_by_text(tab, exact=True).first
+            tloc.click(force=True, timeout=2000, no_wait_after=True)
+            time.sleep(0.9)
         print(f"[FILTER] switched to {tab}")
         return True
     except Exception as e:
@@ -583,13 +721,30 @@ def _resolve_ticket_leg_card(
     if not pool:
         return None
 
+    def _prop_hit(cp: str) -> bool:
+        if not cp:
+            return False
+        if np == cp or np in cp or cp in np:
+            return True
+        aliases = {
+            "pitcher strikeouts": ("ks", "k's", "strikeouts", "pitcher ks"),
+            "ks": ("pitcher strikeouts", "strikeouts"),
+            "shots on target": ("sot",),
+            "sot": ("shots on target",),
+            "goalie saves": ("saves",),
+            "saves": ("goalie saves",),
+            "total games won": ("games won",),
+            "games won": ("total games won",),
+            "hits+runs+rbis": ("h+r+rbi", "hits runs rbis"),
+        }
+        for a in aliases.get(np, ()):
+            if a == cp or a in cp or cp in a:
+                return True
+        return False
+
     # Require prop match when we know it.
     if np:
-        prop_pool = [
-            c
-            for c in pool
-            if (cp := _norm(c.get("prop_type"))) and (np == cp or np in cp or cp in np)
-        ]
+        prop_pool = [c for c in pool if _prop_hit(_norm(c.get("prop_type")))]
         if prop_pool:
             pool = prop_pool
         elif strict:
@@ -692,11 +847,124 @@ def get_all_cards(frame) -> list[dict]:
     cards: list[dict] = []
     try:
         import re as _re
-        more_loc = frame.get_by_text("More")
-        n = more_loc.count()
+        more_loc = frame.locator("button").filter(
+            has_text=_re.compile(r"^(\+\s*)?More$", _re.I)
+        )
+        try:
+            n = int(
+                frame.locator("body").evaluate(
+                    """() => Array.from(document.querySelectorAll('button')).filter(b => {
+                      const t = (b.innerText || '').trim();
+                      return t === 'More' || t === '+ More';
+                    }).length""",
+                    timeout=8000,
+                )
+                or 0
+            )
+        except Exception as e:
+            print(f"[CARDS] count timed out: {e}")
+            return []
         print(f"[CARDS] Found {n} More buttons")
+        # Playwright nth() over a 1000+ tile soccer board hangs. One JS pass
+        # returns every tile with a More-button index for later clicks.
+        if n > 80:
+            print(f"[CARDS] bulk-parse {n} tiles via JS")
+            raw = frame.locator("body").evaluate(
+                """() => {
+                  const moreBtns = Array.from(document.querySelectorAll('button')).filter(b => {
+                    const t = (b.innerText || '').trim();
+                    return t === 'More' || t === '+ More';
+                  });
+                  const out = [];
+                  for (let i = 0; i < moreBtns.length; i++) {
+                    const el = moreBtns[i];
+                    let p = el;
+                    let best = null;
+                    for (let k = 0; k < 10; k++) {
+                      p = p ? p.parentElement : null;
+                      if (!p) break;
+                      const t = (p.innerText || '');
+                      const hasGame = /\\s(vs|@)\\s/i.test(t);
+                      const hasStat = /\\b\\d+(?:\\.\\d+)?\\s*[A-Za-z]/.test(t);
+                      const moreCount = (t.match(/\\bMore\\b/g) || []).length;
+                      const lessCount = (t.match(/\\bLess\\b/g) || []).length;
+                      if (hasGame && hasStat && moreCount === 1 && lessCount <= 1) {
+                        best = p;
+                        break;
+                      }
+                    }
+                    if (!best) continue;
+                    const badgeImgs = Array.from(best.querySelectorAll('img[alt]'));
+                    let pickType = 'standard';
+                    for (const img of badgeImgs) {
+                      const alt = (img.getAttribute('alt') || '').trim().toLowerCase();
+                      if (alt === 'goblin') { pickType = 'goblin'; break; }
+                      if (alt === 'demon') { pickType = 'demon'; break; }
+                    }
+                    if (pickType === 'standard') {
+                      for (const img of badgeImgs) {
+                        const src = (img.getAttribute('src') || '').toLowerCase();
+                        const alt = (img.getAttribute('alt') || '').toLowerCase();
+                        if (alt.includes('goblin') && !alt.includes('demon')) { pickType = 'goblin'; break; }
+                        if (alt.includes('demon') && !alt.includes('goblin')) { pickType = 'demon'; break; }
+                        if (/goblin/.test(src) && !/demon/.test(src)) { pickType = 'goblin'; break; }
+                        if (/demon/.test(src) && !/goblin/.test(src)) { pickType = 'demon'; break; }
+                      }
+                    }
+                    const hasAltBtn = Array.from(best.querySelectorAll('button')).some(b => {
+                      const cls = (b.className || '').toString();
+                      const bt = (b.innerText || '').trim();
+                      if (/more|less/i.test(bt)) return false;
+                      return /soFresh/.test(cls) && !!b.querySelector('svg');
+                    });
+                    out.push({
+                      moreIndex: i,
+                      text: (best.innerText || '').slice(0, 500),
+                      pickType,
+                      hasAltLines: hasAltBtn,
+                    });
+                  }
+                  return out;
+                }""",
+                timeout=20000,
+            )
+            debug_unparsed = 0
+            for item in raw or []:
+                text = str((item or {}).get("text") or "")
+                lines = [l.strip() for l in text.split("\n") if l.strip()]
+                if len(lines) < 3:
+                    continue
+                player_name, line_value, prop_type = parse_card_lines(lines)
+                pick_type = str((item or {}).get("pickType") or "standard").lower()
+                if pick_type not in ("goblin", "demon", "standard"):
+                    pick_type = "standard"
+                if player_name and line_value is not None and prop_type:
+                    card = {
+                        "player": player_name,
+                        "prop_type": prop_type,
+                        "line": line_value,
+                        "pick_type": pick_type,
+                        "has_alt_lines": bool((item or {}).get("hasAltLines")),
+                        "more_btn": None,
+                        "more_index": (item or {}).get("moreIndex"),
+                        "raw_text": text[:200],
+                        "badges": [],
+                    }
+                    if _is_valid_board_card(card):
+                        cards.append(card)
+                elif debug_unparsed < 5:
+                    debug_unparsed += 1
+                    print(f"[CARDS][UNPARSED] sample {debug_unparsed}: {' | '.join(lines[:6])}")
+            print(f"[CARDS] Parsed {len(cards)} cards")
+            for c in cards[:10]:
+                print(f"[CARD] {c['player']} | {c['line']} {c['prop_type']} | {c['pick_type']}")
+            return cards
+        # Whole-board More count includes nav/chrome. Parsing 1000+ hangs CDP.
+        parse_n = min(n, 80 if n > 300 else 200)
+        if n > 300:
+            print(f"[CARDS] cap parse at {parse_n} (board too wide)")
         debug_unparsed = 0
-        for i in range(min(n, 200)):
+        for i in range(parse_n):
             btn = more_loc.nth(i)
             try:
                 card_info = btn.evaluate(
@@ -776,7 +1044,8 @@ def get_all_cards(frame) -> list[dict]:
                         })),
                       };
                     }
-                    """
+                    """,
+                    timeout=5000,
                 )
                 if not card_info or not card_info.get("text"):
                     continue
@@ -797,6 +1066,7 @@ def get_all_cards(frame) -> list[dict]:
                         "pick_type": pick_type,
                         "has_alt_lines": has_alt_lines,
                         "more_btn": btn,
+                        "more_index": i,
                         "raw_text": text[:200],
                         "badges": card_info.get("badges") or [],
                     }
@@ -898,17 +1168,58 @@ el => {
 """
 
 
-def _read_card_state_from_more(more_btn) -> dict | None:
+def _eval_more_js(js: str, more_btn=None, *, frame=None, more_index=None, arg: Any = None):
+    """Run card JS on a Playwright More handle, or by More-button index."""
+    if more_btn is not None:
+        try:
+            if arg is None:
+                return more_btn.evaluate(js, timeout=5000)
+            return more_btn.evaluate(js, arg, timeout=5000)
+        except TypeError:
+            return more_btn.evaluate(js) if arg is None else more_btn.evaluate(js, arg)
+        except Exception:
+            pass
+    if frame is None or more_index is None:
+        return None
     try:
-        st = more_btn.evaluate(_CARD_STATE_FROM_MORE_JS)
-        return st if isinstance(st, dict) else None
-    except Exception:
+        wrapped = (
+            """(i) => {
+              const btns = Array.from(document.querySelectorAll('button')).filter(b => {
+                const t = (b.innerText || '').trim();
+                return t === 'More' || t === '+ More';
+              });
+              const el = btns[i];
+              if (!el) return null;
+              const fn = """
+            + str(js).strip()
+            + """;
+              return fn(el);
+            }"""
+        )
+        return frame.locator("body").evaluate(wrapped, int(more_index), timeout=8000)
+    except Exception as e:
+        print(f"[CARDS] more-index eval failed: {e}")
         return None
 
 
-def _click_alt_line_swap(more_btn) -> bool:
+def _read_card_state_from_more(more_btn, *, frame=None, more_index=None) -> dict | None:
+    st = _eval_more_js(_CARD_STATE_FROM_MORE_JS, more_btn, frame=frame, more_index=more_index)
+    return st if isinstance(st, dict) else None
+
+
+def _click_alt_line_swap(more_btn, *, frame=None, more_index=None, player=None, prop=None) -> bool:
     try:
-        res = more_btn.evaluate(_CLICK_ALT_SWAP_JS)
+        if more_btn is not None:
+            res = _eval_more_js(_CLICK_ALT_SWAP_JS, more_btn, frame=frame, more_index=more_index)
+            if isinstance(res, dict) and res.get("ok"):
+                return True
+        if frame is not None and player and prop:
+            js = _js_player_card_action(frame, player, prop, "swap")
+            if js.get("ok"):
+                print(f"[ALT] JS swap {player} {prop} hits={js.get('hits')}")
+                return True
+            print(f"[ALT] JS swap miss {player}: {js}")
+        res = _eval_more_js(_CLICK_ALT_SWAP_JS, more_btn, frame=frame, more_index=more_index)
         return bool(isinstance(res, dict) and res.get("ok"))
     except Exception as e:
         print(f"[ALT] swap click failed: {e}")
@@ -948,6 +1259,7 @@ def cycle_card_to_pick_type(
     want_line: Any = None,
     require_line: bool = False,
     max_clicks: int = 14,
+    more_index: int | None = None,
 ) -> dict | None:
     """
     Click the dual-arrow (soFresh) control to cycle Standard ↔ Goblin ↔ Demon
@@ -965,17 +1277,25 @@ def cycle_card_to_pick_type(
     seen: set[tuple[str, str | None]] = set()
     best_badge_match: dict | None = None
     btn = more_btn
+    idx = more_index
+    card = None
 
     for i in range(max(1, int(max_clicks))):
-        if btn is None:
-            btn, _ = _rebind_more_btn(frame, player, prop)
-        if btn is None:
+        if btn is None and idx is None:
+            btn, card = _rebind_more_btn(frame, player, prop)
+            if card is not None:
+                idx = card.get("more_index")
+                if btn is None:
+                    btn = card.get("more_btn")
+        if btn is None and idx is None:
             return best_badge_match
 
-        st = _read_card_state_from_more(btn)
+        st = _read_card_state_from_more(btn, frame=frame, more_index=idx)
         if not st:
             btn2, card = _rebind_more_btn(frame, player, prop)
-            btn = btn2
+            btn = btn2 if btn2 is not None else (card.get("more_btn") if card else None)
+            if card is not None:
+                idx = card.get("more_index")
             if card:
                 st = {
                     "pickType": card.get("pick_type"),
@@ -996,27 +1316,36 @@ def cycle_card_to_pick_type(
         if pt == want:
             if want_lk is None or lk == want_lk:
                 print(f"[ALT] matched {want} line={lk} after {i} swap(s)")
-                return {"pick_type": pt, "line": st.get("line"), "more_btn": btn, **st}
+                return {
+                    "pick_type": pt,
+                    "line": st.get("line"),
+                    "more_btn": btn,
+                    "more_index": idx,
+                    **st,
+                }
             if not require_line and best_badge_match is None:
                 best_badge_match = {
                     "pick_type": pt,
                     "line": st.get("line"),
                     "more_btn": btn,
+                    "more_index": idx,
                     **st,
                 }
 
         if not st.get("hasAltLines", True):
             # Still try once — button detection can lag.
             pass
-        if not _click_alt_line_swap(btn):
+        if not _click_alt_line_swap(
+            btn, frame=frame, more_index=idx, player=player, prop=prop
+        ):
             print("[ALT] swap button missing/failed")
             return best_badge_match
-        try:
-            frame.wait_for_timeout(500)
-        except Exception:
-            time.sleep(0.5)
+        time.sleep(0.45)
         # Rebind after React re-render.
-        btn, _ = _rebind_more_btn(frame, player, prop)
+        btn, card = _rebind_more_btn(frame, player, prop)
+        idx = card.get("more_index") if card else None
+        if btn is None and card:
+            btn = card.get("more_btn")
 
     if best_badge_match is not None:
         print(
@@ -1061,37 +1390,193 @@ def _click_player_direction(frame, matched_name: str, direction: str, prop: str)
         return False
 
 
+_JS_PLAYER_CARD_ACTION = """
+({player, prop, action, line, pick}) => {
+  const fold = s => String(s || '').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  const wantP = fold(player);
+  const wantProp = fold(prop);
+  const wantPick = String(pick || '').toLowerCase();
+  const wantLine = (line === null || line === undefined || line === '') ? null : Number(line);
+  const moreBtns = Array.from(document.querySelectorAll('button')).filter(b => {
+    const t = (b.innerText || '').trim();
+    return t === 'More' || t === '+ More';
+  });
+  const rootOf = (el) => {
+    let p = el;
+    for (let i = 0; i < 10; i++) {
+      p = p ? p.parentElement : null;
+      if (!p) break;
+      const t = (p.innerText || '');
+      const hasGame = /\\s(vs|@)\\s/i.test(t);
+      const hasStat = /\\b\\d+(?:\\.\\d+)?/.test(t);
+      const moreCount = (t.match(/\\bMore\\b/g) || []).length;
+      const lessCount = (t.match(/\\bLess\\b/g) || []).length;
+      if (hasGame && hasStat && moreCount === 1 && lessCount <= 1) return p;
+    }
+    return null;
+  };
+  const pickOf = (best) => {
+    const badgeImgs = Array.from(best.querySelectorAll('img[alt]'));
+    for (const img of badgeImgs) {
+      const alt = (img.getAttribute('alt') || '').trim().toLowerCase();
+      if (alt === 'goblin') return 'goblin';
+      if (alt === 'demon') return 'demon';
+    }
+    for (const img of badgeImgs) {
+      const src = (img.getAttribute('src') || '').toLowerCase();
+      const alt = (img.getAttribute('alt') || '').toLowerCase();
+      if (alt.includes('goblin') && !alt.includes('demon')) return 'goblin';
+      if (alt.includes('demon') && !alt.includes('goblin')) return 'demon';
+      if (/goblin/.test(src) && !/demon/.test(src)) return 'goblin';
+      if (/demon/.test(src) && !/goblin/.test(src)) return 'demon';
+    }
+    return 'standard';
+  };
+  const propHit = (text) => {
+    if (!wantProp) return true;
+    const lines = text.split('\\n').map(x => x.trim()).filter(Boolean);
+    return lines.some(ln => {
+      const fl = fold(ln);
+      return fl === wantProp || fl.includes(wantProp) || wantProp.includes(fl);
+    });
+  };
+  const nameHit = (text) => {
+    if ((text || '').length > 2500) return false;
+    const ft = fold(text);
+    if (!wantP) return false;
+    if (ft.includes(wantP)) return true;
+    const parts = wantP.split(' ').filter(w => w.length > 2);
+    return parts.length >= 2 && parts.every(w => ft.includes(w));
+  };
+  const hits = [];
+  for (const b of moreBtns) {
+    const best = rootOf(b);
+    if (!best) continue;
+    const text = best.innerText || '';
+    if (!nameHit(text) || !propHit(text)) continue;
+    if (/current lineup|players selected/i.test(text)) continue;
+    hits.push({b, best, text, pick: pickOf(best)});
+  }
+  if (!hits.length) return {ok: false, reason: 'not_found', more: moreBtns.length};
+  let hit = hits[0];
+  if (wantPick) {
+    const typed = hits.filter(h => h.pick === wantPick);
+    if (typed.length) hit = typed[0];
+  }
+  if (action === 'read') {
+    const m = (hit.text.match(/(\\d+(?:\\.\\d+)?)/) || [])[1];
+    return {ok: true, pickType: hit.pick, line: m ? Number(m) : null, n: hits.length};
+  }
+  if (action === 'swap') {
+    const btns = Array.from(hit.best.querySelectorAll('button')).filter(b => {
+      const text = (b.innerText || '').trim();
+      if (/more|less/i.test(text)) return false;
+      return !!b.querySelector('svg');
+    });
+    let target = null;
+    for (const b of btns) {
+      const cls = (b.className || '').toString();
+      if (/soFresh/.test(cls) && !/absolute left-2 top-2/.test(cls)) { target = b; break; }
+    }
+    if (!target) {
+      for (const b of btns) {
+        const cls = (b.className || '').toString();
+        if (!/absolute left-2 top-2/.test(cls)) { target = b; break; }
+      }
+    }
+    if (!target) return {ok: false, reason: 'no_swap_btn', n: btns.length, hits: hits.length};
+    target.click();
+    return {ok: true, how: 'swap', hits: hits.length};
+  }
+  const label = action === 'click_less' ? 'Less' : 'More';
+  const btns = hit.best.querySelectorAll('button');
+  for (const x of btns) {
+    if ((x.innerText || '').trim() === label) {
+      x.click();
+      return {ok: true, how: label, pick: hit.pick, hits: hits.length};
+    }
+  }
+  hit.b.click();
+  return {ok: true, how: 'more_btn', pick: hit.pick, hits: hits.length};
+}
+"""
+
+
+def _js_player_card_action(
+    frame,
+    player: str,
+    prop: str,
+    action: str,
+    *,
+    line: Any = None,
+    pick: str | None = None,
+) -> dict:
+    try:
+        res = frame.locator("body").evaluate(
+            _JS_PLAYER_CARD_ACTION,
+            {
+                "player": player,
+                "prop": prop,
+                "action": action,
+                "line": None if line is None or str(line).strip() == "" else float(line),
+                "pick": pick,
+            },
+            timeout=12000,
+        )
+        return res if isinstance(res, dict) else {"ok": False, "reason": "bad_result"}
+    except Exception as e:
+        return {"ok": False, "reason": str(e)}
+
+
 def click_leg(frame, card: dict, direction: str) -> bool:
     try:
-        if direction.upper() in ["OVER", "MORE"]:
-            try:
-                card["more_btn"].click(timeout=1200)
-            except Exception:
-                # Overlays / unstable layout often block Playwright's actionability
-                # checks; force-click still selects the leg on PrizePicks.
-                card["more_btn"].click(force=True, timeout=2000)
-        else:
-            found_less = card["more_btn"].evaluate(
-                """
-                el => {
-                  let p = el;
-                  for (let i = 0; i < 4; i++) p = p?.parentElement;
-                  if (!p) return false;
-                  const btns = p.querySelectorAll('button');
-                  for (const b of btns) {
-                    if ((b.innerText || '').trim() === 'Less') { b.click(); return true; }
-                  }
-                  return false;
-                }
-                """
-            )
-            if not found_less:
+        player = str(card.get("player") or "")
+        prop = str(card.get("prop_type") or "")
+        action = "click_less" if str(direction).upper() in ("UNDER", "LESS") else "click_more"
+        js = _js_player_card_action(
+            frame,
+            player,
+            prop,
+            action,
+            line=card.get("line"),
+            pick=card.get("pick_type"),
+        )
+        if js.get("ok"):
+            print(f"[CLICK] JS {player} {prop} {js.get('how')} pick={js.get('pick')}")
+            time.sleep(0.4)
+            return True
+        print(f"[CLICK] JS miss {player}: {js}")
+        btn = card.get("more_btn")
+        if btn is not None:
+            if action == "click_more":
                 try:
-                    frame.get_by_text("Less").nth(0).click(timeout=1200)
+                    btn.click(timeout=1200, no_wait_after=True)
                 except Exception:
-                    frame.get_by_text("Less").nth(0).click(force=True, timeout=2000)
-        frame.wait_for_timeout(400)
-        return True
+                    btn.click(force=True, timeout=2000, no_wait_after=True)
+            else:
+                found_less = _eval_more_js(
+                    """
+                    el => {
+                      let p = el;
+                      for (let i = 0; i < 4; i++) p = p?.parentElement;
+                      if (!p) return false;
+                      const btns = p.querySelectorAll('button');
+                      for (const b of btns) {
+                        if ((b.innerText || '').trim() === 'Less') { b.click(); return true; }
+                      }
+                      return false;
+                    }
+                    """,
+                    btn,
+                    frame=frame,
+                    more_index=card.get("more_index"),
+                )
+                if not found_less:
+                    return False
+            time.sleep(0.4)
+            return True
+        return False
     except Exception as e:
         print(f"[CLICK] {card.get('player', '?')} failed: {e}")
         return False
@@ -1138,6 +1623,26 @@ def extract_multiplier_from_any(value: Any) -> float | None:
 
 def clear_slip(frame):
     try:
+        # Lineup Clear lives in the board iframe. Playwright get_by_text often
+        # misses it; click the exact button via JS first.
+        try:
+            clicked = frame.locator("body").evaluate(
+                """() => {
+                  const b = Array.from(document.querySelectorAll('button')).find(
+                    x => (x.innerText || '').trim() === 'Clear'
+                  );
+                  if (!b) return false;
+                  b.click();
+                  return true;
+                }""",
+                timeout=4000,
+            )
+            if clicked:
+                frame.wait_for_timeout(700)
+                print("[SLIP] Cleared")
+                return
+        except Exception:
+            pass
         # Prefer exact Clear on the Current Lineup panel (force past overlays).
         for txt in ["Clear", "Clear All", "Remove All"]:
             locs = [
@@ -1808,7 +2313,7 @@ def add_leg(
             and str(line).strip() != ""
             and _line_key(target.get("line")) != _line_key(line)
             and (target.get("has_alt_lines") or pick_type in ("goblin", "demon"))
-            and target.get("more_btn") is not None
+            and (target.get("more_btn") is not None or target.get("more_index") is not None)
         ):
             print(
                 f"[ALT] refining line {target.get('line')} -> {line} "
@@ -1816,13 +2321,14 @@ def add_leg(
             )
             cycled = cycle_card_to_pick_type(
                 frame,
-                target["more_btn"],
+                target.get("more_btn"),
                 player=player,
                 prop=prop,
                 want_pick=pick_type,
                 want_line=line,
                 require_line=True,
                 max_clicks=14,
+                more_index=target.get("more_index"),
             )
             cards = get_all_cards(frame)
             refined = _resolve_ticket_leg_card(
@@ -1836,13 +2342,16 @@ def add_leg(
             )
             if refined is not None:
                 target = refined
-            elif cycled and cycled.get("more_btn") is not None:
+            elif cycled and (
+                cycled.get("more_btn") is not None or cycled.get("more_index") is not None
+            ):
                 target = {
                     "player": player,
                     "prop_type": prop,
                     "line": cycled.get("line"),
                     "pick_type": pick_type,
-                    "more_btn": cycled["more_btn"],
+                    "more_btn": cycled.get("more_btn"),
+                    "more_index": cycled.get("more_index"),
                     "has_alt_lines": True,
                 }
 
@@ -1873,7 +2382,9 @@ def add_leg(
                         continue
                     sibling = c
                     break
-            if sibling is not None and sibling.get("more_btn") is not None:
+            if sibling is not None and (
+                sibling.get("more_btn") is not None or sibling.get("more_index") is not None
+            ):
                 print(
                     f"[ALT] cycling swap on {sibling.get('player')} "
                     f"{sibling.get('prop_type')} {sibling.get('line')} "
@@ -1881,7 +2392,7 @@ def add_leg(
                 )
                 cycled = cycle_card_to_pick_type(
                     frame,
-                    sibling["more_btn"],
+                    sibling.get("more_btn"),
                     player=player,
                     prop=prop,
                     want_pick=pick_type,
@@ -1889,6 +2400,7 @@ def add_leg(
                     require_line=bool(require_line),
                     # Cap swaps — 14 re-parses of 60+ cards is what makes captures run hours.
                     max_clicks=12 if require_line else 10,
+                    more_index=sibling.get("more_index"),
                 )
                 cards = get_all_cards(frame)
                 target = _resolve_ticket_leg_card(
@@ -1900,14 +2412,17 @@ def add_leg(
                     strict=strict_lines,
                     require_line=require_line,
                 )
-                if target is None and cycled and cycled.get("more_btn") is not None:
+                if target is None and cycled and (
+                    cycled.get("more_btn") is not None or cycled.get("more_index") is not None
+                ):
                     # Build a synthetic target from the cycled face.
                     target = {
                         "player": player,
                         "prop_type": prop,
                         "line": cycled.get("line"),
                         "pick_type": pick_type,
-                        "more_btn": cycled["more_btn"],
+                        "more_btn": cycled.get("more_btn"),
+                        "more_index": cycled.get("more_index"),
                         "has_alt_lines": True,
                     }
 
@@ -2531,18 +3046,154 @@ def _slip_primary_sport(slip: dict) -> str:
     return counts.most_common(1)[0][0]
 
 
+_SPORT_TAB_LABELS: dict[str, tuple[str, ...]] = {
+    "MLB": ("MLB",),
+    "WNBA": ("WNBA",),
+    "NBA": ("NBA",),
+    "NFL": ("NFL",),
+    "CFB": ("CFB", "NCAAF"),
+    "CBB": ("CBB", "NCAAB"),
+    "NHL": ("NHL",),
+    "SOCCER": ("Soccer",),
+    "SOC": ("Soccer",),
+    "TENNIS": ("TENNIS", "Tennis"),
+    "GOLF": ("Golf",),
+}
+
+
+def _board_looks_alive(frame_or_page) -> bool:
+    """True when live board DOM is present — not merely a /board URL.
+
+    A hung SPA can keep ``/board`` in the address bar while More/Less chips
+    and the slip rail are gone; those element checks are the real gate.
+    """
+    try:
+        return bool(
+            frame_or_page.evaluate(
+                """() => {
+                  const text = (document.body && document.body.innerText) || '';
+                  if (!text) return false;
+                  const hasSearch = !!document.querySelector(
+                    "input[aria-label='search'], input[placeholder*='Search']"
+                  );
+                  const hasMoreOrLess = Array.from(document.querySelectorAll('button'))
+                    .some(b => {
+                      const t = (b.innerText || '').trim();
+                      return t === 'More' || t === 'Less';
+                    });
+                  const hasSlip = text.includes('Submit Lineup')
+                    || text.includes('Current Lineup')
+                    || text.includes('No Players Selected');
+                  const hasChipBar = /\\b(MLB|NBA|NFL|CFB|WNBA|NHL|Soccer|Tennis)\\b/.test(text)
+                    && (text.includes('Popular') || hasMoreOrLess);
+                  // Need board chrome (search/chips/More) — slip alone on a
+                  // blank shell is not enough.
+                  return (hasSearch || hasChipBar || hasMoreOrLess)
+                    && (hasSlip || hasMoreOrLess || hasChipBar);
+                }"""
+            )
+        )
+    except Exception:
+        return False
+
+
+def switch_sport_tab(frame, page, sport: str, *, settle_ms: int = 1500):
+    """Click the sport in the PP header so an in-progress slip is kept.
+
+    page.goto(league_id=…) remounts the board and drops selected legs, so
+    Goblin-70 x-sport Power 3s cannot be priced that way.
+
+    Sport buttons are exact text matches in the header row
+    (``_SPORT_TAB_LABELS`` → e.g. CFB, WNBA, Soccer).
+    """
+    global _POPULAR_READY
+    sp = str(sport or "").strip().upper()
+    labels = _SPORT_TAB_LABELS.get(sp) or (sp.title(),)
+    last_err = ""
+    for label in labels:
+        try:
+            loc = frame.get_by_text(label, exact=True).first
+            loc.click(timeout=2500, no_wait_after=True)
+            page.wait_for_timeout(int(settle_ms))
+            _POPULAR_READY = False
+            print(f"[PAYOUT] sport tab -> {label}", flush=True)
+            new_frame = find_prizepicks_frame(page)
+            ensure_popular_filter(new_frame, page)
+            dismiss_modal(new_frame, page)
+            return new_frame
+        except Exception as e:
+            last_err = str(e).split("\n", 1)[0]
+            continue
+    # Header chips are often TENNIS / SOCCER in all caps; exact "Tennis" misses
+    # and the goto fallback remounts the board (drops the slip).
+    try:
+        clicked = frame.locator("body").evaluate(
+            """(sport) => {
+              const want = String(sport || '').trim().toLowerCase();
+              if (!want) return false;
+              const els = Array.from(document.querySelectorAll('button, [role="tab"]'));
+              const el = els.find(e => {
+                const t = (e.innerText || '').trim().split('\\n')[0].trim().toLowerCase();
+                return t === want;
+              });
+              if (!el) return false;
+              el.click();
+              return true;
+            }""",
+            sp,
+            timeout=4000,
+        )
+        if clicked:
+            page.wait_for_timeout(int(settle_ms))
+            _POPULAR_READY = False
+            print(f"[PAYOUT] sport tab -> {sp} (js)", flush=True)
+            new_frame = find_prizepicks_frame(page)
+            ensure_popular_filter(new_frame, page)
+            dismiss_modal(new_frame, page)
+            return new_frame
+    except Exception as e:
+        last_err = str(e).split("\n", 1)[0]
+    print(f"[PAYOUT] WARN: sport tab {sp} miss ({last_err})", flush=True)
+    return None
+
+
 def navigate_board_for_sport(page, sport: str, *, settle_ms: int = 2500) -> bool:
-    """Open PrizePicks board for the sport of our generated tickets."""
+    """Land on the sport board without spawning tabs.
+
+    Prefer ``switch_sport_tab`` on a live board (keeps slip). Only ``page.goto``
+    when the board looks dead or the sport chip click misses.
+    """
+    global _LAST_USED_PP_URL
     sp = str(sport or "").strip().upper()
     league_id = PP_BOARD_LEAGUE_IDS.get(sp)
     if league_id is None:
         print(f"[PAYOUT] no board league_id for sport={sp!r} — staying on current board")
         return False
+
+    frame = find_prizepicks_frame(page)
+    alive = _board_looks_alive(page) or _board_looks_alive(frame)
+    if alive:
+        switched = switch_sport_tab(frame, page, sp, settle_ms=settle_ms)
+        if switched is not None:
+            print(f"[PAYOUT] navigate {sp} via sport-tab click (no goto)", flush=True)
+            try:
+                _LAST_USED_PP_URL = str(page.url or "")
+            except Exception:
+                pass
+            return True
+        print(f"[PAYOUT] sport tab miss for {sp} — falling back to goto", flush=True)
+    else:
+        print(f"[PAYOUT] board looks dead — goto fallback for {sp}", flush=True)
+
     url = f"https://app.prizepicks.com/board?league_id={league_id}"
     print(f"[PAYOUT] navigate {sp} board -> {url}")
     try:
         page.goto(url, wait_until="domcontentloaded", timeout=45_000)
         page.wait_for_timeout(int(settle_ms))
+        try:
+            _LAST_USED_PP_URL = str(page.url or "")
+        except Exception:
+            pass
         return True
     except Exception as e:
         print(f"[PAYOUT] WARN: navigate {sp} failed: {e}")
@@ -2572,8 +3223,14 @@ def _ticket_already_has_live_cdp(ticket: dict) -> bool:
     return min_x > 0
 
 
-def load_main_strong_tickets(path: Path, *, only_missing_live: bool = False) -> list[dict]:
+def load_main_strong_tickets(
+    path: Path,
+    *,
+    only_missing_live: bool = False,
+    ticket_ids: list[str] | None = None,
+) -> list[dict]:
     """Load MAIN + STRONG slips from combined_slate_tickets_*.json."""
+    want = {str(x).strip() for x in (ticket_ids or []) if str(x).strip()}
     data = json.loads(path.read_text(encoding="utf-8"))
     slips: list[dict] = []
     for g in data.get("groups") or []:
@@ -2582,6 +3239,9 @@ def load_main_strong_tickets(path: Path, *, only_missing_live: bool = False) -> 
         group_name = str(g.get("group_name") or g.get("name") or "")
         for t in g.get("tickets") or []:
             if not isinstance(t, dict):
+                continue
+            tid = str(t.get("ticket_id") or "").strip()
+            if want and tid not in want:
                 continue
             if only_missing_live and _ticket_already_has_live_cdp(t):
                 continue
@@ -2617,12 +3277,18 @@ def load_main_strong_tickets(path: Path, *, only_missing_live: bool = False) -> 
             if len(legs) < 2:
                 continue
             is_strong = bool(t.get("strong_builder"))
+            play = str(t.get("play") or t.get("product") or "").strip()
+            pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+            if not play and isinstance(pay, dict):
+                play = str(pay.get("ticket_type") or "").strip()
             slips.append(
                 {
                     "ticket_id": str(t.get("ticket_id") or ""),
                     "group_name": group_name,
                     "strong_builder": is_strong,
                     "slip_type": "strong" if is_strong else "main",
+                    "product": play or "Power",
+                    "play": play or "Power",
                     "n_legs": len(legs),
                     "legs": legs,
                     "date": str(data.get("date") or "")[:10],
@@ -2648,9 +3314,13 @@ def _stamp_captured_at(rec: dict) -> str:
         try:
             from utils.bet_windows import job_window_label
 
-            rec["window"] = job_window_label(stamp, explicit=rec.get("window"))
+            explicit = (
+                str(_CAPTURE_WINDOW or "").strip()
+                or os.environ.get("PROPORACLE_BET_WINDOW")
+            )
+            rec["window"] = job_window_label(stamp, explicit=explicit)
         except Exception:
-            rec["window"] = ""
+            rec["window"] = str(_CAPTURE_WINDOW or "").strip()
     return stamp
 
 
@@ -2681,22 +3351,17 @@ def _project_capture_fields(rec: dict, fields: list[str]) -> dict:
     return out
 
 
-def _leg_sig_key(legs: list[dict] | None) -> str:
-    parts: list[str] = []
-    for leg in legs or []:
-        if not isinstance(leg, dict):
-            continue
-        parts.append(
-            "|".join(
-                [
-                    _norm(leg.get("player")),
-                    _norm(leg.get("prop_type") or leg.get("prop")),
-                    _norm(leg.get("direction") or leg.get("dir") or "over"),
-                    _line_key(leg.get("line")),
-                ]
-            )
-        )
-    return "||".join(sorted(p for p in parts if p and p != "|||"))
+def _leg_sig_key(
+    legs: list[dict] | None,
+    *,
+    product: str | None = None,
+    n_legs: int | None = None,
+    ticket: dict | None = None,
+) -> str:
+    """Payout sig for leg list (+ optional ticket Power/Flex). Prefer ticket_payout_sig."""
+    from utils.payout_ticket_sig import ticket_payout_sig
+
+    return ticket_payout_sig(ticket, legs=legs, product=product, n_legs=n_legs)
 
 
 def main_strong_tickets_fingerprint(tickets_path: Path | str) -> dict[str, Any]:
@@ -2728,7 +3393,10 @@ def main_strong_tickets_fingerprint(tickets_path: Path | str) -> dict[str, Any]:
             if len(raw_legs) < 2:
                 continue
             tid = str(t.get("ticket_id") or "").strip()
-            sig = _leg_sig_key(raw_legs)
+            sig = _leg_sig_key(
+                t.get("legs") if isinstance(t.get("legs"), list) else [],
+                ticket=t,
+            )
             rows.append(f"{tid}\t{sig}")
             if _ticket_already_has_live_cdp(t):
                 n_live += 1
@@ -2851,11 +3519,19 @@ def write_payout_patch_and_apply_to_tickets(
                         "ticket_id": t.get("ticket_id"),
                         "n_legs": t.get("n_legs") or len(t.get("legs") or []),
                         "captured_at": pay.get("captured_at"),
+                        "legs": t.get("legs") if isinstance(t.get("legs"), list) else [],
+                        "play": t.get("play") or t.get("product"),
+                        "product": t.get("product") or t.get("play"),
                     }
+                    sig = _leg_sig_key(
+                        t.get("legs") if isinstance(t.get("legs"), list) else [],
+                        ticket=t,
+                    )
+                    if sig:
+                        entry["payout_sig"] = sig
                     tid = str(t.get("ticket_id") or "").strip()
                     if tid and tid not in prior_by_id:
                         prior_by_id[tid] = entry
-                    sig = _leg_sig_key(t.get("legs") if isinstance(t.get("legs"), list) else [])
                     if sig and sig not in prior_by_sig:
                         prior_by_sig[sig] = entry
         except Exception as e:
@@ -2892,12 +3568,23 @@ def write_payout_patch_and_apply_to_tickets(
             "n_legs": rec.get("n_legs"),
             "slip_type": rec.get("slip_type"),
             "captured_at": rec.get("captured_at") or _stamp_captured_at(rec),
+            "legs": rec.get("legs") if isinstance(rec.get("legs"), list) else [],
+            "play": rec.get("play") or rec.get("product"),
+            "product": rec.get("product") or rec.get("play"),
+            "ticket_type_captured": rec.get("ticket_type_captured"),
         }
         tid = str(rec.get("ticket_id") or "").strip()
+        sig = _leg_sig_key(
+            rec.get("legs") if isinstance(rec.get("legs"), list) else [],
+            ticket=rec,
+            n_legs=rec.get("n_legs"),
+            product=str(rec.get("ticket_type_captured") or rec.get("product") or "") or None,
+        )
+        if sig:
+            entry["payout_sig"] = sig
         if tid:
             patch["by_ticket_id"][tid] = entry
             n_new += 1
-        sig = _leg_sig_key(rec.get("legs") if isinstance(rec.get("legs"), list) else [])
         if sig:
             patch["by_leg_sig"][sig] = entry
 
@@ -2926,150 +3613,34 @@ def write_payout_patch_and_apply_to_tickets(
         or None
     )
 
-    def _goblin_n(legs: list) -> int:
-        n = 0
-        for leg in legs or []:
-            if not isinstance(leg, dict):
-                continue
-            if "goblin" in str(leg.get("pick_type") or "").lower():
-                n += 1
-        return n
-
     n_patched = 0
     n_fallback = 0
     n_kept_live = 0
+    n_id_sig_mismatch = 0
+    n_sig_ambiguous = 0
     if tickets_path.is_file():
-        data = json.loads(tickets_path.read_text(encoding="utf-8"))
-        for g in data.get("groups") or []:
-            if not isinstance(g, dict):
-                continue
-            for t in g.get("tickets") or []:
-                if not isinstance(t, dict):
-                    continue
-                tid = str(t.get("ticket_id") or "").strip()
-                entry = patch["by_ticket_id"].get(tid) if tid else None
-                if entry is None:
-                    entry = patch["by_leg_sig"].get(_leg_sig_key(t.get("legs")))
-                pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
-                pay = dict(pay)
-                if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
-                    pay["model_min_payout_x"] = pay.get("min_payout_x")
-                if entry:
-                    pay["power_min_x"] = entry["power_min_x"]
-                    pay["display_min_x"] = entry["display_min_x"]
-                    pay["payout_source"] = "live_cdp"
-                    if entry.get("power_first_x") is not None:
-                        pay["power_first_x"] = entry["power_first_x"]
-                    if entry.get("captured_at"):
-                        pay["captured_at"] = entry["captured_at"]
-                    try:
-                        from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
-
-                        refresh_ticket_ev_from_min_guarantee(
-                            pay, float(entry["display_min_x"]), update_recommendation=False
-                        )
-                    except Exception:
-                        pass
-                    t["payout"] = pay
-                    t["display_min_x"] = entry["display_min_x"]
-                    n_patched += 1
-                    continue
-
-                # Do NOT downgrade an existing live_cdp floor to board-avg on miss.
-                src_now = str(pay.get("payout_source") or "").strip().lower()
-                live_keep = None
-                try:
-                    live_keep = float(pay.get("power_min_x") or pay.get("display_min_x") or 0)
-                except (TypeError, ValueError):
-                    live_keep = None
-                if src_now == "live_cdp" and live_keep and live_keep > 0:
-                    pay["display_min_x"] = float(live_keep)
-                    pay["power_min_x"] = float(live_keep)
-                    pay["payout_source"] = "live_cdp"
-                    try:
-                        from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
-
-                        refresh_ticket_ev_from_min_guarantee(
-                            pay, float(live_keep), update_recommendation=False
-                        )
-                    except Exception:
-                        pass
-                    t["payout"] = pay
-                    t["display_min_x"] = float(live_keep)
-                    n_kept_live += 1
-                    continue
-
-                # Uncaptured + no prior live: never invent mix/fallback when live required.
-                require_live = True
-                try:
-                    import combined_slate_tickets as _cst
-
-                    require_live = bool(_cst.require_live_payout_display())
-                except Exception:
-                    require_live = (
-                        str(__import__("os").environ.get("PROPORACLE_REQUIRE_LIVE_PAYOUT") or "1")
-                        .strip()
-                        .lower()
-                        not in ("0", "false", "no", "off")
-                    )
-                if require_live:
-                    pay["payout_source"] = "pending_live"
-                    pay.pop("display_min_x", None)
-                    t.pop("display_min_x", None)
-                    t["payout"] = pay
-                    n_fallback += 1  # counted as non-live pending
-                    continue
-
-                # Legacy path: mix-grid average, else model estimate
-                legs = t.get("legs") if isinstance(t.get("legs"), list) else []
-                n_legs = len(legs) or int(t.get("n_legs") or 0)
-                avg = mix_avg.get((int(n_legs), int(_goblin_n(legs))))
-                if avg is not None and float(avg) > 0:
-                    pay["display_min_x"] = float(avg)
-                    pay["payout_source"] = "mix_grid_average"
-                    try:
-                        from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
-
-                        refresh_ticket_ev_from_min_guarantee(
-                            pay, float(avg), update_recommendation=False
-                        )
-                    except Exception:
-                        pass
-                    t["payout"] = pay
-                    t["display_min_x"] = float(avg)
-                    n_fallback += 1
-                else:
-                    try:
-                        model = float(pay.get("min_payout_x") or t.get("power_payout") or 0)
-                    except (TypeError, ValueError):
-                        model = 0.0
-                    if model > 0:
-                        pay["display_min_x"] = model
-                        pay["payout_source"] = "fallback_estimate"
-                        try:
-                            from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
-
-                            refresh_ticket_ev_from_min_guarantee(
-                                pay, float(model), update_recommendation=False
-                            )
-                        except Exception:
-                            pass
-                        t["payout"] = pay
-                        t["display_min_x"] = model
-                        n_fallback += 1
-        # Re-tier after EV was recomputed from scraped/fallback min guarantees.
-        try:
-            from utils.ticket_ev_tiers import apply_slate_ev_tier_recommendations
-
-            apply_slate_ev_tier_recommendations(data, log=False)
-        except Exception:
-            pass
-        tickets_path.write_text(
-            json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
+        # Merge, not snapshot: re-read the live card at write time and paint
+        # floors by ticket_id / leg sig. Tickets scrub/rebuild removed stay gone;
+        # a rebuilt card keeps its structure. Never write the scrape-start copy.
+        counts = merge_payout_floors_onto_tickets_file(
+            tickets_path,
+            patch,
+            mix_avg=mix_avg,
+            date_str=date_str,
         )
-        sync_tickets_json_mirrors(data, date_str=date_str, primary=tickets_path)
+        n_patched = int(counts.get("n_patched") or 0)
+        n_kept_live = int(counts.get("n_kept_live") or 0)
+        n_fallback = int(counts.get("n_fallback") or 0)
+        n_id_sig_mismatch = int(counts.get("n_id_sig_mismatch") or 0)
+        n_sig_ambiguous = int(counts.get("n_sig_ambiguous") or 0)
+        sync_tickets_json_mirrors_via_patch(
+            patch,
+            mix_avg=mix_avg,
+            date_str=date_str,
+            primary=tickets_path,
+        )
         print(
-            f"[PAYOUT] write-back live_cdp={n_patched} kept_live={n_kept_live} "
+            f"[PAYOUT] write-back (merge) live_cdp={n_patched} kept_live={n_kept_live} "
             f"non_live_or_pending={n_fallback} in {tickets_path}"
         )
 
@@ -3096,8 +3667,238 @@ def write_payout_patch_and_apply_to_tickets(
         "n_patched": n_patched,
         "n_fallback": n_fallback,
         "n_kept_live": n_kept_live,
+        "n_id_sig_mismatch": n_id_sig_mismatch,
+        "n_sig_ambiguous": n_sig_ambiguous,
         "patch": patch,
     }
+
+
+def _goblin_leg_count(legs: list | None) -> int:
+    n = 0
+    for leg in legs or []:
+        if not isinstance(leg, dict):
+            continue
+        if "goblin" in str(leg.get("pick_type") or "").lower():
+            n += 1
+    return n
+
+
+def apply_payout_patch_entries_to_payload(
+    data: dict[str, Any],
+    patch: dict[str, Any],
+    *,
+    mix_avg: dict[tuple[int, int], float] | None = None,
+) -> dict[str, int]:
+    """Paint floors onto tickets that exist on ``data``. Mutates in place.
+
+    Resolution (sig is the real identity; ID only speeds lookup):
+      1) ticket_id **and** sig both match → paint
+      2) ID matches but sig differs → ignore ID; try unique sig-only
+      3) unique sig-only → paint
+      4) ambiguous sig or no match → skip (next CDP window fills)
+
+    Never re-inserts scrubbed slips.
+    """
+    from utils.payout_ticket_sig import ambiguous_sig_keys, resolve_payout_patch_entry
+
+    by_id = patch.get("by_ticket_id") if isinstance(patch.get("by_ticket_id"), dict) else {}
+    by_sig = patch.get("by_leg_sig") if isinstance(patch.get("by_leg_sig"), dict) else {}
+    mix_avg = mix_avg or {}
+    n_patched = 0
+    n_fallback = 0
+    n_kept_live = 0
+    n_sig_ambiguous = 0
+    n_id_sig_mismatch = 0
+
+    all_tickets: list[dict] = []
+    for g in data.get("groups") or []:
+        if not isinstance(g, dict):
+            continue
+        for t in g.get("tickets") or []:
+            if isinstance(t, dict):
+                all_tickets.append(t)
+    ambiguous = ambiguous_sig_keys(all_tickets)
+
+    for t in all_tickets:
+        tid = str(t.get("ticket_id") or "").strip()
+        # Count positional-ID reshuffles (ID present in patch, sig disagrees).
+        if tid and tid in by_id:
+            from utils.payout_ticket_sig import entry_stored_sig, ticket_payout_sig
+
+            cand = by_id.get(tid)
+            stored = entry_stored_sig(cand if isinstance(cand, dict) else None)
+            cur = ticket_payout_sig(t)
+            if stored and cur and stored != cur:
+                n_id_sig_mismatch += 1
+
+        entry, match_kind = resolve_payout_patch_entry(
+            t, by_id=by_id, by_sig=by_sig, ambiguous=ambiguous
+        )
+        if match_kind == "ambiguous":
+            n_sig_ambiguous += 1
+        pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
+        pay = dict(pay)
+        if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
+            pay["model_min_payout_x"] = pay.get("min_payout_x")
+        if isinstance(entry, dict):
+            try:
+                min_x = float(entry.get("power_min_x") or entry.get("display_min_x") or 0)
+            except (TypeError, ValueError):
+                min_x = 0.0
+            if min_x > 0:
+                pay["power_min_x"] = entry.get("power_min_x", min_x)
+                pay["display_min_x"] = entry.get("display_min_x", min_x)
+                pay["payout_source"] = "live_cdp"
+                if entry.get("power_first_x") is not None:
+                    pay["power_first_x"] = entry["power_first_x"]
+                if entry.get("captured_at"):
+                    pay["captured_at"] = entry["captured_at"]
+                try:
+                    from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
+
+                    refresh_ticket_ev_from_min_guarantee(
+                        pay, float(pay["display_min_x"]), update_recommendation=False
+                    )
+                except Exception:
+                    pass
+                pay["payout_match"] = match_kind
+                t["payout"] = pay
+                t["display_min_x"] = pay["display_min_x"]
+                n_patched += 1
+                continue
+
+        # Do NOT downgrade an existing live_cdp floor to board-avg on miss.
+        src_now = str(pay.get("payout_source") or "").strip().lower()
+        live_keep = None
+        try:
+            live_keep = float(pay.get("power_min_x") or pay.get("display_min_x") or 0)
+        except (TypeError, ValueError):
+            live_keep = None
+        if src_now == "live_cdp" and live_keep and live_keep > 0:
+            pay["display_min_x"] = float(live_keep)
+            pay["power_min_x"] = float(live_keep)
+            pay["payout_source"] = "live_cdp"
+            try:
+                from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
+
+                refresh_ticket_ev_from_min_guarantee(
+                    pay, float(live_keep), update_recommendation=False
+                )
+            except Exception:
+                pass
+            t["payout"] = pay
+            t["display_min_x"] = float(live_keep)
+            n_kept_live += 1
+            continue
+
+        require_live = True
+        try:
+            import combined_slate_tickets as _cst
+
+            require_live = bool(_cst.require_live_payout_display())
+        except Exception:
+            require_live = (
+                str(os.environ.get("PROPORACLE_REQUIRE_LIVE_PAYOUT") or "1")
+                .strip()
+                .lower()
+                not in ("0", "false", "no", "off")
+            )
+        if require_live:
+            pay["payout_source"] = "pending_live"
+            pay.pop("display_min_x", None)
+            t.pop("display_min_x", None)
+            t["payout"] = pay
+            n_fallback += 1
+            continue
+
+        legs = t.get("legs") if isinstance(t.get("legs"), list) else []
+        n_legs = len(legs) or int(t.get("n_legs") or 0)
+        avg = mix_avg.get((int(n_legs), int(_goblin_leg_count(legs))))
+        if avg is not None and float(avg) > 0:
+            pay["display_min_x"] = float(avg)
+            pay["payout_source"] = "mix_grid_average"
+            try:
+                from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
+
+                refresh_ticket_ev_from_min_guarantee(
+                    pay, float(avg), update_recommendation=False
+                )
+            except Exception:
+                pass
+            t["payout"] = pay
+            t["display_min_x"] = float(avg)
+            n_fallback += 1
+        else:
+            try:
+                model = float(pay.get("min_payout_x") or t.get("power_payout") or 0)
+            except (TypeError, ValueError):
+                model = 0.0
+            if model > 0:
+                pay["display_min_x"] = model
+                pay["payout_source"] = "fallback_estimate"
+                try:
+                    from utils.ticket_ev_tiers import refresh_ticket_ev_from_min_guarantee
+
+                    refresh_ticket_ev_from_min_guarantee(
+                        pay, float(model), update_recommendation=False
+                    )
+                except Exception:
+                    pass
+                t["payout"] = pay
+                t["display_min_x"] = model
+                n_fallback += 1
+
+    try:
+        from utils.ticket_ev_tiers import apply_slate_ev_tier_recommendations
+
+        apply_slate_ev_tier_recommendations(data, log=False)
+    except Exception:
+        pass
+    out = {
+        "n_patched": n_patched,
+        "n_kept_live": n_kept_live,
+        "n_fallback": n_fallback,
+        "n_sig_ambiguous": n_sig_ambiguous,
+        "n_id_sig_mismatch": n_id_sig_mismatch,
+    }
+    if n_sig_ambiguous:
+        print(
+            f"[PAYOUT] skipped {n_sig_ambiguous} ticket(s) with ambiguous payout sig "
+            "(missing floors safer than a wrong live_cdp)"
+        )
+    if n_id_sig_mismatch:
+        print(
+            f"[PAYOUT] ignored {n_id_sig_mismatch} positional ticket_id match(es) "
+            "where sig disagreed (reshuffled slot)"
+        )
+    return out
+
+
+def merge_payout_floors_onto_tickets_file(
+    tickets_path: Path,
+    patch: dict[str, Any],
+    *,
+    mix_avg: dict[tuple[int, int], float] | None = None,
+    date_str: str = "",
+) -> dict[str, int]:
+    """Re-read ``tickets_path`` and merge floors; write only if the file exists."""
+    if not tickets_path.is_file():
+        return {"n_patched": 0, "n_kept_live": 0, "n_fallback": 0}
+    data = json.loads(tickets_path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        return {"n_patched": 0, "n_kept_live": 0, "n_fallback": 0}
+    file_date = str(data.get("date") or "")[:10]
+    want_date = str(date_str or "")[:10]
+    if want_date and file_date and file_date != want_date:
+        print(
+            f"[PAYOUT] skip merge {tickets_path.name}: file date {file_date} != {want_date}"
+        )
+        return {"n_patched": 0, "n_kept_live": 0, "n_fallback": 0}
+    counts = apply_payout_patch_entries_to_payload(data, patch, mix_avg=mix_avg)
+    tickets_path.write_text(
+        json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    return counts
 
 
 def sync_tickets_json_mirrors(
@@ -3106,26 +3907,22 @@ def sync_tickets_json_mirrors(
     date_str: str = "",
     primary: Path | None = None,
 ) -> None:
-    """Keep templates + docs + mobile tickets_latest.json aligned after payout write-back."""
+    """Legacy full-body mirror sync. Prefer ``sync_tickets_json_mirrors_via_patch``."""
+    from utils.ui_live_json import write_paths
+
     date_str = str(date_str or data.get("date") or "").strip()[:10]
     body = json.dumps(data, indent=2, ensure_ascii=False)
-    mirrors = [
-        ROOT / "ui_runner" / "templates" / "tickets_latest.json",
-        ROOT / "ui_runner" / "docs" / "tickets_latest.json",
-        ROOT / "mobile" / "www" / "tickets_latest.json",
-    ]
+    mirrors = write_paths("tickets_latest.json", ROOT, include_data_snapshot=True)
     for path in mirrors:
         try:
             if primary is not None and path.resolve() == Path(primary).resolve():
                 continue
         except Exception:
             pass
-        if not path.parent.is_dir() and path.parent.name in ("www", "docs", "templates"):
+        if not path.parent.is_dir() and path.parent.name in ("runtime", "templates", "data"):
             path.parent.mkdir(parents=True, exist_ok=True)
         if not path.parent.is_dir():
             continue
-        # Only overwrite same-date live files (or empty/missing).
-        # Never replace the Goblin-70 playable card with graded_main CDP write-back.
         try:
             if path.is_file():
                 existing = json.loads(path.read_text(encoding="utf-8"))
@@ -3145,6 +3942,52 @@ def sync_tickets_json_mirrors(
             print(f"[PAYOUT] WARN: mirror {path} failed ({e})")
 
 
+def sync_tickets_json_mirrors_via_patch(
+    patch: dict[str, Any],
+    *,
+    mix_avg: dict[tuple[int, int], float] | None = None,
+    date_str: str = "",
+    primary: Path | None = None,
+) -> None:
+    """Merge floors onto each live tickets_latest mirror independently.
+
+    Does not dump a primary snapshot over runtime/templates — a scrub or
+    dual-card rebuild that landed on one path keeps its structure; only
+    matching ticket IDs get painted.
+    """
+    from utils.ui_live_json import write_paths
+
+    date_str = str(date_str or patch.get("date") or "").strip()[:10]
+    mirrors = write_paths("tickets_latest.json", ROOT, include_data_snapshot=True)
+    for path in mirrors:
+        try:
+            if primary is not None and path.resolve() == Path(primary).resolve():
+                continue
+        except Exception:
+            pass
+        if not path.is_file():
+            continue
+        try:
+            existing = json.loads(path.read_text(encoding="utf-8"))
+            if not isinstance(existing, dict):
+                continue
+            ex_date = str(existing.get("date") or "")[:10]
+            if date_str and ex_date and ex_date != date_str:
+                continue
+            counts = apply_payout_patch_entries_to_payload(
+                existing, patch, mix_avg=mix_avg
+            )
+            path.write_text(
+                json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8"
+            )
+            print(
+                f"[PAYOUT] mirror-merge -> {path} "
+                f"(live_cdp={counts['n_patched']} kept={counts['n_kept_live']})"
+            )
+        except Exception as e:
+            print(f"[PAYOUT] WARN: mirror-merge {path} failed ({e})")
+
+
 def capture_tickets_from_board(
     *,
     tickets_path: Path,
@@ -3160,6 +4003,8 @@ def capture_tickets_from_board(
     require_line: bool | None = None,
     gentle: bool = False,
     only_missing_live: bool = False,
+    ticket_ids: list[str] | None = None,
+    window: str = "",
     max_runtime_sec: float = 0.0,
 ) -> int:
     """Build each MAIN/STRONG slip on PrizePicks and capture min/first payouts.
@@ -3169,15 +4014,26 @@ def capture_tickets_from_board(
     still requiring the badge (used by ladder live-board validation).
     gentle=True: human-paced delays + random cooloff between slips (less DataDome).
     only_missing_live=True: skip slips that already have payout_source=live_cdp.
+    ticket_ids: if set, scrape only those slips (and merge them into the prior capture JSON).
+    window: scheduled job label (1AM / 8AM / 9:45 / …) stamped onto each slip + jsonl.
     max_runtime_sec>0: stop after wall-clock budget and save whatever was captured.
     """
+    global _CAPTURE_WINDOW
+    _CAPTURE_WINDOW = str(window or os.environ.get("PROPORACLE_BET_WINDOW") or "").strip()
+    if _CAPTURE_WINDOW:
+        os.environ["PROPORACLE_BET_WINDOW"] = _CAPTURE_WINDOW
+    want_ids = [str(x).strip() for x in (ticket_ids or []) if str(x).strip()]
     if require_line is None:
         require_line = bool(strict_lines)
     if gentle:
         delay_sec = max(float(delay_sec), 2.0)
     deadline = (time.monotonic() + float(max_runtime_sec)) if float(max_runtime_sec or 0) > 0 else None
     timed_out = False
-    slips = load_main_strong_tickets(tickets_path, only_missing_live=only_missing_live)
+    slips = load_main_strong_tickets(
+        tickets_path,
+        only_missing_live=only_missing_live,
+        ticket_ids=want_ids or None,
+    )
     fp_info = main_strong_tickets_fingerprint(tickets_path)
     if not slips:
         reason = (
@@ -3229,14 +4085,21 @@ def capture_tickets_from_board(
         output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         return 0
 
-    slips_sorted = sorted(
-        slips,
-        key=lambda s: (
-            _slip_primary_sport(s) or "ZZZ",
-            0 if s.get("strong_builder") else 1,
-            s.get("ticket_id") or "",
-        ),
-    )
+    if want_ids:
+        order = {tid: i for i, tid in enumerate(want_ids)}
+        slips_sorted = sorted(
+            slips,
+            key=lambda s: order.get(str(s.get("ticket_id") or ""), 10_000),
+        )
+    else:
+        slips_sorted = sorted(
+            slips,
+            key=lambda s: (
+                _slip_primary_sport(s) or "ZZZ",
+                0 if s.get("strong_builder") else 1,
+                s.get("ticket_id") or "",
+            ),
+        )
     if max_cases > 0:
         slips_sorted = slips_sorted[:max_cases]
 
@@ -3264,6 +4127,28 @@ def capture_tickets_from_board(
 
     def _flush_capture_json(*, note: str = "") -> None:
         """Write whatever is in `captured` so a CDP drop does not lose N-correct rows."""
+        slips_out = list(captured)
+        if (want_ids or only_missing_live) and output_path.is_file():
+            try:
+                prior = json.loads(output_path.read_text(encoding="utf-8"))
+                prior_slips = prior.get("slips") if isinstance(prior, dict) else None
+                if isinstance(prior_slips, list):
+                    this_ids = {
+                        str(s.get("ticket_id") or "").strip()
+                        for s in slips_out
+                        if isinstance(s, dict)
+                    }
+                    kept = []
+                    for old in prior_slips:
+                        if not isinstance(old, dict):
+                            continue
+                        oid = str(old.get("ticket_id") or "").strip()
+                        if oid and oid in this_ids:
+                            continue
+                        kept.append(old)
+                    slips_out = kept + slips_out
+            except Exception:
+                pass
         payload = {
             "date": date_str,
             "generated_at": datetime.utcnow().isoformat() + "Z",
@@ -3276,9 +4161,11 @@ def capture_tickets_from_board(
             "primary_field": "power_min_x",
             "entry_amount": entry_amount,
             "only_missing_live": bool(only_missing_live),
+            "ticket_ids": want_ids,
+            "window": _CAPTURE_WINDOW,
             "timed_out": bool(timed_out),
             "max_runtime_sec": float(max_runtime_sec or 0),
-            "slips": captured,
+            "slips": slips_out,
             "summary": {
                 "n_total": len(captured),
                 "n_ok": n_ok,
@@ -3360,9 +4247,12 @@ def capture_tickets_from_board(
                 "group_name": slip.get("group_name"),
                 "n_legs": slip.get("n_legs"),
                 "legs": slip.get("legs"),
+                "product": slip.get("product") or slip.get("play") or "Power",
+                "play": slip.get("play") or slip.get("product") or "Power",
                 "status": "failed",
                 "error": None,
                 "ticket_type_captured": "power",
+                "window": _CAPTURE_WINDOW,
                 "power_min_x": None,
                 "power_first_x": None,
                 "min_guarantee": None,
@@ -3398,6 +4288,12 @@ def capture_tickets_from_board(
 
                 clicked = 0
                 for leg in slip.get("legs") or []:
+                    leg_sport = str(leg.get("sport") or "").strip().upper()
+                    if leg_sport and leg_sport != active_sport:
+                        switched = switch_sport_tab(frame, page, leg_sport)
+                        if switched is not None:
+                            frame = switched
+                            active_sport = leg_sport
                     if add_leg(
                         frame,
                         page,
@@ -3407,7 +4303,7 @@ def capture_tickets_from_board(
                     ):
                         clicked += 1
                     else:
-                        print(f"  [WARN] could not click {leg.get('player')}")
+                        print(f"  [WARN] could not click {leg.get('player')}", flush=True)
                     leg_pause = max(0.05, delay_sec * (0.85 if gentle else 0.5))
                     if gentle:
                         leg_pause += random.uniform(0.4, 1.2)
@@ -3631,6 +4527,18 @@ def capture_tickets_from_board(
             pass
 
     _flush_capture_json(note="final")
+    try:
+        from utils.bet_windows import append_payout_scrape_log, rebuild_bet_windows
+
+        n_log = append_payout_scrape_log(str(date_str or "")[:10], captured)
+        rebuild_bet_windows(str(date_str or "")[:10])
+        if n_log:
+            print(
+                f"[PAYOUT] scrape log +{n_log} window={_CAPTURE_WINDOW or '?'} "
+                f"-> data/reports/payout_scrape_log_{str(date_str or '')[:10]}.jsonl"
+            )
+    except Exception as e:
+        print(f"[PAYOUT] WARN: bet-windows log skipped: {e}")
     print(f"[PAYOUT] Saved -> {output_path}")
     print(
         f"[PAYOUT] ok={n_ok} partial={n_partial} failed={n_failed} "
@@ -4311,6 +5219,7 @@ def sync_captures_to_payout_ladder_live(
     tickets_by_id: dict[str, dict] = {}
     for cand in (
         tickets_path,
+        ROOT / "ui_runner" / "runtime" / "tickets_latest.json",
         ROOT / "ui_runner" / "templates" / "tickets_latest.json",
         ROOT / "ui_runner" / "data" / "tickets_latest.json",
     ):
@@ -4430,7 +5339,7 @@ def sync_captures_to_payout_ladder_live(
         if not row:
             continue
         legs = rec.get("legs") if isinstance(rec.get("legs"), list) else []
-        sig = _leg_sig_key(legs)
+        sig = _leg_sig_key(legs, ticket=rec)
         min_x = row.get("power_payout_x") or ""
         key = f"{date_str}|{sig}|{min_x}"
         row["_dedupe_key"] = key
@@ -4972,9 +5881,29 @@ def main():
         help="With --tickets: allow nearest-line proxies when exact Goblin/line left the board.",
     )
     ap.add_argument(
+        "--allow-line-drift",
+        action="store_true",
+        help="With --tickets: keep Goblin/Standard badge but allow today's board line to differ.",
+    )
+    ap.add_argument(
         "--only-missing-live",
         action="store_true",
         help="With --tickets: scrape only slips that do not already have payout_source=live_cdp.",
+    )
+    ap.add_argument(
+        "--ticket-ids",
+        default="",
+        help="With --tickets: comma-separated ticket_id list to scrape (incremental).",
+    )
+    ap.add_argument(
+        "--ticket-ids-file",
+        default="",
+        help="With --tickets: JSON file of {ticket_ids:[...]} or a JSON array of ids.",
+    )
+    ap.add_argument(
+        "--window",
+        default="",
+        help="Scheduled job label stamped on slips (1AM / 5AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30).",
     )
     ap.add_argument(
         "--check-unchanged",
@@ -5109,6 +6038,20 @@ def main():
             raise SystemExit(0)
         _acquire_payout_capture_lock(force=bool(getattr(args, "force_lock", False)))
         try:
+            ticket_ids: list[str] = []
+            raw_ids = str(getattr(args, "ticket_ids", "") or "").strip()
+            if raw_ids:
+                ticket_ids.extend(x.strip() for x in raw_ids.split(",") if x.strip())
+            ids_file = str(getattr(args, "ticket_ids_file", "") or "").strip()
+            if ids_file:
+                try:
+                    blob = json.loads(Path(ids_file).read_text(encoding="utf-8"))
+                    if isinstance(blob, dict):
+                        blob = blob.get("ticket_ids") or blob.get("ids") or []
+                    if isinstance(blob, list):
+                        ticket_ids.extend(str(x).strip() for x in blob if str(x).strip())
+                except Exception as e:
+                    print(f"[PAYOUT] WARN: ticket-ids-file {ids_file}: {e}")
             raise SystemExit(
                 capture_tickets_from_board(
                     tickets_path=tickets_path,
@@ -5121,7 +6064,12 @@ def main():
                     write_back=not bool(getattr(args, "no_write_back", False)),
                     date_override=date_override,
                     strict_lines=not bool(getattr(args, "allow_line_fallback", False)),
+                    require_line=(
+                        False if bool(getattr(args, "allow_line_drift", False)) else None
+                    ),
                     only_missing_live=bool(getattr(args, "only_missing_live", False)),
+                    ticket_ids=ticket_ids or None,
+                    window=str(getattr(args, "window", "") or "").strip(),
                     gentle=bool(getattr(args, "gentle", False)),
                     max_runtime_sec=float(getattr(args, "max_runtime_sec", 0) or 0),
                 )
