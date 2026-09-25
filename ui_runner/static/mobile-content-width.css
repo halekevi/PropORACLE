@@ -983,14 +983,36 @@ nav.snav .mobile-menu a {
 
 /* ── v20260418nav2 — tickets filters, payout legs, home slate tiles, nav, grades ─ */
 @media (max-width: 768px) {
+  /* Horizontal scroll — do not wrap (wrap caused POWER/GOB/INTOP overlap at 390px). */
   .tickets-built .ticket-filter-bar,
   .tickets-built .filter-bar,
   .ticket-filter-pills,
   [class*="filter-pill-row"] {
-    flex-wrap: wrap !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
     gap: 6px !important;
     padding: 6px 8px !important;
-    overflow-x: visible !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+  .tickets-built .ticket-filter-bar::-webkit-scrollbar,
+  .tickets-built .filter-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+  .tickets-built .ticket-filter-pill,
+  .tickets-built .filter-pill,
+  .tickets-built .ticket-filter-bar-action,
+  .tickets-built #expand-all,
+  .tickets-built #collapse-all,
+  .tickets-built #uniform-buckets-toggle {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+  .tickets-built .ticket-filter-bar-spacer {
+    flex: 0 0 8px !important;
+    min-width: 8px !important;
   }
 
   .ticket-stats-row,
@@ -1943,11 +1965,52 @@ nav.snav .mobile-menu a {
     gap: 4px !important;
   }
 
+  /* Filter chips — scroll horizontally; never shrink/overlap at 390px */
   .ticket-filter-bar,
-  .tickets-built .ticket-filter-bar {
-    overflow-x: auto !important;
+  .tickets-built .ticket-filter-bar,
+  .filter-bar,
+  .ticket-filter-pills,
+  [class*="filter-pill-row"] {
+    display: flex !important;
     flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
+    gap: 6px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .ticket-filter-bar::-webkit-scrollbar,
+  .tickets-built .ticket-filter-bar::-webkit-scrollbar,
+  .filter-bar::-webkit-scrollbar,
+  .ticket-filter-pills::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .ticket-filter-pill,
+  .ticket-filter-btn,
+  .tickets-built .ticket-filter-pill,
+  .tickets-built .filter-pill,
+  [class*="filter-pill"],
+  [class*="filter-btn"] {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    min-width: unset !important;
+  }
+
+  .ticket-filter-bar-action,
+  .tickets-built .ticket-filter-bar-action,
+  .tickets-built #expand-all,
+  .tickets-built #collapse-all,
+  .tickets-built #uniform-buckets-toggle {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .tickets-built .ticket-filter-bar-spacer {
+    flex: 0 0 8px !important;
+    min-width: 8px !important;
   }
 }
 

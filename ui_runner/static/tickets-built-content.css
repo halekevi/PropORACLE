@@ -306,14 +306,32 @@
   }
 
   .tickets-built .ticket-filter-bar {
+    display: flex;
     overflow-x: auto;
+    overflow-y: visible;
     flex-wrap: nowrap;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding-bottom: 6px;
   }
 
   .tickets-built .ticket-filter-bar::-webkit-scrollbar {
     display: none;
+  }
+
+  .tickets-built .ticket-filter-pill,
+  .tickets-built .ticket-filter-bar-action,
+  .tickets-built #expand-all,
+  .tickets-built #collapse-all,
+  .tickets-built #uniform-buckets-toggle {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .tickets-built .ticket-filter-bar-spacer {
+    flex: 0 0 8px;
+    min-width: 8px;
   }
 }
 
