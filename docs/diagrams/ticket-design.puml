@@ -1,15 +1,34 @@
 @startuml PropORACLE_Ticket_Design
-' Ticket design — dual card + publish (reality + known gaps)
+' Ticket design — dual card build, construction rules, publish
+' Scheduled re-publishers (payout capture, keep scrub) are separate flows below.
 ' Render: PlantUML extension or https://www.plantuml.com/plantuml
 
 title PropORACLE — Ticket design (Goblin-70 + mixer)
 
+|Build (per run_daily / refresh / late_fetch)|
 start
-:Sport step8 workbooks;
+:Sport step8 workbooks\n(step8_*_direction_clean.xlsx);
+
 :combined_slate_tickets.py --write-web;
 note right
   Graded-main mixer / grade pool.
+  Eligibility = mixer ""filter_eligible""
+  (pipeline_read_checklist.json) —
+  **not** the G70 gate stack.
   Does not own live /tickets alone.
+end note
+
+:Construction rules (mixer);
+note right
+  1. MLB construction ban runs **first**
+     for every MAIN slip (ce04cad8c),
+     before core_build / strong_builder.
+  2. Same-player multistat hard block
+     (utils/ticket_diversity.py).
+  3. Diversity filter
+     (config/diversity_config.json).
+  (Anchor cap is **not** here —
+   it runs after dual-card merge.)
 end note
 
 if (Caller routes through\nInvoke-G70WriteWebStandalone?) then (yes)
@@ -17,64 +36,111 @@ if (Caller routes through\nInvoke-G70WriteWebStandalone?) then (yes)
   note right
     Day-ahead / 1AM / 5AM / MLB fill /
     late_fetch / refresh / Publish-LiveSite
-    use the helper (Tee-Object fallback
-    if Invoke-LoggedPwsh.ps1 missing).
+    (Tee-Object fallback if
+    Invoke-LoggedPwsh.ps1 missing).
   end note
 else (no — known gap)
   :build_goblin70_tickets.py --write-web\n(direct py in run_daily.ps1 STEP D-G70);
   note right
-    **Gap:** run_daily.ps1 still invokes py
-    directly — not the standalone helper.
-    Ordering/logging may diverge from
-    the wrapped path.
+    **Gap:** run_daily.ps1 still calls py
+    directly, not the standalone helper.
+    Logging / ordering only —
+    exposure trim still runs inside
+    the dual-card write (both paths).
   end note
 endif
 
+:Assemble dual card;
 note right
   Goblin-70 groups **first**.
   Patch mixer **lines** from this fetch.
   Merge **full** graded-main pool under.
-  Do not drop mixer groups that left the live board.
+  Keep mixer groups that left the live board.
 end note
 
 fork
   :Goblin Power 3\n(all-Goblin);
 fork again
-  :Flex 4\n(all-Standard or 1 Std + Goblin leftovers);
+  :Flex 4\n(all-Standard or 1 Std +\nGoblin leftovers);
 fork again
   :YOLO Power 4/5/6\n(Diamond/Platinum seeds;\n**excluded from ticket WR / Income**);
 end fork
 
+:Cross-ticket anchor cap\n(trim_payload_slate_exposure);
+note right
+  Runs on the **merged** dual card,
+  before tickets_latest.json
+  (so 9PM payout capture prices
+  the trimmed card).
+  include_goblin70=True — one ledger
+  walks **G70 first**, then
+  CORE / STRONG / mixer.
+  G70 wins ties; CORE/mixer lose them.
+  Caps: anchor ≤1 + non-anchor ≤1;
+  blocks identical player+prop+dir
+  (McGreevy / Wood ×8 class).
+  Worst case: same player twice
+  (once as anchor, once not) —
+  same leg cannot appear twice.
+end note
+
 :tickets_latest.json\n(disk: ui_runner/runtime/\nGitHub: ui_runner/templates/);
-
-fork
-  :run_live_payout_capture.ps1\n(N-correct floors);
-fork again
-  :scrub_goblin70_keep_live.py\n(interval keep revalidation);
-  note right
-    **Not on rebuild path.** Lightweight
-    drop of published G70 legs that now
-    fail keep gates (Mesa Jr. class).
-    Off-board legs left alone.
-    Registered via run_g70_keep_scrub.ps1.
-  end note
-end fork
-
 :Publish-LiveSite.ps1 → origin/main;
-:Railway GET /tickets\nrenders prebuilt JSON;
-
+:Railway GET /tickets\nrenders prebuilt JSON\n(no rebuild at request time);
 stop
 
-note bottom
-  **Gates (keep files can REPLACE the generic stack, not only add):**
+|Scheduled re-publishers|
+start
+:Task Scheduler window;
+split
+  :run_live_payout_capture.ps1;
+  note right
+    See payout-scrape.puml.
+    Holds payout_capture.lock,
+    writes N-correct floors,
+    then **publishes on its own**.
+  end note
+split again
+  :scrub_goblin70_keep_live.py\n(run_g70_keep_scrub.ps1);
+  note right
+    Default: --write --publish-live
+    (opt out with -SkipPublish).
+    On keep fail: **drops the whole
+    G70 ticket** (not a shrunk Power 2
+    / 1-leg). Off-board legs untouched.
+    Writes runtime + templates (+ main_cp),
+    then Publish-LiveSite on drops.
+    Does **not** clear live_cdp
+    (survivors keep floors; dropped
+    slips are gone).
+    Capture write-back is a **merge by
+    ticket_id** (not a card snapshot),
+    so a lost race no longer resurrects
+    dropped / rebuilt-away slips.
+    Shared tickets_write.lock still TODO.
+    Reverse race (scrub after capture
+    clears fresh floors) is harmless —
+    next window re-scrapes missing live_cdp.
+  end note
+end split
+:Publish-LiveSite.ps1 → origin/main;
+note right
+  Capture publishes itself (confirmed).
+  Scrub also publishes on drops by
+  default (confirmed).
+end note
+stop
+
+legend bottom
+  **Gates — keep files can REPLACE the generic stack, not only add**
   Baseline 70% engine: directional L5=5 + L10>=8 + D + cover.
   Keep-file overrides (examples):
-  · MLB pitcher Goblins → L10-primary (not L5=5 stack)
-  · MLB Standard → hard-banned on G70
-  · CFB Pass Yards Goblin OVER → D is N/A (skipped)
-  · Tennis / Soccer / CFB / WNBA → sport keep modules
-  Payout figure = N-correct (Flex/Power), never 1st place.
-  Checkout gate changes are not live until main_cp rebuild + Publish-LiveSite.
-end note
+    · MLB pitcher Goblins → L10-primary (not the L5=5 stack)
+    · MLB Standard → hard-banned on G70
+    · CFB Pass Yards Goblin OVER → D skipped
+    · Tennis / Soccer / CFB / WNBA / NFL → sport keep modules
+  Payout figure = N-correct (Flex / Power), never 1st place.
+  Checkout gate changes are **not live** until main_cp rebuild + Publish-LiveSite.
+endlegend
 
 @enduml

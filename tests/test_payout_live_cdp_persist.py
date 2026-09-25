@@ -377,3 +377,142 @@ def test_tickets_fingerprint_stable_and_skip_when_unchanged(tmp_path):
     assert decision2["skip_scrape"] is False
     assert decision2["n_missing_live"] >= 1
     assert decision2["reason"] in ("tickets_changed", "missing_live_floors")
+
+
+def test_write_back_does_not_resurrect_scrubbed_ticket(tmp_path, monkeypatch):
+    """Capture floors for A+B, then scrub drops B before write-back — B stays gone."""
+    monkeypatch.setattr(cpd, "ROOT", tmp_path)
+    monkeypatch.setenv("PROPORACLE_REQUIRE_LIVE_PAYOUT", "1")
+    (tmp_path / "data" / "reports").mkdir(parents=True)
+    date = "2026-09-24"
+    tickets_path = tmp_path / "tickets.json"
+    tickets_path.write_text(
+        json.dumps(
+            _payload(
+                date,
+                [
+                    _ticket("d|G70|A", 0.0, "pending_live"),
+                    _ticket("d|G70|B", 0.0, "pending_live"),
+                ],
+            )
+        ),
+        encoding="utf-8",
+    )
+    # Scrub drops B while CDP was still running.
+    tickets_path.write_text(
+        json.dumps(_payload(date, [_ticket("d|G70|A", 0.0, "pending_live")])),
+        encoding="utf-8",
+    )
+    captured = [
+        {
+            "ticket_id": "d|G70|A",
+            "status": "ok",
+            "power_min_x": 2.5,
+            "power_first_x": 3.0,
+            "n_legs": 2,
+            "legs": _ticket("d|G70|A", 0.0, "pending_live")["legs"],
+        },
+        {
+            "ticket_id": "d|G70|B",
+            "status": "ok",
+            "power_min_x": 2.7,
+            "n_legs": 2,
+            "legs": _ticket("d|G70|B", 0.0, "pending_live")["legs"],
+        },
+    ]
+    cpd.write_payout_patch_and_apply_to_tickets(
+        tickets_path=tickets_path,
+        captured=captured,
+        date_str=date,
+    )
+    data = json.loads(tickets_path.read_text(encoding="utf-8"))
+    ids = [t["ticket_id"] for t in data["groups"][0]["tickets"]]
+    assert ids == ["d|G70|A"]
+    pay = data["groups"][0]["tickets"][0]["payout"]
+    assert pay["payout_source"] == "live_cdp"
+    assert float(pay["display_min_x"]) == 2.5
+    # Patch may still remember B; card must not.
+    patch = json.loads(
+        (tmp_path / "data" / "reports" / f"payout_patch_{date}.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert "d|G70|B" in patch["by_ticket_id"]
+
+
+def test_mirror_merge_keeps_rebuilt_structure(tmp_path, monkeypatch):
+    """Runtime rebuilt with new slip C; merge paints A without dumping primary snapshot."""
+    monkeypatch.setattr(cpd, "ROOT", tmp_path)
+    monkeypatch.setenv("PROPORACLE_REQUIRE_LIVE_PAYOUT", "1")
+    (tmp_path / "data" / "reports").mkdir(parents=True)
+    templates = tmp_path / "ui_runner" / "templates"
+    runtime = tmp_path / "ui_runner" / "runtime"
+    templates.mkdir(parents=True)
+    runtime.mkdir(parents=True)
+    date = "2026-09-24"
+    # Primary (templates) is the pre-rebuild card (A only).
+    primary = templates / "tickets_latest.json"
+    primary.write_text(
+        json.dumps(_payload(date, [_ticket("d|G70|A", 0.0, "pending_live")])),
+        encoding="utf-8",
+    )
+    # Runtime already has the rebuild (A + new C with different legs).
+    ticket_c = _ticket("d|G70|C", 0.0, "pending_live", line=5.5)
+    ticket_c["legs"] = [
+        {
+            "player": "C Player",
+            "prop_type": "Points",
+            "direction": "OVER",
+            "line": 5.5,
+            "pick_type": "Goblin",
+        },
+        {
+            "player": "D Player",
+            "prop_type": "Steals",
+            "direction": "OVER",
+            "line": 1.5,
+            "pick_type": "Goblin",
+        },
+    ]
+    runtime_path = runtime / "tickets_latest.json"
+    runtime_path.write_text(
+        json.dumps(
+            _payload(
+                date,
+                [
+                    _ticket("d|G70|A", 0.0, "pending_live"),
+                    ticket_c,
+                ],
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    def _fake_write_paths(name, root, include_data_snapshot=False):
+        assert name == "tickets_latest.json"
+        return [templates / name, runtime / name]
+
+    monkeypatch.setattr(
+        "utils.ui_live_json.write_paths",
+        _fake_write_paths,
+    )
+    captured = [
+        {
+            "ticket_id": "d|G70|A",
+            "status": "ok",
+            "power_min_x": 3.1,
+            "n_legs": 2,
+            "legs": _ticket("d|G70|A", 0.0, "pending_live")["legs"],
+        }
+    ]
+    cpd.write_payout_patch_and_apply_to_tickets(
+        tickets_path=primary,
+        captured=captured,
+        date_str=date,
+    )
+    rt = json.loads(runtime_path.read_text(encoding="utf-8"))
+    rt_ids = [t["ticket_id"] for t in rt["groups"][0]["tickets"]]
+    assert rt_ids == ["d|G70|A", "d|G70|C"], "rebuild slip C must survive mirror sync"
+    assert rt["groups"][0]["tickets"][0]["payout"]["payout_source"] == "live_cdp"
+    assert float(rt["groups"][0]["tickets"][0]["payout"]["display_min_x"]) == 3.1
+    assert rt["groups"][0]["tickets"][1]["payout"]["payout_source"] == "pending_live"
