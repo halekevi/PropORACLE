@@ -205,10 +205,10 @@ Bundled offline UI      ──extends───►  Live site in app shell      (
 |---|---|---|
 | `run_daily.ps1` STEP D-G70 calls py directly, not `Invoke-G70WriteWebStandalone` | ticket-design | Known gap |
 | Ticket resolver prefers xlsx over a nonempty JSON (Sep 19–23 class) | grading | Harden pending |
-| Payout re-scrape after keep scrub | payout-scrape | **N/A for current scrub** -- scrub drops whole tickets (no shrink); survivors keep live_cdp. Real risk is scrub/capture lock race (below). |
+| Payout re-scrape after keep scrub | payout-scrape | **N/A for current scrub** (whole-ticket drop). Capture merge write-back no longer needs a leg-count trigger to avoid resurrecting drops. |
 | CDP-down payout display source | payout-scrape | Verify |
 | Keep scrub publish path | ticket-design | **Confirmed** -- default `run_g70_keep_scrub.ps1` passes `--write --publish-live`; Publish-LiveSite on drops. Opt out: `-SkipPublish`. |
-| Scrub vs capture write race | ticket-design / payout-scrape | **Known gap** -- scrub does not take `payout_capture.lock`. Capture can read pre-scrub JSON, scrub publish, then capture write restores the failing slip with fresh live_cdp. |
+| tickets_latest writers race (build / scrub / capture) | ticket-design / payout-scrape | **Fix 2 done** -- capture write-back re-reads + merges floors by ticket_id (mirrors too); scrubbed/rebuilt slips stay gone. Shared tickets_write.lock still TODO. Reverse race (scrub overwrites fresh floors) is harmless -- next window re-scrapes missing live_cdp. |
 | Anchor cap across CORE + mixer + G70 | ticket-design | **Confirmed** -- post-merge on dual-card write (`include_goblin70=True`); walks G70 first (G70 wins ties). Caps anchor<=1 + non-anchor<=1; blocks identical player+prop+dir. Both G70 call paths covered. Runs before first payout scrape. |
 | `/api/run` + `train_edge_model` on Railway (pkl never reaches local step7) | C4 L3 | Verify / label local-only |
 | Income "rolling demo" rows excluded from headline WR | C4 L3 | Verify |
