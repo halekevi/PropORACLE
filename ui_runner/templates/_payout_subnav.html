@@ -98,9 +98,9 @@
   <a class="payout-subnav-back" href="/payout">&larr; Back to Builder</a>
   <span class="payout-subnav-sep" aria-hidden="true"></span>
   <div class="payout-subnav-links">
-    <a href="/payout" data-section="builder">Builder</a>
+    <a href="/payout" data-section="builder" onclick="if(typeof switchTab==='function'&amp;&amp;(location.pathname==='/payout'||location.pathname==='/payout/')){event.preventDefault();switchTab('calc');}">Builder</a>
     <a href="/payout/log" data-section="ladder_log">Ladder Log</a>
-    <a href="/payout?tab=cards" data-section="cards">Rates &amp; Ladder</a>
+    <a href="/payout?tab=cards" data-section="cards" onclick="if(typeof switchTab==='function'&amp;&amp;(location.pathname==='/payout'||location.pathname==='/payout/')){event.preventDefault();switchTab('cards');}">Rates &amp; Ladder</a>
   </div>
   <div class="payout-subnav-tools">
     <a href="/payout/ladder" data-section="ladder_table">Full table</a>

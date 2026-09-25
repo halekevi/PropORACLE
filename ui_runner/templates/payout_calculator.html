@@ -976,13 +976,6 @@ body::before{
   <div class="hero-sub">Build an EV slip or composition ticket, capture ladder rows from screenshots, and check rates.</div>
 </div>
 
-<!-- ── TABS ── -->
-<div class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('calc',this)">⚡ Builder</button>
-  <a class="tab-btn" href="/payout/log" style="text-decoration:none;display:inline-flex;align-items:center">📷 Ladder Log</a>
-  <button class="tab-btn" onclick="switchTab('cards',this)">🃏 Rates &amp; Ladder</button>
-</div>
-
 <!-- ═══════════ TAB 1: BUILDER (EV + Composition) ═══════════ -->
 <div id="tab-calc" class="tab-panel active">
   <div class="toolbar" style="margin-bottom:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center">
@@ -1096,8 +1089,8 @@ body::before{
 <!-- composer/log standalone panels removed from tab bar; log panel kept hidden for legacy JS -->
 <div id="tab-composer" class="tab-panel" style="display:none!important" aria-hidden="true"></div>
 
-<!-- ═══════════ TAB 2: LOG ═══════════ -->
-<div id="tab-log" class="tab-panel">
+<!-- ═══════════ TAB 2: LOG (hidden leftover; live logger is /payout/log) ═══════════ -->
+<div id="tab-log" class="tab-panel" style="display:none!important" aria-hidden="true">
   <div class="card accent">
     <div class="card-title">🎟 Log a Full Ticket</div>
     <p class="hint hint-compact">Log standard vs played lines; type auto-classifies from delta. Flex: log sweep + optional min guarantee.</p>
@@ -1247,14 +1240,8 @@ function switchTab(id,btn){
     if(p.id==='tab-composer' || p.id==='tab-log'){ p.classList.remove('active'); return; }
     p.classList.remove('active');
   });
-  document.querySelectorAll('.tab-bar .tab-btn').forEach(b=>b.classList.remove('active'));
   const panel=document.getElementById('tab-'+id);
   if(panel)panel.classList.add('active');
-  const order=['calc','cards'];
-  const i=order.indexOf(id);
-  const btns=[...document.querySelectorAll('.tab-bar .tab-btn')].filter((el)=>el.tagName==='BUTTON');
-  if(btn && btn.classList && btn.tagName==='BUTTON') btn.classList.add('active');
-  else if(i>=0&&btns[i]) btns[i].classList.add('active');
 
   if(id==='cards'){ renderRateCards(false); renderLadderMix(false); }
   try {
@@ -1277,10 +1264,7 @@ function goTab(id){
     return;
   }
   if(id==='composer'){ switchTab('composer',null); return; }
-  const order=['calc','cards'],i=order.indexOf(id);
-  const btns=[...document.querySelectorAll('.tab-bar .tab-btn')].filter((el)=>el.tagName==='BUTTON');
-  if(i>=0&&btns[i])switchTab(id,btns[i]);
-  else switchTab(id,null);
+  switchTab(id,null);
 }
 function setBuilderMode(mode,btn){
   const ev=document.getElementById('builder-mode-ev');
@@ -1675,46 +1659,115 @@ function setLogSlateMsg(txt,isErr){
   el.textContent=txt||'';
   el.style.color=isErr?'var(--amber)':'var(--muted)';
 }
+function formatSlateOptionLabel(t){
+  const name=String(t.group_name||'Ticket');
+  const no=(t.ticket_no!=null&&t.ticket_no!=='')?(' #'+t.ticket_no):'';
+  const ev=Number(t.ev);
+  const evBit=(!isNaN(ev)&&isFinite(ev))?(' (EV '+ev.toFixed(2)+')'):'';
+  return name+no+evBit;
+}
+function flattenTicketsLatest(data){
+  const out=[];
+  const groups=Array.isArray(data&&data.groups)?data.groups:[];
+  groups.forEach(grp=>{
+    const groupName=String((grp&&grp.group_name)||'');
+    ((grp&&grp.tickets)||[]).forEach(t=>{
+      const tno=(t&&t.ticket_no)!=null?t.ticket_no:'';
+      const ticket_key=groupName+'#'+tno;
+      const legs=((t&&t.legs)||[]).map(leg=>({
+        player:String(leg.player||''),
+        sport:String(leg.sport||''),
+        prop_type:String(leg.prop_type||''),
+        pick_type:String(leg.pick_type||''),
+        direction:String(leg.direction||''),
+        line:leg.line,
+        standard_line:leg.standard_line!=null?leg.standard_line:leg.line,
+        hit_rate:leg.hit_rate,
+        ml_prob:leg.ml_prob,
+        group_name:groupName,
+        ticket_no:tno,
+        ticket_key:ticket_key,
+      }));
+      let ev=t.ev_power;
+      if(ev==null&&t.payout&&typeof t.payout==='object')ev=t.payout.ev;
+      if(ev==null)ev=t.est_ev;
+      const nEv=Number(ev);
+      out.push({
+        group_name:groupName,
+        ticket_no:tno,
+        ticket_key:ticket_key,
+        n_legs:legs.length,
+        ev:(!isNaN(nEv)&&isFinite(nEv))?nEv:null,
+        legs:legs,
+      });
+    });
+  });
+  return out;
+}
 function populateSlateTicketSelect(selectEl){
   if(!selectEl)return;
   selectEl.innerHTML='<option value="">Select a ticket group...</option>';
-  const byGroup={};
   slateTicketOptions.forEach(t=>{
-    const g=String(t.group_name||'Ungrouped');
-    if(!byGroup[g])byGroup[g]=[];
-    byGroup[g].push(t);
+    const o=document.createElement('option');
+    o.value=String(t.ticket_key||'');
+    o.textContent=formatSlateOptionLabel(t);
+    selectEl.appendChild(o);
   });
-  Object.keys(byGroup).sort().forEach(groupName=>{
-    const og=document.createElement('optgroup');
-    og.label=groupName;
-    byGroup[groupName].forEach(t=>{
-      const o=document.createElement('option');
-      o.value=String(t.ticket_key||'');
-      const n=Number(t.n_legs)||((t.legs||[]).length||0);
-      o.textContent=groupName+' · #'+String(t.ticket_no||'?')+' ('+n+' legs)';
-      og.appendChild(o);
-    });
-    selectEl.appendChild(og);
-  });
+}
+async function fetchJsonNoStore(url){
+  const r=await fetch(url,{cache:'no-store'});
+  let j=null;
+  try{j=await r.json();}catch(_e){j=null;}
+  return {ok:r.ok,status:r.status,json:j};
 }
 async function loadSlateTicketOptions(){
   try{
     setCalcSlateMsg('Loading slate tickets...',false);
     setLogSlateMsg('Loading slate tickets...',false);
-    const r=await fetch('/api/slate-legs',{cache:'default'});
-    const j=await r.json();
-    if(!r.ok)throw new Error(j.error||('HTTP '+r.status));
-    const list=Array.isArray(j.tickets)?j.tickets:[];
+    let list=[];
+    let stamp='';
+    const slate=await fetchJsonNoStore('/api/slate-legs');
+    if(slate.ok&&Array.isArray(slate.json&&slate.json.tickets)&&slate.json.tickets.length){
+      list=slate.json.tickets;
+      stamp=slate.json.built_at?(' · '+slate.json.built_at):'';
+    }else{
+      const latest=await fetchJsonNoStore('/tickets_latest.json');
+      if(latest.ok&&latest.json){
+        list=flattenTicketsLatest(latest.json);
+        stamp=latest.json.generated_at?(' · '+latest.json.generated_at):'';
+      }
+      if(!list.length){
+        const top=await fetchJsonNoStore('/api/tickets-ev-top20');
+        if(top.ok&&Array.isArray(top.json&&top.json.tickets)){
+          list=top.json.tickets.map((t,i)=>{
+            const groupName=String((top.json&&top.json.group_name)||'Top EV');
+            const tno=t.ticket_no!=null?t.ticket_no:(i+1);
+            const rawLegs=Array.isArray(t.legs)?t.legs:[];
+            const legs=rawLegs.map(leg=>{
+              if(leg&&typeof leg==='object')return leg;
+              return {player:String(leg||''),sport:'',prop_type:'Points',pick_type:'Standard',direction:'OVER',line:null};
+            });
+            return {
+              group_name:groupName,
+              ticket_no:tno,
+              ticket_key:groupName+'#'+tno,
+              n_legs:Number(t.n_legs)||legs.length,
+              ev:t.ev_power!=null?t.ev_power:t.ev,
+              legs:legs,
+            };
+          }).filter(t=>t.legs&&t.legs.length);
+        }
+      }
+    }
     slateTicketOptions=list;
     slateTicketMap={};
     list.forEach(t=>{slateTicketMap[String(t.ticket_key||'')]=t;});
     rebuildSlateLegLookup();
     populateSlateTicketSelect(document.getElementById('calc-slate-ticket-select'));
     populateSlateTicketSelect(document.getElementById('log-slate-ticket-select'));
-    const stamp=j.built_at?(' · '+j.built_at):'';
     const msg=list.length
       ?('Loaded '+list.length+' tickets'+stamp)
-      :('0 tickets for this date — MAIN may be empty'+stamp);
+      :('No slate tickets available'+stamp);
     setCalcSlateMsg(msg,!list.length);
     setLogSlateMsg(msg,!list.length);
   }catch(e){
@@ -1963,7 +2016,7 @@ function renderCalcLegs(){
       </div>
       <div class="leg-body">
         <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;margin-bottom:10px">
-          <div><span class="sub-lbl">PLAYER</span><input class="leg-input" type="text" placeholder="e.g. Tyrese Haliburton" value="${leg.player}" oninput="patchCF(${leg.id},'player',this.value)" onblur="blurCFPlayer(${leg.id})"/></div>
+          <div><span class="sub-lbl">PLAYER</span><input class="leg-input" type="text" placeholder="Player name" value="${leg.player}" oninput="patchCF(${leg.id},'player',this.value)" onblur="blurCFPlayer(${leg.id})"/></div>
           <div><span class="sub-lbl">SPORT</span><select class="leg-input" onchange="updateCF(${leg.id},'sport',this.value)">${sportSel}</select></div>
           <div><span class="sub-lbl">PROP</span><select class="leg-input" onchange="updateCF(${leg.id},'prop',this.value)">${propSel}</select></div>
         </div>
@@ -2150,7 +2203,7 @@ function renderLogLegs(){
         <div style="display:flex;align-items:center;gap:8px;">${bktHtml}<button class="leg-remove" onclick="removeLogLeg(${leg.id})">✕</button></div>
       </div>
       <div class="form-grid-5">
-        <div class="field"><label>PLAYER</label><input class="leg-input" type="text" placeholder="e.g. Tari Eason" value="${leg.player}" oninput="patchLF(${leg.id},'player',this.value)" onblur="blurLFPlayer(${leg.id})"/></div>
+        <div class="field"><label>PLAYER</label><input class="leg-input" type="text" placeholder="Player name" value="${leg.player}" oninput="patchLF(${leg.id},'player',this.value)" onblur="blurLFPlayer(${leg.id})"/></div>
         <div class="field"><label>SPORT</label><select class="leg-input" onchange="updateLF(${leg.id},'sport',this.value)">${ss(leg.sport)}</select></div>
         <div class="field"><label>PROP</label><select class="leg-input" onchange="updateLF(${leg.id},'prop',this.value)">${ps(leg.prop)}</select></div>
         <div class="field"><label style="color:var(--std)">⭐ STD LINE</label><input class="leg-input" type="text" inputmode="decimal" autocomplete="off" placeholder="20.5" value="${leg.stdLine}" oninput="patchLF(${leg.id},'stdLine',this.value)" onblur="blurLFLine(${leg.id},'stdLine',this)" style="color:var(--std)"/></div>
@@ -2605,8 +2658,7 @@ document.addEventListener('paste',e=>{
 });
 
 /* ─── INIT ─── */
-addCalcLeg('standard');
-addCalcLeg('goblin');
+renderCalcLegs();
 updateLogCount();
 composerLoadPrefill();
 renderLogTable();

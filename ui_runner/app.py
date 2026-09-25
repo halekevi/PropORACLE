@@ -5039,12 +5039,24 @@ def api_slate_legs():
                 if key not in seen:
                     seen.add(key)
                     legs.append(item)
+            ev = t.get("ev_power")
+            if ev is None:
+                pay = t.get("payout")
+                if isinstance(pay, dict):
+                    ev = pay.get("ev")
+            if ev is None:
+                ev = t.get("est_ev")
+            try:
+                ev_out = round(float(ev), 4) if ev is not None and str(ev).strip() != "" else None
+            except (TypeError, ValueError):
+                ev_out = None
             tickets_out.append(
                 {
                     "group_name": group_name,
                     "ticket_no": tno,
                     "ticket_key": ticket_key,
                     "n_legs": len(t_legs),
+                    "ev": ev_out,
                     "legs": t_legs,
                 }
             )
