@@ -1977,25 +1977,30 @@ def harvest_live_cdp_entries(payload: dict) -> tuple[dict, dict]:
                 "payout_source": "live_cdp",
                 "ticket_id": t.get("ticket_id"),
                 "n_legs": t.get("n_legs") or len(t.get("legs") or []),
+                "legs": t.get("legs") if isinstance(t.get("legs"), list) else [],
+                "play": t.get("play") or t.get("product"),
+                "product": t.get("product") or t.get("play"),
             }
             if pay.get("power_first_x") is not None:
                 entry["power_first_x"] = pay.get("power_first_x")
             if pay.get("captured_at"):
                 entry["captured_at"] = pay.get("captured_at")
             tid = str(t.get("ticket_id") or "").strip()
+            sig = _leg_sig_key_for_payout_patch(t.get("legs"), ticket=t)
+            if sig:
+                entry["payout_sig"] = sig
             if tid:
                 by_id[tid] = entry
-            sig = _leg_sig_key_for_payout_patch(t.get("legs"), ticket=t)
             if sig:
                 by_sig[sig] = entry
     return by_id, by_sig
 
 
 def preserve_live_cdp_onto_payload(payload: dict, source_payload: dict) -> int:
-    """Copy live_cdp floors from source onto matching tickets in payload (id or leg sig)."""
+    """Copy live_cdp floors from source onto matching tickets in payload (id+sig or unique sig)."""
     if not isinstance(payload, dict) or not isinstance(source_payload, dict):
         return 0
-    from utils.payout_ticket_sig import ambiguous_sig_keys, ticket_payout_sig
+    from utils.payout_ticket_sig import ambiguous_sig_keys, resolve_payout_patch_entry
 
     by_id, by_sig = harvest_live_cdp_entries(source_payload)
     if not by_id and not by_sig:
@@ -2014,14 +2019,9 @@ def preserve_live_cdp_onto_payload(payload: dict, source_payload: dict) -> int:
         if str(pay.get("payout_source") or "").strip().lower() == "live_cdp":
             if _safe_positive_float(pay.get("power_min_x") or pay.get("display_min_x")):
                 continue
-        tid = str(t.get("ticket_id") or "").strip()
-        entry = by_id.get(tid) if tid else None
-        if entry is None:
-            sig = ticket_payout_sig(t)
-            if sig and sig not in ambiguous:
-                entry = by_sig.get(sig)
-            else:
-                entry = None
+        entry, _kind = resolve_payout_patch_entry(
+            t, by_id=by_id, by_sig=by_sig, ambiguous=ambiguous
+        )
         if entry is None:
             continue
         if not isinstance(entry, dict):
@@ -2109,7 +2109,7 @@ def apply_payout_patch_to_payload(payload: dict) -> int:
         except Exception:
             patch = None
         if isinstance(patch, dict):
-            from utils.payout_ticket_sig import ambiguous_sig_keys, ticket_payout_sig
+            from utils.payout_ticket_sig import ambiguous_sig_keys, resolve_payout_patch_entry
 
             by_id = patch.get("by_ticket_id") if isinstance(patch.get("by_ticket_id"), dict) else {}
             by_sig = patch.get("by_leg_sig") if isinstance(patch.get("by_leg_sig"), dict) else {}
@@ -2122,14 +2122,9 @@ def apply_payout_patch_to_payload(payload: dict) -> int:
                         dest_tickets.append(t)
             ambiguous = ambiguous_sig_keys(dest_tickets)
             for t in dest_tickets:
-                tid = str(t.get("ticket_id") or "").strip()
-                entry = by_id.get(tid) if tid else None
-                if entry is None:
-                    sig = ticket_payout_sig(t)
-                    if sig and sig not in ambiguous:
-                        entry = by_sig.get(sig)
-                    else:
-                        entry = None
+                entry, _kind = resolve_payout_patch_entry(
+                    t, by_id=by_id, by_sig=by_sig, ambiguous=ambiguous
+                )
                 if not isinstance(entry, dict):
                     continue
                 min_x = _safe_positive_float(entry.get("power_min_x") or entry.get("display_min_x"))
@@ -2207,7 +2202,7 @@ def seed_live_cdp_from_day_ahead_archive(payload: dict) -> int:
                 by_sig[sig] = t
 
     n = 0
-    from utils.payout_ticket_sig import ambiguous_sig_keys, ticket_payout_sig
+    from utils.payout_ticket_sig import ambiguous_sig_keys, resolve_payout_patch_entry
 
     dest_tickets: list[dict] = []
     for g in payload.get("groups") or []:
@@ -2217,26 +2212,60 @@ def seed_live_cdp_from_day_ahead_archive(payload: dict) -> int:
             if isinstance(t, dict):
                 dest_tickets.append(t)
     ambiguous = ambiguous_sig_keys(dest_tickets)
+    # Build by_sig from prior tickets (values are full ticket dicts).
+    by_sig_entries: dict[str, dict] = {}
+    for sig, src_t in by_sig.items():
+        if not isinstance(src_t, dict):
+            continue
+        src_pay = src_t.get("payout") if isinstance(src_t.get("payout"), dict) else {}
+        entry = {
+            "power_min_x": src_pay.get("display_min_x") or src_pay.get("power_min_x"),
+            "display_min_x": src_pay.get("display_min_x") or src_pay.get("power_min_x"),
+            "payout_source": "live_cdp",
+            "ticket_id": src_t.get("ticket_id"),
+            "legs": src_t.get("legs"),
+            "play": src_t.get("play") or src_t.get("product"),
+            "product": src_t.get("product") or src_t.get("play"),
+            "n_legs": src_t.get("n_legs"),
+            "payout_sig": sig,
+            "captured_at": src_pay.get("captured_at"),
+            "n_correct": src_pay.get("n_correct"),
+            "payout_note": src_pay.get("payout_note"),
+        }
+        by_sig_entries[sig] = entry
+    by_id_entries: dict[str, dict] = {}
+    for tid, src_t in by_id.items():
+        if not isinstance(src_t, dict):
+            continue
+        src_pay = src_t.get("payout") if isinstance(src_t.get("payout"), dict) else {}
+        sig = _leg_sig_key_for_payout_patch(src_t.get("legs"), ticket=src_t)
+        entry = {
+            "power_min_x": src_pay.get("display_min_x") or src_pay.get("power_min_x"),
+            "display_min_x": src_pay.get("display_min_x") or src_pay.get("power_min_x"),
+            "payout_source": "live_cdp",
+            "ticket_id": src_t.get("ticket_id"),
+            "legs": src_t.get("legs"),
+            "play": src_t.get("play") or src_t.get("product"),
+            "product": src_t.get("product") or src_t.get("play"),
+            "n_legs": src_t.get("n_legs"),
+            "payout_sig": sig,
+            "captured_at": src_pay.get("captured_at"),
+            "n_correct": src_pay.get("n_correct"),
+            "payout_note": src_pay.get("payout_note"),
+        }
+        by_id_entries[str(tid)] = entry
     for t in dest_tickets:
         pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
         if str(pay.get("payout_source") or "").strip().lower() == "live_cdp":
             continue
-        tid = str(t.get("ticket_id") or "").strip()
-        src_t = by_id.get(tid) if tid else None
-        if src_t is None:
-            sig = ticket_payout_sig(t)
-            if sig and sig not in ambiguous:
-                src_t = by_sig.get(sig)
-            else:
-                src_t = None
-        if not isinstance(src_t, dict):
+        entry, _kind = resolve_payout_patch_entry(
+            t, by_id=by_id_entries, by_sig=by_sig_entries, ambiguous=ambiguous
+        )
+        if not isinstance(entry, dict):
             continue
-        src_pay = src_t.get("payout") if isinstance(src_t.get("payout"), dict) else {}
         min_x = _safe_positive_float(
-            src_pay.get("display_min_x")
-            or src_pay.get("power_min_x")
-            or src_pay.get("min_payout_x")
-            or src_pay.get("payout")
+            entry.get("display_min_x")
+            or entry.get("power_min_x")
         )
         if min_x is None:
             continue
@@ -2244,12 +2273,12 @@ def seed_live_cdp_from_day_ahead_archive(payload: dict) -> int:
         pay["power_min_x"] = round(min_x, 4)
         pay["display_min_x"] = round(min_x, 4)
         pay["payout_source"] = "live_cdp"
-        if src_pay.get("captured_at"):
-            pay["captured_at"] = src_pay.get("captured_at")
-        if isinstance(src_pay.get("n_correct"), dict) and src_pay.get("n_correct"):
-            pay["n_correct"] = src_pay["n_correct"]
-        if src_pay.get("payout_note"):
-            pay["payout_note"] = src_pay.get("payout_note")
+        if entry.get("captured_at"):
+            pay["captured_at"] = entry.get("captured_at")
+        if isinstance(entry.get("n_correct"), dict) and entry.get("n_correct"):
+            pay["n_correct"] = entry["n_correct"]
+        if entry.get("payout_note"):
+            pay["payout_note"] = entry.get("payout_note")
         refresh_ticket_ev_from_min_guarantee(pay, min_x, update_recommendation=False)
         t["payout"] = pay
         t["display_min_x"] = pay["display_min_x"]

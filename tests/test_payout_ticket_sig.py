@@ -146,3 +146,77 @@ def test_unique_sig_still_paints_after_id_change(tmp_path, monkeypatch):
     pay = data["groups"][0]["tickets"][0]["payout"]
     assert pay["payout_source"] == "live_cdp"
     assert float(pay["display_min_x"]) == 3.2
+
+
+def test_swapped_positional_ids_do_not_cross_paint(tmp_path, monkeypatch):
+    """Rebuild swaps two slips into each other's {date}|{group}|{index} slots."""
+    monkeypatch.setattr(cpd, "ROOT", tmp_path)
+    monkeypatch.setenv("PROPORACLE_REQUIRE_LIVE_PAYOUT", "1")
+    (tmp_path / "data" / "reports").mkdir(parents=True)
+    date = "2026-09-24"
+    legs_a = [_leg("Alice", "Assists"), _leg("Bob", "Rebounds")]
+    legs_b = [_leg("Carol", "Points"), _leg("Dave", "Steals", line=0.5)]
+    # Capture when index 1 was A (floor 2.5) and index 2 was B (floor 4.0).
+    captured = [
+        {
+            "ticket_id": "2026-09-24|G70|1",
+            "play": "Power",
+            "n_legs": 2,
+            "legs": legs_a,
+            "ticket_type_captured": "power",
+            "status": "ok",
+            "power_min_x": 2.5,
+        },
+        {
+            "ticket_id": "2026-09-24|G70|2",
+            "play": "Power",
+            "n_legs": 2,
+            "legs": legs_b,
+            "ticket_type_captured": "power",
+            "status": "ok",
+            "power_min_x": 4.0,
+        },
+    ]
+    # After rebuild, slot 1 holds B's legs and slot 2 holds A's legs.
+    swapped = {
+        "date": date,
+        "groups": [
+            {
+                "name": "G70",
+                "tickets": [
+                    {
+                        "ticket_id": "2026-09-24|G70|1",
+                        "play": "Power",
+                        "n_legs": 2,
+                        "legs": [dict(x) for x in legs_b],
+                        "payout": {"payout_source": "pending_live", "min_payout_x": 5.0},
+                    },
+                    {
+                        "ticket_id": "2026-09-24|G70|2",
+                        "play": "Power",
+                        "n_legs": 2,
+                        "legs": [dict(x) for x in legs_a],
+                        "payout": {"payout_source": "pending_live", "min_payout_x": 5.0},
+                    },
+                ],
+            }
+        ],
+    }
+    tickets_path = tmp_path / "tickets.json"
+    tickets_path.write_text(__import__("json").dumps(swapped), encoding="utf-8")
+    result = cpd.write_payout_patch_and_apply_to_tickets(
+        tickets_path=tickets_path,
+        captured=captured,
+        date_str=date,
+    )
+    data = __import__("json").loads(tickets_path.read_text(encoding="utf-8"))
+    t1, t2 = data["groups"][0]["tickets"]
+    # Sig rematch (not ID): slot 1 is B → 4.0; slot 2 is A → 2.5.
+    assert float(t1["payout"]["display_min_x"]) == 4.0
+    assert t1["payout"]["payout_source"] == "live_cdp"
+    assert float(t2["payout"]["display_min_x"]) == 2.5
+    assert t2["payout"]["payout_source"] == "live_cdp"
+    assert int(result.get("n_id_sig_mismatch") or 0) == 2
+    # Explicit: neither got the floor that belonged to the other ID alone.
+    assert float(t1["payout"]["display_min_x"]) != 2.5
+    assert float(t2["payout"]["display_min_x"]) != 4.0

@@ -107,3 +107,68 @@ def ambiguous_sig_keys(tickets: list[dict[str, Any]]) -> set[str]:
             continue
         counts[sig] = counts.get(sig, 0) + 1
     return {s for s, n in counts.items() if n > 1}
+
+
+def _floor_x(entry: dict[str, Any] | None) -> float | None:
+    if not isinstance(entry, dict):
+        return None
+    try:
+        x = float(entry.get("power_min_x") or entry.get("display_min_x") or 0)
+    except (TypeError, ValueError):
+        return None
+    return x if x > 0 else None
+
+
+def entry_stored_sig(entry: dict[str, Any] | None) -> str:
+    """Sig stamped on a patch entry, or recomputed from stored legs."""
+    if not isinstance(entry, dict):
+        return ""
+    stamped = str(entry.get("payout_sig") or "").strip()
+    if stamped:
+        return stamped
+    if isinstance(entry.get("legs"), list) and entry.get("legs"):
+        return ticket_payout_sig(entry)
+    return ""
+
+
+def resolve_payout_patch_entry(
+    ticket: dict[str, Any],
+    *,
+    by_id: dict[str, Any],
+    by_sig: dict[str, Any],
+    ambiguous: set[str] | None = None,
+) -> tuple[dict[str, Any] | None, str]:
+    """Resolve a patch floor for a live ticket.
+
+    Rules:
+      1) ticket_id match **and** sig agrees → paint (ID is only a fast path)
+      2) ID matches but sig differs → ignore ID; fall through to sig-only
+      3) unique sig-only match → paint
+      4) ambiguous sig or no match → skip
+
+    Returns ``(entry_or_None, match_kind)`` where match_kind is
+    ``id_sig`` | ``sig`` | ``ambiguous`` | ``none``.
+    """
+    if not isinstance(ticket, dict):
+        return None, "none"
+    ambiguous = ambiguous or set()
+    tid = str(ticket.get("ticket_id") or "").strip()
+    sig = ticket_payout_sig(ticket)
+
+    entry: dict[str, Any] | None = None
+    if tid and isinstance(by_id, dict):
+        cand = by_id.get(tid)
+        if isinstance(cand, dict) and _floor_x(cand) is not None:
+            stored = entry_stored_sig(cand)
+            if stored and sig and stored == sig:
+                return cand, "id_sig"
+            # Positional ID now points at a different slip — do not paint from ID.
+            entry = None
+
+    if sig and sig in ambiguous:
+        return None, "ambiguous"
+    if sig and isinstance(by_sig, dict):
+        cand = by_sig.get(sig)
+        if isinstance(cand, dict) and _floor_x(cand) is not None:
+            return cand, "sig"
+    return None, "none"

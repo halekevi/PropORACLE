@@ -3519,14 +3519,19 @@ def write_payout_patch_and_apply_to_tickets(
                         "ticket_id": t.get("ticket_id"),
                         "n_legs": t.get("n_legs") or len(t.get("legs") or []),
                         "captured_at": pay.get("captured_at"),
+                        "legs": t.get("legs") if isinstance(t.get("legs"), list) else [],
+                        "play": t.get("play") or t.get("product"),
+                        "product": t.get("product") or t.get("play"),
                     }
-                    tid = str(t.get("ticket_id") or "").strip()
-                    if tid and tid not in prior_by_id:
-                        prior_by_id[tid] = entry
                     sig = _leg_sig_key(
                         t.get("legs") if isinstance(t.get("legs"), list) else [],
                         ticket=t,
                     )
+                    if sig:
+                        entry["payout_sig"] = sig
+                    tid = str(t.get("ticket_id") or "").strip()
+                    if tid and tid not in prior_by_id:
+                        prior_by_id[tid] = entry
                     if sig and sig not in prior_by_sig:
                         prior_by_sig[sig] = entry
         except Exception as e:
@@ -3563,17 +3568,23 @@ def write_payout_patch_and_apply_to_tickets(
             "n_legs": rec.get("n_legs"),
             "slip_type": rec.get("slip_type"),
             "captured_at": rec.get("captured_at") or _stamp_captured_at(rec),
+            "legs": rec.get("legs") if isinstance(rec.get("legs"), list) else [],
+            "play": rec.get("play") or rec.get("product"),
+            "product": rec.get("product") or rec.get("play"),
+            "ticket_type_captured": rec.get("ticket_type_captured"),
         }
         tid = str(rec.get("ticket_id") or "").strip()
-        if tid:
-            patch["by_ticket_id"][tid] = entry
-            n_new += 1
         sig = _leg_sig_key(
             rec.get("legs") if isinstance(rec.get("legs"), list) else [],
             ticket=rec,
             n_legs=rec.get("n_legs"),
             product=str(rec.get("ticket_type_captured") or rec.get("product") or "") or None,
         )
+        if sig:
+            entry["payout_sig"] = sig
+        if tid:
+            patch["by_ticket_id"][tid] = entry
+            n_new += 1
         if sig:
             patch["by_leg_sig"][sig] = entry
 
@@ -3605,6 +3616,8 @@ def write_payout_patch_and_apply_to_tickets(
     n_patched = 0
     n_fallback = 0
     n_kept_live = 0
+    n_id_sig_mismatch = 0
+    n_sig_ambiguous = 0
     if tickets_path.is_file():
         # Merge, not snapshot: re-read the live card at write time and paint
         # floors by ticket_id / leg sig. Tickets scrub/rebuild removed stay gone;
@@ -3618,6 +3631,8 @@ def write_payout_patch_and_apply_to_tickets(
         n_patched = int(counts.get("n_patched") or 0)
         n_kept_live = int(counts.get("n_kept_live") or 0)
         n_fallback = int(counts.get("n_fallback") or 0)
+        n_id_sig_mismatch = int(counts.get("n_id_sig_mismatch") or 0)
+        n_sig_ambiguous = int(counts.get("n_sig_ambiguous") or 0)
         sync_tickets_json_mirrors_via_patch(
             patch,
             mix_avg=mix_avg,
@@ -3652,6 +3667,8 @@ def write_payout_patch_and_apply_to_tickets(
         "n_patched": n_patched,
         "n_fallback": n_fallback,
         "n_kept_live": n_kept_live,
+        "n_id_sig_mismatch": n_id_sig_mismatch,
+        "n_sig_ambiguous": n_sig_ambiguous,
         "patch": patch,
     }
 
@@ -3674,15 +3691,15 @@ def apply_payout_patch_entries_to_payload(
 ) -> dict[str, int]:
     """Paint floors onto tickets that exist on ``data``. Mutates in place.
 
-    Resolution order:
-      1) ticket_id exact match
-      2) full payout sig (legs + pick_type + Power/Flex + n_legs) **only when
-         exactly one** current ticket has that sig — ambiguous sigs are skipped
+    Resolution (sig is the real identity; ID only speeds lookup):
+      1) ticket_id **and** sig both match → paint
+      2) ID matches but sig differs → ignore ID; try unique sig-only
+      3) unique sig-only → paint
+      4) ambiguous sig or no match → skip (next CDP window fills)
 
-    Missing / ambiguous tickets stay without a painted floor (next CDP window
-    fills them). Never re-inserts scrubbed slips.
+    Never re-inserts scrubbed slips.
     """
-    from utils.payout_ticket_sig import ambiguous_sig_keys, ticket_payout_sig
+    from utils.payout_ticket_sig import ambiguous_sig_keys, resolve_payout_patch_entry
 
     by_id = patch.get("by_ticket_id") if isinstance(patch.get("by_ticket_id"), dict) else {}
     by_sig = patch.get("by_leg_sig") if isinstance(patch.get("by_leg_sig"), dict) else {}
@@ -3691,6 +3708,7 @@ def apply_payout_patch_entries_to_payload(
     n_fallback = 0
     n_kept_live = 0
     n_sig_ambiguous = 0
+    n_id_sig_mismatch = 0
 
     all_tickets: list[dict] = []
     for g in data.get("groups") or []:
@@ -3703,18 +3721,21 @@ def apply_payout_patch_entries_to_payload(
 
     for t in all_tickets:
         tid = str(t.get("ticket_id") or "").strip()
-        entry = by_id.get(tid) if tid else None
-        used_sig = False
-        if entry is None:
-            sig = ticket_payout_sig(t)
-            if sig and sig in ambiguous:
-                n_sig_ambiguous += 1
-                entry = None
-            elif sig:
-                entry = by_sig.get(sig)
-                used_sig = entry is not None
-            else:
-                entry = None
+        # Count positional-ID reshuffles (ID present in patch, sig disagrees).
+        if tid and tid in by_id:
+            from utils.payout_ticket_sig import entry_stored_sig, ticket_payout_sig
+
+            cand = by_id.get(tid)
+            stored = entry_stored_sig(cand if isinstance(cand, dict) else None)
+            cur = ticket_payout_sig(t)
+            if stored and cur and stored != cur:
+                n_id_sig_mismatch += 1
+
+        entry, match_kind = resolve_payout_patch_entry(
+            t, by_id=by_id, by_sig=by_sig, ambiguous=ambiguous
+        )
+        if match_kind == "ambiguous":
+            n_sig_ambiguous += 1
         pay = t.get("payout") if isinstance(t.get("payout"), dict) else {}
         pay = dict(pay)
         if pay.get("model_min_payout_x") is None and pay.get("min_payout_x") is not None:
@@ -3740,11 +3761,10 @@ def apply_payout_patch_entries_to_payload(
                     )
                 except Exception:
                     pass
+                pay["payout_match"] = match_kind
                 t["payout"] = pay
                 t["display_min_x"] = pay["display_min_x"]
                 n_patched += 1
-                if used_sig:
-                    pay["payout_match"] = "leg_sig"
                 continue
 
         # Do NOT downgrade an existing live_cdp floor to board-avg on miss.
@@ -3839,11 +3859,17 @@ def apply_payout_patch_entries_to_payload(
         "n_kept_live": n_kept_live,
         "n_fallback": n_fallback,
         "n_sig_ambiguous": n_sig_ambiguous,
+        "n_id_sig_mismatch": n_id_sig_mismatch,
     }
     if n_sig_ambiguous:
         print(
             f"[PAYOUT] skipped {n_sig_ambiguous} ticket(s) with ambiguous payout sig "
             "(missing floors safer than a wrong live_cdp)"
+        )
+    if n_id_sig_mismatch:
+        print(
+            f"[PAYOUT] ignored {n_id_sig_mismatch} positional ticket_id match(es) "
+            "where sig disagreed (reshuffled slot)"
         )
     return out
 
