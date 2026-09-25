@@ -27,14 +27,8 @@ note right
      (utils/ticket_diversity.py).
   3. Diversity filter
      (config/diversity_config.json).
-  4. Cross-ticket anchor cap
-     (utils/slate_exposure_ledger.py).
-     One ledger on dual-card write:
-     G70 groups + CORE/STRONG/mixer
-     (include_goblin70=True). Caps
-     anchor (1) + non-anchor (1) and
-     blocks same player+prop+dir
-     (McGreevy / Wood x8 class).
+  (Anchor cap is **not** here —
+   it runs after dual-card merge.)
 end note
 
 if (Caller routes through\nInvoke-G70WriteWebStandalone?) then (yes)
@@ -50,7 +44,9 @@ else (no — known gap)
   note right
     **Gap:** run_daily.ps1 still calls py
     directly, not the standalone helper.
-    Ordering / logging may diverge.
+    Logging / ordering only —
+    exposure trim still runs inside
+    the dual-card write (both paths).
   end note
 endif
 
@@ -69,6 +65,24 @@ fork again
 fork again
   :YOLO Power 4/5/6\n(Diamond/Platinum seeds;\n**excluded from ticket WR / Income**);
 end fork
+
+:Cross-ticket anchor cap\n(trim_payload_slate_exposure);
+note right
+  Runs on the **merged** dual card,
+  before tickets_latest.json
+  (so 9PM payout capture prices
+  the trimmed card).
+  include_goblin70=True — one ledger
+  walks **G70 first**, then
+  CORE / STRONG / mixer.
+  G70 wins ties; CORE/mixer lose them.
+  Caps: anchor ≤1 + non-anchor ≤1;
+  blocks identical player+prop+dir
+  (McGreevy / Wood ×8 class).
+  Worst case: same player twice
+  (once as anchor, once not) —
+  same leg cannot appear twice.
+end note
 
 :tickets_latest.json\n(disk: ui_runner/runtime/\nGitHub: ui_runner/templates/);
 :Publish-LiveSite.ps1 → origin/main;
