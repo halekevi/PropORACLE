@@ -1,0 +1,34 @@
+@startuml PropORACLE_Grading
+' Grading — 3AM grader + void-aware ticket eval
+' Render: PlantUML extension or https://www.plantuml.com/plantuml
+
+title PropORACLE — Grading
+
+actor Sched as "Task Scheduler\n(3AM)"
+participant "run_grader.ps1" as Grader
+participant "Sport actuals\n(ESPN / boxes / period CSVs)" as Actuals
+participant "combined_ticket_grader.py" as TickGrade
+participant "build_ticket_eval.py" as Eval
+participant "grade_history.json" as Hist
+participant "/grades" as UI
+
+Sched -> Grader : yesterday's slate
+Grader -> Actuals : fetch / join actuals\n(WNBA1H/1Q never fall back to full-game)
+Actuals --> Grader : per-prop actuals
+Grader -> TickGrade : grade slips vs actuals
+TickGrade --> Grader : WIN / LOSS / VOID per leg
+
+note right of TickGrade
+  VOID / NO_ACTUAL → drop leg,
+  pay reduced N-correct tier.
+  <2 playable → refund / no contest.
+  Unacceptable voids flagged
+  (validate_unacceptable_voids.py).
+end note
+
+Grader -> Eval : ticket_eval_<date>.html\ngraded_props_<date>.json
+Eval -> Hist : append W/L/voids\n(standard_yolo + goblin70_yolo\ntracks separate, not Income)
+Eval --> UI : Grades hub + income
+Grader -> Grader : Publish eval artifacts
+
+@enduml

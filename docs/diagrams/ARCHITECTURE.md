@@ -11,7 +11,7 @@
 3. [C4 Level 3 — Flask API components](#c4-level-3--flask-api-components)
 4. [Use case summary](#use-case-summary)
 5. [Sport pipeline coverage](#sport-pipeline-coverage)
-6. [Related files](#related-files)
+6. [Related files](#related-files) — includes fetch, ticket, grading, payout PlantUML
 
 ---
 
@@ -192,6 +192,10 @@ OTA bundle update   ──extends───►  Verify deploy / health   (bundled
 | `docs/diagrams/c4-containers.puml` | C4 Level 2 — Containers (PlantUML) |
 | `docs/diagrams/c4-components-flask.puml` | C4 Level 3 — Flask API components (PlantUML) |
 | `docs/diagrams/proporacle-use-cases.puml` | Full UML use case diagram (PlantUML) |
+| `docs/diagrams/fetch-pipeline.puml` | PrizePicks fetch (CDP / HTTP → step1–8) |
+| `docs/diagrams/ticket-design.puml` | Goblin-70 + mixer dual card + publish |
+| `docs/diagrams/grading.puml` | 3AM grader + void-aware ticket eval |
+| `docs/diagrams/payout-scrape.puml` | N-correct CDP scrape (never 1st place) |
 | `docs/architecture/USE_CASE_DIAGRAM.md` | Use case catalog + render instructions |
 | `docs/PROJECT_LAYOUT.md` | Folder contracts |
 | `docs/guides/DAILY_OPS_OVERVIEW.md` | Audiences + scheduled program structure |
