@@ -96,25 +96,36 @@ split
   :run_live_payout_capture.ps1;
   note right
     See payout-scrape.puml.
-    Writes N-correct floors,
+    Holds payout_capture.lock,
+    writes N-correct floors,
     then **publishes on its own**.
   end note
 split again
   :scrub_goblin70_keep_live.py\n(run_g70_keep_scrub.ps1);
   note right
-    Drops published G70 legs that now
-    fail keep gates (Mesa Jr. class).
-    Off-board legs left alone.
-    **Not on the rebuild path.**
-    A dropped leg changes the N-correct
-    pay → should trigger payout re-scrape.
+    Default: --write --publish-live
+    (opt out with -SkipPublish).
+    On keep fail: **drops the whole
+    G70 ticket** (not a shrunk Power 2
+    / 1-leg). Off-board legs untouched.
+    Writes runtime + templates (+ main_cp),
+    then Publish-LiveSite on drops.
+    Does **not** clear live_cdp
+    (survivors keep floors; dropped
+    slips are gone — no re-price needed).
+    **Gap:** does **not** take
+    payout_capture.lock — capture can
+    read pre-scrub, scrub publish, then
+    capture write back the failing slip
+    with a fresh live_cdp (worst case).
   end note
 end split
 :Publish-LiveSite.ps1 → origin/main;
 note right
   Capture publishes itself (confirmed).
-  VERIFY: whether the scrub publishes
-  directly or waits for the next publisher.
+  Scrub also publishes on drops by
+  default (confirmed). Shared lock
+  with capture is still missing.
 end note
 stop
 

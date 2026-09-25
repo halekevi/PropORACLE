@@ -29,12 +29,16 @@ endif
 if (First scrape of slate D?\n(D-1 9PM, -Force)) then (yes)
   :CDP scrape **all** generated slips;
 else (no)
-  if (missing live_cdp OR line/type moved\nOR leg count changed (keep scrub)?) then (yes)
+  if (missing live_cdp OR line/type moved?) then (yes)
     :Re-scrape those slips only;
     note right
-      "leg count changed" is **proposed** —
-      a scrubbed G70 leg changes the pay
-      but trips neither existing trigger.
+      Current scrub drops **whole** tickets
+      (no shrink), so leg-count / live_cdp
+      clear is not required for that path.
+      Remaining risk is the **lock race**:
+      capture without scrub under the same
+      payout_capture.lock can rewrite a
+      just-scrubbed card (see ticket-design).
     end note
   else (no)
     :Skip CDP;
