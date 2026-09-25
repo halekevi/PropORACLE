@@ -3326,7 +3326,10 @@ def page_grades_props_legacy_redirect_date(date_str: str):
 @app.get("/grades")
 def page_grades():
     """Primary Grades hub: slate / ticket iframes, KPIs, per-sport views (indexGrades.html)."""
-    return _grades_html_response("indexGrades.html")
+    return _grades_html_response(
+        "indexGrades.html",
+        latest_with_tickets=_best_grades_date() or "",
+    )
 
 
 @app.get("/grades/<date_str>")
@@ -3901,6 +3904,63 @@ def _grade_report_dates_on_disk(which: str) -> list[str]:
     return sorted(non_future if non_future else found)
 
 
+_TICKET_EVAL_MIN_BYTES = 5000
+
+
+def _ticket_eval_html_size(date_str: str, *, allow_remote: bool = True) -> int:
+    """Byte size of ticket_eval_{date}.html on disk, else GitHub raw when configured."""
+    fname = f"ticket_eval_{date_str}.html"
+    for base in (TEMPLATES_DIR, ARCHIVE_DIR):
+        p = base / fname
+        try:
+            if p.is_file():
+                return int(p.stat().st_size)
+        except OSError:
+            continue
+    if allow_remote and _GRADES_HTML_RAW_BASE:
+        body = _fetch_remote_bytes_cached(
+            f"grades-html:{fname}", f"{_GRADES_HTML_RAW_BASE}/{fname}"
+        )
+        if body:
+            return len(body)
+    return 0
+
+
+def _ticket_eval_has_cards(date_str: str, *, allow_remote: bool = True) -> bool:
+    return _ticket_eval_html_size(date_str, allow_remote=allow_remote) > _TICKET_EVAL_MIN_BYTES
+
+
+def _best_grades_date() -> str | None:
+    """Newest date whose ticket_eval HTML exists and is large enough to hold cards.
+
+    /grades itself is a hub (indexGrades.html), not a redirect. The hub should
+    land on this date when the Tickets tab is active, instead of ET yesterday
+    which often has slate_eval but no ticket_eval.
+    """
+    payload = _grades_report_dates_payload()
+    dates = _merge_grade_report_date_lists(
+        payload.get("ticket_eval_dates") or [],
+        _grade_report_dates_on_disk("ticket"),
+    )
+    newest_first = list(reversed(dates))
+    for date in newest_first:
+        if _ticket_eval_has_cards(date, allow_remote=False):
+            return date
+    for date in newest_first[:24]:
+        if _ticket_eval_has_cards(date, allow_remote=True):
+            return date
+    return newest_first[0] if newest_first else None
+
+
+@app.get("/api/grades/latest-with-tickets")
+def grades_latest_with_tickets():
+    """Newest YYYY-MM-DD that has a real ticket_eval HTML (not just a JSON date)."""
+    r = jsonify({"ok": True, "date": _best_grades_date()})
+    r.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    r.headers["Pragma"] = "no-cache"
+    return r
+
+
 @app.get("/api/grades/report_dates")
 def api_grades_report_dates():
     """
@@ -3917,6 +3977,7 @@ def api_grades_report_dates():
             "ticket_eval_dates": payload["ticket_eval_dates"],
             "ticket_eval_long_parlay_dates": payload["ticket_eval_long_parlay_dates"],
             "ticket_eval_high_leg_dates": payload["ticket_eval_high_leg_dates"],
+            "latest_with_tickets": _best_grades_date(),
             "grades_html_remote": bool(_GRADES_HTML_RAW_BASE),
         }
     )

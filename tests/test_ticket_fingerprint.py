@@ -31,7 +31,7 @@ def test_group_is_goblin70_from_name_and_track():
     )
 
 
-def test_tickets_html_keeps_goblin70_visible_when_skip():
+def test_tickets_html_hides_skip_including_goblin70():
     payload = {
         "date": "2026-08-28",
         "generated_at": "2026-08-28 14:41:26 UTC",
@@ -92,7 +92,10 @@ def test_tickets_html_keeps_goblin70_visible_when_skip():
     assert 'data-track="goblin70"' in html
     assert "function isGoblin70" in html
     assert "function isYolo" in html
-    assert "if(hideSkip && !isGoblin70(g) && !isYolo(g))" in html
+    assert "if(hideSkip){" in html
+    assert "if(hideSkip && !isGoblin70(g) && !isYolo(g))" not in html
+    assert 'id="show-skip-toggle"' in html
+    assert "tickets-hide-skip" in html
     assert "if(isGoblin70(group)) return true;" in html
 
 
