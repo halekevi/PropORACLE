@@ -170,7 +170,7 @@ Bundled offline UI      ──extends───►  Live site in app shell      (
 | Flow | Diagram | Key facts |
 |---|---|---|
 | Fetch | `fetch-pipeline.puml` | `refresh.lock` (4h TTL). CDP-first when `:9222` is warm, HTTP fallback, fail-fast skip when both fail (no downstream run on missing step1). NFL `pick_type` on-disk validation. |
-| Ticket design | `ticket-design.puml` | Mixer (`filter_eligible`, MLB ban first, same-player block, diversity, anchor cap) → Goblin-70 first → dual card → publish. Keep files can replace the generic L5=5 + L10≥8 + D + cover stack. YOLO excluded from WR / Income. |
+| Ticket design | `ticket-design.puml` | Mixer (`filter_eligible`, MLB ban first, same-player block, diversity) -> Goblin-70 first -> dual card -> **one** slate exposure ledger across G70 + CORE/STRONG/mixer -> publish. Keep files can replace the generic L5=5 + L10>=8 + D + cover stack. YOLO excluded from WR / Income. |
 | Grading | `grading.puml` | `combined_ticket_grader.py` **classifies legs**. `build_ticket_eval.py` **settles**: VOID leg dropped, slip pays the smaller-leg N-correct multiplier, <2 playable = refund. MAIN Income tracks: `graded_main`, `high_prob_std_gob` (since Sep 19). |
 | Payout scrape | `payout-scrape.puml` | Scheduled publisher. N-correct only, never 1st place. First scrape of slate D is 9PM `-Force`; later windows re-scrape missing / moved slips. |
 
@@ -208,7 +208,7 @@ Bundled offline UI      ──extends───►  Live site in app shell      (
 | Payout re-scrape doesn't trigger when the keep scrub drops a leg | payout-scrape | Proposed trigger |
 | CDP-down payout display source | payout-scrape | Verify |
 | Keep scrub publish path (direct vs next publisher) | ticket-design | Verify |
-| Anchor cap covers leg reuse across CORE + mixer + G70 | ticket-design | Verify |
+| Anchor cap across CORE + mixer + G70 | ticket-design | **Confirmed** -- `trim_payload_slate_exposure(..., include_goblin70=True)` on dual-card merge walks G70 then CORE/STRONG/mixer in one ledger. Caps anchor<=1 + non-anchor<=1; blocks identical player+prop+dir. Not a total ban on player reuse. |
 | `/api/run` + `train_edge_model` on Railway (pkl never reaches local step7) | C4 L3 | Verify / label local-only |
 | Income "rolling demo" rows excluded from headline WR | C4 L3 | Verify |
 

@@ -27,9 +27,14 @@ note right
      (utils/ticket_diversity.py).
   3. Diversity filter
      (config/diversity_config.json).
-  4. Cross-ticket anchor cap.
-     VERIFY: covers leg reuse across
-     CORE + mixer + G70 (Wood x8 class)
+  4. Cross-ticket anchor cap
+     (utils/slate_exposure_ledger.py).
+     One ledger on dual-card write:
+     G70 groups + CORE/STRONG/mixer
+     (include_goblin70=True). Caps
+     anchor (1) + non-anchor (1) and
+     blocks same player+prop+dir
+     (McGreevy / Wood x8 class).
 end note
 
 if (Caller routes through\nInvoke-G70WriteWebStandalone?) then (yes)
