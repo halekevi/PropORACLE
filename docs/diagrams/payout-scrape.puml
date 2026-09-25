@@ -53,6 +53,14 @@ note right
 end note
 
 :payout_patch_<date>.json;
+:Re-read current tickets_latest\n+ merge floors by ticket_id\n(skip missing / scrubbed IDs);
+note right
+  Not a scrape-start snapshot.
+  Mirrors merge independently —
+  a rebuild on runtime keeps its
+  structure. Shared tickets_write.lock
+  still TODO (tiny TOCTOU remains).
+end note
 :Write back display_min_x\npayout_source = live_cdp;
 :Publish-LiveSite.ps1 → origin/main;
 stop

@@ -112,20 +112,22 @@ split again
     then Publish-LiveSite on drops.
     Does **not** clear live_cdp
     (survivors keep floors; dropped
-    slips are gone — no re-price needed).
-    **Gap:** does **not** take
-    payout_capture.lock — capture can
-    read pre-scrub, scrub publish, then
-    capture write back the failing slip
-    with a fresh live_cdp (worst case).
+    slips are gone).
+    Capture write-back is a **merge by
+    ticket_id** (not a card snapshot),
+    so a lost race no longer resurrects
+    dropped / rebuilt-away slips.
+    Shared tickets_write.lock still TODO.
+    Reverse race (scrub after capture
+    clears fresh floors) is harmless —
+    next window re-scrapes missing live_cdp.
   end note
 end split
 :Publish-LiveSite.ps1 → origin/main;
 note right
   Capture publishes itself (confirmed).
   Scrub also publishes on drops by
-  default (confirmed). Shared lock
-  with capture is still missing.
+  default (confirmed).
 end note
 stop
 
