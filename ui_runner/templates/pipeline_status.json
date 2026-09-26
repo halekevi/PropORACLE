@@ -30,7 +30,7 @@
   "cfb": {
     "slate": {
       "exists": true,
-      "modified": "2026-09-26 05:28:08",
+      "modified": "2026-09-26 10:01:23",
       "no_slate": false
     }
   },
@@ -44,14 +44,14 @@
   "soccer": {
     "slate": {
       "exists": true,
-      "modified": "2026-09-26 05:28:08",
+      "modified": "2026-09-26 10:01:23",
       "no_slate": false
     }
   },
   "mlb": {
     "slate": {
       "exists": true,
-      "modified": "2026-09-26 05:28:08",
+      "modified": "2026-09-26 10:01:23",
       "no_slate": false
     }
   },
@@ -100,12 +100,8 @@
   "combined": {
     "slate": {
       "exists": true,
-      "modified": "2026-09-26 05:28:08",
+      "modified": "2026-09-26 10:01:23",
       "no_slate": false
     }
-  },
-  "tennis_match_day": "2026-09-26",
-  "game_day": {
-    "tennis": true
   }
 }
