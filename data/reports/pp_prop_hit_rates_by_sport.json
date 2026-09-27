@@ -1,0 +1,4531 @@
+{
+  "source": "all_ranked_prop_hit_rates.json",
+  "note": "Prefer n>=20 gate joints for ticket EV p; else hr_use; else any cell.",
+  "min_n_prefer": 20,
+  "sports": {
+    "CBB": {
+      "props": [
+        {
+          "prop": "Points",
+          "prop_norm": "points",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 1139,
+              "hit": 722,
+              "miss": 417,
+              "hit_rate_pct": 63.39
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 397,
+              "hit": 177,
+              "miss": 220,
+              "hit_rate_pct": 44.58
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 312,
+              "hit": 148,
+              "miss": 164,
+              "hit_rate_pct": 47.44
+            }
+          ]
+        },
+        {
+          "prop": "Rebounds",
+          "prop_norm": "rebounds",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 766,
+              "hit": 476,
+              "miss": 290,
+              "hit_rate_pct": 62.14
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 177,
+              "hit": 70,
+              "miss": 107,
+              "hit_rate_pct": 39.55
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 195,
+              "hit": 119,
+              "miss": 76,
+              "hit_rate_pct": 61.03
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Rebs+Asts",
+          "prop_norm": "pra",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 541,
+              "hit": 306,
+              "miss": 235,
+              "hit_rate_pct": 56.56
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 313,
+              "hit": 146,
+              "miss": 167,
+              "hit_rate_pct": 46.65
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 331,
+              "hit": 176,
+              "miss": 155,
+              "hit_rate_pct": 53.17
+            }
+          ]
+        },
+        {
+          "prop": "Assists",
+          "prop_norm": "assists",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 497,
+              "hit": 323,
+              "miss": 174,
+              "hit_rate_pct": 64.99
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 114,
+              "hit": 54,
+              "miss": 60,
+              "hit_rate_pct": 47.37
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 70,
+              "hit": 42,
+              "miss": 28,
+              "hit_rate_pct": 60.0
+            }
+          ]
+        },
+        {
+          "prop": "Steals",
+          "prop_norm": "steals",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 300,
+              "hit": 192,
+              "miss": 108,
+              "hit_rate_pct": 64.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 87,
+              "hit": 47,
+              "miss": 40,
+              "hit_rate_pct": 54.02
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 20,
+              "hit": 14,
+              "miss": 6,
+              "hit_rate_pct": 70.0
+            }
+          ]
+        },
+        {
+          "prop": "3-PT Made",
+          "prop_norm": "threes",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 297,
+              "hit": 187,
+              "miss": 110,
+              "hit_rate_pct": 62.96
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 60,
+              "hit": 28,
+              "miss": 32,
+              "hit_rate_pct": 46.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 52,
+              "hit": 20,
+              "miss": 32,
+              "hit_rate_pct": 38.46
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Rebs",
+          "prop_norm": "ptsreb",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 170,
+              "hit": 106,
+              "miss": 64,
+              "hit_rate_pct": 62.35
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 305,
+              "hit": 134,
+              "miss": 171,
+              "hit_rate_pct": 43.93
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 349,
+              "hit": 193,
+              "miss": 156,
+              "hit_rate_pct": 55.3
+            }
+          ]
+        },
+        {
+          "prop": "Turnovers",
+          "prop_norm": "turnovers",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 158,
+              "hit": 95,
+              "miss": 63,
+              "hit_rate_pct": 60.13
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 69,
+              "hit": 32,
+              "miss": 37,
+              "hit_rate_pct": 46.38
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 44,
+              "hit": 26,
+              "miss": 18,
+              "hit_rate_pct": 59.09
+            }
+          ]
+        },
+        {
+          "prop": "Blocked Shots",
+          "prop_norm": "blocks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 91,
+              "hit": 47,
+              "miss": 44,
+              "hit_rate_pct": 51.65
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 49,
+              "hit": 28,
+              "miss": 21,
+              "hit_rate_pct": 57.14
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 5,
+              "hit": 2,
+              "miss": 3,
+              "hit_rate_pct": 40.0
+            }
+          ]
+        },
+        {
+          "prop": "Rebs+Asts",
+          "prop_norm": "rebast",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 56,
+              "hit": 34,
+              "miss": 22,
+              "hit_rate_pct": 60.71
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 195,
+              "hit": 90,
+              "miss": 105,
+              "hit_rate_pct": 46.15
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 231,
+              "hit": 141,
+              "miss": 90,
+              "hit_rate_pct": 61.04
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Asts",
+          "prop_norm": "ptsast",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 37,
+              "hit": 24,
+              "miss": 13,
+              "hit_rate_pct": 64.86
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 318,
+              "hit": 151,
+              "miss": 167,
+              "hit_rate_pct": 47.48
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 276,
+              "hit": 150,
+              "miss": 126,
+              "hit_rate_pct": 54.35
+            }
+          ]
+        },
+        {
+          "prop": "Blks+Stls",
+          "prop_norm": "stocks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 23,
+              "hit": 15,
+              "miss": 8,
+              "hit_rate_pct": 65.22
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 26,
+              "hit": 13,
+              "miss": 13,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 3,
+              "hit": 1,
+              "miss": 2,
+              "hit_rate_pct": 33.33
+            }
+          ]
+        },
+        {
+          "prop": "Double Double",
+          "prop_norm": "doubledouble",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 2,
+              "hit": 2,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Points (Combo)",
+          "prop_norm": "pointscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 5,
+              "hit": 4,
+              "miss": 1,
+              "hit_rate_pct": 80.0
+            }
+          ]
+        }
+      ]
+    },
+    "MLB": {
+      "props": [
+        {
+          "prop": "Hits",
+          "prop_norm": "hits",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 34,
+              "hit": 21,
+              "miss": 13,
+              "hit_rate_pct": 61.76
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 62,
+              "hit": 30,
+              "miss": 32,
+              "hit_rate_pct": 48.39
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 28,
+              "hit": 17,
+              "miss": 11,
+              "hit_rate_pct": 60.71
+            }
+          ]
+        },
+        {
+          "prop": "Total Bases",
+          "prop_norm": "totalbases",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 33,
+              "hit": 20,
+              "miss": 13,
+              "hit_rate_pct": 60.61
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 144,
+              "hit": 74,
+              "miss": 70,
+              "hit_rate_pct": 51.39
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 25,
+              "hit": 18,
+              "miss": 7,
+              "hit_rate_pct": 72.0
+            }
+          ]
+        },
+        {
+          "prop": "Hitter Strikeouts",
+          "prop_norm": "hitterks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 27,
+              "hit": 17,
+              "miss": 10,
+              "hit_rate_pct": 62.96
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 37,
+              "hit": 15,
+              "miss": 22,
+              "hit_rate_pct": 40.54
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 30,
+              "hit": 18,
+              "miss": 12,
+              "hit_rate_pct": 60.0
+            }
+          ]
+        },
+        {
+          "prop": "Hits+Runs+RBIs",
+          "prop_norm": "hitsrunsrbis",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 44,
+              "hit": 32,
+              "miss": 12,
+              "hit_rate_pct": 72.73
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 118,
+              "hit": 59,
+              "miss": 59,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 47,
+              "hit": 28,
+              "miss": 19,
+              "hit_rate_pct": 59.57
+            }
+          ]
+        },
+        {
+          "prop": "Pitcher Strikeouts",
+          "prop_norm": "pitcherks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 64,
+              "hit": 46,
+              "miss": 18,
+              "hit_rate_pct": 71.88
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 75,
+              "hit": 37,
+              "miss": 38,
+              "hit_rate_pct": 49.33
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 29,
+              "hit": 16,
+              "miss": 13,
+              "hit_rate_pct": 55.17
+            }
+          ]
+        },
+        {
+          "prop": "Hits Allowed",
+          "prop_norm": "hitsallowed",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 57,
+              "hit": 32,
+              "miss": 25,
+              "hit_rate_pct": 56.14
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 37,
+              "hit": 12,
+              "miss": 25,
+              "hit_rate_pct": 32.43
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 24,
+              "hit": 14,
+              "miss": 10,
+              "hit_rate_pct": 58.33
+            }
+          ]
+        },
+        {
+          "prop": "Walks Allowed",
+          "prop_norm": "walksallowed",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 38,
+              "hit": 30,
+              "miss": 8,
+              "hit_rate_pct": 78.95
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 24,
+              "hit": 13,
+              "miss": 11,
+              "hit_rate_pct": 54.17
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 31,
+              "hit": 13,
+              "miss": 18,
+              "hit_rate_pct": 41.94
+            }
+          ]
+        },
+        {
+          "prop": "Pitches Thrown",
+          "prop_norm": "pitchesthrown",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 26,
+              "hit": 17,
+              "miss": 9,
+              "hit_rate_pct": 65.38
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 36,
+              "hit": 19,
+              "miss": 17,
+              "hit_rate_pct": 52.78
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 44,
+              "hit": 26,
+              "miss": 18,
+              "hit_rate_pct": 59.09
+            }
+          ]
+        },
+        {
+          "prop": "Runs",
+          "prop_norm": "runs",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 21,
+              "hit": 15,
+              "miss": 6,
+              "hit_rate_pct": 71.43
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 20,
+              "hit": 6,
+              "miss": 14,
+              "hit_rate_pct": 30.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 51,
+              "hit": 24,
+              "miss": 27,
+              "hit_rate_pct": 47.06
+            }
+          ]
+        },
+        {
+          "prop": "Pitching Outs",
+          "prop_norm": "pitchingouts",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 96,
+              "hit": 58,
+              "miss": 38,
+              "hit_rate_pct": 60.42
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 38,
+              "hit": 23,
+              "miss": 15,
+              "hit_rate_pct": 60.53
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 50,
+              "hit": 28,
+              "miss": 22,
+              "hit_rate_pct": 56.0
+            }
+          ]
+        },
+        {
+          "prop": "Singles",
+          "prop_norm": "singles",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 70,
+              "hit": 30,
+              "miss": 40,
+              "hit_rate_pct": 42.86
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 23,
+              "hit": 6,
+              "miss": 17,
+              "hit_rate_pct": 26.09
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 48,
+              "hit": 31,
+              "miss": 17,
+              "hit_rate_pct": 64.58
+            }
+          ]
+        },
+        {
+          "prop": "Walks",
+          "prop_norm": "walks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 284,
+              "hit": 145,
+              "miss": 139,
+              "hit_rate_pct": 51.06
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 51,
+              "hit": 26,
+              "miss": 25,
+              "hit_rate_pct": 50.98
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 114,
+              "hit": 59,
+              "miss": 55,
+              "hit_rate_pct": 51.75
+            }
+          ]
+        },
+        {
+          "prop": "Plate Appearances",
+          "prop_norm": "plateappearances",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 1999,
+              "hit": 1030,
+              "miss": 969,
+              "hit_rate_pct": 51.53
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 219,
+              "hit": 86,
+              "miss": 133,
+              "hit_rate_pct": 39.27
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 611,
+              "hit": 346,
+              "miss": 265,
+              "hit_rate_pct": 56.63
+            }
+          ]
+        },
+        {
+          "prop": "Earned Runs Allowed",
+          "prop_norm": "earnedruns",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 3406,
+              "hit": 2419,
+              "miss": 987,
+              "hit_rate_pct": 71.02
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 365,
+              "hit": 179,
+              "miss": 186,
+              "hit_rate_pct": 49.04
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 376,
+              "hit": 218,
+              "miss": 158,
+              "hit_rate_pct": 57.98
+            }
+          ]
+        },
+        {
+          "prop": "1st Inning Walks Allowed",
+          "prop_norm": "firstinningwalks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 15,
+              "hit": 10,
+              "miss": 5,
+              "hit_rate_pct": 66.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 19,
+              "hit": 8,
+              "miss": 11,
+              "hit_rate_pct": 42.11
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 13,
+              "hit": 7,
+              "miss": 6,
+              "hit_rate_pct": 53.85
+            }
+          ]
+        },
+        {
+          "prop": "Rbis",
+          "prop_norm": "rbis",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 4,
+              "hit": 2,
+              "miss": 2,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 46,
+              "hit": 23,
+              "miss": 23,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 23,
+              "hit": 8,
+              "miss": 15,
+              "hit_rate_pct": 34.78
+            }
+          ]
+        },
+        {
+          "prop": "1st Inning Runs Allowed",
+          "prop_norm": "firstinningruns",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 62,
+              "hit": 24,
+              "miss": 38,
+              "hit_rate_pct": 38.71
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 17,
+              "hit": 5,
+              "miss": 12,
+              "hit_rate_pct": 29.41
+            }
+          ]
+        }
+      ]
+    },
+    "NBA": {
+      "props": [
+        {
+          "prop": "Points",
+          "prop_norm": "points",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 426,
+              "hit": 324,
+              "miss": 102,
+              "hit_rate_pct": 76.06
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 81,
+              "hit": 46,
+              "miss": 35,
+              "hit_rate_pct": 56.79
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 21,
+              "hit": 8,
+              "miss": 13,
+              "hit_rate_pct": 38.1
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Rebs+Asts",
+          "prop_norm": "pra",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 186,
+              "hit": 132,
+              "miss": 54,
+              "hit_rate_pct": 70.97
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 67,
+              "hit": 36,
+              "miss": 31,
+              "hit_rate_pct": 53.73
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 28,
+              "hit": 12,
+              "miss": 16,
+              "hit_rate_pct": 42.86
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Rebs",
+          "prop_norm": "ptsreb",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 214,
+              "hit": 157,
+              "miss": 57,
+              "hit_rate_pct": 73.36
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 71,
+              "hit": 40,
+              "miss": 31,
+              "hit_rate_pct": 56.34
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 35,
+              "hit": 19,
+              "miss": 16,
+              "hit_rate_pct": 54.29
+            }
+          ]
+        },
+        {
+          "prop": "Rebs+Asts",
+          "prop_norm": "rebast",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 133,
+              "hit": 89,
+              "miss": 44,
+              "hit_rate_pct": 66.92
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 26,
+              "hit": 12,
+              "miss": 14,
+              "hit_rate_pct": 46.15
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 25,
+              "hit": 14,
+              "miss": 11,
+              "hit_rate_pct": 56.0
+            }
+          ]
+        },
+        {
+          "prop": "Rebounds",
+          "prop_norm": "rebounds",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 160,
+              "hit": 120,
+              "miss": 40,
+              "hit_rate_pct": 75.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 27,
+              "hit": 14,
+              "miss": 13,
+              "hit_rate_pct": 51.85
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 36,
+              "hit": 24,
+              "miss": 12,
+              "hit_rate_pct": 66.67
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Asts",
+          "prop_norm": "ptsast",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 209,
+              "hit": 156,
+              "miss": 53,
+              "hit_rate_pct": 74.64
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 64,
+              "hit": 35,
+              "miss": 29,
+              "hit_rate_pct": 54.69
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 29,
+              "hit": 12,
+              "miss": 17,
+              "hit_rate_pct": 41.38
+            }
+          ]
+        },
+        {
+          "prop": "Assists",
+          "prop_norm": "assists",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 118,
+              "hit": 91,
+              "miss": 27,
+              "hit_rate_pct": 77.12
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 20,
+              "hit": 13,
+              "miss": 7,
+              "hit_rate_pct": 65.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 23,
+              "hit": 14,
+              "miss": 9,
+              "hit_rate_pct": 60.87
+            }
+          ]
+        },
+        {
+          "prop": "3-PT Made",
+          "prop_norm": "threes",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 63,
+              "hit": 40,
+              "miss": 23,
+              "hit_rate_pct": 63.49
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 49,
+              "hit": 22,
+              "miss": 27,
+              "hit_rate_pct": 44.9
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 64,
+              "hit": 42,
+              "miss": 22,
+              "hit_rate_pct": 65.62
+            }
+          ]
+        },
+        {
+          "prop": "Steals",
+          "prop_norm": "steals",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 41,
+              "hit": 29,
+              "miss": 12,
+              "hit_rate_pct": 70.73
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 41,
+              "hit": 16,
+              "miss": 25,
+              "hit_rate_pct": 39.02
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 83,
+              "hit": 50,
+              "miss": 33,
+              "hit_rate_pct": 60.24
+            }
+          ]
+        },
+        {
+          "prop": "Blks+Stls",
+          "prop_norm": "stocks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 23,
+              "hit": 15,
+              "miss": 8,
+              "hit_rate_pct": 65.22
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 53,
+              "hit": 31,
+              "miss": 22,
+              "hit_rate_pct": 58.49
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 90,
+              "hit": 45,
+              "miss": 45,
+              "hit_rate_pct": 50.0
+            }
+          ]
+        },
+        {
+          "prop": "Turnovers",
+          "prop_norm": "turnovers",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 53,
+              "hit": 31,
+              "miss": 22,
+              "hit_rate_pct": 58.49
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 81,
+              "hit": 41,
+              "miss": 40,
+              "hit_rate_pct": 50.62
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 83,
+              "hit": 55,
+              "miss": 28,
+              "hit_rate_pct": 66.27
+            }
+          ]
+        },
+        {
+          "prop": "Blocked Shots",
+          "prop_norm": "blocks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 62,
+              "hit": 44,
+              "miss": 18,
+              "hit_rate_pct": 70.97
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 24,
+              "hit": 9,
+              "miss": 15,
+              "hit_rate_pct": 37.5
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 28,
+              "hit": 17,
+              "miss": 11,
+              "hit_rate_pct": 60.71
+            }
+          ]
+        },
+        {
+          "prop": "Two Pointers Made",
+          "prop_norm": "fg2m",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 44,
+              "hit": 25,
+              "miss": 19,
+              "hit_rate_pct": 56.82
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 105,
+              "hit": 61,
+              "miss": 44,
+              "hit_rate_pct": 58.1
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 72,
+              "hit": 39,
+              "miss": 33,
+              "hit_rate_pct": 54.17
+            }
+          ]
+        },
+        {
+          "prop": "FG Made",
+          "prop_norm": "fgm",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 37,
+              "hit": 23,
+              "miss": 14,
+              "hit_rate_pct": 62.16
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 23,
+              "hit": 11,
+              "miss": 12,
+              "hit_rate_pct": 47.83
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 87,
+              "hit": 43,
+              "miss": 44,
+              "hit_rate_pct": 49.43
+            }
+          ]
+        },
+        {
+          "prop": "Pf",
+          "prop_norm": "pf",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 29,
+              "hit": 16,
+              "miss": 13,
+              "hit_rate_pct": 55.17
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 52,
+              "hit": 27,
+              "miss": 25,
+              "hit_rate_pct": 51.92
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 85,
+              "hit": 50,
+              "miss": 35,
+              "hit_rate_pct": 58.82
+            }
+          ]
+        },
+        {
+          "prop": "3-PT Attempted",
+          "prop_norm": "threesatt",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 124,
+              "hit": 74,
+              "miss": 50,
+              "hit_rate_pct": 59.68
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 97,
+              "hit": 42,
+              "miss": 55,
+              "hit_rate_pct": 43.3
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 30,
+              "hit": 19,
+              "miss": 11,
+              "hit_rate_pct": 63.33
+            }
+          ]
+        },
+        {
+          "prop": "Two Pointers Attempted",
+          "prop_norm": "fg2a",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 105,
+              "hit": 62,
+              "miss": 43,
+              "hit_rate_pct": 59.05
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 119,
+              "hit": 63,
+              "miss": 56,
+              "hit_rate_pct": 52.94
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 31,
+              "hit": 17,
+              "miss": 14,
+              "hit_rate_pct": 54.84
+            }
+          ]
+        },
+        {
+          "prop": "Free Throws Attempted",
+          "prop_norm": "fta",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 99,
+              "hit": 58,
+              "miss": 41,
+              "hit_rate_pct": 58.59
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 93,
+              "hit": 47,
+              "miss": 46,
+              "hit_rate_pct": 50.54
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 90,
+              "hit": 48,
+              "miss": 42,
+              "hit_rate_pct": 53.33
+            }
+          ]
+        },
+        {
+          "prop": "Free Throws Made",
+          "prop_norm": "ftm",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 77,
+              "hit": 46,
+              "miss": 31,
+              "hit_rate_pct": 59.74
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 27,
+              "hit": 13,
+              "miss": 14,
+              "hit_rate_pct": 48.15
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 74,
+              "hit": 31,
+              "miss": 43,
+              "hit_rate_pct": 41.89
+            }
+          ]
+        },
+        {
+          "prop": "FG Attempted",
+          "prop_norm": "fga",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 67,
+              "hit": 43,
+              "miss": 24,
+              "hit_rate_pct": 64.18
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 26,
+              "hit": 14,
+              "miss": 12,
+              "hit_rate_pct": 53.85
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 30,
+              "hit": 15,
+              "miss": 15,
+              "hit_rate_pct": 50.0
+            }
+          ]
+        },
+        {
+          "prop": "Offensive Rebounds",
+          "prop_norm": "oreb",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 22,
+              "hit": 15,
+              "miss": 7,
+              "hit_rate_pct": 68.18
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 36,
+              "hit": 24,
+              "miss": 12,
+              "hit_rate_pct": 66.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 321,
+              "hit": 175,
+              "miss": 146,
+              "hit_rate_pct": 54.52
+            }
+          ]
+        },
+        {
+          "prop": "Defensive Rebounds",
+          "prop_norm": "dreb",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 3,
+              "hit": 2,
+              "miss": 1,
+              "hit_rate_pct": 66.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 32,
+              "hit": 21,
+              "miss": 11,
+              "hit_rate_pct": 65.62
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 37,
+              "hit": 27,
+              "miss": 10,
+              "hit_rate_pct": 72.97
+            }
+          ]
+        },
+        {
+          "prop": "Double Double",
+          "prop_norm": "doubledouble",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 82,
+              "hit": 50,
+              "miss": 32,
+              "hit_rate_pct": 60.98
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 7,
+              "hit": 5,
+              "miss": 2,
+              "hit_rate_pct": 71.43
+            }
+          ]
+        },
+        {
+          "prop": "Quarters with 3+ Points",
+          "prop_norm": "quarters3plus",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 23,
+              "hit": 12,
+              "miss": 11,
+              "hit_rate_pct": 52.17
+            }
+          ]
+        },
+        {
+          "prop": "Triple Double",
+          "prop_norm": "tripledouble",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 4,
+              "hit": 3,
+              "miss": 1,
+              "hit_rate_pct": 75.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 3,
+              "hit": 2,
+              "miss": 1,
+              "hit_rate_pct": 66.67
+            }
+          ]
+        },
+        {
+          "prop": "Quarters with 5+ Points",
+          "prop_norm": "quarters5plus",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 0,
+              "miss": 1,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Points (Combo)",
+          "prop_norm": "pointscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 77,
+              "hit": 42,
+              "miss": 35,
+              "hit_rate_pct": 54.55
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 44,
+              "hit": 26,
+              "miss": 18,
+              "hit_rate_pct": 59.09
+            }
+          ]
+        },
+        {
+          "prop": "Rebounds (Combo)",
+          "prop_norm": "reboundscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 24,
+              "hit": 10,
+              "miss": 14,
+              "hit_rate_pct": 41.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 26,
+              "hit": 15,
+              "miss": 11,
+              "hit_rate_pct": 57.69
+            }
+          ]
+        },
+        {
+          "prop": "Assists (Combo)",
+          "prop_norm": "assistscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 123,
+              "hit": 48,
+              "miss": 75,
+              "hit_rate_pct": 39.02
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 36,
+              "hit": 25,
+              "miss": 11,
+              "hit_rate_pct": 69.44
+            }
+          ]
+        },
+        {
+          "prop": "3-PT Made (Combo)",
+          "prop_norm": "threescombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 87,
+              "hit": 41,
+              "miss": 46,
+              "hit_rate_pct": 47.13
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 119,
+              "hit": 64,
+              "miss": 55,
+              "hit_rate_pct": 53.78
+            }
+          ]
+        }
+      ]
+    },
+    "NBA1H": {
+      "props": [
+        {
+          "prop": "Free Throws Made",
+          "prop_norm": "ftm",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 9,
+              "hit": 6,
+              "miss": 3,
+              "hit_rate_pct": 66.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 85,
+              "hit": 33,
+              "miss": 52,
+              "hit_rate_pct": 38.82
+            }
+          ]
+        },
+        {
+          "prop": "3-PT Made",
+          "prop_norm": "threes",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 9,
+              "hit": 9,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 76,
+              "hit": 21,
+              "miss": 55,
+              "hit_rate_pct": 27.63
+            }
+          ]
+        },
+        {
+          "prop": "Points",
+          "prop_norm": "points",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 68,
+              "hit": 37,
+              "miss": 31,
+              "hit_rate_pct": 54.41
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 55,
+              "hit": 28,
+              "miss": 27,
+              "hit_rate_pct": 50.91
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Rebs+Asts",
+          "prop_norm": "pra",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 84,
+              "hit": 48,
+              "miss": 36,
+              "hit_rate_pct": 57.14
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 82,
+              "hit": 35,
+              "miss": 47,
+              "hit_rate_pct": 42.68
+            }
+          ]
+        }
+      ]
+    },
+    "NBA1Q": {
+      "props": [
+        {
+          "prop": "Points",
+          "prop_norm": "points",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 58,
+              "hit": 44,
+              "miss": 14,
+              "hit_rate_pct": 75.86
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 90,
+              "hit": 64,
+              "miss": 26,
+              "hit_rate_pct": 71.11
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 47,
+              "hit": 24,
+              "miss": 23,
+              "hit_rate_pct": 51.06
+            }
+          ]
+        },
+        {
+          "prop": "Rebounds",
+          "prop_norm": "rebounds",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 21,
+              "hit": 17,
+              "miss": 4,
+              "hit_rate_pct": 80.95
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 51,
+              "hit": 40,
+              "miss": 11,
+              "hit_rate_pct": 78.43
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 48,
+              "hit": 15,
+              "miss": 33,
+              "hit_rate_pct": 31.25
+            }
+          ]
+        },
+        {
+          "prop": "Assists",
+          "prop_norm": "assists",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 23,
+              "hit": 22,
+              "miss": 1,
+              "hit_rate_pct": 95.65
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 47,
+              "hit": 42,
+              "miss": 5,
+              "hit_rate_pct": 89.36
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 22,
+              "hit": 8,
+              "miss": 14,
+              "hit_rate_pct": 36.36
+            }
+          ]
+        },
+        {
+          "prop": "3-PT Made",
+          "prop_norm": "threes",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 15,
+              "hit": 14,
+              "miss": 1,
+              "hit_rate_pct": 93.33
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 60,
+              "hit": 15,
+              "miss": 45,
+              "hit_rate_pct": 25.0
+            }
+          ]
+        },
+        {
+          "prop": "Free Throws Made",
+          "prop_norm": "ftm",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 12,
+              "hit": 12,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 58,
+              "hit": 20,
+              "miss": 38,
+              "hit_rate_pct": 34.48
+            }
+          ]
+        }
+      ]
+    },
+    "NFL": {
+      "props": [
+        {
+          "prop": "Receiving Yards",
+          "prop_norm": "receivingyards",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 29,
+              "hit": 18,
+              "miss": 11,
+              "hit_rate_pct": 62.07
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 27,
+              "hit": 27,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Receptions",
+          "prop_norm": "receptions",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 32,
+              "hit": 18,
+              "miss": 14,
+              "hit_rate_pct": 56.25
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 26,
+              "hit": 26,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Tackles",
+          "prop_norm": "tackles",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 27,
+              "hit": 18,
+              "miss": 9,
+              "hit_rate_pct": 66.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 21,
+              "hit": 20,
+              "miss": 1,
+              "hit_rate_pct": 95.24
+            }
+          ]
+        },
+        {
+          "prop": "Rushing Yards",
+          "prop_norm": "rushingyards",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 97,
+              "hit": 58,
+              "miss": 39,
+              "hit_rate_pct": 59.79
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 31,
+              "hit": 29,
+              "miss": 2,
+              "hit_rate_pct": 93.55
+            }
+          ]
+        },
+        {
+          "prop": "Kickingpoints",
+          "prop_norm": "kickingpoints",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 28,
+              "hit": 13,
+              "miss": 15,
+              "hit_rate_pct": 46.43
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 2,
+              "hit": 2,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Yardsonfirstreception",
+          "prop_norm": "yardsonfirstreception",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 3,
+              "hit": 1,
+              "miss": 2,
+              "hit_rate_pct": 33.33
+            }
+          ]
+        },
+        {
+          "prop": "Halveswith25Rushyards",
+          "prop_norm": "halveswith25rushyards",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4,
+              "hit": 0,
+              "miss": 4,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Yardsonfirstrushattempt",
+          "prop_norm": "yardsonfirstrushattempt",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 5,
+              "hit": 4,
+              "miss": 1,
+              "hit_rate_pct": 80.0
+            }
+          ]
+        },
+        {
+          "prop": "Passing Yards",
+          "prop_norm": "passingyards",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4,
+              "hit": 0,
+              "miss": 4,
+              "hit_rate_pct": 0.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 1,
+              "hit": 1,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Quarterswith5Rushyards",
+          "prop_norm": "quarterswith5rushyards",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 3,
+              "hit": 1,
+              "miss": 2,
+              "hit_rate_pct": 33.33
+            }
+          ]
+        },
+        {
+          "prop": "Halveswith25Receivingyards",
+          "prop_norm": "halveswith25receivingyards",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 2,
+              "hit": 1,
+              "miss": 1,
+              "hit_rate_pct": 50.0
+            }
+          ]
+        },
+        {
+          "prop": "Rushyardspercarry",
+          "prop_norm": "rushyardspercarry",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 3,
+              "hit": 1,
+              "miss": 2,
+              "hit_rate_pct": 33.33
+            }
+          ]
+        },
+        {
+          "prop": "Halveswith100Passyards",
+          "prop_norm": "halveswith100passyards",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 0,
+              "miss": 1,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Quarterswith25Passyards",
+          "prop_norm": "quarterswith25passyards",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 0,
+              "miss": 1,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Passing Tds",
+          "prop_norm": "passingtds",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 2,
+              "hit": 1,
+              "miss": 1,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 3,
+              "hit": 3,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Quarterswith1Reception",
+          "prop_norm": "quarterswith1reception",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 0,
+              "miss": 1,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Quarterswith5Receivingyards",
+          "prop_norm": "quarterswith5receivingyards",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 0,
+              "miss": 1,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Rushyardsinfirst5Attempts",
+          "prop_norm": "rushyardsinfirst5attempts",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 2,
+              "hit": 1,
+              "miss": 1,
+              "hit_rate_pct": 50.0
+            }
+          ]
+        },
+        {
+          "prop": "Longestreception",
+          "prop_norm": "longestreception",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 54,
+              "hit": 12,
+              "miss": 42,
+              "hit_rate_pct": 22.22
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 71,
+              "hit": 60,
+              "miss": 11,
+              "hit_rate_pct": 84.51
+            }
+          ]
+        },
+        {
+          "prop": "Int",
+          "prop_norm": "interceptions",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 1,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 2,
+              "hit": 2,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Receivingyardsinfirst2Receptions",
+          "prop_norm": "receivingyardsinfirst2receptions",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 1,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Player Tds",
+          "prop_norm": "playertds",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 118,
+              "hit": 21,
+              "miss": 97,
+              "hit_rate_pct": 17.8
+            }
+          ]
+        },
+        {
+          "prop": "Rushattempts",
+          "prop_norm": "rushattempts",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 80,
+              "hit": 44,
+              "miss": 36,
+              "hit_rate_pct": 55.0
+            }
+          ]
+        },
+        {
+          "prop": "Rush Rec Yds",
+          "prop_norm": "rushrecyds",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 70,
+              "hit": 29,
+              "miss": 41,
+              "hit_rate_pct": 41.43
+            }
+          ]
+        },
+        {
+          "prop": "Longestrush",
+          "prop_norm": "longestrush",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 50,
+              "hit": 19,
+              "miss": 31,
+              "hit_rate_pct": 38.0
+            }
+          ]
+        },
+        {
+          "prop": "Fg Made",
+          "prop_norm": "fgmade",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 32,
+              "hit": 7,
+              "miss": 25,
+              "hit_rate_pct": 21.88
+            }
+          ]
+        },
+        {
+          "prop": "Sacks",
+          "prop_norm": "sacks",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 32,
+              "hit": 4,
+              "miss": 28,
+              "hit_rate_pct": 12.5
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 49,
+              "hit": 46,
+              "miss": 3,
+              "hit_rate_pct": 93.88
+            }
+          ]
+        },
+        {
+          "prop": "Rectargets",
+          "prop_norm": "rectargets",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 31,
+              "hit": 15,
+              "miss": 16,
+              "hit_rate_pct": 48.39
+            }
+          ]
+        },
+        {
+          "prop": "Pass Rush Yds",
+          "prop_norm": "passrushyds",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 26,
+              "hit": 9,
+              "miss": 17,
+              "hit_rate_pct": 34.62
+            }
+          ]
+        },
+        {
+          "prop": "Passattempts",
+          "prop_norm": "passattempts",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 24,
+              "hit": 8,
+              "miss": 16,
+              "hit_rate_pct": 33.33
+            }
+          ]
+        },
+        {
+          "prop": "Player Touchdowns (Combo)",
+          "prop_norm": "playertdscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 20,
+              "hit": 12,
+              "miss": 8,
+              "hit_rate_pct": 60.0
+            }
+          ]
+        },
+        {
+          "prop": "Punts Inside 20",
+          "prop_norm": "puntsinside20",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 8,
+              "hit": 6,
+              "miss": 2,
+              "hit_rate_pct": 75.0
+            }
+          ]
+        },
+        {
+          "prop": "Rushing Tds",
+          "prop_norm": "rushingtds",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 8,
+              "hit": 3,
+              "miss": 5,
+              "hit_rate_pct": 37.5
+            }
+          ]
+        },
+        {
+          "prop": "Receiving Yards (Combo)",
+          "prop_norm": "receivingyardscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 6,
+              "hit": 1,
+              "miss": 5,
+              "hit_rate_pct": 16.67
+            }
+          ]
+        },
+        {
+          "prop": "Punts",
+          "prop_norm": "punts",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 5,
+              "hit": 2,
+              "miss": 3,
+              "hit_rate_pct": 40.0
+            }
+          ]
+        },
+        {
+          "prop": "Fg Made (Combo)",
+          "prop_norm": "fgmadecombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4,
+              "hit": 0,
+              "miss": 4,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Fieldgoalyardscombo",
+          "prop_norm": "fieldgoalyardscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4,
+              "hit": 0,
+              "miss": 4,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Longestfgmadeydscombo",
+          "prop_norm": "longestfgmadeydscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4,
+              "hit": 3,
+              "miss": 1,
+              "hit_rate_pct": 75.0
+            }
+          ]
+        },
+        {
+          "prop": "Passyardscombo",
+          "prop_norm": "passyardscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4,
+              "hit": 0,
+              "miss": 4,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Rushyardscombo",
+          "prop_norm": "rushyardscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4,
+              "hit": 1,
+              "miss": 3,
+              "hit_rate_pct": 25.0
+            }
+          ]
+        },
+        {
+          "prop": "Passcompletions",
+          "prop_norm": "passcompletions",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 3,
+              "hit": 0,
+              "miss": 3,
+              "hit_rate_pct": 0.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 23,
+              "hit": 11,
+              "miss": 12,
+              "hit_rate_pct": 47.83
+            }
+          ]
+        },
+        {
+          "prop": "Punttouchbackscombo",
+          "prop_norm": "punttouchbackscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 2,
+              "hit": 1,
+              "miss": 1,
+              "hit_rate_pct": 50.0
+            }
+          ]
+        },
+        {
+          "prop": "Rush Rec Yds (Combo)",
+          "prop_norm": "rushrecydscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 2,
+              "hit": 1,
+              "miss": 1,
+              "hit_rate_pct": 50.0
+            }
+          ]
+        },
+        {
+          "prop": "Shortestfgmadeydscombo",
+          "prop_norm": "shortestfgmadeydscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 2,
+              "hit": 2,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Longestcompletion",
+          "prop_norm": "longestcompletion",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 20,
+              "hit": 12,
+              "miss": 8,
+              "hit_rate_pct": 60.0
+            }
+          ]
+        },
+        {
+          "prop": "Completionpercentage",
+          "prop_norm": "completionpercentage",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 3,
+              "hit": 1,
+              "miss": 2,
+              "hit_rate_pct": 33.33
+            }
+          ]
+        },
+        {
+          "prop": "Completionsinfirst10Passattempts",
+          "prop_norm": "completionsinfirst10passattempts",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 3,
+              "hit": 2,
+              "miss": 1,
+              "hit_rate_pct": 66.67
+            }
+          ]
+        },
+        {
+          "prop": "Sackstaken",
+          "prop_norm": "sackstaken",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 3,
+              "hit": 3,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        }
+      ]
+    },
+    "NHL": {
+      "props": [
+        {
+          "prop": "Points",
+          "prop_norm": "points",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 24,
+              "hit": 13,
+              "miss": 11,
+              "hit_rate_pct": 54.17
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 37,
+              "hit": 30,
+              "miss": 7,
+              "hit_rate_pct": 81.08
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 168,
+              "hit": 135,
+              "miss": 33,
+              "hit_rate_pct": 80.36
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 41,
+              "hit": 37,
+              "miss": 4,
+              "hit_rate_pct": 90.24
+            }
+          ]
+        },
+        {
+          "prop": "Assists",
+          "prop_norm": "assists",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 28,
+              "hit": 18,
+              "miss": 10,
+              "hit_rate_pct": 64.29
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 75,
+              "hit": 36,
+              "miss": 39,
+              "hit_rate_pct": 48.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 165,
+              "hit": 135,
+              "miss": 30,
+              "hit_rate_pct": 81.82
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 49,
+              "hit": 42,
+              "miss": 7,
+              "hit_rate_pct": 85.71
+            }
+          ]
+        },
+        {
+          "prop": "Hits",
+          "prop_norm": "hits",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 1,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 49,
+              "hit": 29,
+              "miss": 20,
+              "hit_rate_pct": 59.18
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 203,
+              "hit": 100,
+              "miss": 103,
+              "hit_rate_pct": 49.26
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 49,
+              "hit": 31,
+              "miss": 18,
+              "hit_rate_pct": 63.27
+            }
+          ]
+        },
+        {
+          "prop": "Shots On Target",
+          "prop_norm": "sog",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 2412,
+              "hit": 1106,
+              "miss": 1306,
+              "hit_rate_pct": 45.85
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 40,
+              "hit": 22,
+              "miss": 18,
+              "hit_rate_pct": 55.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 73,
+              "hit": 45,
+              "miss": 28,
+              "hit_rate_pct": 61.64
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 29,
+              "hit": 29,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Goals Allowed",
+          "prop_norm": "goalsallowed",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 14,
+              "hit": 8,
+              "miss": 6,
+              "hit_rate_pct": 57.14
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 45,
+              "hit": 27,
+              "miss": 18,
+              "hit_rate_pct": 60.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 44,
+              "hit": 20,
+              "miss": 24,
+              "hit_rate_pct": 45.45
+            }
+          ]
+        },
+        {
+          "prop": "Blocked Shots",
+          "prop_norm": "blockedshots",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 7,
+              "hit": 6,
+              "miss": 1,
+              "hit_rate_pct": 85.71
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 81,
+              "hit": 55,
+              "miss": 26,
+              "hit_rate_pct": 67.9
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 406,
+              "hit": 188,
+              "miss": 218,
+              "hit_rate_pct": 46.31
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 98,
+              "hit": 76,
+              "miss": 22,
+              "hit_rate_pct": 77.55
+            }
+          ]
+        },
+        {
+          "prop": "Faceoffs Won",
+          "prop_norm": "faceoffswon",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 1,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 127,
+              "hit": 125,
+              "miss": 2,
+              "hit_rate_pct": 98.43
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 344,
+              "hit": 54,
+              "miss": 290,
+              "hit_rate_pct": 15.7
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 23,
+              "hit": 23,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Goalie Saves",
+          "prop_norm": "saves",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 48,
+              "hit": 23,
+              "miss": 25,
+              "hit_rate_pct": 47.92
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 191,
+              "hit": 111,
+              "miss": 80,
+              "hit_rate_pct": 58.12
+            }
+          ]
+        },
+        {
+          "prop": "Toi",
+          "prop_norm": "toi",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 33,
+              "hit": 23,
+              "miss": 10,
+              "hit_rate_pct": 69.7
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 480,
+              "hit": 286,
+              "miss": 194,
+              "hit_rate_pct": 59.58
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 38,
+              "hit": 38,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Goals",
+          "prop_norm": "goals",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 32,
+              "hit": 17,
+              "miss": 15,
+              "hit_rate_pct": 53.12
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 126,
+              "hit": 107,
+              "miss": 19,
+              "hit_rate_pct": 84.92
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 46,
+              "hit": 43,
+              "miss": 3,
+              "hit_rate_pct": 93.48
+            }
+          ]
+        },
+        {
+          "prop": "Plus Minus",
+          "prop_norm": "plusminus",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 30,
+              "hit": 10,
+              "miss": 20,
+              "hit_rate_pct": 33.33
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 27,
+              "hit": 21,
+              "miss": 6,
+              "hit_rate_pct": 77.78
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 146,
+              "hit": 78,
+              "miss": 68,
+              "hit_rate_pct": 53.42
+            }
+          ]
+        },
+        {
+          "prop": "Pp Points",
+          "prop_norm": "pppoints",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 444,
+              "hit": 37,
+              "miss": 407,
+              "hit_rate_pct": 8.33
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 20,
+              "hit": 10,
+              "miss": 10,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 204,
+              "hit": 39,
+              "miss": 165,
+              "hit_rate_pct": 19.12
+            }
+          ]
+        }
+      ]
+    },
+    "SOCCER": {
+      "props": [
+        {
+          "prop": "Shots",
+          "prop_norm": "shots",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 82,
+              "hit": 55,
+              "miss": 27,
+              "hit_rate_pct": 67.07
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 31,
+              "hit": 21,
+              "miss": 10,
+              "hit_rate_pct": 67.74
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 74,
+              "hit": 55,
+              "miss": 19,
+              "hit_rate_pct": 74.32
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 26,
+              "hit": 22,
+              "miss": 4,
+              "hit_rate_pct": 84.62
+            }
+          ]
+        },
+        {
+          "prop": "Goalie Saves",
+          "prop_norm": "saves",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 26,
+              "hit": 21,
+              "miss": 5,
+              "hit_rate_pct": 80.77
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 33,
+              "hit": 19,
+              "miss": 14,
+              "hit_rate_pct": 57.58
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 38,
+              "hit": 23,
+              "miss": 15,
+              "hit_rate_pct": 60.53
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 154,
+              "hit": 99,
+              "miss": 55,
+              "hit_rate_pct": 64.29
+            }
+          ]
+        },
+        {
+          "prop": "Shots On Target",
+          "prop_norm": "sog",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 3541,
+              "hit": 1164,
+              "miss": 2377,
+              "hit_rate_pct": 32.87
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 423,
+              "hit": 101,
+              "miss": 322,
+              "hit_rate_pct": 23.88
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 39,
+              "hit": 17,
+              "miss": 22,
+              "hit_rate_pct": 43.59
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 71,
+              "hit": 47,
+              "miss": 24,
+              "hit_rate_pct": 66.2
+            }
+          ]
+        },
+        {
+          "prop": "Goal + Assist",
+          "prop_norm": "goalassist",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 900,
+              "hit": 247,
+              "miss": 653,
+              "hit_rate_pct": 27.44
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 44,
+              "hit": 15,
+              "miss": 29,
+              "hit_rate_pct": 34.09
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 2,
+              "hit": 2,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 6,
+              "hit": 4,
+              "miss": 2,
+              "hit_rate_pct": 66.67
+            }
+          ]
+        },
+        {
+          "prop": "Goals",
+          "prop_norm": "goals",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 597,
+              "hit": 107,
+              "miss": 490,
+              "hit_rate_pct": 17.92
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4529,
+              "hit": 420,
+              "miss": 4109,
+              "hit_rate_pct": 9.27
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 3,
+              "hit": 3,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 2,
+              "hit": 1,
+              "miss": 1,
+              "hit_rate_pct": 50.0
+            }
+          ]
+        },
+        {
+          "prop": "Fouls",
+          "prop_norm": "fouls",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 2982,
+              "hit": 921,
+              "miss": 2061,
+              "hit_rate_pct": 30.89
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4237,
+              "hit": 620,
+              "miss": 3617,
+              "hit_rate_pct": 14.63
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 3,
+              "hit": 1,
+              "miss": 2,
+              "hit_rate_pct": 33.33
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 1,
+              "hit": 1,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Fouls Drawn",
+          "prop_norm": "foulsdrawn",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 1557,
+              "hit": 501,
+              "miss": 1056,
+              "hit_rate_pct": 32.18
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 715,
+              "hit": 191,
+              "miss": 524,
+              "hit_rate_pct": 26.71
+            }
+          ]
+        },
+        {
+          "prop": "Assists",
+          "prop_norm": "assists",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 404,
+              "hit": 43,
+              "miss": 361,
+              "hit_rate_pct": 10.64
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 4377,
+              "hit": 314,
+              "miss": 4063,
+              "hit_rate_pct": 7.17
+            }
+          ]
+        },
+        {
+          "prop": "Offsides",
+          "prop_norm": "offsides",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 47,
+              "hit": 18,
+              "miss": 29,
+              "hit_rate_pct": 38.3
+            }
+          ]
+        },
+        {
+          "prop": "Goals Allowed",
+          "prop_norm": "goalsallowed",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 16,
+              "hit": 12,
+              "miss": 4,
+              "hit_rate_pct": 75.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 8,
+              "hit": 8,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Tackles",
+          "prop_norm": "tackles",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 13,
+              "hit": 3,
+              "miss": 10,
+              "hit_rate_pct": 23.08
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 16,
+              "hit": 6,
+              "miss": 10,
+              "hit_rate_pct": 37.5
+            }
+          ]
+        },
+        {
+          "prop": "Goals (Combo)",
+          "prop_norm": "goalscombo",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 3,
+              "hit": 1,
+              "miss": 2,
+              "hit_rate_pct": 33.33
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 1,
+              "hit": 0,
+              "miss": 1,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Passes Attempted",
+          "prop_norm": "passes",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 112,
+              "hit": 0,
+              "miss": 112,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Clearances",
+          "prop_norm": "clearances",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 33,
+              "hit": 1,
+              "miss": 32,
+              "hit_rate_pct": 3.03
+            }
+          ]
+        },
+        {
+          "prop": "Attempted Dribbles",
+          "prop_norm": "attempteddribbles",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 31,
+              "hit": 10,
+              "miss": 21,
+              "hit_rate_pct": 32.26
+            }
+          ]
+        },
+        {
+          "prop": "Shots Assisted",
+          "prop_norm": "shotsassisted",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 30,
+              "hit": 19,
+              "miss": 11,
+              "hit_rate_pct": 63.33
+            }
+          ]
+        },
+        {
+          "prop": "Crosses",
+          "prop_norm": "crosses",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 12,
+              "hit": 2,
+              "miss": 10,
+              "hit_rate_pct": 16.67
+            }
+          ]
+        },
+        {
+          "prop": "Shots On Target (Combo)",
+          "prop_norm": "sogcombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 8,
+              "hit": 0,
+              "miss": 8,
+              "hit_rate_pct": 0.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 2,
+              "hit": 2,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 23,
+              "hit": 18,
+              "miss": 5,
+              "hit_rate_pct": 78.26
+            }
+          ]
+        },
+        {
+          "prop": "Goalie Saves (Combo)",
+          "prop_norm": "savescombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 6,
+              "hit": 4,
+              "miss": 2,
+              "hit_rate_pct": 66.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 16,
+              "hit": 9,
+              "miss": 7,
+              "hit_rate_pct": 56.25
+            },
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 4,
+              "hit": 3,
+              "miss": 1,
+              "hit_rate_pct": 75.0
+            }
+          ]
+        },
+        {
+          "prop": "Shots (Combo)",
+          "prop_norm": "shotscombo",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "UNDER",
+              "decided": 38,
+              "hit": 29,
+              "miss": 9,
+              "hit_rate_pct": 76.32
+            }
+          ]
+        }
+      ]
+    },
+    "TENNIS": {
+      "props": [
+        {
+          "prop": "Total Games Won",
+          "prop_norm": "gameswon",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 40,
+              "hit": 28,
+              "miss": 12,
+              "hit_rate_pct": 70.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 29,
+              "hit": 16,
+              "miss": 13,
+              "hit_rate_pct": 55.17
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 25,
+              "hit": 11,
+              "miss": 14,
+              "hit_rate_pct": 44.0
+            }
+          ]
+        },
+        {
+          "prop": "Total Games",
+          "prop_norm": "matchtotalgames",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 47,
+              "hit": 37,
+              "miss": 10,
+              "hit_rate_pct": 78.72
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 27,
+              "hit": 17,
+              "miss": 10,
+              "hit_rate_pct": 62.96
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 31,
+              "hit": 13,
+              "miss": 18,
+              "hit_rate_pct": 41.94
+            }
+          ]
+        },
+        {
+          "prop": "Double Faults",
+          "prop_norm": "doublefaults",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 41,
+              "hit": 33,
+              "miss": 8,
+              "hit_rate_pct": 80.49
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 563,
+              "hit": 213,
+              "miss": 350,
+              "hit_rate_pct": 37.83
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 28,
+              "hit": 8,
+              "miss": 20,
+              "hit_rate_pct": 28.57
+            }
+          ]
+        },
+        {
+          "prop": "Aces",
+          "prop_norm": "aces",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 20,
+              "hit": 12,
+              "miss": 8,
+              "hit_rate_pct": 60.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 521,
+              "hit": 169,
+              "miss": 352,
+              "hit_rate_pct": 32.44
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 54,
+              "hit": 31,
+              "miss": 23,
+              "hit_rate_pct": 57.41
+            }
+          ]
+        },
+        {
+          "prop": "Aces Set1",
+          "prop_norm": "acesset1",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 0,
+              "miss": 1,
+              "hit_rate_pct": 0.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 0,
+              "miss": 1,
+              "hit_rate_pct": 0.0
+            }
+          ]
+        },
+        {
+          "prop": "Total Tie Breaks",
+          "prop_norm": "totaltiebreaks",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 1,
+              "hit": 0,
+              "miss": 1,
+              "hit_rate_pct": 0.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 1,
+              "hit": 1,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        }
+      ]
+    },
+    "WNBA": {
+      "props": [
+        {
+          "prop": "Points",
+          "prop_norm": "points",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 240,
+              "hit": 184,
+              "miss": 56,
+              "hit_rate_pct": 76.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 23,
+              "hit": 12,
+              "miss": 11,
+              "hit_rate_pct": 52.17
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 22,
+              "hit": 12,
+              "miss": 10,
+              "hit_rate_pct": 54.55
+            }
+          ]
+        },
+        {
+          "prop": "Rebounds",
+          "prop_norm": "rebounds",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 189,
+              "hit": 135,
+              "miss": 54,
+              "hit_rate_pct": 71.43
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 122,
+              "hit": 55,
+              "miss": 67,
+              "hit_rate_pct": 45.08
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 114,
+              "hit": 60,
+              "miss": 54,
+              "hit_rate_pct": 52.63
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Rebs+Asts",
+          "prop_norm": "pra",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 114,
+              "hit": 76,
+              "miss": 38,
+              "hit_rate_pct": 66.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 42,
+              "hit": 23,
+              "miss": 19,
+              "hit_rate_pct": 54.76
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 39,
+              "hit": 19,
+              "miss": 20,
+              "hit_rate_pct": 48.72
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Rebs",
+          "prop_norm": "ptsreb",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 93,
+              "hit": 66,
+              "miss": 27,
+              "hit_rate_pct": 70.97
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 20,
+              "hit": 14,
+              "miss": 6,
+              "hit_rate_pct": 70.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 40,
+              "hit": 22,
+              "miss": 18,
+              "hit_rate_pct": 55.0
+            }
+          ]
+        },
+        {
+          "prop": "Assists",
+          "prop_norm": "assists",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 105,
+              "hit": 78,
+              "miss": 27,
+              "hit_rate_pct": 74.29
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 66,
+              "hit": 28,
+              "miss": 38,
+              "hit_rate_pct": 42.42
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 93,
+              "hit": 58,
+              "miss": 35,
+              "hit_rate_pct": 62.37
+            }
+          ]
+        },
+        {
+          "prop": "Pts+Asts",
+          "prop_norm": "ptsast",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 75,
+              "hit": 63,
+              "miss": 12,
+              "hit_rate_pct": 84.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 32,
+              "hit": 16,
+              "miss": 16,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 36,
+              "hit": 22,
+              "miss": 14,
+              "hit_rate_pct": 61.11
+            }
+          ]
+        },
+        {
+          "prop": "3-PT Made",
+          "prop_norm": "threes",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 79,
+              "hit": 64,
+              "miss": 15,
+              "hit_rate_pct": 81.01
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 42,
+              "hit": 19,
+              "miss": 23,
+              "hit_rate_pct": 45.24
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 59,
+              "hit": 29,
+              "miss": 30,
+              "hit_rate_pct": 49.15
+            }
+          ]
+        },
+        {
+          "prop": "Rebs+Asts",
+          "prop_norm": "rebast",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 62,
+              "hit": 48,
+              "miss": 14,
+              "hit_rate_pct": 77.42
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 134,
+              "hit": 58,
+              "miss": 76,
+              "hit_rate_pct": 43.28
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 127,
+              "hit": 70,
+              "miss": 57,
+              "hit_rate_pct": 55.12
+            }
+          ]
+        },
+        {
+          "prop": "FG Attempted",
+          "prop_norm": "fga",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 22,
+              "hit": 18,
+              "miss": 4,
+              "hit_rate_pct": 81.82
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 154,
+              "hit": 83,
+              "miss": 71,
+              "hit_rate_pct": 53.9
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 142,
+              "hit": 82,
+              "miss": 60,
+              "hit_rate_pct": 57.75
+            }
+          ]
+        },
+        {
+          "prop": "3-PT Attempted",
+          "prop_norm": "threesatt",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 29,
+              "hit": 24,
+              "miss": 5,
+              "hit_rate_pct": 82.76
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 120,
+              "hit": 68,
+              "miss": 52,
+              "hit_rate_pct": 56.67
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 65,
+              "hit": 33,
+              "miss": 32,
+              "hit_rate_pct": 50.77
+            }
+          ]
+        },
+        {
+          "prop": "Turnovers",
+          "prop_norm": "turnovers",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 102,
+              "hit": 54,
+              "miss": 48,
+              "hit_rate_pct": 52.94
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 59,
+              "hit": 29,
+              "miss": 30,
+              "hit_rate_pct": 49.15
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 51,
+              "hit": 22,
+              "miss": 29,
+              "hit_rate_pct": 43.14
+            }
+          ]
+        },
+        {
+          "prop": "Blks+Stls",
+          "prop_norm": "stocks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 67,
+              "hit": 39,
+              "miss": 28,
+              "hit_rate_pct": 58.21
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 42,
+              "hit": 24,
+              "miss": 18,
+              "hit_rate_pct": 57.14
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 39,
+              "hit": 23,
+              "miss": 16,
+              "hit_rate_pct": 58.97
+            }
+          ]
+        },
+        {
+          "prop": "Steals",
+          "prop_norm": "steals",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 65,
+              "hit": 42,
+              "miss": 23,
+              "hit_rate_pct": 64.62
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 134,
+              "hit": 70,
+              "miss": 64,
+              "hit_rate_pct": 52.24
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 22,
+              "hit": 16,
+              "miss": 6,
+              "hit_rate_pct": 72.73
+            }
+          ]
+        },
+        {
+          "prop": "Blocked Shots",
+          "prop_norm": "blocks",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 41,
+              "hit": 25,
+              "miss": 16,
+              "hit_rate_pct": 60.98
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 84,
+              "hit": 37,
+              "miss": 47,
+              "hit_rate_pct": 44.05
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 30,
+              "hit": 21,
+              "miss": 9,
+              "hit_rate_pct": 70.0
+            }
+          ]
+        },
+        {
+          "prop": "Free Throws Made",
+          "prop_norm": "ftm",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 20,
+              "hit": 9,
+              "miss": 11,
+              "hit_rate_pct": 45.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 92,
+              "hit": 40,
+              "miss": 52,
+              "hit_rate_pct": 43.48
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 88,
+              "hit": 51,
+              "miss": 37,
+              "hit_rate_pct": 57.95
+            }
+          ]
+        },
+        {
+          "prop": "Offensive Rebounds",
+          "prop_norm": "oreb",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 158,
+              "hit": 82,
+              "miss": 76,
+              "hit_rate_pct": 51.9
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 41,
+              "hit": 14,
+              "miss": 27,
+              "hit_rate_pct": 34.15
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 528,
+              "hit": 287,
+              "miss": 241,
+              "hit_rate_pct": 54.36
+            }
+          ]
+        },
+        {
+          "prop": "Free Throws Attempted",
+          "prop_norm": "fta",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 33,
+              "hit": 15,
+              "miss": 18,
+              "hit_rate_pct": 45.45
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 79,
+              "hit": 35,
+              "miss": 44,
+              "hit_rate_pct": 44.3
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 80,
+              "hit": 46,
+              "miss": 34,
+              "hit_rate_pct": 57.5
+            }
+          ]
+        },
+        {
+          "prop": "Two Pointers Made",
+          "prop_norm": "fg2m",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 24,
+              "hit": 12,
+              "miss": 12,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 90,
+              "hit": 47,
+              "miss": 43,
+              "hit_rate_pct": 52.22
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 106,
+              "hit": 56,
+              "miss": 50,
+              "hit_rate_pct": 52.83
+            }
+          ]
+        },
+        {
+          "prop": "FG Made",
+          "prop_norm": "fgm",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 2,
+              "hit": 1,
+              "miss": 1,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 32,
+              "hit": 18,
+              "miss": 14,
+              "hit_rate_pct": 56.25
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 115,
+              "hit": 53,
+              "miss": 62,
+              "hit_rate_pct": 46.09
+            }
+          ]
+        },
+        {
+          "prop": "Double Double",
+          "prop_norm": "doubledouble",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 28,
+              "hit": 14,
+              "miss": 14,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 4,
+              "hit": 4,
+              "miss": 0,
+              "hit_rate_pct": 100.0
+            }
+          ]
+        },
+        {
+          "prop": "Defensive Rebounds",
+          "prop_norm": "dreb",
+          "cells": [
+            {
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "decided": 12,
+              "hit": 7,
+              "miss": 5,
+              "hit_rate_pct": 58.33
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 44,
+              "hit": 27,
+              "miss": 17,
+              "hit_rate_pct": 61.36
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 526,
+              "hit": 269,
+              "miss": 257,
+              "hit_rate_pct": 51.14
+            }
+          ]
+        },
+        {
+          "prop": "Points (Combo)",
+          "prop_norm": "pointscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 43,
+              "hit": 25,
+              "miss": 18,
+              "hit_rate_pct": 58.14
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 24,
+              "hit": 12,
+              "miss": 12,
+              "hit_rate_pct": 50.0
+            }
+          ]
+        },
+        {
+          "prop": "Two Pointers Attempted",
+          "prop_norm": "fg2a",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 87,
+              "hit": 44,
+              "miss": 43,
+              "hit_rate_pct": 50.57
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 101,
+              "hit": 59,
+              "miss": 42,
+              "hit_rate_pct": 58.42
+            }
+          ]
+        },
+        {
+          "prop": "Rebounds (Combo)",
+          "prop_norm": "reboundscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 70,
+              "hit": 38,
+              "miss": 32,
+              "hit_rate_pct": 54.29
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 54,
+              "hit": 26,
+              "miss": 28,
+              "hit_rate_pct": 48.15
+            }
+          ]
+        },
+        {
+          "prop": "Assists (Combo)",
+          "prop_norm": "assistscombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 34,
+              "hit": 17,
+              "miss": 17,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 48,
+              "hit": 25,
+              "miss": 23,
+              "hit_rate_pct": 52.08
+            }
+          ]
+        },
+        {
+          "prop": "3-PT Made (Combo)",
+          "prop_norm": "threescombo",
+          "cells": [
+            {
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "decided": 26,
+              "hit": 13,
+              "miss": 13,
+              "hit_rate_pct": 50.0
+            },
+            {
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "decided": 123,
+              "hit": 63,
+              "miss": 60,
+              "hit_rate_pct": 51.22
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -188,7 +188,7 @@ Bundled offline UI      ──extends───►  Live site in app shell      (
 | Soccer | 0.7478 | — | `soccer_keep_gates.py` | World Cup thin-history gate; Passes / Clearances fill failure excluded |
 | WNBA | 0.6954 | — | Generic + `ticket_70_pool.py` | CDP-first |
 | Tennis | 0.6624 | ~4% | `tennis_keep_gates.py` | Step1 `--cdp` / `--fail-fast`; excluded from Jun-13 retrain |
-| NFL | — | — | `nfl_keep_gates.py` | Standard UNDER book live; Goblin tickets off (`NFL_GOBLIN_TICKETS_ENABLED=False`) pending Week 3 |
+| NFL | — | — | `nfl_keep_gates.py` | Standard UNDER + wave-1 Goblin OVER (`NFL_GOBLIN_TICKETS_ENABLED=True`) |
 | CFB | — | — | `cfb_keep_gates.py` | 5 keep-gate fixes; game-script / line composites observe-only |
 | CBB | — | — | Generic L5/L10/D | Deactivated from parallel jobs |
 | Golf | — | — | Generic L5/L10/D | — |

@@ -8,7 +8,7 @@ L5>=4+L10>=8 or L10>=8+lefty; no D). Tennis Standard UNDER Aces / Double
 Faults is faded after serve-actual backfill (missing→0 had inflated ~90%).
 Standard OVER Games Won uses L10>=8+(gap|2nd-won). Other tennis Standard
 stays off. Soccer uses utils.soccer_keep_gates
-(Shots L5=5+L10>=8; SOT L5>=4+Off; Saves L5>=4+D). CFB uses
+(Shots L5=5+L10>=8; SOT L5>=4+Off; Saves L5>=4+own D, no opp-D fallback). CFB uses
 utils.cfb_keep_gates: Pass Yards Goblin OVER skips D (still L5=5+L10>=8
 +cover); Player TDs fade from the L5=5 stack; Standard Rec Yards UNDER
 fades from the cover-stack; Standard Rush Yards UNDER keeps the full
@@ -22,14 +22,17 @@ from Goblin-70 tickets (52% n=23 under the stack). MLB Standard stays off.
 Cover floor still applies on other sports. WNBA Goblin PRA tickets still
 need Off AND prop_tier S/A on top of L5=5+L10>=8+D. Off-without-S/A is
 observe-only (78.1% n=32 in-sample; live path unchanged). Catalog PRA is
-B, so S/A currently zeros the live sleeve. Premium YOLO sleeve:
+B, so S/A currently zeros the live sleeve. WNBA Goblin Points / Rebounds /
+Pts+Reb / Pts+Ast also need season avg >= line+cover_unit (A-only 56–66%;
+Assists/3PM/Reb+Ast stay on plain G70). Premium YOLO sleeve:
 WNBA FGA / reb+ast / threes / threes_att. No Demons, no shadow. NFLP stays
 on its own playing-time track. NFL regular-season Standard tickets are
 UNDER-heavy (rec yards / receptions / sacks / kick pts / pass+rush yards)
 until a Goblin sample exists; Standard OVER stays off except rush yards.
 
-List gate remains L5 >= 4 (D badge-only) except MLB and soccer, which use the
-same keep gates as Goblin-70. Tennis list uses tennis keep gates. CFB list
+List gate remains L5 >= 4 (D badge-only) except WNBA/WNBA1H/WNBA1Q (L5=5
+for Standard OVER, Standard UNDER, and Goblin OVER), MLB and soccer, which
+use the same keep gates as Goblin-70. Tennis list uses tennis keep gates. CFB list
 drops Goblin OVER rush_att / kick_pts only. Live
 PrizePicks fill must use live_board_fill_ok:
 same player + same canon prop + same line as a goblin_70_eligible row.
@@ -49,13 +52,18 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 import prop_hit_tiers as T  # noqa: E402
+from utils.competition_history import row_competition_ok  # noqa: E402
 from utils.defense_tiers import d_aligned  # noqa: E402
+from utils.gate_cell_feedback import cell_is_demoted  # noqa: E402
+from utils.ticket_keep_registry import rule_for  # noqa: E402
 from utils.mlb_keep_gates import mlb_goblin_keep_eligible  # noqa: E402
 from utils.nfl_keep_gates import (  # noqa: E402
     nfl_current_season_l5_ok,
     NFL_GOBLIN_TICKETS_ENABLED,
     nfl_goblin_ticket_eligible,
+    nfl_receptions_under_soft_rank_bump,
     nfl_standard_ticket_eligible,
+    nfl_std_under_skips_l5_eq5,
     nfl_ticket_priority,
 )
 from utils.soccer_keep_gates import soccer_ticket_gate_passes  # noqa: E402
@@ -63,12 +71,21 @@ from utils.cfb_keep_gates import (  # noqa: E402
     cfb_pass_yards_goblin_skip_d,
     cfb_ticket_fade,
 )
+from utils.wnba_ticket_cuts import (  # noqa: E402
+    threes_vol_ok,
+    wnba_assists_25_ticket_fade,
+    wnba_assists_high_poss_fade,
+    wnba_avg_cover_ok,
+    wnba_fantasy_ticket_fade,
+    wnba_rebounds_skip_d,
+)
 from utils.tennis_keep_gates import (  # noqa: E402
     tennis_skip_cover_floor,
     tennis_standard_games_won_over_eligible,
     tennis_standard_under_serve_eligible,
     tennis_ticket_gate_passes,
 )
+from utils.l5_recency_policy import WNBA_L5_MIN  # noqa: E402
 
 ACTIVE = T.ACTIVE
 TICKET_SPORTS = frozenset(
@@ -126,12 +143,16 @@ WNBA_COMBO_OVER = frozenset({"pra", "pts+ast", "points_combo", "points (combo)"}
 HRRBI = frozenset({"hits+runs+rbis", "h+r+rbi"})
 
 STD_KIND_ORDER = (
-    "tennis_serve_under",
+    "soccer_keep",  # Saves / Shots / SOT — most mature Standard keep
     "tennis_games_won_over",
-    "wnba_steals_under",
+    "nfl_keep",
+    "cfb_keep",
+    "wnba_steals_under",  # thin exception only on Standard YOLO
+    "tennis_serve_under",  # faded; kept for sort stability if ever re-enabled
     "wnba_combo_over",
     "wnba_assists_under",
     "mlb_hrrbi_under_l5eq5",
+    "gate",
 )
 
 
@@ -164,6 +185,12 @@ def _l5(r: dict[str, Any]) -> float | None:
 
 def directional_l5(r: dict[str, Any]) -> float | None:
     return _l5(r)
+
+
+def ticket_l5_at_least_5(r: dict[str, Any]) -> bool:
+    """Ticket selection floor. Keep gates rank the pool; L5 must still be 5."""
+    l5 = directional_l5(r)
+    return l5 is not None and l5 >= 5
 
 
 def _l10(r: dict[str, Any]) -> float | None:
@@ -406,12 +433,38 @@ def wnba_pra_off_observe_eligible(r: dict[str, Any]) -> bool:
 PREMIUM_WNBA_PROPS = frozenset({"fga", "reb+ast", "threes", "threes_att"})
 
 
+def wnba_threes_vol_observe_eligible(r: dict[str, Any]) -> bool:
+    """Observe-only 3PM replace sleeve: L5=5 + 5+ looks + 3P%>=33.
+
+    Does not pass goblin_70_eligible. Replaces L10+D for this prop only after
+    the locked n / Wilson bar (same as PRA Off). Needs l10_3pa_g / season_3pp
+    / season_3pa on the row (attached at log time from the ESPN cache).
+    """
+    if _sport(r) != "WNBA":
+        return False
+    if _pick(r) != "Goblin" or _side(r) != "OVER":
+        return False
+    if _prop(r) != "threes":
+        return False
+    l5 = _l5(r)
+    if l5 is None or l5 < 5:
+        return False
+    return threes_vol_ok(r)
+
+
 def ticket_gate_passes(r: dict[str, Any]) -> bool:
     """L5=5 + L10>=8 + directional D. Tennis: keep gates. Golf: L5=5 + L10>=8.
 
     MLB Goblin OVER uses keep props 1–10. MLB Standard never passes.
     Tennis Standard UNDER Aces/DF pass ungated; other tennis Standard never passes.
+    Demons never pass (list already drops them; wrappers also require Goblin
+    or Standard — this closes the inner gate if called directly).
     """
+    pt = str(r.get("pick_type") or "").strip().lower()
+    if "demon" in pt and "goblin" not in pt:
+        return False
+    if not row_competition_ok(r) or cell_is_demoted(r):
+        return False
     sport = _sport(r)
     if sport == "MLB":
         if _pick(r) == "Goblin" and _side(r) == "OVER":
@@ -421,6 +474,14 @@ def ticket_gate_passes(r: dict[str, Any]) -> bool:
         return tennis_ticket_gate_passes(r)
     if sport == "Soccer":
         return soccer_ticket_gate_passes(r)
+    rule = rule_for(sport)
+    if rule is None:
+        return False
+    mode, fn = rule
+    if mode == "replace":
+        return bool(fn(r)) if fn else False
+    if fn is not None and not fn(r):
+        return False
     if skip_earned_runs(r):
         return False
     if _is_earned_runs(r):
@@ -431,18 +492,22 @@ def ticket_gate_passes(r: dict[str, Any]) -> bool:
         return False
     if sport in {"CFB", "CFB1H"} and cfb_ticket_fade(r):
         return False
+    # NFL receiving_yards UNDER: L5=5 is anti-edge (W1+W2 4/10 vs base 75/120).
+    # Skip L5=5 only; still require L10>=8 + D below.
+    skip_l5 = sport == "NFL" and nfl_std_under_skips_l5_eq5(r)
     l5 = _l5(r)
-    if l5 is None or l5 < 5:
+    if not skip_l5 and (l5 is None or l5 < 5):
         return False
-    # NFL: PRIOR_SEASON_FILL can make face L5=5; tickets need current-season n>=5.
-    if sport == "NFL" and not nfl_current_season_l5_ok(r):
+    # NFL: PRIOR_SEASON_FILL can make face L5=5; tickets need an assembled
+    # 5-row window (ALLOW_CROSS_SEASON_L5) or current-season n>=5.
+    if sport == "NFL" and not skip_l5 and not nfl_current_season_l5_ok(r):
         return False
     l10 = _l10(r)
     if l10 is None or l10 < 8:
         return False
     if _is_golf(sport):
         return True
-    if cfb_pass_yards_goblin_skip_d(r):
+    if cfb_pass_yards_goblin_skip_d(r) or wnba_rebounds_skip_d(r):
         return True
     if not _d_ok(r):
         return False
@@ -457,6 +522,12 @@ def goblin_70_eligible(r: dict[str, Any]) -> bool:
 
     WNBA Goblin PRA also needs Off (high usage or HIGH minutes) AND prop_tier
     S/A. Off-without-S/A is observe-only (wnba_pra_off_observe_eligible).
+    WNBA Goblin Assists 2.5 and Assists with entering poss/g>=18 are faded.
+    Fantasy is off tickets for every sport (list skip; WNBA-only ticket
+    fade was the same leak on WNBA1Q/1H/NBA).
+    WNBA Goblin Rebounds 3.5+ skips D (keep L5=5+L10+cover; <=2.5 still needs D).
+    WNBA Goblin Points / Rebounds / Pts+Reb / Pts+Ast need season avg >=
+    line+cover_unit (missing avg fails open; Assists/3PM/RA/PRA/FGA skip).
     MLB uses keep props 1-10 on the list, but hitter_ks is hard-faded
     from Goblin-70 tickets. ``ml_prob`` is never a gate or sort key. A 0.99
     score cannot rescue a failed L5/L10/D/cover row; a 0.10 score cannot
@@ -464,9 +535,19 @@ def goblin_70_eligible(r: dict[str, Any]) -> bool:
     """
     if _pick(r) != "Goblin" or _side(r) != "OVER":
         return False
+    if not ticket_l5_at_least_5(r):
+        return False
     if _is_nflp_row(r):
         return False
     if skip_combo_player(r):
+        return False
+    if wnba_assists_25_ticket_fade(r):
+        return False
+    if wnba_assists_high_poss_fade(r):
+        return False
+    if wnba_fantasy_ticket_fade(r):
+        return False
+    if not wnba_avg_cover_ok(r):
         return False
     sport = _sport(r)
     prop = _prop(r)
@@ -569,8 +650,12 @@ def standard_ticket_eligible(r: dict[str, Any]) -> bool:
     """Standard OVER or UNDER that clears the same L5/L10/D ticket gate."""
     if _pick(r) != "Standard":
         return False
+    if wnba_fantasy_ticket_fade(r):
+        return False
     side = _side(r)
     if side not in {"OVER", "UNDER"}:
+        return False
+    if not ticket_l5_at_least_5(r):
         return False
     if _sport(r) == "MLB":
         return False
@@ -602,8 +687,41 @@ def standard_ticket_eligible(r: dict[str, Any]) -> bool:
     return True
 
 
+def standard_yolo_kind(r: dict[str, Any]) -> str | None:
+    """Label for Standard-YOLO sort / payout p. None = not YOLO-eligible."""
+    if _pick(r) != "Standard":
+        return None
+    sport = _sport(r)
+    if sport == "Soccer" and soccer_ticket_gate_passes(r):
+        return "soccer_keep"
+    if tennis_standard_games_won_over_eligible(r):
+        return "tennis_games_won_over"
+    if sport == "NFL" and nfl_standard_ticket_eligible(r) and standard_ticket_eligible(r):
+        return "nfl_keep"
+    if sport in {"CFB", "CFB1H"} and standard_ticket_eligible(r):
+        return "cfb_keep"
+    if sport == "WNBA" and standard_flex_kind(r) == "wnba_steals_under":
+        return "wnba_steals_under"
+    return None
+
+
+def standard_yolo_eligible(r: dict[str, Any]) -> bool:
+    """Standard YOLO sleeve: real validated keep only — no sport quota.
+
+    Binary per leg (cleared its sport's keep, or not). Not a gap-sort
+    leaderboard and not "one Standard per sport." MLB never. WNBA generic
+    L5=5+L10+D Standards never (steals UNDER thin exception only). Tennis
+    Games Won OVER only. Soccer keep (Saves / Shots / SOT). NFL / CFB only
+    through their Standard keep paths. Zero clears → no Standard YOLO ticket.
+    """
+    return standard_yolo_kind(r) is not None
+
+
 def goblin_ticket_p(_r: dict[str, Any]) -> float:
-    return P_GOBLIN_STRICT
+    # G70 legs already cleared L5=5 (+ L10/D). Use the L5=5 prior so
+    # 3-leg Power clears EV > 0 at the rate-card 2.3x floor; STRICT (0.745)
+    # is below break-even and packs zero slips when category HR is thin.
+    return P_GOBLIN_L5EQ5
 
 
 def standard_flex_kind(r: dict[str, Any]) -> str | None:
@@ -629,11 +747,11 @@ def standard_flex_kind(r: dict[str, Any]) -> str | None:
     l5 = _l5(r)
     if l5 is None:
         return None
-    if sport == "WNBA" and side == "UNDER" and prop == "steals" and l5 >= 4:
+    if sport == "WNBA" and side == "UNDER" and prop == "steals" and l5 >= WNBA_L5_MIN:
         return "wnba_steals_under"
-    if sport == "WNBA" and side == "OVER" and prop in WNBA_COMBO_OVER and l5 >= 4:
+    if sport == "WNBA" and side == "OVER" and prop in WNBA_COMBO_OVER and l5 >= WNBA_L5_MIN:
         return "wnba_combo_over"
-    if sport == "WNBA" and side == "UNDER" and prop == "assists" and l5 >= 4:
+    if sport == "WNBA" and side == "UNDER" and prop == "assists" and l5 >= WNBA_L5_MIN:
         return "wnba_assists_under"
     if sport == "MLB" and side == "UNDER" and prop in HRRBI and l5 == 5:
         return "mlb_hrrbi_under_l5eq5"
@@ -643,6 +761,9 @@ def standard_flex_kind(r: dict[str, Any]) -> str | None:
 def standard_ticket_p(kind: str) -> float:
     return {
         "gate": P_STANDARD_GATE,
+        "soccer_keep": P_STANDARD_GATE,
+        "nfl_keep": P_STANDARD_GATE,
+        "cfb_keep": P_STANDARD_GATE,
         "tennis_serve_under": P_TENNIS_SERVE_UNDER,
         "tennis_games_won_over": P_TENNIS_GAMES_WON_OVER,
         "wnba_steals_under": P_WNBA_STEALS_UNDER,
@@ -705,16 +826,11 @@ def premium_goblin_sort_key(r: dict[str, Any]) -> tuple:
     return (prem,) + goblin_sort_key(r)
 
 
-def ticket_excluded_from_winrate(t: dict[str, Any], group_name: str = "") -> bool:
-    """YOLO Power 4/5/6 (and any flagged slip) stay off ticket win-rate / grade_history."""
-    if t.get("exclude_from_winrate") or t.get("winrate_exclude"):
-        return True
-    track = str(t.get("ticket_track") or "").strip().lower()
-    if track in {"goblin70_yolo", "yolo"}:
-        return True
-    recipe = str(t.get("core_recipe") or "").strip().lower()
-    if "yolo" in recipe:
-        return True
+def yolo_ticket_track(t: dict[str, Any], group_name: str = "") -> str | None:
+    """Return ``standard_yolo`` / ``goblin70_yolo`` when this is a YOLO slip, else None.
+
+    Used for grade_history side tracks (still exclude_from_winrate on the card).
+    """
     name = str(
         group_name
         or t.get("web_group_name")
@@ -722,13 +838,41 @@ def ticket_excluded_from_winrate(t: dict[str, Any], group_name: str = "") -> boo
         or t.get("_group_name")
         or ""
     )
-    if "YOLO" in name.upper():
-        return True
+    nu = name.upper()
+    track = str(t.get("ticket_track") or "").strip().lower()
+    recipe = str(t.get("core_recipe") or "").strip().lower()
+    fam = str(t.get("family") or "").strip().lower()
     tid = str(t.get("id") or t.get("ticket_id") or "").upper()
-    if tid.startswith("Y") and ("POWER" in str(t.get("product") or t.get("play") or "").upper()):
-        n = int(t.get("n_legs") or 0)
-        if n >= 4:
-            return True
+
+    if track in {"standard_ev", "mixed_ev"} or recipe in {"standard_ev", "mixed_ev"}:
+        return None
+    if track == "standard_yolo" or recipe == "standard_yolo":
+        return "standard_yolo"
+    if track in {"goblin70_yolo", "yolo"} or recipe in {"goblin70_yolo", "yolo"}:
+        return "goblin70_yolo"
+
+    is_yolo = bool(t.get("exclude_from_winrate") or t.get("winrate_exclude") or "YOLO" in nu)
+    if tid.startswith("YS"):
+        return "standard_yolo"
+    if "STANDARD YOLO" in nu or "YOLO STANDARD" in nu:
+        return "standard_yolo"
+    if is_yolo and fam == "standard" and "GOBLIN" not in nu:
+        return "standard_yolo"
+    if is_yolo or (tid.startswith("Y") and "POWER" in str(t.get("product") or t.get("play") or "").upper()):
+        return "goblin70_yolo"
+    return None
+
+
+def ticket_excluded_from_winrate(t: dict[str, Any], group_name: str = "") -> bool:
+    """YOLO slips stay off the *card* win-rate (Income / graded_main).
+
+    They still grade into dedicated ``standard_yolo`` / ``goblin70_yolo``
+    tracks in grade_history when ticket_eval runs.
+    """
+    if t.get("exclude_from_winrate") or t.get("winrate_exclude"):
+        return True
+    if yolo_ticket_track(t, group_name) is not None:
+        return True
     return False
 
 
@@ -741,5 +885,10 @@ def standard_sort_key(r: dict[str, Any]) -> tuple:
     l5 = int(_l5(r) or 0)
     # NFL Week-1 priority: rec U → receptions U → longest rec U → sacks U →
     # kick U → rush bidirectional; pass yards gated out.
+    # Option C: among receptions UNDER, bump WOPR-low + Elite|Above Pass D
+    # ahead of other rec U at equal L5 (not a gate).
     nfl_pri = nfl_ticket_priority(r) if _sport(r) == "NFL" else 50
-    return (ki, nfl_pri, -l5, str(r.get("player") or ""))
+    soft_bump = (
+        nfl_receptions_under_soft_rank_bump(r) if _sport(r) == "NFL" else 1
+    )
+    return (ki, nfl_pri, -l5, soft_bump, str(r.get("player") or ""))
