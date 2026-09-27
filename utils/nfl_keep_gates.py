@@ -647,6 +647,22 @@ def nfl_goblin_ticket_eligible(r: dict[str, Any]) -> bool:
     return nfl_soft_unit_ticket_ok(r)
 
 
+def nfl_goblin_wave1_skip_d(r: dict[str, Any]) -> bool:
+    """Wave-1 Goblin OVER skips directional D on tickets (cover still required).
+
+    Early-season Def tiers are thin/noisy (many Avg). Same shape as CFB Pass
+    Yards Goblin OVER — D is N/A for the ticket gate, not a Silver miss on the
+    list. Pass-side chips stay on the later validation path (no skip).
+    """
+    if not NFL_GOBLIN_TICKETS_ENABLED:
+        return False
+    if not _sport_is_nfl(r):
+        return False
+    if _pick(r) != "Goblin" or _side(r) != "OVER":
+        return False
+    return _prop(r) in NFL_GOBLIN_OVER_KEEP_FLIP
+
+
 def nfl_goblin_wave1_flip_go(
     rates: dict[str, tuple[int, int]],
     *,

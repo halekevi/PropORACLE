@@ -6,6 +6,8 @@ Engine: `utils/nfl_keep_gates.py`. Axis: `utils/nfl_prop_defense.py`.
 **Goblin OVER tickets are live** (`NFL_GOBLIN_TICKETS_ENABLED = True`) for
 wave-1 only (fg_made / receiving_yards / longest_reception / rushing_yards).
 Pass-side Goblin stays staged in `NFL_GOBLIN_OVER_KEEP_PASS_LATER`.
+Wave-1 ticket gate skips directional D (early-season Def noise); L5=5 +
+L10≥8 + cover still required.
 
 D bands (default): OVER vs Weak|Below; UNDER vs Elite|Above.
 Exception: **tackles** use **opp rush offense** as the unit (Elite = strong

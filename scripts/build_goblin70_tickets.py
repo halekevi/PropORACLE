@@ -38,9 +38,10 @@ if str(_REPO) not in sys.path:
 
 import rank_best_props_today as R  # noqa: E402
 from utils.n_correct_payout import PAY_FALLBACK as PAY, resolve_n_correct  # noqa: E402
-from utils.ticket_ev_build import attach_leg_p, build_ev_slips  # noqa: E402
+from utils.ticket_ev_build import attach_leg_p, build_ev_slips, score_slip  # noqa: E402
 from utils.ticket_keep_registry import rule_for  # noqa: E402
 from utils.ui_live_json import write_paths as live_json_write_paths  # noqa: E402
+from utils.nfl_keep_gates import nfl_goblin_ticket_eligible  # noqa: E402
 from utils.ticket_70_pool import (  # noqa: E402
     directional_l5,
     goblin_70_eligible,
@@ -1504,6 +1505,27 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
             slip["exclude_from_winrate"] = True
             slip["core_recipe"] = track
         tickets.append(slip)
+
+    # Pack NFL wave-1 Goblins first. Equal-p MLB would otherwise fill the
+    # EV queue and leave a 1–2 player NFL remainder that cannot clear the
+    # 2x all-hit floor (Power 2G = 1.5x).
+    nfl_wave = [
+        r
+        for r in gob
+        if str(r.get("sport") or "").upper() == "NFL" and nfl_goblin_ticket_eligible(r)
+    ]
+    nfl_wave_i = 1
+    while True:
+        combo = pack(nfl_wave, 3, taken, mix_sports=False, wnba_cap=99)
+        if len(combo) != 3:
+            break
+        scored = score_slip(combo, family="goblin")
+        if scored is None:
+            break
+        for r in combo:
+            taken.add(fold_name(r.get("player")))
+        _emit(scored, tid=f"G3-NFL{nfl_wave_i}", family="goblin", track="goblin70")
+        nfl_wave_i += 1
 
     card_pool = list(gob)
     if not l5_eq_5:

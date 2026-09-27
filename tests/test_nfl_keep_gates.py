@@ -312,6 +312,41 @@ def test_nfl_goblin_wave1_live_when_flag_on():
         assert nfl_goblin_ticket_eligible(gob) is True
 
 
+def test_nfl_goblin_wave1_skips_d():
+    from utils.nfl_keep_gates import nfl_goblin_wave1_skip_d
+
+    avg = _row(
+        pick_type="Goblin",
+        side="OVER",
+        prop="fg_made",
+        def_tier="Avg",
+        cover=1.1,
+        dist_l5=1.1,
+        line=0.5,
+        l5_sample_n=5,
+        l5_window_n=5,
+    )
+    avg["def"] = "Avg"
+    assert nfl_goblin_wave1_skip_d(avg) is True
+    from utils.competition_history import row_competition_ok
+
+    if row_competition_ok(avg):
+        assert ticket_gate_passes(avg) is True
+        assert goblin_70_eligible(avg) is True
+    pass_later = _row(
+        pick_type="Goblin",
+        side="OVER",
+        prop="passing_yards",
+        def_tier="Avg",
+        cover=20,
+        dist_l5=20,
+        l5_sample_n=5,
+        l5_window_n=5,
+    )
+    pass_later["def"] = "Avg"
+    assert nfl_goblin_wave1_skip_d(pass_later) is False
+
+
 def test_extreme_low_goblin_line_helper():
     assert nfl_goblin_is_extreme_low_line(
         _row(pick_type="Goblin", side="OVER", prop="sacks", line=0.5)

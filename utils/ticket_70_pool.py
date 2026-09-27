@@ -61,6 +61,7 @@ from utils.nfl_keep_gates import (  # noqa: E402
     nfl_current_season_l5_ok,
     NFL_GOBLIN_TICKETS_ENABLED,
     nfl_goblin_ticket_eligible,
+    nfl_goblin_wave1_skip_d,
     nfl_receptions_under_soft_rank_bump,
     nfl_standard_ticket_eligible,
     nfl_std_under_skips_l5_eq5,
@@ -507,7 +508,11 @@ def ticket_gate_passes(r: dict[str, Any]) -> bool:
         return False
     if _is_golf(sport):
         return True
-    if cfb_pass_yards_goblin_skip_d(r) or wnba_rebounds_skip_d(r):
+    if (
+        cfb_pass_yards_goblin_skip_d(r)
+        or wnba_rebounds_skip_d(r)
+        or nfl_goblin_wave1_skip_d(r)
+    ):
         return True
     if not _d_ok(r):
         return False
