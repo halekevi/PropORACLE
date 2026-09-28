@@ -436,18 +436,31 @@ header:has(.grades-hub-toolbar-host) .grades-hub-toolbar-host {
 
   .dpill {
     flex: 0 0 auto;
-    font-size: 12px;
-    padding: 6px 9px;
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 4px 8px;
+    white-space: nowrap;
+    min-width: max-content;
+    overflow: visible;
+    text-overflow: clip;
   }
 
   .date-pills {
+    display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
-    gap: 8px;
+    gap: 6px;
+    padding-bottom: 8px;
     min-height: 32px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .date-pills::-webkit-scrollbar {
+    display: none;
   }
 
   .date-pills .dpill {
