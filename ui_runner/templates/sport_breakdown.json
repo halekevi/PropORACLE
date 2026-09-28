@@ -31,10 +31,10 @@
     },
     {
       "sport": "MLB",
-      "decided": 509634,
-      "paid": 140824,
-      "win_rate": 0.276323793153518,
-      "net_dollars": -2279860.0
+      "decided": 517181,
+      "paid": 142809,
+      "win_rate": 0.2761296335325544,
+      "net_dollars": -2315630.0
     },
     {
       "sport": "SOCCER",
@@ -45,10 +45,10 @@
     },
     {
       "sport": "TENNIS",
-      "decided": 28711,
-      "paid": 7547,
-      "win_rate": 0.2628609243843823,
-      "net_dollars": -136170.0
+      "decided": 28787,
+      "paid": 7577,
+      "win_rate": 0.26320908743530064,
+      "net_dollars": -136330.0
     },
     {
       "sport": "NHL",
@@ -59,10 +59,10 @@
     },
     {
       "sport": "NFL",
-      "decided": 6117,
-      "paid": 2689,
-      "win_rate": 0.4395945725028609,
-      "net_dollars": -7390.0
+      "decided": 6214,
+      "paid": 2730,
+      "win_rate": 0.4393305439330544,
+      "net_dollars": -7540.0
     }
   ],
   "monthly_rows": [
@@ -101,10 +101,10 @@
     {
       "sport": "MLB",
       "month": "2026-09",
-      "decided": 187524,
-      "paid": 52371,
-      "win_rate": 0.2792762526396621,
-      "net_dollars": -827820.0
+      "decided": 195071,
+      "paid": 54356,
+      "win_rate": 0.2786472617662287,
+      "net_dollars": -863590.0
     },
     {
       "sport": "MLB",
@@ -149,10 +149,10 @@
     {
       "sport": "TENNIS",
       "month": "2026-09",
-      "decided": 11191,
-      "paid": 2681,
-      "win_rate": 0.23956750960593334,
-      "net_dollars": -58290.0
+      "decided": 11267,
+      "paid": 2711,
+      "win_rate": 0.24061418301233692,
+      "net_dollars": -58450.0
     },
     {
       "sport": "TENNIS",
@@ -173,13 +173,13 @@
     {
       "sport": "NFL",
       "month": "2026-09",
-      "decided": 6117,
-      "paid": 2689,
-      "win_rate": 0.4395945725028609,
-      "net_dollars": -7390.0
+      "decided": 6214,
+      "paid": 2730,
+      "win_rate": 0.4393305439330544,
+      "net_dollars": -7540.0
     }
   ],
   "source": "graded_props_json",
-  "signature": "n=81:mt=1790500158225110200",
-  "updated_at": "2026-09-28T01:29:01Z"
+  "signature": "n=82:mt=1790566147829451800",
+  "updated_at": "2026-09-28T03:30:37Z"
 }
