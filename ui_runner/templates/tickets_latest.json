@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28 13:43:54 UTC",
+  "generated_at": "2026-09-28 14:12:06 UTC",
   "date": "2026-09-28",
   "tennis_date": "2026-09-28",
   "filters": {
@@ -1027,7 +1027,7 @@
   "main_rank_mode": "floor_ev",
   "construction_hygiene_dropped": 7,
   "pool_mode": "goblin70",
-  "run_id": "20260928_132514_912245",
+  "run_id": "20260928_141022_639207",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
@@ -1037,8 +1037,8 @@
   "pool": {
     "goblin_70": 2,
     "goblin_70_raw": 2,
-    "standard_allowlist": 7,
-    "standard_allowlist_raw": 22,
+    "standard_allowlist": 8,
+    "standard_allowlist_raw": 25,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
