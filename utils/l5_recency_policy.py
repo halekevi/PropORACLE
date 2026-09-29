@@ -14,7 +14,9 @@ Findings:
   (OVER ~39%→51%, UNDER ~57%→66%). OVER also wants L5 agreement with L10
   (ticket default Std OVER L5 floor raised to 4 after Aug-19).
 - L5 == 5 adds more lift for WNBA / Tennis Goblin; hurts MLB Standard OVER.
-- Basketball-family Standard prop gates clear at L5 >= 4 (WNBA evidence).
+- WNBA / WNBA1H / WNBA1Q Standard and Goblin now require directional L5 = 5
+  (list, Flex, MAIN recency). L5>=4 was a coin-flip on Standard O/U.
+- Remaining basketball-family Standard prop gates (NBA / CBB) clear at L5 >= 4.
 - Soccer Standard gates also clear at L5 >= 4 (graded ~99k props: +42pp overall;
   Shots +41pp, Saves +34pp). Passes/tackles/clearances stay ticket-banned.
 - Other clear-eligible sports still require perfect L5 = 5.
@@ -37,10 +39,12 @@ L5_COLD_PENALTY: float = -0.05
 # Strong enough to push MLB Std OVER L5=5 below GE4 peers in sort.
 MLB_STD_OVER_PERFECT_L5_PENALTY: float = -0.15
 
+WNBA_FAMILY_SPORTS: frozenset[str] = frozenset({"WNBA", "WNBA1H", "WNBA1Q"})
+WNBA_L5_MIN: float = L5_PERFECT
+
 # Clear Standard prop×direction ledger gates at L5 >= 4.
 L5_GE4_GATE_CLEAR_SPORTS: frozenset[str] = frozenset(
     {
-        "WNBA",
         "NBA",
         "NBA1H",
         "NBA1Q",
@@ -51,9 +55,12 @@ L5_GE4_GATE_CLEAR_SPORTS: frozenset[str] = frozenset(
     }
 )
 
-# Non-basketball / non-soccer: clear only on perfect L5 = 5 (pending denser graded evidence).
+# Non-GE4: clear only on perfect L5 = 5 (WNBA family + football/hockey/tennis/golf).
 L5_PERFECT_ONLY_GATE_CLEAR_SPORTS: frozenset[str] = frozenset(
     {
+        "WNBA",
+        "WNBA1H",
+        "WNBA1Q",
         "NFL",
         "CFB",
         "NHL",
@@ -73,6 +80,10 @@ L5_PERFECT_BOOST_SKIP_SPORTS: frozenset[str] = frozenset({"MLB"})
 
 def _norm_sport(sport: object) -> str:
     return str(sport or "").strip().upper()
+
+
+def is_wnba_family(sport: object) -> bool:
+    return _norm_sport(sport) in WNBA_FAMILY_SPORTS
 
 
 def _norm_pick(pick: object) -> str:

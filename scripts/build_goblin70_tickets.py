@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 """Build Goblin-70 tickets and publish the playable card to /tickets.
 
-Main card (app): Goblin OVER with L5=5 + L10>=8 + directional D (tennis L5=5
-only; golf L5=5+L10>=8, no opponent D). Cover floor, no Demons, no shadow,
-no hitter Ks. Standard Over/Under that clear the same gate ticket as Flex
-groups — not mixed onto Goblin Power.
+Main card (app): Goblin OVER with L5=5 + L10>=8 + directional D (tennis keep
+gates: Games Won Standard-Goblin >=4, Total Games L5>=4 and L10>=8, no D; golf L5=5+L10>=8,
+no opponent D). Cover floor, no Demons, no shadow, no hitter Ks. Standard
+Over/Under that clear the same gate can share a slip with Goblins. Tennis
+Standard UNDER Aces/DF faded; Games Won OVER keep only.
+
+The playable card prices 2- and 3-leg slips by expected value at the
+N-correct payout. Each round takes the best-EV group from the whole pool.
+The all-hit payout follows how many Goblins are on the slip.
+A sport with no keep-file rule is off. Stop when nothing left has positive
+EV and an all-hit payout of at least 1.4x. One player-prop once. Flat $20.
 
 NFLP stays on its own playing-time track. N-correct / To Win only.
 """
@@ -14,6 +21,7 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import re
 import subprocess
 import sys
@@ -30,7 +38,10 @@ if str(_REPO) not in sys.path:
 
 import rank_best_props_today as R  # noqa: E402
 from utils.n_correct_payout import PAY_FALLBACK as PAY, resolve_n_correct  # noqa: E402
+from utils.ticket_ev_build import attach_leg_p, build_ev_slips  # noqa: E402
+from utils.ticket_keep_registry import rule_for  # noqa: E402
 from utils.ui_live_json import write_paths as live_json_write_paths  # noqa: E402
+from utils.prop_norm import canon_prop  # noqa: E402
 from utils.ticket_70_pool import (  # noqa: E402
     directional_l5,
     goblin_70_eligible,
@@ -40,13 +51,166 @@ from utils.ticket_70_pool import (  # noqa: E402
     nflp_std_over_eligible,
     nflp_ticket_eligible,
     nflp_ticket_p,
+    premium_goblin_eligible,
+    premium_goblin_sort_key,
+    standard_flex_kind,
     standard_sort_key,
     standard_ticket_eligible,
     standard_ticket_p,
+    standard_yolo_kind,
+    yolo_ticket_track,
 )
+from utils.wnba_pra_off_observe import log_board as log_wnba_pra_off_observe  # noqa: E402
+from utils.wnba_threes_vol_observe import log_board as log_wnba_threes_vol_observe  # noqa: E402
+from utils.wnba_std_under_watch import log_board as log_wnba_std_under_watch  # noqa: E402
+from utils.wnba_ticket_cuts import attach_wnba_ticket_priors  # noqa: E402
 
 OUT_DIR = _REPO / "data" / "reports"
 ET = ZoneInfo("America/New_York")
+G70_CORE_SPORTS = ("MLB", "WNBA", "Soccer", "Tennis")
+_GOLF_SKIP_ENV = ("1", "true", "yes", "on")
+
+
+def golf_xlsx_candidates(root: Path, date: str) -> list[Path]:
+    return [
+        root / "outputs" / date / "golf" / "step8_golf_direction_clean.xlsx",
+        root / "outputs" / date / "golf" / f"step8_golf_direction_clean_{date}.xlsx",
+        root / "Sports" / "Golf" / "outputs" / "step8_golf_direction_clean.xlsx",
+    ]
+
+
+def golf_xlsx_missing(root: Path, date: str) -> bool:
+    """True when the dated golf xlsx step8 (G70 golf input) is not on disk."""
+    return not any(p.is_file() for p in golf_xlsx_candidates(root, date))
+
+
+def skip_golf_g70(
+    root: Path | None,
+    date: str,
+    *,
+    flag: bool = False,
+    env: dict[str, str] | None = None,
+) -> bool:
+    """Golf xlsx miss is a sport skip, not a full G70 halt."""
+    if flag:
+        return True
+    src = env if env is not None else os.environ
+    if str(src.get("PROPORACLE_SKIP_GOLF_G70") or "").strip().lower() in _GOLF_SKIP_ENV:
+        return True
+    if root is None:
+        return False
+    return golf_xlsx_missing(root, date)
+
+
+def _sport_label(raw: object) -> str:
+    u = str(raw or "").strip().upper()
+    return {
+        "SOCCER": "Soccer",
+        "SOC": "Soccer",
+        "TENNIS": "Tennis",
+        "WNBA": "WNBA",
+        "MLB": "MLB",
+        "NFL": "NFL",
+        "CFB": "CFB",
+        "GOLF": "Golf",
+    }.get(u, str(raw or "").strip() or u)
+
+
+def remaining_g70_sports(rows: list[dict]) -> list[str]:
+    """Sports still in the G70 *core* pool after golf is dropped.
+
+    NFL/CFB/NBA can sit on the same step8 board; they are not part of this
+    warning. Their own gates (NFL Goblin held, NFLP league check, etc.)
+    still apply inside ``build()`` and are independent of ``--skip-golf``.
+    """
+    present: list[str] = []
+    seen: set[str] = set()
+    labels = [_sport_label(r.get("sport")) for r in rows]
+    for want in G70_CORE_SPORTS:
+        if any(lab == want for lab in labels) and want not in seen:
+            present.append(want)
+            seen.add(want)
+    return present
+
+
+def warn_missing_football_step8(root: Path, date: str) -> None:
+    """Surface step1-without-step8 so football pipeline failure ≠ empty slate."""
+    reason_fn = getattr(R, "step8_empty_reason", None)
+    if not callable(reason_fn):
+        return
+    for sport, folder, fname in (
+        ("NFL", "nfl", "step8_nfl_direction_clean.xlsx"),
+        ("CFB", "cfb", "step8_cfb_direction_clean.xlsx"),
+    ):
+        msg = str(reason_fn(root, date, sport, folder, fname) or "")
+        if "WARN:" in msg:
+            print(msg.strip())
+
+
+def golf_skip_warning(rows: list[dict]) -> str:
+    keep = remaining_g70_sports(rows) or list(G70_CORE_SPORTS)
+    return (
+        "WARNING: Golf step8 xlsx missing — golf excluded from G70 pool, "
+        f"continuing with {len(keep)} remaining sports: {', '.join(keep)}"
+    )
+
+
+def g70_json_valid(path: Path) -> tuple[bool, str]:
+    if not path.is_file():
+        return False, "missing"
+    try:
+        if path.stat().st_size <= 0:
+            return False, "empty"
+        json.loads(path.read_text(encoding="utf-8"))
+    except OSError as exc:
+        return False, str(exc)
+    except json.JSONDecodeError as exc:
+        return False, f"invalid JSON ({exc})"
+    return True, "ok"
+
+
+def bump_g70_latest_pointer(
+    dated: Path,
+    date: str,
+    *,
+    peer_roots: list[Path] | None = None,
+) -> list[Path]:
+    """Copy a validated dated G70 JSON onto latest.json (local + main_cp).
+
+    Independent of run_daily PipelineFailed / D-G70 skip flags.
+    """
+    ok, why = g70_json_valid(dated)
+    if not ok:
+        print(
+            f"WARNING: G70 dated JSON invalid ({why}) — latest pointer not updated "
+            f"path={dated}"
+        )
+        return []
+    text = dated.read_text(encoding="utf-8")
+    written: list[Path] = []
+    local = dated.parent / "goblin70_tickets_latest.json"
+    try:
+        local.write_text(text, encoding="utf-8")
+        written.append(local)
+        print(f"LAST_G70_REBUILD ok=true -> latest pointer updated to {date} ({local})")
+    except OSError as exc:
+        print(f"WARNING: could not bump G70 latest pointer at {local}: {exc}")
+    roots = peer_roots
+    if roots is None:
+        roots = []
+        peer = _REPO.parent / "PropORACLE_main_cp"
+        if peer.is_dir() and peer.resolve() != _REPO.resolve():
+            roots.append(peer)
+    for root in roots:
+        dest = Path(root) / "data" / "reports" / "goblin70_tickets_latest.json"
+        try:
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_text(text, encoding="utf-8")
+            written.append(dest)
+            print(f"LAST_G70_REBUILD ok=true -> latest pointer updated to {date} ({dest})")
+        except OSError as exc:
+            print(f"WARNING: could not bump G70 latest pointer at {dest}: {exc}")
+    return written
 
 
 def fold_name(s: object) -> str:
@@ -68,7 +232,7 @@ def tennis_match_key(mu: object) -> str:
     return fold_name(s)
 
 
-def load_today_board(date: str) -> list[dict]:
+def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     candidates = [_REPO]
     sibling = _REPO.parent / "PropORACLE_main_cp"
     if sibling.is_dir() and sibling.resolve() != _REPO.resolve():
@@ -83,6 +247,8 @@ def load_today_board(date: str) -> list[dict]:
                 break
     if root is None:
         return []
+    warn_missing_football_step8(root, date)
+    drop_golf = skip_golf_g70(root, date, flag=skip_golf)
     rows: list[dict] = []
     for sport, folder, fname in R.SPORTS:
         df = R.load_sport(root, date, sport, folder, fname)
@@ -92,6 +258,7 @@ def load_today_board(date: str) -> list[dict]:
     for loader_name in (
         "load_nfl",
         "load_cfb",
+        "load_cfb1h",
         "load_golf",
         "load_cbb",
         "load_wcbb",
@@ -101,12 +268,17 @@ def load_today_board(date: str) -> list[dict]:
         "load_wnba1q",
         "load_wnba1h",
     ):
+        if drop_golf and loader_name == "load_golf":
+            continue
         loader = getattr(R, loader_name, None)
         if not callable(loader):
             continue
         extra = loader(root, date)
         if extra is not None and not extra.empty:
             rows.extend(R.recs(extra))
+    if drop_golf:
+        rows = [r for r in rows if str(r.get("sport") or "").upper() != "GOLF"]
+        print(golf_skip_warning(rows), flush=True)
     return rows
 
 # PAY lives in utils.n_correct_payout. Resolve order: CDP scrape (matching
@@ -122,6 +294,7 @@ SPORT_PURE = (
     ("NBA", 3, "Power", 2),
     ("NHL", 3, "Power", 2),
     ("CFB", 3, "Power", 2),
+    ("CFB1H", 3, "Power", 2),
     ("NFL", 3, "Power", 2),
     ("CBB", 3, "Power", 2),
     ("GOLF", 3, "Power", 2),
@@ -137,6 +310,7 @@ SPORT_TID_PREFIX = {
     "WNBA1H": "W1H",
     "NBA1Q": "N1Q",
     "NBA1H": "N1H",
+    "CFB1H": "C1H",
     "WCBB": "WCB",
     "GOLF": "GLF",
     "TENNIS": "TEN",
@@ -154,6 +328,13 @@ MAIN_CARD = (
     ("F4-3", 4, "Flex", "goblin"),
     ("F4-4", 4, "Flex", "goblin"),
 )
+# Long-shot sleeve only. Prefer 6, fall back to 5. Max two slips.
+YOLO_MAX_TICKETS = 3
+YOLO_PREF_LEGS = (6, 5, 4)
+# All-Standard YOLO: gate-cleared Standards only; skip the day if < 3 clear.
+STANDARD_YOLO_MAX_TICKETS = 1
+STANDARD_YOLO_PREF_LEGS = (6, 5, 4, 3)
+STANDARD_YOLO_MIN_LEGS = 3
 
 WEB_SPORT = {
     "TENNIS": "Tennis",
@@ -192,6 +373,28 @@ def unique_by_player(rows: list[dict], key_fn) -> list[dict]:
         if not pn or pn in seen:
             continue
         seen.add(pn)
+        out.append(r)
+    return out
+
+
+def player_prop_key(r: dict) -> str:
+    """Same player, different prop, is a different leg."""
+    player = fold_name(r.get("player"))
+    prop = canon_prop(str(r.get("sport") or ""), str(r.get("prop") or ""))
+    if not player or not prop:
+        return ""
+    return f"{player}|{prop}"
+
+
+def unique_by_player_prop(rows: list[dict], key_fn) -> list[dict]:
+    ordered = sorted(rows, key=key_fn)
+    seen: set[str] = set()
+    out: list[dict] = []
+    for r in ordered:
+        key = player_prop_key(r)
+        if not key or key in seen:
+            continue
+        seen.add(key)
         out.append(r)
     return out
 
@@ -240,6 +443,89 @@ def can_add(combo: list[dict], r: dict, *, wnba_cap: int) -> bool:
     return True
 
 
+def order_by_gate_hr(pool: list[dict], tie_key) -> list[dict]:
+    """Best measured hit rate first. Gate-cleared rows with no sample follow.
+
+    A preset ``gate_hr`` + ``gate_hr_n`` is kept when the sample is large
+    enough. Otherwise the sport × prop × pick × side category rate is used.
+    """
+    from utils.category_hit_rate import (
+        CATEGORY_HR_MIN_N,
+        load_category_hr_index,
+        lookup_category_hr,
+    )
+
+    idx = load_category_hr_index()
+    min_n = float(CATEGORY_HR_MIN_N)
+    ranked: list[tuple[float, dict]] = []
+    for r in pool:
+        hr: float | None = None
+        preset_n = r.get("gate_hr_n")
+        if r.get("gate_hr") is not None and preset_n is not None:
+            try:
+                if float(preset_n) >= min_n:
+                    hr = float(r["gate_hr"])
+            except (TypeError, ValueError):
+                hr = None
+        if hr is None:
+            hit = lookup_category_hr(
+                idx,
+                sport=r.get("sport"),
+                prop=r.get("prop"),
+                pick_type=r.get("pick_type"),
+                direction=r.get("side") or r.get("direction"),
+            )
+            if hit and float(hit.get("n") or 0) >= min_n:
+                hr = float(hit["hr"])
+                r["gate_hr"] = hr
+                r["gate_hr_n"] = float(hit["n"])
+        if hr is None and r.get("gate_hr") is None:
+            try:
+                r["gate_hr"] = float(r.get("p") or 0)
+            except (TypeError, ValueError):
+                r["gate_hr"] = None
+        ranked.append((hr if hr is not None else -1.0, r))
+    ranked.sort(key=lambda item: (-item[0], tie_key(item[1])))
+    return [r for _, r in ranked]
+
+
+def drain_power3(
+    pool: list[dict],
+    taken: set[str] | None = None,
+    *,
+    wnba_cap: int = 1,
+) -> list[list[dict]]:
+    """3-leg Power slips until the pool cannot fill another. No preset count.
+
+    ``pool`` must already be best-hit-rate first. Sports are not mixed ahead
+    of a higher-rate leg. Same-game caps in ``can_add`` still apply.
+    """
+    used = taken if taken is not None else set()
+    out: list[list[dict]] = []
+    while True:
+        combo = pack(pool, 3, used, mix_sports=False, wnba_cap=wnba_cap)
+        if len(combo) != 3:
+            return out
+        for r in combo:
+            used.add(fold_name(r.get("player")))
+        out.append(combo)
+
+
+def slip_group(combo: list[dict], family: str) -> str:
+    sports = {str(x.get("sport") or "") for x in combo}
+    if family == "mix":
+        if len(sports) == 1:
+            return f"{next(iter(sports))} Goblin-70 Mix Power 3"
+        return "X-Sport Goblin-70 Mix Power 3"
+    if family == "standard":
+        if len(sports) == 1:
+            return f"{next(iter(sports))} Standard Power 3"
+        return "X-Sport Standard Power 3"
+    if len(sports) == 1:
+        return f"{next(iter(sports))} Goblin-70 Power 3"
+    return "X-Sport Goblin-70 Power 3"
+
+
 def pack(
     pool: list[dict],
     n: int,
@@ -270,6 +556,85 @@ def pack(
         add_from(True)
     add_from(False)
     return combo if len(combo) == n else []
+
+
+def pack_yolo(
+    gob: list[dict],
+    std: list[dict] | None = None,
+    *,
+    max_tickets: int = YOLO_MAX_TICKETS,
+) -> list[list[dict]]:
+    """Power 6, then 5, then 4. Mix gate-cleared Standards when available.
+
+    Own taken set so Power 3 / Flex 4 keep their legs.
+
+    Standard mix-ins must already be ``standard_yolo_eligible`` (validated
+    keep, not gap-sort / not a sport quota). Prefer stacking multiple
+    cleared Standards before Goblin fill — never invent a Standard to hit
+    a count. Premium WNBA Goblin sleeve still seeds the Goblin half first.
+    """
+    taken: set[str] = set()
+    out: list[list[dict]] = []
+    # Gate-cleared Standards only for YOLO mix (caller should pre-filter).
+    std_pool = list(std or [])
+    premium = sorted(
+        (r for r in gob if premium_goblin_eligible(r)),
+        key=premium_goblin_sort_key,
+    )
+    rest = [r for r in gob if not premium_goblin_eligible(r)]
+    ordered_gob = premium + rest
+    for n in YOLO_PREF_LEGS:
+        if len(out) >= max(0, int(max_tickets)):
+            break
+        seeds: list[dict] = []
+        # All cleared Standards first (no one-per-sport cap), then Goblins.
+        for s in std_pool:
+            pn = fold_name(s.get("player"))
+            if pn and pn not in taken:
+                seeds.append(s)
+        seeds.extend(r for r in ordered_gob if fold_name(r.get("player")) not in taken)
+        combo = pack(seeds, n, taken, mix_sports=True, wnba_cap=1)
+        if len(combo) != n:
+            combo = pack(seeds, n, taken, mix_sports=True, wnba_cap=2)
+        if len(combo) != n:
+            continue
+        for r in combo:
+            taken.add(fold_name(r.get("player")))
+        out.append(combo)
+    return out
+
+
+def pack_standard_yolo(
+    std: list[dict],
+    *,
+    max_tickets: int = STANDARD_YOLO_MAX_TICKETS,
+) -> list[list[dict]]:
+    """All-Standard YOLO Power from gate-cleared legs only.
+
+    No per-sport quota. Combine whatever cleared that day; if fewer than
+    STANDARD_YOLO_MIN_LEGS survive, return empty (sit out / fold elsewhere).
+    Pack order is ``standard_sort_key`` among keep survivors — never gap-sort.
+    """
+    ordered = sorted(std or [], key=standard_sort_key)
+    if len(ordered) < STANDARD_YOLO_MIN_LEGS:
+        return []
+    taken: set[str] = set()
+    out: list[list[dict]] = []
+    for n in STANDARD_YOLO_PREF_LEGS:
+        if len(out) >= max(0, int(max_tickets)):
+            break
+        if n > len(ordered):
+            continue
+        seeds = [r for r in ordered if fold_name(r.get("player")) not in taken]
+        combo = pack(seeds, n, taken, mix_sports=True, wnba_cap=99)
+        if len(combo) != n:
+            combo = pack(seeds, n, taken, mix_sports=False, wnba_cap=99)
+        if len(combo) != n:
+            continue
+        for r in combo:
+            taken.add(fold_name(r.get("player")))
+        out.append(combo)
+    return out
 
 
 def binomial(n: int, k: int, p: float) -> float:
@@ -322,6 +687,11 @@ def compact(r: dict, *, std: bool = False) -> dict:
         "p": r.get("p"),
         "ml_prob": r.get("ml_prob"),
         "hit_rate": r.get("hit_rate"),
+        "gate_hr": r.get("gate_hr"),
+        "p_cell": r.get("p_cell"),
+        "p_n": r.get("p_n"),
+        "p_source": r.get("p_source"),
+        "gate_recipe": r.get("gate_recipe"),
         "standard_line": r.get("standard_line"),
         "line_underdog": r.get("line_underdog"),
         "line_draftkings": r.get("line_draftkings"),
@@ -377,7 +747,9 @@ def _sweep_x(ticket: dict) -> float:
         return 0.0
 
 
-def _leg_to_web(leg: dict, *, ticket_id: str, date: str) -> dict:
+def _leg_to_web(
+    leg: dict, *, ticket_id: str, date: str, ticket_track: str = "goblin70"
+) -> dict:
     player = str(leg.get("player") or "").strip()
     sport = web_sport(leg.get("sport"))
     team, opp = split_matchup(leg.get("matchup"), player, leg.get("team"))
@@ -455,7 +827,7 @@ def _leg_to_web(leg: dict, *, ticket_id: str, date: str) -> dict:
     )
     return {
         "ticket_id": ticket_id,
-        "ticket_track": "goblin70",
+        "ticket_track": ticket_track,
         "sport": sport,
         "player": player,
         "team": team,
@@ -504,24 +876,39 @@ def _ticket_to_web(ticket: dict, *, date: str, ticket_no: int, group_name: str) 
     gn = re.sub(r"[|]+", "_", group_name)[:80]
     ticket_id = f"{date}|{gn}|{ticket_no}"
     n_correct = {int(k): float(v) for k, v in (ticket.get("n_correct") or {}).items()}
-    legs = [_leg_to_web(leg, ticket_id=ticket_id, date=date) for leg in ticket.get("legs") or []]
+    yolo_track = yolo_ticket_track(ticket, group_name)
+    yolo = yolo_track is not None
+    track = yolo_track or str(ticket.get("ticket_track") or "goblin70")
+    legs = [
+        _leg_to_web(leg, ticket_id=ticket_id, date=date, ticket_track=track)
+        for leg in ticket.get("legs") or []
+    ]
     hrs = [float(x["hit_rate"]) for x in legs if x.get("hit_rate") is not None]
-    mls = [float(x["ml_prob"]) for x in legs if x.get("ml_prob") is not None]
     avg_hr = (sum(hrs) / len(hrs)) if hrs else mean_p
-    if legs and len(mls) == len(legs):
-        ml_win = 1.0
-        for m in mls:
-            ml_win *= m
+    if track == "standard_yolo":
+        core_recipe = "standard_yolo"
+        core_label = (
+            "Standard YOLO (gate-cleared Standards only; off ticket win-rate)"
+        )
+    elif yolo:
+        core_recipe = "goblin70_yolo"
+        core_label = (
+            "YOLO Power 4/5/6 (Goblin-70 + Standard mix; off ticket win-rate)"
+        )
     else:
-        ml_win = sweep_pct
+        core_recipe = "goblin70"
+        core_label = "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)"
+    # Ticket win% is the historical Goblin-70 gate rate (mean_leg_p), not XGBoost.
+    # ml_prob stays on each leg for display only. YOLO is display-only vs win-rate.
     return {
         "web_group_name": group_name,
         "ticket_id": ticket_id,
         "ticket_no": ticket_no,
-        "ticket_track": "goblin70",
+        "ticket_track": track,
         "mode": "goblin70",
+        "exclude_from_winrate": bool(yolo),
         "avg_hit_rate": round(avg_hr, 4),
-        "est_win_prob": round(ml_win, 4),
+        "est_win_prob": round(sweep_pct, 4),
         "est_flex_cash_prob": round(cash_pct, 4) if tt == "flex" else None,
         "power_payout": sweep if tt == "power" else None,
         "flex_payout": sweep if tt == "flex" else None,
@@ -529,8 +916,8 @@ def _ticket_to_web(ticket: dict, *, date: str, ticket_no: int, group_name: str) 
         "ev_power": ev,
         "display_min_x": sweep,
         "core_build": True,
-        "core_recipe": "goblin70",
-        "core_label": "Goblin-70 (L5=5 + L10>=8 + S/A or FGA + cover)",
+        "core_recipe": core_recipe,
+        "core_label": core_label,
         "pool_policy": "goblin70",
         "strong_builder": False,
         "legs": legs,
@@ -606,10 +993,11 @@ def to_web_payload(payload: dict) -> dict:
             "min_l10": 8,
             "cover_floor": "per-prop unit (PRA 3.7, pass yds 15, else sport floor)",
             "note": (
-                "L5=5 + L10>=8 + directional D. Tennis L5=5 only. Golf L5=5+L10>=8 "
-                "(no opponent D). Goblin OVER on Power; Standard O/U Flex. "
-                "No Demons, no shadow, no hitter Ks. Cover floor still applies. "
-                "NFLP is a separate playing-time track. N-correct / To Win only."
+                "Keep-file gates only; a sport with no rule is off. "
+                "Leg p is the shrunk gate-cell hit rate. "
+                "2- or 3-leg, Power unless Flex N-correct EV is higher. "
+                "Stop when the next slip EV is not positive or all-hit payout is under 2x. "
+                "Goblin and Standard stay separate. Flat $10. N-correct / To Win only."
             ),
         },
         "payout_note": payload.get("payout_note"),
@@ -627,7 +1015,8 @@ def is_g70_group(group: dict) -> bool:
         return True
     tickets = group.get("tickets") or []
     if tickets and isinstance(tickets[0], dict):
-        return str(tickets[0].get("ticket_track") or "").lower() == "goblin70"
+        tr = str(tickets[0].get("ticket_track") or "").lower()
+        return tr in {"goblin70", "goblin70_yolo", "standard_yolo", "standard_ev", "mixed_ev"}
     return False
 
 
@@ -912,6 +1301,27 @@ def write_web(payload: dict, board: list[dict] | None = None) -> list[Path]:
         f"web merge goblin70_groups={len(g70.get('groups') or [])} "
         f"graded_main_groups={len(main_groups)}"
     )
+    # Dual-card pool_mode=goblin70 must not disable CORE/mixer keep hygiene.
+    # Scrub construction bans + enforce MAIN player-slip cap on every merge.
+    try:
+        from combined_slate_tickets import (
+            filter_main_high_prob_payload,
+            trim_payload_max_slips_per_player,
+        )
+
+        before_n = sum(len(g.get("tickets") or []) for g in web.get("groups") or [])
+        web = filter_main_high_prob_payload(web)
+        web = trim_payload_max_slips_per_player(web)
+        after_n = sum(len(g.get("tickets") or []) for g in web.get("groups") or [])
+        dropped = before_n - after_n
+        if dropped:
+            print(
+                f"dual-card hygiene: dropped {dropped} slip(s) "
+                f"(keep/construction or slate exposure anchor-cap); "
+                f"pool_mode={web.get('pool_mode')!r} preserved"
+            )
+    except Exception as exc:
+        print(f"WARN: dual-card hygiene skipped ({exc})")
     try:
         from combined_slate_tickets import apply_payout_patch_to_payload
 
@@ -939,6 +1349,31 @@ def write_web(payload: dict, board: list[dict] | None = None) -> list[Path]:
         path.write_text(text, encoding="utf-8")
         written.append(path)
         print("web", path)
+    try:
+        from g70_health import stamp_g70_rebuild
+
+        stamp_g70_rebuild(
+            ok=True,
+            slate_date=date,
+            detail={
+                "goblin70_groups": len(g70.get("groups") or []),
+                "graded_main_groups": len(main_groups),
+                "paths": [str(p) for p in written[:6]],
+            },
+        )
+        print("g70 health stamp -> logs/LAST_G70_REBUILD.json")
+    except Exception as stamp_exc:
+        print(f"WARN: G70 health stamp skipped ({stamp_exc})")
+    try:
+        from utils.ui_live_json import refresh_pipeline_status_from_slate, sync_live_json_pairs
+
+        sync_live_json_pairs(_REPO)
+        refresh_pipeline_status_from_slate(_REPO)
+        if main_cp.is_dir() and main_cp.resolve() != _REPO.resolve():
+            sync_live_json_pairs(main_cp)
+            refresh_pipeline_status_from_slate(main_cp)
+    except Exception as sync_exc:
+        print(f"WARN: live JSON sync skipped ({sync_exc})")
     return written
 
 
@@ -995,8 +1430,10 @@ def make_ticket(
     return out
 
 
-def build(date: str, *, l5_eq_5: bool = False) -> dict:
-    board = load_today_board(date)
+def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
+    board = load_today_board(date, skip_golf=skip_golf)
+    for r in board:
+        attach_wnba_ticket_priors(r, date)
     gob_raw = [
         r
         for r in board
@@ -1011,14 +1448,54 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
         if fold_name(r.get("player")) in SKIP_PLAYERS:
             continue
         rec = dict(r)
-        rec["std_kind"] = "gate"
-        rec["p"] = standard_ticket_p("gate")
+        rec["std_kind"] = standard_flex_kind(r) or "gate"
+        rec["p"] = standard_ticket_p(rec["std_kind"])
         std_raw.append(rec)
     for r in gob_raw:
         r["p"] = goblin_ticket_p(r)
 
-    gob = unique_by_player(gob_raw, goblin_sort_key)
-    std = unique_by_player(std_raw, standard_sort_key)
+    gob = unique_by_player_prop(gob_raw, goblin_sort_key)
+    std = unique_by_player_prop(std_raw, standard_sort_key)
+    from utils.category_hit_rate import load_category_hr_index
+
+    hr_index = load_category_hr_index()
+
+    def _recipe(r: dict) -> str:
+        rule = rule_for(r.get("sport"))
+        mode = rule[0] if rule else "off"
+        return f"{r.get('sport')}:{mode}"
+
+    for r in gob:
+        attach_leg_p(r, recipe=_recipe(r), index=hr_index)
+        # Category HR can be missing or shrunk below the L5=5 prior when the
+        # gate cell is thin — floor at goblin_ticket_p so EV packing can run.
+        floor_p = goblin_ticket_p(r)
+        try:
+            cur = float(r["p"]) if r.get("p") is not None else None
+        except (TypeError, ValueError):
+            cur = None
+        if cur is None or cur < floor_p:
+            r["p"] = floor_p
+            r["p_source"] = "l5eq5_floor"
+    for r in std:
+        attach_leg_p(r, recipe=_recipe(r), index=hr_index)
+        if r.get("p") is None:
+            r["p"] = standard_ticket_p(r.get("std_kind") or "gate")
+            r["p_source"] = "strict_floor"
+
+    # Standard YOLO pool: validated keep only (subset of Flex Standard).
+    yolo_std_raw = []
+    for r in board:
+        kind = standard_yolo_kind(r)
+        if not kind:
+            continue
+        if fold_name(r.get("player")) in SKIP_PLAYERS:
+            continue
+        rec = dict(r)
+        rec["std_kind"] = kind
+        rec["p"] = standard_ticket_p(kind)
+        yolo_std_raw.append(rec)
+    yolo_std = unique_by_player(yolo_std_raw, standard_sort_key)
 
     taken: set[str] = set()
     tickets: list[dict] = []
@@ -1027,62 +1504,63 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
         kwargs.setdefault("date", date)
         return make_ticket(*args, **kwargs)
 
-    for tid, n, product, family in MAIN_CARD:
-        combo = pack(gob, n, taken, mix_sports=True, wnba_cap=1)
-        note = (
-            "L5=5 Goblin juice cut + sport cover floor. Power OK."
-            if l5_eq_5
-            else "All-Goblin (L5=5 + L10>=8 + D; tennis L5=5; golf L5=5+L10)."
+    def _emit(scored: dict, *, tid: str, family: str, track: str) -> None:
+        legs = scored["legs"]
+        n = len(legs)
+        product = str(scored["product"])
+        group = slip_group(legs, family).replace("Power 3", f"{product} {n}")
+        slip = _ticket(
+            tid,
+            [compact(x, std=family == "standard") for x in legs],
+            product,
+            family,
+            scored["payout_note"],
+            web_group=group,
         )
-        if len(combo) != n and l5_eq_5:
-            combo = pack(gob, n, taken, mix_sports=True, wnba_cap=2)
-            if len(combo) == n:
-                note += " Thin slate: two WNBA legs from the same game."
-        if len(combo) != n:
-            continue
-        for r in combo:
-            taken.add(fold_name(r.get("player")))
-        tickets.append(
-            _ticket(
-                tid,
-                [compact(x) for x in combo],
-                product,
-                family,
-                note,
-            )
-            )
+        slip["ev_n_correct"] = round(float(scored["expected_multiple"]), 3)
+        slip["n_correct"] = {str(k): v for k, v in scored["n_correct"].items()}
+        slip["payout_note"] = scored["payout_note"]
+        slip["stake"] = scored["stake"]
+        slip["ticket_track"] = track
+        slip["p_win"] = round(float(scored["p_win"]), 4)
+        if track in {"standard_ev", "mixed_ev"}:
+            slip["exclude_from_winrate"] = True
+            slip["core_recipe"] = track
+        tickets.append(slip)
 
-    # Named sport groups so /tickets WNBA and NFL pills are not empty.
-    # Mixed X-Sport slips tag as CROSS; these groups use the sport in the title.
-    for sport, n, product, n_tickets in SPORT_PURE:
-        pool = [
-            r
-            for r in gob
-            if str(R.norm_sport(r.get("sport") or "")) == str(R.norm_sport(sport))
-        ]
-        local_taken: set[str] = set()
-        cap = 2 if sport == "WNBA" else 1
-        for i in range(1, n_tickets + 1):
-            combo = pack(pool, n, local_taken, mix_sports=False, wnba_cap=cap)
-            n_use = n
-            prod = product
-            if len(combo) != n:
-                combo = pack(pool, 2, local_taken, mix_sports=False, wnba_cap=cap)
-                n_use, prod = 2, "Power"
-            if len(combo) < 2:
-                break
-            for r in combo:
-                local_taken.add(fold_name(r.get("player")))
-            tickets.append(
-                _ticket(
-                    f"{SPORT_TID_PREFIX.get(str(sport).upper(), str(sport)[:3].upper())}{n_use}-{i}",
-                    [compact(x) for x in combo],
-                    prod,
-                    "goblin",
-                    f"{sport} Goblin-70 (L5=5 + L10>=8 + D; tennis L5=5).",
-                    web_group=f"{sport} Goblin-70 {prod} {n_use}",
-                )
-            )
+    card_pool = list(gob)
+    if not l5_eq_5:
+        card_pool.extend(std)
+    for i, scored in enumerate(
+        build_ev_slips(card_pool, taken=taken, fold=fold_name), start=1
+    ):
+        n = len(scored["legs"])
+        fam = str(scored.get("family") or "goblin")
+        if fam == "standard":
+            tid, track = f"S{n}-{i}", "standard_ev"
+        elif fam == "mix":
+            tid, track = f"M{n}-{i}", "mixed_ev"
+        else:
+            tid, track = f"G{n}-{i}", "goblin70"
+        _emit(scored, tid=tid, family=fam, track=track)
+
+    for i, combo in enumerate(pack_standard_yolo(yolo_std), start=1):
+        n_use = len(combo)
+        slip = _ticket(
+            f"YS{n_use}-{i}",
+            [compact(x, std=True) for x in combo],
+            "Power",
+            "standard",
+            (
+                "Standard YOLO Power. Off Income. Gate-cleared Standards only, "
+                f"{n_use} legs, no per-sport quota."
+            ),
+            web_group=f"YOLO Standard Power {n_use}",
+        )
+        slip["exclude_from_winrate"] = True
+        slip["ticket_track"] = "standard_yolo"
+        slip["core_recipe"] = "standard_yolo"
+        tickets.append(slip)
 
     nfl_raw = [r for r in board if nflp_ticket_eligible(r)]
     nfl_family = "nflp"
@@ -1091,9 +1569,10 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
         nfl_family = "nflp_std"
     for r in nfl_raw:
         r["p"] = nflp_ticket_p(r)
-    nfl = unique_by_player(nfl_raw, goblin_sort_key)
+    nfl = order_by_gate_hr(unique_by_player(nfl_raw, goblin_sort_key), goblin_sort_key)
     nfl_taken: set[str] = set()
-    for i in range(1, 4):
+    i = 1
+    while True:
         combo = pack(nfl, 3, nfl_taken, mix_sports=False, wnba_cap=2)
         n_use = 3
         if len(combo) != 3:
@@ -1118,41 +1597,9 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
                 web_group=f"NFL Power {n_use}",
             )
         )
-
-    leftover = [r for r in gob if fold_name(r.get("player")) not in taken]
-    std_left = [] if l5_eq_5 else [r for r in std if fold_name(r.get("player")) not in taken]
-    if leftover and std_left:
-        g3 = pack(leftover, 3, taken, mix_sports=True, wnba_cap=1)
-        std_leg = next((s for s in std_left if len(g3) == 3 and can_add(g3, s, wnba_cap=1)), None)
-        if g3 and std_leg:
-            mix = g3 + [std_leg]
-            for r in mix:
-                taken.add(fold_name(r.get("player")))
-            tickets.append(
-                _ticket(
-                    "SF4-1",
-                    [compact(x, std=x.get("pick_type") == "Standard") for x in mix],
-                    "Flex",
-                    "mix",
-                    "Flex only. One Standard gate leg (L5=5+L10>=8+D) + three Goblin leftovers.",
-                )
-            )
-            std_left = [r for r in std_left if fold_name(r.get("player")) not in taken]
-
-    if len(std_left) >= 3:
-        s3 = pack(std_left, 3, taken, mix_sports=True, wnba_cap=1)
-        if len(s3) == 3:
-            for r in s3:
-                taken.add(fold_name(r.get("player")))
-            tickets.append(
-                _ticket(
-                    "SF3-1",
-                    [compact(x, std=True) for x in s3],
-                    "Flex",
-                    "standard",
-                    "Flex only. Standard O/U that cleared L5=5 + L10>=8 + D (tennis L5=5).",
-                )
-            )
+        i += 1
+        if n_use == 2:
+            break
 
     choose = getattr(R, "_choose_step8_root", None)
     root = choose([_REPO, _REPO.parent / "PropORACLE_main_cp"], date) if callable(choose) else _REPO
@@ -1169,11 +1616,14 @@ def build(date: str, *, l5_eq_5: bool = False) -> dict:
             "goblin_70_raw": len(gob_raw),
             "standard_allowlist": len(std),
             "standard_allowlist_raw": len(std_raw),
+            "standard_yolo": len(yolo_std),
+            "standard_yolo_raw": len(yolo_std_raw),
             "nflp_goblin": len(nfl),
             "nflp_goblin_raw": len(nfl_raw),
         },
         "goblin_pool": [compact(r) for r in gob],
         "standard_pool": [compact(r, std=True) for r in std],
+        "standard_yolo_pool": [compact(r, std=True) for r in yolo_std],
         "nflp_pool": [compact(r) for r in nfl],
         "tickets": tickets,
         "_board": board,
@@ -1186,7 +1636,8 @@ def print_card(payload: dict) -> None:
     print(
         f"Goblin-70 unique {pool['goblin_70']} (raw {pool['goblin_70_raw']})  "
         f"Standard gate unique {pool['standard_allowlist']} "
-        f"(raw {pool['standard_allowlist_raw']})  "
+        f"(raw {pool['standard_allowlist_raw']}; "
+        f"YOLO keep {pool.get('standard_yolo', 0)})  "
         f"NFLP Goblin unique {pool.get('nflp_goblin', 0)} "
         f"(raw {pool.get('nflp_goblin_raw', 0)})"
     )
@@ -1203,7 +1654,7 @@ def print_card(payload: dict) -> None:
         print(
             f"  {r.get('std_kind'):22} {r['sport']:6} {r['player']:22} "
             f"{r['prop']:18} {r['side'][0]}{r['line']}  L5 {r['l5']}  "
-            f"p={r['p']:.3f}  {r['matchup']}"
+            f"p={(r.get('p') if r.get('p') is not None else 0):.3f}  {r.get('matchup') or ''}"
         )
     print("\nTICKETS")
     for t in payload["tickets"]:
@@ -1238,16 +1689,60 @@ def main() -> int:
         action="store_true",
         help="After --write-web, run Publish-LiveSite.ps1 (origin/main / Railway).",
     )
+    ap.add_argument(
+        "--skip-golf",
+        action="store_true",
+        help="Exclude golf from the G70 pool (golf step8 xlsx missing). Other sports still ticket.",
+    )
     args = ap.parse_args()
-    payload = build(args.date, l5_eq_5=args.l5_eq_5)
+    payload = build(args.date, l5_eq_5=args.l5_eq_5, skip_golf=args.skip_golf)
     board = payload.pop("_board", None)
+    if not args.l5_eq_5:
+        obs = log_wnba_pra_off_observe(args.date, board)
+        payload["pra_off_observe"] = {
+            "n": obs.get("n") or 0,
+            "n_already_live": obs.get("n_already_live") or 0,
+            "n_proposed": obs.get("n_proposed") or 0,
+        }
+        print(
+            f"  [observe] WNBA PRA Off-without-S/A: {obs['n']} rows "
+            f"({obs['n_proposed']} not on live tickets, {obs['n_already_live']} already live)"
+        )
+        threes_obs = log_wnba_threes_vol_observe(args.date, board)
+        payload["threes_vol_observe"] = {
+            "n": threes_obs.get("n") or 0,
+            "n_already_live": threes_obs.get("n_already_live") or 0,
+            "n_proposed": threes_obs.get("n_proposed") or 0,
+        }
+        print(
+            f"  [observe] WNBA 3PM vol-replace: {threes_obs['n']} rows "
+            f"({threes_obs['n_proposed']} not on live tickets, "
+            f"{threes_obs['n_already_live']} already live)"
+        )
+        std_u = log_wnba_std_under_watch(args.date, board)
+        payload["std_under_watch"] = {
+            "n": std_u.get("n") or 0,
+            "decided": std_u.get("decided") or 0,
+            "hr": std_u.get("hr"),
+            "wilson_lo": std_u.get("wilson_lo"),
+        }
+        print(
+            f"  [watch] WNBA Standard UNDER G70: {std_u['n']} rows "
+            f"(decided {std_u.get('decided') or 0}, hr {std_u.get('hr')}, "
+            f"Wilson LB {std_u.get('wilson_lo')})"
+        )
     suffix = "_l5eq5" if args.l5_eq_5 else ""
     out = OUT_DIR / f"goblin70_tickets_{args.date}{suffix}.json"
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     if not args.l5_eq_5:
-        latest = OUT_DIR / "goblin70_tickets_latest.json"
-        latest.write_text(out.read_text(encoding="utf-8"), encoding="utf-8")
+        # Local latest always (pre-existing). Peer main_cp only on --write-web so a
+        # successful standalone write propagates even when run_daily skipped D-G70.
+        bump_g70_latest_pointer(
+            out,
+            args.date,
+            peer_roots=None if args.write_web else [],
+        )
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     except Exception:
