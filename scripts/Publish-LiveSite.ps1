@@ -13,6 +13,9 @@ param(
 )
 
 $ErrorActionPreference = "Continue"
+# Scheduled publish must never hang on interactive git prompts (gc prune / stale worktree).
+$env:GIT_TERMINAL_PROMPT = "0"
+$env:GIT_ASK_YESNO = "false"
 $Root = if ($RepoRoot) { $RepoRoot } else { Split-Path $PSScriptRoot -Parent }
 
 function Get-MainWorktreeRoot {
@@ -79,9 +82,25 @@ function Ensure-DualCardTickets {
         Write-Host '[PUBLISH] FAILED: build_goblin70_tickets.py missing' -ForegroundColor Red
         return $false
     }
-    & py -3.14 $g70 --date $slateDate --write-web
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host ('[PUBLISH] FAILED: Goblin-70 rebuild exit {0}' -f $LASTEXITCODE) -ForegroundColor Red
+    $logsDir = Join-Path $RepoRoot "logs"
+    if (-not (Test-Path -LiteralPath $logsDir)) {
+        New-Item -ItemType Directory -Path $logsDir -Force | Out-Null
+    }
+    $loggedHelper = Join-Path $RepoRoot "scripts\Invoke-LoggedPwsh.ps1"
+    $g70Log = Join-Path $logsDir ("g70_writeweb_publish_{0}_{1:yyyyMMdd_HHmmss}.log" -f $slateDate, (Get-Date))
+    $g70Exit = 1
+    if (Test-Path -LiteralPath $loggedHelper) {
+        . $loggedHelper
+        $g70Exit = Invoke-G70WriteWebStandalone -ScriptPath $g70 -Date $slateDate -LogPath $g70Log -WorkingDirectory $RepoRoot
+    }
+    else {
+        Write-Host '[PUBLISH] WARN: Invoke-LoggedPwsh.ps1 missing — falling back to Tee-Object for --write-web' -ForegroundColor Yellow
+        & py -3.14 -u -X utf8 $g70 --date $slateDate --write-web 2>&1 | Tee-Object -FilePath $g70Log
+        $g70Exit = $LASTEXITCODE
+        Write-Host ("write-web exit code: {0}" -f $g70Exit)
+    }
+    if ($g70Exit -ne 0) {
+        Write-Host ('[PUBLISH] FAILED: Goblin-70 rebuild exit {0}' -f $g70Exit) -ForegroundColor Red
         return $false
     }
     if ((Test-Path -LiteralPath $tpl) -and (Test-Path -LiteralPath (Split-Path $rt -Parent))) {
