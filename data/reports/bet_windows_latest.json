@@ -1,6 +1,6 @@
 {
   "date": "2026-09-29",
-  "generated_at": "2026-09-29T10:59:31-04:00",
+  "generated_at": "2026-09-29T13:18:48-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-09-27T21:32:23-04:00",
@@ -300,6 +300,54 @@
       "fetched_at": "2026-09-29T10:46:34-04:00",
       "window": "10:30",
       "n_props": 6699,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-29T13:09:36-04:00",
+      "window": "1PM",
+      "n_props": 3829,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-29T13:10:37-04:00",
+      "window": "1PM",
+      "n_props": 985,
+      "n_moved": 30
+    },
+    {
+      "fetched_at": "2026-09-29T13:11:50-04:00",
+      "window": "1PM",
+      "n_props": 2803,
+      "n_moved": 17
+    },
+    {
+      "fetched_at": "2026-09-29T13:13:32-04:00",
+      "window": "1PM",
+      "n_props": 2192,
+      "n_moved": 19
+    },
+    {
+      "fetched_at": "2026-09-29T13:14:28-04:00",
+      "window": "1PM",
+      "n_props": 7275,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-29T13:17:44-04:00",
+      "window": "1PM",
+      "n_props": 2806,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-09-29T13:18:16-04:00",
+      "window": "1PM",
+      "n_props": 1183,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-09-29T13:18:48-04:00",
+      "window": "1PM",
+      "n_props": 2806,
       "n_moved": 0
     }
   ],
