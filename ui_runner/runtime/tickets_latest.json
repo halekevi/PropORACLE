@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29 17:45:10 UTC",
+  "generated_at": "2026-09-29 21:25:43 UTC",
   "date": "2026-09-29",
   "tennis_date": "2026-09-29",
   "filters": {
@@ -17,25 +17,26 @@
   "mode": "goblin70+graded_main",
   "groups": [
     {
-      "group_name": "X-Sport Standard Power 3",
+      "group_name": "WNBA Standard Power 3",
       "n_legs": 3,
       "power_payout": 6.0,
       "flex_payout": null,
       "tickets": [
         {
-          "web_group_name": "X-Sport Standard Power 3",
-          "ticket_id": "2026-09-29|X-Sport Standard Power 3|1",
+          "web_group_name": "WNBA Standard Power 3",
+          "ticket_id": "2026-09-29|WNBA Standard Power 3|1",
           "ticket_no": 1,
           "ticket_track": "standard_ev",
           "mode": "goblin70",
           "exclude_from_winrate": false,
           "avg_hit_rate": 1.0,
-          "est_win_prob": 0.368,
+          "est_win_prob": 0.343,
           "est_flex_cash_prob": null,
           "power_payout": 6.0,
           "flex_payout": null,
           "base_power_payout": 6.0,
-          "ev_power": 1.205,
+          "ev_power": 1.058,
+          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -43,43 +44,7 @@
           "strong_builder": false,
           "legs": [
             {
-              "ticket_id": "2026-09-29|X-Sport Standard Power 3|1",
-              "ticket_track": "standard_ev",
-              "sport": "Tennis",
-              "player": "Cameron Norrie",
-              "team": "CAMERON NORRIE",
-              "opp": "ALEXANDER ZVEREV",
-              "prop_type": "Total Games Won",
-              "pick_type": "Standard",
-              "direction": "OVER",
-              "line": 7.5,
-              "edge": 5.3,
-              "abs_edge": 5.3,
-              "pick_platform": "prizepicks",
-              "hit_rate": 1.0,
-              "ml_prob": 0.58,
-              "standard_line": 7.5,
-              "line_underdog": null,
-              "line_draftkings": null,
-              "line_vegas": null,
-              "best_cross_book": "PP",
-              "best_cross_line": 7.5,
-              "cross_edge_vs_pp": 0.0,
-              "tier": "D",
-              "def_tier": "Elite",
-              "l5_over": 5.0,
-              "l5_under": null,
-              "l5_side_hit_rate": 1.0,
-              "leg_prob_used": 0.75,
-              "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_c5aa4fe8a7ff06560eca",
-              "game_date": "2026-09-29",
-              "badge": "Bronze",
-              "cover": 5.3,
-              "matchup": "CAMERON NORRIE vs ALEXANDER ZVEREV (ATP / HARD)"
-            },
-            {
-              "ticket_id": "2026-09-29|X-Sport Standard Power 3|1",
+              "ticket_id": "2026-09-29|WNBA Standard Power 3|1",
               "ticket_track": "standard_ev",
               "sport": "WNBA",
               "player": "Aliyah Boston",
@@ -115,7 +80,7 @@
               "matchup": "IND vs LVA"
             },
             {
-              "ticket_id": "2026-09-29|X-Sport Standard Power 3|1",
+              "ticket_id": "2026-09-29|WNBA Standard Power 3|1",
               "ticket_track": "standard_ev",
               "sport": "WNBA",
               "player": "Courtney Williams",
@@ -149,63 +114,7 @@
               "badge": "Silver",
               "cover": -3.8,
               "matchup": "MIN vs NYL"
-            }
-          ],
-          "n_legs": 3,
-          "play": "Power",
-          "payout": {
-            "ticket_type": "power",
-            "payout": 6.0,
-            "min_guarantee": 6.0,
-            "min_payout_x": 6.0,
-            "p_all_win": 0.368,
-            "p_miss_1": 0.0,
-            "ev": 1.205,
-            "recommendation": "OK",
-            "entry_10_to_win_guarantee": 60.0,
-            "entry_20_to_win_guarantee": 120.0,
-            "sweep_payout": 6.0,
-            "sweep_payout_x": 6.0,
-            "audit_all_hit_x": 6.0,
-            "payout_source": "pending_live",
-            "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
-            "n_correct": {
-              "3": 6.0
             },
-            "ev_formula": "E[N-correct] - 1",
-            "captured_at": null,
-            "model_min_payout_x": 6.0
-          },
-          "empirical_recommendation": "OK"
-        }
-      ]
-    },
-    {
-      "group_name": "WNBA Standard Power 3",
-      "n_legs": 3,
-      "power_payout": 6.0,
-      "flex_payout": null,
-      "tickets": [
-        {
-          "web_group_name": "WNBA Standard Power 3",
-          "ticket_id": "2026-09-29|WNBA Standard Power 3|1",
-          "ticket_no": 1,
-          "ticket_track": "standard_ev",
-          "mode": "goblin70",
-          "exclude_from_winrate": false,
-          "avg_hit_rate": 1.0,
-          "est_win_prob": 0.343,
-          "est_flex_cash_prob": null,
-          "power_payout": 6.0,
-          "flex_payout": null,
-          "base_power_payout": 6.0,
-          "ev_power": 1.058,
-          "core_build": true,
-          "core_recipe": "goblin70",
-          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
-          "pool_policy": "goblin70",
-          "strong_builder": false,
-          "legs": [
             {
               "ticket_id": "2026-09-29|WNBA Standard Power 3|1",
               "ticket_track": "standard_ev",
@@ -241,78 +150,6 @@
               "badge": "Platinum",
               "cover": -4.5,
               "matchup": "NYL vs MIN"
-            },
-            {
-              "ticket_id": "2026-09-29|WNBA Standard Power 3|1",
-              "ticket_track": "standard_ev",
-              "sport": "WNBA",
-              "player": "Sabrina Ionescu",
-              "team": "NYL",
-              "opp": "MIN",
-              "prop_type": "Pts+Rebs",
-              "pick_type": "Standard",
-              "direction": "UNDER",
-              "line": 19.5,
-              "edge": -5.0,
-              "abs_edge": 5.0,
-              "pick_platform": "prizepicks",
-              "hit_rate": 1.0,
-              "ml_prob": 0.3887122920320106,
-              "standard_line": 19.5,
-              "line_underdog": null,
-              "line_draftkings": null,
-              "line_vegas": null,
-              "best_cross_book": "PP",
-              "best_cross_line": 19.5,
-              "cross_edge_vs_pp": 0.0,
-              "tier": "D",
-              "def_tier": "Elite",
-              "l5_over": null,
-              "l5_under": 5.0,
-              "l5_side_hit_rate": 1.0,
-              "leg_prob_used": 0.7,
-              "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_095355273d5c932eb05b",
-              "game_date": "2026-09-29",
-              "badge": "Platinum",
-              "cover": -5.0,
-              "matchup": "NYL vs MIN"
-            },
-            {
-              "ticket_id": "2026-09-29|WNBA Standard Power 3|1",
-              "ticket_track": "standard_ev",
-              "sport": "WNBA",
-              "player": "Sabrina Ionescu",
-              "team": "NYL",
-              "opp": "MIN",
-              "prop_type": "Points",
-              "pick_type": "Standard",
-              "direction": "UNDER",
-              "line": 15.5,
-              "edge": -4.0,
-              "abs_edge": 4.0,
-              "pick_platform": "prizepicks",
-              "hit_rate": 1.0,
-              "ml_prob": 0.370220097216741,
-              "standard_line": 15.5,
-              "line_underdog": null,
-              "line_draftkings": null,
-              "line_vegas": null,
-              "best_cross_book": "PP",
-              "best_cross_line": 15.5,
-              "cross_edge_vs_pp": 0.0,
-              "tier": "D",
-              "def_tier": "Elite",
-              "l5_over": null,
-              "l5_under": 5.0,
-              "l5_side_hit_rate": 1.0,
-              "leg_prob_used": 0.7,
-              "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_c7a1b5d0604e1fe85cc2",
-              "game_date": "2026-09-29",
-              "badge": "Platinum",
-              "cover": -4.0,
-              "matchup": "NYL vs MIN"
             }
           ],
           "n_legs": 3,
@@ -322,48 +159,48 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
+            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
-            "recommendation": "MARGINAL",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "pending_live",
+            "payout_source": "n_correct_median",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null,
-            "model_min_payout_x": 6.0
-          },
-          "empirical_recommendation": "MARGINAL"
+            "captured_at": null
+          }
         }
       ]
     },
     {
-      "group_name": "X-Sport Goblin-70 Mix Power 2",
+      "group_name": "TENNIS Goblin-70 Power 2",
       "n_legs": 2,
-      "power_payout": 2.0,
+      "power_payout": 1.8,
       "flex_payout": null,
       "tickets": [
         {
-          "web_group_name": "X-Sport Goblin-70 Mix Power 2",
-          "ticket_id": "2026-09-29|X-Sport Goblin-70 Mix Power 2|1",
+          "web_group_name": "TENNIS Goblin-70 Power 2",
+          "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|1",
           "ticket_no": 1,
-          "ticket_track": "mixed_ev",
+          "ticket_track": "goblin70",
           "mode": "goblin70",
           "exclude_from_winrate": false,
           "avg_hit_rate": 1.0,
-          "est_win_prob": 0.535,
+          "est_win_prob": 0.582,
           "est_flex_cash_prob": null,
-          "power_payout": 2.0,
+          "power_payout": 1.8,
           "flex_payout": null,
-          "base_power_payout": 2.0,
-          "ev_power": 0.068,
+          "base_power_payout": 1.8,
+          "ev_power": 0.048,
+          "display_min_x": 1.8,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -371,8 +208,8 @@
           "strong_builder": false,
           "legs": [
             {
-              "ticket_id": "2026-09-29|X-Sport Goblin-70 Mix Power 2|1",
-              "ticket_track": "mixed_ev",
+              "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|1",
+              "ticket_track": "goblin70",
               "sport": "Tennis",
               "player": "Arthur Rinderknech",
               "team": "ARTHUR RINDERKNECH",
@@ -406,99 +243,6 @@
               "cover": 11.5,
               "matchup": "ARTHUR RINDERKNECH vs ALEX MOLCAN (ATP / HARD)"
             },
-            {
-              "ticket_id": "2026-09-29|X-Sport Goblin-70 Mix Power 2|1",
-              "ticket_track": "mixed_ev",
-              "sport": "WNBA",
-              "player": "Sabrina Ionescu",
-              "team": "NYL",
-              "opp": "MIN",
-              "prop_type": "Pts+Rebs+Asts",
-              "pick_type": "Standard",
-              "direction": "UNDER",
-              "line": 25.0,
-              "edge": -5.5,
-              "abs_edge": 5.5,
-              "pick_platform": "prizepicks",
-              "hit_rate": 1.0,
-              "ml_prob": 0.3607884383193007,
-              "standard_line": 25.0,
-              "line_underdog": null,
-              "line_draftkings": null,
-              "line_vegas": null,
-              "best_cross_book": "PP",
-              "best_cross_line": 25.0,
-              "cross_edge_vs_pp": 0.0,
-              "tier": "D",
-              "def_tier": "Elite",
-              "l5_over": null,
-              "l5_under": 5.0,
-              "l5_side_hit_rate": 1.0,
-              "leg_prob_used": 0.7,
-              "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_ababa8288b8837641bf7",
-              "game_date": "2026-09-29",
-              "badge": "Platinum",
-              "cover": -5.5,
-              "matchup": "NYL vs MIN"
-            }
-          ],
-          "n_legs": 2,
-          "play": "Power",
-          "payout": {
-            "ticket_type": "power",
-            "payout": 2.0,
-            "min_guarantee": 2.0,
-            "min_payout_x": 2.0,
-            "p_all_win": 0.535,
-            "p_miss_1": 0.0,
-            "ev": 0.068,
-            "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 20.0,
-            "entry_20_to_win_guarantee": 40.0,
-            "sweep_payout": 2.0,
-            "sweep_payout_x": 2.0,
-            "audit_all_hit_x": 2.0,
-            "payout_source": "pending_live",
-            "payout_note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
-            "n_correct": {
-              "2": 2.0
-            },
-            "ev_formula": "E[N-correct] - 1",
-            "captured_at": null,
-            "model_min_payout_x": 2.0
-          },
-          "empirical_recommendation": "SKIP"
-        }
-      ]
-    },
-    {
-      "group_name": "TENNIS Goblin-70 Power 2",
-      "n_legs": 2,
-      "power_payout": 1.8,
-      "flex_payout": null,
-      "tickets": [
-        {
-          "web_group_name": "TENNIS Goblin-70 Power 2",
-          "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|1",
-          "ticket_no": 1,
-          "ticket_track": "goblin70",
-          "mode": "goblin70",
-          "exclude_from_winrate": false,
-          "avg_hit_rate": 1.0,
-          "est_win_prob": 0.582,
-          "est_flex_cash_prob": null,
-          "power_payout": 1.8,
-          "flex_payout": null,
-          "base_power_payout": 1.8,
-          "ev_power": 0.048,
-          "display_min_x": 1.6,
-          "core_build": true,
-          "core_recipe": "goblin70",
-          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
-          "pool_policy": "goblin70",
-          "strong_builder": false,
-          "legs": [
             {
               "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|1",
               "ticket_track": "goblin70",
@@ -534,9 +278,57 @@
               "badge": "Platinum",
               "cover": 6.8,
               "matchup": "DANIIL MEDVEDEV vs PABLO CARRENO BUSTA (ATP / HARD)"
+            }
+          ],
+          "n_legs": 2,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "payout": 1.8,
+            "min_guarantee": 1.8,
+            "min_payout_x": 1.8,
+            "display_min_x": 1.8,
+            "p_all_win": 0.582,
+            "p_miss_1": 0.0,
+            "ev": 0.048,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 18.0,
+            "entry_20_to_win_guarantee": 36.0,
+            "sweep_payout": 1.8,
+            "sweep_payout_x": 1.8,
+            "audit_all_hit_x": 1.8,
+            "payout_source": "n_correct_live",
+            "payout_note": "Power all-hit 1.8x from payout_rate_card. EV = expected N-correct multiple - 1.",
+            "n_correct": {
+              "2": 1.8
             },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": "2026-09-09T22:05:48"
+          }
+        },
+        {
+          "web_group_name": "TENNIS Goblin-70 Power 2",
+          "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|2",
+          "ticket_no": 2,
+          "ticket_track": "goblin70",
+          "mode": "goblin70",
+          "exclude_from_winrate": false,
+          "avg_hit_rate": 1.0,
+          "est_win_prob": 0.582,
+          "est_flex_cash_prob": null,
+          "power_payout": 1.8,
+          "flex_payout": null,
+          "base_power_payout": 1.8,
+          "ev_power": 0.048,
+          "display_min_x": 1.8,
+          "core_build": true,
+          "core_recipe": "goblin70",
+          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
             {
-              "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|1",
+              "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|2",
               "ticket_track": "goblin70",
               "sport": "Tennis",
               "player": "Frances Tiafoe",
@@ -570,60 +362,7 @@
               "badge": "Platinum",
               "cover": 6.7,
               "matchup": "FRANCES TIAFOE vs KEI NISHIKORI (ATP / HARD)"
-            }
-          ],
-          "n_legs": 2,
-          "play": "Power",
-          "payout": {
-            "ticket_type": "power",
-            "payout": 1.6,
-            "min_guarantee": 1.6,
-            "min_payout_x": 1.6,
-            "display_min_x": 1.6,
-            "p_all_win": 0.582,
-            "p_miss_1": 0.0,
-            "ev": -0.0688,
-            "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 16.0,
-            "entry_20_to_win_guarantee": 32.0,
-            "sweep_payout": 1.6,
-            "sweep_payout_x": 1.6,
-            "audit_all_hit_x": 1.8,
-            "payout_source": "live_cdp",
-            "payout_note": "Power all-hit 1.8x from payout_rate_card. EV = expected N-correct multiple - 1.",
-            "n_correct": {
-              "2": 1.8
             },
-            "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "captured_at": "2026-09-29T10:53:56",
-            "model_min_payout_x": 1.8,
-            "power_min_x": 1.6,
-            "power_first_x": 3.0,
-            "entry_10_to_win_sweep": 16.0
-          },
-          "empirical_recommendation": "SKIP"
-        },
-        {
-          "web_group_name": "TENNIS Goblin-70 Power 2",
-          "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|2",
-          "ticket_no": 2,
-          "ticket_track": "goblin70",
-          "mode": "goblin70",
-          "exclude_from_winrate": false,
-          "avg_hit_rate": 1.0,
-          "est_win_prob": 0.582,
-          "est_flex_cash_prob": null,
-          "power_payout": 1.8,
-          "flex_payout": null,
-          "base_power_payout": 1.8,
-          "ev_power": 0.048,
-          "display_min_x": 2.0,
-          "core_build": true,
-          "core_recipe": "goblin70",
-          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
-          "pool_policy": "goblin70",
-          "strong_builder": false,
-          "legs": [
             {
               "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|2",
               "ticket_track": "goblin70",
@@ -659,9 +398,185 @@
               "badge": "Platinum",
               "cover": 6.2,
               "matchup": "ANNA BONDAR vs RENATA ZARAZUA (WTA / HARD)"
+            }
+          ],
+          "n_legs": 2,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "payout": 1.8,
+            "min_guarantee": 1.8,
+            "min_payout_x": 1.8,
+            "display_min_x": 1.8,
+            "p_all_win": 0.582,
+            "p_miss_1": 0.0,
+            "ev": 0.048,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 18.0,
+            "entry_20_to_win_guarantee": 36.0,
+            "sweep_payout": 1.8,
+            "sweep_payout_x": 1.8,
+            "audit_all_hit_x": 1.8,
+            "payout_source": "n_correct_live",
+            "payout_note": "Power all-hit 1.8x from payout_rate_card. EV = expected N-correct multiple - 1.",
+            "n_correct": {
+              "2": 1.8
+            },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": null
+          }
+        },
+        {
+          "web_group_name": "TENNIS Goblin-70 Power 2",
+          "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|3",
+          "ticket_no": 3,
+          "ticket_track": "goblin70",
+          "mode": "goblin70",
+          "exclude_from_winrate": false,
+          "avg_hit_rate": 1.0,
+          "est_win_prob": 0.582,
+          "est_flex_cash_prob": null,
+          "power_payout": 1.8,
+          "flex_payout": null,
+          "base_power_payout": 1.8,
+          "ev_power": 0.048,
+          "display_min_x": 1.8,
+          "core_build": true,
+          "core_recipe": "goblin70",
+          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
+            {
+              "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|3",
+              "ticket_track": "goblin70",
+              "sport": "Tennis",
+              "player": "Alexander Zverev",
+              "team": "ALEXANDER ZVEREV",
+              "opp": "CAMERON NORRIE",
+              "prop_type": "Total Games",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 18.5,
+              "edge": 11.1,
+              "abs_edge": 11.1,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.58,
+              "standard_line": 20.0,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 18.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "A",
+              "def_tier": "Avg",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_f2f589559324b71419ad",
+              "game_date": "2026-09-29",
+              "badge": "Bronze",
+              "cover": 11.1,
+              "matchup": "ALEXANDER ZVEREV vs CAMERON NORRIE (ATP / HARD)"
             },
             {
-              "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|2",
+              "ticket_id": "2026-09-29|TENNIS Goblin-70 Power 2|3",
+              "ticket_track": "goblin70",
+              "sport": "Tennis",
+              "player": "Tommy Paul",
+              "team": "TOMMY PAUL",
+              "opp": "ALEJANDRO TABILO",
+              "prop_type": "Total Games",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 21.5,
+              "edge": 5.1,
+              "abs_edge": 5.1,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.58,
+              "standard_line": 22.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 21.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "A",
+              "def_tier": "Avg",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_fb5a471fba02dc7b4c5f",
+              "game_date": "2026-09-29",
+              "badge": "Bronze",
+              "cover": 5.1,
+              "matchup": "TOMMY PAUL vs ALEJANDRO TABILO (ATP / HARD)"
+            }
+          ],
+          "n_legs": 2,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "payout": 1.8,
+            "min_guarantee": 1.8,
+            "min_payout_x": 1.8,
+            "display_min_x": 1.8,
+            "p_all_win": 0.582,
+            "p_miss_1": 0.0,
+            "ev": 0.048,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 18.0,
+            "entry_20_to_win_guarantee": 36.0,
+            "sweep_payout": 1.8,
+            "sweep_payout_x": 1.8,
+            "audit_all_hit_x": 1.8,
+            "payout_source": "n_correct_live",
+            "payout_note": "Power all-hit 1.8x from payout_rate_card. EV = expected N-correct multiple - 1.",
+            "n_correct": {
+              "2": 1.8
+            },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": "2026-09-10T22:31:12"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "X-Sport Goblin-70 Power 2",
+      "n_legs": 2,
+      "power_payout": 1.8,
+      "flex_payout": null,
+      "tickets": [
+        {
+          "web_group_name": "X-Sport Goblin-70 Power 2",
+          "ticket_id": "2026-09-29|X-Sport Goblin-70 Power 2|1",
+          "ticket_no": 1,
+          "ticket_track": "goblin70",
+          "mode": "goblin70",
+          "exclude_from_winrate": false,
+          "avg_hit_rate": 1.0,
+          "est_win_prob": 0.582,
+          "est_flex_cash_prob": null,
+          "power_payout": 1.8,
+          "flex_payout": null,
+          "base_power_payout": 1.8,
+          "ev_power": 0.048,
+          "display_min_x": 1.8,
+          "core_build": true,
+          "core_recipe": "goblin70",
+          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
+            {
+              "ticket_id": "2026-09-29|X-Sport Goblin-70 Power 2|1",
               "ticket_track": "goblin70",
               "sport": "Tennis",
               "player": "Leolia Jeanjean",
@@ -695,67 +610,7 @@
               "badge": "Silver",
               "cover": 6.4,
               "matchup": "LEOLIA JEANJEAN vs UNKNOWN_OPP (WTA / HARD)"
-            }
-          ],
-          "n_legs": 2,
-          "play": "Power",
-          "payout": {
-            "ticket_type": "power",
-            "payout": 2.0,
-            "min_guarantee": 2.0,
-            "min_payout_x": 2.0,
-            "display_min_x": 2.0,
-            "p_all_win": 0.582,
-            "p_miss_1": 0.0,
-            "ev": 0.164,
-            "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 20.0,
-            "entry_20_to_win_guarantee": 40.0,
-            "sweep_payout": 2.0,
-            "sweep_payout_x": 2.0,
-            "audit_all_hit_x": 1.8,
-            "payout_source": "live_cdp",
-            "payout_note": "Power all-hit 1.8x from payout_rate_card. EV = expected N-correct multiple - 1.",
-            "n_correct": {
-              "2": 1.8
             },
-            "ev_formula": "EV = P(all)*2.00 - 1.0",
-            "captured_at": "2026-09-29T10:54:43",
-            "model_min_payout_x": 1.8,
-            "power_min_x": 2.0,
-            "power_first_x": 3.0,
-            "entry_10_to_win_sweep": 20.0
-          },
-          "empirical_recommendation": "SKIP"
-        }
-      ]
-    },
-    {
-      "group_name": "X-Sport Goblin-70 Power 2",
-      "n_legs": 2,
-      "power_payout": 1.8,
-      "flex_payout": null,
-      "tickets": [
-        {
-          "web_group_name": "X-Sport Goblin-70 Power 2",
-          "ticket_id": "2026-09-29|X-Sport Goblin-70 Power 2|1",
-          "ticket_no": 1,
-          "ticket_track": "goblin70",
-          "mode": "goblin70",
-          "exclude_from_winrate": false,
-          "avg_hit_rate": 1.0,
-          "est_win_prob": 0.582,
-          "est_flex_cash_prob": null,
-          "power_payout": 1.8,
-          "flex_payout": null,
-          "base_power_payout": 1.8,
-          "ev_power": 0.048,
-          "core_build": true,
-          "core_recipe": "goblin70",
-          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
-          "pool_policy": "goblin70",
-          "strong_builder": false,
-          "legs": [
             {
               "ticket_id": "2026-09-29|X-Sport Goblin-70 Power 2|1",
               "ticket_track": "goblin70",
@@ -791,42 +646,6 @@
               "badge": "Silver",
               "cover": 5.1,
               "matchup": "CHC vs SD"
-            },
-            {
-              "ticket_id": "2026-09-29|X-Sport Goblin-70 Power 2|1",
-              "ticket_track": "goblin70",
-              "sport": "Tennis",
-              "player": "Alexander Zverev",
-              "team": "ALEXANDER ZVEREV",
-              "opp": "CAMERON NORRIE",
-              "prop_type": "Total Games",
-              "pick_type": "Goblin",
-              "direction": "OVER",
-              "line": 18.5,
-              "edge": 11.1,
-              "abs_edge": 11.1,
-              "pick_platform": "prizepicks",
-              "hit_rate": 1.0,
-              "ml_prob": 0.58,
-              "standard_line": 20.0,
-              "line_underdog": null,
-              "line_draftkings": null,
-              "line_vegas": null,
-              "best_cross_book": "PP",
-              "best_cross_line": 18.5,
-              "cross_edge_vs_pp": 0.0,
-              "tier": "A",
-              "def_tier": "Avg",
-              "l5_over": 5.0,
-              "l5_under": null,
-              "l5_side_hit_rate": 1.0,
-              "leg_prob_used": 0.763,
-              "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_f2f589559324b71419ad",
-              "game_date": "2026-09-29",
-              "badge": "Bronze",
-              "cover": 11.1,
-              "matchup": "ALEXANDER ZVEREV vs CAMERON NORRIE (ATP / HARD)"
             }
           ],
           "n_legs": 2,
@@ -836,30 +655,37 @@
             "payout": 1.8,
             "min_guarantee": 1.8,
             "min_payout_x": 1.8,
+            "display_min_x": 1.8,
             "p_all_win": 0.582,
             "p_miss_1": 0.0,
             "ev": 0.048,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 18.0,
             "entry_20_to_win_guarantee": 36.0,
             "sweep_payout": 1.8,
             "sweep_payout_x": 1.8,
             "audit_all_hit_x": 1.8,
-            "payout_source": "pending_live",
+            "payout_source": "n_correct_live",
             "payout_note": "Power all-hit 1.8x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 1.8
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-09-10T22:31:12",
-            "model_min_payout_x": 1.8
-          },
-          "empirical_recommendation": "SKIP"
-        },
+            "captured_at": "2026-09-09T22:05:48"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "SOCCER Goblin-70 Power 2",
+      "n_legs": 2,
+      "power_payout": 1.8,
+      "flex_payout": null,
+      "tickets": [
         {
-          "web_group_name": "X-Sport Goblin-70 Power 2",
-          "ticket_id": "2026-09-29|X-Sport Goblin-70 Power 2|2",
-          "ticket_no": 2,
+          "web_group_name": "SOCCER Goblin-70 Power 2",
+          "ticket_id": "2026-09-29|SOCCER Goblin-70 Power 2|1",
+          "ticket_no": 1,
           "ticket_track": "goblin70",
           "mode": "goblin70",
           "exclude_from_winrate": false,
@@ -870,6 +696,7 @@
           "flex_payout": null,
           "base_power_payout": 1.8,
           "ev_power": 0.048,
+          "display_min_x": 1.6,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -877,43 +704,7 @@
           "strong_builder": false,
           "legs": [
             {
-              "ticket_id": "2026-09-29|X-Sport Goblin-70 Power 2|2",
-              "ticket_track": "goblin70",
-              "sport": "Tennis",
-              "player": "Tommy Paul",
-              "team": "TOMMY PAUL",
-              "opp": "ALEJANDRO TABILO",
-              "prop_type": "Total Games",
-              "pick_type": "Goblin",
-              "direction": "OVER",
-              "line": 21.5,
-              "edge": 5.1,
-              "abs_edge": 5.1,
-              "pick_platform": "prizepicks",
-              "hit_rate": 1.0,
-              "ml_prob": 0.58,
-              "standard_line": 22.5,
-              "line_underdog": null,
-              "line_draftkings": null,
-              "line_vegas": null,
-              "best_cross_book": "PP",
-              "best_cross_line": 21.5,
-              "cross_edge_vs_pp": 0.0,
-              "tier": "A",
-              "def_tier": "Avg",
-              "l5_over": 5.0,
-              "l5_under": null,
-              "l5_side_hit_rate": 1.0,
-              "leg_prob_used": 0.763,
-              "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_fb5a471fba02dc7b4c5f",
-              "game_date": "2026-09-29",
-              "badge": "Bronze",
-              "cover": 5.1,
-              "matchup": "TOMMY PAUL vs ALEJANDRO TABILO (ATP / HARD)"
-            },
-            {
-              "ticket_id": "2026-09-29|X-Sport Goblin-70 Power 2|2",
+              "ticket_id": "2026-09-29|SOCCER Goblin-70 Power 2|1",
               "ticket_track": "goblin70",
               "sport": "Soccer",
               "player": "Martin Baturina",
@@ -947,34 +738,236 @@
               "badge": "Bronze",
               "cover": 1.7,
               "matchup": "CROATIA vs SPAIN (SOCCER)"
+            },
+            {
+              "ticket_id": "2026-09-29|SOCCER Goblin-70 Power 2|1",
+              "ticket_track": "goblin70",
+              "sport": "Soccer",
+              "player": "Luka Sucic",
+              "team": "CROATIA",
+              "opp": "SPAIN",
+              "prop_type": "Shots",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 0.5,
+              "edge": 1.3,
+              "abs_edge": 1.3,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 1.0,
+              "standard_line": 1.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 0.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "A",
+              "def_tier": "Elite",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_e75efca22eaf32dfef2d",
+              "game_date": "2026-09-29",
+              "badge": "Bronze",
+              "cover": 1.3,
+              "matchup": "CROATIA vs SPAIN (SOCCER)"
             }
           ],
           "n_legs": 2,
           "play": "Power",
           "payout": {
             "ticket_type": "power",
-            "payout": 1.8,
-            "min_guarantee": 1.8,
-            "min_payout_x": 1.8,
+            "payout": 1.6,
+            "min_guarantee": 1.6,
+            "min_payout_x": 1.6,
+            "display_min_x": 1.6,
             "p_all_win": 0.582,
             "p_miss_1": 0.0,
-            "ev": 0.048,
-            "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 18.0,
-            "entry_20_to_win_guarantee": 36.0,
-            "sweep_payout": 1.8,
-            "sweep_payout_x": 1.8,
+            "ev": -0.0688,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 16.0,
+            "entry_20_to_win_guarantee": 32.0,
+            "sweep_payout": 1.6,
+            "sweep_payout_x": 1.6,
             "audit_all_hit_x": 1.8,
-            "payout_source": "pending_live",
+            "payout_source": "live_cdp",
             "payout_note": "Power all-hit 1.8x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 1.8
             },
+            "ev_formula": "EV = P(all)*1.60 - 1.0",
+            "captured_at": "2026-09-28T22:11:18",
+            "model_min_payout_x": 1.8,
+            "power_min_x": 1.6,
+            "entry_10_to_win_sweep": 16.0
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "YOLO Standard Power 3",
+      "n_legs": 3,
+      "power_payout": 2.0,
+      "flex_payout": null,
+      "tickets": [
+        {
+          "web_group_name": "YOLO Standard Power 3",
+          "ticket_id": "2026-09-29|YOLO Standard Power 3|1",
+          "ticket_no": 1,
+          "ticket_track": "standard_yolo",
+          "mode": "goblin70",
+          "exclude_from_winrate": true,
+          "avg_hit_rate": 0.9333,
+          "est_win_prob": 0.368,
+          "est_flex_cash_prob": null,
+          "power_payout": 2.0,
+          "flex_payout": null,
+          "base_power_payout": 2.0,
+          "ev_power": -0.264,
+          "display_min_x": 2.0,
+          "core_build": true,
+          "core_recipe": "standard_yolo",
+          "core_label": "Standard YOLO (gate-cleared Standards only; off ticket win-rate)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
+            {
+              "ticket_id": "2026-09-29|YOLO Standard Power 3|1",
+              "ticket_track": "standard_yolo",
+              "sport": "Soccer",
+              "player": "Fermín López",
+              "team": "SPAIN",
+              "opp": "CROATIA",
+              "prop_type": "Shots",
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "line": 2.5,
+              "edge": -1.2,
+              "abs_edge": 1.2,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.8427458243106253,
+              "standard_line": 2.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 2.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "W",
+              "def_tier": "Avg",
+              "l5_over": null,
+              "l5_under": 5.0,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.7,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_f9c9b36f3074b13f6d09",
+              "game_date": "2026-09-29",
+              "badge": "Bronze",
+              "cover": -1.2,
+              "matchup": "SPAIN vs CROATIA (SOCCER)"
+            },
+            {
+              "ticket_id": "2026-09-29|YOLO Standard Power 3|1",
+              "ticket_track": "standard_yolo",
+              "sport": "Tennis",
+              "player": "Alex Michelsen",
+              "team": "ALEX MICHELSEN",
+              "opp": "CARLOS ALCARAZ",
+              "prop_type": "Total Games Won",
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "line": 8.5,
+              "edge": 6.0,
+              "abs_edge": 6.0,
+              "pick_platform": "prizepicks",
+              "hit_rate": 0.8,
+              "ml_prob": 0.58,
+              "standard_line": 8.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 8.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "D",
+              "def_tier": "Elite",
+              "l5_over": 4.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 0.8,
+              "leg_prob_used": 0.75,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_6137a1e400842b47692d",
+              "game_date": "2026-09-29",
+              "badge": "Bronze",
+              "cover": 6.0,
+              "matchup": "ALEX MICHELSEN vs CARLOS ALCARAZ (ATP / HARD)"
+            },
+            {
+              "ticket_id": "2026-09-29|YOLO Standard Power 3|1",
+              "ticket_track": "standard_yolo",
+              "sport": "Soccer",
+              "player": "Mikel Oyarzabal",
+              "team": "SPAIN",
+              "opp": "CROATIA",
+              "prop_type": "Shots On Target",
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "line": 1.5,
+              "edge": -0.6,
+              "abs_edge": 0.6,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.8808680353076931,
+              "standard_line": 1.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 1.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "W",
+              "def_tier": "Avg",
+              "l5_over": null,
+              "l5_under": 5.0,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.7,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_e0aa4eedca155deef900",
+              "game_date": "2026-09-29",
+              "badge": "Bronze",
+              "cover": -0.6,
+              "matchup": "SPAIN vs CROATIA (SOCCER)"
+            }
+          ],
+          "n_legs": 3,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "payout": 2.0,
+            "min_guarantee": 2.0,
+            "min_payout_x": 2.0,
+            "display_min_x": 2.0,
+            "p_all_win": 0.368,
+            "p_miss_1": 0.0,
+            "ev": -0.264,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 20.0,
+            "entry_20_to_win_guarantee": 40.0,
+            "sweep_payout": 2.0,
+            "sweep_payout_x": 2.0,
+            "audit_all_hit_x": 2.0,
+            "payout_source": "n_correct_median",
+            "payout_note": "0S+3G Power fallback 2x",
+            "n_correct": {
+              "3": 2.0
+            },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-09-09T22:05:48",
-            "model_min_payout_x": 1.8
-          },
-          "empirical_recommendation": "SKIP"
+            "captured_at": null
+          }
         }
       ]
     }
@@ -1018,8 +1011,8 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 0,
-    "failed_goblin": 0,
+    "legs_checked": 2,
+    "failed_goblin": 2,
     "failed_tier": 0,
     "failed_streak": 0
   },
@@ -1054,22 +1047,28 @@
   "main_thin_pool_min_legs": 6,
   "allow_standard": true,
   "core_build_count": 2,
-  "slate_exposure_dropped": 8,
+  "slate_exposure_dropped": 7,
   "slate_exposure_reasons": [
-    "2026-09-29|X-Sport Goblin-70 Power 2|3:anchor_cap:matthew boyd:1>=1",
-    "2026-09-29|YOLO Standard Power 4|1:nonanchor_cap:cameron norrie:1>=1",
-    "2026-09-29|SOCCER Core Power 2 #1|1:nonanchor_cap:martin baturina:1>=1",
-    "2026-09-29|WNBA 2-Leg Standard UNDER|1:anchor_cap:courtney williams:1>=1",
-    "2026-09-29|TENNIS 3-Leg Goblin OVER|1:anchor_cap:daniil medvedev:1>=1",
-    "2026-09-29|SOCCER Core Power 2 #2|1:same_prop:martin baturina::shots::OVER",
-    "2026-09-29|SOCCER 2-Leg Goblin OVER|1:nonanchor_cap:martin baturina:1>=1",
-    "2026-09-29|TENNIS 2-Leg Goblin OVER|1:anchor_cap:tommy paul:1>=1"
+    "2026-09-29|WNBA Standard Power 3|2:anchor_cap:sabrina ionescu:1>=1",
+    "2026-09-29|SOCCER Core Power 2 #1|1:same_prop:martin baturina::shots::OVER",
+    "2026-09-29|WNBA 2-Leg Standard UNDER|1:same_prop:courtney williams::pts+rebs::UNDER",
+    "2026-09-29|TENNIS 3-Leg Goblin OVER|1:nonanchor_cap:tommy paul:1>=1",
+    "2026-09-29|SOCCER Core Power 2 #2|1:anchor_cap:martin baturina:1>=1",
+    "2026-09-29|SOCCER 2-Leg Goblin OVER|1:same_prop:martin baturina::shots::OVER",
+    "2026-09-29|TENNIS 2-Leg Goblin OVER|1:same_prop:tommy paul::total games::OVER"
   ],
-  "player_slip_cap_dropped": 8,
+  "player_slip_cap_dropped": 7,
   "slate_exposure_snapshot": {
+    "alex michelsen": {
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
+      "props": [
+        "alex michelsen::total games won::OVER"
+      ]
+    },
     "alexander zverev": {
-      "anchor_tickets": 0,
-      "nonanchor_tickets": 1,
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
       "props": [
         "alexander zverev::total games::OVER"
       ]
@@ -1082,8 +1081,8 @@
       ]
     },
     "anna bondar": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
       "props": [
         "anna bondar::total games::OVER"
       ]
@@ -1095,35 +1094,35 @@
         "arthur rinderknech::total games::OVER"
       ]
     },
-    "cameron norrie": {
+    "brandon nakashima": {
       "anchor_tickets": 0,
-      "nonanchor_tickets": 1,
-      "props": [
-        "cameron norrie::total games won::OVER"
-      ]
+      "nonanchor_tickets": 0,
+      "props": []
     },
     "courtney williams": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
       "props": [
         "courtney williams::pts+rebs::UNDER"
       ]
     },
     "daniil medvedev": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
       "props": [
         "daniil medvedev::total games::OVER"
       ]
     },
     "fermin lopez": {
       "anchor_tickets": 0,
-      "nonanchor_tickets": 0,
-      "props": []
+      "nonanchor_tickets": 1,
+      "props": [
+        "fermin lopez::shots::UNDER"
+      ]
     },
     "frances tiafoe": {
-      "anchor_tickets": 0,
-      "nonanchor_tickets": 1,
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
       "props": [
         "frances tiafoe::total games::OVER"
       ]
@@ -1134,44 +1133,55 @@
       "props": []
     },
     "leolia jeanjean": {
-      "anchor_tickets": 0,
-      "nonanchor_tickets": 1,
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
       "props": [
         "leolia jeanjean::total games::OVER"
       ]
     },
     "luka sucic": {
       "anchor_tickets": 0,
-      "nonanchor_tickets": 0,
-      "props": []
+      "nonanchor_tickets": 1,
+      "props": [
+        "luka sucic::shots::OVER"
+      ]
     },
     "martin baturina": {
-      "anchor_tickets": 0,
-      "nonanchor_tickets": 1,
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
       "props": [
         "martin baturina::shots::OVER"
       ]
     },
     "matthew boyd": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
       "props": [
         "matthew boyd::pitching outs::OVER"
       ]
     },
-    "sabrina ionescu": {
-      "anchor_tickets": 1,
+    "mikel oyarzabal": {
+      "anchor_tickets": 0,
       "nonanchor_tickets": 1,
       "props": [
-        "sabrina ionescu::points::UNDER",
-        "sabrina ionescu::pts+asts::UNDER",
-        "sabrina ionescu::pts+rebs+asts::UNDER",
-        "sabrina ionescu::pts+rebs::UNDER"
+        "mikel oyarzabal::shots on target::UNDER"
+      ]
+    },
+    "napheesa collier": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 0,
+      "props": []
+    },
+    "sabrina ionescu": {
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
+      "props": [
+        "sabrina ionescu::pts+asts::UNDER"
       ]
     },
     "tommy paul": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
       "props": [
         "tommy paul::total games::OVER"
       ]
@@ -1182,7 +1192,7 @@
     "MLB"
   ],
   "construction_hygiene_dropped": 2,
-  "run_id": "20260929_173915_009078",
+  "run_id": "20260929_212152_979336",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
@@ -1191,10 +1201,10 @@
   "pool": {
     "goblin_70": 11,
     "goblin_70_raw": 11,
-    "standard_allowlist": 7,
-    "standard_allowlist_raw": 7,
-    "standard_yolo": 4,
-    "standard_yolo_raw": 4,
+    "standard_allowlist": 6,
+    "standard_allowlist_raw": 6,
+    "standard_yolo": 3,
+    "standard_yolo_raw": 3,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
