@@ -8,7 +8,7 @@ L5>=4+L10>=8 or L10>=8+lefty; no D). Tennis Standard UNDER Aces / Double
 Faults is faded after serve-actual backfill (missing→0 had inflated ~90%).
 Standard OVER Games Won uses L10>=8+(gap|2nd-won). Other tennis Standard
 stays off. Soccer uses utils.soccer_keep_gates
-(Shots L5=5+L10>=8; SOT L5>=4+Off; Saves L5>=4+own D, no opp-D fallback). CFB uses
+(Shots L5=5+L10>=8; SOT L5>=4+Off list / L5=5 ticket; Saves L5>=4+own D list / L5=5 ticket). CFB uses
 utils.cfb_keep_gates: Pass Yards Goblin OVER skips D (still L5=5+L10>=8
 +cover); Player TDs fade from the L5=5 stack; Standard Rec Yards UNDER
 fades from the cover-stack; Standard Rush Yards UNDER keeps the full
@@ -587,6 +587,59 @@ def goblin_70_eligible(r: dict[str, Any]) -> bool:
     if not cover_clears_floor(sport, gap, "OVER", prop):
         return False
     return True
+
+
+def _goblin_face_key(r: dict[str, Any]) -> tuple[str, str, str]:
+    return (
+        _sport(r),
+        _player_fill_key(str(r.get("player") or "")),
+        _prop(r),
+    )
+
+
+def keep_hardest_goblin_over_faces(
+    board: list[dict[str, Any]],
+    eligible: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Ticket only the hardest Goblin OVER line per player+prop on the slate.
+
+    Soft deeper Goblins (e.g. SOT 0.5 when 1.5 is also posted) stay list-only.
+    If the hardest face fails L5=5 / keep, the soft siblings do not backfill.
+    """
+    hardest: dict[tuple[str, str, str], float] = {}
+    for r in board:
+        if _pick(r) != "Goblin" or _side(r) != "OVER":
+            continue
+        if skip_combo_player(r):
+            continue
+        try:
+            line = float(r.get("line"))
+        except (TypeError, ValueError):
+            continue
+        key = _goblin_face_key(r)
+        if not key[1] or not key[2]:
+            continue
+        prev = hardest.get(key)
+        if prev is None or line > prev:
+            hardest[key] = line
+
+    out: list[dict[str, Any]] = []
+    for r in eligible:
+        if _pick(r) != "Goblin" or _side(r) != "OVER":
+            out.append(r)
+            continue
+        key = _goblin_face_key(r)
+        want = hardest.get(key)
+        if want is None:
+            out.append(r)
+            continue
+        try:
+            line = float(r.get("line"))
+        except (TypeError, ValueError):
+            continue
+        if abs(line - want) < 1e-9:
+            out.append(r)
+    return out
 
 
 def premium_goblin_eligible(r: dict[str, Any]) -> bool:

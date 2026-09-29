@@ -9,7 +9,11 @@ sys.path.insert(0, str(_REPO / "scripts"))
 sys.path.insert(0, str(_REPO))
 
 from rank_best_props_today import _clears_list_gate  # noqa: E402
-from utils.soccer_keep_gates import soccer_keep_eligible, soccer_keep_prop  # noqa: E402
+from utils.soccer_keep_gates import (  # noqa: E402
+    soccer_keep_eligible,
+    soccer_keep_prop,
+    soccer_ticket_gate_passes,
+)
 from utils.ticket_70_pool import goblin_70_eligible, standard_ticket_eligible  # noqa: E402
 
 
@@ -44,7 +48,12 @@ def test_shots_need_l5eq5_and_l10():
 def test_sot_needs_l5_and_off():
     sot = _soc(prop="Shots On Target", l5_over=4, l10_over=5)
     assert soccer_keep_eligible(sot)
-    assert goblin_70_eligible(sot)
+    # L5>=4 is list/pool only — tickets need L5=5.
+    assert not soccer_ticket_gate_passes(sot)
+    assert not goblin_70_eligible(sot)
+    sot5 = dict(sot, l5_over=5)
+    assert soccer_ticket_gate_passes(sot5)
+    assert goblin_70_eligible(sot5)
     assert not soccer_keep_eligible(dict(sot, shot_volume="", starter_tier="", team_top3_rank=9))
     assert soccer_keep_eligible(dict(sot, shot_volume="HIGH_VOL", starter_tier=""))
     assert not soccer_keep_eligible(dict(sot, l5_over=3))
@@ -61,20 +70,25 @@ def test_saves_need_l5_and_own_d():
     sv.pop("shot_volume", None)
     sv.pop("def", None)
     assert soccer_keep_eligible(sv)
-    assert goblin_70_eligible(sv)
-    # Own Elite defense fails OVER.
+    assert not soccer_ticket_gate_passes(sv)
+    assert not goblin_70_eligible(sv)
+    sv5 = dict(sv, l5_over=5)
+    assert soccer_ticket_gate_passes(sv5)
+    assert goblin_70_eligible(sv5)
+    # Own Elite D fails OVER (Weak|Below required).
     assert not soccer_keep_eligible(dict(sv, own_def_tier="Elite"))
-    assert not soccer_keep_eligible(dict(sv, l5_over=3, own_def_tier="Weak"))
+    assert not soccer_keep_eligible(dict(sv, l5_over=3))
     # Opp Weak attack fails OVER when OFF_TIER is present.
     assert not soccer_keep_eligible(dict(sv, opp_off_tier="Weak"))
-    # Missing opp off still passes when own D is right (older boards).
+    # Missing opp off still passes when own D is aligned.
     assert soccer_keep_eligible(dict(sv, opp_off_tier=""))
-    # Fall back to opp def when own missing.
-    assert soccer_keep_eligible(
-        _soc(prop="Goalie Saves", l5_over=4, **{"def": "Weak", "own_def_tier": ""})
-    )
+    # Missing own D fails — opponent DEF_TIER must not substitute.
+    assert not soccer_keep_eligible(dict(sv, own_def_tier=""))
     assert not soccer_keep_eligible(
         _soc(prop="Goalie Saves", l5_over=4, **{"def": "Elite", "own_def_tier": ""})
+    )
+    assert not soccer_keep_eligible(
+        _soc(prop="Goalie Saves", l5_over=4, **{"def": "Weak", "own_def_tier": ""})
     )
 
 

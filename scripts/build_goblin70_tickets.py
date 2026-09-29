@@ -48,6 +48,7 @@ from utils.ticket_70_pool import (  # noqa: E402
     goblin_sort_key,
     goblin_ticket_p,
     is_pitcher_prop,
+    keep_hardest_goblin_over_faces,
     nflp_std_over_eligible,
     nflp_ticket_eligible,
     nflp_ticket_p,
@@ -1439,6 +1440,8 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         for r in board
         if goblin_70_eligible(r) and fold_name(r.get("player")) not in SKIP_PLAYERS
     ]
+    # Soft deeper Goblins (SOT 0.5 when 1.5 is posted) stay list-only.
+    gob_raw = keep_hardest_goblin_over_faces(board, gob_raw)
     if l5_eq_5:
         gob_raw = [r for r in gob_raw if int(directional_l5(r) or 0) == 5]
     std_raw = []

@@ -12,7 +12,7 @@ from utils.cfb_keep_gates import cfb_ticket_fade
 from utils.golf_keep_gates import golf_ticket_eligible
 from utils.mlb_keep_gates import mlb_goblin_keep_eligible
 from utils.nfl_keep_gates import nfl_goblin_ticket_eligible, nfl_standard_ticket_eligible
-from utils.soccer_keep_gates import soccer_keep_eligible
+from utils.soccer_keep_gates import soccer_ticket_gate_passes
 from utils.tennis_keep_gates import tennis_ticket_gate_passes
 
 RuleFn = Callable[[dict[str, Any]], bool]
@@ -42,8 +42,8 @@ SPORT_RULES: dict[str, tuple[str, RuleFn | None]] = {
     "MLB": ("replace", mlb_goblin_keep_eligible),
     # Games Won / Total Games. Replaces L5/L10/D.
     "TENNIS": ("replace", tennis_ticket_gate_passes),
-    # Shots / SOT / Saves, including the thin-competition hold.
-    "SOCCER": ("replace", soccer_keep_eligible),
+    # Shots / SOT / Saves. List may enter SOT/Saves at L5>=4; tickets need L5=5.
+    "SOCCER": ("replace", soccer_ticket_gate_passes),
     # L5=5 + L10>=8, no opponent D.
     "GOLF": ("replace", golf_ticket_eligible),
     "PGA": ("replace", golf_ticket_eligible),
