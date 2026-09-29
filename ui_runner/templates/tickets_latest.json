@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29 02:05:48 UTC",
+  "generated_at": "2026-09-29 03:26:33 UTC",
   "date": "2026-09-29",
   "tennis_date": "2026-09-29",
   "filters": {
@@ -1513,29 +1513,34 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.9162,
-            "min_guarantee": 1.9162,
-            "min_payout_x": 1.9162,
+            "payout": 1.6,
+            "min_guarantee": 1.6,
+            "min_payout_x": 1.6,
             "min_guarantee_adjustment": 1.0,
             "payout_adjustment": 1.0,
             "p_all_win": 0.9801,
             "p_miss_1": 0.0198,
-            "ev": 0.8781,
+            "ev": 0.5682,
             "recommendation": "OK",
-            "entry_10_to_win_guarantee": 19.16,
-            "entry_20_to_win_guarantee": 38.32,
-            "sweep_payout": 1.9162,
-            "sweep_payout_x": 1.9162,
+            "entry_10_to_win_guarantee": 16.0,
+            "entry_20_to_win_guarantee": 32.0,
+            "sweep_payout": 1.6,
+            "sweep_payout_x": 1.6,
             "audit_all_hit_x": 1.9162,
-            "entry_10_to_win_sweep": 19.16,
+            "entry_10_to_win_sweep": 16.0,
             "payout_confidence_score": 1.8781,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.92 - 1.0",
-            "model_min_payout_x": 1.9162
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.60 - 1.0",
+            "model_min_payout_x": 1.9162,
+            "power_min_x": 1.6,
+            "display_min_x": 1.6,
+            "power_first_x": 3.0,
+            "captured_at": "2026-09-28T22:11:18"
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
-          "empirical_recommendation": "OK"
+          "empirical_recommendation": "OK",
+          "display_min_x": 1.6
         }
       ],
       "hot_legs": 2,
@@ -2089,31 +2094,36 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.9162,
-            "min_guarantee": 1.9162,
-            "min_payout_x": 1.9162,
+            "payout": 1.6,
+            "min_guarantee": 1.6,
+            "min_payout_x": 1.6,
             "min_guarantee_adjustment": 1.0,
             "payout_adjustment": 1.0,
             "p_all_win": 0.9801,
             "p_miss_1": 0.0198,
-            "ev": 0.8781,
+            "ev": 0.5682,
             "recommendation": "OK",
-            "entry_10_to_win_guarantee": 19.16,
-            "entry_20_to_win_guarantee": 38.32,
-            "sweep_payout": 1.9162,
-            "sweep_payout_x": 1.9162,
+            "entry_10_to_win_guarantee": 16.0,
+            "entry_20_to_win_guarantee": 32.0,
+            "sweep_payout": 1.6,
+            "sweep_payout_x": 1.6,
             "audit_all_hit_x": 1.9162,
-            "entry_10_to_win_sweep": 19.16,
+            "entry_10_to_win_sweep": 16.0,
             "payout_confidence_score": 1.8781,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.92 - 1.0",
-            "model_min_payout_x": 1.9162
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.60 - 1.0",
+            "model_min_payout_x": 1.9162,
+            "power_min_x": 1.6,
+            "display_min_x": 1.6,
+            "power_first_x": 3.0,
+            "captured_at": "2026-09-28T22:11:18"
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
           "win_rate_score": 0.31104,
           "floor_ev": -0.68896,
-          "empirical_recommendation": "OK"
+          "empirical_recommendation": "OK",
+          "display_min_x": 1.6
         }
       ],
       "hot_legs": 2,
@@ -2943,13 +2953,13 @@
   "hot_legs": 24,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 0.8781,
+    "strong": 0.6136599999999999,
     "ok": 0.29043999999999975,
     "marginal": -0.13160000000000013
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 0.8781,
+      "strong": 0.6136599999999999,
       "ok": 0.29043999999999975,
       "marginal": -0.13160000000000013
     },
@@ -2979,9 +2989,9 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 4,
+    "legs_checked": 0,
     "failed_goblin": 0,
-    "failed_tier": 4,
+    "failed_tier": 0,
     "failed_streak": 0
   },
   "max_legs": 3,
@@ -3019,7 +3029,7 @@
     "MLB"
   ],
   "construction_hygiene_dropped": 1,
-  "run_id": "20260929_015506_137973",
+  "run_id": "20260929_031451_066358",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
