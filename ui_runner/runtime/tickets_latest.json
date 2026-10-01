@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01 02:03:29 UTC",
+  "generated_at": "2026-10-01 02:14:45 UTC",
   "date": "2026-10-01",
   "tennis_date": "2026-10-01",
   "filters": {
@@ -36,7 +36,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.205,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -159,7 +158,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.368,
             "p_miss_1": 0.0,
             "ev": 1.205,
@@ -169,14 +167,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         }
       ]
     },
@@ -200,7 +200,6 @@
           "flex_payout": null,
           "base_power_payout": 2.0667,
           "ev_power": 0.203,
-          "display_min_x": 2.0667,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -287,24 +286,25 @@
             "payout": 2.0667,
             "min_guarantee": 2.0667,
             "min_payout_x": 2.0667,
-            "display_min_x": 2.0667,
             "p_all_win": 0.582,
             "p_miss_1": 0.0,
             "ev": 0.203,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 20.67,
             "entry_20_to_win_guarantee": 41.33,
             "sweep_payout": 2.0667,
             "sweep_payout_x": 2.0667,
             "audit_all_hit_x": 2.0667,
-            "payout_source": "n_correct_live",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 2.0667x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 2.0667
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-09-09T22:05:48"
-          }
+            "captured_at": "2026-09-09T22:05:48",
+            "model_min_payout_x": 2.0667
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -328,7 +328,6 @@
           "flex_payout": null,
           "base_power_payout": 2.0,
           "ev_power": 0.068,
-          "display_min_x": 2.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -415,24 +414,25 @@
             "payout": 2.0,
             "min_guarantee": 2.0,
             "min_payout_x": 2.0,
-            "display_min_x": 2.0,
             "p_all_win": 0.535,
             "p_miss_1": 0.0,
             "ev": 0.068,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 20.0,
             "entry_20_to_win_guarantee": 40.0,
             "sweep_payout": 2.0,
             "sweep_payout_x": 2.0,
             "audit_all_hit_x": 2.0,
-            "payout_source": "n_correct_live",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 2.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 2.0
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -1096,20 +1096,20 @@
   "hot_legs": 20,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 0.4069799999999999,
-    "ok": -0.1751,
-    "marginal": -0.1751
+    "strong": 1.4,
+    "ok": 1.15,
+    "marginal": 1.0
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 0.4069799999999999,
-      "ok": -0.1751,
-      "marginal": -0.1751
+      "strong": 1.4,
+      "ok": 1.15,
+      "marginal": 1.0
     },
     "3": {
-      "strong": 0.4069799999999999,
-      "ok": -0.1751,
-      "marginal": -0.1751
+      "strong": 1.4,
+      "ok": 1.15,
+      "marginal": 1.0
     }
   },
   "tier_ev_percentiles": {
@@ -1132,7 +1132,7 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 6,
+    "legs_checked": 4,
     "failed_goblin": 0,
     "failed_tier": 0,
     "failed_streak": 0
@@ -1188,22 +1188,16 @@
     "goblin70",
     "graded_main"
   ],
-  "slate_exposure_dropped": 6,
+  "slate_exposure_dropped": 5,
   "slate_exposure_reasons": [
     "2026-10-01|NFL Standard Power 3|1:nonanchor_cap:darnell washington:1>=1",
     "2026-10-01|X-Sport Goblin-70 Power 2|1:nonanchor_cap:alexander zverev:1>=1",
     "2026-10-01|YOLO Standard Power 4|1:nonanchor_cap:alexander zverev:1>=1",
-    "2026-10-01|STRONG 2-Leg|3:nonanchor_cap:stephon castle:1>=1",
     "2026-10-01|NBA1Q 2-Leg Goblin OVER|1:anchor_cap:jalen williams:1>=1",
     "2026-10-01|TENNIS 3-Leg Goblin OVER|1:nonanchor_cap:daniil medvedev:1>=1"
   ],
-  "player_slip_cap_dropped": 6,
+  "player_slip_cap_dropped": 5,
   "slate_exposure_snapshot": {
-    "alex caruso": {
-      "anchor_tickets": 0,
-      "nonanchor_tickets": 0,
-      "props": []
-    },
     "alexander zverev": {
       "anchor_tickets": 0,
       "nonanchor_tickets": 1,
