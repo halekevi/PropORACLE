@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01 06:09:09 UTC",
+  "generated_at": "2026-10-01 13:00:37 UTC",
   "date": "2026-10-01",
   "tennis_date": "2026-10-01",
   "filters": {
@@ -17,25 +17,26 @@
   "mode": "goblin70+graded_main",
   "groups": [
     {
-      "group_name": "X-Sport Standard Power 3",
+      "group_name": "NFL Standard Power 3",
       "n_legs": 3,
       "power_payout": 6.0,
       "flex_payout": null,
       "tickets": [
         {
-          "web_group_name": "X-Sport Standard Power 3",
-          "ticket_id": "2026-10-01|X-Sport Standard Power 3|1",
+          "web_group_name": "NFL Standard Power 3",
+          "ticket_id": "2026-10-01|NFL Standard Power 3|1",
           "ticket_no": 1,
           "ticket_track": "standard_ev",
           "mode": "goblin70",
           "exclude_from_winrate": false,
           "avg_hit_rate": 1.0,
-          "est_win_prob": 0.368,
+          "est_win_prob": 0.343,
           "est_flex_cash_prob": null,
           "power_payout": 6.0,
           "flex_payout": null,
           "base_power_payout": 6.0,
-          "ev_power": 1.205,
+          "ev_power": 1.058,
+          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -43,43 +44,7 @@
           "strong_builder": false,
           "legs": [
             {
-              "ticket_id": "2026-10-01|X-Sport Standard Power 3|1",
-              "ticket_track": "standard_ev",
-              "sport": "Tennis",
-              "player": "Alexander Zverev",
-              "team": "ALEXANDER ZVEREV",
-              "opp": "CAMERON NORRIE",
-              "prop_type": "Total Games Won",
-              "pick_type": "Standard",
-              "direction": "OVER",
-              "line": 12.5,
-              "edge": 4.7,
-              "abs_edge": 4.7,
-              "pick_platform": "prizepicks",
-              "hit_rate": 1.0,
-              "ml_prob": 0.58,
-              "standard_line": 12.5,
-              "line_underdog": null,
-              "line_draftkings": null,
-              "line_vegas": null,
-              "best_cross_book": "PP",
-              "best_cross_line": 12.5,
-              "cross_edge_vs_pp": 0.0,
-              "tier": "D",
-              "def_tier": "Avg",
-              "l5_over": 5.0,
-              "l5_under": null,
-              "l5_side_hit_rate": 1.0,
-              "leg_prob_used": 0.75,
-              "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_ad7fd2ba8399a983a42c",
-              "game_date": "2026-10-01",
-              "badge": "Bronze",
-              "cover": 4.7,
-              "matchup": "ALEXANDER ZVEREV vs CAMERON NORRIE (ATP / HARD)"
-            },
-            {
-              "ticket_id": "2026-10-01|X-Sport Standard Power 3|1",
+              "ticket_id": "2026-10-01|NFL Standard Power 3|1",
               "ticket_track": "standard_ev",
               "sport": "NFL",
               "player": "Darnell Washington",
@@ -115,7 +80,7 @@
               "matchup": "PIT vs CLE (NFL)"
             },
             {
-              "ticket_id": "2026-10-01|X-Sport Standard Power 3|1",
+              "ticket_id": "2026-10-01|NFL Standard Power 3|1",
               "ticket_track": "standard_ev",
               "sport": "NFL",
               "player": "Pat Freiermuth",
@@ -149,6 +114,42 @@
               "badge": "Platinum",
               "cover": -4.9,
               "matchup": "PIT vs CLE (NFL)"
+            },
+            {
+              "ticket_id": "2026-10-01|NFL Standard Power 3|1",
+              "ticket_track": "standard_ev",
+              "sport": "NFL",
+              "player": "Roman Wilson",
+              "team": "PIT",
+              "opp": "CLE",
+              "prop_type": "receptions",
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "line": 6.5,
+              "edge": -3.7,
+              "abs_edge": 3.7,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": null,
+              "standard_line": null,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 6.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "D",
+              "def_tier": "Elite",
+              "l5_over": null,
+              "l5_under": 5.0,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.7,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_135b3b36365a3bcbacb8",
+              "game_date": "2026-10-01",
+              "badge": "Platinum",
+              "cover": -3.7,
+              "matchup": "PIT vs CLE (NFL)"
             }
           ],
           "n_legs": 3,
@@ -158,32 +159,31 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "p_all_win": 0.368,
+            "display_min_x": 6.0,
+            "p_all_win": 0.343,
             "p_miss_1": 0.0,
-            "ev": 1.205,
+            "ev": 1.058,
             "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "pending_live",
+            "payout_source": "n_correct_median",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null,
-            "model_min_payout_x": 6.0
-          },
-          "empirical_recommendation": "OK"
+            "captured_at": null
+          }
         }
       ]
     },
     {
       "group_name": "TENNIS Goblin-70 Power 2",
       "n_legs": 2,
-      "power_payout": 2.0667,
+      "power_payout": 2.4,
       "flex_payout": null,
       "tickets": [
         {
@@ -196,10 +196,10 @@
           "avg_hit_rate": 1.0,
           "est_win_prob": 0.582,
           "est_flex_cash_prob": null,
-          "power_payout": 2.0667,
+          "power_payout": 2.4,
           "flex_payout": null,
-          "base_power_payout": 2.0667,
-          "ev_power": 0.203,
+          "base_power_payout": 2.4,
+          "ev_power": 0.397,
           "display_min_x": 2.4,
           "core_build": true,
           "core_recipe": "goblin70",
@@ -223,7 +223,7 @@
               "pick_platform": "prizepicks",
               "hit_rate": 1.0,
               "ml_prob": 0.58,
-              "standard_line": 20.5,
+              "standard_line": 19.5,
               "line_underdog": null,
               "line_draftkings": null,
               "line_vegas": null,
@@ -290,41 +290,45 @@
             "display_min_x": 2.4,
             "p_all_win": 0.582,
             "p_miss_1": 0.0,
-            "ev": 0.3968,
-            "recommendation": "SKIP",
+            "ev": 0.397,
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 24.0,
             "entry_20_to_win_guarantee": 48.0,
             "sweep_payout": 2.4,
             "sweep_payout_x": 2.4,
-            "audit_all_hit_x": 2.0667,
-            "payout_source": "live_cdp",
-            "payout_note": "Power all-hit 2.0667x from payout_rate_card. EV = expected N-correct multiple - 1.",
+            "audit_all_hit_x": 2.4,
+            "payout_source": "n_correct_live",
+            "payout_note": "Power all-hit 2.4x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
-              "2": 2.0667
+              "2": 2.4
             },
-            "ev_formula": "EV = P(all)*2.40 - 1.0",
-            "captured_at": "2026-10-01T02:12:58",
-            "model_min_payout_x": 2.0667,
-            "power_min_x": 2.4,
-            "power_first_x": 3.0,
-            "entry_10_to_win_sweep": 24.0
-          },
-          "empirical_recommendation": "SKIP"
-        },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": "2026-09-09T22:05:48"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "X-Sport Goblin-70 Power 2",
+      "n_legs": 2,
+      "power_payout": 2.4,
+      "flex_payout": null,
+      "tickets": [
         {
-          "web_group_name": "TENNIS Goblin-70 Power 2",
-          "ticket_id": "2026-10-01|TENNIS Goblin-70 Power 2|2",
-          "ticket_no": 2,
+          "web_group_name": "X-Sport Goblin-70 Power 2",
+          "ticket_id": "2026-10-01|X-Sport Goblin-70 Power 2|1",
+          "ticket_no": 1,
           "ticket_track": "goblin70",
           "mode": "goblin70",
           "exclude_from_winrate": false,
           "avg_hit_rate": 1.0,
           "est_win_prob": 0.582,
           "est_flex_cash_prob": null,
-          "power_payout": 2.0667,
+          "power_payout": 2.4,
           "flex_payout": null,
-          "base_power_payout": 2.0667,
-          "ev_power": 0.203,
+          "base_power_payout": 2.4,
+          "ev_power": 0.397,
+          "display_min_x": 2.4,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -332,43 +336,7 @@
           "strong_builder": false,
           "legs": [
             {
-              "ticket_id": "2026-10-01|TENNIS Goblin-70 Power 2|2",
-              "ticket_track": "goblin70",
-              "sport": "Tennis",
-              "player": "Frances Tiafoe",
-              "team": "FRANCES TIAFOE",
-              "opp": "KEI NISHIKORI",
-              "prop_type": "Total Games",
-              "pick_type": "Goblin",
-              "direction": "OVER",
-              "line": 19.5,
-              "edge": 6.7,
-              "abs_edge": 6.7,
-              "pick_platform": "prizepicks",
-              "hit_rate": 1.0,
-              "ml_prob": 0.58,
-              "standard_line": 21.5,
-              "line_underdog": null,
-              "line_draftkings": null,
-              "line_vegas": null,
-              "best_cross_book": "PP",
-              "best_cross_line": 19.5,
-              "cross_edge_vs_pp": 0.0,
-              "tier": "A",
-              "def_tier": "Weak",
-              "l5_over": 5.0,
-              "l5_under": null,
-              "l5_side_hit_rate": 1.0,
-              "leg_prob_used": 0.763,
-              "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_24867cd6bbe0b9548170",
-              "game_date": "2026-10-01",
-              "badge": "Platinum",
-              "cover": 6.7,
-              "matchup": "FRANCES TIAFOE vs KEI NISHIKORI (ATP / HARD)"
-            },
-            {
-              "ticket_id": "2026-10-01|TENNIS Goblin-70 Power 2|2",
+              "ticket_id": "2026-10-01|X-Sport Goblin-70 Power 2|1",
               "ticket_track": "goblin70",
               "sport": "Tennis",
               "player": "Aryna Sabalenka",
@@ -402,34 +370,69 @@
               "badge": "Platinum",
               "cover": 6.0,
               "matchup": "ARYNA SABALENKA vs RENATA ZARAZUA (WTA / HARD)"
+            },
+            {
+              "ticket_id": "2026-10-01|X-Sport Goblin-70 Power 2|1",
+              "ticket_track": "goblin70",
+              "sport": "Soccer",
+              "player": "Konstantinos Mavropanos",
+              "team": "GREECE",
+              "opp": "NETHERLANDS",
+              "prop_type": "Shots",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 0.5,
+              "edge": 1.2,
+              "abs_edge": 1.2,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.3,
+              "standard_line": 1.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 0.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "A",
+              "def_tier": "Avg",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_0cfde3c73f3c7467408d",
+              "game_date": "2026-10-01",
+              "badge": "Silver",
+              "cover": 1.2,
+              "matchup": "GREECE vs NETHERLANDS (SOCCER)"
             }
           ],
           "n_legs": 2,
           "play": "Power",
           "payout": {
             "ticket_type": "power",
-            "payout": 2.0667,
-            "min_guarantee": 2.0667,
-            "min_payout_x": 2.0667,
+            "payout": 2.4,
+            "min_guarantee": 2.4,
+            "min_payout_x": 2.4,
+            "display_min_x": 2.4,
             "p_all_win": 0.582,
             "p_miss_1": 0.0,
-            "ev": 0.203,
-            "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 20.67,
-            "entry_20_to_win_guarantee": 41.33,
-            "sweep_payout": 2.0667,
-            "sweep_payout_x": 2.0667,
-            "audit_all_hit_x": 2.0667,
-            "payout_source": "pending_live",
-            "payout_note": "Power all-hit 2.0667x from payout_rate_card. EV = expected N-correct multiple - 1.",
+            "ev": 0.397,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 24.0,
+            "entry_20_to_win_guarantee": 48.0,
+            "sweep_payout": 2.4,
+            "sweep_payout_x": 2.4,
+            "audit_all_hit_x": 2.4,
+            "payout_source": "n_correct_live",
+            "payout_note": "Power all-hit 2.4x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
-              "2": 2.0667
+              "2": 2.4
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-09-10T22:27:38",
-            "model_min_payout_x": 2.0667
-          },
-          "empirical_recommendation": "SKIP"
+            "captured_at": "2026-09-10T22:31:12"
+          }
         }
       ]
     },
@@ -1093,20 +1096,20 @@
   "hot_legs": 20,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 1.4,
-    "ok": 1.15,
-    "marginal": 1.0
+    "strong": 0.3568199999999999,
+    "ok": -0.1751,
+    "marginal": -0.1751
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
+      "strong": 0.3568199999999999,
+      "ok": -0.1751,
+      "marginal": -0.1751
     },
     "3": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
+      "strong": 0.3568199999999999,
+      "ok": -0.1751,
+      "marginal": -0.1751
     }
   },
   "tier_ev_percentiles": {
@@ -1129,7 +1132,7 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 4,
+    "legs_checked": 6,
     "failed_goblin": 0,
     "failed_tier": 0,
     "failed_streak": 0
@@ -1165,19 +1168,19 @@
   "main_thin_pool_min_legs": 6,
   "allow_standard": true,
   "strong_builder_count": 3,
-  "run_id": "20261001_041101_780599",
+  "run_id": "20261001_125854_494127",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
   "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
-    "goblin_70": 6,
-    "goblin_70_raw": 6,
-    "standard_allowlist": 7,
-    "standard_allowlist_raw": 9,
-    "standard_yolo": 5,
-    "standard_yolo_raw": 10,
+    "goblin_70": 4,
+    "goblin_70_raw": 4,
+    "standard_allowlist": 6,
+    "standard_allowlist_raw": 8,
+    "standard_yolo": 3,
+    "standard_yolo_raw": 8,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
@@ -1185,26 +1188,23 @@
     "goblin70",
     "graded_main"
   ],
-  "slate_exposure_dropped": 5,
+  "slate_exposure_dropped": 4,
   "slate_exposure_reasons": [
-    "2026-10-01|NFL Standard Power 3|1:nonanchor_cap:darnell washington:1>=1",
-    "2026-10-01|X-Sport Goblin-70 Power 2|1:nonanchor_cap:alexander zverev:1>=1",
-    "2026-10-01|YOLO Standard Power 4|1:nonanchor_cap:alexander zverev:1>=1",
+    "2026-10-01|NFL Standard Power 3|2:nonanchor_cap:darnell washington:1>=1",
+    "2026-10-01|STRONG 2-Leg|3:nonanchor_cap:stephon castle:1>=1",
     "2026-10-01|NBA1Q 2-Leg Goblin OVER|1:anchor_cap:jalen williams:1>=1",
-    "2026-10-01|TENNIS 3-Leg Goblin OVER|1:nonanchor_cap:daniil medvedev:1>=1"
+    "2026-10-01|TENNIS 3-Leg Goblin OVER|1:anchor_cap:liudmila samsonova:1>=1"
   ],
-  "player_slip_cap_dropped": 5,
+  "player_slip_cap_dropped": 4,
   "slate_exposure_snapshot": {
-    "alexander zverev": {
+    "alex caruso": {
       "anchor_tickets": 0,
-      "nonanchor_tickets": 1,
-      "props": [
-        "alexander zverev::total games won::OVER"
-      ]
+      "nonanchor_tickets": 0,
+      "props": []
     },
     "aryna sabalenka": {
-      "anchor_tickets": 0,
-      "nonanchor_tickets": 1,
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
       "props": [
         "aryna sabalenka::total games::OVER"
       ]
@@ -1230,13 +1230,6 @@
         "de'aaron fox::assists::OVER"
       ]
     },
-    "frances tiafoe": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
-      "props": [
-        "frances tiafoe::total games::OVER"
-      ]
-    },
     "isaiah hartenstein": {
       "anchor_tickets": 1,
       "nonanchor_tickets": 0,
@@ -1253,8 +1246,10 @@
     },
     "konstantinos mavropanos": {
       "anchor_tickets": 0,
-      "nonanchor_tickets": 0,
-      "props": []
+      "nonanchor_tickets": 1,
+      "props": [
+        "konstantinos mavropanos::shots::OVER"
+      ]
     },
     "liudmila samsonova": {
       "anchor_tickets": 1,
@@ -1272,8 +1267,10 @@
     },
     "roman wilson": {
       "anchor_tickets": 0,
-      "nonanchor_tickets": 0,
-      "props": []
+      "nonanchor_tickets": 1,
+      "props": [
+        "roman wilson::receptions::UNDER"
+      ]
     },
     "stephon castle": {
       "anchor_tickets": 0,
