@@ -65,7 +65,7 @@
   "tennis": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-01 04:23:31",
+      "modified": "2026-10-01 05:29:37",
       "no_slate": false
     }
   },
@@ -103,5 +103,9 @@
       "modified": "2026-10-01 04:23:31",
       "no_slate": false
     }
+  },
+  "tennis_match_day": "2026-10-01",
+  "game_day": {
+    "tennis": true
   }
 }
