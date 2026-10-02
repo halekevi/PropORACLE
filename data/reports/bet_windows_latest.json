@@ -1,6 +1,6 @@
 {
   "date": "2026-10-02",
-  "generated_at": "2026-10-01T23:46:05-04:00",
+  "generated_at": "2026-10-02T01:46:03-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-09-30T22:20:37-04:00",
@@ -102,6 +102,90 @@
       "fetched_at": "2026-10-01T22:29:30-04:00",
       "window": "22:29",
       "n_props": 4076,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-02T01:06:40-04:00",
+      "window": "1AM",
+      "n_props": 5343,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-02T01:06:55-04:00",
+      "window": "1AM",
+      "n_props": 789,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-02T01:07:29-04:00",
+      "window": "1AM",
+      "n_props": 673,
+      "n_moved": 13
+    },
+    {
+      "fetched_at": "2026-10-02T01:08:23-04:00",
+      "window": "1AM",
+      "n_props": 105,
+      "n_moved": 19
+    },
+    {
+      "fetched_at": "2026-10-02T01:09:53-04:00",
+      "window": "1AM",
+      "n_props": 7565,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-02T01:10:30-04:00",
+      "window": "1AM",
+      "n_props": 488,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-02T01:29:13-04:00",
+      "window": "1AM",
+      "n_props": 488,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-02T01:35:35-04:00",
+      "window": "1AM",
+      "n_props": 680,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-02T01:36:36-04:00",
+      "window": "1AM",
+      "n_props": 5342,
+      "n_moved": 4
+    },
+    {
+      "fetched_at": "2026-10-02T01:37:31-04:00",
+      "window": "1AM",
+      "n_props": 691,
+      "n_moved": 3
+    },
+    {
+      "fetched_at": "2026-10-02T01:38:03-04:00",
+      "window": "1AM",
+      "n_props": 105,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-02T01:38:27-04:00",
+      "window": "1AM",
+      "n_props": 7580,
+      "n_moved": 3
+    },
+    {
+      "fetched_at": "2026-10-02T01:39:46-04:00",
+      "window": "1AM",
+      "n_props": 7595,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-02T01:40:51-04:00",
+      "window": "1AM",
+      "n_props": 7595,
       "n_moved": 0
     }
   ],
