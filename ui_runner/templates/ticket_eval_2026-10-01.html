@@ -327,7 +327,7 @@ html.ticket-eval-embed-grades,html.ticket-eval-embed-grades body{min-height:100%
   <a href="/payout" class="">💰 Payouts</a>
   <a href="/account" class="">👤 Account</a>
 </div>
-<div class="grade-eval-summary grade-eval-summary-empty"><div>Date: 2026-10-01 · High-prob Standard+Goblin MAIN (shipped tickets) · No fully graded tickets for payout summary (ungraded, all-void, or none).</div></div>
+<div class="grade-eval-summary"><div class="grade-eval-summary-line1">High-prob Standard+Goblin MAIN (shipped tickets) · 2026-10-01 · 2 tickets</div><div class="grade-eval-summary-line2"><span class="ges-pill ges-win">Wins 0</span><span class="ges-pill ges-guar">Guarantees 0</span><span class="ges-pill ges-loss">Losses 2 <span class="grade-eval-subnote">(incl. 2 void-loss)</span></span><span class="ges-pill ges-rate">0% win rate</span><span class="ges-pill ges-ev">Avg EV 0.55</span></div><div class="grade-eval-summary-line4">−$20.00 net on $20 ($10 flat) — loss</div></div>
 <div class="stats-bar">
 <div class="sum-row sum-row-results">
 <div class="sum-row-label">Results</div>
@@ -335,14 +335,14 @@ html.ticket-eval-embed-grades,html.ticket-eval-embed-grades body{min-height:100%
 <div class="sum-item"><div class="sum-val green">0</div><div class="sum-lab">Paid</div></div>
 <div class="sum-item"><div class="sum-val red">0</div><div class="sum-lab">No payout</div></div>
 <div class="sum-item"><div class="sum-val">0</div><div class="sum-lab">Perfect</div></div>
-<div class="sum-item"><div class="sum-val sum-val-sm pend">—</div><div class="sum-lab">Net @ $10</div></div>
-<div class="sum-item"><div class="sum-val sum-val-sm pend">—</div><div class="sum-lab">ROI</div></div>
+<div class="sum-item"><div class="sum-val sum-val-sm">-20.00</div><div class="sum-lab">Net @ $10</div></div>
+<div class="sum-item"><div class="sum-val sum-val-sm">-100.0%</div><div class="sum-lab">ROI</div></div>
 </div>
 <div class="sum-row sum-row-legs">
 <div class="sum-row-label">Legs</div>
-<div class="sum-item"><div class="sum-val green">0</div><div class="sum-lab">Hits</div></div>
+<div class="sum-item"><div class="sum-val green">2</div><div class="sum-lab">Hits</div></div>
 <div class="sum-item"><div class="sum-val red">0</div><div class="sum-lab">Misses</div></div>
-<div class="sum-item"><div class="sum-val void">6</div><div class="sum-lab">Void / push</div></div>
+<div class="sum-item"><div class="sum-val void">4</div><div class="sum-lab">Void / push</div></div>
 <div class="sum-item"><div class="sum-val pend">0</div><div class="sum-lab">Ungraded</div></div>
 <div class="sum-item"><div class="sum-val sum-val-sm">6</div><div class="sum-lab">Total legs</div></div>
 </div></div>
@@ -356,26 +356,26 @@ html.ticket-eval-embed-grades,html.ticket-eval-embed-grades body{min-height:100%
 <div class="thdr">
 <span class="tn bebas">#1</span>
 <span class="tg">TENNIS 3-Leg Goblin OVER</span>
-<span class="tg">0✓ 0✗ / 3</span>
+<span class="tg">1✓ 0✗ / 3</span>
 <span class="payout">PWR 1.57× · FLEX 0.79×</span>
-<span class="tg grade-ticket-result void-slip">RESULT: ○ NO CONTEST <span class="grade-ticket-result-label">(NO CONTEST)</span></span>
+<span class="tg grade-ticket-result void-loss">RESULT: ○ VOID / NO ACTION <span class="grade-ticket-result-label">(no cash)</span></span>
 <span class="banner void">VOID/PUSH</span>
 </div>
 <div class="leg-head" aria-hidden="true"><div></div><div></div><div class="leg-head-lab">PLAYER</div><div class="leg-head-lab">T</div><div class="leg-head-lab">PROP</div><div class="leg-head-lab">LINE</div><div class="leg-head-lab">ACTUAL</div><div class="leg-head-lab">EDGE</div></div>
-<div class="legrow leg-void">
-<div class="badge void">○</div>
+<div class="legrow leg-hit">
+<div class="badge hit">✓</div>
 <div><span class="pill sport-default">TENNIS</span></div>
-<div class="pl-void">Alexander Zverev</div>
+<div class="pl-hit">Alexander Zverev</div>
 <div class="tier">G</div>
 <div class="leg-prop-col"><div>Total Games</div><div class="meta-muted">ALEXANDER ZVEREV vs CAMERON NORRIE</div></div>
 <div class="leg-extra">18.5 <span class="dir-over">OVER</span></div>
-<div class="leg-extra pl-void">—</div>
+<div class="leg-extra pl-hit">23</div>
 <div class="leg-extra">12.1</div>
 </div>
 <div class="legrow leg-void">
 <div class="badge void">○</div>
 <div><span class="pill sport-default">TENNIS</span></div>
-<div class="pl-void">Liudmila Samsonova</div>
+<div class="pl-void">Liudmila Samsonova<span class="warning-chip" title="NO_DATA">NO_DATA</span></div>
 <div class="tier">G</div>
 <div class="leg-prop-col"><div>Total Games</div><div class="meta-muted">LIUDMILA SAMSONOVA vs LINDA FRUHVIRTOVA</div></div>
 <div class="leg-extra">18.5 <span class="dir-over">OVER</span></div>
@@ -385,39 +385,39 @@ html.ticket-eval-embed-grades,html.ticket-eval-embed-grades body{min-height:100%
 <div class="legrow leg-void">
 <div class="badge void">○</div>
 <div><span class="pill sport-default">TENNIS</span></div>
-<div class="pl-void">Daniil Medvedev</div>
+<div class="pl-void">Daniil Medvedev<span class="warning-chip" title="NO_DATA">NO_DATA</span></div>
 <div class="tier">G</div>
 <div class="leg-prop-col"><div>Total Games</div><div class="meta-muted">DANIIL MEDVEDEV vs PABLO CARRENO BUSTA</div></div>
 <div class="leg-extra">19.5 <span class="dir-over">OVER</span></div>
 <div class="leg-extra pl-void">—</div>
 <div class="leg-extra">7.1</div>
 </div>
-<div class="ticket-grade-payout"><div class="grade-result grade-result-void">○ NO CONTEST</div><div class="grade-result-sub">All 3 legs void — no graded contest against the board.</div><div class="grade-entry-line">No payout table — slip did not resolve against the board.</div></div>
+<div class="ticket-grade-payout"><div class="grade-result grade-result-void">○ REFUND / NO CONTEST</div><div class="grade-result-sub">Refund / no contest — 2 void left 1 playable leg(s) (need ≥2); voids drop off the slip and are not misses</div><div class="grade-entry-line">No payout table — slip did not resolve against the board.</div></div>
 </article>
 <article class="ticket-card">
 <div class="thdr">
 <span class="tn bebas">#2</span>
 <span class="tg">TENNIS 3-Leg Goblin OVER</span>
-<span class="tg">0✓ 0✗ / 3</span>
+<span class="tg">1✓ 0✗ / 3</span>
 <span class="payout">PWR 1.35× · FLEX 0.68×</span>
-<span class="tg grade-ticket-result void-slip">RESULT: ○ NO CONTEST <span class="grade-ticket-result-label">(NO CONTEST)</span></span>
+<span class="tg grade-ticket-result void-loss">RESULT: ○ VOID / NO ACTION <span class="grade-ticket-result-label">(no cash)</span></span>
 <span class="banner void">VOID/PUSH</span>
 </div>
 <div class="leg-head" aria-hidden="true"><div></div><div></div><div class="leg-head-lab">PLAYER</div><div class="leg-head-lab">T</div><div class="leg-head-lab">PROP</div><div class="leg-head-lab">LINE</div><div class="leg-head-lab">ACTUAL</div><div class="leg-head-lab">EDGE</div></div>
-<div class="legrow leg-void">
-<div class="badge void">○</div>
+<div class="legrow leg-hit">
+<div class="badge hit">✓</div>
 <div><span class="pill sport-default">TENNIS</span></div>
-<div class="pl-void">Alexander Zverev</div>
+<div class="pl-hit">Alexander Zverev</div>
 <div class="tier">G</div>
 <div class="leg-prop-col"><div>Total Games</div><div class="meta-muted">ALEXANDER ZVEREV vs CAMERON NORRIE</div></div>
 <div class="leg-extra">18.5 <span class="dir-over">OVER</span></div>
-<div class="leg-extra pl-void">—</div>
+<div class="leg-extra pl-hit">23</div>
 <div class="leg-extra">12.1</div>
 </div>
 <div class="legrow leg-void">
 <div class="badge void">○</div>
 <div><span class="pill sport-default">TENNIS</span></div>
-<div class="pl-void">Liudmila Samsonova</div>
+<div class="pl-void">Liudmila Samsonova<span class="warning-chip" title="NO_DATA">NO_DATA</span></div>
 <div class="tier">G</div>
 <div class="leg-prop-col"><div>Total Games</div><div class="meta-muted">LIUDMILA SAMSONOVA vs LINDA FRUHVIRTOVA</div></div>
 <div class="leg-extra">18.5 <span class="dir-over">OVER</span></div>
@@ -434,7 +434,7 @@ html.ticket-eval-embed-grades,html.ticket-eval-embed-grades body{min-height:100%
 <div class="leg-extra pl-void">—</div>
 <div class="leg-extra">3.9</div>
 </div>
-<div class="ticket-grade-payout"><div class="grade-result grade-result-void">○ NO CONTEST</div><div class="grade-result-sub">All 3 legs void — no graded contest against the board.</div><div class="grade-entry-line">No payout table — slip did not resolve against the board.</div></div>
+<div class="ticket-grade-payout"><div class="grade-result grade-result-void">○ REFUND / NO CONTEST</div><div class="grade-result-sub">Refund / no contest — 2 void left 1 playable leg(s) (need ≥2); voids drop off the slip and are not misses</div><div class="grade-entry-line">No payout table — slip did not resolve against the board.</div></div>
 </article>
 </section>
 </div>
