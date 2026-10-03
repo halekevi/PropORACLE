@@ -127,20 +127,24 @@
             "p_all_win": 0.562,
             "p_miss_1": 0.0,
             "ev": 0.688,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 30.0,
             "entry_20_to_win_guarantee": 60.0,
             "sweep_payout": 3.0,
             "sweep_payout_x": 3.0,
             "audit_all_hit_x": 3.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "live_cdp",
             "payout_note": "Power all-hit 3.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 3.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": "2026-10-03T05:55:53",
+            "model_min_payout_x": 3.0,
+            "power_min_x": 3.0,
+            "power_first_x": 3.0
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -164,7 +168,6 @@
           "flex_payout": null,
           "base_power_payout": 2.0,
           "ev_power": 0.164,
-          "display_min_x": 2.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -251,24 +254,25 @@
             "payout": 2.0,
             "min_guarantee": 2.0,
             "min_payout_x": 2.0,
-            "display_min_x": 2.0,
             "p_all_win": 0.582,
             "p_miss_1": 0.0,
             "ev": 0.164,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 20.0,
             "entry_20_to_win_guarantee": 40.0,
             "sweep_payout": 2.0,
             "sweep_payout_x": 2.0,
             "audit_all_hit_x": 2.0,
-            "payout_source": "n_correct_live",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 2.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 2.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-09-10T22:31:12"
-          }
+            "captured_at": "2026-09-10T22:31:12",
+            "model_min_payout_x": 2.0
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -1194,7 +1198,7 @@
             "p_all_win": 0.9801,
             "p_miss_1": 0.0198,
             "ev": 0.8781,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 19.16,
             "entry_20_to_win_guarantee": 38.32,
             "sweep_payout": 1.9162,
@@ -1210,7 +1214,7 @@
           "expected_wins_per_100": 51.8,
           "win_rate_score": 0.31104,
           "floor_ev": -0.68896,
-          "empirical_recommendation": "OK"
+          "empirical_recommendation": "SKIP"
         }
       ],
       "hot_legs": 2,
@@ -1220,20 +1224,15 @@
   "hot_legs": 22,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 0.4898,
-    "ok": -0.1751,
-    "marginal": -0.1751
+    "strong": 1.4,
+    "ok": 1.15,
+    "marginal": 1.0
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": -0.1751,
-      "ok": -0.1751,
-      "marginal": -0.1751
-    },
-    "3": {
-      "strong": 0.4898,
-      "ok": -0.1751,
-      "marginal": -0.1751
+      "strong": 1.4,
+      "ok": 1.15,
+      "marginal": 1.0
     }
   },
   "tier_ev_percentiles": {
@@ -1256,9 +1255,9 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 8,
+    "legs_checked": 4,
     "failed_goblin": 0,
-    "failed_tier": 2,
+    "failed_tier": 0,
     "failed_streak": 0
   },
   "max_legs": 3,
