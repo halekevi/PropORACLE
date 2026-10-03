@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03 15:20:26 UTC",
+  "generated_at": "2026-10-03 21:17:50 UTC",
   "date": "2026-10-03",
   "tennis_date": "2026-10-03",
   "filters": {
@@ -47,42 +47,6 @@
               "ticket_id": "2026-10-03|TENNIS Standard Power 2|1",
               "ticket_track": "standard_ev",
               "sport": "Tennis",
-              "player": "Alexander Zverev",
-              "team": "ALEXANDER ZVEREV",
-              "opp": "JUNCHENG SHANG",
-              "prop_type": "Total Games Won",
-              "pick_type": "Standard",
-              "direction": "OVER",
-              "line": 12.5,
-              "edge": 3.94,
-              "abs_edge": 3.94,
-              "pick_platform": "prizepicks",
-              "hit_rate": 1.0,
-              "ml_prob": 0.58,
-              "standard_line": 12.5,
-              "line_underdog": null,
-              "line_draftkings": null,
-              "line_vegas": null,
-              "best_cross_book": "PP",
-              "best_cross_line": 12.5,
-              "cross_edge_vs_pp": 0.0,
-              "tier": "D",
-              "def_tier": "Weak",
-              "l5_over": 5.0,
-              "l5_under": null,
-              "l5_side_hit_rate": 1.0,
-              "leg_prob_used": 0.75,
-              "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_549b8bc7d4f6fca92b13",
-              "game_date": "2026-10-03",
-              "badge": "Platinum",
-              "cover": 3.94,
-              "matchup": "ALEXANDER ZVEREV vs JUNCHENG SHANG (ATP / HARD)"
-            },
-            {
-              "ticket_id": "2026-10-03|TENNIS Standard Power 2|1",
-              "ticket_track": "standard_ev",
-              "sport": "Tennis",
               "player": "Alina Charaeva",
               "team": "ALINA CHARAEVA",
               "opp": "ELENA RYBAKINA",
@@ -114,6 +78,42 @@
               "badge": "Bronze",
               "cover": 8.8,
               "matchup": "ALINA CHARAEVA vs ELENA RYBAKINA (WTA / HARD)"
+            },
+            {
+              "ticket_id": "2026-10-03|TENNIS Standard Power 2|1",
+              "ticket_track": "standard_ev",
+              "sport": "Tennis",
+              "player": "Viktorija Golubic",
+              "team": "VIKTORIJA GOLUBIC",
+              "opp": "LINDA NOSKOVA",
+              "prop_type": "Total Games Won",
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "line": 7.5,
+              "edge": 5.39,
+              "abs_edge": 5.39,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.58,
+              "standard_line": 7.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 7.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "D",
+              "def_tier": "Elite",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.75,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_5df70f9c3189371eb1bc",
+              "game_date": "2026-10-03",
+              "badge": "Bronze",
+              "cover": 5.39,
+              "matchup": "VIKTORIJA GOLUBIC vs LINDA NOSKOVA (WTA / HARD)"
             }
           ],
           "n_legs": 2,
@@ -127,36 +127,32 @@
             "p_all_win": 0.562,
             "p_miss_1": 0.0,
             "ev": 0.688,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 30.0,
             "entry_20_to_win_guarantee": 60.0,
             "sweep_payout": 3.0,
             "sweep_payout_x": 3.0,
             "audit_all_hit_x": 3.0,
-            "payout_source": "live_cdp",
+            "payout_source": "n_correct_median",
             "payout_note": "Power all-hit 3.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 3.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-10-03T05:55:53",
-            "model_min_payout_x": 3.0,
-            "power_min_x": 3.0,
-            "power_first_x": 3.0
-          },
-          "empirical_recommendation": "SKIP"
+            "captured_at": null
+          }
         }
       ]
     },
     {
-      "group_name": "X-Sport Goblin-70 Power 2",
+      "group_name": "TENNIS Goblin-70 Power 2",
       "n_legs": 2,
       "power_payout": 2.0,
       "flex_payout": null,
       "tickets": [
         {
-          "web_group_name": "X-Sport Goblin-70 Power 2",
-          "ticket_id": "2026-10-03|X-Sport Goblin-70 Power 2|1",
+          "web_group_name": "TENNIS Goblin-70 Power 2",
+          "ticket_id": "2026-10-03|TENNIS Goblin-70 Power 2|1",
           "ticket_no": 1,
           "ticket_track": "goblin70",
           "mode": "goblin70",
@@ -168,6 +164,7 @@
           "flex_payout": null,
           "base_power_payout": 2.0,
           "ev_power": 0.164,
+          "display_min_x": 2.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -175,7 +172,43 @@
           "strong_builder": false,
           "legs": [
             {
-              "ticket_id": "2026-10-03|X-Sport Goblin-70 Power 2|1",
+              "ticket_id": "2026-10-03|TENNIS Goblin-70 Power 2|1",
+              "ticket_track": "goblin70",
+              "sport": "Tennis",
+              "player": "Alexander Zverev",
+              "team": "ALEXANDER ZVEREV",
+              "opp": "JUNCHENG SHANG",
+              "prop_type": "Total Games",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 19.5,
+              "edge": 9.39,
+              "abs_edge": 9.39,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.58,
+              "standard_line": 20.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 19.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "A",
+              "def_tier": "Weak",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_d82e5f424fd02f3f3040",
+              "game_date": "2026-10-03",
+              "badge": "Platinum",
+              "cover": 9.39,
+              "matchup": "ALEXANDER ZVEREV vs JUNCHENG SHANG (ATP / HARD)"
+            },
+            {
+              "ticket_id": "2026-10-03|TENNIS Goblin-70 Power 2|1",
               "ticket_track": "goblin70",
               "sport": "Tennis",
               "player": "Elena Rybakina",
@@ -209,9 +242,65 @@
               "badge": "Platinum",
               "cover": 5.6,
               "matchup": "ELENA RYBAKINA vs ALINA CHARAEVA (WTA / HARD)"
+            }
+          ],
+          "n_legs": 2,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "payout": 2.0,
+            "min_guarantee": 2.0,
+            "min_payout_x": 2.0,
+            "display_min_x": 2.0,
+            "p_all_win": 0.582,
+            "p_miss_1": 0.0,
+            "ev": 0.164,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 20.0,
+            "entry_20_to_win_guarantee": 40.0,
+            "sweep_payout": 2.0,
+            "sweep_payout_x": 2.0,
+            "audit_all_hit_x": 2.0,
+            "payout_source": "n_correct_live",
+            "payout_note": "Power all-hit 2.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
+            "n_correct": {
+              "2": 2.0
             },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": "2026-09-10T22:31:12"
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "SOCCER Goblin-70 Power 2",
+      "n_legs": 2,
+      "power_payout": 2.0,
+      "flex_payout": null,
+      "tickets": [
+        {
+          "web_group_name": "SOCCER Goblin-70 Power 2",
+          "ticket_id": "2026-10-03|SOCCER Goblin-70 Power 2|1",
+          "ticket_no": 1,
+          "ticket_track": "goblin70",
+          "mode": "goblin70",
+          "exclude_from_winrate": false,
+          "avg_hit_rate": 1.0,
+          "est_win_prob": 0.582,
+          "est_flex_cash_prob": null,
+          "power_payout": 2.0,
+          "flex_payout": null,
+          "base_power_payout": 2.0,
+          "ev_power": 0.164,
+          "display_min_x": 2.0,
+          "core_build": true,
+          "core_recipe": "goblin70",
+          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
             {
-              "ticket_id": "2026-10-03|X-Sport Goblin-70 Power 2|1",
+              "ticket_id": "2026-10-03|SOCCER Goblin-70 Power 2|1",
               "ticket_track": "goblin70",
               "sport": "Soccer",
               "player": "Igor Matanovic",
@@ -245,6 +334,42 @@
               "badge": "Silver",
               "cover": 1.5,
               "matchup": "CROATIA vs ENGLAND (SOCCER)"
+            },
+            {
+              "ticket_id": "2026-10-03|SOCCER Goblin-70 Power 2|1",
+              "ticket_track": "goblin70",
+              "sport": "Soccer",
+              "player": "Harry Kane",
+              "team": "ENGLAND",
+              "opp": "CROATIA",
+              "prop_type": "Shots On Target",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 0.5,
+              "edge": 0.93,
+              "abs_edge": 0.93,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 1.0,
+              "standard_line": 1.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 0.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "A",
+              "def_tier": "Avg",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_b1e245bb968dd91f70fa",
+              "game_date": "2026-10-03",
+              "badge": "Silver",
+              "cover": 0.93,
+              "matchup": "ENGLAND vs CROATIA (SOCCER)"
             }
           ],
           "n_legs": 2,
@@ -254,25 +379,24 @@
             "payout": 2.0,
             "min_guarantee": 2.0,
             "min_payout_x": 2.0,
+            "display_min_x": 2.0,
             "p_all_win": 0.582,
             "p_miss_1": 0.0,
             "ev": 0.164,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 20.0,
             "entry_20_to_win_guarantee": 40.0,
             "sweep_payout": 2.0,
             "sweep_payout_x": 2.0,
             "audit_all_hit_x": 2.0,
-            "payout_source": "pending_live",
+            "payout_source": "n_correct_live",
             "payout_note": "Power all-hit 2.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 2.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-09-10T22:31:12",
-            "model_min_payout_x": 2.0
-          },
-          "empirical_recommendation": "SKIP"
+            "captured_at": "2026-09-09T22:05:48"
+          }
         }
       ]
     },
@@ -945,7 +1069,7 @@
           "ticket_track": "graded_main",
           "mode": "win_rate",
           "avg_hit_rate": 1.0,
-          "avg_rank_score": 5.484999999999999,
+          "avg_rank_score": 5.465,
           "est_win_prob": 0.5184,
           "ticket_objective_score": null,
           "ticket_live_score": 0.50276,
@@ -1017,7 +1141,7 @@
               "over_hit_rate": null,
               "under_hit_rate": null,
               "ml_prob": null,
-              "rank_score": 5.68,
+              "rank_score": 5.66,
               "tier": "C",
               "opponent_def_rank": 34.0,
               "game_time": "10/03 2:45 PM",
@@ -1116,7 +1240,7 @@
               "over_hit_rate": null,
               "under_hit_rate": null,
               "ml_prob": null,
-              "rank_score": 5.29,
+              "rank_score": 5.27,
               "tier": "C",
               "opponent_def_rank": 21.0,
               "game_time": "10/03 1:45 PM",
@@ -1198,7 +1322,7 @@
             "p_all_win": 0.9801,
             "p_miss_1": 0.0198,
             "ev": 0.8781,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 19.16,
             "entry_20_to_win_guarantee": 38.32,
             "sweep_payout": 1.9162,
@@ -1214,7 +1338,7 @@
           "expected_wins_per_100": 51.8,
           "win_rate_score": 0.31104,
           "floor_ev": -0.68896,
-          "empirical_recommendation": "SKIP"
+          "empirical_recommendation": "OK"
         }
       ],
       "hot_legs": 2,
@@ -1224,15 +1348,20 @@
   "hot_legs": 22,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 1.4,
-    "ok": 1.15,
-    "marginal": 1.0
+    "strong": 0.530555,
+    "ok": -0.1751,
+    "marginal": -0.1751
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
+      "strong": -0.1751,
+      "ok": -0.1751,
+      "marginal": -0.1751
+    },
+    "3": {
+      "strong": 0.530555,
+      "ok": -0.1751,
+      "marginal": -0.1751
     }
   },
   "tier_ev_percentiles": {
@@ -1255,9 +1384,9 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 4,
+    "legs_checked": 8,
     "failed_goblin": 0,
-    "failed_tier": 0,
+    "failed_tier": 2,
     "failed_streak": 0
   },
   "max_legs": 3,
@@ -1295,15 +1424,15 @@
     "MLB"
   ],
   "construction_hygiene_dropped": 4,
-  "run_id": "20261003_151900_536615",
+  "run_id": "20261003_211651_419832",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
   "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
-    "goblin_70": 5,
-    "goblin_70_raw": 5,
+    "goblin_70": 4,
+    "goblin_70_raw": 4,
     "standard_allowlist": 2,
     "standard_allowlist_raw": 2,
     "standard_yolo": 4,
@@ -1315,15 +1444,14 @@
     "goblin70",
     "graded_main"
   ],
-  "slate_exposure_dropped": 5,
+  "slate_exposure_dropped": 4,
   "slate_exposure_reasons": [
-    "2026-10-03|TENNIS Goblin-70 Power 2|1:anchor_cap:alexander zverev:1>=1",
-    "2026-10-03|YOLO Standard Power 4|1:anchor_cap:alexander zverev:1>=1",
+    "2026-10-03|YOLO Standard Power 4|1:nonanchor_cap:viktorija golubic:1>=1",
     "2026-10-03|STRONG 2-Leg|3:nonanchor_cap:stephon castle:1>=1",
     "2026-10-03|NBA1Q 2-Leg Goblin OVER|1:anchor_cap:jalen williams:1>=1",
     "2026-10-03|TENNIS 3-Leg Goblin OVER|1:anchor_cap:alexander zverev:1>=1"
   ],
-  "player_slip_cap_dropped": 5,
+  "player_slip_cap_dropped": 4,
   "slate_exposure_snapshot": {
     "alex caruso": {
       "anchor_tickets": 0,
@@ -1334,12 +1462,12 @@
       "anchor_tickets": 1,
       "nonanchor_tickets": 0,
       "props": [
-        "alexander zverev::total games won::OVER"
+        "alexander zverev::total games::OVER"
       ]
     },
     "alina charaeva": {
-      "anchor_tickets": 0,
-      "nonanchor_tickets": 1,
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
       "props": [
         "alina charaeva::total games won::OVER"
       ]
@@ -1352,15 +1480,22 @@
       ]
     },
     "elena rybakina": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
       "props": [
         "elena rybakina::total games::OVER"
       ]
     },
-    "igor matanovic": {
+    "harry kane": {
       "anchor_tickets": 0,
       "nonanchor_tickets": 1,
+      "props": [
+        "harry kane::shots on target::OVER"
+      ]
+    },
+    "igor matanovic": {
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
       "props": [
         "igor matanovic::shots on target::OVER"
       ]
@@ -1403,6 +1538,18 @@
       "nonanchor_tickets": 1,
       "props": [
         "stephon castle::points::OVER"
+      ]
+    },
+    "victor hugo": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 0,
+      "props": []
+    },
+    "viktorija golubic": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
+      "props": [
+        "viktorija golubic::total games won::OVER"
       ]
     }
   },
