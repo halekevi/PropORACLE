@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-04 05:49:05 UTC",
+  "generated_at": "2026-10-04 05:49:32 UTC",
   "date": "2026-10-04",
   "tennis_date": "2026-10-04",
   "filters": {
@@ -4391,7 +4391,7 @@
   "allow_standard": true,
   "strong_builder_count": 6,
   "core_build_count": 2,
-  "slate_exposure_dropped": 17,
+  "slate_exposure_dropped": 14,
   "slate_exposure_reasons": [
     "2026-10-04|NFL Standard Power 3|12:anchor_cap:adam trautman:1>=1",
     "2026-10-04|NFL Standard Power 3|13:nonanchor_cap:bo melton:1>=1",
@@ -4406,12 +4406,9 @@
     "2026-10-04|NFL Standard Power 3|22:anchor_cap:quentin johnston:1>=1",
     "2026-10-04|NFL Standard Power 3|23:nonanchor_cap:sione vaki:1>=1",
     "2026-10-04|YOLO Standard Power 6|1:nonanchor_cap:denis shapovalov:1>=1",
-    "2026-10-04|TENNIS 3-Leg Goblin OVER|1:same_prop:coco gauff::total games::OVER",
-    "2026-10-04|NBA1Q 2-Leg Goblin OVER|1:anchor_cap:jalen williams:1>=1",
-    "2026-10-04|STRONG 3-Leg|1:nonanchor_cap:a'ja wilson:1>=1",
-    "2026-10-04|TENNIS 3-Leg Goblin OVER|1:nonanchor_cap:mirra andreeva:1>=1"
+    "2026-10-04|NBA1Q 2-Leg Goblin OVER|1:anchor_cap:jalen williams:1>=1"
   ],
-  "player_slip_cap_dropped": 17,
+  "player_slip_cap_dropped": 14,
   "slate_exposure_snapshot": {
     "a'ja wilson": {
       "anchor_tickets": 0,
@@ -4530,11 +4527,6 @@
       "props": [
         "garrett wilson::receptions::UNDER"
       ]
-    },
-    "iga swiatek": {
-      "anchor_tickets": 0,
-      "nonanchor_tickets": 0,
-      "props": []
     },
     "isaac teslaa": {
       "anchor_tickets": 0,
