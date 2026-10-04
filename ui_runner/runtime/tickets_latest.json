@@ -36,7 +36,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -159,7 +158,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -169,14 +167,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -192,7 +192,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -315,7 +314,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -325,14 +323,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -348,7 +348,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -471,7 +470,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -481,14 +479,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -504,7 +504,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -627,7 +626,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -637,14 +635,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -660,7 +660,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -783,7 +782,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -793,14 +791,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -816,7 +816,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -939,7 +938,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -949,14 +947,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -972,7 +972,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -1095,7 +1094,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -1105,14 +1103,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -1128,7 +1128,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -1251,7 +1250,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -1261,14 +1259,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -1284,7 +1284,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -1407,7 +1406,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -1417,14 +1415,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -1440,7 +1440,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -1563,7 +1562,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -1573,14 +1571,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -1596,7 +1596,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -1719,7 +1718,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -1729,14 +1727,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -1752,7 +1752,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -1875,7 +1874,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -1885,14 +1883,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NFL Standard Power 3",
@@ -1908,7 +1908,6 @@
           "flex_payout": null,
           "base_power_payout": 6.0,
           "ev_power": 1.058,
-          "display_min_x": 6.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -2031,7 +2030,6 @@
             "payout": 6.0,
             "min_guarantee": 6.0,
             "min_payout_x": 6.0,
-            "display_min_x": 6.0,
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
@@ -2041,14 +2039,16 @@
             "sweep_payout": 6.0,
             "sweep_payout_x": 6.0,
             "audit_all_hit_x": 6.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 6.0x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 6.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 6.0
+          },
+          "empirical_recommendation": "OK"
         }
       ]
     },
@@ -2072,7 +2072,7 @@
           "flex_payout": null,
           "base_power_payout": 2.3,
           "ev_power": 0.022,
-          "display_min_x": 2.3,
+          "display_min_x": 1.5,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -2192,27 +2192,32 @@
           "play": "Power",
           "payout": {
             "ticket_type": "power",
-            "payout": 2.3,
-            "min_guarantee": 2.3,
-            "min_payout_x": 2.3,
-            "display_min_x": 2.3,
+            "payout": 1.5,
+            "min_guarantee": 1.5,
+            "min_payout_x": 1.5,
+            "display_min_x": 1.5,
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
-            "ev": 0.022,
-            "recommendation": "OK",
-            "entry_10_to_win_guarantee": 23.0,
-            "entry_20_to_win_guarantee": 46.0,
-            "sweep_payout": 2.3,
-            "sweep_payout_x": 2.3,
+            "ev": -0.334,
+            "recommendation": "SKIP",
+            "entry_10_to_win_guarantee": 15.0,
+            "entry_20_to_win_guarantee": 30.0,
+            "sweep_payout": 1.5,
+            "sweep_payout_x": 1.5,
             "audit_all_hit_x": 2.3,
-            "payout_source": "n_correct_median",
+            "payout_source": "live_cdp",
             "payout_note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 2.3
             },
-            "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "ev_formula": "EV = P(all)*1.50 - 1.0",
+            "captured_at": "2026-10-04T14:58:43",
+            "model_min_payout_x": 2.3,
+            "power_min_x": 1.5,
+            "power_first_x": 6.0,
+            "entry_10_to_win_sweep": 15.0
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -2656,29 +2661,34 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.6,
-            "min_guarantee": 1.6,
-            "min_payout_x": 1.6,
+            "payout": 1.4,
+            "min_guarantee": 1.4,
+            "min_payout_x": 1.4,
             "min_guarantee_adjustment": 0.2667,
             "payout_adjustment": 1.0,
             "p_all_win": 0.8465,
             "p_miss_1": 0.1472,
-            "ev": 0.3543,
+            "ev": 0.1851,
             "recommendation": "STRONG",
-            "entry_10_to_win_guarantee": 16.0,
-            "entry_20_to_win_guarantee": 32.0,
-            "sweep_payout": 1.6,
-            "sweep_payout_x": 1.6,
+            "entry_10_to_win_guarantee": 14.0,
+            "entry_20_to_win_guarantee": 28.0,
+            "sweep_payout": 1.4,
+            "sweep_payout_x": 1.4,
             "audit_all_hit_x": 6.0,
-            "entry_10_to_win_sweep": 16.0,
+            "entry_10_to_win_sweep": 14.0,
             "payout_confidence_score": 1.3544,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "model_min_payout_x": 1.6
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.40 - 1.0",
+            "model_min_payout_x": 1.6,
+            "power_min_x": 1.4,
+            "display_min_x": 1.4,
+            "power_first_x": 6.0,
+            "captured_at": "2026-10-04T14:56:45"
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
-          "empirical_recommendation": "STRONG"
+          "empirical_recommendation": "STRONG",
+          "display_min_x": 1.4
         },
         {
           "web_group_name": "STRONG 3-Leg",
@@ -3120,29 +3130,34 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.6,
-            "min_guarantee": 1.6,
-            "min_payout_x": 1.6,
+            "payout": 1.7,
+            "min_guarantee": 1.7,
+            "min_payout_x": 1.7,
             "min_guarantee_adjustment": 0.2667,
             "payout_adjustment": 1.0,
             "p_all_win": 0.8123,
             "p_miss_1": 0.1758,
-            "ev": 0.2996,
+            "ev": 0.3809,
             "recommendation": "STRONG",
-            "entry_10_to_win_guarantee": 16.0,
-            "entry_20_to_win_guarantee": 32.0,
-            "sweep_payout": 1.6,
-            "sweep_payout_x": 1.6,
+            "entry_10_to_win_guarantee": 17.0,
+            "entry_20_to_win_guarantee": 34.0,
+            "sweep_payout": 1.7,
+            "sweep_payout_x": 1.7,
             "audit_all_hit_x": 6.0,
-            "entry_10_to_win_sweep": 16.0,
+            "entry_10_to_win_sweep": 17.0,
             "payout_confidence_score": 1.2997,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "model_min_payout_x": 1.6
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.70 - 1.0",
+            "model_min_payout_x": 1.6,
+            "power_min_x": 1.7,
+            "display_min_x": 1.7,
+            "power_first_x": 6.0,
+            "captured_at": "2026-10-04T14:57:47"
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
-          "empirical_recommendation": "STRONG"
+          "empirical_recommendation": "STRONG",
+          "display_min_x": 1.7
         }
       ],
       "hot_legs": 6,
@@ -4242,31 +4257,36 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.6,
-            "min_guarantee": 1.6,
-            "min_payout_x": 1.6,
+            "payout": 3.0,
+            "min_guarantee": 3.0,
+            "min_payout_x": 3.0,
             "min_guarantee_adjustment": 0.2667,
             "payout_adjustment": 1.0,
             "p_all_win": 0.8123,
             "p_miss_1": 0.1758,
-            "ev": 0.2996,
-            "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 16.0,
-            "entry_20_to_win_guarantee": 32.0,
-            "sweep_payout": 1.6,
-            "sweep_payout_x": 1.6,
+            "ev": 1.4369,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 30.0,
+            "entry_20_to_win_guarantee": 60.0,
+            "sweep_payout": 3.0,
+            "sweep_payout_x": 3.0,
             "audit_all_hit_x": 6.0,
-            "entry_10_to_win_sweep": 16.0,
+            "entry_10_to_win_sweep": 30.0,
             "payout_confidence_score": 1.2997,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "model_min_payout_x": 1.6
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*3.00 - 1.0",
+            "model_min_payout_x": 1.6,
+            "power_min_x": 3.0,
+            "display_min_x": 3.0,
+            "power_first_x": 6.0,
+            "captured_at": "2026-10-04T14:55:39"
           },
           "p_win": 0.195112,
           "expected_wins_per_100": 19.5,
           "win_rate_score": 0.041949,
           "floor_ev": -0.958051,
-          "empirical_recommendation": "SKIP"
+          "empirical_recommendation": "OK",
+          "display_min_x": 3.0
         }
       ],
       "hot_legs": 3,
@@ -4872,7 +4892,7 @@
             "p_all_win": 0.9801,
             "p_miss_1": 0.0198,
             "ev": 0.6662,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 17.0,
             "entry_20_to_win_guarantee": 34.0,
             "sweep_payout": 1.7,
@@ -4886,7 +4906,7 @@
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
-          "empirical_recommendation": "OK",
+          "empirical_recommendation": "SKIP",
           "run_id": "20261004_154632_661048",
           "first_seen_run_id": "20261004_154632_661048",
           "run_archived_at": "2026-10-04T15:46:32.672293+00:00",
@@ -4900,20 +4920,20 @@
   "hot_legs": 16,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 1.4,
-    "ok": 1.15,
-    "marginal": 1.0
+    "strong": 1.058,
+    "ok": 1.058,
+    "marginal": 1.058
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
+      "strong": 1.058,
+      "ok": 1.058,
+      "marginal": 1.058
     },
     "3": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
+      "strong": 1.058,
+      "ok": 1.058,
+      "marginal": 1.058
     }
   },
   "tier_ev_percentiles": {
