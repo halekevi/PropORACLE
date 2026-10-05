@@ -36,7 +36,6 @@
           "flex_payout": null,
           "base_power_payout": 2.3,
           "ev_power": 0.022,
-          "display_min_x": 2.3,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -159,24 +158,25 @@
             "payout": 2.3,
             "min_guarantee": 2.3,
             "min_payout_x": 2.3,
-            "display_min_x": 2.3,
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "sweep_payout": 2.3,
             "sweep_payout_x": 2.3,
             "audit_all_hit_x": 2.3,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 2.3
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 2.3
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -1094,7 +1094,7 @@
             "p_all_win": 0.9801,
             "p_miss_1": 0.0198,
             "ev": 0.8781,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 19.16,
             "entry_20_to_win_guarantee": 38.32,
             "sweep_payout": 1.9162,
@@ -1108,7 +1108,7 @@
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
-          "empirical_recommendation": "OK",
+          "empirical_recommendation": "SKIP",
           "run_id": "20261005_013540_471429",
           "first_seen_run_id": "20261005_013540_471429",
           "run_archived_at": "2026-10-05T01:35:40.473881+00:00",
@@ -1542,7 +1542,7 @@
             "p_all_win": 0.9311,
             "p_miss_1": 0.0678,
             "ev": 0.4898,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 16.0,
             "entry_20_to_win_guarantee": 32.0,
             "sweep_payout": 1.6,
@@ -1558,7 +1558,7 @@
           "expected_wins_per_100": 19.5,
           "win_rate_score": 0.093322,
           "floor_ev": -0.906678,
-          "empirical_recommendation": "OK",
+          "empirical_recommendation": "SKIP",
           "run_id": "20261005_124150_058268",
           "first_seen_run_id": "20261005_124150_058268",
           "run_archived_at": "2026-10-05T12:41:50.067121+00:00",
@@ -1572,15 +1572,20 @@
   "hot_legs": 18,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 0.5040999999999999,
-    "ok": -0.1751,
-    "marginal": -0.1751
+    "strong": 1.4,
+    "ok": 1.15,
+    "marginal": 1.0
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 0.5040999999999999,
-      "ok": -0.1751,
-      "marginal": -0.1751
+      "strong": 1.4,
+      "ok": 1.15,
+      "marginal": 1.0
+    },
+    "3": {
+      "strong": 1.4,
+      "ok": 1.15,
+      "marginal": 1.0
     }
   },
   "tier_ev_percentiles": {
@@ -1603,7 +1608,7 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 6,
+    "legs_checked": 4,
     "failed_goblin": 0,
     "failed_tier": 0,
     "failed_streak": 0
