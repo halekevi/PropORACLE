@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-05 05:20:59 UTC",
-  "date": "2026-10-05",
-  "tennis_date": "2026-10-05",
+  "generated_at": "2026-10-06 02:35:23 UTC",
+  "date": "2026-10-06",
+  "tennis_date": "2026-10-06",
   "filters": {
     "tiers": "A,B",
     "min_hit_rate": 0.72,
@@ -40,7 +40,7 @@
       "tickets": [
         {
           "web_group_name": "NBA1Q 2-Leg Goblin OVER",
-          "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+          "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
           "ticket_no": 1,
           "ticket_track": "high_leg_hr",
           "mode": "win_rate",
@@ -88,7 +88,7 @@
           "ladder_rank": null,
           "legs": [
             {
-              "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+              "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
               "ticket_track": "high_leg_hr",
               "sport": "NBA1Q",
               "player": "Jalen Williams",
@@ -126,7 +126,7 @@
               "lock_at": "8:00 PM",
               "source_priority": "prizepicks_primary",
               "lineage_version": "v1",
-              "canonical_leg_id": "leg_107d88cefbce6c59adbe",
+              "canonical_leg_id": "leg_974cd4b22ea3e19bcf44",
               "nba_player_id": "",
               "espn_player_id": "",
               "min_tier": "UNKNOWN",
@@ -211,7 +211,7 @@
               "recommended_stake_usd": null
             },
             {
-              "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+              "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
               "ticket_track": "high_leg_hr",
               "sport": "NBA1Q",
               "player": "De'Aaron Fox",
@@ -249,7 +249,7 @@
               "lock_at": "8:00 PM",
               "source_priority": "prizepicks_primary",
               "lineage_version": "v1",
-              "canonical_leg_id": "leg_fef602e516232dc0e980",
+              "canonical_leg_id": "leg_13e6ca0dd429cabb060e",
               "nba_player_id": "",
               "espn_player_id": "",
               "min_tier": "UNKNOWN",
@@ -376,7 +376,7 @@
       "tickets": [
         {
           "web_group_name": "NBA1Q 2-Leg Goblin OVER",
-          "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+          "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
           "ticket_no": 1,
           "ticket_track": "high_leg_hr",
           "mode": "win_rate",
@@ -424,7 +424,7 @@
           "ladder_rank": null,
           "legs": [
             {
-              "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+              "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
               "ticket_track": "high_leg_hr",
               "sport": "NBA1Q",
               "player": "Jalen Williams",
@@ -462,7 +462,7 @@
               "lock_at": "8:00 PM",
               "source_priority": "prizepicks_primary",
               "lineage_version": "v1",
-              "canonical_leg_id": "leg_107d88cefbce6c59adbe",
+              "canonical_leg_id": "leg_974cd4b22ea3e19bcf44",
               "nba_player_id": "",
               "espn_player_id": "",
               "min_tier": "UNKNOWN",
@@ -547,7 +547,7 @@
               "recommended_stake_usd": null
             },
             {
-              "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+              "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
               "ticket_track": "high_leg_hr",
               "sport": "NBA1Q",
               "player": "Stephon Castle",
@@ -585,7 +585,7 @@
               "lock_at": "8:00 PM",
               "source_priority": "prizepicks_primary",
               "lineage_version": "v1",
-              "canonical_leg_id": "leg_e3e9a49ea9ee14a83165",
+              "canonical_leg_id": "leg_337674015daeada11585",
               "nba_player_id": "",
               "espn_player_id": "",
               "min_tier": "UNKNOWN",
@@ -712,7 +712,7 @@
       "tickets": [
         {
           "web_group_name": "NBA1Q 2-Leg Goblin OVER",
-          "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+          "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
           "ticket_no": 1,
           "ticket_track": "high_leg_hr",
           "mode": "win_rate",
@@ -760,7 +760,7 @@
           "ladder_rank": null,
           "legs": [
             {
-              "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+              "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
               "ticket_track": "high_leg_hr",
               "sport": "NBA1Q",
               "player": "De'Aaron Fox",
@@ -798,7 +798,7 @@
               "lock_at": "8:00 PM",
               "source_priority": "prizepicks_primary",
               "lineage_version": "v1",
-              "canonical_leg_id": "leg_fef602e516232dc0e980",
+              "canonical_leg_id": "leg_13e6ca0dd429cabb060e",
               "nba_player_id": "",
               "espn_player_id": "",
               "min_tier": "UNKNOWN",
@@ -883,7 +883,7 @@
               "recommended_stake_usd": null
             },
             {
-              "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+              "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
               "ticket_track": "high_leg_hr",
               "sport": "NBA1Q",
               "player": "Alex Caruso",
@@ -921,7 +921,7 @@
               "lock_at": "8:00 PM",
               "source_priority": "prizepicks_primary",
               "lineage_version": "v1",
-              "canonical_leg_id": "leg_b4b437a9b05e5661b7d5",
+              "canonical_leg_id": "leg_dbbe71ec91f5b7be7d1c",
               "nba_player_id": "",
               "espn_player_id": "",
               "min_tier": "UNKNOWN",
@@ -1048,7 +1048,7 @@
       "tickets": [
         {
           "web_group_name": "NBA1Q 2-Leg Goblin OVER",
-          "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+          "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
           "ticket_no": 1,
           "ticket_track": "high_leg_hr",
           "mode": "win_rate",
@@ -1096,7 +1096,7 @@
           "ladder_rank": null,
           "legs": [
             {
-              "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+              "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
               "ticket_track": "high_leg_hr",
               "sport": "NBA1Q",
               "player": "Alex Caruso",
@@ -1134,7 +1134,7 @@
               "lock_at": "8:00 PM",
               "source_priority": "prizepicks_primary",
               "lineage_version": "v1",
-              "canonical_leg_id": "leg_b4b437a9b05e5661b7d5",
+              "canonical_leg_id": "leg_dbbe71ec91f5b7be7d1c",
               "nba_player_id": "",
               "espn_player_id": "",
               "min_tier": "UNKNOWN",
@@ -1219,7 +1219,7 @@
               "recommended_stake_usd": null
             },
             {
-              "ticket_id": "2026-10-05|NBA1Q 2-Leg Goblin OVER|1",
+              "ticket_id": "2026-10-06|NBA1Q 2-Leg Goblin OVER|1",
               "ticket_track": "high_leg_hr",
               "sport": "NBA1Q",
               "player": "Stephon Castle",
@@ -1257,7 +1257,7 @@
               "lock_at": "8:00 PM",
               "source_priority": "prizepicks_primary",
               "lineage_version": "v1",
-              "canonical_leg_id": "leg_e3e9a49ea9ee14a83165",
+              "canonical_leg_id": "leg_337674015daeada11585",
               "nba_player_id": "",
               "espn_player_id": "",
               "min_tier": "UNKNOWN",
