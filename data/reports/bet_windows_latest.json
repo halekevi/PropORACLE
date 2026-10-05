@@ -1,6 +1,6 @@
 {
   "date": "2026-10-05",
-  "generated_at": "2026-10-05T08:21:35-04:00",
+  "generated_at": "2026-10-05T09:12:26-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-10-04T21:43:39-04:00",
@@ -205,6 +205,12 @@
       "window": "8AM",
       "n_props": 1156,
       "n_moved": 3
+    },
+    {
+      "fetched_at": "2026-10-05T09:11:09-04:00",
+      "window": "9AM",
+      "n_props": 5551,
+      "n_moved": 0
     }
   ],
   "payout_scrapes": [],
