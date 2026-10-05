@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05 05:57:34 UTC",
+  "generated_at": "2026-10-05 12:43:05 UTC",
   "date": "2026-10-05",
   "tennis_date": "2026-10-05",
   "filters": {
@@ -36,6 +36,7 @@
           "flex_payout": null,
           "base_power_payout": 2.3,
           "ev_power": 0.022,
+          "display_min_x": 2.3,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -58,7 +59,7 @@
               "pick_platform": "prizepicks",
               "hit_rate": 1.0,
               "ml_prob": 0.58,
-              "standard_line": 18.0,
+              "standard_line": 17.0,
               "line_underdog": null,
               "line_draftkings": null,
               "line_vegas": null,
@@ -158,25 +159,188 @@
             "payout": 2.3,
             "min_guarantee": 2.3,
             "min_payout_x": 2.3,
+            "display_min_x": 2.3,
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "sweep_payout": 2.3,
             "sweep_payout_x": 2.3,
             "audit_all_hit_x": 2.3,
-            "payout_source": "pending_live",
+            "payout_source": "n_correct_median",
             "payout_note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 2.3
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null,
-            "model_min_payout_x": 2.3
-          },
-          "empirical_recommendation": "SKIP"
+            "captured_at": null
+          }
+        }
+      ]
+    },
+    {
+      "group_name": "YOLO Standard Power 3",
+      "n_legs": 3,
+      "power_payout": 2.0,
+      "flex_payout": null,
+      "tickets": [
+        {
+          "web_group_name": "YOLO Standard Power 3",
+          "ticket_id": "2026-10-05|YOLO Standard Power 3|1",
+          "ticket_no": 1,
+          "ticket_track": "standard_yolo",
+          "mode": "goblin70",
+          "exclude_from_winrate": true,
+          "avg_hit_rate": 0.9333,
+          "est_win_prob": 0.368,
+          "est_flex_cash_prob": null,
+          "power_payout": 2.0,
+          "flex_payout": null,
+          "base_power_payout": 2.0,
+          "ev_power": -0.264,
+          "display_min_x": 2.0,
+          "core_build": true,
+          "core_recipe": "standard_yolo",
+          "core_label": "Standard YOLO (gate-cleared Standards only; off ticket win-rate)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
+            {
+              "ticket_id": "2026-10-05|YOLO Standard Power 3|1",
+              "ticket_track": "standard_yolo",
+              "sport": "Soccer",
+              "player": "Antony Alonso",
+              "team": "RIESTRA",
+              "opp": "CÓRDOBA SDE",
+              "prop_type": "Shots",
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "line": 2.5,
+              "edge": -1.6,
+              "abs_edge": 1.6,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.8802310459582181,
+              "standard_line": 2.0,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 2.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "W",
+              "def_tier": "",
+              "l5_over": null,
+              "l5_under": 5.0,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.7,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_35c0646dba0e9cd04dc8",
+              "game_date": "2026-10-05",
+              "badge": "Silver",
+              "cover": -1.6,
+              "matchup": "RIESTRA vs CÓRDOBA SDE (SOCCER)"
+            },
+            {
+              "ticket_id": "2026-10-05|YOLO Standard Power 3|1",
+              "ticket_track": "standard_yolo",
+              "sport": "Tennis",
+              "player": "Daria Snigur",
+              "team": "DARIA SNIGUR",
+              "opp": "MIRRA ANDREEVA",
+              "prop_type": "Total Games Won",
+              "pick_type": "Standard",
+              "direction": "OVER",
+              "line": 6.5,
+              "edge": 5.2,
+              "abs_edge": 5.2,
+              "pick_platform": "prizepicks",
+              "hit_rate": 0.8,
+              "ml_prob": 0.58,
+              "standard_line": 6.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 6.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "D",
+              "def_tier": "Elite",
+              "l5_over": 4.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 0.8,
+              "leg_prob_used": 0.75,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_892f398cf60108d1db62",
+              "game_date": "2026-10-05",
+              "badge": "Bronze",
+              "cover": 5.2,
+              "matchup": "DARIA SNIGUR vs MIRRA ANDREEVA (WTA / HARD)"
+            },
+            {
+              "ticket_id": "2026-10-05|YOLO Standard Power 3|1",
+              "ticket_track": "standard_yolo",
+              "sport": "Soccer",
+              "player": "Kerim Alajbegovic",
+              "team": "BOSNIA",
+              "opp": "POLAND",
+              "prop_type": "Shots",
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "line": 2.5,
+              "edge": -0.61,
+              "abs_edge": 0.61,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.92078615049586,
+              "standard_line": 2.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 2.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "W",
+              "def_tier": "",
+              "l5_over": null,
+              "l5_under": 5.0,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.7,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_111dbdb1a2657304a74f",
+              "game_date": "2026-10-05",
+              "badge": "Silver",
+              "cover": -0.61,
+              "matchup": "BOSNIA vs POLAND (SOCCER)"
+            }
+          ],
+          "n_legs": 3,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "payout": 2.0,
+            "min_guarantee": 2.0,
+            "min_payout_x": 2.0,
+            "display_min_x": 2.0,
+            "p_all_win": 0.368,
+            "p_miss_1": 0.0,
+            "ev": -0.264,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 20.0,
+            "entry_20_to_win_guarantee": 40.0,
+            "sweep_payout": 2.0,
+            "sweep_payout_x": 2.0,
+            "audit_all_hit_x": 2.0,
+            "payout_source": "n_correct_median",
+            "payout_note": "0S+3G Power fallback 2x",
+            "n_correct": {
+              "3": 2.0
+            },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": null
+          }
         }
       ]
     },
@@ -1094,7 +1258,7 @@
             "p_all_win": 0.9801,
             "p_miss_1": 0.0198,
             "ev": 0.8781,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 19.16,
             "entry_20_to_win_guarantee": 38.32,
             "sweep_payout": 1.9162,
@@ -1108,7 +1272,7 @@
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
-          "empirical_recommendation": "SKIP",
+          "empirical_recommendation": "OK",
           "run_id": "20261005_013540_471429",
           "first_seen_run_id": "20261005_013540_471429",
           "run_archived_at": "2026-10-05T01:35:40.473881+00:00",
@@ -1119,7 +1283,7 @@
       "cold_legs": 0
     }
   ],
-  "hot_legs": 9,
+  "hot_legs": 10,
   "cold_legs": 0,
   "tier_ev_thresholds": {
     "strong": 1.4,
@@ -1158,9 +1322,9 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 4,
+    "legs_checked": 7,
     "failed_goblin": 0,
-    "failed_tier": 0,
+    "failed_tier": 3,
     "failed_streak": 0
   },
   "max_legs": 3,
@@ -1194,20 +1358,40 @@
   "main_thin_pool_min_legs": 6,
   "allow_standard": true,
   "strong_builder_count": 3,
-  "core_build_count": 3,
-  "slate_exposure_dropped": 3,
+  "core_build_count": 2,
+  "slate_exposure_dropped": 4,
   "slate_exposure_reasons": [
-    "2026-10-05|TENNIS 2-Leg Goblin OVER|1:anchor_cap:coco gauff:1>=1",
+    "2026-10-05|TENNIS 3-Leg Goblin OVER|1:same_prop:coco gauff::total games::OVER",
     "2026-10-05|SOCCER Core Flex 3 #1|1:nonanchor_cap:youri tielemans:1>=1",
-    "2026-10-05|TENNIS 2-Leg Goblin OVER|1:anchor_cap:coco gauff:1>=1"
+    "2026-10-05|TENNIS 2-Leg Goblin OVER|1:anchor_cap:coco gauff:1>=1",
+    "2026-10-05|TENNIS 3-Leg Goblin OVER|1:same_prop:coco gauff::total games::OVER"
   ],
-  "player_slip_cap_dropped": 3,
+  "player_slip_cap_dropped": 4,
   "slate_exposure_snapshot": {
+    "adam walton": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 0,
+      "props": []
+    },
+    "antony alonso": {
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
+      "props": [
+        "antony alonso::shots::UNDER"
+      ]
+    },
     "coco gauff": {
       "anchor_tickets": 1,
       "nonanchor_tickets": 0,
       "props": [
         "coco gauff::total games::OVER"
+      ]
+    },
+    "daria snigur": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
+      "props": [
+        "daria snigur::total games won::OVER"
       ]
     },
     "de'aaron fox": {
@@ -1238,6 +1422,13 @@
         "jalen williams::points::OVER"
       ]
     },
+    "kerim alajbegovic": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
+      "props": [
+        "kerim alajbegovic::shots::UNDER"
+      ]
+    },
     "michael olise": {
       "anchor_tickets": 0,
       "nonanchor_tickets": 1,
@@ -1259,6 +1450,11 @@
         "stephon castle::points::OVER"
       ]
     },
+    "terence atmane": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 0,
+      "props": []
+    },
     "youri tielemans": {
       "anchor_tickets": 0,
       "nonanchor_tickets": 1,
@@ -1272,7 +1468,7 @@
     "MLB"
   ],
   "construction_hygiene_dropped": 1,
-  "run_id": "20261005_052041_775658",
+  "run_id": "20261005_124150_058268",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
@@ -1283,8 +1479,8 @@
     "goblin_70_raw": 3,
     "standard_allowlist": 0,
     "standard_allowlist_raw": 0,
-    "standard_yolo": 0,
-    "standard_yolo_raw": 0,
+    "standard_yolo": 3,
+    "standard_yolo_raw": 3,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
