@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05 17:43:47 UTC",
+  "generated_at": "2026-10-05 21:15:08 UTC",
   "date": "2026-10-05",
   "tennis_date": "2026-10-05",
   "filters": {
@@ -36,6 +36,7 @@
           "flex_payout": null,
           "base_power_payout": 2.3,
           "ev_power": 0.022,
+          "display_min_x": 2.3,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -158,25 +159,24 @@
             "payout": 2.3,
             "min_guarantee": 2.3,
             "min_payout_x": 2.3,
+            "display_min_x": 2.3,
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "sweep_payout": 2.3,
             "sweep_payout_x": 2.3,
             "audit_all_hit_x": 2.3,
-            "payout_source": "pending_live",
+            "payout_source": "n_correct_median",
             "payout_note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 2.3
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null,
-            "model_min_payout_x": 2.3
-          },
-          "empirical_recommendation": "SKIP"
+            "captured_at": null
+          }
         }
       ]
     },
@@ -200,6 +200,7 @@
           "flex_payout": null,
           "base_power_payout": 2.0,
           "ev_power": -0.264,
+          "display_min_x": 2.0,
           "core_build": true,
           "core_recipe": "standard_yolo",
           "core_label": "Standard YOLO (gate-cleared Standards only; off ticket win-rate)",
@@ -322,25 +323,24 @@
             "payout": 2.0,
             "min_guarantee": 2.0,
             "min_payout_x": 2.0,
+            "display_min_x": 2.0,
             "p_all_win": 0.368,
             "p_miss_1": 0.0,
             "ev": -0.264,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 20.0,
             "entry_20_to_win_guarantee": 40.0,
             "sweep_payout": 2.0,
             "sweep_payout_x": 2.0,
             "audit_all_hit_x": 2.0,
-            "payout_source": "pending_live",
+            "payout_source": "n_correct_median",
             "payout_note": "0S+3G Power fallback 2x",
             "n_correct": {
               "3": 2.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null,
-            "model_min_payout_x": 2.0
-          },
-          "empirical_recommendation": "SKIP"
+            "captured_at": null
+          }
         }
       ]
     },
@@ -1258,7 +1258,7 @@
             "p_all_win": 0.9801,
             "p_miss_1": 0.0198,
             "ev": 0.8781,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 19.16,
             "entry_20_to_win_guarantee": 38.32,
             "sweep_payout": 1.9162,
@@ -1272,7 +1272,7 @@
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
-          "empirical_recommendation": "SKIP",
+          "empirical_recommendation": "OK",
           "run_id": "20261005_013540_471429",
           "first_seen_run_id": "20261005_013540_471429",
           "run_archived_at": "2026-10-05T01:35:40.473881+00:00",
@@ -1283,7 +1283,7 @@
       "cold_legs": 0
     }
   ],
-  "hot_legs": 20,
+  "hot_legs": 14,
   "cold_legs": 0,
   "tier_ev_thresholds": {
     "strong": 1.4,
@@ -1292,11 +1292,6 @@
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
-    },
-    "3": {
       "strong": 1.4,
       "ok": 1.15,
       "marginal": 1.0
@@ -1322,7 +1317,7 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 4,
+    "legs_checked": 6,
     "failed_goblin": 0,
     "failed_tier": 0,
     "failed_streak": 0
@@ -1362,7 +1357,7 @@
     "MLB"
   ],
   "construction_hygiene_dropped": 1,
-  "run_id": "20261005_174240_344528",
+  "run_id": "20261005_211416_835916",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
@@ -1382,18 +1377,17 @@
     "goblin70",
     "graded_main"
   ],
-  "slate_exposure_dropped": 8,
+  "slate_exposure_dropped": 7,
   "slate_exposure_reasons": [
     "2026-10-05|STRONG 2-Leg|3:nonanchor_cap:stephon castle:1>=1",
     "2026-10-05|NBA1Q 2-Leg Goblin OVER|1:anchor_cap:jalen williams:1>=1",
-    "2026-10-05|TENNIS 3-Leg Goblin OVER|1:same_prop:coco gauff::total games::OVER",
     "2026-10-05|SOCCER Core Flex 3 #1|1:same_prop:michael olise::shots on target::OVER",
     "2026-10-05|TENNIS 2-Leg Goblin OVER|1:anchor_cap:coco gauff:1>=1",
     "2026-10-05|TENNIS 3-Leg Goblin OVER|1:same_prop:coco gauff::total games::OVER",
     "2026-10-05|STRONG 2-Leg|3:nonanchor_cap:stephon castle:1>=1",
     "2026-10-05|NBA1Q 2-Leg Goblin OVER|1:anchor_cap:jalen williams:1>=1"
   ],
-  "player_slip_cap_dropped": 8,
+  "player_slip_cap_dropped": 7,
   "slate_exposure_snapshot": {
     "adam walton": {
       "anchor_tickets": 0,
