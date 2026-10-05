@@ -1,13 +1,13 @@
 {
   "date": "2026-10-05",
-  "window": "10:30",
-  "generated_at": "2026-10-05T11:54:38-04:00",
-  "n_pulls_this_window": 7,
-  "n_moved_this_window": 14,
-  "n_moved_from_initial": 102,
+  "window": "1PM",
+  "generated_at": "2026-10-05T13:21:15-04:00",
+  "n_pulls_this_window": 6,
+  "n_moved_this_window": 23,
+  "n_moved_from_initial": 135,
   "is_initial_stamp": false,
   "force_payout": true,
   "rebuild_tickets": true,
-  "latest_fetched_at": "2026-10-05T11:48:14-04:00",
+  "latest_fetched_at": "2026-10-05T13:19:31-04:00",
   "initial_fetched_at": "2026-10-04T21:43:39-04:00"
 }
