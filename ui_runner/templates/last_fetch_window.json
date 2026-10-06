@@ -1,13 +1,13 @@
 {
   "date": "2026-10-06",
   "window": "10:30",
-  "generated_at": "2026-10-06T10:40:53-04:00",
+  "generated_at": "2026-10-06T12:09:08-04:00",
   "n_pulls_this_window": 5,
   "n_moved_this_window": 12,
   "n_moved_from_initial": 232,
   "is_initial_stamp": false,
   "force_payout": true,
   "rebuild_tickets": true,
-  "latest_fetched_at": "2026-10-06T10:40:38-04:00",
+  "latest_fetched_at": "2026-10-06T12:08:44-04:00",
   "initial_fetched_at": "2026-10-05T11:27:09-04:00"
 }
