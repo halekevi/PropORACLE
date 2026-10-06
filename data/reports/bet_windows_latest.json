@@ -1,6 +1,6 @@
 {
   "date": "2026-10-06",
-  "generated_at": "2026-10-06T01:34:19-04:00",
+  "generated_at": "2026-10-06T08:13:17-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-10-05T11:27:09-04:00",
@@ -150,6 +150,90 @@
       "fetched_at": "2026-10-06T01:29:59-04:00",
       "window": "1AM",
       "n_props": 4866,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-06T05:55:58-04:00",
+      "window": "05:55",
+      "n_props": 3297,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-06T05:56:14-04:00",
+      "window": "05:56",
+      "n_props": 232,
+      "n_moved": 10
+    },
+    {
+      "fetched_at": "2026-10-06T05:56:53-04:00",
+      "window": "05:56",
+      "n_props": 1664,
+      "n_moved": 26
+    },
+    {
+      "fetched_at": "2026-10-06T05:57:14-04:00",
+      "window": "05:57",
+      "n_props": 1002,
+      "n_moved": 6
+    },
+    {
+      "fetched_at": "2026-10-06T05:58:02-04:00",
+      "window": "05:58",
+      "n_props": 1508,
+      "n_moved": 10
+    },
+    {
+      "fetched_at": "2026-10-06T05:58:11-04:00",
+      "window": "05:58",
+      "n_props": 1508,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-06T08:09:59-04:00",
+      "window": "8AM",
+      "n_props": 1773,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-06T08:10:08-04:00",
+      "window": "8AM",
+      "n_props": 3307,
+      "n_moved": 35
+    },
+    {
+      "fetched_at": "2026-10-06T08:10:14-04:00",
+      "window": "8AM",
+      "n_props": 199,
+      "n_moved": 3
+    },
+    {
+      "fetched_at": "2026-10-06T08:10:25-04:00",
+      "window": "8AM",
+      "n_props": 1575,
+      "n_moved": 11
+    },
+    {
+      "fetched_at": "2026-10-06T08:10:51-04:00",
+      "window": "8AM",
+      "n_props": 1026,
+      "n_moved": 10
+    },
+    {
+      "fetched_at": "2026-10-06T08:10:56-04:00",
+      "window": "8AM",
+      "n_props": 5227,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-06T08:13:08-04:00",
+      "window": "8AM",
+      "n_props": 1575,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-06T08:13:17-04:00",
+      "window": "8AM",
+      "n_props": 1580,
       "n_moved": 0
     }
   ],
