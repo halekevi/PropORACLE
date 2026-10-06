@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06 02:02:41 UTC",
+  "generated_at": "2026-10-06 02:55:47 UTC",
   "date": "2026-10-06",
   "tennis_date": "2026-10-06",
   "filters": {
@@ -36,7 +36,6 @@
           "flex_payout": null,
           "base_power_payout": 2.3,
           "ev_power": 0.022,
-          "display_min_x": 2.3,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -159,24 +158,25 @@
             "payout": 2.3,
             "min_guarantee": 2.3,
             "min_payout_x": 2.3,
-            "display_min_x": 2.3,
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "sweep_payout": 2.3,
             "sweep_payout_x": 2.3,
             "audit_all_hit_x": 2.3,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 2.3
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 2.3
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -200,7 +200,6 @@
           "flex_payout": null,
           "base_power_payout": 2.3,
           "ev_power": 0.022,
-          "display_min_x": 2.3,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -323,24 +322,25 @@
             "payout": 2.3,
             "min_guarantee": 2.3,
             "min_payout_x": 2.3,
-            "display_min_x": 2.3,
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "sweep_payout": 2.3,
             "sweep_payout_x": 2.3,
             "audit_all_hit_x": 2.3,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 2.3
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 2.3
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -364,7 +364,6 @@
           "flex_payout": null,
           "base_power_payout": 2.0,
           "ev_power": -0.264,
-          "display_min_x": 2.0,
           "core_build": true,
           "core_recipe": "standard_yolo",
           "core_label": "Standard YOLO (gate-cleared Standards only; off ticket win-rate)",
@@ -487,24 +486,25 @@
             "payout": 2.0,
             "min_guarantee": 2.0,
             "min_payout_x": 2.0,
-            "display_min_x": 2.0,
             "p_all_win": 0.368,
             "p_miss_1": 0.0,
             "ev": -0.264,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 20.0,
             "entry_20_to_win_guarantee": 40.0,
             "sweep_payout": 2.0,
             "sweep_payout_x": 2.0,
             "audit_all_hit_x": 2.0,
-            "payout_source": "n_correct_median",
+            "payout_source": "pending_live",
             "payout_note": "0S+3G Power fallback 2x",
             "n_correct": {
               "3": 2.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null
-          }
+            "captured_at": null,
+            "model_min_payout_x": 2.0
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -1241,13 +1241,11 @@
   "allow_standard": true,
   "strong_builder_count": 3,
   "core_build_count": 1,
-  "slate_exposure_dropped": 3,
+  "slate_exposure_dropped": 1,
   "slate_exposure_reasons": [
-    "2026-10-06|SOCCER Core Power 2 #1|1:nonanchor_cap:alex baena:1>=1",
-    "2026-10-06|TENNIS 3-Leg Goblin OVER|1:nonanchor_cap:qinwen zheng:1>=1",
     "2026-10-06|NBA1Q 2-Leg Goblin OVER|1:anchor_cap:jalen williams:1>=1"
   ],
-  "player_slip_cap_dropped": 3,
+  "player_slip_cap_dropped": 1,
   "slate_exposure_snapshot": {
     "adam hlozek": {
       "anchor_tickets": 0,
