@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06 12:43:06 UTC",
+  "generated_at": "2026-10-06 15:14:43 UTC",
   "date": "2026-10-06",
   "tennis_date": "2026-10-06",
   "filters": {
@@ -36,6 +36,7 @@
           "flex_payout": null,
           "base_power_payout": 2.0,
           "ev_power": 0.145,
+          "display_min_x": 2.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -122,25 +123,24 @@
             "payout": 2.0,
             "min_guarantee": 2.0,
             "min_payout_x": 2.0,
+            "display_min_x": 2.0,
             "p_all_win": 0.572,
             "p_miss_1": 0.0,
             "ev": 0.145,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 20.0,
             "entry_20_to_win_guarantee": 40.0,
             "sweep_payout": 2.0,
             "sweep_payout_x": 2.0,
             "audit_all_hit_x": 2.0,
-            "payout_source": "pending_live",
+            "payout_source": "n_correct_live",
             "payout_note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 2.0
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null,
-            "model_min_payout_x": 2.0
-          },
-          "empirical_recommendation": "SKIP"
+            "captured_at": null
+          }
         }
       ]
     },
@@ -164,6 +164,7 @@
           "flex_payout": null,
           "base_power_payout": 2.3,
           "ev_power": 0.022,
+          "display_min_x": 2.3,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -174,37 +175,37 @@
               "ticket_id": "2026-10-06|X-Sport Goblin-70 Power 3|1",
               "ticket_track": "goblin70",
               "sport": "Tennis",
-              "player": "Hubert Hurkacz",
-              "team": "HUBERT HURKACZ",
-              "opp": "JAMES DUCKWORTH",
+              "player": "Leolia Jeanjean",
+              "team": "LEOLIA JEANJEAN",
+              "opp": "MARIAM BOLKVADZE",
               "prop_type": "Total Games",
               "pick_type": "Goblin",
               "direction": "OVER",
-              "line": 20.5,
-              "edge": 5.9,
-              "abs_edge": 5.9,
+              "line": 19.5,
+              "edge": 6.3,
+              "abs_edge": 6.3,
               "pick_platform": "prizepicks",
               "hit_rate": 1.0,
               "ml_prob": 0.58,
-              "standard_line": 23.5,
+              "standard_line": 20.5,
               "line_underdog": null,
               "line_draftkings": null,
               "line_vegas": null,
               "best_cross_book": "PP",
-              "best_cross_line": 20.5,
+              "best_cross_line": 19.5,
               "cross_edge_vs_pp": 0.0,
               "tier": "A",
-              "def_tier": "Below Avg",
+              "def_tier": "Weak",
               "l5_over": 5.0,
               "l5_under": null,
               "l5_side_hit_rate": 1.0,
               "leg_prob_used": 0.763,
               "leg_prob_source": "goblin70_hist",
-              "canonical_leg_id": "leg_514d49bdaaaaa5eb1121",
+              "canonical_leg_id": "leg_f38a7ea7222e044185a8",
               "game_date": "2026-10-06",
               "badge": "Platinum",
-              "cover": 5.9,
-              "matchup": "HUBERT HURKACZ vs JAMES DUCKWORTH (ATP / HARD)"
+              "cover": 6.3,
+              "matchup": "LEOLIA JEANJEAN vs MARIAM BOLKVADZE (WTA / HARD)"
             },
             {
               "ticket_id": "2026-10-06|X-Sport Goblin-70 Power 3|1",
@@ -286,25 +287,24 @@
             "payout": 2.3,
             "min_guarantee": 2.3,
             "min_payout_x": 2.3,
+            "display_min_x": 2.3,
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "sweep_payout": 2.3,
             "sweep_payout_x": 2.3,
             "audit_all_hit_x": 2.3,
-            "payout_source": "pending_live",
+            "payout_source": "n_correct_live",
             "payout_note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "3": 2.3
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": null,
-            "model_min_payout_x": 2.3
-          },
-          "empirical_recommendation": "SKIP"
+            "captured_at": null
+          }
         }
       ]
     },
@@ -977,11 +977,6 @@
       "strong": 1.4,
       "ok": 1.15,
       "marginal": 1.0
-    },
-    "3": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
     }
   },
   "tier_ev_percentiles": {
@@ -1044,7 +1039,7 @@
   "slate_exposure_dropped": 3,
   "slate_exposure_reasons": [
     "2026-10-06|SOCCER Core Power 2 #1|1:nonanchor_cap:alex baena:1>=1",
-    "2026-10-06|TENNIS 2-Leg Goblin OVER|1:anchor_cap:hubert hurkacz:1>=1",
+    "2026-10-06|TENNIS 2-Leg Goblin OVER|1:anchor_cap:qinwen zheng:1>=1",
     "2026-10-06|NBA1Q 2-Leg Goblin OVER|1:anchor_cap:jalen williams:1>=1"
   ],
   "player_slip_cap_dropped": 3,
@@ -1077,13 +1072,6 @@
         "de'aaron fox::assists::OVER"
       ]
     },
-    "hubert hurkacz": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
-      "props": [
-        "hubert hurkacz::total games::OVER"
-      ]
-    },
     "isaiah hartenstein": {
       "anchor_tickets": 1,
       "nonanchor_tickets": 0,
@@ -1096,6 +1084,13 @@
       "nonanchor_tickets": 0,
       "props": [
         "jalen williams::points::OVER"
+      ]
+    },
+    "leolia jeanjean": {
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
+      "props": [
+        "leolia jeanjean::total games::OVER"
       ]
     },
     "qinwen zheng": {
@@ -1114,7 +1109,7 @@
     }
   },
   "player_slip_cap": 2,
-  "run_id": "20261006_124228_213806",
+  "run_id": "20261006_151352_115023",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
