@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07 03:14:16 UTC",
+  "generated_at": "2026-10-07 03:59:16 UTC",
   "date": "2026-10-07",
   "tennis_date": "2026-10-07",
   "filters": {
@@ -120,31 +120,32 @@
           "play": "Power",
           "payout": {
             "ticket_type": "power",
-            "payout": 2.0,
-            "min_guarantee": 2.0,
-            "min_payout_x": 2.0,
+            "payout": 2.4,
+            "min_guarantee": 2.4,
+            "min_payout_x": 2.4,
             "display_min_x": 2.4,
             "p_all_win": 0.572,
             "p_miss_1": 0.0,
-            "ev": 0.145,
-            "recommendation": "MARGINAL",
-            "entry_10_to_win_guarantee": 20.0,
-            "entry_20_to_win_guarantee": 40.0,
-            "sweep_payout": 2.0,
-            "sweep_payout_x": 2.0,
+            "ev": 0.3728,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 24.0,
+            "entry_20_to_win_guarantee": 48.0,
+            "sweep_payout": 2.4,
+            "sweep_payout_x": 2.4,
             "audit_all_hit_x": 2.0,
             "payout_source": "live_cdp",
             "payout_note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 2.0
             },
-            "ev_formula": "E[N-correct] - 1",
+            "ev_formula": "EV = P(all)*2.40 - 1.0",
             "captured_at": "2026-10-06T23:11:57",
-            "model_min_payout_x": 2.0,
             "power_min_x": 2.4,
+            "entry_10_to_win_sweep": 24.0,
+            "model_min_payout_x": 2.4,
             "power_first_x": 3.0
           },
-          "empirical_recommendation": "MARGINAL"
+          "empirical_recommendation": "OK"
         }
       ]
     },
@@ -2612,19 +2613,19 @@
   "hot_legs": 17,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 0.9254250000000002,
-    "ok": 0.13876,
+    "strong": 0.9368150000000002,
+    "ok": 0.18432000000000004,
     "marginal": 0.023799999999999998
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 0.9254250000000002,
-      "ok": 0.13876,
+      "strong": 0.9368150000000002,
+      "ok": 0.18432000000000004,
       "marginal": 0.023799999999999998
     },
     "3": {
-      "strong": 0.9254250000000002,
-      "ok": 0.13876,
+      "strong": 0.9368150000000002,
+      "ok": 0.18432000000000004,
       "marginal": 0.023799999999999998
     }
   },
