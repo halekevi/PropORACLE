@@ -4044,7 +4044,9 @@ def _odds_market_for_prop_cached(prop_type: str, sport_key: str) -> str:
     fn = getattr(_odds_market_for_prop_cached, "_fn", None)
     if fn is None:
         try:
-            from utils.line_movement import odds_market_for_prop as fn
+            from utils.line_movement import (
+                _pipeline_prop_to_odds_market as fn,
+            )
         except Exception:
             fn = lambda *_a, **_k: ""  # noqa: E731
         _odds_market_for_prop_cached._fn = fn  # type: ignore[attr-defined]

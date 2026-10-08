@@ -11,7 +11,9 @@ import shutil
 from pathlib import Path
 from typing import Any
 
-from utils.line_movement import odds_market_for_prop
+from utils.line_movement import (
+    _pipeline_prop_to_odds_market as odds_market_for_prop,
+)
 from utils.player_name_utils import normalize_player_name
 
 PERIOD_SPORTS = frozenset({"NBA1Q", "NBA1H", "WNBA1Q", "WNBA1H"})

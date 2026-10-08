@@ -1193,3 +1193,8 @@ def enrich_with_line_movement(
     bm_dist = Counter(out["implied_prob_book"].dropna())
     print(f"[LM] {sport_label} bookmaker distribution: {dict(bm_dist)}")
     return out
+
+
+# Public alias — kept for any callers that predate the rename.
+# New code should call _pipeline_prop_to_odds_market directly.
+odds_market_for_prop = _pipeline_prop_to_odds_market
