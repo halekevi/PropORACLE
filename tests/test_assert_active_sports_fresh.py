@@ -152,6 +152,96 @@ def test_assert_ok_all_fresh(tmp_path: Path):
             },
         },
     )
+    _write_json(
+        templates / "tickets_latest.json",
+        {
+            "date": today,
+            "groups": [{"group_name": "MLB", "tickets": [{"ticket_id": "1"}]}],
+        },
+    )
     report = assert_active_sports_fresh(tmp_path, today=today, templates_dir=templates)
     assert report["ok"] is True
     assert not report["bad"]
+    assert report["slip_count"] == 1
+
+
+def test_assert_ok_when_majority_fresh_and_slips(tmp_path: Path):
+    today = "2026-08-22"
+    templates = tmp_path / "ui_runner" / "templates"
+    _write_json(
+        tmp_path / "outputs" / today / "pipeline_slate_status.json",
+        {
+            "run_date": today,
+            "sports": {
+                "mlb": "complete",
+                "soccer": "complete",
+                "tennis": "complete",
+                "wnba": "failed",
+                "nba": "off_season",
+                "nhl": "off_season",
+            },
+        },
+    )
+    _write_json(
+        templates / "slate_latest.json",
+        {
+            "date": today,
+            "generated_at": f"{today} 18:00:00 UTC",
+            "tennis_date": today,
+            "sports": {
+                "mlb": [{"game_date": today}],
+                "soccer": [{"game_date": today}],
+                "tennis": [{"game_date": today}],
+                "wnba": [],
+            },
+        },
+    )
+    _write_json(
+        templates / "tickets_latest.json",
+        {
+            "date": today,
+            "groups": [{"tickets": [{}, {}]}],
+        },
+    )
+    report = assert_active_sports_fresh(tmp_path, today=today, templates_dir=templates)
+    assert report["fresh_count"] == 3
+    assert report["total_active"] == 4
+    assert report["min_fresh"] == 3
+    assert report["ok"] is True
+    assert report["bad"] == ["wnba"]
+
+
+def test_assert_fails_majority_fresh_without_slips(tmp_path: Path):
+    today = "2026-08-22"
+    templates = tmp_path / "ui_runner" / "templates"
+    _write_json(
+        tmp_path / "outputs" / today / "pipeline_slate_status.json",
+        {
+            "run_date": today,
+            "sports": {
+                "mlb": "complete",
+                "soccer": "complete",
+                "tennis": "complete",
+                "wnba": "complete",
+                "nba": "off_season",
+            },
+        },
+    )
+    _write_json(
+        templates / "slate_latest.json",
+        {
+            "date": today,
+            "generated_at": f"{today} 18:00:00 UTC",
+            "tennis_date": today,
+            "sports": {
+                "mlb": [{"game_date": today}],
+                "soccer": [{"game_date": today}],
+                "tennis": [{"game_date": today}],
+                "wnba": [{"game_date": today}],
+            },
+        },
+    )
+    report = assert_active_sports_fresh(tmp_path, today=today, templates_dir=templates)
+    assert report["fresh_count"] == 4
+    assert report["slip_count"] == 0
+    assert report["ok"] is False

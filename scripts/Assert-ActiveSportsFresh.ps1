@@ -1,12 +1,13 @@
 #requires -Version 5.1
 <#
 .SYNOPSIS
-  Hard gate: all active sports for the ET day must be FRESH on slate_latest.
+  Publish when at least 60% of active sports are FRESH and tickets have slips.
 
 .DESCRIPTION
   Thin wrapper around scripts/assert_active_sports_fresh.py.
-  Exit 0 = OK, exit 2 = expected sport PENDING/STALE/failed, exit 1 = tool error.
-  Use after STEP E publish / refresh success so partial Soccer-only boards fail the job.
+  Exit 0 = OK, exit 2 = under 60% FRESH or 0 slips, exit 1 = tool error.
+  A single failed sport does not block publish when most of the slate is FRESH
+  and tickets_latest.json has slips. A one-sport board still fails.
 
   Default expected set: WNBA+MLB+Soccer+Tennis (summer), skipping off_season /
   intentional empty PP fetch. Pass -Require to force an exact list.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hard gate: every *active* sport for the ET slate day must be FRESH.
+"""Freshness gate: publish when enough active sports are FRESH and slips exist.
 
 Mirrors home-page /api/pipeline/status freshness signals:
   - slate_latest.json row counts (PENDING when empty)
@@ -16,15 +16,16 @@ Mirrors home-page /api/pipeline/status freshness signals:
 Also expect a sport when step1 CSV has props, even if status is missing.
 
 Exit codes:
-  0  all expected sports FRESH (or none expected)
+  0  at least 60% of expected sports FRESH and tickets have slips (or none expected)
   1  I/O / usage error
-  2  one or more expected sports PENDING / STALE / failed pipeline
+  2  below the 60% fresh bar, or the combined slate has 0 slips
 """
 from __future__ import annotations
 
 import argparse
 import csv
 import json
+import math
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -401,7 +402,27 @@ def assert_active_sports_fresh(
         if badge != "FRESH":
             bad.append(sport)
 
-    ok = len(bad) == 0
+    fresh_count = sum(
+        1 for sport in expected if results.get(sport, {}).get("badge") == "FRESH"
+    )
+    total_active = len(expected)
+    min_fresh = math.ceil(total_active * 0.6) if total_active else 0
+    slip_count = _ticket_slip_count(templates_dir, today)
+    ok = (total_active == 0) or (fresh_count >= min_fresh and slip_count > 0)
+    if ok and not bad:
+        message = "OK: all expected active sports FRESH"
+    elif ok:
+        message = (
+            f"OK: publishing with {fresh_count}/{total_active} fresh "
+            f"(skipped: {', '.join(bad)})"
+        )
+    elif total_active and fresh_count >= min_fresh and slip_count <= 0:
+        message = f"BAD: {fresh_count}/{total_active} fresh but combined slate has 0 slips"
+    else:
+        message = (
+            f"BAD: {fresh_count}/{total_active} fresh (need {min_fresh}); "
+            f"not FRESH: {', '.join(bad)}"
+        )
     report = {
         "ok": ok,
         "today_et": today,
@@ -414,13 +435,35 @@ def assert_active_sports_fresh(
         "failed_pipeline": failed_pipeline,
         "sports": results,
         "bad": bad,
-        "message": (
-            "OK: all expected active sports FRESH"
-            if ok
-            else f"BAD: expected sports not FRESH: {', '.join(bad)}"
-        ),
+        "fresh_count": fresh_count,
+        "total_active": total_active,
+        "min_fresh": min_fresh,
+        "slip_count": slip_count,
+        "message": message,
     }
     return report
+
+
+def _ticket_slip_count(templates_dir: Path, today: str) -> int:
+    """Slips on today's tickets_latest.json. A different slate date counts as 0."""
+    path = templates_dir / "tickets_latest.json"
+    if not path.is_file():
+        return 0
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return 0
+    if not isinstance(data, dict):
+        return 0
+    ticket_date = str(data.get("date") or "")[:10]
+    if ticket_date and ticket_date != today:
+        return 0
+    groups = data.get("groups") or []
+    slips = 0
+    for group in groups:
+        if isinstance(group, dict):
+            slips += len(group.get("tickets") or [])
+    return slips
 
 
 def _print_report(report: dict[str, Any]) -> None:
@@ -442,6 +485,14 @@ def _print_report(report: dict[str, Any]) -> None:
         pipe = info.get("pipeline")
         pipe_s = f" pipeline={pipe}" if pipe else ""
         print(f"  {badge:7} {sport}: rows={rows} modified_et={mod}{gd_s}{pipe_s}")
+    fresh_count = int(report.get("fresh_count") or 0)
+    total = int(report.get("total_active") or 0)
+    failed = report.get("bad") or []
+    if report.get("ok") and failed:
+        print(f"[FRESHNESS] Publishing with {fresh_count}/{total} sports")
+        print(f"[FRESHNESS] Skipped (failed): {', '.join(failed)}")
+    elif not report.get("ok"):
+        print(f"FRESHNESS GATE FAILED: {fresh_count}/{total} fresh")
 
 
 def main(argv: list[str] | None = None) -> int:
