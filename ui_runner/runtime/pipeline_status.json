@@ -9,14 +9,14 @@
   "nba1h": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-09 05:30:01",
+      "modified": "2026-10-09 20:56:30",
       "no_slate": false
     }
   },
   "nba1q": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-09 05:30:01",
+      "modified": "2026-10-09 20:56:30",
       "no_slate": false
     }
   },
@@ -37,14 +37,14 @@
   "nhl": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-09 05:30:01",
+      "modified": "2026-10-09 20:56:30",
       "no_slate": false
     }
   },
   "soccer": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-09 05:30:01",
+      "modified": "2026-10-09 20:56:30",
       "no_slate": false
     }
   },
@@ -65,7 +65,7 @@
   "tennis": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-09 05:30:01",
+      "modified": "2026-10-09 20:56:30",
       "no_slate": false
     }
   },
@@ -79,7 +79,7 @@
   "wnba": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-09 05:30:01",
+      "modified": "2026-10-09 20:56:30",
       "no_slate": false
     }
   },
@@ -100,7 +100,7 @@
   "combined": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-09 05:30:01",
+      "modified": "2026-10-09 20:56:30",
       "no_slate": false
     }
   }
