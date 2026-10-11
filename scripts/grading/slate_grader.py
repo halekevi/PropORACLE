@@ -301,22 +301,58 @@ PROP_NORM_MAP={
     '2pta':'two pointers attempted',
     '2pt made':'two pointers made',
     '2pt attempted':'two pointers attempted',
-    # NFL / CFB normalized prop types
+    # NFL / CFB normalized prop types (PrizePicks labels + ESPN actuals)
     'passing_yards': 'passing yards',
+    'pass yards': 'passing yards',
+    'pass yds': 'passing yards',
+    'pass_yds': 'passing yards',
     'passing_tds': 'passing tds',
     'passing touchdowns': 'passing tds',
+    'pass tds': 'passing tds',
+    'pass_td': 'passing tds',
+    'pass completions': 'completions',
+    'pass attempts': 'pass attempts',
     'rushing_yards': 'rushing yards',
+    'rush yards': 'rushing yards',
+    'rush yds': 'rushing yards',
+    'rush_yds': 'rushing yards',
     'rushing_tds': 'rushing tds',
+    'rush tds': 'rushing tds',
+    'rush_td': 'rushing tds',
     'receiving_yards': 'receiving yards',
+    'rec yards': 'receiving yards',
+    'rec yds': 'receiving yards',
+    'rec_yds': 'receiving yards',
     'receiving_tds': 'receiving tds',
+    'rec tds': 'receiving tds',
+    'rec_td': 'receiving tds',
     'rushing_attempts': 'rushing attempts',
+    'rush_attempts': 'rushing attempts',
+    'rush attempts': 'rushing attempts',
     'carries': 'rushing attempts',
     'receptions': 'receptions',
     'targets': 'targets',
+    'rec_targets': 'targets',
+    'receiving_targets': 'targets',
+    'rec targets': 'targets',
     'completions': 'completions',
+    'pass_completions': 'completions',
+    'pass completions': 'completions',
+    'pass_attempts': 'pass attempts',
+    'passing_attempts': 'pass attempts',
     'interceptions': 'interceptions',
+    'interceptions_thrown': 'interceptions',
+    'pass_ints': 'interceptions',
+    'int': 'interceptions',
+    'pass+rush yds': 'pass rush yds',
+    'pass_rush_yds': 'pass rush yds',
+    'rush+rec yds': 'rush rec yds',
+    'rush_rec_yds': 'rush rec yds',
     'sacks': 'sacks',
     'tackles_assists': 'tackles assists',
+    'tackles_ast': 'tackles assists',
+    'tackles ast': 'tackles assists',
+    'tackles assists': 'tackles assists',
     'kicking_points': 'kicking points',
     'fg_made': 'fg made',
     'field_goals_made': 'fg made',
@@ -328,15 +364,82 @@ PROP_NORM_MAP={
     'player touchdowns': 'player touchdowns',
     'fantasy_score': 'fantasy score',
     'anytime_td': 'anytime td',
+    'anytime td': 'anytime td',
+    'anytime_tds': 'anytime td',
+    'anytime tds': 'anytime td',
     'first_touchdown': 'first touchdown',
     'first_td': 'first touchdown',
+    'pass_rush_rec_tds': 'pass rush rec tds',
+    'pass+rush+rec tds': 'pass rush rec tds',
+    'pass rush rec tds': 'pass rush rec tds',
+    'longest_reception': 'longest reception',
+    'longest reception': 'longest reception',
+    'rec_long': 'longest reception',
+    'longest_rush': 'longest rush',
+    'longest rush': 'longest rush',
+    'rush_long': 'longest rush',
+    'longest_completion': 'longest completion',
+    'longest completion': 'longest completion',
+    'pass_long': 'longest completion',
+    'rushing_tds': 'rushing tds',
+    'rush_tds': 'rushing tds',
+    'receiving_tds': 'receiving tds',
+    'rec_tds': 'receiving tds',
+    'sacks_taken': 'sacks taken',
+    'sacks taken': 'sacks taken',
+    'punts_inside_20': 'punts inside 20',
+    'punts inside 20': 'punts inside 20',
+    'punt_touchbacks': 'punt touchbacks',
+    'punt touchbacks': 'punt touchbacks',
+    'punt_touchbacks_combo': 'punt touchbacks',
+    'rush_yards_per_carry': 'rush yards per carry',
+    'rush yards per carry': 'rush yards per carry',
+    'completion_percentage': 'completion percentage',
+    'completion percentage': 'completion percentage',
+    'yards_on_first_rush_attempt': 'yards on first rush attempt',
+    'yards on first rush attempt': 'yards on first rush attempt',
+    'yards_on_first_reception': 'yards on first reception',
+    'yards on first reception': 'yards on first reception',
+    'rush_yards_in_first_5_attempts': 'rush yards in first 5 attempts',
+    'rush yards in first 5 attempts': 'rush yards in first 5 attempts',
+    'receiving_yards_in_first_2_receptions': 'receiving yards in first 2 receptions',
+    'receiving yards in first 2 receptions': 'receiving yards in first 2 receptions',
+    'completions_in_first_10_pass_attempts': 'completions in first 10 pass attempts',
+    'completions in first 10 pass attempts': 'completions in first 10 pass attempts',
+    'halves_with_25_rush_yards': 'halves with 25 rush yards',
+    'halves with 25 rush yards': 'halves with 25 rush yards',
+    'halves_with_25_receiving_yards': 'halves with 25 receiving yards',
+    'halves with 25 receiving yards': 'halves with 25 receiving yards',
+    'halves_with_100_pass_yards': 'halves with 100 pass yards',
+    'halves with 100 pass yards': 'halves with 100 pass yards',
+    'quarters_with_5_rush_yards': 'quarters with 5 rush yards',
+    'quarters with 5 rush yards': 'quarters with 5 rush yards',
+    'quarters_with_5_receiving_yards': 'quarters with 5 receiving yards',
+    'quarters with 5 receiving yards': 'quarters with 5 receiving yards',
+    'quarters_with_1_reception': 'quarters with 1 reception',
+    'quarters with 1 reception': 'quarters with 1 reception',
+    'quarters_with_25_pass_yards': 'quarters with 25 pass yards',
+    'quarters with 25 pass yards': 'quarters with 25 pass yards',
+    'pass_yards': 'passing yards',
+    'rush_yards': 'rushing yards',
+    'longest_fg_made': 'longest fg made',
+    'longest fg made': 'longest fg made',
+    'longest_fg_made_yds': 'longest fg made',
+    'longest fg made yds': 'longest fg made',
+    'field_goal_yards': 'field goal yards',
+    'field goal yards': 'field goal yards',
+    'shortest_fg_made': 'shortest fg made',
+    'shortest fg made': 'shortest fg made',
+    'shortest_fg_made_yds': 'shortest fg made',
+    'shortest fg made yds': 'shortest fg made',
 }
 def norm_prop_key(p) -> str:
     s = str(p).lower().strip()
-    # normalize common suffixes
-    s = s.replace("(combo)", "").strip()
-    # collapse whitespace
-    s = " ".join(s.split())
+    # normalize common suffixes (PP "Receiving Yards (Combo)" and snake *_combo)
+    s = s.replace("(combo)", " ").strip()
+    s = " ".join(s.replace("_", " ").split())
+    if s.endswith(" combo"):
+        s = s[: -len(" combo")].strip()
     return PROP_NORM_MAP.get(s, s)
 
 
@@ -571,6 +674,9 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
         raise KeyError(f"NBA slate missing 'player' column. Found columns: {list(df.columns)}")
     # Diagnostic key (apply_actuals rebuilds with team/date for resolution).
     df["player_key"] = _slate_player_key_series(df)
+    # NFL fantasy_score is a real board chip with box-derived actuals — keep it.
+    if str(sport_code or "").upper() == "NFL":
+        return df
     return _drop_fantasy_from_slate(df)
 
 
@@ -688,10 +794,18 @@ def load_cbb(path: str) -> pd.DataFrame:
         "Void Reason":         "void_reason",
         "opp_team_abbr":       "opp_team",
         "team_abbr":           "team",
-        "prop_norm":           "prop_type_norm",   # FIX 2: use normalized prop, not verbose prop_type
+        "Team":                "team",
+        "Opp":                 "opp_team",
+        "Prop":                "prop_type_norm",
+        "prop_norm":           "prop_type_norm",
+        "Tier":                "tier",
+        "L5 Over":             "l5_over",
+        "L5 Under":            "l5_under",
+        "Def Tier":            "def_tier",
+        "Def Rank":            "def_rank",
         "final_bet_direction": "bet_direction",
         "model_dir_5":         "model_dir_5",
-        "opp_def_tier":        "def_tier",          # prefer opp_def_tier if def_tier blank
+        "opp_def_tier":        "def_tier",
         "OVERALL_DEF_RANK":    "def_rank",
         "rank_score":          "rank_score",
         "edge":                "edge",
@@ -709,6 +823,8 @@ def load_cbb(path: str) -> pd.DataFrame:
         "l10_streak":          "l10_streak",
         "line_hits_over_10":   "l10_over",
         "line_hits_under_10":  "l10_under",
+        "Pick Type":           "pick_type",
+        "pick_type":           "pick_type",
     })
     # Guard against duplicate column names after renames (e.g. bet_direction).
     if df.columns.duplicated().any():
@@ -722,7 +838,7 @@ def load_cbb(path: str) -> pd.DataFrame:
         dir_candidates = [c for c in df.columns if "direction" in c.lower() or "dir" in c.lower()]
         if dir_candidates:
             df["bet_direction"] = df[dir_candidates[0]].astype(str).str.upper().str.strip()
-            print(f"  ℹ️  CBB: using '{dir_candidates[0]}' as bet_direction")
+            print(f"  CBB/CFB: using '{dir_candidates[0]}' as bet_direction")
         else:
             print("  ⚠️  CBB: no direction column found — all props will default to OVER. "
                   "Pass a slate file that includes final_bet_direction for correct grading.")
@@ -732,8 +848,23 @@ def load_cbb(path: str) -> pd.DataFrame:
     if "prop_type_norm" not in df.columns:
         if "prop_norm" in df.columns:
             df["prop_type_norm"] = df["prop_norm"]
+        elif "Prop" in df.columns:
+            df["prop_type_norm"] = df["Prop"]
         else:
             df["prop_type_norm"] = df.get("prop_type", "")
+    else:
+        # Recover blank/placeholder labels from alternate prop columns (CFB 09-03
+        # graded once with an empty prop_type_norm col that blocked FIX 2).
+        empty = (
+            df["prop_type_norm"].isna()
+            | df["prop_type_norm"].astype(str).str.strip().isin(("", "—", "-", "nan", "None"))
+        )
+        if bool(empty.any()):
+            for src in ("Prop", "prop", "prop_norm", "prop_type"):
+                if src not in df.columns:
+                    continue
+                df.loc[empty, "prop_type_norm"] = df.loc[empty, src]
+                break
 
     # FIX 3: tier — may not exist in early pipeline steps; add empty column so
     # downstream breakdown sheets don't silently skip all rows.
@@ -933,14 +1064,10 @@ def _resolve_actual_for_player(
 
 
 def _split_combo_players(player_str: str) -> list[str]:
-    s = str(player_str)
-    # common separators in PP combo names
-    for sep in [" + ", "+", " & ", "&", " / ", "/", " vs ", " and "]:
-        if sep in s:
-            parts = [p.strip() for p in s.split(sep) if p.strip()]
-            if len(parts) >= 2:
-                return parts
-    return []
+    from utils.combo_actuals import split_combo_players
+
+    parts = split_combo_players(player_str)
+    return parts if len(parts) >= 2 else []
 
 
 _INJURY_STATUSES_DNP: frozenset[str] = frozenset(("Out", "Day-To-Day", "Injured Reserve"))
@@ -994,10 +1121,36 @@ def _load_nba_injury_dnp_keys(actuals_path: str) -> frozenset[tuple[str, str]]:
     return frozenset(keys)
 
 
+def _load_football_roster_dnp_keys(actuals_path: str) -> frozenset[tuple[str, str]]:
+    """(norm_player_key, team_upper) from ESPN roster DNP rows in football actuals.
+
+    ``fetch_football_actuals`` emits ``prop_type=dnp`` / actual=1 for didNotPlay
+    roster entries so NO_ACTUAL voids become ESPN_ROSTER_DNP.
+    """
+    p = Path(actuals_path)
+    if not p.is_file():
+        return frozenset()
+    try:
+        act = pd.read_csv(p)
+    except Exception:
+        return frozenset()
+    if act.empty or "prop_type" not in act.columns:
+        return frozenset()
+    keys: set[tuple[str, str]] = set()
+    prop = act["prop_type"].astype(str).str.lower().str.strip()
+    mask = prop.isin(("dnp", "inactive", "did_not_play"))
+    for _, r in act.loc[mask].iterrows():
+        pl = norm_player_key(str(r.get("player", "") or ""))
+        tm = str(r.get("team", "") or "").strip().upper()
+        if pl and tm:
+            keys.add((pl, tm))
+    return frozenset(keys)
+
+
 def _injury_confirms_dnp_for_row(
     player_str: object, team_u: str, dnp_keys: frozenset[tuple[str, str]]
 ) -> bool:
-    if not dnp_keys or not team_u:
+    if not dnp_keys:
         return False
     parts = _split_combo_players(str(player_str or ""))
     targets = parts if len(parts) >= 2 else [str(player_str or "").strip()]
@@ -1007,12 +1160,87 @@ def _injury_confirms_dnp_for_row(
         pl = norm_player_key(raw)
         if not pl:
             continue
-        if (pl, team_u) in dnp_keys:
+        if team_u and (pl, team_u) in dnp_keys:
             return True
+        # Slash teams (DEN/KC) or PP wrong-team tags: unique player DNP is enough.
         hits = [k for k in dnp_keys if k[0] == pl]
         if len(hits) == 1:
             return True
     return False
+
+
+def _football_team_has_box_actuals(act: pd.DataFrame, team_u: str) -> bool:
+    """True when actuals contain non-DNP rows for this team (game was scraped)."""
+    if act is None or act.empty or not team_u or "/" in team_u:
+        return False
+    tm = act.get("team")
+    if tm is None:
+        return False
+    prop = act.get("prop_type")
+    if prop is None:
+        return False
+    mask = tm.astype(str).str.upper().str.strip().eq(team_u)
+    if not mask.any():
+        return False
+    props = prop.astype(str).str.lower().str.strip()
+    return bool((mask & ~props.isin(("dnp", "inactive", "did_not_play"))).any())
+
+
+def _is_fg_distance_prop(prop: object) -> bool:
+    """Shortest/longest FG yard props — undefined when the kicker made zero FGs."""
+    p = norm_prop_key(prop)
+    compact = re.sub(r"[^a-z0-9]", "", p)
+    return compact in {
+        "shortestfgmade",
+        "longestfgmade",
+        "shortestfgmadeyds",
+        "longestfgmadeyds",
+    }
+
+
+def _football_player_fg_made(act: pd.DataFrame, player: object, team_u: str) -> float | None:
+    """Return fg_made actual for a player when present."""
+    if act is None or act.empty:
+        return None
+    pl = norm_player_key(player)
+    if not pl:
+        return None
+    prop = act["prop_type"].map(norm_prop_key)
+    mask = act["player"].map(norm_player_key).eq(pl) & prop.eq("fg made")
+    if team_u and "/" not in team_u:
+        mask = mask & act["team"].astype(str).str.upper().str.strip().eq(team_u)
+    sub = act.loc[mask]
+    if sub.empty:
+        return None
+    try:
+        return float(sub.iloc[-1]["actual"])
+    except (TypeError, ValueError):
+        return None
+
+
+def _football_no_fg_made_void(
+    act: pd.DataFrame, player_str: object, team_u: str, prop: object
+) -> bool:
+    """True when shortest/longest FG should void because no FG was made."""
+    if not _is_fg_distance_prop(prop):
+        return False
+    parts = _split_combo_players(str(player_str or ""))
+    arms = parts if len(parts) >= 2 else [str(player_str or "").strip()]
+    teams = []
+    if "/" in str(team_u or ""):
+        teams = [t.strip().upper() for t in str(team_u).split("/") if t.strip()]
+    while len(teams) < len(arms):
+        teams.append(team_u if team_u and "/" not in team_u else "")
+    # Void if any arm made 0 FGs (or combo arm missing shortest because of 0 FGs).
+    saw_zero = False
+    for arm, tm in zip(arms, teams):
+        fg = _football_player_fg_made(act, arm, tm)
+        if fg is None:
+            # Arm absent entirely — not this void reason.
+            continue
+        if fg <= 0:
+            saw_zero = True
+    return saw_zero
 
 
 def apply_actuals(df, actuals_path):
@@ -1020,8 +1248,11 @@ def apply_actuals(df, actuals_path):
     apath = str(actuals_path or "")
     lookup = _build_actuals_lookup(act, apath)
     dnp_keys: frozenset[tuple[str, str]] = frozenset()
-    if "nba" in apath.lower() and "actuals" in apath.lower():
+    ap_l = apath.lower()
+    if "nba" in ap_l and "actuals" in ap_l:
         dnp_keys = _load_nba_injury_dnp_keys(apath)
+    elif any(tok in ap_l for tok in ("nfl", "cfb", "football")) and "actuals" in ap_l:
+        dnp_keys = _load_football_roster_dnp_keys(apath)
 
     df["player_key"] = _slate_player_key_series(df)
 
@@ -1083,19 +1314,37 @@ def apply_actuals(df, actuals_path):
                     actual = float(combo_val)
 
         # Multi-player combo props (PlayerA + PlayerB): sum each player's stat.
+        # Use per-arm team tokens (LAD/CIN) — do not reuse the slash combo as one team key.
         if pd.isna(actual):
-            parts = _split_combo_players(row.get("player", ""))
-            if parts:
-                vals = []
-                ok = True
-                for p in parts:
-                    v = _resolve_actual_for_player(lookup, p, row)
-                    if pd.isna(v):
-                        ok = False
-                        break
-                    vals.append(float(v))
-                if ok and vals:
-                    actual = float(sum(vals))
+            from utils.combo_actuals import sum_multiplayer_combo_actual
+
+            def _arm_lookup(pname: str, tm: str, _pk: str):
+                arm_row = row.copy()
+                arm_row["player"] = pname
+                if tm:
+                    arm_row["team"] = tm
+                return _resolve_actual_for_player(lookup, pname, arm_row)
+
+            duo = sum_multiplayer_combo_actual(
+                row.get("player", ""),
+                row.get("team", ""),
+                _primary_prop_from_row(row) or "",
+                _arm_lookup,
+            )
+            if duo is not None:
+                actual = float(duo)
+
+        # Shortest/longest FG yards are undefined with zero makes — never grade as 0.
+        prop_label = _primary_prop_from_row(row)
+        if (
+            not pd.isna(actual)
+            and any(tok in apath.lower() for tok in ("nfl", "cfb", "football"))
+            and _is_fg_distance_prop(prop_label)
+            and _football_no_fg_made_void(
+                act, row.get("player", ""), str(row.get("team", "") or "").strip().upper(), prop_label
+            )
+        ):
+            actual = np.nan
 
         actuals_out.append(actual)
 
@@ -1126,7 +1375,29 @@ def apply_actuals(df, actuals_path):
             if tail == "NO_ACTUAL" and dnp_keys and _injury_confirms_dnp_for_row(
                 row.get("player", ""), team_u, dnp_keys
             ):
-                tail = "INJURY_REPORT_DNP"
+                if "nba" in apath.lower():
+                    tail = "INJURY_REPORT_DNP"
+                else:
+                    tail = "ESPN_ROSTER_DNP"
+            elif (
+                tail == "NO_ACTUAL"
+                and any(tok in apath.lower() for tok in ("nfl", "cfb", "football"))
+                and _football_no_fg_made_void(
+                    act,
+                    row.get("player", ""),
+                    team_u,
+                    _primary_prop_from_row(row),
+                )
+            ):
+                tail = "NO_FG_MADE"
+            elif (
+                tail == "NO_ACTUAL"
+                and any(tok in apath.lower() for tok in ("nfl", "cfb", "football"))
+                and _football_team_has_box_actuals(act, team_u)
+                and "+" not in str(row.get("player", "") or "")
+            ):
+                # Team game scraped; player absent from box + game roster (cut/PS).
+                tail = "NOT_ON_GAME_ROSTER"
             if upstream and tail:
                 void_reasons.append(f"{upstream}; {tail}")
             elif upstream:
@@ -1184,6 +1455,8 @@ def write_pick_type_sheet(wb,df):
     ws=wb.create_sheet('By Pick Type')
     sheet_hdr8(ws,'Pick Type',C['hdr3'],[20,10,8,10,8,8,8,12])
     ri=2
+    if "pick_type" not in df.columns:
+        return
     for pt in ['Goblin','Demon','Standard']:
         sub=df[df['pick_type']==pt]
         if len(sub)==0: continue
@@ -1731,6 +2004,18 @@ def main():
     if args.sport in ("NBA", "WNBA", "NFL"):
         df = filter_nba_slate_by_grade_date(df, args.date)
     print(f'  {len(df)} props loaded')
+    if "prop_type_norm" in df.columns:
+        blank = (
+            df["prop_type_norm"].isna()
+            | df["prop_type_norm"].astype(str).str.strip().isin(("", "—", "-", "nan", "None"))
+        )
+        n_blank = int(blank.sum())
+        if n_blank:
+            print(f"  ERROR: {n_blank}/{len(df)} rows have blank prop_type_norm — refusing to grade.")
+            return
+    else:
+        print("  ERROR: slate has no prop_type_norm column — refusing to grade.")
+        return
 
     try:
         tpl = _REPO_ROOT / "ui_runner" / "templates"

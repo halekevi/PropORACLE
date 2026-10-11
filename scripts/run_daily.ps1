@@ -589,17 +589,34 @@ if (-not $SkipGrader) {
             (Join-Path $Root "outputs\$Yesterday\graded_nba_$Yesterday.xlsx")
         ) + @($gradedExpected)
     }
-    # WNBA: run_grader.ps1 fetches actuals + slate_grader, but STEP A must not skip while
-    # graded_wnba is still missing if we already have a WNBA step8 for yesterday.
-    $yesterdayOutForWnba = Join-Path $Root "outputs\$Yesterday"
-    if (Test-Path $yesterdayOutForWnba) {
-        $hasWnbaStep8 = @(
-            (Get-ChildItem -LiteralPath $yesterdayOutForWnba -Filter "step8_wnba*.xlsx" -File -ErrorAction SilentlyContinue)
-        ).Count -gt 0
-        if ($hasWnbaStep8) {
-            $gradedExpected = @($gradedExpected) + @(
-                (Join-Path $Root "outputs\$Yesterday\graded_wnba_$Yesterday.xlsx")
-            )
+    # Sports that live under outputs/<date>/<sport>/ (or a dated root copy).
+    # STEP A used to skip when CBB/NHL/soccer/MLB xlsx existed even if a
+    # sibling sport never graded — Saturday 2026-09-12 CFB left the tape that way.
+    # Gate on step8 presence, same shape as WNBA. CFB1H has no slate_grader path
+    # yet, so it is not in this list (requiring graded_cfb1h would never skip).
+    $yesterdayOutForStep8 = Join-Path $Root "outputs\$Yesterday"
+    if (Test-Path $yesterdayOutForStep8) {
+        $step8GradePairs = @(
+            @{ Filter = "step8_wnba_direction_clean*.xlsx"; Graded = "graded_wnba_$Yesterday.xlsx" },
+            @{ Filter = "step8_wnba1h*.xlsx"; Graded = "graded_wnba1h_$Yesterday.xlsx" },
+            @{ Filter = "step8_wnba1q*.xlsx"; Graded = "graded_wnba1q_$Yesterday.xlsx" },
+            @{ Filter = "step8_nba1h*.xlsx"; Graded = "graded_nba1h_$Yesterday.xlsx" },
+            @{ Filter = "step8_nba1q*.xlsx"; Graded = "graded_nba1q_$Yesterday.xlsx" },
+            @{ Filter = "step8_cfb_direction_clean*.xlsx"; Graded = "graded_cfb_$Yesterday.xlsx" },
+            @{ Filter = "step8_nfl*.xlsx"; Graded = "graded_nfl_$Yesterday.xlsx" },
+            @{ Filter = "step8_golf*.xlsx"; Graded = "graded_golf_$Yesterday.xlsx" },
+            @{ Filter = "step8_wcbb*.xlsx"; Graded = "graded_wcbb_$Yesterday.xlsx" },
+            @{ Filter = "step8_tennis*.xlsx"; Graded = "graded_tennis_$Yesterday.xlsx" }
+        )
+        foreach ($pair in $step8GradePairs) {
+            $hasStep8 = @(
+                Get-ChildItem -LiteralPath $yesterdayOutForStep8 -Recurse -Filter $pair.Filter -File -ErrorAction SilentlyContinue
+            ).Count -gt 0
+            if ($hasStep8) {
+                $gradedExpected = @($gradedExpected) + @(
+                    (Join-Path $Root "outputs\$Yesterday\$($pair.Graded)")
+                )
+            }
         }
     }
     $missingGraded = @($gradedExpected | Where-Object { -not (Test-Path $_) })

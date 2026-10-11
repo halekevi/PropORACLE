@@ -1105,6 +1105,11 @@ if ((Test-Path $CFBActuals) -and $CFBSlateFile -and (Test-Path $CFBSlateFile) -a
         "--output", $CFBGradedFile,
         "--date", $Date
     )
+    $cfbGradeRc = $LASTEXITCODE
+    if (-not (Test-Path -LiteralPath $CFBGradedFile)) {
+        $script:CfbWorkbookMissing = $true
+        Write-Host "[GRADER] ERROR: CFB step8 is present ($(Split-Path $CFBSlateFile -Leaf)) but $CFBGradedFile was not written (python exit $cfbGradeRc)." -ForegroundColor Red
+    }
 }
 else {
     Write-Host "Skipping CFB slate grading (missing actuals_cfb, step6 CFB slate, or slate_grader)." -ForegroundColor Yellow
@@ -1902,6 +1907,12 @@ if ($ShouldRetrain) {
     Write-Host "[AUTO-RETRAIN] Complete." -ForegroundColor Green
 }
 
-# Explicit success — do not leak LASTEXITCODE from the last Run-Py / auto-retrain
-# failure into scheduled evening graders (Task Scheduler was showing Result=1 every night).
+# Do not leak LASTEXITCODE from the last Run-Py / auto-retrain failure into
+# scheduled evening graders (Task Scheduler was showing Result=1 every night).
+# A present CFB step8 with no graded_cfb workbook is the exception: that state
+# was logging as success on 2026-09-26 and 2026-10-10.
+if ($script:CfbWorkbookMissing) {
+    Write-Host "[GRADER] FAILED: CFB step8 existed and graded_cfb was not written." -ForegroundColor Red
+    exit 1
+}
 exit 0
