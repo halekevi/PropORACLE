@@ -573,14 +573,31 @@ def main() -> int:
     if single:
         boards = {single: boards.get(single, f"NFL_{single}")}
 
+    cdp_url = str(args.cdp or "").strip()
+    if cdp_url and not single:
+        from utils.prizepicks_cdp import shared_league_counts
+
+        counts = shared_league_counts(cdp_url=cdp_url)
+        if counts:
+            kept_boards = {}
+            for lid, league_name in boards.items():
+                n = counts.get(str(lid))
+                if n == 0 and str(lid) != str(NFL_LEAGUE_ID):
+                    print(f"[NFL step1] skip {league_name} league_id={lid} projections_count=0")
+                    continue
+                kept_boards[lid] = league_name
+            if kept_boards:
+                boards = kept_boards
+
     print(f"[NFL step1] PrizePicks fetch | boards={boards} | date={fetch_date}")
     print(f"[NFL step1] Output → {out_path}")
 
-    cdp_url = str(args.cdp or "").strip()
     all_rows: List[dict] = []
     raw_dump: dict[str, Any] = {}
     any_fetch_ok = False
-    for lid, league_name in boards.items():
+    for board_i, (lid, league_name) in enumerate(boards.items()):
+        if board_i:
+            time.sleep(random.uniform(1.0, 3.0))
         print(f"[NFL step1] --- board {league_name} league_id={lid} ---")
         try:
             if cdp_url or args.playwright:
@@ -641,7 +658,6 @@ def main() -> int:
         df = df.drop_duplicates(subset=["projection_id"], keep="first").reset_index(drop=True)
     pull_ts = now_et_iso()
     df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
-    try_archive_lines(df, sport="NFL", only_fetched_at=pull_ts)
 
     fetched_rows = len(df)
     szn_mask = df.get("league_id", pd.Series("", index=df.index)).astype(str).isin(SEASON_BOARD_IDS)
@@ -700,6 +716,8 @@ def main() -> int:
         if c not in out_df.columns:
             out_df[c] = ""
     out_df = out_df[OUTPUT_COLS]
+    out_df = stamp_fetched_at(out_df, when=pull_ts, overwrite=True)
+    try_archive_lines(out_df, sport="NFL", only_fetched_at=pull_ts)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_df.to_csv(out_path, index=False, encoding="utf-8-sig")
     _log_health(out_df)

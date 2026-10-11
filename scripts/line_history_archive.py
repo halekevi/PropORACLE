@@ -37,7 +37,7 @@ _ALIASES: dict[str, tuple[str, ...]] = {
     "pp_game_id": ("pp_game_id", "game_id"),
 }
 
-_EXTRA_COLS = ("pp_updated_at",)
+_EXTRA_COLS = ("pp_updated_at", "pp_game_id", "game_id")
 
 _EVENTS_DDL = """
 CREATE TABLE IF NOT EXISTS line_events (
@@ -146,6 +146,8 @@ def _rec_from_mapping(row: dict, sport: str) -> dict | None:
         "pick_type": _pick(row.get("pick_type") or row.get("odds_type")),
         "line": _num(row.get("line") if row.get("line") not in (None, "") else row.get("line_score")),
         "game_date": _gd(row.get("game_date")),
+        "pp_game_id": str(row.get("pp_game_id") or "").strip(),
+        "game_id": str(row.get("game_id") or "").strip(),
         "projection_id": str(row.get("projection_id") or row.get("proj_id") or "").strip(),
         "fetched_at": str(row.get("fetched_at") or "").strip(),
         "start_time": str(row.get("start_time") or row.get("game_start") or "").strip(),
@@ -163,12 +165,51 @@ def records_from_df(df: pd.DataFrame, sport: str) -> list[dict]:
     return out
 
 
-def _pick_key(r: dict) -> tuple[str, str, str, str]:
-    return (_fold(r["player"]), _fold(r["prop_type"]), r["pick_type"], r["game_date"])
+def _has_game_id(r: dict) -> bool:
+    for key in ("pp_game_id", "game_id"):
+        gid = str(r.get(key) or "").strip()
+        if gid and gid.lower() not in ("nan", "none"):
+            return True
+    return False
 
 
-def _mkt_key(r: dict) -> tuple[str, str, str]:
-    return (_fold(r["player"]), _fold(r["prop_type"]), r["game_date"])
+def _game_token(r: dict, *, prefer_game_id: bool) -> str:
+    """Stable game identity. Projection id is not part of it — PrizePicks reissues those."""
+    if prefer_game_id:
+        for key in ("pp_game_id", "game_id"):
+            gid = str(r.get(key) or "").strip()
+            if gid and gid.lower() not in ("nan", "none"):
+                return gid
+    return str(r.get("game_date") or "").strip()
+
+
+def _line_token(r: dict) -> str:
+    raw = r.get("line")
+    if raw is None or str(raw).strip() == "":
+        return ""
+    try:
+        return f"{float(raw):.4f}"
+    except (TypeError, ValueError):
+        return str(raw).strip()
+
+
+def _pick_key(r: dict, *, prefer_game_id: bool) -> tuple[str, str, str, str, str]:
+    # Same identity as step1 append dedup (player, prop, line, game, pick), not projection_id.
+    return (
+        _fold(r["player"]),
+        _fold(r["prop_type"]),
+        r["pick_type"],
+        _game_token(r, prefer_game_id=prefer_game_id),
+        _line_token(r),
+    )
+
+
+def _mkt_key(r: dict, *, prefer_game_id: bool) -> tuple[str, str, str]:
+    return (
+        _fold(r["player"]),
+        _fold(r["prop_type"]),
+        _game_token(r, prefer_game_id=prefer_game_id),
+    )
 
 
 def diff_snapshots(prev: list[dict], curr: list[dict]) -> list[dict]:
@@ -180,11 +221,14 @@ def diff_snapshots(prev: list[dict], curr: list[dict]) -> list[dict]:
     sport = (curr or prev)[0]["sport"]
     curr_dates = {r["game_date"] for r in curr if r.get("game_date")}
 
-    prev_pick = {_pick_key(r): r for r in prev}
-    curr_pick = {_pick_key(r): r for r in curr}
+    prefer_game_id = bool(prev) and bool(curr) and all(_has_game_id(r) for r in prev) and all(
+        _has_game_id(r) for r in curr
+    )
+    prev_pick = {_pick_key(r, prefer_game_id=prefer_game_id): r for r in prev}
+    curr_pick = {_pick_key(r, prefer_game_id=prefer_game_id): r for r in curr}
     curr_mkt: dict[tuple, list[dict]] = defaultdict(list)
     for r in curr:
-        curr_mkt[_mkt_key(r)].append(r)
+        curr_mkt[_mkt_key(r, prefer_game_id=prefer_game_id)].append(r)
 
     events: list[dict] = []
     seen_curr: set[tuple] = set()
@@ -232,12 +276,12 @@ def diff_snapshots(prev: list[dict], curr: list[dict]) -> list[dict]:
             r
             for r in curr_mkt.get(_mkt_key(then), [])
             if r.get("pick_type") != then.get("pick_type")
-            and _pick_key(r) not in prev_pick
+            and _pick_key(r, prefer_game_id=prefer_game_id) not in prev_pick
         ]
         if alts:
             now = alts[0]
             emit("cut", then, now)
-            seen_curr.add(_pick_key(now))
+            seen_curr.add(_pick_key(now, prefer_game_id=prefer_game_id))
             seen_prev.add(key)
         else:
             emit("disappeared", then, None)
@@ -264,7 +308,7 @@ def load_snapshot(conn: sqlite3.Connection, sport: str, fetched_at: str) -> list
     cur = conn.execute(
         """
         SELECT projection_id, player, prop_type, pick_type, line, game_date,
-               start_time, team, opp_team, fetched_at
+               pp_game_id, game_id, start_time, team, opp_team, fetched_at
         FROM line_history
         WHERE sport = ? AND fetched_at = ?
         """,
@@ -277,6 +321,8 @@ def load_snapshot(conn: sqlite3.Connection, sport: str, fetched_at: str) -> list
         "pick_type",
         "line",
         "game_date",
+        "pp_game_id",
+        "game_id",
         "start_time",
         "team",
         "opp_team",
@@ -392,6 +438,29 @@ def archive_lines(
         counts = record_events_for_pull(conn, sport_u, current, pull_ts)
         conn.commit()
     return counts
+
+
+def archive_fresh_board(df: pd.DataFrame, sport: str, *, pull_ts: str | None = None) -> None:
+    """Diff this window's fetch against the previous window's fetch.
+
+    Do not pass the appended CSV. Rows that only live in the cumulative file
+    never leave, so disappeared stays near zero and appeared does not match
+    the dedup delta.
+    An empty fresh board is not archived: that would mark the previous window
+    as disappeared (the NBA future-slate case).
+    """
+    if df is None or df.empty:
+        print(
+            f"  [line_events] {str(sport).upper()} fresh fetch empty — "
+            "skipped, previous window kept"
+        )
+        return
+    stamped = stamp_fetched_at(df, when=pull_ts, overwrite=bool(pull_ts))
+    print(
+        f"  [line_events] {str(sport).upper()} archiving fresh fetch "
+        f"rows={len(stamped)} key=player|prop|pick|game|line"
+    )
+    try_archive_lines(stamped, sport=sport)
 
 
 def try_archive_lines(

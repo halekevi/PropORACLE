@@ -13,6 +13,7 @@ Usage:
 """
 
 import argparse
+import random
 import sys
 import time
 import json
@@ -28,13 +29,14 @@ _PROPORACLE_ROOT = Path(__file__).resolve().parents[3]
 if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
 
+from scripts.line_history_archive import archive_fresh_board
 from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
-from scripts.line_history_archive import try_archive_lines
 from utils.prizepicks_http import fetch_pp_projections, make_pp_session, ensure_chrome131
 from utils.prizepicks_cdp import (
     align_cdp_context_for_datadome,
     cdp_board_ready,
     connect_over_cdp,
+    shared_league_counts,
     fetch_projections_inpage,
     pick_cdp_warmed_page,
 )
@@ -252,7 +254,20 @@ def fetch_boards_via_cdp(
                 pass
             page.wait_for_timeout(1000)
 
-        for lid, lname in boards:
+        counts = shared_league_counts(page=page)
+        if counts:
+            kept: list[tuple[str, str]] = []
+            for lid, lname in boards:
+                n = counts.get(str(lid))
+                if n == 0:
+                    print(f"  [leagues] skip {lname} league_id={lid} projections_count=0")
+                    continue
+                kept.append((lid, lname))
+            boards = kept
+
+        for i, (lid, lname) in enumerate(boards):
+            if i:
+                page.wait_for_timeout(int(random.uniform(1000, 3000)))
             print(f"\n  → {lname} (league_id={lid}) [CDP]")
             data, included, status, url = fetch_projections_inpage(
                 page,
@@ -532,8 +547,7 @@ def main():
     df.loc[_mstd, "standard_line"] = df.loc[_mstd, "standard_line"].fillna(df.loc[_mstd, "line"])
     df = df.drop_duplicates(subset=["projection_id"], keep="first").reset_index(drop=True)
     pull_ts = now_et_iso()
-    df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
-    try_archive_lines(df, sport="SOCCER", only_fetched_at=pull_ts)
+    fresh_fetch = df.copy()
 
     if args.append and out_path.is_file():
         try:
@@ -595,6 +609,14 @@ def main():
     if fallback_date:
         print("[WARNING] Soccer step1 allow-nearest-future: skipping date filter")
     df = filtered
+    fresh_filtered, _ = apply_game_date_filter(
+        fresh_fetch,
+        target_date=str(args.date).strip(),
+        tz_name=str(args.tz).strip() or DEFAULT_TZ,
+        include_tomorrow=bool(args.include_tomorrow),
+        allow_nearest_future=bool(args.allow_nearest_future),
+    )
+    archive_fresh_board(fresh_filtered, "SOCCER", pull_ts=pull_ts)
 
     if len(df) == 0:
         print(no_props_log_line("Soccer", str(args.date).strip()))
@@ -610,6 +632,7 @@ def main():
         print(f"\n[INFO] Saved empty date-filtered Soccer step1 CSV -> {args.output}")
         sys.exit(0)
 
+    df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
     df.to_csv(args.output, index=False, encoding="utf-8-sig")
     print(f"\n✅ Saved {len(df)} rows -> {args.output}")
     league_counts = df["league"].value_counts().to_dict()

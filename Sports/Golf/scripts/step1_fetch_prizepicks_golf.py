@@ -351,6 +351,18 @@ def main() -> None:
 
     try:
         cdp_url = str(args.cdp or "").strip()
+        if cdp_url:
+            from utils.prizepicks_cdp import shared_league_counts
+
+            counts = shared_league_counts(cdp_url=cdp_url)
+            if counts.get(str(use_id)) == 0:
+                print(
+                    f"[Golf step1] skip league_id={use_id} projections_count=0 "
+                    "— no board (not a 403)"
+                )
+                out_path.parent.mkdir(parents=True, exist_ok=True)
+                pd.DataFrame().to_csv(out_path, index=False, encoding="utf-8-sig")
+                return
         if cdp_url or args.playwright:
             from utils.prizepicks_cdp import session_fetch_projections
 
@@ -377,11 +389,10 @@ def main() -> None:
         sys.exit(1)
 
     if not data:
-        if _fallback_to_existing_csv("no projections returned"):
-            print("[Golf step1] BOARD_OK_FALLBACK")
-            return
-        print("[Golf step1] No projections returned.")
-        sys.exit(1)
+        print("[Golf step1] projections answered with rows=0 — no board (not a 403)")
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        pd.DataFrame().to_csv(out_path, index=False, encoding="utf-8-sig")
+        return
 
     rows = build_golf_rows(data, included, nba)
     df = pd.DataFrame(rows).fillna("")

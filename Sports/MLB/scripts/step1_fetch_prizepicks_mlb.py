@@ -1132,6 +1132,7 @@ def main():
 
     rows_n_new = len(df)
     teams_n_new = df["team"].astype(str).nunique()
+    fresh_fetch = df.copy()
     small_board = rows_n_new < args.min_rows or teams_n_new < args.min_teams
 
     if args.append and out_path.is_file():
@@ -1222,9 +1223,15 @@ def main():
     try:
         if str(_PROPORACLE_ROOT) not in sys.path:
             sys.path.insert(0, str(_PROPORACLE_ROOT))
-        from scripts.line_history_archive import try_archive_lines
+        from scripts.line_history_archive import archive_fresh_board
         pull_ts = str(df["fetched_at"].iloc[0]) if len(df) else ""
-        try_archive_lines(df, sport="MLB", only_fetched_at=pull_ts)
+        fresh_filtered, _ = apply_game_date_filter(
+            fresh_fetch,
+            target_date=str(args.date).strip(),
+            tz_name=str(args.tz).strip() or DEFAULT_TZ,
+            allow_nearest_future=bool(args.allow_nearest_future),
+        )
+        archive_fresh_board(fresh_filtered, "MLB", pull_ts=pull_ts)
     except Exception as _arch_exc:
         print(f"  [WARN] line_history archive skipped: {_arch_exc}")
     _write_snapshot(df, target_date=str(args.date).strip())

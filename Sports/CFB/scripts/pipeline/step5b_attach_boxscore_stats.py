@@ -145,7 +145,12 @@ def parse_min(x) -> float:
         return 0.0
 
 
-def parse_players(summary: dict, game_date: str = "", event_id: str = "") -> List[dict]:
+def parse_players(
+    summary: dict,
+    game_date: str = "",
+    event_id: str = "",
+    team_ids: Optional[Tuple[str, str]] = None,
+) -> List[dict]:
     """Parse CFB boxscore rows (passing / rushing / receiving)."""
     if not game_date:
         hdr = summary.get("header", {}) or {}
@@ -171,6 +176,9 @@ def parse_players(summary: dict, game_date: str = "", event_id: str = "") -> Lis
         team_id = str((tb.get("team") or {}).get("id", "")).strip()
         if not team_id:
             continue
+        opp_id = ""
+        if team_ids and team_id in team_ids:
+            opp_id = team_ids[1] if team_id == team_ids[0] else team_ids[0]
         for grp in tb.get("statistics", []) or []:
             if not isinstance(grp, dict):
                 continue
@@ -199,8 +207,11 @@ def parse_players(summary: dict, game_date: str = "", event_id: str = "") -> Lis
                         "espn_athlete_id": aid,
                         "game_date": game_date,
                         "event_id": event_id,
+                        "opp_team_id": opp_id,
                     },
                 )
+                if opp_id and not str(row.get("opp_team_id") or "").strip():
+                    row["opp_team_id"] = opp_id
                 if cat == "passing":
                     y = idx("YDS")
                     td = idx("TD")
@@ -367,7 +378,9 @@ def _fetch_one_event_cfb(
     try:
         time.sleep(random.uniform(0.05, 0.25))
         summ = pull_summary(eid)
-        return eid, parse_players(summ, game_date=date_str, event_id=eid)
+        return eid, parse_players(
+            summ, game_date=date_str, event_id=eid, team_ids=(str(t1), str(t2))
+        )
     except Exception as e:
         print(f"  [WARN] CFB summary failed event={eid}: {e}")
         log_pipeline_health(
@@ -377,6 +390,81 @@ def _fetch_one_event_cfb(
             start=Path(__file__),
         )
         return eid, []
+
+
+_SCOREBOARD_RESCAN_DAYS = 3
+
+
+def _events_cache_path(cache_path: str) -> str:
+    p = Path(cache_path)
+    return str(p.with_name(p.stem + "_events.csv"))
+
+
+def _load_scoreboard_events(path: str) -> List[Tuple[str, str, str, str]]:
+    if not path or not Path(path).is_file():
+        return []
+    try:
+        df = pd.read_csv(path, dtype=str).fillna("")
+    except Exception:
+        return []
+    out: List[Tuple[str, str, str, str]] = []
+    for rec in df.to_dict("records"):
+        eid = str(rec.get("event_id", "")).strip()
+        date_str = str(rec.get("game_date", "")).strip().replace("-", "")[:8]
+        t1 = str(rec.get("team1_id", "")).strip()
+        t2 = str(rec.get("team2_id", "")).strip()
+        if eid and date_str and t1 and t2:
+            out.append((eid, t1, t2, date_str))
+    return out
+
+
+def _seed_events_from_box_rows(rows: List[dict]) -> List[Tuple[str, str, str, str]]:
+    grouped: dict = {}
+    for rr in rows:
+        eid = str(rr.get("event_id") or "").strip()
+        tid = str(rr.get("team_id") or "").strip()
+        date_str = str(rr.get("game_date") or "").strip().replace("-", "")[:8]
+        if not eid or not date_str:
+            continue
+        slot = grouped.setdefault(eid, {"date": date_str, "teams": []})
+        if tid and tid not in slot["teams"]:
+            slot["teams"].append(tid)
+    out: List[Tuple[str, str, str, str]] = []
+    for eid, slot in grouped.items():
+        teams = slot["teams"]
+        if len(teams) >= 2:
+            out.append((eid, teams[0], teams[1], slot["date"]))
+    return out
+
+
+def _scanned_dates_path(cache_path: str) -> str:
+    p = Path(cache_path)
+    return str(p.with_name(p.stem + "_scoreboard_dates.txt"))
+
+
+def _load_scanned_dates(path: str) -> set:
+    if not path or not Path(path).is_file():
+        return set()
+    return {ln.strip() for ln in Path(path).read_text(encoding="utf-8").splitlines() if ln.strip()}
+
+
+def _save_scanned_dates(path: str, dates: set) -> None:
+    if not path:
+        return
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    Path(path).write_text("\n".join(sorted(dates)) + ("\n" if dates else ""), encoding="utf-8")
+
+
+def _save_scoreboard_events(path: str, events: List[Tuple[str, str, str, str]]) -> None:
+    if not path:
+        return
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame(
+        [
+            {"event_id": eid, "team1_id": t1, "team2_id": t2, "game_date": date_str}
+            for eid, t1, t2, date_str in events
+        ]
+    ).to_csv(path, index=False)
 
 
 def build_player_histories(
@@ -400,12 +488,7 @@ def build_player_histories(
         try:
             cache_df = pd.read_csv(cache_path, dtype=str).fillna("")
             cached_rows = cache_df.to_dict("records")
-            stale_eids: set = set()
             for rr in cached_rows:
-                has_opp = (
-                    ("opp_team_abbr" in rr and str(rr.get("opp_team_abbr","")).strip() not in ("", "nan"))
-                    or ("opp_team_id" in rr and str(rr.get("opp_team_id","")).strip() not in ("", "nan"))
-                )
                 for col in (
                     "PASS_YDS", "RUSH_YDS", "REC_YDS", "REC", "PASS_TD", "RUSH_TD", "REC_TD",
                     "PASS_CMP", "PASS_INT", "SACK", "TACK_TOT", "KICK_PTS", "DEF_INT",
@@ -415,33 +498,104 @@ def build_player_histories(
                             rr[col] = float(rr[col])
                         except Exception:
                             rr[col] = 0.0
-                if not has_opp:
-                    stale_eids.add(str(rr.get("event_id","")))
-            if stale_eids:
-                cached_rows = [rr for rr in cached_rows if str(rr.get("event_id","")) not in stale_eids]
-                print(f"  [CACHE] Dropped {len(stale_eids)} stale events missing opponent — will refetch")
-            cached_eids = {str(rr.get("event_id","")) for rr in cached_rows if rr.get("event_id")}
-            print(f"  [CACHE] Loaded {len(cached_rows)} rows ({len(cached_eids)} events)")
+            print(f"  [CACHE] Loaded {len(cached_rows)} rows (opponent filled after scoreboard scan)")
         except Exception as e:
             print(f"  [CACHE] Load failed ({e}) — full refresh")
             cached_rows, cached_eids = [], set()
-    # Phase 1: scoreboards
+    # Phase 1: scoreboards. Completed dates stay on disk; only the last few days are live.
+    events_path = _events_cache_path(cache_path) if cache_path else ""
+    dates_path = _scanned_dates_path(cache_path) if cache_path else ""
+    stored_events = _load_scoreboard_events(events_path)
+    if not stored_events and cached_rows:
+        stored_events = _seed_events_from_box_rows(cached_rows)
+        if stored_events:
+            print(f"  [CACHE] Seeded {len(stored_events)} scoreboard events from box-score rows")
+    scanned_dates = _load_scanned_dates(dates_path)
+    by_date: dict = {}
+    for ev in stored_events:
+        by_date.setdefault(ev[3], []).append(ev)
+    anchor = end_date or dt.date.today()
+    dates = date_range(anchor, days)
+    recent_cut = (anchor - dt.timedelta(days=_SCOREBOARD_RESCAN_DAYS)).strftime("%Y%m%d")
+    if stored_events and not scanned_dates:
+        oldest = min(ev[3] for ev in stored_events)
+        for d in dates:
+            if oldest <= d < recent_cut:
+                scanned_dates.add(d)
+        print(
+            f"  [CACHE] Marked {len(scanned_dates)} completed scoreboard days "
+            f"(off days included, last {_SCOREBOARD_RESCAN_DAYS} days stay live)"
+        )
     all_events: List[Tuple[str, str, str, str]] = []
     seen_eids: set = set()
-    print(f"-> Scanning {days + 1} days of CFB scoreboards...")
+    live_dates: List[str] = []
+    cached_dates = 0
+    for d in dates:
+        if d < recent_cut and d in scanned_dates:
+            cached_dates += 1
+            for ev in by_date.get(d, []):
+                if ev[0] not in seen_eids:
+                    seen_eids.add(ev[0])
+                    all_events.append(ev)
+        else:
+            live_dates.append(d)
+    print(
+        f"-> Scoreboards: {cached_dates} completed days from cache, "
+        f"{len(live_dates)} days live ({ESPN_LEAGUE})"
+    )
     try:
         from tqdm import tqdm as _tqdm
     except ImportError:
         import subprocess as _sp, sys as _sys
         _sp.check_call([_sys.executable, "-m", "pip", "install", "tqdm", "--break-system-packages", "-q"])
         from tqdm import tqdm as _tqdm
-    anchor = end_date or dt.date.today()
-    for d in _tqdm(date_range(anchor, days), desc="Scanning scoreboards", unit="day"):
-        sb = pull_scoreboard(d)
-        for eid, t1, t2, date_str in extract_events(sb):
-            if eid not in seen_eids:
-                seen_eids.add(eid)
-                all_events.append((eid, t1, t2, date_str))
+    if live_dates:
+        for d in _tqdm(live_dates, desc="Scanning scoreboards", unit="day"):
+            sb = pull_scoreboard(d)
+            day_events = extract_events(sb)
+            by_date[d] = day_events
+            scanned_dates.add(d)
+            for ev in day_events:
+                if ev[0] not in seen_eids:
+                    seen_eids.add(ev[0])
+                    all_events.append(ev)
+    if dates_path:
+        _save_scanned_dates(dates_path, scanned_dates)
+    if events_path:
+        merged: List[Tuple[str, str, str, str]] = []
+        seen_save: set = set()
+        for d in dates:
+            for ev in by_date.get(d, []):
+                if ev[0] not in seen_save:
+                    seen_save.add(ev[0])
+                    merged.append(ev)
+        _save_scoreboard_events(events_path, merged)
+
+    def _row_has_opp(rr: dict) -> bool:
+        abbr = str(rr.get("opp_team_abbr", "")).strip()
+        oid = str(rr.get("opp_team_id", "")).strip()
+        return abbr not in ("", "nan") or oid not in ("", "nan")
+
+    event_teams = {eid: (t1, t2) for eid, t1, t2, _ds in all_events}
+    filled_opp = 0
+    still_missing: set = set()
+    for rr in cached_rows:
+        if _row_has_opp(rr):
+            continue
+        eid = str(rr.get("event_id", "")).strip()
+        teams = event_teams.get(eid)
+        tid = str(rr.get("team_id", "")).strip()
+        if teams and tid in teams:
+            rr["opp_team_id"] = teams[1] if tid == teams[0] else teams[0]
+            filled_opp += 1
+        elif eid:
+            still_missing.add(eid)
+    if filled_opp:
+        print(f"  [CACHE] Filled opponent on {filled_opp} cached rows from scoreboards")
+    if still_missing:
+        cached_rows = [rr for rr in cached_rows if str(rr.get("event_id", "")) not in still_missing]
+        print(f"  [CACHE] Dropped {len(still_missing)} events still missing opponent — will refetch")
+    cached_eids = {str(rr.get("event_id", "")) for rr in cached_rows if rr.get("event_id")}
 
     if slate_ids:
         all_events = [(e, t1, t2, ds) for e, t1, t2, ds in all_events
@@ -480,7 +634,7 @@ def build_player_histories(
             if not rr.get("opp_team_abbr"):
                 opp_id = str(rr.get("opp_team_id", "")).strip()
                 rr["opp_team_abbr"] = tid_to_abbr.get(opp_id, opp_id)
-    if cache_path and new_rows:
+    if cache_path and (new_rows or filled_opp):
         try:
             pd.DataFrame(all_rows).to_csv(cache_path, index=False)
             print(f"  [CACHE] Saved {len(all_rows)} rows -> {cache_path}")
@@ -510,7 +664,7 @@ def build_player_histories(
     hist_aid  = {k: dedup_sort(v) for k, v in raw_by_aid.items()}
     hist_name = {k: dedup_sort(v) for k, v in raw_by_name.items()}
 
-    print(f"-> CBB histories built | by_id={len(hist_aid)} | by_name={len(hist_name)}")
+    print(f"-> {ESPN_LEAGUE} histories built | by_id={len(hist_aid)} | by_name={len(hist_name)}")
     return hist_aid, hist_name
 
 
@@ -649,7 +803,7 @@ def main():
     # have no team_id, disable the slate_ids filter entirely for safety.
     no_team_id = (df["team_id"].astype(str).str.strip().isin(["", "nan"])).sum()
     if no_team_id > 0:
-        print(f"→ {no_team_id} rows have no team_id — fetching all CBB games (no team filter)")
+        print(f"→ {no_team_id} rows have no team_id — fetching all {ESPN_LEAGUE} games (no team filter)")
         slate_ids = set()  # empty set = fetch all games
 
     # Build team_id -> team_abbr reverse map from slate for opp resolution in cache

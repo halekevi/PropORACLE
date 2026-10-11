@@ -393,7 +393,11 @@ if (-not $SkipFetch) {
 
 if ($Step1Only) {
     $n = Get-CsvDataRowCount -CsvPath $step1Csv
-    if (-not $ok -or $n -eq 0) {
+    if ($ok -and $n -eq 0) {
+        Write-Host "  [WNBA] Step1Only no games on $Date (board fetched, date filter kept 0 rows)" -ForegroundColor DarkGray
+        exit 0
+    }
+    if (-not $ok) {
         Write-Host "  [WNBA] Step1Only failed (ok=$ok rows=$n)" -ForegroundColor Red
         exit 1
     }

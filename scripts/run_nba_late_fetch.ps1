@@ -4,7 +4,7 @@
   Mid-day slate refresh: re-fetch props/lines (step1 --append), rebuild tickets, then re-scrape
   PrizePicks CDP payout floors for the new board.
 .NOTES
-  Cadence: Daily 8AM / Refresh 9AM / 945AM / 1030AM / 1PM / 430PM (run_refresh_with_log.ps1).
+  Cadence: Daily 8AM / Refresh 9AM / 1030AM / 1PM / 430PM (run_refresh_with_log.ps1).
   1AM is the initial full daily (tickets + first N-correct scrape). These runs
   re-fetch props/lines, rebuild tickets, then re-scrape only slips that are new
   or whose legs had a line/type change.
@@ -31,6 +31,9 @@ $script:FetchStarted = (Get-Date).ToUniversalTime().ToString("o")
 
 $env:PYTHONUTF8 = "1"
 $env:PYTHONIOENCODING = "utf-8"
+if ("$($env:NODE_OPTIONS)" -notmatch "(^|\s)--no-deprecation(\s|$)") {
+    $env:NODE_OPTIONS = (("" + $env:NODE_OPTIONS).Trim() + " --no-deprecation").Trim()
+}
 if (-not "$($env:PROPORACLE_CURL_IMPERSONATE)".Trim()) {
     $env:PROPORACLE_CURL_IMPERSONATE = "chrome131"
 }
@@ -141,6 +144,83 @@ function Get-CsvDataRowCount([string]$CsvPath) {
     }
 }
 
+function Test-NeedFootballStep8Rebuild {
+    param([string]$Step1Path, [string]$Step8Path)
+    $n = Get-CsvDataRowCount -CsvPath $Step1Path
+    if ($n -le 0) { return $false }
+    if (-not (Test-Path -LiteralPath $Step8Path)) { return $true }
+    try {
+        $t1 = (Get-Item -LiteralPath $Step1Path).LastWriteTimeUtc
+        $t8 = (Get-Item -LiteralPath $Step8Path).LastWriteTimeUtc
+        return ($t1 -gt $t8)
+    } catch {
+        return $true
+    }
+}
+
+function Write-FootballStep8MissingWarn {
+    param(
+        [string]$Sport,
+        [string]$Step1Path,
+        [string]$Step8Path
+    )
+    $n = Get-CsvDataRowCount -CsvPath $Step1Path
+    if ($n -le 0) { return }
+    if (Test-Path -LiteralPath $Step8Path) { return }
+    Write-Host (
+        "[LATE_FETCH] WARNING: $Sport step8 failed intraday — board exists ($n rows) " +
+        "but L5 not attached, props will not surface as keeps"
+    ) -ForegroundColor Yellow
+}
+
+function Invoke-NFLStep8RebuildIfNeeded {
+    param([string]$Step1Path)
+    $step8 = Join-Path $Root "outputs\$PipeDate\nfl\step8_nfl_direction_clean.xlsx"
+    if (-not (Test-NeedFootballStep8Rebuild -Step1Path $Step1Path -Step8Path $step8)) {
+        Write-FootballStep8MissingWarn -Sport "NFL" -Step1Path $Step1Path -Step8Path $step8
+        return
+    }
+    $n = Get-CsvDataRowCount -CsvPath $Step1Path
+    Write-Host "[LATE_FETCH] NFL step1 has $n rows — rebuilding step5→step8 (SkipFetch)..." -ForegroundColor Cyan
+    $nflPs1 = Join-Path $Root "scripts\run_nfl_pipeline.ps1"
+    if (-not (Test-Path -LiteralPath $nflPs1)) {
+        Write-Host "[LATE_FETCH] WARNING: missing $nflPs1 — cannot attach NFL L5" -ForegroundColor Yellow
+        return
+    }
+    $exit = Invoke-TimedCommand -Label "NFL step5-8" -FilePath "pwsh" -ArgumentList @(
+        "-NoProfile", "-File", $nflPs1, "-Date", $PipeDate, "-SkipFetch"
+    ) -WorkingDirectory $Root -TimeoutSec 1800
+    if ($exit -ne 0) {
+        Write-Host "[LATE_FETCH] WARNING: NFL step8 rebuild exit $exit" -ForegroundColor Yellow
+    }
+    Write-FootballStep8MissingWarn -Sport "NFL" -Step1Path $Step1Path -Step8Path $step8
+}
+
+function Invoke-CFBStep8RebuildIfNeeded {
+    param([string]$Step1Path)
+    $step8 = Join-Path $Root "outputs\$PipeDate\cfb\step8_cfb_direction_clean.xlsx"
+    if (-not (Test-NeedFootballStep8Rebuild -Step1Path $Step1Path -Step8Path $step8)) {
+        Write-FootballStep8MissingWarn -Sport "CFB" -Step1Path $Step1Path -Step8Path $step8
+        return
+    }
+    $n = Get-CsvDataRowCount -CsvPath $Step1Path
+    Write-Host "[LATE_FETCH] CFB step1 has $n rows — rebuilding step5→step8 (SkipFetch)..." -ForegroundColor Cyan
+    $pipeScript = Join-Path $Root "run_pipeline.ps1"
+    if (-not (Test-Path -LiteralPath $pipeScript)) {
+        Write-Host "[LATE_FETCH] WARNING: missing $pipeScript — cannot attach CFB L5" -ForegroundColor Yellow
+        return
+    }
+    $exit = Invoke-TimedCommand -Label "CFB step5-8" -FilePath "pwsh" -ArgumentList @(
+        "-NoProfile", "-File", $pipeScript,
+        "-CFBOnly", "-SkipFetch", "-SkipCombined", "-SkipLivePayoutCapture",
+        "-Date", $PipeDate
+    ) -WorkingDirectory $Root -TimeoutSec 2400
+    if ($exit -ne 0) {
+        Write-Host "[LATE_FETCH] WARNING: CFB step8 rebuild exit $exit" -ForegroundColor Yellow
+    }
+    Write-FootballStep8MissingWarn -Sport "CFB" -Step1Path $Step1Path -Step8Path $step8
+}
+
 function Resolve-LateFetchMaxRetries {
     param([string]$Label)
     $lbl = "$Label".Trim()
@@ -208,21 +288,26 @@ function Resolve-Step1MorningFallback {
         [string]$Sport,
         [string]$Step1Path,
         [int]$MaxRetries,
-        [bool]$FetchFailed
+        [bool]$FetchFailed,
+        [string]$Reason = ""
     )
     $rows = Get-CsvDataRowCount -CsvPath $Step1Path
     if (-not $FetchFailed) {
         return ($rows -gt 0)
     }
     if ($rows -gt 0) {
-        Write-Host "[LATE_FETCH] ${Sport}: 403 after $MaxRetries retries — using morning step1 ($rows rows)"
+        Write-Host "[LATE_FETCH] ${Sport}: fetch did not replace step1 — keeping existing file ($rows rows). This is not assumed to be a 403."
         return $true
     }
+    if ($Reason -eq "empty") {
+        Write-Host "[LATE_FETCH] ${Sport}: 0 rows for $PipeDate after fetch (date filter or no board) — not a 403" -ForegroundColor Yellow
+        return $false
+    }
     if (Test-Path -LiteralPath $Step1Path) {
-        Write-Host "[LATE_FETCH] ${Sport}: 403 + empty step1 — skipping sport" -ForegroundColor Yellow
+        Write-Host "[LATE_FETCH] ${Sport}: fetch failed + empty step1 — skipping sport" -ForegroundColor Yellow
     }
     else {
-        Write-Host "[LATE_FETCH] ${Sport}: 403 + no morning step1 — skipping sport" -ForegroundColor Yellow
+        Write-Host "[LATE_FETCH] ${Sport}: fetch failed + no morning step1 — skipping sport" -ForegroundColor Yellow
     }
     return $false
 }
@@ -292,6 +377,10 @@ $CdpReachable = if (Get-Command Test-PrizePicksCdpReachable -ErrorAction Silentl
 }
 if ($CdpReachable) {
     Write-Host "[LATE_FETCH] CDP attach OK at $CdpUrl" -ForegroundColor Green
+    & py -3.14 -c "from utils.prizepicks_cdp import shared_league_counts; shared_league_counts(cdp_url=r'$CdpUrl')"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[LATE_FETCH] /leagues read failed — each board will fetch (fail open)" -ForegroundColor Yellow
+    }
 } else {
     Write-Host "[LATE_FETCH] CDP attach failed — HTTP/fail-fast (empty boards likely)" -ForegroundColor Yellow
 }
@@ -323,9 +412,16 @@ else {
         "--jitter_seconds", "14.0",
         "--append",
         "--date", $PipeDate,
-        "--allow-nearest-future",
         "--output", $nbaStep1
     )
+    if ($CdpReachable) {
+        $nbaArgs += @("--cdp", $CdpUrl)
+        Write-Host "[LATE_FETCH] NBA: CDP reachable — in-page fetch (skip HTTP 403 stack)" -ForegroundColor DarkGray
+    }
+    else {
+        $nbaArgs += "--fail-fast"
+        Write-Host "[LATE_FETCH] NBA: CDP down — fail-fast HTTP" -ForegroundColor DarkGray
+    }
     Push-Location $NBADir
     try {
         & py -3.14 ".\scripts\step1_fetch_prizepicks_api.py" @nbaArgs
@@ -334,13 +430,13 @@ else {
         Pop-Location
     }
     if ($LASTEXITCODE -ne 0) {
-        [void](Resolve-Step1MorningFallback -Sport "NBA" -Step1Path $nbaStep1 -MaxRetries $MaxRetries -FetchFailed $true)
+        [void](Resolve-Step1MorningFallback -Sport "NBA" -Step1Path $nbaStep1 -MaxRetries $MaxRetries -FetchFailed $true -Reason "fetch")
     }
     elseif ((Get-CsvDataRowCount -CsvPath $nbaStep1) -gt 0) {
         Copy-Step1Mirror -Source $nbaStep1 -MirrorPath $nbaLegacy
     }
     else {
-        [void](Resolve-Step1MorningFallback -Sport "NBA" -Step1Path $nbaStep1 -MaxRetries $MaxRetries -FetchFailed $true)
+        Write-Host "[LATE_FETCH] NBA: no games on $PipeDate — empty slate kept (morning file not restored)" -ForegroundColor Yellow
     }
 }
 
@@ -359,9 +455,12 @@ if (Test-Path -LiteralPath $wnbaPs1) {
     }
     $wnbaTimeout = if ($CdpReachable) { 240 } else { 180 }
     $wnbaExit = Invoke-TimedCommand -Label "WNBA step1" -FilePath "pwsh" -ArgumentList $wnbaArgs -WorkingDirectory $Root -TimeoutSec $wnbaTimeout
-    $wnbaFailed = ($wnbaExit -ne 0) -or ((Get-CsvDataRowCount -CsvPath $wnbaStep1) -eq 0)
-    if ($wnbaFailed) {
-        [void](Resolve-Step1MorningFallback -Sport "WNBA" -Step1Path $wnbaStep1 -MaxRetries $MaxRetries -FetchFailed $true)
+    $wnbaRows = Get-CsvDataRowCount -CsvPath $wnbaStep1
+    if ($wnbaExit -eq 0 -and $wnbaRows -eq 0) {
+        Write-Host "[LATE_FETCH] WNBA: no games on $PipeDate (playoff board can be a later day) — not a failure" -ForegroundColor DarkGray
+    }
+    elseif ($wnbaExit -ne 0) {
+        [void](Resolve-Step1MorningFallback -Sport "WNBA" -Step1Path $wnbaStep1 -MaxRetries $MaxRetries -FetchFailed $true -Reason "fetch")
         [void](Copy-SiblingDatedStep1 -Sport "WNBA" -SportTag "wnba" -FileName "step1_wnba_props.csv" -Step1Path $wnbaStep1)
     }
 }
@@ -378,16 +477,26 @@ else {
     $NHLDir = Join-Path $SportsRoot "NHL"
     $nhlRunOut = Ensure-RunOutDir -SportTag "nhl"
     $nhlStep1 = Join-Path $nhlRunOut "step1_nhl_props.csv"
-    Push-Location $NHLDir
-    try {
-        & py -3.14 ".\scripts\step1_fetch_prizepicks_nhl.py" "--append" "--date" "$PipeDate" "--output" $nhlStep1 "--max-retries" "$MaxRetries"
+    $nhlArgs = @(
+        "-3.14", ".\scripts\step1_fetch_prizepicks_nhl.py",
+        "--append", "--date", "$PipeDate", "--output", $nhlStep1,
+        "--max-retries", "$MaxRetries"
+    )
+    if ($CdpReachable) {
+        $nhlArgs += @("--cdp", $CdpUrl)
+        Write-Host "[LATE_FETCH] NHL: CDP reachable — in-page fetch (skip HTTP 403 stack)" -ForegroundColor DarkGray
     }
-    finally {
-        Pop-Location
+    else {
+        $nhlArgs += "--fail-fast"
+        Write-Host "[LATE_FETCH] NHL: CDP down — fail-fast HTTP" -ForegroundColor DarkGray
     }
-    $nhlFailed = ($LASTEXITCODE -ne 0) -or ((Get-CsvDataRowCount -CsvPath $nhlStep1) -eq 0)
-    if ($nhlFailed) {
-        [void](Resolve-Step1MorningFallback -Sport "NHL" -Step1Path $nhlStep1 -MaxRetries $MaxRetries -FetchFailed $true)
+    $nhlExit = Invoke-TimedCommand -Label "NHL step1" -FilePath "py" -ArgumentList $nhlArgs -WorkingDirectory $NHLDir -TimeoutSec $(if ($CdpReachable) { 240 } else { 150 })
+    $nhlRows = Get-CsvDataRowCount -CsvPath $nhlStep1
+    if ($nhlExit -ne 0) {
+        [void](Resolve-Step1MorningFallback -Sport "NHL" -Step1Path $nhlStep1 -MaxRetries $MaxRetries -FetchFailed $true -Reason "fetch")
+    }
+    elseif ($nhlRows -le 0) {
+        [void](Resolve-Step1MorningFallback -Sport "NHL" -Step1Path $nhlStep1 -MaxRetries $MaxRetries -FetchFailed $true -Reason "empty")
     }
     elseif ((Get-CsvDataRowCount -CsvPath $nhlStep1) -gt 0) {
         Copy-Step1Mirror -Source $nhlStep1 -MirrorPath (Join-Path $NHLDir "outputs\step1_nhl_props.csv")
@@ -507,6 +616,10 @@ else {
     elseif ((Get-CsvDataRowCount -CsvPath $nflStep1) -gt 0) {
         Copy-Step1Mirror -Source $nflStep1 -MirrorPath (Join-Path $NFLDir "outputs\step1_pp_props_today.csv")
     }
+    # TNF / midweek boards: step1 alone is not enough — attach L5 before G70.
+    if ((Get-CsvDataRowCount -CsvPath $nflStep1) -gt 0) {
+        Invoke-NFLStep8RebuildIfNeeded -Step1Path $nflStep1
+    }
 }
 
 # CFB — Week 1+ boards move all morning; without this, 8AM/9AM refreshes keep overnight lines.
@@ -537,6 +650,10 @@ else {
     }
     elseif ((Get-CsvDataRowCount -CsvPath $cfbStep1) -gt 0) {
         Copy-Step1Mirror -Source $cfbStep1 -MirrorPath (Join-Path $CFBDir "outputs\step1_cfb.csv")
+    }
+    # Daily CFB board: step1 alone looks like "no CFB" in G70 until step8 exists.
+    if ((Get-CsvDataRowCount -CsvPath $cfbStep1) -gt 0) {
+        Invoke-CFBStep8RebuildIfNeeded -Step1Path $cfbStep1
     }
 }
 
@@ -654,6 +771,15 @@ if ($env:PROPORACLE_REFRESH_TICKET_GEN_STARTS) {
 }
 if (-not $rebuildTickets) {
     Write-Host "[LATE_FETCH] Lines unchanged vs previous stamp — skip pipeline rebuild (timestamps + publish still run)" -ForegroundColor DarkGray
+    # Football may still need step8 when morning STEP C failed at step5.
+    $nflStep1Final = Join-Path $Root "outputs\$PipeDate\nfl\step1_pp_props_today.csv"
+    $cfbStep1Final = Join-Path $Root "outputs\$PipeDate\cfb\step1_cfb.csv"
+    if (-not $NFLOffSeason -and (Get-CsvDataRowCount -CsvPath $nflStep1Final) -gt 0) {
+        Invoke-NFLStep8RebuildIfNeeded -Step1Path $nflStep1Final
+    }
+    if (-not $CFBOffSeason -and (Get-CsvDataRowCount -CsvPath $cfbStep1Final) -gt 0) {
+        Invoke-CFBStep8RebuildIfNeeded -Step1Path $cfbStep1Final
+    }
 }
 else {
 Write-Host "[LATE_FETCH] Running full pipeline -SkipFetch -SkipLivePayoutCapture -TicketGenStarts $middayTicketStarts -Date $PipeDate..."
@@ -690,9 +816,26 @@ if ($LASTEXITCODE -ne 0) {
 $goblin70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
 if (Test-Path -LiteralPath $goblin70) {
     Write-Host "[LATE_FETCH] Rebuilding Goblin-70 + patching mixer from this fetch..." -ForegroundColor Cyan
+    $logsDir = Join-Path $Root "logs"
+    if (-not (Test-Path -LiteralPath $logsDir)) {
+        New-Item -ItemType Directory -Path $logsDir -Force | Out-Null
+    }
+    $loggedHelper = Join-Path $PSScriptRoot "Invoke-LoggedPwsh.ps1"
+    if (-not (Test-Path -LiteralPath $loggedHelper)) { $loggedHelper = Join-Path $Root "scripts\Invoke-LoggedPwsh.ps1" }
+    $g70Log = Join-Path $logsDir ("g70_writeweb_late_fetch_{0}_{1:yyyyMMdd_HHmmss}.log" -f $PipeDate, (Get-Date))
+    $g70Exit = 1
     try {
-        & py -3.14 $goblin70 --date $PipeDate --write-web
-        Write-Host "[LATE_FETCH] Goblin-70 dual card exit $LASTEXITCODE" -ForegroundColor DarkGray
+        if (Test-Path -LiteralPath $loggedHelper) {
+            . $loggedHelper
+            $g70Exit = Invoke-G70WriteWebStandalone -ScriptPath $goblin70 -Date $PipeDate -LogPath $g70Log -WorkingDirectory $Root
+        }
+        else {
+            Write-Host "[LATE_FETCH] WARN: Invoke-LoggedPwsh.ps1 missing — falling back to Tee-Object for --write-web" -ForegroundColor Yellow
+            & py -3.14 -u -X utf8 $goblin70 --date $PipeDate --write-web 2>&1 | Tee-Object -FilePath $g70Log
+            $g70Exit = $LASTEXITCODE
+            Write-Host "write-web exit code: $g70Exit"
+        }
+        Write-Host "[LATE_FETCH] Goblin-70 dual card exit $g70Exit" -ForegroundColor DarkGray
     } catch {
         Write-Host "[LATE_FETCH] WARN: Goblin-70 rebuild failed (non-blocking): $($_.Exception.Message)" -ForegroundColor Yellow
     }

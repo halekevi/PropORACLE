@@ -29,7 +29,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from utils.prizepicks_http import fetch_pp_projections
 from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
-from scripts.line_history_archive import try_archive_lines
+from scripts.line_history_archive import archive_fresh_board
 from utils.step1_slate_date_filter import (
     apply_game_date_filter,
     no_props_log_line,
@@ -272,6 +272,7 @@ def fetch_via_direct_api(
     max_pages: int = MAX_PAGES,
     retries: int = 5,
     first_page_waves: int = 3,
+    fail_fast: bool = False,
 ) -> list:
     """curl_cffi HTTP fetch (league_id=8) — same stack as WNBA/MLB."""
     print(
@@ -279,13 +280,21 @@ def fetch_via_direct_api(
         f"per_page={per_page} max_pages={max_pages} retries={retries} waves={first_page_waves}"
     )
     try:
-        data, included = fetch_pp_projections(
-            str(NHL_LEAGUE_ID),
+        kw = dict(
             per_page=per_page,
             max_pages=max_pages,
             retries=retries,
             first_page_waves=first_page_waves,
         )
+        if fail_fast:
+            kw.update(
+                fail_fast=True,
+                forbid_max_cooldown_windows=0,
+                session_jitter=(0.2, 0.8),
+                inter_page_delay=(0.4, 1.0),
+                wave_gap_seconds=(0.5, 1.0),
+            )
+        data, included = fetch_pp_projections(str(NHL_LEAGUE_ID), **kw)
     except Exception as e:
         print(f"  ✗ HTTP fetch failed: {type(e).__name__}: {e}")
         return []
@@ -468,10 +477,7 @@ def _write_empty_nhl(path: Path) -> None:
 
 
 def _archive_nhl_lines(df: pd.DataFrame) -> None:
-    if df is None or df.empty:
-        return
-    stamped = stamp_fetched_at(df, overwrite=False)
-    try_archive_lines(stamped, sport="NHL")
+    archive_fresh_board(df, "NHL")
 
 
 def _write_nhl_output(rows: list, out_path: Path, append: bool) -> None:
@@ -511,7 +517,7 @@ def _write_nhl_output(rows: list, out_path: Path, append: bool) -> None:
                 f"{len(combined)} after dedup (subset={dedup_cols})"
             )
             print(f"✅ Saved {len(combined)} rows -> {out_path}")
-            _archive_nhl_lines(combined)
+            _archive_nhl_lines(new_df)
         except Exception as e:
             print(f"  [WARN] --append merge failed ({e}); writing this fetch only")
             write_csv(rows, str(out_path))
@@ -555,9 +561,14 @@ def main():
     args = parser.parse_args()
     out_path = Path(args.output)
 
-    print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (HTTP first)")
-
     cdp_url = str(args.cdp or "").strip()
+    if cdp_url:
+        print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (CDP {cdp_url})")
+    elif args.playwright:
+        print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (playwright)")
+    else:
+        print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (HTTP first)")
+
     rows: list = []
     if cdp_url or args.playwright:
         from utils.prizepicks_cdp import session_fetch_projections
@@ -577,6 +588,7 @@ def main():
             max_pages=min(4, int(args.max_pages)) if args.fail_fast else int(args.max_pages),
             retries=min(2, int(args.api_retries)) if args.fail_fast else int(args.api_retries),
             first_page_waves=waves,
+            fail_fast=bool(args.fail_fast),
         )
 
         if not rows and not args.fail_fast:

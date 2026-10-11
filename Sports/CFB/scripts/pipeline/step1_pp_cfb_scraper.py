@@ -125,6 +125,7 @@ def fetch_cfb_projections(
     game_mode: str,
     sleep_s: float,
     max_pages: Optional[int] = None,
+    fail_fast: bool = False,
 ) -> pd.DataFrame:
     session = requests.Session()
     session.headers.update(PP_HEADERS)
@@ -148,11 +149,20 @@ def fetch_cfb_projections(
         if max_pages is not None and page > max_pages:
             break
 
-        for attempt in range(6):
+        for attempt in range(1 if fail_fast else 6):
             try:
                 r = session.get(url, params=params, timeout=30)
 
+                if r.status_code == 403 and fail_fast:
+                    print("  [403] fail-fast — not retrying")
+                    _backfill_opponents(rows, game_teams)
+                    return pd.DataFrame(rows)
+
                 if r.status_code == 429:
+                    if fail_fast:
+                        print("  [429] fail-fast — not retrying")
+                        _backfill_opponents(rows, game_teams)
+                        return pd.DataFrame(rows)
                     wait = min(20 * (1.5 ** attempt), 90) + random.uniform(0, 3)
                     print(f"  ⚠️  429 — waiting {wait:.0f}s")
                     time.sleep(wait)
@@ -336,17 +346,21 @@ def fetch_cfb_projections(
                 break
 
             except Exception as e:
-                time.sleep(2 ** attempt)
-                if attempt == 5:
-                    print(f"  ❌ Failed after retries on page {page}: {e}")
-                    log_pipeline_health(
-                        "cfb.step1_pp_cfb_scraper",
-                        "page_failed_after_retries",
-                        extra={"page": page, "error": f"{type(e).__name__}: {e}"},
-                        start=Path(__file__),
-                    )
-                    _backfill_opponents(rows, game_teams)
-                    return pd.DataFrame(rows)
+                last_attempt = 0 if fail_fast else 5
+                if attempt != last_attempt:
+                    time.sleep(2 ** attempt)
+                    continue
+                if fail_fast:
+                    print(f"  [fail-fast] page {page} stopped after one attempt: {e}")
+                print(f"  ❌ Failed after retries on page {page}: {e}")
+                log_pipeline_health(
+                    "cfb.step1_pp_cfb_scraper",
+                    "page_failed_after_retries",
+                    extra={"page": page, "error": f"{type(e).__name__}: {e}"},
+                    start=Path(__file__),
+                )
+                _backfill_opponents(rows, game_teams)
+                return pd.DataFrame(rows)
 
     _backfill_opponents(rows, game_teams)
     return pd.DataFrame(rows)
@@ -364,6 +378,8 @@ def main():
     ap.add_argument("--max_pages",      type=int,   default=None)
     ap.add_argument("--out",            required=True)
     ap.add_argument("--out_json",       default="")
+    ap.add_argument("--fail-fast",      action="store_true",
+                    help="One HTTP attempt. A 403 returns whatever was already parsed.")
     args = ap.parse_args()
 
     single_stat = args.single_stat and not args.include_combos
@@ -376,6 +392,7 @@ def main():
         game_mode=args.game_mode,
         sleep_s=args.sleep,
         max_pages=args.max_pages,
+        fail_fast=bool(args.fail_fast),
     )
 
     if df.empty:

@@ -6,6 +6,7 @@ page's authenticated fetch().
 """
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
 
 
@@ -188,6 +189,151 @@ def fetch_projections_inpage(
     status = int((payload or {}).get("status") or 0)
     url = str((payload or {}).get("url") or "")
     return data, included, status, url
+
+
+def projection_counts_from_leagues_payload(body: Any) -> dict[str, int]:
+    """Map PrizePicks league id -> projections_count. Unknown shape returns {}."""
+    rows: list = []
+    if isinstance(body, dict):
+        raw = body.get("data") or body.get("leagues") or []
+        rows = raw if isinstance(raw, list) else []
+    elif isinstance(body, list):
+        rows = body
+    out: dict[str, int] = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        attrs = row.get("attributes") if isinstance(row.get("attributes"), dict) else row
+        lid = str(row.get("id") or (attrs or {}).get("id") or "").strip()
+        raw_n = None
+        if isinstance(attrs, dict):
+            for key in ("projections_count", "projection_count", "projectionsCount"):
+                if attrs.get(key) is not None:
+                    raw_n = attrs.get(key)
+                    break
+        if not lid or raw_n is None:
+            continue
+        try:
+            out[lid] = int(raw_n)
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
+def fetch_league_projection_counts_inpage(page: Any) -> dict[str, int]:
+    """One in-page GET /leagues. Empty dict means 'do not skip boards'."""
+    try:
+        raw = page.evaluate(
+            """async () => {
+                const ctrl = new AbortController();
+                const timer = setTimeout(() => ctrl.abort(), 12000);
+                try {
+                    const r = await fetch("https://api.prizepicks.com/leagues", {
+                        credentials: "include",
+                        signal: ctrl.signal,
+                        headers: {
+                            "accept": "application/json",
+                            "referer": window.location.href,
+                            "x-requested-with": "XMLHttpRequest",
+                        },
+                    });
+                    let body = null;
+                    try { body = await r.json(); } catch (e) { body = null; }
+                    return { status: r.status, body };
+                } finally {
+                    clearTimeout(timer);
+                }
+            }"""
+        )
+    except Exception as exc:
+        print(f"  [leagues] count lookup failed ({type(exc).__name__}: {exc}) — fetching every board")
+        return {}
+    status = int((raw or {}).get("status") or 0)
+    counts = projection_counts_from_leagues_payload((raw or {}).get("body"))
+    if status != 200 or not counts or not any(n > 0 for n in counts.values()):
+        print(f"  [leagues] count lookup status={status} leagues={len(counts)} — fetching every board")
+        return {}
+    print(f"  [leagues] projection counts for {len(counts)} leagues")
+    return counts
+
+
+def league_projection_counts_via_cdp(cdp_url: str, *, timeout_ms: int = 15_000) -> dict[str, int]:
+    """Attach once and read /leagues. Does not open a new PrizePicks tab."""
+    from playwright.sync_api import sync_playwright
+
+    cdp = (cdp_url or "").strip()
+    if not cdp:
+        return {}
+    with sync_playwright() as p:
+        browser = connect_over_cdp(p, cdp, timeout_ms=timeout_ms)
+        if not browser.contexts:
+            return {}
+        context = browser.contexts[0]
+        page = pick_cdp_warmed_page(context)
+        if page is None or not cdp_board_ready(page):
+            print("  [leagues] no warmed PrizePicks tab — fetching every board")
+            return {}
+        return fetch_league_projection_counts_inpage(page)
+
+
+def _league_counts_cache_path() -> Path:
+    return Path(__file__).resolve().parents[1] / "data" / "cache" / "pp_league_counts.json"
+
+
+def read_shared_league_counts(max_age_s: int = 1200) -> dict[str, int] | None:
+    """Return this window's /leagues counts, or None when missing, stale, or empty."""
+    import json
+    import time
+
+    path = _league_counts_cache_path()
+    if not path.is_file():
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        age = time.time() - float(payload.get("saved_at") or 0)
+        raw = payload.get("counts") or {}
+        if age > max_age_s or not isinstance(raw, dict) or not raw:
+            return None
+        counts = {str(k): int(v) for k, v in raw.items()}
+    except (OSError, TypeError, ValueError, json.JSONDecodeError):
+        return None
+    if not counts or not any(n > 0 for n in counts.values()):
+        return None
+    return counts
+
+
+def write_shared_league_counts(counts: dict[str, int]) -> None:
+    import json
+    import time
+
+    if not counts or not any(int(n) > 0 for n in counts.values()):
+        return
+    path = _league_counts_cache_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps({"saved_at": time.time(), "counts": {str(k): int(v) for k, v in counts.items()}}),
+        encoding="utf-8",
+    )
+
+
+def shared_league_counts(cdp_url: str = "", page: Any = None) -> dict[str, int]:
+    """One /leagues read per window, shared across board processes.
+
+    A missing, failed, or empty read returns {} so callers fetch every board.
+    A real zero for a league is a skip. Do not treat {} as 'every league is empty'.
+    """
+    cached = read_shared_league_counts()
+    if cached:
+        print(f"  [leagues] shared projection counts ({len(cached)} leagues, no extra /leagues call)")
+        return cached
+    counts: dict[str, int] = {}
+    if page is not None:
+        counts = fetch_league_projection_counts_inpage(page)
+    elif (cdp_url or "").strip():
+        counts = league_projection_counts_via_cdp(cdp_url)
+    if counts:
+        write_shared_league_counts(counts)
+    return counts
 
 
 def session_fetch_projections(
