@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17 03:14:16 UTC",
+  "generated_at": "2026-10-17 05:18:56 UTC",
   "date": "2026-10-17",
   "tennis_date": "2026-10-17",
   "filters": {
@@ -766,14 +766,14 @@
               "standard_projection": null,
               "line_discount_vs_standard": 1.5,
               "delta_pct": 0.25,
-              "line_underdog": null,
+              "line_underdog": 1.5,
               "line_draftkings": null,
               "line_vegas": null,
               "pick_platform": "prizepicks",
               "best_cross_line": 0.5,
               "best_cross_book": "PP",
               "cross_edge_vs_pp": 0.0,
-              "cross_n_books": 1,
+              "cross_n_books": 2,
               "hit_rate": 1.0,
               "over_hit_rate": null,
               "under_hit_rate": null,
@@ -1316,7 +1316,7 @@
     }
   },
   "player_slip_cap": 2,
-  "run_id": "20261017_031416_146577",
+  "run_id": "20261017_051856_627967",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7
