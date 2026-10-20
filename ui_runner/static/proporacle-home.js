@@ -2094,25 +2094,14 @@ function renderEdges() {
     const dir = String(p.dir || "").trim().toUpperCase();
     if (dir === "OVER" && !isFantasyScoreEdgePick(p)) overRows.push(p);
   }
-  // Top Edges quality gate: prefer strong L5 (>=4/5). If nothing clears it,
-  // fall back to best available slate rows so homepage still shows fetched props.
+  // Top Edges quality gate: L5 = 5/5 only.
   const passesEdgeL5Gate = (p, dir) => {
     const pct = topEdgeL5HitPct(p, dir);
-    return Number.isFinite(pct) && pct >= 80;
+    return Number.isFinite(pct) && pct >= 100;
   };
   let overPrimary = pickPrimaryLineRows(overRows)
     .filter((p) => passesEdgeL5Gate(p, "OVER"))
     .filter((p) => passesTopEdgeEmpiricalSanity(p, "OVER"));
-  if (!overPrimary.length) {
-    overPrimary = pickPrimaryLineRows(overRows)
-      .slice()
-      .sort((a, b) => {
-        const ha = topEdgeL5HitPct(a, "OVER") || 0;
-        const hb = topEdgeL5HitPct(b, "OVER") || 0;
-        if (hb !== ha) return hb - ha;
-        return num(b.edge) - num(a.edge);
-      });
-  }
   const stdO = overPrimary.filter((p) => !isGoblinPick(p));
   const gobO = overPrimary.filter((p) => isGoblinPick(p));
   // Prefer stronger L5 among similar edges so Best-to-Run 5/5s stay visible.
@@ -2193,25 +2182,6 @@ function renderEdges() {
       return underByKey.get(k) || { baseIdx: 0, disp };
     })
     .sort((a, b) => num(b.disp.edge) - num(a.disp.edge));
-  if (!underRows.length) {
-    underRows = pickPrimaryLineRows(underSourceRows.map((x) => x.disp))
-      .map((disp) => {
-        const k = [
-          String(disp.sport || "").trim().toUpperCase(),
-          String(disp.player || "").trim().toLowerCase(),
-          String(disp.prop || "").trim().toLowerCase(),
-          String(disp.pick || "").trim().toLowerCase(),
-          String(disp.dir || "").trim().toUpperCase(),
-        ].join("|");
-        return underByKey.get(k) || { baseIdx: 0, disp };
-      })
-      .sort((a, b) => {
-        const ha = topEdgeL5HitPct(a.disp, "UNDER") || 0;
-        const hb = topEdgeL5HitPct(b.disp, "UNDER") || 0;
-        if (hb !== ha) return hb - ha;
-        return num(b.disp.edge) - num(a.disp.edge);
-      });
-  }
   const EDGE_CARD_LIMIT = 10;
 
   // Also pin consistency UNDER leaders that missed the high-abs-edge cut.
@@ -2948,12 +2918,8 @@ function renderStreaks() {
     return sortStreakRows(dedupeStreakRows(out));
   }
 
-  let l5O = pinBestToRunIntoStreaks(overStreakRows(5, 4), 5, "OVER");
-  let l5U = underStreakRows(5, 4);
-  if (!l5O.length && !l5U.length) {
-    l5O = pinBestToRunIntoStreaks(overStreakRows(5, 1), 5, "OVER");
-    l5U = underStreakRows(5, 1);
-  }
+  let l5O = pinBestToRunIntoStreaks(overStreakRows(5, 5), 5, "OVER");
+  let l5U = underStreakRows(5, 5);
 
   let l10O = pinBestToRunIntoStreaks(overStreakRows(10, 8), 10, "OVER");
   let l10U = underStreakRows(10, 8);

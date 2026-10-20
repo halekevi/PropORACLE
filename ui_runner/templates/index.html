@@ -2372,7 +2372,7 @@ body > nav.snav.glass-card {
       <a href="/tickets" class="edges-see-all">See All Picks ↗</a>
     </div>
     <div id="top-edges-debug" hidden aria-hidden="true"></div>
-    <div class="te-legend">L5 4+ on the play side. WNBA/MLB: Weak D overs, Elite D unders. Soccer: Weak/Below Avg overs, Elite/Above Avg unders. Tennis: opponent ATP/WTA rank (same tiers), no prop preference.</div>
+    <div class="te-legend">L5 = 5/5 on the play side (active slate sports only). WNBA/MLB: Weak D overs, Elite D unders. Soccer: Weak/Below Avg overs, Elite/Above Avg unders. Tennis: opponent ATP/WTA rank (same tiers), no prop preference.</div>
     <div id="top-edges-board"></div>
     <div id="over-edges-standard" class="edge-grid" hidden></div>
     <div id="over-edges-goblin" class="edge-grid" hidden></div>
@@ -2476,7 +2476,7 @@ body > nav.snav.glass-card {
 
 <script src="/static/site-nav-chrome.js?v=20260412" defer></script>
 <script src="/static/matchup-edge.js?v=20260821tight1" defer></script>
-<script src="/static/top_edges_badge_board.js?v=20260821tight1" defer></script>
+<script src="/static/top_edges_badge_board.js?v=20261020l5eq5b" defer></script>
 <script>
 // ── Real PLAYER_DATA (last 10 games) ──────────────────────
 let ALL_SLATE = [];
@@ -4242,10 +4242,32 @@ refreshStatus();
   (async function bootBanner() {
     try {
       const res = await fetch("/api/slate-display-date", { cache: "no-store" });
-      if (res.ok) applyHomeSkewBanner(await res.json());
+      if (res.ok) {
+        const meta = await res.json();
+        applyHomeSkewBanner(meta);
+        const populated = Array.isArray(meta.populated_sports) ? meta.populated_sports : [];
+        window.HOME_POPULATED_SPORTS = new Set(
+          populated.map((s) => String(s || "").trim().toUpperCase()).filter(Boolean)
+        );
+        if (typeof renderEdges === "function") renderEdges();
+      }
     } catch (e) {}
   })();
 })();
+
+/** True when sport is on today's slate (or population unknown yet). */
+function homeSportIsActive(sp) {
+  const u = String(sp || "").trim().toUpperCase();
+  if (!u) return false;
+  const set = window.HOME_POPULATED_SPORTS;
+  if (!(set instanceof Set) || !set.size) return true;
+  if (set.has(u)) return true;
+  // Period slates: NBA1H counts as NBA for board sections that key on parent sport.
+  for (const p of set) {
+    if (p === u || p.startsWith(u) || u.startsWith(p)) return true;
+  }
+  return false;
+}
 
 // ── SVG chart (full) — premium area chart ──────────────────
 function makeSVG(data, bookLine, isOver, W=260, H=100, bookLineSeries=null, extraScale=null) {
@@ -4702,13 +4724,17 @@ async function loadTopEdgesSportPool() {
   if (_topEdgesPoolPromise) return _topEdgesPoolPromise;
   _topEdgesPoolPromise = (async () => {
     const pool = [];
-    await Promise.all(["wnba", "mlb", "soccer", "tennis"].map(async (sp) => {
-      const rows = await fetchTopEdgesSportRows(sp);
-      for (const r of rows) {
-        const p = pickFromTopEdgesSportRow(r, sp.toUpperCase());
-        if (p && p.player && p.prop) pool.push(p);
-      }
-    }));
+    const candidates = ["wnba", "mlb", "soccer", "tennis"];
+    const sports = candidates.filter((sp) => homeSportIsActive(sp.toUpperCase()));
+    if (sports.length) {
+      await Promise.all(sports.map(async (sp) => {
+        const rows = await fetchTopEdgesSportRows(sp);
+        for (const r of rows) {
+          const p = pickFromTopEdgesSportRow(r, sp.toUpperCase());
+          if (p && p.player && p.prop) pool.push(p);
+        }
+      }));
+    }
     TOP_EDGES_POOL = pool;
     renderEdges();
     return pool;
@@ -4733,33 +4759,30 @@ function renderBadgeTopEdges(board) {
     SOCCER: "Weak/Below Avg overs · Elite/Above Avg unders",
     TENNIS: "opponent ATP/WTA rank",
   };
-  const emptyMsg = "none that clear L5 4+ / D filter";
   let cardN = 0;
+  let sportsShown = 0;
   for (const sp of TopEdgesBadgeBoard.SPORTS) {
+    if (!homeSportIsActive(sp)) continue;
     const buckets = ranked[sp] || { stdO: [], stdU: [], gob: [] };
+    const blocks = [
+      ["Standard OVER", buckets.stdO || []],
+      ["Goblin OVER", buckets.gob || []],
+      ["Standard UNDER", buckets.stdU || []],
+    ].filter(([, list]) => list.length > 0);
+    // Skip sports with no L5=5 clears — don't list empty WNBA/MLB shells.
+    if (!blocks.length) continue;
+    sportsShown += 1;
     const wrap = document.createElement("div");
     wrap.className = "te-sport";
     const hd = document.createElement("div");
     hd.className = "te-sport-hd";
     hd.innerHTML = `${sp}<span>${notes[sp] || ""}</span>`;
     wrap.appendChild(hd);
-    const blocks = [
-      ["Standard OVER", buckets.stdO],
-      ["Goblin OVER", buckets.gob],
-      ["Standard UNDER", buckets.stdU],
-    ];
     for (const [label, list] of blocks) {
       const lab = document.createElement("div");
       lab.className = "edge-bucket-label";
       lab.textContent = label;
       wrap.appendChild(lab);
-      if (!list.length) {
-        const em = document.createElement("div");
-        em.className = "te-empty";
-        em.textContent = emptyMsg;
-        wrap.appendChild(em);
-        continue;
-      }
       const grid = document.createElement("div");
       grid.className = "edge-grid";
       for (const rec of list) {
@@ -4776,7 +4799,18 @@ function renderBadgeTopEdges(board) {
   wireEdgeCardExpandHandlers();
   if (window.MySlip) MySlip.render();
   const emptyHost = document.getElementById("top-edges-empty");
-  if (emptyHost) {
+  if (!sportsShown) {
+    let el = emptyHost;
+    if (!el) {
+      el = document.createElement("div");
+      el.id = "top-edges-empty";
+      el.className = "home-cat-empty-state";
+      board.appendChild(el);
+    }
+    el.hidden = false;
+    el.innerHTML = '<div class="hec-title">No Top Edges yet</div>' +
+      '<div>No active-slate legs cleared L5 = 5/5 + D tonight</div>';
+  } else if (emptyHost) {
     emptyHost.hidden = true;
     emptyHost.innerHTML = "";
   }
@@ -4809,26 +4843,17 @@ function renderEdges() {
     const dir = String(p.dir || "").trim().toUpperCase();
     if (dir === "OVER" && !isFantasyScoreEdgePick(p) && isTopEdgesBoardPick(p)) overRows.push(p);
   }
-  // Top Edges quality gate: prefer strong L5 (>=4/5). If nothing clears it,
-  // fall back to best available slate rows so homepage still shows fetched props.
+  // Top Edges quality gate: L5 = 5/5 only (no soft fallback to weaker L5).
   const passesEdgeL5Gate = (p, dir) => {
     const pct = topEdgeL5HitPct(p, dir);
-    return Number.isFinite(pct) && pct >= 80;
+    return Number.isFinite(pct) && pct >= 100;
   };
-  let overPrimary = pickPrimaryLineRows(overRows)
-    .filter((p) => passesEdgeL5Gate(p, "OVER"))
-    .filter((p) => passesTopEdgeEmpiricalSanity(p, "OVER"));
-  if (!overPrimary.length) {
-    overPrimary = pickPrimaryLineRows(overRows)
-      .slice()
-      .sort((a, b) => {
-        const ha = topEdgeL5HitPct(a, "OVER") || 0;
-        const hb = topEdgeL5HitPct(b, "OVER") || 0;
-        if (hb !== ha) return hb - ha;
-        return num(b.edge) - num(a.edge);
-      });
-  }
-  overPrimary = preferStandardBoardLine(overPrimary);
+  let overPrimary = preferStandardBoardLine(
+    pickPrimaryLineRows(overRows)
+      .filter((p) => passesEdgeL5Gate(p, "OVER"))
+      .filter((p) => passesTopEdgeEmpiricalSanity(p, "OVER"))
+      .filter((p) => homeSportIsActive(p.sport))
+  );
   const EDGE_CARD_LIMIT = 10;
   const byEdgeDesc = (a, b) => num(b.edge) - num(a.edge);
   const stdO = diversifyBySport(
@@ -4853,22 +4878,11 @@ function renderEdges() {
     ].join("|");
     if (!underByKey.has(k)) underByKey.set(k, row);
   }
-  let underRows = pickPrimaryLineRows(underSourceRows.map((x) => x.disp))
-    .filter((disp) => passesEdgeL5Gate(disp, "UNDER"))
-    .filter((disp) => passesTopEdgeEmpiricalSanity(disp, "UNDER"))
-    .map((disp) => {
-      const k = [
-        String(disp.sport || "").trim().toUpperCase(),
-        String(disp.player || "").trim().toLowerCase(),
-        String(disp.prop || "").trim().toLowerCase(),
-        String(disp.pick || "").trim().toLowerCase(),
-        String(disp.dir || "").trim().toUpperCase(),
-      ].join("|");
-      return underByKey.get(k) || { baseIdx: 0, disp };
-    })
-    .sort((a, b) => num(b.disp.edge) - num(a.disp.edge));
-  if (!underRows.length) {
-    underRows = pickPrimaryLineRows(underSourceRows.map((x) => x.disp))
+  let underRows = diversifyBySport(
+    pickPrimaryLineRows(underSourceRows.map((x) => x.disp))
+      .filter((disp) => passesEdgeL5Gate(disp, "UNDER"))
+      .filter((disp) => passesTopEdgeEmpiricalSanity(disp, "UNDER"))
+      .filter((disp) => homeSportIsActive(disp.sport))
       .map((disp) => {
         const k = [
           String(disp.sport || "").trim().toUpperCase(),
@@ -4879,14 +4893,10 @@ function renderEdges() {
         ].join("|");
         return underByKey.get(k) || { baseIdx: 0, disp };
       })
-      .sort((a, b) => {
-        const ha = topEdgeL5HitPct(a.disp, "UNDER") || 0;
-        const hb = topEdgeL5HitPct(b.disp, "UNDER") || 0;
-        if (hb !== ha) return hb - ha;
-        return num(b.disp.edge) - num(a.disp.edge);
-      });
-  }
-  underRows = diversifyBySport(underRows, EDGE_CARD_LIMIT, (row) => row.disp);
+      .sort((a, b) => num(b.disp.edge) - num(a.disp.edge)),
+    EDGE_CARD_LIMIT,
+    (row) => row.disp
+  );
 
   const appendAll = (arr, el) => {
     for (const p of arr.slice(0, EDGE_CARD_LIMIT)) {
@@ -5127,41 +5137,24 @@ function renderStreaks() {
     return out;
   }
 
+  // Perfect L5 only (5/5) on active-slate sports — no soft fallback to 4/5.
   const l5all = [...ALL_SLATE]
-    .filter((p) => !isFantasyScoreEdgePick(p) && isTopEdgesBoardPick(p))
+    .filter((p) => !isFantasyScoreEdgePick(p) && isTopEdgesBoardPick(p) && homeSportIsActive(p.sport))
     .map(p => ({...p, h: streakHits(realHits(p, 5), 5)}))
-    .filter(p => p.h !== null && p.h >= 4)
+    .filter(p => p.h !== null && p.h >= 5)
     .sort((a, b) => b.h - a.h);
 
   let l5O = preferStandardBoardLine(l5all.filter(p => String(p.dir || "").trim().toUpperCase() === "OVER"));
-  let l5U = underStreakRows(5, 4);
-  if (!l5O.length && !l5U.length) {
-    const soft = [...ALL_SLATE]
-      .filter((p) => !isFantasyScoreEdgePick(p) && isTopEdgesBoardPick(p))
-      .map(p => ({...p, h: streakHits(realHits(p, 5), 5)}))
-      .filter(p => p.h !== null && p.h >= 1)
-      .sort((a, b) => b.h - a.h);
-    l5O = preferStandardBoardLine(soft.filter(p => String(p.dir || "").trim().toUpperCase() === "OVER"));
-    l5U = underStreakRows(5, 1);
-  }
+  let l5U = underStreakRows(5, 5).filter((p) => homeSportIsActive(p.sport));
 
   const l10all = [...ALL_SLATE]
-    .filter((p) => !isFantasyScoreEdgePick(p) && isTopEdgesBoardPick(p))
+    .filter((p) => !isFantasyScoreEdgePick(p) && isTopEdgesBoardPick(p) && homeSportIsActive(p.sport))
     .map(p => ({...p, h: streakHits(realHits(p, 10), 10)}))
     .filter(p => p.h !== null && p.h >= 8)
     .sort((a, b) => b.h - a.h);
 
   let l10O = preferStandardBoardLine(l10all.filter(p => String(p.dir || "").trim().toUpperCase() === "OVER"));
-  let l10U = underStreakRows(10, 8);
-  if (!l10O.length && !l10U.length) {
-    const soft = [...ALL_SLATE]
-      .filter((p) => !isFantasyScoreEdgePick(p) && isTopEdgesBoardPick(p))
-      .map(p => ({...p, h: streakHits(realHits(p, 10), 10)}))
-      .filter(p => p.h !== null && p.h >= 1)
-      .sort((a, b) => b.h - a.h);
-    l10O = preferStandardBoardLine(soft.filter(p => String(p.dir || "").trim().toUpperCase() === "OVER"));
-    l10U = underStreakRows(10, 1);
-  }
+  let l10U = underStreakRows(10, 8).filter((p) => homeSportIsActive(p.sport));
 
   const none = msg => `<div class="home-cat-empty-state" style="padding:14px 0;"><div class="hec-title" style="font-size:18px;margin-bottom:4px;">${msg}</div></div>`;
 
