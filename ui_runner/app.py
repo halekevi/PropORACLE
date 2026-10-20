@@ -1426,13 +1426,39 @@ def _slim_slate_sport_cell(key: str, v: Any) -> Any:
     """Normalize values for smaller JSON and stable sorting in the client."""
     if v is None:
         return None
+    if isinstance(v, bool):
+        return v
+    # Numeric fields often arrive as strings from parquet/CSV — coerce before
+    # the generic string branch so the home table can call .toFixed safely.
+    _NUMERIC_KEYS = (
+        "edge",
+        "rank_score",
+        "abs_edge",
+        "ml_prob",
+        "hit_rate",
+        "opponent_def_rank",
+        "line",
+        "l5_over",
+        "l5_under",
+        "l10_over",
+        "l10_under",
+        "projection",
+        "standard_line",
+        "season_avg",
+    )
+    if key in _NUMERIC_KEYS and not isinstance(v, (int, float)):
+        try:
+            v = float(str(v).strip().replace(",", ""))
+        except (TypeError, ValueError):
+            if isinstance(v, str):
+                s = v.strip()
+                return s if s else None
+            return None
     if isinstance(v, str):
         s = v.strip()
         if key == "pick_platform":
             return s.lower().replace(" ", "") if s else None
         return s if s else None
-    if isinstance(v, bool):
-        return v
     if isinstance(v, (int, float)):
         if isinstance(v, float) and (math.isnan(v) or math.isinf(v)):
             return None
@@ -5947,7 +5973,7 @@ def api_slate_sport():
         return jsonify({"error": str(e), "sports": {}}), 404
     try:
         return _gz_json_response(
-            f"slate-sport-slim-v4:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-slim-v5:{_explorer_json_gz_bust_token()}",
             lambda: _slim_slate_sport_payload(_selected_slate_sport_payload()),
             ttl=_PIPELINE_JSON_TTL,
         )
@@ -6035,7 +6061,7 @@ def api_slate_sport_single(sport: str):
 
     try:
         return _gz_json_response(
-            f"slate-sport-single-v2:{sport_key}:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-single-v3:{sport_key}:{_explorer_json_gz_bust_token()}",
             _build,
             ttl=60.0,
         )

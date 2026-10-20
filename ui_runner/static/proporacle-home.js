@@ -3615,15 +3615,18 @@ function renderSlateTable(sport) {
     const dirCls = isOver ? 'dir-over' : 'dir-under';
     const dirSym = isOver ? '▲' : '▼';
     const edgeCls = (r.edge || 0) >= 0 ? 'edge-pos' : 'edge-neg';
-    const edgeStr = r.edge != null ? (r.edge >= 0 ? '+' : '') + r.edge.toFixed(2) : '—';
-    const hitStr  = r.hit_rate != null ? Math.round(r.hit_rate * 100) + '%' : '—';
+    const edgeNum = Number(r.edge);
+    const edgeStr = Number.isFinite(edgeNum) ? ((edgeNum >= 0 ? '+' : '') + edgeNum.toFixed(2)) : '—';
+    const hitNum = Number(r.hit_rate);
+    const hitStr  = Number.isFinite(hitNum) ? Math.round(hitNum * 100) + '%' : '—';
     const tierCls = `tier-${r.tier || 'D'}`;
     const pickNorm = String(r.pick_type || '').trim().toLowerCase();
     const pickCls = pickNorm === 'goblin' ? 'pick-goblin-cell' : pickNorm === 'demon' ? 'pick-demon-cell' : 'pick-standard-cell';
     const l5fmt = formatL5Cell(r.l5_over, r.l5_under, r.l5_games_played, 5);
     const l5o = l5fmt.over;
     const l5u = l5fmt.under;
-    const rankStr = r.rank_score != null ? r.rank_score.toFixed(2) : '—';
+    const rankNum = Number(r.rank_score);
+    const rankStr = Number.isFinite(rankNum) ? rankNum.toFixed(2) : '—';
     const timeStr = formatGameTimeDisplay(r.game_time);
     return `<tr class="slate-row-clickable" data-slate-idx="${rowIdx}">
       <td class="scol-tier"><span class="tier-badge ${tierCls}">${r.tier || '?'}</span>${confDotHtml(r)}</td>
