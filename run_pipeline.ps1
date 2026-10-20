@@ -247,6 +247,16 @@ if ((Split-Path -Leaf $Root) -eq "scripts") {
 }
 # All sport trees live under <repo>\Sports\ (not repo root).
 . (Join-Path $Root "scripts\prizepicks_step1_cascade.ps1")
+if (-not "$OddsApiKey".Trim()) {
+    $envFile = Join-Path $Root ".env"
+    if (Test-Path -LiteralPath $envFile) {
+        Get-Content -LiteralPath $envFile | ForEach-Object {
+            if ($_ -match '^\s*ODDS_API_KEY=(.*)$' -and -not "$OddsApiKey".Trim()) {
+                $OddsApiKey = $Matches[1].Trim().Trim('"').Trim("'")
+            }
+        }
+    }
+}
 $SportsRoot = Join-Path $Root "Sports"
 $NBADir    = Join-Path $SportsRoot "NBA"
 $CBBDir    = Join-Path $SportsRoot "CBB"
@@ -1006,6 +1016,7 @@ function Run-NBAPeriodPipeline {
     if ($ok) { $ok = Run-Step "${tagLower} Step 6 - Team Role Context"      $NBADir ".\scripts\step6_team_role_context.py"              "--input $step5 --output $step6" }
     if ($ok) { $ok = Run-Step "${tagLower} Step 7 - Rank Props"             $NBADir ".\scripts\step7_rank_props.py"                     "--input $step6 --output $step7" }
     if ($ok) { Invoke-PropOracleStep7b ($Tag.ToUpper()) "$step7" }
+    if ($ok -and $tagLower -eq "nba") { Invoke-PyNbaStatProjection -RepoRoot $Root -Step7Xlsx $step7 -PipelineDate $Date }
     if ($ok) { $ok = Run-Step "${tagLower} Step 8 - Direction Context"      $NBADir (Join-Path $SportsRoot "NBA\scripts\step8_add_direction_context.py") "--input $step7 --sheet ALL --output $step8Csv --xlsx $step8Xlsx --date $Date" }
 
     if ($ok -and (Test-Path $step8Xlsx)) {
@@ -2399,6 +2410,7 @@ if ($GolfOnly) {
     if ($ok) {
         $ok = Run-Step "Golf Step 7 - Rank Props" $GolfDir ".\scripts\step7_rank_props_golf.py" "--input `"$golfStep7Input`" --output `"$GolfRunOutDir\step7_golf_ranked.xlsx`""
     }
+    if ($ok) { Invoke-PropOracleStep7b "Golf" "$GolfRunOutDir\step7_golf_ranked.xlsx" $Date }
     if ($ok) {
         $ok = Run-Step "Golf Step 8 - Direction Context" $GolfDir ".\scripts\step8_add_direction_context_golf.py" "--input `"$GolfRunOutDir\step7_golf_ranked.xlsx`" --sheet ALL --output `"$GolfRunOutDir\step8_golf_direction.csv`" --xlsx `"$GolfRunOutDir\step8_golf_direction_clean.xlsx`" --date $Date"
     }
@@ -2608,7 +2620,7 @@ if ($NBAOnly) {
                 -ScriptRel ".\scripts\step1_fetch_prizepicks_api.py" `
                 -OutputPath $nbaStep1Solo `
                 -PipelineDate $Date `
-                -HttpArgs @("--league_id", "7", "--game_mode", "pickem", "--per_page", "250", "--max_pages", "5", "--replace", "--output", $nbaStep1Solo, "--date", $Date)
+                -HttpArgs @("--league_id", "7", "--game_mode", "pickem", "--per_page", "250", "--max_pages", "5", "--replace", "--output", $nbaStep1Solo, "--date", $Date)  # NBA 7 + NBAP 237
         }
     } else {
         Write-Host "  [NBA] Skipping step1 fetch -- using existing $nbaStep1Solo" -ForegroundColor DarkGray
@@ -2683,6 +2695,7 @@ if ($NBAOnly) {
     }
     if ($ok) { $ok = Run-Step "NBA Step 7 - Rank Props"              $NBADir ".\scripts\step7_rank_props.py"                    "--input `"$NBARunOutDir\step6e_with_intel.csv`" --output `"$NBARunOutDir\step7_ranked_props.xlsx`"" }
     if ($ok) { Invoke-PropOracleStep7b "NBA" "$NBARunOutDir\step7_ranked_props.xlsx" }
+    if ($ok) { Invoke-PyNbaStatProjection -RepoRoot $Root -Step7Xlsx "$NBARunOutDir\step7_ranked_props.xlsx" -PipelineDate $Date }
     if ($ok) { $ok = Run-Step "NBA Step 8 - Direction Context"       $NBADir (Join-Path $SportsRoot "NBA\scripts\step8_add_direction_context.py")         "--input `"$NBARunOutDir\step7_ranked_props.xlsx`" --sheet ALL --output `"$NBARunOutDir\step8_all_direction.csv`" --date $Date" }
     if ($ok) {
         $nbaMainStep8 = Join-Path $NBARunOutDir "step8_all_direction_clean.xlsx"
@@ -2743,17 +2756,22 @@ if ($RefreshCache -and -not $NBAOffSeason) {
     Write-Host "  [SKIP] NBA off-season -- skipping NBA cache refresh" -ForegroundColor DarkGray
 }
 
-# -- Backfill boxscore DB for last 3 days (active summer sports only) ----------
+# -- Backfill boxscore DB for last 3 days (soccer, plus NBA once resumed) ------
 if ($SkipFetch) {
     Write-Host "[ DB BACKFILL ] skipped (-SkipFetch / mid-day refresh)" -ForegroundColor DarkGray
 } else {
 Write-Host "[ DB BACKFILL ]" -ForegroundColor Cyan
-Write-Host "  Syncing proporacle_ref.db for last 3 days (active: soccer)..." -ForegroundColor DarkGray
+Write-Host "  Syncing proporacle_ref.db for last 3 days..." -ForegroundColor DarkGray
 $backfillScript = Join-Path $NBADir "scripts\build_boxscore_ref.py"
 if (Test-Path $backfillScript) {
-    # Do not backfill nba/nhl/cbb while those sports are off-season scaffolding.
-    # MLB/Tennis/WNBA use sport-local caches; soccer is the live proporacle_ref sport.
+    # CBB stays off while that season is paused. NBA is on after
+    # $NBA_SEASON_RESUME so preseason box scores feed NBAP last-5. NHL is on after
+    # $NHL_SEASON_RESUME: step4 NHL reads ONLY this DB, so skipping the backfill leaves
+    # last spring's playoff games as "L5" (it did, until 2026-10-20).
+    # MLB/Tennis/WNBA use sport-local caches.
     $bfSports = @("soccer")
+    if (-not $NBAOffSeason) { $bfSports += "nba" }
+    if (-not $NHLOffSeason) { $bfSports += "nhl" }
     $bfArgList = @("--backfill", "--days", "3", "--sports") + $bfSports
     $backfillOut = & py -3.14 $backfillScript @bfArgList 2>&1
     foreach ($line in $backfillOut) { Write-Host "  $line" -ForegroundColor DarkGray }
@@ -2998,6 +3016,7 @@ $NBAJob = Start-Job -ScriptBlock {
     }
     if ($ok) { $ok = Run-Step-Job "NBA Step 7 - Rank Props"              $NBADir ".\scripts\step7_rank_props.py"                    "--input `"$NBARunOutDir\step6e_with_intel.csv`" --output `"$NBARunOutDir\step7_ranked_props.xlsx`"" }
     if ($ok) { Invoke-Step7b-Job "NBA" $RepoRoot "$NBARunOutDir\step7_ranked_props.xlsx" }
+    if ($ok) { Invoke-PyNbaStatProjection -RepoRoot $RepoRoot -Step7Xlsx "$NBARunOutDir\step7_ranked_props.xlsx" -PipelineDate $Date }
     if ($ok) { $ok = Run-Step-Job "NBA Step 8 - Direction Context"       $NBADir (Join-Path $RepoRoot "Sports\NBA\scripts\step8_add_direction_context.py")         "--input `"$NBARunOutDir\step7_ranked_props.xlsx`" --sheet ALL --output `"$NBARunOutDir\step8_all_direction.csv`" --date $Date" }
     return $ok
 } -ArgumentList $NBADir, $Date, $OddsApiKey, $SkipFetch, $Root, $NBARunOutDir, $NBAOffSeason
@@ -3096,8 +3115,8 @@ $CFBJob = Start-Job -ScriptBlock {
         } finally { Pop-Location }
     }
     function Invoke-Step7b-Job {
-        param([string]$SportLabel, [string]$R)
-        Invoke-PyStep7b -SportLabel $SportLabel -RepoRoot $R
+        param([string]$SportLabel, [string]$R, [string]$Step7Xlsx = "", [string]$PipelineDate = "")
+        Invoke-PyStep7b -SportLabel $SportLabel -RepoRoot $R -Step7Xlsx $Step7Xlsx -PipelineDate $PipelineDate
     }
     function Test-Step1NoSlate-Job {
         param([string]$CsvPath)
@@ -3576,6 +3595,7 @@ $GolfJob = Start-Job -ScriptBlock {
         "$GolfRunOutDir\step2_golf_context.csv"
     }
     if ($ok) { $ok = Run-Step-Job "Golf Step 7 - Rank Props" $GolfDir ".\scripts\step7_rank_props_golf.py" "--input `"$golfStep7Input`" --output `"$GolfRunOutDir\step7_golf_ranked.xlsx`"" }
+    if ($ok) { Invoke-PyStep7b -SportLabel "Golf" -RepoRoot $RepoRoot -Step7Xlsx "$GolfRunOutDir\step7_golf_ranked.xlsx" -PipelineDate $Date }
     if ($ok) { $ok = Run-Step-Job "Golf Step 8 - Direction Context" $GolfDir ".\scripts\step8_add_direction_context_golf.py" "--input `"$GolfRunOutDir\step7_golf_ranked.xlsx`" --sheet ALL --output `"$GolfRunOutDir\step8_golf_direction.csv`" --xlsx `"$GolfRunOutDir\step8_golf_direction_clean.xlsx`" --date $Date" }
     return $ok
 } -ArgumentList $GolfDir, $Date, $SkipFetch, $GolfRunOutDir, $Root
