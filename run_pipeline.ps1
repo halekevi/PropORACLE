@@ -2753,7 +2753,10 @@ $backfillScript = Join-Path $NBADir "scripts\build_boxscore_ref.py"
 if (Test-Path $backfillScript) {
     # Do not backfill nba/nhl/cbb while those sports are off-season scaffolding.
     # MLB/Tennis/WNBA use sport-local caches; soccer is the live proporacle_ref sport.
+    # NHL is on after $NHL_SEASON_RESUME: step4 NHL reads ONLY this DB, so skipping the
+    # backfill leaves last spring's playoff games as "L5" (stale until 2026-10-20).
     $bfSports = @("soccer")
+    if (-not $NHLOffSeason) { $bfSports += "nhl" }
     $bfArgList = @("--backfill", "--days", "3", "--sports") + $bfSports
     $backfillOut = & py -3.14 $backfillScript @bfArgList 2>&1
     foreach ($line in $backfillOut) { Write-Host "  $line" -ForegroundColor DarkGray }
