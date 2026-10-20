@@ -2756,6 +2756,7 @@ if (Test-Path $backfillScript) {
     # NHL is on after $NHL_SEASON_RESUME: step4 NHL reads ONLY this DB, so skipping the
     # backfill leaves last spring's playoff games as "L5" (stale until 2026-10-20).
     $bfSports = @("soccer")
+    if (-not $NBAOffSeason) { $bfSports += "nba" }
     if (-not $NHLOffSeason) { $bfSports += "nhl" }
     $bfArgList = @("--backfill", "--days", "3", "--sports") + $bfSports
     $backfillOut = & py -3.14 $backfillScript @bfArgList 2>&1

@@ -11669,7 +11669,14 @@ def ticket_groups_to_payload(
             for row in rows:
 
                 def gv(field):
-                    return row.get(field, "") if isinstance(row, dict) else getattr(row, field, "")
+                    val = row.get(field, "") if isinstance(row, dict) else getattr(row, field, "")
+                    # pd.NA (nullable string/Int cols) raises on `or ""`; treat as empty.
+                    try:
+                        if val is pd.NA or pd.isna(val):
+                            return ""
+                    except (TypeError, ValueError):
+                        pass
+                    return val
 
                 _dpv = gd_leg_delta_pct(gv("line"), gv("standard_line"))
                 sport_s = str(gv("sport") or t.get("sport") or "").strip()
