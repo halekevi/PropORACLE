@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import ast
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -29,6 +30,22 @@ ENTRY_POINTS = (
     "scripts/assert_live_publish.py",
 )
 LOCAL_PREFIXES = ("utils", "scripts")
+
+# PowerShell scripts the Windows scheduled tasks start (Get-ScheduledTask "PropOracle - *").
+# Their dot-sourced / invoked *.ps1 helpers are followed. A scheduled script that is modified
+# or untracked runs code that main does not have, same as a dirty Python import.
+SCHEDULED_PS1 = (
+    "scripts/run_daily_1am.ps1",
+    "scripts/run_daily_5am.ps1",
+    "scripts/run_daily_8am.ps1",
+    "scripts/run_daily_day_ahead.ps1",
+    "scripts/run_g70_keep_scrub.ps1",
+    "scripts/run_grader_evening.ps1",
+    "scripts/run_mlb_day_ahead_fill.ps1",
+    "scripts/run_refresh_with_log.ps1",
+    "scripts/Publish-LiveSite.ps1",
+)
+_PS1_REF = re.compile(r"[A-Za-z0-9_\-]+\.ps1", re.IGNORECASE)
 
 
 def _resolve(root: Path, dotted: str, importer_dir: Path) -> Path | None:
@@ -95,6 +112,33 @@ def closure(root: Path) -> tuple[set[Path], list[str]]:
     return seen, missing
 
 
+def ps1_closure(root: Path) -> tuple[set[Path], list[str]]:
+    """Scheduled-task PowerShell scripts plus any *.ps1 they name. Names that do not resolve are
+    returned separately: they are usually Test-Path-guarded optional helpers, so they are
+    reported as notes and never refuse a publish."""
+    seen: set[Path] = set()
+    unresolved: list[str] = []
+    stack = [root / e for e in SCHEDULED_PS1 if (root / e).is_file()]
+    for e in SCHEDULED_PS1:
+        if not (root / e).is_file():
+            unresolved.append(f"{e} (scheduled entry point not found)")
+    while stack:
+        f = stack.pop()
+        if f in seen:
+            continue
+        seen.add(f)
+        text = f.read_text(encoding="utf-8", errors="replace")
+        for name in sorted(set(_PS1_REF.findall(text))):
+            if name.lower() == f.name.lower():
+                continue
+            hit = next((c for c in (root / "scripts" / name, root / name) if c.is_file()), None)
+            if hit is None:
+                unresolved.append(f"{f.relative_to(root).as_posix()} names {name} (no such file)")
+            elif hit not in seen:
+                stack.append(hit)
+    return seen, unresolved
+
+
 def git_dirty(root: Path, files: set[Path]) -> list[str]:
     rels = sorted(f.relative_to(root).as_posix() for f in files)
     if not rels:
@@ -113,16 +157,20 @@ def main() -> int:
     args = ap.parse_args()
     root = Path(args.root).resolve()
     files, missing = closure(root)
+    ps_files, ps_notes = ps1_closure(root)
+    files = files | ps_files
     dirty = git_dirty(root, files)
     # A dependency that exists on disk but is untracked also lives outside main.
     problems = [f"DIRTY  {d}" for d in dirty] + [f"MISSING {m}" for m in missing]
-    report = {"root": str(root), "files_checked": len(files), "dirty": dirty, "missing": missing, "ok": not problems}
+    report = {"root": str(root), "files_checked": len(files), "dirty": dirty, "missing": missing, "notes": ps_notes, "ok": not problems}
     if args.json:
         print(json.dumps(report, indent=2))
     else:
-        print(f"[publish-tree] {len(files)} publish-path code files checked under {root}")
+        print(f"[publish-tree] {len(files)} publish-path code files (python closure + scheduled .ps1) checked under {root}")
         for p in problems:
             print(f"[publish-tree] {p}")
+        for n in ps_notes:
+            print(f"[publish-tree] note (not fatal): {n}")
         if not problems:
             print("[publish-tree] OK - publish-path code matches git, no missing local imports")
     return 0 if not problems else 1

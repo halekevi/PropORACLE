@@ -223,12 +223,23 @@ def write_csv(rows: list[dict], path: str):
     if not rows:
         return
     with open(path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        # Union of keys in first-seen order: a blanked/suppressed first row has fewer columns
+        # and must not crash the writer or drop columns later rows carry.
+        fieldnames: list[str] = []
+        for r in rows:
+            for k in r:
+                if k not in fieldnames:
+                    fieldnames.append(k)
+        writer = csv.DictWriter(f, fieldnames=fieldnames, restval="")
         writer.writeheader()
         writer.writerows(rows)
     print(f"Saved {len(rows)} rows -> {path}")
 
 
+# (stat_norm, lowercase player_name) pairs whose hit rates are blanked (see main()).
+SOURCE_CONFLICT_SUPPRESS = {
+    ("blocked_shots", "travis sanheim"),
+}
 DEFAULT_CACHE = str(Path(__file__).resolve().parent.parent / "cache" / "nhl_gamelog_cache.json")
 
 
@@ -320,6 +331,13 @@ def main():
             line = float(row.get("line_score", 0) or 0)
         except Exception:
             line = 0.0
+
+        # Source-conflict suppression: ESPN and the NHL API disagree on this player's last
+        # games, so neither L5 is trustworthy and no leg should be driven by it.
+        # Travis Sanheim blocked_shots: NHL API zeros vs ESPN 7/5/2/0/1 (checked 2026-10-21).
+        # Remove an entry once the two sources agree again.
+        if (stat_norm, str(row.get("player_name", "")).strip().lower()) in SOURCE_CONFLICT_SUPPRESS:
+            nhl_id = ""
 
         if not nhl_id or not stat_norm or line == 0:
             for w in [5, 10, 20]:

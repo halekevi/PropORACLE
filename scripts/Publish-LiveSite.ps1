@@ -11,7 +11,7 @@ param(
     [string]$RepoRoot = "",
     [string]$CommitMessage = "",
     # Refuse (not just alert) when publish-path code is dirty / not on main.
-    # Also enabled by env PROPORACLE_PUBLISH_STRICT_TREE=1.
+    # Strict is now the default; disable with env PROPORACLE_PUBLISH_STRICT_TREE=0.
     [switch]$StrictTree,
     # Emergency bypass for the pre-publish tree check (alert is still written).
     [switch]$SkipTreeCheck
@@ -193,7 +193,11 @@ Write-Host ('[PUBLISH] Live site JSON -> origin/main ({0})' -f $MainRoot) -Foreg
 # (the build would die anyway). Modified/untracked publish-path code and a non-main
 # build checkout alert as WARN, and refuse under -StrictTree / PROPORACLE_PUBLISH_STRICT_TREE=1.
 # ---------------------------------------------------------------------------
-$strict = $StrictTree.IsPresent -or ("$($env:PROPORACLE_PUBLISH_STRICT_TREE)".Trim() -in @("1", "true", "yes"))
+# Strict is the DEFAULT (decided 2026-10-21): a publish with modified/untracked publish-path code
+# fails loudly instead of building a card from code main does not have. Opt out only on purpose:
+# PROPORACLE_PUBLISH_STRICT_TREE=0 (or "false"/"no"), which downgrades dirty/branch findings to WARN.
+$strictEnv = "$($env:PROPORACLE_PUBLISH_STRICT_TREE)".Trim().ToLowerInvariant()
+$strict = $StrictTree.IsPresent -or ($strictEnv -notin @("0", "false", "no", "off"))
 if ($SkipTreeCheck) {
     Write-PublishAlert -Level "WARN" -Stage "tree-check" -Reason "skipped via -SkipTreeCheck"
 } else {
