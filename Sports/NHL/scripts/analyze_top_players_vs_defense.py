@@ -81,6 +81,9 @@ def _slate_team(abbr: str) -> str:
 
 def _load_defense(path: Path) -> pd.DataFrame:
     d = pd.read_csv(path, encoding="utf-8-sig")
+    # nhl_defense_summary.csv now ships `def_rank`; older exports used OVERALL_DEF_RANK.
+    if "OVERALL_DEF_RANK" not in d.columns and "def_rank" in d.columns:
+        d["OVERALL_DEF_RANK"] = d["def_rank"]
     d["def_key"] = d["team"].astype(str).str.upper().map(defense_team_key)
     d["OVERALL_DEF_RANK"] = pd.to_numeric(d["OVERALL_DEF_RANK"], errors="coerce")
     return d.drop_duplicates(subset=["def_key"], keep="first")

@@ -911,6 +911,15 @@ def _parse_nhl_boxscore(box: dict, event_id: str, game_date: str,
                 if all(x is None for x in [g, ast, sog, hits]):
                     continue
 
+                # Hollow ESPN payload (no key map / no TOI): label fallback reads "SOG" as
+                # shootout goals, so every skater lands as shots=0, toi=NULL and the upsert
+                # overwrites a good row (seen 2026-10-17..20; PP L5 then disagreed with ours).
+                # A real skater line always has TOI. Skip so the earlier good row survives
+                # and the next backfill retries.
+                if toi is None:
+                    print(f"  [NHL boxscore] hollow skater row skipped (no TOI): {name} event {event_id}")
+                    continue
+
                 rows.append({
                     **base,
                     "player": name, "team": t_abbr, "position": pos,

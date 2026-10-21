@@ -357,6 +357,10 @@ def main() -> None:
     for col in scored_cols:
         if col not in df.columns:
             df[col] = np.nan
+        else:
+            # An upstream int64 column (e.g. NHL step7's ml_prob) rejects float scores
+            # with LossySetitemError on current pandas; force float first.
+            df[col] = pd.to_numeric(df[col], errors="coerce").astype(float)
     df.loc[eligible_mask, "ml_prob"] = ml_s.values
     df.loc[eligible_mask, "edge_score"] = edge_score.values
     df.loc[eligible_mask, "blended_score"] = blended.values

@@ -2749,7 +2749,10 @@ if ($SkipFetch) {
 } else {
 Write-Host "[ DB BACKFILL ]" -ForegroundColor Cyan
 Write-Host "  Syncing proporacle_ref.db for last 3 days (active: soccer)..." -ForegroundColor DarkGray
-$backfillScript = Join-Path $NBADir "scripts\build_boxscore_ref.py"
+# Use the repo-root builder. Sports\NBA\scripts\build_boxscore_ref.py is a stale fork whose NHL
+# parser reads only labels (SOG = shootout goals -> shots 0, no TOI) and was overwriting good
+# NHL rows nightly.
+$backfillScript = Join-Path $Root "scripts\build_boxscore_ref.py"
 if (Test-Path $backfillScript) {
     # Do not backfill nba/nhl/cbb while those sports are off-season scaffolding.
     # MLB/Tennis/WNBA use sport-local caches; soccer is the live proporacle_ref sport.
