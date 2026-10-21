@@ -39,7 +39,6 @@ def test_job_window_uses_1am_and_8am_labels(monkeypatch):
 
 
 def test_summarize_force_payout_only_when_moved(monkeypatch):
-    from utils.bet_windows import summarize_fetch_window
 
     pulls = [
         {"fetched_at": "2026-08-28T01:05:00-04:00", "window": "1AM", "n_props": 10, "n_moved": 0},
@@ -67,7 +66,6 @@ def test_summarize_force_payout_only_when_moved(monkeypatch):
 
 def test_summarize_empty_payout_log_does_not_force_midday(monkeypatch):
     """Quiet mid-day boards must stay Auto even with no jsonl yet."""
-    from utils.bet_windows import summarize_fetch_window
 
     pulls = [
         {"fetched_at": "2026-08-28T01:05:00-04:00", "window": "1AM", "n_props": 10, "n_moved": 0},

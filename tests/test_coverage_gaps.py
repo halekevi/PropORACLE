@@ -9,18 +9,18 @@ sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "scripts" / "grading"))
 sys.path.insert(0, str(ROOT))
 
+from build_grades_html import GRADED_JSON_SPORTS  # noqa: E402
+from build_ticket_eval import (  # noqa: E402
+    ALLOWED_TICKET_SPORTS,
+    TICKET_EVAL_SPORT_ORDER,
+    _leg_match_buckets,
+)
 from prop_hit_tiers import ACTIVE, assign_tier, cover_need, norm_sport  # noqa: E402
 from utils.ticket_70_pool import (  # noqa: E402
     TICKET_SPORTS,
     goblin_70_eligible,
     standard_flex_kind,
     ticket_gate_passes,
-)
-from build_grades_html import GRADED_JSON_SPORTS  # noqa: E402
-from build_ticket_eval import (  # noqa: E402
-    ALLOWED_TICKET_SPORTS,
-    TICKET_EVAL_SPORT_ORDER,
-    _leg_match_buckets,
 )
 
 

@@ -519,7 +519,7 @@ def test_l10_reads_tennis_line_hits_over_10():
 
 
 def test_load_nba_skips_off_season_slate(tmp_path: Path):
-    from rank_best_props_today import load_nba, load_nba1q, load_nba1h
+    from rank_best_props_today import load_nba, load_nba1h, load_nba1q
 
     day = "2026-09-07"
     out = tmp_path / "outputs" / day
