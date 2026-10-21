@@ -18,6 +18,7 @@ from nst_client import (
     LINE_CACHE,
     import_line_csv,
     nst_key,
+    nst_skip_live,
     refresh_line_cache,
     refresh_player_pp_cache,
 )
@@ -114,6 +115,13 @@ def main() -> None:
     if do_pp and not args.skip_pp:
         df = refresh_pp_cache(season_id)
         print(f"✅ NHL PP cache: {len(df)} rows (season_id={season_id})")
+
+    if do_nst and nst_skip_live():
+        print(
+            "[NST] SKIP live Natural Stat Trick (PROPORACLE_SKIP_NST / until 2026-10-21) "
+            f"— keeping on-disk cache at {LINE_CACHE}"
+        )
+        do_nst = False
 
     if do_nst:
         use_cdp = bool(str(args.cdp).strip()) or args.cdp_only

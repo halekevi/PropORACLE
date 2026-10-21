@@ -1234,6 +1234,31 @@ if (-not $SkipPipeline) {
         Write-Host "[NHL] Off-season — skipping NHL PP cache refresh until $NHL_SEASON_RESUME" -ForegroundColor DarkGray
         Write-Log "[NHL] NHL PP cache refresh: SKIP (off-season until $NHL_SEASON_RESUME)"
     }
+    elseif ($env:PROPORACLE_SKIP_NST -in @("1", "true", "yes", "on") -or ($Today -le "2026-10-21" -and $env:PROPORACLE_SKIP_NST -notin @("0", "false", "no", "off"))) {
+        # Natural Stat Trick host down (Cloudflare 521) — PP skater cache still OK via NHL API;
+        # skip any NST live pull for today. Override with PROPORACLE_SKIP_NST=0 tomorrow if needed.
+        if (-not $env:PROPORACLE_SKIP_NST_UNTIL) { $env:PROPORACLE_SKIP_NST_UNTIL = "2026-10-21" }
+        Write-Host "[NHL] Skipping NST live fetch through $($env:PROPORACLE_SKIP_NST_UNTIL) (use cache / NHL API PP only)" -ForegroundColor Yellow
+        Write-Log "[NHL] NHL NST refresh: SKIP (PROPORACLE_SKIP_NST_UNTIL=$($env:PROPORACLE_SKIP_NST_UNTIL))"
+        if ($env:NST_ACCESS_KEY) {
+            Write-Host "[NHL] Refreshing NHL PP skater cache only (--refresh-pp --skip NST)..." -ForegroundColor Cyan
+            Push-Location $Root
+            try {
+                & py -3.14 Sports\NHL\scripts\refresh_nst_cache.py --season 20252026 --refresh-pp
+                if ($LASTEXITCODE -ne 0) {
+                    Write-Host "[NHL] WARN: NHL PP cache refresh failed (exit $LASTEXITCODE)" -ForegroundColor Yellow
+                    Write-Log "[NHL] NHL PP cache refresh: WARN (exit $LASTEXITCODE)"
+                } else {
+                    Write-Log "[NHL] NHL PP cache refresh: OK (NST skipped)"
+                }
+            } catch {
+                Write-Host "[NHL] WARN: NHL PP cache refresh failed" -ForegroundColor Yellow
+                Write-Log "[NHL] NHL PP cache refresh: WARN ($($_.Exception.Message))"
+            } finally {
+                Pop-Location
+            }
+        }
+    }
     elseif ($env:NST_ACCESS_KEY) {
         Write-Host "[NHL] Refreshing NHL PP skater cache (NST D-pairs run in pipeline step 4b-pre)..." -ForegroundColor Cyan
         Write-Log "[NHL] NHL PP cache refresh: START"

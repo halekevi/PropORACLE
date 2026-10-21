@@ -42,6 +42,31 @@ def nst_key() -> str:
     return (os.environ.get("NST_ACCESS_KEY") or os.environ.get("NST_KEY") or "").strip()
 
 
+def nst_skip_live() -> bool:
+    """
+    When True, never hit data.naturalstattrick.com — use on-disk caches only.
+
+    PROPORACLE_SKIP_NST=1 forces skip; =0 forces live.
+    Else PROPORACLE_SKIP_NST_UNTIL=YYYY-MM-DD (default 2026-10-21) skips through that ET date
+    while NST is down (Cloudflare 521).
+    """
+    flag = (os.environ.get("PROPORACLE_SKIP_NST") or "").strip().lower()
+    if flag in ("1", "true", "yes", "on"):
+        return True
+    if flag in ("0", "false", "no", "off"):
+        return False
+    until = (os.environ.get("PROPORACLE_SKIP_NST_UNTIL") or "2026-10-21").strip()
+    if not until:
+        return False
+    try:
+        from zoneinfo import ZoneInfo
+
+        today = datetime.now(ZoneInfo("America/New_York")).date().isoformat()
+    except Exception:
+        today = datetime.utcnow().date().isoformat()
+    return today <= until[:10]
+
+
 def _season_param(season_id: int) -> str:
     """NHL seasonId 20242025 -> NST fromseason/thruseason 20242025."""
     return str(int(season_id))
@@ -132,6 +157,9 @@ def _linestats_params(
 
 
 def fetch_html(path: str, params: dict) -> Optional[str]:
+    if nst_skip_live():
+        log.warning("NST live fetch skipped (PROPORACLE_SKIP_NST / until date) — using cache only")
+        return None
     key = nst_key()
     if not key:
         log.warning("NST_ACCESS_KEY not set — skipping live NST fetch")
@@ -183,6 +211,9 @@ def browser_fetch_html(
       2. Navigate to naturalstattrick.com, log in
       3. Run: py Sports/NHL/scripts/refresh_nst_cache.py --cdp
     """
+    if nst_skip_live():
+        log.warning("NST CDP fetch skipped (PROPORACLE_SKIP_NST / until date) — using cache only")
+        return None
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:

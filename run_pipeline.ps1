@@ -1233,6 +1233,16 @@ function Invoke-NHLDpairsRefresh {
         Write-Host "[NHL] step4b-pre D-pairs: WARN (missing refresh_nst_cache.py)" -ForegroundColor Yellow
         return
     }
+    # NST host may be down (Cloudflare 521) — skip live pairings through 2026-10-21.
+    if (-not $env:PROPORACLE_SKIP_NST_UNTIL) { $env:PROPORACLE_SKIP_NST_UNTIL = "2026-10-21" }
+    $skipNst = ($env:PROPORACLE_SKIP_NST -in @("1", "true", "yes", "on")) -or (
+        $env:PROPORACLE_SKIP_NST -notin @("0", "false", "no", "off") -and
+        ((Get-Date).ToString("yyyy-MM-dd") -le $env:PROPORACLE_SKIP_NST_UNTIL)
+    )
+    if ($skipNst) {
+        Write-Host "[NHL] step4b-pre D-pairs: SKIP (NST live off through $($env:PROPORACLE_SKIP_NST_UNTIL) — stale cache OK)" -ForegroundColor Yellow
+        return
+    }
     Push-Location $RepoRoot
     try {
         Write-Host "  --> NHL Step 4b-pre - NST D-pairs (slate teams)" -ForegroundColor Yellow
@@ -3204,6 +3214,15 @@ $NHLJob = Start-Job -ScriptBlock {
     }
     function Invoke-NHLDpairsRefresh-Job {
         param([string]$Step4Path)
+        if (-not $env:PROPORACLE_SKIP_NST_UNTIL) { $env:PROPORACLE_SKIP_NST_UNTIL = "2026-10-21" }
+        $skipNst = ($env:PROPORACLE_SKIP_NST -in @("1", "true", "yes", "on")) -or (
+            $env:PROPORACLE_SKIP_NST -notin @("0", "false", "no", "off") -and
+            ((Get-Date).ToString("yyyy-MM-dd") -le $env:PROPORACLE_SKIP_NST_UNTIL)
+        )
+        if ($skipNst) {
+            Write-Output "[NHL] step4b-pre D-pairs: SKIP (NST live off through $($env:PROPORACLE_SKIP_NST_UNTIL))"
+            return
+        }
         if (-not $env:NST_ACCESS_KEY) {
             Write-Output "[NHL] step4b-pre D-pairs: SKIP (NST_ACCESS_KEY not set)"
             return
