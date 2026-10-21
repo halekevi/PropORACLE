@@ -98,9 +98,32 @@
     return underSearchPlayers(block).length > 0;
   }
 
+  function resolveSlateData() {
+    if (global.SLATE_DATA && typeof global.SLATE_DATA === "object") return global.SLATE_DATA;
+    try {
+      if (typeof SLATE_DATA !== "undefined" && SLATE_DATA && typeof SLATE_DATA === "object") {
+        global.SLATE_DATA = SLATE_DATA;
+        return SLATE_DATA;
+      }
+    } catch (_) {}
+    return null;
+  }
+
+  function resolveAllSlate() {
+    if (Array.isArray(global.ALL_SLATE)) return global.ALL_SLATE;
+    try {
+      if (typeof ALL_SLATE !== "undefined" && Array.isArray(ALL_SLATE)) {
+        global.ALL_SLATE = ALL_SLATE;
+        return ALL_SLATE;
+      }
+    } catch (_) {}
+    return [];
+  }
+
   function slateRowsForSport(sport) {
     try {
-      if (global.SLATE_DATA && Array.isArray(global.SLATE_DATA[sport])) return global.SLATE_DATA[sport];
+      const store = resolveSlateData();
+      if (store && Array.isArray(store[sport])) return store[sport];
     } catch (_) {}
     return [];
   }
@@ -601,9 +624,10 @@
 
   /** Per-sport slate rows (lazy panel load) with ALL_SLATE fallback. */
   function slateRowsForOpponent(sport) {
-    const sportRows = global.SLATE_DATA?.[sport];
+    const store = resolveSlateData();
+    const sportRows = store?.[sport];
     if (Array.isArray(sportRows) && sportRows.length) return sportRows;
-    const all = global.ALL_SLATE;
+    const all = resolveAllSlate();
     if (!Array.isArray(all) || !all.length) return [];
     const sportKey = String(sport || "").toLowerCase();
     return all.filter((r) => {
@@ -736,9 +760,15 @@
       const body = await res.json();
       const rows = Array.isArray(body?.rows) ? body.rows : Array.isArray(body) ? body : [];
       if (!rows.length) return;
-      global.SLATE_DATA = global.SLATE_DATA || {};
-      if (!Array.isArray(global.SLATE_DATA[sport]) || !global.SLATE_DATA[sport].length) {
-        global.SLATE_DATA[sport] = rows;
+      const store = resolveSlateData() || (global.SLATE_DATA = {});
+      if (!Array.isArray(store[sport]) || !store[sport].length) {
+        store[sport] = rows;
+      }
+      // Prefer the page's _setSlateSportRows so explorer + Matchup Edge share one array.
+      if (typeof global._setSlateSportRows === "function") {
+        try {
+          global._setSlateSportRows(sport, rows);
+        } catch (_) {}
       }
     } catch (_) {}
   }

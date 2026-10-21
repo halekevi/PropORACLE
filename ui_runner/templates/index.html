@@ -2475,11 +2475,18 @@ body > nav.snav.glass-card {
 </div>
 
 <script src="/static/site-nav-chrome.js?v=20260412" defer></script>
-<script src="/static/matchup-edge.js?v=20261021oppauto" defer></script>
+<script src="/static/matchup-edge.js?v=20261021oppwin" defer></script>
 <script src="/static/top_edges_badge_board.js?v=20261020l5eq5b" defer></script>
 <script>
 // ── Real PLAYER_DATA (last 10 games) ──────────────────────
 let ALL_SLATE = [];
+// Matchup Edge (and other deferred scripts) read window.ALL_SLATE / window.SLATE_DATA.
+// Top-level let/const are NOT window properties — keep these in sync on every assign.
+function setAllSlate(rows) {
+  ALL_SLATE = Array.isArray(rows) ? rows : [];
+  window.ALL_SLATE = ALL_SLATE;
+}
+setAllSlate([]);
 let TOP_EDGES_POOL = null;
 let _topEdgesPoolPromise = null;
 const PLAYER_DATA = {};
@@ -3671,7 +3678,7 @@ async function loadSlateData() {
       };
       if (!SLATE_CARDS_POPULATED) {
         SLATE_DEBUG_META = ticketMeta;
-        ALL_SLATE = (d.picks || []).map(mapApiPickToSlateRow).filter(Boolean);
+        setAllSlate((d.picks || []).map(mapApiPickToSlateRow).filter(Boolean));
         for (const p of (d.picks || [])) {
           if (p.player) {
             const lineNum = bookLineNumForPick(p);
@@ -5173,6 +5180,7 @@ document.head.insertAdjacentHTML("beforeend",`<style>
 
 // ── Slate Panel expand / sort / filter ───────────────────
 const SLATE_DATA  = {};   // raw rows per sport
+window.SLATE_DATA = SLATE_DATA;
 const SLATE_STATE = {};   // sort + filter state per sport
 const RENDER_SCHEDULED = {};
 const RENDER_TOKEN = {};
@@ -5506,10 +5514,12 @@ function _setSlateSportRows(sport, rows) {
   }
   SLATE_DATA[sport] = raw.filter((r) => !_slateRowIsFantasyProp(r, sport));
   SLATE_DATA[sport].sort((a,b) => Math.abs(b?.edge||0) - Math.abs(a?.edge||0));
+  window.SLATE_DATA = SLATE_DATA;
   if (typeof MatchupEdge !== 'undefined' && MatchupEdge.sports?.includes(sport)) {
     MatchupEdge.refreshFromSlate?.(sport);
   }
 }
+window._setSlateSportRows = _setSlateSportRows;
 
 function _v(row, keys) {
   for (const k of keys) {
@@ -5573,7 +5583,7 @@ function syncCardsFromCombinedRows(rows) {
     });
   }).filter((p) => p && p.player && p.prop && Number.isFinite(p.edge));
   if (!mapped.length) return false;
-  ALL_SLATE = mapped;
+  setAllSlate(mapped);
   SLATE_CARDS_POPULATED = true;
   seedPlayerDataFromCardPicks(mapped);
   renderEdges();
@@ -5648,7 +5658,7 @@ function syncCardsFromCombinedSheet(columns, rows) {
     };
   }).filter((p) => p.player && p.prop && Number.isFinite(p.edge));
   if (!mapped.length) return false;
-  ALL_SLATE = mapped;
+  setAllSlate(mapped);
   SLATE_CARDS_POPULATED = true;
   seedPlayerDataFromCardPicks(mapped);
   renderEdges();
