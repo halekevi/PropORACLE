@@ -715,6 +715,34 @@
     return { opp, oppName, mu, opponent_def_rank: defRank, opponent_def_tier: defTier };
   }
 
+  function applyOpponentSelect(sport, team) {
+    const data = state[sport]?.data;
+    const oppSel = document.getElementById(pid(sport, "opp"));
+    if (!oppSel || !data || !team) return { opp: "" };
+    const { opp, oppName } = opponentForTeam(sport, team);
+    oppSel.innerHTML = opp
+      ? '<option value="' + esc(opp) + '" selected>' + esc(oppName || opp) + "</option>"
+      : '<option value="">—</option>';
+    // Keep disabled (auto-filled from slate) but show the resolved club.
+    oppSel.disabled = true;
+    return { opp, oppName };
+  }
+
+  async function ensureSlateRowsForOpponent(sport) {
+    if (slateRowsForOpponent(sport).length) return;
+    try {
+      const res = await fetch("/api/slate-sport/" + encodeURIComponent(sport), { cache: "no-store" });
+      if (!res.ok) return;
+      const body = await res.json();
+      const rows = Array.isArray(body?.rows) ? body.rows : Array.isArray(body) ? body : [];
+      if (!rows.length) return;
+      global.SLATE_DATA = global.SLATE_DATA || {};
+      if (!Array.isArray(global.SLATE_DATA[sport]) || !global.SLATE_DATA[sport].length) {
+        global.SLATE_DATA[sport] = rows;
+      }
+    } catch (_) {}
+  }
+
   function onTeamChange(sport) {
     const data = state[sport]?.data;
     const team = document.getElementById(pid(sport, "team"))?.value;
@@ -730,11 +758,15 @@
         catSel.value = teamCats[0];
       }
     }
-    const { opp, oppName } = opponentForTeam(sport, team);
-    oppSel.innerHTML = opp
-      ? '<option value="' + esc(opp) + '" selected>' + esc(oppName || opp) + "</option>"
-      : '<option value="">—</option>';
+    const { opp } = applyOpponentSelect(sport, team);
     render(sport);
+    // If matchup JSON still has a blank opp, pull tonight's slate and refill.
+    if (!opp) {
+      ensureSlateRowsForOpponent(sport).then(() => {
+        const again = applyOpponentSelect(sport, team);
+        if (again.opp) render(sport);
+      });
+    }
   }
 
   function currentBlock(sport) {

@@ -6074,24 +6074,47 @@ def _matchup_edge_slate_paths(sport_key: str) -> list[Path]:
     sk = str(sport_key or "").strip().lower()
     name = f"slate_sport_{sk}.json"
     return [
+        RUNTIME_DIR / name,
         TEMPLATES_DIR / name,
         UI_DIR / "data" / name,
         _MOBILE_WWW_DIR / name,
         BASE_DIR / "mobile" / "www" / name,
+        # Same explorer source as /api/slate-sport/<sport> (Railway often has this
+        # when per-sport slate_sport_*.json is missing from the deploy image).
+        RUNTIME_DIR / "slate_latest.json",
+        TEMPLATES_DIR / "slate_latest.json",
+        _MOBILE_WWW_DIR / "slate_latest.json",
     ]
 
 
 def _matchup_edge_slate_mtime(sport_key: str) -> float:
+    best = 0.0
     for p in _matchup_edge_slate_paths(sport_key):
         try:
             if p.is_file():
-                return float(p.stat().st_mtime)
+                best = max(best, float(p.stat().st_mtime))
         except OSError:
             continue
-    return 0.0
+    return best
 
 
 def _load_matchup_edge_slate_rows(sport_key: str) -> list[dict]:
+    sk = str(sport_key or "").strip().lower()
+
+    # Prefer the live explorer payload (slate_latest / ticket_eval) — this is what
+    # /api/slate-sport uses on Railway, and it always has tonight's team/opp cells.
+    try:
+        payload = _selected_slate_sport_payload()
+        sports = (payload or {}).get("sports") or {}
+        rows = list(sports.get(sk) or [])
+        if sk == "cbb":
+            rows = rows + list(sports.get("wcbb") or [])
+        rows = [r for r in rows if isinstance(r, dict)]
+        if rows:
+            return rows
+    except Exception:
+        pass
+
     for path in _matchup_edge_slate_paths(sport_key):
         if not path.is_file():
             continue
@@ -6102,7 +6125,14 @@ def _load_matchup_edge_slate_rows(sport_key: str) -> list[dict]:
         if isinstance(raw, list):
             rows = [r for r in raw if isinstance(r, dict)]
         elif isinstance(raw, dict):
-            rows = [r for r in (raw.get("rows") or raw.get("picks") or []) if isinstance(r, dict)]
+            if path.name == "slate_latest.json":
+                sports = raw.get("sports") or {}
+                rows = list(sports.get(sk) or [])
+                if sk == "cbb":
+                    rows = rows + list(sports.get("wcbb") or [])
+                rows = [r for r in rows if isinstance(r, dict)]
+            else:
+                rows = [r for r in (raw.get("rows") or raw.get("picks") or []) if isinstance(r, dict)]
         else:
             rows = []
         if rows:
@@ -6296,10 +6326,48 @@ def _enrich_matchup_edge_opponents(payload: dict[str, Any], sport_key: str) -> d
                 opp_rank = opp_obj.get("stat_def_rank")
                 if opp_rank is None:
                     opp_rank = opp_obj.get("def_rank")
+                # Re-stamp ranks + reclassify edges now that opponent D is known.
+                # Build-time JSON often has blank opp → all NEUTRAL; selecting a team
+                # should surface real TOP/OK OVER|UNDER once we fill tonight's matchup.
+                try:
+                    from utils.matchup_edge.classify import classify_edge
+                except Exception:
+                    classify_edge = None  # type: ignore
+                n_teams = max(1, len(payload.get("teams") or []) or 30)
+                cat_thresholds = {
+                    str(c.get("id") or "").lower(): float(c.get("threshold") or 0)
+                    for c in (payload.get("categories") or [])
+                    if isinstance(c, dict)
+                }
                 for pl in block.get("players") or []:
                     if not isinstance(pl, dict):
                         continue
                     stamp_player_ranks(pl, opp_def_rank=opp_rank, cat_short=cid[:4] if cid else "")
+                    if classify_edge is None:
+                        continue
+                    try:
+                        thr = cat_thresholds.get(cid, 0.0)
+                        hist = {
+                            "overperform_vs_weak": bool(pl.get("overperform_vs_weak")),
+                            "fades_vs_elite": bool(pl.get("fades_vs_elite")),
+                            "avg_delta_vs_elite": pl.get("avg_delta_vs_elite"),
+                        }
+                        edge, note = classify_edge(
+                            float(pl.get("season_avg") or 0),
+                            thr,
+                            opp_rank,
+                            n_teams,
+                            hist=hist,
+                            cat_id=cid,
+                            pp_line=pl.get("pp_line"),
+                            pp_edge=pl.get("pp_edge"),
+                            rank_on_team=pl.get("rank_on_team"),
+                            bottom_rank_on_team=pl.get("bottom_rank_on_team"),
+                        )
+                        pl["edge"] = edge
+                        pl["notes"] = note
+                    except Exception:
+                        pass
         except Exception:
             pass
 
@@ -6428,7 +6496,7 @@ def api_matchup_edge(sport: str):
 
     try:
         return _gz_json_response(
-            f"matchup-edge-v4:{sport_key}:{_template_json_disk_mtime(json_name) or 0}:{_matchup_edge_slate_mtime(sport_key)}",
+            f"matchup-edge-v5:{sport_key}:{_template_json_disk_mtime(json_name) or 0}:{_matchup_edge_slate_mtime(sport_key)}",
             _build,
             ttl=120.0,
         )
