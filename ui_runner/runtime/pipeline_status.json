@@ -2,21 +2,21 @@
   "nba": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 19:48:11",
+      "modified": "2026-10-21 21:11:57",
       "no_slate": false
     }
   },
   "nba1h": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 19:48:11",
+      "modified": "2026-10-21 21:11:57",
       "no_slate": false
     }
   },
   "nba1q": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 19:48:11",
+      "modified": "2026-10-21 21:11:57",
       "no_slate": false
     }
   },
@@ -29,23 +29,23 @@
   },
   "cfb": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 21:11:57",
+      "no_slate": false
     }
   },
   "nhl": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 21:11:57",
+      "no_slate": false
     }
   },
   "soccer": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 21:11:57",
+      "no_slate": false
     }
   },
   "mlb": {
@@ -57,15 +57,15 @@
   },
   "nfl": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 21:11:57",
+      "no_slate": false
     }
   },
   "tennis": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 19:48:11",
+      "modified": "2026-10-21 21:11:57",
       "no_slate": false
     }
   },
@@ -79,28 +79,28 @@
   "wnba": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 19:48:11",
+      "modified": "2026-10-21 21:11:57",
       "no_slate": false
     }
   },
   "wnba1h": {
     "slate": {
-      "exists": true,
-      "modified": "2026-10-21 19:48:11",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "wnba1q": {
     "slate": {
-      "exists": true,
-      "modified": "2026-10-21 19:48:11",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "combined": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 19:48:11",
+      "modified": "2026-10-21 21:11:57",
       "no_slate": false
     }
   }
