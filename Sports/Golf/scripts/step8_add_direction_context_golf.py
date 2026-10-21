@@ -312,6 +312,22 @@ def main() -> None:
     out["direction"] = final_dir
     out["bet_direction"] = final_dir
     out["void_reason"] = ""
+    # Hold bad scorecard attaches (flags-not-drops): keep the row, blank direction.
+    suspect = pd.Series(False, index=out.index)
+    if "golf_attach_suspect" in out.columns:
+        suspect = (
+            pd.to_numeric(out["golf_attach_suspect"], errors="coerce").fillna(0).astype(int).eq(1)
+        )
+    if "unsupported_reason" in out.columns:
+        suspect = suspect | out["unsupported_reason"].astype(str).str.strip().eq(
+            "golf_attach_suspect"
+        )
+    if suspect.any():
+        out.loc[suspect, "void_reason"] = "golf_attach_suspect"
+        out.loc[suspect, "final_bet_direction"] = ""
+        out.loc[suspect, "direction"] = ""
+        out.loc[suspect, "bet_direction"] = ""
+        print(f"[Golf step8] held golf_attach_suspect rows: {int(suspect.sum())}")
 
     hr5b = pd.to_numeric(out.get("line_hit_rate_over_ou_5", np.nan), errors="coerce")
     hr10b = pd.to_numeric(out.get("line_hit_rate_over_ou_10", np.nan), errors="coerce").fillna(hr5b)
