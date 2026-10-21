@@ -318,7 +318,9 @@ try {
         git add -- $rel 2>&1 | Out-Null
     }
     $msg = if ($CommitMessage) { $CommitMessage } else { "chore: live tickets/slate $(Get-Date -Format 'yyyy-MM-dd HH:mm')" }
-    git commit -m $msg 2>&1 | Out-Null
+    # Pathspec: commit ONLY the live JSON staged above. A bare commit sweeps in anything another
+    # process has staged in this checkout (that is how Invoke-LoggedPwsh.ps1 got deleted on 2026-09-10).
+    git commit -m $msg -- $toPublish 2>&1 | Out-Null
     if ($LASTEXITCODE -eq 0) {
         $pushOut = git push origin main 2>&1
         foreach ($line in $pushOut) { Write-Host "    $line" -ForegroundColor DarkGray }

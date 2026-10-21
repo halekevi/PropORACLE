@@ -1359,7 +1359,7 @@ if ($env:PROPORACLE_SKIP_GRADES_GIT_PUSH -ne "1") {
             git add -- $gpRel 2>$null | Out-Null
             git diff --cached --quiet
             if ($LASTEXITCODE -ne 0) {
-                git commit -m "data: graded props $Date"
+                git commit -m "data: graded props $Date" -- $gpRel
                 if ($LASTEXITCODE -eq 0) {
                     [void](Push-PropOracleToMainIfOnMain -Context "graded props")
                 }
@@ -1746,10 +1746,11 @@ if ($env:PROPORACLE_SKIP_GRADES_GIT_PUSH -ne "1") {
             $teLongRel = "ui_runner/templates/ticket_eval_long_parlay_$Date.html"
             $teHighRel = "ui_runner/templates/ticket_eval_high_leg_$Date.html"
             $seRel = "ui_runner/templates/slate_eval_$Date.html"
-            if (Test-Path $TeHtml) { git add -f -- $teRel 2>$null | Out-Null }
-            if (Test-Path $TeLongHtml) { git add -f -- $teLongRel 2>$null | Out-Null }
-            if (Test-Path $TeHighHtml) { git add -f -- $teHighRel 2>$null | Out-Null }
-            if (Test-Path $SeHtml) { git add -f -- $seRel 2>$null | Out-Null }
+            $evalStaged = @()
+            if (Test-Path $TeHtml) { git add -f -- $teRel 2>$null | Out-Null; $evalStaged += $teRel }
+            if (Test-Path $TeLongHtml) { git add -f -- $teLongRel 2>$null | Out-Null; $evalStaged += $teLongRel }
+            if (Test-Path $TeHighHtml) { git add -f -- $teHighRel 2>$null | Out-Null; $evalStaged += $teHighRel }
+            if (Test-Path $SeHtml) { git add -f -- $seRel 2>$null | Out-Null; $evalStaged += $seRel }
             git diff --cached --quiet
             if ($LASTEXITCODE -ne 0) {
                 git commit -m "data: ticket eval + slate eval grades $Date"
@@ -1789,7 +1790,7 @@ if (Test-Path $DateDir) {
                 git add -- $gsPath
                 git diff --cached --quiet
                 if ($LASTEXITCODE -ne 0) {
-                    git commit -m "data: graded slate $Date"
+                    git commit -m "data: graded slate $Date" -- $gsPath
                     if (Push-PropOracleToMainIfOnMain -Context "graded slate") {
                         Write-Host "[GRADER] Graded slate pushed for $Date" -ForegroundColor Green
                     }

@@ -1447,7 +1447,7 @@ function Publish-LiveSiteJsonToMain {
         }
 
         $msg = if ($CommitMessage) { $CommitMessage } else { "chore: live tickets/slate $Date $(Get-Date -Format 'HH:mm')" }
-        git commit -m $msg 2>&1 | Out-Null
+        git commit -m $msg -- $toPublish 2>&1 | Out-Null
         if ($LASTEXITCODE -eq 0) {
             $pushOut = git push origin main 2>&1
             foreach ($line in $pushOut) { Write-Host "    $line" -ForegroundColor DarkGray }
@@ -1555,7 +1555,8 @@ function Run-GitPushGradeArtifacts {
             Write-Host "    staged: $rel" -ForegroundColor DarkGray
         }
         $msg = "chore: grades $GradeDate $(Get-Date -Format 'HH:mm')"
-        git commit -m $msg 2>&1 | Out-Null
+        # Pathspec: only the grade files staged above (see Publish-LiveSite.ps1 for why).
+        git commit -m $msg -- $toStage 2>&1 | Out-Null
         if ($LASTEXITCODE -eq 0) {
             $pushOut = git push origin main 2>&1
             foreach ($line in $pushOut) { Write-Host "    $line" -ForegroundColor DarkGray }
