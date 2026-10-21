@@ -144,6 +144,41 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
     df2["last5_under"] = l5_under
     df2["l5_over"] = l5_over
     df2["l5_under"] = l5_under
+    # Push-aware decided split (shared helper) — Ford-style integer lines.
+    from utils.golf_windows import counts_from_stat_g_row
+
+    push_l: list[float] = []
+    decided_l: list[float] = []
+    thin_l: list[float] = []
+    hr_dec_o: list[float] = []
+    hr_dec_u: list[float] = []
+    line_s = pd.to_numeric(df2.get("line"), errors="coerce")
+    for idx in df2.index:
+        ln = line_s.at[idx]
+        if pd.isna(ln):
+            push_l.append(np.nan)
+            decided_l.append(np.nan)
+            thin_l.append(np.nan)
+            hr_dec_o.append(np.nan)
+            hr_dec_u.append(np.nan)
+            continue
+        c = counts_from_stat_g_row(df2.loc[idx], line=float(ln), n=5)
+        push_l.append(float(c.push))
+        decided_l.append(float(c.decided))
+        thin_l.append(1.0 if c.thin_decided else 0.0)
+        hr_dec_o.append(
+            c.hit_rate_decided_over if c.hit_rate_decided_over is not None else np.nan
+        )
+        hr_dec_u.append(
+            c.hit_rate_decided_under if c.hit_rate_decided_under is not None else np.nan
+        )
+    df2["l5_push"] = push_l
+    df2["last5_push"] = push_l
+    df2["l5_decided"] = decided_l
+    df2["last5_decided"] = decided_l
+    df2["thin_decided"] = thin_l
+    df2["hit_rate_decided_over_5"] = hr_dec_o
+    df2["hit_rate_decided_under_5"] = hr_dec_u
 
     if "line" in df2.columns:
         df2 = finalize_l10_ui_columns(df2, line_col="line")
@@ -167,7 +202,9 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "sport_signal_maturity", "confidence_tier", "confidence_score", "confidence_note",
         "line_hit_rate_over_ou_5", "line_hit_rate_over_ou_10",
         "stat_last5_avg", "stat_season_avg",
-        "last5_over", "last5_under", "l5_over", "l5_under",
+        "last5_over", "last5_under", "last5_push", "last5_decided",
+        "l5_over", "l5_under", "l5_push", "l5_decided", "thin_decided",
+        "hit_rate_decided_over_5", "hit_rate_decided_under_5",
         "stat_g1", "stat_g2", "stat_g3", "stat_g4", "stat_g5",
         "stat_g6", "stat_g7", "stat_g8", "stat_g9", "stat_g10",
         "l10_over", "l10_under", "l10_over_pct", "l10_streak", "l10_games_played",
@@ -187,9 +224,22 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
     for col in ["stat_last5_avg", "stat_season_avg"]:
         if col in clean.columns:
             clean[col] = pd.to_numeric(clean[col], errors="coerce").round(1)
-    for col in ["last5_over", "last5_under", "l5_over", "l5_under"]:
+    for col in [
+        "last5_over",
+        "last5_under",
+        "last5_push",
+        "last5_decided",
+        "l5_over",
+        "l5_under",
+        "l5_push",
+        "l5_decided",
+        "thin_decided",
+    ]:
         if col in clean.columns:
             clean[col] = pd.to_numeric(clean[col], errors="coerce").astype("Int64")
+    for col in ["hit_rate_decided_over_5", "hit_rate_decided_under_5"]:
+        if col in clean.columns:
+            clean[col] = pd.to_numeric(clean[col], errors="coerce").round(4)
 
     tier_order = {"A": 0, "B": 1, "C": 2, "D": 3}
     clean["_tier_sort"] = clean["tier"].map(tier_order)
@@ -208,6 +258,10 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "line_hit_rate_over_ou_10": "Hit Rate (10g)",
         "stat_last5_avg": "Last 5 Avg", "stat_season_avg": "Season Avg",
         "last5_over": "L5 Over", "last5_under": "L5 Under",
+        "last5_push": "L5 Push", "last5_decided": "L5 Decided",
+        "thin_decided": "Thin Decided",
+        "hit_rate_decided_over_5": "Hit Rate Decided Over (5)",
+        "hit_rate_decided_under_5": "Hit Rate Decided Under (5)",
         "stat_g1": "G1", "stat_g2": "G2", "stat_g3": "G3",
         "stat_g4": "G4", "stat_g5": "G5", "stat_g6": "G6",
         "stat_g7": "G7", "stat_g8": "G8", "stat_g9": "G9", "stat_g10": "G10",

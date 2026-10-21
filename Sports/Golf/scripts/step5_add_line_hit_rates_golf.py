@@ -22,6 +22,7 @@ _REPO = Path(__file__).resolve().parents[3]
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 from scripts.l10_streak_utils import finalize_l10_ui_columns
+from utils.golf_windows import count_vs_line
 
 
 def _get_stat_cols(df: pd.DataFrame, n: int) -> List[str]:
@@ -32,24 +33,65 @@ def _compute_hits(
     df: pd.DataFrame,
     stat_cols: List[str],
     line_col: str,
-) -> Tuple[pd.Series, pd.Series, pd.Series, pd.Series, pd.Series, pd.Series, pd.Series, pd.Series]:
-    sub = df[stat_cols].apply(pd.to_numeric, errors="coerce")
+) -> Tuple[pd.Series, ...]:
+    """Row-wise push-aware counts via shared ``count_vs_line`` helper.
+
+    Returns played, over, under, push, orp, urp, orou, urou, decided, thin.
+    ``orou`` / ``urou`` are decided rates (pushes out of the denominator).
+    """
     line = pd.to_numeric(df[line_col], errors="coerce")
-    played = sub.notna().sum(axis=1).astype(float)
-    over = sub.gt(line, axis=0).sum(axis=1).astype(float)
-    under = sub.lt(line, axis=0).sum(axis=1).astype(float)
-    push = sub.eq(line, axis=0).sum(axis=1).astype(float)
-    denom_played = played.replace(0, np.nan)
-    denom_ou = (over + under).replace(0, np.nan)
+    played_l: list[float] = []
+    over_l: list[float] = []
+    under_l: list[float] = []
+    push_l: list[float] = []
+    decided_l: list[float] = []
+    thin_l: list[float] = []
+    orp_l: list[float] = []
+    urp_l: list[float] = []
+    orou_l: list[float] = []
+    urou_l: list[float] = []
+    for idx in df.index:
+        ln = line.at[idx] if idx in line.index else np.nan
+        vals = [df.at[idx, c] for c in stat_cols]
+        if pd.isna(ln):
+            nan = np.nan
+            for bucket in (
+                played_l,
+                over_l,
+                under_l,
+                push_l,
+                decided_l,
+                thin_l,
+                orp_l,
+                urp_l,
+                orou_l,
+                urou_l,
+            ):
+                bucket.append(nan)
+            continue
+        c = count_vs_line(vals, float(ln))
+        played_l.append(float(c.played))
+        over_l.append(float(c.over))
+        under_l.append(float(c.under))
+        push_l.append(float(c.push))
+        decided_l.append(float(c.decided))
+        thin_l.append(1.0 if c.thin_decided else 0.0)
+        orp_l.append((c.over / c.played) if c.played else np.nan)
+        urp_l.append((c.under / c.played) if c.played else np.nan)
+        orou_l.append(c.hit_rate_decided_over if c.hit_rate_decided_over is not None else np.nan)
+        urou_l.append(c.hit_rate_decided_under if c.hit_rate_decided_under is not None else np.nan)
+    idx = df.index
     return (
-        played,
-        over,
-        under,
-        push,
-        over / denom_played,
-        under / denom_played,
-        over / denom_ou,
-        under / denom_ou,
+        pd.Series(played_l, index=idx, dtype=float),
+        pd.Series(over_l, index=idx, dtype=float),
+        pd.Series(under_l, index=idx, dtype=float),
+        pd.Series(push_l, index=idx, dtype=float),
+        pd.Series(orp_l, index=idx, dtype=float),
+        pd.Series(urp_l, index=idx, dtype=float),
+        pd.Series(orou_l, index=idx, dtype=float),
+        pd.Series(urou_l, index=idx, dtype=float),
+        pd.Series(decided_l, index=idx, dtype=float),
+        pd.Series(thin_l, index=idx, dtype=float),
     )
 
 
@@ -110,31 +152,55 @@ def main() -> None:
         "line_hits_over_5",
         "line_hits_under_5",
         "line_hits_push_5",
+        "line_hits_decided_5",
         "line_hit_rate_over_5",
         "line_hit_rate_under_5",
         "line_hit_rate_over_ou_5",
         "line_hit_rate_under_ou_5",
+        "hit_rate_decided_over_5",
+        "hit_rate_decided_under_5",
         "last5_over",
         "last5_under",
         "last5_push",
+        "last5_decided",
+        "l5_decided",
+        "thin_decided",
     ]
     _ensure_cols(df, out5_cols)
 
-    played5, over5, under5, push5, orp5, urp5, orou5, urou5 = _compute_hits(df.loc[ok5], stat5, args.line_col)
+    (
+        played5,
+        over5,
+        under5,
+        push5,
+        orp5,
+        urp5,
+        orou5,
+        urou5,
+        decided5,
+        thin5,
+    ) = _compute_hits(df.loc[ok5], stat5, args.line_col)
     df.loc[ok5, "line_games_played_5"] = played5.values
     df.loc[ok5, "line_hits_over_5"] = over5.values
     df.loc[ok5, "line_hits_under_5"] = under5.values
     df.loc[ok5, "line_hits_push_5"] = push5.values
+    df.loc[ok5, "line_hits_decided_5"] = decided5.values
     df.loc[ok5, "line_hit_rate_over_5"] = orp5.values
     df.loc[ok5, "line_hit_rate_under_5"] = urp5.values
     df.loc[ok5, "line_hit_rate_over_ou_5"] = orou5.values
     df.loc[ok5, "line_hit_rate_under_ou_5"] = urou5.values
+    df.loc[ok5, "hit_rate_decided_over_5"] = orou5.values
+    df.loc[ok5, "hit_rate_decided_under_5"] = urou5.values
     df.loc[ok5, "last5_over"] = over5.values
     df.loc[ok5, "last5_under"] = under5.values
     df.loc[ok5, "last5_push"] = push5.values
-    _ensure_cols(df, ["l5_over", "l5_under"])
+    df.loc[ok5, "last5_decided"] = decided5.values
+    df.loc[ok5, "l5_decided"] = decided5.values
+    df.loc[ok5, "thin_decided"] = thin5.values
+    _ensure_cols(df, ["l5_over", "l5_under", "l5_push"])
     df.loc[ok5, "l5_over"] = over5.values
     df.loc[ok5, "l5_under"] = under5.values
+    df.loc[ok5, "l5_push"] = push5.values
 
     stat10 = _get_stat_cols(df, 10)
     if stat10:
@@ -146,26 +212,46 @@ def main() -> None:
                 "line_hits_over_10",
                 "line_hits_under_10",
                 "line_hits_push_10",
+                "line_hits_decided_10",
                 "line_hit_rate_over_10",
                 "line_hit_rate_under_10",
                 "line_hit_rate_over_ou_10",
                 "line_hit_rate_under_ou_10",
+                "hit_rate_decided_over_10",
+                "hit_rate_decided_under_10",
+                "thin_decided_10",
             ]
             _ensure_cols(df, out10_cols)
-            played10, over10, under10, push10, orp10, urp10, orou10, urou10 = _compute_hits(
-                df.loc[ok10], stat10, args.line_col
-            )
+            (
+                played10,
+                over10,
+                under10,
+                push10,
+                orp10,
+                urp10,
+                orou10,
+                urou10,
+                decided10,
+                thin10,
+            ) = _compute_hits(df.loc[ok10], stat10, args.line_col)
             df.loc[ok10, "line_games_played_10"] = played10.values
             df.loc[ok10, "line_hits_over_10"] = over10.values
             df.loc[ok10, "line_hits_under_10"] = under10.values
             df.loc[ok10, "line_hits_push_10"] = push10.values
+            df.loc[ok10, "line_hits_decided_10"] = decided10.values
             df.loc[ok10, "line_hit_rate_over_10"] = orp10.values
             df.loc[ok10, "line_hit_rate_under_10"] = urp10.values
             df.loc[ok10, "line_hit_rate_over_ou_10"] = orou10.values
             df.loc[ok10, "line_hit_rate_under_ou_10"] = urou10.values
+            df.loc[ok10, "hit_rate_decided_over_10"] = orou10.values
+            df.loc[ok10, "hit_rate_decided_under_10"] = urou10.values
+            df.loc[ok10, "thin_decided_10"] = thin10.values
 
-    hr5 = pd.to_numeric(df.get("line_hit_rate_over_ou_5"), errors="coerce")
-    hr10 = pd.to_numeric(df.get("line_hit_rate_over_ou_10"), errors="coerce")
+    # Prefer decided rates for composite (same numeric as OU when pushes excluded).
+    hr5 = pd.to_numeric(df.get("hit_rate_decided_over_5"), errors="coerce")
+    hr5 = hr5.combine_first(pd.to_numeric(df.get("line_hit_rate_over_ou_5"), errors="coerce"))
+    hr10 = pd.to_numeric(df.get("hit_rate_decided_over_10"), errors="coerce")
+    hr10 = hr10.combine_first(pd.to_numeric(df.get("line_hit_rate_over_ou_10"), errors="coerce"))
     df["composite_hit_rate"] = (0.5 * hr5.fillna(0.5) + 0.5 * hr10.fillna(hr5).fillna(0.5)).clip(0.0, 1.0).round(4)
 
     df = finalize_l10_ui_columns(df, line_col=args.line_col)
