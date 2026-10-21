@@ -1,0 +1,5 @@
+{
+  "source": "manual",
+  "note": "PP board scrape does not yet capture chart series. Leave legs empty for normal runs; add a leg only to force a pp_shows_dnp_zero hold (see Sports/NBA/PP_DNP_ZERO.md). Live scrape should fill pp_chart_values / pp_chart_dates instead.",
+  "legs": []
+}

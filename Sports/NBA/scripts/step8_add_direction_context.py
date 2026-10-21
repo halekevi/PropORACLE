@@ -178,7 +178,13 @@ def write_sheet(wb, name, data):
     ws.freeze_panes = 'A2'
     ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}1"
 
-def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
+def build_clean_xlsx(
+    df: pd.DataFrame,
+    xlsx_path: str,
+    source_hint: str = "",
+    *,
+    as_of=None,
+):
     df2 = df.copy()
     if "minutes_tier" in df2.columns:
         df2["minutes_tier"] = df2["minutes_tier"].astype(object)
@@ -212,6 +218,73 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         if m_ok.any():
             keys = mt_num.loc[m_ok].round().astype("Int64")
             df2.loc[m_ok, "minutes_tier"] = keys.map(_min_tier_map).astype(str)
+
+    # RS / preseason mpg, Min Tier from role_mpg, team leaders ranks next to line.
+    try:
+        from utils.nba_minutes_role import (
+            _norm_team,
+            attach_minutes_role_columns,
+            build_team_leaders_sheet,
+            full_rotation_stat_ranks,
+        )
+        from utils.role_context import prop_to_leader_cat
+        import unicodedata
+
+        def _pn(s: object) -> str:
+            t = unicodedata.normalize("NFKD", str(s or "").strip().lower())
+            return "".join(c for c in t if not unicodedata.combining(c))
+
+        df2 = attach_minutes_role_columns(df2, as_of=as_of)
+        teams = sorted(
+            {
+                _norm_team(t)
+                for t in df2.get("team", pd.Series(dtype=str)).dropna().astype(str)
+                if _norm_team(t)
+            }
+        )
+        leaders = build_team_leaders_sheet(teams, as_of=as_of)
+        ranks, team_ns = full_rotation_stat_ranks(teams, as_of=as_of)
+        df2["team_stat_rank"] = pd.NA
+        df2["team_stat_n"] = pd.NA
+        prop_col = "prop_type" if "prop_type" in df2.columns else "prop"
+        _cat_to_label = {
+            "pts": "Points",
+            "ast": "Assists",
+            "reb": "Rebounds",
+            "pra": "PRA",
+            "stl": "Steals",
+            "blk": "Blocks",
+            "stocks": "Blks+Stls",
+            "fg3m": "3PM",
+            "fga": "FGA",
+            "fgm": "FGM",
+        }
+        for idx, row in df2.iterrows():
+            cat = prop_to_leader_cat(row.get(prop_col) or row.get("prop_norm"))
+            prop_l = str(row.get(prop_col) or row.get("prop_norm") or "").lower()
+            if "pts+reb" in prop_l.replace(" ", "") or prop_l in {"pr", "pts+rebs"}:
+                label = "Pts+Rebs"
+            elif "pts+ast" in prop_l.replace(" ", "") or prop_l in {"pa", "pts+asts"}:
+                label = "Pts+Asts"
+            elif "reb+ast" in prop_l.replace(" ", "") or prop_l in {"ra"}:
+                label = "Rebs+Asts"
+            else:
+                label = _cat_to_label.get(cat, "")
+            if not label:
+                continue
+            tm = _norm_team(row.get("team"))
+            pn = _pn(row.get("player"))
+            rnk = ranks.get((tm, label, pn))
+            tn = team_ns.get((tm, label))
+            if rnk is not None:
+                df2.at[idx, "team_stat_rank"] = rnk
+            if tn is not None:
+                df2.at[idx, "team_stat_n"] = tn
+        if leaders is not None and len(leaders):
+            df2.attrs["team_leaders"] = leaders
+        print("→ step8 minutes/role + team ranks attached")
+    except Exception as exc:
+        print(f"⚠️  step8 minutes/role attach skipped: {exc}")
 
     if "abs_edge" not in df2.columns and "edge" in df2.columns:
         df2["abs_edge"] = pd.to_numeric(df2["edge"], errors="coerce").abs()
@@ -409,6 +482,13 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         'tier', 'rank_score',
         'player', 'pos', 'team', 'opp_team', 'opp_days_rest', 'opp_b2b', 'game_date', 'game_time',
         'prop_type', 'pick_type', 'line', 'standard_line',
+        # Minutes / role — next to player-prop-line (not buried at col 95)
+        'minutes_tier', 'starter_flag', 'starter_flag_preseason', 'clean_minutes',
+        'team_stat_rank', 'team_stat_n',
+        'min_last5_avg', 'min_preseason_avg', 'min_season_avg', 'min_per_game',
+        'l5_minutes_gap', 'role_mpg', 'minutes_tier_l5', 'minutes_flag',
+        'shot_role', 'usage_role',
+        'league', 'league_id',
         'final_bet_direction',
         'edge', 'abs_edge', 'projection',
         'ml_prob',
@@ -423,8 +503,6 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         'n_legs_sample',
         'OVERALL_DEF_RANK', 'DEF_TIER',
         'stat_def_rank', 'stat_def_tier', 'stat_def_category',
-        'minutes_tier', 'shot_role', 'usage_role',
-        'min_last5_avg', 'min_per_game', 'min_season_avg',
         'void_reason',
         # ── Intel layer (step6e) ──────────────────────────────────────────
         'intel_season_avg', 'intel_l5_avg', 'intel_l10_avg',
@@ -495,6 +573,7 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         'game_date': 'Game Date', 'game_time': 'Game Time',
         'prop_type': 'Prop', 'pick_type': 'Pick Type', 'line': 'Line',
         'standard_line': 'Standard Line',
+        'league': 'League', 'league_id': 'league_id',
         'final_bet_direction': 'Direction',
         'edge': 'Edge', 'abs_edge': 'Abs Edge', 'projection': 'Projection',
         'ml_prob': 'ML Prob',
@@ -503,7 +582,21 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         'last5_over': 'L5 Over', 'last5_under': 'L5 Under',
         'n_legs_sample': 'N Legs Sample',
         'OVERALL_DEF_RANK': 'Def Rank', 'DEF_TIER': 'Def Tier',
-        'minutes_tier': 'Min Tier', 'shot_role': 'Shot Role', 'usage_role': 'Usage Role',
+        'minutes_tier': 'Min Tier',
+        'starter_flag': 'Starter',
+        'starter_flag_preseason': 'Starter Pre',
+        'clean_minutes': 'Clean Minutes',
+        'team_stat_rank': 'Team Rank',
+        'team_stat_n': 'Team N',
+        'min_last5_avg': 'Min L5',
+        'min_preseason_avg': 'Min Preseason',
+        'min_season_avg': 'Min Season',
+        'min_per_game': 'Min Per Game',
+        'l5_minutes_gap': 'L5 Min Gap',
+        'role_mpg': 'Role MPG',
+        'minutes_tier_l5': 'Min Tier L5',
+        'minutes_flag': 'Minutes Flag',
+        'shot_role': 'Shot Role', 'usage_role': 'Usage Role',
         'void_reason': 'Void Reason',
         'usage_vacuum': 'usage_vacuum',
         'team_star_out': 'team_star_out',
@@ -557,6 +650,28 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         subset = clean[clean["Tier"] == tier].copy()
         if len(subset):
             sheets[f"Tier {tier}"] = subset
+    # Team Leaders: top 3 / bottom 3 rotation players per team per stat
+    try:
+        leaders = df2.attrs.get("team_leaders")
+        if leaders is None:
+            from utils.nba_minutes_role import build_team_leaders_sheet
+
+            teams = (
+                clean["Team"].dropna().astype(str).str.upper().str.strip().unique().tolist()
+                if "Team" in clean.columns
+                else []
+            )
+            leaders = build_team_leaders_sheet(teams)
+        if leaders is not None and len(leaders):
+            sheets["Team Leaders"] = leaders
+            n_teams = (
+                int(leaders["Team"].nunique()) if "Team" in leaders.columns else 0
+            )
+            print(f"→ Team Leaders sheet: {len(leaders)} rows across {n_teams} teams")
+        else:
+            print("→ Team Leaders sheet: empty (no rotation avgs)")
+    except Exception as exc:
+        print(f"⚠️  Team Leaders sheet skipped: {exc}")
     write_excel_sheets(xlsx_path, sheets)
     print(f"📊 Clean XLSX saved → {xlsx_path}")
 
@@ -670,6 +785,35 @@ def main() -> None:
 
     if carry_df is not None:
         out = reattach_enrichment_carry(out, carry_df, carry_cols, label=args.input)
+
+    try:
+        from utils.roster_change import attach_roster_change_columns
+
+        slate_d = str(args.date or "").strip()[:10]
+        if not slate_d and "game_date" in out.columns:
+            slate_d = str(out["game_date"].iloc[0] or "")[:10]
+        out = attach_roster_change_columns(out, sport="NBA", slate_date=slate_d)
+        n_rc = int(pd.to_numeric(out.get("roster_changed"), errors="coerce").fillna(0).sum())
+        if n_rc:
+            print(f"[NBA step8] roster_changed flagged on {n_rc} rows")
+    except Exception as _rc_exc:
+        print(f"  [WARN] roster_change attach skipped: {_rc_exc}")
+
+    # PP chart DNP-as-zero holds (active when scrape cols or fixture legs exist).
+    try:
+        import sqlite3
+
+        from utils.pp_dnp_zero import apply_pp_dnp_zero_holds
+
+        db_path = _REPO_ROOT / "Sports" / "NBA" / "data" / "cache" / "proporacle_ref.db"
+        con = sqlite3.connect(db_path) if db_path.is_file() else None
+        try:
+            out = apply_pp_dnp_zero_holds(out, boxscore_con=con)
+        finally:
+            if con is not None:
+                con.close()
+    except Exception as _dnp_exc:
+        print(f"  [WARN] pp_dnp_zero attach skipped: {_dnp_exc}")
 
     # Save full CSV
     out.to_csv(args.output, index=False, encoding="utf-8-sig")
