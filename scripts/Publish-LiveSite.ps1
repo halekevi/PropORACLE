@@ -51,12 +51,22 @@ function Write-PublishAlert {
             ([ordered]@{ ok = $false; at = $ts; stage = $Stage; reason = $Reason; last_ok_at = $lastOk } |
                 ConvertTo-Json) | Set-Content -LiteralPath $statusPath -Encoding utf8
         } catch { }
+        # Task Scheduler launches do not always see a freshly setx'd variable, so fall back to
+        # the persisted User-scope value.
         $hook = [string]$env:PROPORACLE_ALERT_WEBHOOK
+        if (-not $hook) { $hook = [string][Environment]::GetEnvironmentVariable("PROPORACLE_ALERT_WEBHOOK", "User") }
         if ($hook) {
             try {
                 $text = "PropORACLE LIVE PUBLISH FAILED ($Stage): $Reason"
-                Invoke-RestMethod -Uri $hook -Method Post -ContentType "application/json" `
-                    -Body (@{ content = $text; text = $text } | ConvertTo-Json) -TimeoutSec 10 | Out-Null
+                if ($hook -match '^https?://ntfy\.') {
+                    # ntfy shows the raw body, so send plain text (JSON would be displayed verbatim).
+                    Invoke-RestMethod -Uri $hook -Method Post -ContentType "text/plain; charset=utf-8" `
+                        -Headers @{ Title = "PropORACLE publish FAILED"; Priority = "high"; Tags = "rotating_light" } `
+                        -Body ([System.Text.Encoding]::UTF8.GetBytes($text)) -TimeoutSec 10 | Out-Null
+                } else {
+                    Invoke-RestMethod -Uri $hook -Method Post -ContentType "application/json" `
+                        -Body (@{ content = $text; text = $text } | ConvertTo-Json) -TimeoutSec 10 | Out-Null
+                }
             } catch { }
         }
     }
