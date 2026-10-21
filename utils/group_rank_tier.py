@@ -8,12 +8,19 @@ compressed vs NBA-scale probs — DEFAULT A_cut 0.71 produced no Standard tier-A
 
 When Goblin/Demon rows lack standard_line (common on Soccer alt-only slates), tier falls back
 to ml_prob cuts (sport- and group-specific where configured).
+
+Soccer and NHL ml_prob are currently saturated at ~0/1 (calibrator / thin features). Until that
+is fixed, those sports must not tier from ml_prob — use line-distance for Goblin/Demon and
+rank_score quantiles for Standard.
 """
 
 from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+
+# Saturated / unusable ml_prob — do not drive A–D from the model until recalibrated.
+ML_PROB_TIER_DISABLED_SPORTS = frozenset({"soccer", "soc", "nhl"})
 
 # Default A/B/C thresholds on ml_prob (sports without overrides).
 DEFAULT_ML_PROB_CUTS: tuple[float, float, float] = (0.71, 0.65, 0.58)
@@ -249,6 +256,31 @@ def _first_col(df: pd.DataFrame, names: list[str]) -> str | None:
 _TIER_ORDER = np.array(["A", "B", "C", "D"], dtype=object)
 
 
+def _tier_from_rank_score_quantiles(scores: np.ndarray, mask: np.ndarray) -> np.ndarray:
+    """Within-mask A–D from rank_score (top 10% / 25% / 50%, else D). NaN → D."""
+    out = np.full(scores.shape[0], "D", dtype=object)
+    idx = np.where(mask)[0]
+    if idx.size == 0:
+        return out
+    vals = pd.to_numeric(pd.Series(scores[idx]), errors="coerce")
+    finite = vals.notna().to_numpy()
+    if not finite.any():
+        return out
+    use_idx = idx[finite]
+    use_vals = vals.to_numpy(dtype=float)[finite]
+    # Higher score = better. Percentile rank in [0, 1].
+    order = use_vals.argsort()
+    ranks = np.empty(use_vals.shape[0], dtype=float)
+    ranks[order] = np.linspace(0.0, 1.0, num=use_vals.shape[0], endpoint=True)
+    assigned = np.where(
+        ranks >= 0.90,
+        "A",
+        np.where(ranks >= 0.75, "B", np.where(ranks >= 0.50, "C", "D")),
+    )
+    out[use_idx] = assigned
+    return out
+
+
 def _normalize_prop_key(v: object) -> str:
     s = str(v or "").strip().lower()
     s = s.replace("points", "pts").replace("rebounds", "rebs").replace("assists", "asts")
@@ -329,6 +361,12 @@ def assign_tier_column(out: pd.DataFrame, *, sport: str = "") -> pd.Series:
         if mc
         else np.full(n, np.nan, dtype=float)
     )
+    sport_key = str(sport or "").strip().lower()
+    ml_tier_disabled = sport_key in ML_PROB_TIER_DISABLED_SPORTS
+    if ml_tier_disabled:
+        # Keep column for diagnostics; do not use it for A–D.
+        ml_raw = np.full(n, np.nan, dtype=float)
+
     c_std = _resolve_ml_prob_cuts(sport, "standard")
     c_gob = _resolve_ml_prob_cuts(sport, "goblin")
     c_dem = _resolve_ml_prob_cuts(sport, "demon")
@@ -361,14 +399,28 @@ def assign_tier_column(out: pd.DataFrame, *, sport: str = "") -> pd.Series:
     tier = np.full(n, "D", dtype=object)
     tier_src = np.full(n, "ml_prob", dtype=object)
     tier_basis = np.full(n, "ml_prob", dtype=object)
-    sport_key = str(sport or "").strip().lower()
 
     std_over = is_non_gd & (dr != "UNDER")
     std_under = is_non_gd & (dr == "UNDER")
-    tier[std_over] = t_std_over[std_over]
-    tier[std_under] = t_std_under[std_under]
-    tier_basis[std_over] = "ml_prob"
-    tier_basis[std_under] = "ml_prob"
+    if ml_tier_disabled:
+        rc = _first_col(out, ["rank_score", "Rank Score", "final_score", "prop_score"])
+        scores = (
+            pd.to_numeric(out[rc], errors="coerce").to_numpy(dtype=float)
+            if rc
+            else np.full(n, np.nan, dtype=float)
+        )
+        t_score = _tier_from_rank_score_quantiles(scores, is_non_gd)
+        tier[std_over] = t_score[std_over]
+        tier[std_under] = t_score[std_under]
+        tier_src[std_over] = "rank_score_quantile"
+        tier_src[std_under] = "rank_score_quantile"
+        tier_basis[std_over] = "rank_score_quantile"
+        tier_basis[std_under] = "rank_score_quantile"
+    else:
+        tier[std_over] = t_std_over[std_over]
+        tier[std_under] = t_std_under[std_under]
+        tier_basis[std_over] = "ml_prob"
+        tier_basis[std_under] = "ml_prob"
 
     has_gd_dist = is_gob & np.isfinite(sl) & np.isfinite(ln)
     t_gob_d = np.where(
@@ -381,7 +433,7 @@ def assign_tier_column(out: pd.DataFrame, *, sport: str = "") -> pd.Series:
     tier_basis[has_gd_dist] = "distance"
 
     gob_fb = is_gob & ~has_gd_dist
-    if sport_key == "soccer":
+    if sport_key in {"soccer", "soc"} or ml_tier_disabled:
         tier[gob_fb] = "C"
         tier_src[gob_fb] = "neutral_no_data"
         tier_basis[gob_fb] = "neutral_no_data"
@@ -401,9 +453,14 @@ def assign_tier_column(out: pd.DataFrame, *, sport: str = "") -> pd.Series:
     tier_basis[has_dd_dist] = "distance"
 
     dem_fb = is_dem & ~has_dd_dist
-    tier[dem_fb] = t_dem_fb[dem_fb]
-    tier_src[dem_fb] = "ml_prob_fallback"
-    tier_basis[dem_fb] = "ml_prob_fallback"
+    if ml_tier_disabled:
+        tier[dem_fb] = "C"
+        tier_src[dem_fb] = "neutral_no_data"
+        tier_basis[dem_fb] = "neutral_no_data"
+    else:
+        tier[dem_fb] = t_dem_fb[dem_fb]
+        tier_src[dem_fb] = "ml_prob_fallback"
+        tier_basis[dem_fb] = "ml_prob_fallback"
 
     # Apply sport/prop targeted adjustments after baseline tier assignment.
     sport_rules = SPORT_PROP_TIER_ADJUSTMENTS.get(str(sport or "").strip().lower(), [])

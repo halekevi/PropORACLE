@@ -585,6 +585,79 @@ def _first_existing_path(*candidates: str) -> str:
     return ""
 
 
+def _alert_incomplete_slate_inputs(slate_date: str) -> None:
+    """Warn when period pipelines stop before step8 or odds/injury sidecars are missing."""
+    try:
+        from utils.pipeline_alerts import emit_pipeline_alert
+    except Exception:
+        def emit_pipeline_alert(stage: str, reason: str, *, notify: bool = True) -> None:
+            print(f"  [ALERT] WARN ({stage}): {reason}")
+
+    d = str(slate_date or "").strip()[:10]
+    if not d:
+        return
+    out = Path(_outputs_dir_for_date(d))
+    period = (
+        ("nba1q", "NBA1Q", not _nba_family_off_season(d)),
+        ("nba1h", "NBA1H", not _nba_family_off_season(d)),
+        ("wnba1q", "WNBA1Q", not _wnba_family_off_season(d)),
+        ("wnba1h", "WNBA1H", not _wnba_family_off_season(d)),
+        ("mlb", "MLB", not _mlb_allstar_break(d)),
+    )
+    for folder, label, in_season in period:
+        if not in_season:
+            continue
+        sport_dir = out / folder
+        step8 = sport_dir / f"step8_{folder}_direction_clean.xlsx"
+        dated = sport_dir / f"step8_{folder}_direction_clean_{d}.xlsx"
+        has_step8 = step8.is_file() or dated.is_file()
+        early = []
+        if sport_dir.is_dir():
+            early = [
+                p.name
+                for p in sport_dir.glob("step[1-7]*")
+                if p.is_file()
+            ]
+        if early and not has_step8:
+            emit_pipeline_alert(
+                "step8-missing",
+                f"{label} pipeline stopped before step8 on {d} "
+                f"(found {', '.join(sorted(early)[:6])}{'…' if len(early) > 6 else ''}; "
+                f"no {folder}/step8). Combined will skip this sport.",
+            )
+        root_stale = out / f"step8_{folder}_direction_clean_{d}.xlsx"
+        if root_stale.is_file() and not has_step8:
+            emit_pipeline_alert(
+                "stale-date-root",
+                f"{label}: date-root {root_stale.name} exists but sport subfolder step8 is missing; "
+                "date-root is ignored (subfolder-only load).",
+            )
+
+    if not _nba_family_off_season(d):
+        odds_hits = list(out.glob("**/game_context_cache*.csv")) + list(
+            out.glob("**/step6b*game_context*")
+        )
+        if not odds_hits:
+            emit_pipeline_alert(
+                "odds-missing",
+                f"NBA odds/game-context sidecar missing under outputs/{d}/ "
+                "(Game Script will default ~0.97).",
+            )
+        inj = out / f"injuries_nba_{d}.csv"
+        if not inj.is_file():
+            emit_pipeline_alert(
+                "injuries-missing",
+                f"Missing {inj.name} for in-season NBA (injury flags stay empty).",
+            )
+    if not _nhl_off_season(d):
+        inj = out / f"injuries_nhl_{d}.csv"
+        if not inj.is_file():
+            emit_pipeline_alert(
+                "injuries-missing",
+                f"Missing {inj.name} for in-season NHL (injury flags stay empty).",
+            )
+
+
 def _required_placeholder(*candidates: str) -> str:
     """First existing path, else first non-empty candidate (for clear load errors / validation)."""
     hit = _first_existing_path(*candidates)
@@ -680,45 +753,36 @@ def apply_default_sport_inputs(args: argparse.Namespace) -> None:
             os.path.join(REPO_ROOT, "WNBA", "step8_wnba_direction.xlsx"),
         )
 
+    # Period / MLB boards: sport subfolder only. Never date-root copies or Sports/*
+    # static fallbacks (those were how the 2026-05-30 OKC–SAS NBA1Q board entered 10-21).
     if not str(getattr(args, "wnba1h", "") or "").strip():
         args.wnba1h = _first_existing_path(
             os.path.join(out, "wnba1h", "step8_wnba1h_direction_clean.xlsx"),
-            os.path.join(out, f"step8_wnba1h_direction_clean_{d}.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "WNBA", "step8_wnba1h_direction_clean.xlsx"),
-            DEFAULT_WNBA1H_PATH,
+            os.path.join(out, "wnba1h", f"step8_wnba1h_direction_clean_{d}.xlsx"),
         )
 
     if not str(getattr(args, "wnba1q", "") or "").strip():
         args.wnba1q = _first_existing_path(
             os.path.join(out, "wnba1q", "step8_wnba1q_direction_clean.xlsx"),
-            os.path.join(out, f"step8_wnba1q_direction_clean_{d}.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "WNBA", "step8_wnba1q_direction_clean.xlsx"),
-            DEFAULT_WNBA1Q_PATH,
+            os.path.join(out, "wnba1q", f"step8_wnba1q_direction_clean_{d}.xlsx"),
         )
 
     if not str(args.mlb).strip():
         args.mlb = _first_existing_path(
             os.path.join(out, "mlb", "step8_mlb_direction_clean.xlsx"),
-            os.path.join(out, f"step8_mlb_direction_clean_{d}.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "MLB", "outputs", "step8_mlb_direction_clean.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "MLB", "step8_mlb_direction_clean.xlsx"),
-            os.path.join(REPO_ROOT, "MLB", "step8_mlb_direction_clean.xlsx"),
+            os.path.join(out, "mlb", f"step8_mlb_direction_clean_{d}.xlsx"),
         )
 
     if not str(args.nba1q).strip():
         args.nba1q = _first_existing_path(
             os.path.join(out, "nba1q", "step8_nba1q_direction_clean.xlsx"),
-            os.path.join(out, f"step8_nba1q_direction_clean_{d}.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "NBA", "step8_nba1q_direction_clean.xlsx"),
-            os.path.join(REPO_ROOT, "NBA", "step8_nba1q_direction_clean.xlsx"),
+            os.path.join(out, "nba1q", f"step8_nba1q_direction_clean_{d}.xlsx"),
         )
 
     if not str(args.nba1h).strip():
         args.nba1h = _first_existing_path(
             os.path.join(out, "nba1h", "step8_nba1h_direction_clean.xlsx"),
-            os.path.join(out, f"step8_nba1h_direction_clean_{d}.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "NBA", "step8_nba1h_direction_clean.xlsx"),
-            os.path.join(REPO_ROOT, "NBA", "step8_nba1h_direction_clean.xlsx"),
+            os.path.join(out, "nba1h", f"step8_nba1h_direction_clean_{d}.xlsx"),
         )
 
     if not str(args.nfl).strip():
@@ -8734,22 +8798,33 @@ def enforce_target_date(
     if df is None or df.empty:
         print(f"  [{sport} date] no rows to filter")
         return df
-    if "game_time" not in df.columns:
-        if allow_cross_date_fallback:
-            print(f"  [{sport} date] missing game_time column; fallback enabled -> keeping {len(df)} rows")
-            return df
-        print(f"  [{sport} date] missing game_time column; strict mode -> skipping {sport}")
-        return df.iloc[0:0].copy()
 
     out = df.copy()
+    if "game_date" not in out.columns and "Game Date" in out.columns:
+        out["game_date"] = out["Game Date"]
+    if "game_time" not in out.columns and "Game Time" in out.columns:
+        out["game_time"] = out["Game Time"]
+
     target_year = int(str(target_date)[:4])
-    parsed = _extract_game_dates(out["game_time"], target_year)
+    if "game_time" in out.columns:
+        parsed = _extract_game_dates(out["game_time"], target_year)
+    else:
+        parsed = pd.Series(pd.NA, index=out.index, dtype="object")
+
     if "game_date" in out.columns:
         ts = pd.to_datetime(out["game_date"], errors="coerce")
         existing = ts.dt.strftime("%Y-%m-%d").where(ts.notna(), other=pd.NA)
-        out["game_date"] = parsed.combine_first(existing)
+        # Prefer an explicit Game Date; fill blanks from game_time only.
+        out["game_date"] = existing.combine_first(parsed)
     else:
         out["game_date"] = parsed
+
+    if out["game_date"].isna().all() and "game_time" not in out.columns:
+        if allow_cross_date_fallback:
+            print(f"  [{sport} date] missing game_time/game_date; fallback enabled -> keeping {len(out)} rows")
+            return out
+        print(f"  [{sport} date] missing game_time/game_date; strict mode -> skipping {sport}")
+        return out.iloc[0:0].copy()
 
     counts = out["game_date"].value_counts(dropna=True)
     if not counts.empty:
@@ -14196,10 +14271,33 @@ def load_nhl(path: str) -> pd.DataFrame:
     df = _fill_nhl_l5_season_avgs(df)
 
     df = df[df["line"].notna() & (df["line"] > 0)]
+    df = _retier_without_saturated_ml_prob(df, "nhl")
     # Convert all pandas NA/NaT to None so openpyxl can handle them
     df = df.astype(object).where(df.notna(), other=None)
     return df
 
+
+def _retier_without_saturated_ml_prob(df: pd.DataFrame, sport: str) -> pd.DataFrame:
+    """Recompute A–D when ml_prob is disabled for this sport (baked step8 tiers stay off)."""
+    if df is None or df.empty:
+        return df
+    try:
+        from utils.group_rank_tier import (
+            ML_PROB_TIER_DISABLED_SPORTS,
+            assign_tier_column,
+        )
+    except Exception:
+        return df
+    key = str(sport or "").strip().lower()
+    if key not in ML_PROB_TIER_DISABLED_SPORTS:
+        return df
+    out = df.copy()
+    out["tier"] = assign_tier_column(out, sport=key)
+    print(
+        f"  [{key}] retiered without ml_prob "
+        f"(tier counts: {out['tier'].astype(str).str.upper().value_counts().to_dict()})"
+    )
+    return out
 
 
 def _tennis_hit_rate_zero_like_proxy(df: pd.DataFrame, log_prefix: str) -> None:
@@ -14870,6 +14968,7 @@ def load_soccer(path: str) -> pd.DataFrame:
                 f"(opp_known=False; opponent-dependent fields nulled)"
             )
     _log_board_context_fill(df, "load_soccer")
+    df = _retier_without_saturated_ml_prob(df, "soccer")
     return df
 
 
@@ -15373,6 +15472,7 @@ def load_mlb(path: str) -> pd.DataFrame:
         "Team":             "team",
         "Opp":              "opp",
         "Game Time":        "game_time",
+        "Game Date":        "game_date",
         "Prop":             "prop_type",
         "Pick Type":        "pick_type",
         "Line":             "line",
@@ -15648,6 +15748,7 @@ def load_nba1q(path: str) -> pd.DataFrame:
         "Team":             "team",
         "Opp":              "opp",
         "Game Time":        "game_time",
+        "Game Date":        "game_date",
         "Prop":             "prop_type",
         "Pick Type":        "pick_type",
         "Line":             "line",
@@ -15821,6 +15922,7 @@ def load_nba1h(path: str) -> pd.DataFrame:
         "Team":             "team",
         "Opp":              "opp",
         "Game Time":        "game_time",
+        "Game Date":        "game_date",
         "Prop":             "prop_type",
         "Pick Type":        "pick_type",
         "Line":             "line",
@@ -21539,6 +21641,7 @@ def main():
     print(f"[TENNIS TRACE] Tennis structured_min_leg_hr_override={tennis_structured_min_leg_hr}")
 
     apply_default_sport_inputs(args)
+    _alert_incomplete_slate_inputs(str(args.date).strip()[:10])
 
     if not args.output:
         args.output = f"combined_slate_tickets_{args.date}.xlsx"
@@ -21751,11 +21854,16 @@ def main():
         _load_audit_row("WNBA1Q", "", pd.DataFrame())
     else:
         wnba1h_path = str(getattr(args, "wnba1h", "") or "").strip()
-        if not wnba1h_path and os.path.exists(DEFAULT_WNBA1H_PATH):
-            wnba1h_path = DEFAULT_WNBA1H_PATH
         if wnba1h_path:
             try:
                 wnba1h = load_wnba1h(wnba1h_path)
+                wnba1h = enforce_target_date(
+                    wnba1h,
+                    "WNBA1H",
+                    args.date,
+                    allow_cross_date_fallback=args.allow_cross_date_fallback,
+                    extra_dates=extra_match_dates_for_sport("WNBA1H", args),
+                )
                 wnba1h = attach_standard_refs(wnba1h)
                 print(f"  {len(wnba1h)} WNBA1H props loaded")
                 _load_audit_row("WNBA1H", wnba1h_path, wnba1h)
@@ -21765,11 +21873,16 @@ def main():
         else:
             print("  [WNBA1H] skipped (empty --wnba1h)")
         wnba1q_path = str(getattr(args, "wnba1q", "") or "").strip()
-        if not wnba1q_path and os.path.exists(DEFAULT_WNBA1Q_PATH):
-            wnba1q_path = DEFAULT_WNBA1Q_PATH
         if wnba1q_path:
             try:
                 wnba1q = load_wnba1q(wnba1q_path)
+                wnba1q = enforce_target_date(
+                    wnba1q,
+                    "WNBA1Q",
+                    args.date,
+                    allow_cross_date_fallback=args.allow_cross_date_fallback,
+                    extra_dates=extra_match_dates_for_sport("WNBA1Q", args),
+                )
                 wnba1q = attach_standard_refs(wnba1q)
                 print(f"  {len(wnba1q)} WNBA1Q props loaded")
                 _load_audit_row("WNBA1Q", wnba1q_path, wnba1q)
@@ -21818,29 +21931,41 @@ def main():
     if _nba_family_off_season(args.date):
         print("  [NBA1Q] Off-season — skipped until 2026-10-01")
     else:
-        nba1q_path = str(args.nba1q or "").strip() or (DEFAULT_NBA1Q_PATH if os.path.exists(DEFAULT_NBA1Q_PATH) else "")
+        nba1q_path = str(args.nba1q or "").strip()
         if nba1q_path:
             try:
                 nba1q = load_nba1q(nba1q_path)
+                nba1q = enforce_target_date(
+                    nba1q, "NBA1Q", args.date, allow_cross_date_fallback=False
+                )
                 nba1q = attach_standard_refs(nba1q)
                 print(f"  {len(nba1q)} NBA1Q props loaded")
+                _load_audit_row("NBA1Q", nba1q_path, nba1q)
             except Exception as e:
                 print(f"  WARNING: Could not load NBA1Q file: {e}")
                 nba1q = None
+        else:
+            print("  [NBA1Q] skipped (no outputs/<date>/nba1q/step8)")
 
     nba1h = None
     if _nba_family_off_season(args.date):
         print("  [NBA1H] Off-season — skipped until 2026-10-01")
     else:
-        nba1h_path = str(args.nba1h or "").strip() or (DEFAULT_NBA1H_PATH if os.path.exists(DEFAULT_NBA1H_PATH) else "")
+        nba1h_path = str(args.nba1h or "").strip()
         if nba1h_path:
             try:
                 nba1h = load_nba1h(nba1h_path)
+                nba1h = enforce_target_date(
+                    nba1h, "NBA1H", args.date, allow_cross_date_fallback=False
+                )
                 nba1h = attach_standard_refs(nba1h)
                 print(f"  {len(nba1h)} NBA1H props loaded")
+                _load_audit_row("NBA1H", nba1h_path, nba1h)
             except Exception as e:
                 print(f"  WARNING: Could not load NBA1H file: {e}")
                 nba1h = None
+        else:
+            print("  [NBA1H] skipped (no outputs/<date>/nba1h/step8)")
 
     nfl = None
     nfl_path = str(args.nfl or "").strip()
@@ -21916,16 +22041,47 @@ def main():
         if df is None or df.empty:
             return df
         td = str(target_date).strip()[:10]
+        target_year = int(td[:4]) if len(td) >= 4 and td[:4].isdigit() else datetime.now().year
+        if "game_date" not in df.columns and "Game Date" in df.columns:
+            df = df.copy()
+            df["game_date"] = df["Game Date"]
         if "game_date" not in df.columns:
-            # Only synthesize for NBA period sheets; other sports intentionally rely on explicit game_date.
-            if sport_label not in ("NBA1Q", "NBA1H", "WNBA1H", "WNBA1Q") or "game_time" not in df.columns:
-                return df
-            # Build game_date on the fly for sheets that only carry Game Time.
-            target_year = int(td[:4]) if len(td) >= 4 and td[:4].isdigit() else datetime.now().year
+            # Synthesize from game_time when possible; blank dates are dropped below.
+            if "game_time" not in df.columns and "Game Time" not in df.columns:
+                print(
+                    f"  [date-filter] {sport_label}: no game_date/game_time — "
+                    f"dropping all {len(df)} undated rows (target slate {td})"
+                )
+                return df.iloc[0:0].copy()
             tmp = df.copy()
-            tmp["game_date"] = _extract_game_dates(tmp["game_time"], target_year)
+            gt = tmp["game_time"] if "game_time" in tmp.columns else tmp["Game Time"]
+            tmp["game_date"] = _extract_game_dates(gt, target_year)
             df = tmp
+        else:
+            # Fill blanks from game_time ISO/MM-DD when the board only has tip strings.
+            gd_ts = pd.to_datetime(df["game_date"], errors="coerce")
+            need = gd_ts.isna()
+            if need.any() and ("game_time" in df.columns or "Game Time" in df.columns):
+                tmp = df.copy()
+                gt = tmp["game_time"] if "game_time" in tmp.columns else tmp["Game Time"]
+                filled = _extract_game_dates(gt, target_year)
+                tmp.loc[need, "game_date"] = filled.loc[need]
+                df = tmp
+        gd_ts = pd.to_datetime(df["game_date"], errors="coerce")
+        df = df.copy()
+        df["game_date"] = gd_ts.dt.strftime("%Y-%m-%d").where(gd_ts.notna(), other=pd.NA)
         dated = df["game_date"].notna()
+        undated = ~dated
+        n_undated = int(undated.sum())
+        if n_undated > 0 and not allow_cross_date_fallback:
+            print(
+                f"  [date-filter] {sport_label}: dropped {n_undated} undated rows "
+                f"(target slate {td})"
+            )
+            df = df.loc[dated].copy()
+            if df.empty:
+                return df
+            dated = df["game_date"].notna()
         gd_str = df["game_date"].astype(str).str[:10]
         keep_extra = {str(d).strip()[:10] for d in (extra_dates or []) if str(d).strip()[:10]}
         keep_extra.discard("")
