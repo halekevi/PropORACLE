@@ -22,7 +22,7 @@ _REPO = Path(__file__).resolve().parents[3]
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 from scripts.l10_streak_utils import finalize_l10_ui_columns
-from utils.golf_windows import count_vs_line
+from utils.l5_push_aware import count_vs_line
 
 
 def _get_stat_cols(df: pd.DataFrame, n: int) -> List[str]:

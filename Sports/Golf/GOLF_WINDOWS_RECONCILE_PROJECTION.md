@@ -12,8 +12,9 @@ Order: shared windows → #1 PP reconcile → #2 course-baseline projection
 | Slice | Code | State |
 |---|---|---|
 | Shared windows + push/decided | `utils/golf_windows.py`; step5/step8 columns | **landed** |
-| #1 PP reconcile | — | next |
-| #2 Course-baseline projection + walk-forward | — | after #1 |
+| Push-aware L5 (all sports) | `utils/l5_push_aware.py` via `fill_l5_from_stat_games` | **landed** |
+| #1 PP reconcile | `utils/golf_pp_reconcile.py` + manual fixture (scrape has no chart yet) | **landed** |
+| #2 Course-baseline projection + walk-forward | — | next |
 
 ---
 

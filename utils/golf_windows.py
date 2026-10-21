@@ -8,19 +8,25 @@ See ``Sports/Golf/GOLF_WINDOWS_RECONCILE_PROJECTION.md``.
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
 from datetime import date, datetime
-from typing import Iterable, Literal, Sequence
+from typing import Literal
 
 import numpy as np
 import pandas as pd
+
+from utils.l5_push_aware import (
+    THIN_DECIDED_MIN,
+    LineCountResult,
+    count_vs_line,
+    counts_from_stat_g_row,
+    line_outcome,
+)
 
 WindowKind = Literal["l5_all", "l5_course", "skill_window"]
 
 L5_ALL_N = 5
 SKILL_WINDOW_N = 20
 DEFAULT_COURSE_N = 5
-THIN_DECIDED_MIN = 3
 
 # Canonical column → accepted aliases (first present wins).
 _COL_ALIASES: dict[str, tuple[str, ...]] = {
@@ -37,22 +43,18 @@ _COL_ALIASES: dict[str, tuple[str, ...]] = {
     "player_key": ("player_key",),
 }
 
-
-@dataclass(frozen=True)
-class LineCountResult:
-    """Push-aware counts for one window vs a line."""
-
-    over: int
-    under: int
-    push: int
-    decided: int
-    played: int
-    hit_rate_decided_over: float | None
-    hit_rate_decided_under: float | None
-    thin_decided: bool
-
-    def as_dict(self) -> dict[str, object]:
-        return asdict(self)
+# Re-export for callers that imported counts from this module.
+__all__ = [
+    "LineCountResult",
+    "THIN_DECIDED_MIN",
+    "count_vs_line",
+    "counts_from_stat_g_row",
+    "line_outcome",
+    "normalize_rounds",
+    "select_window",
+    "count_stat_window",
+    "player_windows",
+]
 
 
 def _parse_date(val: object) -> date | None:
@@ -154,54 +156,6 @@ def select_window(
     return work.head(n).copy()
 
 
-def line_outcome(value: float | None, line: float) -> Literal["over", "under", "push"] | None:
-    if value is None or (isinstance(value, float) and np.isnan(value)):
-        return None
-    if line is None or (isinstance(line, float) and np.isnan(line)):
-        return None
-    v = float(value)
-    ln = float(line)
-    if v > ln:
-        return "over"
-    if v < ln:
-        return "under"
-    return "push"
-
-
-def count_vs_line(
-    values: Sequence[object] | Iterable[object],
-    line: float,
-) -> LineCountResult:
-    """Push-aware over/under/push/decided counts for a value sequence vs ``line``."""
-    over = under = push = played = 0
-    ln = float(line)
-    for raw in values:
-        v = pd.to_numeric(raw, errors="coerce")
-        if pd.isna(v):
-            continue
-        played += 1
-        outcome = line_outcome(float(v), ln)
-        if outcome == "over":
-            over += 1
-        elif outcome == "under":
-            under += 1
-        else:
-            push += 1
-    decided = over + under
-    hr_o = (over / decided) if decided else None
-    hr_u = (under / decided) if decided else None
-    return LineCountResult(
-        over=over,
-        under=under,
-        push=push,
-        decided=decided,
-        played=played,
-        hit_rate_decided_over=hr_o,
-        hit_rate_decided_under=hr_u,
-        thin_decided=decided < THIN_DECIDED_MIN,
-    )
-
-
 def count_stat_window(
     rounds: pd.DataFrame,
     *,
@@ -260,21 +214,3 @@ def player_windows(
         if kind == "l5_course":
             out["l5_course_n"] = int(len(win))
     return out
-
-
-def counts_from_stat_g_row(
-    row: pd.Series | dict,
-    *,
-    line: float,
-    n: int = 5,
-) -> LineCountResult:
-    """Push-aware counts from already-attached ``stat_g1..gN`` (step5 path)."""
-    vals: list[object] = []
-    for i in range(1, n + 1):
-        key = f"stat_g{i}"
-        if isinstance(row, pd.Series):
-            if key in row.index:
-                vals.append(row.get(key))
-        elif key in row:
-            vals.append(row[key])
-    return count_vs_line(vals, line)

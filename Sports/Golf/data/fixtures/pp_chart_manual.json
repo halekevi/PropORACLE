@@ -1,0 +1,25 @@
+{
+  "source": "manual",
+  "note": "PP board scrape does not yet capture chart series or venue filter. Fill legs by hand from the PP chart UI. filter=course uses l5_course; filter=all uses l5_all.",
+  "legs": [
+    {
+      "player": "Andrew Novak",
+      "prop_type": "Pars",
+      "line": 11.0,
+      "filter": "course",
+      "course_id": "port_royal",
+      "values": [12, 9, 7, 14],
+      "birdies_or_better": false,
+      "note": "PP 'at Port Royal' chart from 2026-10-21 board check"
+    },
+    {
+      "player": "David Ford",
+      "prop_type": "Pars",
+      "line": 11.0,
+      "filter": "all",
+      "values": [11, 12, 11, 11, 11],
+      "birdies_or_better": false,
+      "note": "All-courses fixture matching scorecard L5 after attach fix"
+    }
+  ]
+}

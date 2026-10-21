@@ -135,6 +135,7 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
     l5_under = l5_under.combine_first(pd.to_numeric(df2.get("line_hits_under_5", np.nan), errors="coerce"))
     l5_over = l5_over.combine_first(pd.to_numeric(df2.get("l5_over", np.nan), errors="coerce"))
     l5_under = l5_under.combine_first(pd.to_numeric(df2.get("l5_under", np.nan), errors="coerce"))
+    # Shared push-aware L5 (l5_push / l5_decided / thin_decided) for all sports.
     df2 = fill_l5_from_stat_games(df2, line_col="line", min_games=1)
     from_g_over = pd.to_numeric(df2.get("l5_over"), errors="coerce")
     from_g_under = pd.to_numeric(df2.get("l5_under"), errors="coerce")
@@ -144,41 +145,6 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
     df2["last5_under"] = l5_under
     df2["l5_over"] = l5_over
     df2["l5_under"] = l5_under
-    # Push-aware decided split (shared helper) — Ford-style integer lines.
-    from utils.golf_windows import counts_from_stat_g_row
-
-    push_l: list[float] = []
-    decided_l: list[float] = []
-    thin_l: list[float] = []
-    hr_dec_o: list[float] = []
-    hr_dec_u: list[float] = []
-    line_s = pd.to_numeric(df2.get("line"), errors="coerce")
-    for idx in df2.index:
-        ln = line_s.at[idx]
-        if pd.isna(ln):
-            push_l.append(np.nan)
-            decided_l.append(np.nan)
-            thin_l.append(np.nan)
-            hr_dec_o.append(np.nan)
-            hr_dec_u.append(np.nan)
-            continue
-        c = counts_from_stat_g_row(df2.loc[idx], line=float(ln), n=5)
-        push_l.append(float(c.push))
-        decided_l.append(float(c.decided))
-        thin_l.append(1.0 if c.thin_decided else 0.0)
-        hr_dec_o.append(
-            c.hit_rate_decided_over if c.hit_rate_decided_over is not None else np.nan
-        )
-        hr_dec_u.append(
-            c.hit_rate_decided_under if c.hit_rate_decided_under is not None else np.nan
-        )
-    df2["l5_push"] = push_l
-    df2["last5_push"] = push_l
-    df2["l5_decided"] = decided_l
-    df2["last5_decided"] = decided_l
-    df2["thin_decided"] = thin_l
-    df2["hit_rate_decided_over_5"] = hr_dec_o
-    df2["hit_rate_decided_under_5"] = hr_dec_u
 
     if "line" in df2.columns:
         df2 = finalize_l10_ui_columns(df2, line_col="line")
@@ -205,6 +171,7 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "last5_over", "last5_under", "last5_push", "last5_decided",
         "l5_over", "l5_under", "l5_push", "l5_decided", "thin_decided",
         "hit_rate_decided_over_5", "hit_rate_decided_under_5",
+        "golf_pp_reconcile", "pp_mismatch_rounds",
         "stat_g1", "stat_g2", "stat_g3", "stat_g4", "stat_g5",
         "stat_g6", "stat_g7", "stat_g8", "stat_g9", "stat_g10",
         "l10_over", "l10_under", "l10_over_pct", "l10_streak", "l10_games_played",
@@ -366,22 +333,50 @@ def main() -> None:
     out["direction"] = final_dir
     out["bet_direction"] = final_dir
     out["void_reason"] = ""
-    # Hold bad scorecard attaches (flags-not-drops): keep the row, blank direction.
-    suspect = pd.Series(False, index=out.index)
+    # PP chart reconcile (fixture until board scrape captures chart series).
+    try:
+        from utils.golf_pp_reconcile import apply_pp_reconcile
+
+        cache_path = root / "Sports" / "Golf" / "cache" / "golf_round_cache.csv"
+        if cache_path.is_file():
+            rounds_cache = pd.read_csv(cache_path, low_memory=False, encoding="utf-8-sig")
+        else:
+            rounds_cache = pd.DataFrame()
+        out = apply_pp_reconcile(out, rounds_cache)
+    except Exception as exc:
+        print(f"[Golf step8] WARN PP reconcile skipped: {exc}")
+
+    # Hold bad scorecard attaches / PP mismatches (flags-not-drops): blank direction.
+    hold = pd.Series(False, index=out.index)
     if "golf_attach_suspect" in out.columns:
-        suspect = (
+        hold = (
             pd.to_numeric(out["golf_attach_suspect"], errors="coerce").fillna(0).astype(int).eq(1)
         )
     if "unsupported_reason" in out.columns:
-        suspect = suspect | out["unsupported_reason"].astype(str).str.strip().eq(
-            "golf_attach_suspect"
+        hold = hold | out["unsupported_reason"].astype(str).str.strip().isin(
+            {"golf_attach_suspect", "golf_pp_mismatch"}
         )
-    if suspect.any():
-        out.loc[suspect, "void_reason"] = "golf_attach_suspect"
-        out.loc[suspect, "final_bet_direction"] = ""
-        out.loc[suspect, "direction"] = ""
-        out.loc[suspect, "bet_direction"] = ""
-        print(f"[Golf step8] held golf_attach_suspect rows: {int(suspect.sum())}")
+    if "golf_pp_reconcile" in out.columns:
+        hold = hold | out["golf_pp_reconcile"].astype(str).str.strip().eq("mismatch")
+    if "void_reason" in out.columns:
+        hold = hold | out["void_reason"].astype(str).str.strip().isin(
+            {"golf_attach_suspect", "golf_pp_mismatch"}
+        )
+    if hold.any():
+        # Prefer explicit void_reason already set by reconcile / attach.
+        blank_vr = out["void_reason"].astype(str).str.strip().eq("")
+        if "golf_attach_suspect" in out.columns:
+            sus = (
+                pd.to_numeric(out["golf_attach_suspect"], errors="coerce")
+                .fillna(0)
+                .astype(int)
+                .eq(1)
+            )
+            out.loc[hold & blank_vr & sus, "void_reason"] = "golf_attach_suspect"
+        out.loc[hold, "final_bet_direction"] = ""
+        out.loc[hold, "direction"] = ""
+        out.loc[hold, "bet_direction"] = ""
+        print(f"[Golf step8] held attach/pp rows: {int(hold.sum())}")
 
     hr5b = pd.to_numeric(out.get("line_hit_rate_over_ou_5", np.nan), errors="coerce")
     hr10b = pd.to_numeric(out.get("line_hit_rate_over_ou_10", np.nan), errors="coerce").fillna(hr5b)

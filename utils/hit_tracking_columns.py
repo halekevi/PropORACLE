@@ -21,10 +21,14 @@ if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
 from scripts.l10_streak_utils import finalize_l10_ui_columns  # noqa: E402
+from utils.l5_push_aware import attach_l5_push_columns  # noqa: E402
 
 HIT_WINDOW_COLS: tuple[str, ...] = (
     "l5_over",
     "l5_under",
+    "l5_push",
+    "l5_decided",
+    "thin_decided",
     "l10_over",
     "l10_under",
     "l10_games_played",
@@ -41,6 +45,9 @@ HIT_TRACKING_RENAME: dict[str, str] = {
     "strat_n": "Strat N",
     "player_hr_historical": "Player HR Hist",
     "opp_hr_historical": "Opp HR Hist",
+    "l5_push": "L5 Push",
+    "l5_decided": "L5 Decided",
+    "thin_decided": "Thin Decided",
     "l10_over": "L10 Over",
     "l10_under": "L10 Under",
     "l10_games_played": "L10 Games",
@@ -98,9 +105,10 @@ def _first_numeric(df: pd.DataFrame, names: tuple[str, ...]) -> pd.Series:
     return out
 
 
-def _normalize_rate(series: pd.Series) -> pd.Series:
+def _normalize_rate(series: pd.Series) -> np.ndarray:
     s = pd.to_numeric(series, errors="coerce")
-    return np.where(s > 1.0, s / 100.0, s)
+    arr = s.to_numpy(dtype=float, na_value=np.nan)
+    return np.where(np.isfinite(arr) & (arr > 1.0), arr / 100.0, arr)
 
 
 def assign_l5_aliases_from_hits(
@@ -160,48 +168,12 @@ def fill_l5_from_stat_games(
     min_games: int = 1,
 ) -> pd.DataFrame:
     """
-    Recompute L5 over/under hit counts from ``stat_g1..stat_g5`` vs ``line``.
+    Recompute L5 over/under/push/decided from ``stat_g1..stat_g5`` vs ``line``.
 
-    Writes ``l5_over`` / ``l5_under`` and mirrors to ``last5_over`` /
-    ``last5_under`` / ``line_hits_over_5`` / ``line_hits_under_5`` when history
-    exists so every sport step8 / grader path gets the same columns.
+    Shared across every sport step8 via ``attach_hit_tracking_columns``.
+    Pushes never count as hits; ``thin_decided`` flags decided < 3.
     """
-    if df is None or df.empty:
-        return df
-    g5_cols = [c for c in (f"stat_g{i}" for i in range(1, 6)) if c in df.columns]
-    if not g5_cols or line_col not in df.columns:
-        return df
-
-    out = df.copy()
-    g5 = out[g5_cols].apply(pd.to_numeric, errors="coerce")
-    line = pd.to_numeric(out[line_col], errors="coerce")
-    valid_n = g5.notna().sum(axis=1)
-    over_n = g5.gt(line, axis=0).sum(axis=1).astype(float)
-    under_n = g5.lt(line, axis=0).sum(axis=1).astype(float)
-    has_hist = (valid_n >= int(min_games)) & line.notna()
-    if not bool(has_hist.any()):
-        return out
-
-    for col in (
-        "l5_over",
-        "l5_under",
-        "last5_over",
-        "last5_under",
-        "line_hits_over_5",
-        "line_hits_under_5",
-    ):
-        if col not in out.columns:
-            out[col] = np.nan
-        else:
-            out[col] = pd.to_numeric(out[col], errors="coerce")
-
-    out.loc[has_hist, "l5_over"] = over_n[has_hist]
-    out.loc[has_hist, "l5_under"] = under_n[has_hist]
-    out.loc[has_hist, "last5_over"] = over_n[has_hist]
-    out.loc[has_hist, "last5_under"] = under_n[has_hist]
-    out.loc[has_hist, "line_hits_over_5"] = over_n[has_hist]
-    out.loc[has_hist, "line_hits_under_5"] = under_n[has_hist]
-    return out
+    return attach_l5_push_columns(df, line_col=line_col, n=5, min_games=min_games)
 
 
 def _mirror_l5_aliases(df: pd.DataFrame) -> pd.DataFrame:
@@ -263,8 +235,26 @@ def attach_direction_hit_rate(df: pd.DataFrame) -> pd.DataFrame:
 
     l5o = _first_numeric(out, ("l5_over", "last5_over", "over_L5", "line_hits_over_5"))
     l5u = _first_numeric(out, ("l5_under", "last5_under", "under_L5", "line_hits_under_5"))
-    hr5o = pd.Series(_normalize_rate(_first_numeric(out, ("line_hit_rate_over_ou_5", "hit_rate_over_L5", "hr_L5"))), index=out.index)
-    hr5u = pd.Series(_normalize_rate(_first_numeric(out, ("line_hit_rate_under_ou_5",))), index=out.index)
+    hr5o = pd.Series(
+        _normalize_rate(
+            _first_numeric(
+                out,
+                ("hit_rate_decided_over_5", "line_hit_rate_over_ou_5", "hit_rate_over_L5", "hr_L5"),
+            )
+        ),
+        index=out.index,
+    )
+    hr5u = pd.Series(
+        _normalize_rate(
+            _first_numeric(out, ("hit_rate_decided_under_5", "line_hit_rate_under_ou_5"))
+        ),
+        index=out.index,
+    )
+    # Prefer decided denom when available (pushes out); else fall back to /5.
+    l5_dec = _first_numeric(out, ("l5_decided", "last5_decided", "line_hits_decided_5"))
+    dec_denom = l5_dec.replace(0, np.nan)
+    hr5o = hr5o.combine_first((l5o / dec_denom).clip(0, 1))
+    hr5u = hr5u.combine_first((l5u / dec_denom).clip(0, 1))
     hr5o = hr5o.combine_first((l5o / 5.0).clip(0, 1))
     hr5u = hr5u.combine_first((l5u / 5.0).clip(0, 1))
 
@@ -408,6 +398,8 @@ def resolve_sport_code(hint: str) -> str:
         return "WCBB"
     if "cbb" in h or "ncaab" in h:
         return "CBB"
+    if "cfb1h" in h or "ncaaf1h" in h:
+        return "CFB1H"
     if "cfb" in h or "ncaaf" in h:
         return "CFB"
     if "nhl" in h:
