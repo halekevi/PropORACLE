@@ -35,7 +35,7 @@ startCommand = "sh scripts/railway_gunicorn.sh"
 healthcheckPath = "/ping"
 healthcheckTimeout = 180
 
-# cache-bust: 2026-10-20 13:30 — Top Edges L5=5 + active-sport filter
+# cache-bust: 2026-10-21 13:20 — Matchup Edge auto-fill opponent from slate
 #
 # Income (/income): Daily P&L rows come from grade_history.json, appended by
 #   py -3.14 scripts/build_ticket_eval.py --date YYYY-MM-DD
