@@ -1,0 +1,1261 @@
+{
+  "listed_four_tuesday": {
+    "n": 371,
+    "hit": 192,
+    "miss": 120,
+    "push": 2,
+    "void": 52,
+    "open": 5,
+    "decided": 312,
+    "rate": 61.5,
+    "rate_s": "61.5% (192/312)"
+  },
+  "g70_goblin_tuesday": {
+    "n": 60,
+    "hit": 37,
+    "miss": 19,
+    "push": 0,
+    "void": 0,
+    "open": 4,
+    "decided": 56,
+    "rate": 66.1,
+    "rate_s": "66.1% (37/56)"
+  },
+  "g70_any_tuesday": {
+    "n": 60,
+    "hit": 37,
+    "miss": 19,
+    "push": 0,
+    "void": 0,
+    "open": 4,
+    "decided": 56,
+    "rate": 66.1,
+    "rate_s": "66.1% (37/56)"
+  },
+  "by_sport": {
+    "WNBA": {
+      "n": 324,
+      "hit": 159,
+      "miss": 112,
+      "push": 2,
+      "void": 51,
+      "open": 0,
+      "decided": 271,
+      "rate": 58.7,
+      "rate_s": "58.7% (159/271)"
+    },
+    "MLB": {
+      "n": 47,
+      "hit": 33,
+      "miss": 8,
+      "push": 0,
+      "void": 1,
+      "open": 5,
+      "decided": 41,
+      "rate": 80.5,
+      "rate_s": "80.5% (33/41)"
+    },
+    "SOCCER": {
+      "n": 0,
+      "hit": 0,
+      "miss": 0,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 0,
+      "rate": null,
+      "rate_s": "\u2014"
+    },
+    "TENNIS": {
+      "n": 0,
+      "hit": 0,
+      "miss": 0,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 0,
+      "rate": null,
+      "rate_s": "\u2014"
+    }
+  },
+  "by_book": {
+    "Goblin OVER": {
+      "n": 286,
+      "hit": 153,
+      "miss": 83,
+      "push": 0,
+      "void": 45,
+      "open": 5,
+      "decided": 236,
+      "rate": 64.8,
+      "rate_s": "64.8% (153/236)"
+    },
+    "Standard UNDER": {
+      "n": 41,
+      "hit": 26,
+      "miss": 11,
+      "push": 1,
+      "void": 3,
+      "open": 0,
+      "decided": 37,
+      "rate": 70.3,
+      "rate_s": "70.3% (26/37)"
+    },
+    "Standard OVER": {
+      "n": 44,
+      "hit": 13,
+      "miss": 26,
+      "push": 1,
+      "void": 4,
+      "open": 0,
+      "decided": 39,
+      "rate": 33.3,
+      "rate_s": "33.3% (13/39)"
+    }
+  },
+  "g70_sport": {
+    "WNBA": {
+      "n": 17,
+      "hit": 6,
+      "miss": 11,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 17,
+      "rate": 35.3,
+      "rate_s": "35.3% (6/17)"
+    },
+    "MLB": {
+      "n": 43,
+      "hit": 31,
+      "miss": 8,
+      "push": 0,
+      "void": 0,
+      "open": 4,
+      "decided": 39,
+      "rate": 79.5,
+      "rate_s": "79.5% (31/39)"
+    },
+    "SOCCER": {
+      "n": 0,
+      "hit": 0,
+      "miss": 0,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 0,
+      "rate": null,
+      "rate_s": "\u2014"
+    },
+    "TENNIS": {
+      "n": 0,
+      "hit": 0,
+      "miss": 0,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 0,
+      "rate": null,
+      "rate_s": "\u2014"
+    }
+  },
+  "wnba_g70_props": {
+    "Points": {
+      "n": 8,
+      "hit": 3,
+      "miss": 5,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 8,
+      "rate": 37.5,
+      "rate_s": "37.5% (3/8)"
+    },
+    "Rebounds": {
+      "n": 5,
+      "hit": 2,
+      "miss": 3,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 5,
+      "rate": 40.0,
+      "rate_s": "40.0% (2/5)"
+    },
+    "Pts+Asts": {
+      "n": 2,
+      "hit": 0,
+      "miss": 2,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 2,
+      "rate": 0.0,
+      "rate_s": "0.0% (0/2)"
+    },
+    "3-PT Made": {
+      "n": 2,
+      "hit": 1,
+      "miss": 1,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 2,
+      "rate": 50.0,
+      "rate_s": "50.0% (1/2)"
+    }
+  },
+  "mlb_g70_props": {
+    "Pitcher Strikeouts": {
+      "n": 12,
+      "hit": 8,
+      "miss": 3,
+      "push": 0,
+      "void": 0,
+      "open": 1,
+      "decided": 11,
+      "rate": 72.7,
+      "rate_s": "72.7% (8/11)"
+    },
+    "Walks Allowed": {
+      "n": 9,
+      "hit": 6,
+      "miss": 3,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 9,
+      "rate": 66.7,
+      "rate_s": "66.7% (6/9)"
+    },
+    "Earned Runs Allowed": {
+      "n": 7,
+      "hit": 4,
+      "miss": 2,
+      "push": 0,
+      "void": 0,
+      "open": 1,
+      "decided": 6,
+      "rate": 66.7,
+      "rate_s": "66.7% (4/6)"
+    },
+    "Hits Allowed": {
+      "n": 5,
+      "hit": 5,
+      "miss": 0,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 5,
+      "rate": 100.0,
+      "rate_s": "100.0% (5/5)"
+    },
+    "Pitches Thrown": {
+      "n": 4,
+      "hit": 4,
+      "miss": 0,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 4,
+      "rate": 100.0,
+      "rate_s": "100.0% (4/4)"
+    },
+    "Pitching Outs": {
+      "n": 5,
+      "hit": 3,
+      "miss": 0,
+      "push": 0,
+      "void": 0,
+      "open": 2,
+      "decided": 3,
+      "rate": 100.0,
+      "rate_s": "100.0% (3/3)"
+    },
+    "Hits+Runs+RBIs": {
+      "n": 1,
+      "hit": 1,
+      "miss": 0,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 1,
+      "rate": 100.0,
+      "rate_s": "100.0% (1/1)"
+    }
+  },
+  "tennis_later": {
+    "n": 10,
+    "hit": 6,
+    "miss": 3,
+    "push": 0,
+    "void": 0,
+    "open": 1,
+    "decided": 9,
+    "rate": 66.7,
+    "rate_s": "66.7% (6/9)"
+  },
+  "tickets_g70_winrate": {
+    "n": 17,
+    "decided": 13,
+    "paid": 3,
+    "loss": 10,
+    "open": 4,
+    "hit_rate": "23.1% (3/13)",
+    "units": -7.1
+  },
+  "tickets_g70_with_yolo": {
+    "n": 20,
+    "decided": 15,
+    "paid": 3,
+    "loss": 12,
+    "open": 5,
+    "hit_rate": "20.0% (3/15)",
+    "units": -9.1
+  },
+  "tickets_mixer": {
+    "n": 17,
+    "decided": 16,
+    "paid": 10,
+    "loss": 6,
+    "open": 1,
+    "hit_rate": "62.5% (10/16)",
+    "units": 0.83
+  },
+  "g70_misses": [
+    {
+      "sport": "WNBA",
+      "player": "Natasha Howard",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 6.5,
+      "actual": 6.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Natasha Howard",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 7.5,
+      "actual": 6.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Natasha Howard",
+      "prop": "Pts+Asts",
+      "side": "OVER",
+      "line": 9.5,
+      "actual": 9.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kayla McBride",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 11.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kiki Rice",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 9.5,
+      "actual": 9.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Napheesa Collier",
+      "prop": "Rebounds",
+      "side": "OVER",
+      "line": 5.5,
+      "actual": 2.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kiki Iriafen",
+      "prop": "Rebounds",
+      "side": "OVER",
+      "line": 7.5,
+      "actual": 5.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kayla McBride",
+      "prop": "Pts+Asts",
+      "side": "OVER",
+      "line": 14.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Jackie Young",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 14.5,
+      "actual": 14.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kiki Iriafen",
+      "prop": "Rebounds",
+      "side": "OVER",
+      "line": 8.5,
+      "actual": 5.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kelsey Mitchell",
+      "prop": "3-PT Made",
+      "side": "OVER",
+      "line": 2.5,
+      "actual": 2.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Logan Gilbert",
+      "prop": "Pitcher Strikeouts",
+      "side": "OVER",
+      "line": 3.5,
+      "actual": 3.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Jared Jones",
+      "prop": "Walks Allowed",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Brandon Williamson",
+      "prop": "Earned Runs Allowed",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Logan Gilbert",
+      "prop": "Pitcher Strikeouts",
+      "side": "OVER",
+      "line": 4.5,
+      "actual": 3.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Cristian Javier",
+      "prop": "Earned Runs Allowed",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "MLB",
+      "player": "MacKenzie Gore",
+      "prop": "Walks Allowed",
+      "side": "OVER",
+      "line": 1.5,
+      "actual": 1.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Dustin May",
+      "prop": "Pitcher Strikeouts",
+      "side": "OVER",
+      "line": 2.5,
+      "actual": 2.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Brandon Williamson",
+      "prop": "Walks Allowed",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    }
+  ],
+  "tickets": [
+    {
+      "group": "X-Sport Goblin-70 Power 3",
+      "id": "2026-09-22|X-Sport Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 2,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Jared Jones O3.5 Pitcher Strikeouts HIT",
+        "Maya Joint O15.5 Total Games MISS",
+        "Jackie Young O14.5 Points MISS"
+      ]
+    },
+    {
+      "group": "X-Sport Goblin-70 Power 3",
+      "id": "2026-09-22|X-Sport Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 2,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Logan Gilbert O3.5 Pitcher Strikeouts MISS",
+        "Natasha Howard O9.5 Pts+Asts MISS",
+        "Talia Gibson O17.5 Total Games HIT"
+      ]
+    },
+    {
+      "group": "X-Sport Goblin-70 Power 3",
+      "id": "2026-09-22|X-Sport Goblin-70 Power 3|3",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 1,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Yusei Kikuchi O0.5 Walks Allowed HIT",
+        "Kayla McBride O11.5 Points MISS",
+        "Maria Sakkari O16.5 Total Games HIT"
+      ]
+    },
+    {
+      "group": "X-Sport Goblin-70 Power 3",
+      "id": "2026-09-22|X-Sport Goblin-70 Power 3|4",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "3/3",
+      "n_hit": 3,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 1.0,
+      "legs": [
+        "Dustin May O1.5 Pitcher Strikeouts HIT",
+        "Kamilla Cardoso O8.5 Points HIT",
+        "Lanlana Tararudee O15.5 Total Games HIT"
+      ]
+    },
+    {
+      "group": "X-Sport Goblin-70 Power 3",
+      "id": "2026-09-22|X-Sport Goblin-70 Power 3|5",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 1,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Kimberly Birrell O18.5 Total Games HIT",
+        "Kyle Freeland O3.5 Hits Allowed HIT",
+        "Kiki Rice O9.5 Points MISS"
+      ]
+    },
+    {
+      "group": "X-Sport Goblin-70 Flex 4",
+      "id": "2026-09-22|X-Sport Goblin-70 Flex 4|1",
+      "n_legs": 4,
+      "type": "Flex",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/4",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 2,
+      "n_push": 0,
+      "result": "OPEN",
+      "paid": null,
+      "units": 0.0,
+      "legs": [
+        "Max Scherzer O2.5 Hits Allowed OPEN",
+        "Laura Ju\u0161kait\u0117 O8.5 Points HIT",
+        "Elise Mertens O19.5 Total Games OPEN",
+        "Anthony Kay O0.5 Walks Allowed HIT"
+      ]
+    },
+    {
+      "group": "X-Sport Goblin-70 Flex 4",
+      "id": "2026-09-22|X-Sport Goblin-70 Flex 4|2",
+      "n_legs": 4,
+      "type": "Flex",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "4/4",
+      "n_hit": 4,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.9,
+      "legs": [
+        "Max Fried O2.5 Pitcher Strikeouts HIT",
+        "Isabelle Harrison O5.5 Rebounds HIT",
+        "Taj Bradley O0.5 Walks Allowed HIT",
+        "Shota Imanaga O3.5 Pitcher Strikeouts HIT"
+      ]
+    },
+    {
+      "group": "X-Sport Goblin-70 Flex 4",
+      "id": "2026-09-22|X-Sport Goblin-70 Flex 4|3",
+      "n_legs": 4,
+      "type": "Flex",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "3/4",
+      "n_hit": 3,
+      "n_miss": 0,
+      "n_open": 1,
+      "n_push": 0,
+      "result": "OPEN",
+      "paid": null,
+      "units": 0.0,
+      "legs": [
+        "Chris Bassitt O0.5 Walks Allowed OPEN",
+        "Caitlin Clark O1.5 3-PT Made HIT",
+        "Sean Manaea O2.5 Pitcher Strikeouts HIT",
+        "Drew Rasmussen O3.5 Pitcher Strikeouts HIT"
+      ]
+    },
+    {
+      "group": "X-Sport Goblin-70 Flex 4",
+      "id": "2026-09-22|X-Sport Goblin-70 Flex 4|4",
+      "n_legs": 4,
+      "type": "Flex",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/4",
+      "n_hit": 2,
+      "n_miss": 2,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Andre Pallante O0.5 Walks Allowed HIT",
+        "Kelsey Mitchell O2.5 3-PT Made MISS",
+        "Brandon Williamson O0.5 Walks Allowed MISS",
+        "Riley Cornelio O0.5 Walks Allowed HIT"
+      ]
+    },
+    {
+      "group": "YOLO Goblin-70 Power 6",
+      "id": "2026-09-22|YOLO Goblin-70 Power 6|1",
+      "n_legs": 6,
+      "type": "Power",
+      "yolo": true,
+      "track": "goblin70_yolo",
+      "score": "4/6",
+      "n_hit": 4,
+      "n_miss": 2,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Caitlin Clark O1.5 3-PT Made HIT",
+        "Jared Jones O3.5 Pitcher Strikeouts HIT",
+        "Maya Joint O15.5 Total Games MISS",
+        "Logan Gilbert O3.5 Pitcher Strikeouts MISS",
+        "Yusei Kikuchi O0.5 Walks Allowed HIT",
+        "Dustin May O1.5 Pitcher Strikeouts HIT"
+      ]
+    },
+    {
+      "group": "YOLO Goblin-70 Power 5",
+      "id": "2026-09-22|YOLO Goblin-70 Power 5|1",
+      "n_legs": 5,
+      "type": "Power",
+      "yolo": true,
+      "track": "goblin70_yolo",
+      "score": "3/5",
+      "n_hit": 3,
+      "n_miss": 2,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Kelsey Mitchell O2.5 3-PT Made MISS",
+        "Talia Gibson O17.5 Total Games HIT",
+        "Kyle Freeland O3.5 Hits Allowed HIT",
+        "Jackie Young O14.5 Points MISS",
+        "Kamilla Cardoso O8.5 Points HIT"
+      ]
+    },
+    {
+      "group": "YOLO Goblin-70 Power 4",
+      "id": "2026-09-22|YOLO Goblin-70 Power 4|1",
+      "n_legs": 4,
+      "type": "Power",
+      "yolo": true,
+      "track": "goblin70_yolo",
+      "score": "2/4",
+      "n_hit": 2,
+      "n_miss": 1,
+      "n_open": 1,
+      "n_push": 0,
+      "result": "OPEN",
+      "paid": null,
+      "units": 0.0,
+      "legs": [
+        "Natasha Howard O9.5 Pts+Asts MISS",
+        "Maria Sakkari O16.5 Total Games HIT",
+        "Max Scherzer O2.5 Hits Allowed OPEN",
+        "Lanlana Tararudee O15.5 Total Games HIT"
+      ]
+    },
+    {
+      "group": "WNBA Goblin-70 Power 3",
+      "id": "2026-09-22|WNBA Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "0/3",
+      "n_hit": 0,
+      "n_miss": 3,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Jackie Young O14.5 Points MISS",
+        "Natasha Howard O9.5 Pts+Asts MISS",
+        "Kayla McBride O11.5 Points MISS"
+      ]
+    },
+    {
+      "group": "WNBA Goblin-70 Power 3",
+      "id": "2026-09-22|WNBA Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 1,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Kamilla Cardoso O8.5 Points HIT",
+        "Kiki Rice O9.5 Points MISS",
+        "Caitlin Clark O1.5 3-PT Made HIT"
+      ]
+    },
+    {
+      "group": "WNBA Goblin-70 Power 3",
+      "id": "2026-09-22|WNBA Goblin-70 Power 3|3",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 1,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Laura Ju\u0161kait\u0117 O8.5 Points HIT",
+        "Isabelle Harrison O5.5 Rebounds HIT",
+        "Kelsey Mitchell O2.5 3-PT Made MISS"
+      ]
+    },
+    {
+      "group": "MLB Goblin-70 Power 3",
+      "id": "2026-09-22|MLB Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 1,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Jared Jones O3.5 Pitcher Strikeouts HIT",
+        "Logan Gilbert O3.5 Pitcher Strikeouts MISS",
+        "Yusei Kikuchi O0.5 Walks Allowed HIT"
+      ]
+    },
+    {
+      "group": "MLB Goblin-70 Power 3",
+      "id": "2026-09-22|MLB Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 1,
+      "n_push": 0,
+      "result": "OPEN",
+      "paid": null,
+      "units": 0.0,
+      "legs": [
+        "Dustin May O1.5 Pitcher Strikeouts HIT",
+        "Kyle Freeland O3.5 Hits Allowed HIT",
+        "Max Scherzer O2.5 Hits Allowed OPEN"
+      ]
+    },
+    {
+      "group": "MLB Goblin-70 Power 3",
+      "id": "2026-09-22|MLB Goblin-70 Power 3|3",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "3/3",
+      "n_hit": 3,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 1.0,
+      "legs": [
+        "Anthony Kay O0.5 Walks Allowed HIT",
+        "Max Fried O2.5 Pitcher Strikeouts HIT",
+        "Taj Bradley O0.5 Walks Allowed HIT"
+      ]
+    },
+    {
+      "group": "Tennis Goblin-70 Power 3",
+      "id": "2026-09-22|Tennis Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 1,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Maya Joint O15.5 Total Games MISS",
+        "Talia Gibson O17.5 Total Games HIT",
+        "Maria Sakkari O16.5 Total Games HIT"
+      ]
+    },
+    {
+      "group": "Tennis Goblin-70 Power 3",
+      "id": "2026-09-22|Tennis Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "type": "Power",
+      "yolo": false,
+      "track": "goblin70",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 1,
+      "n_push": 0,
+      "result": "OPEN",
+      "paid": null,
+      "units": 0.0,
+      "legs": [
+        "Lanlana Tararudee O15.5 Total Games HIT",
+        "Kimberly Birrell O18.5 Total Games HIT",
+        "Elise Mertens O19.5 Total Games OPEN"
+      ]
+    },
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-22|STRONG 3-Leg|1",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 2,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Nneka Ogwumike O19.5 Pts+Rebs HIT",
+        "Natasha Howard O6.5 Points MISS",
+        "Kiki Iriafen O19.5 Pts+Rebs MISS"
+      ]
+    },
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-22|STRONG 3-Leg|2",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "3/3",
+      "n_hit": 3,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.6,
+      "legs": [
+        "Dustin May O5.5 Pitching Outs HIT",
+        "Logan Gilbert O2.5 Hits Allowed HIT",
+        "Sean Manaea O11.5 Pitching Outs HIT"
+      ]
+    },
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-22|STRONG 3-Leg|3",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 1,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.6,
+      "legs": [
+        "Laura Ju\u0161kait\u0117 O14.5 Pts+Rebs+Asts HIT",
+        "Georgia Amoore O9.5 Pts+Rebs+Asts HIT",
+        "Megan DiLeo O7.5 Points VOID"
+      ]
+    },
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-22|STRONG 3-Leg|4",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 0,
+      "n_push": 1,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Napheesa Collier O5.5 Rebounds MISS",
+        "Veronica Burton O7.5 Points VOID",
+        "Michaela Onyenwere O4.5 Points HIT"
+      ]
+    },
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-22|STRONG 3-Leg|5",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 2,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Kiki Rice O9.5 Points MISS",
+        "Kamilla Cardoso O8.5 Points HIT",
+        "Kayla McBride O11.5 Points MISS"
+      ]
+    },
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-22|STRONG 3-Leg|6",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 2,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Kelsey Mitchell O19.5 Pts+Rebs HIT",
+        "Rae Burrell O14.5 Pts+Rebs+Asts MISS",
+        "Jackie Young O14.5 Points MISS"
+      ]
+    },
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-22|STRONG 3-Leg|7",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 1,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.6,
+      "legs": [
+        "Olivia Miles O12.5 Points VOID",
+        "Sonia Citron O10.5 Points HIT",
+        "Charlisse Leger-Walker O4.5 Points HIT"
+      ]
+    },
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-22|STRONG 3-Leg|8",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 1,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Courtney Williams O8.5 Points MISS",
+        "Makayla Timpson O9.5 Pts+Rebs HIT",
+        "Shakira Austin O19.5 Pts+Rebs HIT"
+      ]
+    },
+    {
+      "group": "STRONG 2-Leg",
+      "id": "2026-09-22|STRONG 2-Leg|3",
+      "n_legs": 2,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "2/2",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.84,
+      "legs": [
+        "Dustin May O5.5 Pitching Outs HIT",
+        "Logan Gilbert O2.5 Hits Allowed HIT"
+      ]
+    },
+    {
+      "group": "STRONG 2-Leg",
+      "id": "2026-09-22|STRONG 2-Leg|10",
+      "n_legs": 2,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "2/2",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.7,
+      "legs": [
+        "Charlisse Leger-Walker O4.5 Points HIT",
+        "Makayla Timpson O4.5 Points HIT"
+      ]
+    },
+    {
+      "group": "STRONG 2-Leg",
+      "id": "2026-09-22|STRONG 2-Leg|11",
+      "n_legs": 2,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 1,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.53,
+      "legs": [
+        "Georgia Amoore O9.5 Pts+Rebs+Asts HIT",
+        "Megan DiLeo O7.5 Points VOID"
+      ]
+    },
+    {
+      "group": "STRONG 2-Leg",
+      "id": "2026-09-22|STRONG 2-Leg|15",
+      "n_legs": 2,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 1,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.6,
+      "legs": [
+        "Megan DiLeo O14.5 Pts+Rebs+Asts VOID",
+        "Michaela Onyenwere O4.5 Points HIT"
+      ]
+    },
+    {
+      "group": "MLB Core Power 2 #1",
+      "id": "2026-09-22|MLB Core Power 2 #1|1",
+      "n_legs": 2,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "2/2",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.88,
+      "legs": [
+        "Sean Manaea O11.5 Pitching Outs HIT",
+        "Dustin May O5.5 Pitching Outs HIT"
+      ]
+    },
+    {
+      "group": "MLB Core Power 2 #2",
+      "id": "2026-09-22|MLB Core Power 2 #2|1",
+      "n_legs": 2,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "2/2",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.88,
+      "legs": [
+        "Yusei Kikuchi O0.5 Walks Allowed HIT",
+        "Sean Manaea O11.5 Pitching Outs HIT"
+      ]
+    },
+    {
+      "group": "MLB Core Power 2 #3",
+      "id": "2026-09-22|MLB Core Power 2 #3|1",
+      "n_legs": 2,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "LOSS",
+      "paid": false,
+      "units": -1.0,
+      "legs": [
+        "Dustin May O1.5 Hits Allowed MISS",
+        "Sean Manaea O11.5 Pitching Outs HIT"
+      ]
+    },
+    {
+      "group": "MLB 3-Leg Goblin OVER",
+      "id": "2026-09-22|MLB 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "3/3",
+      "n_hit": 3,
+      "n_miss": 0,
+      "n_open": 0,
+      "n_push": 0,
+      "result": "SWEEP",
+      "paid": true,
+      "units": 0.6,
+      "legs": [
+        "MacKenzie Gore O0.5 Earned Runs Allowed HIT",
+        "Jared Jones O4.5 Pitcher Strikeouts HIT",
+        "Logan Gilbert O3.5 Hits Allowed HIT"
+      ]
+    },
+    {
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "id": "2026-09-22|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "type": "power",
+      "yolo": false,
+      "track": "graded_main",
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 1,
+      "n_push": 0,
+      "result": "OPEN",
+      "paid": null,
+      "units": 0.0,
+      "legs": [
+        "Maria Sakkari O16.5 Total Games HIT",
+        "Elise Mertens O19.5 Total Games OPEN",
+        "Kimberly Birrell O18.5 Total Games HIT"
+      ]
+    }
+  ]
+}

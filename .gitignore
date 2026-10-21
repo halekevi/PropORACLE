@@ -221,7 +221,11 @@ $null
 combined_slate_tickets_*.xlsx
 ui_runner/graded_slate/
 scripts/*-DESKTOP-*
-archive/
+# archive/ is local by default; tracked quarantine batches live under archive/scratch/
+archive/*
+!archive/scratch/
+!archive/scratch/**
+!archive/README.md
 archive/web_exports/
 data/grade_history.json
 data/payout_samples/
@@ -251,5 +255,7 @@ data/reports/slip_slice_*.csv
 data/reports/slip_void_*.csv
 data/reports/supplement_sports_slices.csv
 data/reports/winrate_goblin_policy_backtest.json
+data/reports/wnba_pra_off_observe.jsonl
+data/reports/wnba_pra_off_observe_*.json
 # Team-share leader sidecars (bulky; lean by_player JSON is enough for UI)
 **/*_team_share_leaders.json

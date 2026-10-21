@@ -1,0 +1,147 @@
+  [Date] Using specified date: 2026-09-21
+  [Tennis] TennisDate = same day as -Date (2026-09-21)  (ET today=2026-09-20)
+  [DayAhead] WNBA/MLB extra match day (Combined --wnba-date/--mlb-date): 2026-09-22
+
+======================================================
+  PROP PIPELINE  -- 2026-09-21 -- 21:13:37
+======================================================
+  [flags] SkipCombined - sport pipelines only (STEP D / CombinedOnly builds tickets)
+  [flags] SkipFetch - reuse existing step1 files
+
+[ TENNIS PIPELINE ]
+
+  [Tennis] Slate day (step8 filter): 2026-09-21 ET  |  Bundle folder: outputs\2026-09-21
+  [Tennis] Step1 loads the full PrizePicks tennis board (often spans several days). Step8 --date keeps only rows for 2026-09-21.
+  [Tennis] Skipping step1 fetch -- using existing H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step1_tennis_props.csv
+  [Tennis] Step2 uses doubles opp cache only (-SkipFetch; no PP API backfill)
+  --> Tennis Step 2 - Attach Pick Types
+        CMD: py -3.14 .\scripts\step2_attach_picktypes_tennis.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step1_tennis_props.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step2_tennis_picktypes.csv --writeback-step1 --skip-pp-backfill
+        [Tennis step2] Starting...
+          Dropped 39 fantasy prop row(s)
+          [Tennis] hydrated opponent ranks: +74 (searched 4)
+        [Tennis step2] Goblin standard_line fill: 614/614 (100%) sources={'offset_estimate': 458, 'sibling_or_pp': 156}
+        OK [Tennis step2] -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step2_tennis_picktypes.csv  rows=1753
+      OK
+  --> Tennis Step 3 - Defense Stub
+        CMD: py -3.14 .\scripts\step3_defense_rankings_tennis.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step2_tennis_picktypes.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step3_tennis_with_defense.csv
+        [Tennis step3] Starting...
+        [Tennis step3] No defense rankings for tennis - stub
+        OK [Tennis step3] -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step3_tennis_with_defense.csv  rows=1753
+      OK
+  --> Tennis Step 4 - Player Stats + History
+        CMD: py -3.14 .\scripts\step4_attach_player_stats_tennis.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step3_tennis_with_defense.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step4_tennis_with_stats.csv --history-source both --history-n 20 --date 2026-09-21
+        [Tennis step4] Starting...
+        [Tennis step4] Loading Sackmann match history...
+          Sackmann rows=20,044  indexed_players=1,434
+          Sackmann newest tourney_date=2026-05-25 (119d before slate 2026-09-21)
+          [WARN] Sackmann is stale vs the slate. Aces / DF / break points L5 will not use May-era matches. ESPN scoreboard covers games/sets.
+        [Tennis step4] Using ESPN match cache (4.5h old)
+        [Tennis step4] Sackmann fill: 0/1753 rows got stat_g from Sackmann
+        [Tennis step4] ESPN fallback: 562 rows used scoreboard cache
+        OK [Tennis step4] -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step4_tennis_with_stats.csv  rows=1753  stat_OK=562
+      OK
+  --> Tennis Step 4b - Surface context (Sackmann)
+        CMD: py -3.14 .\scripts\step4b_attach_surface_context.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step4_tennis_with_stats.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step4_tennis_with_stats.csv --date 2026-09-21
+        Profiles: 1816 keys -> H:\PropORACLE_main_cp\Sports\Tennis\data\tennis_surface_profiles.json
+        H2H surface: 16720 keys -> H:\PropORACLE_main_cp\Sports\Tennis\data\tennis_h2h_surface.json
+        Wrote H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step4_tennis_with_stats.csv (1753 rows)
+      OK
+  --> Tennis Step 5 - Hit Rates
+        CMD: py -3.14 .\scripts\step5_compute_hitrates_tennis.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step4_tennis_with_stats.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step5_tennis_hit_rates.csv --compute10
+        [Tennis step5] Starting...
+        OK [Tennis step5] -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step5_tennis_hit_rates.csv  rows=1753
+      OK
+  --> Tennis Step 6 - Context
+        CMD: py -3.14 .\scripts\step6_add_context_tennis.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step5_tennis_hit_rates.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step6_tennis_role_context.csv
+        [Tennis step6] Starting...
+          [Tennis] hydrated opponent ranks: +74 (searched 4)
+        [Tennis step6] opponent_rank (ATP/WTA) filled 1583/1753
+        OK [Tennis step6] -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step6_tennis_role_context.csv  rows=1753
+      OK
+  --> Tennis Step 7 - Rank Props
+        CMD: py -3.14 .\scripts\step7_rank_props_tennis.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step6_tennis_role_context.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step7_tennis_ranked.xlsx
+        [Tennis step7] Starting...
+          [ml-rank-blend] Tennis step7 weight=0.20
+        [Tennis step7] WARNING: Goblin/Demon standard_line fill rate 801/1627 (49%) - distance tiers unavailable for many rows, using ml_prob fallback for 826 rows
+        [Tennis step7] Tier distribution by group:
+          Goblin OVER:    A=42  B=224  C=347  D=1
+          Demon OVER:     A=35  B=751  C=214  D=13
+          Standard OVER:  A=0  B=30  C=96  D=0
+          Standard UNDER: A=0  B=0  C=0  D=0
+        OK [Tennis step7] -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step7_tennis_ranked.xlsx  rows=1753
+      OK
+  --> step7b (Tennis)
+        CMD: py -3.14 H:\PropORACLE_main_cp\scripts\step7b_edge_score.py --sport Tennis --repo-root H:\PropORACLE_main_cp --step7-xlsx H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step7_tennis_ranked.xlsx --pipeline-date 2026-09-21
+        H:\PropORACLE_main_cp\scripts\edge_feature_engineering.py:607: RuntimeWarning: Mean of empty slice
+          mu = np.nanmean(mat, axis=1)
+        C:\Users\halek\AppData\Local\Programs\Python\Python314\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+          var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+        [PropORACLE-step7b_edge_score] Starting...
+          [step7b] TENNIS: scoring 1698/1753 eligible rows
+        [WARN] Missing 10 feature cols for TENNIS - filling with 0.0: ['h1_hit_rate_over', 'h1_hit_rate_under', 'h1_sample_n', 'h1_consistency', 'h1_line_value_ratio', 'h1_implied_total', 'q1_pace_proxy', 'distribution_std']
+          Scored 1698 eligible / 1753 rows for TENNIS -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step7_tennis_ranked.xlsx (sheet='ALL')
+            #1 blended=0.9472 Isabella Shinikova | total_tie_breaks
+            #2 blended=0.9472 Isabella Shinikova | total_tie_breaks
+            #3 blended=0.9391 Linda Fruhvirtova | games_won
+            #4 blended=0.9382 Polina Kudermetova | games_won
+            #5 blended=0.9381 Linda Fruhvirtova | games_won
+  [Tennis] step7b: OK
+  --> Tennis Step 8 - Direction Context
+        CMD: py -3.14 H:\PropORACLE_main_cp\Sports\Tennis\scripts\step8_add_direction_context_tennis.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step7_tennis_ranked.xlsx --sheet ALL --output H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step8_tennis_direction.csv --xlsx H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step8_tennis_direction_clean.xlsx --date 2026-09-21
+        H:\PropORACLE_main_cp\scripts\edge_feature_engineering.py:607: RuntimeWarning: Mean of empty slice
+          mu = np.nanmean(mat, axis=1)
+        C:\Users\halek\AppData\Local\Programs\Python\Python314\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+          var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+        C:\Users\halek\AppData\Local\Programs\Python\Python314\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+          var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+        [Tennis step8] Starting...
+        Loading: H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step7_tennis_ranked.xlsx (sheet=ALL)
+        [DateFilter] Keeping ET days ['2026-09-21', '2026-09-22'] (today + day-ahead; 1596 rows)
+        [DateFilter] Kept 1596/1753 rows for 2026-09-21 ET (dropped 157 rows)
+        [Tennis step8] opponent_rank (ATP/WTA) filled 1426/1596
+        [Tennis step8] DEF_TIER from opponent ATP/WTA rank: 1426/1596
+        [Tennis step8] unified ml_prob filled 1596/1596 rows
+        [Tennis step8] distribution_std filled 479/1596 rows
+        Saved -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step8_tennis_direction.csv
+        final_bet_direction counts:
+        final_bet_direction
+        OVER     1570
+        UNDER      26
+        tier counts:
+        tier
+        B    916
+        C    597
+        A     71
+        D     12
+        [table_io] excel -> step8_tennis_direction_clean.xlsx engine=xlsxwriter sheets=['Tennis', 'ALL', 'Tier A', 'Tier B', 'Tier C', 'Tier D']
+        Clean XLSX saved -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step8_tennis_direction_clean.xlsx
+        [table_io] parquet sidecar -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step8_tennis_direction.parquet
+        [table_io] parquet sidecar -> H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step8_tennis_direction_clean.parquet
+        [Tennis step8] Dated clean workbook -> H:\PropORACLE_main_cp\outputs\2026-09-21\step8_tennis_direction_clean_2026-09-21.xlsx
+        [Tennis step8] Dated direction CSV -> H:\PropORACLE_main_cp\outputs\2026-09-21\step8_tennis_direction.csv
+      OK
+  [Tennis publish] skip undated sport-root mirror (day-ahead Date=2026-09-21 ET today=2026-09-20)
+  [Tennis] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step8_tennis_direction_clean_2026-09-21.xlsx
+  [Tennis publish] slate_sport_tennis.json (Tennis-only)
+H:\PropORACLE_main_cp\scripts\combined_slate_tickets.py:14185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  df[dest] = acc
+H:\PropORACLE_main_cp\scripts\combined_slate_tickets.py:14185: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  df[dest] = acc
+  [load_tennis] context fill: L5 490/1596  CV% 424/1596  Min Tier 1596/1596  (G1ΓÇôG5 n>=3: 430)
+  [load_tennis] opponent_rank from slate players: 1426/1596
+  [load_tennis] hit_rate proxy from blended_score (zero-history board)
+  [load_tennis] Games Won sweet-spot (opp 51ΓÇô100) boost on 78 legs
+  [Tennis date] available: 2026-09-21=1342, 2026-09-22=254
+  [Tennis date] kept 1342/1596, dropped 254
+Tennis rows: 1342 from H:\PropORACLE_main_cp\outputs\2026-09-21\tennis\step8_tennis_direction_clean.xlsx
+  [load_tennis] opponent_rank from slate players: 1180/1342
+  H:\PropORACLE_main_cp\ui_runner\templates\slate_latest.json  tennis=1342  all_sports=30082  ok=True
+  H:\PropORACLE_main_cp\mobile\www\slate_latest.json  tennis=1342  all_sports=30716  ok=True
+
+  Tennis complete.
+  [pipeline] Skipping combined (-SkipCombined)
+True
+======================================================
+  DONE  -- Elapsed: 01:26
+======================================================
+

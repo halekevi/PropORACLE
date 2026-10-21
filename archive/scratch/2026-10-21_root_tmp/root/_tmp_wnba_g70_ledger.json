@@ -1,0 +1,222 @@
+{
+  "window": "2026-09-01..2026-09-22",
+  "note": "WNBA only appears in graded_props from 9/18 (finals). Gate is current goblin_70_eligible.",
+  "days": [
+    {
+      "date": "2026-09-01",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-02",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-03",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-04",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-05",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-06",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-07",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-08",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-09",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-10",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-11",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-12",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-13",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-14",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-15",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-16",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-17",
+      "wnba": false,
+      "note": "no WNBA in graded_props"
+    },
+    {
+      "date": "2026-09-18",
+      "wnba": true,
+      "listed": "69.9% (116/166)",
+      "listed_n": 166,
+      "g70": "62.5% (5/8)",
+      "g70_n": 8,
+      "g70_hit": 5,
+      "g70_miss": 3,
+      "props": {
+        "fga": "100.0% (1/1)",
+        "points": "0.0% (0/1)",
+        "pra": "100.0% (1/1)",
+        "pts+ast": "0.0% (0/1)",
+        "reb+ast": "100.0% (2/2)",
+        "threes": "50.0% (1/2)"
+      }
+    },
+    {
+      "date": "2026-09-19",
+      "wnba": true,
+      "listed": "65.3% (47/72)",
+      "listed_n": 72,
+      "g70": "100.0% (1/1)",
+      "g70_n": 1,
+      "g70_hit": 1,
+      "g70_miss": 0,
+      "props": {
+        "rebounds": "100.0% (1/1)"
+      }
+    },
+    {
+      "date": "2026-09-20",
+      "wnba": true,
+      "listed": "89.7% (61/68)",
+      "listed_n": 68,
+      "g70": "100.0% (2/2)",
+      "g70_n": 2,
+      "g70_hit": 2,
+      "g70_miss": 0,
+      "props": {
+        "assists": "100.0% (1/1)",
+        "pts+reb": "100.0% (1/1)"
+      }
+    },
+    {
+      "date": "2026-09-21",
+      "wnba": true,
+      "listed": "84.2% (112/133)",
+      "listed_n": 133,
+      "g70": "87.5% (7/8)",
+      "g70_n": 8,
+      "g70_hit": 7,
+      "g70_miss": 1,
+      "props": {
+        "points": "100.0% (2/2)",
+        "pts+ast": "100.0% (1/1)",
+        "reb+ast": "0.0% (0/1)",
+        "rebounds": "100.0% (4/4)"
+      }
+    },
+    {
+      "date": "2026-09-22",
+      "wnba": true,
+      "listed": "61.3% (119/194)",
+      "listed_n": 194,
+      "g70": "21.4% (3/14)",
+      "g70_n": 14,
+      "g70_hit": 3,
+      "g70_miss": 11,
+      "props": {
+        "assists": "0.0% (0/1)",
+        "points": "16.7% (1/6)",
+        "pts+ast": "0.0% (0/2)",
+        "pts+reb": "0.0% (0/1)",
+        "rebounds": "50.0% (1/2)",
+        "threes": "50.0% (1/2)"
+      }
+    }
+  ],
+  "g70_all_wnba_days": "54.5% (18/33)",
+  "g70_ex_922": "78.9% (15/19)",
+  "by_prop_all": {
+    "assists": "50.0% (1/2)",
+    "fga": "100.0% (1/1)",
+    "points": "33.3% (3/9)",
+    "pra": "100.0% (1/1)",
+    "pts+ast": "25.0% (1/4)",
+    "pts+reb": "50.0% (1/2)",
+    "reb+ast": "66.7% (2/3)",
+    "rebounds": "85.7% (6/7)",
+    "threes": "50.0% (2/4)"
+  },
+  "by_prop_ex_922": {
+    "assists": "100.0% (1/1)",
+    "fga": "100.0% (1/1)",
+    "points": "66.7% (2/3)",
+    "pra": "100.0% (1/1)",
+    "pts+ast": "50.0% (1/2)",
+    "pts+reb": "100.0% (1/1)",
+    "reb+ast": "66.7% (2/3)",
+    "rebounds": "100.0% (5/5)",
+    "threes": "50.0% (1/2)"
+  },
+  "ticket_wnba_legs": [
+    {
+      "date": "2026-09-19",
+      "file": "H:\\PropORACLE_main_cp\\data\\reports\\goblin70_tickets_2026-09-19.json",
+      "legs": "75.0% (6/8)",
+      "n": 8
+    },
+    {
+      "date": "2026-09-20",
+      "file": "H:\\PropORACLE\\data\\reports\\goblin70_tickets_2026-09-20.json",
+      "legs": "50.0% (3/6)",
+      "n": 6
+    },
+    {
+      "date": "2026-09-22",
+      "file": "H:\\PropORACLE_main_cp\\data\\reports\\goblin70_tickets_2026-09-22.json",
+      "legs": "43.5% (10/23)",
+      "n": 23
+    }
+  ],
+  "ticket_wnba_by_prop": {
+    "assists": "50.0% (3/6)",
+    "points": "41.7% (5/12)",
+    "pts+ast": "0.0% (0/3)",
+    "pts+reb": "75.0% (6/8)",
+    "rebounds": "100.0% (2/2)",
+    "threes": "50.0% (3/6)"
+  }
+}

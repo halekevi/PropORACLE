@@ -1,0 +1,12 @@
+[load] dropped 200263 rows missing game_id/stat_type/direction/hit/model_prob
+[load] 692872 graded props across 5696 games
+[cells] wrote data\cache\leg_correlation_matrix.json
+[sanity] CBB baseline n-w shrunk_lift=0.997
+[sanity] MLB baseline n-w shrunk_lift=0.949  <-- CHECK: baseline should be ~1.0
+[sanity] NBA baseline n-w shrunk_lift=1.066  <-- CHECK: baseline should be ~1.0
+[sanity] NBA1H baseline n-w shrunk_lift=1.012
+[sanity] NBA1Q baseline n-w shrunk_lift=1.075  <-- CHECK: baseline should be ~1.0
+[sanity] NHL baseline n-w shrunk_lift=1.143  <-- CHECK: baseline should be ~1.0
+[sanity] Soccer baseline n-w shrunk_lift=1.737  <-- CHECK: baseline should be ~1.0
+[sanity] Tennis baseline n-w shrunk_lift=1.119  <-- CHECK: baseline should be ~1.0
+[sanity] WNBA baseline n-w shrunk_lift=0.891  <-- CHECK: baseline should be ~1.0

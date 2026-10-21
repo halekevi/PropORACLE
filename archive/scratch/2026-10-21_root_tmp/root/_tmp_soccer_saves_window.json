@@ -1,0 +1,528 @@
+{
+  "by_day": [
+    {
+      "date": "2026-09-01",
+      "dow": "Tue",
+      "sunday": false,
+      "n": 3,
+      "hit": 1,
+      "miss": 2,
+      "open": 0,
+      "decided": 3,
+      "rate": 33.3,
+      "rate_s": "33.3% (1/3)"
+    },
+    {
+      "date": "2026-09-02",
+      "dow": "Wed",
+      "sunday": false,
+      "n": 11,
+      "hit": 8,
+      "miss": 3,
+      "open": 0,
+      "decided": 11,
+      "rate": 72.7,
+      "rate_s": "72.7% (8/11)"
+    },
+    {
+      "date": "2026-09-03",
+      "dow": "Thu",
+      "sunday": false,
+      "n": 3,
+      "hit": 2,
+      "miss": 0,
+      "open": 1,
+      "decided": 2,
+      "rate": 100.0,
+      "rate_s": "100.0% (2/2)"
+    },
+    {
+      "date": "2026-09-04",
+      "dow": "Fri",
+      "sunday": false,
+      "n": 17,
+      "hit": 8,
+      "miss": 6,
+      "open": 3,
+      "decided": 14,
+      "rate": 57.1,
+      "rate_s": "57.1% (8/14)"
+    },
+    {
+      "date": "2026-09-05",
+      "dow": "Sat",
+      "sunday": false,
+      "n": 22,
+      "hit": 8,
+      "miss": 11,
+      "open": 3,
+      "decided": 19,
+      "rate": 42.1,
+      "rate_s": "42.1% (8/19)"
+    },
+    {
+      "date": "2026-09-06",
+      "dow": "Sun",
+      "sunday": true,
+      "n": 11,
+      "hit": 2,
+      "miss": 3,
+      "open": 6,
+      "decided": 5,
+      "rate": 40.0,
+      "rate_s": "40.0% (2/5)"
+    },
+    {
+      "date": "2026-09-07",
+      "dow": "Mon",
+      "sunday": false,
+      "n": 7,
+      "hit": 1,
+      "miss": 4,
+      "open": 2,
+      "decided": 5,
+      "rate": 20.0,
+      "rate_s": "20.0% (1/5)"
+    },
+    {
+      "date": "2026-09-08",
+      "dow": "Tue",
+      "sunday": false,
+      "n": 26,
+      "hit": 12,
+      "miss": 11,
+      "open": 3,
+      "decided": 23,
+      "rate": 52.2,
+      "rate_s": "52.2% (12/23)"
+    },
+    {
+      "date": "2026-09-09",
+      "dow": "Wed",
+      "sunday": false,
+      "n": 20,
+      "hit": 10,
+      "miss": 5,
+      "open": 5,
+      "decided": 15,
+      "rate": 66.7,
+      "rate_s": "66.7% (10/15)"
+    },
+    {
+      "date": "2026-09-10",
+      "dow": "Thu",
+      "sunday": false,
+      "n": 6,
+      "hit": 2,
+      "miss": 4,
+      "open": 0,
+      "decided": 6,
+      "rate": 33.3,
+      "rate_s": "33.3% (2/6)"
+    },
+    {
+      "date": "2026-09-11",
+      "dow": "Fri",
+      "sunday": false,
+      "n": 5,
+      "hit": 3,
+      "miss": 1,
+      "open": 1,
+      "decided": 4,
+      "rate": 75.0,
+      "rate_s": "75.0% (3/4)"
+    },
+    {
+      "date": "2026-09-12",
+      "dow": "Sat",
+      "sunday": false,
+      "n": 32,
+      "hit": 17,
+      "miss": 12,
+      "open": 2,
+      "decided": 29,
+      "rate": 58.6,
+      "rate_s": "58.6% (17/29)"
+    },
+    {
+      "date": "2026-09-13",
+      "dow": "Sun",
+      "sunday": true,
+      "n": 24,
+      "hit": 13,
+      "miss": 7,
+      "open": 3,
+      "decided": 20,
+      "rate": 65.0,
+      "rate_s": "65.0% (13/20)"
+    },
+    {
+      "date": "2026-09-14",
+      "dow": "Mon",
+      "sunday": false,
+      "n": 10,
+      "hit": 6,
+      "miss": 4,
+      "open": 0,
+      "decided": 10,
+      "rate": 60.0,
+      "rate_s": "60.0% (6/10)"
+    },
+    {
+      "date": "2026-09-15",
+      "dow": "Tue",
+      "sunday": false,
+      "n": 28,
+      "hit": 5,
+      "miss": 10,
+      "open": 13,
+      "decided": 15,
+      "rate": 33.3,
+      "rate_s": "33.3% (5/15)"
+    },
+    {
+      "date": "2026-09-16",
+      "dow": "Wed",
+      "sunday": false,
+      "n": 16,
+      "hit": 3,
+      "miss": 6,
+      "open": 7,
+      "decided": 9,
+      "rate": 33.3,
+      "rate_s": "33.3% (3/9)"
+    },
+    {
+      "date": "2026-09-17",
+      "dow": "Thu",
+      "sunday": false,
+      "n": 13,
+      "hit": 6,
+      "miss": 4,
+      "open": 3,
+      "decided": 10,
+      "rate": 60.0,
+      "rate_s": "60.0% (6/10)"
+    },
+    {
+      "date": "2026-09-18",
+      "dow": "Fri",
+      "sunday": false,
+      "n": 18,
+      "hit": 10,
+      "miss": 7,
+      "open": 1,
+      "decided": 17,
+      "rate": 58.8,
+      "rate_s": "58.8% (10/17)"
+    },
+    {
+      "date": "2026-09-19",
+      "dow": "Sat",
+      "sunday": false,
+      "n": 42,
+      "hit": 29,
+      "miss": 6,
+      "open": 7,
+      "decided": 35,
+      "rate": 82.9,
+      "rate_s": "82.9% (29/35)"
+    },
+    {
+      "date": "2026-09-20",
+      "dow": "Sun",
+      "sunday": true,
+      "n": 35,
+      "hit": 10,
+      "miss": 18,
+      "open": 7,
+      "decided": 28,
+      "rate": 35.7,
+      "rate_s": "35.7% (10/28)"
+    }
+  ],
+  "sundays": [
+    {
+      "date": "2026-09-06",
+      "dow": "Sun",
+      "sunday": true,
+      "n": 11,
+      "hit": 2,
+      "miss": 3,
+      "open": 6,
+      "decided": 5,
+      "rate": 40.0,
+      "rate_s": "40.0% (2/5)"
+    },
+    {
+      "date": "2026-09-13",
+      "dow": "Sun",
+      "sunday": true,
+      "n": 24,
+      "hit": 13,
+      "miss": 7,
+      "open": 3,
+      "decided": 20,
+      "rate": 65.0,
+      "rate_s": "65.0% (13/20)"
+    },
+    {
+      "date": "2026-09-20",
+      "dow": "Sun",
+      "sunday": true,
+      "n": 35,
+      "hit": 10,
+      "miss": 18,
+      "open": 7,
+      "decided": 28,
+      "rate": 35.7,
+      "rate_s": "35.7% (10/28)"
+    }
+  ],
+  "cells": {
+    "saves|ALL|Sun": {
+      "n": 31,
+      "hit": 4,
+      "miss": 13,
+      "open": 13,
+      "decided": 17,
+      "rate": 23.5,
+      "rate_s": "23.5% (4/17)"
+    },
+    "saves|ALL|all": {
+      "n": 123,
+      "hit": 37,
+      "miss": 50,
+      "open": 35,
+      "decided": 87,
+      "rate": 42.5,
+      "rate_s": "42.5% (37/87)"
+    },
+    "saves|ALL|other": {
+      "n": 92,
+      "hit": 33,
+      "miss": 37,
+      "open": 22,
+      "decided": 70,
+      "rate": 47.1,
+      "rate_s": "47.1% (33/70)"
+    },
+    "saves|OVER|Sun": {
+      "n": 23,
+      "hit": 1,
+      "miss": 9,
+      "open": 13,
+      "decided": 10,
+      "rate": 10.0,
+      "rate_s": "10.0% (1/10)"
+    },
+    "saves|OVER|all": {
+      "n": 92,
+      "hit": 25,
+      "miss": 38,
+      "open": 29,
+      "decided": 63,
+      "rate": 39.7,
+      "rate_s": "39.7% (25/63)"
+    },
+    "saves|OVER|other": {
+      "n": 69,
+      "hit": 24,
+      "miss": 29,
+      "open": 16,
+      "decided": 53,
+      "rate": 45.3,
+      "rate_s": "45.3% (24/53)"
+    },
+    "saves|UNDER|Sun": {
+      "n": 8,
+      "hit": 3,
+      "miss": 4,
+      "open": 0,
+      "decided": 7,
+      "rate": 42.9,
+      "rate_s": "42.9% (3/7)"
+    },
+    "saves|UNDER|all": {
+      "n": 31,
+      "hit": 12,
+      "miss": 12,
+      "open": 6,
+      "decided": 24,
+      "rate": 50.0,
+      "rate_s": "50.0% (12/24)"
+    },
+    "saves|UNDER|other": {
+      "n": 23,
+      "hit": 9,
+      "miss": 8,
+      "open": 6,
+      "decided": 17,
+      "rate": 52.9,
+      "rate_s": "52.9% (9/17)"
+    },
+    "shots|ALL|Sun": {
+      "n": 11,
+      "hit": 5,
+      "miss": 5,
+      "open": 1,
+      "decided": 10,
+      "rate": 50.0,
+      "rate_s": "50.0% (5/10)"
+    },
+    "shots|ALL|all": {
+      "n": 65,
+      "hit": 35,
+      "miss": 17,
+      "open": 13,
+      "decided": 52,
+      "rate": 67.3,
+      "rate_s": "67.3% (35/52)"
+    },
+    "shots|ALL|other": {
+      "n": 54,
+      "hit": 30,
+      "miss": 12,
+      "open": 12,
+      "decided": 42,
+      "rate": 71.4,
+      "rate_s": "71.4% (30/42)"
+    },
+    "shots|OVER|Sun": {
+      "n": 7,
+      "hit": 3,
+      "miss": 3,
+      "open": 1,
+      "decided": 6,
+      "rate": 50.0,
+      "rate_s": "50.0% (3/6)"
+    },
+    "shots|OVER|all": {
+      "n": 44,
+      "hit": 20,
+      "miss": 14,
+      "open": 10,
+      "decided": 34,
+      "rate": 58.8,
+      "rate_s": "58.8% (20/34)"
+    },
+    "shots|OVER|other": {
+      "n": 37,
+      "hit": 17,
+      "miss": 11,
+      "open": 9,
+      "decided": 28,
+      "rate": 60.7,
+      "rate_s": "60.7% (17/28)"
+    },
+    "shots|UNDER|Sun": {
+      "n": 4,
+      "hit": 2,
+      "miss": 2,
+      "open": 0,
+      "decided": 4,
+      "rate": 50.0,
+      "rate_s": "50.0% (2/4)"
+    },
+    "shots|UNDER|all": {
+      "n": 21,
+      "hit": 15,
+      "miss": 3,
+      "open": 3,
+      "decided": 18,
+      "rate": 83.3,
+      "rate_s": "83.3% (15/18)"
+    },
+    "shots|UNDER|other": {
+      "n": 17,
+      "hit": 13,
+      "miss": 1,
+      "open": 3,
+      "decided": 14,
+      "rate": 92.9,
+      "rate_s": "92.9% (13/14)"
+    },
+    "sog|ALL|Sun": {
+      "n": 28,
+      "hit": 16,
+      "miss": 10,
+      "open": 2,
+      "decided": 26,
+      "rate": 61.5,
+      "rate_s": "61.5% (16/26)"
+    },
+    "sog|ALL|all": {
+      "n": 161,
+      "hit": 84,
+      "miss": 57,
+      "open": 19,
+      "decided": 141,
+      "rate": 59.6,
+      "rate_s": "59.6% (84/141)"
+    },
+    "sog|ALL|other": {
+      "n": 133,
+      "hit": 68,
+      "miss": 47,
+      "open": 17,
+      "decided": 115,
+      "rate": 59.1,
+      "rate_s": "59.1% (68/115)"
+    },
+    "sog|OVER|Sun": {
+      "n": 25,
+      "hit": 14,
+      "miss": 9,
+      "open": 2,
+      "decided": 23,
+      "rate": 60.9,
+      "rate_s": "60.9% (14/23)"
+    },
+    "sog|OVER|all": {
+      "n": 152,
+      "hit": 78,
+      "miss": 54,
+      "open": 19,
+      "decided": 132,
+      "rate": 59.1,
+      "rate_s": "59.1% (78/132)"
+    },
+    "sog|OVER|other": {
+      "n": 127,
+      "hit": 64,
+      "miss": 45,
+      "open": 17,
+      "decided": 109,
+      "rate": 58.7,
+      "rate_s": "58.7% (64/109)"
+    },
+    "sog|UNDER|Sun": {
+      "n": 3,
+      "hit": 2,
+      "miss": 1,
+      "open": 0,
+      "decided": 3,
+      "rate": 66.7,
+      "rate_s": "66.7% (2/3)"
+    },
+    "sog|UNDER|all": {
+      "n": 9,
+      "hit": 6,
+      "miss": 3,
+      "open": 0,
+      "decided": 9,
+      "rate": 66.7,
+      "rate_s": "66.7% (6/9)"
+    },
+    "sog|UNDER|other": {
+      "n": 6,
+      "hit": 4,
+      "miss": 2,
+      "open": 0,
+      "decided": 6,
+      "rate": 66.7,
+      "rate_s": "66.7% (4/6)"
+    }
+  },
+  "catalog_note": "Goblin OVER Saves L5>=4 catalog 80.8% n=26 (keep-prop-gates-lift)"
+}

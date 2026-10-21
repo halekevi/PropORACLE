@@ -1,0 +1,295 @@
+  [Date] Using specified date: 2026-09-21
+  [Tennis] TennisDate = same day as -Date (2026-09-21)  (ET today=2026-09-20)
+  [DayAhead] WNBA/MLB extra match day (Combined --wnba-date/--mlb-date): 2026-09-22
+
+======================================================
+  PROP PIPELINE  -- 2026-09-21 -- 21:13:37
+======================================================
+  [flags] SkipCombined - sport pipelines only (STEP D / CombinedOnly builds tickets)
+  [flags] SkipFetch - reuse existing step1 files
+
+[ MLB PIPELINE ]
+
+  [MLB] Skipping step1 fetch -- using existing H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step1_mlb_props.csv
+  --> MLB Step 2 - Attach Pick Types
+        CMD: py -3.14 .\scripts\step2_attach_picktypes_mlb.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step1_mlb_props.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step2_mlb_picktypes.csv --id_lookup_timeout_s 6 --id_lookup_retries 2 --id_lookup_budget_s 180
+          Loaded 3 name alias(es) from H:\PropORACLE_main_cp\Sports\MLB\data\mlb_name_aliases.csv
+         Loading Step1: H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step1_mlb_props.csv
+          Loaded ID cache: 920 entries from mlb_id_cache.csv
+        
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step2_mlb_picktypes.csv  rows=680
+          id_status:   {'OK': 680}
+          player_type: {'hitter': 638, 'pitcher': 42}
+          prop_norm:   {'hits_runs_rbi': 112, 'hits': 80, 'total_bases': 78, 'rbi': 66, 'runs': 63, 'singles': 44, 'hitter_strikeouts': 40, 'walks': 36, 'home_runs': 36, 'doubles': 33, 'triples': 32, 'stolen_bases': 18, 'hits_allowed': 11, 'earned_runs_allowed': 11, 'walks_allowed': 11}
+        [MLB step2] id_attach: OK=680 | UNRESOLVED=0 | total=680
+      OK
+  --> MLB Step 3 - Attach Defense
+        CMD: py -3.14 .\scripts\step3_attach_defense_mlb.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step2_mlb_picktypes.csv --defense mlb_defense_summary.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step3_mlb_with_defense.csv
+         Loading Step2: H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step2_mlb_picktypes.csv
+         Loading defense: mlb_defense_summary.csv
+         Merging defense for singles...
+        [MLB step3] def_tier: Avg=188 Weak=171 Above Avg=169 Below Avg=152
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step3_mlb_with_defense.csv
+        Rows: 680 | Cols: 47
+        Defense filled (OVERALL_DEF_RANK): 680/680
+      OK
+  --> MLB Step 4 - Player Stats
+        CMD: py -3.14 .\scripts\step4_attach_player_stats_mlb.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step3_mlb_with_defense.csv --cache mlb_stats_cache.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step4_mlb_with_stats.csv --season 2026
+        Timeout: 3600s
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step4_attach_player_stats_mlb.py:935: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          stale_before = pd.Timestamp(datetime.utcnow().date()) - pd.Timedelta(days=1)
+        ΓåÆ Loading Step3: H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step3_mlb_with_defense.csv
+          Loaded cache: 654298 rows from mlb_stats_cache.csv
+          Loaded cache: 654827 rows from proporacle_ref.db mlb_gamelog
+          Cache index: 8942 prop-keys, 684 player-seasons (23.3s)
+        
+        ΓåÆ Attaching stats | rows=680
+          ΓÜá Pitcher FS fallback (wins unavailable -> win=0): player_id=687792 season=2026
+          ΓÜá Pitcher FS fallback (wins unavailable -> win=0): player_id=689981 season=2026
+        [MLB step4] cache miss after refresh: DJ Herz | strikeouts | id=687792
+        [MLB step4] cache miss after refresh: DJ Herz | hits_allowed | id=687792
+        [MLB step4] cache miss after refresh: River Ryan | hits_allowed | id=689981
+        [MLB step4] cache miss after refresh: DJ Herz | strikeouts | id=687792
+        [MLB step4] cache miss after refresh: DJ Herz | hits_allowed | id=687792
+        [MLB step4] cache miss after refresh: River Ryan | strikeouts | id=689981
+        [MLB step4] cache miss after refresh: DJ Herz | earned_runs_allowed | id=687792
+        [MLB step4] cache miss after refresh: River Ryan | earned_runs_allowed | id=689981
+        [MLB step4] cache miss after refresh: DJ Herz | walks_allowed | id=687792
+        [MLB step4] cache miss after refresh: River Ryan | walks_allowed | id=689981
+        [MLB step4] cache miss after refresh: River Ryan | strikeouts | id=689981
+        [MLB step4] cache miss after refresh: River Ryan | hits_allowed | id=689981
+        [MLB step4] cache miss after refresh: DJ Herz | earned_runs_allowed | id=687792
+        [MLB step4] cache miss after refresh: DJ Herz | walks_allowed | id=687792
+        [MLB step4] cache miss after refresh: DJ Herz | walks_allowed | id=687792
+        [MLB step4] cache miss after refresh: River Ryan | walks_allowed | id=689981
+        [MLB step4] cache miss after refresh: DJ Herz | earned_runs_allowed | id=687792
+        [MLB step4] cache miss after refresh: River Ryan | earned_runs_allowed | id=689981
+        [MLB step4] cache miss after refresh: River Ryan | hits_allowed | id=689981
+        [B2B] MLB: 680 rows, 680 back-to-backs found
+        [pipeline] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step4_mlb_with_stats.csv
+        
+        Γ£à Saved ΓåÆ H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step4_mlb_with_stats.csv
+        Cache updates: 0
+        
+        stat_status breakdown:
+        stat_status
+        OK               661
+        NO_CACHE_DATA     19
+        
+        stat_coverage breakdown:
+        stat_coverage
+        supported    669
+        aliased       11
+        [MLB step4] stat_attach: OK=661 | NO_CACHE_DATA=19 | NO_MLB_PLAYER_ID=0 | UNSUPPORTED_PROP=0 | total=680
+      OK
+  --> MLB Step 4a - Pitching staff cache
+Γå║ Staff cache fresh ΓåÆ H:\PropORACLE_main_cp\Sports\MLB\data\mlb_pitching_staff.json
+Γå║ Rotation cache fresh ΓåÆ H:\PropORACLE_main_cp\Sports\MLB\data\mlb_rotation_schedule.json
+Γ£à Summary ΓåÆ H:\PropORACLE_main_cp\Sports\MLB\data\mlb_pitching_staff_summary.csv (30 teams)
+   Probable starters in window: 91
+  --> MLB Step 4b - Lineup Context
+[step4b] Pre-resolving unique player IDs and batter hands...
+[step4b] Pre-resolved 40 unique players
+line_history read failed: Execution failed on sql '
+                SELECT COALESCE(player_name, player) AS player_name,
+                       sport, fetched_at,
+                       COALESCE(line_score, line) AS line_val,
+                       prop_norm, game_date
+                FROM line_history
+                WHERE sport = 'MLB'
+                ': no such column: player_name
+[pipeline] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step4_mlb_with_stats.csv
+Lineup attached: 680/680 rows, 0 missing
+Γ£à Saved ΓåÆ H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step4_mlb_with_stats.csv
+  --> MLB Step 4c - Weather Context
+[pipeline] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step4_mlb_with_stats.csv
+Weather attached: 680/680 rows
+Saved -> H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step4_mlb_with_stats.csv
+  --> MLB Step 4d - Injury Context
+[pipeline] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step4_mlb_with_stats.csv
+MLB injury context: 0 ESPN rows, 0 player matches, 0 on IL, 0 opp_starter_on_il
+Γ£à Saved ΓåÆ H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step4_mlb_with_stats.csv
+  --> MLB Step 5 - Line Hit Rates
+        CMD: py -3.14 .\scripts\step5_add_line_hit_rates_mlb.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step4_mlb_with_stats.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step5_mlb_hit_rates.csv --compute10
+        line_movement: Odds API quota low (remaining=0) - using stale cache 2026-09-05
+         Loading: H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step4_mlb_with_stats.csv
+        [H2H] MLB: skipped - mlb_gamelog has no team column (TODO: boxscore join)
+        [H2H] MLB: 0/680 rows with h2h_games > 0
+        [LM] MLB bookmaker distribution: {'draftkings': 26, 'pinnacle': 4}
+        [LM-WIRE] MLB: open_line=680/680, line_movement=680/680, line_direction_shift=680/680, implied_prob=30/680
+        [pipeline] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step5_mlb_hit_rates.csv
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step5_mlb_hit_rates.csv  rows=680
+        Filled line_hit_rate_over_ou_5: 661/680
+        hit_rate_status: {'BLENDED_n5': 661, 'MISSING_STAT_VALUES': 19}
+      OK
+  --> MLB Step 6 - Team Role Context
+        CMD: py -3.14 .\scripts\step6_team_role_context_mlb.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step5_mlb_hit_rates.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step6_mlb_role_context.csv
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:528: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["player_type_norm"] = pd.Series([infer_ptype(i) for i in range(len(df))], index=df.index)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:531: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["pos_norm"] = pos_norm
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:547: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["minutes_tier"] = pd.Series([_mt(i) for i in range(len(df))], index=df.index)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:558: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["batting_order_tier"] = pd.Series([_bot(i) for i in range(len(df))], index=df.index)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:568: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["pitcher_role"] = pd.Series([_pr(i) for i in range(len(df))], index=df.index)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:571: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          t0 = datetime.utcnow()
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:593: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["same_series_hit_rate"] = _same_series_rates_for_slate(df, lookup)
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:596: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+          f"elapsed={ (datetime.utcnow() - t0).total_seconds():.1f}s"
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:649: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["game_total"] = game_total_vals
+        H:\PropORACLE_main_cp\Sports\MLB\scripts\step6_team_role_context_mlb.py:650: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["spread"] = spread_vals
+         Loading: H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step5_mlb_hit_rates.csv
+        [same_series] source=sqlite rows=680 cache_rows=654827 elapsed=3.7s
+        [ODDS] MLB: HTTP 401 - using null odds
+        [ODDS] MLB: 0 games matched, requests_remaining=0
+        [pipeline] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step6_mlb_role_context.csv
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step6_mlb_role_context.csv  rows=680
+        minutes_tier: {'HIGH': 638, 'MEDIUM': 23, 'UNKNOWN': 19}
+        batting_order_tier: {'MID': 638, 'UNKNOWN': 42}
+        pitcher_role: {'N/A': 638, 'UNKNOWN': 19, 'RP': 17, 'SP': 6}
+        player_type_norm: {'hitter': 638, 'pitcher': 42}
+        same_series_hit_rate (non-null): 0
+      OK
+  --> MLB Top-3 vs pitching analysis (step7 input)
+Using season 2026 (43010 game rows)
+Wrote H:\PropORACLE_main_cp\Sports\MLB\data\mlb_hitter_top3_vs_defense.csv (720 rows)
+Cache: 172040 hitter stat rows | skipped (no team ids): 0 | wide games: 43010 | season: 2026
+Teams: 30 | Categories: 4 | Leader rows: 720
+Historical weak-pitching boosters (top-3 per team├ùcat): 19
+      OK
+  --> MLB Step 7 - Rank Props
+        CMD: py -3.14 .\scripts\step7_rank_props_mlb.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step6_mlb_role_context.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step7_mlb_ranked.xlsx
+        H:\PropORACLE_main_cp\scripts\edge_feature_engineering.py:607: RuntimeWarning: Mean of empty slice
+          mu = np.nanmean(mat, axis=1)
+        C:\Users\halek\AppData\Local\Programs\Python\Python314\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+          var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+        [PropORACLE-step7_rank_props_mlb] Starting...
+         Loading: H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step6_mlb_role_context.csv
+        [step7] wind_out_hot badge: 0 rows
+        [MLB step7] context fade: 6 rows (0 StandardUNDER, 6 forced-OVER penalized; elite_starter=0)
+        [step7] l10>=8 boost: 13 rows
+        ??  MLB prop model files missing - using prop_hr_prior for ml_prob
+        ? MLB ML blend (multi-signal, weight=0.30) [prior-only]
+        [MLB step7] tier ml_prob: sport_slug='mlb'; Demon fallback A/B/C = 0.65/0.6/0.58; Standard A/B/C = 0.58/0.52/0.47
+        [MLB step7] WARNING: Goblin/Demon standard_line fill rate 69/635 (11%) - distance tiers unavailable for many rows, using ml_prob fallback for 566 rows
+        [MLB step7] Tier distribution by group:
+          Goblin OVER:    A=1  B=95  C=19  D=3
+          Demon OVER:     A=21  B=28  C=4  D=464
+          Standard OVER:  A=1  B=20  C=0  D=7
+          Standard UNDER: A=1  B=2  C=3  D=11
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step7_mlb_ranked.xlsx
+        ALL rows: 680
+        
+        Tier counts:
+        tier
+        D    485
+        B    145
+        C     26
+        A     24
+        
+        Ineligible reasons:
+        void_reason
+        FORCED_OVER_NEG_EDGE    496
+        VOID_TIER_D              55
+        
+        Score percentiles (eligible):
+        0.50    1.516
+        0.70    2.711
+        0.80    3.292
+        0.85    3.549
+        0.90    4.122
+        0.95    4.911
+      OK
+  --> step7b (MLB)
+        CMD: py -3.14 H:\PropORACLE_main_cp\scripts\step7b_edge_score.py --sport MLB --repo-root H:\PropORACLE_main_cp --step7-xlsx H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step7_mlb_ranked.xlsx
+        H:\PropORACLE_main_cp\scripts\edge_feature_engineering.py:607: RuntimeWarning: Mean of empty slice
+          mu = np.nanmean(mat, axis=1)
+        C:\Users\halek\AppData\Local\Programs\Python\Python314\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+          var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+        H:\PropORACLE_main_cp\scripts\step7b_edge_score.py:359: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df[col] = np.nan
+        H:\PropORACLE_main_cp\scripts\step7b_edge_score.py:359: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df[col] = np.nan
+        [PropORACLE-step7b_edge_score] Starting...
+          [step7b] MLB: scoring 129/680 eligible rows
+        [WARN] Missing 10 feature cols for MLB - filling with 0.0: ['h1_hit_rate_over', 'h1_hit_rate_under', 'h1_sample_n', 'h1_consistency', 'h1_line_value_ratio', 'h1_implied_total', 'q1_pace_proxy', 'distribution_std']
+          Scored 129 eligible / 680 rows for MLB -> H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step7_mlb_ranked.xlsx (sheet='ALL')
+            #1 blended=0.9143 Jonah Cox | hits_runs_rbi
+            #2 blended=0.9080 Max Clark | hits_runs_rbi
+            #3 blended=0.8797 Jonah Cox | hitter_strikeouts
+            #4 blended=0.8768 Blade Tidwell | walks_allowed
+            #5 blended=0.8373 Riley Greene | hits
+  [MLB] step7b: OK
+  --> MLB Step 8 - Direction Context
+        CMD: py -3.14 H:\PropORACLE_main_cp\Sports\MLB\scripts\step8_add_direction_context_mlb.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step7_mlb_ranked.xlsx --output H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step8_mlb_direction.csv --xlsx H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step8_mlb_direction_clean.xlsx --date 2026-09-21
+        Loading: H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step7_mlb_ranked.xlsx (sheet=ALL)
+        [MLB step8] distribution_std filled 661/680 rows
+        Saved -> H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step8_mlb_direction.csv
+        final_bet_direction: {'OVER': 663, 'UNDER': 17}
+        tier: {'D': 485, 'B': 145, 'C': 26, 'A': 24}
+        Clean XLSX saved -> H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step8_mlb_direction_clean.xlsx
+        [MLB step8] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step8_mlb_direction_clean_2026-09-21.xlsx
+      OK
+  --> MLB - Rebuild hitter matchup edge JSON (dedicated builder, post-step8)
+Wrote H:\PropORACLE_main_cp\Sports\MLB\data\mlb_matchup_edge.json
+Wrote H:\PropORACLE_main_cp\ui_runner\templates\mlb_matchup_edge.json
+Wrote H:\PropORACLE_main_cp\mobile\www\data\mlb_matchup_edge.json
+[mlb] blocks=120 -> mlb_matchup_edge.json
+      OK
+  [MLB publish] skip undated sport-root mirror (day-ahead Date=2026-09-21 ET today=2026-09-20)
+  [MLB] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step8_mlb_direction_clean_2026-09-21.xlsx
+  [MLB publish] slate_sport_mlb.json (MLB-only)
+  [load_mlb] context fill: L5 661/680  CV% 599/680  Min Tier 680/680  (G1ΓÇôG5 n>=3: 661)
+  [MLB date] available: 2026-09-21=680
+  [MLB date] kept 680/680, dropped 0
+MLB rows: 680 from H:\PropORACLE_main_cp\outputs\2026-09-21\mlb\step8_mlb_direction_clean.xlsx
+  H:\PropORACLE_main_cp\mobile\www\slate_latest.json  mlb=680  all_sports=23461
+  H:\PropORACLE_main_cp\ui_runner\templates\slate_latest.json  mlb=680  all_sports=22827
+
+  MLB complete.
+  [pipeline] Skipping combined (-SkipCombined)
+True
+======================================================
+  DONE  -- Elapsed: 03:10
+======================================================
+

@@ -1,0 +1,1480 @@
+{
+  "listed_four_sunday": {
+    "n": 197,
+    "hit": 130,
+    "miss": 51,
+    "push": 1,
+    "void": 8,
+    "open": 7,
+    "decided": 181,
+    "rate": 71.8,
+    "rate_s": "71.8% (130/181)"
+  },
+  "listed_four_all_window": {
+    "n": 219,
+    "hit": 134,
+    "miss": 52,
+    "push": 1,
+    "void": 8,
+    "open": 24,
+    "decided": 186,
+    "rate": 72.0,
+    "rate_s": "72.0% (134/186)"
+  },
+  "g70_four_sunday": {
+    "n": 65,
+    "hit": 39,
+    "miss": 21,
+    "push": 0,
+    "void": 0,
+    "open": 5,
+    "decided": 60,
+    "rate": 65.0,
+    "rate_s": "65.0% (39/60)"
+  },
+  "g70_four_all_window": {
+    "n": 87,
+    "hit": 43,
+    "miss": 22,
+    "push": 0,
+    "void": 0,
+    "open": 22,
+    "decided": 65,
+    "rate": 66.2,
+    "rate_s": "66.2% (43/65)"
+  },
+  "by_sport": {
+    "WNBA": {
+      "n": 119,
+      "hit": 87,
+      "miss": 24,
+      "push": 1,
+      "void": 7,
+      "open": 0,
+      "decided": 111,
+      "rate": 78.4,
+      "rate_s": "78.4% (87/111)"
+    },
+    "MLB": {
+      "n": 39,
+      "hit": 30,
+      "miss": 8,
+      "push": 0,
+      "void": 1,
+      "open": 0,
+      "decided": 38,
+      "rate": 78.9,
+      "rate_s": "78.9% (30/38)"
+    },
+    "SOCCER": {
+      "n": 29,
+      "hit": 10,
+      "miss": 16,
+      "push": 0,
+      "void": 0,
+      "open": 3,
+      "decided": 26,
+      "rate": 38.5,
+      "rate_s": "38.5% (10/26)"
+    },
+    "TENNIS": {
+      "n": 10,
+      "hit": 3,
+      "miss": 3,
+      "push": 0,
+      "void": 0,
+      "open": 4,
+      "decided": 6,
+      "rate": 50.0,
+      "rate_s": "50.0% (3/6)",
+      "later_n": 22,
+      "later": {
+        "n": 22,
+        "hit": 4,
+        "miss": 1,
+        "push": 0,
+        "void": 0,
+        "open": 17,
+        "decided": 5,
+        "rate": 80.0,
+        "rate_s": "80.0% (4/5)"
+      }
+    },
+    "NFL": {
+      "padded_no_combo": {
+        "n": 1447,
+        "hit": 411,
+        "miss": 210,
+        "push": 1,
+        "void": 596,
+        "open": 229,
+        "decided": 621,
+        "rate": 66.2,
+        "rate_s": "66.2% (411/621)"
+      },
+      "current_season": {
+        "n": 0,
+        "hit": 0,
+        "miss": 0,
+        "push": 0,
+        "void": 0,
+        "open": 0,
+        "decided": 0,
+        "rate": null,
+        "rate_s": "\u2014"
+      }
+    }
+  },
+  "by_book": {
+    "Goblin OVER": {
+      "n": 142,
+      "hit": 100,
+      "miss": 28,
+      "push": 0,
+      "void": 7,
+      "open": 7,
+      "decided": 128,
+      "rate": 78.1,
+      "rate_s": "78.1% (100/128)"
+    },
+    "Standard UNDER": {
+      "n": 36,
+      "hit": 18,
+      "miss": 16,
+      "push": 1,
+      "void": 1,
+      "open": 0,
+      "decided": 34,
+      "rate": 52.9,
+      "rate_s": "52.9% (18/34)"
+    },
+    "Standard OVER": {
+      "n": 19,
+      "hit": 12,
+      "miss": 7,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 19,
+      "rate": 63.2,
+      "rate_s": "63.2% (12/19)"
+    }
+  },
+  "g70_sport": {
+    "WNBA": {
+      "n": 9,
+      "hit": 7,
+      "miss": 2,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 9,
+      "rate": 77.8,
+      "rate_s": "77.8% (7/9)"
+    },
+    "MLB": {
+      "n": 32,
+      "hit": 25,
+      "miss": 7,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 32,
+      "rate": 78.1,
+      "rate_s": "78.1% (25/32)"
+    },
+    "SOCCER": {
+      "n": 17,
+      "hit": 4,
+      "miss": 11,
+      "push": 0,
+      "void": 0,
+      "open": 2,
+      "decided": 15,
+      "rate": 26.7,
+      "rate_s": "26.7% (4/15)"
+    },
+    "TENNIS": {
+      "n": 7,
+      "hit": 3,
+      "miss": 1,
+      "push": 0,
+      "void": 0,
+      "open": 3,
+      "decided": 4,
+      "rate": 75.0,
+      "rate_s": "75.0% (3/4)"
+    },
+    "NFL": {
+      "n": 0,
+      "hit": 0,
+      "miss": 0,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 0,
+      "rate": null,
+      "rate_s": "\u2014"
+    }
+  },
+  "soccer_props": {
+    "Shots On Target": {
+      "n": 13,
+      "hit": 5,
+      "miss": 6,
+      "push": 0,
+      "void": 0,
+      "open": 2,
+      "decided": 11,
+      "rate": 45.5,
+      "rate_s": "45.5% (5/11)"
+    },
+    "Goalie Saves": {
+      "n": 9,
+      "hit": 1,
+      "miss": 8,
+      "push": 0,
+      "void": 0,
+      "open": 0,
+      "decided": 9,
+      "rate": 11.1,
+      "rate_s": "11.1% (1/9)"
+    },
+    "Shots": {
+      "n": 7,
+      "hit": 4,
+      "miss": 2,
+      "push": 0,
+      "void": 0,
+      "open": 1,
+      "decided": 6,
+      "rate": 66.7,
+      "rate_s": "66.7% (4/6)"
+    }
+  },
+  "tennis_later": {
+    "n": 22,
+    "hit": 4,
+    "miss": 1,
+    "push": 0,
+    "void": 0,
+    "open": 17,
+    "decided": 5,
+    "rate": 80.0,
+    "rate_s": "80.0% (4/5)"
+  },
+  "nfl_listed": {
+    "n": 1447,
+    "hit": 411,
+    "miss": 210,
+    "push": 1,
+    "void": 596,
+    "open": 229,
+    "decided": 621,
+    "rate": 66.2,
+    "rate_s": "66.2% (411/621)"
+  },
+  "nfl_book": {
+    "Goblin OVER": {
+      "n": 951,
+      "hit": 350,
+      "miss": 141,
+      "push": 0,
+      "void": 318,
+      "open": 142,
+      "decided": 491,
+      "rate": 71.3,
+      "rate_s": "71.3% (350/491)"
+    },
+    "Standard UNDER": {
+      "n": 267,
+      "hit": 32,
+      "miss": 41,
+      "push": 0,
+      "void": 153,
+      "open": 41,
+      "decided": 73,
+      "rate": 43.8,
+      "rate_s": "43.8% (32/73)"
+    },
+    "Standard OVER": {
+      "n": 229,
+      "hit": 29,
+      "miss": 28,
+      "push": 1,
+      "void": 125,
+      "open": 46,
+      "decided": 57,
+      "rate": 50.9,
+      "rate_s": "50.9% (29/57)"
+    }
+  },
+  "nfl_g70": {
+    "n": 0,
+    "hit": 0,
+    "miss": 0,
+    "push": 0,
+    "void": 0,
+    "open": 0,
+    "decided": 0,
+    "rate": null,
+    "rate_s": "\u2014"
+  },
+  "list_misses": [
+    {
+      "sport": "WNBA",
+      "player": "Shakira Austin",
+      "prop": "Rebs+Asts",
+      "side": "UNDER",
+      "line": 14.5,
+      "actual": 15.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Chelsea Gray",
+      "prop": "Pts+Rebs+Asts",
+      "side": "UNDER",
+      "line": 20.5,
+      "actual": 23.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Erica Wheeler",
+      "prop": "Assists",
+      "side": "OVER",
+      "line": 2.5,
+      "actual": 2.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Carla Leite",
+      "prop": "Assists",
+      "side": "OVER",
+      "line": 5.5,
+      "actual": 5.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Flau'jae Johnson",
+      "prop": "Assists",
+      "side": "UNDER",
+      "line": 2.5,
+      "actual": 6.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Dominique Malonga",
+      "prop": "3-PT Made",
+      "side": "UNDER",
+      "line": 0.5,
+      "actual": 1.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Megan DiLeo",
+      "prop": "3-PT Made",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Chelsea Gray",
+      "prop": "Pts+Asts",
+      "side": "UNDER",
+      "line": 16.5,
+      "actual": 19.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Shakira Austin",
+      "prop": "Pts+Rebs+Asts",
+      "side": "UNDER",
+      "line": 32.5,
+      "actual": 35.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Caitlin Clark",
+      "prop": "Rebs+Asts",
+      "side": "OVER",
+      "line": 9.5,
+      "actual": 7.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Caitlin Clark",
+      "prop": "Assists",
+      "side": "OVER",
+      "line": 6.5,
+      "actual": 5.0,
+      "book": "Standard OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Megan DiLeo",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 11.5,
+      "actual": 11.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Chelsea Gray + Dominique Malonga",
+      "prop": "Points (Combo)",
+      "side": "UNDER",
+      "line": 26.5,
+      "actual": 40.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kelsey Mitchell",
+      "prop": "Rebs+Asts",
+      "side": "OVER",
+      "line": 3.5,
+      "actual": 2.0,
+      "book": "Standard OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kelsey Mitchell",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 22.5,
+      "actual": 22.0,
+      "book": "Standard OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Erica Wheeler",
+      "prop": "Assists",
+      "side": "OVER",
+      "line": 3.5,
+      "actual": 2.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Lauren Betts",
+      "prop": "Rebounds",
+      "side": "OVER",
+      "line": 3.5,
+      "actual": 3.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kelsey Mitchell",
+      "prop": "Pts+Rebs+Asts",
+      "side": "OVER",
+      "line": 26.5,
+      "actual": 24.0,
+      "book": "Standard OVER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Ariel Atkins",
+      "prop": "Points",
+      "side": "UNDER",
+      "line": 7.0,
+      "actual": 14.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Sonia Citron",
+      "prop": "Assists",
+      "side": "UNDER",
+      "line": 6.5,
+      "actual": 9.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Shakira Austin",
+      "prop": "Points",
+      "side": "UNDER",
+      "line": 18.5,
+      "actual": 20.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Shakira Austin",
+      "prop": "Pts+Rebs",
+      "side": "UNDER",
+      "line": 28.5,
+      "actual": 30.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Jackie Young",
+      "prop": "Assists",
+      "side": "UNDER",
+      "line": 6.5,
+      "actual": 8.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kelsey Mitchell",
+      "prop": "Pts+Asts",
+      "side": "OVER",
+      "line": 25.5,
+      "actual": 24.0,
+      "book": "Standard OVER"
+    },
+    {
+      "sport": "MLB",
+      "player": "Colson Montgomery",
+      "prop": "Hitter Strikeouts",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "MLB",
+      "player": "Brandon Young",
+      "prop": "Hits Allowed",
+      "side": "OVER",
+      "line": 3.5,
+      "actual": 3.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jacob Misiorowski",
+      "prop": "Pitcher Strikeouts",
+      "side": "OVER",
+      "line": 5.5,
+      "actual": 4.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jacob Misiorowski",
+      "prop": "Pitching Outs",
+      "side": "OVER",
+      "line": 14.5,
+      "actual": 9.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "MLB",
+      "player": "Brandon Young",
+      "prop": "Hits Allowed",
+      "side": "OVER",
+      "line": 4.5,
+      "actual": 3.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "MLB",
+      "player": "Ryan Johnson",
+      "prop": "Walks Allowed",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jake Irvin",
+      "prop": "Walks Allowed",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jake Irvin",
+      "prop": "Walks Allowed",
+      "side": "OVER",
+      "line": 1.5,
+      "actual": 0.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Antonio Nusa",
+      "prop": "Shots On Target",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Ludovic Ajorque",
+      "prop": "Shots On Target",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Alejo Veliz",
+      "prop": "Shots On Target",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Josh Sheehan",
+      "prop": "Shots",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0,
+      "book": "Goblin OVER"
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Mamadou Diop",
+      "prop": "Goalie Saves",
+      "side": "OVER",
+      "line": 2.0,
+      "actual": 1.0,
+      "book": "Standard OVER"
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Y\u00e9hvann Diouf",
+      "prop": "Goalie Saves",
+      "side": "UNDER",
+      "line": 3.0,
+      "actual": 7.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Max O'Leary",
+      "prop": "Goalie Saves",
+      "side": "UNDER",
+      "line": 3.5,
+      "actual": 5.0,
+      "book": "Standard UNDER"
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Jean Butez",
+      "prop": "Goalie Saves",
+      "side": "UNDER",
+      "line": 2.5,
+      "actual": 4.0,
+      "book": "Standard UNDER"
+    }
+  ],
+  "g70_misses": [
+    {
+      "sport": "WNBA",
+      "player": "Shakira Austin",
+      "prop": "Rebs+Asts",
+      "side": "UNDER",
+      "line": 14.5,
+      "actual": 15.0
+    },
+    {
+      "sport": "WNBA",
+      "player": "Erica Wheeler",
+      "prop": "Assists",
+      "side": "OVER",
+      "line": 2.5,
+      "actual": 2.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Brandon Young",
+      "prop": "Hits Allowed",
+      "side": "OVER",
+      "line": 3.5,
+      "actual": 3.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Jacob Misiorowski",
+      "prop": "Pitcher Strikeouts",
+      "side": "OVER",
+      "line": 5.5,
+      "actual": 4.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Jacob Misiorowski",
+      "prop": "Pitching Outs",
+      "side": "OVER",
+      "line": 14.5,
+      "actual": 9.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Brandon Young",
+      "prop": "Hits Allowed",
+      "side": "OVER",
+      "line": 4.5,
+      "actual": 3.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Ryan Johnson",
+      "prop": "Walks Allowed",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Jake Irvin",
+      "prop": "Walks Allowed",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "MLB",
+      "player": "Jake Irvin",
+      "prop": "Walks Allowed",
+      "side": "OVER",
+      "line": 1.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Antonio Nusa",
+      "prop": "Shots On Target",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Josh Sheehan",
+      "prop": "Shots",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Mamadou Diop",
+      "prop": "Goalie Saves",
+      "side": "OVER",
+      "line": 2.0,
+      "actual": 1.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Y\u00e9hvann Diouf",
+      "prop": "Goalie Saves",
+      "side": "UNDER",
+      "line": 3.0,
+      "actual": 7.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Max O'Leary",
+      "prop": "Goalie Saves",
+      "side": "UNDER",
+      "line": 3.5,
+      "actual": 5.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Jean Butez",
+      "prop": "Goalie Saves",
+      "side": "UNDER",
+      "line": 2.5,
+      "actual": 4.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Jeffrey de Lange",
+      "prop": "Goalie Saves",
+      "side": "UNDER",
+      "line": 5.0,
+      "actual": 8.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Andre Brooks",
+      "prop": "Shots On Target",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Mamadou Diop",
+      "prop": "Goalie Saves",
+      "side": "OVER",
+      "line": 2.5,
+      "actual": 1.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Mamadou Diop",
+      "prop": "Goalie Saves",
+      "side": "OVER",
+      "line": 1.5,
+      "actual": 1.0
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Jonathan Clauss",
+      "prop": "Shots",
+      "side": "OVER",
+      "line": 0.5,
+      "actual": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "player": "Mananchaya Sawangkaew",
+      "prop": "Total Games Won",
+      "side": "OVER",
+      "line": 6.5,
+      "actual": 6.0
+    }
+  ],
+  "tickets": [
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-20|STRONG 3-Leg|1",
+      "n_legs": 3,
+      "type": "power",
+      "n_correct_x": 1.6,
+      "score": "2/3",
+      "n_hit": 2,
+      "n_miss": 1,
+      "n_open": 0,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Troy Melton O2.5 Hits Allowed HIT",
+        "Will Warren O2.5 Hits Allowed HIT",
+        "Ryan Johnson O0.5 Walks Allowed MISS"
+      ],
+      "leg_rows": [
+        {
+          "sport": "MLB",
+          "player": "Troy Melton",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 4.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Will Warren",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 6.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Ryan Johnson",
+          "prop": "Walks Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 0.0
+        }
+      ]
+    },
+    {
+      "group": "STRONG 3-Leg",
+      "id": "2026-09-20|STRONG 3-Leg|2",
+      "n_legs": 3,
+      "type": "power",
+      "n_correct_x": 1.6,
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 2,
+      "n_open": 0,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Jake Irvin O2.5 Hits Allowed HIT",
+        "Dean Kremer O2.5 Hits Allowed MISS",
+        "Hunter Brown O0.5 Earned Runs Allowed MISS"
+      ],
+      "leg_rows": [
+        {
+          "sport": "MLB",
+          "player": "Jake Irvin",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 3.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Dean Kremer",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 1.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Hunter Brown",
+          "prop": "Earned Runs Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 0.0
+        }
+      ]
+    },
+    {
+      "group": "STRONG 2-Leg",
+      "id": "2026-09-20|STRONG 2-Leg|1",
+      "n_legs": 2,
+      "type": "power",
+      "n_correct_x": 1.8426,
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 0,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Dean Kremer O0.5 Earned Runs Allowed MISS",
+        "Brandon Young O0.5 Earned Runs Allowed HIT"
+      ],
+      "leg_rows": [
+        {
+          "sport": "MLB",
+          "player": "Dean Kremer",
+          "prop": "Earned Runs Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 0.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Brandon Young",
+          "prop": "Earned Runs Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 2.0
+        }
+      ]
+    },
+    {
+      "group": "STRONG 2-Leg",
+      "id": "2026-09-20|STRONG 2-Leg|2",
+      "n_legs": 2,
+      "type": "power",
+      "n_correct_x": 1.8426,
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 0,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Jake Irvin O2.5 Hits Allowed HIT",
+        "Dean Kremer O2.5 Hits Allowed MISS"
+      ],
+      "leg_rows": [
+        {
+          "sport": "MLB",
+          "player": "Jake Irvin",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 3.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Dean Kremer",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 1.0
+        }
+      ]
+    },
+    {
+      "group": "STRONG 2-Leg",
+      "id": "2026-09-20|STRONG 2-Leg|3",
+      "n_legs": 2,
+      "type": "power",
+      "n_correct_x": 1.8426,
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 0,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Will Warren O2.5 Hits Allowed HIT",
+        "Ryan Johnson O0.5 Walks Allowed MISS"
+      ],
+      "leg_rows": [
+        {
+          "sport": "MLB",
+          "player": "Will Warren",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 6.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Ryan Johnson",
+          "prop": "Walks Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 0.0
+        }
+      ]
+    },
+    {
+      "group": "STRONG 2-Leg",
+      "id": "2026-09-20|STRONG 2-Leg|4",
+      "n_legs": 2,
+      "type": "power",
+      "n_correct_x": 1.8794,
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 0,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Walker Buehler O0.5 Earned Runs Allowed HIT",
+        "Hunter Brown O0.5 Earned Runs Allowed MISS"
+      ],
+      "leg_rows": [
+        {
+          "sport": "MLB",
+          "player": "Walker Buehler",
+          "prop": "Earned Runs Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 3.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Hunter Brown",
+          "prop": "Earned Runs Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 0.0
+        }
+      ]
+    },
+    {
+      "group": "SOCCER Core Power 2 #1",
+      "id": "2026-09-20|SOCCER Core Power 2 #1|1",
+      "n_legs": 2,
+      "type": "power",
+      "n_correct_x": 1.7,
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 0,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Berke \u00d6zer O1.5 Goalie Saves HIT",
+        "Josh Sheehan O0.5 Shots MISS"
+      ],
+      "leg_rows": [
+        {
+          "sport": "SOCCER",
+          "player": "Berke \u00d6zer",
+          "prop": "Goalie Saves",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 3.0
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Josh Sheehan",
+          "prop": "Shots",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 0.0
+        }
+      ]
+    },
+    {
+      "group": "MLB Core Power 2 #1",
+      "id": "2026-09-20|MLB Core Power 2 #1|1",
+      "n_legs": 2,
+      "type": "power",
+      "n_correct_x": 1.9162,
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 0,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Troy Melton O3.5 Hits Allowed HIT",
+        "Jake Irvin O0.5 Walks Allowed MISS"
+      ],
+      "leg_rows": [
+        {
+          "sport": "MLB",
+          "player": "Troy Melton",
+          "prop": "Hits Allowed",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 4.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Jake Irvin",
+          "prop": "Walks Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 0.0
+        }
+      ]
+    },
+    {
+      "group": "MLB Core Power 2 #2",
+      "id": "2026-09-20|MLB Core Power 2 #2|1",
+      "n_legs": 2,
+      "type": "power",
+      "n_correct_x": 1.8787,
+      "score": "2/2",
+      "n_hit": 2,
+      "n_miss": 0,
+      "n_open": 0,
+      "result": "SWEEP",
+      "units": 0.88,
+      "legs": [
+        "Dean Kremer O0.5 Walks Allowed HIT",
+        "Troy Melton O2.5 Hits Allowed HIT"
+      ],
+      "leg_rows": [
+        {
+          "sport": "MLB",
+          "player": "Dean Kremer",
+          "prop": "Walks Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 3.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Troy Melton",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 4.0
+        }
+      ]
+    },
+    {
+      "group": "MLB Core Power 2 #3",
+      "id": "2026-09-20|MLB Core Power 2 #3|1",
+      "n_legs": 2,
+      "type": "power",
+      "n_correct_x": 1.8426,
+      "score": "1/2",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 0,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Troy Melton O2.5 Hits Allowed HIT",
+        "Jake Irvin O0.5 Walks Allowed MISS"
+      ],
+      "leg_rows": [
+        {
+          "sport": "MLB",
+          "player": "Troy Melton",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 4.0
+        },
+        {
+          "sport": "MLB",
+          "player": "Jake Irvin",
+          "prop": "Walks Allowed",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 0.0
+        }
+      ]
+    },
+    {
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "id": "2026-09-20|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "type": "power",
+      "n_correct_x": 1.6,
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 1,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Moyuka Uchijima O5.5 Total Games Won HIT",
+        "Katie Volynets O15.5 Total Games MISS",
+        "Anna Bondar O18.5 Total Games OPEN"
+      ],
+      "leg_rows": [
+        {
+          "sport": "TENNIS",
+          "player": "Moyuka Uchijima",
+          "prop": "Total Games Won",
+          "line": 5.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 13.0
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Katie Volynets",
+          "prop": "Total Games",
+          "line": 15.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 15.0
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Anna Bondar",
+          "prop": "Total Games",
+          "line": 18.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "OPEN",
+          "actual": null
+        }
+      ]
+    },
+    {
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "id": "2026-09-20|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "type": "power",
+      "n_correct_x": 1.6,
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 1,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Moyuka Uchijima O5.5 Total Games Won HIT",
+        "Katie Volynets O16.5 Total Games MISS",
+        "Anna Bondar O18.5 Total Games OPEN"
+      ],
+      "leg_rows": [
+        {
+          "sport": "TENNIS",
+          "player": "Moyuka Uchijima",
+          "prop": "Total Games Won",
+          "line": 5.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 13.0
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Katie Volynets",
+          "prop": "Total Games",
+          "line": 16.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 15.0
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Anna Bondar",
+          "prop": "Total Games",
+          "line": 18.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "OPEN",
+          "actual": null
+        }
+      ]
+    },
+    {
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "id": "2026-09-20|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "type": "power",
+      "n_correct_x": 1.6,
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 1,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Lanlana Tararudee O16.5 Total Games HIT",
+        "Katie Volynets O15.5 Total Games MISS",
+        "Anna Bondar O18.5 Total Games OPEN"
+      ],
+      "leg_rows": [
+        {
+          "sport": "TENNIS",
+          "player": "Lanlana Tararudee",
+          "prop": "Total Games",
+          "line": 16.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 31.0
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Katie Volynets",
+          "prop": "Total Games",
+          "line": 15.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 15.0
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Anna Bondar",
+          "prop": "Total Games",
+          "line": 18.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "OPEN",
+          "actual": null
+        }
+      ]
+    },
+    {
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "id": "2026-09-20|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "type": "power",
+      "n_correct_x": 1.6,
+      "score": "1/3",
+      "n_hit": 1,
+      "n_miss": 1,
+      "n_open": 1,
+      "result": "LOSS",
+      "units": -1.0,
+      "legs": [
+        "Lanlana Tararudee O16.5 Total Games HIT",
+        "Katie Volynets O16.5 Total Games MISS",
+        "Anna Bondar O18.5 Total Games OPEN"
+      ],
+      "leg_rows": [
+        {
+          "sport": "TENNIS",
+          "player": "Lanlana Tararudee",
+          "prop": "Total Games",
+          "line": 16.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "HIT",
+          "actual": 31.0
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Katie Volynets",
+          "prop": "Total Games",
+          "line": 16.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "MISS",
+          "actual": 15.0
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Anna Bondar",
+          "prop": "Total Games",
+          "line": 18.5,
+          "pick_type": "Goblin",
+          "side": "OVER",
+          "grade": "OPEN",
+          "actual": null
+        }
+      ]
+    }
+  ],
+  "tickets_decided": 14,
+  "tickets_cashed": 1,
+  "tickets_units": -12.12,
+  "n_listed": 1761,
+  "n_g70": 87,
+  "notes": {
+    "g70_file": "none for 2026-09-20; reconstructed from step8",
+    "mixer": "tickets_latest.bak_20260920_164144 graded_main",
+    "nfl_step8": "missing; list from step5",
+    "cfb": "step1 only, no Sunday step8"
+  }
+}

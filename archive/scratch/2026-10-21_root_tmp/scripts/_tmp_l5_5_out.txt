@@ -1,0 +1,147 @@
+Best props 2026-10-20  L5=5 only
+
+===== WNBA =====
+  (no step8 / empty ΓÇö offseason or no slate)
+
+===== MLB =====
+  (no step8 / empty ΓÇö offseason or no slate)
+
+===== SOCCER =====  root=PropORACLE_main_cp  stdO=0 stdU=0 gob=0
+Standard OVER
+  (none)
+Standard UNDER
+  (none)
+Goblin OVER
+  (none)
+  [Tennis] hydrated opponent ranks: +6 (searched 1)
+
+===== TENNIS =====  root=PropORACLE_main_cp  stdO=0 stdU=0 gob=5
+Standard OVER
+  (none)
+Standard UNDER
+  (none)
+Goblin OVER
+  A/Platinum   Matteo Berrettini        Total Games              O19.5  L5 5/0  L5avg 27.40  L10avg 28.25  szn 28.25  cov +8.75  Below Avg#85  MATTEO BERRETTINI vs KYRIAN JACQUET (ATP / HARD)
+  A/Platinum   Cameron Norrie           Total Games              O19.5  L5 5/0  L5avg 25.00  L10avg 24.20  szn 24.20  cov +4.70  Below Avg#100  CAMERON NORRIE vs BENJAMIN BONZI (ATP / HARD)
+  A/Platinum   Andrey Rublev            Total Games              O19.5  L5 5/0  L5avg 25.60  L10avg 23.80  szn 23.80  cov +4.30  Below Avg#79  ANDREY RUBLEV vs ADRIAN MANNARINO (ATP / HARD)
+  A/Platinum   Leylah Fernandez         Total Games              O18.5  L5 5/0  L5avg 25.40  L10avg 22.60  szn 22.60  cov +4.10  Weak#122      LEYLAH FERNANDEZ vs ALIAKSANDRA SASNOVICH (WTA / HARD)
+  A/Platinum   Cameron Norrie           Total Games              O20.5  L5 5/0  L5avg 25.00  L10avg 24.20  szn 24.20  cov +3.70  Below Avg#100  CAMERON NORRIE vs BENJAMIN BONZI (ATP / HARD)
+
+===== NBA =====  root=PropORACLE  stdO=15 stdU=34 gob=141
+Standard OVER
+  D/Silver     Jared McCain             Two Pointers Attempted   O2.5  L5 5/0  L5avg  7.80  L10avg  5.50  szn  5.50  cov +3.00  Avg#10        miss D  OKC vs SAS (NBA)
+  D/Silver     Jalen Brunson            Two Pointers Attempted   O14.5  L5 5/0  L5avg 19.40  L10avg 16.00  szn 16.00  cov +1.50  Elite#20      miss D  NYK vs PHI (NBA)
+  D/Silver     Jalen Brunson            FG Attempted             O21.5  L5 5/0  L5avg 26.60  L10avg 22.80  szn 22.80  cov +1.30  Avg#20        miss D  NYK vs PHI (NBA)
+  D/Silver     Jared McCain             Turnovers                O0.5  L5 5/0  L5avg  1.60  L10avg  1.10  szn  1.10  cov +0.60  Above Avg#10  miss D  OKC vs SAS (NBA)
+  D/Bronze     LeBron James             Points                   O15.5  L5 5/0  L5avg 24.20  L10avg 23.20  szn 23.20  cov +7.70  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  D/Bronze     LeBron James             Pts+Rebs                 O22.5  L5 5/0  L5avg 30.40  L10avg 29.90  szn 29.90  cov +7.40  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  D/Bronze     LeBron James             Pts+Rebs+Asts            O30.0  L5 5/0  L5avg 36.60  L10avg 37.20  szn 37.20  cov +7.20  Elite#3       miss D, Rank  PHI vs NYK (NBA)
+  D/Bronze     LeBron James             Pts+Asts                 O23.5  L5 5/0  L5avg 30.40  L10avg 30.50  szn 30.50  cov +7.00  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  D/Bronze     LeBron James             Two Pointers Attempted   O8.5  L5 5/0  L5avg 14.00  L10avg 13.10  szn 13.10  cov +4.60  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  D/Bronze     LeBron James             Two Pointers Made        O4.5  L5 5/0  L5avg  7.20  L10avg  6.70  szn  6.70  cov +2.20  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  D/Bronze     VJ Edgecombe             3-PT Attempted           O4.5  L5 5/0  L5avg  6.80  L10avg  6.70  szn  6.70  cov +2.20  Avg#3         miss D, Rank  PHI vs NYK (NBA)
+  D/Bronze     Kentavious Caldwell-Pope FG Made                  O1.5  L5 5/0  L5avg  3.60  L10avg  3.30  szn  3.30  cov +1.80  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  D/Bronze     Jaylen Brown             Turnovers                O2.5  L5 5/0  L5avg  4.00  L10avg  4.20  szn  4.20  cov +1.70  Avg#3         miss D, Rank  PHI vs NYK (NBA)
+  D/Bronze     Victor Wembanyama        FG Attempted             O17.5  L5 5/0  L5avg 20.80  L10avg 19.20  szn 19.20  cov +1.70  Avg#4         miss D, Rank  SAS vs OKC (NBA)
+  D/ΓÇö          Dylan Harper             Pts+Rebs                 O20.5  L5 5/0  L5avg 24.40  L10avg 19.70  szn 19.70  cov -0.80  Above Avg#4   miss Cover, D, Rank  SAS vs OKC (NBA)
+Standard UNDER
+  D/Platinum   Jalen Duren              Pts+Rebs                 U27.5  L5 0/5  L5avg 16.20  L10avg 19.00  szn 19.00  cov -8.50  Elite#1       DET vs BOS (NBA)
+  D/Platinum   Jalen Duren              Pts+Rebs+Asts            U29.5  L5 0/5  L5avg 18.20  L10avg 21.10  szn 21.10  cov -8.40  Elite#1       DET vs BOS (NBA)
+  D/Platinum   Jalen Duren              Pts+Asts                 U19.5  L5 0/5  L5avg 12.00  L10avg 12.50  szn 12.50  cov -7.00  Elite#1       DET vs BOS (NBA)
+  D/Platinum   Jalen Duren              Points                   U17.0  L5 0/5  L5avg 10.00  L10avg 10.40  szn 10.40  cov -6.60  Elite#1       DET vs BOS (NBA)
+  D/Platinum   Mitchell Robinson        Pts+Rebs                 U14.5  L5 0/5  L5avg  9.20  L10avg  9.90  szn  9.90  cov -4.60  Above Avg#2   BOS vs DET (NBA)
+  D/Platinum   Keldon Johnson           Pts+Rebs                 U12.5  L5 0/5  L5avg  7.40  L10avg  9.80  szn  9.80  cov -2.70  Above Avg#4   SAS vs OKC (NBA)
+  D/Platinum   Keldon Johnson           Pts+Asts                 U9.5  L5 0/5  L5avg  5.00  L10avg  7.40  szn  7.40  cov -2.10  Above Avg#4   SAS vs OKC (NBA)
+  D/Platinum   Jalen Duren              Free Throws Attempted    U4.5  L5 0/5  L5avg  2.40  L10avg  3.30  szn  3.30  cov -1.20  Elite#1       DET vs BOS (NBA)
+  D/Platinum   Mitchell Robinson        Two Pointers Made        U2.5  L5 0/5  L5avg  1.40  L10avg  1.70  szn  1.70  cov -0.80  Elite#2       BOS vs DET (NBA)
+  D/Gold       Stephon Castle           Rebs+Asts                U12.0  L5 0/5  L5avg  9.60  L10avg 10.60  szn 10.60  cov -1.40  Elite#4       SAS vs OKC (NBA)
+  D/Gold       Jalen Duren              Free Throws Made         U3.5  L5 0/5  L5avg  1.20  L10avg  2.20  szn  2.20  cov -1.30  Elite#1       DET vs BOS (NBA)
+  D/Gold       Keldon Johnson           Points                   U8.0  L5 0/5  L5avg  4.40  L10avg  6.80  szn  6.80  cov -1.20  Above Avg#4   SAS vs OKC (NBA)
+  D/Gold       Payton Pritchard         Turnovers                U1.5  L5 0/5  L5avg  0.40  L10avg  1.00  szn  1.00  cov -0.50  Above Avg#2   BOS vs DET (NBA)
+  D/Silver     Jayson Tatum             FG Attempted             U21.5  L5 0/5  L5avg 16.80  L10avg 16.90  szn 16.90  cov -4.60  Below Avg#2   miss D  BOS vs DET (NBA)
+  D/Silver     Jayson Tatum             Two Pointers Attempted   U11.5  L5 0/5  L5avg  7.80  L10avg  8.60  szn  8.60  cov -2.90  Avg#2         miss D  BOS vs DET (NBA)
+  D/Silver     Mitchell Robinson        Pts+Asts                 U7.5  L5 0/5  L5avg  4.20  L10avg  4.60  szn  4.60  cov -2.90  Elite#2       miss Delta  BOS vs DET (NBA)
+  D/Silver     Jalen Duren              FG Attempted             U10.5  L5 0/5  L5avg  7.60  L10avg  7.70  szn  7.70  cov -2.80  Below Avg#1   miss D  DET vs BOS (NBA)
+  D/Silver     Jalen Duren              Two Pointers Attempted   U10.5  L5 0/5  L5avg  7.60  L10avg  7.70  szn  7.70  cov -2.80  Below Avg#1   miss D  DET vs BOS (NBA)
+  D/Silver     Ronald Holland           FG Attempted             U4.5  L5 0/5  L5avg  1.40  L10avg  1.80  szn  1.80  cov -2.70  Below Avg#1   miss D  DET vs BOS (NBA)
+  D/Silver     Ronald Holland           Two Pointers Attempted   U2.5  L5 0/5  L5avg  0.40  L10avg  0.60  szn  0.60  cov -1.90  Below Avg#1   miss D  DET vs BOS (NBA)
+  D/Silver     Paul George              Free Throws Attempted    U2.5  L5 0/5  L5avg  0.40  L10avg  1.10  szn  1.10  cov -1.40  Weak#2        miss D  BOS vs DET (NBA)
+  D/Silver     Josh Hart                Two Pointers Attempted   U5.5  L5 0/5  L5avg  2.80  L10avg  4.10  szn  4.10  cov -1.40  Elite#20      miss Rank  NYK vs PHI (NBA)
+  D/Silver     Stephon Castle           Assists                  U6.5  L5 0/5  L5avg  4.20  L10avg  5.50  szn  5.50  cov -1.00  Avg#4         miss D  SAS vs OKC (NBA)
+  D/Silver     Jordan Walsh             Points                   U4.0  L5 0/5  L5avg  1.40  L10avg  3.20  szn  3.20  cov -0.80  Elite#2       miss Delta  BOS vs DET (NBA)
+  D/Silver     Keldon Johnson           FG Attempted             U7.5  L5 0/5  L5avg  4.60  L10avg  6.80  szn  6.80  cov -0.70  Avg#4         miss D  SAS vs OKC (NBA)
+  D/Silver     Harrison Barnes          Two Pointers Made        U0.5  L5 0/5  L5avg  0.00  L10avg  0.00  szn  0.00  cov -0.50  Above Avg#4   miss Delta  SAS vs OKC (NBA)
+  D/Silver     Landry Shamet            Turnovers                U0.5  L5 0/5  L5avg  0.00  L10avg  0.20  szn  0.20  cov -0.30  Above Avg#20  miss Rank  NYK vs PHI (NBA)
+  D/Silver     Tyrese Maxey             Blocked Shots            U0.5  L5 0/5  L5avg  0.00  L10avg  0.40  szn  0.40  cov -0.10  Below Avg#3   miss D  PHI vs NYK (NBA)
+  D/Bronze     Andre Drummond           Offensive Rebounds       U2.5  L5 0/5  L5avg  1.00  L10avg  1.20  szn  1.20  cov -1.30  Below Avg#20  miss D, Rank  NYK vs PHI (NBA)
+  D/Bronze     Karl-Anthony Towns       Assists                  U5.0  L5 0/5  L5avg  2.40  L10avg  3.80  szn  3.80  cov -1.20  Avg#20        miss D, Rank  NYK vs PHI (NBA)
+  D/Bronze     Chet Holmgren            FG Attempted             U9.5  L5 0/5  L5avg  6.80  L10avg  8.50  szn  8.50  cov -1.00  Below Avg#10  miss D, Rank  OKC vs SAS (NBA)
+  D/Bronze     Miles McBride            Points                   U6.5  L5 0/5  L5avg  2.20  L10avg  5.70  szn  5.70  cov -0.80  Below Avg#20  miss D, Rank  NYK vs PHI (NBA)
+  D/Bronze     Chet Holmgren            3-PT Attempted           U2.5  L5 0/5  L5avg  1.00  L10avg  2.20  szn  2.20  cov -0.30  Below Avg#10  miss D, Rank  OKC vs SAS (NBA)
+  D/Bronze     Cade Cunningham          Blocked Shots            U0.5  L5 0/5  L5avg  0.00  L10avg  0.50  szn  0.50  cov +0.00  Avg#1         miss Cover, D  DET vs BOS (NBA)
+Goblin OVER
+  A/Platinum   Jalen Brunson            Pts+Rebs                 O21.5  L5 5/0  L5avg 36.80  L10avg 32.50  szn 32.50  cov +11.00  Below Avg#20  NYK vs PHI (NBA)
+  A/Platinum   Jalen Brunson            Pts+Rebs+Asts            O27.5  L5 5/0  L5avg 41.40  L10avg 38.50  szn 38.50  cov +11.00  Below Avg#20  NYK vs PHI (NBA)
+  A/Platinum   OG Anunoby               Pts+Rebs+Asts            O16.5  L5 5/0  L5avg 27.00  L10avg 26.70  szn 26.70  cov +10.20  Below Avg#20  NYK vs PHI (NBA)
+  A/Platinum   Jalen Brunson            Points                   O18.5  L5 5/0  L5avg 32.60  L10avg 28.70  szn 28.70  cov +10.20  Below Avg#20  NYK vs PHI (NBA)
+  A/Platinum   Jalen Brunson            Pts+Asts                 O24.5  L5 5/0  L5avg 37.20  L10avg 34.70  szn 34.70  cov +10.20  Below Avg#20  NYK vs PHI (NBA)
+  A/Platinum   OG Anunoby               Pts+Rebs                 O15.5  L5 5/0  L5avg 26.00  L10avg 24.70  szn 24.70  cov +9.20  Below Avg#20  NYK vs PHI (NBA)
+  A/Platinum   Jalen Brunson            Points                   O19.5  L5 5/0  L5avg 32.60  L10avg 28.70  szn 28.70  cov +9.20  Below Avg#20  NYK vs PHI (NBA)
+  A/Platinum   Jalen Brunson            Pts+Rebs+Asts            O29.5  L5 5/0  L5avg 41.40  L10avg 38.50  szn 38.50  cov +9.00  Below Avg#20  NYK vs PHI (NBA)
+  A/Platinum   Jalen Brunson            Pts+Rebs                 O24.5  L5 5/0  L5avg 36.80  L10avg 32.50  szn 32.50  cov +8.00  Below Avg#20  NYK vs PHI (NBA)
+  A/Gold       Jalen Brunson            3-PT Made                O1.5  L5 5/0  L5avg  2.80  L10avg  2.40  szn  2.40  cov +0.90  Weak#20       NYK vs PHI (NBA)
+  A/Silver     Isaiah Hartenstein       Pts+Rebs                 O10.5  L5 5/0  L5avg 17.20  L10avg 16.80  szn 16.80  cov +6.30  Elite#10      miss D  OKC vs SAS (NBA)
+  A/Silver     Isaiah Hartenstein       Pts+Asts                 O5.5  L5 5/0  L5avg 12.00  L10avg 11.20  szn 11.20  cov +5.70  Elite#10      miss D  OKC vs SAS (NBA)
+  A/Silver     Cason Wallace            Pts+Rebs                 O8.5  L5 5/0  L5avg 14.80  L10avg 14.00  szn 14.00  cov +5.50  Elite#10      miss D  OKC vs SAS (NBA)
+  A/Silver     Isaiah Hartenstein       Points                   O3.5  L5 5/0  L5avg  9.20  L10avg  8.50  szn  8.50  cov +5.00  Elite#10      miss D  OKC vs SAS (NBA)
+  A/Silver     Isaiah Hartenstein       Points                   O4.5  L5 5/0  L5avg  9.20  L10avg  8.50  szn  8.50  cov +4.00  Elite#10      miss D  OKC vs SAS (NBA)
+  A/Silver     Cason Wallace            3-PT Made                O0.5  L5 5/0  L5avg  2.40  L10avg  2.50  szn  2.50  cov +2.00  Avg#10        miss D  OKC vs SAS (NBA)
+  A/Silver     Mikal Bridges            Assists                  O1.5  L5 5/0  L5avg  3.40  L10avg  3.40  szn  3.40  cov +1.90  Avg#20        miss D  NYK vs PHI (NBA)
+  A/Silver     Jaylin Williams          Assists                  O0.5  L5 5/0  L5avg  1.80  L10avg  1.40  szn  1.40  cov +0.90  Elite#10      miss D  OKC vs SAS (NBA)
+  A/Silver     Cason Wallace            Steals                   O1.5  L5 5/0  L5avg  2.40  L10avg  2.10  szn  2.10  cov +0.60  Above Avg#10  miss D  OKC vs SAS (NBA)
+  A/Bronze     LeBron James             Pts+Rebs+Asts            O22.5  L5 5/0  L5avg 36.60  L10avg 37.20  szn 37.20  cov +14.70  Elite#3       miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     LeBron James             Pts+Rebs                 O15.5  L5 5/0  L5avg 30.40  L10avg 29.90  szn 29.90  cov +14.40  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     LeBron James             Pts+Asts                 O16.5  L5 5/0  L5avg 30.40  L10avg 30.50  szn 30.50  cov +14.00  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     Jaylen Brown             Pts+Rebs                 O18.5  L5 5/0  L5avg 29.40  L10avg 32.20  szn 32.20  cov +13.70  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     LeBron James             Points                   O10.5  L5 5/0  L5avg 24.20  L10avg 23.20  szn 23.20  cov +12.70  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     LeBron James             Pts+Rebs+Asts            O24.5  L5 5/0  L5avg 36.60  L10avg 37.20  szn 37.20  cov +12.70  Elite#3       miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     Anfernee Simons          Points                   O3.5  L5 5/0  L5avg 13.80  L10avg 15.80  szn 15.80  cov +12.30  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     Jaylen Brown             Points                   O14.5  L5 5/0  L5avg 23.60  L10avg 26.40  szn 26.40  cov +11.90  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     Jaylen Brown             Pts+Asts                 O17.5  L5 5/0  L5avg 26.80  L10avg 29.40  szn 29.40  cov +11.90  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     LeBron James             Points                   O11.5  L5 5/0  L5avg 24.20  L10avg 23.20  szn 23.20  cov +11.70  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     LeBron James             Pts+Asts                 O19.5  L5 5/0  L5avg 30.40  L10avg 30.50  szn 30.50  cov +11.00  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     LeBron James             Pts+Rebs                 O19.5  L5 5/0  L5avg 30.40  L10avg 29.90  szn 29.90  cov +10.40  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     VJ Edgecombe             Pts+Rebs+Asts            O13.5  L5 5/0  L5avg 23.20  L10avg 23.90  szn 23.90  cov +10.40  Elite#3       miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     LeBron James             Pts+Rebs                 O20.5  L5 5/0  L5avg 30.40  L10avg 29.90  szn 29.90  cov +9.40  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     VJ Edgecombe             Pts+Rebs+Asts            O14.5  L5 5/0  L5avg 23.20  L10avg 23.90  szn 23.90  cov +9.40  Elite#3       miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     Julian Champagnie        Pts+Rebs                 O8.5  L5 5/0  L5avg 16.40  L10avg 17.50  szn 17.50  cov +9.00  Above Avg#4   miss D, Rank  SAS vs OKC (NBA)
+  A/Bronze     VJ Edgecombe             Pts+Rebs                 O11.5  L5 5/0  L5avg 19.20  L10avg 20.50  szn 20.50  cov +9.00  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     Jaylen Brown             Points                   O17.5  L5 5/0  L5avg 23.60  L10avg 26.40  szn 26.40  cov +8.90  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     Devin Vassell            Pts+Rebs+Asts            O12.5  L5 5/0  L5avg 22.40  L10avg 21.20  szn 21.20  cov +8.70  Above Avg#4   miss D, Rank  SAS vs OKC (NBA)
+  A/Bronze     LeBron James             Points                   O14.5  L5 5/0  L5avg 24.20  L10avg 23.20  szn 23.20  cov +8.70  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     LeBron James             Pts+Rebs+Asts            O28.5  L5 5/0  L5avg 36.60  L10avg 37.20  szn 37.20  cov +8.70  Elite#3       miss D, Rank  PHI vs NYK (NBA)
+  A/Bronze     Victor Wembanyama        Points                   O17.5  L5 5/0  L5avg 26.00  L10avg 25.90  szn 25.90  cov +8.40  Above Avg#4   miss D, Rank  SAS vs OKC (NBA)
+  A/Bronze     Julian Champagnie        Points                   O3.5  L5 5/0  L5avg 11.00  L10avg 11.90  szn 11.90  cov +8.40  Above Avg#4   miss D, Rank  SAS vs OKC (NBA)
+  A/Bronze     Payton Pritchard         Pts+Rebs+Asts            O16.5  L5 5/0  L5avg 25.80  L10avg 24.90  szn 24.90  cov +8.40  Above Avg#2   miss D, Rank  BOS vs DET (NBA)
+  A/Bronze     Julian Champagnie        Pts+Rebs                 O9.5  L5 5/0  L5avg 16.40  L10avg 17.50  szn 17.50  cov +8.00  Above Avg#4   miss D, Rank  SAS vs OKC (NBA)
+  A/Bronze     LeBron James             Pts+Asts                 O22.5  L5 5/0  L5avg 30.40  L10avg 30.50  szn 30.50  cov +8.00  Above Avg#3   miss D, Rank  PHI vs NYK (NBA)
+  ΓÇª 96 more
+
+===== NFL =====  root=PropORACLE  stdO=0 stdU=0 gob=0
+Standard OVER
+  (none)
+Standard UNDER
+  (none)
+Goblin OVER
+  (none)
+
+===== CFB =====
+  (no step8 / empty ΓÇö offseason or no slate)
+
+===== GOLF =====  root=PropORACLE_main_cp  stdO=0 stdU=0 gob=0
+Standard OVER
+  (none)
+Standard UNDER
+  (none)
+Goblin OVER
+  (none)

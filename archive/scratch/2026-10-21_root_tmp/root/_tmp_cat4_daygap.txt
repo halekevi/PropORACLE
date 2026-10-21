@@ -1,0 +1,17 @@
+[load] dropped 200263 rows missing game_id/stat_type/direction/hit/model_prob
+rows=130599 sports=['Soccer', 'Tennis', 'NHL']
+
+=== NHL cat4 by day-gap (same player_id, n_pairs=401938) ===
+  <7d    n= 193949 emp_joint=0.0870 exp=0.0856 lift=1.017
+  7-30d  n= 185362 emp_joint=0.0880 exp=0.0857 lift=1.027
+  30d+   n=  22627 emp_joint=0.0690 exp=0.0743 lift=0.929
+
+=== Soccer cat4 by day-gap (same player_id, n_pairs=930648) ===
+  <7d    n= 199640 emp_joint=0.0344 exp=0.0237 lift=1.451
+  7-30d  n= 470535 emp_joint=0.0415 exp=0.0298 lift=1.392
+  30d+   n= 260473 emp_joint=0.0410 exp=0.0360 lift=1.140
+
+=== Tennis cat4 by day-gap (same player_id, n_pairs=277312) ===
+  <7d    n=  97432 emp_joint=0.1775 exp=0.1512 lift=1.174
+  7-30d  n= 110809 emp_joint=0.1424 exp=0.1389 lift=1.025
+  30d+   n=  69071 emp_joint=0.1772 exp=0.1744 lift=1.016

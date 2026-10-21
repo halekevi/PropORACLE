@@ -1,0 +1,700 @@
+  [Date] Using specified date: 2026-09-21
+  [Tennis] TennisDate = same day as -Date (2026-09-21)  (ET today=2026-09-20)
+  [DayAhead] WNBA/MLB extra match day (Combined --wnba-date/--mlb-date): 2026-09-22
+
+======================================================
+  PROP PIPELINE  -- 2026-09-21 -- 21:13:36
+======================================================
+  [flags] SkipCombined - sport pipelines only (STEP D / CombinedOnly builds tickets)
+  [flags] SkipFetch - reuse existing step1 files
+
+[ SOCCER PIPELINE ]
+
+  [Soccer] Skipping step1 fetch -- using existing H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step1_soccer_props.csv
+  --> Soccer Step 2 - Attach Pick Types
+        CMD: py -3.14 .\scripts\step2_attach_picktypes_soccer.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step1_soccer_props.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step2_soccer_picktypes.csv
+         Loading Step1: H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step1_soccer_props.csv
+          Dropped 11 fantasy prop row(s)
+          opp_team filled: 1342/1342
+          Loaded ID cache: 7111 entries from soccer_espn_id_cache.csv
+        [SOCCER ID] Old exact/cache-only match rate: 73.1%
+          Loaded repo seeds: +3 PP->ESPN rows from pp_to_espn_id_map_soccer_seeds.csv
+          Need to resolve 48 players - using roster-based lookup...
+          ??  Roster cache is 28.1d old (>7d) - rebuilding for freshness...
+          Building ESPN ID map via team rosters (21 leagues)...
+            eng.1: 0 teams
+            ita.1: 0 teams
+            esp.1: 0 teams
+            ger.1: 0 teams
+            fra.1: 0 teams
+            uefa.champions: 0 teams
+            eng.2: 0 teams
+            eng.3: 0 teams
+            esp.2: 0 teams
+            fra.2: 0 teams
+            por.1: 0 teams
+            ned.1: 0 teams
+            tur.1: 0 teams
+            sco.1: 0 teams
+            usa.1: 0 teams
+            usa.nwsl: 0 teams
+            arg.1: 0 teams
+            arg.2: 0 teams
+            bra.1: 0 teams
+            mex.1: 0 teams
+            aus.1: 0 teams
+          Fetching rosters for 0 teams (workers=20)...
+          Resolved 0/48 players (48 not found in rosters)
+          Saved ID cache  soccer_espn_id_cache.csv  (7111 resolved entries)
+        [SOCCER ID] New match rate (after fallbacks): 73.1%
+        [SOCCER ID] Wrote unresolved players: H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\unmatched_soccer_players_2026-09-21.csv
+        [SOCCER ID] Improvement: 227  227 unmatched rows | 48  48 unique (player, team)
+          Goblin standard_line fill: 177/177 (100%) sources={'offset_estimate': 164, 'sibling_or_pp': 13}
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step2_soccer_picktypes.csv  rows=1342
+          id_status breakdown: {'OK': 981, 'UNRESOLVED_SINGLE': 361}
+          prop_norm breakdown: {'shots': 463, 'shots_on_target': 332, 'assists': 170, 'goal_assist': 170, 'goals': 165, 'saves': 28, 'passes': 10, 'clearances': 2, 'attempted_dribbles': 1, 'tackles': 1}
+      OK
+  --> Soccer Defense Refresh
+        CMD: py -3.14 .\scripts\soccer_defense_report.py --out cache\soccer_defense_summary.csv
+        ?? Fetching EPL (eng.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 20/20
+          ? EPL: 20 teams
+        ?? Fetching Championship (eng.2)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 24/24
+          ? Championship: 24 teams
+        ?? Fetching UCL (uefa.champions)...
+          core stats season=2025 type=1
+          shots_conceded_pg fill 18/36
+          ? UCL: 36 teams
+        ?? Fetching MLS (usa.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 30/30
+          ? MLS: 30 teams
+        ?? Fetching La Liga (esp.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 20/20
+          ? La Liga: 20 teams
+        ?? Fetching Bundesliga (ger.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 18/18
+          ? Bundesliga: 18 teams
+        ?? Fetching Serie A (ita.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 20/20
+          ? Serie A: 20 teams
+        ?? Fetching Ligue 1 (fra.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 18/18
+          ? Ligue 1: 18 teams
+        ?? Fetching Argentina (arg.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 30/30
+          ? Argentina: 30 teams
+        ?? Fetching Brazil (bra.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 20/20
+          ? Brazil: 20 teams
+        ?? Fetching Liga MX (mex.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 18/18
+          ? Liga MX: 18 teams
+        ?? Fetching Eredivisie (ned.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 18/18
+          ? Eredivisie: 18 teams
+        ?? Fetching Primeira Liga (por.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 18/18
+          ? Primeira Liga: 18 teams
+        ?? Fetching Scottish Prem (sco.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 12/12
+          ? Scottish Prem: 12 teams
+        ?? Fetching NWSL (usa.nwsl)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 16/16
+          ? NWSL: 16 teams
+        ?? Fetching A-League (aus.1)...
+          core stats season=2025 type=1
+          shots_conceded_pg fill 6/12
+          ? A-League: 12 teams
+        ?? Fetching WSL (eng.w.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 14/14
+          ? WSL: 14 teams
+        ?? Fetching Süper Lig (tur.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 18/18
+          ? Süper Lig: 18 teams
+        ?? Fetching Super League Greece (gre.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 14/14
+          ? Super League Greece: 14 teams
+        ?? Fetching Saudi Pro League (ksa.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 18/18
+          ? Saudi Pro League: 18 teams
+        ?? Fetching Colombia (col.1)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 20/20
+          ? Colombia: 20 teams
+        ?? Fetching Ecuador (ecu.1)...
+          ??  Ecuador: no data
+        ?? Fetching World Cup (fifa.world)...
+          core stats season=2026 type=1
+          shots_conceded_pg fill 48/48
+          ? World Cup: 48 teams
+        ? team context  H:\PropORACLE_main_cp\Sports\Soccer\cache\soccer_team_context.csv  (462 rows)
+        
+        ============================================================
+        BEST DEFENSES (goals conceded/game)
+        ============================================================
+        
+        A-League
+              pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+             ADELAIDE                 1      Avg                0.0             0   0
+             AUCKLAND                 1      Avg                0.0             0   0
+             BRISBANE                 1      Avg                0.0             0   0
+        CENTRAL COAST                 1      Avg                0.0             0   0
+            MACARTHUR                 1      Avg                0.0             0   0
+        
+        Argentina
+                 pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+        ATLETICO TUCUMAN                 1    Elite              0.556             0   9
+                   TIGRE                 2    Elite              0.667             0   9
+                BARRACAS                 2    Elite              0.667             0   9
+               INSTITUTO                 4    Elite              0.700             0  10
+                BELGRANO                 4    Elite              0.700             0  10
+        
+        Brazil
+                     pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+                   PALMEIRAS                 1    Elite              0.750             0  28
+                    FLAMENGO                 2    Elite              0.821             0  28
+                   SAO PAULO                 3    Elite              1.111             0  27
+        ATHLETICO PARANAENSE                 4    Elite              1.143             0  28
+                 CORINTHIANS                 4    Elite              1.143             0  28
+        
+        Bundesliga
+              pp_name  OVERALL_DEF_RANK  DEF_TIER  goals_conceded_pg  clean_sheets  gp
+             DORTMUND                 1     Elite               0.50             0   4
+        BAYERN MUNICH                 1     Elite               0.50             0   4
+             FREIBURG                 3     Elite               0.75             0   4
+           SCHALKE 04                 4     Elite               1.00             0   4
+              LEIPZIG                 5 Above Avg               1.25             0   4
+        
+        Championship
+                  pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+                  SWANSEA                 1    Elite              0.750             0   8
+                      QPR                 2    Elite              0.875             0   8
+                WEST BROM                 3    Elite              1.000             0   8
+             LINCOLN CITY                 3    Elite              1.000             0   8
+        CHARLTON ATHLETIC                 5    Elite              1.250             0   8
+        
+        Colombia
+                     pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+             AMÉRICA DE CALI                 1    Elite              0.600             0  10
+                 MILLONARIOS                 2    Elite              0.727             0  11
+           ATLÉTICO NACIONAL                 3    Elite              0.857             0   7
+        ATLÉTICO BUCARAMANGA                 4    Elite              0.889             0   9
+              DEPORTIVO CALI                 4    Elite              0.889             0   9
+        
+        EPL
+          pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+          EVERTON                 1    Elite                0.6             0   5
+            LEEDS                 1    Elite                0.6             0   5
+          ARSENAL                 3    Elite                0.8             0   5
+        BRENTFORD                 3    Elite                0.8             0   5
+        LIVERPOOL                 3    Elite                0.8             0   5
+        
+        Eredivisie
+                    pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+                 AZ ALKMAAR                 1    Elite              0.857             0   7
+        FEYENOORD ROTTERDAM                 2    Elite              1.000             0   7
+                  FC TWENTE                 2    Elite              1.000             0   7
+             AJAX AMSTERDAM                 4    Elite              1.286             0   7
+                  EXCELSIOR                 4    Elite              1.286             0   7
+        
+        La Liga
+                pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+                 ALAVÉS                 1    Elite              0.857             0   7
+                  CELTA                 1    Elite              0.857             0   7
+                  BETIS                 3    Elite              1.000             0   7
+              BARCELONA                 3    Elite              1.000             0   7
+        ATHLETIC BILBAO                 3    Elite              1.000             0   6
+        
+        Liga MX
+            pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+             TOLUCA                 1    Elite              0.750             0   8
+        GUADALAJARA                 2    Elite              0.889             0   9
+            AMÉRICA                 3    Elite              1.000             0   8
+          QUERETARO                 3    Elite              1.000             0   7
+            PACHUCA                 3    Elite              1.000             0   8
+        
+        Ligue 1
+        pp_name  OVERALL_DEF_RANK  DEF_TIER  goals_conceded_pg  clean_sheets  gp
+           LYON                 1     Elite                0.4             0   5
+         MONACO                 2     Elite                0.6             0   5
+          PARIS                 2     Elite                0.6             0   5
+          LILLE                 4     Elite                0.8             0   5
+         ANGERS                 5 Above Avg                1.0             0   5
+        
+        MLS
+                    pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+                  NASHVILLE                 1    Elite              0.808             0  26
+        VANCOUVER WHITECAPS                 2    Elite              0.920             0  25
+                       LAFC                 3    Elite              1.074             0  27
+                    HOUSTON                 4    Elite              1.154             0  26
+                NEW ENGLAND                 5    Elite              1.269             0  26
+        
+        NWSL
+              pp_name  OVERALL_DEF_RANK  DEF_TIER  goals_conceded_pg  clean_sheets  gp
+               GOTHAM                 1     Elite               0.76             0  25
+               SPIRIT                 2     Elite               0.92             0  25
+              SD WAVE                 3     Elite               1.08             0  25
+           ANGEL CITY                 4     Elite               1.12             0  25
+        SEATTLE REIGN                 5 Above Avg               1.24             0  25
+        
+        Primeira Liga
+            pp_name  OVERALL_DEF_RANK  DEF_TIER  goals_conceded_pg  clean_sheets  gp
+           FC PORTO                 1     Elite              0.429             0   7
+        SANTA CLARA                 2     Elite              0.571             0   7
+              BRAGA                 3     Elite              0.833             0   6
+        GIL VICENTE                 3     Elite              0.833             0   6
+             AROUCA                 5 Above Avg              1.000             0   7
+        
+        Saudi Pro League
+           pp_name  OVERALL_DEF_RANK  DEF_TIER  goals_conceded_pg  clean_sheets  gp
+             HILAL                 1     Elite              0.714             0   7
+        AL DIRIYAH                 1     Elite              0.714             0   7
+              NEOM                 3     Elite              0.857             0   7
+           ITTIHAD                 3     Elite              0.857             0   7
+             NASSR                 5 Above Avg              1.000             0   7
+        
+        Scottish Prem
+                    pp_name  OVERALL_DEF_RANK  DEF_TIER  goals_conceded_pg  clean_sheets  gp
+                     CELTIC                 1     Elite              0.571             0   7
+                    RANGERS                 1     Elite              0.571             0   7
+                     DUNDEE                 3     Elite              1.000             0   7
+        HEART OF MIDLOTHIAN                 4 Above Avg              1.143             0   7
+                   ABERDEEN                 4 Above Avg              1.143             0   7
+        
+        Serie A
+         pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+        CAGLIARI                 1    Elite                0.4             0   5
+            ROMA                 2    Elite                0.6             0   5
+           LAZIO                 2    Elite                0.6             0   5
+           MILAN                 4    Elite                0.8             0   5
+        JUVENTUS                 4    Elite                0.8             0   5
+        
+        Super League Greece
+              pp_name  OVERALL_DEF_RANK  DEF_TIER  goals_conceded_pg  clean_sheets  gp
+        PANATHINAIKOS                 1     Elite                0.4             0   5
+           OLYMPIACOS                 1     Elite                0.4             0   5
+                  AEK                 3     Elite                0.6             0   5
+            OFI CRETE                 4 Above Avg                0.8             0   5
+                 PAOK                 5 Above Avg                1.0             0   5
+        
+        Süper Lig
+            pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+        KOCAELISPOR                 1    Elite              0.667             0   6
+          KASIMPASA                 2    Elite              0.833             0   6
+        TRABZONSPOR                 2    Elite              0.833             0   6
+         FENERBAHCE                 4    Elite              1.000             0   6
+         ALANYASPOR                 4    Elite              1.000             0   6
+        
+        UCL
+              pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+        BAYERN MUNICH                 1    Elite                0.0             0   1
+           MAN UNITED                 1    Elite                0.0             0   1
+             MAN CITY                 1    Elite                0.0             0   1
+              ARSENAL                 1    Elite                0.0             0   1
+                  AEK                 1    Elite                0.0             0   1
+        
+        WSL
+                      pp_name  OVERALL_DEF_RANK  DEF_TIER  goals_conceded_pg  clean_sheets  gp
+                      CHELSEA                 1     Elite              0.333             0   3
+                      EVERTON                 1     Elite              0.333             0   3
+                      ARSENAL                 1     Elite              0.333             0   3
+                        SPURS                 4 Above Avg              0.667             0   3
+        LONDON CITY LIONESSES                 5 Above Avg              1.333             0   3
+        
+        World Cup
+          pp_name  OVERALL_DEF_RANK DEF_TIER  goals_conceded_pg  clean_sheets  gp
+           MEXICO                 1    Elite              0.000             0   3
+            SPAIN                 1    Elite              0.000             0   3
+           BRAZIL                 3    Elite              0.333             0   3
+        ARGENTINA                 3    Elite              0.333             0   3
+         COLOMBIA                 3    Elite              0.333             0   3
+        
+        ============================================================
+        STRONGEST ATTACKS (goals for/game)
+        ============================================================
+        
+        A-League
+              pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+             ADELAIDE         1      Avg           0.0   0
+             AUCKLAND         1      Avg           0.0   0
+             BRISBANE         1      Avg           0.0   0
+        CENTRAL COAST         1      Avg           0.0   0
+            MACARTHUR         1      Avg           0.0   0
+        
+        Argentina
+                        pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+                          UNION         1    Elite         1.700  10
+                      SARMIENTO         1    Elite         1.700  10
+                           GELP         3    Elite         1.500  10
+        INDEPENDIENTE RIVADAVIA         4    Elite         1.444   9
+             GIMNASIA (MENDOZA)         5    Elite         1.400  10
+        
+        Brazil
+                     pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+                    FLAMENGO         1    Elite         1.964  28
+                   PALMEIRAS         2    Elite         1.679  28
+                  FLUMINENSE         3    Elite         1.571  28
+        ATHLETICO PARANAENSE         4    Elite         1.536  28
+                       BAHIA         4    Elite         1.536  28
+        
+        Bundesliga
+              pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+        BAYERN MUNICH         1    Elite          3.50   4
+             FREIBURG         2    Elite          3.00   4
+             AUGSBURG         3    Elite          2.75   4
+           LEVERKUSEN         4    Elite          2.50   4
+                MAINZ         4    Elite          2.50   4
+        
+        Championship
+              pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+             WEST HAM         1    Elite         2.750   8
+          SOUTHAMPTON         2    Elite         2.375   8
+               WOLVES         3    Elite         2.143   7
+        MIDDLESBROUGH         4    Elite         2.000   8
+              NORWICH         4    Elite         2.000   8
+        
+        Colombia
+                       pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+             ATLÉTICO NACIONAL         1     Elite         2.429   7
+               AMÉRICA DE CALI         2     Elite         2.100  10
+        INDEPENDIENTE MEDELLIN         3     Elite         1.875   8
+        INDEPENDIENTE SANTA FE         4     Elite         1.778   9
+                DEPORTIVO CALI         5 Above Avg         1.556   9
+        
+        EPL
+          pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+         BRIGHTON         1     Elite           3.2   5
+         MAN CITY         2     Elite           2.6   5
+        BRENTFORD         3     Elite           2.0   5
+          CHELSEA         3     Elite           2.0   5
+        NEWCASTLE         5 Above Avg           1.8   5
+        
+        Eredivisie
+                    pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+        FEYENOORD ROTTERDAM         1     Elite         3.571   7
+              PSV EINDHOVEN         2     Elite         3.429   7
+             AJAX AMSTERDAM         3     Elite         3.000   7
+                 AZ ALKMAAR         4     Elite         2.571   7
+            GO AHEAD EAGLES         5 Above Avg         2.286   7
+        
+        La Liga
+                pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+              BARCELONA         1     Elite         4.429   7
+            REAL MADRID         2     Elite         2.571   7
+        ATLÉTICO MADRID         3     Elite         2.286   7
+             VILLARREAL         4     Elite         1.857   7
+                   RAYO         5 Above Avg         1.571   7
+        
+        Liga MX
+            pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+             TOLUCA         1     Elite         2.250   8
+            AMÉRICA         2     Elite         2.125   8
+        GUADALAJARA         3     Elite         1.889   9
+          CRUZ AZUL         4     Elite         1.778   9
+          MONTERREY         5 Above Avg         1.750   8
+        
+        Ligue 1
+           pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+              LYON         1     Elite           2.0   5
+        STRASBOURG         1     Elite           2.0   5
+              LENS         3     Elite           1.8   5
+           LE MANS         3     Elite           1.8   5
+             LILLE         5 Above Avg           1.6   5
+        
+        MLS
+                    pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+                INTER MIAMI         1    Elite         2.440  25
+        VANCOUVER WHITECAPS         2    Elite         2.240  25
+                 CINCINNATI         3    Elite         2.160  25
+                  NASHVILLE         4    Elite         2.038  26
+               PHILADELPHIA         5    Elite         1.923  26
+        
+        NWSL
+              pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+           NC COURAGE         1    Elite          1.92  25
+           ANGEL CITY         2    Elite          1.72  25
+               THORNS         3    Elite          1.68  25
+          UTAH ROYALS         4    Elite          1.64  25
+        DENVER SUMMIT         4    Elite          1.64  25
+        
+        Primeira Liga
+            pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+            BENFICA         1     Elite         3.143   7
+           FC PORTO         2     Elite         2.571   7
+        SPORTING CP         3     Elite         2.429   7
+            ESTRELA         4     Elite         2.000   7
+        SANTA CLARA         5 Above Avg         1.571   7
+        
+        Saudi Pro League
+        pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+          HILAL         1     Elite         3.286   7
+          NASSR         2     Elite         2.286   7
+        QADSIAH         2     Elite         2.286   7
+           AHLI         2     Elite         2.286   7
+           NEOM         5 Above Avg         1.857   7
+        
+        Scottish Prem
+                    pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+                     CELTIC         1    Elite         2.000   7
+        HEART OF MIDLOTHIAN         1    Elite         2.000   7
+                     DUNDEE         3    Elite         1.286   7
+               ST JOHNSTONE         3    Elite         1.286   7
+                 MOTHERWELL         3    Elite         1.286   7
+        
+        Serie A
+               pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+        INTERNAZIONALE         1    Elite           3.0   5
+                  ROMA         2    Elite           2.8   5
+                 MILAN         3    Elite           2.0   5
+             FROSINONE         4    Elite           1.8   5
+                  COMO         4    Elite           1.8   5
+        
+        Super League Greece
+              pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+                  AEK         1     Elite           2.6   5
+        PANATHINAIKOS         2     Elite           2.4   5
+                 PAOK         2     Elite           2.4   5
+            OFI CRETE         4 Above Avg           1.6   5
+          PANETOLIKOS         4 Above Avg           1.6   5
+        
+        Süper Lig
+            pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+         FENERBAHCE         1    Elite         2.667   6
+           AMED SFK         2    Elite         2.500   6
+           BESIKTAS         3    Elite         2.333   6
+        GALATASARAY         4    Elite         2.167   6
+        TRABZONSPOR         4    Elite         2.167   6
+        
+        UCL
+              pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+                  PSG         1    Elite           6.0   1
+        BAYERN MUNICH         2    Elite           5.0   1
+            BARCELONA         2    Elite           5.0   1
+           MAN UNITED         4    Elite           4.0   1
+                 COMO         4    Elite           4.0   1
+        
+        WSL
+                      pp_name  OFF_RANK  OFF_TIER  goals_for_pg  gp
+                     MAN CITY         1     Elite         3.667   3
+                        SPURS         1     Elite         3.667   3
+                      CHELSEA         3     Elite         2.667   3
+        LONDON CITY LIONESSES         4 Above Avg         2.333   3
+                    LIVERPOOL         4 Above Avg         2.333   3
+        
+        World Cup
+            pp_name  OFF_RANK OFF_TIER  goals_for_pg  gp
+        NETHERLANDS         1    Elite         3.333   3
+            GERMANY         1    Elite         3.333   3
+             FRANCE         1    Elite         3.333   3
+             CANADA         4    Elite         2.667   3
+          ARGENTINA         4    Elite         2.667   3
+        
+        ? Saved  cache\soccer_defense_summary.csv  (462 teams, 22 leagues)
+        shots_conceded_pg fill=94.8% (non-null 438/462)
+        goals_for_pg fill=100.0% (non-null 462/462)
+        Sample pp_names: ['ADELAIDE', 'AUCKLAND', 'BRISBANE', 'CENTRAL COAST', 'MACARTHUR', 'MELBOURNE CITY', 'MELBOURNE VICTORY', 'NEWCASTLE JETS', 'PERTH', 'SYDNEY']
+          ? defense_db: 462 soccer teams written to DB
+          ? defense_db: 462 soccer teams written to DB
+      OK
+  --> Soccer Step 3 - Attach Defense
+        CMD: py -3.14 .\scripts\step3_attach_defense_soccer.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step2_soccer_picktypes.csv --defense cache\soccer_defense_summary.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step3_soccer_with_defense.csv
+         Loading Step2: H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step2_soccer_picktypes.csv
+         Defense loaded from DB (420 teams, updated 2026-09-21T01:20:29.127359+00:00)
+          Merging on column: 'pp_name'
+          Dropping defense cols to avoid merge collision: ['team', 'league', 'team_name']
+          ? opp_team filled after alias + game pairing: 1342/1342
+         Merging defense for singles...
+          ? OWN_DEF_TIER filled: 1110/1342
+          ? OPP_OFF_TIER filled: 1085/1342
+        [Soccer step3] prop-aware D: shots_metric_rows=642/1342 (SHOTS_DEF_RANK filled=1085)
+        [Soccer step3] def_tier: Weak=364 Above Avg=308 Avg=209 Elite=204
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step3_soccer_with_defense.csv
+        Rows: 1342 | Cols: 75
+        Defense filled (OVERALL_DEF_RANK): 1342/1342 (100%)
+      OK
+  --> Soccer Step 4 - Player Stats
+        CMD: py -3.14 .\scripts\step4_attach_player_stats_soccer.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step3_soccer_with_defense.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step4_soccer_with_stats.csv
+         Loading slate: H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step3_soccer_with_defense.csv
+          1342 rows
+        
+         Attaching Soccer stats from DB (id_col=espn_player_id, n=10)...
+        [SOCCER ID] step4 input match rate: 73.1% (981/1342)
+        [SOCCER ID] step4 post-attach match rate: 73.1% (981/1342)
+        [B2B] Soccer DB teams (first 20): ['AAE', 'ABH', 'ABHA', 'ACC', 'AEK', 'AHL', 'AHLI', 'AL KHOLOOD', 'ALA', 'ALDO', 'ALF', 'AME', 'AND', 'ANG', 'ARA', 'ARE', 'ARGJ', 'ARS', 'ASC', 'ASL']
+        [B2B] Soccer slate teams (first 20): ['ALDOSIVI', 'ATL. TUCUMAN', 'BARRACAS', 'ESTUDIANTES', 'INDEPENDIENTE', 'LANUS']
+        [B2B] Soccer: 1342 rows, 0 back-to-backs found
+        [pipeline] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step4_soccer_with_stats.csv
+        [SOCCER ID] Wrote unresolved players: H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\unmatched_soccer_players_2026-09-21.csv
+        
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step4_soccer_with_stats.csv  (1342 rows)
+        
+        stat_status breakdown:
+          OK                          770
+          NO_ID                       358
+          NO_DATA                     156
+          INSUFFICIENT_GAMES           44
+          UNSUPPORTED_PROP             14
+      OK
+  --> Soccer Step 5 - Line Hit Rates
+        CMD: py -3.14 .\scripts\step5_add_line_hit_rates_soccer.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step4_soccer_with_stats.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step5_soccer_hit_rates.csv --compute10
+        line_movement: Odds API quota exhausted (remaining=0) - skipping live fetch
+         Loading: H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step4_soccer_with_stats.csv
+        [H2H] Soccer: 0/1342 rows with h2h_games > 0
+        [LM] Soccer bookmaker distribution: {}
+        [LM-WIRE] Soccer: open_line=1342/1342, line_movement=1342/1342, line_direction_shift=1342/1342, implied_prob=0/1342
+        [pipeline] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step5_soccer_hit_rates.csv
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step5_soccer_hit_rates.csv  rows=1342
+        Filled line_hit_rate_over_ou_5: 813/1342
+        hit_rate_status:
+        hit_rate_status
+        OK                     814
+        MISSING_STAT_VALUES    528
+      OK
+  --> Soccer Step 6 - Team Role Context
+        CMD: py -3.14 .\scripts\step6_team_role_context_soccer.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step5_soccer_hit_rates.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step6_soccer_role_context.csv
+        H:\PropORACLE_main_cp\Sports\Soccer\scripts\step6_team_role_context_soccer.py:390: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["position_group"] = df["pos"].astype(str).apply(norm_position)
+        H:\PropORACLE_main_cp\Sports\Soccer\scripts\step6_team_role_context_soccer.py:422: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df["starter_tier"] = df.apply(_assign_starter_tier, axis=1)
+         Loading: H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step5_soccer_hit_rates.csv
+        [ODDS] SOCCER: HTTP 401 - using null odds
+        [ODDS] SOCCER: 0 games matched, requests_remaining=0
+        [pipeline] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step6_soccer_role_context.csv
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step6_soccer_role_context.csv  rows=1342
+        position_group breakdown:
+        position_group
+        DEF    456
+        MID    439
+        FWD    415
+        GK      32
+        minutes_tier breakdown:
+        minutes_tier
+        HIGH      1328
+        MEDIUM       7
+        LOW          7
+        shot_volume breakdown:
+        shot_volume
+        UNKNOWN     1063
+        LOW_VOL      179
+        MID_VOL       82
+        HIGH_VOL      18
+        field_involvement breakdown:
+        field_involvement
+        FRINGE     814
+        UNKNOWN    528
+      OK
+  --> Soccer Top-3 vs defense analysis (step7 input)
+Wrote H:\PropORACLE_main_cp\Sports\Soccer\data\soccer_top3_vs_defense.csv (5688 rows)
+Wrote H:\PropORACLE_main_cp\Sports\Soccer\data\soccer_top3_vs_defense_slate.csv (5693 rows)
+Teams: 193 | Props: 7 | Rows: 5693
+Def buckets: {'elite': 2903, 'unknown': 1190, 'mid': 1001, 'weak': 599}
+Historical weak-D boosters (top-3 per team├ùprop): 56
+Slate OVER + weak opp + def boost: 0
+      OK
+  --> Soccer Step 7 - Rank Props
+        CMD: py -3.14 .\scripts\step7_rank_props_soccer.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step6_soccer_role_context.csv --output H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step7_soccer_ranked.xlsx
+        H:\PropORACLE_main_cp\scripts\edge_feature_engineering.py:607: RuntimeWarning: Mean of empty slice
+          mu = np.nanmean(mat, axis=1)
+        C:\Users\halek\AppData\Local\Programs\Python\Python314\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+          var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+        [PropORACLE-step7_rank_props_soccer] Starting...
+         Loading: H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step6_soccer_role_context.csv
+        ? Soccer ML blend applied (weight=0.30)
+        [Soccer step7] WARNING: Goblin/Demon standard_line fill rate 195/1318 (15%) - distance tiers unavailable for many rows, using ml_prob fallback for 1123 rows
+        [Soccer step7] Tier distribution by group:
+          Goblin OVER:    A=0  B=1  C=171  D=5
+          Demon OVER:     A=12  B=10  C=1  D=1118
+          Standard OVER:  A=2  B=0  C=0  D=16
+          Standard UNDER: A=3  B=0  C=0  D=3
+          [Soccer] Position gate voided 387 props
+        ? Saved  H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step7_soccer_ranked.xlsx
+        ALL rows: 1342
+        
+        Tier counts:
+        tier
+        D    1142
+        C     172
+        A      17
+        B      11
+        
+        Ineligible reasons:
+        void_reason
+        VOID_TIER_D             785
+        POSITION_GATE_DEF       387
+        FORCED_OVER_NEG_EDGE     49
+        
+        Score percentiles (eligible):
+        0.50    2.389
+        0.70    2.882
+        0.80    3.297
+        0.85    3.358
+        0.90    3.573
+        0.95    4.156
+      OK
+  --> step7b (Soccer)
+        CMD: py -3.14 H:\PropORACLE_main_cp\scripts\step7b_edge_score.py --sport Soccer --repo-root H:\PropORACLE_main_cp --step7-xlsx H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step7_soccer_ranked.xlsx
+        H:\PropORACLE_main_cp\scripts\edge_feature_engineering.py:607: RuntimeWarning: Mean of empty slice
+          mu = np.nanmean(mat, axis=1)
+        C:\Users\halek\AppData\Local\Programs\Python\Python314\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+          var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+        H:\PropORACLE_main_cp\scripts\step7b_edge_score.py:359: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df[col] = np.nan
+        H:\PropORACLE_main_cp\scripts\step7b_edge_score.py:359: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+          df[col] = np.nan
+        [PropORACLE-step7b_edge_score] Starting...
+          [step7b] SOCCER: scoring 121/1342 eligible rows
+        [WARN] Missing 10 feature cols for SOCCER - filling with 0.0: ['h1_hit_rate_over', 'h1_hit_rate_under', 'h1_sample_n', 'h1_consistency', 'h1_line_value_ratio', 'h1_implied_total', 'q1_pace_proxy', 'distribution_std']
+          Scored 121 eligible / 1342 rows for SOCCER -> H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step7_soccer_ranked.xlsx (sheet='ALL')
+            #1 blended=1.0000 Leandro Díaz | shots
+            #2 blended=1.0000 Luis Ingolotti | saves
+            #3 blended=1.0000 Lautaro Godoy | shots
+            #4 blended=1.0000 Nicolás Bolcato | saves
+            #5 blended=1.0000 Alex Arce | shots_on_target
+  [Soccer] step7b: OK
+  --> Soccer Step 8 - Direction Context
+        CMD: py -3.14 H:\PropORACLE_main_cp\Sports\Soccer\scripts\step8_add_direction_context_soccer.py --input H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step7_soccer_ranked.xlsx --sheet ALL --output H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step8_soccer_direction.csv --xlsx H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step8_soccer_direction_clean.xlsx --date 2026-09-21
+        Loading: H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step7_soccer_ranked.xlsx (sheet=ALL)
+        [DateFilter] Kept 1342/1342 rows for slate ET (dropped 0 rows)
+        Saved -> H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step8_soccer_direction.csv
+        final_bet_direction counts:
+        final_bet_direction
+        OVER     1336
+        UNDER       6
+        tier counts:
+        tier
+        D    1142
+        C     172
+        A      17
+        B      11
+        Clean XLSX saved -> H:\PropORACLE_main_cp\outputs\2026-09-21\soccer\step8_soccer_direction_clean.xlsx
+        [Soccer step8] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-20\step8_soccer_direction_clean_2026-09-20.xlsx
+      OK
+  [Soccer publish] skip undated sport-root mirror (day-ahead Date=2026-09-21 ET today=2026-09-20)
+  [Soccer] Dated copy -> H:\PropORACLE_main_cp\outputs\2026-09-21\step8_soccer_direction_clean_2026-09-21.xlsx
+
+  Soccer complete.
+  [pipeline] Skipping combined (-SkipCombined)
+True
+======================================================
+  DONE  -- Elapsed: 15:51
+======================================================
+

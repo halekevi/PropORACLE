@@ -1,0 +1,38 @@
+date=2026-09-15 mode=goblin70+graded_main
+X-Sport Goblin-70 Power 3 | power=6.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='CDP scrape Power 0S+3G Δ=2+2+2.5 (2026-07-12)'
+X-Sport Goblin-70 Power 3 | power=2.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+3G Power fallback 2x'
+X-Sport Goblin-70 Power 3 | power=2.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+3G Power fallback 2x'
+X-Sport Goblin-70 Power 3 | power=2.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+3G Power fallback 2x'
+X-Sport Goblin-70 Power 3 | power=2.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+3G Power fallback 2x'
+X-Sport Goblin-70 Flex 4 | power=None disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+4G Flex fallback 1.9x / 0.5x'
+X-Sport Goblin-70 Flex 4 | power=None disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+4G Flex fallback 1.9x / 0.5x'
+MLB Goblin-70 Power 3 | power=2.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+3G Power fallback 2x'
+MLB Goblin-70 Power 3 | power=2.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+3G Power fallback 2x'
+MLB Goblin-70 Power 3 | power=2.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+3G Power fallback 2x'
+Tennis Goblin-70 Power 3 | power=2.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+3G Power fallback 2x'
+Tennis Goblin-70 Power 3 | power=2.0 disp=None pay.disp=None pay.power_min=None src='pending_live' note='0S+3G Power fallback 2x'
+X-Sport Goblin-70 Flex 3 | power=None disp=None pay.disp=None pay.power_min=None src='pending_live' note='3S Flex canonical 2.25x / 1.25x'
+SOCCER Core Power 2 #1 | power=1.6 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+MLB Core Power 2 #1 | power=1.8 disp=1.4 pay.disp=1.4 pay.power_min=1.4 src='live_cdp' note=None
+SOCCER Core Power 2 #2 | power=1.8 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+MLB Core Power 2 #2 | power=1.6 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+MLB Core Power 2 #3 | power=1.6 disp=1.7 pay.disp=1.7 pay.power_min=1.7 src='live_cdp' note=None
+MLB 2-Leg Goblin OVER | power=1.8 disp=1.7 pay.disp=1.7 pay.power_min=1.7 src='live_cdp' note=None
+MLB 3-Leg Goblin OVER | power=2.62 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+SOCCER 2-Leg Goblin OVER | power=1.8 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+SOCCER 3-Leg Goblin OVER | power=2.62 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+TENNIS 2-Leg Goblin OVER | power=1.8 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+TENNIS 3-Leg Goblin OVER | power=2.3 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+SOCCER Core Flex 3 #1 | power=2.62 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+SOCCER Core Flex 3 #2 | power=2.33 disp=None pay.disp=None pay.power_min=None src='pending_live' note=None
+--- sources ---
+{'pending_live': 23, 'live_cdp': 3}
+ladder payout_ladder_live_cdp.json type=dict
+  keys=['schema_version', 'date', 'generated_at', 'rows']
+  head={"schema_version": 1, "date": "2026-09-15", "generated_at": "2026-09-15T19:19:48.600911Z", "rows": [{"date": "2026-07-12", "n_legs": "2", "leg_composition": "0S+2G+0D", "goblin_deltas": "", "demon_deltas": "", "power_payout_x": "7.0", "flex_payout_x": "", "source": "live_cdp", "notes": "ticket_id=20
+ladder payout_ladder_live_cdp.json type=dict
+  keys=['schema_version', 'date', 'generated_at', 'rows']
+  head={"schema_version": 1, "date": "2026-09-08", "generated_at": "2026-09-08T14:11:36.999104Z", "rows": [{"date": "2026-07-12", "n_legs": "2", "leg_composition": "0S+2G+0D", "goblin_deltas": "", "demon_deltas": "", "power_payout_x": "7.0", "flex_payout_x": "", "source": "live_cdp", "notes": "ticket_id=20
+ladder payout_rate_cards.json type=dict
+  keys=['schema_version', 'generated_at', 'reference', 'fitted_file', 'cards']
+  head={"schema_version": 1, "generated_at": "2026-09-15T19:20:33.967204+00:00", "reference": {"power_first_standard": {"2": 3.0, "3": 6.0, "4": 10.0, "5": 20.0, "6": 37.5}, "flex_first_standard": {"2": {"2": 3.0}, "3": {"3": 3.0, "2": 1.0}, "4": {"4": 6.0, "3": 1.5}, "5": {"5": 10.0, "4": 2.0, "3": 0.4}, 

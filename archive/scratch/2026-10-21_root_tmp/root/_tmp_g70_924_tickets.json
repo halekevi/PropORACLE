@@ -1,0 +1,616 @@
+[
+  {
+    "id": "P3-1",
+    "n": 3,
+    "product": "Power",
+    "mix": "3 Goblin / 0 Standard",
+    "n_correct": {
+      "3": 2.0
+    },
+    "note": "0S+3G Power fallback 2x",
+    "legs": [
+      {
+        "player": "Peter Lambert",
+        "prop": "Hits Allowed",
+        "line": 3.5,
+        "sport": "MLB",
+        "matchup": "HOU vs ATH",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Jackie Young",
+        "prop": "Assists",
+        "line": 3.5,
+        "sport": "WNBA",
+        "matchup": "LVA vs PHX",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Elise Mertens",
+        "prop": "Total Games",
+        "line": 19.5,
+        "sport": "TENNIS",
+        "matchup": "ELISE MERTENS vs MAJA CHWALINSKA (WTA / HARD)",
+        "badge": "Bronze"
+      }
+    ]
+  },
+  {
+    "id": "P3-2",
+    "n": 3,
+    "product": "Power",
+    "mix": "3 Goblin / 0 Standard",
+    "n_correct": {
+      "3": 2.3
+    },
+    "note": "CDP scrape Power 0S+3G \u0394=2+3 (2026-07-22)",
+    "legs": [
+      {
+        "player": "Tyler Mahle",
+        "prop": "Pitching Outs",
+        "line": 14.5,
+        "sport": "MLB",
+        "matchup": "ATL vs CIN",
+        "badge": "Platinum"
+      },
+      {
+        "player": "A'ja Wilson",
+        "prop": "Rebs+Asts",
+        "line": 9.5,
+        "sport": "WNBA",
+        "matchup": "LVA vs PHX",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Yordan Alvarez",
+        "prop": "Total Bases",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "HOU vs ATH",
+        "badge": "Platinum"
+      }
+    ]
+  },
+  {
+    "id": "P3-3",
+    "n": 3,
+    "product": "Power",
+    "mix": "3 Goblin / 0 Standard",
+    "n_correct": {
+      "3": 2.0
+    },
+    "note": "0S+3G Power fallback 2x",
+    "legs": [
+      {
+        "player": "Cam Schlittler",
+        "prop": "Pitcher Strikeouts",
+        "line": 3.5,
+        "sport": "MLB",
+        "matchup": "NYY vs TB",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Kyle Leahy",
+        "prop": "Hits Allowed",
+        "line": 1.5,
+        "sport": "MLB",
+        "matchup": "STL vs PIT",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Daniel Espino",
+        "prop": "Hits Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "CLE vs BOS",
+        "badge": "Bronze"
+      }
+    ]
+  },
+  {
+    "id": "P3-4",
+    "n": 3,
+    "product": "Power",
+    "mix": "3 Goblin / 0 Standard",
+    "n_correct": {
+      "3": 2.0
+    },
+    "note": "0S+3G Power fallback 2x",
+    "legs": [
+      {
+        "player": "Tyler Glasnow",
+        "prop": "Pitcher Strikeouts",
+        "line": 4.5,
+        "sport": "MLB",
+        "matchup": "LAD vs SD",
+        "badge": "Silver"
+      },
+      {
+        "player": "Paul Skenes",
+        "prop": "Walks Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "PIT vs STL",
+        "badge": "Silver"
+      },
+      {
+        "player": "Ian Seymour",
+        "prop": "Pitcher Strikeouts",
+        "line": 3.5,
+        "sport": "MLB",
+        "matchup": "TB vs NYY",
+        "badge": "Bronze"
+      }
+    ]
+  },
+  {
+    "id": "P3-5",
+    "n": 3,
+    "product": "Power",
+    "mix": "3 Goblin / 0 Standard",
+    "n_correct": {
+      "3": 2.0
+    },
+    "note": "0S+3G Power fallback 2x",
+    "legs": [
+      {
+        "player": "Andrew Painter",
+        "prop": "Pitcher Strikeouts",
+        "line": 2.5,
+        "sport": "MLB",
+        "matchup": "PHI vs MIL",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Brady Singer",
+        "prop": "Walks Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "CIN vs ATL",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Kumar Rocker",
+        "prop": "Walks Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "TEX vs NYM",
+        "badge": "Bronze"
+      }
+    ]
+  },
+  {
+    "id": "F4-1",
+    "n": 4,
+    "product": "Flex",
+    "mix": "4 Goblin / 0 Standard",
+    "n_correct": {
+      "4": 1.9,
+      "3": 0.5
+    },
+    "note": "0S+4G Flex fallback 1.9x / 0.5x",
+    "legs": [
+      {
+        "player": "Tyler Phillips",
+        "prop": "Pitcher Strikeouts",
+        "line": 2.5,
+        "sport": "MLB",
+        "matchup": "MIA vs CHC",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Randy Dobnak",
+        "prop": "Walks Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "KC vs CWS",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Grayson Rodriguez",
+        "prop": "Walks Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "LAA vs SEA",
+        "badge": ""
+      },
+      {
+        "player": "Zac Thornton",
+        "prop": "Earned Runs Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "NYM vs TEX",
+        "badge": "Bronze"
+      }
+    ]
+  },
+  {
+    "id": "YS6-1",
+    "n": 6,
+    "product": "Power",
+    "mix": "0 Goblin / 6 Standard",
+    "n_correct": {
+      "6": 8.5
+    },
+    "note": "0S+6G Power fallback 8.5x \u2014 confirm on the slip",
+    "legs": [
+      {
+        "player": "Antonio Nusa",
+        "prop": "Shots On Target",
+        "line": 0.5,
+        "sport": "SOCCER",
+        "matchup": "NORWAY vs DENMARK (SOCCER)",
+        "badge": "Silver"
+      },
+      {
+        "player": "Mark Andrews",
+        "prop": "receiving_yards",
+        "line": 48.5,
+        "sport": "NFL",
+        "matchup": "BAL vs NO (NFL)",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Carney Chukwuemeka",
+        "prop": "Shots On Target",
+        "line": 0.5,
+        "sport": "SOCCER",
+        "matchup": "AUSTRIA vs ISRAEL (SOCCER)",
+        "badge": "Silver"
+      },
+      {
+        "player": "Pedro Neto",
+        "prop": "Shots On Target",
+        "line": 0.5,
+        "sport": "SOCCER",
+        "matchup": "PORTUGAL vs WALES (SOCCER)",
+        "badge": "Silver"
+      },
+      {
+        "player": "Rashod Bateman",
+        "prop": "receiving_yards",
+        "line": 35.5,
+        "sport": "NFL",
+        "matchup": "BAL vs NO (NFL)",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Roman Wilson",
+        "prop": "receiving_yards",
+        "line": 30.5,
+        "sport": "NFL",
+        "matchup": "PIT vs NE (NFL)",
+        "badge": "Platinum"
+      }
+    ]
+  },
+  {
+    "id": "Y6-1",
+    "n": 6,
+    "product": "Power",
+    "mix": "3 Goblin / 3 Standard",
+    "n_correct": {
+      "6": 8.75
+    },
+    "note": "1S+5G Power fallback 8.75x \u2014 confirm on the slip",
+    "legs": [
+      {
+        "player": "Antonio Nusa",
+        "prop": "Shots On Target",
+        "line": 0.5,
+        "sport": "SOCCER",
+        "matchup": "NORWAY vs DENMARK (SOCCER)",
+        "badge": "Silver"
+      },
+      {
+        "player": "Mark Andrews",
+        "prop": "receiving_yards",
+        "line": 48.5,
+        "sport": "NFL",
+        "matchup": "BAL vs NO (NFL)",
+        "badge": "Platinum"
+      },
+      {
+        "player": "A'ja Wilson",
+        "prop": "Rebs+Asts",
+        "line": 9.5,
+        "sport": "WNBA",
+        "matchup": "LVA vs PHX",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Peter Lambert",
+        "prop": "Hits Allowed",
+        "line": 3.5,
+        "sport": "MLB",
+        "matchup": "HOU vs ATH",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Elise Mertens",
+        "prop": "Total Games",
+        "line": 19.5,
+        "sport": "TENNIS",
+        "matchup": "ELISE MERTENS vs MAJA CHWALINSKA (WTA / HARD)",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Carney Chukwuemeka",
+        "prop": "Shots On Target",
+        "line": 0.5,
+        "sport": "SOCCER",
+        "matchup": "AUSTRIA vs ISRAEL (SOCCER)",
+        "badge": "Silver"
+      }
+    ]
+  },
+  {
+    "id": "Y5-2",
+    "n": 5,
+    "product": "Power",
+    "mix": "2 Goblin / 3 Standard",
+    "n_correct": {
+      "5": 7.75
+    },
+    "note": "1S+4G Power fallback 7.75x \u2014 confirm on the slip",
+    "legs": [
+      {
+        "player": "Pedro Neto",
+        "prop": "Shots On Target",
+        "line": 0.5,
+        "sport": "SOCCER",
+        "matchup": "PORTUGAL vs WALES (SOCCER)",
+        "badge": "Silver"
+      },
+      {
+        "player": "Rashod Bateman",
+        "prop": "receiving_yards",
+        "line": 35.5,
+        "sport": "NFL",
+        "matchup": "BAL vs NO (NFL)",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Tyler Mahle",
+        "prop": "Pitching Outs",
+        "line": 14.5,
+        "sport": "MLB",
+        "matchup": "ATL vs CIN",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Jackie Young",
+        "prop": "Assists",
+        "line": 3.5,
+        "sport": "WNBA",
+        "matchup": "LVA vs PHX",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Roman Wilson",
+        "prop": "receiving_yards",
+        "line": 30.5,
+        "sport": "NFL",
+        "matchup": "PIT vs NE (NFL)",
+        "badge": "Platinum"
+      }
+    ]
+  },
+  {
+    "id": "Y4-3",
+    "n": 4,
+    "product": "Power",
+    "mix": "4 Goblin / 0 Standard",
+    "n_correct": {
+      "4": 2.4
+    },
+    "note": "0S+4G Power fallback 2.4x",
+    "legs": [
+      {
+        "player": "Yordan Alvarez",
+        "prop": "Total Bases",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "HOU vs ATH",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Cam Schlittler",
+        "prop": "Pitcher Strikeouts",
+        "line": 3.5,
+        "sport": "MLB",
+        "matchup": "NYY vs TB",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Kyle Leahy",
+        "prop": "Hits Allowed",
+        "line": 1.5,
+        "sport": "MLB",
+        "matchup": "STL vs PIT",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Daniel Espino",
+        "prop": "Hits Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "CLE vs BOS",
+        "badge": "Bronze"
+      }
+    ]
+  },
+  {
+    "id": "WNB2-1",
+    "n": 2,
+    "product": "Power",
+    "mix": "2 Goblin / 0 Standard",
+    "n_correct": {
+      "2": 1.2
+    },
+    "note": "CDP scrape Power 0S+2G \u0394=2+3 (2026-07-22)",
+    "legs": [
+      {
+        "player": "Jackie Young",
+        "prop": "Assists",
+        "line": 3.5,
+        "sport": "WNBA",
+        "matchup": "LVA vs PHX",
+        "badge": "Platinum"
+      },
+      {
+        "player": "A'ja Wilson",
+        "prop": "Rebs+Asts",
+        "line": 9.5,
+        "sport": "WNBA",
+        "matchup": "LVA vs PHX",
+        "badge": "Platinum"
+      }
+    ]
+  },
+  {
+    "id": "MLB3-1",
+    "n": 3,
+    "product": "Power",
+    "mix": "3 Goblin / 0 Standard",
+    "n_correct": {
+      "3": 2.3
+    },
+    "note": "CDP scrape Power 0S+3G \u0394=2+3 (2026-07-22)",
+    "legs": [
+      {
+        "player": "Peter Lambert",
+        "prop": "Hits Allowed",
+        "line": 3.5,
+        "sport": "MLB",
+        "matchup": "HOU vs ATH",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Tyler Mahle",
+        "prop": "Pitching Outs",
+        "line": 14.5,
+        "sport": "MLB",
+        "matchup": "ATL vs CIN",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Yordan Alvarez",
+        "prop": "Total Bases",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "HOU vs ATH",
+        "badge": "Platinum"
+      }
+    ]
+  },
+  {
+    "id": "MLB3-2",
+    "n": 3,
+    "product": "Power",
+    "mix": "3 Goblin / 0 Standard",
+    "n_correct": {
+      "3": 2.0
+    },
+    "note": "0S+3G Power fallback 2x",
+    "legs": [
+      {
+        "player": "Cam Schlittler",
+        "prop": "Pitcher Strikeouts",
+        "line": 3.5,
+        "sport": "MLB",
+        "matchup": "NYY vs TB",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Kyle Leahy",
+        "prop": "Hits Allowed",
+        "line": 1.5,
+        "sport": "MLB",
+        "matchup": "STL vs PIT",
+        "badge": "Bronze"
+      },
+      {
+        "player": "Daniel Espino",
+        "prop": "Hits Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "CLE vs BOS",
+        "badge": "Bronze"
+      }
+    ]
+  },
+  {
+    "id": "MLB3-3",
+    "n": 3,
+    "product": "Power",
+    "mix": "3 Goblin / 0 Standard",
+    "n_correct": {
+      "3": 2.0
+    },
+    "note": "0S+3G Power fallback 2x",
+    "legs": [
+      {
+        "player": "Tyler Glasnow",
+        "prop": "Pitcher Strikeouts",
+        "line": 4.5,
+        "sport": "MLB",
+        "matchup": "LAD vs SD",
+        "badge": "Silver"
+      },
+      {
+        "player": "Paul Skenes",
+        "prop": "Walks Allowed",
+        "line": 0.5,
+        "sport": "MLB",
+        "matchup": "PIT vs STL",
+        "badge": "Silver"
+      },
+      {
+        "player": "Ian Seymour",
+        "prop": "Pitcher Strikeouts",
+        "line": 3.5,
+        "sport": "MLB",
+        "matchup": "TB vs NYY",
+        "badge": "Bronze"
+      }
+    ]
+  },
+  {
+    "id": "SF3-1",
+    "n": 3,
+    "product": "Flex",
+    "mix": "0 Goblin / 3 Standard",
+    "n_correct": {
+      "3": 2.25,
+      "2": 1.25
+    },
+    "note": "3S Flex canonical 2.25x / 1.25x",
+    "legs": [
+      {
+        "player": "Mark Andrews",
+        "prop": "receiving_yards",
+        "line": 48.5,
+        "sport": "NFL",
+        "matchup": "BAL vs NO (NFL)",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Rashod Bateman",
+        "prop": "receiving_yards",
+        "line": 35.5,
+        "sport": "NFL",
+        "matchup": "BAL vs NO (NFL)",
+        "badge": "Platinum"
+      },
+      {
+        "player": "Roman Wilson",
+        "prop": "receiving_yards",
+        "line": 30.5,
+        "sport": "NFL",
+        "matchup": "PIT vs NE (NFL)",
+        "badge": "Platinum"
+      }
+    ]
+  }
+]
