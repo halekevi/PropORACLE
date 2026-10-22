@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22 05:08:57 UTC",
+  "generated_at": "2026-10-22 05:22:57 UTC",
   "date": "2026-10-22",
   "tennis_date": "2026-10-22",
   "filters": {
@@ -17,26 +17,25 @@
   "mode": "goblin70+graded_main",
   "groups": [
     {
-      "group_name": "SOCCER Goblin-70 Power 2",
+      "group_name": "X-Sport Goblin-70 Mix Power 2",
       "n_legs": 2,
-      "power_payout": 2.15,
+      "power_payout": 2.0,
       "flex_payout": null,
       "tickets": [
         {
-          "web_group_name": "SOCCER Goblin-70 Power 2",
-          "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 2|1",
+          "web_group_name": "X-Sport Goblin-70 Mix Power 2",
+          "ticket_id": "2026-10-22|X-Sport Goblin-70 Mix Power 2|1",
           "ticket_no": 1,
-          "ticket_track": "goblin70",
+          "ticket_track": "mixed_ev",
           "mode": "goblin70",
           "exclude_from_winrate": false,
           "avg_hit_rate": 1.0,
-          "est_win_prob": 0.582,
+          "est_win_prob": 0.535,
           "est_flex_cash_prob": null,
-          "power_payout": 2.15,
+          "power_payout": 2.0,
           "flex_payout": null,
-          "base_power_payout": 2.15,
-          "ev_power": 0.252,
-          "display_min_x": 1.4,
+          "base_power_payout": 2.0,
+          "ev_power": 0.068,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -44,8 +43,8 @@
           "strong_builder": false,
           "legs": [
             {
-              "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 2|1",
-              "ticket_track": "goblin70",
+              "ticket_id": "2026-10-22|X-Sport Goblin-70 Mix Power 2|1",
+              "ticket_track": "mixed_ev",
               "sport": "Soccer",
               "player": "Roger Martínez",
               "team": "SHABAB",
@@ -80,7 +79,99 @@
               "matchup": "SHABAB vs FATEH (SOCCER)"
             },
             {
-              "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 2|1",
+              "ticket_id": "2026-10-22|X-Sport Goblin-70 Mix Power 2|1",
+              "ticket_track": "mixed_ev",
+              "sport": "NFL",
+              "player": "Braelon Allen",
+              "team": "NYJ",
+              "opp": "MIA",
+              "prop_type": "receiving_yards",
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "line": 14.5,
+              "edge": -10.7,
+              "abs_edge": 10.7,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": null,
+              "standard_line": null,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 14.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "D",
+              "def_tier": "Above Avg",
+              "l5_over": null,
+              "l5_under": 5.0,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.7,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_42c58ce87dcbf14ec0ca",
+              "game_date": "2026-10-22",
+              "badge": "Platinum",
+              "cover": -10.7,
+              "matchup": "NYJ vs MIA (NFL)"
+            }
+          ],
+          "n_legs": 2,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "payout": 2.0,
+            "min_guarantee": 2.0,
+            "min_payout_x": 2.0,
+            "p_all_win": 0.535,
+            "p_miss_1": 0.0,
+            "ev": 0.068,
+            "recommendation": "SKIP",
+            "entry_10_to_win_guarantee": 20.0,
+            "entry_20_to_win_guarantee": 40.0,
+            "sweep_payout": 2.0,
+            "sweep_payout_x": 2.0,
+            "audit_all_hit_x": 2.0,
+            "payout_source": "pending_live",
+            "payout_note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
+            "n_correct": {
+              "2": 2.0
+            },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": null,
+            "model_min_payout_x": 2.0
+          },
+          "empirical_recommendation": "SKIP"
+        }
+      ]
+    },
+    {
+      "group_name": "SOCCER Goblin-70 Power 3",
+      "n_legs": 3,
+      "power_payout": 2.3,
+      "flex_payout": null,
+      "tickets": [
+        {
+          "web_group_name": "SOCCER Goblin-70 Power 3",
+          "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 3|1",
+          "ticket_no": 1,
+          "ticket_track": "goblin70",
+          "mode": "goblin70",
+          "exclude_from_winrate": false,
+          "avg_hit_rate": 1.0,
+          "est_win_prob": 0.444,
+          "est_flex_cash_prob": null,
+          "power_payout": 2.3,
+          "flex_payout": null,
+          "base_power_payout": 2.3,
+          "ev_power": 0.022,
+          "core_build": true,
+          "core_recipe": "goblin70",
+          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
+            {
+              "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 3|1",
               "ticket_track": "goblin70",
               "sport": "Soccer",
               "player": "Equi Fernández",
@@ -114,61 +205,9 @@
               "badge": "Silver",
               "cover": 1.2,
               "matchup": "BAYER 04 vs OFI (SOCCER)"
-            }
-          ],
-          "n_legs": 2,
-          "play": "Power",
-          "payout": {
-            "ticket_type": "power",
-            "payout": 1.4,
-            "min_guarantee": 1.4,
-            "min_payout_x": 1.4,
-            "display_min_x": 1.4,
-            "p_all_win": 0.582,
-            "p_miss_1": 0.0,
-            "ev": -0.1852,
-            "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 14.0,
-            "entry_20_to_win_guarantee": 28.0,
-            "sweep_payout": 1.4,
-            "sweep_payout_x": 1.4,
-            "audit_all_hit_x": 2.15,
-            "payout_source": "live_cdp",
-            "payout_note": "Power all-hit 2.15x from payout_rate_card. EV = expected N-correct multiple - 1.",
-            "n_correct": {
-              "2": 2.15
             },
-            "ev_formula": "EV = P(all)*1.40 - 1.0",
-            "captured_at": "2026-10-22T01:11:37-04:00",
-            "model_min_payout_x": 2.15,
-            "power_min_x": 1.4,
-            "power_first_x": 3.0,
-            "entry_10_to_win_sweep": 14.0
-          },
-          "empirical_recommendation": "SKIP"
-        },
-        {
-          "web_group_name": "SOCCER Goblin-70 Power 2",
-          "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 2|2",
-          "ticket_no": 2,
-          "ticket_track": "goblin70",
-          "mode": "goblin70",
-          "exclude_from_winrate": false,
-          "avg_hit_rate": 1.0,
-          "est_win_prob": 0.582,
-          "est_flex_cash_prob": null,
-          "power_payout": 2.15,
-          "flex_payout": null,
-          "base_power_payout": 2.15,
-          "ev_power": 0.252,
-          "core_build": true,
-          "core_recipe": "goblin70",
-          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
-          "pool_policy": "goblin70",
-          "strong_builder": false,
-          "legs": [
             {
-              "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 2|2",
+              "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 3|1",
               "ticket_track": "goblin70",
               "sport": "Soccer",
               "player": "Gonçalo Ramos",
@@ -204,7 +243,7 @@
               "matchup": "MILAN vs BOURNEMOUTH (SOCCER)"
             },
             {
-              "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 2|2",
+              "ticket_id": "2026-10-22|SOCCER Goblin-70 Power 3|1",
               "ticket_track": "goblin70",
               "sport": "Soccer",
               "player": "Evanilson",
@@ -240,30 +279,30 @@
               "matchup": "BOURNEMOUTH vs MILAN (SOCCER)"
             }
           ],
-          "n_legs": 2,
+          "n_legs": 3,
           "play": "Power",
           "payout": {
             "ticket_type": "power",
-            "payout": 2.15,
-            "min_guarantee": 2.15,
-            "min_payout_x": 2.15,
-            "p_all_win": 0.582,
+            "payout": 2.3,
+            "min_guarantee": 2.3,
+            "min_payout_x": 2.3,
+            "p_all_win": 0.444,
             "p_miss_1": 0.0,
-            "ev": 0.252,
+            "ev": 0.022,
             "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 21.5,
-            "entry_20_to_win_guarantee": 43.0,
-            "sweep_payout": 2.15,
-            "sweep_payout_x": 2.15,
-            "audit_all_hit_x": 2.15,
+            "entry_10_to_win_guarantee": 23.0,
+            "entry_20_to_win_guarantee": 46.0,
+            "sweep_payout": 2.3,
+            "sweep_payout_x": 2.3,
+            "audit_all_hit_x": 2.3,
             "payout_source": "pending_live",
-            "payout_note": "Power all-hit 2.15x from payout_rate_card. EV = expected N-correct multiple - 1.",
+            "payout_note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
             "n_correct": {
-              "2": 2.15
+              "3": 2.3
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-09-09T22:05:48",
-            "model_min_payout_x": 2.15
+            "captured_at": null,
+            "model_min_payout_x": 2.3
           },
           "empirical_recommendation": "SKIP"
         }
@@ -629,6 +668,11 @@
       "strong": 1.4,
       "ok": 1.15,
       "marginal": 1.0
+    },
+    "3": {
+      "strong": 1.4,
+      "ok": 1.15,
+      "marginal": 1.0
     }
   },
   "tier_ev_percentiles": {
@@ -689,13 +733,20 @@
   "core_build_count": 1,
   "slate_exposure_dropped": 1,
   "slate_exposure_reasons": [
-    "2026-10-22|SOCCER Core Power 2 #1|1:nonanchor_cap:equi fernandez:1>=1"
+    "2026-10-22|SOCCER Core Power 2 #1|1:same_prop:equi fernandez::shots::OVER"
   ],
   "player_slip_cap_dropped": 1,
   "slate_exposure_snapshot": {
+    "braelon allen": {
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
+      "props": [
+        "braelon allen::receiving_yards::UNDER"
+      ]
+    },
     "equi fernandez": {
-      "anchor_tickets": 0,
-      "nonanchor_tickets": 1,
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
       "props": [
         "equi fernandez::shots::OVER"
       ]
@@ -708,8 +759,8 @@
       ]
     },
     "goncalo ramos": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
       "props": [
         "goncalo ramos::shots on target::OVER"
       ]
@@ -729,8 +780,8 @@
       ]
     },
     "roger martinez": {
-      "anchor_tickets": 1,
-      "nonanchor_tickets": 0,
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
       "props": [
         "roger martinez::shots on target::OVER"
       ]

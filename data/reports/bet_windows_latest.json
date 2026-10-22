@@ -1,6 +1,6 @@
 {
   "date": "2026-10-22",
-  "generated_at": "2026-10-22T01:13:19-04:00",
+  "generated_at": "2026-10-22T01:27:13-04:00",
   "line_pulls": [
     {
       "fetched_at": "2026-10-20T21:33:43-04:00",
@@ -70,6 +70,30 @@
     },
     {
       "fetched_at": "2026-10-22T01:08:10-04:00",
+      "window": "1AM",
+      "n_props": 103,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-22T01:20:27-04:00",
+      "window": "1AM",
+      "n_props": 2049,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-22T01:20:37-04:00",
+      "window": "1AM",
+      "n_props": 4488,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-22T01:20:43-04:00",
+      "window": "1AM",
+      "n_props": 419,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-22T01:20:47-04:00",
       "window": "1AM",
       "n_props": 103,
       "n_moved": 0
