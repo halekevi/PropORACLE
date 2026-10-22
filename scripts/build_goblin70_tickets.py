@@ -1268,14 +1268,73 @@ def patch_mixer_groups(
     return out, stats
 
 
+_PERIOD_SPORTS_NEED_DATED_STEP8 = frozenset(
+    {"NBA1Q", "NBA1H", "WNBA1Q", "WNBA1H"}
+)
+
+
+def _group_sports(group: dict) -> set[str]:
+    out: set[str] = set()
+    for ticket in group.get("tickets") or []:
+        if not isinstance(ticket, dict):
+            continue
+        for leg in ticket.get("legs") or []:
+            if not isinstance(leg, dict):
+                continue
+            s = str(leg.get("sport") or "").strip().upper()
+            if s:
+                out.add(s.split()[0])
+    return out
+
+
+def _period_step8_ready(date: str, sport: str) -> bool:
+    """True when outputs/<date>/<folder>/step8 exists (no Sports/ static fallback)."""
+    folder = str(sport or "").strip().lower()
+    if not folder or not date:
+        return False
+    stem = f"step8_{folder}_direction_clean"
+    base = _REPO / "outputs" / date / folder
+    return any(
+        p.is_file()
+        for p in (
+            base / f"{stem}.xlsx",
+            base / f"{stem}_{date}.xlsx",
+            _REPO / "outputs" / date / f"{stem}_{date}.xlsx",
+        )
+    )
+
+
+def drop_stale_period_groups(groups: list[dict], date: str) -> tuple[list[dict], list[str]]:
+    """Drop NBA1Q/1H (and WNBA period) groups when that slate has no dated step8."""
+    kept: list[dict] = []
+    dropped: list[str] = []
+    for g in groups or []:
+        if not isinstance(g, dict):
+            continue
+        sports = _group_sports(g)
+        bad = sorted(s for s in sports if s in _PERIOD_SPORTS_NEED_DATED_STEP8)
+        if bad and not all(_period_step8_ready(date, s) for s in bad):
+            name = str(g.get("group_name") or "").strip() or ",".join(bad)
+            dropped.append(name)
+            continue
+        kept.append(g)
+    return kept, dropped
+
+
 def merge_web_payload(
     g70: dict,
     main_payload: dict | None = None,
     main_groups: list[dict] | None = None,
 ) -> dict:
     """Goblin-70 groups first, then the graded-main mixer. Both stay on /tickets."""
+    date = str((g70 or {}).get("date") or (main_payload or {}).get("date") or "")[:10]
     g70_groups = list(g70.get("groups") or [])
     mixer = list(main_groups or [])
+    if date:
+        g70_groups, dropped_g70 = drop_stale_period_groups(g70_groups, date)
+        mixer, dropped_mix = drop_stale_period_groups(mixer, date)
+        for name in dropped_g70 + dropped_mix:
+            print(f"web scrub: dropped stale period group {name!r} (no dated step8 for {date})")
     out = dict(main_payload) if main_payload else {}
     out.update({k: v for k, v in g70.items() if k != "groups"})
     out["groups"] = g70_groups + mixer

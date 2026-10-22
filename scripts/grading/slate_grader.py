@@ -539,6 +539,30 @@ _PROP_RESOLVE_COLS: tuple[str, ...] = (
 )
 
 
+def _fill_usage_role_from_snap(df):
+    """Fill a blank usage_role from snap share only.
+
+    NFL has no minutes tier. A minutes column must not become a role.
+    A blank snap stays blank.
+    """
+    from utils.nfl_prop_defense import role_from_snap
+
+    if df is None or len(df) == 0:
+        return df
+    if "usage_role" not in df.columns:
+        df["usage_role"] = ""
+    if "snap_pct_L3" not in df.columns:
+        return df
+    snap = df["snap_pct_L3"]
+    existing = df["usage_role"].astype(str).str.strip()
+    blank = existing.eq("") | existing.str.lower().isin(("nan", "none", "null"))
+    if not blank.any():
+        return df
+    filled = [role_from_snap(s) if b else e for b, e, s in zip(blank, existing, snap)]
+    df["usage_role"] = filled
+    return df
+
+
 def _alias_cols(df):
     for alias,canon in [('DEF_TIER','def_tier'),('minutes_tier','minutes_tier'),
                          ('shot_role','shot_role'),('usage_role','usage_role')]:
@@ -614,6 +638,8 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
     "Def Rank": "def_rank",
     "Def Tier": "def_tier",
     "Min Tier": "minutes_tier",
+    "Minutes Tier": "minutes_tier",
+    "Snap L3": "snap_pct_L3",
     "Shot Role": "shot_role",
     "Usage Role": "usage_role",
     "ML Prob": "ml_prob",
@@ -651,7 +677,8 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
     "last5_hit_rate": "hit_rate",
     "Deviation Level": "deviation_level",
     "deviation_level": "deviation_level",
-})
+    })
+    _fill_usage_role_from_snap(df)
     # fallback compatibility
     if "prop_type_norm" not in df.columns:
         df["prop_type_norm"] = df.get("prop_type", "")
@@ -1009,15 +1036,51 @@ def _row_prop_matches_lookup(lookup: ActualsLookup, srow, prop_label: str) -> bo
     )
 
 
+def _row_board_game_date(row) -> str:
+    """Calendar day on the ticket/slate source row (never invent from actuals file)."""
+    for col in ("game_date", "Game Date", "board_date", "start_time", "game_start"):
+        if col not in getattr(row, "index", []):
+            continue
+        d = _norm_game_date(row.get(col))
+        if d:
+            return d
+        raw = str(row.get(col) or "").strip()
+        if len(raw) >= 10 and raw[4] == "-" and raw[7] == "-":
+            return raw[:10]
+        ts = pd.to_datetime(raw, errors="coerce", utc=True)
+        if pd.notna(ts):
+            return ts.tz_convert(None).strftime("%Y-%m-%d")
+    return ""
+
+
+def _source_board_date_void(row, actuals_date: str) -> str:
+    """
+    Void legs whose source board is undated or not the grade/actuals day.
+
+    Prevents May NBA1Q props (empty game_date) from grading against tonight's PBP.
+    """
+    row_date = _row_board_game_date(row)
+    if not row_date:
+        return "SOURCE_BOARD_DATE_MISSING"
+    ad = _norm_game_date(actuals_date) or str(actuals_date or "").strip()[:10]
+    if ad and row_date != ad:
+        return "SOURCE_BOARD_DATE_MISMATCH"
+    return ""
+
+
 def _resolve_actual(lookup: ActualsLookup, row) -> float:
     """Resolve actual: team+prop first, then unique player+prop; respect game_date."""
-    row_date = _norm_game_date(row.get("game_date", ""))
-    if lookup.actuals_date and row_date and row_date != lookup.actuals_date:
+    row_date = _row_board_game_date(row)
+    # Never fall back to actuals_date when the slate row has no date — that graded
+    # stale undated boards against the wrong night's box/PBP.
+    if not row_date:
+        return np.nan
+    if lookup.actuals_date and row_date != lookup.actuals_date:
         return np.nan
 
     player = str(row.get("player", "") or "")
     team = norm_team_key(row.get("team", ""))
-    game_date = row_date or lookup.actuals_date
+    game_date = row_date
 
     for prop_label in _props_from_row(row):
         team_keys, player_keys = _expand_lookup_keys(
@@ -1036,16 +1099,62 @@ def _resolve_actual(lookup: ActualsLookup, row) -> float:
     return np.nan
 
 
+# PrizePicks scores 0 when a player takes a snap and does not record the stat.
+# Longest-play and field-goal distance stay void: 0 is not a real longest make.
+_FOOTBALL_COUNTING_ZERO = (
+    "rushing yards",
+    "receiving yards",
+    "receptions",
+    "rushing tds",
+    "receiving tds",
+    "passing yards",
+    "passing tds",
+    "completions",
+    "pass attempts",
+    "rushing attempts",
+)
+
+
+def _football_zero_if_played(lookup: ActualsLookup, row) -> float:
+    """0 when this counting prop is missing but the player has another offensive box stat.
+
+    No offensive stat at all stays NaN so a true non-participant remains NO_ACTUAL.
+    """
+    prop = _primary_prop_from_row(row)
+    if prop not in _FOOTBALL_COUNTING_ZERO:
+        return np.nan
+    player = str(row.get("player", "") or "")
+    team = norm_team_key(row.get("team", ""))
+    game_date = _norm_game_date(row.get("game_date", "")) or lookup.actuals_date
+    for marker in _FOOTBALL_COUNTING_ZERO:
+        if marker == prop:
+            continue
+        team_keys, player_keys = _expand_lookup_keys(
+            player, marker, team=team, game_date=game_date
+        )
+        for k in team_keys:
+            if k in lookup.by_player_team_prop:
+                return 0.0
+        for k in player_keys:
+            if k in lookup.ambiguous_player_prop:
+                continue
+            if k in lookup.by_player_prop:
+                return 0.0
+    return np.nan
+
+
 def _resolve_actual_for_player(
     lookup: ActualsLookup, player_str: str, row
 ) -> float:
     """Resolve actual for one combo leg using the same prop columns as ``_resolve_actual``."""
-    row_date = _norm_game_date(row.get("game_date", ""))
-    if lookup.actuals_date and row_date and row_date != lookup.actuals_date:
+    row_date = _row_board_game_date(row)
+    if not row_date:
+        return np.nan
+    if lookup.actuals_date and row_date != lookup.actuals_date:
         return np.nan
 
     team = norm_team_key(row.get("team", ""))
-    game_date = row_date or lookup.actuals_date
+    game_date = row_date
     for prop_label in _props_from_row(row):
         team_keys, player_keys = _expand_lookup_keys(
             player_str, prop_label, team=team, game_date=game_date
@@ -1296,6 +1405,20 @@ def apply_actuals(df, actuals_path):
 
     results, void_reasons, margins, actuals_out = [], [], [], []
     for _, row in df.iterrows():
+        date_void = _source_board_date_void(row, lookup.actuals_date)
+        if date_void:
+            actuals_out.append(np.nan)
+            results.append("VOID")
+            margins.append(np.nan)
+            upstream = ""
+            void_r = row.get("void_reason", np.nan)
+            if pd.notna(void_r) and str(void_r).strip() not in ("", "nan"):
+                upstream = str(void_r).strip()
+            void_reasons.append(
+                f"{upstream}; {date_void}" if upstream else date_void
+            )
+            continue
+
         actual = _resolve_actual(lookup, row)
 
         # Single-player combo props: sum final component box-score rows (same game snapshot).
@@ -1333,6 +1456,16 @@ def apply_actuals(df, actuals_path):
             )
             if duo is not None:
                 actual = float(duo)
+
+        # Played, no row for this counting stat: PrizePicks settles 0, not a void.
+        if (
+            pd.isna(actual)
+            and any(tok in apath.lower() for tok in ("nfl", "cfb", "football"))
+            and "+" not in str(row.get("player", "") or "")
+        ):
+            zeroed = _football_zero_if_played(lookup, row)
+            if pd.notna(zeroed):
+                actual = float(zeroed)
 
         # Shortest/longest FG yards are undefined with zero makes — never grade as 0.
         prop_label = _primary_prop_from_row(row)

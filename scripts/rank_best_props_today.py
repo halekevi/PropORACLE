@@ -662,7 +662,9 @@ def filter_step8_to_slate_date(df: pd.DataFrame, date: str, sport: str = "") -> 
             return df.loc[et.isin(keep)].copy()
     if "game_date" in df.columns and str(sport).upper() != "TENNIS":
         gd = df["game_date"].astype(str).str[:10]
-        return df.loc[gd.eq(date) | gd.eq("") | gd.eq("nan")].copy()
+        # Do not keep blank game_date — undated period boards (May NBA1Q) leaked
+        # onto live tickets and graded against the wrong night.
+        return df.loc[gd.eq(date)].copy()
     return df
 
 
@@ -832,21 +834,32 @@ def _load_folder_step8(
     folder: str,
     sports_rel: tuple[str, ...],
 ) -> pd.DataFrame:
-    """Period / NBA step8: outputs/<date>/<folder>/ then Sports/<rel>/ static copy."""
+    """Period / NBA step8: outputs/<date>/<folder>/ then Sports/<rel>/ static copy.
+
+    Period boards (nba1q/nba1h/wnba1q/wnba1h) never fall back to Sports/ static —
+    that is how the May finals step8 kept feeding Goblin-70 after the dated
+    pipeline stopped at step3.
+    """
     if _skip_inactive_slate(root, date, folder):
         return pd.DataFrame()
     stem = f"step8_{folder}_direction_clean"
+    folder_l = str(folder or "").strip().lower()
+    period = folder_l in {"nba1q", "nba1h", "wnba1q", "wnba1h"}
     candidates = [
         root / "outputs" / date / folder / f"{stem}.xlsx",
         root / "outputs" / date / folder / f"{stem}_{date}.xlsx",
         root / "outputs" / date / f"{stem}_{date}.xlsx",
-        root.joinpath(*sports_rel) / f"{stem}.xlsx",
     ]
+    if not period:
+        candidates.append(root.joinpath(*sports_rel) / f"{stem}.xlsx")
     path = next((p for p in candidates if table_exists(p)), None)
     if path is None:
         return pd.DataFrame()
     df = read_table(path, sheet_order=("ALL",))
     df["sport"] = sport
+    # Period boards must be on the slate date — empty game_date is not a free pass.
+    if period:
+        df = filter_step8_to_slate_date(df, date, sport)
     return df
 
 
