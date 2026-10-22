@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22 02:59:42 UTC",
+  "generated_at": "2026-10-22 05:08:57 UTC",
   "date": "2026-10-22",
   "tennis_date": "2026-10-22",
   "filters": {
@@ -36,7 +36,7 @@
           "flex_payout": null,
           "base_power_payout": 2.15,
           "ev_power": 0.252,
-          "display_min_x": 2.15,
+          "display_min_x": 1.4,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -120,27 +120,32 @@
           "play": "Power",
           "payout": {
             "ticket_type": "power",
-            "payout": 2.15,
-            "min_guarantee": 2.15,
-            "min_payout_x": 2.15,
-            "display_min_x": 2.15,
+            "payout": 1.4,
+            "min_guarantee": 1.4,
+            "min_payout_x": 1.4,
+            "display_min_x": 1.4,
             "p_all_win": 0.582,
             "p_miss_1": 0.0,
-            "ev": 0.252,
-            "recommendation": "OK",
-            "entry_10_to_win_guarantee": 21.5,
-            "entry_20_to_win_guarantee": 43.0,
-            "sweep_payout": 2.15,
-            "sweep_payout_x": 2.15,
+            "ev": -0.1852,
+            "recommendation": "SKIP",
+            "entry_10_to_win_guarantee": 14.0,
+            "entry_20_to_win_guarantee": 28.0,
+            "sweep_payout": 1.4,
+            "sweep_payout_x": 1.4,
             "audit_all_hit_x": 2.15,
-            "payout_source": "n_correct_live",
+            "payout_source": "live_cdp",
             "payout_note": "Power all-hit 2.15x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 2.15
             },
-            "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-09-09T22:05:48"
-          }
+            "ev_formula": "EV = P(all)*1.40 - 1.0",
+            "captured_at": "2026-10-22T01:11:37-04:00",
+            "model_min_payout_x": 2.15,
+            "power_min_x": 1.4,
+            "power_first_x": 3.0,
+            "entry_10_to_win_sweep": 14.0
+          },
+          "empirical_recommendation": "SKIP"
         },
         {
           "web_group_name": "SOCCER Goblin-70 Power 2",
@@ -156,7 +161,6 @@
           "flex_payout": null,
           "base_power_payout": 2.15,
           "ev_power": 0.252,
-          "display_min_x": 2.15,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -243,24 +247,25 @@
             "payout": 2.15,
             "min_guarantee": 2.15,
             "min_payout_x": 2.15,
-            "display_min_x": 2.15,
             "p_all_win": 0.582,
             "p_miss_1": 0.0,
             "ev": 0.252,
-            "recommendation": "OK",
+            "recommendation": "SKIP",
             "entry_10_to_win_guarantee": 21.5,
             "entry_20_to_win_guarantee": 43.0,
             "sweep_payout": 2.15,
             "sweep_payout_x": 2.15,
             "audit_all_hit_x": 2.15,
-            "payout_source": "n_correct_live",
+            "payout_source": "pending_live",
             "payout_note": "Power all-hit 2.15x from payout_rate_card. EV = expected N-correct multiple - 1.",
             "n_correct": {
               "2": 2.15
             },
             "ev_formula": "E[N-correct] - 1",
-            "captured_at": "2026-09-09T22:05:48"
-          }
+            "captured_at": "2026-09-09T22:05:48",
+            "model_min_payout_x": 2.15
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -576,31 +581,36 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.8794,
-            "min_guarantee": 1.8794,
-            "min_payout_x": 1.8794,
+            "payout": 1.6,
+            "min_guarantee": 1.6,
+            "min_payout_x": 1.6,
             "min_guarantee_adjustment": 1.0,
             "payout_adjustment": 1.0,
             "p_all_win": 0.81,
             "p_miss_1": 0.18,
-            "ev": 0.5223,
+            "ev": 0.296,
             "recommendation": "SKIP",
-            "entry_10_to_win_guarantee": 18.79,
-            "entry_20_to_win_guarantee": 37.59,
-            "sweep_payout": 1.8794,
-            "sweep_payout_x": 1.8794,
+            "entry_10_to_win_guarantee": 16.0,
+            "entry_20_to_win_guarantee": 32.0,
+            "sweep_payout": 1.6,
+            "sweep_payout_x": 1.6,
             "audit_all_hit_x": 1.8794,
-            "entry_10_to_win_sweep": 18.79,
+            "entry_10_to_win_sweep": 16.0,
             "payout_confidence_score": 1.5223,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.88 - 1.0",
-            "model_min_payout_x": 1.8794
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.60 - 1.0",
+            "model_min_payout_x": 1.8794,
+            "power_min_x": 1.6,
+            "display_min_x": 1.6,
+            "power_first_x": 3.0,
+            "captured_at": "2026-10-22T01:09:59-04:00"
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
           "win_rate_score": 0.276463,
           "floor_ev": -0.723537,
-          "empirical_recommendation": "SKIP"
+          "empirical_recommendation": "SKIP",
+          "display_min_x": 1.6
         }
       ],
       "hot_legs": 2,
@@ -727,7 +737,7 @@
     }
   },
   "player_slip_cap": 2,
-  "run_id": "20261022_025330_852976",
+  "run_id": "20261022_031111_735286",
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
