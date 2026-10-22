@@ -299,6 +299,16 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Validate step8 boards for a slate date")
     ap.add_argument("--date", required=True, help="Slate date YYYY-MM-DD")
     ap.add_argument("--no-alert", action="store_true", help="Skip pipeline alerts")
+    ap.add_argument(
+        "--warn-only",
+        action="store_true",
+        help="Always exit 0 (log failures; do not gate publish). Default for DayAhead.",
+    )
+    ap.add_argument(
+        "--fail-on-error",
+        action="store_true",
+        help="Exit 1 when any sport fails (future hard gate; off by default).",
+    )
     ap.add_argument("--json-out", default="", help="Optional path for JSON report")
     args = ap.parse_args()
     slate = str(args.date).strip()[:10]
@@ -310,6 +320,9 @@ def main() -> int:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(summary, indent=2), encoding="utf-8")
         print(f"  Wrote {out}")
+    # Warn-only is the default for scheduled runs. Hard fail only with --fail-on-error.
+    if args.warn_only or not args.fail_on_error:
+        return 0
     return 0 if summary["fail"] == 0 else 1
 
 

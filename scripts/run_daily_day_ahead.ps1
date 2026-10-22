@@ -205,11 +205,9 @@ if (Test-Path -LiteralPath $Health) {
 
 $validateStep8 = Join-Path $Root "scripts\validate_step8_slate.py"
 if (Test-Path -LiteralPath $validateStep8) {
-    Write-Host "[DAY-AHEAD] Step8 validator for $SlateDate..." -ForegroundColor Cyan
-    & py -3.14 $validateStep8 --date $SlateDate
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "[DAY-AHEAD] WARN: step8 validator reported failures (exit $LASTEXITCODE) — see logs/pipeline_alerts.log" -ForegroundColor Yellow
-    }
+    Write-Host "[DAY-AHEAD] Step8 validator for $SlateDate (warn-only; does not block publish)..." -ForegroundColor Cyan
+    & py -3.14 $validateStep8 --date $SlateDate --warn-only
+    # Always continue — validator failures alert only until known gaps are cleared.
 }
 
 $publish = Join-Path $Root "scripts\Publish-LiveSite.ps1"
