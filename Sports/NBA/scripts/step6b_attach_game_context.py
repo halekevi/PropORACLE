@@ -131,6 +131,41 @@ def abbr_to_keyword(abbr: str) -> str:
     return TEAM_NAME_MAP.get(a, a)
 
 
+def _repo_root() -> Path:
+    return Path(__file__).resolve().parents[3]
+
+
+def _bootstrap_env_from_dotenv() -> None:
+    """Load repo-root .env when ODDS_API_KEY is not already set."""
+    if (os.environ.get("ODDS_API_KEY") or "").strip():
+        return
+    env_path = _repo_root() / ".env"
+    if not env_path.is_file():
+        return
+    try:
+        for raw in env_path.read_text(encoding="utf-8").splitlines():
+            line = raw.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, val = line.partition("=")
+            key = key.strip()
+            if not key or key in os.environ:
+                continue
+            os.environ[key] = val.strip().strip('"').strip("'")
+    except OSError:
+        pass
+
+
+def _alert_odds(reason: str) -> None:
+    try:
+        sys.path.insert(0, str(_repo_root()))
+        from utils.pipeline_alerts import emit_pipeline_alert
+
+        emit_pipeline_alert("odds-api", reason)
+    except Exception:
+        print(f"  [6b] ALERT odds-api: {reason}")
+
+
 # ── ODDS API FETCH ────────────────────────────────────────────────────────────
 
 def fetch_odds(api_key: str, date_str: str) -> Optional[list]:
@@ -148,7 +183,7 @@ def fetch_odds(api_key: str, date_str: str) -> Optional[list]:
     qs = _urlparse.urlencode(params)
     url = f"{ODDS_API_BASE}/sports/{SPORT_KEY}/odds?{qs}"
 
-    print(f"  [6b] Fetching odds from The Odds API…")
+    print(f"  [6b] Fetching odds from The Odds API...")
     try:
         req = _urllib.Request(url, headers={"User-Agent": "PropOracle/1.0"})
         with _urllib.urlopen(req, timeout=20) as resp:
@@ -159,6 +194,20 @@ def fetch_odds(api_key: str, date_str: str) -> Optional[list]:
             print(f"  [6b] Got {len(data)} games from API")
             return data
     except Exception as e:
+        code = getattr(e, "code", None)
+        body = ""
+        try:
+            body = e.read().decode("utf-8", errors="replace")[:240]  # type: ignore[attr-defined]
+        except Exception:
+            body = str(e)
+        if code in (401, 403) or "OUT_OF_USAGE" in body.upper() or "quota" in body.lower():
+            _alert_odds(
+                f"NBA Odds API HTTP {code or '?'} — {body or 'auth/quota failure'}. "
+                "game totals/spreads stay N/A; Game Script defaults to 0.97. "
+                "Top up or rotate ODDS_API_KEY at https://the-odds-api.com"
+            )
+        else:
+            _alert_odds(f"NBA Odds API fetch failed: {e}")
         print(f"  [6b] WARNING: Odds API fetch failed: {e}")
         return None
 
@@ -361,8 +410,9 @@ def main():
     ap.add_argument("--date",    default="",    help="Slate date YYYY-MM-DD (default: today)")
     args = ap.parse_args()
 
-    # Resolve API key
-    api_key = args.api_key or os.environ.get("ODDS_API_KEY", "")
+    # Resolve API key (CLI → env → repo-root .env)
+    _bootstrap_env_from_dotenv()
+    api_key = (args.api_key or os.environ.get("ODDS_API_KEY", "") or "").strip()
 
     # Resolve date
     date_str = args.date or datetime.now().strftime("%Y-%m-%d")
@@ -382,8 +432,13 @@ def main():
 
     # ── Resolve odds ──────────────────────────────────────────────────────────
 
-    # Try cache first
+    # Try cache first (ignore empty fallback caches so a bad key does not stick forever)
     cached = load_cache(cache_path)
+    if cached is not None and "game_total" in cached.columns:
+        filled = int(pd.to_numeric(cached["game_total"], errors="coerce").notna().sum())
+        if filled <= 0:
+            print("  [6b] Cache has 0 game_totals — ignoring and refetching")
+            cached = None
 
     if cached is not None:
         game_odds = cached
@@ -398,6 +453,10 @@ def main():
             print("  [6b] API returned no data — building fallback table")
             game_odds = build_game_odds_table(df, {})
     else:
+        _alert_odds(
+            "NBA ODDS_API_KEY missing (env/.env) and no usable cache — "
+            "game totals/spreads stay N/A; Game Script defaults to 0.97"
+        )
         print("  [6b] WARNING: No API key provided and no cache found.")
         print("  [6b] Get a free key at https://the-odds-api.com")
         print("  [6b] Continuing with null odds (no adjustments applied)")

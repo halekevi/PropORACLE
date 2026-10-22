@@ -980,8 +980,8 @@ function Run-NBAPeriodPipeline {
     if ($ok) { $ok = Run-Step "${tagLower} Step 2 - Attach Pick Types"      $NBADir ".\scripts\step2_attach_picktypes.py"               "--input $step1 --output $step2" }
     if ($ok) { $ok = Run-Step "${tagLower} Step 3 - Attach Defense"         $NBADir ".\scripts\step3_attach_defense.py"                 "--input $step2 --defense data\cache\defense_team_summary.csv --output $step3" }
     if ($ok) { $ok = Run-Step "${tagLower} Step 4 - Player Stats (ESPN)"    $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate $step3 --out $step4 --date $Date" }
-    if ($ok -and $tagLower -eq "nba1h") {
-        $ok = Run-Step "${tagLower} Step 4b - Usage/Pace Context" $NBADir ".\scripts\step4b_attach_nba_context.py" "--input `"$step4`" --output `"$step4`" --season 2025-26"
+    if ($ok) {
+        $ok = Run-Step "${tagLower} Step 4b - Usage/Pace Context" $NBADir ".\scripts\step4b_attach_nba_context.py" "--input `"$step4`" --output `"$step4`" --date $Date"
     }
     # Step 4d — Injury context (team_star_out, usage_vacuum, boost flags); non-fatal
     if ($ok) {
@@ -2652,7 +2652,7 @@ if ($NBAOnly) {
     if ($ok) { $ok = Run-Step "NBA Step 2 - Attach Pick Types"       $NBADir ".\scripts\step2_attach_picktypes.py"               "--input `"$nbaStep1Solo`" --output `"$NBARunOutDir\step2_with_picktypes.csv`"" }
     if ($ok) { $ok = Run-Step "NBA Step 3 - Attach Defense"          $NBADir ".\scripts\step3_attach_defense.py"                 "--input `"$NBARunOutDir\step2_with_picktypes.csv`" --defense data\cache\defense_team_summary.csv --output `"$NBARunOutDir\step3_with_defense.csv`"" }
     if ($ok) { $ok = Run-Step "NBA Step 4 - Player Stats (ESPN)"     $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate `"$NBARunOutDir\step3_with_defense.csv`" --out `"$NBARunOutDir\step4_with_stats.csv`"" }
-    if ($ok) { $ok = Run-Step "NBA Step 4b - Usage/Pace Context"      $NBADir ".\scripts\step4b_attach_nba_context.py"              "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step4_with_stats.csv`" --season 2025-26" }
+    if ($ok) { $ok = Run-Step "NBA Step 4b - Usage/Pace Context"      $NBADir ".\scripts\step4b_attach_nba_context.py"              "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step4_with_stats.csv`" --date $Date" }
     # Step 4d — Injury context (team_star_out, usage_vacuum, boost flags); non-fatal
     if ($ok) {
         Write-Host "  --> NBA Step 4d - Injury Context" -ForegroundColor Cyan
@@ -2976,7 +2976,7 @@ $NBAJob = Start-Job -ScriptBlock {
     if ($ok) { $ok = Run-Step-Job "NBA Step 2 - Attach Pick Types"       $NBADir ".\scripts\step2_attach_picktypes.py"               "--input `"$nbaStep1`" --output `"$NBARunOutDir\step2_with_picktypes.csv`"" }
     if ($ok) { $ok = Run-Step-Job "NBA Step 3 - Attach Defense"          $NBADir ".\scripts\step3_attach_defense.py"                 "--input `"$NBARunOutDir\step2_with_picktypes.csv`" --defense data\cache\defense_team_summary.csv --output `"$NBARunOutDir\step3_with_defense.csv`"" }
     if ($ok) { $ok = Run-Step-Job "NBA Step 4 - Player Stats (ESPN)"     $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate `"$NBARunOutDir\step3_with_defense.csv`" --out `"$NBARunOutDir\step4_with_stats.csv`"" }
-    if ($ok) { $ok = Run-Step-Job "NBA Step 4b - Usage/Pace Context"    $NBADir ".\scripts\step4b_attach_nba_context.py"              "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step4_with_stats.csv`" --season 2025-26" }
+    if ($ok) { $ok = Run-Step-Job "NBA Step 4b - Usage/Pace Context"    $NBADir ".\scripts\step4b_attach_nba_context.py"              "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step4_with_stats.csv`" --date $Date" }
     if ($ok) {
         Write-Output "[NBA] Step 4d - Injury Context"
         $NbaStep4d = Join-Path $NBADir "scripts\step4d_attach_injury_context.py"

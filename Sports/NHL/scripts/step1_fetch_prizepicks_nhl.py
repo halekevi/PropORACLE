@@ -477,7 +477,16 @@ def _write_empty_nhl(path: Path) -> None:
 
 
 def _archive_nhl_lines(df: pd.DataFrame) -> None:
-    archive_fresh_board(df, "NHL")
+    from utils.pp_fetch_stamp import stamp_fetched_at
+
+    pull_ts = None
+    try:
+        stamped = stamp_fetched_at(df)
+        if "fetched_at" in stamped.columns and len(stamped):
+            pull_ts = str(stamped["fetched_at"].iloc[0])
+    except Exception:
+        pull_ts = None
+    archive_fresh_board(df, "NHL", pull_ts=pull_ts)
 
 
 def _write_nhl_output(rows: list, out_path: Path, append: bool) -> None:

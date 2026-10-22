@@ -27,6 +27,7 @@ for p in (_REPO_ROOT, _SCRIPTS_ROOT, _SCRIPTS):
 from role_stability import role_stability
 from utils.pipeline_dated_outputs import copy_pipeline_output_to_dated_dirs
 from nba_stats_api import (
+    current_nba_season,
     derive_usage_role_type,
     ensure_caches,
     nba_pace_context,
@@ -123,12 +124,17 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", default="step4_with_stats.csv")
     ap.add_argument("--output", default="step4_with_stats.csv")
-    ap.add_argument("--season", default="2025-26")
+    ap.add_argument(
+        "--season",
+        default="",
+        help="NBA season like 2026-27 (default: auto from today / --date)",
+    )
+    ap.add_argument("--date", default="", help="Slate date YYYY-MM-DD for season auto-detect")
     ap.add_argument("--refresh", action="store_true")
     args = ap.parse_args()
 
     df = pd.read_csv(args.input, low_memory=False, encoding="utf-8-sig")
-    season = str(args.season).strip() or "2025-26"
+    season = str(args.season).strip() or current_nba_season(args.date or None)
 
     if args.refresh:
         from nba_stats_api import refresh_usage_cache, refresh_pace_cache, refresh_opp_defense_cache
@@ -286,13 +292,24 @@ def main() -> None:
         repo_root=_REPO_ROOT,
     )
 
-    print(f"NBA context attached: {n} rows")
+    print(f"NBA context attached: {n} rows (season={season})")
     print(f"  usage_pct: {usage_hit}/{n} ({usage_hit / max(n, 1):.1%})")
     print(f"  team_pace: {pace_hit}/{n} ({pace_hit / max(n, 1):.1%})")
     print(f"  positional_matchup_tier: {pos_hit}/{n} (default neutral when unknown)")
     print(f"  usage_role_type: 100% (default role_player)")
-    if usage_hit < n * 0.5:
-        print("  [HINT] Low usage fill — run with --refresh when stats.nba.com is reachable.")
+    if usage_hit < n * 0.5 or pace_hit < n * 0.5:
+        print("  [HINT] Low usage/pace fill — run with --refresh when stats.nba.com is reachable.")
+        try:
+            sys.path.insert(0, str(_REPO_ROOT))
+            from utils.pipeline_alerts import emit_pipeline_alert
+
+            emit_pipeline_alert(
+                "nba-context",
+                f"step4b low fill season={season}: usage={usage_hit}/{n}, "
+                f"pace={pace_hit}/{n}, pos_def={pos_hit}/{n}",
+            )
+        except Exception:
+            pass
     print(f"✅ Saved → {args.output}")
 
 

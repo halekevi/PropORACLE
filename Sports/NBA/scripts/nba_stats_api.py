@@ -234,7 +234,54 @@ def refresh_opp_defense_cache(season: str, path: Path = OPP_DEF_CACHE) -> dict:
     return cache
 
 
+def prior_nba_season(season: str) -> str:
+    """'2026-27' → '2025-26'."""
+    s = str(season or "").strip()
+    parts = s.split("-")
+    if len(parts) != 2:
+        return ""
+    try:
+        y0 = int(parts[0])
+        y1 = int(parts[1]) if len(parts[1]) == 2 else int(parts[1])
+        if len(parts[1]) == 2:
+            return f"{y0 - 1}-{y1 - 1:02d}"
+        return f"{y0 - 1}-{y1 - 1}"
+    except ValueError:
+        return ""
+
+
+def _blend_usage_players(primary: dict, prior: dict) -> dict:
+    """Prefer current-season rows; fill missing players from prior season."""
+    out = dict(primary or {})
+    for pid, rec in (prior or {}).items():
+        if pid not in out:
+            merged = dict(rec)
+            merged["usage_source"] = "prior_season"
+            out[pid] = merged
+            continue
+        # Thin current sample (GP proxy via min_per_game only when prior has data): keep current
+        # but if current usage_pct missing, take prior.
+        cur = out[pid]
+        if cur.get("usage_pct") is None and rec.get("usage_pct") is not None:
+            cur = dict(cur)
+            cur["usage_pct"] = rec.get("usage_pct")
+            cur["usage_source"] = "prior_season_fill"
+            out[pid] = cur
+    return out
+
+
+def _blend_pace_teams(primary: dict, prior: dict) -> dict:
+    out = dict(primary or {})
+    for abbr, rec in (prior or {}).items():
+        if abbr not in out:
+            merged = dict(rec)
+            merged["pace_source"] = "prior_season"
+            out[abbr] = merged
+    return out
+
+
 def ensure_caches(season: str, max_age_hours: float = 24.0) -> tuple[dict, dict, dict]:
+    """Load current-season caches; blend last season when current is thin/missing."""
     usage = _load_json(USAGE_CACHE)
     pace = _load_json(PACE_CACHE)
     opp = _load_json(OPP_DEF_CACHE)
@@ -245,7 +292,81 @@ def ensure_caches(season: str, max_age_hours: float = 24.0) -> tuple[dict, dict,
         pace = refresh_pace_cache(season)
     if key not in opp or _cache_stale(opp.get(key, {}), 48.0):
         opp = refresh_opp_defense_cache(season)
+
+    prior = prior_nba_season(season)
+    if prior:
+        pkey = f"season_{prior}"
+        if pkey not in usage:
+            try:
+                usage = refresh_usage_cache(prior)
+            except Exception:
+                pass
+        if pkey not in pace:
+            try:
+                pace = refresh_pace_cache(prior)
+            except Exception:
+                pass
+        if pkey not in opp:
+            try:
+                opp = refresh_opp_defense_cache(prior)
+            except Exception:
+                pass
+
+        cur_u = (usage.get(key) or {}).get("players") or {}
+        pri_u = (usage.get(pkey) or {}).get("players") or {}
+        # Early season: fewer than ~200 players with usage → blend prior
+        if len(cur_u) < 200 and pri_u:
+            blended = dict(usage.get(key) or {})
+            blended["players"] = _blend_usage_players(cur_u, pri_u)
+            blended["prior_season_blend"] = prior
+            usage[key] = blended
+        elif pri_u and cur_u:
+            blended = dict(usage.get(key) or {})
+            blended["players"] = _blend_usage_players(cur_u, pri_u)
+            blended["prior_season_blend"] = prior
+            usage[key] = blended
+
+        cur_p = (pace.get(key) or {}).get("teams") or {}
+        pri_p = (pace.get(pkey) or {}).get("teams") or {}
+        if len(cur_p) < 25 and pri_p:
+            blended_p = dict(pace.get(key) or {})
+            blended_p["teams"] = _blend_pace_teams(cur_p, pri_p)
+            blended_p["prior_season_blend"] = prior
+            pace[key] = blended_p
+
+        # Opp defense: if current empty, copy prior entries under current season keys
+        cur_o = (opp.get(key) or {}).get("entries") or {}
+        pri_o = (opp.get(pkey) or {}).get("entries") or {}
+        if len(cur_o) < 30 and pri_o:
+            remapped = {}
+            for k, v in pri_o.items():
+                # keys look like ATL_Guard_2025-26 → ATL_Guard_2026-27
+                if k.endswith(prior):
+                    remapped[k[: -len(prior)] + season] = v
+                else:
+                    remapped[k] = v
+            blended_o = dict(opp.get(key) or {})
+            blended_o["entries"] = {**remapped, **cur_o}
+            blended_o["prior_season_blend"] = prior
+            opp[key] = blended_o
+
     return usage, pace, opp
+
+
+def current_nba_season(as_of: Optional[str] = None) -> str:
+    """NBA season string for a calendar date (Oct+ → start year)."""
+    if as_of:
+        try:
+            dt = datetime.strptime(str(as_of)[:10], "%Y-%m-%d")
+        except ValueError:
+            dt = datetime.now()
+    else:
+        dt = datetime.now()
+    year = dt.year
+    # Oct–Dec: season year-year+1; Jan–Sep: prior calendar year start
+    if dt.month >= 10:
+        return f"{year}-{(year + 1) % 100:02d}"
+    return f"{year - 1}-{year % 100:02d}"
 
 
 def _f(val: object) -> Optional[float]:

@@ -411,18 +411,41 @@ def _save_cache(sport_key: str, today: str, snapshot: dict[tuple[str, str, float
         _log.warning("line_movement: cache write failed (%s): %s", path, exc)
 
 
+def _alert_odds(reason: str) -> None:
+    try:
+        from utils.pipeline_alerts import emit_pipeline_alert
+
+        emit_pipeline_alert("odds-api", reason)
+    except Exception:
+        _log.warning("odds-api alert: %s", reason)
+
+
 def _http_get_json(url: str, timeout: int = 25) -> Any:
     global _ODDS_API_REMAINING
     req = urllib.request.Request(url, headers={"User-Agent": "PropOracle/1.0"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        remaining = resp.headers.get("x-requests-remaining", "?")
-        used = resp.headers.get("x-requests-used", "?")
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            remaining = resp.headers.get("x-requests-remaining", "?")
+            used = resp.headers.get("x-requests-used", "?")
+            try:
+                _ODDS_API_REMAINING = int(str(remaining).strip())
+            except (TypeError, ValueError):
+                pass
+            _log.info("line_movement: Odds API quota used=%s remaining=%s", used, remaining)
+            return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        body = ""
         try:
-            _ODDS_API_REMAINING = int(str(remaining).strip())
-        except (TypeError, ValueError):
+            body = exc.read().decode("utf-8", errors="replace")[:240]
+        except Exception:
             pass
-        _log.info("line_movement: Odds API quota used=%s remaining=%s", used, remaining)
-        return json.loads(resp.read().decode("utf-8"))
+        if exc.code in (401, 403) or "OUT_OF_USAGE" in body.upper() or "quota" in body.lower():
+            _alert_odds(
+                f"Odds API HTTP {exc.code} — {body or 'auth/quota failure'}. "
+                "Totals/line movement fall back to PrizePicks history when available. "
+                "Top up or rotate ODDS_API_KEY at https://the-odds-api.com"
+            )
+        raise
 
 
 def _probe_odds_quota(api_key: str) -> None:
@@ -1090,6 +1113,129 @@ _SPORT_KEY_LABEL: dict[str, str] = {
 }
 
 
+def _pp_sport_label(sport_key: str) -> str:
+    return _SPORT_KEY_LABEL.get(str(sport_key or "").strip(), str(sport_key or "").strip().upper())
+
+
+def _load_pp_line_opens(
+    sport_label: str,
+    slate_date: str | None,
+) -> dict[tuple[str, str, str], float]:
+    """Earliest PrizePicks line per (player, prop, pick) from line_history.db for slate_date."""
+    db = _REPO_ROOT / "data" / "line_history.db"
+    if not db.is_file() or not sport_label:
+        return {}
+    gd = str(slate_date or "").strip()[:10]
+    try:
+        import sqlite3
+
+        with sqlite3.connect(f"file:{db.as_posix()}?mode=ro", uri=True) as conn:
+            cols = {r[1] for r in conn.execute("PRAGMA table_info(line_history)").fetchall()}
+            if not {"player", "prop_type", "line", "fetched_at"}.issubset(cols):
+                return {}
+            pick_col = "pick_type" if "pick_type" in cols else None
+            date_filter = ""
+            params: list[Any] = [sport_label.upper()]
+            if gd and "game_date" in cols:
+                date_filter = " AND substr(COALESCE(game_date,''),1,10) = ?"
+                params.append(gd)
+            pick_sql = "COALESCE(pick_type,'')" if pick_col else "''"
+            sql = f"""
+                SELECT lower(trim(player)), lower(trim(prop_type)), {pick_sql},
+                       line, fetched_at
+                FROM line_history
+                WHERE upper(sport) = ?{date_filter}
+                ORDER BY fetched_at ASC
+            """
+            rows = conn.execute(sql, params).fetchall()
+    except Exception as exc:
+        _log.warning("line_movement: PP history open-line load failed: %s", exc)
+        return {}
+
+    out: dict[tuple[str, str, str], float] = {}
+    for player, prop, pick, line, _fetched in rows:
+        try:
+            line_f = float(line)
+        except (TypeError, ValueError):
+            continue
+        key = (str(player or ""), str(prop or ""), str(pick or ""))
+        if not key[0] or not key[1]:
+            continue
+        if key not in out:
+            out[key] = line_f
+    return out
+
+
+def _apply_pp_history_movement(
+    out: pd.DataFrame,
+    *,
+    sport_key: str,
+    slate_date: str | None,
+    player_col: str | None,
+    prop_col: str | None,
+    line_col: str | None,
+) -> pd.DataFrame:
+    """Fill open_line / line_movement from PrizePicks line_history when Odds API left movement at 0."""
+    if out.empty or not player_col or not prop_col or not line_col:
+        return out
+    moved = pd.to_numeric(out.get("line_movement"), errors="coerce").fillna(0.0)
+    if float((moved.abs() > 1e-9).mean()) >= 0.05:
+        return out  # Odds API already produced real movement
+
+    opens = _load_pp_line_opens(_pp_sport_label(sport_key), slate_date)
+    if not opens:
+        return out
+
+    pick_col = next((c for c in ("pick_type", "Pick Type", "odds_type") if c in out.columns), None)
+    # Also try prop_type display column for history keys
+    prop_display = next(
+        (c for c in ("prop_type", "Prop", "prop_norm", "stat_norm") if c in out.columns),
+        prop_col,
+    )
+
+    new_open: list[Any] = []
+    new_move: list[float] = []
+    new_dir: list[str] = []
+    filled = 0
+    for idx, row in out.iterrows():
+        cur = _current_line_value(row, line_col)
+        player = normalize_player_name(str(row.get(player_col, "") or "")).lower()
+        prop = str(row.get(prop_display, "") or "").strip().lower()
+        pick = str(row.get(pick_col, "") or "").strip().lower() if pick_col else ""
+        ol = opens.get((player, prop, pick))
+        if ol is None and pick:
+            ol = opens.get((player, prop, ""))
+        if ol is None:
+            # try without accents already handled; keep existing open_line
+            existing = row.get("open_line")
+            new_open.append(existing if pd.notna(existing) else cur)
+            new_move.append(float(row.get("line_movement", 0.0) or 0.0))
+            new_dir.append(str(row.get("line_direction_shift") or "stable"))
+            continue
+        try:
+            ol_f = float(ol)
+            cur_f = float(cur) if cur is not None else ol_f
+            mv = round(cur_f - ol_f, 3)
+        except (TypeError, ValueError):
+            new_open.append(cur)
+            new_move.append(0.0)
+            new_dir.append("stable")
+            continue
+        new_open.append(ol_f)
+        new_move.append(mv)
+        new_dir.append(_line_direction(ol_f, cur_f))
+        if abs(mv) > 1e-9:
+            filled += 1
+
+    out = out.copy()
+    out["open_line"] = new_open
+    out["line_movement"] = new_move
+    out["line_direction_shift"] = new_dir
+    sport_label = _pp_sport_label(sport_key)
+    print(f"[LM] {sport_label} PrizePicks history movement filled={filled}/{len(out)}")
+    return out
+
+
 def enrich_with_line_movement(
     df: pd.DataFrame,
     sport_key: str,
@@ -1103,6 +1249,7 @@ def enrich_with_line_movement(
     Left-join open_line, line_movement, line_direction_shift, and market implied_prob onto df.
     Unmatched rows: open_line falls back to current line; movement=0.0; direction='stable';
     implied_prob columns are NaN when no book match.
+    When Odds API yields no movement, backfill open_line/movement from PrizePicks line_history.db.
     """
     out = df.copy()
     snapshot = fetch_line_snapshot(
@@ -1192,6 +1339,15 @@ def enrich_with_line_movement(
     sport_label = _SPORT_KEY_LABEL.get(str(sport_key or "").strip(), str(sport_key or "unknown").upper())
     bm_dist = Counter(out["implied_prob_book"].dropna())
     print(f"[LM] {sport_label} bookmaker distribution: {dict(bm_dist)}")
+
+    out = _apply_pp_history_movement(
+        out,
+        sport_key=sport_key,
+        slate_date=cache_date or date,
+        player_col=player_col,
+        prop_col=prop_col,
+        line_col=line_col,
+    )
     return out
 
 

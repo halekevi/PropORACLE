@@ -203,6 +203,15 @@ if (Test-Path -LiteralPath $Health) {
     & pwsh -NoProfile -File $Health -RepoRoot $Root -Label "9PM" -ExpectDate $SlateDate
 }
 
+$validateStep8 = Join-Path $Root "scripts\validate_step8_slate.py"
+if (Test-Path -LiteralPath $validateStep8) {
+    Write-Host "[DAY-AHEAD] Step8 validator for $SlateDate..." -ForegroundColor Cyan
+    & py -3.14 $validateStep8 --date $SlateDate
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[DAY-AHEAD] WARN: step8 validator reported failures (exit $LASTEXITCODE) — see logs/pipeline_alerts.log" -ForegroundColor Yellow
+    }
+}
+
 $publish = Join-Path $Root "scripts\Publish-LiveSite.ps1"
 if (Test-Path -LiteralPath $publish) {
     Write-Host "[DAY-AHEAD] Publishing live site JSON to origin/main..." -ForegroundColor Cyan

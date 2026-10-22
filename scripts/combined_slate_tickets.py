@@ -596,6 +596,12 @@ def _alert_incomplete_slate_inputs(slate_date: str) -> None:
     d = str(slate_date or "").strip()[:10]
     if not d:
         return
+    try:
+        from scripts.validate_step8_slate import validate_slate
+
+        validate_slate(d, alert=True)
+    except Exception as exc:
+        emit_pipeline_alert("step8-validate", f"validator crashed on {d}: {exc}")
     out = Path(_outputs_dir_for_date(d))
     period = (
         ("nba1q", "NBA1Q", not _nba_family_off_season(d)),

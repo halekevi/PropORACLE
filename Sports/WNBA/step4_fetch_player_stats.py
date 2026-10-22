@@ -86,7 +86,7 @@ ALLSTAR_BREAKS: List[Tuple[str,str]] = [
 ]
 
 WNBA_TEAM_KEY_MAP = {
-    # slate abbrev -> DB abbrev
+    # slate abbrev -> DB abbrev (proporacle_ref.db wnba.team)
     "LAS": "LA",     # Los Angeles Sparks
     "LVA": "LV",     # Las Vegas Aces
     "NYL": "NY",     # New York Liberty
@@ -100,7 +100,9 @@ WNBA_TEAM_KEY_MAP = {
     "MIN": "MIN",    # Minnesota Lynx
     "WSH": "WSH",    # Washington Mystics
     "POR": "POR",    # Portland (if present)
-    "GS": "GS",      # Golden State
+    "GS": "GS",      # Golden State Valkyries
+    "GSV": "GS",     # PrizePicks / ESPN slate abbrev for Valkyries
+    "TOR": "TOR",    # Toronto Tempo (when present)
 }
 
 
@@ -117,13 +119,14 @@ def _parse_slate_game_date(row: pd.Series) -> str:
     return ""
 
 
-def compute_rest_days(con, team: str, game_date: str, table: str = "wnba") -> int:
+def compute_rest_days(con, team: str, game_date: str, table: str = "wnba") -> float:
+    """Days since team's prior game. Returns NaN when unknown (never fake -1)."""
     team = str(team or "").strip().upper()
     game_date = str(game_date or "").strip()
     if len(game_date) >= 10:
         game_date = game_date[:10]
     if not team or len(game_date) < 10:
-        return -1
+        return float("nan")
     try:
         prev = con.execute(
             f"SELECT MAX(game_date) FROM {table} WHERE team = ? AND game_date < ?",
@@ -131,14 +134,14 @@ def compute_rest_days(con, team: str, game_date: str, table: str = "wnba") -> in
         ).fetchone()
         prev_date = prev[0] if prev and prev[0] else None
         if not prev_date:
-            return -1
+            return float("nan")
         days = (
             datetime.strptime(game_date, "%Y-%m-%d")
             - datetime.strptime(str(prev_date)[:10], "%Y-%m-%d")
         ).days
-        return int(days)
+        return float(int(days))
     except Exception:
-        return -1
+        return float("nan")
 
 
 def _wnba_team_keys_align(con, slate: pd.DataFrame) -> bool:
@@ -181,26 +184,28 @@ def attach_b2b_columns(
     df: pd.DataFrame, con, table: str = "wnba", sport_label: str = "WNBA", enabled: bool = True
 ) -> pd.DataFrame:
     out = df.copy()
-    out["days_rest"] = -1
+    out["days_rest"] = np.nan
     out["is_back_to_back"] = 0
-    out["opp_days_rest"] = -1
+    out["opp_days_rest"] = np.nan
     out["opp_b2b"] = 0
     if not enabled:
-        # TODO: WNBA team key mismatch — verify wnba DB table contains club-level rows matching slate abbreviations.
-        print(f"[B2B] {sport_label}: {len(out)} rows, 0 back-to-backs found (team key mismatch; days_rest=-1)")
+        print(
+            f"[B2B] {sport_label}: {len(out)} rows, team-key mismatch — "
+            "days_rest left blank (NaN), not -1"
+        )
         return out
     if "team" not in out.columns:
         print(f"[B2B] {sport_label}: 0 rows, 0 back-to-backs found (no team column)")
         return out
 
     game_dates = out.apply(_parse_slate_game_date, axis=1)
-    rest_cache: dict[tuple[str, str], int] = {}
+    rest_cache: dict[tuple[str, str], float] = {}
 
-    def _lookup(team_val: str, gd: str) -> int:
+    def _lookup(team_val: str, gd: str) -> float:
         raw_team = str(team_val or "").strip().upper()
         gd_s = str(gd or "").strip()[:10]
         if not raw_team or len(gd_s) < 10 or "/" in raw_team:
-            return -1
+            return float("nan")
         db_team = WNBA_TEAM_KEY_MAP.get(raw_team, raw_team)
         key = (db_team, gd_s)
         if key not in rest_cache:
@@ -213,7 +218,8 @@ def attach_b2b_columns(
         out["opp_days_rest"] = [_lookup(out.at[i, "opp_team"], game_dates.at[i]) for i in out.index]
         out["opp_b2b"] = (pd.to_numeric(out["opp_days_rest"], errors="coerce") == 1).astype(int)
     b2b_n = int((out["is_back_to_back"] == 1).sum())
-    print(f"[B2B] {sport_label}: {len(out)} rows, {b2b_n} back-to-backs found")
+    known = int(pd.to_numeric(out["days_rest"], errors="coerce").notna().sum())
+    print(f"[B2B] {sport_label}: {len(out)} rows, {b2b_n} back-to-backs, days_rest known={known}")
     return out
 
 

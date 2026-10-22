@@ -83,10 +83,10 @@ function Run-NBAPeriodOnly {
     Run-StepLocal "step4" ".\scripts\step4_attach_player_stats_espn_cache.py" @(
         "--slate", $step3, "--out", $step4, "--date", $Date
     )
+    Run-StepLocal "step4b" ".\scripts\step4b_attach_nba_context.py" @(
+        "--input", $step4, "--output", $step4, "--date", $Date
+    )
     if ($tagLower -eq "nba1h") {
-        Run-StepLocal "step4b" ".\scripts\step4b_attach_nba_context.py" @(
-            "--input", $step4, "--output", $step4, "--season", "2025-26"
-        )
         Run-StepLocal "step4e" ".\scripts\step4e_attach_nba1h_context.py" @(
             "--input", $step4, "--output", $step4
         )

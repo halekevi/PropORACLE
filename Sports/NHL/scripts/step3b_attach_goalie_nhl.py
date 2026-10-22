@@ -239,7 +239,25 @@ def main():
         out_rows.append(row)
 
     write_csv(out_rows, args.output)
-    print(f"Saved {len(out_rows)} rows -> {args.output}")
+    filled = sum(1 for r in out_rows if str(r.get("goalie_name") or "").strip())
+    print(f"Saved {len(out_rows)} rows -> {args.output} (goalie_name filled={filled})")
+    if out_rows and filled < max(1, int(0.4 * len(out_rows))):
+        try:
+            import sys
+            from pathlib import Path as _P
+
+            repo = _P(__file__).resolve().parents[3]
+            if str(repo) not in sys.path:
+                sys.path.insert(0, str(repo))
+            from utils.pipeline_alerts import emit_pipeline_alert
+
+            emit_pipeline_alert(
+                "nhl-goalie",
+                f"step3b opposing goalie fill {filled}/{len(out_rows)} "
+                f"(<{40}%); probable starters may not be posted yet — re-run closer to puck drop",
+            )
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":
