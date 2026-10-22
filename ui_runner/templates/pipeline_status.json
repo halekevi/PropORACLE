@@ -2,22 +2,22 @@
   "nba": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 21:50:10",
+      "modified": "2026-10-22 02:58:54",
       "no_slate": false
     }
   },
   "nba1h": {
     "slate": {
-      "exists": true,
-      "modified": "2026-10-21 21:50:10",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "nba1q": {
     "slate": {
-      "exists": true,
-      "modified": "2026-10-21 21:50:10",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "cbb": {
@@ -30,21 +30,21 @@
   "cfb": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 21:50:10",
+      "modified": "2026-10-22 02:58:54",
       "no_slate": false
     }
   },
   "nhl": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 21:50:10",
+      "modified": "2026-10-22 02:58:54",
       "no_slate": false
     }
   },
   "soccer": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 21:50:10",
+      "modified": "2026-10-22 02:58:54",
       "no_slate": false
     }
   },
@@ -58,14 +58,14 @@
   "nfl": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 21:50:10",
+      "modified": "2026-10-22 02:58:54",
       "no_slate": false
     }
   },
   "tennis": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-22 02:22:59",
+      "modified": "2026-10-22 02:58:54",
       "no_slate": false
     }
   },
@@ -79,7 +79,7 @@
   "wnba": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 21:50:10",
+      "modified": "2026-10-22 02:58:54",
       "no_slate": false
     }
   },
@@ -100,12 +100,8 @@
   "combined": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-21 21:50:10",
+      "modified": "2026-10-22 02:58:54",
       "no_slate": false
     }
-  },
-  "tennis_match_day": "2026-10-22",
-  "game_day": {
-    "tennis": true
   }
 }
