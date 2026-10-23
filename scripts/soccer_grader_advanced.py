@@ -248,6 +248,29 @@ def _soccer_teams_in_actuals_lut(lut: dict[tuple[str, str, str], float]) -> set[
     return {str(k[2]).strip().upper() for k in lut if k[2]}
 
 
+def _soccer_player_has_positive_stat(
+    lut: dict[tuple[str, str, str], float],
+    player: str,
+    team: str = "",
+) -> bool:
+    """True when any box row for this player has actual > 0 (evidence they played)."""
+    pl = _norm_soccer_player(player)
+    if not pl:
+        return False
+    tm = _normalize_soccer_team_token(team)
+    for (p, _prop, t), v in lut.items():
+        if p != pl:
+            continue
+        if tm and t and t != tm and t != "":
+            continue
+        try:
+            if float(v) > 0:
+                return True
+        except (TypeError, ValueError):
+            continue
+    return False
+
+
 def _soccer_missing_actual_reason(
     lut: dict[tuple[str, str, str], float],
     player: str,
@@ -938,8 +961,9 @@ def main() -> None:
         # Forward-safe grading policy:
         # - Missing actual: PENDING when an arm's team has not posted yet
         #   (e.g. Mbappé+Yamal+Messi before ARG kickoff); otherwise VOID/NO_DATA.
-        # - actual==0 is a valid observed stat and should grade by direction/line.
-        # - Only mark DNP VOID when feed explicitly says 0 minutes played.
+        # - actual==0 is valid only when the player shows some positive box stat
+        #   (ESPN roster zero-fills unused substitutes — those must VOID, not MISS).
+        # - Explicit 0 minutes → DNP VOID.
         if pd.isna(actual):
             void_reason = _soccer_missing_actual_reason(
                 actuals_lut, player, prop_type, team
@@ -952,6 +976,13 @@ def main() -> None:
         elif minutes_played is not None and float(minutes_played) <= 0:
             result, edge = "VOID", np.nan
             void_reason = "DNP"
+            no_data_void_rows += 1
+        elif (
+            float(actual) == 0.0
+            and not _soccer_player_has_positive_stat(actuals_lut, player, team)
+        ):
+            result, edge = "VOID", np.nan
+            void_reason = "DNP_ZERO_FILL"
             no_data_void_rows += 1
         else:
             result, edge = grader.grade_prop(actual, line, direction)

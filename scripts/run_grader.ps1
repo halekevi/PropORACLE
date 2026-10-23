@@ -1223,6 +1223,20 @@ else {
 }
 
 # =============================
+# Grader sanity alerts (0 rows / high VOID / Goblin HR < 50%)
+# =============================
+$GraderSanityScript = Join-Path $Root "scripts\grader_sanity_alerts.py"
+if (Test-Path $GraderSanityScript) {
+    Run-Py "Grader sanity alerts" $Root $GraderSanityScript @(
+        "--date", $Date,
+        "--root", $Root
+    )
+}
+else {
+    Write-Host "Skipping grader sanity alerts (grader_sanity_alerts.py not found)." -ForegroundColor DarkGray
+}
+
+# =============================
 # Validate unacceptable VOIDs (allow NO_DATA + DNP)
 # =============================
 if (Test-Path $VoidValidatorScript) {

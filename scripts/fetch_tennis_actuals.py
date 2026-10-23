@@ -39,51 +39,43 @@ def main() -> None:
             pl = str(m.get("player") or "").strip()
             if not pl:
                 continue
-            gw = float(m.get("games_won") or 0)
-            mt = float(m.get("match_total_games") or 0)
-            ac = float(m.get("aces") or 0)
-            df = float(m.get("double_faults") or 0)
-            sw = float(m.get("sets_won") or 0)
-            rows.append(
-                {
-                    "player": pl,
-                    "team": "",
-                    "prop_type": "games_won",
-                    "actual": gw,
-                }
-            )
-            rows.append(
-                {
-                    "player": pl,
-                    "team": "",
-                    "prop_type": "match_total_games",
-                    "actual": mt,
-                }
-            )
-            rows.append(
-                {
-                    "player": pl,
-                    "team": "",
-                    "prop_type": "aces",
-                    "actual": ac,
-                }
-            )
-            rows.append(
-                {
-                    "player": pl,
-                    "team": "",
-                    "prop_type": "double faults",
-                    "actual": df,
-                }
-            )
-            rows.append(
-                {
-                    "player": pl,
-                    "team": "",
-                    "prop_type": "sets won",
-                    "actual": sw,
-                }
-            )
+            def _opt_f(key: str):
+                v = m.get(key)
+                if v is None or v == "":
+                    return None
+                try:
+                    return float(v)
+                except (TypeError, ValueError):
+                    return None
+
+            gw = _opt_f("games_won")
+            mt = _opt_f("match_total_games")
+            ac = _opt_f("aces")
+            dfa = _opt_f("double_faults")
+            sw = _opt_f("sets_won")
+            # Always emit score props when present; serve stats only when known
+            # (missing aces must stay absent — 0 was grading every Goblin Aces as MISS).
+            for prop_type, actual in (
+                ("games_won", gw if gw is not None else 0.0),
+                ("match_total_games", mt if mt is not None else 0.0),
+                ("sets won", sw if sw is not None else 0.0),
+            ):
+                rows.append(
+                    {"player": pl, "team": "", "prop_type": prop_type, "actual": actual}
+                )
+            if ac is not None:
+                rows.append(
+                    {"player": pl, "team": "", "prop_type": "aces", "actual": ac}
+                )
+            if dfa is not None:
+                rows.append(
+                    {
+                        "player": pl,
+                        "team": "",
+                        "prop_type": "double faults",
+                        "actual": dfa,
+                    }
+                )
 
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)

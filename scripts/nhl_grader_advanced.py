@@ -244,6 +244,10 @@ def run_nhl_grading_core(
             sample_size=opp_analysis.get("opp_games", 0),
         )
 
+        pick_type = slate_row.get(
+            "pick_type",
+            slate_row.get("Pick Type", slate_row.get("pickType", "")),
+        )
         graded.append(
             {
                 "player": player,
@@ -257,6 +261,7 @@ def run_nhl_grading_core(
                 "margin": margin,
                 "direction": direction,
                 "bet_direction": direction,
+                "pick_type": pick_type,
                 "tier": tier,
                 "def_tier": def_tier,
                 "player_type": player_type,

@@ -312,6 +312,32 @@ def snap_pct_to_minutes_tier(snap_pct: object) -> str:
     return "UNKNOWN"
 
 
+def role_from_snap(snap_pct: object) -> str:
+    """Map offensive snap % → PRIMARY / SECONDARY / SUPPORT; blank when unknown."""
+    try:
+        v = float(snap_pct)
+    except (TypeError, ValueError):
+        return ""
+    if v != v:
+        return ""
+    if v <= 1.0:
+        v *= 100.0
+    if v < 0.0:
+        return ""
+    if v >= 70.0:
+        return "PRIMARY"
+    if v >= 40.0:
+        return "SECONDARY"
+    if v > 0.0:
+        return "SUPPORT"
+    return ""
+
+
+def role_from_minutes_or_snap(minutes_tier: object = None, snap_pct: object = None) -> str:
+    """NFL has no minutes role — snap only. Minutes alone never maps to a role."""
+    return role_from_snap(snap_pct)
+
+
 def last_completed_nfl_season(today: datetime.date | None = None) -> int:
     """Regular-season year used for D ranks. Before September, use the prior league year."""
     d = today or datetime.date.today()

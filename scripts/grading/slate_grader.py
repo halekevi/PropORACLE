@@ -600,6 +600,36 @@ def _coalesce_line_from_projection(df):
     return df
 
 
+def _excel_header_row_index(path: str, sheet: str, *, max_scan: int = 5) -> int:
+    """Return 0-based header row; skip banner rows like 'slate_date=...| OK'."""
+    peek = pd.read_excel(
+        path, sheet_name=sheet, header=None, nrows=max_scan, engine="openpyxl"
+    )
+    if peek is None or len(peek) == 0:
+        return 0
+    markers = {
+        "player",
+        "Player",
+        "prop_type",
+        "Prop",
+        "pick_type",
+        "Pick Type",
+        "line",
+        "Line",
+        "Tier",
+    }
+    for i in range(len(peek)):
+        cells = [str(v).strip() for v in peek.iloc[i].tolist() if pd.notna(v)]
+        if not cells:
+            continue
+        first = cells[0]
+        if first.startswith("slate_date=") or first.startswith("build_time="):
+            continue
+        if any(c in markers for c in cells):
+            return i
+    return 0
+
+
 def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
     xls = pd.ExcelFile(path, engine="openpyxl")
     preferred = ["ALL", "Full Slate", "Box Raw", "Props", "Sheet1"]
@@ -607,7 +637,10 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
     if sheet != "ALL":
         print(f"⚠️ NBA: sheet 'ALL' not found in {os.path.basename(path)}. Using sheet='{sheet}'.")
 
-    df = pd.read_excel(path, sheet_name=sheet, engine="openpyxl")
+    hdr = _excel_header_row_index(path, sheet)
+    if hdr:
+        print(f"  INFO: Using header row {hdr} on sheet '{sheet}' (skipped banner)")
+    df = pd.read_excel(path, sheet_name=sheet, header=hdr, engine="openpyxl")
 
     # --- Normalize column names from PipelineA output ---
     df.columns = [str(c).strip() for c in df.columns]
@@ -695,6 +728,7 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
 
     _coalesce_line_from_line_score(df)
     _coalesce_line_from_projection(df)
+    _ensure_game_date_et(df)
 
     # Hard fail if player still missing
     if "player" not in df.columns:
@@ -705,6 +739,38 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
     if str(sport_code or "").upper() == "NFL":
         return df
     return _drop_fantasy_from_slate(df)
+
+
+def _ensure_game_date_et(df: pd.DataFrame) -> pd.DataFrame:
+    """Fill blank game_date from game_time/start using America/New_York calendar day."""
+    if df is None or len(df) == 0:
+        return df
+    if "game_date" not in df.columns:
+        df["game_date"] = ""
+    existing = df["game_date"].map(_norm_game_date)
+    blank = existing.eq("") | existing.isna()
+    if not blank.any():
+        # Still re-normalize datetime-like game_date values to ET calendar day.
+        repaired = []
+        for v in df["game_date"].tolist():
+            raw = str(v or "").strip()
+            if "T" in raw or ":" in raw or raw.endswith("Z"):
+                ts = pd.to_datetime(raw, errors="coerce", utc=False)
+                repaired.append(_et_calendar_date_from_ts(ts) or _norm_game_date(v))
+            else:
+                repaired.append(_norm_game_date(v))
+        df["game_date"] = repaired
+        return df
+    filled = []
+    for i, row in df.iterrows():
+        cur = _norm_game_date(row.get("game_date", ""))
+        raw_gd = str(row.get("game_date", "") or "").strip()
+        if cur and "T" not in raw_gd and ":" not in raw_gd:
+            filled.append(cur)
+            continue
+        filled.append(_row_board_game_date(row) or cur)
+    df["game_date"] = filled
+    return df
 
 
 def _slate_player_key_series(df: pd.DataFrame) -> pd.Series:
@@ -1036,20 +1102,65 @@ def _row_prop_matches_lookup(lookup: ActualsLookup, srow, prop_label: str) -> bo
     )
 
 
+def _et_calendar_date_from_ts(ts) -> str:
+    """PrizePicks slate day is America/New_York, never the UTC calendar day."""
+    if ts is None or (isinstance(ts, float) and np.isnan(ts)) or pd.isna(ts):
+        return ""
+    try:
+        t = pd.Timestamp(ts)
+    except Exception:
+        return ""
+    if pd.isna(t):
+        return ""
+    try:
+        if t.tzinfo is None:
+            # Naive ISO with offset already consumed by parse, or local wall clock.
+            # If string had Z/offset, pandas usually keeps tz; naive → treat as ET wall.
+            return t.strftime("%Y-%m-%d")
+        return t.tz_convert("America/New_York").strftime("%Y-%m-%d")
+    except Exception:
+        try:
+            return t.tz_localize(None).strftime("%Y-%m-%d")
+        except Exception:
+            return ""
+
+
 def _row_board_game_date(row) -> str:
-    """Calendar day on the ticket/slate source row (never invent from actuals file)."""
-    for col in ("game_date", "Game Date", "board_date", "start_time", "game_start"):
-        if col not in getattr(row, "index", []):
+    """Calendar day on the ticket/slate source row (never invent from actuals file).
+
+    CFB/NFL often only have Game Time (ISO with offset). Evening ET tips must not
+    flip to the next UTC calendar day (SOURCE_BOARD_DATE_MISMATCH / all-VOID).
+    """
+    idx = getattr(row, "index", [])
+    for col in (
+        "game_date",
+        "Game Date",
+        "board_date",
+        "game_time",
+        "Game Time",
+        "start_time",
+        "game_start",
+    ):
+        if col not in idx:
             continue
-        d = _norm_game_date(row.get(col))
-        if d:
-            return d
-        raw = str(row.get(col) or "").strip()
+        raw_val = row.get(col)
+        d = _norm_game_date(raw_val)
+        if d and len(d) == 10 and d[4] == "-" and d[7] == "-":
+            # Pure date string — keep as-is (already a calendar day label).
+            raw_s = str(raw_val or "").strip()
+            if "T" not in raw_s and " " not in raw_s and ":" not in raw_s:
+                return d
+        raw = str(raw_val or "").strip()
+        if not raw or raw.lower() in ("nan", "none", "<na>"):
+            continue
+        # Datetime-like: parse preserving offset, then ET calendar day.
+        ts = pd.to_datetime(raw, errors="coerce", utc=False)
+        if pd.notna(ts):
+            et = _et_calendar_date_from_ts(ts)
+            if et:
+                return et
         if len(raw) >= 10 and raw[4] == "-" and raw[7] == "-":
             return raw[:10]
-        ts = pd.to_datetime(raw, errors="coerce", utc=True)
-        if pd.notna(ts):
-            return ts.tz_convert(None).strftime("%Y-%m-%d")
     return ""
 
 
@@ -2187,7 +2298,13 @@ def main():
             print(f"  [WNBA] postponed relabel skipped: {exc}")
 
     df = _recompute_standard_tiers_from_directional_ml_prob(df, args.sport)
-    df = enrich_graded_l10_columns(df, line_col="line")
+    # Banner/pipeline merges can leave duplicate column labels; L10 enrich needs 1-d Series.
+    if getattr(df.columns, "duplicated", None) is not None and df.columns.duplicated().any():
+        df = df.loc[:, ~df.columns.duplicated()].copy()
+    try:
+        df = enrich_graded_l10_columns(df, line_col="line")
+    except Exception as exc:
+        print(f"  WARN: L10 enrich skipped: {exc}")
 
     if "pp_projection_id" not in df.columns and "projection_id" in df.columns:
         df["pp_projection_id"] = df["projection_id"]

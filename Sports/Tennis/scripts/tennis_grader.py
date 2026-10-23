@@ -274,12 +274,26 @@ def main() -> None:
             pk = norm_key(str(m.get("player") or ""))
             if not pk:
                 continue
+            def _opt_f(key: str):
+                v = m.get(key)
+                if v is None or v == "":
+                    return None
+                try:
+                    return float(v)
+                except (TypeError, ValueError):
+                    return None
+
             by_player_day[pk] = {
-                "aces": float(m.get("aces") or 0),
-                "double_faults": float(m.get("double_faults") or 0),
-                "games_won": float(m.get("games_won") or 0),
-                "sets_won": float(m.get("sets_won") or 0),
-                "match_total_games": float(m.get("match_total_games") or 0),
+                # Never coerce missing serve stats to 0 — that grades Goblin Aces as MISS.
+                "aces": _opt_f("aces"),
+                "double_faults": _opt_f("double_faults"),
+                "games_won": _opt_f("games_won") if _opt_f("games_won") is not None else 0.0,
+                "sets_won": _opt_f("sets_won") if _opt_f("sets_won") is not None else 0.0,
+                "match_total_games": (
+                    _opt_f("match_total_games")
+                    if _opt_f("match_total_games") is not None
+                    else 0.0
+                ),
             }
 
     rows: list[dict[str, object]] = []
