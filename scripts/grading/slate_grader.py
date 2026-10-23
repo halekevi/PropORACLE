@@ -539,30 +539,6 @@ _PROP_RESOLVE_COLS: tuple[str, ...] = (
 )
 
 
-def _fill_usage_role_from_snap(df):
-    """Fill a blank usage_role from snap share only.
-
-    NFL has no minutes tier. A minutes column must not become a role.
-    A blank snap stays blank.
-    """
-    from utils.nfl_prop_defense import role_from_snap
-
-    if df is None or len(df) == 0:
-        return df
-    if "usage_role" not in df.columns:
-        df["usage_role"] = ""
-    if "snap_pct_L3" not in df.columns:
-        return df
-    snap = df["snap_pct_L3"]
-    existing = df["usage_role"].astype(str).str.strip()
-    blank = existing.eq("") | existing.str.lower().isin(("nan", "none", "null"))
-    if not blank.any():
-        return df
-    filled = [role_from_snap(s) if b else e for b, e, s in zip(blank, existing, snap)]
-    df["usage_role"] = filled
-    return df
-
-
 def _alias_cols(df):
     for alias,canon in [('DEF_TIER','def_tier'),('minutes_tier','minutes_tier'),
                          ('shot_role','shot_role'),('usage_role','usage_role')]:
@@ -600,47 +576,17 @@ def _coalesce_line_from_projection(df):
     return df
 
 
-def _excel_header_row_index(path: str, sheet: str, *, max_scan: int = 5) -> int:
-    """Return 0-based header row; skip banner rows like 'slate_date=...| OK'."""
-    peek = pd.read_excel(
-        path, sheet_name=sheet, header=None, nrows=max_scan, engine="openpyxl"
-    )
-    if peek is None or len(peek) == 0:
-        return 0
-    markers = {
-        "player",
-        "Player",
-        "prop_type",
-        "Prop",
-        "pick_type",
-        "Pick Type",
-        "line",
-        "Line",
-        "Tier",
-    }
-    for i in range(len(peek)):
-        cells = [str(v).strip() for v in peek.iloc[i].tolist() if pd.notna(v)]
-        if not cells:
-            continue
-        first = cells[0]
-        if first.startswith("slate_date=") or first.startswith("build_time="):
-            continue
-        if any(c in markers for c in cells):
-            return i
-    return 0
-
-
 def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
-    xls = pd.ExcelFile(path, engine="openpyxl")
-    preferred = ["ALL", "Full Slate", "Box Raw", "Props", "Sheet1"]
-    sheet = next((s for s in preferred if s in xls.sheet_names), xls.sheet_names[0])
-    if sheet != "ALL":
-        print(f"⚠️ NBA: sheet 'ALL' not found in {os.path.basename(path)}. Using sheet='{sheet}'.")
-
-    hdr = _excel_header_row_index(path, sheet)
-    if hdr:
-        print(f"  INFO: Using header row {hdr} on sheet '{sheet}' (skipped banner)")
-    df = pd.read_excel(path, sheet_name=sheet, header=hdr, engine="openpyxl")
+    if str(path).lower().endswith(".csv"):
+        df = pd.read_csv(path, dtype=str).fillna("")
+        sheet = "ALL"
+    else:
+        xls = pd.ExcelFile(path, engine="openpyxl")
+        preferred = ["ALL", "Full Slate", "Box Raw", "Props", "Sheet1"]
+        sheet = next((s for s in preferred if s in xls.sheet_names), xls.sheet_names[0])
+        if sheet != "ALL":
+            print(f"⚠️ NBA: sheet 'ALL' not found in {os.path.basename(path)}. Using sheet='{sheet}'.")
+        df = pd.read_excel(path, sheet_name=sheet, engine="openpyxl")
 
     # --- Normalize column names from PipelineA output ---
     df.columns = [str(c).strip() for c in df.columns]
@@ -671,8 +617,6 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
     "Def Rank": "def_rank",
     "Def Tier": "def_tier",
     "Min Tier": "minutes_tier",
-    "Minutes Tier": "minutes_tier",
-    "Snap L3": "snap_pct_L3",
     "Shot Role": "shot_role",
     "Usage Role": "usage_role",
     "ML Prob": "ml_prob",
@@ -710,8 +654,7 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
     "last5_hit_rate": "hit_rate",
     "Deviation Level": "deviation_level",
     "deviation_level": "deviation_level",
-    })
-    _fill_usage_role_from_snap(df)
+})
     # fallback compatibility
     if "prop_type_norm" not in df.columns:
         df["prop_type_norm"] = df.get("prop_type", "")
@@ -728,7 +671,6 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
 
     _coalesce_line_from_line_score(df)
     _coalesce_line_from_projection(df)
-    _ensure_game_date_et(df)
 
     # Hard fail if player still missing
     if "player" not in df.columns:
@@ -739,38 +681,6 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
     if str(sport_code or "").upper() == "NFL":
         return df
     return _drop_fantasy_from_slate(df)
-
-
-def _ensure_game_date_et(df: pd.DataFrame) -> pd.DataFrame:
-    """Fill blank game_date from game_time/start using America/New_York calendar day."""
-    if df is None or len(df) == 0:
-        return df
-    if "game_date" not in df.columns:
-        df["game_date"] = ""
-    existing = df["game_date"].map(_norm_game_date)
-    blank = existing.eq("") | existing.isna()
-    if not blank.any():
-        # Still re-normalize datetime-like game_date values to ET calendar day.
-        repaired = []
-        for v in df["game_date"].tolist():
-            raw = str(v or "").strip()
-            if "T" in raw or ":" in raw or raw.endswith("Z"):
-                ts = pd.to_datetime(raw, errors="coerce", utc=False)
-                repaired.append(_et_calendar_date_from_ts(ts) or _norm_game_date(v))
-            else:
-                repaired.append(_norm_game_date(v))
-        df["game_date"] = repaired
-        return df
-    filled = []
-    for i, row in df.iterrows():
-        cur = _norm_game_date(row.get("game_date", ""))
-        raw_gd = str(row.get("game_date", "") or "").strip()
-        if cur and "T" not in raw_gd and ":" not in raw_gd:
-            filled.append(cur)
-            continue
-        filled.append(_row_board_game_date(row) or cur)
-    df["game_date"] = filled
-    return df
 
 
 def _slate_player_key_series(df: pd.DataFrame) -> pd.Series:
@@ -1102,96 +1012,15 @@ def _row_prop_matches_lookup(lookup: ActualsLookup, srow, prop_label: str) -> bo
     )
 
 
-def _et_calendar_date_from_ts(ts) -> str:
-    """PrizePicks slate day is America/New_York, never the UTC calendar day."""
-    if ts is None or (isinstance(ts, float) and np.isnan(ts)) or pd.isna(ts):
-        return ""
-    try:
-        t = pd.Timestamp(ts)
-    except Exception:
-        return ""
-    if pd.isna(t):
-        return ""
-    try:
-        if t.tzinfo is None:
-            # Naive ISO with offset already consumed by parse, or local wall clock.
-            # If string had Z/offset, pandas usually keeps tz; naive → treat as ET wall.
-            return t.strftime("%Y-%m-%d")
-        return t.tz_convert("America/New_York").strftime("%Y-%m-%d")
-    except Exception:
-        try:
-            return t.tz_localize(None).strftime("%Y-%m-%d")
-        except Exception:
-            return ""
-
-
-def _row_board_game_date(row) -> str:
-    """Calendar day on the ticket/slate source row (never invent from actuals file).
-
-    CFB/NFL often only have Game Time (ISO with offset). Evening ET tips must not
-    flip to the next UTC calendar day (SOURCE_BOARD_DATE_MISMATCH / all-VOID).
-    """
-    idx = getattr(row, "index", [])
-    for col in (
-        "game_date",
-        "Game Date",
-        "board_date",
-        "game_time",
-        "Game Time",
-        "start_time",
-        "game_start",
-    ):
-        if col not in idx:
-            continue
-        raw_val = row.get(col)
-        d = _norm_game_date(raw_val)
-        if d and len(d) == 10 and d[4] == "-" and d[7] == "-":
-            # Pure date string — keep as-is (already a calendar day label).
-            raw_s = str(raw_val or "").strip()
-            if "T" not in raw_s and " " not in raw_s and ":" not in raw_s:
-                return d
-        raw = str(raw_val or "").strip()
-        if not raw or raw.lower() in ("nan", "none", "<na>"):
-            continue
-        # Datetime-like: parse preserving offset, then ET calendar day.
-        ts = pd.to_datetime(raw, errors="coerce", utc=False)
-        if pd.notna(ts):
-            et = _et_calendar_date_from_ts(ts)
-            if et:
-                return et
-        if len(raw) >= 10 and raw[4] == "-" and raw[7] == "-":
-            return raw[:10]
-    return ""
-
-
-def _source_board_date_void(row, actuals_date: str) -> str:
-    """
-    Void legs whose source board is undated or not the grade/actuals day.
-
-    Prevents May NBA1Q props (empty game_date) from grading against tonight's PBP.
-    """
-    row_date = _row_board_game_date(row)
-    if not row_date:
-        return "SOURCE_BOARD_DATE_MISSING"
-    ad = _norm_game_date(actuals_date) or str(actuals_date or "").strip()[:10]
-    if ad and row_date != ad:
-        return "SOURCE_BOARD_DATE_MISMATCH"
-    return ""
-
-
 def _resolve_actual(lookup: ActualsLookup, row) -> float:
     """Resolve actual: team+prop first, then unique player+prop; respect game_date."""
-    row_date = _row_board_game_date(row)
-    # Never fall back to actuals_date when the slate row has no date — that graded
-    # stale undated boards against the wrong night's box/PBP.
-    if not row_date:
-        return np.nan
-    if lookup.actuals_date and row_date != lookup.actuals_date:
+    row_date = _norm_game_date(row.get("game_date", ""))
+    if lookup.actuals_date and row_date and row_date != lookup.actuals_date:
         return np.nan
 
     player = str(row.get("player", "") or "")
     team = norm_team_key(row.get("team", ""))
-    game_date = row_date
+    game_date = row_date or lookup.actuals_date
 
     for prop_label in _props_from_row(row):
         team_keys, player_keys = _expand_lookup_keys(
@@ -1226,6 +1055,30 @@ _FOOTBALL_COUNTING_ZERO = (
 )
 
 
+def _playing_time_from_actuals_df(
+    act: pd.DataFrame, player: object, team_u: str
+) -> float | None:
+    """Pull minutes/snaps/TOI for a player from the actuals frame when present."""
+    if act is None or act.empty:
+        return None
+    pl = norm_player_key(player)
+    if not pl or "player" not in act.columns:
+        return None
+    mask = act["player"].map(norm_player_key).eq(pl)
+    if team_u and "/" not in team_u and "team" in act.columns:
+        mask = mask & act["team"].astype(str).str.upper().str.strip().eq(team_u.strip().upper())
+    sub = act.loc[mask]
+    if sub.empty:
+        return None
+    from utils.dnp_zero_void import playing_time_value
+
+    for _, arow in sub.iterrows():
+        pt = playing_time_value(arow.to_dict())
+        if pt is not None:
+            return pt
+    return None
+
+
 def _football_zero_if_played(lookup: ActualsLookup, row) -> float:
     """0 when this counting prop is missing but the player has another offensive box stat.
 
@@ -1258,14 +1111,12 @@ def _resolve_actual_for_player(
     lookup: ActualsLookup, player_str: str, row
 ) -> float:
     """Resolve actual for one combo leg using the same prop columns as ``_resolve_actual``."""
-    row_date = _row_board_game_date(row)
-    if not row_date:
-        return np.nan
-    if lookup.actuals_date and row_date != lookup.actuals_date:
+    row_date = _norm_game_date(row.get("game_date", ""))
+    if lookup.actuals_date and row_date and row_date != lookup.actuals_date:
         return np.nan
 
     team = norm_team_key(row.get("team", ""))
-    game_date = row_date
+    game_date = row_date or lookup.actuals_date
     for prop_label in _props_from_row(row):
         team_keys, player_keys = _expand_lookup_keys(
             player_str, prop_label, team=team, game_date=game_date
@@ -1514,23 +1365,21 @@ def apply_actuals(df, actuals_path):
     # NO_PROJECTION_OR_LINE, …). FORCED_OVER_NEG_EDGE rows are unplayable Goblin/Demon
     # slips and are dropped from grade output after apply_actuals (see leg_grade_utils).
 
+    # Infer sport for DNP / NFL-under-zero guards when the slate omits it.
+    sport_from_actuals = ""
+    if "nfl" in ap_l and "actuals" in ap_l:
+        sport_from_actuals = "NFL"
+    elif "cfb" in ap_l and "actuals" in ap_l:
+        sport_from_actuals = "CFB"
+    elif "nba" in ap_l and "actuals" in ap_l:
+        sport_from_actuals = "NBA"
+    elif "nhl" in ap_l and "actuals" in ap_l:
+        sport_from_actuals = "NHL"
+
     results, void_reasons, margins, actuals_out = [], [], [], []
     for _, row in df.iterrows():
-        date_void = _source_board_date_void(row, lookup.actuals_date)
-        if date_void:
-            actuals_out.append(np.nan)
-            results.append("VOID")
-            margins.append(np.nan)
-            upstream = ""
-            void_r = row.get("void_reason", np.nan)
-            if pd.notna(void_r) and str(void_r).strip() not in ("", "nan"):
-                upstream = str(void_r).strip()
-            void_reasons.append(
-                f"{upstream}; {date_void}" if upstream else date_void
-            )
-            continue
-
         actual = _resolve_actual(lookup, row)
+        played_box_evidence = False
 
         # Single-player combo props: sum final component box-score rows (same game snapshot).
         if pd.isna(actual):
@@ -1577,6 +1426,7 @@ def apply_actuals(df, actuals_path):
             zeroed = _football_zero_if_played(lookup, row)
             if pd.notna(zeroed):
                 actual = float(zeroed)
+                played_box_evidence = True
 
         # Shortest/longest FG yards are undefined with zero makes — never grade as 0.
         prop_label = _primary_prop_from_row(row)
@@ -1597,6 +1447,23 @@ def apply_actuals(df, actuals_path):
         upstream = void_r_str if void_r_str not in ("", "nan") else ""
 
         grade_row = _row_for_goblin_demon_grade(row)
+        # Attach sport + playing time so NFL UNDER actual=0 needs snap/play evidence.
+        try:
+            from utils.dnp_zero_void import playing_time_value
+
+            grade_row = grade_row.copy()
+            if sport_from_actuals and not str(grade_row.get("sport", "") or "").strip():
+                grade_row["sport"] = sport_from_actuals
+            if played_box_evidence:
+                grade_row["played_box_evidence"] = True
+            if playing_time_value(grade_row) is None:
+                pt = _playing_time_from_actuals_df(
+                    act, row.get("player", ""), str(row.get("team", "") or "")
+                )
+                if pt is not None:
+                    grade_row["minutes"] = pt
+        except Exception:
+            pass
         r, vr, m = grade(grade_row, actual)
         decided = r in ("HIT", "MISS", "PUSH", "NEAR_LINE")
 
@@ -2233,6 +2100,11 @@ def main():
     ap.add_argument('--output',default='')
     ap.add_argument('--template',action='store_true')
     ap.add_argument('--date',default=datetime.now().strftime('%Y-%m-%d'))
+    ap.add_argument(
+        '--ticket-sport',
+        default='',
+        help='Sport key for ticket-face union (NBA1Q when grading a 1Q slate). Default: --sport, or NBA1Q/NBA1H from the slate filename.',
+    )
     args=ap.parse_args()
 
     if args.template:
@@ -2252,6 +2124,9 @@ def main():
     if args.sport in ("NBA", "WNBA", "NFL"):
         df = filter_nba_slate_by_grade_date(df, args.date)
     print(f'  {len(df)} props loaded')
+    for col in ("tier", "minutes_tier", "def_tier", "shot_role", "pos"):
+        if col not in df.columns:
+            df[col] = ""
     if "prop_type_norm" in df.columns:
         blank = (
             df["prop_type_norm"].isna()
@@ -2280,8 +2155,17 @@ def main():
         from ticket_leg_index import union_ticket_faces_into_slate  # noqa: WPS433
 
         before = len(df)
+        ticket_sport = str(args.ticket_sport or "").strip().upper()
+        slate_l = str(args.slate).lower().replace("\\", "/")
+        if not ticket_sport:
+            if "nba1q" in slate_l:
+                ticket_sport = "NBA1Q"
+            elif "nba1h" in slate_l:
+                ticket_sport = "NBA1H"
+            else:
+                ticket_sport = str(args.sport or "").strip().upper()
         df = union_ticket_faces_into_slate(
-            df, date_str=args.date, sport=args.sport, repo=_REPO_ROOT
+            df, date_str=args.date, sport=ticket_sport, repo=_REPO_ROOT
         )
         if len(df) != before:
             print(f"  {len(df)} props after ticket-face union")
@@ -2310,13 +2194,7 @@ def main():
             print(f"  [WNBA] postponed relabel skipped: {exc}")
 
     df = _recompute_standard_tiers_from_directional_ml_prob(df, args.sport)
-    # Banner/pipeline merges can leave duplicate column labels; L10 enrich needs 1-d Series.
-    if getattr(df.columns, "duplicated", None) is not None and df.columns.duplicated().any():
-        df = df.loc[:, ~df.columns.duplicated()].copy()
-    try:
-        df = enrich_graded_l10_columns(df, line_col="line")
-    except Exception as exc:
-        print(f"  WARN: L10 enrich skipped: {exc}")
+    df = enrich_graded_l10_columns(df, line_col="line")
 
     if "pp_projection_id" not in df.columns and "projection_id" in df.columns:
         df["pp_projection_id"] = df["projection_id"]

@@ -1,29 +1,45 @@
 #!/usr/bin/env python3
 """Apply unified edge model scores to step7 ranked workbook (daily, post-step7).
 
-Writes ml_prob, edge_score, blended_score into the step7 xlsx (primary sheet). Run this
-before step8 / slate grading so Box Raw exports can include those columns (slate_grader
-and nhl_soccer_grader pass them through when present).
+Writes ml_prob, edge_score, blended_score into the step7 xlsx and its parquet sidecar.
+Reads the parquet hop when present (no Excel parse). Run this before step8 / slate
+grading so Box Raw exports can include those columns (slate_grader and nhl_soccer_grader
+pass them through when present).
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import warnings
 from pathlib import Path
 
-import joblib
 import numpy as np
 import pandas as pd
 
 import edge_ml_bundle  # noqa: F401 — EdgeCalibratedModel pickle root
-from edge_feature_engineering import FEATURE_COLUMNS, _direction_series, build_feature_vector
-from edge_predict_utils import apply_ml_prob_post_calibration
+from edge_feature_engineering import _direction_series, build_feature_vector
+from edge_predict_utils import apply_ml_prob_post_calibration, load_unified_edge_model
 
 SCRIPT_NAME = "step7b_edge_score"
 
-SPORT_ALIASES = {"NBA", "CBB", "CFB", "NHL", "SOCCER", "MLB", "SOC", "NBA1H", "NBA1Q", "WCBB", "TENNIS", "WNBA", "NFL"}
+SPORT_ALIASES = {
+    "NBA",
+    "CBB",
+    "CFB",
+    "CFB1H",
+    "NHL",
+    "SOCCER",
+    "MLB",
+    "SOC",
+    "NBA1H",
+    "NBA1Q",
+    "WCBB",
+    "TENNIS",
+    "WNBA",
+    "NFL",
+    "NFLP",
+    "GOLF",
+}
 
 
 def _repo_root() -> Path:
@@ -38,6 +54,10 @@ def _norm_sport(s: str) -> str:
         return "NBA"
     if x == "WCBB":
         return "CBB"
+    if x in ("NFL-PRESEASON", "NFL PRESEASON", "NFLP"):
+        return "NFL"
+    if x in ("CFB1H", "CFB1"):
+        return "CFB"
     return x
 
 
@@ -80,6 +100,26 @@ def resolve_step7_path(root: Path, sport: str, pipeline_date: str = "") -> Path 
             root / "CBB" / "step6_ranked_wcbb.xlsx",
             root / "CBB" / "outputs" / "step6_ranked_wcbb.xlsx",
         ]
+        pd_str = str(pipeline_date or "").strip()[:10]
+        if pd_str:
+            candidates.insert(0, root / "outputs" / pd_str / "wcbb" / "step6_ranked_wcbb.xlsx")
+    elif raw_sp == "CFB1H":
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "cfb1h" / "step6_ranked_cfb1h.xlsx")
+        out_glob = sorted(
+            (root / "outputs").glob("*/cfb1h/step6_ranked_cfb1h.xlsx"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
+        candidates.extend(out_glob)
+        candidates.extend(
+            [
+                Sr / "CFB" / "step6_ranked_cfb1h.xlsx",
+                root / "Sports" / "CFB" / "step6_ranked_cfb1h.xlsx",
+            ]
+        )
     elif sp == "MLB":
         mlb_root = root / "Sports" / "MLB"
         candidates = [
@@ -95,10 +135,24 @@ def resolve_step7_path(root: Path, sport: str, pipeline_date: str = "") -> Path 
             root / "WNBA" / "step7_wnba_ranked.xlsx",
         ]
     elif sp == "NFL":
-        candidates = [
-            root / "NFL" / "outputs" / "step7_nfl_ranked.xlsx",
-            root / "NFL" / "data" / "outputs" / "step7_nfl_ranked.xlsx",
-        ]
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "nfl" / "step7_nfl_ranked.xlsx")
+        out_glob = sorted(
+            (root / "outputs").glob("*/nfl/step7_nfl_ranked.xlsx"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
+        candidates.extend(out_glob)
+        candidates.extend(
+            [
+                Sr / "NFL" / "outputs" / "step7_nfl_ranked.xlsx",
+                Sr / "NFL" / "data" / "outputs" / "step7_nfl_ranked.xlsx",
+                root / "NFL" / "outputs" / "step7_nfl_ranked.xlsx",
+                root / "NFL" / "data" / "outputs" / "step7_nfl_ranked.xlsx",
+            ]
+        )
     elif sp == "NHL":
         candidates = [
             Sr / "NHL" / f"step7_{sl}_ranked.xlsx",
@@ -129,26 +183,57 @@ def resolve_step7_path(root: Path, sport: str, pipeline_date: str = "") -> Path 
             Sr / "Tennis" / "step7_tennis_ranked.xlsx",
             root / "Tennis" / "outputs" / "step7_tennis_ranked.xlsx",
         ])
+    elif sp == "GOLF":
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "golf" / "step7_golf_ranked.xlsx")
+        out_glob = sorted(
+            (root / "outputs").glob("*/golf/step7_golf_ranked.xlsx"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
+        candidates.extend(out_glob)
+        candidates.extend(
+            [
+                Sr / "Golf" / "outputs" / "step7_golf_ranked.xlsx",
+                Sr / "Golf" / "step7_golf_ranked.xlsx",
+                root / "Golf" / "outputs" / "step7_golf_ranked.xlsx",
+            ]
+        )
     elif sp == "CFB":
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "cfb" / "step6_ranked_cfb.xlsx")
         out_glob = sorted(
             (root / "outputs").glob("*/cfb/step6_ranked_cfb.xlsx"),
             key=lambda p: p.stat().st_mtime,
             reverse=True,
         )
-        candidates = list(out_glob) + [
-            Sr / "CFB" / "step6_ranked_cfb.xlsx",
-            root / "Sports" / "CFB" / "step6_ranked_cfb.xlsx",
-            root / "CFB" / "step6_ranked_cfb.xlsx",
-        ]
+        candidates.extend(out_glob)
+        candidates.extend(
+            [
+                Sr / "CFB" / "step6_ranked_cfb.xlsx",
+                root / "Sports" / "CFB" / "step6_ranked_cfb.xlsx",
+                root / "CFB" / "step6_ranked_cfb.xlsx",
+            ]
+        )
     elif sp == "CBB":
-        candidates = [
-            Sr / "CBB" / "outputs" / f"step7_{sl}_ranked.xlsx",
-            Sr / "CBB" / "outputs" / "step6_ranked_cbb.xlsx",
-            Sr / "CBB" / "step6_ranked_cbb.xlsx",
-            root / "CBB" / "outputs" / f"step7_{sl}_ranked.xlsx",
-            root / "CBB" / "outputs" / "step6_ranked_cbb.xlsx",
-            root / "CBB" / "step6_ranked_cbb.xlsx",
-        ]
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "cbb" / "step6_ranked_cbb.xlsx")
+        candidates.extend(
+            [
+                Sr / "CBB" / "outputs" / f"step7_{sl}_ranked.xlsx",
+                Sr / "CBB" / "outputs" / "step6_ranked_cbb.xlsx",
+                Sr / "CBB" / "step6_ranked_cbb.xlsx",
+                root / "CBB" / "outputs" / f"step7_{sl}_ranked.xlsx",
+                root / "CBB" / "outputs" / "step6_ranked_cbb.xlsx",
+                root / "CBB" / "step6_ranked_cbb.xlsx",
+            ]
+        )
     elif sp == "NBA" and raw_sp == "NBA":
         candidates = [
             Sr / "NBA" / "data" / "outputs" / "step7_ranked_props.xlsx",
@@ -168,47 +253,87 @@ def resolve_step7_path(root: Path, sport: str, pipeline_date: str = "") -> Path 
     return None
 
 
-def _first_sheet(path: Path) -> str:
-    # Pandas 2.2+ / Py3.14: engine must be explicit for .xlsx (otherwise ValueError).
-    xl = pd.ExcelFile(path, engine="openpyxl")
-    return xl.sheet_names[0]
+def _companion_sheets(df: pd.DataFrame, primary: str) -> dict[str, pd.DataFrame]:
+    """Rebuild human sheets from the scored primary frame (xlsxwriter cannot append)."""
+    sheets: dict[str, pd.DataFrame] = {primary: df}
+    elig = None
+    if "eligible" in df.columns:
+        elig = pd.to_numeric(df["eligible"], errors="coerce").fillna(0).eq(1)
+        sheets["ELIGIBLE"] = df.loc[elig]
+    if "pick_type" in df.columns:
+        std = df["pick_type"].astype(str).str.strip().str.lower().str.contains("standard", na=False)
+        if bool(std.any()) and bool((~std).any()):
+            sheets["STANDARD"] = df.loc[std]
+            sheets["GOB_DEM"] = df.loc[~std]
+    if "player_role" in df.columns:
+        role = df["player_role"].astype(str).str.strip().str.upper()
+        if bool(role.eq("SKATER").any()):
+            sheets["Skaters"] = df.loc[role.eq("SKATER")]
+        if bool(role.eq("GOALIE").any()):
+            sheets["Goalies"] = df.loc[role.eq("GOALIE")]
+    if "tier" in df.columns:
+        src = df.loc[elig] if elig is not None else df
+        for letter in ("A", "B", "C", "D"):
+            sub = src.loc[src["tier"].astype(str).eq(letter)]
+            if len(sub):
+                sheets[f"Tier {letter}"] = sub
+        a_best = df.loc[df["tier"].astype(str).eq("A")]
+        if len(a_best) and (primary == "All Props" or "player_role" in df.columns):
+            sheets["A-Tier Best"] = a_best
+    if "void_reason" in df.columns:
+        vr = df["void_reason"].astype(str)
+        dropped = vr.str.contains("FORCED_OVER_NEG_EDGE", case=False, na=False)
+        if bool(dropped.any()):
+            sheets["DROPPED"] = df.loc[dropped]
+    return sheets
 
 
-def main() -> None:
-    print(f"[PropORACLE-{SCRIPT_NAME}] Starting...")
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--sport", required=True, help="NBA, WNBA, CBB, NHL, Soccer, MLB, Tennis, …")
-    ap.add_argument(
-        "--step7-xlsx",
-        default="",
-        help="Optional full path to step7 workbook (overrides default location; e.g. NBA1H/1Q file).",
-    )
-    ap.add_argument("--repo-root", type=Path, default=None)
-    ap.add_argument(
-        "--pipeline-date",
-        default="",
-        help="Bundle folder date (YYYY-MM-DD) for outputs/<date>/ sport paths; use pipeline -Date, not tennis slate day.",
-    )
-    args = ap.parse_args()
-    root = Path(args.repo_root).resolve() if args.repo_root else _repo_root()
-    sp = _norm_sport(args.sport)
-    # feat_sp: feature encoding + sport_encoded must match training labels.
-    #   WNBA=7 in SPORT_ENCODING — do not collapse to NBA=0.
-    #   NFL uses MLB surrogate encoding until a dedicated bundle exists.
-    feat_sp = "MLB" if sp == "NFL" else sp
-    # cal_sp: post-Platt scalar / isotonic lookup key — always use real sport.
+def _load_step7_frame(xlsx: Path) -> tuple[str, pd.DataFrame]:
+    """Prefer the parquet sidecar so step7b does not re-parse Excel."""
+    from proporacle.data.table_io import parquet_sidecar_path, read_table, table_exists
+
+    if not table_exists(xlsx):
+        raise FileNotFoundError(xlsx)
+    sidecar = parquet_sidecar_path(xlsx)
+    if sidecar.is_file():
+        return "ALL", read_table(xlsx)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        loaded = pd.read_excel(xlsx, sheet_name=None, engine="openpyxl")
+    if not loaded:
+        return "ALL", pd.DataFrame()
+    sheet = next(iter(loaded))
+    return sheet, loaded[sheet]
+
+
+def _write_scored_workbook(xlsx: Path, df: pd.DataFrame, primary: str) -> None:
+    """Full rewrite via xlsxwriter + refresh parquet so step8 does not read stale scores."""
+    from proporacle.data.table_io import write_excel_sheets, write_parquet_sidecar
+
+    write_excel_sheets(xlsx, _companion_sheets(df, primary))
+    write_parquet_sidecar(df, xlsx)
+
+
+def score_step7_workbook(
+    *,
+    root: Path,
+    sport_label: str,
+    model,
+    feats: list[str],
+    step7_xlsx: str = "",
+    pipeline_date: str = "",
+    skip_if_unified: bool = False,
+) -> bool:
+    """Score one sport's step7 workbook. Returns True if rows were scored."""
+    sp = _norm_sport(sport_label)
+    feat_sp = sp
     cal_sp = sp
     if sp not in SPORT_ALIASES and sp != "SOCCER":
-        print(f"[WARN] Unknown sport {args.sport!r}, proceeding with key {sp!r}")
+        print(f"[WARN] Unknown sport {sport_label!r}, proceeding with key {sp!r}")
 
-    model_path = root / "models" / "edge_model_unified.pkl"
-    feat_path = root / "models" / "edge_model_features.json"
-    if not model_path.is_file() or not feat_path.is_file():
-        print(f"[WARN] Edge model not found ({model_path}) — skipping scoring.")
-        return
-
+    mdir = root / "models"
     xlsx: Path | None = None
-    explicit_step7 = str(args.step7_xlsx or "").strip()
+    explicit_step7 = str(step7_xlsx or "").strip()
     if explicit_step7:
         p = Path(explicit_step7)
         if not p.is_absolute():
@@ -216,25 +341,30 @@ def main() -> None:
         if p.is_file():
             xlsx = p
         else:
-            print(f"[WARN] --step7-xlsx not found: {p} — skip (no stale fallback)")
-            return
+            print(f"ERROR: --step7-xlsx not found: {p}", file=sys.stderr)
+            return False
     if xlsx is None:
-        # Pass raw sport label so NBA1Q / NBA1H resolve to the correct step7 workbook
-        # (_norm_sport maps those to NBA for feature geometry only).
-        xlsx = resolve_step7_path(root, str(args.sport).strip().upper(), str(args.pipeline_date or "").strip())
+        xlsx = resolve_step7_path(root, str(sport_label).strip().upper(), str(pipeline_date or "").strip())
     if xlsx is None:
         print(f"[WARN] No step7 workbook found for sport={sp} — skip.")
-        return
+        return False
 
-    sheet = _first_sheet(xlsx)
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", UserWarning)
-        df = pd.read_excel(xlsx, sheet_name=sheet, engine="openpyxl")
+    try:
+        sheet, df = _load_step7_frame(xlsx)
+    except Exception as exc:
+        print(f"[WARN] Could not load step7 workbook {xlsx}: {exc} — skip.")
+        return False
     if df.empty:
         print(f"[WARN] Empty sheet {sheet!r} in {xlsx} — skip.")
-        return
+        return False
 
-    # Only score non-void rows — void rows keep existing blended_score / ml_prob.
+    if skip_if_unified and "prob_source" in df.columns and "ml_prob" in df.columns:
+        src = df["prob_source"].astype(str).str.strip().str.lower()
+        ml_ok = pd.to_numeric(df["ml_prob"], errors="coerce").notna()
+        if bool(((src == "ml_prob_unified") & ml_ok).mean() > 0.5):
+            print(f"  [step7b] {sp}: already unified — skip re-score ({xlsx.name})")
+            return True
+
     if "void_reason" in df.columns:
         eligible_mask = df["void_reason"].isna() | (df["void_reason"].astype(str).str.strip() == "")
     else:
@@ -245,7 +375,7 @@ def main() -> None:
         print(f"  [step7b] {sp}: scoring {n_eligible}/{n_total} eligible rows")
     if n_eligible == 0:
         print(f"[WARN] 0 eligible rows for {sp} — skip.")
-        return
+        return False
 
     eligible_df = df.loc[eligible_mask].copy()
 
@@ -262,33 +392,21 @@ def main() -> None:
     df2 = build_feature_vector(eligible_df, feat_sp)
     if len(df2) == 0:
         print(f"[WARN] 0 rows after feature build for {sp} (feat={feat_sp}) — skip.")
-        return
+        return False
 
-    feats = json.loads(feat_path.read_text(encoding="utf-8"))
     missing = [c for c in feats if c not in df2.columns]
     if missing:
         print(f"[WARN] Missing {len(missing)} feature cols for {sp} — filling with 0.0: {missing[:8]}")
         for col in missing:
             df2[col] = 0.0
 
-    try:
-        model = joblib.load(model_path)
-    except Exception as e:
-        print(f"[WARN] Could not load model: {e} — skip.")
-        return
-
     X = df2[feats].astype(float)
     p_platt = np.asarray(model.predict_proba(X)[:, 1], dtype=float)
     dirs_u = _direction_series(df2).astype(str).str.strip().str.upper()
     pt_l = df2.get("pick_type", pd.Series("", index=df2.index)).astype(str).str.strip().str.lower()
-    mdir = root / "models"
     ml_prob = apply_ml_prob_post_calibration(p_platt, cal_sp, pt_l, dirs_u, mdir)
     edge_col = pd.to_numeric(df2.get("edge", pd.Series(0.0, index=df2.index)), errors="coerce").fillna(0.0)
     abs_edge_col = pd.to_numeric(df2.get("abs_edge", pd.Series(np.nan, index=df2.index)), errors="coerce")
-    # For UNDER legs, edge is negative (projection < line) — flip sign so
-    # a strong UNDER edge produces a high implied_prob, same as OVER.
-    # abs_edge is already direction-aware magnitude when present; only the
-    # raw edge fallback needs the sign flip.
     signed_edge = edge_col.where(dirs_u.eq("OVER"), -edge_col)
     edge_mag = abs_edge_col.where(abs_edge_col.notna(), signed_edge.abs()).fillna(0.0)
     implied_prob = 1.0 / (1.0 + np.exp(-edge_mag.clip(-20, 20)))
@@ -296,22 +414,24 @@ def main() -> None:
         df2.get("composite_hit_rate", df2.get("line_hit_rate", pd.Series(0.5, index=df2.index))),
         errors="coerce",
     ).fillna(0.5)
-    # Playoff uplift: emphasize short-window same-opponent trend where available.
-    # step7 populates l5_vs_same_opp_hit_rate direction-aware (high = supports pick side).
     if sp in ("NBA", "WNBA") and "l5_vs_same_opp_hit_rate" in df2.columns:
         opp_l5 = pd.to_numeric(df2["l5_vs_same_opp_hit_rate"], errors="coerce")
         opp_l5 = pd.Series(np.where(opp_l5 > 1.0, opp_l5 / 100.0, opp_l5), index=df2.index)
         playoff = (
             df2.get("is_playoff_game", pd.Series(False, index=df2.index))
-            .astype(str).str.strip().str.lower().isin(["1", "true", "t", "yes", "y"])
+            .astype(str)
+            .str.strip()
+            .str.lower()
+            .isin(["1", "true", "t", "yes", "y"])
         )
         use_opp_l5 = playoff & opp_l5.notna()
         if use_opp_l5.any():
             comp = pd.Series(np.where(use_opp_l5, (0.55 * comp + 0.45 * opp_l5), comp), index=df2.index)
-    # MLB same-series H2H: blend when short-window same-opponent trend exists.
     if sp == "MLB":
-        src_col = "l5_vs_same_opp_hit_rate" if "l5_vs_same_opp_hit_rate" in df2.columns else (
-            "same_series_hit_rate" if "same_series_hit_rate" in df2.columns else ""
+        src_col = (
+            "l5_vs_same_opp_hit_rate"
+            if "l5_vs_same_opp_hit_rate" in df2.columns
+            else ("same_series_hit_rate" if "same_series_hit_rate" in df2.columns else "")
         )
         if src_col:
             opp_l5 = pd.to_numeric(df2[src_col], errors="coerce")
@@ -320,11 +440,6 @@ def main() -> None:
             if use_opp_l5.any():
                 comp = pd.Series(np.where(use_opp_l5, (0.70 * comp + 0.30 * opp_l5), comp), index=df2.index)
 
-    # ── Defense matchup blend into comp (NBA only) ────────────────────────────
-    # Prefer position-split opp %; fall back to pooled. Both come from step6e.
-    # Maps opp_vs_league_pct to a 0–1 matchup score:
-    #   +20% generous → ~0.67  |  0% neutral → 0.50  |  −20% tight → ~0.33
-    # Capped at ±30% to prevent extreme single-game outliers dominating.
     if sp in ("NBA", "WNBA"):
         _def_pos = pd.to_numeric(
             df2.get("intel_opp_vs_league_pct_pos", pd.Series(np.nan, index=df2.index)),
@@ -346,42 +461,27 @@ def main() -> None:
 
     ml_s = pd.Series(ml_prob, index=df2.index, dtype=float)
     edge_score = ml_s - implied_prob
-    if sp in ("NHL", "SOCCER", "NFL"):
-        blended = 0.15 * ml_s + 0.85 * comp
-    elif sp in ("NBA", "WNBA"):
+    if sp in ("NHL", "SOCCER", "NFL", "NBA", "WNBA"):
         blended = 0.15 * ml_s + 0.85 * comp
     else:
         blended = 0.3 * ml_s + 0.7 * comp
 
-    scored_cols = ["ml_prob", "edge_score", "blended_score"]
-    for col in scored_cols:
+    for col in ("ml_prob", "edge_score", "blended_score"):
         if col not in df.columns:
             df[col] = np.nan
-        else:
-            # An upstream int64 column (e.g. NHL step7's ml_prob) rejects float scores
-            # with LossySetitemError on current pandas; force float first.
-            df[col] = pd.to_numeric(df[col], errors="coerce").astype(float)
     df.loc[eligible_mask, "ml_prob"] = ml_s.values
     df.loc[eligible_mask, "edge_score"] = edge_score.values
     df.loc[eligible_mask, "blended_score"] = blended.values
-    # Restore context labels for downstream UI exports after model inference.
+    if "prob_source" not in df.columns:
+        df["prob_source"] = ""
+    df.loc[eligible_mask, "prob_source"] = "ml_prob_unified"
     for c, s in preserved.items():
         if len(s) == len(df2):
             df.loc[eligible_mask, c] = s.values
-    # Do not re-sort NHL — it uses explicit rank ordering in its step7 output
     if sp.upper() != "NHL":
         df = df.sort_values("blended_score", ascending=False, na_position="last", kind="mergesort")
 
-    xl_obj = pd.ExcelFile(xlsx, engine="openpyxl")
-    all_sheets: dict[str, pd.DataFrame] = {}
-    for sn in xl_obj.sheet_names:
-        if sn == sheet:
-            all_sheets[sn] = df
-        else:
-            all_sheets[sn] = pd.read_excel(xlsx, sheet_name=sn, engine="openpyxl")
-    with pd.ExcelWriter(xlsx, engine="openpyxl") as w:
-        for sn, frame in all_sheets.items():
-            frame.to_excel(w, sheet_name=sn, index=False)
+    _write_scored_workbook(xlsx, df, sheet)
 
     print(f"  Scored {n_eligible} eligible / {n_total} rows for {sp} -> {xlsx} (sheet={sheet!r})")
     top = df.head(5)
@@ -394,6 +494,95 @@ def main() -> None:
         if prop_c:
             label += f" | {row.get(prop_c, '')}"
         print(f"    #{rank} blended={float(row['blended_score']):.4f}{label}")
+    return True
+
+
+def main() -> None:
+    print(f"[PropORACLE-{SCRIPT_NAME}] Starting...")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--sport", default="", help="NBA, WNBA, CBB, NHL, Soccer, MLB, Tennis, NFL, CFB, Golf, …")
+    ap.add_argument(
+        "--sports",
+        default="",
+        help="Comma-separated sports to score in one process (warm model cache). Example: MLB,WNBA,Tennis",
+    )
+    ap.add_argument(
+        "--step7-xlsx",
+        default="",
+        help="Optional full path to step7 workbook (single --sport only).",
+    )
+    ap.add_argument("--repo-root", type=Path, default=None)
+    ap.add_argument(
+        "--pipeline-date",
+        default="",
+        help="Bundle folder date (YYYY-MM-DD) for outputs/<date>/ sport paths; use pipeline -Date, not tennis slate day.",
+    )
+    ap.add_argument(
+        "--skip-if-unified",
+        action="store_true",
+        help="Skip sports already tagged prob_source=ml_prob_unified.",
+    )
+    args = ap.parse_args()
+    root = Path(args.repo_root).resolve() if args.repo_root else _repo_root()
+
+    sports: list[str] = []
+    for part in str(args.sports or "").split(","):
+        p = part.strip()
+        if p:
+            sports.append(p)
+    single = str(args.sport or "").strip()
+    if single:
+        sports.insert(0, single)
+    # de-dupe preserving order
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for s in sports:
+        key = s.upper()
+        if key in seen:
+            continue
+        seen.add(key)
+        ordered.append(s)
+    if not ordered:
+        ap.error("Provide --sport or --sports")
+
+    explicit = str(args.step7_xlsx or "").strip()
+    if explicit:
+        xp = Path(explicit)
+        if not xp.is_absolute():
+            xp = (root / xp).resolve()
+        if not xp.is_file():
+            print(f"ERROR: --step7-xlsx not found: {xp}", file=sys.stderr)
+            raise SystemExit(1)
+
+    mdir = root / "models"
+    loaded = load_unified_edge_model(mdir)
+    if loaded is None:
+        print(f"[WARN] Edge model not found ({mdir / 'edge_model_unified.pkl'}) — skipping scoring.")
+        return
+    model, feats = loaded
+    if explicit and len(ordered) > 1:
+        print("[WARN] --step7-xlsx applies only to the first sport when using --sports")
+
+    n_ok = 0
+    explicit_failed = False
+    for i, sport_label in enumerate(ordered):
+        ok = score_step7_workbook(
+            root=root,
+            sport_label=sport_label,
+            model=model,
+            feats=feats,
+            step7_xlsx=explicit if i == 0 else "",
+            pipeline_date=str(args.pipeline_date or "").strip(),
+            skip_if_unified=bool(args.skip_if_unified),
+        )
+        if ok:
+            n_ok += 1
+        elif explicit and i == 0:
+            explicit_failed = True
+    if len(ordered) > 1:
+        print(f"[step7b] multi-sport done: {n_ok}/{len(ordered)} scored (model kept warm)")
+    if explicit_failed:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
