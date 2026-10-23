@@ -48,6 +48,8 @@ def _ticket_slate_csv(ds: str, dest: Path) -> int:
             {
                 "Player": rec.get("player") or rec.get("Player") or "",
                 "Prop": rec.get("prop") or rec.get("prop_type") or rec.get("Prop") or "",
+                "prop_type": rec.get("prop") or rec.get("prop_type") or rec.get("Prop") or "",
+                "Tier": rec.get("tier") or rec.get("Tier") or "",
                 "Line": rec.get("line") if rec.get("line") is not None else rec.get("Line"),
                 "Direction": rec.get("direction") or rec.get("dir") or rec.get("Direction") or "OVER",
                 "Pick Type": rec.get("pick_type") or rec.get("Pick Type") or "standard",

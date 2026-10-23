@@ -48,7 +48,13 @@ def _norm_line(s: object) -> str:
 def leg_key_from_record(rec: dict[str, Any], *, sport_default: str = "") -> tuple[str, ...]:
     sp = str(rec.get("sport") or sport_default or "").strip().upper()
     player = _norm_player(rec.get("player") or rec.get("Player"))
-    prop = _norm_prop(rec.get("prop_type") or rec.get("prop") or rec.get("Prop Type") or rec.get("Prop"))
+    prop = _norm_prop(
+        rec.get("prop_type")
+        or rec.get("prop")
+        or rec.get("prop_type_norm")
+        or rec.get("Prop Type")
+        or rec.get("Prop")
+    )
     direction = _norm_dir(rec.get("direction") or rec.get("dir") or rec.get("Direction"))
     line = _norm_line(rec.get("line") or rec.get("Line"))
     pick = str(rec.get("pick_type") or rec.get("pick") or rec.get("Pick Type") or "Standard").strip().lower()

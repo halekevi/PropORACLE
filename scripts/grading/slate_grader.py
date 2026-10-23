@@ -2124,6 +2124,9 @@ def main():
     if args.sport in ("NBA", "WNBA", "NFL"):
         df = filter_nba_slate_by_grade_date(df, args.date)
     print(f'  {len(df)} props loaded')
+    for col in ("tier", "minutes_tier", "def_tier", "shot_role", "pos"):
+        if col not in df.columns:
+            df[col] = ""
     if "prop_type_norm" in df.columns:
         blank = (
             df["prop_type_norm"].isna()
