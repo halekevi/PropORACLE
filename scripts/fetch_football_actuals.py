@@ -69,6 +69,19 @@ _SCORING_TD_CATS = frozenset(
 )
 
 
+def _att_from_stat_map(stat_map: dict) -> float | None:
+    """Pass attempts from ESPN 'C/ATT' ("22/31" -> 31) or a bare 'ATT' label."""
+    raw = stat_map.get("C/ATT")
+    if raw is not None:
+        s = str(raw).strip()
+        if "/" in s:
+            try:
+                return float(s.split("/", 1)[1].strip())
+            except ValueError:
+                return None
+    return _num(stat_map.get("ATT"))
+
+
 def _num(x) -> float | None:
     if x is None:
         return None
@@ -161,6 +174,20 @@ def _parse_box(summary: dict) -> list[dict]:
                                 "team": team,
                                 "prop_type": "completions",
                                 "actual": made,
+                            }
+                        )
+
+                # Pass attempts: the right half of C/ATT (or a bare ATT label). Never emitted
+                # before, which let the grader's zero-fill invent 0 for every QB.
+                if "passing" in cat:
+                    att = _att_from_stat_map(stat_map)
+                    if att is not None:
+                        rows.append(
+                            {
+                                "player": name,
+                                "team": team,
+                                "prop_type": "pass_attempts",
+                                "actual": att,
                             }
                         )
 

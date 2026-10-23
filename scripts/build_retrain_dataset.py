@@ -1001,6 +1001,12 @@ def _load_graded_workbook_rows(root: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
         if "result" in norm.columns:
             ru = norm["result"].astype(str).str.strip().str.upper()
             norm = norm.loc[ru.isin(("HIT", "MISS")) | ru.isin(("WIN", "LOSS", "WON", "LOSE"))].copy()
+            try:
+                from utils.grade_cell_exclusions import drop_excluded
+
+                norm = drop_excluded(norm)
+            except Exception:
+                pass
         norm["source_file"] = p.name
         for f in canonical_fields:
             if f not in norm.columns:
@@ -1149,6 +1155,13 @@ def main() -> int:
 
     df["result_u"] = df["result"].astype(str).str.strip().str.upper()
     decided = df[df["result_u"].isin(("HIT", "MISS"))].copy()
+    # Cells whose stored actuals are not real stat values (Tennis Aces/DF/1st Set Aces zero-fill,
+    # CFB/NFL Pass Attempts zero-fill, NHL Faceoffs Won units). See utils/grade_cell_exclusions.
+    from utils.grade_cell_exclusions import drop_excluded
+
+    _n_before_excl = len(decided)
+    decided = drop_excluded(decided)
+    print(f"[retrain] grade-cell exclusions removed {_n_before_excl - len(decided):,} decided rows")
     decided["result_binary"] = (decided["result_u"] == "HIT").astype(int)
 
     from_s = str(args.from_date or "").strip()[:10]

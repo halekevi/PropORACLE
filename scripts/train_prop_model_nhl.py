@@ -393,6 +393,19 @@ def _audit_and_load() -> pd.DataFrame:
         raise RuntimeError("No result column.")
     hit = _map_hit(df[hit_col])
     decided = hit.isin([0.0, 1.0])
+    # NHL Faceoffs Won graded a percentage against a count line; keep it out of labels.
+    try:
+        _pcol = _first_present(df, ["stat_norm", "prop_type", "stat_type", "Prop"])
+        if _pcol:
+            from utils.grade_cell_exclusions import exclusion_reasons
+
+            _ex = exclusion_reasons(
+                pd.DataFrame({"sport": "NHL", "prop": df[_pcol].astype(str)}, index=df.index)
+            ).ne("")
+            print(f"-> Grade-cell exclusions removed {int((decided & _ex).sum())} decided rows")
+            decided = decided & ~_ex
+    except Exception as _exc:
+        print(f"-> WARN: grade-cell exclusion skipped: {_exc}")
     print(f"-> Decided rows (HIT/MISS only): {int(decided.sum())}")
     dr = df.loc[decided, "_source_date"].astype(str)
     dr2 = dr[dr.str.match(r"\d{4}-\d{2}-\d{2}")]
@@ -509,6 +522,17 @@ def main() -> None:
 
     # Strictly keep decided rows only.
     train = train[train["hit"].isin([0.0, 1.0])].copy()
+    try:
+        from utils.grade_cell_exclusions import exclusion_reasons
+
+        _ex = exclusion_reasons(
+            pd.DataFrame({"sport": "NHL", "prop": train["prop_type"].astype(str)}, index=train.index)
+        ).ne("")
+        if _ex.any():
+            print(f"-> Grade-cell exclusions dropped {int(_ex.sum())} training rows")
+            train = train.loc[~_ex].copy()
+    except Exception as _exc:
+        print(f"-> WARN: grade-cell exclusion skipped: {_exc}")
     train["hit"] = train["hit"].astype(int)
     train = train.dropna(subset=["edge"])
 

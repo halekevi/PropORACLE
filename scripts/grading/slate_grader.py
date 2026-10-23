@@ -1055,6 +1055,12 @@ _FOOTBALL_COUNTING_ZERO = (
 )
 
 
+# Zero-fill only props the fetcher emits as source rows. A prop with no source row
+# (Pass Attempts before fetch_football_actuals emitted it) must stay NO_ACTUAL: filling 0
+# graded every Over a MISS and every Under a HIT.
+_FOOTBALL_ZERO_FILL_PROPS = tuple(p for p in _FOOTBALL_COUNTING_ZERO if p != "pass attempts")
+
+
 def _playing_time_from_actuals_df(
     act: pd.DataFrame, player: object, team_u: str
 ) -> float | None:
@@ -1085,7 +1091,7 @@ def _football_zero_if_played(lookup: ActualsLookup, row) -> float:
     No offensive stat at all stays NaN so a true non-participant remains NO_ACTUAL.
     """
     prop = _primary_prop_from_row(row)
-    if prop not in _FOOTBALL_COUNTING_ZERO:
+    if prop not in _FOOTBALL_ZERO_FILL_PROPS:
         return np.nan
     player = str(row.get("player", "") or "")
     team = norm_team_key(row.get("team", ""))
@@ -1465,6 +1471,20 @@ def apply_actuals(df, actuals_path):
         except Exception:
             pass
         r, vr, m = grade(grade_row, actual)
+        # Cells whose stored actuals are not real stat values (see utils/grade_cell_exclusions).
+        try:
+            from utils.grade_cell_exclusions import row_reason as _cell_excl_reason
+
+            _excl = _cell_excl_reason(
+                row,
+                actual=actual,
+                date=_norm_game_date(row.get("game_date", "")) or lookup.actuals_date,
+                sport=(str(row.get("sport", "") or "").strip() or sport_from_actuals or ""),
+            )
+        except Exception:
+            _excl = ""
+        if _excl and r in ("HIT", "MISS", "PUSH", "NEAR_LINE"):
+            r, vr, m = "VOID", _excl, np.nan
         decided = r in ("HIT", "MISS", "PUSH", "NEAR_LINE")
 
         if decided:

@@ -84,7 +84,8 @@ def rows_from_match(m: dict) -> list[dict[str, object]]:
         rows.append({"player": pl, "team": "", "prop_type": "aces", "actual": ac})
     if dfault is not None:
         rows.append({"player": pl, "team": "", "prop_type": "double faults", "actual": dfault})
-    rows.append({"player": pl, "team": "", "prop_type": "sets won", "actual": sw if sw is not None else 0.0})
+    if sw is not None:
+        rows.append({"player": pl, "team": "", "prop_type": "sets won", "actual": sw})
     return rows
 
 

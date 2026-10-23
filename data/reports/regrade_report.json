@@ -1,0 +1,629 @@
+{
+  "totals": {
+    "graded_rows": 860688,
+    "excluded_rows_all_results": 14663,
+    "decided_rows_changing_to_void": 14264,
+    "dates": 107,
+    "first_date": "2026-07-01",
+    "last_date": "2026-10-22"
+  },
+  "cells": [
+    {
+      "name": "tennis_serve_stats",
+      "sport": "Tennis",
+      "props": "Aces, Double Faults, 1st Set Aces",
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT"
+    },
+    {
+      "name": "football_pass_attempts",
+      "sport": "CFB/NFL",
+      "props": "Pass Attempts (actual == 0)",
+      "reason": "EXCLUDED_ZERO_FILLED_PASS_ATTEMPTS"
+    },
+    {
+      "name": "nhl_faceoffs_won",
+      "sport": "NHL",
+      "props": "Faceoffs Won",
+      "reason": "EXCLUDED_NHL_FACEOFF_UNITS_MISMATCH"
+    }
+  ],
+  "per_prop": [
+    {
+      "sport": "CFB",
+      "p": "pass attempts",
+      "reason": "EXCLUDED_ZERO_FILLED_PASS_ATTEMPTS",
+      "rows_changing": 165,
+      "hit": 68,
+      "miss": 97,
+      "dates": 4,
+      "first": "2026-10-10",
+      "last": "2026-10-22",
+      "hr_before": 0.4121
+    },
+    {
+      "sport": "NFL",
+      "p": "pass attempts",
+      "reason": "EXCLUDED_ZERO_FILLED_PASS_ATTEMPTS",
+      "rows_changing": 49,
+      "hit": 0,
+      "miss": 49,
+      "dates": 6,
+      "first": "2026-10-04",
+      "last": "2026-10-19",
+      "hr_before": 0.0
+    },
+    {
+      "sport": "NHL",
+      "p": "faceoffs won",
+      "reason": "EXCLUDED_NHL_FACEOFF_UNITS_MISMATCH",
+      "rows_changing": 238,
+      "hit": 34,
+      "miss": 204,
+      "dates": 15,
+      "first": "2026-10-08",
+      "last": "2026-10-22",
+      "hr_before": 0.1429
+    },
+    {
+      "sport": "Tennis",
+      "p": "1st set aces",
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "rows_changing": 44,
+      "hit": 0,
+      "miss": 44,
+      "dates": 8,
+      "first": "2026-09-03",
+      "last": "2026-09-17",
+      "hr_before": 0.0
+    },
+    {
+      "sport": "Tennis",
+      "p": "aces",
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "rows_changing": 6536,
+      "hit": 67,
+      "miss": 6469,
+      "dates": 63,
+      "first": "2026-07-07",
+      "last": "2026-09-30",
+      "hr_before": 0.0103
+    },
+    {
+      "sport": "Tennis",
+      "p": "double faults",
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "rows_changing": 7232,
+      "hit": 42,
+      "miss": 7190,
+      "dates": 61,
+      "first": "2026-07-07",
+      "last": "2026-09-30",
+      "hr_before": 0.0058
+    }
+  ],
+  "per_cell_detail": [
+    {
+      "reason": "EXCLUDED_NHL_FACEOFF_UNITS_MISMATCH",
+      "sport": "NHL",
+      "p": "faceoffs won",
+      "pick_type": "Demon",
+      "direction": "OVER",
+      "result": "HIT",
+      "rows": 12
+    },
+    {
+      "reason": "EXCLUDED_NHL_FACEOFF_UNITS_MISMATCH",
+      "sport": "NHL",
+      "p": "faceoffs won",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "result": "HIT",
+      "rows": 1
+    },
+    {
+      "reason": "EXCLUDED_NHL_FACEOFF_UNITS_MISMATCH",
+      "sport": "NHL",
+      "p": "faceoffs won",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "result": "HIT",
+      "rows": 21
+    },
+    {
+      "reason": "EXCLUDED_NHL_FACEOFF_UNITS_MISMATCH",
+      "sport": "NHL",
+      "p": "faceoffs won",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "result": "MISS",
+      "rows": 204
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_PASS_ATTEMPTS",
+      "sport": "CFB",
+      "p": "pass attempts",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 97
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_PASS_ATTEMPTS",
+      "sport": "CFB",
+      "p": "pass attempts",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "result": "HIT",
+      "rows": 68
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_PASS_ATTEMPTS",
+      "sport": "NFL",
+      "p": "pass attempts",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 49
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "1st set aces",
+      "pick_type": "Demon",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 16
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "1st set aces",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 24
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "1st set aces",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 4
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "aces",
+      "pick_type": "Demon",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 4068
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "aces",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 2250
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "aces",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 151
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "aces",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "result": "HIT",
+      "rows": 67
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "double faults",
+      "pick_type": "Demon",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 4922
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "double faults",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 2084
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "double faults",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "result": "MISS",
+      "rows": 184
+    },
+    {
+      "reason": "EXCLUDED_ZERO_FILLED_TENNIS_SERVE_STAT",
+      "sport": "Tennis",
+      "p": "double faults",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "result": "HIT",
+      "rows": 42
+    }
+  ],
+  "before_after_by_sport": {
+    "Tennis": {
+      "all": {
+        "before": {
+          "n": 30588,
+          "hit": 8058,
+          "hr": 0.2634
+        },
+        "after": {
+          "n": 16776,
+          "hit": 7949,
+          "hr": 0.4738
+        }
+      },
+      "by_prop": {
+        "1st set aces": {
+          "before": {
+            "n": 44,
+            "hit": 0,
+            "hr": 0.0
+          },
+          "after": {
+            "n": 0,
+            "hit": 0,
+            "hr": null
+          }
+        },
+        "aces": {
+          "before": {
+            "n": 6536,
+            "hit": 67,
+            "hr": 0.0103
+          },
+          "after": {
+            "n": 0,
+            "hit": 0,
+            "hr": null
+          }
+        },
+        "double faults": {
+          "before": {
+            "n": 7232,
+            "hit": 42,
+            "hr": 0.0058
+          },
+          "after": {
+            "n": 0,
+            "hit": 0,
+            "hr": null
+          }
+        }
+      },
+      "by_pick_type": {
+        "Demon": {
+          "before": {
+            "n": 16701,
+            "hit": 2279,
+            "hr": 0.1365
+          },
+          "after": {
+            "n": 7695,
+            "hit": 2279,
+            "hr": 0.2962
+          }
+        },
+        "Goblin": {
+          "before": {
+            "n": 10719,
+            "hit": 4237,
+            "hr": 0.3953
+          },
+          "after": {
+            "n": 6361,
+            "hit": 4237,
+            "hr": 0.6661
+          }
+        },
+        "Standard": {
+          "before": {
+            "n": 3168,
+            "hit": 1542,
+            "hr": 0.4867
+          },
+          "after": {
+            "n": 2720,
+            "hit": 1433,
+            "hr": 0.5268
+          }
+        }
+      }
+    },
+    "NFL": {
+      "all": {
+        "before": {
+          "n": 8919,
+          "hit": 4260,
+          "hr": 0.4776
+        },
+        "after": {
+          "n": 8870,
+          "hit": 4260,
+          "hr": 0.4803
+        }
+      },
+      "by_prop": {
+        "pass attempts": {
+          "before": {
+            "n": 87,
+            "hit": 10,
+            "hr": 0.1149
+          },
+          "after": {
+            "n": 38,
+            "hit": 10,
+            "hr": 0.2632
+          }
+        }
+      },
+      "by_pick_type": {
+        "Standard": {
+          "before": {
+            "n": 5419,
+            "hit": 2933,
+            "hr": 0.5412
+          },
+          "after": {
+            "n": 5370,
+            "hit": 2933,
+            "hr": 0.5462
+          }
+        }
+      }
+    },
+    "CFB": {
+      "all": {
+        "before": {
+          "n": 4957,
+          "hit": 3077,
+          "hr": 0.6207
+        },
+        "after": {
+          "n": 4792,
+          "hit": 3009,
+          "hr": 0.6279
+        }
+      },
+      "by_prop": {
+        "pass attempts": {
+          "before": {
+            "n": 165,
+            "hit": 68,
+            "hr": 0.4121
+          },
+          "after": {
+            "n": 0,
+            "hit": 0,
+            "hr": null
+          }
+        }
+      },
+      "by_pick_type": {
+        "Goblin": {
+          "before": {
+            "n": 3346,
+            "hit": 2206,
+            "hr": 0.6593
+          },
+          "after": {
+            "n": 3249,
+            "hit": 2206,
+            "hr": 0.679
+          }
+        },
+        "Standard": {
+          "before": {
+            "n": 1611,
+            "hit": 871,
+            "hr": 0.5407
+          },
+          "after": {
+            "n": 1543,
+            "hit": 803,
+            "hr": 0.5204
+          }
+        }
+      }
+    },
+    "NHL": {
+      "all": {
+        "before": {
+          "n": 28461,
+          "hit": 6557,
+          "hr": 0.2304
+        },
+        "after": {
+          "n": 28223,
+          "hit": 6523,
+          "hr": 0.2311
+        }
+      },
+      "by_prop": {
+        "faceoffs won": {
+          "before": {
+            "n": 238,
+            "hit": 34,
+            "hr": 0.1429
+          },
+          "after": {
+            "n": 0,
+            "hit": 0,
+            "hr": null
+          }
+        }
+      },
+      "by_pick_type": {
+        "Demon": {
+          "before": {
+            "n": 23608,
+            "hit": 3957,
+            "hr": 0.1676
+          },
+          "after": {
+            "n": 23596,
+            "hit": 3945,
+            "hr": 0.1672
+          }
+        },
+        "Goblin": {
+          "before": {
+            "n": 2332,
+            "hit": 1359,
+            "hr": 0.5828
+          },
+          "after": {
+            "n": 2331,
+            "hit": 1358,
+            "hr": 0.5826
+          }
+        },
+        "Standard": {
+          "before": {
+            "n": 2521,
+            "hit": 1241,
+            "hr": 0.4923
+          },
+          "after": {
+            "n": 2296,
+            "hit": 1220,
+            "hr": 0.5314
+          }
+        }
+      }
+    }
+  },
+  "tennis_props_overview": {
+    "1st set aces": {
+      "rows": 44,
+      "decided": 44,
+      "excluded_rows": 44,
+      "hr_decided": 0.0
+    },
+    "aces": {
+      "rows": 6715,
+      "decided": 6536,
+      "excluded_rows": 6715,
+      "hr_decided": 0.0103
+    },
+    "double faults": {
+      "rows": 7452,
+      "decided": 7232,
+      "excluded_rows": 7452,
+      "hr_decided": 0.0058
+    },
+    "total games": {
+      "rows": 7805,
+      "decided": 7603,
+      "excluded_rows": 0,
+      "hr_decided": 0.458
+    },
+    "total games won": {
+      "rows": 9241,
+      "decided": 9020,
+      "excluded_rows": 0,
+      "hr_decided": 0.4886
+    },
+    "total sets": {
+      "rows": 72,
+      "decided": 72,
+      "excluded_rows": 0,
+      "hr_decided": 0.4583
+    },
+    "total tie breaks": {
+      "rows": 81,
+      "decided": 81,
+      "excluded_rows": 0,
+      "hr_decided": 0.3333
+    }
+  },
+  "tennis_goblin_over_by_prop": {
+    "1st set aces": {
+      "before": {
+        "n": 24,
+        "hit": 0,
+        "hr": 0.0
+      },
+      "after": {
+        "n": 0,
+        "hit": 0,
+        "hr": null
+      }
+    },
+    "aces": {
+      "before": {
+        "n": 2250,
+        "hit": 0,
+        "hr": 0.0
+      },
+      "after": {
+        "n": 0,
+        "hit": 0,
+        "hr": null
+      }
+    },
+    "double faults": {
+      "before": {
+        "n": 2084,
+        "hit": 0,
+        "hr": 0.0
+      },
+      "after": {
+        "n": 0,
+        "hit": 0,
+        "hr": null
+      }
+    },
+    "total games": {
+      "before": {
+        "n": 2901,
+        "hit": 1763,
+        "hr": 0.6077
+      },
+      "after": {
+        "n": 2901,
+        "hit": 1763,
+        "hr": 0.6077
+      }
+    },
+    "total games won": {
+      "before": {
+        "n": 3460,
+        "hit": 2474,
+        "hr": 0.715
+      },
+      "after": {
+        "n": 3460,
+        "hit": 2474,
+        "hr": 0.715
+      }
+    }
+  },
+  "note": "Read-only. No graded_props_*.json was modified."
+}

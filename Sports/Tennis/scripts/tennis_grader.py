@@ -299,7 +299,8 @@ def main() -> None:
                 "aces": _opt_f("aces"),
                 "double_faults": _opt_f("double_faults"),
                 "games_won": _opt_f("games_won") if _opt_f("games_won") is not None else 0.0,
-                "sets_won": _opt_f("sets_won") if _opt_f("sets_won") is not None else 0.0,
+                # Missing sets stays None (VOID NO_DATA); 0.0 would grade Overs as MISS.
+                "sets_won": _opt_f("sets_won"),
                 "match_total_games": (
                     _opt_f("match_total_games")
                     if _opt_f("match_total_games") is not None
@@ -333,6 +334,14 @@ def main() -> None:
         if stats is not None and ak:
             actual = stats.get(ak)
         res, note, void_reason = _grade(direction, line, actual)
+        try:
+            from utils.grade_cell_exclusions import exclusion_reason as _cell_excl
+
+            _ex = _cell_excl("Tennis", pnorm or prop_raw, actual, target)
+        except Exception:
+            _ex = ""
+        if _ex and res in ("HIT", "MISS", "PUSH"):
+            res, note, void_reason = "VOID", "", _ex
         note_out = note or ("" if matched_pk else "PLAYER_OR_DATE_NOT_FOUND")
         rows.append(
             {
