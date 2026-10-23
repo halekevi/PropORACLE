@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+"""Weekly comparison of gated Goblin, mixed, and Standard tracks.
+
+ROI / promotion counters use real scraped quotes only (scraped payout_source
++ non-null captured_at). Ungraded slips stay out of the win rate.
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from utils.comparison_tracks import summarize_tracks
+from utils.l5_only_shadow import summarize_shadow_props
+from utils.l5_ranked_by_cell import COMPARE_AFTER, TRACK as L5_RANKED_TRACK, stamped_slip_count
+
+_LOG = Path(__file__).resolve().parents[1] / "data" / "reports" / "track_comparison.jsonl"
+
+
+def load_rows(path: Path | None = None) -> list[dict]:
+    dest = path or _LOG
+    if not dest.is_file():
+        return []
+    rows = []
+    for line in dest.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            rec = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(rec, dict):
+            rows.append(rec)
+    return rows
+
+
+def main() -> None:
+    rows = load_rows()
+    if not rows:
+        print("No track log yet.")
+        return
+    for rec in summarize_tracks(rows):
+        wr = rec["win_rate"]
+        wr_s = f"{wr:.1%}" if wr is not None else "n/a"
+        band = ""
+        if rec["wilson_low"] is not None:
+            band = f" ({rec['wilson_low']:.1%}–{rec['wilson_high']:.1%})"
+        pred = rec["predicted_sweep"]
+        pred_s = f"{pred:.1%}" if pred is not None else "n/a"
+        roi = rec["roi_scraped"]
+        roi_s = f"{roi:.1%}" if roi is not None else "n/a"
+        sports = ", ".join(rec["standard_sports"]) or "none"
+        rq = rec.get("real_quote_n") or 0
+        rq_wr = rec.get("real_quote_win_rate")
+        rq_wr_s = f"{rq_wr:.1%}" if rq_wr is not None else "n/a"
+        rq_band = ""
+        if rec.get("real_quote_wilson_low") is not None:
+            rq_band = (
+                f" ({rec['real_quote_wilson_low']:.1%}–"
+                f"{rec['real_quote_wilson_high']:.1%})"
+            )
+        print(
+            f"{rec['track']}: slips {rec['slips']}, graded {rec['graded']}, "
+            f"win {wr_s}{band}, predicted {pred_s}, "
+            f"real-quote graded {rq} win {rq_wr_s}{rq_band}, "
+            f"ROI on {rec['scraped_n']} scraped {roi_s}, standard sports {sports}"
+        )
+    print("\nL5=5 shadow by sport and prop (forward grades)")
+    for rec in summarize_shadow_props(rows):
+        wr = rec["win_rate"]
+        wr_s = f"{wr:.1%}" if wr is not None else "ungraded"
+        band = ""
+        if rec["wilson_low"] is not None:
+            band = f" ({rec['wilson_low']:.1%}–{rec['wilson_high']:.1%})"
+        cell = rec["cell_p"]
+        cell_s = f"{cell:.1%}" if cell is not None else "no cell"
+        flag = "CLEARS break-even" if rec["clears_breakeven"] else "under break-even"
+        print(
+            f"  {rec['sport']} {rec['prop']} {rec['pick_type']} {rec['direction']}: "
+            f"legs {rec['legs']}, graded {rec['graded']}, win {wr_s}{band}, "
+            f"cell {cell_s}, bar {rec['breakeven']:.1%} at {rec['median_quote']}x, {flag}"
+        )
+    stamped = stamped_slip_count()
+    print(f"\n{L5_RANKED_TRACK}: stamped slips {stamped}")
+    if stamped < COMPARE_AFTER:
+        print(f"  compare with the gated build after {COMPARE_AFTER} stamped slips")
+        return
+    by_track = {rec["track"]: rec for rec in summarize_tracks(rows)}
+    ranked = by_track.get(L5_RANKED_TRACK)
+    if ranked is None:
+        return
+    for other in ("gated_goblin", "gated_standard"):
+        base = by_track.get(other)
+        if base is None or base["win_rate"] is None or ranked["win_rate"] is None:
+            print(f"  {other}: not enough graded slips to compare")
+            continue
+        print(
+            f"  vs {other}: ranked win {ranked['win_rate']:.1%} "
+            f"({ranked['graded']} graded), gated win {base['win_rate']:.1%} "
+            f"({base['graded']} graded)"
+        )
+
+
+if __name__ == "__main__":
+    main()

@@ -963,22 +963,15 @@ def _ticket_to_web(ticket: dict, *, date: str, ticket_no: int, group_name: str) 
     return _hold_unscraped_web_payout(out)
 
 
-def _payout_is_scraped_quote(source: object, captured_at: object) -> bool:
-    src = str(source or "").strip().lower()
-    if src == "live_cdp":
-        return True
-    if src == "n_correct_live" and str(captured_at or "").strip():
-        return True
-    return False
-
-
 def _hold_unscraped_web_payout(ticket: dict) -> dict:
+    from utils.scraped_quote import is_real_scraped_quote
+
     raw = (os.getenv("PROPORACLE_REQUIRE_LIVE_PAYOUT") or "1").strip().lower()
     if raw in ("0", "false", "no", "off"):
         return ticket
     pay = ticket.get("payout") if isinstance(ticket.get("payout"), dict) else {}
     src = pay.get("payout_source") or ticket.get("payout_source")
-    if _payout_is_scraped_quote(src, pay.get("captured_at") or ticket.get("captured_at")):
+    if is_real_scraped_quote(src, pay.get("captured_at") or ticket.get("captured_at")):
         return ticket
     pay = dict(pay)
     pay["payout_source"] = "pending_live"
@@ -1645,6 +1638,13 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         # make_ticket() stamps resolve_n_correct first; overwrite with the EV
         # score source so mix_floor / p25 cannot keep a stale n_correct_live label.
         slip["payout_source"] = scored["payout_source"]
+        from utils.scraped_quote import is_real_scraped_quote
+
+        scored_cap = scored.get("captured_at") or slip.get("captured_at")
+        if is_real_scraped_quote(scored["payout_source"], scored_cap):
+            slip["captured_at"] = scored_cap
+        else:
+            slip["captured_at"] = None
         slip["stake"] = scored["stake"]
         slip["ticket_track"] = track
         slip["p_win"] = round(float(scored["p_win"]), 4)
