@@ -319,10 +319,10 @@ def grade_day(d: str) -> dict[str, bool]:
     ten_slate = _first_existing(
         [
             out / f"step8_tennis_direction_clean_{d}.xlsx",
+            out / "tennis" / f"step8_tennis_direction_clean_{d}.xlsx",
             out / "tennis" / "step8_tennis_direction_clean.xlsx",
-            REPO / "outputs" / d1 / "tennis" / "step8_tennis_direction_clean.xlsx",
-            REPO / "outputs" / d1 / f"step8_tennis_direction_clean_{d1}.xlsx",
-            REPO / "Sports" / "Tennis" / "step8_tennis_direction_clean.xlsx",
+            REPO / "outputs" / d1 / "tennis" / f"step8_tennis_direction_clean_{d}.xlsx",
+            REPO / "outputs" / d1 / f"step8_tennis_direction_clean_{d}.xlsx",
         ]
     )
     ten_out = out / f"graded_tennis_{d}.xlsx"
