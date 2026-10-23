@@ -1,19 +1,23 @@
 """CFB keep/fade from graded tape (not a new layer).
 
-Early season (weeks 0–5): step5b PRIOR_SEASON_FILL pads face L5/L10 from
-this player's last-year boxes; ``l5_sample_n`` / ``games_used`` stay
-current-season. Tickets use the filled face L5=5 (same Goblin-70 stack
-below). Diamond/Platinum stay capped on PRIOR_* in the ranker.
+All season: step5b pads the face window from this player's last-year
+boxes until it holds 8 games. ``l5_sample_n`` / ``games_used`` stay
+current-season. Tickets use the filled face L5=5. L10>=8 is not a CFB
+gate. Directional L8>=6 on a full 8-game window is a bonus
+(``cfb_l8_bonus``), not a block and not a new price. Diamond/Platinum
+stay capped on PRIOR_* in the ranker.
 
 1. Pass Yards Goblin OVER — drop D. 74% ungated; D-fail hits 90%.
-   Tickets still need L5=5 + L10>=8 + cover. List stays L5>=4; badge D is
-   N/A via the same cfb_pass_yards_goblin_skip_d (not a Silver miss).
+   Tickets need L5=5 + cover. L10>=8 is not a CFB gate. The face window
+   is this season, then this player's last year, out to 8 games. Directional
+   L8>=6 on a full 8-game window is a bonus, not a block. List stays L5>=4;
+   badge D is N/A via the same cfb_pass_yards_goblin_skip_d (not a Silver miss).
 2. Player TDs — fade from the L5=5 ticket stack. 0.5-line; stack is
    scored-5-straight, not yards (0/2, 0/1). L5>=4 list is unchanged.
 3. Standard Rec Yards UNDER — fade from the cover-stack ticket path.
    L5=5 is 0/5 against a 41% base. List L5>=4 is unchanged.
-4. Standard Rush Yards UNDER — keep the full L5=5+L10>=8+D+cover stack
-   (71%, 2/2). Do not lump with Rec Yards UNDER.
+4. Standard Rush Yards UNDER — keep L5=5+D+cover (71%, 2/2). L8>=6 is a
+   bonus. Do not lump with Rec Yards UNDER. L10>=8 is not required.
 5. Rush Attempts / Kicking Points Goblin OVER — off the printed list
    and tickets (33% / 20% ungated).
 
@@ -50,6 +54,8 @@ PLAYER_TD = "player_td"
 REC_YDS = "rec_yds"
 RUSH_YDS = "rush_yds"
 LIST_FADE_GOBLIN_OVER = frozenset({"rush_att", "kick_pts"})
+# 6 of 8 on the assembled window (this season, then last year). Bonus only.
+CFB_L8_BONUS_MIN = 6
 
 
 def _sport(r: dict[str, Any]) -> str:
@@ -126,3 +132,42 @@ def cfb_pass_yards_goblin_skip_d(r: dict[str, Any]) -> bool:
     if _prop(r) == RUSH_YDS:
         return False
     return _pick(r) == "Goblin" and _side(r) == "OVER" and _prop(r) == PASS_YDS
+
+
+def _num(v: Any) -> float | None:
+    if v is None or v == "":
+        return None
+    try:
+        n = float(v)
+    except (TypeError, ValueError):
+        return None
+    if n != n:
+        return None
+    return n
+
+
+def _l8_hits(r: dict[str, Any]) -> float | None:
+    if _side(r) == "UNDER":
+        keys = ("l8_under", "last8_under", "line_hits_under_8")
+    else:
+        keys = ("l8_over", "last8_over", "line_hits_over_8")
+    for key in keys:
+        n = _num(r.get(key))
+        if n is not None:
+            return n
+    return None
+
+
+def cfb_l8_bonus(r: dict[str, Any]) -> bool:
+    """True when the assembled 8-game window has 6+ directional hits.
+
+    Does not decide ticket eligibility and is not a priced cell.
+    A window shorter than 8 games, even after last year, has no bonus.
+    """
+    if not _is_cfb(r):
+        return False
+    window = _num(r.get("l8_window_n"))
+    if window is None or window < 8:
+        return False
+    hits = _l8_hits(r)
+    return hits is not None and hits >= CFB_L8_BONUS_MIN

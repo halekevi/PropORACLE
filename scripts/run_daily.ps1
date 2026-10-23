@@ -1936,6 +1936,19 @@ $datedStep8Copies = @(
         Dst = (Join-Path $todayOutDirForSnapshots "step8_nba1q_direction_clean_$Today.xlsx")
     }
 )
+function Get-NbaStep8ModalGameDate {
+    param([string]$XlsxPath)
+    if (-not (Test-Path -LiteralPath $XlsxPath)) { return "" }
+    $probePy = Join-Path $Root "scripts\_probe_nba_step8_game_date.py"
+    if (-not (Test-Path -LiteralPath $probePy)) { return "" }
+    try {
+        $out = & py -3.14 $probePy --xlsx $XlsxPath 2>$null
+        return ("$out").Trim()
+    } catch {
+        return ""
+    }
+}
+
 foreach ($cp in $datedStep8Copies) {
     $srcResolved = $null
     foreach ($cand in @($cp.SrcCandidates)) {
@@ -1945,9 +1958,23 @@ foreach ($cp in $datedStep8Copies) {
         }
     }
     if ($null -ne $srcResolved) {
-        Preserve-ExistingFile -Path $cp.Dst -Reason "pre-STEP D2b dated snapshot copy"
-        Copy-Item -LiteralPath $srcResolved -Destination $cp.Dst -Force
-        Write-Log "STEP D2b - Copied $(Split-Path $srcResolved -Leaf) -> $(Split-Path $cp.Dst -Leaf)"
+        # Refuse to stamp today's dated NBA snapshot from a stale Sports board
+        # (e.g. May Finals OKC@SAS copied onto October outputs).
+        $dstLeaf = Split-Path $cp.Dst -Leaf
+        $isNbaDated = $dstLeaf -like "step8_nba*_direction_clean_$Today.xlsx"
+        $boardDateOk = $true
+        if ($isNbaDated) {
+            $probe = Get-NbaStep8ModalGameDate -XlsxPath $srcResolved
+            if ($probe -and $probe -ne $Today) {
+                $boardDateOk = $false
+                Write-Log "STEP D2b - SKIP stale NBA board $(Split-Path $srcResolved -Leaf) GameDate=$probe (want $Today)"
+            }
+        }
+        if ($boardDateOk) {
+            Preserve-ExistingFile -Path $cp.Dst -Reason "pre-STEP D2b dated snapshot copy"
+            Copy-Item -LiteralPath $srcResolved -Destination $cp.Dst -Force
+            Write-Log "STEP D2b - Copied $(Split-Path $srcResolved -Leaf) -> $dstLeaf"
+        }
     }
     else {
         Write-Log "STEP D2b - SKIP (source missing for $(Split-Path $cp.Dst -Leaf))"

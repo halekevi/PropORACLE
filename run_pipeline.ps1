@@ -394,6 +394,20 @@ if ($SkipCombined) { Write-Host "  [flags] SkipCombined — sport pipelines only
 if ($SkipFetch) { Write-Host "  [flags] SkipFetch — reuse existing step1 files" -ForegroundColor DarkGray }
 Write-Host ""
 
+# Import smoke test — catch live-tree missing utils before any fetch (seconds).
+$SmokeImport = Join-Path $Root "scripts\smoke_import_scheduled.py"
+if (Test-Path -LiteralPath $SmokeImport) {
+    Write-Host "  [smoke-import] Checking scheduled entrypoint imports..." -ForegroundColor Cyan
+    & py -3.14 $SmokeImport
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "  [smoke-import] FAILED — aborting before fetch. Sync utils into this live tree." -ForegroundColor Red
+        exit 2
+    }
+} else {
+    Write-Host "  [smoke-import] WARN: scripts\smoke_import_scheduled.py missing — skipping" -ForegroundColor Yellow
+}
+Write-Host ""
+
 # -- Helper: auto-wipe ESPN cache if stale ------------------------------------
 function Check-AutoRefreshCache {
     $cacheFile = Join-Path $NBADir "nba_espn_boxscore_cache.csv"
@@ -2994,10 +3008,15 @@ $NBAJob = Start-Job -ScriptBlock {
         Write-Output "[NBA] Aborting steps 2-8: no valid step1 for $Date ($($health.reason))"
         return $false
     }
+    Write-Output "[NBA] Entering steps 2-8 (step1 ok for $Date; SkipFetch=$SkipFetch)"
     if ($ok) { $ok = Run-Step-Job "NBA Step 2 - Attach Pick Types"       $NBADir ".\scripts\step2_attach_picktypes.py"               "--input `"$nbaStep1`" --output `"$NBARunOutDir\step2_with_picktypes.csv`"" }
+    if (-not $ok) { Write-Output "[NBA] STOPPED after step 2 — steps 3-8 will not run"; return $false }
     if ($ok) { $ok = Run-Step-Job "NBA Step 3 - Attach Defense"          $NBADir ".\scripts\step3_attach_defense.py"                 "--input `"$NBARunOutDir\step2_with_picktypes.csv`" --defense data\cache\defense_team_summary.csv --output `"$NBARunOutDir\step3_with_defense.csv`"" }
+    if (-not $ok) { Write-Output "[NBA] STOPPED after step 3 — steps 4-8 will not run"; return $false }
     if ($ok) { $ok = Run-Step-Job "NBA Step 4 - Player Stats (ESPN)"     $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate `"$NBARunOutDir\step3_with_defense.csv`" --out `"$NBARunOutDir\step4_with_stats.csv`"" }
+    if (-not $ok) { Write-Output "[NBA] STOPPED after step 4 — steps 4b-8 will not run"; return $false }
     if ($ok) { $ok = Run-Step-Job "NBA Step 4b - Usage/Pace Context"    $NBADir ".\scripts\step4b_attach_nba_context.py"              "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step4_with_stats.csv`" --date $Date" }
+    if (-not $ok) { Write-Output "[NBA] STOPPED after step 4b — steps 4d-8 will not run"; return $false }
     if ($ok) {
         $nbaStep4Csv = "$NBARunOutDir\step4_with_stats.csv"
         if (-not (Test-Path -LiteralPath $nbaStep4Csv)) {

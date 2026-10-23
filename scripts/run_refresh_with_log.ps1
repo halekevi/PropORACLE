@@ -219,9 +219,15 @@ function Publish-RefreshWindow {
     $msg = "chore: live tickets/slate $Date $Label"
     if ($Suffix) { $msg = "$msg $Suffix" }
     Write-Host "[REFRESH $Label] Publishing live site JSON to origin/main..." -ForegroundColor Cyan
-    & pwsh -NoProfile -File $publish -RepoRoot $Root -CommitMessage $msg
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "[REFRESH $Label] LIVE SITE PUBLISH FAILED (exit $LASTEXITCODE)" -ForegroundColor Red
+    $pubOut = & pwsh -NoProfile -File $publish -RepoRoot $Root -CommitMessage $msg 2>&1
+    $pubExit = $LASTEXITCODE
+    foreach ($line in $pubOut) { Write-Host "  $line" }
+    if ($pubExit -ne 0) {
+        Write-Host "[REFRESH $Label] LIVE SITE PUBLISH FAILED (exit $pubExit)" -ForegroundColor Red
+        $assertHint = ($pubOut | Out-String)
+        if ($assertHint -match 'mixer_only|goblin70_only|assert-live|FAILED') {
+            Write-Host "[REFRESH $Label] publish reason (see lines above): assert-live / dual-card guard" -ForegroundColor Yellow
+        }
     }
 }
 

@@ -3572,7 +3572,7 @@ def goblin_direction_ok(leg: object) -> bool:
     return True
 
 
-# When strict filter_eligible leaves fewer than this many legs, top-rank fallback runs.
+# When strict filter_eligible leaves fewer than this many legs, hold (no rank fallback).
 _BEST_PROPS_POOL_MIN_LEGS = 8
 _BEST_PROPS_POOL_MAX_LEGS = 24
 
@@ -11217,8 +11217,8 @@ def _prefer_main_payout_floor_groups(groups: list[dict]) -> list[dict]:
     (cut volume) rather than shipping a board of sub-floor losers.
 
     When PROPORACLE_REQUIRE_LIVE_PAYOUT=1 (default): only exact live_cdp floors
-    ship when any exist. If every slip is still pending live CDP, keep a
-    soft pending board (hard floor with allow_unknown) instead of wiping blank.
+    ship when any exist. If every slip is still pending live CDP, hold the
+    board (do not publish invented pending floors).
     """
     preferred_x = float(MAIN_PREFERRED_MIN_PAYOUT_X)
     hard_x = float(SHORT_FLOOR_HARD_X)
@@ -11289,38 +11289,12 @@ def _prefer_main_payout_floor_groups(groups: list[dict]) -> list[dict]:
             )
         return hard_only
     if n_defer:
-        # Soften empty-board wipe: when every slip is still pending live CDP
-        # (common before 11AM Payout CDP), keep the board with unknown floors
-        # allowed through the hard gate so /tickets is not wiped blank.
-        if require_live and not preferred and not hard_only:
-            soft: list[dict] = []
-            for g in groups:
-                if not isinstance(g, dict):
-                    continue
-                kept = []
-                for t in g.get("tickets") or []:
-                    if not isinstance(t, dict):
-                        continue
-                    if hard_x <= 0 or _ticket_clears_payout_floor(
-                        t, floor_x=hard_x, allow_unknown=True
-                    ):
-                        kept.append(t)
-                if kept:
-                    ng = dict(g)
-                    ng["tickets"] = kept
-                    ng["n_legs"] = int(ng.get("n_legs") or _slip_leg_count(kept[0], ng))
-                    soft.append(ng)
-            if soft:
-                print(
-                    f"  [web] last filter: live_cdp pending for all {n_defer} slips — "
-                    f"keeping {sum(len(g.get('tickets') or []) for g in soft)} with "
-                    f"pending floors (hard ≥{hard_x:g}x allow_unknown) until CDP fills"
-                )
-                return soft
+        # Pending / unpriced slips do not publish. Rule 9 needs a scraped
+        # N-correct quote at/above the floor — invented pending floors are out.
         print(
-            f"  [web] last filter: cut all {n_defer} slips "
+            f"  [web] last filter: hold all {n_defer} slips "
             f"(need live_cdp ≥{hard_x:g}x"
-            f"{'' if not require_live else '; pending/unpriced deferred'}; "
+            f"{'' if not require_live else '; pending/unpriced held — not published'}; "
             f"no high-p_win bypass)"
         )
     return []
@@ -22810,37 +22784,17 @@ def main():
         )
         strict_pool_n = 0 if pooled is None else len(pooled)
         thin_sports = sport in ("MLB", "SOCCER", "SOC")
+        # Thin strict pool → zero tickets (no rank-score backfill of gate fails).
+        # Same shape as the Sept 15 Mesa Jr. bug when soft void + top-N refill ran.
         if thin_sports and strict_pool_n < _BEST_PROPS_POOL_MIN_LEGS:
             print(
                 f"  [thin-pool] {sport}: strict eligible pool {strict_pool_n} legs "
-                f"(<{_BEST_PROPS_POOL_MIN_LEGS}) — soft void + rank fallback"
+                f"(<{_BEST_PROPS_POOL_MIN_LEGS}) — holding tickets (no rank fallback)"
             )
-            relaxed = pre_void_df.copy()
-            if "void_reason" in relaxed.columns:
-                void_mask = _hard_void_mask_for_ticket_pool(relaxed, sport, soft_void=True)
-                post_note = relaxed["void_reason"].astype(str).str.upper()
-                void_mask = void_mask | post_note.str.contains("POSTPON", na=False)
-                relaxed = relaxed[~void_mask].copy()
-            post_mask = _mlb_postponed_exclusion_mask(relaxed, str(args.date)[:10])
-            if int(post_mask.sum()):
-                relaxed = relaxed[~post_mask].copy()
-            wnba_post_mask = _wnba_postponed_exclusion_mask(relaxed, str(args.date)[:10])
-            if int(wnba_post_mask.sum()):
-                relaxed = relaxed[~wnba_post_mask].copy()
-            if excluded and "prop_type" in relaxed.columns:
-                relaxed = relaxed[
-                    ~relaxed["prop_type"].astype(str).str.lower().isin(excluded)
-                ]
-            if {"sport", "prop_type"}.issubset(relaxed.columns):
-                m_mlb, _ = _mlb_ticket_pool_exclusion_mask(relaxed)
-                m_nhl, _, _, _, _ = _nhl_ticket_pool_exclusion_mask(relaxed)
-                relaxed = relaxed[~(m_mlb | m_nhl)].copy()
-            fb = _best_props_rank_pool_fallback(relaxed, sport)
-            if fb is not None and len(fb) >= 2:
-                print(
-                    f"  [best-props] {sport}: using top {len(fb)} by rank_score (soft void)"
-                )
-                pooled = _filter_df_main_goblin_recency(fb)
+            discard_tracker.log_count(
+                sport, "thin_pool_hold", max(0, int(total_loaded) - int(strict_pool_n))
+            )
+            pooled = pooled.iloc[0:0].copy() if pooled is not None else pd.DataFrame()
         if soccer_auc_deferred:
             final_n = 0 if pooled is None else len(pooled)
             if final_n >= _BEST_PROPS_POOL_MIN_LEGS:
