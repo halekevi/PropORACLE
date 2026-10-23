@@ -32,11 +32,10 @@
           "avg_hit_rate": 1.0,
           "est_win_prob": 0.535,
           "est_flex_cash_prob": null,
-          "power_payout": 2.0,
+          "power_payout": null,
           "flex_payout": null,
           "base_power_payout": 2.0,
           "ev_power": 0.068,
-          "display_min_x": 2.0,
           "core_build": true,
           "core_recipe": "goblin70",
           "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
@@ -120,21 +119,13 @@
           "play": "Power",
           "payout": {
             "ticket_type": "power",
-            "payout": 2.0,
-            "min_guarantee": 2.0,
-            "min_payout_x": 2.0,
-            "display_min_x": 2.0,
             "p_all_win": 0.535,
             "p_miss_1": 0.0,
             "ev": 0.068,
-            "recommendation": "OK",
-            "entry_10_to_win_guarantee": 20.0,
-            "entry_20_to_win_guarantee": 40.0,
-            "sweep_payout": 2.0,
-            "sweep_payout_x": 2.0,
+            "recommendation": "HOLD",
             "audit_all_hit_x": 2.0,
-            "payout_source": "n_correct_live",
-            "payout_note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
+            "payout_source": "pending_live",
+            "payout_note": "HELD: was mix_floor 2.0x mislabeled n_correct_live (not a scraped N-correct). Needs live CDP / slip N-correct before publish as priced.",
             "n_correct": {
               "2": 2.0
             },
@@ -171,7 +162,7 @@
           "kelly_units": 0.0,
           "correlation_multiplier": 1.0,
           "correlation_audit": [
-            "same_game_density×1.0000"
+            "same_game_densityÃ—1.0000"
           ],
           "flat_multiplier": 3.0,
           "est_multiplier": 2.3786,
@@ -569,7 +560,7 @@
   "preferred_min_payout_x": 1.5,
   "short_floor_hard_x": 1.5,
   "short_floor_high_p_win": 0.7,
-  "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
+  "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Î”), then mix_by_delta.",
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
     "goblin_70": 2,
@@ -650,5 +641,7 @@
     }
   },
   "player_slip_cap": 2,
-  "_tier_scrub": "dropped C-tier NHL/soccer until re-tier backtested"
+  "_tier_scrub": "dropped C-tier NHL/soccer until re-tier backtested",
+  "updated_at": "2026-10-23 16:00:46 UTC",
+  "hold_note": "Soccer+Allen Mix held pending_live (mix_floor mislabel). Tennis remains live_cdp 1.6x."
 }

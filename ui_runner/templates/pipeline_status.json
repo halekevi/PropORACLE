@@ -1,23 +1,23 @@
 {
   "nba": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 19:48:11",
+      "no_slate": false
     }
   },
   "nba1h": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 19:48:11",
+      "no_slate": false
     }
   },
   "nba1q": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 19:48:11",
+      "no_slate": false
     }
   },
   "cbb": {
@@ -29,30 +29,30 @@
   },
   "cfb": {
     "slate": {
-      "exists": true,
-      "modified": "2026-10-23 14:51:33",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "nhl": {
     "slate": {
-      "exists": true,
-      "modified": "2026-10-23 14:51:33",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "soccer": {
     "slate": {
-      "exists": true,
-      "modified": "2026-10-23 14:51:33",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "mlb": {
     "slate": {
-      "exists": true,
-      "modified": "2026-10-23 14:51:33",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "nfl": {
@@ -65,42 +65,42 @@
   "tennis": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-23 14:51:33",
+      "modified": "2026-10-21 19:48:11",
       "no_slate": false
     }
   },
   "golf": {
     "slate": {
-      "exists": true,
-      "modified": "2026-10-23 14:51:33",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "wnba": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 19:48:11",
+      "no_slate": false
     }
   },
   "wnba1h": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 19:48:11",
+      "no_slate": false
     }
   },
   "wnba1q": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-10-21 19:48:11",
+      "no_slate": false
     }
   },
   "combined": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-23 14:51:33",
+      "modified": "2026-10-21 19:48:11",
       "no_slate": false
     }
   }
