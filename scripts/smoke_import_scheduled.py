@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """Import smoke test for scheduled-run entrypoints.
 
-Fails fast when a live-tree script imports a util that only exists in another
-worktree (cfb_l8_bonus / role_from_snap class of bugs).
+1) Import critical modules (fast fail on missing packages).
+2) AST-scan every .py under scripts/, utils/, Sports/*/scripts for
+   ``from utils.X import a, b`` — including imports inside function bodies —
+   and verify each name exists on the live-tree module. Catches the
+   role_from_snap class of bugs (import buried in a rarely-hit function).
 
   py -3.14 scripts/smoke_import_scheduled.py
 """
 from __future__ import annotations
 
+import ast
 import importlib
 import sys
 from pathlib import Path
@@ -39,6 +43,87 @@ SYMBOLS = [
     ("utils.nfl_prop_defense", "role_from_snap"),
 ]
 
+SCAN_ROOTS = [
+    ROOT / "scripts",
+    ROOT / "utils",
+    ROOT / "Sports",
+]
+
+
+def _iter_py_files() -> list[Path]:
+    files: list[Path] = []
+    for root in SCAN_ROOTS:
+        if not root.is_dir():
+            continue
+        for p in root.rglob("*.py"):
+            if any(part in {"__pycache__", ".venv", "node_modules", "archive"} for part in p.parts):
+                continue
+            files.append(p)
+    return files
+
+
+def _utils_import_names(tree: ast.AST) -> list[tuple[str, list[str], int]]:
+    """Return (module, [names], lineno) for ``from utils… import …`` anywhere in the tree."""
+    out: list[tuple[str, list[str], int]] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.ImportFrom):
+            continue
+        mod = node.module or ""
+        if not mod.startswith("utils"):
+            continue
+        names = [a.name for a in node.names if a.name != "*"]
+        if not names:
+            continue
+        out.append((mod, names, int(getattr(node, "lineno", 0) or 0)))
+    return out
+
+
+def _module_defines(mod_name: str, attr: str, cache: dict[str, set[str] | None]) -> bool | None:
+    """True/False if module loads; None if module itself is missing."""
+    if mod_name not in cache:
+        try:
+            mod = importlib.import_module(mod_name)
+            cache[mod_name] = set(dir(mod))
+        except Exception:  # noqa: BLE001
+            cache[mod_name] = None
+    names = cache[mod_name]
+    if names is None:
+        return None
+    return attr in names
+
+
+def ast_scan_utils_imports() -> list[str]:
+    errors: list[str] = []
+    cache: dict[str, set[str] | None] = {}
+    checked = 0
+    for path in _iter_py_files():
+        try:
+            src = path.read_text(encoding="utf-8")
+            tree = ast.parse(src, filename=str(path))
+        except SyntaxError as exc:
+            errors.append(f"syntax {path.relative_to(ROOT)}: {exc}")
+            continue
+        except OSError as exc:
+            errors.append(f"read {path.relative_to(ROOT)}: {exc}")
+            continue
+        for mod_name, names, lineno in _utils_import_names(tree):
+            for attr in names:
+                checked += 1
+                ok = _module_defines(mod_name, attr, cache)
+                if ok is None:
+                    errors.append(
+                        f"{path.relative_to(ROOT)}:{lineno}: "
+                        f"cannot import module {mod_name} (needed for {attr})"
+                    )
+                elif not ok:
+                    errors.append(
+                        f"{path.relative_to(ROOT)}:{lineno}: "
+                        f"from {mod_name} import {attr} — name missing on live tree"
+                    )
+    n_files = len(_iter_py_files())
+    print(f"  OK  ast-scan checked {checked} utils import name(s) across {n_files} files")
+    return errors
+
 
 def main() -> int:
     errors: list[str] = []
@@ -60,6 +145,10 @@ def main() -> int:
         except Exception as exc:  # noqa: BLE001
             errors.append(f"symbol {mod_name}.{attr}: {exc}")
             print(f"  FAIL symbol {mod_name}.{attr}: {exc}")
+
+    print("  … AST scan (includes imports inside function bodies)")
+    errors.extend(ast_scan_utils_imports())
+
     if errors:
         print("\n[smoke-import] FAILED — fix live-tree imports before scheduled fetch:")
         for e in errors:

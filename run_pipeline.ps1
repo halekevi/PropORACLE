@@ -394,18 +394,7 @@ if ($SkipCombined) { Write-Host "  [flags] SkipCombined — sport pipelines only
 if ($SkipFetch) { Write-Host "  [flags] SkipFetch — reuse existing step1 files" -ForegroundColor DarkGray }
 Write-Host ""
 
-# Import smoke test — catch live-tree missing utils before any fetch (seconds).
-$SmokeImport = Join-Path $Root "scripts\smoke_import_scheduled.py"
-if (Test-Path -LiteralPath $SmokeImport) {
-    Write-Host "  [smoke-import] Checking scheduled entrypoint imports..." -ForegroundColor Cyan
-    & py -3.14 $SmokeImport
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "  [smoke-import] FAILED — aborting before fetch. Sync utils into this live tree." -ForegroundColor Red
-        exit 2
-    }
-} else {
-    Write-Host "  [smoke-import] WARN: scripts\smoke_import_scheduled.py missing — skipping" -ForegroundColor Yellow
-}
+& (Join-Path $Root "scripts\Invoke-SmokeImport.ps1") -Root $Root -Label "smoke-import"
 Write-Host ""
 
 # -- Helper: auto-wipe ESPN cache if stale ------------------------------------

@@ -5,6 +5,8 @@ param(
 )
 
 $Root = Split-Path $PSScriptRoot -Parent
+# Fail before any grade fetch if live-tree utils are missing (role_from_snap class).
+& (Join-Path $Root "scripts\Invoke-SmokeImport.ps1") -Root $Root -Label "smoke-import/grader"
 $SportsRoot = Join-Path $Root "Sports"
 $DateDir = Join-Path $Root "outputs\$Date"
 $CanonicalDateDir = Join-Path $DateDir "canonical"

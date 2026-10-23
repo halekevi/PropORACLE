@@ -68,6 +68,8 @@ param(
 
 $ErrorActionPreference = "Continue"
 $Root = Split-Path $PSScriptRoot -Parent
+# Fail before STEP A grader if live-tree utils are missing (role_from_snap class).
+& (Join-Path $Root "scripts\Invoke-SmokeImport.ps1") -Root $Root -Label "smoke-import/daily"
 $envFile = Join-Path $Root ".env"
 if (Test-Path $envFile) {
     Get-Content $envFile | ForEach-Object {
