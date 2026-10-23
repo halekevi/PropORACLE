@@ -1443,6 +1443,14 @@ def write_web(payload: dict, board: list[dict] | None = None) -> list[Path]:
             print(f"scrape patch: {n_scrape} tickets -> live_cdp")
     except Exception as exc:
         print(f"WARN: scrape patch skipped ({exc})")
+    try:
+        from utils.scraped_quote import iter_payload_tickets, log_real_quote_coverage
+
+        log_real_quote_coverage(
+            iter_payload_tickets(web), label="write_web"
+        )
+    except Exception as exc:
+        print(f"WARN: real_quote coverage log skipped ({exc})")
     if not main_groups:
         print(
             "WARN: mixer groups empty — /tickets would be Goblin-70 only. "
@@ -1874,6 +1882,12 @@ def main() -> int:
         pass
     print_card(payload)
     print("\nwrote", out)
+    try:
+        from utils.scraped_quote import log_real_quote_coverage
+
+        log_real_quote_coverage(payload.get("tickets") or [], label="g70_build")
+    except Exception as exc:
+        print(f"WARN: real_quote coverage log skipped ({exc})")
     if args.write_web and not args.l5_eq_5:
         write_web(payload, board=board)
         if args.publish_live:

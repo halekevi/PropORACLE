@@ -39,6 +39,11 @@ def main() -> None:
     if not rows:
         print("No track log yet.")
         return
+    from utils.scraped_quote import log_real_quote_coverage
+
+    # Slip rows only — legs are paper / shadow and usually have no quote.
+    slips = [r for r in rows if str(r.get("kind") or "slip") != "leg"]
+    log_real_quote_coverage(slips, label="track_log")
     for rec in summarize_tracks(rows):
         wr = rec["win_rate"]
         wr_s = f"{wr:.1%}" if wr is not None else "n/a"

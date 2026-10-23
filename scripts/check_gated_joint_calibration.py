@@ -528,10 +528,11 @@ def main() -> int:
     for key, n in sorted(sources.items(), key=lambda kv: -kv[1]):
         print(f"  {key}: {n}")
 
-    from utils.scraped_quote import is_real_scraped_quote
+    from utils.scraped_quote import is_real_scraped_quote, log_real_quote_coverage
 
     # Fail-closed: external scrape hit is not enough — ticket must also carry
     # a scraped payout_source + non-null captured_at (same rule as promotion/P&L).
+    log_real_quote_coverage(gob_clean, label="gated_goblin_novoid")
     matched = [
         r
         for r in gob
