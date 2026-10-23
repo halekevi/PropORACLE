@@ -1522,7 +1522,11 @@ def apply_actuals(df, actuals_path):
     from grading.leg_grade_utils import is_unplayable_for_grading
 
     if "void_reason" in df.columns:
-        unplayable = df["void_reason"].map(is_unplayable_for_grading)
+        vr = df["void_reason"]
+        if isinstance(vr, pd.DataFrame):
+            vr = vr.iloc[:, 0]
+        unplayable = vr.map(is_unplayable_for_grading)
+        unplayable = pd.Series(unplayable, index=df.index).fillna(False).astype(bool)
         n_drop = int(unplayable.sum())
         if n_drop:
             print(
