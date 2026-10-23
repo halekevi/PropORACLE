@@ -1,0 +1,69 @@
+{
+  "as_of": "2026-10-23T16:52:50Z",
+  "rule": "Exclude from scraped-quote promotion bar and realistic P&L shadow until a real CDP/slip capture exists.",
+  "criterion": "was n_correct_live with null captured_at (make_ticket label not overwritten by EV score source)",
+  "start": "2026-10-01",
+  "n": 6,
+  "slips": [
+    {
+      "file": "goblin70_tickets_2026-10-05.json",
+      "date": "2026-10-05",
+      "id": "M2-1",
+      "was": "n_correct_live",
+      "now": "mix_floor",
+      "note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
+      "n_legs": 2,
+      "quote": 2.0
+    },
+    {
+      "file": "goblin70_tickets_2026-10-06.json",
+      "date": "2026-10-06",
+      "id": "M2-1",
+      "was": "n_correct_live",
+      "now": "mix_floor",
+      "note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
+      "n_legs": 2,
+      "quote": 2.0
+    },
+    {
+      "file": "goblin70_tickets_2026-10-06.json",
+      "date": "2026-10-06",
+      "id": "G3-2",
+      "was": "n_correct_live",
+      "now": "goblin_3",
+      "note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
+      "n_legs": 3,
+      "quote": 2.3
+    },
+    {
+      "file": "goblin70_tickets_2026-10-22.json",
+      "date": "2026-10-22",
+      "id": "M2-1",
+      "was": "n_correct_live",
+      "now": "mix_floor",
+      "note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
+      "n_legs": 2,
+      "quote": 2.0
+    },
+    {
+      "file": "goblin70_tickets_2026-10-22.json",
+      "date": "2026-10-22",
+      "id": "G3-2",
+      "was": "n_correct_live",
+      "now": "goblin_3",
+      "note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
+      "n_legs": 3,
+      "quote": 2.3
+    },
+    {
+      "file": "goblin70_tickets_2026-10-23.json",
+      "date": "2026-10-23",
+      "id": "M2-1",
+      "was": "n_correct_live",
+      "now": "mix_floor",
+      "note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
+      "n_legs": 2,
+      "quote": 2.0
+    }
+  ]
+}

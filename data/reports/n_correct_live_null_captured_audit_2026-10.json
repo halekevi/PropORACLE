@@ -1,0 +1,83 @@
+{
+  "as_of": "2026-10-23",
+  "start": "2026-10-01",
+  "n_correct_live_null_captured_at": 6,
+  "mix_floor_note_among_suspects": 4,
+  "by_kind": {
+    "goblin70": 6
+  },
+  "by_date": {
+    "2026-10-05": 1,
+    "2026-10-06": 2,
+    "2026-10-22": 2,
+    "2026-10-23": 1
+  },
+  "suspects": [
+    {
+      "kind": "goblin70",
+      "file": "goblin70_tickets_2026-10-05.json",
+      "date": "2026-10-05",
+      "id": "M2-1",
+      "n_legs": 2,
+      "family": "mix",
+      "all_hit": null,
+      "mix_floor_note": true,
+      "note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1."
+    },
+    {
+      "kind": "goblin70",
+      "file": "goblin70_tickets_2026-10-06.json",
+      "date": "2026-10-06",
+      "id": "M2-1",
+      "n_legs": 2,
+      "family": "mix",
+      "all_hit": null,
+      "mix_floor_note": true,
+      "note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1."
+    },
+    {
+      "kind": "goblin70",
+      "file": "goblin70_tickets_2026-10-06.json",
+      "date": "2026-10-06",
+      "id": "G3-2",
+      "n_legs": 3,
+      "family": "goblin",
+      "all_hit": null,
+      "mix_floor_note": false,
+      "note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1."
+    },
+    {
+      "kind": "goblin70",
+      "file": "goblin70_tickets_2026-10-22.json",
+      "date": "2026-10-22",
+      "id": "M2-1",
+      "n_legs": 2,
+      "family": "mix",
+      "all_hit": null,
+      "mix_floor_note": true,
+      "note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1."
+    },
+    {
+      "kind": "goblin70",
+      "file": "goblin70_tickets_2026-10-22.json",
+      "date": "2026-10-22",
+      "id": "G3-2",
+      "n_legs": 3,
+      "family": "goblin",
+      "all_hit": null,
+      "mix_floor_note": false,
+      "note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1."
+    },
+    {
+      "kind": "goblin70",
+      "file": "goblin70_tickets_2026-10-23.json",
+      "date": "2026-10-23",
+      "id": "M2-1",
+      "n_legs": 2,
+      "family": "mix",
+      "all_hit": null,
+      "mix_floor_note": true,
+      "note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1."
+    }
+  ]
+}
