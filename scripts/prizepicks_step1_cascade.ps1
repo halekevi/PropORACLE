@@ -84,24 +84,29 @@ function Invoke-PyStep7b {
         $p = Join-Path $RepoRoot "scripts\step7b_edge_score.py"
         if (-not (Test-Path -LiteralPath $p)) {
             Write-Output "  [$SportLabel] step7b: WARN (missing step7b_edge_score.py)"
-            return
-        }
-        $argList = @("--sport", $SportLabel, "--repo-root", $RepoRoot)
-        if ($Step7Xlsx) { $argList += @("--step7-xlsx", $Step7Xlsx) }
-        if ($PipelineDate) { $argList += @("--pipeline-date", $PipelineDate) }
-        Write-Output "  --> step7b ($SportLabel)"
-        Write-Output "        CMD: py -3.14 $p $($argList -join ' ')"
-        $output = & py -3.14 $p @argList 2>&1
-        $exit = $LASTEXITCODE
-        foreach ($line in $output) { Write-Output "        $line" }
-        if ($exit -ne 0) {
-            Write-Output "  [$SportLabel] step7b: WARN (exit $exit)"
         } else {
-            Write-Output "  [$SportLabel] step7b: OK"
+            $argList = @("--sport", $SportLabel, "--repo-root", $RepoRoot)
+            if ($Step7Xlsx) { $argList += @("--step7-xlsx", $Step7Xlsx) }
+            if ($PipelineDate) { $argList += @("--pipeline-date", $PipelineDate) }
+            Write-Output "  --> step7b ($SportLabel)"
+            Write-Output "        CMD: py -3.14 $p $($argList -join ' ')"
+            $output = & py -3.14 $p @argList 2>&1
+            $exit = $LASTEXITCODE
+            foreach ($line in $output) { Write-Output "        $line" }
+            if ($exit -ne 0) {
+                Write-Output "  [$SportLabel] step7b: WARN (exit $exit)"
+            } else {
+                Write-Output "  [$SportLabel] step7b: OK"
+            }
         }
     } catch {
         Write-Output "  [$SportLabel] step7b: WARN ($($_.Exception.Message))"
     } finally { Pop-Location }
+    if ($Step7Xlsx -and -not (Test-Path -LiteralPath $Step7Xlsx)) {
+        Write-Output "  FAILED: [$SportLabel] step7 xlsx missing after step7b: $Step7Xlsx"
+        return $false
+    }
+    return $true
 }
 
 function Get-PrizePicksCdpUrl {
