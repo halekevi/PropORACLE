@@ -1,0 +1,458 @@
+{
+  "nba1q": {
+    "rebounds": {
+      "pool": "Goblin OVER L5=5, drop FG-match/suspect/DNP, require leakage pass|unchecked kept? NO \u2014 fail dropped, unchecked kept",
+      "note_leakage": "Leakage uses FULL-GAME nba boxes vs 1Q lines (proxy). Fail drops; unchecked kept but reported separately.",
+      "join_counts": {
+        "plausible_1q": 235,
+        "unchecked": 187,
+        "fg_match_drop": 6
+      },
+      "join_unchecked_share": 0.4369,
+      "join_checked_n": 241,
+      "join_total_l5eq5": 428,
+      "leak_counts": {
+        "pass": 372,
+        "unchecked": 2,
+        "fail": 48
+      },
+      "after_leak_fail_drop": {
+        "hits": 347,
+        "n": 374,
+        "hit_rate": 0.9278,
+        "wilson_low": 0.897,
+        "wilson_high": 0.9499
+      },
+      "after_leak_pass_only": {
+        "hits": 345,
+        "n": 372,
+        "hit_rate": 0.9274,
+        "wilson_low": 0.8965,
+        "wilson_high": 0.9496
+      },
+      "distinct_players": 112,
+      "distinct_dates": 49,
+      "top10_players": [
+        {
+          "player": "Stephon Castle",
+          "n": 11,
+          "share": 0.0294
+        },
+        {
+          "player": "Donovan Mitchell",
+          "n": 11,
+          "share": 0.0294
+        },
+        {
+          "player": "Julian Champagnie",
+          "n": 10,
+          "share": 0.0267
+        },
+        {
+          "player": "Ausar Thompson",
+          "n": 10,
+          "share": 0.0267
+        },
+        {
+          "player": "Desmond Bane",
+          "n": 9,
+          "share": 0.0241
+        },
+        {
+          "player": "Shai Gilgeous-Alexander",
+          "n": 9,
+          "share": 0.0241
+        },
+        {
+          "player": "Devin Vassell",
+          "n": 8,
+          "share": 0.0214
+        },
+        {
+          "player": "VJ Edgecombe",
+          "n": 8,
+          "share": 0.0214
+        },
+        {
+          "player": "Naz Reid",
+          "n": 8,
+          "share": 0.0214
+        },
+        {
+          "player": "Max Strus",
+          "n": 8,
+          "share": 0.0214
+        }
+      ],
+      "top10_share": 0.246,
+      "max_player_share": 0.0294,
+      "dates_top5": [
+        [
+          "2026-04-19",
+          20
+        ],
+        [
+          "2026-03-25",
+          19
+        ],
+        [
+          "2026-04-25",
+          19
+        ],
+        [
+          "2026-04-26",
+          16
+        ],
+        [
+          "2026-04-28",
+          14
+        ]
+      ]
+    },
+    "assists": {
+      "pool": "Goblin OVER L5=5, drop FG-match/suspect/DNP, require leakage pass|unchecked kept? NO \u2014 fail dropped, unchecked kept",
+      "note_leakage": "Leakage uses FULL-GAME nba boxes vs 1Q lines (proxy). Fail drops; unchecked kept but reported separately.",
+      "join_counts": {
+        "plausible_1q": 119,
+        "unchecked": 79,
+        "fg_match_drop": 19
+      },
+      "join_unchecked_share": 0.3641,
+      "join_checked_n": 138,
+      "join_total_l5eq5": 217,
+      "leak_counts": {
+        "pass": 180,
+        "unchecked": 2,
+        "fail": 16
+      },
+      "after_leak_fail_drop": {
+        "hits": 165,
+        "n": 182,
+        "hit_rate": 0.9066,
+        "wilson_low": 0.8555,
+        "wilson_high": 0.9409
+      },
+      "after_leak_pass_only": {
+        "hits": 163,
+        "n": 180,
+        "hit_rate": 0.9056,
+        "wilson_low": 0.854,
+        "wilson_high": 0.9402
+      },
+      "distinct_players": 68,
+      "distinct_dates": 44,
+      "top10_players": [
+        {
+          "player": "Josh Hart",
+          "n": 12,
+          "share": 0.0659
+        },
+        {
+          "player": "Karl-Anthony Towns",
+          "n": 8,
+          "share": 0.044
+        },
+        {
+          "player": "Jalen Brunson",
+          "n": 7,
+          "share": 0.0385
+        },
+        {
+          "player": "Evan Mobley",
+          "n": 7,
+          "share": 0.0385
+        },
+        {
+          "player": "Paolo Banchero",
+          "n": 6,
+          "share": 0.033
+        },
+        {
+          "player": "De'Aaron Fox",
+          "n": 6,
+          "share": 0.033
+        },
+        {
+          "player": "Stephon Castle",
+          "n": 5,
+          "share": 0.0275
+        },
+        {
+          "player": "Derrick White",
+          "n": 5,
+          "share": 0.0275
+        },
+        {
+          "player": "Amen Thompson",
+          "n": 5,
+          "share": 0.0275
+        },
+        {
+          "player": "Jalen Suggs",
+          "n": 5,
+          "share": 0.0275
+        }
+      ],
+      "top10_share": 0.3626,
+      "max_player_share": 0.0659,
+      "dates_top5": [
+        [
+          "2026-03-25",
+          14
+        ],
+        [
+          "2026-04-18",
+          10
+        ],
+        [
+          "2026-04-29",
+          9
+        ],
+        [
+          "2026-04-05",
+          8
+        ],
+        [
+          "2026-04-19",
+          8
+        ]
+      ]
+    }
+  },
+  "nhl": {
+    "points": {
+      "gate": "Standard UNDER L5=5 + L10>=8 + leakage pass (fail dropped)",
+      "uncapped": {
+        "hits": 81,
+        "n": 97,
+        "hit_rate": 0.8351,
+        "wilson_low": 0.7487,
+        "wilson_high": 0.8958
+      },
+      "line_0_5": {
+        "n": 41,
+        "share": 0.4227,
+        "cell": {
+          "hits": 32,
+          "n": 41,
+          "hit_rate": 0.7805,
+          "wilson_low": 0.6329,
+          "wilson_high": 0.88
+        }
+      },
+      "line_not_0_5": {
+        "n": 56,
+        "share": 0.5773,
+        "cell": {
+          "hits": 49,
+          "n": 56,
+          "hit_rate": 0.875,
+          "wilson_low": 0.7637,
+          "wilson_high": 0.9381
+        }
+      },
+      "by_role": {
+        "middle": {
+          "n": 40,
+          "share": 0.4124,
+          "cell": {
+            "hits": 32,
+            "n": 40,
+            "hit_rate": 0.8,
+            "wilson_low": 0.6524,
+            "wilson_high": 0.895
+          }
+        },
+        "starter": {
+          "n": 38,
+          "share": 0.3918,
+          "cell": {
+            "hits": 35,
+            "n": 38,
+            "hit_rate": 0.9211,
+            "wilson_low": 0.792,
+            "wilson_high": 0.9728
+          }
+        },
+        "depth": {
+          "n": 14,
+          "share": 0.1443,
+          "cell": {
+            "hits": 11,
+            "n": 14,
+            "hit_rate": 0.7857,
+            "wilson_low": 0.5241,
+            "wilson_high": 0.9243
+          }
+        },
+        "unknown": {
+          "n": 5,
+          "share": 0.0515,
+          "cell": {
+            "hits": 3,
+            "n": 5,
+            "hit_rate": 0.6,
+            "wilson_low": 0.2307,
+            "wilson_high": 0.8824
+          }
+        }
+      },
+      "one_per_game_prefer_hit": {
+        "hits": 27,
+        "n": 28,
+        "hit_rate": 0.9643,
+        "wilson_low": 0.8229,
+        "wilson_high": 0.9937
+      },
+      "one_per_game_alpha": {
+        "hits": 24,
+        "n": 28,
+        "hit_rate": 0.8571,
+        "wilson_low": 0.6851,
+        "wilson_high": 0.943
+      },
+      "games_with_multi_legs": 25,
+      "avg_legs_per_game": 3.464,
+      "rule4_note": "If rule 4 (no 0.5 on role/depth) applies to NHL UNDER, dropping depth+0.5 removes a large share \u2014 see by_role and line_0_5.",
+      "depth_and_0_5": {
+        "n": 14,
+        "share": 0.1443,
+        "cell": {
+          "hits": 11,
+          "n": 14,
+          "hit_rate": 0.7857,
+          "wilson_low": 0.5241,
+          "wilson_high": 0.9243
+        }
+      },
+      "starter_and_0_5": {
+        "n": 10,
+        "share": 0.1031,
+        "cell": {
+          "hits": 10,
+          "n": 10,
+          "hit_rate": 1.0,
+          "wilson_low": 0.7225,
+          "wilson_high": 1.0
+        }
+      }
+    },
+    "assists": {
+      "gate": "Standard UNDER L5=5 + L10>=8 + leakage pass (fail dropped)",
+      "uncapped": {
+        "hits": 96,
+        "n": 119,
+        "hit_rate": 0.8067,
+        "wilson_low": 0.7266,
+        "wilson_high": 0.8676
+      },
+      "line_0_5": {
+        "n": 88,
+        "share": 0.7395,
+        "cell": {
+          "hits": 70,
+          "n": 88,
+          "hit_rate": 0.7955,
+          "wilson_low": 0.6997,
+          "wilson_high": 0.8665
+        }
+      },
+      "line_not_0_5": {
+        "n": 31,
+        "share": 0.2605,
+        "cell": {
+          "hits": 26,
+          "n": 31,
+          "hit_rate": 0.8387,
+          "wilson_low": 0.6737,
+          "wilson_high": 0.9291
+        }
+      },
+      "by_role": {
+        "middle": {
+          "n": 55,
+          "share": 0.4622,
+          "cell": {
+            "hits": 46,
+            "n": 55,
+            "hit_rate": 0.8364,
+            "wilson_low": 0.7174,
+            "wilson_high": 0.9114
+          }
+        },
+        "starter": {
+          "n": 38,
+          "share": 0.3193,
+          "cell": {
+            "hits": 28,
+            "n": 38,
+            "hit_rate": 0.7368,
+            "wilson_low": 0.5799,
+            "wilson_high": 0.8503
+          }
+        },
+        "depth": {
+          "n": 17,
+          "share": 0.1429,
+          "cell": {
+            "hits": 14,
+            "n": 17,
+            "hit_rate": 0.8235,
+            "wilson_low": 0.5897,
+            "wilson_high": 0.9381
+          }
+        },
+        "unknown": {
+          "n": 9,
+          "share": 0.0756,
+          "cell": {
+            "hits": 8,
+            "n": 9,
+            "hit_rate": 0.8889,
+            "wilson_low": 0.565,
+            "wilson_high": 0.9801
+          }
+        }
+      },
+      "one_per_game_prefer_hit": {
+        "hits": 27,
+        "n": 27,
+        "hit_rate": 1.0,
+        "wilson_low": 0.8754,
+        "wilson_high": 1.0
+      },
+      "one_per_game_alpha": {
+        "hits": 22,
+        "n": 27,
+        "hit_rate": 0.8148,
+        "wilson_low": 0.633,
+        "wilson_high": 0.9182
+      },
+      "games_with_multi_legs": 25,
+      "avg_legs_per_game": 4.407,
+      "rule4_note": "If rule 4 (no 0.5 on role/depth) applies to NHL UNDER, dropping depth+0.5 removes a large share \u2014 see by_role and line_0_5.",
+      "depth_and_0_5": {
+        "n": 17,
+        "share": 0.1429,
+        "cell": {
+          "hits": 14,
+          "n": 17,
+          "hit_rate": 0.8235,
+          "wilson_low": 0.5897,
+          "wilson_high": 0.9381
+        }
+      },
+      "starter_and_0_5": {
+        "n": 19,
+        "share": 0.1597,
+        "cell": {
+          "hits": 13,
+          "n": 19,
+          "hit_rate": 0.6842,
+          "wilson_low": 0.4601,
+          "wilson_high": 0.8464
+        }
+      }
+    }
+  }
+}

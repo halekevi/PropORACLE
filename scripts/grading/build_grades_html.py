@@ -250,7 +250,7 @@ def _is_unresolvable_missing_data_void(row: dict) -> bool:
         or ""
     ).strip().upper()
     res = str(row.get("Result") or row.get("result") or "").strip().upper()
-    return "NO_DATA" in vr or res == "NO_DATA"
+    return "NO_DATA" in vr or res == "NO_DATA" or "UNRESOLVED_START" in vr
 
 
 def _filter_prop_level_rows(rows: list[dict]) -> list[dict]:
@@ -554,6 +554,10 @@ def prop_row_for_api(
         return None
     team = _pick("Team", "team", "team_abbr")
     prop = _pick("Prop Type", "prop type", "prop_type_norm", "prop_type", "Prop", "prop", "Pick", "pick")
+    # Never emit placeholder props — blank labels poison discover_gates / hit-rate
+    # joins (CFB 2026-09-05 graded_props had prop "—" on every decided row).
+    if not prop:
+        return None
     direction = _pick(
         "Dir",
         "dir",
@@ -632,6 +636,29 @@ def prop_row_for_api(
     usage_tier = _pick("usage_tier", "Usage Tier")
     game_total_bucket = _pick("Game Total Bucket", "game_total_bucket", "OU Bucket", "ou_bucket", "Over Under Bucket", "over_under_bucket", "Total Bucket", "total_bucket")
     game_total = _pick("Game O/U", "game_ou", "Game Total", "game_total", "O/U Total", "ou_total")
+    game_spread = _pick("game_spread", "Spread", "spread", "Game Spread")
+    team_win_prob = _pick_scalar("team_win_prob", "Team Win Prob")
+    line_provider = _pick_scalar("line_provider", "Line Provider")
+    line_is_closing = _pick_scalar("line_is_closing", "Line Is Closing")
+    line_captured_at = _pick_scalar("line_captured_at", "Line Captured At")
+    rest_days = _pick_scalar("rest_days", "Rest Days", "Days Rest")
+    line_vegas = _pick_scalar("line_vegas", "Line (LV)", "Line LV", "vegas_line")
+    line_underdog = _pick_scalar("line_underdog", "Line (UD)", "Line UD")
+    line_draftkings = _pick_scalar("line_draftkings", "Line (DK)", "Line DK")
+    open_line = _pick_scalar("open_line", "Open Line", "Opening Line")
+    vegas_gap = ""
+    try:
+        from utils.pp_vegas_gap import signed_cover as _signed_cover
+
+        if line and line_vegas:
+            vegas_gap = str(
+                round(
+                    _signed_cover(float(line), float(line_vegas), direction or ""),
+                    3,
+                )
+            )
+    except (TypeError, ValueError, ImportError):
+        vegas_gap = ""
     h2h_raw = _pick("H2H", "h2h", "Head To Head", "head_to_head")
     actual_source = _pick("actual_source", "Actual Source", "actual source")
     actual_source_conflict = _pick("actual_source_conflict", "Actual Source Conflict", "actual source conflict")
@@ -646,6 +673,16 @@ def prop_row_for_api(
         "notes",
     )
     proj_id = _pick("pp_projection_id", "projection_id", "PP Projection ID", "Projection ID")
+    league = _pick(
+        "league",
+        "League",
+        "competition",
+        "Competition",
+        "tournament",
+        "Tournament",
+        "event",
+        "Event",
+    )
     result = _norm_result_display(row)
     sport_up = str(sport or "").strip().upper()
     vr_up = str(void_reason or "").strip().upper()
@@ -741,6 +778,52 @@ def prop_row_for_api(
         on_live = on_shadow = False
         ticket_id = None
 
+    stat_def_tier = _pick("Stat Def Tier", "stat_def_tier")
+    stat_def_rank = _pick_scalar("Stat Def Rank", "stat_def_rank")
+    stat_def_category = _pick("Stat Def Category", "stat_def_category")
+    try:
+        from utils.stat_def_stamp import merge_stat_def_fields
+
+        stamped = merge_stat_def_fields(
+            sport=sport,
+            opp=opp_team,
+            prop=prop,
+            existing_tier=stat_def_tier,
+            existing_rank=stat_def_rank,
+            existing_category=stat_def_category,
+        )
+        stat_def_tier = str(stamped.get("stat_def_tier") or "")
+        stat_def_category = str(stamped.get("stat_def_category") or "")
+        rank_val = stamped.get("stat_def_rank")
+        if rank_val is not None and str(rank_val).strip() not in {"", "nan", "None"}:
+            stat_def_rank = str(int(rank_val) if not isinstance(rank_val, str) else rank_val)
+    except Exception:
+        pass
+
+    # PrizePicks: actual == line is a push, even if an older workbook stored HIT/MISS.
+    # Soccer (and all sports): missing actual must stay VOID — never invent a MISS.
+    try:
+        from grading.leg_grade_utils import compare_leg_to_line
+
+        av = float(actual_value) if actual_value not in ("", "—", None) else None
+        ln = float(line) if line not in ("", "—", None) else None
+        if av is None and result in ("HIT", "MISS", "NEAR_LINE", "—"):
+            result = "VOID"
+            if not str(void_reason or "").strip():
+                void_reason = "NO_ACTUAL" if sport_up != "SOCCER" else "NO_DATA"
+        else:
+            rg, _, _ = compare_leg_to_line(av, ln, direction)
+            if rg == "PUSH":
+                result = "PUSH"
+            elif rg == "NO_ACTUAL" and result in ("HIT", "MISS", "NEAR_LINE", "—"):
+                result = "VOID"
+                if not str(void_reason or "").strip():
+                    void_reason = "NO_ACTUAL" if sport_up != "SOCCER" else "NO_DATA"
+            elif rg in ("HIT", "MISS") and result in ("HIT", "MISS", "NEAR_LINE", "—"):
+                result = rg
+    except (TypeError, ValueError, ImportError):
+        pass
+
     hit_val: int | None = None
     if result == "HIT":
         hit_val = 1
@@ -752,7 +835,7 @@ def prop_row_for_api(
         "player": player,
         "team": team or "—",
         "opp_team": opp_team or "",
-        "prop": prop or "—",
+        "prop": prop,
         "line": line or "—",
         "direction": direction or "—",
         "pick_type": pick_type or "—",
@@ -762,6 +845,9 @@ def prop_row_for_api(
         "actual_value": actual_value or "",
         "margin": margin or "",
         "def_tier": def_tier or "",
+        "stat_def_tier": stat_def_tier or "",
+        "stat_def_rank": stat_def_rank or "",
+        "stat_def_category": stat_def_category or "",
         "consistency_grade": consistency_grade or "",
         "team_top3_rank": team_top3_rank or "",
         "team_bottom3_rank": team_bottom3_rank or "",
@@ -796,6 +882,17 @@ def prop_row_for_api(
         "usage_tier": usage_tier or "",
         "game_total_bucket": game_total_bucket or "",
         "game_total": game_total or "",
+        "game_spread": game_spread or "",
+        "team_win_prob": team_win_prob or "",
+        "line_provider": line_provider or "",
+        "line_is_closing": line_is_closing or "",
+        "line_captured_at": line_captured_at or "",
+        "rest_days": rest_days or "",
+        "line_vegas": line_vegas or "",
+        "line_underdog": line_underdog or "",
+        "line_draftkings": line_draftkings or "",
+        "open_line": open_line or "",
+        "vegas_gap": vegas_gap or "",
         "h2h_raw": h2h_raw or "",
         "actual_source": actual_source or "",
         "actual_source_conflict": actual_source_conflict or "",
@@ -803,6 +900,7 @@ def prop_row_for_api(
         "void_reason": void_reason or "",
         "result": result,
         "pp_projection_id": proj_id or "",
+        "league": league or "",
         "ticket_id": ticket_id,
         "on_ticket": on_live,
         "on_shadow_ticket": on_shadow,
@@ -847,6 +945,7 @@ def export_graded_props_json(
         pass
 
     props: list[dict[str, str]] = []
+    skipped_blank_prop = 0
     wnba_ppd: dict[str, str] = {}
     try:
         import sys
@@ -879,12 +978,41 @@ def export_graded_props_json(
             )
             if p:
                 props.append(p)
+            else:
+                player = _cell_str(
+                    row.get("Player") or row.get("player") or row.get("Name")
+                )
+                prop = _cell_str(
+                    row.get("Prop Type")
+                    or row.get("prop_type_norm")
+                    or row.get("prop_type")
+                    or row.get("Prop")
+                    or row.get("prop")
+                )
+                if player and not prop:
+                    skipped_blank_prop += 1
+    if skipped_blank_prop:
+        print(
+            f"  [graded_props] WARN: skipped {skipped_blank_prop} rows with blank prop "
+            f"(refusing placeholder '—')"
+        )
+    try:
+        from attach_market_lines_to_grades import enrich_in_memory
+
+        n_vg = enrich_in_memory(props, date_str, repo=PROJECT_ROOT)
+        if n_vg:
+            print(f"  [graded_props] attached Vegas lines on {n_vg} / {len(props)} rows")
+    except Exception as exc:
+        print(f"  [graded_props] market-line attach skipped: {exc}")
     payload = {
         "date": date_str,
         "count": len(props),
         "props": props,
         "prop_breakdown_rows": build_prop_breakdown_rows(props),
     }
+    from utils.graded_fill_only import assert_fill_only, load_snapshot
+
+    assert_fill_only(load_snapshot(), props, date=date_str)
     out = out_dir / f"graded_props_{date_str}.json"
     out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     return out

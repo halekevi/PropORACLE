@@ -4,14 +4,17 @@
 Main card (app): Goblin OVER with L5=5 + L10>=8 + directional D (tennis keep
 gates: Games Won Standard-Goblin >=4, Total Games L5>=4 and L10>=8, no D; golf L5=5+L10>=8,
 no opponent D). Cover floor, no Demons, no shadow, no hitter Ks. Standard
-Over/Under that clear the same gate are their own Power 3s — not mixed onto
-Goblin slips. Tennis Standard UNDER Aces/DF faded; Games Won OVER keep only.
+Over/Under that clear the same gate can share a slip with Goblins. Tennis
+Standard UNDER Aces/DF faded; Games Won OVER keep only.
 
-The playable card prices 2- and 3-leg slips by expected value at the
-rate-card N-correct payout. A slip may mix Goblin and Standard. The
-all-hit payout follows how many Goblins are on it.
-A sport with no keep-file rule is off. Stop when the next slip's EV is
-not positive or its all-hit payout is under 2x. Flat $10.
+The playable card prices 2- and 3-leg slips at the N-correct payout for
+that composition. Each round takes the best-EV group that clears its
+composition test. The dollar-for-dollar test is stored on every slip.
+All-Goblin slips clear on an all-hit payout of at least 1.4x; that test
+is recorded and does not drop them. Mixed and all-Standard slips must
+clear it at their own payout. One player-prop once. The same
+player can add a second prop and stops at 2. A sport fills its own slips
+first; legs that cannot fill mix across sports. Flat $20.
 
 NFLP stays on its own playing-time track. N-correct / To Win only.
 """
@@ -38,16 +41,30 @@ if str(_REPO) not in sys.path:
 
 import rank_best_props_today as R  # noqa: E402
 from utils.n_correct_payout import PAY_FALLBACK as PAY, resolve_n_correct  # noqa: E402
-from utils.ticket_ev_build import attach_leg_p, build_ev_slips, score_slip  # noqa: E402
+from utils.postseason_slate import (  # noqa: E402
+    apply_postseason_price,
+    counts_toward_gated_book,
+    is_postseason_ticket_leg,
+    mark_placed,
+    postseason_daily_cap,
+    shortlist_postseason,
+    POSTSEASON_TRACK,
+)
+from utils.ticket_ev_build import attach_leg_p, build_sport_then_mix  # noqa: E402
 from utils.ticket_keep_registry import rule_for  # noqa: E402
 from utils.ui_live_json import write_paths as live_json_write_paths  # noqa: E402
-from utils.nfl_keep_gates import nfl_goblin_ticket_eligible  # noqa: E402
+from utils.prop_norm import canon_prop  # noqa: E402
 from utils.ticket_70_pool import (  # noqa: E402
+    P_TENNIS_GAMES_WON_GOBLIN_LIVE,
+    P_TENNIS_MATCH_TOTAL_GOBLIN,
+    _is_tennis,
+    _prop,
     directional_l5,
     goblin_70_eligible,
     goblin_sort_key,
     goblin_ticket_p,
     is_pitcher_prop,
+    keep_hardest_goblin_over_faces,
     nflp_std_over_eligible,
     nflp_ticket_eligible,
     nflp_ticket_p,
@@ -232,6 +249,73 @@ def tennis_match_key(mu: object) -> str:
     return fold_name(s)
 
 
+def _attach_tennis_espn_event_ids(board: list[dict], date: str) -> None:
+    """Stamp espn_event_id / espn_competition_id from today's live scoreboard.
+
+    Historical ESPN ``?dates=`` boards go empty within days. Capturing the id at
+    build time lets grading look up the match later without a name search.
+    """
+    tennis = [
+        r
+        for r in board
+        if str(r.get("sport") or "").upper().startswith("TENNIS")
+    ]
+    if not tennis:
+        return
+    try:
+        import urllib.request
+
+        headers = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
+
+        def _norm(s: object) -> str:
+            return " ".join(str(s or "").casefold().split())
+
+        by_player: dict[str, tuple[str, str]] = {}
+        ymd = str(date).replace("-", "")
+        for tour in ("atp", "wta"):
+            url = (
+                f"https://site.api.espn.com/apis/site/v2/sports/tennis/{tour}/scoreboard"
+                f"?dates={ymd}"
+            )
+            try:
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=20) as resp:
+                    payload = json.loads(resp.read().decode())
+            except Exception:
+                continue
+            for ev in payload.get("events") or []:
+                eid = str(ev.get("id") or "").strip()
+                groupings = ev.get("groupings") or []
+                comps_iter = []
+                if groupings:
+                    for grp in groupings:
+                        comps_iter.extend(grp.get("competitions") or [])
+                else:
+                    comps_iter = list(ev.get("competitions") or [])
+                for comp in comps_iter:
+                    cid = str(comp.get("id") or "").strip()
+                    for c in comp.get("competitors") or []:
+                        name = _norm(((c.get("athlete") or {}).get("displayName") or ""))
+                        if name and eid:
+                            by_player[name] = (eid, cid)
+        if not by_player:
+            return
+        hit = 0
+        for r in tennis:
+            key = _norm(r.get("player"))
+            ids = by_player.get(key)
+            if not ids:
+                continue
+            r["espn_event_id"] = ids[0]
+            if ids[1]:
+                r["espn_competition_id"] = ids[1]
+            hit += 1
+        if hit:
+            print(f"tennis espn event ids attached: {hit}/{len(tennis)}")
+    except Exception as exc:
+        print(f"WARNING: tennis espn event id attach failed: {exc}")
+
+
 def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     candidates = [_REPO]
     sibling = _REPO.parent / "PropORACLE_main_cp"
@@ -257,6 +341,7 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
         rows.extend(R.recs(df))
     for loader_name in (
         "load_nfl",
+        "load_nhl",
         "load_cfb",
         "load_cfb1h",
         "load_golf",
@@ -377,6 +462,28 @@ def unique_by_player(rows: list[dict], key_fn) -> list[dict]:
     return out
 
 
+def player_prop_key(r: dict) -> str:
+    """Same player, different prop, is a different leg."""
+    player = fold_name(r.get("player"))
+    prop = canon_prop(str(r.get("sport") or ""), str(r.get("prop") or ""))
+    if not player or not prop:
+        return ""
+    return f"{player}|{prop}"
+
+
+def unique_by_player_prop(rows: list[dict], key_fn) -> list[dict]:
+    ordered = sorted(rows, key=key_fn)
+    seen: set[str] = set()
+    out: list[dict] = []
+    for r in ordered:
+        key = player_prop_key(r)
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        out.append(r)
+    return out
+
+
 def matchup_key(r: dict) -> str:
     mu = str(r.get("matchup") or "").strip()
     sport = str(r.get("sport") or "").upper()
@@ -409,6 +516,28 @@ def can_add(combo: list[dict], r: dict, *, wnba_cap: int) -> bool:
         same = sum(1 for x in combo if x.get("sport") == "NFL" and matchup_key(x) == mu)
         if same >= 2:
             return False
+    # NHL Std UNDER Pts/Ast: low/high-scoring games move together — one per game.
+    if sport == "NHL" and mu:
+        side = str(r.get("side") or r.get("direction") or "").strip().upper()
+        prop = str(r.get("prop") or r.get("prop_type") or "").strip().lower()
+        is_under_pts_ast = side in {"UNDER", "U", "LESS"} and any(
+            p in prop for p in ("point", "assist")
+        )
+        if is_under_pts_ast:
+            same_under = sum(
+                1
+                for x in combo
+                if x.get("sport") == "NHL"
+                and matchup_key(x) == mu
+                and str(x.get("side") or x.get("direction") or "").strip().upper()
+                in {"UNDER", "U", "LESS"}
+                and any(
+                    p in str(x.get("prop") or x.get("prop_type") or "").lower()
+                    for p in ("point", "assist")
+                )
+            )
+            if same_under >= 1:
+                return False
     if sport == "TENNIS":
         tk = tennis_match_key(mu)
         if tk and any(
@@ -647,6 +776,20 @@ def compact(r: dict, *, std: bool = False) -> dict:
     l10 = r.get("l10_over") if over else r.get("l10_under")
     if l10 is None:
         l10 = r.get("l10")
+    # CFB/NFL early-season L5 pad. Hit rates by fill status need this on the
+    # archived leg; step8 carries Season L5 Flag / l5_sample_n.
+    season_flag = (
+        r.get("season_l5_flag")
+        or r.get("Season L5 Flag")
+        or r.get("season_l5_flag".upper())
+        or ""
+    )
+    sample_n = r.get("l5_sample_n")
+    if sample_n is None:
+        sample_n = r.get("L5 Sample N")
+    l10_current_n = r.get("l10_current_n")
+    if l10_current_n is None:
+        l10_current_n = r.get("L10 Current N")
     out = {
         "sport": r.get("sport"),
         "player": r.get("player"),
@@ -671,12 +814,42 @@ def compact(r: dict, *, std: bool = False) -> dict:
         "p_source": r.get("p_source"),
         "gate_recipe": r.get("gate_recipe"),
         "standard_line": r.get("standard_line"),
+        "gap": r.get("gap"),
         "line_underdog": r.get("line_underdog"),
         "line_draftkings": r.get("line_draftkings"),
         "line_vegas": r.get("line_vegas"),
         "best_cross_book": r.get("best_cross_book"),
         "best_cross_line": r.get("best_cross_line"),
         "cross_edge_vs_pp": r.get("cross_edge_vs_pp"),
+        "start_time": str(r.get("start_time") or "").strip(),
+        "pp_game_id": str(r.get("pp_game_id") or "").strip(),
+        "espn_event_id": str(r.get("espn_event_id") or "").strip(),
+        "espn_competition_id": str(r.get("espn_competition_id") or "").strip(),
+        "standard_line_source": str(r.get("standard_line_source") or "").strip(),
+        "season_l5_flag": (
+            ""
+            if str(season_flag or "").strip().lower() in {"", "nan", "none", "null"}
+            else str(season_flag).strip()
+        ),
+        "l5_sample_n": (
+            None
+            if sample_n is not None and str(sample_n).lower() in {"nan", "none", "null"}
+            else sample_n
+        ),
+        "l10_current_n": (
+            None
+            if l10_current_n is not None and str(l10_current_n).lower() in {"nan", "none", "null"}
+            else l10_current_n
+        ),
+        "board_opponent": str(
+            r.get("board_opponent") or r.get("opponent") or r.get("opp") or ""
+        ).strip(),
+        "fill_status": (
+            ""
+            if str(season_flag or "").strip().lower() in {"", "nan", "none", "null"}
+            else str(season_flag).strip()
+        ),
+        "gate_branch": str(r.get("gate_recipe") or r.get("gate_branch") or "").strip(),
     }
     if std:
         out["std_kind"] = r.get("std_kind")
@@ -820,6 +993,7 @@ def _leg_to_web(
         "hit_rate": hr,
         "ml_prob": ml,
         "standard_line": std_line,
+        "gap": leg.get("gap"),
         "line_underdog": ud_line,
         "line_draftkings": dk_line,
         "line_vegas": lv_line,
@@ -838,6 +1012,14 @@ def _leg_to_web(
         "badge": str(leg.get("badge") or ""),
         "cover": cover_f,
         "matchup": str(leg.get("matchup") or ""),
+        "season_l5_flag": str(leg.get("season_l5_flag") or "").strip(),
+        "l5_sample_n": leg.get("l5_sample_n"),
+        "l10_current_n": leg.get("l10_current_n"),
+        "start_time": str(leg.get("start_time") or "").strip(),
+        "pp_game_id": str(leg.get("pp_game_id") or "").strip(),
+        "espn_event_id": str(leg.get("espn_event_id") or "").strip(),
+        "espn_competition_id": str(leg.get("espn_competition_id") or "").strip(),
+        "standard_line_source": str(leg.get("standard_line_source") or "").strip(),
     }
 
 
@@ -974,7 +1156,8 @@ def to_web_payload(payload: dict) -> dict:
                 "Keep-file gates only; a sport with no rule is off. "
                 "Leg p is the shrunk gate-cell hit rate. "
                 "2- or 3-leg, Power unless Flex N-correct EV is higher. "
-                "Stop when the next slip EV is not positive or all-hit payout is under 2x. "
+                "All-Goblin slips need all-hit payout of at least 1.4x; the dollar test is stored and does not drop them. "
+                "Mixed and all-Standard slips must clear the dollar test at their own payout. "
                 "Goblin and Standard stay separate. Flat $10. N-correct / To Win only."
             ),
         },
@@ -994,7 +1177,16 @@ def is_g70_group(group: dict) -> bool:
     tickets = group.get("tickets") or []
     if tickets and isinstance(tickets[0], dict):
         tr = str(tickets[0].get("ticket_track") or "").lower()
-        return tr in {"goblin70", "goblin70_yolo", "standard_yolo", "standard_ev", "mixed_ev"}
+        return tr in {
+            "goblin70",
+            "goblin70_yolo",
+            "standard_yolo",
+            "standard_ev",
+            "mixed_ev",
+            "gated_goblin",
+            "gated_mixed",
+            "gated_standard",
+        }
     return False
 
 
@@ -1178,6 +1370,13 @@ def _apply_board_row_to_leg(leg: dict, row: dict) -> bool:
         leg["def_tier"] = str(row.get("def") or "")
     if row.get("matchup"):
         leg["matchup"] = str(row.get("matchup"))
+    start = str(row.get("start_time") or "").strip()
+    if start and start.lower() not in {"nan", "none", "nat"}:
+        leg["start_time"] = start
+    for key in ("pp_game_id", "espn_event_id", "espn_competition_id"):
+        val = str(row.get(key) or "").strip()
+        if val and val.lower() not in {"nan", "none"}:
+            leg[key] = val
     return changed
 
 
@@ -1245,6 +1444,44 @@ def patch_mixer_groups(
     return out, stats
 
 
+def mark_dup_players(payload: dict) -> dict:
+    """Tag a later slip that repeats a player already on the merged card.
+
+    Goblin-70 groups are scanned first, then the mixer. Does not drop a
+    group. ``dup_player_tickets`` is the count before any later hygiene trim.
+    """
+    from utils.slate_exposure_ledger import fold_player
+
+    if not isinstance(payload, dict):
+        return payload
+    seen: dict[str, str] = {}
+    n_tickets = 0
+    for group in payload.get("groups") or []:
+        if not isinstance(group, dict):
+            continue
+        for ticket in group.get("tickets") or []:
+            if not isinstance(ticket, dict):
+                continue
+            dups: list[str] = []
+            for leg in ticket.get("legs") or []:
+                if not isinstance(leg, dict):
+                    continue
+                name = fold_player(leg.get("player"))
+                if not name:
+                    continue
+                if name in seen:
+                    leg["dup_player"] = "DUP_PLAYER"
+                    dups.append(str(leg.get("player") or name))
+                else:
+                    seen[name] = str(ticket.get("ticket_id") or ticket.get("id") or "")
+            if dups:
+                ticket["dup_player"] = "DUP_PLAYER"
+                ticket["dup_players"] = dups
+                n_tickets += 1
+    payload["dup_player_tickets"] = n_tickets
+    return payload
+
+
 def merge_web_payload(
     g70: dict,
     main_payload: dict | None = None,
@@ -1275,9 +1512,11 @@ def write_web(payload: dict, board: list[dict] | None = None) -> list[Path]:
             f"unchanged={patch_stats['unchanged']}"
         )
     web = merge_web_payload(g70, main_payload, main_groups)
+    web = mark_dup_players(web)
+    dup_n = int(web.get("dup_player_tickets") or 0)
     print(
         f"web merge goblin70_groups={len(g70.get('groups') or [])} "
-        f"graded_main_groups={len(main_groups)}"
+        f"graded_main_groups={len(main_groups)} dup_player_tickets={dup_n}"
     )
     # Dual-card pool_mode=goblin70 must not disable CORE/mixer keep hygiene.
     # Scrub construction bans + enforce MAIN player-slip cap on every merge.
@@ -1410,6 +1649,7 @@ def make_ticket(
 
 def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
     board = load_today_board(date, skip_golf=skip_golf)
+    _attach_tennis_espn_event_ids(board, date)
     for r in board:
         attach_wnba_ticket_priors(r, date)
     gob_raw = [
@@ -1417,6 +1657,8 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         for r in board
         if goblin_70_eligible(r) and fold_name(r.get("player")) not in SKIP_PLAYERS
     ]
+    # Soft deeper Goblins (SOT 0.5 when 1.5 is posted) stay list-only.
+    gob_raw = keep_hardest_goblin_over_faces(board, gob_raw)
     if l5_eq_5:
         gob_raw = [r for r in gob_raw if int(directional_l5(r) or 0) == 5]
     std_raw = []
@@ -1432,9 +1674,9 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
     for r in gob_raw:
         r["p"] = goblin_ticket_p(r)
 
-    gob = unique_by_player(gob_raw, goblin_sort_key)
-    std = unique_by_player(std_raw, standard_sort_key)
-    from utils.category_hit_rate import load_category_hr_index
+    gob = unique_by_player_prop(gob_raw, goblin_sort_key)
+    std = unique_by_player_prop(std_raw, standard_sort_key)
+    from utils.category_hit_rate import load_category_hr_index, lookup_category_hr
 
     hr_index = load_category_hr_index()
 
@@ -1445,21 +1687,74 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
 
     for r in gob:
         attach_leg_p(r, recipe=_recipe(r), index=hr_index)
-        # Category HR can be missing or shrunk below the L5=5 prior when the
-        # gate cell is thin — floor at goblin_ticket_p so EV packing can run.
-        floor_p = goblin_ticket_p(r)
-        try:
-            cur = float(r["p"]) if r.get("p") is not None else None
-        except (TypeError, ValueError):
-            cur = None
-        if cur is None or cur < floor_p:
-            r["p"] = floor_p
+        # Own gate cell when one exists. The L5=5 floor is only for a leg
+        # with no cell. Do not raise a real cell up to that floor.
+        child = None
+        if r.get("p_source") == "gate_cell":
+            child = lookup_category_hr(
+                hr_index,
+                sport=r.get("sport"),
+                prop=r.get("prop"),
+                pick_type=r.get("pick_type"),
+                direction=r.get("side") or r.get("direction"),
+            )
+        if child and child.get("hr") is not None:
+            r["p"] = float(child["hr"])
+            r["p_n"] = float(child.get("n") or 0)
+            r["p_source"] = "gate_cell"
+        else:
+            r["p"] = goblin_ticket_p(r)
             r["p_source"] = "l5eq5_floor"
+        from utils.mlb_keep_gates import pitcher_l10_parent_cell
+
+        parent = pitcher_l10_parent_cell(r)
+        if parent is not None:
+            r["p"] = parent["hr"]
+            r["p_n"] = parent["n"]
+            r["p_source"] = "mlb_l10_parent"
+            child = {"hr": parent["hr"]}
+        if is_postseason_ticket_leg(r):
+            cell = float(child["hr"]) if child and child.get("hr") is not None else None
+            apply_postseason_price(r, cell)
+        # Games Won cap stays 0.62. Total Games uses the corrected keep
+        # cell, not the wrong-match catalog rate.
+        if _is_tennis(str(r.get("sport") or "")) and _prop(r) == "games_won":
+            r["p"] = P_TENNIS_GAMES_WON_GOBLIN_LIVE
+            r["p_source"] = "tennis_gw_live"
+        elif _is_tennis(str(r.get("sport") or "")) and _prop(r) == "match_total_games":
+            r["p"] = P_TENNIS_MATCH_TOTAL_GOBLIN
+            r["p_source"] = "tennis_tg_corrected"
     for r in std:
         attach_leg_p(r, recipe=_recipe(r), index=hr_index)
-        if r.get("p") is None:
+        if is_postseason_ticket_leg(r):
+            cell = float(r["p"]) if r.get("p_source") == "gate_cell" and r.get("p") is not None else None
+            apply_postseason_price(r, cell)
+        elif r.get("p") is None:
             r["p"] = standard_ticket_p(r.get("std_kind") or "gate")
             r["p_source"] = "strict_floor"
+        if not is_postseason_ticket_leg(r):
+            from utils.comparison_tracks import stamp_standard_cell
+
+            stamp_standard_cell(r, hr_index)
+
+    from utils.gap_ranker import log_slate, score_and_maybe_disable, stamp_rank_fields
+
+    try:
+        for line in score_and_maybe_disable():
+            print(line)
+    except Exception as exc:
+        print(f"WARNING: gap ranker score failed: {exc}")
+    for r in list(gob) + list(std):
+        stamp_rank_fields(r, hr_index)
+    try:
+        for rec in log_slate(list(gob) + list(std), date=date):
+            print(
+                f"gap_rank_{str(rec['sport']).lower()} | logged | "
+                f"pool {rec['pool_n']} games {rec['games']} | order {rec['order_used']} | "
+                f"reordered {len(rec['legs_reordered'])} | ev_gap {rec['ev_gap']}"
+            )
+    except Exception as exc:
+        print(f"WARNING: gap ranker log failed: {exc}")
 
     # Standard YOLO pool: validated keep only (subset of Flex Standard).
     yolo_std_raw = []
@@ -1482,7 +1777,7 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         kwargs.setdefault("date", date)
         return make_ticket(*args, **kwargs)
 
-    def _emit(scored: dict, *, tid: str, family: str, track: str) -> None:
+    def _emit(scored: dict, *, tid: str, family: str, track: str, comparison_track: str) -> None:
         legs = scored["legs"]
         n = len(legs)
         product = str(scored["product"])
@@ -1498,50 +1793,162 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         slip["ev_n_correct"] = round(float(scored["expected_multiple"]), 3)
         slip["n_correct"] = {str(k): v for k, v in scored["n_correct"].items()}
         slip["payout_note"] = scored["payout_note"]
+        slip["payout_source"] = scored["payout_source"]
         slip["stake"] = scored["stake"]
         slip["ticket_track"] = track
+        slip["track"] = comparison_track
         slip["p_win"] = round(float(scored["p_win"]), 4)
+        slip["ev"] = round(float(scored["ev"]), 4)
+        slip["all_hit_x"] = scored.get("all_hit_x")
+        slip["dollar_test"] = bool(scored.get("dollar_test"))
+        slip["ev_label"] = "EV-positive" if scored.get("dollar_test") else "EV-negative"
+        slip["stake"] = scored.get("stake") or 20
+        from utils.comparison_tracks import append_track_log
+
+        append_track_log(slip, date=date)
         if track in {"standard_ev", "mixed_ev"}:
             slip["exclude_from_winrate"] = True
             slip["core_recipe"] = track
+        if not counts_toward_gated_book(slip):
+            slip["exclude_from_winrate"] = True
+            slip["exclude_from_book"] = True
         tickets.append(slip)
 
-    # Pack NFL wave-1 Goblins first. Equal-p MLB would otherwise fill the
-    # EV queue and leave a 1–2 player NFL remainder that cannot clear the
-    # 2x all-hit floor (Power 2G = 1.5x).
-    nfl_wave = [
-        r
-        for r in gob
-        if str(r.get("sport") or "").upper() == "NFL" and nfl_goblin_ticket_eligible(r)
-    ]
-    nfl_wave_i = 1
-    while True:
-        combo = pack(nfl_wave, 3, taken, mix_sports=False, wnba_cap=99)
-        if len(combo) != 3:
-            break
-        scored = score_slip(combo, family="goblin")
-        if scored is None:
-            break
-        for r in combo:
-            taken.add(fold_name(r.get("player")))
-        _emit(scored, tid=f"G3-NFL{nfl_wave_i}", family="goblin", track="goblin70")
-        nfl_wave_i += 1
+    from utils.comparison_tracks import (
+        MAX_SLIPS_PER_TRACK,
+        TRACK_GOBLIN,
+        TRACK_MIXED,
+        TRACK_STANDARD,
+        build_one_standard_slips,
+    )
+    from utils.ticket_ev_build import build_ev_slips, leg_id
 
-    card_pool = list(gob)
-    if not l5_eq_5:
-        card_pool.extend(std)
-    for i, scored in enumerate(
-        build_ev_slips(card_pool, taken=taken, fold=fold_name), start=1
-    ):
+    post_pool = [
+        r
+        for r in list(gob) + list(std)
+        if r.get("postseason") == 1 and r.get("p") is not None
+    ]
+    gob = [r for r in gob if r.get("postseason") != 1]
+    std = [r for r in std if r.get("postseason") != 1]
+    qualified_std = [r for r in std if r.get("p_source") == "standard_cell"]
+    g_scored = build_sport_then_mix(
+        list(gob),
+        taken=taken,
+        fold=fold_name,
+        max_slips=MAX_SLIPS_PER_TRACK,
+    )
+    blocked = {
+        fold_name(leg.get("player"))
+        for scored in g_scored
+        for leg in scored["legs"]
+        if fold_name(leg.get("player"))
+    }
+    for i, scored in enumerate(g_scored, start=1):
         n = len(scored["legs"])
-        fam = str(scored.get("family") or "goblin")
-        if fam == "standard":
-            tid, track = f"S{n}-{i}", "standard_ev"
-        elif fam == "mix":
-            tid, track = f"M{n}-{i}", "mixed_ev"
-        else:
-            tid, track = f"G{n}-{i}", "goblin70"
-        _emit(scored, tid=tid, family=fam, track=track)
+        _emit(
+            scored,
+            tid=f"G{n}-{i}",
+            family="goblin",
+            track="goblin70",
+            comparison_track=TRACK_GOBLIN,
+        )
+    m_scored: list[dict] = []
+    if not l5_eq_5:
+        m_scored = build_one_standard_slips(
+            gob,
+            qualified_std,
+            taken=taken,
+            fold=fold_name,
+            blocked_players=blocked,
+            max_slips=MAX_SLIPS_PER_TRACK,
+        )
+    for i, scored in enumerate(m_scored, start=1):
+        n = len(scored["legs"])
+        _emit(
+            scored,
+            tid=f"M{n}-{i}",
+            family="mix",
+            track="mixed_ev",
+            comparison_track=TRACK_MIXED,
+        )
+    s_pool = [
+        r
+        for r in qualified_std
+        if fold_name(r.get("player")) not in blocked and leg_id(r, fold_name) not in taken
+    ]
+    s_scored: list[dict] = []
+    if not l5_eq_5:
+        s_scored = build_ev_slips(
+            s_pool,
+            taken=taken,
+            fold=fold_name,
+            family="standard",
+            require_dollar=False,
+            max_slips=MAX_SLIPS_PER_TRACK,
+        )
+    for i, scored in enumerate(s_scored, start=1):
+        n = len(scored["legs"])
+        _emit(
+            scored,
+            tid=f"S{n}-{i}",
+            family="standard",
+            track="standard_ev",
+            comparison_track=TRACK_STANDARD,
+        )
+
+    from utils.l5_only_shadow import record_l5_shadow
+
+    l5_shadow = record_l5_shadow(board, date=date, index=hr_index)
+
+    from utils.card_side import CardBook, load_live_card_book
+    from utils.l5_ranked_by_cell import record_l5_ranked
+
+    sports = sorted({str(r.get("sport") or "").strip().upper() for r in board if r.get("sport")})
+    offers = load_live_card_book(sports)
+    if offers is None:
+        print("l5 ranked: live card unavailable, no side confirmed, nothing ranked")
+        offers = CardBook.empty()
+    l5_ranked = record_l5_ranked(board, date=date, index=hr_index, offers=offers)
+
+    post_groups = shortlist_postseason(post_pool)
+    cap = postseason_daily_cap()
+    post_emitted = 0
+    for i, group in enumerate(post_groups, start=1):
+        mark_placed(group, group.get("scraped_x"))
+        if not group.get("placed"):
+            continue
+        if post_emitted >= cap:
+            break
+        legs = group["legs"]
+        for leg in legs:
+            leg["postseason"] = 1
+            leg["grade_track"] = POSTSEASON_TRACK
+        slip = _ticket(
+            f"PS{group['n_legs']}-{i}",
+            [compact(x, std="goblin" not in str(x.get("pick_type") or "").lower()) for x in legs],
+            "Power",
+            "goblin" if group["n_goblin"] == group["n_legs"] else "mix",
+            (
+                f"Postseason cell-3. Placed only after EV stayed positive at the "
+                f"scraped payout with every leg 2 points under the haircut cell."
+            ),
+            web_group="Postseason",
+        )
+        slip["postseason"] = 1
+        slip["ticket_track"] = POSTSEASON_TRACK
+        slip["track"] = POSTSEASON_TRACK
+        slip["grade_track"] = POSTSEASON_TRACK
+        from utils.comparison_tracks import append_track_log
+
+        append_track_log(slip, date=date)
+        slip["exclude_from_book"] = True
+        slip["exclude_from_winrate"] = True
+        slip["placed"] = True
+        slip["shortlisted"] = True
+        if counts_toward_gated_book(slip):
+            continue
+        tickets.append(slip)
+        post_emitted += 1
 
     for i, combo in enumerate(pack_standard_yolo(yolo_std), start=1):
         n_use = len(combo)
@@ -1625,6 +2032,73 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         "standard_yolo_pool": [compact(r, std=True) for r in yolo_std],
         "nflp_pool": [compact(r) for r in nfl],
         "tickets": tickets,
+        "l5_only_shadow": {
+            "track": l5_shadow["track"],
+            "placed": False,
+            "n_legs": l5_shadow["n_legs"],
+            "n_slips": l5_shadow["n_slips"],
+            "legs": [
+                {
+                    "player": leg.get("player"),
+                    "sport": leg.get("sport"),
+                    "prop": leg.get("prop"),
+                    "side": leg.get("side"),
+                    "line": leg.get("line"),
+                    "pick_type": leg.get("pick_type"),
+                    "p": leg.get("p"),
+                    "p_n": leg.get("p_n"),
+                    "p_source": leg.get("p_source"),
+                }
+                for leg in l5_shadow["legs"]
+            ],
+            "slips": [
+                {
+                    "placed": False,
+                    "p_win": slip.get("p_win"),
+                    "ev": slip.get("ev"),
+                    "all_hit_x": slip.get("all_hit_x"),
+                    "ev_label": slip.get("ev_label"),
+                    "legs": [
+                        f"{leg.get('player')} {leg.get('prop')} {leg.get('line')}"
+                        for leg in slip.get("legs") or []
+                    ],
+                }
+                for slip in l5_shadow["slips"]
+            ],
+        },
+        "l5_ranked_by_cell": {
+            "track": l5_ranked["track"],
+            "placed": False,
+            "n_slips": l5_ranked["n_slips"],
+            "n_placed": l5_ranked["n_placed"],
+            "stamped_slips": l5_ranked["stamped_slips"],
+            "ready_to_compare": l5_ranked["ready_to_compare"],
+            "report_only": len(l5_ranked["report_only"]),
+            "slips": [
+                {
+                    "placed": slip.get("placed"),
+                    "n_legs": slip.get("n_legs"),
+                    "ev": slip.get("ev"),
+                    "all_hit_x": slip.get("all_hit_x"),
+                    "ev_label": slip.get("ev_label"),
+                    "legs": [
+                        {
+                            "player": leg.get("player"),
+                            "prop": leg.get("prop"),
+                            "side": leg.get("side"),
+                            "line": leg.get("line"),
+                            "l5_values": leg.get("l5_values"),
+                            "cell_hr": leg.get("cell_hr"),
+                            "gap_z": leg.get("gap_z"),
+                            "group_rank": leg.get("group_rank"),
+                            "unproven": leg.get("unproven"),
+                        }
+                        for leg in slip.get("legs") or []
+                    ],
+                }
+                for slip in l5_ranked["slips"]
+            ],
+        },
         "_board": board,
     }
 
@@ -1667,6 +2141,38 @@ def print_card(payload: dict) -> None:
                 f"    [{leg['pick_type'][0]}] {leg['sport']} {leg['player']} "
                 f"{leg['prop']} {leg['side'][0]}{leg['line']}"
             )
+    shadow = payload.get("l5_only_shadow") or {}
+    if shadow:
+        print(
+            f"\nL5=5 SHADOW (not placed)  legs {shadow.get('n_legs')}  "
+            f"2-leg slips {shadow.get('n_slips')}"
+        )
+        for slip in shadow.get("slips") or []:
+            print(
+                f"  shadow  p_win {slip.get('p_win')}  "
+                f"{slip.get('all_hit_x')}x  {slip.get('ev_label')}  "
+                + " | ".join(slip.get("legs") or [])
+            )
+    ranked = payload.get("l5_ranked_by_cell") or {}
+    if ranked:
+        print(
+            f"\nL5 RANKED BY CELL (off /tickets)  slips {ranked.get('n_slips')}  "
+            f"placed {ranked.get('n_placed')}  "
+            f"stamped {ranked.get('stamped_slips')}"
+        )
+        for slip in ranked.get("slips") or []:
+            print(
+                f"  {slip.get('ev_label')}  {slip.get('n_legs')} legs  "
+                f"{slip.get('all_hit_x')}x"
+            )
+            for leg in slip.get("legs") or []:
+                print(
+                    f"    {leg.get('player')} {leg.get('prop')} "
+                    f"{leg.get('side')} {leg.get('line')}  "
+                    f"values {leg.get('l5_values')}  "
+                    f"cell {leg.get('cell_hr')}  gap {leg.get('gap_z')}  "
+                    f"group {leg.get('group_rank')}"
+                )
 
 
 def main() -> int:

@@ -989,7 +989,8 @@ function Run-NBAPeriodPipeline {
 
     if ($ok) { $ok = Run-Step "${tagLower} Step 2 - Attach Pick Types"      $NBADir ".\scripts\step2_attach_picktypes.py"               "--input $step1 --output $step2" }
     if ($ok) { $ok = Run-Step "${tagLower} Step 3 - Attach Defense"         $NBADir ".\scripts\step3_attach_defense.py"                 "--input $step2 --defense data\cache\defense_team_summary.csv --output $step3" }
-    if ($ok) { $ok = Run-Step "${tagLower} Step 4 - Player Stats (ESPN)"    $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate $step3 --out $step4 --date $Date" }
+    $periodSeg = if ($tagLower -eq "nba1q") { "1Q" } else { "1H" }
+    if ($ok) { $ok = Run-Step "${tagLower} Step 4 - Player Stats (ESPN)"    $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate $step3 --out $step4 --date $Date --segment $periodSeg" }
     if ($ok -and $tagLower -eq "nba1h") {
         $ok = Run-Step "${tagLower} Step 4b - Usage/Pace Context" $NBADir ".\scripts\step4b_attach_nba_context.py" "--input `"$step4`" --output `"$step4`" --season 2025-26"
     }
@@ -2727,8 +2728,14 @@ if ($NBAOnly) {
             } finally { Pop-Location }
         }
     }
-    if ($ok) { $ok = Run-NBAPeriodPipeline -Tag "nba1h" -LeagueId "84"  -SkipFetchStep:$SkipFetch }
-    if ($ok) { $ok = Run-NBAPeriodPipeline -Tag "nba1q" -LeagueId "192" -SkipFetchStep:$SkipFetch }
+    # Period boards are soft-fail: do not demote full-game NBA when 1H/1Q dies at step4.
+    if ($ok) {
+        $p1h = Run-NBAPeriodPipeline -Tag "nba1h" -LeagueId "84"  -SkipFetchStep:$SkipFetch
+        $p1q = Run-NBAPeriodPipeline -Tag "nba1q" -LeagueId "192" -SkipFetchStep:$SkipFetch
+        if (-not $p1h -or -not $p1q) {
+            Write-Host "  [NBA period] WARN — period board failure (soft); full-game still OK" -ForegroundColor Yellow
+        }
+    }
 
     if ($ok) { New-Item -ItemType File -Force -Path (Join-Path $NBADir "RUN_COMPLETE.flag") | Out-Null }
     Write-Host ""
@@ -4134,12 +4141,14 @@ if ($NBAOffSeason) {
         Copy-DatedSlateOutput -SourcePath $nbaMainStep8Parallel -DatedFileName "step8_nba_direction_clean_$Date.xlsx" -Label "NBA"
     }
 
-    # NBA period sub-slates are required by daily checks and combined defaults.
+    # NBA period sub-slates (soft-fail): full-game NBASuccess stays true if 1H/1Q die.
     if ($NBASuccess) {
         $NBA1HSuccess = Run-NBAPeriodPipeline -Tag "nba1h" -LeagueId "84"  -SkipFetchStep:$SkipFetch
         $NBA1QSuccess = Run-NBAPeriodPipeline -Tag "nba1q" -LeagueId "192" -SkipFetchStep:$SkipFetch
+        if (-not $NBA1HSuccess -or -not $NBA1QSuccess) {
+            Write-Host "  [NBA period] WARN — period board failure (soft); full-game still OK" -ForegroundColor Yellow
+        }
     }
-    $NBASuccess = $NBASuccess -and $NBA1HSuccess -and $NBA1QSuccess
     $nba1hNoSlate = $NBA1HSuccess -and -not (Test-Path (Join-Path $OutDir "nba1h\step8_nba1h_direction_clean.xlsx"))
     $nba1qNoSlate = $NBA1QSuccess -and -not (Test-Path (Join-Path $OutDir "nba1q\step8_nba1q_direction_clean.xlsx"))
 }

@@ -40,10 +40,56 @@ import pandas as pd
 
 # ── Default DB path ────────────────────────────────────────────────────────────
 _HERE = Path(__file__).resolve().parent
-DB_PATH = _HERE.parent / "data" / "cache" / "proporacle_ref.db"
+# Canonical root cache (Sports/NBA/data/cache copy goes stale — do not prefer it).
+_REPO_ROOT = _HERE.parents[2]  # Sports/NBA/scripts -> PropORACLE
+DB_PATH = _REPO_ROOT / "data" / "cache" / "proporacle_ref.db"
 MIN_SAMPLE_FOR_TICKET = 4
 PERIOD_OVERRIDES_PATH = _HERE.parent / "data" / "reference" / "period_actual_overrides.csv"
 _PERIOD_OVERRIDES_CACHE: dict[tuple[str, str, str], List[float]] | None = None
+
+
+_LEGACY_NBA_DB = _HERE.parent / "data" / "cache" / "proporacle_ref.db"
+
+
+def _table_or_view_exists(con: sqlite3.Connection, name: str) -> bool:
+    row = con.execute(
+        "SELECT 1 FROM sqlite_master WHERE type IN ('table', 'view') AND name=? LIMIT 1",
+        (name,),
+    ).fetchone()
+    return row is not None
+
+
+def _ensure_period_history_visible(con: sqlite3.Connection, primary: Path) -> None:
+    """
+    Period step4 needs the nba1q table. History used to land only in
+    Sports/NBA/data/cache/proporacle_ref.db while step4 reads the root cache.
+    Attach that legacy DB and expose nba1q as a TEMP VIEW when missing.
+    """
+    if _table_or_view_exists(con, "nba1q"):
+        return
+    legacy = _LEGACY_NBA_DB
+    if not legacy.exists():
+        return
+    try:
+        if legacy.resolve() == Path(primary).resolve():
+            return
+    except OSError:
+        return
+    try:
+        con.execute("ATTACH DATABASE ? AS nba_period_legacy", (str(legacy),))
+        has = con.execute(
+            "SELECT 1 FROM nba_period_legacy.sqlite_master "
+            "WHERE type='table' AND name='nba1q' LIMIT 1"
+        ).fetchone()
+        if not has:
+            con.execute("DETACH DATABASE nba_period_legacy")
+            return
+        con.execute(
+            "CREATE TEMP VIEW nba1q AS SELECT * FROM nba_period_legacy.nba1q"
+        )
+        print(f"[step4-db] Attached period history from {legacy} (nba1q TEMP VIEW)")
+    except Exception as exc:  # noqa: BLE001 — soft fallback for period boards
+        print(f"[step4-db] WARN: could not attach legacy nba1q ({exc})")
 
 
 def open_db(db_path: Optional[Path] = None) -> sqlite3.Connection:
@@ -57,6 +103,7 @@ def open_db(db_path: Optional[Path] = None) -> sqlite3.Connection:
     con = sqlite3.connect(path)
     con.execute("PRAGMA journal_mode=WAL;")
     con.row_factory = sqlite3.Row
+    _ensure_period_history_visible(con, path)
     return con
 
 
@@ -175,6 +222,10 @@ _NBA_PROP_MAP = {
     "personal fouls":          "pf",
     "personalfouls":           "pf",
     "pf":                      "pf",
+    # Dunks: no dedicated ESPN traditional box column in this DB — attach
+    # leaves empty and step5 stamps no_five_game_file (flag, not a drop).
+    "dunks":                   "dunks",
+    "dunk":                    "dunks",
     "fantasy score":           "fantasy_score",
     "fantasy_score":           "fantasy_score",
     "fantasy":                 "fantasy_score",   # norm_prop maps "Fantasy Score" → "fantasy"
@@ -285,37 +336,77 @@ def _resolve_prop(prop_norm: str, sport: str) -> Optional[str]:
 
 # ── Core DB query ──────────────────────────────────────────────────────────────
 def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
-                stat_expr: str, params: tuple, n: int) -> List[float]:
+                stat_expr: str, params: tuple, n: int,
+                *, card_window: bool = False,
+                regular_season_only: bool = False) -> List[float]:
     """
     Generic indexed stat query.
     Returns up to n most-recent non-null values, newest first.
+    card_window: keep regular + playoffs, drop preseason (PP card L5).
+    regular_season_only: legacy alias — prefer card_window (playoffs stay).
     """
+    filter_windows = card_window or regular_season_only
+    fetch_n = max(n * 8, n) if filter_windows else n
     sql = f"""
-        SELECT {stat_expr} AS val
+        SELECT game_date, {stat_expr} AS val
         FROM {table}
         WHERE {where_clause}
           AND {stat_expr} IS NOT NULL
         ORDER BY game_date DESC
-        LIMIT {n}
+        LIMIT {fetch_n}
     """
     try:
         rows = con.execute(sql, params).fetchall()
-        return [float(r[0]) for r in rows if r[0] is not None]
     except Exception:
         return []
+    if not filter_windows:
+        return [float(r[1]) for r in rows if r[1] is not None]
+    try:
+        from datetime import date as _date
+        from utils.nba_minutes_role import classify_game
+    except Exception:
+        return [float(r[1]) for r in rows if r[1] is not None][:n]
+    # Card window = RS + playoffs. Legacy regular_season_only dropped playoffs
+    # and mismatched the PP card (Allen). Prefer card_window.
+    if card_window:
+        allow = {"regular", "playoffs"}
+    else:
+        allow = {"regular"}
+    out: List[float] = []
+    for gd, val in rows:
+        if val is None:
+            continue
+        try:
+            d = _date.fromisoformat(str(gd)[:10])
+        except ValueError:
+            continue
+        if classify_game(d) not in allow:
+            continue
+        out.append(float(val))
+        if len(out) >= n:
+            break
+    return out
 
 
 def get_vals_nba(con: sqlite3.Connection, espn_id: str,
-                  prop_norm: str, n: int = 10, player_name: str = "") -> List[float]:
+                  prop_norm: str, n: int = 10, player_name: str = "",
+                  card_window: bool = False,
+                  regular_season_only: bool = False) -> List[float]:
     expr = _resolve_prop(prop_norm, "nba")
     if not expr:
         return []
-    vals = _query_vals(con, "nba",
-                       "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n)
+    vals = _query_vals(
+        con, "nba", "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n,
+        card_window=card_window,
+        regular_season_only=regular_season_only,
+    )
     if not vals and player_name:
         norm = player_name.strip().lower()
-        vals = _query_vals(con, "nba",
-                           "lower(player) = ?", expr, (norm,), n)
+        vals = _query_vals(
+            con, "nba", "lower(player) = ?", expr, (norm,), n,
+            card_window=card_window,
+            regular_season_only=regular_season_only,
+        )
     return vals
 
 
@@ -657,6 +748,7 @@ def attach_stats(
     line_col: str = "line",
     n: int = 10,
     combo_sep: str = "|",
+    slate_date: str = "",
 ) -> pd.DataFrame:
     """
     Attach stat columns to slate DataFrame from the SQLite reference DB.
@@ -734,7 +826,15 @@ def attach_stats(
         else:
             player_name = str(row.get("player", "")).strip()
             if sport in ("nba", "nba1q", "nba1h", "cbb") and player_name:
-                vals = get_fn(con, raw_id, prop, n, player_name=player_name)
+                if sport == "nba":
+                    # PP card L5 = RS + playoffs, never preseason.
+                    vals = get_fn(
+                        con, raw_id, prop, n,
+                        player_name=player_name,
+                        card_window=True,
+                    )
+                else:
+                    vals = get_fn(con, raw_id, prop, n, player_name=player_name)
             else:
                 vals = get_fn(con, raw_id, prop, n)
 

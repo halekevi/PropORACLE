@@ -1,0 +1,49 @@
+{
+  "tracks": {
+    "nba1q_goblin_reb_ast": {
+      "created_at": "2026-10-23T11:56:20.397816+00:00",
+      "placed": false,
+      "promotion": {
+        "n_min": 100,
+        "wilson_low_min": 0.845
+      },
+      "dates": {
+        "2026-10-23": {
+          "legs_logged": 0,
+          "logged_at": "2026-10-23T12:08:22.466420+00:00"
+        },
+        "2026-10-22": {
+          "legs_logged": 9,
+          "logged_at": "2026-10-23T12:10:40.504200+00:00"
+        }
+      },
+      "forward_n": 9,
+      "forward_hits": null,
+      "status": "active_paper",
+      "updated_at": "2026-10-23T12:10:40.504210+00:00"
+    },
+    "nhl_std_under_pts_ast": {
+      "created_at": "2026-10-23T11:56:20.397844+00:00",
+      "placed": false,
+      "promotion": {
+        "n_min": 100,
+        "wilson_low_min": 0.58
+      },
+      "dates": {
+        "2026-10-23": {
+          "legs_logged": 1,
+          "logged_at": "2026-10-23T12:08:22.466438+00:00"
+        },
+        "2026-10-22": {
+          "legs_logged": 1,
+          "logged_at": "2026-10-23T12:10:40.504215+00:00"
+        }
+      },
+      "forward_n": 2,
+      "forward_hits": null,
+      "status": "active_paper",
+      "updated_at": "2026-10-23T12:10:40.504218+00:00"
+    }
+  },
+  "updated_at": "2026-10-23T12:10:40.504219+00:00"
+}

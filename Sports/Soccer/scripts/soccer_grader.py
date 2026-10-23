@@ -14,8 +14,11 @@ Supported props (when the column exists in proporacle_ref.soccer — filled by
   Clearances, Attempted Dribbles (often NULL until ESPN exposes them per player)
 
 Still unsupported / VOID:
-  Key Passes, Shots Assisted, Crosses, Yellow Cards,
-  Goals Allowed (no per-player goals-conceded column in ref DB)
+  Yellow Cards, Goals Allowed (no per-player goals-conceded column in ref DB)
+  Fantasy Score (dropped in step2)
+
+Sofascore matchlog fills Passes / Tackles / Clearances / Dribbles / Crosses
+when ESPN leaves them NULL. Shots Assisted grades vs key passes (kp).
 
 Run:
   py -3.14 scripts/soccer_grader.py
@@ -26,6 +29,7 @@ Run:
 from __future__ import annotations
 
 import argparse
+import math
 import sqlite3
 import sys
 import unicodedata
@@ -83,8 +87,8 @@ BASE_PROP_TO_DB: dict[str, str] = {
 }
 
 BASE_UNSUPPORTED = {
-    "key passes", "shots assisted", "crosses", "yellow cards",
-    # proporacle_ref soccer table has no goals-conceded column; do not grade vs saves (sv).
+    "yellow cards",
+    # no per-player goals-conceded column; do not grade vs saves (sv).
     "goals allowed", "goals allowed (combo)", "goals allowed in first 30 minutes",
 }
 
@@ -102,6 +106,9 @@ def resolve_soccer_mappings(con: sqlite3.Connection) -> tuple[dict[str, str], se
         ("clearances", "clearances", "Clearances"),
         ("tackles", "tk", "Tackles"),
         ("attempted dribbles", "dribble_attempts", "Attempted Dribbles"),
+        ("crosses", "crosses", "Crosses"),
+        ("shots assisted", "kp", "Shots Assisted"),
+        ("key passes", "kp", "Key Passes"),
     ]
     for key, col, label in checks:
         if col in cols:
@@ -227,29 +234,60 @@ def refine_soccer_void_reason(prop_key: str, reason: str) -> str:
     return reason
 
 
-def grade_prop(actual: float | None, line: float,
-               direction: str) -> tuple[str, str]:
-    """Return (result, reason)."""
+def _missing_actual(actual) -> bool:
+    """True for None / NaN — never coerce missing into a MISS."""
     if actual is None:
+        return True
+    try:
+        if isinstance(actual, float) and (math.isnan(actual) or math.isinf(actual)):
+            return True
+    except (TypeError, ValueError):
+        pass
+    try:
+        return bool(pd.isna(actual))
+    except (TypeError, ValueError):
+        return False
+
+
+def _soccer_volume_actual_suspicious(prop_key: str, actual_f: float, line_f: float) -> bool:
+    """Wrong-field / null-fill guard for Passes Attempted and Clearances."""
+    pk = str(prop_key or "").lower().replace("_", " ").strip()
+    if "pass" in pk and line_f >= 20.0 and actual_f < 5.0:
+        return True
+    if "clear" in pk and line_f >= 3.0 and actual_f < 0.5:
+        return True
+    return False
+
+
+def grade_prop(actual: float | None, line: float,
+               direction: str, prop_key: str = "") -> tuple[str, str]:
+    """Return (result, reason). Missing actual → VOID (never MISS)."""
+    if _missing_actual(actual):
         return "VOID", "no_actuals"
     try:
         line_f = float(line)
+        if math.isnan(line_f) or math.isinf(line_f):
+            return "VOID", "bad_line"
     except (TypeError, ValueError):
         return "VOID", "bad_line"
 
     direction = str(direction).strip().upper()
+    actual_f = float(actual)
 
-    if abs(actual - line_f) < 0.001:
-        return "PUSH", f"actual={actual} == line={line_f}"
+    if _soccer_volume_actual_suspicious(prop_key, actual_f, line_f):
+        return "VOID", "no_actuals"
+
+    if abs(actual_f - line_f) < 0.001:
+        return "PUSH", f"actual={actual_f} == line={line_f}"
 
     if direction == "OVER":
-        result = "HIT" if actual > line_f else "MISS"
+        result = "HIT" if actual_f > line_f else "MISS"
     elif direction == "UNDER":
-        result = "HIT" if actual < line_f else "MISS"
+        result = "HIT" if actual_f < line_f else "MISS"
     else:
         result = "VOID"
 
-    return result, f"actual={actual} {direction} line={line_f}"
+    return result, f"actual={actual_f} {direction} line={line_f}"
 
 
 def soccer_signed_margin(actual, line, direction) -> float | None:
@@ -348,7 +386,7 @@ def run_grader(grade_date: str, slate_path: Path, db_path: Path,
             db_col = prop_to_db.get(prop_key)
             actual, minutes_played = get_actual_and_minutes(con, espn_id, player, db_col, grade_date)
             actual_val = actual
-            legacy_result, _ = grade_prop(actual, line, direction)
+            legacy_result, _ = grade_prop(actual, line, direction, prop_key=prop_key)
             if legacy_result == "HIT":
                 legacy_hit += 1
             elif legacy_result == "MISS":
@@ -356,7 +394,7 @@ def run_grader(grade_date: str, slate_path: Path, db_path: Path,
             elif legacy_result == "PUSH":
                 legacy_push += 1
 
-            if actual is None:
+            if _missing_actual(actual):
                 result, reason = "VOID", "no_actuals"
                 no_data_void_count += 1
             elif float(actual) == 0.0:
@@ -367,9 +405,13 @@ def run_grader(grade_date: str, slate_path: Path, db_path: Path,
                     result, reason = "VOID", "did_not_play"
                     no_data_void_count += 1
                 else:
-                    result, reason = grade_prop(actual, line, direction)
+                    result, reason = grade_prop(
+                        actual, line, direction, prop_key=prop_key
+                    )
             else:
-                result, reason = grade_prop(actual, line, direction)
+                result, reason = grade_prop(
+                    actual, line, direction, prop_key=prop_key
+                )
 
         if result == "VOID":
             reason = refine_soccer_void_reason(prop_key, reason)

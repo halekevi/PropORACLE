@@ -220,11 +220,22 @@ def main() -> int:
     if refresh or not _PROFILES.is_file():
         profiles = build_profiles()
         _PROFILES.parent.mkdir(parents=True, exist_ok=True)
-        _PROFILES.write_text(json.dumps(profiles, indent=2), encoding="utf-8")
-        print(f"Built {len(profiles)} NBA1H player profiles -> {_PROFILES}")
+        try:
+            tmp = _PROFILES.with_suffix(".json.tmp")
+            tmp.write_text(json.dumps(profiles, indent=2), encoding="utf-8")
+            tmp.replace(_PROFILES)
+            print(f"Built {len(profiles)} NBA1H player profiles -> {_PROFILES}")
+        except OSError as exc:
+            # Windows occasionally returns Errno 22 on a locked/AV-held cache file.
+            # Keep going with in-memory profiles so period step8 is not blocked.
+            print(f"WARN: could not cache NBA1H profiles ({exc}); using in-memory only")
     else:
-        profiles = json.loads(_PROFILES.read_text(encoding="utf-8"))
-        print(f"Using cached profiles ({len(profiles)} keys)")
+        try:
+            profiles = json.loads(_PROFILES.read_text(encoding="utf-8"))
+            print(f"Using cached profiles ({len(profiles)} keys)")
+        except (OSError, json.JSONDecodeError) as exc:
+            print(f"WARN: bad NBA1H profile cache ({exc}); rebuilding in-memory")
+            profiles = build_profiles()
 
     df = pd.read_csv(inp, dtype=str, encoding="utf-8-sig").fillna("")
     if df.empty:

@@ -31,6 +31,12 @@ if str(_REPO_ROOT) not in sys.path:
 from utils.slate_fields import first_numeric_in_slate_row, first_over_under_in_slate_row
 from scripts.l10_streak_utils import enrich_graded_l10_columns, _L10_SLATE_RENAME
 from utils.hit_tracking_columns import attach_hit_window_columns
+from utils.combo_actuals import (
+    prop_lookup_keys,
+    split_combo_players,
+    split_combo_teams,
+    sum_multiplayer_combo_actual,
+)
 
 # ── Column maps: step8 slate → canonical graded output ────────────────────────
 # These match what build_grade_report.py's normalize() function expects
@@ -238,30 +244,12 @@ def _norm_name_mlb(s) -> str:
 
 def _combo_player_parts(player: str) -> list[str]:
     """Split PrizePicks combo labels (``A + B``) into individual player names."""
-    raw = str(player or "").strip()
-    if "+" not in raw:
-        return [raw] if raw else []
-    return [p.strip() for p in raw.split("+") if p.strip()]
+    return split_combo_players(player)
 
 
 def _combo_team_parts(team: str, n_players: int) -> list[str]:
     """Align team tokens with combo arms (``STL/LAA`` → one team per player)."""
-    if n_players <= 1:
-        return [str(team or "").strip().upper()]
-    raw = str(team or "").strip()
-    if not raw or raw.lower() in ("nan", "none", "-", "—"):
-        return [""] * n_players
-    if "/" in raw:
-        parts = [p.strip().upper() for p in raw.split("/") if p.strip()]
-        if len(parts) >= n_players:
-            return parts[:n_players]
-        if len(parts) == 1:
-            return parts * n_players
-        while len(parts) < n_players:
-            parts.append(parts[-1] if parts else "")
-        return parts[:n_players]
-    tok = raw.upper()
-    return [tok] * n_players
+    return split_combo_teams(team, n_players)
 
 
 def load_slate(path: Path, sport: str, grade_date: str = None) -> pd.DataFrame:
@@ -697,6 +685,7 @@ def grade(slate: pd.DataFrame, actuals: pd.DataFrame, sport: str) -> pd.DataFram
     }
 
     # Slate "Prop" strings normalize to keys like "pitcherstrikeouts" — align with actuals rows.
+    # Trailing "combo" is stripped via prop_lookup_keys; keep base↔alias maps here.
     MLB_PROP_ALIASES = {
         "pitcherstrikeouts":    ["pitcherstrikeouts", "strikeouts"],
         "strikeouts":           ["strikeouts", "pitcherstrikeouts"],
@@ -717,61 +706,85 @@ def grade(slate: pd.DataFrame, actuals: pd.DataFrame, sport: str) -> pd.DataFram
         "firstinningwalksallowed": ["1stinningwalksallowed", "firstinningwalksallowed"],
     }
 
+    def _sport_prop_aliases(sport: str) -> dict:
+        if sport == "SOCCER":
+            return SOCCER_PROP_ALIASES
+        if sport == "MLB":
+            return MLB_PROP_ALIASES
+        return {}
+
     def _find_prop_match(candidates, sprop, sport):
-        """Try exact prop match, then alias match. Returns matched row or None."""
+        """Try exact prop match, then strip-combo + alias match. Returns matched row or None."""
         if not pr_col or not candidates:
             return None
-        # Exact
-        exact = [r for r in candidates if r.get("_prop","") == sprop]
-        if exact:
-            return exact[0]
-        # Alias (soccer)
-        if sport == "SOCCER":
-            aliases = SOCCER_PROP_ALIASES.get(sprop, [sprop])
-            alias_matches = [r for r in candidates if r.get("_prop","") in aliases]
-            if alias_matches:
-                return alias_matches[0]
-        # Alias (MLB)
-        if sport == "MLB":
-            aliases = MLB_PROP_ALIASES.get(sprop, [sprop])
-            alias_matches = [r for r in candidates if r.get("_prop","") in aliases]
-            if alias_matches:
-                return alias_matches[0]
+        aliases = _sport_prop_aliases(sport)
+        for key in prop_lookup_keys(sprop, extra_aliases=aliases):
+            hits = [r for r in candidates if r.get("_prop", "") == key]
+            if hits:
+                return hits[0]
+            # Also accept alias expansion of the candidate side for mapped keys
+            mapped = aliases.get(key, [])
+            if mapped:
+                alias_matches = [r for r in candidates if r.get("_prop", "") in mapped]
+                if alias_matches:
+                    return alias_matches[0]
         return None
 
-    def _lookup_mlb_player_prop(player_name: str, team_hint: str, sprop: str):
-        """Find an actuals row for one MLB player+prop (exact then alias)."""
-        sname = _norm_name_mlb(player_name)
+    def _lookup_player_prop(player_name: str, team_hint: str, sprop: str, sport: str):
+        """Find an actuals row for one player+prop (exact then strip-combo / alias)."""
+        if sport == "MLB":
+            sname = _norm_name_mlb(player_name)
+        else:
+            sname = _norm_name(player_name)
         candidates = act_by_name.get(sname, [])
-        matched = _find_prop_match(candidates, sprop, "MLB")
+        matched = _find_prop_match(candidates, sprop, sport)
         if matched is not None:
             return matched
         team_key = str(team_hint or "").strip().upper()
         s_last = str(sname).split()[-1] if str(sname).split() else ""
         if team_key and s_last:
             candidates2 = act_by_team_last.get((team_key, s_last), [])
-            return _find_prop_match(candidates2, sprop, "MLB")
+            return _find_prop_match(candidates2, sprop, sport)
         return None
 
-    def _lookup_mlb_combo_sum(player_label: str, team_label: str, sprop: str):
-        """Sum component actuals for PrizePicks multi-player combo labels."""
-        parts = _combo_player_parts(player_label)
-        if len(parts) < 2:
-            return None
-        teams = _combo_team_parts(team_label, len(parts))
-        vals: list[float] = []
-        opp_parts: list[str] = []
-        for arm_name, arm_team in zip(parts, teams):
-            matched = _lookup_mlb_player_prop(arm_name, arm_team, sprop)
+    def _lookup_multiplayer_combo_sum(player_label: str, team_label: str, sprop: str, sport: str):
+        """Sum component actuals for PrizePicks multi-player combo labels (all sports)."""
+
+        def _arm(pname: str, tm: str, pk: str):
+            matched = _lookup_player_prop(pname, tm, pk, sport)
             if matched is None or pd.isna(matched.get("_val")):
                 return None
-            vals.append(float(matched["_val"]))
+            return float(matched["_val"])
+
+        total = sum_multiplayer_combo_actual(
+            player_label,
+            team_label,
+            sprop,
+            _arm,
+            extra_aliases=_sport_prop_aliases(sport),
+        )
+        if total is None:
+            return None
+        # Preserve opp_team join when every arm reports one (MLB Box Raw).
+        parts = split_combo_players(player_label)
+        teams = split_combo_teams(team_label, len(parts))
+        opp_parts: list[str] = []
+        for arm_name, arm_team in zip(parts, teams):
+            matched = _lookup_player_prop(arm_name, arm_team, sprop, sport)
+            if matched is None:
+                continue
             ot = matched.get("opp_team") if hasattr(matched, "get") else None
             if ot is not None and not (isinstance(ot, float) and pd.isna(ot)) and str(ot).strip():
                 opp_parts.append(str(ot).strip())
-        if not vals:
-            return None
-        return float(sum(vals)), "/".join(p for p in opp_parts if p)
+        return float(total), "/".join(p for p in opp_parts if p)
+
+    # Back-compat names used below / tests
+    def _lookup_mlb_player_prop(player_name: str, team_hint: str, sprop: str):
+        return _lookup_player_prop(player_name, team_hint, sprop, "MLB")
+
+    def _lookup_mlb_combo_sum(player_label: str, team_label: str, sprop: str):
+        return _lookup_multiplayer_combo_sum(player_label, team_label, sprop, "MLB")
+
     for idx, srow in slate.iterrows():
         sname = _norm_name_mlb(srow.get("player", "")) if sport == "MLB" else _norm_name(srow.get("player", ""))
         # Prefer raw pipeline prop key when available (e.g., NHL `power_play_points`);
@@ -827,12 +840,14 @@ def grade(slate: pd.DataFrame, actuals: pd.DataFrame, sport: str) -> pd.DataFram
                 if team_key and s_last:
                     candidates2 = act_by_team_last.get((team_key, s_last), [])
                     matched = _find_prop_match(candidates2, sprop, sport)
-            # MLB multi-player combos (A + B): sum each arm's actual for the same prop.
-            if matched is None and sport == "MLB" and "+" in str(srow.get("player", "") or ""):
-                combo_sum = _lookup_mlb_combo_sum(
+            # Multi-player combos (A + B): sum each arm's actual for the same base prop.
+            # MLB/NHL/Soccer actuals are usually solo rows only (unlike WNBA duo materialization).
+            if matched is None and "+" in str(srow.get("player", "") or ""):
+                combo_sum = _lookup_multiplayer_combo_sum(
                     str(srow.get("player", "") or ""),
                     str(srow.get("team", "") or ""),
                     sprop,
+                    sport,
                 )
             if matched is None and combo_sum is None:
                 voids += 1
@@ -867,15 +882,39 @@ def grade(slate: pd.DataFrame, actuals: pd.DataFrame, sport: str) -> pd.DataFram
             continue
 
         if matched is None or pd.isna(matched["_val"]):
+            # Soccer missing actual stays VOID/NO_ACTUAL — never invent a MISS.
             voids += 1
             continue
 
         actual_val = float(matched["_val"])
+        if pd.isna(actual_val) or np.isnan(actual_val):
+            voids += 1
+            continue
         if pd.isna(sline) or (isinstance(sline, float) and np.isnan(sline)):
             voids += 1
             slate.at[idx, "void_reason_grade"] = "NO_LINE"
             continue
         line_val = float(sline)
+
+        # NHL: FO win-% must not grade against faceoffs-won count lines.
+        if sport == "NHL":
+            from utils.dnp_zero_void import void_if_nhl_faceoff_pct_vs_count
+
+            fo_void = void_if_nhl_faceoff_pct_vs_count(
+                actual_val,
+                {
+                    "prop": sprop_src,
+                    "prop_type": sprop_src,
+                    "line": line_val,
+                    "sport": "NHL",
+                },
+            )
+            if fo_void is not None:
+                slate.at[idx, "actual"] = actual_val
+                slate.at[idx, "result"] = "VOID"
+                slate.at[idx, "void_reason_grade"] = fo_void[1]
+                voids += 1
+                continue
 
         slate.at[idx, "actual"] = actual_val
         margin = actual_val - line_val

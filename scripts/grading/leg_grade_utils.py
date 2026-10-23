@@ -265,6 +265,28 @@ def slate_grade_row(actual: float | None, row: dict[str, Any] | pd.Series) -> tu
     if pd.isna(act):
         return "VOID", "NO_ACTUAL", np.nan
 
+    # PrizePicks voids a no-play; actual=0 with no minutes/snaps/TOI is DNP, not an UNDER hit.
+    # NFL UNDER zeros without snap evidence must not count as HIT.
+    # NHL FO% must not grade against FOW count lines.
+    try:
+        from utils.dnp_zero_void import (
+            void_if_dnp_zero,
+            void_if_nfl_under_zero_no_snaps,
+            void_if_nhl_faceoff_pct_vs_count,
+        )
+
+        row_map = row.to_dict() if hasattr(row, "to_dict") else dict(row)
+        for fn in (
+            void_if_dnp_zero,
+            void_if_nfl_under_zero_no_snaps,
+            void_if_nhl_faceoff_pct_vs_count,
+        ):
+            hit = fn(float(act), row_map)
+            if hit is not None:
+                return hit[0], hit[1], np.nan
+    except Exception:
+        pass
+
     line = None
     for k in ("line", "Line", "line_score", "LINE", "main_line"):
         if k in row.index if hasattr(row, "index") else k in row:

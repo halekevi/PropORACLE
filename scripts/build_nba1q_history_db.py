@@ -2,8 +2,13 @@
 """
 build_nba1q_history_db.py
 
-Consolidates outputs/**/period NBA actuals CSVs into the ``nba1q`` table in:
-  NBA/data/cache/proporacle_ref.db
+Consolidates outputs/**/period NBA actuals CSVs into the ``nba1q`` table in the
+canonical PropOracle ref DB:
+
+  data/cache/proporacle_ref.db
+
+(Same file step4 / NBA1Q+NBA1H L5 reads. The old Sports/NBA/data/cache copy is
+legacy-only — we migrate from it once, then keep writing here.)
 
 Ingests: 1Q, 2Q, 3Q, 4Q, 1H, 2H (segment column distinguishes them).
 
@@ -19,7 +24,8 @@ from pathlib import Path
 import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DB_PATH = REPO_ROOT / "Sports" / "NBA" / "data" / "cache" / "proporacle_ref.db"
+DB_PATH = REPO_ROOT / "data" / "cache" / "proporacle_ref.db"
+LEGACY_DB_PATH = REPO_ROOT / "Sports" / "NBA" / "data" / "cache" / "proporacle_ref.db"
 ACTUALS_GLOBS = (
     "actuals_nba1q_*.csv",
     "actuals_nba2q_*.csv",
@@ -155,6 +161,44 @@ def _ensure_nba1q_schema(conn: sqlite3.Connection) -> None:
     conn.commit()
 
 
+def _migrate_legacy_nba1q(conn: sqlite3.Connection) -> int:
+    """Copy nba1q rows from Sports/NBA cache into the canonical root DB."""
+    if not LEGACY_DB_PATH.exists():
+        return 0
+    try:
+        if LEGACY_DB_PATH.resolve() == DB_PATH.resolve():
+            return 0
+    except OSError:
+        return 0
+
+    before = conn.execute("SELECT COUNT(*) FROM nba1q").fetchone()[0]
+    try:
+        conn.execute("ATTACH DATABASE ? AS nba1q_legacy", (str(LEGACY_DB_PATH),))
+        has = conn.execute(
+            "SELECT 1 FROM nba1q_legacy.sqlite_master "
+            "WHERE type='table' AND name='nba1q' LIMIT 1"
+        ).fetchone()
+        if not has:
+            return 0
+        conn.execute(
+            """
+            INSERT OR IGNORE INTO nba1q
+            (game_date, espn_player_id, player, prop_type, actual, segment)
+            SELECT game_date, espn_player_id, player, prop_type, actual,
+                   COALESCE(NULLIF(segment, ''), '1Q')
+            FROM nba1q_legacy.nba1q
+            """
+        )
+        conn.commit()
+    finally:
+        try:
+            conn.execute("DETACH DATABASE nba1q_legacy")
+        except sqlite3.Error:
+            pass
+    after = conn.execute("SELECT COUNT(*) FROM nba1q").fetchone()[0]
+    return max(0, after - before)
+
+
 def main() -> None:
     files = []
     out_root = REPO_ROOT / "outputs"
@@ -211,6 +255,9 @@ def main() -> None:
     conn = sqlite3.connect(str(DB_PATH))
     try:
         _ensure_nba1q_schema(conn)
+        migrated = _migrate_legacy_nba1q(conn)
+        if migrated:
+            print(f"[nba1q-db] Migrated {migrated} row(s) from legacy {LEGACY_DB_PATH}")
         before = conn.execute("SELECT COUNT(*) FROM nba1q").fetchone()[0]
         ins = 0
         skp = 0

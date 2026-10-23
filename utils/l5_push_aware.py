@@ -163,10 +163,16 @@ def attach_l5_push_columns(
         return out
 
     def _write(col: str, values: list[float]) -> None:
-        if col not in out.columns:
-            out[col] = np.nan
+        # step7/8 often load with dtype=str; Arrow string columns reject float setitem.
+        # Drop+replace so we never setitem floats into a pandas StringDtype column.
         ser = pd.Series(values, index=out.index, dtype=float)
-        out.loc[has_hist, col] = ser.loc[has_hist]
+        if col in out.columns:
+            base = pd.to_numeric(out[col], errors="coerce").astype(float)
+            out.drop(columns=[col], inplace=True)
+        else:
+            base = pd.Series(np.nan, index=out.index, dtype=float)
+        base.loc[has_hist] = ser.loc[has_hist]
+        out[col] = base
 
     _write("l5_over", over_l)
     _write("l5_under", under_l)

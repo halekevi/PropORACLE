@@ -174,11 +174,15 @@ def main():
     _needs_bridge = (id_col == "nba_player_id" and _any_empty_espn) or _combo_gaps
     if _needs_bridge:
         print("→ Building ESPN ID bridge from DB (player name lookup)...")
-        rows = con.execute(
-            "SELECT player, espn_athlete_id FROM nba "
-            "WHERE espn_athlete_id IS NOT NULL "
-            "GROUP BY player, espn_athlete_id"
-        ).fetchall()
+        try:
+            rows = con.execute(
+                "SELECT player, espn_athlete_id FROM nba "
+                "WHERE espn_athlete_id IS NOT NULL "
+                "GROUP BY player, espn_athlete_id"
+            ).fetchall()
+        except Exception as exc:  # noqa: BLE001 — period-only DBs may lack nba
+            print(f"  WARN ESPN bridge skipped (nba table unavailable: {exc})")
+            rows = []
 
         import unicodedata as _ud
 
@@ -308,7 +312,9 @@ def main():
         slate["data_source"] = ""
 
     print(f"\n→ Attaching {sport_key.upper()} stats from DB (id_col={id_col}, n={args.n})...")
-    slate, counts = attach_stats(slate, sport_key, con, id_col=id_col, n=args.n)
+    slate, counts = attach_stats(
+        slate, sport_key, con, id_col=id_col, n=args.n, slate_date=str(args.date or "")
+    )
     if is_nba1q:
         # Explicit marker for sparse period history.
         status = slate.get("stat_status", pd.Series([""] * len(slate)))

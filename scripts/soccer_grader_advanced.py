@@ -55,6 +55,7 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8")
 
 import argparse
+import math
 import re
 import unicodedata
 import warnings
@@ -246,6 +247,29 @@ def _combo_team_parts(team: str, n_players: int) -> list[str]:
 
 def _soccer_teams_in_actuals_lut(lut: dict[tuple[str, str, str], float]) -> set[str]:
     return {str(k[2]).strip().upper() for k in lut if k[2]}
+
+
+def _soccer_volume_actual_suspicious(prop_type: object, actual: object, line: object) -> bool:
+    """True when Passes/Clearances actual looks like a wrong-field / null fill.
+
+    ESPN often leaves PA/clearances NULL; a coerced 0–few against a 20–60
+    Passes Attempted line (or ~5+ Clearances) is not a real observation.
+    """
+    pr = _norm_soccer_prop(prop_type)
+    if pr not in {"passes attempted", "passes", "clearances", "clearance"}:
+        return False
+    try:
+        a = float(actual)
+        ln = float(line)
+    except (TypeError, ValueError):
+        return False
+    if math.isnan(a) or math.isnan(ln):
+        return False
+    if "pass" in pr and ln >= 20.0 and a < 5.0:
+        return True
+    if "clear" in pr and ln >= 3.0 and a < 0.5:
+        return True
+    return False
 
 
 def _soccer_missing_actual_reason(
@@ -465,7 +489,10 @@ def lookup_soccer_actual(
 ) -> float:
     pl = _norm_soccer_player(player)
     raw = str(prop_type or "")
-    pr = _norm_soccer_prop(re.sub(r"\(combo\)", "", raw, flags=re.I).strip())
+    # Strip "(Combo)" / trailing combo so duo legs share solo actual keys.
+    raw = re.sub(r"\(\s*combo\s*\)", "", raw, flags=re.I).strip()
+    raw = re.sub(r"[\s_]+combo$", "", raw, flags=re.I).strip()
+    pr = _norm_soccer_prop(raw)
     tm = _normalize_soccer_team_token(team)
     if not pl or not pr:
         return np.nan
@@ -938,8 +965,11 @@ def main() -> None:
         # Forward-safe grading policy:
         # - Missing actual: PENDING when an arm's team has not posted yet
         #   (e.g. Mbappé+Yamal+Messi before ARG kickoff); otherwise VOID/NO_DATA.
+        # - Never grade missing as MISS.
         # - actual==0 is a valid observed stat and should grade by direction/line.
         # - Only mark DNP VOID when feed explicitly says 0 minutes played.
+        # - Passes/Clearances with tiny actuals vs volume lines are wrong-field
+        #   fills (ESPN-null / bad Sofascore) — VOID, not MISS.
         if pd.isna(actual):
             void_reason = _soccer_missing_actual_reason(
                 actuals_lut, player, prop_type, team
@@ -952,6 +982,10 @@ def main() -> None:
         elif minutes_played is not None and float(minutes_played) <= 0:
             result, edge = "VOID", np.nan
             void_reason = "DNP"
+            no_data_void_rows += 1
+        elif _soccer_volume_actual_suspicious(prop_type, actual, line):
+            result, edge = "VOID", np.nan
+            void_reason = "NO_DATA"
             no_data_void_rows += 1
         else:
             result, edge = grader.grade_prop(actual, line, direction)
