@@ -21934,7 +21934,11 @@ def main():
             mlb = None
 
     nba1q = None
-    if _nba_family_off_season(args.date):
+    from utils.ticket_sport_holds import NBA1Q_HOLD_REASON, nba1q_tickets_held
+
+    if nba1q_tickets_held():
+        print(f"  [NBA1Q] {NBA1Q_HOLD_REASON}")
+    elif _nba_family_off_season(args.date):
         print("  [NBA1Q] Off-season — skipped until 2026-10-01")
     else:
         nba1q_path = str(args.nba1q or "").strip()

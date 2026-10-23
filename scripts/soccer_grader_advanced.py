@@ -895,6 +895,17 @@ def main() -> None:
 
     slate = normalize_soccer_slate_columns(slate)
     slate = filter_soccer_slate_by_date(slate, args.date)
+    try:
+        scripts_dir = _REPO_ROOT / "scripts"
+        if str(scripts_dir) not in sys.path:
+            sys.path.insert(0, str(scripts_dir))
+        from ticket_leg_index import union_ticket_faces_into_slate  # noqa: WPS433
+
+        slate = union_ticket_faces_into_slate(
+            slate, date_str=args.date, sport="SOCCER", repo=_REPO_ROOT
+        )
+    except Exception as exc:
+        print(f"  [ticket-face] union skipped: {exc}")
     actuals_lut = build_soccer_actuals_lookup(actuals)
     minutes_lut = build_soccer_minutes_lookup(actuals)
     print("[Soccer Grader] Mapping audit:")

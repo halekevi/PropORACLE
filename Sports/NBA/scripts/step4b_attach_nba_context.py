@@ -34,6 +34,7 @@ from nba_stats_api import (
     norm_team,
     position_group_from_pos,
     positional_matchup_tier,
+    prior_nba_season,
     usage_tier,
 )
 
@@ -149,6 +150,16 @@ def main() -> None:
     usage_players = (usage_cache.get(ukey) or {}).get("players") or {}
     pace_teams = (pace_cache.get(ukey) or {}).get("teams") or {}
     opp_entries = (opp_cache.get(ukey) or {}).get("entries") or {}
+    if not usage_players:
+        prior = prior_nba_season(season)
+        pkey = f"season_{prior}"
+        usage_players = (usage_cache.get(pkey) or {}).get("players") or {}
+        if not pace_teams:
+            pace_teams = (pace_cache.get(pkey) or {}).get("teams") or {}
+        if not opp_entries:
+            opp_entries = (opp_cache.get(pkey) or {}).get("entries") or {}
+        if usage_players:
+            log.info("usage cache %s empty; attaching %s", season, prior)
 
     # League ranks for positional matchup tiers
     pts_vals = [e["pts_allowed"] for e in opp_entries.values() if e.get("pts_allowed") is not None]

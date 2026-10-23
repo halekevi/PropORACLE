@@ -271,6 +271,12 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     ):
         if drop_golf and loader_name == "load_golf":
             continue
+        if loader_name == "load_nba1q":
+            from utils.ticket_sport_holds import NBA1Q_HOLD_REASON, nba1q_tickets_held
+
+            if nba1q_tickets_held():
+                print(NBA1Q_HOLD_REASON, flush=True)
+                continue
         loader = getattr(R, loader_name, None)
         if not callable(loader):
             continue
@@ -280,6 +286,13 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     if drop_golf:
         rows = [r for r in rows if str(r.get("sport") or "").upper() != "GOLF"]
         print(golf_skip_warning(rows), flush=True)
+    from utils.ticket_sport_holds import NBA1Q_HOLD_REASON, nba1q_tickets_held
+
+    if nba1q_tickets_held():
+        n_q = sum(1 for r in rows if str(r.get("sport") or "").upper() == "NBA1Q")
+        if n_q:
+            rows = [r for r in rows if str(r.get("sport") or "").upper() != "NBA1Q"]
+            print(f"{NBA1Q_HOLD_REASON} dropped {n_q} board row(s)", flush=True)
     return rows
 
 # PAY lives in utils.n_correct_payout. Resolve order: CDP scrape (matching

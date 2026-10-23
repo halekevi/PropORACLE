@@ -264,6 +264,17 @@ def main() -> None:
     elif len(slate_f) < n_slate:
         print(f"[Tennis grader] Date filter {target}: {len(slate_f)}/{n_slate} slate rows")
     slate = slate_f
+    try:
+        scripts_dir = _REPO_ROOT / "scripts"
+        if str(scripts_dir) not in sys.path:
+            sys.path.insert(0, str(scripts_dir))
+        from ticket_leg_index import union_ticket_faces_into_slate  # noqa: WPS433
+
+        slate = union_ticket_faces_into_slate(
+            slate, date_str=target, sport="TENNIS", repo=_REPO_ROOT
+        )
+    except Exception as exc:
+        print(f"[Tennis grader] ticket-face union skipped: {exc}")
 
     by_player_day: dict[str, dict[str, float]] = {}
     for tour in ("ATP", "WTA"):

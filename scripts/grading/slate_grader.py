@@ -2273,6 +2273,14 @@ def main():
             live_json=tpl / "tickets_latest.json",
             shadow_json=resolve_shadow_tickets_path(_REPO_ROOT),
         )
+        from ticket_leg_index import union_ticket_faces_into_slate  # noqa: WPS433
+
+        before = len(df)
+        df = union_ticket_faces_into_slate(
+            df, date_str=args.date, sport=args.sport, repo=_REPO_ROOT
+        )
+        if len(df) != before:
+            print(f"  {len(df)} props after ticket-face union")
     except Exception as exc:
         if "ticket_id" not in df.columns:
             df["ticket_id"] = None

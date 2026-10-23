@@ -7,6 +7,7 @@ via ``utils.allstar_filter`` (2026-07-13..15).
 
 from __future__ import annotations
 
+from datetime import date, datetime
 from typing import Any
 
 # Inclusive calendar from-dates for L5 / consistency season windows.
@@ -51,6 +52,37 @@ ACTIVE_SPORTS: tuple[str, ...] = (
 )
 
 MLB_ASG_HARD: frozenset[str] = frozenset({"2026-07-13", "2026-07-14", "2026-07-15"})
+
+
+def nba_stats_season(as_of: str | date | datetime | None = None) -> str:
+    """stats.nba.com season string (``2026-27``) for a calendar date.
+
+    NBA regular season opens in October. October 2026 is ``2026-27``, not
+    the completed ``2025-26`` year still hardcoded on some pipeline callers.
+    """
+    if as_of is None:
+        y, m = date.today().year, date.today().month
+    elif isinstance(as_of, datetime):
+        y, m = as_of.year, as_of.month
+    elif isinstance(as_of, date):
+        y, m = as_of.year, as_of.month
+    else:
+        s = str(as_of or "").strip()[:10]
+        if len(s) >= 7 and s[4] == "-":
+            y, m = int(s[:4]), int(s[5:7])
+        else:
+            y, m = date.today().year, date.today().month
+    start = y if m >= 10 else y - 1
+    return f"{start}-{str(start + 1)[-2:]}"
+
+
+def prior_nba_stats_season(season: str | None = None) -> str:
+    raw = str(season or nba_stats_season()).strip()
+    try:
+        start = int(raw.split("-", 1)[0])
+    except (TypeError, ValueError):
+        start = date.today().year if date.today().month >= 10 else date.today().year - 1
+    return f"{start - 1}-{str(start)[-2:]}"
 
 
 def sport_from_date(sport: str) -> str:

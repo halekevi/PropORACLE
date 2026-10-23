@@ -699,6 +699,14 @@ def main() -> None:
         sys.exit(1)
 
     slate = _filter_nhl_step8_slate_by_et_calendar_day(slate, args.date)
+    try:
+        from ticket_leg_index import union_ticket_faces_into_slate  # noqa: WPS433
+
+        slate = union_ticket_faces_into_slate(
+            slate, date_str=args.date, sport="NHL", repo=_REPO_ROOT
+        )
+    except Exception as exc:
+        print(f"  [ticket-face] union skipped: {exc}")
 
     # Load optional opponent cache
     opp_cache = None

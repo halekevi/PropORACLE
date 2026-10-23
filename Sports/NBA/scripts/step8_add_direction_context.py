@@ -419,6 +419,8 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         'n_legs_sample',
         'OVERALL_DEF_RANK', 'DEF_TIER',
         'minutes_tier', 'shot_role', 'usage_role',
+        'league', 'league_id',
+        'pp_projection_id', 'projection_id',
         'void_reason',
         # ── Intel layer (step6e) ──────────────────────────────────────────
         'intel_season_avg', 'intel_l5_avg', 'intel_l10_avg',
@@ -674,10 +676,13 @@ def main() -> None:
         print("tier counts:")
         print(out["tier"].value_counts().to_string())
 
-    # Save clean XLSX
+    # Save clean XLSX (non-fatal — CSV is the recovery path)
     xlsx_path = args.xlsx if args.xlsx else args.output.replace(".csv", "_clean.xlsx")
-    build_clean_xlsx(out, xlsx_path, source_hint=args.input)
-    _copy_dated_step8_nba(xlsx_path, (args.date or "").strip())
+    try:
+        build_clean_xlsx(out, xlsx_path, source_hint=args.input)
+        _copy_dated_step8_nba(xlsx_path, (args.date or "").strip())
+    except Exception as exc:
+        print(f"⚠️  Clean XLSX skipped ({type(exc).__name__}: {exc})")
 
 if __name__ == "__main__":
     try:
