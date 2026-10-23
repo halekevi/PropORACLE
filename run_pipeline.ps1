@@ -802,7 +802,7 @@ function Invoke-WcbbPipeline {
     if ($ok) { $ok = Run-Step "WCBB Step 4 - Attach ESPN IDs" $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py" "--input `"$OutDir\step3b_with_def_rankings_wcbb.csv`" --output `"$OutDir\step3_wcbb.csv`" --master $masterRel" }
     if ($ok) { $ok = Run-Step "WCBB Step 5 - Boxscore Stats" $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py" "--input `"$OutDir\step3_wcbb.csv`" --output `"$OutDir\step5b_wcbb.csv`" --cache data\cache\wcbb_boxscore_cache.csv --days 90 --league womens-college-basketball" }
     if ($ok) { $ok = Run-Step "WCBB Step 6 - Rank Props" $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py" "--input `"$OutDir\step5b_wcbb.csv`" --output `"$OutDir\step6_ranked_wcbb.xlsx`" --cache data\cache\wcbb_boxscore_cache.csv" }
-    if ($ok) { Invoke-PropOracleStep7b "WCBB" "$OutDir\step6_ranked_wcbb.xlsx" }
+    if ($ok) { $ok = Invoke-PropOracleStep7b "WCBB" "$OutDir\step6_ranked_wcbb.xlsx" }
     return $ok
 }
 
@@ -1033,7 +1033,11 @@ function Run-NBAPeriodPipeline {
     if ($ok) { $ok = Run-Step "${tagLower} Step 5 - Line Hit Rates"         $NBADir ".\scripts\step5_add_line_hit_rates.py"             "--input $step4 --output $step5 --compute10" }
     if ($ok) { $ok = Run-Step "${tagLower} Step 6 - Team Role Context"      $NBADir ".\scripts\step6_team_role_context.py"              "--input $step5 --output $step6" }
     if ($ok) { $ok = Run-Step "${tagLower} Step 7 - Rank Props"             $NBADir ".\scripts\step7_rank_props.py"                     "--input $step6 --output $step7" }
-    if ($ok) { Invoke-PropOracleStep7b ($Tag.ToUpper()) "$step7" }
+    if ($ok -and -not (Test-Path -LiteralPath $step7)) {
+        Write-Host "  FAILED: [${tagLower}] step7 xlsx missing after step7: $step7" -ForegroundColor Red
+        $ok = $false
+    }
+    if ($ok) { $ok = Invoke-PropOracleStep7b ($Tag.ToUpper()) "$step7" }
     if ($ok -and $tagLower -eq "nba") { Invoke-PyNbaStatProjection -RepoRoot $Root -Step7Xlsx $step7 -PipelineDate $Date }
     if ($ok) { $ok = Run-Step "${tagLower} Step 8 - Direction Context"      $NBADir (Join-Path $SportsRoot "NBA\scripts\step8_add_direction_context.py") "--input $step7 --sheet ALL --output $step8Csv --xlsx $step8Xlsx --date $Date" }
 
@@ -1324,26 +1328,31 @@ function Invoke-PropOracleStep7b {
         $sp = Join-Path $Root "scripts\step7b_edge_score.py"
         if (-not (Test-Path $sp)) {
             Write-Host "  [$SportLabel] step7b: WARN (missing scripts\step7b_edge_score.py)" -ForegroundColor Yellow
-            return
-        }
-        $argList = @("--sport", $SportLabel, "--repo-root", $Root)
-        if ($Step7Xlsx -ne "") { $argList += @("--step7-xlsx", $Step7Xlsx) }
-        if ($PipelineDate -ne "") { $argList += @("--pipeline-date", $PipelineDate) }
-        Write-Host "  --> step7b ($SportLabel)" -ForegroundColor Yellow
-        Write-Host "        CMD: py -3.14 $sp $($argList -join ' ')" -ForegroundColor DarkGray
-        $output = & py -3.14 $sp @argList 2>&1
-        $exit   = $LASTEXITCODE
-        foreach ($line in $output) { Write-Host "        $line" -ForegroundColor DarkGray }
-        if ($exit -ne 0) {
-            Write-Host "  [$SportLabel] step7b: WARN (exit $exit)" -ForegroundColor Yellow
         } else {
-            Write-Host "  [$SportLabel] step7b: OK" -ForegroundColor Green
+            $argList = @("--sport", $SportLabel, "--repo-root", $Root)
+            if ($Step7Xlsx -ne "") { $argList += @("--step7-xlsx", $Step7Xlsx) }
+            if ($PipelineDate -ne "") { $argList += @("--pipeline-date", $PipelineDate) }
+            Write-Host "  --> step7b ($SportLabel)" -ForegroundColor Yellow
+            Write-Host "        CMD: py -3.14 $sp $($argList -join ' ')" -ForegroundColor DarkGray
+            $output = & py -3.14 $sp @argList 2>&1
+            $exit   = $LASTEXITCODE
+            foreach ($line in $output) { Write-Host "        $line" -ForegroundColor DarkGray }
+            if ($exit -ne 0) {
+                Write-Host "  [$SportLabel] step7b: WARN (exit $exit)" -ForegroundColor Yellow
+            } else {
+                Write-Host "  [$SportLabel] step7b: OK" -ForegroundColor Green
+            }
         }
     } catch {
         Write-Host "  [$SportLabel] step7b: WARN (exit 1)" -ForegroundColor Yellow
     } finally {
         Pop-Location
     }
+    if ($Step7Xlsx -ne "" -and -not (Test-Path -LiteralPath $Step7Xlsx)) {
+        Write-Host "  FAILED: [$SportLabel] step7 xlsx missing after step7b: $Step7Xlsx" -ForegroundColor Red
+        return $false
+    }
+    return $true
 }
 
 # -- Helper: git push live site JSON to origin/main (Railway / raw GitHub) ------
@@ -2103,7 +2112,7 @@ if ($NHLOnly) {
         }
     }
     if ($ok) { $ok = Run-Step "NHL Step 7 - Rank Props"         $NHLDir ".\scripts\step7_rank_props_nhl.py"             "--input `"$NHLRunOutDir\step6_nhl_role_context.csv`" --output `"$NHLRunOutDir\step7_nhl_ranked.xlsx`"" }
-    if ($ok) { Invoke-PropOracleStep7b "NHL" "$NHLRunOutDir\step7_nhl_ranked.xlsx" }
+    if ($ok) { $ok = Invoke-PropOracleStep7b "NHL" "$NHLRunOutDir\step7_nhl_ranked.xlsx" }
     if ($ok) { $ok = Run-Step "NHL Step 8 - Direction Context"  $NHLDir (Join-Path $SportsRoot "NHL\scripts\step8_add_direction_context_nhl.py")  "--input `"$NHLRunOutDir\step7_nhl_ranked.xlsx`" --output `"$NHLRunOutDir\step8_nhl_direction_clean.xlsx`" --date $Date" }
     if ($ok) {
         $NhlMeScript = Join-Path $NHLDir "scripts\build_nhl_matchup_edge_json.py"
@@ -2268,7 +2277,7 @@ if ($MLBOnly) {
         }
     }
     if ($ok) { $ok = Run-Step "MLB Step 7 - Rank Props"         $MLBDir ".\scripts\step7_rank_props_mlb.py"             "--input `"$MLBRunOutDir\step6_mlb_role_context.csv`" --output `"$MLBRunOutDir\step7_mlb_ranked.xlsx`"" }
-    if ($ok) { Invoke-PropOracleStep7b "MLB" "$MLBRunOutDir\step7_mlb_ranked.xlsx" }
+    if ($ok) { $ok = Invoke-PropOracleStep7b "MLB" "$MLBRunOutDir\step7_mlb_ranked.xlsx" }
     if ($ok) { $ok = Run-Step "MLB Step 8 - Direction Context"  $MLBDir (Join-Path $SportsRoot "MLB\scripts\step8_add_direction_context_mlb.py")  "--input `"$MLBRunOutDir\step7_mlb_ranked.xlsx`" --output `"$MLBRunOutDir\step8_mlb_direction.csv`" --xlsx `"$MLBRunOutDir\step8_mlb_direction_clean.xlsx`" --date $Date" }
     if ($ok) {
         $MlbMeScript = Join-Path $MLBDir "scripts\build_mlb_hitter_matchup_edge_json.py"
@@ -2355,7 +2364,7 @@ if ($SoccerOnly) {
         }
     }
     if ($ok) { $ok = Run-Step "Soccer Step 7 - Rank Props"         $SoccerDir ".\scripts\step7_rank_props_soccer.py"             "--input `"$SoccerRunOutDir\step6_soccer_role_context.csv`" --output `"$SoccerRunOutDir\step7_soccer_ranked.xlsx`"" }
-    if ($ok) { Invoke-PropOracleStep7b "Soccer" "$SoccerRunOutDir\step7_soccer_ranked.xlsx" }
+    if ($ok) { $ok = Invoke-PropOracleStep7b "Soccer" "$SoccerRunOutDir\step7_soccer_ranked.xlsx" }
     if ($ok) { $ok = Run-Step "Soccer Step 8 - Direction Context"  $SoccerDir (Join-Path $SportsRoot "Soccer\scripts\step8_add_direction_context_soccer.py")  "--input `"$SoccerRunOutDir\step7_soccer_ranked.xlsx`" --sheet ALL --output `"$SoccerRunOutDir\step8_soccer_direction.csv`" --xlsx `"$SoccerRunOutDir\step8_soccer_direction_clean.xlsx`" --date $Date" }
     if ($ok) { Publish-SoccerStep8Artifacts -Reason "Soccer-only" }
     Write-Host ""
@@ -2428,7 +2437,7 @@ if ($GolfOnly) {
     if ($ok) {
         $ok = Run-Step "Golf Step 7 - Rank Props" $GolfDir ".\scripts\step7_rank_props_golf.py" "--input `"$golfStep7Input`" --output `"$GolfRunOutDir\step7_golf_ranked.xlsx`""
     }
-    if ($ok) { Invoke-PropOracleStep7b "Golf" "$GolfRunOutDir\step7_golf_ranked.xlsx" $Date }
+    if ($ok) { $ok = Invoke-PropOracleStep7b "Golf" "$GolfRunOutDir\step7_golf_ranked.xlsx" $Date }
     if ($ok) {
         $ok = Run-Step "Golf Step 8 - Direction Context" $GolfDir ".\scripts\step8_add_direction_context_golf.py" "--input `"$GolfRunOutDir\step7_golf_ranked.xlsx`" --sheet ALL --output `"$GolfRunOutDir\step8_golf_direction.csv`" --xlsx `"$GolfRunOutDir\step8_golf_direction_clean.xlsx`" --date $Date"
     }
@@ -2482,10 +2491,11 @@ if ($TennisOnly) {
     if ($ok) { $ok = Run-Step "Tennis Step 7 - Rank Props" $TennisDir ".\scripts\step7_rank_props_tennis.py" "--input `"$TennisRunOutDir\step6_tennis_role_context.csv`" --output `"$TennisRunOutDir\step7_tennis_ranked.xlsx`"" }
     if ($ok) {
         $tennisStep7 = Join-Path $TennisRunOutDir "step7_tennis_ranked.xlsx"
-        if (-not (Test-Path $tennisStep7)) {
-            Write-Host "  [Tennis] WARN: step7 output missing at $tennisStep7 — skipping step7b" -ForegroundColor Yellow
+        if (-not (Test-Path -LiteralPath $tennisStep7)) {
+            Write-Host "  FAILED: [Tennis] step7 xlsx missing after step7: $tennisStep7" -ForegroundColor Red
+            $ok = $false
         } else {
-            Invoke-PropOracleStep7b "Tennis" $tennisStep7 $Date
+            $ok = Invoke-PropOracleStep7b "Tennis" $tennisStep7 $Date
         }
     }
     if ($ok) { $ok = Run-Step "Tennis Step 8 - Direction Context" $TennisDir (Join-Path $SportsRoot "Tennis\scripts\step8_add_direction_context_tennis.py") "--input `"$TennisRunOutDir\step7_tennis_ranked.xlsx`" --sheet ALL --output `"$TennisRunOutDir\step8_tennis_direction.csv`" --xlsx `"$TennisRunOutDir\step8_tennis_direction_clean.xlsx`" --date $TennisDate" }
@@ -2528,7 +2538,7 @@ if ($CFBOnly) {
     if ($ok) { $ok = Run-Step "CFB Step 4 - Attach ESPN IDs"         $CFBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CFBRunOutDir\step3_with_unit_rankings_cfb.csv`" --output `"$CFBRunOutDir\step3_cfb.csv`" --master data/reference/ncaa_football_athletes_master.csv" }
     if ($ok) { $ok = Run-Step "CFB Step 5 - Boxscore Stats"          $CFBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CFBRunOutDir\step3_cfb.csv`" --output `"$CFBRunOutDir\step5b_cfb.csv`" --date $Date --days 200 --cache data\cache\cfb_boxscore_cache.csv" }
     if ($ok) { $ok = Run-Step "CFB Step 6 - Rank Props"              $CFBDir ".\scripts\pipeline\step6_rank_props_cfb.py"                       "--input `"$CFBRunOutDir\step5b_cfb.csv`" --output `"$CFBRunOutDir\step6_ranked_cfb.xlsx`" --cache data\cache\cfb_boxscore_cache.csv --date $Date" }
-    if ($ok) { Invoke-PropOracleStep7b "CFB" "$CFBRunOutDir\step6_ranked_cfb.xlsx" }
+    if ($ok) { $ok = Invoke-PropOracleStep7b "CFB" "$CFBRunOutDir\step6_ranked_cfb.xlsx" }
     if ($ok) { $ok = Run-Step "CFB Step 8 - Direction Context"       $CFBDir ".\scripts\pipeline\step8_add_direction_context_cfb.py"          "--input `"$CFBRunOutDir\step6_ranked_cfb.xlsx`" --output `"$CFBRunOutDir\step8_cfb_direction_clean.xlsx`" --date $Date" }
     if ($ok) {
         Copy-DatedSlateOutput `
@@ -2556,7 +2566,7 @@ if ($CFBOnly) {
         if ($ok1h) { $ok1h = Run-Step "CFB1H Step 4 - Attach ESPN IDs" $CFBDir ".\scripts\pipeline\step5a_attach_espn_ids.py" "--input `"$CFB1HRunOutDir\step3_with_unit_rankings_cfb1h.csv`" --output `"$CFB1HRunOutDir\step3_cfb1h.csv`" --master data/reference/ncaa_football_athletes_master.csv" }
         if ($ok1h) { $ok1h = Run-Step "CFB1H Step 5 - First-half PBP" $CFBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py" "--input `"$CFB1HRunOutDir\step3_cfb1h.csv`" --output `"$CFB1HRunOutDir\step5b_cfb1h.csv`" --date $Date --days 200 --segment 1H --cache data\cache\cfb1h_boxscore_cache.csv --full-game-cache data\cache\cfb_boxscore_cache.csv --workers 8" }
         if ($ok1h) { $ok1h = Run-Step "CFB1H Step 6 - Rank Props" $CFBDir ".\scripts\pipeline\step6_rank_props_cfb.py" "--input `"$CFB1HRunOutDir\step5b_cfb1h.csv`" --output `"$CFB1HRunOutDir\step6_ranked_cfb1h.xlsx`" --cache data\cache\cfb1h_boxscore_cache.csv --date $Date" }
-        if ($ok1h) { Invoke-PropOracleStep7b "CFB1H" "$CFB1HRunOutDir\step6_ranked_cfb1h.xlsx" }
+        if ($ok1h) { $ok1h = Invoke-PropOracleStep7b "CFB1H" "$CFB1HRunOutDir\step6_ranked_cfb1h.xlsx" }
         if ($ok1h) { $ok1h = Run-Step "CFB1H Step 8 - Direction Context" $CFBDir ".\scripts\pipeline\step8_add_direction_context_cfb.py" "--input `"$CFB1HRunOutDir\step6_ranked_cfb1h.xlsx`" --output `"$CFB1HRunOutDir\step8_cfb1h_direction_clean.xlsx`" --date $Date" }
         if ($ok1h) {
             Copy-DatedSlateOutput `
@@ -2593,7 +2603,7 @@ if ($CBBOnly) {
     if ($ok) { $ok = Run-Step "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`" --output `"$CBBRunOutDir\step3_cbb.csv`" --master data/reference/ncaa_mbb_athletes_master.csv" }
     if ($ok) { $ok = Run-Step "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CBBRunOutDir\step3_cbb.csv`" --output `"$CBBRunOutDir\step5b_cbb.csv`"" }
     if ($ok) { $ok = Run-Step "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`"" }
-    if ($ok) { Invoke-PropOracleStep7b "CBB" "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
+    if ($ok) { $ok = Invoke-PropOracleStep7b "CBB" "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
     $wcbbOk = Invoke-WcbbPipeline -OutDir $WCBBRunOutDir -SkipFetch:$SkipFetch
     Write-Host ""
     if ($ok) { Write-Host "  CBB (NCAABB Mens) complete." -ForegroundColor Green } else { Write-Host "  CBB (NCAABB Mens) FAILED." -ForegroundColor Red }
@@ -2712,7 +2722,11 @@ if ($NBAOnly) {
         }
     }
     if ($ok) { $ok = Run-Step "NBA Step 7 - Rank Props"              $NBADir ".\scripts\step7_rank_props.py"                    "--input `"$NBARunOutDir\step6e_with_intel.csv`" --output `"$NBARunOutDir\step7_ranked_props.xlsx`"" }
-    if ($ok) { Invoke-PropOracleStep7b "NBA" "$NBARunOutDir\step7_ranked_props.xlsx" }
+    if ($ok -and -not (Test-Path -LiteralPath "$NBARunOutDir\step7_ranked_props.xlsx")) {
+        Write-Host "  FAILED: [NBA] step7_ranked_props.xlsx missing after step7: $NBARunOutDir\step7_ranked_props.xlsx" -ForegroundColor Red
+        $ok = $false
+    }
+    if ($ok) { $ok = Invoke-PropOracleStep7b "NBA" "$NBARunOutDir\step7_ranked_props.xlsx" }
     if ($ok) { Invoke-PyNbaStatProjection -RepoRoot $Root -Step7Xlsx "$NBARunOutDir\step7_ranked_props.xlsx" -PipelineDate $Date }
     if ($ok) { $ok = Run-Step "NBA Step 8 - Direction Context"       $NBADir (Join-Path $SportsRoot "NBA\scripts\step8_add_direction_context.py")         "--input `"$NBARunOutDir\step7_ranked_props.xlsx`" --sheet ALL --output `"$NBARunOutDir\step8_all_direction.csv`" --date $Date" }
     if ($ok) {
@@ -3002,18 +3016,24 @@ $NBAJob = Start-Job -ScriptBlock {
     if ($ok) { $ok = Run-Step-Job "NBA Step 4 - Player Stats (ESPN)"     $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate `"$NBARunOutDir\step3_with_defense.csv`" --out `"$NBARunOutDir\step4_with_stats.csv`"" }
     if ($ok) { $ok = Run-Step-Job "NBA Step 4b - Usage/Pace Context"    $NBADir ".\scripts\step4b_attach_nba_context.py"              "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step4_with_stats.csv`" --season $NbaStatsSeason" }
     if ($ok) {
-        Write-Output "[NBA] Step 4d - Injury Context"
-        $NbaStep4d = Join-Path $NBADir "scripts\step4d_attach_injury_context.py"
-        Push-Location $Root
-        try {
-            & py -3.14 $NbaStep4d `
-                --input  "$NBARunOutDir\step4_with_stats.csv" `
-                --output "$NBARunOutDir\step4_with_stats.csv"
-            if ($LASTEXITCODE -ne 0) {
-                Write-Output "[NBA-parallel] step4d injury context failed — continuing"
+        $nbaStep4Csv = "$NBARunOutDir\step4_with_stats.csv"
+        if (-not (Test-Path -LiteralPath $nbaStep4Csv)) {
+            Write-Output "[NBA] FAILED: step4_with_stats.csv missing before step4d: $nbaStep4Csv"
+            $ok = $false
+        } else {
+            Write-Output "[NBA] Step 4d - Injury Context"
+            $NbaStep4d = Join-Path $NBADir "scripts\step4d_attach_injury_context.py"
+            Push-Location $RepoRoot
+            try {
+                & py -3.14 $NbaStep4d `
+                    --input  $nbaStep4Csv `
+                    --output $nbaStep4Csv
+                if ($LASTEXITCODE -ne 0) {
+                    Write-Output "[NBA-parallel] step4d injury context failed — continuing"
+                }
+            } finally {
+                Pop-Location
             }
-        } finally {
-            Pop-Location
         }
     }
     if ($ok) { $ok = Run-Step-Job "NBA Step 5 - Line Hit Rates"          $NBADir ".\scripts\step5_add_line_hit_rates.py"             "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step5_with_hit_rates.csv`" --compute10" }
@@ -3027,7 +3047,7 @@ $NBAJob = Start-Job -ScriptBlock {
         $NbaTop3Script = Join-Path $NBADir "scripts\analyze_top_players_vs_defense.py"
         if (Test-Path -LiteralPath $NbaTop3Script) {
             Write-Host "  --> NBA Top-3 vs defense analysis (step7 input)" -ForegroundColor Yellow
-            Push-Location $Root
+            Push-Location $RepoRoot
             try {
                 & py -3.14 $NbaTop3Script
                 if ($LASTEXITCODE -ne 0) {
@@ -3039,7 +3059,11 @@ $NBAJob = Start-Job -ScriptBlock {
         }
     }
     if ($ok) { $ok = Run-Step-Job "NBA Step 7 - Rank Props"              $NBADir ".\scripts\step7_rank_props.py"                    "--input `"$NBARunOutDir\step6e_with_intel.csv`" --output `"$NBARunOutDir\step7_ranked_props.xlsx`"" }
-    if ($ok) { Invoke-Step7b-Job "NBA" $RepoRoot "$NBARunOutDir\step7_ranked_props.xlsx" }
+    if ($ok -and -not (Test-Path -LiteralPath "$NBARunOutDir\step7_ranked_props.xlsx")) {
+        Write-Output "[NBA] FAILED: step7_ranked_props.xlsx missing after step7: $NBARunOutDir\step7_ranked_props.xlsx"
+        $ok = $false
+    }
+    if ($ok) { $ok = Invoke-Step7b-Job "NBA" $RepoRoot "$NBARunOutDir\step7_ranked_props.xlsx" }
     if ($ok) { Invoke-PyNbaStatProjection -RepoRoot $RepoRoot -Step7Xlsx "$NBARunOutDir\step7_ranked_props.xlsx" -PipelineDate $Date }
     if ($ok) { $ok = Run-Step-Job "NBA Step 8 - Direction Context"       $NBADir (Join-Path $RepoRoot "Sports\NBA\scripts\step8_add_direction_context.py")         "--input `"$NBARunOutDir\step7_ranked_props.xlsx`" --sheet ALL --output `"$NBARunOutDir\step8_all_direction.csv`" --date $Date" }
     return $ok
@@ -3088,7 +3112,7 @@ $CBBJob = Start-Job -ScriptBlock {
     if ($ok) { $ok = Run-Step-Job "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`" --output `"$CBBRunOutDir\step3_cbb.csv`" --master data/reference/ncaa_mbb_athletes_master.csv" }
     if ($ok) { $ok = Run-Step-Job "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CBBRunOutDir\step3_cbb.csv`" --output `"$CBBRunOutDir\step5b_cbb.csv`"" }
     if ($ok) { $ok = Run-Step-Job "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`"" }
-    if ($ok) { Invoke-Step7b-Job "CBB" $RepoRoot "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
+    if ($ok) { $ok = Invoke-Step7b-Job "CBB" $RepoRoot "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
     if (-not (Test-Path $WCBBRunOutDir)) { New-Item -ItemType Directory -Force -Path $WCBBRunOutDir | Out-Null }
     $wcbb1 = Join-Path $WCBBRunOutDir "step1_wcbb.csv"
     $wcbbOk = $true
@@ -3105,7 +3129,7 @@ $CBBJob = Start-Job -ScriptBlock {
         if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 4 - Attach ESPN IDs" $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py" "--input `"$WCBBRunOutDir\step3b_with_def_rankings_wcbb.csv`" --output `"$WCBBRunOutDir\step3_wcbb.csv`" --master $masterRel" }
         if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 5 - Boxscore Stats" $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py" "--input `"$WCBBRunOutDir\step3_wcbb.csv`" --output `"$WCBBRunOutDir\step5b_wcbb.csv`" --cache data\cache\wcbb_boxscore_cache.csv --days 90 --league womens-college-basketball" }
         if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 6 - Rank Props" $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py" "--input `"$WCBBRunOutDir\step5b_wcbb.csv`" --output `"$WCBBRunOutDir\step6_ranked_wcbb.xlsx`" --cache data\cache\wcbb_boxscore_cache.csv" }
-        if ($wcbbOk) { Invoke-Step7b-Job "WCBB" $RepoRoot "$WCBBRunOutDir\step6_ranked_wcbb.xlsx" }
+        if ($wcbbOk) { $wcbbOk = Invoke-Step7b-Job "WCBB" $RepoRoot "$WCBBRunOutDir\step6_ranked_wcbb.xlsx" }
     }
     return ($ok -and $wcbbOk)
 } -ArgumentList $CBBDir, $Date, $SkipFetch, $Root, $CBBRunOutDir, $WCBBRunOutDir
@@ -3176,7 +3200,7 @@ $CFBJob = Start-Job -ScriptBlock {
     if ($ok) { $ok = Run-Step-Job "CFB Step 4 - Attach ESPN IDs"         $CFBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CFBRunOutDir\step3_with_unit_rankings_cfb.csv`" --output `"$CFBRunOutDir\step3_cfb.csv`" --master data/reference/ncaa_football_athletes_master.csv" }
     if ($ok) { $ok = Run-Step-Job "CFB Step 5 - Boxscore Stats"          $CFBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CFBRunOutDir\step3_cfb.csv`" --output `"$CFBRunOutDir\step5b_cfb.csv`" --date $Date --days 200 --cache data\cache\cfb_boxscore_cache.csv" }
     if ($ok) { $ok = Run-Step-Job "CFB Step 6 - Rank Props"              $CFBDir ".\scripts\pipeline\step6_rank_props_cfb.py"                       "--input `"$CFBRunOutDir\step5b_cfb.csv`" --output `"$CFBRunOutDir\step6_ranked_cfb.xlsx`" --cache data\cache\cfb_boxscore_cache.csv --date $Date" }
-    if ($ok) { Invoke-Step7b-Job "CFB" $RepoRoot "$CFBRunOutDir\step6_ranked_cfb.xlsx" }
+    if ($ok) { $ok = Invoke-Step7b-Job "CFB" $RepoRoot "$CFBRunOutDir\step6_ranked_cfb.xlsx" }
     if ($ok) { $ok = Run-Step-Job "CFB Step 8 - Direction Context"       $CFBDir ".\scripts\pipeline\step8_add_direction_context_cfb.py"          "--input `"$CFBRunOutDir\step6_ranked_cfb.xlsx`" --output `"$CFBRunOutDir\step8_cfb_direction_clean.xlsx`" --date $Date" }
     }
     if (-not (Test-Path $CFB1HRunOutDir)) { New-Item -ItemType Directory -Force -Path $CFB1HRunOutDir | Out-Null }
@@ -3197,7 +3221,7 @@ $CFBJob = Start-Job -ScriptBlock {
         if ($ok1h) { $ok1h = Run-Step-Job "CFB1H Step 4 - Attach ESPN IDs" $CFBDir ".\scripts\pipeline\step5a_attach_espn_ids.py" "--input `"$CFB1HRunOutDir\step3_with_unit_rankings_cfb1h.csv`" --output `"$CFB1HRunOutDir\step3_cfb1h.csv`" --master data/reference/ncaa_football_athletes_master.csv" }
         if ($ok1h) { $ok1h = Run-Step-Job "CFB1H Step 5 - First-half PBP" $CFBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py" "--input `"$CFB1HRunOutDir\step3_cfb1h.csv`" --output `"$CFB1HRunOutDir\step5b_cfb1h.csv`" --date $Date --days 200 --segment 1H --cache data\cache\cfb1h_boxscore_cache.csv --full-game-cache data\cache\cfb_boxscore_cache.csv --workers 8" }
         if ($ok1h) { $ok1h = Run-Step-Job "CFB1H Step 6 - Rank Props" $CFBDir ".\scripts\pipeline\step6_rank_props_cfb.py" "--input `"$CFB1HRunOutDir\step5b_cfb1h.csv`" --output `"$CFB1HRunOutDir\step6_ranked_cfb1h.xlsx`" --cache data\cache\cfb1h_boxscore_cache.csv --date $Date" }
-        if ($ok1h) { Invoke-Step7b-Job "CFB1H" $RepoRoot "$CFB1HRunOutDir\step6_ranked_cfb1h.xlsx" }
+        if ($ok1h) { $ok1h = Invoke-Step7b-Job "CFB1H" $RepoRoot "$CFB1HRunOutDir\step6_ranked_cfb1h.xlsx" }
         if ($ok1h) { $ok1h = Run-Step-Job "CFB1H Step 8 - Direction Context" $CFBDir ".\scripts\pipeline\step8_add_direction_context_cfb.py" "--input `"$CFB1HRunOutDir\step6_ranked_cfb1h.xlsx`" --output `"$CFB1HRunOutDir\step8_cfb1h_direction_clean.xlsx`" --date $Date" }
         if ($ok1h) { Write-Output "[CFB1H] OK" } else { Write-Output "[CFB1H] FAILED (full-game CFB still used)" }
     }
@@ -3344,7 +3368,7 @@ $NHLJob = Start-Job -ScriptBlock {
         }
     }
     if ($ok) { $ok = Run-Step-Job "NHL Step 7 - Rank Props"         $NHLDir ".\scripts\step7_rank_props_nhl.py"             "--input `"$NHLRunOutDir\step6_nhl_role_context.csv`" --output `"$NHLRunOutDir\step7_nhl_ranked.xlsx`"" }
-    if ($ok) { Invoke-Step7b-Job "NHL" $RepoRoot "$NHLRunOutDir\step7_nhl_ranked.xlsx" }
+    if ($ok) { $ok = Invoke-Step7b-Job "NHL" $RepoRoot "$NHLRunOutDir\step7_nhl_ranked.xlsx" }
     if ($ok) { $ok = Run-Step-Job "NHL Step 8 - Direction Context"  $NHLDir (Join-Path $RepoRoot "Sports\NHL\scripts\step8_add_direction_context_nhl.py")  "--input `"$NHLRunOutDir\step7_nhl_ranked.xlsx`" --output `"$NHLRunOutDir\step8_nhl_direction_clean.xlsx`" --date $Date" }
     if ($ok) {
         $NhlMeScript = Join-Path $NHLDir "scripts\build_nhl_matchup_edge_json.py"
@@ -3451,7 +3475,7 @@ $SoccerJob = Start-Job -ScriptBlock {
         }
     }
     if ($ok) { $ok = Run-Step-Job "Soccer Step 7 - Rank Props"         $SoccerDir ".\scripts\step7_rank_props_soccer.py"             "--input `"$SoccerRunOutDir\step6_soccer_role_context.csv`" --output `"$SoccerRunOutDir\step7_soccer_ranked.xlsx`"" }
-    if ($ok) { Invoke-Step7b-Job "Soccer" $RepoRoot "$SoccerRunOutDir\step7_soccer_ranked.xlsx" }
+    if ($ok) { $ok = Invoke-Step7b-Job "Soccer" $RepoRoot "$SoccerRunOutDir\step7_soccer_ranked.xlsx" }
     if ($ok) { $ok = Run-Step-Job "Soccer Step 8 - Direction Context"  $SoccerDir (Join-Path $RepoRoot "Sports\Soccer\scripts\step8_add_direction_context_soccer.py")  "--input `"$SoccerRunOutDir\step7_soccer_ranked.xlsx`" --sheet ALL --output `"$SoccerRunOutDir\step8_soccer_direction.csv`" --xlsx `"$SoccerRunOutDir\step8_soccer_direction_clean.xlsx`" --date $Date" }
     return $ok
 } -ArgumentList $SoccerDir, $Date, $SkipFetch, $Root, [bool]$SkipDefenseRefresh, $SoccerRunOutDir
@@ -3525,10 +3549,11 @@ $TennisJob = Start-Job -ScriptBlock {
     if ($ok) { Run-Step-Job "Tennis Step 6 - Context" $TennisDir ".\scripts\step6_add_context_tennis.py" @("--input", $t5, "--output", $t6); $ok = $script:LastTennisStepOk }
     if ($ok) { Run-Step-Job "Tennis Step 7 - Rank Props" $TennisDir ".\scripts\step7_rank_props_tennis.py" @("--input", $t6, "--output", $t7); $ok = $script:LastTennisStepOk }
     if ($ok) {
-        if (-not (Test-Path $t7)) {
-            Write-Output "[TENNIS] WARN: step7 output missing at $t7 — skipping step7b"
+        if (-not (Test-Path -LiteralPath $t7)) {
+            Write-Output "[TENNIS] FAILED: step7 xlsx missing after step7: $t7"
+            $ok = $false
         } else {
-            Invoke-Step7b-Job "Tennis" $RepoRoot $t7 $PipelineDate
+            $ok = Invoke-Step7b-Job "Tennis" $RepoRoot $t7 $PipelineDate
         }
     }
     $s8 = Join-Path $RepoRoot "Sports\Tennis\scripts\step8_add_direction_context_tennis.py"
@@ -3932,7 +3957,7 @@ $MLBJob = Start-Job -ScriptBlock {
         }
     }
     if ($ok) { $ok = Run-Step-Job "MLB Step 7 - Rank Props"         $MLBDir ".\scripts\step7_rank_props_mlb.py"             "--input `"$MLBRunOutDir\step6_mlb_role_context.csv`" --output `"$MLBRunOutDir\step7_mlb_ranked.xlsx`"" }
-    if ($ok) { Invoke-Step7b-Job "MLB" $RepoRoot "$MLBRunOutDir\step7_mlb_ranked.xlsx" }
+    if ($ok) { $ok = Invoke-Step7b-Job "MLB" $RepoRoot "$MLBRunOutDir\step7_mlb_ranked.xlsx" }
     if ($ok) { $ok = Run-Step-Job "MLB Step 8 - Direction Context"  $MLBDir (Join-Path $RepoRoot "Sports\MLB\scripts\step8_add_direction_context_mlb.py")  "--input `"$MLBRunOutDir\step7_mlb_ranked.xlsx`" --output `"$MLBRunOutDir\step8_mlb_direction.csv`" --xlsx `"$MLBRunOutDir\step8_mlb_direction_clean.xlsx`" --date $Date" }
     return $ok
 } -ArgumentList $MLBDir, $Date, $SkipFetch, $Root, $MLBRunOutDir, $MLBSeasonYear

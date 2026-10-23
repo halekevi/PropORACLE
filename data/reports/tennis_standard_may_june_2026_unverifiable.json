@@ -1,0 +1,7 @@
+{
+  "status": "unverifiable",
+  "window": ["2026-05-01", "2026-06-30"],
+  "claims": "tennis Standard (Games Won OVER keep and any other Standard from that window)",
+  "reason": "No dated tennis step8 exists on the live tree. The Sports/Tennis workbook fallback was retired so today's board is not graded as May. Stop waiting on a re-grade of that window.",
+  "resolution": "Forward re-graded tennis (2026-10+) is the evidence set."
+}

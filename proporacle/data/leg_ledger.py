@@ -903,3 +903,95 @@ def unmatched_ticket_legs(root: Path | None = None, *, date: str | None = None) 
         for d, i in zip(tlegs["slate_date"], tlegs["leg_id"])
     ]
     return tlegs.loc[mask].copy()
+
+
+def classify_unmatched_ticket_legs(
+    root: Path | None = None,
+    *,
+    since: str | None = None,
+    until: str | None = None,
+) -> pd.DataFrame:
+    """Split unmatched ticket legs into no-actual vs fingerprint (leg_id_v1).
+
+    ``no_actual``: that date's graded slate has no row for the ticketed
+    player+prop+line (name mismatch, sport not fetched, or only sibling
+    Goblin/Standard/Demon lines exist).
+    ``fingerprint``: same player+prop+line exists, but direction / pick-type
+    labels produced a different ``leg_id``.
+    """
+    miss = unmatched_ticket_legs(root)
+    if miss.empty:
+        return miss
+    ds = miss["slate_date"].astype(str).str[:10]
+    if since:
+        miss = miss.loc[ds >= since[:10]].copy()
+        ds = miss["slate_date"].astype(str).str[:10]
+    if until:
+        miss = miss.loc[ds <= until[:10]].copy()
+    if miss.empty:
+        return miss
+    legs = current_legs(root)
+    if legs.empty:
+        out = miss.copy()
+        out["unmatched_reason"] = "no_actual"
+        out["mismatch_detail"] = "no graded legs on disk"
+        return out
+    legs = legs.copy()
+    legs["slate_d"] = legs["slate_date"].astype(str).str[:10]
+    sport_days = set(zip(legs["slate_d"].astype(str), legs["sport"].astype(str)))
+    face_rows: dict[tuple[str, str, str, str], list[Any]] = {}
+    for row in legs.itertuples(index=False):
+        key = (
+            str(row.slate_d),
+            str(row.sport),
+            str(row.player_fold),
+            str(row.prop_canon),
+        )
+        face_rows.setdefault(key, []).append(row)
+
+    reasons: list[str] = []
+    details: list[str] = []
+    for row in miss.itertuples(index=False):
+        d = str(row.slate_date)[:10]
+        sport = str(row.sport)
+        face = (d, sport, str(row.player_fold), str(row.prop_canon))
+        hits = face_rows.get(face) or []
+        if not hits:
+            reasons.append("no_actual")
+            if (d, sport) not in sport_days:
+                details.append("sport not on graded slate")
+            else:
+                details.append("player/prop not on graded slate")
+            continue
+        t_line = str(getattr(row, "line_norm", "") or "")
+        t_dir = str(getattr(row, "direction_norm", getattr(row, "direction", "")) or "")
+        t_pick = str(getattr(row, "pick_norm", getattr(row, "pick_type", "")) or "")
+        same_line = []
+        other_lines: list[str] = []
+        for g in hits:
+            g_line = str(getattr(g, "line_norm", "") or "")
+            if t_line and g_line and t_line == g_line:
+                same_line.append(g)
+            else:
+                other_lines.append(g_line)
+        if not same_line:
+            reasons.append("no_actual")
+            uniq = ", ".join(sorted({x for x in other_lines if x})[:8])
+            details.append(f"ticketed line {t_line} not on graded slate (other lines: {uniq})")
+            continue
+        diffs: list[str] = []
+        for g in same_line:
+            bits: list[str] = []
+            g_dir = str(getattr(g, "direction_norm", getattr(g, "direction", "")) or "")
+            g_pick = str(getattr(g, "pick_norm", getattr(g, "pick_type", "")) or "")
+            if t_dir != g_dir:
+                bits.append(f"dir {t_dir} vs {g_dir}")
+            if t_pick != g_pick:
+                bits.append(f"pick {t_pick} vs {g_pick}")
+            diffs.append("; ".join(bits) or "leg_id differs")
+        reasons.append("fingerprint")
+        details.append(" | ".join(sorted(set(diffs)))[:240])
+    out = miss.copy()
+    out["unmatched_reason"] = reasons
+    out["mismatch_detail"] = details
+    return out

@@ -45,6 +45,26 @@ FROM ticket_legs tl
 LEFT JOIN legs l ON tl.leg_id = l.leg_id AND CAST(tl.slate_date AS VARCHAR) = CAST(l.slate_date AS VARCHAR)
 WHERE l.leg_id IS NULL;
 
+-- Split unmatched ticket legs: no_actual (player/prop/line missing from that
+-- day's graded slate) vs fingerprint (same player+prop+line, different
+-- direction/pick-type labels in leg_id_v1). Sibling Goblin/Standard/Demon
+-- lines on the same player are no_actual, not a hash bug.
+CREATE VIEW IF NOT EXISTS v_ticket_legs_unmatched_reason AS
+SELECT
+  u.*,
+  CASE
+    WHEN EXISTS (
+      SELECT 1 FROM legs g
+      WHERE CAST(g.slate_date AS VARCHAR) = CAST(u.slate_date AS VARCHAR)
+        AND g.sport = u.sport
+        AND g.player_fold = u.player_fold
+        AND g.prop_canon = u.prop_canon
+        AND g.line_norm = u.line_norm
+    ) THEN 'fingerprint'
+    ELSE 'no_actual'
+  END AS unmatched_reason
+FROM v_ticket_legs_unmatched u;
+
 -- Ticket dates with no matching graded face (join < 90% is a warn in ledger_checks).
 -- Missing ticket_runs for a date that has tickets is checked in Python
 -- (dates_with_tickets_missing_runs) because live JSON lives outside this schema.

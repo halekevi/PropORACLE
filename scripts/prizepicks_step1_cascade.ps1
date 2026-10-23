@@ -84,23 +84,62 @@ function Invoke-PyStep7b {
         $p = Join-Path $RepoRoot "scripts\step7b_edge_score.py"
         if (-not (Test-Path -LiteralPath $p)) {
             Write-Output "  [$SportLabel] step7b: WARN (missing step7b_edge_score.py)"
+        } else {
+            $argList = @("--sport", $SportLabel, "--repo-root", $RepoRoot)
+            if ($Step7Xlsx) { $argList += @("--step7-xlsx", $Step7Xlsx) }
+            if ($PipelineDate) { $argList += @("--pipeline-date", $PipelineDate) }
+            Write-Output "  --> step7b ($SportLabel)"
+            Write-Output "        CMD: py -3.14 $p $($argList -join ' ')"
+            $output = & py -3.14 $p @argList 2>&1
+            $exit = $LASTEXITCODE
+            foreach ($line in $output) { Write-Output "        $line" }
+            if ($exit -ne 0) {
+                Write-Output "  [$SportLabel] step7b: WARN (exit $exit)"
+            } else {
+                Write-Output "  [$SportLabel] step7b: OK"
+            }
+        }
+    } catch {
+        Write-Output "  [$SportLabel] step7b: WARN ($($_.Exception.Message))"
+    } finally { Pop-Location }
+    if ($Step7Xlsx -and -not (Test-Path -LiteralPath $Step7Xlsx)) {
+        Write-Output "  FAILED: [$SportLabel] step7 xlsx missing after step7b: $Step7Xlsx"
+        return $false
+    }
+    return $true
+}
+
+function Invoke-PyNbaStatProjection {
+    param(
+        [Parameter(Mandatory)][string]$RepoRoot,
+        [string]$Step7Xlsx = "",
+        [string]$PipelineDate = ""
+    )
+    Push-Location $RepoRoot
+    try {
+        $p = Join-Path $RepoRoot "scripts\score_nba_stat_projections.py"
+        if (-not (Test-Path -LiteralPath $p)) {
+            Write-Output "  [NBA] stat-proj: WARN (missing scripts\score_nba_stat_projections.py)"
             return
         }
-        $argList = @("--sport", $SportLabel, "--repo-root", $RepoRoot)
-        if ($Step7Xlsx) { $argList += @("--step7-xlsx", $Step7Xlsx) }
-        if ($PipelineDate) { $argList += @("--pipeline-date", $PipelineDate) }
-        Write-Output "  --> step7b ($SportLabel)"
+        if (-not $Step7Xlsx) {
+            Write-Output "  [NBA] stat-proj: WARN (no step7 xlsx)"
+            return
+        }
+        $argList = @("--input", $Step7Xlsx)
+        if ($PipelineDate) { $argList += @("--date", $PipelineDate) }
+        Write-Output "  --> NBA stat projection (P(over line))"
         Write-Output "        CMD: py -3.14 $p $($argList -join ' ')"
         $output = & py -3.14 $p @argList 2>&1
         $exit = $LASTEXITCODE
         foreach ($line in $output) { Write-Output "        $line" }
         if ($exit -ne 0) {
-            Write-Output "  [$SportLabel] step7b: WARN (exit $exit)"
+            Write-Output "  [NBA] stat-proj: WARN (exit $exit)"
         } else {
-            Write-Output "  [$SportLabel] step7b: OK"
+            Write-Output "  [NBA] stat-proj: OK"
         }
     } catch {
-        Write-Output "  [$SportLabel] step7b: WARN ($($_.Exception.Message))"
+        Write-Output "  [NBA] stat-proj: WARN ($($_.Exception.Message))"
     } finally { Pop-Location }
 }
 
@@ -286,13 +325,13 @@ function Invoke-PrizePicksStep1Cascade {
 
     $cdpUrl = Get-PrizePicksCdpUrl
     $cdpReachable = Test-PrizePicksCdpReachable -CdpUrl $cdpUrl
-    # CFB prizepools + combos: CDP in-page pickem returns 0 rows and would
-    # keep overnight lines. Tennis/soccer HTTP almost always 403 — CDP first.
-    $httpOnly = $HttpOnly.IsPresent -or ($SportLabel -eq "CFB")
+    # CFB used to be HTTP-only (old CDP pickem returned 0 on prizepools).
+    # Scraper now supports --cdp/--playwright with prizepools; allow CDP fallback after HTTP 403.
+    $httpOnly = $HttpOnly.IsPresent
     $cdpFirst = -not $httpOnly -and $cdpReachable -and ($SportLabel -in @("Tennis", "Soccer"))
     Write-PP "  --> $SportLabel Step 1 - Fetch PrizePicks (HTTP first, then CDP, then Playwright)" "Yellow"
     if ($httpOnly) {
-        Write-PP "      [$SportLabel] HTTP prizepools only — not CDP pickem" "DarkCyan"
+        Write-PP "      [$SportLabel] HTTP only — CDP disabled by caller" "DarkCyan"
         $cdpReachable = $false
     }
     elseif ($cdpFirst) {

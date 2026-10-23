@@ -9,6 +9,7 @@ import pytest
 from proporacle.data.leg_ledger import (
     EDGE_RATIO_FLAG,
     LEG_ID_VERSION,
+    classify_unmatched_ticket_legs,
     collision_groups,
     fill_summary,
     ingest_graded_file,
@@ -207,6 +208,59 @@ def test_ingest_graded_and_tickets_join(tmp_path: Path):
     simons_ratio = 11.3 / 3.5
     assert simons_ratio < EDGE_RATIO_FLAG
     assert nba["edge_ratio_gt5"] == 0.0
+
+
+def test_classify_unmatched_no_actual_vs_fingerprint(tmp_path: Path):
+    ledger = tmp_path / "ledger"
+    gpath = tmp_path / "graded_props_2026-10-05.json"
+    gpath.write_text(json.dumps(_graded_payload() | {"date": "2026-10-05"}), encoding="utf-8")
+    ingest_graded_file(gpath, root=ledger)
+    tpath = tmp_path / "tickets.json"
+    tpath.write_text(
+        json.dumps(
+            {
+                "date": "2026-10-05",
+                "groups": [
+                    {
+                        "tickets": [
+                            {
+                                "ticket_id": "t-fp",
+                                "legs": [
+                                    {
+                                        "sport": "NBA",
+                                        "player": "Joel Embiid",
+                                        "prop": "Steals",
+                                        "line": 0.5,
+                                        "direction": "OVER",
+                                        "pick_type": "Goblin",
+                                    }
+                                ],
+                            },
+                            {
+                                "ticket_id": "t-miss",
+                                "legs": [
+                                    {
+                                        "sport": "TENNIS",
+                                        "player": "Schoolkate",
+                                        "prop": "Total Games Won",
+                                        "line": 12.5,
+                                        "direction": "OVER",
+                                        "pick_type": "standard",
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    ingest_tickets_file(tpath, root=ledger)
+    miss = classify_unmatched_ticket_legs(ledger, since="2026-10-01", until="2026-10-10")
+    by_ticket = dict(zip(miss["ticket_id"], miss["unmatched_reason"]))
+    assert by_ticket["t-fp"] == "fingerprint"
+    assert by_ticket["t-miss"] == "no_actual"
 
 
 def test_blank_player_or_prop_dropped():

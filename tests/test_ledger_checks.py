@@ -9,11 +9,11 @@ from proporacle.data.leg_ledger import ingest_graded_file, ingest_tickets_file
 
 def test_warn_only_join_and_usage(tmp_path: Path):
     ledger = tmp_path / "ledger"
-    gpath = tmp_path / "graded_props_2026-10-20.json"
+    gpath = tmp_path / "graded_props_2026-10-23.json"
     gpath.write_text(
         json.dumps(
             {
-                "date": "2026-10-20",
+                "date": "2026-10-23",
                 "props": [
                     {
                         "sport": "NBA",
@@ -37,7 +37,7 @@ def test_warn_only_join_and_usage(tmp_path: Path):
     tpath.write_text(
         json.dumps(
             {
-                "date": "2026-10-20",
+                "date": "2026-10-23",
                 "groups": [
                     {
                         "tickets": [
@@ -62,9 +62,43 @@ def test_warn_only_join_and_usage(tmp_path: Path):
         encoding="utf-8",
     )
     ingest_tickets_file(tpath, root=ledger)
-    report = run_ledger_checks(ledger, since="2026-10-01", repo=tmp_path)
+    report = run_ledger_checks(ledger, since="2026-10-23", repo=tmp_path)
     rules = {w.rule for w in report.warnings}
     assert "usage_fill" in rules
     assert "league_fill" in rules
     assert "ticket_join" in rules
     assert report.ok is False
+
+
+def test_pre_live_feature_gap_is_not_a_warning(tmp_path: Path):
+    ledger = tmp_path / "ledger"
+    gpath = tmp_path / "graded_props_2026-10-20.json"
+    gpath.write_text(
+        json.dumps(
+            {
+                "date": "2026-10-20",
+                "props": [
+                    {
+                        "sport": "NBA",
+                        "player": "Joel Embiid",
+                        "prop": "Steals",
+                        "line": 0.5,
+                        "direction": "UNDER",
+                        "pick_type": "Standard",
+                        "usage_pct": "",
+                        "league": "",
+                        "ml_prob": "0.67",
+                        "result": "MISS",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    ingest_graded_file(gpath, root=ledger)
+    report = run_ledger_checks(ledger, since="2026-10-01", repo=tmp_path)
+    rules = {w.rule for w in report.warnings}
+    assert "usage_fill" not in rules
+    assert "league_fill" not in rules
+    assert "ml_prob_fill" not in rules
+    assert any("backfill_gap" in n for n in report.notes)

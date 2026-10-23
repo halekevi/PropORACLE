@@ -39,6 +39,9 @@ JOIN_FLOOR = 0.90
 USAGE_FLOOR = 0.50
 ML_FLOOR = 0.50
 EDGE_RATIO_SPORT_FLOOR = 0.01
+# League / usage / ml_prob were never on historical step8s. Dates before this
+# are a known backfill gap, not a live miss — do not warn on them forever.
+LIVE_FEATURE_SINCE = "2026-10-23"
 
 
 @dataclass
@@ -52,6 +55,7 @@ class LedgerWarning:
 @dataclass
 class LedgerCheckReport:
     warnings: list[LedgerWarning] = field(default_factory=list)
+    notes: list[str] = field(default_factory=list)
     since: str = ""
     pandera: bool = HAS_PANDERA
 
@@ -61,7 +65,8 @@ class LedgerCheckReport:
 
 
 def _since_default(days: int = 14) -> str:
-    return (date.today() - timedelta(days=days)).isoformat()
+    rolling = (date.today() - timedelta(days=days)).isoformat()
+    return max(rolling, LIVE_FEATURE_SINCE)
 
 
 def _in_window(slate: str, since: str | None) -> bool:
@@ -78,6 +83,11 @@ def run_ledger_checks(
 ) -> LedgerCheckReport:
     since = (since or _since_default()).strip()[:10]
     report = LedgerCheckReport(since=since, pandera=HAS_PANDERA)
+    if since < LIVE_FEATURE_SINCE:
+        report.notes.append(
+            f"[backfill_gap] league/usage/ml_prob fills start {LIVE_FEATURE_SINCE} "
+            "(older step8s never had those columns)"
+        )
     by = fill_by_date(root)
     if not by.empty:
         for row in by.itertuples(index=False):
@@ -92,11 +102,12 @@ def run_ledger_checks(
             usage = float(getattr(row, "usage_fill", 0) or 0)
             ml = float(getattr(row, "ml_prob_fill", 0) or 0)
             edge = float(getattr(row, "edge_ratio_gt5", 0) or 0)
-            if league <= 0:
+            feature_live = ds >= LIVE_FEATURE_SINCE
+            if feature_live and league <= 0:
                 report.warnings.append(
                     LedgerWarning("league_fill", f"{sport} league fill {league:.3f} on {ds}", ds, sport)
                 )
-            if sport.upper() in USAGE_REQUIRED_SPORTS and usage < USAGE_FLOOR:
+            if feature_live and sport.upper() in USAGE_REQUIRED_SPORTS and usage < USAGE_FLOOR:
                 report.warnings.append(
                     LedgerWarning(
                         "usage_fill",
@@ -105,7 +116,7 @@ def run_ledger_checks(
                         sport,
                     )
                 )
-            if sport.upper() not in NO_ML_SPORTS and ml < ML_FLOOR:
+            if feature_live and sport.upper() not in NO_ML_SPORTS and ml < ML_FLOOR:
                 report.warnings.append(
                     LedgerWarning(
                         "ml_prob_fill",
@@ -179,6 +190,8 @@ def format_report(report: LedgerCheckReport) -> str:
         f"ledger checks since {report.since}  pandera={'on' if report.pandera else 'off (pandas)'}  "
         f"warnings={len(report.warnings)}"
     ]
+    for note in report.notes:
+        lines.append(f"  NOTE {note}")
     if not report.warnings:
         lines.append("  (none)")
         return "\n".join(lines)
