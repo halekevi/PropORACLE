@@ -124,3 +124,119 @@ def test_append_scrape_log_and_rebuild(tmp_path: Path, monkeypatch):
     assert row["window"] == "4:30"
     assert row["median_power_x"] == 2.0
     assert "16:32" in str(row["last_captured_at"])
+
+# ---- per-sport rebuild on newly posted props -------------------------------------------------
+
+
+def _make_line_db(tmp_path, rows):
+    import sqlite3
+
+    db = tmp_path / "line_history.db"
+    with sqlite3.connect(db) as conn:
+        conn.execute(
+            "CREATE TABLE line_history (projection_id TEXT, player TEXT, prop_type TEXT, line REAL, "
+            "pick_type TEXT, game_date TEXT, fetched_at TEXT, sport TEXT)"
+        )
+        conn.executemany(
+            "INSERT INTO line_history VALUES (?,?,?,?,?,?,?,?)",
+            rows,
+        )
+    return db
+
+
+def test_new_rows_by_sport_counts_only_props_absent_from_earlier_fetches(monkeypatch, tmp_path):
+    from utils import bet_windows as bw
+
+    d = "2026-10-23"
+    rows = []
+    # 1AM: 10 tennis props (aces + games_won), 5 NBA props
+    for i in range(10):
+        rows.append((f"t{i}", f"P{i}", "games_won" if i % 2 else "aces", 9.5, "standard", d, "2026-10-23T01:05:00-04:00", "TENNIS"))
+    for i in range(5):
+        rows.append((f"n{i}", f"N{i}", "points", 20.5, "standard", d, "2026-10-23T01:05:30-04:00", "NBA"))
+    # 8AM: same 10 tennis + 30 new tennis (one new prop type), NBA unchanged + 3 new
+    for i in range(10):
+        rows.append((f"t{i}", f"P{i}", "games_won" if i % 2 else "aces", 9.5, "standard", d, "2026-10-23T08:01:00-04:00", "TENNIS"))
+    for i in range(10, 40):
+        rows.append((f"t{i}", f"P{i}", "total_games", 22.5, "standard", d, "2026-10-23T08:02:00-04:00", "TENNIS"))
+    for i in range(5):
+        rows.append((f"n{i}", f"N{i}", "points", 20.5, "standard", d, "2026-10-23T08:03:00-04:00", "NBA"))
+    for i in range(5, 8):
+        rows.append((f"n{i}", f"N{i}", "points", 20.5, "standard", d, "2026-10-23T08:03:10-04:00", "NBA"))
+    monkeypatch.setattr(bw, "LINE_DB", _make_line_db(tmp_path, rows))
+
+    got = bw._new_rows_by_sport(d, "2026-10-23T08:00:00-04:00", "2026-10-23T08:59:00-04:00")
+    assert got["TENNIS"]["new_rows"] == 30
+    assert got["TENNIS"]["new_prop_types"] == ["total_games"]
+    assert got["NBA"]["new_rows"] == 3 and got["NBA"]["new_prop_types"] == []
+    # Before the first fetch of the day nothing counts as new.
+    assert bw._new_rows_by_sport(d, "2026-10-23T01:00:00-04:00", "2026-10-23T01:59:00-04:00") == {}
+
+
+def test_sports_needing_rebuild_threshold_and_new_prop_type(monkeypatch):
+    from utils import bet_windows as bw
+
+    monkeypatch.delenv("PROPORACLE_LATE_SPORT_NEW_ROWS_MIN", raising=False)
+    got = bw.sports_needing_rebuild(
+        {
+            "TENNIS": {"new_rows": 24, "new_prop_types": []},
+            "NBA": {"new_rows": 25, "new_prop_types": []},
+            "SOCCER": {"new_rows": 2, "new_prop_types": ["saves"]},
+            "MLB": {"new_rows": 0, "new_prop_types": []},
+        }
+    )
+    assert got == ["NBA", "SOCCER"]
+
+
+def test_summarize_sport_rebuild_only_when_enabled_and_no_full_rebuild(monkeypatch):
+    from utils import bet_windows as bw
+
+    pulls = [
+        {"fetched_at": "2026-10-23T01:05:00-04:00", "window": "1AM", "n_props": 10, "n_moved": 0},
+        {"fetched_at": "2026-10-23T08:02:00-04:00", "window": "8AM", "n_props": 40, "n_moved": 0},
+    ]
+    monkeypatch.setattr(bw, "_line_pulls", lambda date: pulls)
+    monkeypatch.setattr(bw, "_payout_windows", lambda date: [{"window": "1AM", "n_scrapes": 1}])
+    monkeypatch.setattr(
+        bw,
+        "_new_rows_by_sport",
+        lambda date, a, b: {
+            "TENNIS": {"new_rows": 30, "new_prop_types": ["total_games"]},
+            "SOCCER": {"new_rows": 90, "new_prop_types": []},
+        },
+    )
+    monkeypatch.delenv("PROPORACLE_LATE_SPORT_REBUILD", raising=False)
+    s = bw.summarize_fetch_window("2026-10-23", "8AM")
+    assert s["rebuild_tickets"] is False
+    assert s["sport_rebuild_triggered"] == ["SOCCER", "TENNIS"]
+    assert s["rebuild_sports"] == ["TENNIS"]  # default flag = tennis only
+
+    monkeypatch.setenv("PROPORACLE_LATE_SPORT_REBUILD", "off")
+    assert bw.summarize_fetch_window("2026-10-23", "8AM")["rebuild_sports"] == []
+    monkeypatch.setenv("PROPORACLE_LATE_SPORT_REBUILD", "tennis,soccer")
+    assert bw.summarize_fetch_window("2026-10-23", "8AM")["rebuild_sports"] == ["SOCCER", "TENNIS"]
+
+    # The day's first stamp already runs the full rebuild; no per-sport pass on top of it.
+    first = bw.summarize_fetch_window("2026-10-23", "1AM")
+    assert first["rebuild_tickets"] is True and first["rebuild_sports"] == []
+
+
+def test_append_sport_rebuild_log_writes_one_line(tmp_path, monkeypatch):
+    import json as _json
+
+    from utils import bet_windows as bw
+
+    monkeypatch.delenv("PROPORACLE_LATE_SPORT_REBUILD", raising=False)
+    path = bw.append_sport_rebuild_log(
+        date="2026-10-23",
+        window="1PM",
+        mode="sport",
+        triggered=["TENNIS"],
+        rebuilt=["TENNIS"],
+        new_by_sport={"TENNIS": {"new_rows": 30, "new_prop_types": []}},
+        outcome="ok",
+        path=tmp_path / "log.jsonl",
+    )
+    rec = _json.loads(path.read_text(encoding="utf-8").strip())
+    assert rec["mode"] == "sport" and rec["rebuilt_sports"] == ["TENNIS"] and rec["window"] == "1PM"
+    assert rec["enabled_sports"] == ["TENNIS"] and rec["new_rows_min"] == 25

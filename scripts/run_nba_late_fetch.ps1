@@ -737,7 +737,14 @@ if ((Get-CsvDataRowCount -CsvPath $mlbStep1) -eq 0) {
 }
 
 $stampPy = Join-Path $Root "scripts\stamp_fetch_window.py"
+$logSportPy = Join-Path $Root "scripts\log_sport_rebuild.py"
 $rebuildTickets = $true
+# Per-sport rebuild: a sport that gained >= 25 new props (or any new prop type) while lines did not
+# move runs only that sport's steps 2-8 + Combined. Flag: PROPORACLE_LATE_SPORT_REBUILD (default TENNIS).
+$sportRebuildSwitch = @{ TENNIS = "-TennisOnly" }
+$rebuildSportsReq = @()
+$pipeScopes = @("")
+$rebuildMode = "full"
 if (Test-Path -LiteralPath $stampPy) {
     Write-Host "[LATE_FETCH] Stamping this window into line_history (even if n_moved=0)..." -ForegroundColor Cyan
     & py -3.14 $stampPy --date $PipeDate --window $RunLabel --write-stamp --restamp-csvs
@@ -750,6 +757,26 @@ if (Test-Path -LiteralPath $stampPy) {
             $ticketsNow = Join-Path $Root "ui_runner\templates\tickets_latest.json"
             if (($delta.rebuild_tickets -eq $false) -and (Test-Path -LiteralPath $ticketsNow)) {
                 $rebuildTickets = $false
+                $rebuildMode = "none"
+                if ($delta.sport_rebuild_triggered) {
+                    Write-Host ("[LATE_FETCH] new props by sport (triggered={0}, enabled={1}): {2}" -f `
+                        (($delta.sport_rebuild_triggered) -join ","), (($delta.sport_rebuild_enabled) -join ","), `
+                        (($delta.new_by_sport | ConvertTo-Json -Compress -Depth 4))) -ForegroundColor DarkGray
+                }
+                if ($delta.rebuild_sports) {
+                    $rebuildSportsReq = @($delta.rebuild_sports | ForEach-Object { "$_".ToUpper() })
+                    $scopes = @($rebuildSportsReq | Where-Object { $sportRebuildSwitch.ContainsKey($_) } | ForEach-Object { $sportRebuildSwitch[$_] })
+                    $unsupported = @($rebuildSportsReq | Where-Object { -not $sportRebuildSwitch.ContainsKey($_) })
+                    if ($unsupported.Count -gt 0) {
+                        Write-Host ("[LATE_FETCH] per-sport rebuild not wired for: {0}" -f ($unsupported -join ",")) -ForegroundColor Yellow
+                    }
+                    if ($scopes.Count -gt 0) {
+                        $rebuildTickets = $true
+                        $pipeScopes = $scopes
+                        $rebuildMode = "sport"
+                        Write-Host ("[LATE_FETCH] New props posted - per-sport rebuild: {0}" -f ($rebuildSportsReq -join ",")) -ForegroundColor Cyan
+                    }
+                }
             }
         } catch { }
     }
@@ -770,6 +797,9 @@ if ($env:PROPORACLE_REFRESH_TICKET_GEN_STARTS) {
     }
 }
 if (-not $rebuildTickets) {
+    if (Test-Path -LiteralPath $logSportPy) {
+        & py -3.14 $logSportPy --date $PipeDate --window $RunLabel --mode none --rebuilt "" --outcome "skipped_no_move_no_new_props"
+    }
     Write-Host "[LATE_FETCH] Lines unchanged vs previous stamp — skip pipeline rebuild (timestamps + publish still run)" -ForegroundColor DarkGray
     # Football may still need step8 when morning STEP C failed at step5.
     $nflStep1Final = Join-Path $Root "outputs\$PipeDate\nfl\step1_pp_props_today.csv"
@@ -807,10 +837,20 @@ if ($NoOverwrite) {
         Preserve-ExistingFile -Path $pt -Reason "pre-LATE_FETCH pipeline snapshot"
     }
 }
-& pwsh -NoProfile -File $pipeScript -SkipFetch -SkipLivePayoutCapture -TicketGenStarts $middayTicketStarts -Date $PipeDate
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "[LATE_FETCH] Pipeline failed (exit $LASTEXITCODE)" -ForegroundColor Red
-    exit 1
+foreach ($scope in $pipeScopes) {
+    $scopeArgs = @()
+    if ($scope) { $scopeArgs += $scope }
+    & pwsh -NoProfile -File $pipeScript @scopeArgs -SkipFetch -SkipLivePayoutCapture -TicketGenStarts $middayTicketStarts -Date $PipeDate
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[LATE_FETCH] Pipeline failed (exit $LASTEXITCODE) scope='$scope'" -ForegroundColor Red
+        if (Test-Path -LiteralPath $logSportPy) {
+            & py -3.14 $logSportPy --date $PipeDate --window $RunLabel --mode $rebuildMode --rebuilt ($rebuildSportsReq -join ",") --outcome "pipeline_failed_exit_$LASTEXITCODE"
+        }
+        exit 1
+    }
+}
+if (Test-Path -LiteralPath $logSportPy) {
+    & py -3.14 $logSportPy --date $PipeDate --window $RunLabel --mode $rebuildMode --rebuilt ($rebuildSportsReq -join ",") --outcome "ok"
 }
 
 $goblin70 = Join-Path $Root "scripts\build_goblin70_tickets.py"

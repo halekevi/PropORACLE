@@ -293,6 +293,136 @@ def rebuild_bet_windows(date: str | None = None) -> dict[str, Any]:
     return payload
 
 
+#: A sport that gains this many props it did not have in an earlier fetch of the same
+#: slate day (or any prop type it did not have) triggers a per-sport rebuild.
+NEW_ROWS_MIN_DEFAULT = 25
+#: Sports allowed to run the per-sport rebuild. Tennis first; extend only after the
+#: ``logs/late_fetch_sport_rebuilds.jsonl`` log has been watched for a couple of days.
+SPORT_REBUILD_DEFAULT = "TENNIS"
+SPORT_REBUILD_LOG = ROOT / "logs" / "late_fetch_sport_rebuilds.jsonl"
+
+
+def sport_rebuild_enabled_sports() -> list[str]:
+    """Sports enabled for the per-sport late-fetch rebuild.
+
+    ``PROPORACLE_LATE_SPORT_REBUILD`` is a comma list (``TENNIS,SOCCER``). Set it to an
+    empty string or ``off`` to switch the feature off. Unset means ``TENNIS``.
+    """
+    import os
+
+    raw = os.environ.get("PROPORACLE_LATE_SPORT_REBUILD")
+    if raw is None:
+        raw = SPORT_REBUILD_DEFAULT
+    raw = raw.strip()
+    if not raw or raw.lower() in {"0", "off", "none", "false"}:
+        return []
+    return [s.strip().upper() for s in raw.split(",") if s.strip()]
+
+
+def new_rows_min() -> int:
+    import os
+
+    try:
+        return max(1, int(str(os.environ.get("PROPORACLE_LATE_SPORT_NEW_ROWS_MIN", "")).strip()))
+    except ValueError:
+        return NEW_ROWS_MIN_DEFAULT
+
+
+def _new_rows_by_sport(date: str, start_ts: str, end_ts: str) -> dict[str, dict[str, Any]]:
+    """Props each sport gained in ``[start_ts, end_ts]`` that no earlier fetch of ``date`` had.
+
+    ``new_rows`` counts distinct props (projection id, else player+prop+line+pick) absent from
+    every earlier fetch of the slate day. ``new_prop_types`` are prop types the sport had
+    not posted in any earlier fetch. Empty before the day's first fetch.
+    """
+    if not start_ts or not LINE_DB.is_file():
+        return {}
+    key = (
+        "COALESCE(NULLIF(CAST(projection_id AS TEXT),''), "
+        "player||'|'||prop_type||'|'||CAST(line AS TEXT)||'|'||COALESCE(pick_type,''))"
+    )
+    out: dict[str, dict[str, Any]] = {}
+    try:
+        with sqlite3.connect(LINE_DB) as conn:
+            prior_keys: dict[str, set[str]] = {}
+            prior_types: dict[str, set[str]] = {}
+            seen_now: dict[str, set[str]] = {}
+            n_earlier = 0
+            rows = conn.execute(
+                f"SELECT UPPER(COALESCE(sport,'')), {key}, COALESCE(prop_type,''), fetched_at "
+                "FROM line_history WHERE CAST(game_date AS TEXT)=? AND fetched_at<=?",
+                (date, end_ts),
+            )
+            for sport, k, pt, fa in rows:
+                if not sport:
+                    continue
+                if fa < start_ts:
+                    n_earlier += 1
+                    prior_keys.setdefault(sport, set()).add(k)
+                    prior_types.setdefault(sport, set()).add(pt)
+                    continue
+                # in-window rows are compared against everything strictly earlier; the scan
+                # order is not time-sorted, so collect and resolve after the loop.
+                seen_now.setdefault(sport, set()).add((k, pt))
+            if not n_earlier:
+                return {}
+            for sport, pairs in seen_now.items():
+                for k, pt in pairs:
+                    if k in prior_keys.get(sport, ()):
+                        continue
+                    ent = out.setdefault(sport, {"new_rows": 0, "new_prop_types": set()})
+                    ent["new_rows"] += 1
+                    if pt and pt not in prior_types.get(sport, ()):
+                        ent["new_prop_types"].add(pt)
+    except sqlite3.Error:
+        return {}
+    return {
+        s: {"new_rows": int(v["new_rows"]), "new_prop_types": sorted(v["new_prop_types"])}
+        for s, v in out.items()
+    }
+
+
+def sports_needing_rebuild(new_by_sport: dict[str, dict[str, Any]]) -> list[str]:
+    """Sports that gained >= NEW_ROWS_MIN new props or any new prop type."""
+    need = new_rows_min()
+    return sorted(
+        s
+        for s, v in (new_by_sport or {}).items()
+        if int(v.get("new_rows") or 0) >= need or (v.get("new_prop_types") and int(v.get("new_rows") or 0) > 0)
+    )
+
+
+def append_sport_rebuild_log(
+    *,
+    date: str,
+    window: str,
+    mode: str,
+    triggered: list[str],
+    rebuilt: list[str],
+    new_by_sport: dict[str, Any] | None = None,
+    outcome: str = "",
+    path: Path | None = None,
+) -> Path:
+    """One JSON line per late-fetch window: which sports triggered / rebuilt."""
+    dest = path or SPORT_REBUILD_LOG
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    row = {
+        "at": now_et_iso(),
+        "date": date,
+        "window": window,
+        "mode": mode,
+        "triggered_sports": triggered,
+        "rebuilt_sports": rebuilt,
+        "enabled_sports": sport_rebuild_enabled_sports(),
+        "new_rows_min": new_rows_min(),
+        "new_by_sport": new_by_sport or {},
+        "outcome": outcome,
+    }
+    with dest.open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps(row, ensure_ascii=False) + "\n")
+    return dest
+
+
 def summarize_fetch_window(
     date: str | None = None,
     window: str | None = None,
@@ -332,6 +462,29 @@ def summarize_fetch_window(
     # Force rescrapes on quiet 8AM/9AM boards.
     force_payout = bool(no_pulls or is_initial or n_moved_this > 0)
     rebuild_tickets = bool(no_pulls or is_initial or n_moved_this > 0)
+
+    # Newly posted props never count as "moved". Per sport, props (or prop types) that no
+    # earlier fetch of the slate day had trigger a narrower per-sport rebuild when the
+    # full rebuild is not already running.
+    new_by_sport: dict[str, dict[str, Any]] = {}
+    if this and not (no_pulls or is_initial):
+        stamps = sorted(str(p.get("fetched_at") or "") for p in this if p.get("fetched_at"))
+        # A window label also matches the same slot on the day before (slate-day rows are
+        # fetched at D-1 1AM too), so only the latest run (fetches within 3h of the last
+        # stamp) counts as "this window".
+        if stamps:
+            last_dt = parse_et(stamps[-1])
+            if last_dt is not None:
+                stamps = [
+                    s
+                    for s in stamps
+                    if (pdt := parse_et(s)) is not None and (last_dt - pdt).total_seconds() <= 3 * 3600
+                ] or stamps[-1:]
+        if stamps:
+            new_by_sport = _new_rows_by_sport(date_s, stamps[0], stamps[-1])
+    triggered = sports_needing_rebuild(new_by_sport)
+    enabled = sport_rebuild_enabled_sports()
+    rebuild_sports = [] if rebuild_tickets else [s for s in triggered if s in enabled]
     return {
         "date": date_s,
         "window": win or "other",
@@ -342,6 +495,10 @@ def summarize_fetch_window(
         "is_initial_stamp": is_initial or no_pulls,
         "force_payout": force_payout,
         "rebuild_tickets": rebuild_tickets,
+        "new_by_sport": new_by_sport,
+        "sport_rebuild_triggered": triggered,
+        "sport_rebuild_enabled": enabled,
+        "rebuild_sports": rebuild_sports,
         "latest_fetched_at": str((latest or {}).get("fetched_at") or ""),
         "initial_fetched_at": str((initial or {}).get("fetched_at") or ""),
     }
