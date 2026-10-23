@@ -122,7 +122,7 @@
             "p_all_win": 0.535,
             "p_miss_1": 0.0,
             "ev": 0.068,
-            "recommendation": "HOLD",
+            "recommendation": "SKIP",
             "audit_all_hit_x": 2.0,
             "payout_source": "pending_live",
             "payout_note": "HELD: was mix_floor 2.0x mislabeled n_correct_live (not a scraped N-correct). Needs live CDP / slip N-correct before publish as priced.",
@@ -131,7 +131,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "SKIP"
         }
       ]
     },
@@ -491,11 +492,6 @@
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
-    },
-    "3": {
       "strong": 1.4,
       "ok": 1.15,
       "marginal": 1.0
