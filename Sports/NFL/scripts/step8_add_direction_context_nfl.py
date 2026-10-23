@@ -66,7 +66,11 @@ def main() -> None:
     if str(_repo) not in sys.path:
         sys.path.insert(0, str(_repo))
     from utils.hit_tracking_columns import attach_hit_tracking_columns
-    from utils.nfl_prop_defense import fill_opp_team_from_game, prop_def_axis
+    from utils.nfl_prop_defense import (
+        fill_opp_team_from_game,
+        prop_def_axis,
+        role_from_snap,
+    )
 
     if not df.empty:
         work = df.copy()
@@ -179,6 +183,10 @@ def main() -> None:
             "Starter Policy": col("starter_policy"),
             "Expected Snaps": col("expected_snaps"),
             "Minutes Tier": col("minutes_tier"),
+            "Usage Role": [
+                role_from_snap(s)
+                for s in pd.to_numeric(col("snap_pct_L3", "snap_pct_season"), errors="coerce")
+            ],
         }
     )
 
