@@ -914,7 +914,7 @@ def _ticket_to_web(ticket: dict, *, date: str, ticket_no: int, group_name: str) 
         core_label = "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)"
     # Ticket win% is the historical Goblin-70 gate rate (mean_leg_p), not XGBoost.
     # ml_prob stays on each leg for display only. YOLO is display-only vs win-rate.
-    return {
+    out = {
         "web_group_name": group_name,
         "ticket_id": ticket_id,
         "ticket_no": ticket_no,
@@ -959,6 +959,45 @@ def _ticket_to_web(ticket: dict, *, date: str, ticket_no: int, group_name: str) 
             "captured_at": ticket.get("captured_at"),
         },
     }
+    # mix_floor / rate-card / median are not rule-9 scrapes.
+    return _hold_unscraped_web_payout(out)
+
+
+def _payout_is_scraped_quote(source: object, captured_at: object) -> bool:
+    src = str(source or "").strip().lower()
+    if src == "live_cdp":
+        return True
+    if src == "n_correct_live" and str(captured_at or "").strip():
+        return True
+    return False
+
+
+def _hold_unscraped_web_payout(ticket: dict) -> dict:
+    raw = (os.getenv("PROPORACLE_REQUIRE_LIVE_PAYOUT") or "1").strip().lower()
+    if raw in ("0", "false", "no", "off"):
+        return ticket
+    pay = ticket.get("payout") if isinstance(ticket.get("payout"), dict) else {}
+    src = pay.get("payout_source") or ticket.get("payout_source")
+    if _payout_is_scraped_quote(src, pay.get("captured_at") or ticket.get("captured_at")):
+        return ticket
+    pay = dict(pay)
+    pay["payout_source"] = "pending_live"
+    pay["recommendation"] = "HOLD"
+    for k in (
+        "display_min_x",
+        "min_guarantee",
+        "min_payout_x",
+        "sweep_payout",
+        "sweep_payout_x",
+        "payout",
+        "power_min_x",
+    ):
+        pay.pop(k, None)
+    ticket["payout"] = pay
+    ticket.pop("display_min_x", None)
+    ticket.pop("power_payout", None)
+    ticket.pop("flex_payout", None)
+    return ticket
 
 
 def to_web_payload(payload: dict) -> dict:
@@ -978,7 +1017,15 @@ def to_web_payload(payload: dict) -> dict:
             _ticket_to_web(t, date=date, ticket_no=i, group_name=gname)
             for i, t in enumerate(slips, start=1)
         ]
-        n_legs = int(slips[0].get("n_legs") or 0)
+        web_slips = [
+            s
+            for s in web_slips
+            if str((s.get("payout") or {}).get("payout_source") or "").strip().lower()
+            != "pending_live"
+        ]
+        if not web_slips:
+            continue
+        n_legs = int(web_slips[0].get("n_legs") or slips[0].get("n_legs") or 0)
         product = str(slips[0].get("product") or "Power")
         sweep = _sweep_x(slips[0])
         groups.append(
@@ -1595,6 +1642,9 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         slip["ev_n_correct"] = round(float(scored["expected_multiple"]), 3)
         slip["n_correct"] = {str(k): v for k, v in scored["n_correct"].items()}
         slip["payout_note"] = scored["payout_note"]
+        # make_ticket() stamps resolve_n_correct first; overwrite with the EV
+        # score source so mix_floor / p25 cannot keep a stale n_correct_live label.
+        slip["payout_source"] = scored["payout_source"]
         slip["stake"] = scored["stake"]
         slip["ticket_track"] = track
         slip["p_win"] = round(float(scored["p_win"]), 4)
