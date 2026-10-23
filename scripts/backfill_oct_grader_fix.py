@@ -29,8 +29,17 @@ def _dates(start: str, end: str) -> list[str]:
 def _run(cmd: list[str], label: str, timeout: int = 900) -> bool:
     print(f"  [{label}] {' '.join(str(c) for c in cmd[:8])}...")
     try:
+        env = dict(**__import__("os").environ)
+        env["PYTHONIOENCODING"] = "utf-8"
         proc = subprocess.run(
-            cmd, cwd=str(REPO), capture_output=True, text=True, timeout=timeout
+            cmd,
+            cwd=str(REPO),
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=timeout,
+            env=env,
         )
     except subprocess.TimeoutExpired:
         print(f"  [{label}] TIMEOUT")
@@ -166,8 +175,8 @@ def grade_day(d: str) -> dict[str, bool]:
                 str(nhl_slate),
                 "--actuals",
                 str(nhl_act),
-                "--output",
-                str(out / f"graded_nhl_{d}.xlsx"),
+                "--output-dir",
+                str(out),
             ],
             f"NHL {d}",
         )
@@ -197,8 +206,8 @@ def grade_day(d: str) -> dict[str, bool]:
                 str(soc_slate),
                 "--actuals",
                 str(soc_act),
-                "--output",
-                str(out / f"graded_soccer_{d}.xlsx"),
+                "--output-dir",
+                str(out),
             ],
             f"Soccer {d}",
         )
@@ -345,7 +354,7 @@ def grade_day(d: str) -> dict[str, bool]:
     bf = REPO / "scripts" / "backfill_graded_props_json.py"
     if bf.is_file():
         _run(
-            [PY, "-X", "utf8", str(bf), "--date", d, "--root", str(REPO)],
+            [PY, "-X", "utf8", str(bf), "--date", d],
             f"JSON {d}",
         )
 

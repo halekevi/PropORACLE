@@ -880,7 +880,9 @@ def main() -> None:
     """)
     
     output_dir = Path(args.output_dir)
-    output_dir.mkdir(exist_ok=True)
+    if output_dir.suffix.lower() in {".xlsx", ".csv", ".json"}:
+        output_dir = output_dir.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
     
     # Load data
     print("[Soccer Grader] Loading data...")
