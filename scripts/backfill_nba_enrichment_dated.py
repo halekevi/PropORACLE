@@ -18,6 +18,9 @@ from pathlib import Path
 import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+from utils.sport_season_windows import nba_stats_season  # noqa: E402
 STEP4B = REPO / "Sports" / "NBA" / "scripts" / "step4b_attach_nba_context.py"
 NBADIR = REPO / "Sports" / "NBA"
 
@@ -320,30 +323,31 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--from", dest="from_date", default="2026-04-15")
     ap.add_argument("--to", dest="to_date", default="2026-05-06")
-    ap.add_argument("--season", default="2025-26")
+    ap.add_argument("--season", default="", help="stats.nba.com season (default: current)")
     args = ap.parse_args()
     dates = pd.date_range(args.from_date, args.to_date, freq="D")
     ok = skip = fail = 0
     for ts in dates:
         d = ts.strftime("%Y-%m-%d")
+        season = str(args.season).strip() or nba_stats_season(d)
         print(f"\n=== {d} ===")
         s4 = REPO / "outputs" / d / "nba" / "step4_with_stats.csv"
         xlsx = REPO / "outputs" / d / f"step8_nba_direction_clean_{d}.xlsx"
         if s4.is_file():
-            if run_step4_pipeline(d, args.season):
+            if run_step4_pipeline(d, season):
                 print(f"  pipeline OK {d}")
                 ok += 1
             else:
                 print(f"  pipeline FAIL {d}")
                 fail += 1
         elif xlsx.is_file():
-            if enrich_step8_xlsx(xlsx, args.season):
+            if enrich_step8_xlsx(xlsx, season):
                 ok += 1
             else:
                 fail += 1
         else:
             syn = synthesize_step8_from_graded(d)
-            if syn is not None and enrich_step8_xlsx(syn, args.season):
+            if syn is not None and enrich_step8_xlsx(syn, season):
                 ok += 1
             else:
                 print(f"  skipped (no step4, step8, or graded_props)")

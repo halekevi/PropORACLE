@@ -22,8 +22,16 @@ if str(_SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPT_DIR))
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
-from tennis_shared import iter_scoreboard_matches, norm_key, norm_key_candidates, norm_tennis_prop
+from tennis_shared import (
+    fill_missing_serve_from_sackmann,
+    iter_scoreboard_matches,
+    norm_key,
+    norm_key_candidates,
+    norm_tennis_prop,
+)
 from scripts.l10_streak_utils import enrich_graded_l10_columns
+from utils.eastern_slate_date import keep_event_on_slate
+from utils.leg_start_window import is_placeholder_start, missing_actual_disposition
 
 VALID_TENNIS_PROPS = {
     "aces",
@@ -35,6 +43,18 @@ VALID_TENNIS_PROPS = {
     "total_tie_breaks",
     "break_points_won",
 }
+
+
+def _opt_float(v: object) -> float | None:
+    if v is None or v == "":
+        return None
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    if f != f:
+        return None
+    return f
 
 
 def _actual_key(prop_norm: str) -> str | None:
@@ -189,18 +209,10 @@ def _slate_field(row: pd.Series, *keys: str) -> str:
     return ""
 
 
-def _match_dates_window(target: str, days_back: int, days_forward: int) -> set[str]:
-    anchor = date.fromisoformat(str(target).strip()[:10])
-    return {
-        (anchor + timedelta(days=offset)).isoformat()
-        for offset in range(-max(0, days_back), max(0, days_forward) + 1)
-    }
-
-
 def main() -> None:
     print("[Tennis grader] Starting...")
     ap = argparse.ArgumentParser()
-    ap.add_argument("--date", required=True, help="Slate date YYYY-MM-DD (UTC date on ESPN match)")
+    ap.add_argument("--date", required=True, help="Slate date YYYY-MM-DD (US Eastern start)")
     ap.add_argument("--output", default="", help="Output graded .xlsx path")
     ap.add_argument("--slate", default="", help="step8 CSV or XLSX (default: Tennis outputs)")
     ap.add_argument("--days-back", type=int, default=0, help="Include ESPN matches up to N days before --date")
@@ -208,7 +220,6 @@ def main() -> None:
     args = ap.parse_args()
 
     target = str(args.date).strip()[:10]
-    match_dates = _match_dates_window(target, int(args.days_back), int(args.days_forward))
     out = Path(args.output) if str(args.output).strip() else _REPO_ROOT / "outputs" / target / f"graded_tennis_{target}.xlsx"
     if not out.is_absolute():
         out = _REPO_ROOT / out
@@ -276,30 +287,54 @@ def main() -> None:
     elif len(slate_f) < n_slate:
         print(f"[Tennis grader] Date filter {target}: {len(slate_f)}/{n_slate} slate rows")
     slate = slate_f
+    try:
+        scripts_dir = _REPO_ROOT / "scripts"
+        if str(scripts_dir) not in sys.path:
+            sys.path.insert(0, str(scripts_dir))
+        from ticket_leg_index import union_ticket_faces_into_slate  # noqa: WPS433
+
+        slate = union_ticket_faces_into_slate(
+            slate, date_str=target, sport="TENNIS", repo=_REPO_ROOT
+        )
+    except Exception as exc:
+        print(f"[Tennis grader] ticket-face union skipped: {exc}")
 
     by_player_day: dict[str, dict[str, float]] = {}
+    # Query the Eastern slate day and the next UTC scoreboard page. Keep a
+    # match only when its start falls on ``target`` in America/New_York.
+    query_dates = {
+        target,
+        (date.fromisoformat(target) + timedelta(days=1)).isoformat(),
+    }
     for tour in ("ATP", "WTA"):
-        for m in iter_scoreboard_matches(tour):
-            dt = str(m.get("match_date_utc") or "")[:10]
-            if dt not in match_dates:
-                continue
-            pk = norm_key(str(m.get("player") or ""))
-            if not pk:
-                continue
-            by_player_day[pk] = {
-                "aces": float(m.get("aces") or 0),
-                "double_faults": float(m.get("double_faults") or 0),
-                "games_won": float(m.get("games_won") or 0),
-                "sets_won": float(m.get("sets_won") or 0),
-                "match_total_games": float(m.get("match_total_games") or 0),
-                "total_sets": float(m.get("total_sets") or 0),
-                "total_tie_breaks": float(m.get("total_tie_breaks") or 0),
-                "break_points_won": (
-                    float(m["break_points_won"])
-                    if m.get("break_points_won") is not None
-                    else None
-                ),
-            }
+        for ymd in sorted(query_dates):
+            for m in iter_scoreboard_matches(tour, ymd):
+                if not keep_event_on_slate(
+                    m.get("slate_date_et") or m.get("match_date_utc"), target, ymd
+                ):
+                    continue
+                pk = norm_key(str(m.get("player") or ""))
+                if not pk or pk in by_player_day:
+                    continue
+                by_player_day[pk] = {
+                    # Missing ESPN serve stats must stay None (VOID), not 0.0.
+                    # Coercing None→0 made every Goblin Aces/DF OVER a MISS.
+                    "aces": _opt_float(m.get("aces")),
+                    "double_faults": _opt_float(m.get("double_faults")),
+                    "games_won": _opt_float(m.get("games_won")),
+                    "sets_won": _opt_float(m.get("sets_won")) or 0.0,
+                    "match_total_games": _opt_float(m.get("match_total_games")),
+                    "total_sets": _opt_float(m.get("total_sets")) or 0.0,
+                    "total_tie_breaks": _opt_float(m.get("total_tie_breaks")) or 0.0,
+                    "break_points_won": _opt_float(m.get("break_points_won")),
+                }
+
+    if by_player_day:
+        n_fill = fill_missing_serve_from_sackmann(
+            by_player_day, date.fromisoformat(str(target)[:10])
+        )
+        if n_fill:
+            print(f"[Tennis grader] Sackmann serve fill {n_fill} players")
 
     rows: list[dict[str, object]] = []
     skipped_non_tennis = 0
@@ -327,6 +362,12 @@ def main() -> None:
         if stats is not None and ak:
             actual = stats.get(ak)
         res, note, void_reason = _grade(direction, line, actual)
+        if res == "VOID" and actual is None:
+            start = _slate_field(r, "start_time", "game_time")
+            if missing_actual_disposition(start, note) == "UNRESOLVED":
+                void_reason = "UNRESOLVED_START" if is_placeholder_start(start) else "NO_DATA"
+            else:
+                void_reason = "NO_MATCH_WINDOW"
         note_out = note or ("" if matched_pk else "PLAYER_OR_DATE_NOT_FOUND")
         rows.append(
             {

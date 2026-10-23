@@ -234,6 +234,14 @@ def refresh_opp_defense_cache(season: str, path: Path = OPP_DEF_CACHE) -> dict:
     return cache
 
 
+def _prior_season_string(season: str) -> str:
+    try:
+        start = int(str(season).split("-", 1)[0])
+    except (TypeError, ValueError):
+        return ""
+    return f"{start - 1}-{str(start)[-2:]}"
+
+
 def ensure_caches(season: str, max_age_hours: float = 24.0) -> tuple[dict, dict, dict]:
     usage = _load_json(USAGE_CACHE)
     pace = _load_json(PACE_CACHE)
@@ -245,6 +253,17 @@ def ensure_caches(season: str, max_age_hours: float = 24.0) -> tuple[dict, dict,
         pace = refresh_pace_cache(season)
     if key not in opp or _cache_stale(opp.get(key, {}), 48.0):
         opp = refresh_opp_defense_cache(season)
+    n_players = len((usage.get(key) or {}).get("players") or {})
+    if n_players == 0:
+        prior = _prior_season_string(season)
+        if prior:
+            pk = f"season_{prior}"
+            if pk not in usage or _cache_stale(usage.get(pk, {}), max_age_hours):
+                usage = refresh_usage_cache(prior)
+            if pk not in pace or _cache_stale(pace.get(pk, {}), max_age_hours):
+                pace = refresh_pace_cache(prior)
+            if pk not in opp or _cache_stale(opp.get(pk, {}), 48.0):
+                opp = refresh_opp_defense_cache(prior)
     return usage, pace, opp
 
 

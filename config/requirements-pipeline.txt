@@ -22,6 +22,8 @@ pyarrow>=14
 
 duckdb>=1.1
 
+pandera>=0.20
+
 joblib
 
 scikit-learn

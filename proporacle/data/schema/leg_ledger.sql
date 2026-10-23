@@ -44,3 +44,7 @@ SELECT
 FROM ticket_legs tl
 LEFT JOIN legs l ON tl.leg_id = l.leg_id AND CAST(tl.slate_date AS VARCHAR) = CAST(l.slate_date AS VARCHAR)
 WHERE l.leg_id IS NULL;
+
+-- Ticket dates with no matching graded face (join < 90% is a warn in ledger_checks).
+-- Missing ticket_runs for a date that has tickets is checked in Python
+-- (dates_with_tickets_missing_runs) because live JSON lives outside this schema.

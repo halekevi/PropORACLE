@@ -4,9 +4,10 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 import pandas as pd
 
@@ -181,3 +182,248 @@ def attach_ticket_ids_to_dataframe(
         )
         out.at[idx, "ticket_id"] = tid
     return out
+
+
+def ticket_search_roots(repo: Path | None = None) -> list[Path]:
+    """This checkout plus sibling live tree / env extra roots."""
+    root = Path(repo) if repo else _REPO_ROOT
+    out: list[Path] = [root]
+    extra = os.environ.get("PROPORACLE_TICKET_RUN_ROOTS") or ""
+    for part in extra.replace(",", ";").split(";"):
+        raw = part.strip()
+        if not raw:
+            continue
+        p = Path(raw)
+        if p.is_dir():
+            out.append(p)
+    if root.name.lower().startswith("proporacle"):
+        sibling = root.parent / "PropORACLE_main_cp"
+        try:
+            if sibling.is_dir() and sibling.resolve() != root.resolve():
+                out.append(sibling)
+        except OSError:
+            pass
+    seen: set[str] = set()
+    uniq: list[Path] = []
+    for p in out:
+        try:
+            key = str(p.resolve())
+        except OSError:
+            key = str(p)
+        if key in seen:
+            continue
+        seen.add(key)
+        uniq.append(p)
+    return uniq
+
+
+def _payload_date(data: dict) -> str:
+    for k in ("date", "slate_date", "tennis_date"):
+        v = str(data.get(k) or "").strip()[:10]
+        if len(v) == 10 and v[4] == "-":
+            return v
+    return ""
+
+
+def iter_ticket_json_paths(date_str: str, repo: Path | None = None) -> list[Path]:
+    ds = str(date_str or "")[:10]
+    paths: list[Path] = []
+    for root in ticket_search_roots(repo):
+        runs = root / "ui_runner" / "data" / "ticket_runs" / ds
+        if runs.is_dir():
+            paths.extend(sorted(p for p in runs.glob("*/tickets.json") if p.is_file()))
+        pool = root / "ui_runner" / "data" / f"combined_slate_tickets_{ds}.json"
+        if pool.is_file():
+            paths.append(pool)
+        for live in (
+            root / "ui_runner" / "runtime" / "tickets_latest.json",
+            root / "ui_runner" / "templates" / "tickets_latest.json",
+            root / "ui_runner" / "data" / "tickets_latest.json",
+        ):
+            if live.is_file():
+                paths.append(live)
+    seen: set[str] = set()
+    uniq: list[Path] = []
+    for p in paths:
+        try:
+            key = str(p.resolve())
+        except OSError:
+            key = str(p)
+        if key in seen:
+            continue
+        seen.add(key)
+        uniq.append(p)
+    return uniq
+
+
+def iter_ticket_legs(
+    date_str: str,
+    *,
+    sport: str = "",
+    repo: Path | None = None,
+) -> list[dict[str, Any]]:
+    """Every unique ticketed face for a slate date (board snapshot ∪ archived runs)."""
+    want = str(sport or "").strip().upper()
+    if want == "SOCCER":
+        want = "SOCCER"
+    legs: list[dict[str, Any]] = []
+    seen: set[tuple[str, ...]] = set()
+    for path in iter_ticket_json_paths(date_str, repo):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if not isinstance(data, dict):
+            continue
+        payload_date = _payload_date(data)
+        if payload_date and payload_date != str(date_str)[:10] and "ticket_runs" not in str(path).replace("\\", "/"):
+            # Live tickets_latest for another day — skip.
+            if path.name == "tickets_latest.json":
+                continue
+        groups = data.get("groups") if isinstance(data.get("groups"), list) else []
+        for grp in groups:
+            if not isinstance(grp, dict):
+                continue
+            sport_default = str(grp.get("sport") or "").strip().upper()
+            for ticket in grp.get("tickets") or []:
+                if not isinstance(ticket, dict):
+                    continue
+                tid = str(ticket.get("ticket_id") or "").strip()
+                for leg in ticket.get("legs") or []:
+                    if not isinstance(leg, dict):
+                        continue
+                    rec = dict(leg)
+                    rec.setdefault("ticket_id", tid)
+                    rec.setdefault("sport", rec.get("sport") or sport_default)
+                    sp = str(rec.get("sport") or "").strip().upper()
+                    if want and sp and sp != want:
+                        continue
+                    key = leg_key_from_record(rec, sport_default=want or sport_default)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    legs.append(rec)
+    return legs
+
+
+def _set_row_aliases(row: dict[str, Any], columns: Iterable[str], names: tuple[str, ...], value: Any) -> None:
+    cols = set(columns)
+    for name in names:
+        if name in cols:
+            row[name] = value
+
+
+def union_ticket_faces_into_slate(
+    df: pd.DataFrame,
+    *,
+    date_str: str,
+    sport: str,
+    repo: Path | None = None,
+) -> pd.DataFrame:
+    """Append ticketed faces that are missing from the board snapshot.
+
+    Actuals are player+prop; any line/pick on that face can be graded once
+    the box is in. This closes Standard faces (tennis Games Won, soccer Saves)
+    and August snapshot-timing zeros together.
+    """
+    if df is None:
+        df = pd.DataFrame()
+    out = df.copy()
+    want = str(sport or "").strip().upper()
+    ticket_legs = iter_ticket_legs(date_str, sport=want, repo=repo)
+    if not ticket_legs:
+        return out
+    existing: set[tuple[str, ...]] = set()
+    for _, row in out.iterrows():
+        rec = row.to_dict() if hasattr(row, "to_dict") else dict(row)
+        existing.add(leg_key_from_record(rec, sport_default=want))
+    cols = list(out.columns) if len(out.columns) else [
+        "player",
+        "prop_type_norm",
+        "prop_type",
+        "line",
+        "bet_direction",
+        "direction",
+        "pick_type",
+        "sport",
+        "ticket_id",
+        "from_ticket_face",
+    ]
+    if "from_ticket_face" not in cols:
+        out["from_ticket_face"] = 0
+        cols = list(out.columns)
+    added_rows: list[dict[str, Any]] = []
+    for rec in ticket_legs:
+        key = leg_key_from_record(rec, sport_default=want)
+        if key in existing:
+            continue
+        existing.add(key)
+        new_row = {c: None for c in cols}
+        player = rec.get("player") or rec.get("Player") or ""
+        prop = rec.get("prop_type") or rec.get("prop") or rec.get("Prop") or ""
+        line = rec.get("line") if rec.get("line") is not None else rec.get("Line")
+        direction = rec.get("direction") or rec.get("dir") or rec.get("Direction") or "OVER"
+        pick = rec.get("pick_type") or rec.get("Pick Type") or "standard"
+        _set_row_aliases(new_row, cols, ("player", "Player"), player)
+        _set_row_aliases(new_row, cols, ("prop_type_norm", "prop_type", "Prop", "prop"), prop)
+        _set_row_aliases(new_row, cols, ("line", "Line"), line)
+        _set_row_aliases(new_row, cols, ("bet_direction", "final_bet_direction", "direction", "Direction"), direction)
+        _set_row_aliases(new_row, cols, ("pick_type", "Pick Type"), pick)
+        _set_row_aliases(new_row, cols, ("sport", "Sport"), rec.get("sport") or want)
+        _set_row_aliases(new_row, cols, ("ticket_id",), rec.get("ticket_id") or None)
+        _set_row_aliases(new_row, cols, ("team", "Team"), rec.get("team") or rec.get("Team") or "")
+        _set_row_aliases(new_row, cols, ("opp_team", "Opp"), rec.get("opp_team") or rec.get("Opp") or "")
+        _set_row_aliases(new_row, cols, ("league", "League"), rec.get("league") or rec.get("League") or "")
+        _set_row_aliases(
+            new_row,
+            cols,
+            ("pp_projection_id", "projection_id"),
+            rec.get("pp_projection_id") or rec.get("projection_id") or "",
+        )
+        _set_row_aliases(new_row, cols, ("game_date", "Game Date"), date_str)
+        if "from_ticket_face" in cols:
+            new_row["from_ticket_face"] = 1
+        added_rows.append(new_row)
+    if added_rows:
+        extra = pd.DataFrame(added_rows)
+        out = pd.concat([out, extra], ignore_index=True)
+        print(f"  [ticket-face] union appended {len(added_rows)} ticketed face(s) not on the board snapshot")
+    return out
+
+
+def dates_with_tickets_missing_runs(repo: Path | None = None) -> list[str]:
+    """Slate dates that have a tickets JSON but no ticket_runs archive in any search root."""
+    missing: list[str] = []
+    dated: set[str] = set()
+    run_dates: set[str] = set()
+    for root in ticket_search_roots(repo):
+        runs = root / "ui_runner" / "data" / "ticket_runs"
+        if runs.is_dir():
+            for d in runs.iterdir():
+                if d.is_dir() and len(d.name) == 10 and d.name[4] == "-":
+                    if any(p.is_file() for p in d.glob("*/tickets.json")):
+                        run_dates.add(d.name)
+        data = root / "ui_runner" / "data"
+        if data.is_dir():
+            for path in data.glob("combined_slate_tickets_*.json"):
+                stamp = path.stem.replace("combined_slate_tickets_", "")[:10]
+                if len(stamp) == 10 and stamp[4] == "-":
+                    dated.add(stamp)
+        for live in (
+            root / "ui_runner" / "runtime" / "tickets_latest.json",
+            root / "ui_runner" / "templates" / "tickets_latest.json",
+            root / "ui_runner" / "data" / "tickets_latest.json",
+        ):
+            if not live.is_file():
+                continue
+            try:
+                payload = json.loads(live.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            ds = _payload_date(payload) if isinstance(payload, dict) else ""
+            if ds:
+                dated.add(ds)
+    for ds in sorted(dated):
+        if ds not in run_dates:
+            missing.append(ds)
+    return missing

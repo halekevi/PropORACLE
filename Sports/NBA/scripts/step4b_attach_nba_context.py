@@ -26,6 +26,7 @@ for p in (_REPO_ROOT, _SCRIPTS_ROOT, _SCRIPTS):
 
 from role_stability import role_stability
 from utils.pipeline_dated_outputs import copy_pipeline_output_to_dated_dirs
+from utils.sport_season_windows import nba_stats_season, prior_nba_stats_season
 from nba_stats_api import (
     derive_usage_role_type,
     ensure_caches,
@@ -123,12 +124,17 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", default="step4_with_stats.csv")
     ap.add_argument("--output", default="step4_with_stats.csv")
-    ap.add_argument("--season", default="2025-26")
+    ap.add_argument(
+        "--season",
+        default="",
+        help="stats.nba.com season (default: current NBA season for --date / today, e.g. 2026-27 in Oct 2026)",
+    )
+    ap.add_argument("--date", default="", help="Slate date YYYY-MM-DD for season auto-detect")
     ap.add_argument("--refresh", action="store_true")
     args = ap.parse_args()
 
     df = pd.read_csv(args.input, low_memory=False, encoding="utf-8-sig")
-    season = str(args.season).strip() or "2025-26"
+    season = str(args.season).strip() or nba_stats_season(args.date or None)
 
     if args.refresh:
         from nba_stats_api import refresh_usage_cache, refresh_pace_cache, refresh_opp_defense_cache
@@ -143,6 +149,16 @@ def main() -> None:
     usage_players = (usage_cache.get(ukey) or {}).get("players") or {}
     pace_teams = (pace_cache.get(ukey) or {}).get("teams") or {}
     opp_entries = (opp_cache.get(ukey) or {}).get("entries") or {}
+    if not usage_players:
+        prior = prior_nba_stats_season(season)
+        pkey = f"season_{prior}"
+        usage_players = (usage_cache.get(pkey) or {}).get("players") or {}
+        if not pace_teams:
+            pace_teams = (pace_cache.get(pkey) or {}).get("teams") or {}
+        if not opp_entries:
+            opp_entries = (opp_cache.get(pkey) or {}).get("entries") or {}
+        if usage_players:
+            log.info("usage cache %s empty; attaching %s", season, prior)
 
     # League ranks for positional matchup tiers
     pts_vals = [e["pts_allowed"] for e in opp_entries.values() if e.get("pts_allowed") is not None]

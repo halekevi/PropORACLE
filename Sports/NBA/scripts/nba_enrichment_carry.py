@@ -29,6 +29,10 @@ ENRICHMENT_CARRY_COLS = [
     "injury_boost_candidate",
     "high_variance_role",
     "deviation_level",
+    "pp_projection_id",
+    "projection_id",
+    "league",
+    "league_id",
 ]
 
 

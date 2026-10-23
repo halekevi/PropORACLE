@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -40,7 +41,11 @@ EXPECTED_FILL_GAPS = {
     "usage_pct": "expected_gap",
     "league": "expected_todo",
 }
-EXPECTED_SPORT_GAPS = {("ml_prob", "CFB"): "expected_gap"}
+EXPECTED_SPORT_GAPS = {
+    ("ml_prob", "CFB"): "expected_gap",
+    ("ml_prob", "NFL"): "expected_gap",
+}
+USAGE_REQUIRED_SPORTS = frozenset({"NBA", "WNBA", "NBA1H", "NBA1Q"})
 # abs(edge) / max(|line|, 1) — Goblin Points cover of ~11 on a 3.5 line is ~3.2.
 # NFL 38–150 on a tackle-sized line is 7–25+.
 EDGE_RATIO_FLAG = 5.0
@@ -611,35 +616,68 @@ def ingest_tickets_file(
     }
 
 
+def ticket_ingest_repos(repo: Path | None = None) -> list[Path]:
+    """Ledger ticket sources: this checkout, sibling live tree, extra env roots."""
+    base = Path(repo) if repo else _REPO
+    out: list[Path] = [base]
+    extra = os.environ.get("PROPORACLE_TICKET_RUN_ROOTS") or ""
+    for part in extra.replace(",", ";").split(";"):
+        raw = part.strip()
+        if not raw:
+            continue
+        p = Path(raw)
+        if p.is_dir():
+            out.append(p)
+    if base.name.lower().startswith("proporacle"):
+        sibling = base.parent / "PropORACLE_main_cp"
+        try:
+            if sibling.is_dir() and sibling.resolve() != base.resolve():
+                out.append(sibling)
+        except OSError:
+            pass
+    seen: set[str] = set()
+    uniq: list[Path] = []
+    for p in out:
+        try:
+            key = str(p.resolve())
+        except OSError:
+            key = str(p)
+        if key in seen:
+            continue
+        seen.add(key)
+        uniq.append(p)
+    return uniq
+
+
 def ingest_ticket_runs(repo: Path | None = None, *, date: str | None = None, root: Path | None = None) -> dict[str, int]:
-    repo = repo or _REPO
     n_t = n_l = n_skip = 0
-    runs = repo / "ui_runner" / "data" / "ticket_runs"
-    if runs.is_dir():
-        for day_dir in sorted(runs.iterdir()):
-            if not day_dir.is_dir():
-                continue
-            if date and day_dir.name != date[:10]:
-                continue
-            for run_dir in sorted(day_dir.iterdir()):
-                tickets_path = run_dir / "tickets.json"
-                if tickets_path.is_file():
-                    out = ingest_tickets_file(tickets_path, root=root, run_id=run_dir.name)
-                    n_t += int(out.get("tickets") or 0)
-                    n_l += int(out.get("ticket_legs") or 0)
-                    n_skip += int(bool(out.get("skipped")))
-    pool_dir = repo / "ui_runner" / "data"
-    if pool_dir.is_dir():
-        for path in sorted(pool_dir.glob(GRADE_POOL_GLOB)):
-            stamp = path.stem.replace("combined_slate_tickets_", "")[:10]
-            if date and stamp != date[:10]:
-                continue
-            if stamp == "latest" or not stamp[:4].isdigit():
-                continue
-            out = ingest_tickets_file(path, root=root, run_id="grade_pool")
-            n_t += int(out.get("tickets") or 0)
-            n_l += int(out.get("ticket_legs") or 0)
-            n_skip += int(bool(out.get("skipped")))
+    for src in ticket_ingest_repos(repo):
+        runs = src / "ui_runner" / "data" / "ticket_runs"
+        if runs.is_dir():
+            for day_dir in sorted(runs.iterdir()):
+                if not day_dir.is_dir():
+                    continue
+                if date and day_dir.name != date[:10]:
+                    continue
+                for run_dir in sorted(day_dir.iterdir()):
+                    tickets_path = run_dir / "tickets.json"
+                    if tickets_path.is_file():
+                        out = ingest_tickets_file(tickets_path, root=root, run_id=run_dir.name)
+                        n_t += int(out.get("tickets") or 0)
+                        n_l += int(out.get("ticket_legs") or 0)
+                        n_skip += int(bool(out.get("skipped")))
+        pool_dir = src / "ui_runner" / "data"
+        if pool_dir.is_dir():
+            for path in sorted(pool_dir.glob(GRADE_POOL_GLOB)):
+                stamp = path.stem.replace("combined_slate_tickets_", "")[:10]
+                if date and stamp != date[:10]:
+                    continue
+                if stamp == "latest" or not stamp[:4].isdigit():
+                    continue
+                out = ingest_tickets_file(path, root=root, run_id="grade_pool")
+                n_t += int(out.get("tickets") or 0)
+                n_l += int(out.get("ticket_legs") or 0)
+                n_skip += int(bool(out.get("skipped")))
     return {"tickets": n_t, "ticket_legs": n_l, "skipped": n_skip}
 
 
@@ -710,13 +748,16 @@ def connect(root: Path | None = None):
 def _edge_ratio_high(g: pd.DataFrame) -> float:
     if "edge" not in g.columns or "line" not in g.columns:
         return 0.0
-    line = g["line"].abs().clip(lower=1.0)
-    ratio = g["edge"].abs() / line
-    return float((ratio > EDGE_RATIO_FLAG).mean())
+    edge = pd.to_numeric(g["edge"], errors="coerce")
+    line = pd.to_numeric(g["line"], errors="coerce").abs().clip(lower=1.0)
+    ratio = edge.abs() / line
+    return float((ratio > EDGE_RATIO_FLAG).fillna(False).mean())
 
 
 def _fill_note(col: str, sport: str, fill: float, *, proj_id_saw_fill: bool) -> str:
     if col == "usage_pct":
+        if str(sport or "").upper() in USAGE_REQUIRED_SPORTS:
+            return "regression" if fill == 0 else ""
         return EXPECTED_FILL_GAPS["usage_pct"]
     if col == "league":
         return EXPECTED_FILL_GAPS["league"]

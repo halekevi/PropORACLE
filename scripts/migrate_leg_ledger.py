@@ -14,6 +14,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(ROOT / "scripts"))
 
 from proporacle.data.leg_ledger import (  # noqa: E402
     LEDGER_ROOT,
@@ -35,6 +37,8 @@ def main() -> int:
     ap.add_argument("--summary", action="store_true", help="Print fill rates and ticket-join rates")
     ap.add_argument("--wipe", action="store_true", help="Delete data/ledger before ingest")
     ap.add_argument("--ledger-root", default="", help="Override data/ledger path")
+    ap.add_argument("--check", action="store_true", help="Warn-only fill / ticket-join checks after ingest")
+    ap.add_argument("--since", default="", help="Check window start YYYY-MM-DD (default: last 14 days)")
     args = ap.parse_args()
     date = (args.date or "").strip()[:10] or None
     root = Path(args.ledger_root) if args.ledger_root else LEDGER_ROOT
@@ -94,6 +98,12 @@ def main() -> int:
                 con.close()
         else:
             print("\nDuckDB not installed; Parquet is readable via pandas (pip install duckdb).")
+    if args.check:
+        from proporacle.data.ledger_checks import format_report, run_ledger_checks
+
+        report = run_ledger_checks(root, since=args.since or None, repo=ROOT)
+        print("\n=== warn-only ledger checks ===")
+        print(format_report(report))
     return 0
 
 

@@ -355,6 +355,12 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     ):
         if drop_golf and loader_name == "load_golf":
             continue
+        if loader_name == "load_nba1q":
+            from utils.ticket_sport_holds import NBA1Q_HOLD_REASON, nba1q_tickets_held
+
+            if nba1q_tickets_held():
+                print(NBA1Q_HOLD_REASON, flush=True)
+                continue
         loader = getattr(R, loader_name, None)
         if not callable(loader):
             continue
@@ -364,6 +370,13 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     if drop_golf:
         rows = [r for r in rows if str(r.get("sport") or "").upper() != "GOLF"]
         print(golf_skip_warning(rows), flush=True)
+    from utils.ticket_sport_holds import NBA1Q_HOLD_REASON, nba1q_tickets_held
+
+    if nba1q_tickets_held():
+        n_q = sum(1 for r in rows if str(r.get("sport") or "").upper() == "NBA1Q")
+        if n_q:
+            rows = [r for r in rows if str(r.get("sport") or "").upper() != "NBA1Q"]
+            print(f"{NBA1Q_HOLD_REASON} dropped {n_q} board row(s)", flush=True)
     return rows
 
 # PAY lives in utils.n_correct_payout. Resolve order: CDP scrape (matching
@@ -1591,6 +1604,20 @@ def write_web(payload: dict, board: list[dict] | None = None) -> list[Path]:
             refresh_pipeline_status_from_slate(main_cp)
     except Exception as sync_exc:
         print(f"WARN: live JSON sync skipped ({sync_exc})")
+    try:
+        from ticket_run_archive import archive_and_merge_grade_pool, new_run_id
+
+        rid = str(web.get("run_id") or new_run_id())
+        web["run_id"] = rid
+        meta = archive_and_merge_grade_pool(
+            web, date_str=date, run_id=rid, source="goblin70_write_web"
+        )
+        print(
+            f"ticket-run archive {meta.get('date')} run_id={meta.get('run_id')} "
+            f"(goblin70_write_web)"
+        )
+    except Exception as arch_exc:
+        print(f"WARN: ticket run archive skipped ({arch_exc})")
     return written
 
 

@@ -1351,6 +1351,17 @@ def main():
     print(f"  Output:  {out_path}")
 
     slate   = load_slate(slate_p, sport, grade_date=date_str)
+    try:
+        scripts_dir = _REPO_ROOT / "scripts"
+        if str(scripts_dir) not in sys.path:
+            sys.path.insert(0, str(scripts_dir))
+        from ticket_leg_index import union_ticket_faces_into_slate  # noqa: WPS433
+
+        slate = union_ticket_faces_into_slate(
+            slate, date_str=date_str, sport=sport, repo=_REPO_ROOT
+        )
+    except Exception as exc:
+        print(f"  [ticket-face] union skipped: {exc}")
     actuals = load_actuals(act_p)
 
     print(f"  Slate rows: {len(slate):,}")

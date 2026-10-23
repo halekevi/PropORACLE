@@ -30,6 +30,13 @@ $PyVer = "-3.14"
 $NBADir = Join-Path $Root "Sports\NBA"
 $OutDir = Join-Path $Root "outputs\$Date"
 $SportsRoot = Join-Path $Root "Sports"
+try {
+    $nbaDt = [datetime]::ParseExact($Date, 'yyyy-MM-dd', [System.Globalization.CultureInfo]::InvariantCulture)
+    $nbaStart = if ($nbaDt.Month -ge 10) { $nbaDt.Year } else { $nbaDt.Year - 1 }
+} catch {
+    $nbaStart = if ((Get-Date).Month -ge 10) { (Get-Date).Year } else { (Get-Date).Year - 1 }
+}
+$NbaStatsSeason = '{0}-{1:d2}' -f $nbaStart, (($nbaStart + 1) % 100)
 
 foreach ($t in @("nba1h", "nba1q")) {
     New-Item -ItemType Directory -Force -Path (Join-Path $OutDir $t) | Out-Null
@@ -163,10 +170,10 @@ function Run-NBAPeriodOnly {
         Run-StepLocal "step4" ".\scripts\step4_attach_player_stats_espn_cache.py" @(
             "--slate", $step3, "--out", $step4, "--date", $Date, "--segment", $segment
         )
+        Run-StepLocal "step4b" ".\scripts\step4b_attach_nba_context.py" @(
+            "--input", $step4, "--output", $step4, "--season", $NbaStatsSeason
+        )
         if ($tagLower -eq "nba1h") {
-            Run-StepLocal "step4b" ".\scripts\step4b_attach_nba_context.py" @(
-                "--input", $step4, "--output", $step4, "--season", "2025-26"
-            )
             # step4e is enrichment-only; do not block period step8 on profile cache I/O.
             try {
                 Run-StepLocal "step4e" ".\scripts\step4e_attach_nba1h_context.py" @(

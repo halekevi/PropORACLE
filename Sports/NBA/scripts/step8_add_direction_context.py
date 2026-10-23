@@ -489,6 +489,7 @@ def build_clean_xlsx(
         'l5_minutes_gap', 'role_mpg', 'minutes_tier_l5', 'minutes_flag',
         'shot_role', 'usage_role',
         'league', 'league_id',
+        'pp_projection_id', 'projection_id',
         'final_bet_direction',
         'edge', 'abs_edge', 'projection',
         'ml_prob',
@@ -672,8 +673,13 @@ def build_clean_xlsx(
             print("→ Team Leaders sheet: empty (no rotation avgs)")
     except Exception as exc:
         print(f"⚠️  Team Leaders sheet skipped: {exc}")
-    write_excel_sheets(xlsx_path, sheets)
-    print(f"📊 Clean XLSX saved → {xlsx_path}")
+    try:
+        write_excel_sheets(xlsx_path, sheets)
+        print(f"📊 Clean XLSX saved → {xlsx_path}")
+    except Exception as exc:
+        # CSV already written; do not fail the slate on Excel dtype quirks
+        # (bool/mixed object columns). Ranker can read the CSV.
+        print(f"⚠️  Clean XLSX skipped ({type(exc).__name__}: {exc})")
 
 def main() -> None:
     ap = argparse.ArgumentParser()
@@ -824,11 +830,14 @@ def main() -> None:
         print("tier counts:")
         print(out["tier"].value_counts().to_string())
 
-    # Save clean XLSX
+    # Save clean XLSX (non-fatal — CSV is the recovery path for the ranker)
     xlsx_path = args.xlsx if args.xlsx else args.output.replace(".csv", "_clean.xlsx")
-    build_clean_xlsx(out, xlsx_path, source_hint=args.input)
-    write_parquet_sidecars(out, args.output, xlsx_path)
-    _copy_dated_step8_nba(xlsx_path, (args.date or "").strip())
+    try:
+        build_clean_xlsx(out, xlsx_path, source_hint=args.input)
+        write_parquet_sidecars(out, args.output, xlsx_path)
+        _copy_dated_step8_nba(xlsx_path, (args.date or "").strip())
+    except Exception as exc:
+        print(f"⚠️  step8 xlsx/sidecar non-fatal: {type(exc).__name__}: {exc}")
 
 if __name__ == "__main__":
     try:
