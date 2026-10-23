@@ -1,0 +1,960 @@
+[
+ {
+  "file": "late_fetch_child_1030AM_2026-08-29_111936.log",
+  "label": "1030AM",
+  "date": "2026-08-29",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-29 11:45"
+ },
+ {
+  "file": "late_fetch_child_1030AM_2026-08-31_103007.log",
+  "label": "1030AM",
+  "date": "2026-08-31",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-31 11:00"
+ },
+ {
+  "file": "late_fetch_child_1030AM_2026-09-01_103008.log.stderr.tmp",
+  "label": "1030AM",
+  "date": "2026-09-01",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "09-01 11:18"
+ },
+ {
+  "file": "late_fetch_child_1030AM_2026-09-01_103008.log.stdout.tmp",
+  "label": "1030AM",
+  "date": "2026-09-01",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-01 11:18"
+ },
+ {
+  "file": "late_fetch_child_1030AM_2026-09-03_103007.log",
+  "label": "1030AM",
+  "date": "2026-09-03",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-03 10:56"
+ },
+ {
+  "file": "late_fetch_child_1030AM_2026-09-04_103650.log",
+  "label": "1030AM",
+  "date": "2026-09-04",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-04 11:39"
+ },
+ {
+  "file": "late_fetch_child_1030AM_2026-09-05_103942.log",
+  "label": "1030AM",
+  "date": "2026-09-05",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "09-05 10:59"
+ },
+ {
+  "file": "late_fetch_child_1030AM_2026-09-25_103008.log",
+  "label": "1030AM",
+  "date": "2026-09-25",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-25 11:18"
+ },
+ {
+  "file": "late_fetch_child_1030AM_2026-10-22_103006.log",
+  "label": "1030AM",
+  "date": "2026-10-22",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "NFL"
+  ],
+  "nfl_step8_failed": true,
+  "mtime": "10-22 10:32"
+ },
+ {
+  "file": "late_fetch_child_1030AM_2026-10-23_103007.log",
+  "label": "1030AM",
+  "date": "2026-10-23",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": "1",
+  "done": false,
+  "failed_sports": [
+   "NBA",
+   "NFL",
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "10-23 10:52"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-08-28_130008.log.stderr.tmp",
+  "label": "1PM",
+  "date": "2026-08-28",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-28 14:56"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-08-28_130008.log.stdout.tmp",
+  "label": "1PM",
+  "date": "2026-08-28",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "Tennis"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-28 14:56"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-08-29_130019.log",
+  "label": "1PM",
+  "date": "2026-08-29",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-29 14:56"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-08-30_130010.log",
+  "label": "1PM",
+  "date": "2026-08-30",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-30 16:05"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-08-31_130009.log",
+  "label": "1PM",
+  "date": "2026-08-31",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-31 13:27"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-09-02_134509.log",
+  "label": "1PM",
+  "date": "2026-09-02",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-02 14:18"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-09-03_130007.log.stderr.tmp",
+  "label": "1PM",
+  "date": "2026-09-03",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "09-03 13:50"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-09-03_130007.log.stdout.tmp",
+  "label": "1PM",
+  "date": "2026-09-03",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-03 13:50"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-09-04_130009.log",
+  "label": "1PM",
+  "date": "2026-09-04",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-04 14:23"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-09-05_130018.log.stderr.tmp",
+  "label": "1PM",
+  "date": "2026-09-05",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "09-05 13:12"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-09-05_130018.log.stdout.tmp",
+  "label": "1PM",
+  "date": "2026-09-05",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-05 14:03"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-09-25_130008.log",
+  "label": "1PM",
+  "date": "2026-09-25",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-25 14:05"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-09-26_130012.log.stderr.tmp",
+  "label": "1PM",
+  "date": "2026-09-26",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "09-26 13:41"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-09-26_130012.log.stdout.tmp",
+  "label": "1PM",
+  "date": "2026-09-26",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": "1",
+  "done": false,
+  "failed_sports": [
+   "NFL",
+   "NHL",
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-26 13:47"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-10-22_130006.log",
+  "label": "1PM",
+  "date": "2026-10-22",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "NFL"
+  ],
+  "nfl_step8_failed": true,
+  "mtime": "10-22 13:11"
+ },
+ {
+  "file": "late_fetch_child_1PM_2026-10-23_130018.log",
+  "label": "1PM",
+  "date": "2026-10-23",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "10-23 13:06"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-08-28_163008.log",
+  "label": "430PM",
+  "date": "2026-08-28",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "Tennis"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-28 17:36"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-08-29_163019.log",
+  "label": "430PM",
+  "date": "2026-08-29",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-29 18:03"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-08-30_163009.log",
+  "label": "430PM",
+  "date": "2026-08-30",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-30 18:18"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-08-31_163008.log",
+  "label": "430PM",
+  "date": "2026-08-31",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-31 16:38"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-09-01_163010.log",
+  "label": "430PM",
+  "date": "2026-09-01",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-01 17:12"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-09-02_163007.log",
+  "label": "430PM",
+  "date": "2026-09-02",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-02 17:10"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-09-03_170331.log.stderr.tmp",
+  "label": "430PM",
+  "date": "2026-09-03",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "09-03 17:54"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-09-03_170331.log.stdout.tmp",
+  "label": "430PM",
+  "date": "2026-09-03",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-03 18:00"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-09-04_163016.log",
+  "label": "430PM",
+  "date": "2026-09-04",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-04 18:51"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-09-05_170017.log",
+  "label": "430PM",
+  "date": "2026-09-05",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-05 18:00"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-09-25_163009.log",
+  "label": "430PM",
+  "date": "2026-09-25",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-25 17:35"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-10-22_163009.log.stderr.tmp",
+  "label": "430PM",
+  "date": "2026-10-22",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "10-22 16:32"
+ },
+ {
+  "file": "late_fetch_child_430PM_2026-10-22_163009.log.stdout.tmp",
+  "label": "430PM",
+  "date": "2026-10-22",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "NFL"
+  ],
+  "nfl_step8_failed": true,
+  "mtime": "10-22 16:38"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-08-29_080022.log",
+  "label": "8AM",
+  "date": "2026-08-29",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "Tennis"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-29 09:05"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-08-30_080026.log",
+  "label": "8AM",
+  "date": "2026-08-30",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "Tennis"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-30 10:03"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-08-31_080020.log",
+  "label": "8AM",
+  "date": "2026-08-31",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-31 08:23"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-09-01_080027.log",
+  "label": "8AM",
+  "date": "2026-09-01",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-01 08:24"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-09-02_080027.log",
+  "label": "8AM",
+  "date": "2026-09-02",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-02 08:37"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-09-03_080022.log",
+  "label": "8AM",
+  "date": "2026-09-03",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-03 08:42"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-09-04_080150.log",
+  "label": "8AM",
+  "date": "2026-09-04",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-04 09:15"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-09-05_080018.log",
+  "label": "8AM",
+  "date": "2026-09-05",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-05 08:32"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-09-25_080046.log",
+  "label": "8AM",
+  "date": "2026-09-25",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-25 08:41"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-09-26_081134.log",
+  "label": "8AM",
+  "date": "2026-09-26",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": "1",
+  "done": false,
+  "failed_sports": [
+   "NFL",
+   "NHL",
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-26 08:41"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-10-22_080055.log",
+  "label": "8AM",
+  "date": "2026-10-22",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "NFL"
+  ],
+  "nfl_step8_failed": true,
+  "mtime": "10-22 08:06"
+ },
+ {
+  "file": "late_fetch_child_8AM_2026-10-23_080114.log",
+  "label": "8AM",
+  "date": "2026-10-23",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "NFL"
+  ],
+  "nfl_step8_failed": true,
+  "mtime": "10-23 08:05"
+ },
+ {
+  "file": "late_fetch_child_945AM_2026-08-28_094505.log",
+  "label": "945AM",
+  "date": "2026-08-28",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "Tennis"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-28 11:42"
+ },
+ {
+  "file": "late_fetch_child_945AM_2026-08-30_100408.log",
+  "label": "945AM",
+  "date": "2026-08-30",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-30 12:45"
+ },
+ {
+  "file": "late_fetch_child_945AM_2026-08-31_094507.log",
+  "label": "945AM",
+  "date": "2026-08-31",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-31 10:14"
+ },
+ {
+  "file": "late_fetch_child_945AM_2026-09-01_094507.log",
+  "label": "945AM",
+  "date": "2026-09-01",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-01 10:13"
+ },
+ {
+  "file": "late_fetch_child_945AM_2026-09-02_094507.log.stderr.tmp",
+  "label": "945AM",
+  "date": "2026-09-02",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "09-02 10:42"
+ },
+ {
+  "file": "late_fetch_child_945AM_2026-09-02_094507.log.stdout.tmp",
+  "label": "945AM",
+  "date": "2026-09-02",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-02 10:42"
+ },
+ {
+  "file": "late_fetch_child_945AM_2026-09-03_094506.log",
+  "label": "945AM",
+  "date": "2026-09-03",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-03 10:25"
+ },
+ {
+  "file": "late_fetch_child_945AM_2026-09-05_094510.log",
+  "label": "945AM",
+  "date": "2026-09-05",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-05 10:37"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-08-29_090635.log",
+  "label": "9AM",
+  "date": "2026-08-29",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-29 11:18"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-08-31_090006.log",
+  "label": "9AM",
+  "date": "2026-08-31",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "08-31 09:27"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-09-01_090007.log",
+  "label": "9AM",
+  "date": "2026-09-01",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-01 09:25"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-09-02_090007.log",
+  "label": "9AM",
+  "date": "2026-09-02",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-02 09:37"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-09-03_090006.log",
+  "label": "9AM",
+  "date": "2026-09-03",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-03 09:38"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-09-04_091650.log",
+  "label": "9AM",
+  "date": "2026-09-04",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-04 10:36"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-09-05_090010.log",
+  "label": "9AM",
+  "date": "2026-09-05",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-05 09:35"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-09-25_090008.log",
+  "label": "9AM",
+  "date": "2026-09-25",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": true,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "WNBA"
+  ],
+  "nfl_step8_failed": false,
+  "mtime": "09-25 10:08"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-10-22_090006.log",
+  "label": "9AM",
+  "date": "2026-10-22",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [
+   "NFL"
+  ],
+  "nfl_step8_failed": true,
+  "mtime": "10-22 09:06"
+ },
+ {
+  "file": "late_fetch_child_9AM_2026-10-23_090007.log",
+  "label": "9AM",
+  "date": "2026-10-23",
+  "tmp_unfinished": false,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": true,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "10-23 09:05"
+ },
+ {
+  "file": "late_fetch_child_MANUAL_CDP_2026-08-28_235511.log.stderr.tmp",
+  "label": "MANUAL_CDP",
+  "date": "2026-08-28",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-29 00:02"
+ },
+ {
+  "file": "late_fetch_child_MANUAL_CDP_2026-08-28_235511.log.stdout.tmp",
+  "label": "MANUAL_CDP",
+  "date": "2026-08-28",
+  "tmp_unfinished": true,
+  "ran_full_pipeline": false,
+  "pipeline_failed_exit": null,
+  "done": false,
+  "failed_sports": [],
+  "nfl_step8_failed": false,
+  "mtime": "08-29 00:07"
+ }
+]

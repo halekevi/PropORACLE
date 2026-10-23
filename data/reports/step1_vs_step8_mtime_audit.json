@@ -1,0 +1,5575 @@
+{
+  "as_of": "2026-10-23 13:14",
+  "grace_minutes": 10,
+  "summary": {
+    "cbb": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 0,
+      "dates_step1_newer_than_step8": 0,
+      "dates_no_step8": [],
+      "stale_dates": []
+    },
+    "cfb": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 9,
+      "dates_step1_newer_than_step8": 0,
+      "dates_no_step8": [
+        "2026-09-23"
+      ],
+      "stale_dates": []
+    },
+    "cfb1h": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 2,
+      "dates_step1_newer_than_step8": 0,
+      "dates_no_step8": [
+        "2026-09-23",
+        "2026-09-24"
+      ],
+      "stale_dates": []
+    },
+    "golf": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 16,
+      "dates_step1_newer_than_step8": 4,
+      "dates_no_step8": [
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-17",
+        "2026-10-18",
+        "2026-10-19",
+        "2026-10-20"
+      ],
+      "stale_dates": [
+        {
+          "date": "2026-10-02",
+          "step1": "10-02 01:38",
+          "step8": "10-02 01:09",
+          "gap_min": 29
+        },
+        {
+          "date": "2026-10-11",
+          "step1": "10-11 16:30",
+          "step8": "10-11 10:47",
+          "gap_min": 343
+        },
+        {
+          "date": "2026-10-22",
+          "step1": "10-22 16:33",
+          "step8": "10-22 06:54",
+          "gap_min": 579
+        },
+        {
+          "date": "2026-10-23",
+          "step1": "10-23 13:02",
+          "step8": "10-23 10:34",
+          "gap_min": 148
+        }
+      ]
+    },
+    "mlb": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 26,
+      "dates_step1_newer_than_step8": 16,
+      "dates_no_step8": [
+        "2026-10-02",
+        "2026-10-20",
+        "2026-10-22"
+      ],
+      "stale_dates": [
+        {
+          "date": "2026-09-29",
+          "step1": "09-29 17:42",
+          "step8": "09-29 17:06",
+          "gap_min": 37
+        },
+        {
+          "date": "2026-09-30",
+          "step1": "09-30 17:34",
+          "step8": "09-30 16:45",
+          "gap_min": 49
+        },
+        {
+          "date": "2026-10-01",
+          "step1": "10-01 18:02",
+          "step8": "10-01 16:53",
+          "gap_min": 69
+        },
+        {
+          "date": "2026-10-03",
+          "step1": "10-03 17:24",
+          "step8": "10-03 16:45",
+          "gap_min": 39
+        },
+        {
+          "date": "2026-10-04",
+          "step1": "10-04 17:32",
+          "step8": "10-04 16:46",
+          "gap_min": 46
+        },
+        {
+          "date": "2026-10-05",
+          "step1": "10-05 17:42",
+          "step8": "10-05 16:56",
+          "gap_min": 46
+        },
+        {
+          "date": "2026-10-06",
+          "step1": "10-06 18:23",
+          "step8": "10-06 16:53",
+          "gap_min": 90
+        },
+        {
+          "date": "2026-10-07",
+          "step1": "10-07 17:11",
+          "step8": "10-07 16:52",
+          "gap_min": 19
+        },
+        {
+          "date": "2026-10-11",
+          "step1": "10-11 16:31",
+          "step8": "10-11 10:48",
+          "gap_min": 343
+        },
+        {
+          "date": "2026-10-12",
+          "step1": "10-12 16:32",
+          "step8": "10-12 05:52",
+          "gap_min": 640
+        },
+        {
+          "date": "2026-10-13",
+          "step1": "10-13 16:31",
+          "step8": "10-13 05:58",
+          "gap_min": 632
+        },
+        {
+          "date": "2026-10-14",
+          "step1": "10-14 16:36",
+          "step8": "10-14 09:02",
+          "gap_min": 454
+        },
+        {
+          "date": "2026-10-17",
+          "step1": "10-17 16:31",
+          "step8": "10-17 09:02",
+          "gap_min": 449
+        },
+        {
+          "date": "2026-10-18",
+          "step1": "10-18 16:35",
+          "step8": "10-18 09:04",
+          "gap_min": 451
+        },
+        {
+          "date": "2026-10-19",
+          "step1": "10-19 16:33",
+          "step8": "10-19 13:10",
+          "gap_min": 203
+        },
+        {
+          "date": "2026-10-23",
+          "step1": "10-23 13:03",
+          "step8": "10-23 10:37",
+          "gap_min": 146
+        }
+      ]
+    },
+    "nba": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 3,
+      "dates_step1_newer_than_step8": 3,
+      "dates_no_step8": [
+        "2026-10-02",
+        "2026-10-11",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-17",
+        "2026-10-18",
+        "2026-10-19",
+        "2026-10-23"
+      ],
+      "stale_dates": [
+        {
+          "date": "2026-10-20",
+          "step1": "10-20 16:30",
+          "step8": "10-20 13:06",
+          "gap_min": 204
+        },
+        {
+          "date": "2026-10-21",
+          "step1": "10-21 16:30",
+          "step8": "10-21 07:35",
+          "gap_min": 536
+        },
+        {
+          "date": "2026-10-22",
+          "step1": "10-22 16:30",
+          "step8": "10-22 03:27",
+          "gap_min": 783
+        }
+      ]
+    },
+    "nba1h": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 1,
+      "dates_step1_newer_than_step8": 1,
+      "dates_no_step8": [
+        "2026-10-21",
+        "2026-10-22"
+      ],
+      "stale_dates": [
+        {
+          "date": "2026-10-20",
+          "step1": "10-20 05:11",
+          "step8": "10-19 19:47",
+          "gap_min": 564
+        }
+      ]
+    },
+    "nba1q": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 1,
+      "dates_step1_newer_than_step8": 1,
+      "dates_no_step8": [
+        "2026-10-21",
+        "2026-10-22"
+      ],
+      "stale_dates": [
+        {
+          "date": "2026-10-20",
+          "step1": "10-20 05:13",
+          "step8": "10-19 19:50",
+          "gap_min": 564
+        }
+      ]
+    },
+    "nfl": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 16,
+      "dates_step1_newer_than_step8": 4,
+      "dates_no_step8": [
+        "2026-09-23",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-02",
+        "2026-10-03",
+        "2026-10-06",
+        "2026-10-09",
+        "2026-10-10",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-16",
+        "2026-10-17",
+        "2026-10-20",
+        "2026-10-22"
+      ],
+      "stale_dates": [
+        {
+          "date": "2026-09-26",
+          "step1": "09-26 13:23",
+          "step8": "09-25 23:07",
+          "gap_min": 856
+        },
+        {
+          "date": "2026-10-01",
+          "step1": "10-01 18:02",
+          "step8": "10-01 16:58",
+          "gap_min": 64
+        },
+        {
+          "date": "2026-10-04",
+          "step1": "10-04 17:32",
+          "step8": "10-04 16:50",
+          "gap_min": 42
+        },
+        {
+          "date": "2026-10-05",
+          "step1": "10-05 17:43",
+          "step8": "10-05 16:59",
+          "gap_min": 44
+        }
+      ]
+    },
+    "nhl": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 16,
+      "dates_step1_newer_than_step8": 10,
+      "dates_no_step8": [
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-03",
+        "2026-10-04",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07"
+      ],
+      "stale_dates": [
+        {
+          "date": "2026-10-11",
+          "step1": "10-11 16:30",
+          "step8": "10-11 10:48",
+          "gap_min": 342
+        },
+        {
+          "date": "2026-10-12",
+          "step1": "10-12 16:30",
+          "step8": "10-12 05:49",
+          "gap_min": 641
+        },
+        {
+          "date": "2026-10-13",
+          "step1": "10-13 16:30",
+          "step8": "10-13 06:03",
+          "gap_min": 627
+        },
+        {
+          "date": "2026-10-14",
+          "step1": "10-14 16:30",
+          "step8": "10-14 09:02",
+          "gap_min": 448
+        },
+        {
+          "date": "2026-10-17",
+          "step1": "10-17 16:30",
+          "step8": "10-17 09:08",
+          "gap_min": 442
+        },
+        {
+          "date": "2026-10-18",
+          "step1": "10-18 16:30",
+          "step8": "10-18 09:04",
+          "gap_min": 447
+        },
+        {
+          "date": "2026-10-19",
+          "step1": "10-19 16:30",
+          "step8": "10-19 13:11",
+          "gap_min": 199
+        },
+        {
+          "date": "2026-10-20",
+          "step1": "10-20 16:30",
+          "step8": "10-20 13:12",
+          "gap_min": 198
+        },
+        {
+          "date": "2026-10-22",
+          "step1": "10-22 16:32",
+          "step8": "10-22 07:01",
+          "gap_min": 570
+        },
+        {
+          "date": "2026-10-23",
+          "step1": "10-23 13:01",
+          "step8": "10-23 10:37",
+          "gap_min": 143
+        }
+      ]
+    },
+    "soccer": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 30,
+      "dates_step1_newer_than_step8": 19,
+      "dates_no_step8": [
+        "2026-10-13"
+      ],
+      "stale_dates": [
+        {
+          "date": "2026-09-26",
+          "step1": "09-26 05:36",
+          "step8": "09-25 23:28",
+          "gap_min": 368
+        },
+        {
+          "date": "2026-09-29",
+          "step1": "09-29 17:43",
+          "step8": "09-29 17:06",
+          "gap_min": 37
+        },
+        {
+          "date": "2026-09-30",
+          "step1": "09-30 17:34",
+          "step8": "09-30 16:45",
+          "gap_min": 48
+        },
+        {
+          "date": "2026-10-01",
+          "step1": "10-01 18:02",
+          "step8": "10-01 17:02",
+          "gap_min": 60
+        },
+        {
+          "date": "2026-10-02",
+          "step1": "10-02 01:41",
+          "step8": "10-02 01:22",
+          "gap_min": 18
+        },
+        {
+          "date": "2026-10-03",
+          "step1": "10-03 17:24",
+          "step8": "10-03 16:46",
+          "gap_min": 38
+        },
+        {
+          "date": "2026-10-04",
+          "step1": "10-04 17:32",
+          "step8": "10-04 16:49",
+          "gap_min": 43
+        },
+        {
+          "date": "2026-10-05",
+          "step1": "10-05 17:43",
+          "step8": "10-05 17:02",
+          "gap_min": 40
+        },
+        {
+          "date": "2026-10-06",
+          "step1": "10-06 18:24",
+          "step8": "10-06 16:55",
+          "gap_min": 90
+        },
+        {
+          "date": "2026-10-07",
+          "step1": "10-07 17:12",
+          "step8": "10-07 16:51",
+          "gap_min": 21
+        },
+        {
+          "date": "2026-10-11",
+          "step1": "10-11 16:30",
+          "step8": "10-11 11:03",
+          "gap_min": 327
+        },
+        {
+          "date": "2026-10-12",
+          "step1": "10-12 16:30",
+          "step8": "10-12 05:53",
+          "gap_min": 637
+        },
+        {
+          "date": "2026-10-14",
+          "step1": "10-14 16:31",
+          "step8": "10-14 09:09",
+          "gap_min": 442
+        },
+        {
+          "date": "2026-10-17",
+          "step1": "10-17 16:30",
+          "step8": "10-17 09:10",
+          "gap_min": 441
+        },
+        {
+          "date": "2026-10-18",
+          "step1": "10-18 16:33",
+          "step8": "10-18 09:09",
+          "gap_min": 444
+        },
+        {
+          "date": "2026-10-19",
+          "step1": "10-19 16:31",
+          "step8": "10-19 13:17",
+          "gap_min": 194
+        },
+        {
+          "date": "2026-10-20",
+          "step1": "10-20 16:30",
+          "step8": "10-20 13:10",
+          "gap_min": 200
+        },
+        {
+          "date": "2026-10-22",
+          "step1": "10-22 16:33",
+          "step8": "10-22 07:04",
+          "gap_min": 569
+        },
+        {
+          "date": "2026-10-23",
+          "step1": "10-23 13:02",
+          "step8": "10-23 10:45",
+          "gap_min": 137
+        }
+      ]
+    },
+    "tennis": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 31,
+      "dates_step1_newer_than_step8": 19,
+      "dates_no_step8": [],
+      "stale_dates": [
+        {
+          "date": "2026-09-29",
+          "step1": "09-29 17:45",
+          "step8": "09-29 16:57",
+          "gap_min": 48
+        },
+        {
+          "date": "2026-09-30",
+          "step1": "09-30 17:34",
+          "step8": "09-30 16:39",
+          "gap_min": 54
+        },
+        {
+          "date": "2026-10-01",
+          "step1": "10-01 18:02",
+          "step8": "10-01 16:51",
+          "gap_min": 71
+        },
+        {
+          "date": "2026-10-02",
+          "step1": "10-02 01:41",
+          "step8": "10-02 01:08",
+          "gap_min": 33
+        },
+        {
+          "date": "2026-10-03",
+          "step1": "10-03 17:24",
+          "step8": "10-03 16:42",
+          "gap_min": 42
+        },
+        {
+          "date": "2026-10-04",
+          "step1": "10-04 17:32",
+          "step8": "10-04 16:44",
+          "gap_min": 48
+        },
+        {
+          "date": "2026-10-05",
+          "step1": "10-05 17:43",
+          "step8": "10-05 16:54",
+          "gap_min": 48
+        },
+        {
+          "date": "2026-10-06",
+          "step1": "10-06 18:25",
+          "step8": "10-06 16:50",
+          "gap_min": 95
+        },
+        {
+          "date": "2026-10-07",
+          "step1": "10-07 17:13",
+          "step8": "10-07 16:46",
+          "gap_min": 27
+        },
+        {
+          "date": "2026-10-11",
+          "step1": "10-11 16:30",
+          "step8": "10-11 10:47",
+          "gap_min": 343
+        },
+        {
+          "date": "2026-10-12",
+          "step1": "10-12 16:30",
+          "step8": "10-12 05:48",
+          "gap_min": 642
+        },
+        {
+          "date": "2026-10-13",
+          "step1": "10-13 16:30",
+          "step8": "10-13 05:56",
+          "gap_min": 634
+        },
+        {
+          "date": "2026-10-14",
+          "step1": "10-14 16:31",
+          "step8": "10-14 09:01",
+          "gap_min": 450
+        },
+        {
+          "date": "2026-10-17",
+          "step1": "10-17 16:31",
+          "step8": "10-17 09:01",
+          "gap_min": 450
+        },
+        {
+          "date": "2026-10-18",
+          "step1": "10-18 16:33",
+          "step8": "10-18 09:03",
+          "gap_min": 450
+        },
+        {
+          "date": "2026-10-19",
+          "step1": "10-19 16:31",
+          "step8": "10-19 13:08",
+          "gap_min": 203
+        },
+        {
+          "date": "2026-10-20",
+          "step1": "10-20 16:30",
+          "step8": "10-20 13:03",
+          "gap_min": 207
+        },
+        {
+          "date": "2026-10-22",
+          "step1": "10-22 16:33",
+          "step8": "10-22 06:54",
+          "gap_min": 579
+        },
+        {
+          "date": "2026-10-23",
+          "step1": "10-23 13:02",
+          "step8": "10-23 10:35",
+          "gap_min": 147
+        }
+      ]
+    },
+    "wcbb": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 0,
+      "dates_step1_newer_than_step8": 0,
+      "dates_no_step8": [],
+      "stale_dates": []
+    },
+    "wnba": {
+      "dates_seen": 31,
+      "dates_with_step1_and_step8": 11,
+      "dates_step1_newer_than_step8": 7,
+      "dates_no_step8": [
+        "2026-09-25",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28",
+        "2026-10-03",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-08",
+        "2026-10-10",
+        "2026-10-11",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-17",
+        "2026-10-18",
+        "2026-10-20",
+        "2026-10-22",
+        "2026-10-23"
+      ],
+      "stale_dates": [
+        {
+          "date": "2026-09-29",
+          "step1": "09-29 17:41",
+          "step8": "09-29 17:04",
+          "gap_min": 37
+        },
+        {
+          "date": "2026-09-30",
+          "step1": "09-30 17:33",
+          "step8": "09-30 16:45",
+          "gap_min": 48
+        },
+        {
+          "date": "2026-10-01",
+          "step1": "10-01 18:01",
+          "step8": "10-01 16:56",
+          "gap_min": 65
+        },
+        {
+          "date": "2026-10-02",
+          "step1": "10-02 01:40",
+          "step8": "10-02 01:12",
+          "gap_min": 28
+        },
+        {
+          "date": "2026-10-04",
+          "step1": "10-04 17:32",
+          "step8": "10-04 16:48",
+          "gap_min": 44
+        },
+        {
+          "date": "2026-10-07",
+          "step1": "10-07 17:10",
+          "step8": "10-07 16:52",
+          "gap_min": 18
+        },
+        {
+          "date": "2026-10-19",
+          "step1": "10-19 16:30",
+          "step8": "10-19 13:13",
+          "gap_min": 197
+        }
+      ]
+    }
+  },
+  "rows": {
+    "cbb": [
+      {
+        "date": "2026-09-23",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "cbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      }
+    ],
+    "cfb": [
+      {
+        "date": "2026-09-23",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "09-23 05:07",
+        "mid_max": "09-23 16:57",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-24 05:06",
+        "mid_max": "09-24 20:09",
+        "step8": "09-24 20:11",
+        "step1_minus_step8_min": -905,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-25 05:06",
+        "mid_max": "09-25 16:59",
+        "step8": "09-25 16:59",
+        "step1_minus_step8_min": -712,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-25 21:16",
+        "mid_max": "09-26 13:34",
+        "step8": "09-26 13:35",
+        "step1_minus_step8_min": -979,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-10 16:36",
+        "mid_max": "10-10 16:43",
+        "step8": "10-10 16:43",
+        "step1_minus_step8_min": -7,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-14 15:51",
+        "mid_max": "10-14 16:36",
+        "step8": "10-14 16:36",
+        "step1_minus_step8_min": -45,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-16 20:28",
+        "mid_max": "10-17 09:05",
+        "step8": "10-17 09:05",
+        "step1_minus_step8_min": -757,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "cfb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-21 16:13",
+        "mid_max": "10-21 16:38",
+        "step8": "10-21 16:38",
+        "step1_minus_step8_min": -24,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-22 03:34",
+        "mid_max": "10-22 06:54",
+        "step8": "10-22 06:54",
+        "step1_minus_step8_min": -201,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "cfb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-22 14:36",
+        "mid_max": "10-23 10:37",
+        "step8": "10-23 10:37",
+        "step1_minus_step8_min": -1202,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      }
+    ],
+    "cfb1h": [
+      {
+        "date": "2026-09-23",
+        "sport": "cfb1h",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "09-23 05:09",
+        "mid_max": "09-23 16:58",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "cfb1h",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "09-24 05:11",
+        "mid_max": "09-24 16:44",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "cfb1h",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-25 05:19",
+        "mid_max": "09-25 17:04",
+        "step8": "09-25 17:04",
+        "step1_minus_step8_min": -706,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "cfb1h",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-25 21:46",
+        "mid_max": "09-26 13:35",
+        "step8": "09-26 13:35",
+        "step1_minus_step8_min": -949,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "cfb1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      }
+    ],
+    "golf": [
+      {
+        "date": "2026-09-23",
+        "sport": "golf",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-24 13:09",
+        "mid_max": "09-24 16:41",
+        "step8": "09-24 16:41",
+        "step1_minus_step8_min": -212,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "golf",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "golf",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "golf",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "golf",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-29 16:42",
+        "mid_max": "09-29 16:56",
+        "step8": "09-29 16:56",
+        "step1_minus_step8_min": -14,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-30 16:37",
+        "mid_max": "09-30 16:39",
+        "step8": "09-30 16:39",
+        "step1_minus_step8_min": -2,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-01 13:11",
+        "mid_max": "10-01 16:50",
+        "step8": "10-01 16:50",
+        "step1_minus_step8_min": -219,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-02 01:38",
+        "mid_max": "10-02 01:09",
+        "step8": "10-02 01:09",
+        "step1_minus_step8_min": 29,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-03 16:40",
+        "mid_max": "10-03 16:41",
+        "step8": "10-03 16:41",
+        "step1_minus_step8_min": -1,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-04 16:39",
+        "mid_max": "10-04 16:44",
+        "step8": "10-04 16:44",
+        "step1_minus_step8_min": -5,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-05 01:40",
+        "mid_max": "10-05 16:54",
+        "step8": "10-05 16:54",
+        "step1_minus_step8_min": -914,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "golf",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-07 16:43",
+        "mid_max": "10-07 16:46",
+        "step8": "10-07 16:46",
+        "step1_minus_step8_min": -3,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-08 16:34",
+        "mid_max": "10-08 16:51",
+        "step8": "10-08 16:51",
+        "step1_minus_step8_min": -17,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-09 16:31",
+        "mid_max": "10-09 16:32",
+        "step8": "10-09 16:32",
+        "step1_minus_step8_min": -1,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-10 16:33",
+        "mid_max": "10-10 16:37",
+        "step8": "10-10 16:37",
+        "step1_minus_step8_min": -4,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-11 16:30",
+        "mid_max": "10-11 10:47",
+        "step8": "10-11 10:47",
+        "step1_minus_step8_min": 343,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-12 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-13 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-14 16:31",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-15 17:34",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-16 16:31",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-17 16:31",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-18 16:33",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-19 16:31",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-20 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-21 16:32",
+        "mid_max": "10-21 16:36",
+        "step8": "10-21 16:36",
+        "step1_minus_step8_min": -4,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-22 16:33",
+        "mid_max": "10-22 06:54",
+        "step8": "10-22 06:54",
+        "step1_minus_step8_min": 579,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "golf",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-23 13:02",
+        "mid_max": "10-23 10:34",
+        "step8": "10-23 10:34",
+        "step1_minus_step8_min": 148,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      }
+    ],
+    "mlb": [
+      {
+        "date": "2026-09-23",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-23 16:52",
+        "mid_max": "09-23 17:06",
+        "step8": "09-23 17:20",
+        "step1_minus_step8_min": -27,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-24 16:40",
+        "mid_max": "09-24 16:46",
+        "step8": "09-24 16:53",
+        "step1_minus_step8_min": -13,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-25 16:47",
+        "mid_max": "09-25 16:58",
+        "step8": "09-25 17:14",
+        "step1_minus_step8_min": -27,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-26 13:20",
+        "mid_max": "09-26 13:29",
+        "step8": "09-26 13:40",
+        "step1_minus_step8_min": -20,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-27 13:16",
+        "mid_max": "09-27 16:46",
+        "step8": "09-27 16:57",
+        "step1_minus_step8_min": -220,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-27 21:59",
+        "mid_max": "09-28 18:40",
+        "step8": "09-28 18:42",
+        "step1_minus_step8_min": -1243,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-29 17:42",
+        "mid_max": "09-29 17:02",
+        "step8": "09-29 17:06",
+        "step1_minus_step8_min": 37,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-30 17:34",
+        "mid_max": "09-30 16:42",
+        "step8": "09-30 16:45",
+        "step1_minus_step8_min": 49,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-01 18:02",
+        "mid_max": "10-01 16:52",
+        "step8": "10-01 16:53",
+        "step1_minus_step8_min": 69,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-02 01:39",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-03 17:24",
+        "mid_max": "10-03 16:44",
+        "step8": "10-03 16:45",
+        "step1_minus_step8_min": 39,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-04 17:32",
+        "mid_max": "10-04 16:46",
+        "step8": "10-04 16:46",
+        "step1_minus_step8_min": 46,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-05 17:42",
+        "mid_max": "10-05 16:56",
+        "step8": "10-05 16:56",
+        "step1_minus_step8_min": 46,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-06 18:23",
+        "mid_max": "10-06 16:53",
+        "step8": "10-06 16:53",
+        "step1_minus_step8_min": 90,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-07 17:11",
+        "mid_max": "10-07 16:50",
+        "step8": "10-07 16:52",
+        "step1_minus_step8_min": 19,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-08 16:43",
+        "mid_max": "10-08 16:53",
+        "step8": "10-08 16:53",
+        "step1_minus_step8_min": -10,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "mlb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-10 16:36",
+        "mid_max": "10-10 16:38",
+        "step8": "10-10 16:39",
+        "step1_minus_step8_min": -3,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-11 16:31",
+        "mid_max": "10-11 10:48",
+        "step8": "10-11 10:48",
+        "step1_minus_step8_min": 343,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-12 16:32",
+        "mid_max": "10-12 05:51",
+        "step8": "10-12 05:52",
+        "step1_minus_step8_min": 640,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-13 16:31",
+        "mid_max": "10-13 05:58",
+        "step8": "10-13 05:58",
+        "step1_minus_step8_min": 632,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-14 16:36",
+        "mid_max": "10-14 09:02",
+        "step8": "10-14 09:02",
+        "step1_minus_step8_min": 454,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-15 17:35",
+        "mid_max": "10-15 18:06",
+        "step8": "10-15 18:06",
+        "step1_minus_step8_min": -31,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-16 16:32",
+        "mid_max": "10-16 16:37",
+        "step8": "10-16 16:37",
+        "step1_minus_step8_min": -6,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-17 16:31",
+        "mid_max": "10-17 09:02",
+        "step8": "10-17 09:02",
+        "step1_minus_step8_min": 449,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-18 16:35",
+        "mid_max": "10-18 09:04",
+        "step8": "10-18 09:04",
+        "step1_minus_step8_min": 451,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-19 16:33",
+        "mid_max": "10-19 13:09",
+        "step8": "10-19 13:10",
+        "step1_minus_step8_min": 203,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-20 16:31",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "mlb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-22 16:35",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "mlb",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-23 13:03",
+        "mid_max": "10-23 10:37",
+        "step8": "10-23 10:37",
+        "step1_minus_step8_min": 146,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      }
+    ],
+    "nba": [
+      {
+        "date": "2026-09-23",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-02 01:29",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-11 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-12 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-13 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-14 21:39",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "10-15 16:30",
+        "mid_max": "10-15 18:04",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "nba",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-17 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-18 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-19 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-20 16:30",
+        "mid_max": "10-20 13:05",
+        "step8": "10-20 13:06",
+        "step1_minus_step8_min": 204,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-21 16:30",
+        "mid_max": "10-21 19:17",
+        "step8": "10-21 07:35",
+        "step1_minus_step8_min": 536,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-22 16:30",
+        "mid_max": "10-22 06:52",
+        "step8": "10-22 03:27",
+        "step1_minus_step8_min": 783,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "nba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "10-23 13:00",
+        "mid_max": "10-23 10:34",
+        "step8": null,
+        "step1_newer_than_mid": true
+      }
+    ],
+    "nba1h": [
+      {
+        "date": "2026-09-23",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "nba1h",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-20 05:11",
+        "mid_max": "10-20 13:12",
+        "step8": "10-19 19:47",
+        "step1_minus_step8_min": 564,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "nba1h",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "10-21 05:49",
+        "mid_max": "10-21 16:48",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "nba1h",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "10-22 07:04",
+        "mid_max": "10-22 07:05",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "nba1h",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      }
+    ],
+    "nba1q": [
+      {
+        "date": "2026-09-23",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "nba1q",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-20 05:13",
+        "mid_max": "10-20 13:12",
+        "step8": "10-19 19:50",
+        "step1_minus_step8_min": 564,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "nba1q",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "10-21 05:51",
+        "mid_max": "10-21 16:48",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "nba1q",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "10-22 07:06",
+        "mid_max": "10-22 07:07",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "nba1q",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      }
+    ],
+    "nfl": [
+      {
+        "date": "2026-09-23",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-23 16:58",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-24 20:13",
+        "mid_max": "09-24 20:24",
+        "step8": "09-24 20:25",
+        "step1_minus_step8_min": -11,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-25 16:47",
+        "mid_max": "09-25 16:53",
+        "step8": "09-25 16:53",
+        "step1_minus_step8_min": -6,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-26 13:23",
+        "mid_max": "09-25 23:06",
+        "step8": "09-25 23:07",
+        "step1_minus_step8_min": 856,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-27 16:40",
+        "mid_max": "09-27 16:47",
+        "step8": "09-27 16:47",
+        "step1_minus_step8_min": -7,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-28 18:39",
+        "mid_max": "09-28 18:45",
+        "step8": "09-28 18:45",
+        "step1_minus_step8_min": -6,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-29 17:01",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-30 17:34",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-01 18:02",
+        "mid_max": "10-01 16:58",
+        "step8": "10-01 16:58",
+        "step1_minus_step8_min": 64,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-02 01:41",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-03 17:24",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-04 17:32",
+        "mid_max": "10-04 16:50",
+        "step8": "10-04 16:50",
+        "step1_minus_step8_min": 42,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-05 17:43",
+        "mid_max": "10-05 16:59",
+        "step8": "10-05 16:59",
+        "step1_minus_step8_min": 44,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-06 08:13",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "nfl",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-08 16:56",
+        "mid_max": "10-08 17:01",
+        "step8": "10-08 17:01",
+        "step1_minus_step8_min": -5,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-09 16:34",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-10 16:41",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-11 16:30",
+        "mid_max": "10-11 16:31",
+        "step8": "10-11 16:31",
+        "step1_minus_step8_min": 0,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-12 16:31",
+        "mid_max": "10-12 16:32",
+        "step8": "10-12 16:32",
+        "step1_minus_step8_min": 0,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-13 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-14 16:31",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-15 18:05",
+        "mid_max": "10-15 18:05",
+        "step8": "10-15 18:05",
+        "step1_minus_step8_min": -1,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-16 16:38",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-17 16:31",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-18 16:34",
+        "mid_max": "10-18 16:35",
+        "step8": "10-18 16:35",
+        "step1_minus_step8_min": -1,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-19 16:32",
+        "mid_max": "10-19 16:32",
+        "step8": "10-19 16:32",
+        "step1_minus_step8_min": 0,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-20 16:31",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-21 16:37",
+        "mid_max": "10-21 16:32",
+        "step8": "10-21 16:33",
+        "step1_minus_step8_min": 5,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "10-22 16:34",
+        "mid_max": "10-22 16:38",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "nfl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-22 14:38",
+        "mid_max": "10-23 09:02",
+        "step8": "10-23 09:02",
+        "step1_minus_step8_min": -1104,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      }
+    ],
+    "nhl": [
+      {
+        "date": "2026-09-23",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-23 16:37",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-24 16:36",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-25 16:35",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-26 05:37",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-27 16:36",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-28 18:32",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-29 17:46",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-30 17:34",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-01 18:02",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-02 01:41",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-03 17:24",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-04 17:32",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-05 17:43",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-06 18:26",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-07 17:14",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-08 16:48",
+        "mid_max": "10-08 17:30",
+        "step8": "10-08 17:31",
+        "step1_minus_step8_min": -43,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-09 16:32",
+        "mid_max": "10-09 16:34",
+        "step8": "10-09 16:34",
+        "step1_minus_step8_min": -2,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-10 16:36",
+        "mid_max": "10-10 16:44",
+        "step8": "10-10 16:45",
+        "step1_minus_step8_min": -9,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-11 16:30",
+        "mid_max": "10-11 10:48",
+        "step8": "10-11 10:48",
+        "step1_minus_step8_min": 342,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-12 16:30",
+        "mid_max": "10-12 05:49",
+        "step8": "10-12 05:49",
+        "step1_minus_step8_min": 641,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-13 16:30",
+        "mid_max": "10-13 06:02",
+        "step8": "10-13 06:03",
+        "step1_minus_step8_min": 627,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-14 16:30",
+        "mid_max": "10-14 09:02",
+        "step8": "10-14 09:02",
+        "step1_minus_step8_min": 448,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-15 17:33",
+        "mid_max": "10-15 18:11",
+        "step8": "10-15 18:12",
+        "step1_minus_step8_min": -39,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-16 16:30",
+        "mid_max": "10-16 16:37",
+        "step8": "10-16 16:37",
+        "step1_minus_step8_min": -7,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-17 16:30",
+        "mid_max": "10-17 09:07",
+        "step8": "10-17 09:08",
+        "step1_minus_step8_min": 442,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-18 16:30",
+        "mid_max": "10-18 09:04",
+        "step8": "10-18 09:04",
+        "step1_minus_step8_min": 447,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-19 16:30",
+        "mid_max": "10-19 13:10",
+        "step8": "10-19 13:11",
+        "step1_minus_step8_min": 199,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-20 16:30",
+        "mid_max": "10-20 13:11",
+        "step8": "10-20 13:12",
+        "step1_minus_step8_min": 198,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-21 16:31",
+        "mid_max": "10-21 20:08",
+        "step8": "10-21 16:37",
+        "step1_minus_step8_min": -6,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-22 16:32",
+        "mid_max": "10-22 07:00",
+        "step8": "10-22 07:01",
+        "step1_minus_step8_min": 570,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "nhl",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-23 13:01",
+        "mid_max": "10-23 10:37",
+        "step8": "10-23 10:37",
+        "step1_minus_step8_min": 143,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      }
+    ],
+    "soccer": [
+      {
+        "date": "2026-09-23",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-23 16:38",
+        "mid_max": "09-23 17:01",
+        "step8": "09-23 17:01",
+        "step1_minus_step8_min": -24,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-24 16:37",
+        "mid_max": "09-24 16:49",
+        "step8": "09-24 16:49",
+        "step1_minus_step8_min": -13,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-25 16:36",
+        "mid_max": "09-25 17:06",
+        "step8": "09-25 17:08",
+        "step1_minus_step8_min": -32,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": true,
+        "step1": "09-26 05:36",
+        "mid_max": null,
+        "step8": "09-25 23:28",
+        "step1_minus_step8_min": 368,
+        "step1_newer_than_step8": true
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-27 16:37",
+        "mid_max": "09-27 16:50",
+        "step8": "09-27 16:51",
+        "step1_minus_step8_min": -14,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-28 18:33",
+        "mid_max": "09-28 18:47",
+        "step8": "09-28 18:48",
+        "step1_minus_step8_min": -15,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-29 17:43",
+        "mid_max": "09-29 17:05",
+        "step8": "09-29 17:06",
+        "step1_minus_step8_min": 37,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-30 17:34",
+        "mid_max": "09-30 16:45",
+        "step8": "09-30 16:45",
+        "step1_minus_step8_min": 48,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-01 18:02",
+        "mid_max": "10-01 17:01",
+        "step8": "10-01 17:02",
+        "step1_minus_step8_min": 60,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-02 01:41",
+        "mid_max": "10-02 01:21",
+        "step8": "10-02 01:22",
+        "step1_minus_step8_min": 18,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-03 17:24",
+        "mid_max": "10-03 16:46",
+        "step8": "10-03 16:46",
+        "step1_minus_step8_min": 38,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-04 17:32",
+        "mid_max": "10-04 16:49",
+        "step8": "10-04 16:49",
+        "step1_minus_step8_min": 43,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-05 17:43",
+        "mid_max": "10-05 17:02",
+        "step8": "10-05 17:02",
+        "step1_minus_step8_min": 40,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-06 18:24",
+        "mid_max": "10-06 16:54",
+        "step8": "10-06 16:55",
+        "step1_minus_step8_min": 90,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-07 17:12",
+        "mid_max": "10-07 16:51",
+        "step8": "10-07 16:51",
+        "step1_minus_step8_min": 21,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-08 16:44",
+        "mid_max": "10-08 16:58",
+        "step8": "10-08 16:59",
+        "step1_minus_step8_min": -14,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-09 16:31",
+        "mid_max": "10-09 16:48",
+        "step8": "10-09 16:49",
+        "step1_minus_step8_min": -17,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-10 16:36",
+        "mid_max": "10-10 16:55",
+        "step8": "10-10 16:58",
+        "step1_minus_step8_min": -22,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-11 16:30",
+        "mid_max": "10-11 11:01",
+        "step8": "10-11 11:03",
+        "step1_minus_step8_min": 327,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-12 16:30",
+        "mid_max": "10-12 05:53",
+        "step8": "10-12 05:53",
+        "step1_minus_step8_min": 637,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-13 05:56",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-14 16:31",
+        "mid_max": "10-14 09:08",
+        "step8": "10-14 09:09",
+        "step1_minus_step8_min": 442,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-15 17:33",
+        "mid_max": "10-15 18:09",
+        "step8": "10-15 18:09",
+        "step1_minus_step8_min": -36,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-16 16:31",
+        "mid_max": "10-16 16:50",
+        "step8": "10-16 16:51",
+        "step1_minus_step8_min": -20,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-17 16:30",
+        "mid_max": "10-17 09:09",
+        "step8": "10-17 09:10",
+        "step1_minus_step8_min": 441,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-18 16:33",
+        "mid_max": "10-18 09:08",
+        "step8": "10-18 09:09",
+        "step1_minus_step8_min": 444,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-19 16:31",
+        "mid_max": "10-19 13:17",
+        "step8": "10-19 13:17",
+        "step1_minus_step8_min": 194,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-20 16:30",
+        "mid_max": "10-20 13:09",
+        "step8": "10-20 13:10",
+        "step1_minus_step8_min": 200,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-21 16:32",
+        "mid_max": "10-21 16:47",
+        "step8": "10-21 16:48",
+        "step1_minus_step8_min": -17,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-22 16:33",
+        "mid_max": "10-22 07:02",
+        "step8": "10-22 07:04",
+        "step1_minus_step8_min": 569,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "soccer",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-23 13:02",
+        "mid_max": "10-23 10:44",
+        "step8": "10-23 10:45",
+        "step1_minus_step8_min": 137,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      }
+    ],
+    "tennis": [
+      {
+        "date": "2026-09-23",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-23 16:39",
+        "mid_max": "09-23 16:55",
+        "step8": "09-23 16:55",
+        "step1_minus_step8_min": -16,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-24 16:38",
+        "mid_max": "09-24 16:42",
+        "step8": "09-24 16:42",
+        "step1_minus_step8_min": -4,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-25 16:36",
+        "mid_max": "09-25 16:47",
+        "step8": "09-25 16:47",
+        "step1_minus_step8_min": -11,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-26 13:11",
+        "mid_max": "09-26 13:23",
+        "step8": "09-26 13:23",
+        "step1_minus_step8_min": -12,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-27 16:37",
+        "mid_max": "09-27 16:38",
+        "step8": "09-27 16:38",
+        "step1_minus_step8_min": -1,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-28 18:34",
+        "mid_max": "09-28 18:37",
+        "step8": "09-28 18:37",
+        "step1_minus_step8_min": -3,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-29 17:45",
+        "mid_max": "09-29 16:56",
+        "step8": "09-29 16:57",
+        "step1_minus_step8_min": 48,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-30 17:34",
+        "mid_max": "09-30 16:39",
+        "step8": "09-30 16:39",
+        "step1_minus_step8_min": 54,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-01 18:02",
+        "mid_max": "10-01 16:51",
+        "step8": "10-01 16:51",
+        "step1_minus_step8_min": 71,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-02 01:41",
+        "mid_max": "10-02 01:08",
+        "step8": "10-02 01:08",
+        "step1_minus_step8_min": 33,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-03 17:24",
+        "mid_max": "10-03 16:42",
+        "step8": "10-03 16:42",
+        "step1_minus_step8_min": 42,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-04 17:32",
+        "mid_max": "10-04 16:44",
+        "step8": "10-04 16:44",
+        "step1_minus_step8_min": 48,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-05 17:43",
+        "mid_max": "10-05 16:54",
+        "step8": "10-05 16:54",
+        "step1_minus_step8_min": 48,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-06 18:25",
+        "mid_max": "10-06 16:50",
+        "step8": "10-06 16:50",
+        "step1_minus_step8_min": 95,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-07 17:13",
+        "mid_max": "10-07 16:46",
+        "step8": "10-07 16:46",
+        "step1_minus_step8_min": 27,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-08 16:45",
+        "mid_max": "10-08 16:52",
+        "step8": "10-08 16:52",
+        "step1_minus_step8_min": -6,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-09 16:32",
+        "mid_max": "10-09 16:32",
+        "step8": "10-09 16:32",
+        "step1_minus_step8_min": 0,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-10 16:37",
+        "mid_max": "10-10 16:37",
+        "step8": "10-10 16:37",
+        "step1_minus_step8_min": 0,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-11 16:30",
+        "mid_max": "10-11 10:47",
+        "step8": "10-11 10:47",
+        "step1_minus_step8_min": 343,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-12 16:30",
+        "mid_max": "10-12 05:48",
+        "step8": "10-12 05:48",
+        "step1_minus_step8_min": 642,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-13 16:30",
+        "mid_max": "10-13 05:56",
+        "step8": "10-13 05:56",
+        "step1_minus_step8_min": 634,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-14 16:31",
+        "mid_max": "10-14 09:01",
+        "step8": "10-14 09:01",
+        "step1_minus_step8_min": 450,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-15 18:04",
+        "mid_max": "10-15 18:04",
+        "step8": "10-15 18:04",
+        "step1_minus_step8_min": 0,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-16 16:35",
+        "mid_max": "10-16 16:36",
+        "step8": "10-16 16:36",
+        "step1_minus_step8_min": -1,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-17 16:31",
+        "mid_max": "10-17 09:01",
+        "step8": "10-17 09:01",
+        "step1_minus_step8_min": 450,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-18 16:33",
+        "mid_max": "10-18 09:02",
+        "step8": "10-18 09:03",
+        "step1_minus_step8_min": 450,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-19 16:31",
+        "mid_max": "10-19 13:08",
+        "step8": "10-19 13:08",
+        "step1_minus_step8_min": 203,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-20 16:30",
+        "mid_max": "10-20 13:03",
+        "step8": "10-20 13:03",
+        "step1_minus_step8_min": 207,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-21 16:32",
+        "mid_max": "10-21 16:36",
+        "step8": "10-21 16:36",
+        "step1_minus_step8_min": -5,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-22 16:33",
+        "mid_max": "10-22 06:54",
+        "step8": "10-22 06:54",
+        "step1_minus_step8_min": 579,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "tennis",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-23 13:02",
+        "mid_max": "10-23 10:35",
+        "step8": "10-23 10:35",
+        "step1_minus_step8_min": 147,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      }
+    ],
+    "wcbb": [
+      {
+        "date": "2026-09-23",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "wcbb",
+        "has_step1": false,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": null,
+        "mid_max": null,
+        "step8": null
+      }
+    ],
+    "wnba": [
+      {
+        "date": "2026-09-23",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-23 16:57",
+        "mid_max": "09-23 17:00",
+        "step8": "09-23 17:01",
+        "step1_minus_step8_min": -4,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-24",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-24 16:43",
+        "mid_max": "09-24 16:47",
+        "step8": "09-24 16:47",
+        "step1_minus_step8_min": -4,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-25",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-25 16:50",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-26",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-26 13:27",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-27",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "09-27 16:41",
+        "mid_max": "09-27 16:44",
+        "step8": null,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-09-28",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "09-28 18:39",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-09-29",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-29 17:41",
+        "mid_max": "09-29 17:03",
+        "step8": "09-29 17:04",
+        "step1_minus_step8_min": 37,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-09-30",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "09-30 17:33",
+        "mid_max": "09-30 16:44",
+        "step8": "09-30 16:45",
+        "step1_minus_step8_min": 48,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-01",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-01 18:01",
+        "mid_max": "10-01 16:56",
+        "step8": "10-01 16:56",
+        "step1_minus_step8_min": 65,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-02",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-02 01:40",
+        "mid_max": "10-02 01:12",
+        "step8": "10-02 01:12",
+        "step1_minus_step8_min": 28,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-03",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-03 16:48",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-04",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-04 17:32",
+        "mid_max": "10-04 16:48",
+        "step8": "10-04 16:48",
+        "step1_minus_step8_min": 44,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-05",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-05 16:57",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-06",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-06 16:53",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-07",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-07 17:10",
+        "mid_max": "10-07 16:52",
+        "step8": "10-07 16:52",
+        "step1_minus_step8_min": 18,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-08",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-08 16:54",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-09",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-09 16:34",
+        "mid_max": "10-09 16:36",
+        "step8": "10-09 16:36",
+        "step1_minus_step8_min": -2,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-10",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-10 16:40",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-11",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-11 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-12",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-12 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-13",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-13 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-14",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-14 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-15",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-15 18:07",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-16",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-16 16:38",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-17",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": false,
+        "step1": "10-17 16:30",
+        "mid_max": "10-17 09:03",
+        "step8": null,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-18",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-18 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-19",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-19 16:30",
+        "mid_max": "10-19 13:13",
+        "step8": "10-19 13:13",
+        "step1_minus_step8_min": 197,
+        "step1_newer_than_step8": true,
+        "step1_newer_than_mid": true
+      },
+      {
+        "date": "2026-10-20",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-20 16:30",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-21",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": true,
+        "has_step8": true,
+        "step1": "10-21 16:38",
+        "mid_max": "10-21 16:40",
+        "step8": "10-21 16:40",
+        "step1_minus_step8_min": -2,
+        "step1_newer_than_step8": false,
+        "step1_newer_than_mid": false
+      },
+      {
+        "date": "2026-10-22",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-22 16:32",
+        "mid_max": null,
+        "step8": null
+      },
+      {
+        "date": "2026-10-23",
+        "sport": "wnba",
+        "has_step1": true,
+        "has_mid": false,
+        "has_step8": false,
+        "step1": "10-23 13:00",
+        "mid_max": null,
+        "step8": null
+      }
+    ]
+  }
+}
