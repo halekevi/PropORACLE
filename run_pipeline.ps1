@@ -2682,20 +2682,26 @@ if ($NBAOnly) {
     if ($ok) { $ok = Run-Step "NBA Step 3 - Attach Defense"          $NBADir ".\scripts\step3_attach_defense.py"                 "--input `"$NBARunOutDir\step2_with_picktypes.csv`" --defense data\cache\defense_team_summary.csv --output `"$NBARunOutDir\step3_with_defense.csv`"" }
     if ($ok) { $ok = Run-Step "NBA Step 4 - Player Stats (ESPN)"     $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate `"$NBARunOutDir\step3_with_defense.csv`" --out `"$NBARunOutDir\step4_with_stats.csv`"" }
     if ($ok) { $ok = Run-Step "NBA Step 4b - Usage/Pace Context"      $NBADir ".\scripts\step4b_attach_nba_context.py"              "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step4_with_stats.csv`" --season $NbaStatsSeason" }
-    # Step 4d — Injury context (team_star_out, usage_vacuum, boost flags); non-fatal
     if ($ok) {
-        Write-Host "  --> NBA Step 4d - Injury Context" -ForegroundColor Cyan
-        $NbaStep4d = Join-Path $NBADir "scripts\step4d_attach_injury_context.py"
-        Push-Location $Root
-        try {
-            & py -3.14 $NbaStep4d `
-                --input  "$NBARunOutDir\step4_with_stats.csv" `
-                --output "$NBARunOutDir\step4_with_stats.csv"
-            if ($LASTEXITCODE -ne 0) {
-                Write-Warning "[NBA] step4d injury context failed — continuing"
+        $nbaStep4Csv = "$NBARunOutDir\step4_with_stats.csv"
+        if (-not (Test-Path -LiteralPath $nbaStep4Csv)) {
+            Write-Host "  FAILED: [NBA] step4_with_stats.csv missing before step4d: $nbaStep4Csv" -ForegroundColor Red
+            $ok = $false
+        } else {
+            Write-Host "  --> NBA Step 4d - Injury Context" -ForegroundColor Cyan
+            $NbaStep4d = Join-Path $NBADir "scripts\step4d_attach_injury_context.py"
+            Push-Location $Root
+            try {
+                & py -3.14 $NbaStep4d `
+                    --input  $nbaStep4Csv `
+                    --output $nbaStep4Csv
+                if ($LASTEXITCODE -ne 0) {
+                    Write-Host "  FAILED: [NBA] step4d injury context (exit $LASTEXITCODE)" -ForegroundColor Red
+                    $ok = $false
+                }
+            } finally {
+                Pop-Location
             }
-        } finally {
-            Pop-Location
         }
     }
     if ($ok) { $ok = Run-Step "NBA Step 5 - Line Hit Rates"          $NBADir ".\scripts\step5_add_line_hit_rates.py"             "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step5_with_hit_rates.csv`" --compute10" }
@@ -2878,6 +2884,7 @@ Wait-FetchStagger
 $NBAJob = Start-Job -ScriptBlock {
     param($NBADir, $Date, $OddsApiKey, $SkipFetch, $RepoRoot, $NBARunOutDir, $OffSeason)
     $env:PYTHONUTF8 = "1"; $env:PYTHONIOENCODING = "utf-8"
+    Set-Location $RepoRoot
     . (Join-Path $RepoRoot "scripts\prizepicks_step1_cascade.ps1")
     if ($OffSeason) {
         Write-Output "[NBA] Off-season — paused until 2026-10-01"
@@ -3029,7 +3036,8 @@ $NBAJob = Start-Job -ScriptBlock {
                     --input  $nbaStep4Csv `
                     --output $nbaStep4Csv
                 if ($LASTEXITCODE -ne 0) {
-                    Write-Output "[NBA-parallel] step4d injury context failed — continuing"
+                    Write-Output "[NBA] FAILED: step4d injury context (exit $LASTEXITCODE)"
+                    $ok = $false
                 }
             } finally {
                 Pop-Location

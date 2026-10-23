@@ -22,7 +22,24 @@ from edge_predict_utils import apply_ml_prob_post_calibration, load_unified_edge
 
 SCRIPT_NAME = "step7b_edge_score"
 
-SPORT_ALIASES = {"NBA", "CBB", "CFB", "NHL", "SOCCER", "MLB", "SOC", "NBA1H", "NBA1Q", "WCBB", "TENNIS", "WNBA", "NFL"}
+SPORT_ALIASES = {
+    "NBA",
+    "CBB",
+    "CFB",
+    "CFB1H",
+    "NHL",
+    "SOCCER",
+    "MLB",
+    "SOC",
+    "NBA1H",
+    "NBA1Q",
+    "WCBB",
+    "TENNIS",
+    "WNBA",
+    "NFL",
+    "NFLP",
+    "GOLF",
+}
 
 
 def _repo_root() -> Path:
@@ -37,6 +54,10 @@ def _norm_sport(s: str) -> str:
         return "NBA"
     if x == "WCBB":
         return "CBB"
+    if x in ("NFL-PRESEASON", "NFL PRESEASON", "NFLP"):
+        return "NFL"
+    if x in ("CFB1H", "CFB1"):
+        return "CFB"
     return x
 
 
@@ -79,6 +100,26 @@ def resolve_step7_path(root: Path, sport: str, pipeline_date: str = "") -> Path 
             root / "CBB" / "step6_ranked_wcbb.xlsx",
             root / "CBB" / "outputs" / "step6_ranked_wcbb.xlsx",
         ]
+        pd_str = str(pipeline_date or "").strip()[:10]
+        if pd_str:
+            candidates.insert(0, root / "outputs" / pd_str / "wcbb" / "step6_ranked_wcbb.xlsx")
+    elif raw_sp == "CFB1H":
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "cfb1h" / "step6_ranked_cfb1h.xlsx")
+        out_glob = sorted(
+            (root / "outputs").glob("*/cfb1h/step6_ranked_cfb1h.xlsx"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
+        candidates.extend(out_glob)
+        candidates.extend(
+            [
+                Sr / "CFB" / "step6_ranked_cfb1h.xlsx",
+                root / "Sports" / "CFB" / "step6_ranked_cfb1h.xlsx",
+            ]
+        )
     elif sp == "MLB":
         mlb_root = root / "Sports" / "MLB"
         candidates = [
@@ -94,10 +135,24 @@ def resolve_step7_path(root: Path, sport: str, pipeline_date: str = "") -> Path 
             root / "WNBA" / "step7_wnba_ranked.xlsx",
         ]
     elif sp == "NFL":
-        candidates = [
-            root / "NFL" / "outputs" / "step7_nfl_ranked.xlsx",
-            root / "NFL" / "data" / "outputs" / "step7_nfl_ranked.xlsx",
-        ]
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "nfl" / "step7_nfl_ranked.xlsx")
+        out_glob = sorted(
+            (root / "outputs").glob("*/nfl/step7_nfl_ranked.xlsx"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
+        candidates.extend(out_glob)
+        candidates.extend(
+            [
+                Sr / "NFL" / "outputs" / "step7_nfl_ranked.xlsx",
+                Sr / "NFL" / "data" / "outputs" / "step7_nfl_ranked.xlsx",
+                root / "NFL" / "outputs" / "step7_nfl_ranked.xlsx",
+                root / "NFL" / "data" / "outputs" / "step7_nfl_ranked.xlsx",
+            ]
+        )
     elif sp == "NHL":
         candidates = [
             Sr / "NHL" / f"step7_{sl}_ranked.xlsx",
@@ -128,26 +183,57 @@ def resolve_step7_path(root: Path, sport: str, pipeline_date: str = "") -> Path 
             Sr / "Tennis" / "step7_tennis_ranked.xlsx",
             root / "Tennis" / "outputs" / "step7_tennis_ranked.xlsx",
         ])
+    elif sp == "GOLF":
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "golf" / "step7_golf_ranked.xlsx")
+        out_glob = sorted(
+            (root / "outputs").glob("*/golf/step7_golf_ranked.xlsx"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
+        candidates.extend(out_glob)
+        candidates.extend(
+            [
+                Sr / "Golf" / "outputs" / "step7_golf_ranked.xlsx",
+                Sr / "Golf" / "step7_golf_ranked.xlsx",
+                root / "Golf" / "outputs" / "step7_golf_ranked.xlsx",
+            ]
+        )
     elif sp == "CFB":
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "cfb" / "step6_ranked_cfb.xlsx")
         out_glob = sorted(
             (root / "outputs").glob("*/cfb/step6_ranked_cfb.xlsx"),
             key=lambda p: p.stat().st_mtime,
             reverse=True,
         )
-        candidates = list(out_glob) + [
-            Sr / "CFB" / "step6_ranked_cfb.xlsx",
-            root / "Sports" / "CFB" / "step6_ranked_cfb.xlsx",
-            root / "CFB" / "step6_ranked_cfb.xlsx",
-        ]
+        candidates.extend(out_glob)
+        candidates.extend(
+            [
+                Sr / "CFB" / "step6_ranked_cfb.xlsx",
+                root / "Sports" / "CFB" / "step6_ranked_cfb.xlsx",
+                root / "CFB" / "step6_ranked_cfb.xlsx",
+            ]
+        )
     elif sp == "CBB":
-        candidates = [
-            Sr / "CBB" / "outputs" / f"step7_{sl}_ranked.xlsx",
-            Sr / "CBB" / "outputs" / "step6_ranked_cbb.xlsx",
-            Sr / "CBB" / "step6_ranked_cbb.xlsx",
-            root / "CBB" / "outputs" / f"step7_{sl}_ranked.xlsx",
-            root / "CBB" / "outputs" / "step6_ranked_cbb.xlsx",
-            root / "CBB" / "step6_ranked_cbb.xlsx",
-        ]
+        pd_str = str(pipeline_date or "").strip()[:10]
+        candidates = []
+        if pd_str:
+            candidates.append(root / "outputs" / pd_str / "cbb" / "step6_ranked_cbb.xlsx")
+        candidates.extend(
+            [
+                Sr / "CBB" / "outputs" / f"step7_{sl}_ranked.xlsx",
+                Sr / "CBB" / "outputs" / "step6_ranked_cbb.xlsx",
+                Sr / "CBB" / "step6_ranked_cbb.xlsx",
+                root / "CBB" / "outputs" / f"step7_{sl}_ranked.xlsx",
+                root / "CBB" / "outputs" / "step6_ranked_cbb.xlsx",
+                root / "CBB" / "step6_ranked_cbb.xlsx",
+            ]
+        )
     elif sp == "NBA" and raw_sp == "NBA":
         candidates = [
             Sr / "NBA" / "data" / "outputs" / "step7_ranked_props.xlsx",
@@ -240,7 +326,7 @@ def score_step7_workbook(
 ) -> bool:
     """Score one sport's step7 workbook. Returns True if rows were scored."""
     sp = _norm_sport(sport_label)
-    feat_sp = "MLB" if sp == "NFL" else sp
+    feat_sp = sp
     cal_sp = sp
     if sp not in SPORT_ALIASES and sp != "SOCCER":
         print(f"[WARN] Unknown sport {sport_label!r}, proceeding with key {sp!r}")
@@ -255,7 +341,7 @@ def score_step7_workbook(
         if p.is_file():
             xlsx = p
         else:
-            print(f"[WARN] --step7-xlsx not found: {p} — skip (no stale fallback)")
+            print(f"ERROR: --step7-xlsx not found: {p}", file=sys.stderr)
             return False
     if xlsx is None:
         xlsx = resolve_step7_path(root, str(sport_label).strip().upper(), str(pipeline_date or "").strip())
@@ -277,7 +363,7 @@ def score_step7_workbook(
         ml_ok = pd.to_numeric(df["ml_prob"], errors="coerce").notna()
         if bool(((src == "ml_prob_unified") & ml_ok).mean() > 0.5):
             print(f"  [step7b] {sp}: already unified — skip re-score ({xlsx.name})")
-            return False
+            return True
 
     if "void_reason" in df.columns:
         eligible_mask = df["void_reason"].isna() | (df["void_reason"].astype(str).str.strip() == "")
@@ -414,7 +500,7 @@ def score_step7_workbook(
 def main() -> None:
     print(f"[PropORACLE-{SCRIPT_NAME}] Starting...")
     ap = argparse.ArgumentParser()
-    ap.add_argument("--sport", default="", help="NBA, WNBA, CBB, NHL, Soccer, MLB, Tennis, …")
+    ap.add_argument("--sport", default="", help="NBA, WNBA, CBB, NHL, Soccer, MLB, Tennis, NFL, CFB, Golf, …")
     ap.add_argument(
         "--sports",
         default="",
@@ -459,18 +545,26 @@ def main() -> None:
     if not ordered:
         ap.error("Provide --sport or --sports")
 
+    explicit = str(args.step7_xlsx or "").strip()
+    if explicit:
+        xp = Path(explicit)
+        if not xp.is_absolute():
+            xp = (root / xp).resolve()
+        if not xp.is_file():
+            print(f"ERROR: --step7-xlsx not found: {xp}", file=sys.stderr)
+            raise SystemExit(1)
+
     mdir = root / "models"
     loaded = load_unified_edge_model(mdir)
     if loaded is None:
         print(f"[WARN] Edge model not found ({mdir / 'edge_model_unified.pkl'}) — skipping scoring.")
         return
     model, feats = loaded
-
-    explicit = str(args.step7_xlsx or "").strip()
     if explicit and len(ordered) > 1:
         print("[WARN] --step7-xlsx applies only to the first sport when using --sports")
 
     n_ok = 0
+    explicit_failed = False
     for i, sport_label in enumerate(ordered):
         ok = score_step7_workbook(
             root=root,
@@ -483,8 +577,12 @@ def main() -> None:
         )
         if ok:
             n_ok += 1
+        elif explicit and i == 0:
+            explicit_failed = True
     if len(ordered) > 1:
         print(f"[step7b] multi-sport done: {n_ok}/{len(ordered)} scored (model kept warm)")
+    if explicit_failed:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

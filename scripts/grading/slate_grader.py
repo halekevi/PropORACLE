@@ -577,13 +577,16 @@ def _coalesce_line_from_projection(df):
 
 
 def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
-    xls = pd.ExcelFile(path, engine="openpyxl")
-    preferred = ["ALL", "Full Slate", "Box Raw", "Props", "Sheet1"]
-    sheet = next((s for s in preferred if s in xls.sheet_names), xls.sheet_names[0])
-    if sheet != "ALL":
-        print(f"⚠️ NBA: sheet 'ALL' not found in {os.path.basename(path)}. Using sheet='{sheet}'.")
-
-    df = pd.read_excel(path, sheet_name=sheet, engine="openpyxl")
+    if str(path).lower().endswith(".csv"):
+        df = pd.read_csv(path, dtype=str).fillna("")
+        sheet = "ALL"
+    else:
+        xls = pd.ExcelFile(path, engine="openpyxl")
+        preferred = ["ALL", "Full Slate", "Box Raw", "Props", "Sheet1"]
+        sheet = next((s for s in preferred if s in xls.sheet_names), xls.sheet_names[0])
+        if sheet != "ALL":
+            print(f"⚠️ NBA: sheet 'ALL' not found in {os.path.basename(path)}. Using sheet='{sheet}'.")
+        df = pd.read_excel(path, sheet_name=sheet, engine="openpyxl")
 
     # --- Normalize column names from PipelineA output ---
     df.columns = [str(c).strip() for c in df.columns]
@@ -2097,6 +2100,11 @@ def main():
     ap.add_argument('--output',default='')
     ap.add_argument('--template',action='store_true')
     ap.add_argument('--date',default=datetime.now().strftime('%Y-%m-%d'))
+    ap.add_argument(
+        '--ticket-sport',
+        default='',
+        help='Sport key for ticket-face union (NBA1Q when grading a 1Q slate). Default: --sport, or NBA1Q/NBA1H from the slate filename.',
+    )
     args=ap.parse_args()
 
     if args.template:
@@ -2144,8 +2152,17 @@ def main():
         from ticket_leg_index import union_ticket_faces_into_slate  # noqa: WPS433
 
         before = len(df)
+        ticket_sport = str(args.ticket_sport or "").strip().upper()
+        slate_l = str(args.slate).lower().replace("\\", "/")
+        if not ticket_sport:
+            if "nba1q" in slate_l:
+                ticket_sport = "NBA1Q"
+            elif "nba1h" in slate_l:
+                ticket_sport = "NBA1H"
+            else:
+                ticket_sport = str(args.sport or "").strip().upper()
         df = union_ticket_faces_into_slate(
-            df, date_str=args.date, sport=args.sport, repo=_REPO_ROOT
+            df, date_str=args.date, sport=ticket_sport, repo=_REPO_ROOT
         )
         if len(df) != before:
             print(f"  {len(df)} props after ticket-face union")
