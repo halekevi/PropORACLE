@@ -1,42 +1,149 @@
 {
-  "generated_at": "2026-10-23 04:09:02 UTC",
+  "generated_at": "2026-10-23 15:47:08 UTC",
   "date": "2026-10-23",
   "tennis_date": "2026-10-23",
   "filters": {
-    "tiers": "A,B",
-    "min_hit_rate": 0.72,
-    "min_edge": -0.25,
-    "min_rank": null,
-    "pick_types": "Goblin,Standard",
-    "context_filter": true,
-    "context_min_score": 2,
-    "context_min_l5_sample": 5,
-    "high_conviction": false,
-    "prioritize_ticket_hit": true,
-    "ticket_candidate_sort": "rule",
-    "ticket_gen_starts": 64,
-    "nba_structured_variants": 8,
-    "min_leg_hit_rate": null,
-    "structured_min_leg_hit_rate": null,
-    "tennis_structured_min_leg_hit_rate": 0.72,
-    "max_ticket_legs": 3,
-    "leg_min_hit_by_n": {
-      "2": 0.75,
-      "3": 0.77,
-      "4": 0.79,
-      "5": 0.81,
-      "6": 0.83
-    },
-    "main_min_leg_prob": 0.62,
-    "pool_mode": "high_prob_std_gob",
+    "pick_types": "Goblin OVER + Standard O/U",
+    "allow_standard": true,
     "goblin_only": false,
-    "main_default_legs": 3,
-    "allow_standard": true
+    "pool_mode": "goblin70",
+    "min_l5": 5,
+    "min_l10": 8,
+    "cover_floor": "per-prop unit (PRA 3.7, pass yds 15, else sport floor)",
+    "note": "Keep-file gates only; a sport with no rule is off. Leg p is the shrunk gate-cell hit rate. 2- or 3-leg, Power unless Flex N-correct EV is higher. Stop when the next slip EV is not positive or all-hit payout is under 2x. Goblin and Standard stay separate. Flat $10. N-correct / To Win only."
   },
   "bankroll": null,
-  "ticket_track": "graded_main",
-  "mode": "graded_main",
+  "ticket_track": "goblin70",
+  "mode": "goblin70+graded_main",
   "groups": [
+    {
+      "group_name": "X-Sport Goblin-70 Mix Power 2",
+      "n_legs": 2,
+      "power_payout": 2.0,
+      "flex_payout": null,
+      "tickets": [
+        {
+          "web_group_name": "X-Sport Goblin-70 Mix Power 2",
+          "ticket_id": "2026-10-23|X-Sport Goblin-70 Mix Power 2|1",
+          "ticket_no": 1,
+          "ticket_track": "mixed_ev",
+          "mode": "goblin70",
+          "exclude_from_winrate": false,
+          "avg_hit_rate": 1.0,
+          "est_win_prob": 0.535,
+          "est_flex_cash_prob": null,
+          "power_payout": 2.0,
+          "flex_payout": null,
+          "base_power_payout": 2.0,
+          "ev_power": 0.068,
+          "display_min_x": 2.0,
+          "core_build": true,
+          "core_recipe": "goblin70",
+          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
+            {
+              "ticket_id": "2026-10-23|X-Sport Goblin-70 Mix Power 2|1",
+              "ticket_track": "mixed_ev",
+              "sport": "Soccer",
+              "player": "Thyago Ayala",
+              "team": "SARMIENTO",
+              "opp": "GELP",
+              "prop_type": "Goalie Saves",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 2.5,
+              "edge": 1.62,
+              "abs_edge": 1.62,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 1.0,
+              "standard_line": 3.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 2.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "A",
+              "def_tier": "Below Avg",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_d58b14e4ebe50e6d2bf4",
+              "game_date": "2026-10-23",
+              "badge": "Gold",
+              "cover": 1.62,
+              "matchup": "SARMIENTO vs GELP (SOCCER)"
+            },
+            {
+              "ticket_id": "2026-10-23|X-Sport Goblin-70 Mix Power 2|1",
+              "ticket_track": "mixed_ev",
+              "sport": "NFL",
+              "player": "Braelon Allen",
+              "team": "NYJ",
+              "opp": "MIA",
+              "prop_type": "receiving_yards",
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "line": 14.5,
+              "edge": -10.7,
+              "abs_edge": 10.7,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": null,
+              "standard_line": null,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 14.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "D",
+              "def_tier": "Above Avg",
+              "l5_over": null,
+              "l5_under": 5.0,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.7,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_7cfa9fb21b995288106f",
+              "game_date": "2026-10-23",
+              "badge": "Platinum",
+              "cover": -10.7,
+              "matchup": "NYJ vs MIA (NFL)"
+            }
+          ],
+          "n_legs": 2,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "payout": 2.0,
+            "min_guarantee": 2.0,
+            "min_payout_x": 2.0,
+            "display_min_x": 2.0,
+            "p_all_win": 0.535,
+            "p_miss_1": 0.0,
+            "ev": 0.068,
+            "recommendation": "OK",
+            "entry_10_to_win_guarantee": 20.0,
+            "entry_20_to_win_guarantee": 40.0,
+            "sweep_payout": 2.0,
+            "sweep_payout_x": 2.0,
+            "audit_all_hit_x": 2.0,
+            "payout_source": "n_correct_live",
+            "payout_note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
+            "n_correct": {
+              "2": 2.0
+            },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": null
+          }
+        }
+      ]
+    },
     {
       "group_name": "TENNIS 2-Leg Goblin OVER",
       "n_legs": 2,
@@ -373,6 +480,10 @@
           "win_rate_score": 0.109902,
           "floor_ev": -0.890098,
           "empirical_recommendation": "SKIP",
+          "run_id": "20261023_014702_909258",
+          "first_seen_run_id": "20261023_014702_909258",
+          "run_archived_at": "2026-10-23T01:47:02.911744+00:00",
+          "playable": true,
           "display_min_x": 1.6
         }
       ],
@@ -380,7 +491,7 @@
       "cold_legs": 0
     }
   ],
-  "hot_legs": 6,
+  "hot_legs": 5,
   "cold_legs": 0,
   "tier_ev_thresholds": {
     "strong": 1.4,
@@ -389,6 +500,11 @@
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
+      "strong": 1.4,
+      "ok": 1.15,
+      "marginal": 1.0
+    },
+    "3": {
       "strong": 1.4,
       "ok": 1.15,
       "marginal": 1.0
@@ -444,24 +560,50 @@
   "main_season_lead_days": 7,
   "main_min_leg_prob": 0.62,
   "main_min_ml_prob_leg": 0.58,
-  "pool_mode": "high_prob_std_gob",
+  "pool_mode": "goblin70",
   "goblin_only": false,
   "main_default_legs": 3,
   "main_thin_pool_min_legs": 6,
   "allow_standard": true,
-  "core_build_count": 1,
+  "run_id": "20261023_145107_621610",
+  "preferred_min_payout_x": 1.5,
+  "short_floor_hard_x": 1.5,
+  "short_floor_high_p_win": 0.7,
+  "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
+  "step8_root": "H:\\PropORACLE_main_cp",
+  "pool": {
+    "goblin_70": 2,
+    "goblin_70_raw": 2,
+    "standard_allowlist": 1,
+    "standard_allowlist_raw": 1,
+    "standard_yolo": 2,
+    "standard_yolo_raw": 2,
+    "nflp_goblin": 0,
+    "nflp_goblin_raw": 0
+  },
+  "tracks": [
+    "goblin70",
+    "graded_main"
+  ],
   "slate_exposure_dropped": 2,
   "slate_exposure_reasons": [
-    "2026-10-23|SOCCER 2-Leg Goblin OVER|1:anchor_cap:roger martinez:1>=1",
-    "2026-10-23|TENNIS 2-Leg Goblin OVER|1:nonanchor_cap:taylor fritz:1>=1"
+    "2026-10-23|NHL 3-Leg Goblin OVER|1:anchor_cap:alexandre carrier:1>=1",
+    "2026-10-23|NHL 3-Leg Goblin OVER|1:anchor_cap:alexandre carrier:1>=1"
   ],
   "player_slip_cap_dropped": 2,
   "slate_exposure_snapshot": {
-    "artturi lehkonen": {
+    "alexandre carrier": {
       "anchor_tickets": 1,
       "nonanchor_tickets": 0,
       "props": [
-        "artturi lehkonen::points::OVER"
+        "alexandre carrier::blocked_shots::OVER"
+      ]
+    },
+    "braelon allen": {
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
+      "props": [
+        "braelon allen::receiving_yards::UNDER"
       ]
     },
     "brandon hagel": {
@@ -498,11 +640,15 @@
       "props": [
         "taylor fritz::total games::OVER"
       ]
+    },
+    "thyago ayala": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
+      "props": [
+        "thyago ayala::goalie saves::OVER"
+      ]
     }
   },
   "player_slip_cap": 2,
-  "run_id": "20261023_040902_383937",
-  "preferred_min_payout_x": 1.5,
-  "short_floor_hard_x": 1.5,
-  "short_floor_high_p_win": 0.7
+  "_tier_scrub": "dropped C-tier NHL/soccer until re-tier backtested"
 }
