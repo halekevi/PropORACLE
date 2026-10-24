@@ -234,6 +234,7 @@ from utils.tennis_keep_gates import (
     tennis_goblin_keep_eligible as _tennis_keep_eligible,
     tennis_standard_games_won_over_eligible as _tennis_std_games_won_eligible,
     tennis_standard_under_serve_eligible as _tennis_serve_under_eligible,
+    tennis_total_games_ticket_held as _tennis_total_games_ticket_held,
 )
 from utils.player_prob_shrinkage import (
     SHRINK_EV_ENABLED as _SHRINK_EV_ENABLED,
@@ -5338,6 +5339,8 @@ def tennis_allowed_leg(leg) -> bool:
         keep_row["side"] = direction or "OVER"
         keep_row["pick_type"] = "Goblin"
         if not _tennis_keep_eligible(keep_row):
+            return False
+        if _tennis_total_games_ticket_held(keep_row):
             return False
         return not tennis_over_blocked_by_opp_rank(prop_label, opp_rank, pick_type="goblin")
     return False
