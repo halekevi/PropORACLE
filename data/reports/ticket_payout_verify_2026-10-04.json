@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-04",
+  "generated_at": "2026-10-04T21:33:14.414051+00:00",
+  "tickets_path": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\tickets_latest.json",
+  "live_cdp_path": "H:\\PropORACLE_main_cp\\ui_runner\\data\\payout_ladder_live_cdp.json",
+  "rate_card_path": "H:\\PropORACLE_main_cp\\ui_runner\\data\\sg_delta_payout_rate_card_latest.json",
+  "summary": {
+    "n_tickets": 2,
+    "n_with_live_cdp": 2,
+    "n_missing_live_cdp": 0,
+    "n_outstanding_rates": 2,
+    "n_covered": 0
+  },
+  "recipe_counts": {
+    "3|0S+3G+0D|2.5+3+4": 1,
+    "3|0S+3G+0D|1.5+2+3": 1
+  },
+  "missing_live_cdp": [],
+  "outstanding_rates": [
+    {
+      "ticket_id": "2026-10-04|STRONG 3-Leg|2",
+      "group_name": "STRONG 3-Leg",
+      "n_legs": 3,
+      "composition": "0S+3G+0D",
+      "goblin_delta_sig": "2.5+3+4",
+      "ticket_payout_source": "live_cdp",
+      "ticket_display_min_x": 1.7,
+      "has_live_cdp_on_ticket": true,
+      "live_cdp_recipe_hits": 0,
+      "live_cdp_recipe_min_x": null,
+      "rate_card_source": null,
+      "rate_card_status": "missing",
+      "rate_card_min_x": null,
+      "missing_goblin_delta": 0
+    },
+    {
+      "ticket_id": "2026-10-04|TENNIS 3-Leg Goblin OVER|1",
+      "group_name": "TENNIS 3-Leg Goblin OVER",
+      "n_legs": 3,
+      "composition": "0S+3G+0D",
+      "goblin_delta_sig": "1.5+2+3",
+      "ticket_payout_source": "live_cdp",
+      "ticket_display_min_x": 3.0,
+      "has_live_cdp_on_ticket": true,
+      "live_cdp_recipe_hits": 0,
+      "live_cdp_recipe_min_x": null,
+      "rate_card_source": null,
+      "rate_card_status": "missing",
+      "rate_card_min_x": null,
+      "missing_goblin_delta": 0
+    }
+  ],
+  "covered_sample": [],
+  "actions": [
+    {
+      "action": "fill_missing_tickets",
+      "skipped": "none_missing"
+    },
+    {
+      "action": "rebuild_rate_card",
+      "exit_code": 0
+    }
+  ]
+}

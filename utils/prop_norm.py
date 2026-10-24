@@ -487,7 +487,17 @@ _KNOWN_CANON = _known_canon_keys()
 
 def canon_prop(sport: object, prop: object) -> str:
     """One key per market. Combo and 1st-set stay distinct from the full-game single."""
-    raw = _SPACE_RE.sub(" ", str(prop or "").strip())
+    # pd.NA / NaN must not go through ``prop or ""`` (bool(NA) raises).
+    if prop is None:
+        raw = ""
+    else:
+        try:
+            raw = str(prop).strip()
+        except Exception:
+            raw = ""
+    if raw.lower() in ("nan", "<na>", "none", "<nat>"):
+        raw = ""
+    raw = _SPACE_RE.sub(" ", raw)
     if not raw:
         return ""
     if raw in _KNOWN_CANON:

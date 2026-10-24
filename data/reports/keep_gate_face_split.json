@@ -1,0 +1,1726 @@
+{
+  "SOCCER": {
+    "shots": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          3781,
+          9798
+        ],
+        "unverified": [
+          210,
+          210
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          7,
+          11
+        ],
+        "unverified": [
+          2,
+          2
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          38,
+          63
+        ],
+        "unverified": [
+          17,
+          17
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          315,
+          1126
+        ],
+        "unverified": [
+          2153,
+          10123
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          3,
+          5
+        ],
+        "unverified": [
+          57,
+          94
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          25,
+          42
+        ],
+        "unverified": [
+          279,
+          490
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          183,
+          344
+        ],
+        "unverified": [
+          136,
+          195
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5",
+        "verified": [
+          10,
+          18
+        ],
+        "unverified": [
+          30,
+          41
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          29,
+          63
+        ],
+        "unverified": [
+          78,
+          108
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          4368,
+          30782
+        ],
+        "unverified": [
+          373,
+          1582
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          36,
+          56
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          176,
+          297
+        ],
+        "unverified": [
+          1,
+          1
+        ]
+      }
+    ],
+    "sog": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          1240,
+          3254
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          12,
+          14
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          64,
+          202
+        ],
+        "unverified": [
+          32,
+          133
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          19,
+          45
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          2093,
+          18122
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ],
+    "saves": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          598,
+          1139
+        ],
+        "unverified": [
+          50,
+          50
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          9,
+          14
+        ],
+        "unverified": [
+          12,
+          12
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          82,
+          201
+        ],
+        "unverified": [
+          432,
+          1034
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          1,
+          3
+        ],
+        "unverified": [
+          18,
+          26
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          8,
+          15
+        ],
+        "unverified": [
+          79,
+          116
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          161,
+          291
+        ],
+        "unverified": [
+          74,
+          141
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5",
+        "verified": [
+          8,
+          11
+        ],
+        "unverified": [
+          10,
+          22
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          23,
+          42
+        ],
+        "unverified": [
+          41,
+          74
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          788,
+          2518
+        ],
+        "unverified": [
+          46,
+          159
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          11,
+          14
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          52,
+          81
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "TENNIS": {
+    "games_won": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          3676,
+          5200
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          52,
+          70
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          39,
+          53
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          167,
+          222
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          609,
+          1152
+        ],
+        "unverified": [
+          134,
+          332
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          6,
+          12
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          19,
+          37
+        ],
+        "unverified": [
+          4,
+          6
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          416,
+          791
+        ],
+        "unverified": [
+          2,
+          4
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5",
+        "verified": [
+          18,
+          21
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          17,
+          19
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          35,
+          47
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          1825,
+          6512
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          6,
+          15
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          16,
+          51
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ],
+    "match_total_games": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          2839,
+          4589
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          45,
+          82
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          35,
+          62
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          95,
+          165
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          686,
+          1416
+        ],
+        "unverified": [
+          91,
+          215
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          5,
+          17
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          3,
+          14
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          16,
+          42
+        ],
+        "unverified": [
+          1,
+          1
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          380,
+          639
+        ],
+        "unverified": [
+          4,
+          9
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          13,
+          32
+        ],
+        "unverified": [
+          1,
+          1
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          1569,
+          5216
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          6,
+          18
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          3,
+          11
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          13,
+          40
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ],
+    "aces": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          439,
+          3385
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          9,
+          26
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          6,
+          162
+        ],
+        "unverified": [
+          122,
+          405
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          81,
+          87
+        ],
+        "unverified": [
+          6,
+          9
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          12,
+          12
+        ],
+        "unverified": [
+          2,
+          3
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          293,
+          5970
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ],
+    "double_faults": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          545,
+          3204
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          22,
+          51
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          2,
+          196
+        ],
+        "unverified": [
+          181,
+          466
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          44,
+          46
+        ],
+        "unverified": [
+          1,
+          4
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          368,
+          7386
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "NHL": {
+    "sog": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          2472,
+          3959
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          238,
+          560
+        ],
+        "unverified": [
+          565,
+          2038
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          32,
+          55
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          22,
+          36
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          80,
+          151
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          636,
+          1137
+        ],
+        "unverified": [
+          424,
+          597
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          61,
+          106
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          61,
+          106
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          70,
+          124
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          2313,
+          11446
+        ],
+        "unverified": [
+          4,
+          13
+        ]
+      }
+    ],
+    "points": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          845,
+          1398
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          24,
+          42
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          13,
+          24
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          174,
+          304
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          184,
+          355
+        ],
+        "unverified": [
+          420,
+          1320
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          14,
+          18
+        ],
+        "unverified": [
+          13,
+          13
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          43,
+          78
+        ],
+        "unverified": [
+          68,
+          99
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          254,
+          538
+        ],
+        "unverified": [
+          338,
+          470
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5",
+        "verified": [
+          5,
+          8
+        ],
+        "unverified": [
+          142,
+          176
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          5,
+          6
+        ],
+        "unverified": [
+          130,
+          162
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          43,
+          105
+        ],
+        "unverified": [
+          262,
+          337
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          2823,
+          13372
+        ],
+        "unverified": [
+          20,
+          37
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          8,
+          20
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          48,
+          134
+        ],
+        "unverified": [
+          3,
+          4
+        ]
+      }
+    ],
+    "assists": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          122,
+          214
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          18,
+          28
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          86,
+          185
+        ],
+        "unverified": [
+          292,
+          1113
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          9,
+          28
+        ],
+        "unverified": [
+          23,
+          36
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          80,
+          199
+        ],
+        "unverified": [
+          325,
+          430
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5",
+        "verified": [
+          2,
+          7
+        ],
+        "unverified": [
+          143,
+          174
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          1,
+          2
+        ],
+        "unverified": [
+          133,
+          162
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          8,
+          32
+        ],
+        "unverified": [
+          251,
+          321
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          2355,
+          11760
+        ],
+        "unverified": [
+          4,
+          11
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          5,
+          10
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          44,
+          99
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          30,
+          131
+        ],
+        "unverified": [
+          204,
+          992
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          12,
+          19
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          7,
+          17
+        ],
+        "unverified": [
+          222,
+          278
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          112,
+          132
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          107,
+          126
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          1,
+          4
+        ],
+        "unverified": [
+          200,
+          249
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          1787,
+          10633
+        ],
+        "unverified": [
+          4,
+          13
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          17,
+          64
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ],
+    "saves": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          70,
+          122
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          3,
+          7
+        ],
+        "unverified": [
+          62,
+          223
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          23,
+          47
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          139,
+          235
+        ],
+        "unverified": [
+          25,
+          42
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          13,
+          15
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          78,
+          427
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ],
+    "blocked_shots": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          68,
+          107
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          13,
+          28
+        ],
+        "unverified": [
+          203,
+          473
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5=5",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          9,
+          11
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          52,
+          78
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          206,
+          411
+        ],
+        "unverified": [
+          16,
+          31
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          323,
+          1212
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ],
+    "hits": [
+      {
+        "pick": "goblin",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          25,
+          38
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          16,
+          43
+        ],
+        "unverified": [
+          122,
+          310
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "OVER",
+        "gate": "L5>=4",
+        "verified": [
+          0,
+          0
+        ],
+        "unverified": [
+          27,
+          45
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "ungated",
+        "verified": [
+          377,
+          689
+        ],
+        "unverified": [
+          50,
+          94
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5",
+        "verified": [
+          162,
+          312
+        ],
+        "unverified": [
+          6,
+          8
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5=5+L10>=8",
+        "verified": [
+          159,
+          309
+        ],
+        "unverified": [
+          5,
+          6
+        ]
+      },
+      {
+        "pick": "standard",
+        "side": "UNDER",
+        "gate": "L5>=4",
+        "verified": [
+          171,
+          327
+        ],
+        "unverified": [
+          20,
+          34
+        ]
+      },
+      {
+        "pick": "demon",
+        "side": "OVER",
+        "gate": "ungated",
+        "verified": [
+          95,
+          234
+        ],
+        "unverified": [
+          0,
+          0
+        ]
+      }
+    ]
+  }
+}

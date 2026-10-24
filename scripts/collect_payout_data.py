@@ -2612,6 +2612,13 @@ def load_main_strong_tickets(path: Path, *, only_missing_live: bool = False) -> 
                         "standard_line": leg.get("standard_line") or leg.get("std_line"),
                         "line_distance": leg.get("line_distance") or leg.get("delta"),
                         "delta": leg.get("delta") or leg.get("line_distance"),
+                        "l5_over": leg.get("l5_over"),
+                        "l5_under": leg.get("l5_under"),
+                        "l10_over": leg.get("l10_over"),
+                        "l10_under": leg.get("l10_under"),
+                        "def_tier": leg.get("def_tier"),
+                        "minutes_tier": leg.get("minutes_tier"),
+                        "role_tier": leg.get("role_tier") or leg.get("usage_role"),
                     }
                 )
             if len(legs) < 2:
@@ -2628,7 +2635,81 @@ def load_main_strong_tickets(path: Path, *, only_missing_live: bool = False) -> 
                     "date": str(data.get("date") or "")[:10],
                 }
             )
+    observe = _sacks_under_observe_slip(str(data.get("date") or "")[:10])
+    if observe is not None and not any(
+        str(s.get("ticket_id") or "") == observe["ticket_id"] for s in slips
+    ):
+        slips.append(observe)
     return slips
+
+
+def _sacks_under_observe_slip(date_str: str) -> dict | None:
+    """One 3-leg Flex candidate of NFL sacks UNDER, tagged so it is not a ticket rule.
+
+    The next CDP capture prices this slip and stores the Flex ladder with the legs.
+    """
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    try:
+        from observe_playbook_shadows import pick_sacks_under_legs
+    except Exception:
+        scripts = ROOT / "scripts"
+        if str(scripts) not in sys.path:
+            sys.path.insert(0, str(scripts))
+        from observe_playbook_shadows import pick_sacks_under_legs
+
+    rows: list[dict] = []
+    for path in (
+        ROOT / "ui_runner" / "runtime" / "slate_sport_nfl.json",
+        ROOT / "ui_runner" / "templates" / "slate_sport_nfl.json",
+    ):
+        if not path.is_file():
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        found = payload.get("rows") if isinstance(payload, dict) else None
+        if isinstance(found, list) and found:
+            rows = found
+            break
+    picked = pick_sacks_under_legs(rows, 3)
+    if len(picked) < 3:
+        print(
+            "[PAYOUT] observe sacks UNDER flex not added: "
+            f"{len(picked)} playable 1.5 legs from different games (need 3)"
+        )
+        return None
+    legs = []
+    for row in picked:
+        legs.append(
+            {
+                "player": str(row.get("player") or "").strip(),
+                "prop_type": str(row.get("prop") or row.get("prop_type") or "sacks").strip(),
+                "direction": "UNDER",
+                "line": row.get("line"),
+                "pick_type": "Standard",
+                "sport": "NFL",
+                "standard_line": row.get("standard_line"),
+                "l5_over": row.get("l5_over"),
+                "l5_under": row.get("l5_under"),
+                "l10_over": row.get("l10_over"),
+                "l10_under": row.get("l10_under"),
+                "def_tier": row.get("def_tier"),
+                "minutes_tier": row.get("minutes_tier"),
+                "role_tier": row.get("role_tier") or row.get("usage_role"),
+            }
+        )
+    return {
+        "ticket_id": "observe|nfl-sacks-under-flex",
+        "group_name": "observe NFL sacks UNDER flex",
+        "strong_builder": False,
+        "slip_type": "observe",
+        "observe_path": "nfl_sacks_under_flex",
+        "n_legs": 3,
+        "legs": legs,
+        "date": date_str,
+    }
 
 
 def _stamp_captured_at(rec: dict) -> str:
@@ -4184,6 +4265,10 @@ def _capture_to_ladder_row(rec: dict, date_str: str) -> dict[str, Any] | None:
         }
     )
     sport_note = ",".join(sports) if sports else "unknown"
+    observe = str(rec.get("observe_path") or "").strip()
+    note = f"ticket_id={tid}; sports={sport_note}; CDP power_min_x Min Guarantee"
+    if observe:
+        note += f"; observe={observe}"
     flex_ladder = rec.get("flex_n_correct") if isinstance(rec.get("flex_n_correct"), dict) else {}
     flex_all = ""
     if flex_ladder:
@@ -4198,6 +4283,11 @@ def _capture_to_ladder_row(rec: dict, date_str: str) -> dict[str, Any] | None:
                 flex_all = str(round(float(fm), 4))
         except (TypeError, ValueError):
             flex_all = ""
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from utils.observe_leg_snapshot import leg_snapshot
+
+    leg_rows = [leg_snapshot(leg) for leg in legs if isinstance(leg, dict)]
     captured_at = _stamp_captured_at(rec)
     window = str(rec.get("window") or "").strip()
     if not window:
@@ -4218,8 +4308,9 @@ def _capture_to_ladder_row(rec: dict, date_str: str) -> dict[str, Any] | None:
         "power_payout_x": str(round(min_x, 4)),
         "flex_payout_x": flex_all,
         "flex_n_correct": flex_ladder or {},
+        "legs": leg_rows,
         "source": "live_cdp",
-        "notes": f"ticket_id={tid}; sports={sport_note}; CDP power_min_x Min Guarantee",
+        "notes": note,
         "ticket_id": tid,
         "captured_at": captured_at,
         "first_captured_at": captured_at,

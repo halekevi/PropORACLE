@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-10",
+  "alerts": [
+    "NBA 2026-10-10: actuals on disk but 0 graded rows (graded_nba_2026-10-10.xlsx missing/empty)",
+    "NBA1H 2026-10-10: actuals on disk but 0 graded rows (graded_nba1h_2026-10-10.xlsx missing/empty)",
+    "NBA1Q 2026-10-10: actuals on disk but 0 graded rows (graded_nba1q_2026-10-10.xlsx missing/empty)",
+    "Soccer 2026-10-10: actuals on disk but 0 graded rows (graded_soccer_2026-10-10.xlsx missing/empty)",
+    "Tennis 2026-10-10: VOID/PENDING share 100% (307/307) exceeds 50%",
+    "MLB 2026-10-10: VOID/PENDING share 100% (552/552) exceeds 50%"
+  ],
+  "n_alerts": 6
+}

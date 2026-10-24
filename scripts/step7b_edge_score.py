@@ -10,7 +10,6 @@ pass them through when present).
 from __future__ import annotations
 
 import argparse
-import warnings
 from pathlib import Path
 
 import numpy as np
@@ -289,21 +288,16 @@ def _companion_sheets(df: pd.DataFrame, primary: str) -> dict[str, pd.DataFrame]
 
 
 def _load_step7_frame(xlsx: Path) -> tuple[str, pd.DataFrame]:
-    """Prefer the parquet sidecar so step7b does not re-parse Excel."""
-    from proporacle.data.table_io import parquet_sidecar_path, read_table, table_exists
+    """Prefer the parquet sidecar so step7b does not re-parse Excel.
+
+    Never take sheet ``_META`` or a row-0 ``slate_date=`` banner as the frame.
+    """
+    from proporacle.data.table_io import read_table, repair_banner_headers, table_exists
 
     if not table_exists(xlsx):
         raise FileNotFoundError(xlsx)
-    sidecar = parquet_sidecar_path(xlsx)
-    if sidecar.is_file():
-        return "ALL", read_table(xlsx)
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", UserWarning)
-        loaded = pd.read_excel(xlsx, sheet_name=None, engine="openpyxl")
-    if not loaded:
-        return "ALL", pd.DataFrame()
-    sheet = next(iter(loaded))
-    return sheet, loaded[sheet]
+    df = repair_banner_headers(read_table(xlsx, sheet_order=("ALL",)))
+    return "ALL", df
 
 
 def _write_scored_workbook(xlsx: Path, df: pd.DataFrame, primary: str) -> None:
@@ -400,7 +394,15 @@ def score_step7_workbook(
         for col in missing:
             df2[col] = 0.0
 
-    X = df2[feats].astype(float)
+    feat_df = df2[feats].apply(lambda s: pd.to_numeric(s, errors="coerce"))
+    empty_feats = [c for c in feats if int(feat_df[c].notna().sum()) == 0]
+    if empty_feats:
+        print(
+            f"ERROR: step7b feature cols empty (string '' / NaN): {empty_feats[:12]}",
+            file=sys.stderr,
+        )
+        return False
+    X = feat_df.fillna(0.0).astype(float)
     p_platt = np.asarray(model.predict_proba(X)[:, 1], dtype=float)
     dirs_u = _direction_series(df2).astype(str).str.strip().str.upper()
     pt_l = df2.get("pick_type", pd.Series("", index=df2.index)).astype(str).str.strip().str.lower()

@@ -1,0 +1,152 @@
+{
+  "results": [
+    {
+      "id": "S3-Ionescu-unders",
+      "ok": false,
+      "n": 1,
+      "want_n": 3,
+      "px": null,
+      "fails": [],
+      "legs": [
+        [
+          "WNBA",
+          "Sabrina Ionescu",
+          "Pts+Asts",
+          "UNDER",
+          21.0
+        ],
+        [
+          "WNBA",
+          "Sabrina Ionescu",
+          "Pts+Rebs",
+          "UNDER",
+          19.5
+        ],
+        [
+          "WNBA",
+          "Sabrina Ionescu",
+          "Points",
+          "UNDER",
+          15.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n1 Players Selected\nClear\nSabrina Ionescu\n\nWNBANYL - G\n\nTue, Sep 29 8:30 PM vs MIN\n25PRA\nMore\nLess\nYou can complete your lineup when 2+ players are selected.\nEntry Fee\n$\nTo Win\nBalance: $63.60\nPromo: $0.00\nAuto-accept projection changes\nSubmit Lineup\nPrivacy policy\nYour Privacy Choices\nResponsible gaming\nPrizePicks Blog\nTerms\nCareers\nContact Us\nAccessibility Statement\nProj. 42.5"
+    },
+    {
+      "id": "S3-Boston-Courtney-IonescuPts",
+      "ok": true,
+      "n": 3,
+      "want_n": 3,
+      "px": 6.0,
+      "fails": [],
+      "legs": [
+        [
+          "WNBA",
+          "Aliyah Boston",
+          "Defensive Rebounds",
+          "UNDER",
+          6.5
+        ],
+        [
+          "WNBA",
+          "Courtney Williams",
+          "Pts+Rebs",
+          "UNDER",
+          16.5
+        ],
+        [
+          "WNBA",
+          "Sabrina Ionescu",
+          "Points",
+          "UNDER",
+          15.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n3 Players Selected\nClear\nAliyah Boston\n\nWNBAIND - C-F\n\nTue, Sep 29 6:30 PM vs LVA\n28PRA\nMore\nLess\nSabrina Ionescu + Courtney Williams\n\nWNBANYL/MIN - G\n\nTue, Sep 29 8:30 PM vs MIN/NYL\n9.5Assists\nMore\nLess\nSabrina Ionescu\n\nWNBANYL - G\n\nTue, Sep 29 8:30 PM vs MIN\n25PRA\nMore\nLess\nFlex Play\n\nYou must hit 1st place, or 2 out of 3 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n3 corre"
+    },
+    {
+      "id": "G2-Schlittler-BoydOuts",
+      "ok": true,
+      "n": 2,
+      "want_n": 2,
+      "px": 1.3,
+      "fails": [],
+      "legs": [
+        [
+          "MLB",
+          "Cam Schlittler",
+          "Pitcher Strikeouts",
+          "OVER",
+          4.5
+        ],
+        [
+          "MLB",
+          "Matthew Boyd",
+          "Pitching Outs",
+          "OVER",
+          8.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n2 Players Selected\nClear\nCam Schlittler\n\nMLBNYY - P\n\nTue, Sep 29 8:00 PM vs BOS\n4.5Ks\nMore\nMatthew Boyd\n\nMLBCHC - P\n\nTue, Sep 29 10:00 PM @ SD\n8.5PO\nMore\nPower Play\n\nYou must hit 1st place, or 2 out of 2 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n2 correct pays\n1.3X\nIn the event of contest ties, contest payouts are shared. If you qualify for the 1st place prize and the Mini"
+    },
+    {
+      "id": "G2-BoydKs-CalvertLewin",
+      "ok": false,
+      "n": 1,
+      "want_n": 2,
+      "px": null,
+      "fails": [],
+      "legs": [
+        [
+          "MLB",
+          "Matthew Boyd",
+          "Pitcher Strikeouts",
+          "OVER",
+          2.5
+        ],
+        [
+          "Soccer",
+          "Dominic Calvert-Lewin",
+          "Shots On Target",
+          "OVER",
+          0.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n1 Players Selected\nClear\nDominic Calvert-Lewin\n\nSOCCEREngland - Attacker\n\nTue, Sep 29 2:45 PM @ Czechia\n0.5SOT\nMore\nYou can complete your lineup when 2+ players are selected.\nEntry Fee\n$\nTo Win\nBalance: $63.60\nPromo: $0.00\nAuto-accept projection changes\nSubmit Lineup\nPrivacy policy\nYour Privacy Choices\nResponsible gaming\nPrizePicks Blog\nTerms\nCareers\nContact Us\nAccessibility Stateme"
+    },
+    {
+      "id": "G2-Yamal-BoydERA",
+      "ok": true,
+      "n": 2,
+      "want_n": 2,
+      "px": 1.9,
+      "fails": [],
+      "legs": [
+        [
+          "Soccer",
+          "Lamine Yamal",
+          "Shots On Target",
+          "OVER",
+          1.5
+        ],
+        [
+          "MLB",
+          "Matthew Boyd",
+          "Earned Runs Allowed",
+          "OVER",
+          0.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n2 Players Selected\nClear\nLamine Yamal\n\nSOCCERSpain - Attacker\n\nTue, Sep 29 2:45 PM vs Croatia\n1.5SOT\nMore\nMatthew Boyd\n\nMLBCHC - P\n\nTue, Sep 29 10:00 PM @ SD\n0.5Earned Runs Allowed\nMore\nPower Play\n\nYou must hit 1st place, or 2 out of 2 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n2 correct pays\n1.9X\nIn the event of contest ties, contest payouts are shared. If you qualify for "
+    },
+    {
+      "id": "G2-Hornicek-BoydERA",
+      "ok": false,
+      "fails": [
+        "no_card Lukas Hornicek"
+      ],
+      "n": 0,
+      "legs": []
+    }
+  ]
+}

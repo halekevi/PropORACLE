@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-22",
+  "alerts": [
+    "NBA1H 2026-10-22: actuals on disk but 0 graded rows (graded_nba1h_2026-10-22.xlsx missing/empty)",
+    "NBA1Q 2026-10-22: actuals on disk but 0 graded rows (graded_nba1q_2026-10-22.xlsx missing/empty)",
+    "MLB 2026-10-22: VOID/PENDING share 100% (465/465) exceeds 50%"
+  ],
+  "n_alerts": 3
+}

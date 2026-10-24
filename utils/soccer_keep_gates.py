@@ -1,5 +1,21 @@
 """Soccer keep props and per-prop best gates.
 
+**FACE AUDIT 2026-10-24 (``SOCCER_KEEP_GATE_FACES_VERIFIED = False``).**
+Soccer graded rows carry default labels (zero Goblin/Demon) on 35 dates
+2026-05-09..06-16 and laddered Standard (36%) on 11 dates 03-26..04-11
+(``utils.face_ladder``; 28,301 decided legs). The Goblin OVER cells below
+were taken from Goblin-labeled rows, so the default-label dates could not
+inflate them by inclusion — but any soccer **Standard** cell from Mar 26–Jun 16
+is label-only (Standard UNDER Shots 136/195 = 69.7% on those dates vs
+183/344 = 53.2% on real faces), and the Shots / SOT L5 cells could not be
+re-measured from the leg ledger (soccer stores hits in ``last5_over``; the
+ledger ``l5_over`` is blank for most soccer rows). Re-measure the keep cells
+from a face-verified step8 join before quoting them as prices again.
+Report: ``data/reports/face_contamination_2026-10-24.md``,
+``data/reports/keep_gate_face_split.json``. This live-tree copy lags the
+branch (no ``soccer_board_coverage`` settlement gate here); only the marker
+was added on 2026-10-24.
+
 Graded Std+Goblin combo catalog (listed L5/L10/D/Off stacks):
 
 - Shots: L5=5 and L10>=8 (76.2% 16/21). D is thinner (4/5) — not required.
@@ -35,6 +51,11 @@ from typing import Any
 from utils.competition_history import row_competition_ok
 from utils.defense_tiers import d_aligned, normalize_def_tier_label
 from utils.prop_norm import canon_prop as _canon
+
+# False until Shots / SOT / Saves keep cells are re-measured on face-verified
+# sport-dates (see module docstring). Read-only; does not change ticket output.
+SOCCER_KEEP_GATE_FACES_VERIFIED = False
+SOCCER_UNVERIFIED_FACE_WINDOWS = (("2026-03-26", "2026-04-11"), ("2026-05-09", "2026-06-16"))
 
 SHOTS = "shots"
 SOG = "sog"

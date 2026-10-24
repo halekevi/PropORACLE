@@ -1,0 +1,32 @@
+{
+  "id": "S3-Calvert-Yamal-IonescuPRA",
+  "ok": false,
+  "n": 2,
+  "want_n": 3,
+  "px": 2.6,
+  "fails": [],
+  "legs": [
+    [
+      "Soccer",
+      "Dominic Calvert-Lewin",
+      "Shots On Target",
+      "OVER",
+      0.5
+    ],
+    [
+      "Soccer",
+      "Lamine Yamal",
+      "Shots On Target",
+      "OVER",
+      1.5
+    ],
+    [
+      "WNBA",
+      "Sabrina Ionescu",
+      "Pts+Rebs+Asts",
+      "UNDER",
+      25.0
+    ]
+  ],
+  "raw_head": "Current Lineup\n2 Players Selected\nClear\nLamine Yamal\n\nSOCCERSpain - Attacker\n\nTue, Sep 29 2:45 PM vs Croatia\n1.5SOT\nMore\nSabrina Ionescu\n\nWNBANYL - G\n\nTue, Sep 29 8:30 PM vs MIN\n25PRA\nMore\nLess\nPower Play\n\nYou must hit 1st place, or 2 out of 2 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n2 correct pays\n2.6X\nIn the event of contest ties, contest payouts are shared. If you qualify for the 1st"
+}

@@ -293,6 +293,12 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
     df2["stat_season_avg"] = pd.to_numeric(df2.get("stat_season_avg", np.nan), errors="coerce").fillna(df2["stat_last5_avg"])
     df2["stat_last10_avg"] = pd.to_numeric(df2.get("stat_last10_avg", np.nan), errors="coerce").fillna(df2["stat_last5_avg"])
 
+    from tennis_shared import apply_format_matched_stat_g, tennis_bo5_graded_on_bo3_tape
+
+    n_fmt = apply_format_matched_stat_g(df2, n=10)
+    if n_fmt:
+        print(f"[Tennis step8] Format filter dropped mismatched BO3/BO5 history on {n_fmt} rows")
+
     l5_over = pd.to_numeric(df2.get("last5_over", np.nan), errors="coerce")
     l5_under = pd.to_numeric(df2.get("last5_under", np.nan), errors="coerce")
     l5_over = l5_over.combine_first(pd.to_numeric(df2.get("line_hits_over_5", np.nan), errors="coerce"))
@@ -300,9 +306,15 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
     l5_over = l5_over.combine_first(pd.to_numeric(df2.get("l5_over", np.nan), errors="coerce"))
     l5_under = l5_under.combine_first(pd.to_numeric(df2.get("l5_under", np.nan), errors="coerce"))
     df2 = fill_l5_from_stat_games(df2, line_col="line", min_games=1)
-    from_g = pd.to_numeric(df2.get("l5_over"), errors="coerce")
-    l5_over = from_g.combine_first(l5_over)
-    l5_under = pd.to_numeric(df2.get("l5_under"), errors="coerce").combine_first(l5_under)
+    from_g_over = pd.to_numeric(df2.get("l5_over"), errors="coerce")
+    from_g_under = pd.to_numeric(df2.get("l5_under"), errors="coerce")
+    l5_over = from_g_over.combine_first(l5_over)
+    l5_under = from_g_under.combine_first(l5_under)
+    mismatch = df2.apply(tennis_bo5_graded_on_bo3_tape, axis=1)
+    if mismatch.any():
+        # BO5 line on BO3 last-5: keep real G1–G5 hits, do not Gold the row.
+        l5_over = l5_over.where(~mismatch, from_g_over)
+        l5_under = l5_under.where(~mismatch, from_g_under)
     gcols = [c for c in (f"stat_g{i}" for i in range(1, 6)) if c in df2.columns]
     has_g = (
         df2[gcols].apply(pd.to_numeric, errors="coerce").notna().any(axis=1)
@@ -363,7 +375,7 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "h2h_win_rate_on_surface",
         "player", "pos", "position_group", "team", "opp_team", "league", "game_time",
         "espn_player_id",
-        "prop_type", "pick_type", "line", "standard_line", "deviation_level",
+        "prop_type", "pick_type", "line", "standard_line", "standard_line_source", "gap", "deviation_level",
         "final_bet_direction",
         "edge", "abs_edge", "projection",
         "ml_prob",
@@ -382,6 +394,7 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "minutes_tier", "shot_role", "usage_role",
         "last_match_minutes", "days_rest", "last_match_games", "last_match_sets",
         "last_match_date",
+        "opponent_hand", "opp_lefty", "l5_second_won_pct",
         "cv_pct",
         "void_reason",
         # ── Game log ─────────────────────────────────────────────────────────
@@ -419,6 +432,8 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
             clean[col] = pd.to_numeric(clean[col], errors="coerce").astype("Int64")
     if "standard_line" in clean.columns:
         clean["standard_line"] = pd.to_numeric(clean["standard_line"], errors="coerce").round(2)
+    if "gap" in clean.columns:
+        clean["gap"] = pd.to_numeric(clean["gap"], errors="coerce").round(2)
     if "deviation_level" in clean.columns:
         clean["deviation_level"] = pd.to_numeric(clean["deviation_level"], errors="coerce").fillna(0).astype(int)
     if "distribution_n" in clean.columns:
@@ -438,7 +453,10 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "team": "Team", "opp_team": "Opp", "league": "League", "game_time": "Game Time",
         "espn_player_id": "ESPN ID",
         "prop_type": "Prop", "pick_type": "Pick Type", "line": "Line",
-        "standard_line": "Standard Line", "deviation_level": "Deviation Level",
+        "standard_line": "Standard Line",
+        "standard_line_source": "Standard Line Source",
+        "gap": "Gap",
+        "deviation_level": "Deviation Level",
         "final_bet_direction": "Direction",
         "edge": "Edge", "abs_edge": "Abs Edge", "projection": "Projection",
         "ml_prob": "ML Prob",
@@ -456,6 +474,9 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "last_match_games": "Last Match Games",
         "last_match_sets": "Last Match Sets",
         "last_match_date": "Last Match Date",
+        "opponent_hand": "Opp Hand",
+        "opp_lefty": "Opp Lefty",
+        "l5_second_won_pct": "L5 2nd Won %",
         "cv_pct": "CV%",
         "void_reason": "Void Reason",
         # Game log
@@ -532,10 +553,13 @@ def main() -> None:
         sys.exit(1)
 
     # ── Date filter: keep only target date's games (America/New_York) ─────────
+    from utils.slate_id import parse_pipeline_ymd
+
     eastern = zoneinfo.ZoneInfo("America/New_York")
-    target_str = (args.date.strip()[:10] if args.date
-                  else _dt.datetime.now(tz=eastern).date().isoformat())
-    if "start_time" in df.columns:
+    target_str = parse_pipeline_ymd(args.date)
+    if not target_str:
+        print("[Tennis step8] WARN: no pipeline --date — keeping full board (not clock today)")
+    elif "start_time" in df.columns:
         before_filter = len(df)
         et_dates = pd.to_datetime(df["start_time"], utc=True, errors="coerce").dt.tz_convert(eastern)
         df["_et_date"] = et_dates.dt.date.apply(
@@ -543,14 +567,16 @@ def main() -> None:
         )
         keep_dates = {target_str}
         try:
-            keep_dates.add((_dt.date.fromisoformat(target_str) + _dt.timedelta(days=1)).isoformat())
+            d0 = _dt.date.fromisoformat(target_str)
+            keep_dates.add((d0 + _dt.timedelta(days=1)).isoformat())
+            keep_dates.add((d0 + _dt.timedelta(days=2)).isoformat())
         except ValueError:
             pass
         mask = df["_et_date"].isin(keep_dates)
         if mask.any():
             print(
                 f"[DateFilter] Keeping ET days {sorted(keep_dates)} "
-                f"(today + day-ahead; {int(mask.sum())} rows)"
+                f"(today + 2 for slam first rounds; {int(mask.sum())} rows)"
             )
         else:
             valid = df["_et_date"].astype(str).str.match(r"^\d{4}-\d{2}-\d{2}$")
@@ -727,12 +753,11 @@ def main() -> None:
 
     write_parquet_sidecars(out, args.output, xlsx_path)
     try:
-        eastern = zoneinfo.ZoneInfo("America/New_York")
-        slate_date = (
-            str(args.date).strip()[:10]
-            if args.date
-            else _dt.datetime.now(tz=eastern).date().isoformat()
-        )
+        from utils.slate_id import dated_copy_ymd
+
+        slate_date = dated_copy_ymd(args.date, context="Tennis step8")
+        if not slate_date:
+            return
         # Sports/Tennis/scripts -> monorepo root (see tennis_grader.py).
         repo_root = Path(__file__).resolve().parents[3]
         dated_dir = repo_root / "outputs" / slate_date

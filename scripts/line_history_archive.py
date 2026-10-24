@@ -193,14 +193,14 @@ def _line_token(r: dict) -> str:
         return str(raw).strip()
 
 
-def _pick_key(r: dict, *, prefer_game_id: bool) -> tuple[str, str, str, str, str]:
-    # Same identity as step1 append dedup (player, prop, line, game, pick), not projection_id.
+def _pick_key(r: dict, *, prefer_game_id: bool) -> tuple[str, str, str, str]:
+    # Line stays off the key so a number change is "moved" (CLV), not appear+disappear.
+    # Projection id stays off too — PrizePicks reissues it.
     return (
         _fold(r["player"]),
         _fold(r["prop_type"]),
         r["pick_type"],
         _game_token(r, prefer_game_id=prefer_game_id),
-        _line_token(r),
     )
 
 
@@ -266,7 +266,7 @@ def diff_snapshots(prev: list[dict], curr: list[dict]) -> list[dict]:
             continue
         seen_curr.add(key)
         seen_prev.add(key)
-        if then.get("line") != now.get("line"):
+        if _line_token(then) != _line_token(now):
             emit("moved", then, now)
 
     for key, then in prev_pick.items():
@@ -293,6 +293,17 @@ def diff_snapshots(prev: list[dict], curr: list[dict]) -> list[dict]:
         emit("appeared", None, now)
 
     return events
+
+
+_PARTIAL_FLOOR = 0.50
+
+
+def _snapshot_count(conn: sqlite3.Connection, sport: str, fetched_at: str) -> int:
+    row = conn.execute(
+        "SELECT COUNT(*) FROM line_history WHERE sport = ? AND fetched_at = ?",
+        (sport, fetched_at),
+    ).fetchone()
+    return int((row[0] if row else 0) or 0)
 
 
 def _prev_clock(conn: sqlite3.Connection, sport: str, current_ts: str) -> str | None:
@@ -414,6 +425,15 @@ def archive_lines(
     counts: dict[str, int] = {}
     with sqlite3.connect(ARCHIVE_DB) as conn:
         _ensure_columns(conn, _EXTRA_COLS)
+        prev_ts = _prev_clock(conn, sport_u, pull_ts)
+        prev_n = _snapshot_count(conn, sport_u, prev_ts) if prev_ts else 0
+        if prev_n and len(current) < _PARTIAL_FLOOR * prev_n:
+            print(
+                f"  [line_events] {sport_u} fresh rows={len(current)} "
+                f"below {int(_PARTIAL_FLOOR * 100)}% of previous {prev_n} — "
+                "diff skipped, previous window kept"
+            )
+            return {}
         table_cols = {
             r[1] for r in conn.execute("PRAGMA table_info(line_history)").fetchall()
         }
@@ -458,7 +478,7 @@ def archive_fresh_board(df: pd.DataFrame, sport: str, *, pull_ts: str | None = N
     stamped = stamp_fetched_at(df, when=pull_ts, overwrite=bool(pull_ts))
     print(
         f"  [line_events] {str(sport).upper()} archiving fresh fetch "
-        f"rows={len(stamped)} key=player|prop|pick|game|line"
+        f"rows={len(stamped)} key=player|prop|pick|game (line change = moved)"
     )
     try_archive_lines(stamped, sport=sport)
 

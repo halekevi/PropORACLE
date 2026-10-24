@@ -504,6 +504,9 @@ def rows_from_tickets_payload(
     tickets: list[dict] = []
     tlegs: list[dict] = []
     seen: set[str] = set()
+    from utils.stale_board_tickets import annotate_ticket_payload
+
+    annotate_ticket_payload(payload)
     for gname, _grp, ticket in _walk_ticket_groups(payload):
         tid = _blank(ticket.get("ticket_id"))
         if not tid:
@@ -528,6 +531,10 @@ def rows_from_tickets_payload(
                 "quote_flex": _to_float(pay.get("flex") or ticket.get("flex_payout")),
                 "payout_source": _blank(pay.get("payout_source") or ticket.get("payout_source")),
                 "ticket_track": _blank(ticket.get("ticket_track") or payload.get("ticket_track")),
+                "invalid_reason": _blank(ticket.get("invalid_reason")),
+                "exclude_from_forward": int(
+                    bool(ticket.get("exclude_from_forward") or ticket.get("invalid"))
+                ),
                 "result": _norm_result(ticket.get("result") or ticket.get("grade"))
                 if _blank(ticket.get("result") or ticket.get("grade"))
                 else None,
@@ -561,6 +568,7 @@ def rows_from_tickets_payload(
                 direction=direction,
                 pick_type=pick_type,
             )
+            invalid = _blank(ticket.get("invalid_reason"))
             tlegs.append(
                 {
                     "ticket_id": tid,
@@ -574,6 +582,10 @@ def rows_from_tickets_payload(
                     "line": _to_float(leg.get("line")),
                     "direction": comps["direction_norm"],
                     "pick_type": comps["pick_norm"],
+                    "invalid_reason": invalid,
+                    "exclude_from_forward": int(
+                        bool(invalid or ticket.get("exclude_from_forward") or ticket.get("invalid"))
+                    ),
                     **meta,
                 }
             )
@@ -689,6 +701,13 @@ def ingest_graded(repo: Path | None = None, *, date: str | None = None, root: Pa
         n_feat += int(out.get("features") or 0)
         n_files += 0 if out.get("skipped") else 1
         n_skip += int(bool(out.get("skipped")))
+    if n_files:
+        # New graded rows change the per-sport-date face table; refresh it now
+        # so the next analysis_legs() call sees the new dates classified.
+        try:
+            write_face_status(root)
+        except Exception as exc:  # pragma: no cover - never block ingest
+            print(f"[leg_ledger] face_status refresh skipped: {exc}")
     return {"files": n_files, "legs": n_legs, "features": n_feat, "skipped": n_skip}
 
 
@@ -706,14 +725,174 @@ def read_table_df(table: str, root: Path | None = None) -> pd.DataFrame:
     return pd.concat(frames, ignore_index=True)
 
 
-def current_legs(root: Path | None = None) -> pd.DataFrame:
-    """Latest ingest per leg_id (append-only parts may include older hashes)."""
+def current_legs(root: Path | None = None, *, with_face: bool = True) -> pd.DataFrame:
+    """Latest ingest per leg_id (append-only parts may include older hashes).
+
+    Every returned frame carries ``face_status`` / ``face_verified`` per
+    sport-date (``utils.face_ladder``), so no caller has to remember the
+    default-label windows. Use :func:`analysis_legs` for hit-rate work — it
+    drops unverified rows by default.
+    """
     df = read_table_df("legs", root)
     if df.empty:
         return df
     if "ingested_at" in df.columns:
         df = df.sort_values("ingested_at")
-    return df.drop_duplicates(subset=["leg_id"], keep="last")
+    df = _latest_part_per_source(df)
+    df = df.drop_duplicates(subset=["leg_id"], keep="last")
+    if with_face:
+        df = attach_face_status(df, root)
+    return df
+
+
+# ------------------------------------------------------------ face status
+# One row per (sport, slate_date): default-label / laddered-Standard dates
+# are ``face_verified == False``. Stored as a ledger table so the flag is
+# first-class (like scraped_quote) rather than something each analysis
+# recomputes or forgets.
+FACE_STATUS_TABLE = "face_status"
+
+
+def _face_status_path(root: Path | None = None) -> Path:
+    return ledger_root(root) / FACE_STATUS_TABLE / "face_status.parquet"
+
+
+def compute_face_status(legs: pd.DataFrame) -> pd.DataFrame:
+    from utils.face_ladder import face_status_by_sport_date
+
+    st = face_status_by_sport_date(legs)
+    if st.empty:
+        return pd.DataFrame(columns=["sport", "slate_date", "status", "face_verified"])
+    st["sport"] = st["sport"].astype(str).str.upper()
+    st["slate_date"] = st["slate_date"].astype(str).str[:10]
+    st["face_verified"] = st["status"].eq("verified")
+    st["computed_at"] = _now_iso()
+    return st
+
+
+def write_face_status(root: Path | None = None, *, legs: pd.DataFrame | None = None) -> pd.DataFrame:
+    """Recompute the per-sport-date face table from the full current ledger and store it."""
+    if legs is None:
+        legs = current_legs(root, with_face=False)
+    st = compute_face_status(legs)
+    path = _face_status_path(root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if not st.empty and parquet_available():
+        write_props_parquet(st, path)
+    return st
+
+
+def read_face_status(root: Path | None = None) -> pd.DataFrame:
+    path = _face_status_path(root)
+    if not path.is_file():
+        return pd.DataFrame()
+    try:
+        return pd.read_parquet(path)
+    except Exception:
+        return pd.DataFrame()
+
+
+def face_status(root: Path | None = None, *, refresh: bool = False) -> pd.DataFrame:
+    """Stored face table; computed and written when missing or ``refresh``."""
+    st = pd.DataFrame() if refresh else read_face_status(root)
+    if st.empty:
+        st = write_face_status(root)
+    return st
+
+
+def attach_face_status(df: pd.DataFrame, root: Path | None = None) -> pd.DataFrame:
+    """Add ``face_status`` / ``face_verified`` columns keyed on (sport, slate_date).
+
+    Sport-dates missing from the stored table are recomputed from ``df`` itself
+    (new ingests) and the table is rewritten, so a fresh graded file is
+    classified the first time anyone reads it.
+    """
+    if df.empty or "sport" not in df.columns or "slate_date" not in df.columns:
+        return df
+    st = read_face_status(root)
+    key_sport = df["sport"].astype(str).str.upper()
+    key_date = df["slate_date"].astype(str).str[:10]
+    have = set(zip(st["sport"], st["slate_date"])) if not st.empty else set()
+    need = set(zip(key_sport, key_date))
+    if need - have:
+        st = write_face_status(root, legs=df)
+    if st.empty:
+        out = df.copy()
+        out["face_status"] = "unknown"
+        out["face_verified"] = False
+        return out
+    lookup = dict(zip(zip(st["sport"], st["slate_date"]), st["status"]))
+    out = df.copy()
+    out["face_status"] = [lookup.get(k, "unknown") for k in zip(key_sport, key_date)]
+    out["face_verified"] = out["face_status"].eq("verified")
+    return out
+
+
+def analysis_legs(
+    root: Path | None = None,
+    *,
+    include_unverified: bool = False,
+    decided_only: bool = False,
+) -> pd.DataFrame:
+    """Default entry point for hit-rate / gate / calibration work.
+
+    Returns face-verified legs only unless ``include_unverified=True`` is passed
+    explicitly, and prints how many rows were held back so a report cannot
+    quietly include default-label dates.
+    """
+    df = current_legs(root)
+    if df.empty:
+        return df
+    if decided_only and "result" in df.columns:
+        df = df[df["result"].isin(["HIT", "MISS"])]
+    if include_unverified:
+        return df
+    bad = ~df["face_verified"].astype(bool)
+    if bad.any():
+        by = df[bad].groupby("sport").size().sort_values(ascending=False)
+        print(
+            f"[analysis_legs] dropped {int(bad.sum()):,} legs on unverified-face sport-dates: "
+            + ", ".join(f"{s} {n:,}" for s, n in by.items())
+        )
+    return df[~bad]
+
+
+def _latest_part_per_source(df: pd.DataFrame) -> pd.DataFrame:
+    """Keep only the newest ingest (sha) of each source file.
+
+    leg_id includes pick_norm, so when a graded file is repaired (e.g. NHL
+    2026-10-10 pick_type restored from the live tree) the old mislabeled rows
+    have different leg_ids and would survive a plain leg_id dedup. A file's
+    latest sha supersedes its earlier parts.
+    """
+    need = {"source_path", "source_sha256", "ingested_at"}
+    if not need <= set(df.columns):
+        return df
+    has_src = df["source_path"].notna() & (df["source_path"].astype(str) != "")
+    if not has_src.any():
+        return df
+    # Relative and absolute spellings of the same file are one source.
+    repo = str(_REPO)
+
+    def _abs(p: object) -> str:
+        s = str(p or "")
+        if not s:
+            return ""
+        pp = Path(s)
+        if not pp.is_absolute():
+            pp = Path(repo) / pp
+        return str(pp).replace("/", "\\").lower()
+    src_key = df["source_path"].map(_abs)
+    src = pd.DataFrame({"k": src_key[has_src], "sha": df.loc[has_src, "source_sha256"], "t": df.loc[has_src, "ingested_at"]})
+    newest = (
+        src.groupby(["k", "sha"])["t"].max().reset_index()
+        .sort_values("t")
+        .drop_duplicates(subset=["k"], keep="last")
+    )
+    keep_sha = set(zip(newest["k"], newest["sha"]))
+    keep = ~has_src | pd.Series(list(zip(src_key, df["source_sha256"])), index=df.index).isin(keep_sha)
+    return df[keep]
+
 
 
 def connect(root: Path | None = None):

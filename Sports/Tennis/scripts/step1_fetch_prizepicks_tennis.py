@@ -267,12 +267,15 @@ def build_tennis_rows(data: list[dict], included: list[dict], nba_mod: Any) -> l
             start_time = str(attrs.get("start_time", "")).strip()
 
         team_slot = tournament or team_pp or league_name or ""
+        pp_description = str(attrs.get("description", "") or "").strip()
         opp_team = ""
         if team_slot and home and away:
             opp_team = away if team_slot == home else (home if team_slot == away else "")
-        if not opp_team:
-            desc = str(attrs.get("description", "") or "")
-            m = re.search(r"vs\.?\s+([A-Za-z0-9 .'-]{2,64})", desc, re.I)
+        if not opp_team and " / " in player_name and pp_description:
+            if pp_description.upper() != player_name.upper():
+                opp_team = pp_description
+        if not opp_team and pp_description:
+            m = re.search(r"vs\.?\s+([A-Za-z0-9 .'/\-]{2,80})", pp_description, re.I)
             if m:
                 opp_team = m.group(1).strip()
             elif home and away and player_name:
@@ -280,6 +283,13 @@ def build_tennis_rows(data: list[dict], included: list[dict], nba_mod: Any) -> l
                     if cand and cand not in player_name.upper() and len(cand) > 1:
                         opp_team = cand
                         break
+
+        is_doubles = 1 if " / " in player_name else 0
+        p1, p2 = ("", "")
+        if is_doubles:
+            parts = [p.strip() for p in player_name.split(" / ", 1)]
+            if len(parts) == 2:
+                p1, p2 = parts[0], parts[1]
 
         rows.append(
             {
@@ -304,6 +314,10 @@ def build_tennis_rows(data: list[dict], included: list[dict], nba_mod: Any) -> l
                 "opp_team": opp_team,
                 "pp_home_team": home,
                 "pp_away_team": away,
+                "pp_description": pp_description,
+                "is_doubles": is_doubles,
+                "player_1": p1,
+                "player_2": p2,
                 "image_url": image_url,
                 "tournament": tournament,
                 "pp_updated_at": extract_pp_updated_at(attrs),
@@ -311,6 +325,59 @@ def build_tennis_rows(data: list[dict], included: list[dict], nba_mod: Any) -> l
         )
 
     return rows
+
+
+def attach_goblin_standard_gap(df: pd.DataFrame) -> tuple[pd.DataFrame, int, int]:
+    """Join the Standard sibling onto each Goblin row.
+
+    Lookup key is (player, prop). When several Standard rows share that key,
+    the highest standard_line is the sibling. gap = standard_line - goblin line.
+    A Goblin with no Standard sibling keeps standard_line and gap blank.
+    """
+    out = df.copy()
+    if "gap" not in out.columns:
+        out["gap"] = pd.NA
+    player_col = "player" if "player" in out.columns else "player_name"
+    prop_col = "prop_type" if "prop_type" in out.columns else "prop"
+    if player_col not in out.columns or prop_col not in out.columns or "pick_type" not in out.columns:
+        return out, 0, 0
+
+    pt = out["pick_type"].astype(str).str.strip().str.lower()
+    std_num = pd.to_numeric(out["standard_line"], errors="coerce") if "standard_line" in out.columns else pd.Series(pd.NA, index=out.index)
+    line_num = pd.to_numeric(out["line_score"], errors="coerce") if "line_score" in out.columns else pd.Series(pd.NA, index=out.index)
+    if "line" in out.columns:
+        line_num = line_num.fillna(pd.to_numeric(out["line"], errors="coerce"))
+
+    lookup: dict[tuple[str, str], float] = {}
+    for idx in out.index[pt.eq("standard") & std_num.notna()]:
+        player = str(out.at[idx, player_col] or "").strip()
+        prop = str(out.at[idx, prop_col] or "").strip()
+        if not player or not prop:
+            continue
+        val = float(std_num.at[idx])
+        key = (player, prop)
+        prev = lookup.get(key)
+        if prev is None or val > prev:
+            lookup[key] = val
+
+    filled = 0
+    missing = 0
+    for idx in out.index[pt.eq("goblin")]:
+        player = str(out.at[idx, player_col] or "").strip()
+        prop = str(out.at[idx, prop_col] or "").strip()
+        sibling = lookup.get((player, prop))
+        gob_line = line_num.at[idx]
+        if sibling is None or pd.isna(gob_line):
+            missing += 1
+            out.at[idx, "gap"] = pd.NA
+            continue
+        out.at[idx, "standard_line"] = sibling
+        out.at[idx, "gap"] = round(float(sibling) - float(gob_line), 2)
+        if "standard_line_source" not in out.columns:
+            out["standard_line_source"] = ""
+        out.at[idx, "standard_line_source"] = "sibling"
+        filled += 1
+    return out, filled, missing
 
 
 def fetch_tennis_via_cdp(
@@ -493,6 +560,7 @@ def main() -> None:
                 }
                 if fail_fast:
                     fetch_kw.update(
+                        fail_fast=True,
                         first_page_waves=1,
                         forbid_cooldown_threshold=99,
                         forbid_max_cooldown_windows=0,
@@ -556,6 +624,7 @@ def main() -> None:
             }
             if fail_fast:
                 fetch_kw.update(
+                    fail_fast=True,
                     first_page_waves=1,
                     forbid_cooldown_threshold=99,
                     forbid_max_cooldown_windows=0,
@@ -585,6 +654,10 @@ def main() -> None:
             df[col] = pd.to_numeric(df[col], errors="coerce")
     _mstd = df["pick_type"].astype(str).str.lower().eq("standard")
     df.loc[_mstd, "standard_line"] = df.loc[_mstd, "standard_line"].fillna(df.loc[_mstd, "line_score"])
+    if "gap" not in df.columns:
+        df["gap"] = pd.NA
+    if "standard_line_source" not in df.columns:
+        df["standard_line_source"] = ""
 
     before = len(df)
     df = df.drop_duplicates(subset=["projection_id"], keep="first").reset_index(drop=True)
@@ -602,6 +675,8 @@ def main() -> None:
         "league",
         "pick_type",
         "standard_line",
+        "standard_line_source",
+        "gap",
         "goblin_line",
         "demon_line",
         "pp_projection_id",
@@ -613,6 +688,10 @@ def main() -> None:
         "opp_team",
         "pp_home_team",
         "pp_away_team",
+        "pp_description",
+        "is_doubles",
+        "player_1",
+        "player_2",
         "image_url",
         "tournament",
     ]
@@ -637,6 +716,8 @@ def main() -> None:
         print(
             f"[Tennis step1] BOARD_TOO_SMALL (min_rows={args.min_rows}, min_teams={args.min_teams}) — writing CSV and exiting 1"
         )
+        df, n_gap, n_no_sib = attach_goblin_standard_gap(df)
+        print(f"[Tennis step1] Goblin standard sibling: filled {n_gap}, no sibling {n_no_sib}")
         out_path.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(out_path, index=False, encoding="utf-8-sig")
         sys.exit(1)
@@ -669,7 +750,12 @@ def main() -> None:
         except Exception as e:
             print(f"  [WARN] merge skipped: {e}")
 
+    df, n_gap, n_no_sib = attach_goblin_standard_gap(df)
+    print(f"[Tennis step1] Goblin standard sibling: filled {n_gap}, no sibling {n_no_sib}")
     df.to_csv(out_path, index=False, encoding="utf-8-sig")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(out_path, sport="Tennis")
     print(f"[Tennis step1] Saved → {out_path}")
     print("[Tennis step1] BOARD_OK")
 

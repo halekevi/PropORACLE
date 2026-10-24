@@ -577,16 +577,19 @@ def _coalesce_line_from_projection(df):
 
 
 def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
+    from proporacle.data.table_io import read_table, repair_banner_headers
+
     if str(path).lower().endswith(".csv"):
         df = pd.read_csv(path, dtype=str).fillna("")
         sheet = "ALL"
     else:
         xls = pd.ExcelFile(path, engine="openpyxl")
         preferred = ["ALL", "Full Slate", "Box Raw", "Props", "Sheet1"]
-        sheet = next((s for s in preferred if s in xls.sheet_names), xls.sheet_names[0])
+        names = [s for s in xls.sheet_names if str(s) != "_META"]
+        sheet = next((s for s in preferred if s in names), names[0] if names else xls.sheet_names[0])
         if sheet != "ALL":
             print(f"⚠️ NBA: sheet 'ALL' not found in {os.path.basename(path)}. Using sheet='{sheet}'.")
-        df = pd.read_excel(path, sheet_name=sheet, engine="openpyxl")
+        df = repair_banner_headers(read_table(path, sheet=sheet))
 
     # --- Normalize column names from PipelineA output ---
     df.columns = [str(c).strip() for c in df.columns]
@@ -782,12 +785,15 @@ def filter_nba_slate_by_grade_date(df: pd.DataFrame, date_str: str) -> pd.DataFr
 
 
 def load_cbb(path: str) -> pd.DataFrame:
+    from proporacle.data.table_io import read_table, repair_banner_headers
+
     # CBB graded files sometimes have 'ALL', but sometimes just Sheet1
     xls = pd.ExcelFile(path, engine="openpyxl")
-    sheet = "ALL" if "ALL" in xls.sheet_names else xls.sheet_names[0]
+    names = [s for s in xls.sheet_names if str(s) != "_META"]
+    sheet = "ALL" if "ALL" in names else (names[0] if names else xls.sheet_names[0])
     if sheet != "ALL":
         print(f"⚠️ CBB: sheet 'ALL' not found in {os.path.basename(path)}. Using sheet='{sheet}'.")
-    df = pd.read_excel(path, sheet_name=sheet, engine="openpyxl")
+    df = repair_banner_headers(read_table(path, sheet=sheet))
     df.columns = [str(c).strip() for c in df.columns]
 
     # ── FIX: rename CBB pipeline column names to grader-expected names ──────────

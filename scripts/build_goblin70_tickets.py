@@ -277,6 +277,12 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
             if nba1q_tickets_held():
                 print(NBA1Q_HOLD_REASON, flush=True)
                 continue
+        if loader_name in {"load_nba", "load_nba1h"}:
+            from utils.ticket_sport_holds import NBA_G70_HOLD_REASON, nba_g70_tickets_held
+
+            if nba_g70_tickets_held():
+                print(NBA_G70_HOLD_REASON, flush=True)
+                continue
         loader = getattr(R, loader_name, None)
         if not callable(loader):
             continue
@@ -286,13 +292,29 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     if drop_golf:
         rows = [r for r in rows if str(r.get("sport") or "").upper() != "GOLF"]
         print(golf_skip_warning(rows), flush=True)
-    from utils.ticket_sport_holds import NBA1Q_HOLD_REASON, nba1q_tickets_held
+    from utils.ticket_sport_holds import (
+        NBA1Q_HOLD_REASON,
+        NBA_G70_HOLD_REASON,
+        nba1q_tickets_held,
+        nba_g70_tickets_held,
+    )
 
     if nba1q_tickets_held():
         n_q = sum(1 for r in rows if str(r.get("sport") or "").upper() == "NBA1Q")
         if n_q:
             rows = [r for r in rows if str(r.get("sport") or "").upper() != "NBA1Q"]
             print(f"{NBA1Q_HOLD_REASON} dropped {n_q} board row(s)", flush=True)
+    if nba_g70_tickets_held():
+        n_nba = sum(
+            1 for r in rows if str(r.get("sport") or "").upper() in {"NBA", "NBA1H"}
+        )
+        if n_nba:
+            rows = [
+                r
+                for r in rows
+                if str(r.get("sport") or "").upper() not in {"NBA", "NBA1H"}
+            ]
+            print(f"{NBA_G70_HOLD_REASON} dropped {n_nba} board row(s)", flush=True)
     return rows
 
 # PAY lives in utils.n_correct_payout. Resolve order: CDP scrape (matching
@@ -1010,12 +1032,8 @@ def to_web_payload(payload: dict) -> dict:
             _ticket_to_web(t, date=date, ticket_no=i, group_name=gname)
             for i, t in enumerate(slips, start=1)
         ]
-        web_slips = [
-            s
-            for s in web_slips
-            if str((s.get("payout") or {}).get("payout_source") or "").strip().lower()
-            != "pending_live"
-        ]
+        # Keep pending_live slips on the dual card so CDP can quote them.
+        # Dropping them here left goblin70_groups=0 and blocked publish as mixer-only.
         if not web_slips:
             continue
         n_legs = int(web_slips[0].get("n_legs") or slips[0].get("n_legs") or 0)
@@ -1410,6 +1428,20 @@ def write_web(payload: dict, board: list[dict] | None = None) -> list[Path]:
             f"unchanged={patch_stats['unchanged']}"
         )
     web = merge_web_payload(g70, main_payload, main_groups)
+    from utils.stale_board_tickets import annotate_ticket_payload
+
+    n_stale = annotate_ticket_payload(web)
+    if n_stale:
+        print(f"stale_board/after-start: marked {n_stale} invalid slip(s)")
+    from utils.slate_schedule_gate import filter_payload_to_espn_schedule
+
+    web, blocked = filter_payload_to_espn_schedule(web)
+    if blocked:
+        n_started = sum(1 for b in blocked if str(b.get("reason") or "").startswith("game_started"))
+        print(
+            f"schedule-gate: {len(blocked)} slip(s) blocked "
+            f"({n_started} already started)"
+        )
     print(
         f"web merge goblin70_groups={len(g70.get('groups') or [])} "
         f"graded_main_groups={len(main_groups)}"
@@ -1864,6 +1896,32 @@ def main() -> int:
             f"(decided {std_u.get('decided') or 0}, hr {std_u.get('hr')}, "
             f"Wilson LB {std_u.get('wilson_lo')})"
         )
+        try:
+            from utils.nfl_std_under_shadow import grade_pending, record_nfl_std_under_shadow
+
+            grade_pending()
+            nfl_u = record_nfl_std_under_shadow(board or [], date=args.date)
+            payload["nfl_std_under_shadow"] = {
+                "track": nfl_u["track"],
+                "placed": False,
+                "face_verified_board": nfl_u["face_verified_board"],
+                "n_legs": nfl_u["n_legs"],
+                "n_rule4_blocked": nfl_u["n_rule4_blocked"],
+                "n_slips": nfl_u["n_slips"],
+                "skipped": nfl_u["skipped"],
+                "legs": [
+                    f"{l.get('player')} {l.get('prop_canon')} U{l.get('line')}"
+                    + (" [rule4]" if l.get("rule4_blocked") else "")
+                    for l in nfl_u["legs"]
+                ],
+            }
+            print(
+                f"  [shadow] NFL Standard UNDER (prereg 2026-10-24): {nfl_u['n_legs']} legs "
+                f"({nfl_u['n_rule4_blocked']} rule-4 lines), slips {nfl_u['n_slips']}, "
+                f"face_verified={nfl_u['face_verified_board']}, skipped {nfl_u['skipped']}"
+            )
+        except Exception as exc:
+            print(f"WARN: NFL Standard UNDER shadow skipped ({exc})")
     suffix = "_l5eq5" if args.l5_eq_5 else ""
     out = OUT_DIR / f"goblin70_tickets_{args.date}{suffix}.json"
     OUT_DIR.mkdir(parents=True, exist_ok=True)

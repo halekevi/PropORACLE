@@ -930,7 +930,18 @@ def ticket_excluded_from_winrate(t: dict[str, Any], group_name: str = "") -> boo
 
     They still grade into dedicated ``standard_yolo`` / ``goblin70_yolo``
     tracks in grade_history when ticket_eval runs.
+
+    ``stale_board`` phantoms and ``published_after_start`` slips are invalid,
+    not VOID — they stay off win-rate, grade_history, the forward counter,
+    and the P&L shadow.
     """
+    from utils.published_after_start import ticket_is_published_after_start
+    from utils.stale_board_tickets import ticket_is_stale_board
+
+    if ticket_is_stale_board(t, group_name=group_name):
+        return True
+    if ticket_is_published_after_start(t, group_name=group_name):
+        return True
     if t.get("exclude_from_winrate") or t.get("winrate_exclude"):
         return True
     if yolo_ticket_track(t, group_name) is not None:

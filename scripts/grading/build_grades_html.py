@@ -615,6 +615,14 @@ def prop_row_for_api(
     h2h_bucket = _pick("H2H Tier", "h2h_tier", "H2H Bucket", "h2h_bucket", "Head To Head Bucket", "head_to_head_bucket")
     minutes_tier = _pick("Minutes Tier", "minutes_tier", "Min Tier", "min_tier", "Minutes Bucket", "minutes_bucket")
     role_tier = _pick("Role Tier", "role_tier", "Player Role", "player_role", "Usage Role", "usage_role", "Team Role", "team_role")
+    if not str(role_tier or "").strip():
+        try:
+            from utils.nfl_prop_defense import role_from_snap
+
+            snap = _pick("Snap L3", "snap_pct_L3", "snap_pct_season", "snap_pct")
+            role_tier = role_from_snap(snap)
+        except Exception:
+            role_tier = role_tier or ""
     usage_vacuum = _pick_scalar("usage_vacuum", "Usage Vacuum")
     deviation_level_raw = _pick_scalar("deviation_level", "Deviation Level", "Dev Level")
     deviation_level_val: int | None = None

@@ -1,0 +1,59 @@
+{
+  "written": "2026-10-11",
+  "status": "observe_only",
+  "ticket_rules": "unchanged",
+  "observe_after": "2026-10-11",
+  "discovery_sample_counts": false,
+  "paths": {
+    "nfl_standard_under_3leg_flex": {
+      "shape": "3-leg Flex",
+      "sport": "NFL",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "props": [
+        "receptions",
+        "sacks",
+        "receiving_yards",
+        "longest_reception"
+      ],
+      "gate": "L5=5, L10>=8, directional D (UNDER vs Elite or Above Avg)",
+      "published_ladder_until_a_scrape_exists": {
+        "3": 3.0,
+        "2": 1.0
+      },
+      "breakeven_per_leg_on_that_card": 0.5774,
+      "breakeven_uses": "The N-correct Flex quote scraped on slips that contain these legs. The published 3x for 3/3 and 1x for 2/3 stays the bar only until that scrape exists.",
+      "promotion_requires_all": [
+        "At least 100 decided legs whose slate date is after 2026-10-11.",
+        "Those legs come from several NFL weeks and several players.",
+        "Wilson 95% lower bound at or above the per-leg breakeven of the real scraped Flex quote.",
+        "The four cells found by scanning every gated cell do not count toward the 100.",
+        "Rule 4 applies to NFL as written, both directions. Lines 0.5, 2.5, and 4.5 are out when role_tier is SUPPORT. PRIMARY and SECONDARY on those lines may count. A fragile line with no role_tier does not count until role is known."
+      ],
+      "face_label_caveat": "Label-based. The 10-11 Standard UNDER cells and the rule-4-for-NFL ruling were computed on pick_type that step1 never stored (defaulted to Standard downstream); Demon/Goblin rungs are mixed into the 'Standard' rows. Only slate dates with step1 pick_type persisted (2026-10-23+, plus 09-20/09-21/09-24) are real faces. Forward counting must use utils.face_ladder status == verified. See data/reports/face_contamination_2026-10-24.md.",
+      "rule4": {
+        "decision": "apply_to_nfl_as_written",
+        "set_on": "2026-10-11",
+        "face_label_caveat": "The sacks UNDER 0.5 fragility example and the ungated hit rate this ruling cites were read from label-only Standard rows (see face_label_caveat). Re-read on verified faces before relying on either.",
+        "lines": [
+          0.5,
+          2.5,
+          4.5
+        ],
+        "role_player": "SUPPORT",
+        "directions": "OVER and UNDER",
+        "why": "Rule 4 caps miss-by-1 tail risk. A sacks UNDER 0.5 loses on one sack, the same fragility the rule was written for on OVERs. The ungated hit rate does not waive it."
+      }
+    },
+    "goblin70_on_2x_plus": {
+      "shape": "Goblin Power quoted at 2x or more",
+      "promotion_requires_all": [
+        "At least 100 decided legs whose slate date is after 2026-10-11.",
+        "Those legs come from several weeks and several players.",
+        "Each quote is stored at scrape time with standard_line, the Goblin-to-Standard gap, and Goblin-70 status.",
+        "The hit rate is graded on those 2x-plus slips' own legs, not the pooled Goblin-70 sleeve.",
+        "Wilson 95% lower bound at or above the per-leg breakeven of that slip's own quote."
+      ]
+    }
+  }
+}

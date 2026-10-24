@@ -396,14 +396,24 @@ def main():
     )
 
     if df.empty:
-        print("❌ No projections fetched.")
+        if args.fail_fast:
+            print(
+                "[CFB] no board this attempt (fail-fast). "
+                "Leaving any existing file in place. Next window will retry."
+            )
+        else:
+            print("❌ No projections fetched.")
         log_pipeline_health(
             "cfb.step1_pp_cfb_scraper",
             "no_projections",
-            extra={"league_id": args.league_id, "game_mode": args.game_mode},
+            extra={
+                "league_id": args.league_id,
+                "game_mode": args.game_mode,
+                "fail_fast": bool(args.fail_fast),
+            },
             start=Path(__file__),
         )
-        return
+        return 2 if args.fail_fast else 1
 
     # ── Bouncer: reject junk rows ─────────────────────────────────────────────
     required = ["proj_id", "player", "pp_team", "stat_type", "line"]
@@ -439,6 +449,9 @@ def main():
     pull_ts = now_et_iso()
     df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
     df.to_csv(args.out, index=False, encoding="utf-8")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(args.out, sport="CFB")
     try_archive_lines(df, sport="CFB", only_fetched_at=pull_ts)
     print(f"✅ Saved CSV → {args.out} | rows={len(df)} | unique proj_id={df['proj_id'].nunique()}")
 
@@ -462,7 +475,9 @@ def main():
 
 if __name__ == "__main__":
     try:
-        main()
+        raise SystemExit(main() or 0)
+    except SystemExit:
+        raise
     except Exception as e:
         log_pipeline_health(
             "cfb.step1_pp_cfb_scraper",
@@ -471,3 +486,4 @@ if __name__ == "__main__":
             start=Path(__file__),
         )
         print(f"❌ CBB step1 failed (logged). {type(e).__name__}: {e}")
+        raise SystemExit(1)

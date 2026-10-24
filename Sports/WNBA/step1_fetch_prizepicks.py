@@ -1215,6 +1215,9 @@ def main():
     df = _stamp_fetched_at(df)
     df["sport"] = sport_tag
     df.to_csv(out_path, index=False, encoding="utf-8-sig")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(out_path, sport="WNBA")
     try:
         _root = Path(__file__).resolve().parents[2]
         if str(_root) not in sys.path:

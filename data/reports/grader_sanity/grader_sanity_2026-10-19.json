@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-19",
+  "alerts": [
+    "Soccer 2026-10-19: actuals on disk but 0 graded rows (graded_soccer_2026-10-19.xlsx missing/empty)",
+    "MLB 2026-10-19: VOID/PENDING share 100% (465/465) exceeds 50%"
+  ],
+  "n_alerts": 2
+}

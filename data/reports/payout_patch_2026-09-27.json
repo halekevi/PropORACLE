@@ -1,0 +1,145 @@
+{
+  "date": "2026-09-27",
+  "generated_at": "2026-09-27T21:24:52.890702Z",
+  "tickets_path": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\tickets_latest.json",
+  "by_ticket_id": {
+    "2026-09-27|MLB Goblin-70 Power 3|1": {
+      "power_min_x": 2.1,
+      "power_first_x": 6.0,
+      "display_min_x": 2.1,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T08:32:28"
+    },
+    "2026-09-27|MLB Goblin-70 Power 3|2": {
+      "power_min_x": 1.6,
+      "power_first_x": 6.0,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T09:34:30"
+    },
+    "2026-09-27|X-Sport Goblin-70 Power 3|4": {
+      "power_min_x": 1.9,
+      "power_first_x": 6.0,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|X-Sport Goblin-70 Power 3|4",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T08:38:21"
+    },
+    "2026-09-27|MLB Goblin-70 Power 3|3": {
+      "power_min_x": 1.9,
+      "power_first_x": 6.0,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|3",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T10:27:47"
+    }
+  },
+  "by_leg_sig": {
+    "anthony kay|walks allowed|over|0.500||kyle freeland|hits allowed|over|3.500||sean manaea|hits allowed|over|3.500": {
+      "power_min_x": 2.0,
+      "power_first_x": 6.0,
+      "display_min_x": 2.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T00:26:52"
+    },
+    "anthony kay|walks allowed|over|0.500||kyle freeland|hits allowed|over|3.500||logan gilbert|hits allowed|over|2.500": {
+      "power_min_x": 2.1,
+      "power_first_x": 6.0,
+      "display_min_x": 2.1,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T08:32:28"
+    },
+    "mackenzie gore|hits allowed|over|2.500||max scherzer|hits allowed|over|1.500||sean manaea|hits allowed|over|3.500": {
+      "power_min_x": 1.7,
+      "power_first_x": 6.0,
+      "display_min_x": 1.7,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T08:33:28"
+    },
+    "jacob misiorowski|hits allowed|over|1.500||michael soroka|walks allowed|over|0.500||sean manaea|hits allowed|over|3.500": {
+      "power_min_x": 1.9,
+      "power_first_x": 6.0,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|X-Sport Goblin-70 Power 3|4",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T08:38:21"
+    },
+    "logan gilbert|hits allowed|over|2.500||mackenzie gore|hits allowed|over|2.500||max scherzer|hits allowed|over|1.500": {
+      "power_min_x": 1.6,
+      "power_first_x": 6.0,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T09:34:30"
+    },
+    "jacob misiorowski|hits allowed|over|1.500||michael soroka|walks allowed|over|0.500||shota imanaga|pitcher strikeouts|over|3.500": {
+      "power_min_x": 1.9,
+      "power_first_x": 6.0,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|3",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T10:27:47"
+    },
+    "anthony kay|walks allowed|over|0.500||kyle freeland|hits allowed|over|3.500||sean manaea|pitching outs|over|14.500": {
+      "power_min_x": 2.1,
+      "power_first_x": 6.0,
+      "display_min_x": 2.1,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "captured_at": "2026-09-27T08:32:28"
+    },
+    "jacob misiorowski|hits allowed|over|1.500||liel abada|shots on target|over|0.500||max scherzer|hits allowed|over|1.500": {
+      "power_min_x": 1.9,
+      "power_first_x": 6.0,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|X-Sport Goblin-70 Power 3|4",
+      "n_legs": 3,
+      "captured_at": "2026-09-27T08:38:21"
+    },
+    "jacob misiorowski|hits allowed|over|1.500||mackenzie gore|earned runs allowed|over|0.500||max scherzer|hits allowed|over|1.500": {
+      "power_min_x": 1.6,
+      "power_first_x": 6.0,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "captured_at": "2026-09-27T09:34:30"
+    },
+    "jared jones|pitcher strikeouts|over|3.500||michael soroka|walks allowed|over|0.500||shota imanaga|pitcher strikeouts|over|2.500": {
+      "power_min_x": 1.9,
+      "power_first_x": 6.0,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-27|MLB Goblin-70 Power 3|3",
+      "n_legs": 3,
+      "captured_at": "2026-09-27T10:27:47"
+    }
+  }
+}

@@ -1307,11 +1307,13 @@ function Invoke-PropOracleStep7b {
         [string]$Step7Xlsx = "",
         [string]$PipelineDate = ""
     )
+    $step7bExit = 0
     Push-Location $Root
     try {
         $sp = Join-Path $Root "scripts\step7b_edge_score.py"
         if (-not (Test-Path $sp)) {
-            Write-Host "  [$SportLabel] step7b: WARN (missing scripts\step7b_edge_score.py)" -ForegroundColor Yellow
+            Write-Host "  FAILED: [$SportLabel] step7b missing scripts\step7b_edge_score.py" -ForegroundColor Red
+            $step7bExit = 1
         } else {
             $argList = @("--sport", $SportLabel, "--repo-root", $Root)
             if ($Step7Xlsx -ne "") { $argList += @("--step7-xlsx", $Step7Xlsx) }
@@ -1319,16 +1321,17 @@ function Invoke-PropOracleStep7b {
             Write-Host "  --> step7b ($SportLabel)" -ForegroundColor Yellow
             Write-Host "        CMD: py -3.14 $sp $($argList -join ' ')" -ForegroundColor DarkGray
             $output = & py -3.14 $sp @argList 2>&1
-            $exit   = $LASTEXITCODE
+            $step7bExit = [int]$LASTEXITCODE
             foreach ($line in $output) { Write-Host "        $line" -ForegroundColor DarkGray }
-            if ($exit -ne 0) {
-                Write-Host "  [$SportLabel] step7b: WARN (exit $exit)" -ForegroundColor Yellow
+            if ($step7bExit -ne 0) {
+                Write-Host "  FAILED: [$SportLabel] step7b (exit $step7bExit)" -ForegroundColor Red
             } else {
                 Write-Host "  [$SportLabel] step7b: OK" -ForegroundColor Green
             }
         }
     } catch {
-        Write-Host "  [$SportLabel] step7b: WARN (exit 1)" -ForegroundColor Yellow
+        Write-Host "  FAILED: [$SportLabel] step7b EXCEPTION: $_" -ForegroundColor Red
+        $step7bExit = 1
     } finally {
         Pop-Location
     }
@@ -1336,6 +1339,7 @@ function Invoke-PropOracleStep7b {
         Write-Host "  FAILED: [$SportLabel] step7 xlsx missing after step7b: $Step7Xlsx" -ForegroundColor Red
         return $false
     }
+    if ($step7bExit -ne 0) { return $false }
     return $true
 }
 
@@ -2858,7 +2862,10 @@ Write-Host ""
 
 # -- NBA Job ------------------------------------------------------------------
 $NBAJob = $null
-if (-not $NBAOffSeason) {
+$skipNbaJob = ("$($env:PROPORACLE_SKIP_NBA_JOB)".Trim().ToLower() -in @("1", "true", "yes", "on"))
+if ($skipNbaJob) {
+    Write-Host "  [NBA] skip parallel job (PROPORACLE_SKIP_NBA_JOB) — sequential runner already rebuilt step8" -ForegroundColor Cyan
+} elseif (-not $NBAOffSeason) {
 Wait-FetchStagger
 $NBAJob = Start-Job -ScriptBlock {
     param($NBADir, $Date, $OddsApiKey, $SkipFetch, $RepoRoot, $NBARunOutDir, $OffSeason)

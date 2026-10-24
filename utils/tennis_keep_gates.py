@@ -1,5 +1,20 @@
 """Tennis keep props and per-prop gates.
 
+**FACE AUDIT 2026-10-24 (``TENNIS_KEEP_GATE_FACES_VERIFIED = True`` for the
+Goblin cells, ``False`` for Standard).** Tennis graded rows carry default
+labels on 14 dates 2026-04-11..07-08 (1,526 decided legs). The Goblin OVER
+Games Won / Total Games cells were measured on the 07-13..09-14 discount
+window and later, after the default-label span, from Goblin-labeled rows —
+unaffected. On face-verified dates the leg ledger shows Goblin OVER Games Won
+3676/5200 = 70.7% ungated, L5=5+L10>=8 39/53; Total Games 2839/4589 = 61.9%,
+L5=5+L10>=8 35/62 = 56.5% (re-check that cell on a step8 join). Standard
+cells (Standard UNDER Aces / DF 90%, Standard OVER Games Won) are label-era
+and were already marked unverifiable for May–June; treat April and early July
+the same way. Report: ``data/reports/face_contamination_2026-10-24.md``,
+``data/reports/keep_gate_face_split.json``. This live-tree copy lags the
+branch (no corrected-attach prices / rank-gap fade here); only the marker was
+added on 2026-10-24.
+
 Graded catalog + Standard-Line join (Games Won Goblin discount window
 2026-07-13 to 2026-09-14) and Sackmann factor join (restated 2026-09-15):
 
@@ -32,6 +47,12 @@ from __future__ import annotations
 from typing import Any
 
 from utils.prop_norm import canon_prop as _canon
+
+# Goblin keep cells were measured after the default-label span (see docstring);
+# Standard cells were not. Read-only markers; they do not change ticket output.
+TENNIS_KEEP_GATE_FACES_VERIFIED = True
+TENNIS_STANDARD_FACES_VERIFIED = False
+TENNIS_UNVERIFIED_FACE_WINDOW = ("2026-04-11", "2026-07-08")
 
 KEEP_PROPS = frozenset({"games_won", "match_total_games"})
 SERVE_UNDER_PROPS = frozenset({"aces", "double_faults"})

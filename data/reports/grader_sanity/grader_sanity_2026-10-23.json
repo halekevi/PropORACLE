@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-23",
+  "alerts": [
+    "NBA1H 2026-10-23: actuals on disk but 0 graded rows (graded_nba1h_2026-10-23.xlsx missing/empty)",
+    "NBA1Q 2026-10-23: actuals on disk but 0 graded rows (graded_nba1q_2026-10-23.xlsx missing/empty)",
+    "NHL 2026-10-23: Goblin OVER decided HR 42.6% (20/47) under 50%",
+    "MLB 2026-10-23: VOID/PENDING share 100% (493/493) exceeds 50%"
+  ],
+  "n_alerts": 4
+}

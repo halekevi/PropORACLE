@@ -70,6 +70,9 @@ OUTPUT_COLS = [
     "opp_team",
     "prop_type",
     "line",
+    "line_score",
+    "standard_line",
+    "pick_type",
     "start_time",
     "game_id",
     "position",
@@ -79,6 +82,18 @@ OUTPUT_COLS = [
     "fetched_at",
     "pp_updated_at",
 ]
+
+PICKTYPE_MAP = {"standard": "Standard", "goblin": "Goblin", "demon": "Demon"}
+
+
+def norm_nfl_pick_type(raw: object) -> str:
+    """PrizePicks odds_type -> Standard / Goblin / Demon. Blank defaults to Standard."""
+    key = str(raw or "standard").strip().lower()
+    if "gob" in key:
+        return "Goblin"
+    if "dem" in key:
+        return "Demon"
+    return PICKTYPE_MAP.get(key, "Standard")
 
 # Explicit PP display names → snake_case (unmapped → lowercased + underscored)
 NFL_PROP_TYPE_MAP: Dict[str, str] = {
@@ -449,6 +464,20 @@ def build_nfl_rows(
         raw_prop = str(attrs.get("stat_type", attrs.get("projection_type", attrs.get("name", "")))).strip()
         prop_type = norm_nfl_prop_type(raw_prop)
         line = attrs.get("line_score", attrs.get("line"))
+        try:
+            line_f = float(line) if line is not None and str(line).strip() != "" else None
+        except (TypeError, ValueError):
+            line_f = None
+        # Face must land on disk. Week 1 2026 never stored odds_type, so every row
+        # graded as Standard even when only a Goblin / Demon rung was on the board.
+        pick_type = norm_nfl_pick_type(attrs.get("odds_type") or attrs.get("pick_type") or "standard")
+        std_line = attrs.get("standard_line", attrs.get("flash_sale_line"))
+        try:
+            std_line_f = float(std_line) if std_line is not None and str(std_line).strip() != "" else None
+        except (TypeError, ValueError):
+            std_line_f = None
+        if pick_type == "Standard" and std_line_f is None:
+            std_line_f = line_f
 
         player_id = _safe_get(rel, ["new_player", "data", "id"], "") or ""
         player_type = _safe_get(rel, ["new_player", "data", "type"], "new_player")
@@ -491,7 +520,10 @@ def build_nfl_rows(
                 "team": team,
                 "opp_team": opp_team,
                 "prop_type": prop_type,
-                "line": line,
+                "line": line_f if line_f is not None else line,
+                "line_score": line_f if line_f is not None else line,
+                "standard_line": std_line_f,
+                "pick_type": pick_type,
                 "start_time": start_time,
                 "game_id": str(game_id or "").strip(),
                 "position": position,
@@ -516,11 +548,88 @@ def _log_health(df: pd.DataFrame) -> None:
     if n and "league" in df.columns:
         leagues = df["league"].astype(str).value_counts().to_dict()
         print(f"[NFL step1] Boards: {leagues}")
+    if n and "pick_type" in df.columns:
+        picks = (
+            df["pick_type"]
+            .astype(str)
+            .str.strip()
+            .replace({"": "Standard", "nan": "Standard", "None": "Standard"})
+            .value_counts()
+            .to_dict()
+        )
+        print(f"[NFL step1] pick_type breakdown: {picks}")
     if n:
         breakdown = df["prop_type"].value_counts().to_dict()
         print(f"[NFL step1] Prop type breakdown ({len(breakdown)} types):")
         for prop, cnt in sorted(breakdown.items(), key=lambda x: (-x[1], x[0])):
             print(f"    {prop}: {cnt}")
+
+
+def assert_pick_type_persisted(
+    out_path: Path,
+    *,
+    min_rows_for_mixed: int = 100,
+    allow_standard_only: bool = False,
+    min_goblin_share: float = 0.05,
+) -> dict[str, int]:
+    """Re-read the CSV and refuse to continue if pick_type was not stored.
+
+    Week 1 hole: odds_type never landed on disk, so every row looked Standard and
+    Goblin / Demon rungs graded as Standard UNDER faces that were never offered.
+    """
+    if not out_path.is_file():
+        raise SystemExit(f"[NFL step1] FATAL: output missing after write -> {out_path}")
+    disk = pd.read_csv(out_path, encoding="utf-8-sig")
+    if "pick_type" not in disk.columns:
+        raise SystemExit(
+            f"[NFL step1] FATAL: pick_type column missing on disk -> {out_path}. "
+            "Do not continue the pipeline."
+        )
+    raw = disk["pick_type"].astype(str).str.strip()
+    blank = raw.isin(["", "nan", "None", "NaN", "<NA>"])
+    if len(disk) and int(blank.sum()) == len(disk):
+        raise SystemExit(
+            f"[NFL step1] FATAL: pick_type is all empty on disk -> {out_path}. "
+            "Do not continue the pipeline."
+        )
+    counts = {"Standard": 0, "Goblin": 0, "Demon": 0}
+    for v in raw:
+        if str(v) in ("", "nan", "None", "NaN", "<NA>"):
+            counts["Standard"] += 1
+        else:
+            key = norm_nfl_pick_type(v)
+            counts[key] = counts.get(key, 0) + 1
+    n = len(disk)
+    shares = {k: (100.0 * v / n if n else 0.0) for k, v in counts.items()}
+    print(
+        f"[NFL step1] pick_type ON DISK (re-read): {counts} "
+        f"({shares['Standard']:.1f}%S / {shares['Goblin']:.1f}%G / {shares['Demon']:.1f}%D) "
+        f"-> {out_path}"
+    )
+    if (
+        not allow_standard_only
+        and n >= int(min_rows_for_mixed)
+        and counts.get("Goblin", 0) == 0
+        and counts.get("Demon", 0) == 0
+    ):
+        raise SystemExit(
+            f"[NFL step1] FATAL: {n} rows on disk but pick_type is 100% Standard "
+            "(no Goblin/Demon). Refusing to continue — this is the Week 1 hole. "
+            "Re-fetch with odds_type wired, or pass --allow-standard-only for a known "
+            "Standard-only board."
+        )
+    goblin_share = (counts.get("Goblin", 0) / n) if n else 0.0
+    if (
+        not allow_standard_only
+        and n >= int(min_rows_for_mixed)
+        and goblin_share < float(min_goblin_share)
+    ):
+        print(
+            f"[NFL step1] WARN: Goblin share {100.0 * goblin_share:.1f}% "
+            f"(n={counts.get('Goblin', 0)}) is below the ~15% live-board mix "
+            f"(floor {100.0 * min_goblin_share:.0f}%). Inspect odds_type before step2."
+        )
+    return counts
 
 
 def main() -> int:
@@ -537,6 +646,11 @@ def main() -> int:
         "--allow-nearest-future",
         action="store_true",
         help="Skip same-day date filter (keep full API board; explicit opt-in only).",
+    )
+    ap.add_argument(
+        "--allow-standard-only",
+        action="store_true",
+        help="Allow a step1 CSV with no Goblin/Demon pick_type (skip the Week-1-hole gate).",
     )
     ap.add_argument(
         "--merge",
@@ -722,6 +836,10 @@ def main() -> int:
     out_df.to_csv(out_path, index=False, encoding="utf-8-sig")
     _log_health(out_df)
     print(f"\n[NFL step1] Saved → {out_path} ({len(out_df)} rows)")
+    assert_pick_type_persisted(
+        out_path,
+        allow_standard_only=bool(args.allow_standard_only),
+    )
     return 0
 
 

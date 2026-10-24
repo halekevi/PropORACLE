@@ -1,0 +1,158 @@
+{
+  "results": [
+    {
+      "id": "S3-Ionescu-PRA-Boston-Courtney",
+      "ok": true,
+      "n": 3,
+      "want_n": 3,
+      "px": 6.0,
+      "fails": [],
+      "legs": [
+        {
+          "sport": "WNBA",
+          "player": "Sabrina Ionescu",
+          "prop": "Pts+Rebs+Asts",
+          "prop_type": "PRA",
+          "direction": "UNDER",
+          "line": 25.0,
+          "pick_type": "standard"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Aliyah Boston",
+          "prop": "Defensive Rebounds",
+          "prop_type": "Defensive Rebounds",
+          "direction": "UNDER",
+          "line": 6.5,
+          "pick_type": "standard"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Courtney Williams",
+          "prop": "Pts+Rebs",
+          "prop_type": "Pts+Rebs",
+          "direction": "UNDER",
+          "line": 16.5,
+          "pick_type": "standard"
+        }
+      ],
+      "raw_head": "Current Lineup\n3 Players Selected\nClear\nSabrina Ionescu\n\nWNBANYL - G\n\nTue, Sep 29 8:30 PM vs MIN\n25PRA\nMore\nLess\nAliyah Boston\n\nWNBAIND - C-F\n\nTue, Sep 29 6:30 PM vs LVA\n28PRA\nMore\nLess\nSabrina Ionescu + Courtney Williams\n\nWNBANYL/MIN - G\n\nTue, Sep 29 8:30 PM vs MIN/NYL\n9.5Assists\nMore\nLess\nFlex Play\n\nYou must hit 1st place, or 2 out of 3 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n3 corre"
+    },
+    {
+      "id": "M2-Tiafoe-IonescuPRA",
+      "ok": true,
+      "n": 2,
+      "want_n": 2,
+      "px": 2.5,
+      "fails": [],
+      "legs": [
+        {
+          "sport": "TENNIS",
+          "player": "Frances Tiafoe",
+          "prop": "Total Games",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Sabrina Ionescu",
+          "prop": "Pts+Rebs+Asts",
+          "prop_type": "PRA",
+          "direction": "UNDER",
+          "line": 25.0,
+          "pick_type": "standard"
+        }
+      ],
+      "raw_head": "Current Lineup\n2 Players Selected\nClear\nFrances Tiafoe\n\nTENNISFrances Tiafoe - Player\n\nWed, Sep 30 10:00 PM @ Kei Nishikori\n19.5Total Games\nMore\nSabrina Ionescu\n\nWNBANYL - G\n\nTue, Sep 29 8:30 PM vs MIN\n25PRA\nMore\nLess\nPower Play\n\nYou must hit 1st place, or 2 out of 2 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n2 correct pays\n2.5X\nIn the event of contest ties, contest payouts are shared. If"
+    },
+    {
+      "id": "G2-Bondar-BoydOuts",
+      "ok": true,
+      "n": 2,
+      "want_n": 2,
+      "px": 2.4,
+      "fails": [],
+      "legs": [
+        {
+          "sport": "TENNIS",
+          "player": "Anna Bondar",
+          "prop": "Total Games",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Matthew Boyd",
+          "prop": "Pitching Outs",
+          "prop_type": "Pitching Outs",
+          "direction": "OVER",
+          "line": 12.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "raw_head": "Current Lineup\n2 Players Selected\nClear\nAnna Bondar\n\nTENNISAnna Bondar - Player\n\nWed, Sep 30 8:15 AM vs Renata Zarazua\n19.5Total Games\nMore\nMatthew Boyd\n\nMLBCHC - P\n\nTue, Sep 29 10:00 PM @ SD\n12.5PO\nMore\nPower Play\n\nYou must hit 1st place, or 2 out of 2 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n2 correct pays\n2.4X\nIn the event of contest ties, contest payouts are shared. If you qualify f"
+    },
+    {
+      "id": "G2-Zverev-Paul",
+      "ok": false,
+      "n": 3,
+      "want_n": 2,
+      "px": 5.75,
+      "fails": [],
+      "legs": [
+        {
+          "sport": "TENNIS",
+          "player": "Alexander Zverev",
+          "prop": "Total Games",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 18.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Tommy Paul",
+          "prop": "Total Games",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 21.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "raw_head": "Current Lineup\n3 Players Selected\nClear\nFrances Tiafoe\n\nTENNISFrances Tiafoe - Player\n\nWed, Sep 30 10:00 PM @ Kei Nishikori\n2.5Total Sets\nMore\nAlexander Zverev\n\nTENNISAlexander Zverev - Player\n\nWed, Sep 30 10:00 PM vs Cameron Norrie\n18.5Total Games\nMore\nTommy Paul\n\nTENNISTommy Paul - Player\n\nTue, Sep 29 11:15 PM @ Alejandro Tabilo\n21.5Total Games\nMore\nFlex Play\n\nYou must hit 1st place, or 2 out of"
+    },
+    {
+      "id": "G2-Baturina-Sucic",
+      "ok": false,
+      "n": 1,
+      "want_n": 2,
+      "px": null,
+      "fails": [],
+      "legs": [
+        {
+          "sport": "Soccer",
+          "player": "Martin Baturina",
+          "prop": "Shots",
+          "prop_type": "Shots",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "Soccer",
+          "player": "Luka Sucic",
+          "prop": "Shots",
+          "prop_type": "Shots",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "raw_head": "Current Lineup\n1 Players Selected\nClear\nLuka Sucic\n\nSOCCERCroatia - Midfielder\n\nTue, Sep 29 2:45 PM @ Spain\n0.5Shots\nMore\nYou can complete your lineup when 2+ players are selected.\nEntry Fee\n$\nTo Win\nBalance: $63.60\nPromo: $0.00\nAuto-accept projection changes\nSubmit Lineup\nPrivacy policy\nYour Privacy Choices\nResponsible gaming\nPrizePicks Blog\nTerms\nCareers\nContact Us\nAccessibility Statement"
+    }
+  ]
+}

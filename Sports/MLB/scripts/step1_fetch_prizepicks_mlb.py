@@ -1220,6 +1220,9 @@ def main():
 
     df = _stamp_fetched_at(df)
     df.to_csv(out_path, index=False, encoding="utf-8-sig")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(out_path, sport="MLB")
     try:
         if str(_PROPORACLE_ROOT) not in sys.path:
             sys.path.insert(0, str(_PROPORACLE_ROOT))

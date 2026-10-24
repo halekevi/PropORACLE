@@ -1,8 +1,11 @@
 """Which sports have a ticket rule, and whether it replaces L5/L10/D.
 
-A sport with no entry is off. NHL, NBA, CBB, and WCBB are out of season,
-so they are not registered here. Holds (thin competitions such as a World
-Cup) are applied by the caller before this lookup.
+A sport with no entry is off. NHL, CBB, and WCBB stay unregistered. NHL
+Shots On Goal still has no cell to ticket from. NBA full-game and NBA1H
+stay unregistered: the default L5=5+L10>=8+D stack is -EV in the Goblin
+backtest (0.668 vs ~0.737 breakeven). Mixer/Standard NBA is held until
+step7b scores. See ``utils.ticket_sport_holds``. Holds (thin competitions
+such as a World Cup) are applied by the caller before this lookup.
 """
 from __future__ import annotations
 

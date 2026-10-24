@@ -243,6 +243,7 @@ from utils.player_prob_shrinkage import (
 )
 from utils.pipeline_read_enrichment import (
     READ_SLATE_EXPORT_KEYS,
+    _fillna_text_cols,
     enrich_read_fields_dataframe,
 )
 from utils.stack_70_eligible import (
@@ -3968,7 +3969,7 @@ _JOIN_SPORT_TO_ODDS_KEY: dict[str, str] = {
 
 
 def _sport_display_from_join_key(js: object) -> str:
-    j = str(js or "").strip().upper()
+    j = _join_text(js).upper()
     if j == "SOCCER":
         return "Soccer"
     if j == "GOLF":
@@ -4094,7 +4095,7 @@ def _load_vegas_alt_lines_detail(path: str) -> pd.DataFrame:
 
 
 def _odds_key_for_join_sport(js: object) -> str:
-    u = str(js or "").strip().upper()
+    u = _join_text(js).upper()
     if u == "SOCCER":
         return _JOIN_SPORT_TO_ODDS_KEY.get("SOCCER", "")
     return _JOIN_SPORT_TO_ODDS_KEY.get(u, "")
@@ -4104,7 +4105,7 @@ def _pp_odds_market(prop_type: object, join_sport: object) -> str:
     sk = _odds_key_for_join_sport(join_sport)
     if not sk:
         return ""
-    m = str(_odds_market_for_prop_cached(str(prop_type or ""), sk) or "").strip().lower()
+    m = str(_odds_market_for_prop_cached(_join_text(prop_type), sk) or "").strip().lower()
     if m.startswith("player_") or m.startswith("batter_") or m.startswith("pitcher_"):
         return m
     return ""
@@ -4957,6 +4958,16 @@ def _nba1h_gated(gate_recs: dict) -> bool:
 def _sport_ticket_gated(sport: str) -> tuple[bool, str]:
     """True if sport must not enter EV / win-rate ticket pools (slate unchanged)."""
     su = str(sport or "").strip().upper()
+    if su in {"NBA", "NBA1H"}:
+        from utils.ticket_sport_holds import NBA_MIXER_HOLD_REASON, nba_mixer_tickets_held
+
+        if nba_mixer_tickets_held():
+            return True, NBA_MIXER_HOLD_REASON
+    if su == "NHL":
+        from utils.ticket_sport_holds import NHL_MIXER_HOLD_REASON, nhl_mixer_tickets_held
+
+        if nhl_mixer_tickets_held():
+            return True, NHL_MIXER_HOLD_REASON
     if not su or su in ALWAYS_ALLOW_SPORTS:
         return False, ""
     if su == "NFL" and NFL_TICKET_GATE:
@@ -13225,6 +13236,17 @@ def write_web_outputs(
     skip_ui_filters: bool = False,
 ):
     """Write tickets_latest.json for /tickets; graded HTML is build_ticket_eval.py → ticket_eval_<date>.html."""
+    from utils.stale_board_tickets import annotate_ticket_payload
+
+    n_stale = annotate_ticket_payload(payload)
+    if n_stale:
+        print(f"  [stale_board] marked {n_stale} invalid slip(s)")
+    from utils.slate_schedule_gate import filter_payload_to_espn_schedule
+
+    payload, blocked = filter_payload_to_espn_schedule(payload)
+    if blocked:
+        n_started = sum(1 for b in blocked if str(b.get("reason") or "").startswith("game_started"))
+        print(f"  [schedule-gate] {len(blocked)} slip(s) blocked ({n_started} already started)")
     os.makedirs(outdir, exist_ok=True)
     json_path = os.path.join(outdir, json_filename)
     if skip_ui_filters:
@@ -16382,9 +16404,16 @@ def add_prop_quality_score(df: pd.DataFrame) -> pd.DataFrame:
         out.get("direction", pd.Series("", index=out.index)).astype(str).str.upper().str.strip()
     )
     is_under_side = direction_u.isin({"UNDER", "LOWER"})
-    hr = pd.to_numeric(out.get("hit_rate"), errors="coerce").apply(_to_prob_0_1)
-    l5o = pd.to_numeric(out.get("l5_over"), errors="coerce").fillna(0.0)
-    l5u = pd.to_numeric(out.get("l5_under"), errors="coerce").fillna(0.0)
+    def _num_col(col: str) -> pd.Series:
+        if col not in out.columns:
+            return pd.Series(np.nan, index=out.index, dtype=float)
+        s = out[col]
+        if isinstance(s, pd.DataFrame):
+            s = s.iloc[:, 0]
+        return pd.to_numeric(s, errors="coerce")
+    hr = _num_col("hit_rate").apply(_to_prob_0_1)
+    l5o = _num_col("l5_over").fillna(0.0)
+    l5u = _num_col("l5_under").fillna(0.0)
     l5_side = np.maximum(l5o, l5u)
     l5_side_rate = np.clip(l5_side / 5.0, 0.0, 1.0)
     hr = hr.fillna(pd.Series(l5_side_rate, index=out.index))
@@ -16571,9 +16600,16 @@ def filter_eligible(
         sport_series = in_df.get("sport", pd.Series([""] * len(in_df), index=in_df.index)).astype(str).str.upper().str.strip()
         for sport, grp in in_df.groupby(sport_series):
             t = thresholds.get(str(sport).upper(), default)
-            l5_over = pd.to_numeric(grp.get("l5_over"), errors="coerce").fillna(0)
-            l5_under = pd.to_numeric(grp.get("l5_under"), errors="coerce").fillna(0)
-            hit_rate = pd.to_numeric(grp.get("hit_rate"), errors="coerce")
+            def _gnum(col: str) -> pd.Series:
+                if col not in grp.columns:
+                    return pd.Series(np.nan, index=grp.index, dtype=float)
+                s = grp[col]
+                if isinstance(s, pd.DataFrame):
+                    s = s.iloc[:, 0]
+                return pd.to_numeric(s, errors="coerce")
+            l5_over = _gnum("l5_over").fillna(0)
+            l5_under = _gnum("l5_under").fillna(0)
+            hit_rate = _gnum("hit_rate")
             dir_s = (
                 grp.get("direction", pd.Series([""] * len(grp), index=grp.index))
                 if "direction" in grp.columns
@@ -22419,6 +22455,7 @@ def main():
         # NHL + MLB: row-wise low-signal exclusions.
 
         filtered_df = ensure_prop_signal_columns(df.copy())
+        filtered_df = _fillna_text_cols(filtered_df)
         filtered_df = _attach_reliability_columns(filtered_df, reliability_index)
         filtered_df = _attach_strat_columns(filtered_df, strat_index)
         filtered_df = attach_stack_70_columns(filtered_df)

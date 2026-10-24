@@ -534,6 +534,9 @@ def _write_nhl_output(rows: list, out_path: Path, append: bool) -> None:
     else:
         write_csv(rows, str(out_path))
         _archive_nhl_lines(new_df)
+        from utils.pick_type_persist import assert_pick_type_persisted
+
+        assert_pick_type_persisted(out_path, sport="NHL")
 
 
 def main():

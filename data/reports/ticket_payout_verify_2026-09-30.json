@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-30",
+  "generated_at": "2026-09-30T21:34:45.785394+00:00",
+  "tickets_path": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\tickets_latest.json",
+  "live_cdp_path": "H:\\PropORACLE_main_cp\\ui_runner\\data\\payout_ladder_live_cdp.json",
+  "rate_card_path": "H:\\PropORACLE_main_cp\\ui_runner\\data\\sg_delta_payout_rate_card_latest.json",
+  "summary": {
+    "n_tickets": 1,
+    "n_with_live_cdp": 1,
+    "n_missing_live_cdp": 0,
+    "n_outstanding_rates": 1,
+    "n_covered": 0
+  },
+  "recipe_counts": {
+    "3|0S+3G+0D|3+4.5+5": 1
+  },
+  "missing_live_cdp": [],
+  "outstanding_rates": [
+    {
+      "ticket_id": "2026-09-30|STRONG 3-Leg|1",
+      "group_name": "STRONG 3-Leg",
+      "n_legs": 3,
+      "composition": "0S+3G+0D",
+      "goblin_delta_sig": "3+4.5+5",
+      "ticket_payout_source": "live_cdp",
+      "ticket_display_min_x": 1.5,
+      "has_live_cdp_on_ticket": true,
+      "live_cdp_recipe_hits": 0,
+      "live_cdp_recipe_min_x": null,
+      "rate_card_source": null,
+      "rate_card_status": "missing",
+      "rate_card_min_x": null,
+      "missing_goblin_delta": 0
+    }
+  ],
+  "covered_sample": [],
+  "actions": [
+    {
+      "action": "fill_missing_tickets",
+      "skipped": "none_missing"
+    },
+    {
+      "action": "rebuild_rate_card",
+      "exit_code": 0
+    }
+  ]
+}

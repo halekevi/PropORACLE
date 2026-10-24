@@ -1,0 +1,58 @@
+{
+  "track": "nfl_std_under_shadow",
+  "prereg_date": "2026-10-24",
+  "frozen": true,
+  "sport": "NFL",
+  "season": "regular",
+  "side": "UNDER",
+  "face": {
+    "pick_type_literal": "Standard",
+    "board_requirement": "step1 pick_type column present with >=1 Goblin/Demon row",
+    "source": "Sports/NFL/scripts/step1_fetch_prizepicks_nfl.py (live tree, pick_type persisted from 2026-10-24)"
+  },
+  "props_in": ["sacks", "tackles"],
+  "props_out_explicit": ["passcompletions"],
+  "props_default": "out",
+  "gate": {
+    "l10_under_min": 8,
+    "cover_dir_min": 1.0,
+    "cover_def": "line - L5 average (UNDER directional)"
+  },
+  "timing": {
+    "log_before_kickoff": true,
+    "game_date_after": "2026-10-24"
+  },
+  "shape": {
+    "legs": 2,
+    "type": "Power",
+    "flat_quote_x": 3.0,
+    "breakeven_per_leg": 0.5774,
+    "pair_pricing": "p_squared",
+    "stake": 20,
+    "placed": false
+  },
+  "arms": {
+    "rule4_applied": {
+      "drop_lines": [0.5, 2.5, 4.5],
+      "role_exemption": "SUPPORT",
+      "role_source": "unavailable_line_only",
+      "note": "NFL step8 has no role / snap field; every player treated as a role player"
+    },
+    "rule4_waived": {
+      "drop_lines": []
+    }
+  },
+  "bar": {
+    "decided_min": 100,
+    "wilson_z": 1.96,
+    "breakeven_from": "real scraped 2-leg Standard quote via utils.scraped_quote.is_real_scraped_quote",
+    "flat_quote_counts_as_met": false,
+    "not_on_board_counts": false,
+    "per_arm": true
+  },
+  "backtest_prior": {
+    "trusted": false,
+    "reason": "pick_type not persisted before 2026-10-23; 484/632 graded Standard UNDER sacks/tackles legs were ladder rungs (Goblin/Demon faces)"
+  },
+  "on_clear": "report only; no keep gate, no ticket wiring, user decides"
+}

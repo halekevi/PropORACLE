@@ -47,8 +47,25 @@ def _repo_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
+def _cell_str(v: object) -> str:
+    if v is None:
+        return ""
+    try:
+        if pd.isna(v):
+            return ""
+    except (TypeError, ValueError):
+        pass
+    try:
+        s = str(v).strip()
+    except Exception:
+        return ""
+    if s.lower() in {"nan", "<na>", "none", "<nat>"}:
+        return ""
+    return s
+
+
 def _norm_pick_type(raw: object) -> str:
-    s = str(raw or "").strip().upper()
+    s = _cell_str(raw).upper()
     if "GOBLIN" in s:
         return "GOBLIN"
     if "DEMON" in s:
@@ -57,19 +74,19 @@ def _norm_pick_type(raw: object) -> str:
 
 
 def _norm_direction(raw: object) -> str:
-    s = str(raw or "").strip().upper()
+    s = _cell_str(raw).upper()
     if s in {"UNDER", "LOWER"}:
         return "UNDER"
     return "OVER"
 
 
 def _norm_player_name(s: object) -> str:
-    t = unicodedata.normalize("NFKD", str(s or "").strip().lower())
+    t = unicodedata.normalize("NFKD", _cell_str(s).lower())
     return "".join(c for c in t if not unicodedata.combining(c))
 
 
 def _norm_prop_key(s: object) -> str:
-    return str(s or "").strip().lower()
+    return _cell_str(s).lower()
 
 
 def is_invalid_market_side(pick_type: object, direction: object) -> bool:
@@ -276,7 +293,7 @@ def stack_70_eligible_row(row: pd.Series | dict[str, Any]) -> bool:
     if not _matchup_aligned(row, direction, def_tier):
         return False
 
-    cg = str(row.get("consistency_grade", row.get("consistency_grade_norm", "")) or "").strip().upper()
+    cg = _cell_str(row.get("consistency_grade", row.get("consistency_grade_norm", ""))).upper()
     if cg and cg not in _STRONG_CONSISTENCY and cg != "?":
         return False
 

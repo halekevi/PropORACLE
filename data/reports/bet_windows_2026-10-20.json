@@ -1,0 +1,470 @@
+{
+  "date": "2026-10-20",
+  "generated_at": "2026-10-20T21:49:43-04:00",
+  "line_pulls": [
+    {
+      "fetched_at": "2026-10-08T10:30:15-04:00",
+      "window": "10:30",
+      "n_props": 194,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-08T10:45:05-04:00",
+      "window": "10:30",
+      "n_props": 194,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-08T13:00:09-04:00",
+      "window": "1PM",
+      "n_props": 194,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-08T13:13:25-04:00",
+      "window": "1PM",
+      "n_props": 194,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-08T16:30:12-04:00",
+      "window": "4:30",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-08T16:43:40-04:00",
+      "window": "4:30",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-09T08:00:45-04:00",
+      "window": "8AM",
+      "n_props": 193,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-10-09T08:04:33-04:00",
+      "window": "8AM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-09T09:01:03-04:00",
+      "window": "9AM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-09T09:03:18-04:00",
+      "window": "9AM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-09T10:30:10-04:00",
+      "window": "10:30",
+      "n_props": 193,
+      "n_moved": 1
+    },
+    {
+      "fetched_at": "2026-10-09T10:34:45-04:00",
+      "window": "10:30",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-09T13:00:13-04:00",
+      "window": "1PM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-09T13:04:51-04:00",
+      "window": "1PM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-09T16:30:10-04:00",
+      "window": "4:30",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-09T16:31:49-04:00",
+      "window": "4:30",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T01:29:13-04:00",
+      "window": "1AM",
+      "n_props": 193,
+      "n_moved": 1
+    },
+    {
+      "fetched_at": "2026-10-10T01:32:21-04:00",
+      "window": "1AM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T05:27:59-04:00",
+      "window": "5AM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T05:32:10-04:00",
+      "window": "5AM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T08:00:54-04:00",
+      "window": "8AM",
+      "n_props": 193,
+      "n_moved": 1
+    },
+    {
+      "fetched_at": "2026-10-10T08:05:10-04:00",
+      "window": "8AM",
+      "n_props": 194,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T09:00:09-04:00",
+      "window": "9AM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T09:01:23-04:00",
+      "window": "9AM",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T10:30:11-04:00",
+      "window": "10:30",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T10:32:26-04:00",
+      "window": "10:30",
+      "n_props": 193,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T13:00:29-04:00",
+      "window": "1PM",
+      "n_props": 224,
+      "n_moved": 11
+    },
+    {
+      "fetched_at": "2026-10-10T13:02:01-04:00",
+      "window": "1PM",
+      "n_props": 224,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T16:30:12-04:00",
+      "window": "4:30",
+      "n_props": 224,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-10T16:36:18-04:00",
+      "window": "4:30",
+      "n_props": 224,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-19T21:05:25-04:00",
+      "window": "9PM",
+      "n_props": 2613,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-19T21:18:04-04:00",
+      "window": "9PM",
+      "n_props": 2623,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T01:04:28-04:00",
+      "window": "1AM",
+      "n_props": 2727,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T01:05:20-04:00",
+      "window": "1AM",
+      "n_props": 1974,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T01:05:40-04:00",
+      "window": "1AM",
+      "n_props": 1460,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T01:06:00-04:00",
+      "window": "1AM",
+      "n_props": 850,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T01:14:52-04:00",
+      "window": "1AM",
+      "n_props": 2726,
+      "n_moved": 7
+    },
+    {
+      "fetched_at": "2026-10-20T01:15:43-04:00",
+      "window": "1AM",
+      "n_props": 1974,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T01:16:27-04:00",
+      "window": "1AM",
+      "n_props": 1471,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T01:17:11-04:00",
+      "window": "1AM",
+      "n_props": 825,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T05:04:19-04:00",
+      "window": "5AM",
+      "n_props": 2735,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T05:05:16-04:00",
+      "window": "5AM",
+      "n_props": 2686,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T05:05:35-04:00",
+      "window": "5AM",
+      "n_props": 1902,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T05:05:55-04:00",
+      "window": "5AM",
+      "n_props": 577,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T05:15:57-04:00",
+      "window": "5AM",
+      "n_props": 2728,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T05:16:09-04:00",
+      "window": "5AM",
+      "n_props": 2735,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T05:16:14-04:00",
+      "window": "5AM",
+      "n_props": 1901,
+      "n_moved": 3
+    },
+    {
+      "fetched_at": "2026-10-20T05:16:58-04:00",
+      "window": "5AM",
+      "n_props": 577,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T08:01:10-04:00",
+      "window": "8AM",
+      "n_props": 2766,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T08:01:23-04:00",
+      "window": "8AM",
+      "n_props": 3261,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T08:01:28-04:00",
+      "window": "8AM",
+      "n_props": 1722,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T08:01:33-04:00",
+      "window": "8AM",
+      "n_props": 405,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T09:00:18-04:00",
+      "window": "9AM",
+      "n_props": 3153,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T09:00:31-04:00",
+      "window": "9AM",
+      "n_props": 3403,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T09:00:37-04:00",
+      "window": "9AM",
+      "n_props": 1720,
+      "n_moved": 3
+    },
+    {
+      "fetched_at": "2026-10-20T09:00:45-04:00",
+      "window": "9AM",
+      "n_props": 420,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T10:30:39-04:00",
+      "window": "10:30",
+      "n_props": 3266,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T10:30:53-04:00",
+      "window": "10:30",
+      "n_props": 3474,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T10:31:00-04:00",
+      "window": "10:30",
+      "n_props": 2502,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T10:31:05-04:00",
+      "window": "10:30",
+      "n_props": 392,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T13:00:25-04:00",
+      "window": "1PM",
+      "n_props": 3260,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T13:00:52-04:00",
+      "window": "1PM",
+      "n_props": 3671,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T13:01:04-04:00",
+      "window": "1PM",
+      "n_props": 272,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T16:30:27-04:00",
+      "window": "4:30",
+      "n_props": 2237,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T16:30:40-04:00",
+      "window": "4:30",
+      "n_props": 3813,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T16:30:46-04:00",
+      "window": "4:30",
+      "n_props": 1612,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T16:30:51-04:00",
+      "window": "4:30",
+      "n_props": 600,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T16:30:54-04:00",
+      "window": "4:30",
+      "n_props": 87,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T21:32:30-04:00",
+      "window": "9PM",
+      "n_props": 8171,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T21:33:43-04:00",
+      "window": "9PM",
+      "n_props": 2438,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T21:34:01-04:00",
+      "window": "9PM",
+      "n_props": 653,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T21:34:24-04:00",
+      "window": "9PM",
+      "n_props": 87,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T21:37:33-04:00",
+      "window": "9PM",
+      "n_props": 604,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T21:41:55-04:00",
+      "window": "9PM",
+      "n_props": 8207,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T21:43:44-04:00",
+      "window": "9PM",
+      "n_props": 458,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T21:46:19-04:00",
+      "window": "9PM",
+      "n_props": 604,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-20T21:49:43-04:00",
+      "window": "9PM",
+      "n_props": 604,
+      "n_moved": 0
+    }
+  ],
+  "payout_scrapes": [],
+  "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
+}

@@ -392,9 +392,6 @@ def _fetch_one_event_cfb(
         return eid, []
 
 
-_SCOREBOARD_RESCAN_DAYS = 3
-
-
 def _events_cache_path(cache_path: str) -> str:
     p = Path(cache_path)
     return str(p.with_name(p.stem + "_events.csv"))
@@ -516,22 +513,39 @@ def build_player_histories(
         by_date.setdefault(ev[3], []).append(ev)
     anchor = end_date or dt.date.today()
     dates = date_range(anchor, days)
-    recent_cut = (anchor - dt.timedelta(days=_SCOREBOARD_RESCAN_DAYS)).strftime("%Y%m%d")
-    if stored_events and not scanned_dates:
-        oldest = min(ev[3] for ev in stored_events)
+    newest = ""
+    for rr in cached_rows:
+        gd = str(rr.get("game_date") or "").strip().replace("-", "")[:8]
+        if len(gd) == 8 and gd > newest:
+            newest = gd
+    if not newest and stored_events:
+        newest = max(ev[3] for ev in stored_events)
+    if newest and not scanned_dates:
+        oldest = min((ev[3] for ev in stored_events), default=newest)
         for d in dates:
-            if oldest <= d < recent_cut:
+            if oldest <= d < newest:
                 scanned_dates.add(d)
         print(
             f"  [CACHE] Marked {len(scanned_dates)} completed scoreboard days "
-            f"(off days included, last {_SCOREBOARD_RESCAN_DAYS} days stay live)"
+            f"before {newest}; live scan starts at the cache's newest date"
+        )
+    if ESPN_LEAGUE == "nfl" and cached_rows:
+        season_start = f"{anchor.year if anchor.month >= 9 else anchor.year - 1}0901"
+        n_current = 0
+        for rr in cached_rows:
+            gd = str(rr.get("game_date") or "").strip().replace("-", "")[:8]
+            if len(gd) == 8 and gd >= season_start:
+                n_current += 1
+        print(
+            f"  [CACHE] current-season box rows={n_current} "
+            f"(game_date>={season_start}; these rows feed games_used)"
         )
     all_events: List[Tuple[str, str, str, str]] = []
     seen_eids: set = set()
     live_dates: List[str] = []
     cached_dates = 0
     for d in dates:
-        if d < recent_cut and d in scanned_dates:
+        if newest and d < newest and (d in scanned_dates or by_date.get(d)):
             cached_dates += 1
             for ev in by_date.get(d, []):
                 if ev[0] not in seen_eids:
@@ -541,7 +555,7 @@ def build_player_histories(
             live_dates.append(d)
     print(
         f"-> Scoreboards: {cached_dates} completed days from cache, "
-        f"{len(live_dates)} days live ({ESPN_LEAGUE})"
+        f"{len(live_dates)} days live from {newest or 'the start of the window'} ({ESPN_LEAGUE})"
     )
     try:
         from tqdm import tqdm as _tqdm

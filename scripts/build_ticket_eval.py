@@ -578,10 +578,15 @@ def _canon_void_note(row: dict[str, Any]) -> str:
 
 def _normalize_workbook_rows(path: Path) -> list[dict[str, Any]]:
     """Load all sheets; normalize headers to lowercase single-space keys."""
+    from proporacle.data.table_io import excel_data_header_row, repair_banner_headers
+
     xl = pd.ExcelFile(path)
     out: list[dict[str, Any]] = []
     for sheet in xl.sheet_names:
-        df = pd.read_excel(path, sheet_name=sheet)
+        if str(sheet) == "_META":
+            continue
+        header = excel_data_header_row(path, sheet)
+        df = repair_banner_headers(pd.read_excel(path, sheet_name=sheet, header=header))
         if df.empty:
             continue
         df.columns = [_norm_header(c) for c in df.columns]
@@ -3884,9 +3889,13 @@ def _build_html(
     all_legs: list[tuple[dict, dict | None, str]] = []
     tickets_flat: list[dict] = []
 
+    from utils.ticket_70_pool import ticket_excluded_from_winrate
+
     for g in groups:
         gname = str(g.get("group_name") or "Group")
         for t in g.get("tickets") or []:
+            if ticket_excluded_from_winrate(t, gname):
+                continue
             t["_group_name"] = gname
             tickets_flat.append(t)
             for leg in t.get("legs") or []:

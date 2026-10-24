@@ -1290,6 +1290,19 @@ if (-not $SkipPipeline) {
 
     Write-Log "STEP C - Pipeline ($Today): START"
     $pipeScript = Join-Path $Root "run_pipeline.ps1"
+    # Parallel NBA Start-Job has been skipping steps 2-4 (step4d on a missing
+    # step4_with_stats.csv). Sequential NBAOnly first, then skip the parallel job.
+    Write-Host "STEP C-NBA sequential rebuild (parallel NBA job skipped until comparison is done)" -ForegroundColor Cyan
+    Write-Log "STEP C-NBA sequential: START"
+    & pwsh -NoProfile -File $pipeScript -Date $Today -NBAOnly -SkipCombined -SkipPush -SkipDailyGrader -SkipLivePayoutCapture
+    $nbaSeq = $LASTEXITCODE
+    if ($nbaSeq -ne 0) {
+        Write-Host "NBA sequential failed (exit $nbaSeq) — other sports still run" -ForegroundColor Yellow
+        Write-Log "STEP C-NBA sequential: FAILED (exit $nbaSeq)"
+    } else {
+        Write-Log "STEP C-NBA sequential: OK"
+    }
+    $env:PROPORACLE_SKIP_NBA_JOB = "1"
     $pipeArgs = @("-File", $pipeScript, "-Date", $Today, "-TennisDate", $TennisDate)
     if ($EffectiveOddsKey) {
         $pipeArgs += @("-OddsApiKey", $EffectiveOddsKey)

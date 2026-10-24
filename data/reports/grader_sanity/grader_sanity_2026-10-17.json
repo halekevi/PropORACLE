@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-17",
+  "alerts": [
+    "MLB 2026-10-17: VOID/PENDING share 100% (460/460) exceeds 50%",
+    "WNBA 2026-10-17: actuals on disk but 0 graded rows (graded_wnba_2026-10-17.xlsx missing/empty)"
+  ],
+  "n_alerts": 2
+}

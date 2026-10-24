@@ -1,0 +1,845 @@
+{
+  "generated_at": "2026-10-24T16:57:50.709970+00:00",
+  "criteria": {
+    "written": "2026-10-11",
+    "status": "observe_only",
+    "ticket_rules": "unchanged",
+    "observe_after": "2026-10-11",
+    "discovery_sample_counts": false,
+    "paths": {
+      "nfl_standard_under_3leg_flex": {
+        "shape": "3-leg Flex",
+        "sport": "NFL",
+        "pick_type": "Standard",
+        "direction": "UNDER",
+        "props": [
+          "receptions",
+          "sacks",
+          "receiving_yards",
+          "longest_reception"
+        ],
+        "gate": "L5=5, L10>=8, directional D (UNDER vs Elite or Above Avg)",
+        "published_ladder_until_a_scrape_exists": {
+          "3": 3.0,
+          "2": 1.0
+        },
+        "breakeven_per_leg_on_that_card": 0.5774,
+        "breakeven_uses": "The N-correct Flex quote scraped on slips that contain these legs. The published 3x for 3/3 and 1x for 2/3 stays the bar only until that scrape exists.",
+        "promotion_requires_all": [
+          "At least 100 decided legs whose slate date is after 2026-10-11.",
+          "Those legs come from several NFL weeks and several players.",
+          "Wilson 95% lower bound at or above the per-leg breakeven of the real scraped Flex quote.",
+          "The four cells found by scanning every gated cell do not count toward the 100.",
+          "Rule 4 applies to NFL as written, both directions. Lines 0.5, 2.5, and 4.5 are out when role_tier is SUPPORT. PRIMARY and SECONDARY on those lines may count. A fragile line with no role_tier does not count until role is known."
+        ],
+        "face_label_caveat": "Label-based. The 10-11 Standard UNDER cells and the rule-4-for-NFL ruling were computed on pick_type that step1 never stored (defaulted to Standard downstream); Demon/Goblin rungs are mixed into the 'Standard' rows. Only slate dates with step1 pick_type persisted (2026-10-23+, plus 09-20/09-21/09-24) are real faces. Forward counting must use utils.face_ladder status == verified. See data/reports/face_contamination_2026-10-24.md.",
+        "rule4": {
+          "decision": "apply_to_nfl_as_written",
+          "set_on": "2026-10-11",
+          "face_label_caveat": "The sacks UNDER 0.5 fragility example and the ungated hit rate this ruling cites were read from label-only Standard rows (see face_label_caveat). Re-read on verified faces before relying on either.",
+          "lines": [
+            0.5,
+            2.5,
+            4.5
+          ],
+          "role_player": "SUPPORT",
+          "directions": "OVER and UNDER",
+          "why": "Rule 4 caps miss-by-1 tail risk. A sacks UNDER 0.5 loses on one sack, the same fragility the rule was written for on OVERs. The ungated hit rate does not waive it."
+        }
+      },
+      "goblin70_on_2x_plus": {
+        "shape": "Goblin Power quoted at 2x or more",
+        "promotion_requires_all": [
+          "At least 100 decided legs whose slate date is after 2026-10-11.",
+          "Those legs come from several weeks and several players.",
+          "Each quote is stored at scrape time with standard_line, the Goblin-to-Standard gap, and Goblin-70 status.",
+          "The hit rate is graded on those 2x-plus slips' own legs, not the pooled Goblin-70 sleeve.",
+          "Wilson 95% lower bound at or above the per-leg breakeven of that slip's own quote."
+        ]
+      }
+    }
+  },
+  "counts_toward_promotion": false,
+  "face_label_caveat": "Label-based. The 10-11 Standard UNDER cells and the rule-4-for-NFL ruling were computed on pick_type that step1 never stored (defaulted to Standard downstream); Demon/Goblin rungs are mixed into the 'Standard' rows. Only slate dates with step1 pick_type persisted (2026-10-23+, plus 09-20/09-21/09-24) are real faces. Forward counting must use utils.face_ladder status == verified. See data/reports/face_contamination_2026-10-24.md.",
+  "face_verified_dates_in_sample": [
+    "2026-09-20",
+    "2026-09-21",
+    "2026-09-24"
+  ],
+  "nfl_standard_under": [
+    {
+      "prop": "receptions",
+      "ungated": {
+        "hits": 230,
+        "n": 306,
+        "rate": 0.7516,
+        "wilson_lo": 0.7003,
+        "unique_players": 117,
+        "unique_weeks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "by_week": {
+          "1": {
+            "hits": 61,
+            "n": 73,
+            "players": 34
+          },
+          "2": {
+            "hits": 33,
+            "n": 49,
+            "players": 42
+          },
+          "3": {
+            "hits": 11,
+            "n": 21,
+            "players": 18
+          },
+          "4": {
+            "hits": 13,
+            "n": 19,
+            "players": 7
+          },
+          "5": {
+            "hits": 59,
+            "n": 72,
+            "players": 34
+          },
+          "6": {
+            "hits": 53,
+            "n": 72,
+            "players": 34
+          }
+        },
+        "lines_0_5_or_2_5": 64,
+        "line_counts": {
+          "other": 242,
+          "2.5": 61,
+          "0.5": 3
+        },
+        "role_counts": {
+          "(blank)": 306
+        },
+        "prior_season_hits": 19,
+        "prior_season_n": 23,
+        "quotable": {
+          "hits": 146,
+          "n": 194,
+          "rate": 0.7526,
+          "wilson_lo": 0.6873
+        }
+      },
+      "gated": {
+        "hits": 34,
+        "n": 41,
+        "rate": 0.8293,
+        "wilson_lo": 0.6874,
+        "unique_players": 23,
+        "unique_weeks": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "by_week": {
+          "1": {
+            "hits": 15,
+            "n": 15,
+            "players": 9
+          },
+          "2": {
+            "hits": 2,
+            "n": 2,
+            "players": 2
+          },
+          "3": {
+            "hits": 1,
+            "n": 3,
+            "players": 2
+          },
+          "5": {
+            "hits": 9,
+            "n": 9,
+            "players": 5
+          },
+          "6": {
+            "hits": 7,
+            "n": 12,
+            "players": 9
+          }
+        },
+        "lines_0_5_or_2_5": 4,
+        "line_counts": {
+          "other": 37,
+          "2.5": 4
+        },
+        "role_counts": {
+          "(blank)": 41
+        },
+        "prior_season_hits": 11,
+        "prior_season_n": 11,
+        "quotable": {
+          "hits": 23,
+          "n": 29,
+          "rate": 0.7931,
+          "wilson_lo": 0.6161
+        }
+      },
+      "zero_weeks": [
+        {
+          "week": 4,
+          "ungated_n": 19,
+          "l5_l10_clear": 10,
+          "reason": "defense gate failed (Weak 10); none Elite or Above Avg"
+        }
+      ],
+      "oos": {
+        "status": "split",
+        "note": "Holdout is the later half of slate dates. These cells were chosen on the full sample, so this half was inside the original search. Legs after 2026-10-11 are the untouched sample.",
+        "all_dates": [
+          "2026-09-13",
+          "2026-09-14",
+          "2026-09-17",
+          "2026-09-27",
+          "2026-09-28",
+          "2026-10-08",
+          "2026-10-12",
+          "2026-10-15",
+          "2026-10-18",
+          "2026-10-19"
+        ],
+        "find": {
+          "hits": 18,
+          "n": 20,
+          "rate": 0.9,
+          "wilson_lo": 0.699,
+          "dates": [
+            "2026-09-13",
+            "2026-09-14",
+            "2026-09-17",
+            "2026-09-27",
+            "2026-09-28"
+          ]
+        },
+        "oos": {
+          "hits": 16,
+          "n": 21,
+          "rate": 0.7619,
+          "wilson_lo": 0.5491,
+          "dates": [
+            "2026-10-08",
+            "2026-10-12",
+            "2026-10-15",
+            "2026-10-18",
+            "2026-10-19"
+          ]
+        }
+      }
+    },
+    {
+      "prop": "sacks",
+      "ungated": {
+        "hits": 272,
+        "n": 304,
+        "rate": 0.8947,
+        "wilson_lo": 0.8552,
+        "unique_players": 146,
+        "unique_weeks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "by_week": {
+          "1": {
+            "hits": 56,
+            "n": 58,
+            "players": 37
+          },
+          "2": {
+            "hits": 18,
+            "n": 23,
+            "players": 15
+          },
+          "3": {
+            "hits": 25,
+            "n": 27,
+            "players": 16
+          },
+          "4": {
+            "hits": 42,
+            "n": 42,
+            "players": 28
+          },
+          "5": {
+            "hits": 60,
+            "n": 73,
+            "players": 51
+          },
+          "6": {
+            "hits": 70,
+            "n": 80,
+            "players": 53
+          },
+          "7": {
+            "hits": 1,
+            "n": 1,
+            "players": 1
+          }
+        },
+        "lines_0_5_or_2_5": 159,
+        "line_counts": {
+          "other": 145,
+          "0.5": 145,
+          "2.5": 14
+        },
+        "role_counts": {
+          "(blank)": 304
+        },
+        "prior_season_hits": 17,
+        "prior_season_n": 19,
+        "quotable": {
+          "hits": 128,
+          "n": 145,
+          "rate": 0.8828,
+          "wilson_lo": 0.8203
+        }
+      },
+      "gated": {
+        "hits": 99,
+        "n": 115,
+        "rate": 0.8609,
+        "wilson_lo": 0.7859,
+        "unique_players": 53,
+        "unique_weeks": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "by_week": {
+          "1": {
+            "hits": 29,
+            "n": 30,
+            "players": 16
+          },
+          "2": {
+            "hits": 10,
+            "n": 13,
+            "players": 7
+          },
+          "3": {
+            "hits": 7,
+            "n": 9,
+            "players": 5
+          },
+          "5": {
+            "hits": 19,
+            "n": 22,
+            "players": 16
+          },
+          "6": {
+            "hits": 34,
+            "n": 41,
+            "players": 26
+          }
+        },
+        "lines_0_5_or_2_5": 57,
+        "line_counts": {
+          "other": 58,
+          "0.5": 52,
+          "2.5": 5
+        },
+        "role_counts": {
+          "(blank)": 115
+        },
+        "prior_season_hits": 17,
+        "prior_season_n": 19,
+        "quotable": {
+          "hits": 50,
+          "n": 58,
+          "rate": 0.8621,
+          "wilson_lo": 0.7507
+        }
+      },
+      "zero_weeks": [
+        {
+          "week": 4,
+          "ungated_n": 42,
+          "l5_l10_clear": 36,
+          "reason": "defense gate failed (Weak 31, Avg 5); none Elite or Above Avg"
+        },
+        {
+          "week": 7,
+          "ungated_n": 1,
+          "l5_l10_clear": 1,
+          "reason": "defense gate failed (Avg 1); none Elite or Above Avg"
+        }
+      ],
+      "oos": {
+        "status": "split",
+        "note": "Holdout is the later half of slate dates. These cells were chosen on the full sample, so this half was inside the original search. Legs after 2026-10-11 are the untouched sample.",
+        "all_dates": [
+          "2026-09-14",
+          "2026-09-17",
+          "2026-09-28",
+          "2026-10-08",
+          "2026-10-11",
+          "2026-10-12",
+          "2026-10-15",
+          "2026-10-18",
+          "2026-10-19"
+        ],
+        "find": {
+          "hits": 54,
+          "n": 60,
+          "rate": 0.9,
+          "wilson_lo": 0.7985,
+          "dates": [
+            "2026-09-14",
+            "2026-09-17",
+            "2026-09-28",
+            "2026-10-08"
+          ]
+        },
+        "oos": {
+          "hits": 45,
+          "n": 55,
+          "rate": 0.8182,
+          "wilson_lo": 0.6967,
+          "dates": [
+            "2026-10-11",
+            "2026-10-12",
+            "2026-10-15",
+            "2026-10-18",
+            "2026-10-19"
+          ]
+        }
+      }
+    },
+    {
+      "prop": "receiving_yards",
+      "ungated": {
+        "hits": 254,
+        "n": 377,
+        "rate": 0.6737,
+        "wilson_lo": 0.6249,
+        "unique_players": 137,
+        "unique_weeks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "by_week": {
+          "1": {
+            "hits": 61,
+            "n": 74,
+            "players": 31
+          },
+          "2": {
+            "hits": 42,
+            "n": 82,
+            "players": 76
+          },
+          "3": {
+            "hits": 12,
+            "n": 27,
+            "players": 23
+          },
+          "4": {
+            "hits": 14,
+            "n": 28,
+            "players": 7
+          },
+          "5": {
+            "hits": 56,
+            "n": 78,
+            "players": 33
+          },
+          "6": {
+            "hits": 67,
+            "n": 85,
+            "players": 33
+          },
+          "7": {
+            "hits": 2,
+            "n": 3,
+            "players": 3
+          }
+        },
+        "lines_0_5_or_2_5": 2,
+        "line_counts": {
+          "other": 375,
+          "2.5": 1,
+          "0.5": 1
+        },
+        "role_counts": {
+          "(blank)": 377
+        },
+        "prior_season_hits": 26,
+        "prior_season_n": 26,
+        "quotable": {
+          "hits": 253,
+          "n": 372,
+          "rate": 0.6801,
+          "wilson_lo": 0.6311
+        }
+      },
+      "gated": {
+        "hits": 37,
+        "n": 44,
+        "rate": 0.8409,
+        "wilson_lo": 0.7063,
+        "unique_players": 23,
+        "unique_weeks": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "by_week": {
+          "1": {
+            "hits": 12,
+            "n": 12,
+            "players": 7
+          },
+          "2": {
+            "hits": 2,
+            "n": 4,
+            "players": 4
+          },
+          "3": {
+            "hits": 1,
+            "n": 2,
+            "players": 2
+          },
+          "5": {
+            "hits": 8,
+            "n": 9,
+            "players": 6
+          },
+          "6": {
+            "hits": 14,
+            "n": 17,
+            "players": 10
+          }
+        },
+        "lines_0_5_or_2_5": 0,
+        "line_counts": {
+          "other": 44
+        },
+        "role_counts": {
+          "(blank)": 44
+        },
+        "prior_season_hits": 7,
+        "prior_season_n": 7,
+        "quotable": {
+          "hits": 37,
+          "n": 44,
+          "rate": 0.8409,
+          "wilson_lo": 0.7063
+        }
+      },
+      "zero_weeks": [
+        {
+          "week": 4,
+          "ungated_n": 28,
+          "l5_l10_clear": 10,
+          "reason": "defense gate failed (Weak 10); none Elite or Above Avg"
+        },
+        {
+          "week": 7,
+          "ungated_n": 3,
+          "l5_l10_clear": 0,
+          "reason": "no leg cleared L5=5 and L10>=8"
+        }
+      ],
+      "oos": {
+        "status": "split",
+        "note": "Holdout is the later half of slate dates. These cells were chosen on the full sample, so this half was inside the original search. Legs after 2026-10-11 are the untouched sample.",
+        "all_dates": [
+          "2026-09-14",
+          "2026-09-17",
+          "2026-09-20",
+          "2026-09-27",
+          "2026-09-28",
+          "2026-10-08",
+          "2026-10-11",
+          "2026-10-12",
+          "2026-10-15",
+          "2026-10-18",
+          "2026-10-19"
+        ],
+        "find": {
+          "hits": 15,
+          "n": 18,
+          "rate": 0.8333,
+          "wilson_lo": 0.6078,
+          "dates": [
+            "2026-09-14",
+            "2026-09-17",
+            "2026-09-20",
+            "2026-09-27",
+            "2026-09-28"
+          ]
+        },
+        "oos": {
+          "hits": 22,
+          "n": 26,
+          "rate": 0.8462,
+          "wilson_lo": 0.6647,
+          "dates": [
+            "2026-10-08",
+            "2026-10-11",
+            "2026-10-12",
+            "2026-10-15",
+            "2026-10-18",
+            "2026-10-19"
+          ]
+        }
+      }
+    },
+    {
+      "prop": "longest_reception",
+      "ungated": {
+        "hits": 70,
+        "n": 94,
+        "rate": 0.7447,
+        "wilson_lo": 0.6481,
+        "unique_players": 22,
+        "unique_weeks": [
+          1,
+          2
+        ],
+        "by_week": {
+          "1": {
+            "hits": 69,
+            "n": 89,
+            "players": 20
+          },
+          "2": {
+            "hits": 1,
+            "n": 5,
+            "players": 5
+          }
+        },
+        "lines_0_5_or_2_5": 0,
+        "line_counts": {
+          "other": 94
+        },
+        "role_counts": {
+          "(blank)": 94
+        },
+        "prior_season_hits": 31,
+        "prior_season_n": 36,
+        "quotable": {
+          "hits": 70,
+          "n": 93,
+          "rate": 0.7527,
+          "wilson_lo": 0.6561
+        }
+      },
+      "gated": {
+        "hits": 29,
+        "n": 35,
+        "rate": 0.8286,
+        "wilson_lo": 0.6732,
+        "unique_players": 8,
+        "unique_weeks": [
+          1
+        ],
+        "by_week": {
+          "1": {
+            "hits": 29,
+            "n": 35,
+            "players": 8
+          }
+        },
+        "lines_0_5_or_2_5": 0,
+        "line_counts": {
+          "other": 35
+        },
+        "role_counts": {
+          "(blank)": 35
+        },
+        "prior_season_hits": 31,
+        "prior_season_n": 36,
+        "quotable": {
+          "hits": 29,
+          "n": 34,
+          "rate": 0.8529,
+          "wilson_lo": 0.6987
+        }
+      },
+      "zero_weeks": [
+        {
+          "week": 2,
+          "ungated_n": 5,
+          "l5_l10_clear": 5,
+          "reason": "defense gate failed (Avg 5); none Elite or Above Avg"
+        }
+      ],
+      "oos": {
+        "status": "too_few_dates",
+        "n_dates": 1,
+        "note": "scan_gate_thresholds requires at least 4 slate dates. Week table is the split."
+      }
+    }
+  ],
+  "goblin70_2x_anecdote": [
+    {
+      "date": "2026-07-12",
+      "player": "kelsey mitchell",
+      "prop": "assists",
+      "graded_file": "H:\\PropORACLE\\ui_runner\\templates\\graded_props_2026-07-12.json",
+      "rows": [
+        {
+          "result": "HIT",
+          "line": "1.5",
+          "actual": "3",
+          "l5": "5.0",
+          "l10": "8.0",
+          "def_tier": "Below Avg"
+        },
+        {
+          "result": "HIT",
+          "line": "2.5",
+          "actual": "3",
+          "l5": "4.0",
+          "l10": "6.0",
+          "def_tier": "Below Avg"
+        }
+      ],
+      "counts_toward_promotion": false
+    },
+    {
+      "date": "2026-07-13",
+      "player": "allisha gray",
+      "prop": "points",
+      "graded_file": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\graded_props_2026-07-13.json",
+      "rows": [
+        {
+          "result": "HIT",
+          "line": "14.5",
+          "actual": "20",
+          "l5": "5",
+          "l10": "8",
+          "def_tier": "Weak"
+        },
+        {
+          "result": "HIT",
+          "line": "17.5",
+          "actual": "20",
+          "l5": "3",
+          "l10": "5",
+          "def_tier": "Weak"
+        }
+      ],
+      "counts_toward_promotion": false
+    },
+    {
+      "date": "2026-07-12",
+      "player": "jade melbourne",
+      "prop": "assists",
+      "graded_file": "H:\\PropORACLE\\ui_runner\\templates\\graded_props_2026-07-12.json",
+      "rows": [
+        {
+          "result": "MISS",
+          "line": "2.5",
+          "actual": "2",
+          "l5": "5.0",
+          "l10": "8.0",
+          "def_tier": "Weak"
+        },
+        {
+          "result": "MISS",
+          "line": "3.5",
+          "actual": "2",
+          "l5": "4.0",
+          "l10": "6.0",
+          "def_tier": "Weak"
+        }
+      ],
+      "counts_toward_promotion": false
+    },
+    {
+      "date": "2026-07-12",
+      "player": "jonquel jones",
+      "prop": "assists",
+      "graded_file": "H:\\PropORACLE\\ui_runner\\templates\\graded_props_2026-07-12.json",
+      "rows": [
+        {
+          "result": "MISS",
+          "line": "1.5",
+          "actual": "0",
+          "l5": "5.0",
+          "l10": "9.0",
+          "def_tier": "Below Avg"
+        },
+        {
+          "result": "MISS",
+          "line": "2.5",
+          "actual": "0",
+          "l5": "2.0",
+          "l10": "5.0",
+          "def_tier": "Below Avg"
+        }
+      ],
+      "counts_toward_promotion": false
+    },
+    {
+      "date": "2026-07-12",
+      "player": "natisha hiedeman",
+      "prop": "rebounds",
+      "graded_file": "H:\\PropORACLE\\ui_runner\\templates\\graded_props_2026-07-12.json",
+      "rows": [
+        {
+          "result": "HIT",
+          "line": "1.5",
+          "actual": "3",
+          "l5": "5.0",
+          "l10": "8.0",
+          "def_tier": "Weak"
+        }
+      ],
+      "counts_toward_promotion": false
+    }
+  ],
+  "flex_quotes": {
+    "cdp_rows": 281,
+    "rows_with_flex_ladder": 0,
+    "bar": "Published 3x for 3/3 and 1x for 2/3, breakeven 57.7% a leg. No scraped Flex ladder is on file, so a lower PrizePicks quote would move this bar up."
+  },
+  "week4_gate": {
+    "finding": "real defense miss, not a blank L5 or L10",
+    "decided_standard_under_rows": 85,
+    "l5_eq5_and_l10_ge8": 56,
+    "directional_d_pass": 0,
+    "def_tiers": {
+      "Weak": 78,
+      "Avg": 7
+    },
+    "opponents": [
+      "IND Weak",
+      "ATL Weak",
+      "WSH Weak",
+      "DET Weak",
+      "NO Avg"
+    ]
+  },
+  "forward_capture": "New CDP ladder rows store each leg's standard_line, gap, and Goblin-70 status from the ticket at scrape time. Older rows are not backfilled."
+}

@@ -1,0 +1,120 @@
+{
+  "results": [
+    {
+      "id": "2026-09-29|X-Sport Standard Power 3|1",
+      "ok": true,
+      "n": 3,
+      "want_n": 3,
+      "px": 6.0,
+      "fails": [],
+      "legs": [
+        [
+          "Tennis",
+          "Cameron Norrie",
+          "Total Games Won",
+          "OVER",
+          7.5
+        ],
+        [
+          "WNBA",
+          "Aliyah Boston",
+          "Defensive Rebounds",
+          "UNDER",
+          6.5
+        ],
+        [
+          "WNBA",
+          "Courtney Williams",
+          "Pts+Rebs",
+          "UNDER",
+          16.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n3 Players Selected\nClear\nCameron Norrie\n\nTENNISCameron Norrie - Player\n\nWed, Sep 30 10:00 PM @ Alexander Zverev\n7.5Total Games Won\nMore\nLess\nAliyah Boston\n\nWNBAIND - C-F\n\nTue, Sep 29 6:30 PM vs LVA\n28PRA\nMore\nLess\nSabrina Ionescu + Courtney Williams\n\nWNBANYL/MIN - G\n\nTue, Sep 29 8:30 PM vs MIN/NYL\n9.5Assists\nMore\nLess\nFlex Play\n\nYou must hit 1st place, or 2 out of 3 in the lineup.\n\n"
+    },
+    {
+      "id": "2026-09-29|WNBA Standard Power 3|1",
+      "ok": false,
+      "n": 1,
+      "want_n": 3,
+      "px": null,
+      "fails": [],
+      "legs": [
+        [
+          "WNBA",
+          "Sabrina Ionescu",
+          "Pts+Asts",
+          "UNDER",
+          21.0
+        ],
+        [
+          "WNBA",
+          "Sabrina Ionescu",
+          "Pts+Rebs",
+          "UNDER",
+          19.5
+        ],
+        [
+          "WNBA",
+          "Sabrina Ionescu",
+          "Points",
+          "UNDER",
+          15.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n1 Players Selected\nClear\nA'ja Wilson\n\nWNBALVA - C\n\nTue, Sep 29 6:30 PM @ IND\n39.5Pts+Rebs\nMore\nLess\nYou can complete your lineup when 2+ players are selected.\nEntry Fee\n$\nTo Win\nBalance: $63.60\nPromo: $0.00\nAuto-accept projection changes\nSubmit Lineup\nPrivacy policy\nYour Privacy Choices\nResponsible gaming\nPrizePicks Blog\nTerms\nCareers\nContact Us\nAccessibility Statement\nProj. 6.5"
+    },
+    {
+      "id": "2026-09-29|X-Sport Goblin-70 Mix Power 2|1",
+      "ok": false,
+      "fails": [
+        "no_goblin Frances Tiafoe Total Games"
+      ],
+      "n": 0,
+      "legs": []
+    },
+    {
+      "id": "2026-09-29|X-Sport Goblin-70 Power 2|1",
+      "ok": false,
+      "fails": [
+        "no_goblin Anna Bondar Total Games"
+      ],
+      "n": 0,
+      "legs": []
+    },
+    {
+      "id": "2026-09-29|TENNIS Goblin-70 Power 2|1",
+      "ok": false,
+      "fails": [
+        "no_goblin Alexander Zverev Total Games"
+      ],
+      "n": 0,
+      "legs": []
+    },
+    {
+      "id": "2026-09-29|SOCCER Goblin-70 Power 2|1",
+      "ok": false,
+      "n": 1,
+      "want_n": 2,
+      "px": null,
+      "fails": [],
+      "legs": [
+        [
+          "Soccer",
+          "Martin Baturina",
+          "Shots",
+          "OVER",
+          0.5
+        ],
+        [
+          "Soccer",
+          "Luka Sucic",
+          "Shots",
+          "OVER",
+          0.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n1 Players Selected\nClear\nLuka Sucic\n\nSOCCERCroatia - Midfielder\n\nTue, Sep 29 2:45 PM @ Spain\n0.5Shots\nMore\nYou can complete your lineup when 2+ players are selected.\nEntry Fee\n$\nTo Win\nBalance: $63.60\nPromo: $0.00\nAuto-accept projection changes\nSubmit Lineup\nPrivacy policy\nYour Privacy Choices\nResponsible gaming\nPrizePicks Blog\nTerms\nCareers\nContact Us\nAccessibility Statement"
+    }
+  ]
+}

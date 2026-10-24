@@ -280,7 +280,7 @@ def _league_counts_cache_path() -> Path:
     return Path(__file__).resolve().parents[1] / "data" / "cache" / "pp_league_counts.json"
 
 
-def read_shared_league_counts(max_age_s: int = 1200) -> dict[str, int] | None:
+def read_shared_league_counts(max_age_s: int = 7200) -> dict[str, int] | None:
     """Return this window's /leagues counts, or None when missing, stale, or empty."""
     import json
     import time
@@ -324,7 +324,10 @@ def shared_league_counts(cdp_url: str = "", page: Any = None) -> dict[str, int]:
     """
     cached = read_shared_league_counts()
     if cached:
-        print(f"  [leagues] shared projection counts ({len(cached)} leagues, no extra /leagues call)")
+        print(
+            f"  [leagues] shared projection counts ({len(cached)} leagues, "
+            "file age under 2h, no extra /leagues call)"
+        )
         return cached
     counts: dict[str, int] = {}
     if page is not None:

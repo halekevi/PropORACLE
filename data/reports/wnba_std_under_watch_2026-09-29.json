@@ -1,0 +1,157 @@
+{
+  "date": "2026-09-29",
+  "logged_at": "2026-09-29T21:25:43+00:00",
+  "n": 6,
+  "decided": 0,
+  "hit": 0,
+  "miss": 0,
+  "pending": 6,
+  "hr": null,
+  "wilson_lo": null,
+  "watch": {
+    "pass": false,
+    "verdict": "HOLD",
+    "reasons": [
+      "decided 0 < 50",
+      "no Wilson LB (n=0)"
+    ],
+    "rule": "Treat WNBA Standard UNDER G70 as a real keep only if decided>=50 and Wilson 95% LB>=65.0% overall, then still split by prop before promoting any one market."
+  },
+  "per_prop": {
+    "dreb": {
+      "hit": 0,
+      "miss": 0,
+      "pending": 1,
+      "hr": null,
+      "wilson_lo": null
+    },
+    "points": {
+      "hit": 0,
+      "miss": 0,
+      "pending": 1,
+      "hr": null,
+      "wilson_lo": null
+    },
+    "pra": {
+      "hit": 0,
+      "miss": 0,
+      "pending": 1,
+      "hr": null,
+      "wilson_lo": null
+    },
+    "pts+ast": {
+      "hit": 0,
+      "miss": 0,
+      "pending": 1,
+      "hr": null,
+      "wilson_lo": null
+    },
+    "pts+reb": {
+      "hit": 0,
+      "miss": 0,
+      "pending": 2,
+      "hr": null,
+      "wilson_lo": null
+    }
+  },
+  "distinct_players": 3,
+  "note": "Live Flex sleeve. Generic L5=5+L10>=8+D+cover, mixed props. Not a keep-list pass. Do not read the aggregate as one market.",
+  "rows": [
+    {
+      "slate_date": "2026-09-29",
+      "logged_at": "2026-09-29T21:25:43+00:00",
+      "player": "Courtney Williams",
+      "prop": "Pts+Rebs",
+      "side": "UNDER",
+      "pick_type": "Standard",
+      "line": 16.5,
+      "l5": 5.0,
+      "l10": 9.0,
+      "cover": -3.8,
+      "def": "Elite",
+      "result": null,
+      "actual_value": null,
+      "graded_at": null
+    },
+    {
+      "slate_date": "2026-09-29",
+      "logged_at": "2026-09-29T21:25:43+00:00",
+      "player": "Aliyah Boston",
+      "prop": "Defensive Rebounds",
+      "side": "UNDER",
+      "pick_type": "Standard",
+      "line": 6.5,
+      "l5": 5.0,
+      "l10": 8.0,
+      "cover": -1.6,
+      "def": "Elite",
+      "result": null,
+      "actual_value": null,
+      "graded_at": null
+    },
+    {
+      "slate_date": "2026-09-29",
+      "logged_at": "2026-09-29T21:25:43+00:00",
+      "player": "Sabrina Ionescu",
+      "prop": "Pts+Asts",
+      "side": "UNDER",
+      "pick_type": "Standard",
+      "line": 21.0,
+      "l5": 5.0,
+      "l10": 8.0,
+      "cover": -4.5,
+      "def": "Elite",
+      "result": null,
+      "actual_value": null,
+      "graded_at": null
+    },
+    {
+      "slate_date": "2026-09-29",
+      "logged_at": "2026-09-29T21:25:43+00:00",
+      "player": "Sabrina Ionescu",
+      "prop": "Pts+Rebs",
+      "side": "UNDER",
+      "pick_type": "Standard",
+      "line": 19.5,
+      "l5": 5.0,
+      "l10": 8.0,
+      "cover": -5.0,
+      "def": "Elite",
+      "result": null,
+      "actual_value": null,
+      "graded_at": null
+    },
+    {
+      "slate_date": "2026-09-29",
+      "logged_at": "2026-09-29T21:25:43+00:00",
+      "player": "Sabrina Ionescu",
+      "prop": "Points",
+      "side": "UNDER",
+      "pick_type": "Standard",
+      "line": 15.5,
+      "l5": 5.0,
+      "l10": 8.0,
+      "cover": -4.0,
+      "def": "Elite",
+      "result": null,
+      "actual_value": null,
+      "graded_at": null
+    },
+    {
+      "slate_date": "2026-09-29",
+      "logged_at": "2026-09-29T21:25:43+00:00",
+      "player": "Sabrina Ionescu",
+      "prop": "Pts+Rebs+Asts",
+      "side": "UNDER",
+      "pick_type": "Standard",
+      "line": 25.0,
+      "l5": 5.0,
+      "l10": 8.0,
+      "cover": -5.5,
+      "def": "Elite",
+      "result": null,
+      "actual_value": null,
+      "graded_at": null
+    }
+  ]
+}

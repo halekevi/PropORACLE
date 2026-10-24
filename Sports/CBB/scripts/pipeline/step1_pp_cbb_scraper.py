@@ -422,6 +422,9 @@ def main():
     pull_ts = now_et_iso()
     df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
     df.to_csv(args.out, index=False, encoding="utf-8")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(args.out, sport="CBB")
     try_archive_lines(df, sport="CBB", only_fetched_at=pull_ts)
     print(f"✅ Saved CSV → {args.out} | rows={len(df)} | unique proj_id={df['proj_id'].nunique()}")
 

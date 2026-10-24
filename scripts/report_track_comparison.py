@@ -11,7 +11,10 @@ from pathlib import Path
 
 from utils.comparison_tracks import summarize_tracks
 from utils.l5_only_shadow import summarize_shadow_props
-from utils.l5_ranked_by_cell import COMPARE_AFTER, TRACK as L5_RANKED_TRACK, stamped_slip_count
+try:
+    from utils.l5_ranked_by_cell import COMPARE_AFTER, TRACK as L5_RANKED_TRACK, stamped_slip_count
+except ImportError:  # live tree may not carry the ranked-by-cell track yet
+    COMPARE_AFTER, L5_RANKED_TRACK, stamped_slip_count = None, None, None
 
 _LOG = Path(__file__).resolve().parents[1] / "data" / "reports" / "track_comparison.jsonl"
 
@@ -85,6 +88,30 @@ def main() -> None:
             f"legs {rec['legs']}, graded {rec['graded']}, win {wr_s}{band}, "
             f"cell {cell_s}, bar {rec['breakeven']:.1%} at {rec['median_quote']}x, {flag}"
         )
+    from utils.nfl_std_under_shadow import PREREG_DATE as NFLU_PREREG, summarize as nflu_summary
+
+    nflu = nflu_summary()
+    bar = nflu["bar"]
+    print(
+        f"\nNFL Standard UNDER shadow (prereg {NFLU_PREREG}; sacks/tackles, L10>=8 + cover>=1, "
+        f"2-leg Power): bar {bar['decided_min']} decided, breakeven {bar['breakeven']:.1%} "
+        f"({bar['quote_basis']}, real quotes {bar['real_quotes_n']})"
+    )
+    for arm, rec in nflu["arms"].items():
+        wr = rec["hit_rate"]
+        wr_s = f"{wr:.1%}" if wr is not None else "ungraded"
+        band = ""
+        if rec["wilson_low"] is not None:
+            band = f" ({rec['wilson_low']:.1%}–{rec['wilson_high']:.1%})"
+        status = "BAR MET" if rec["bar_met"] else (rec["bar_note"] or "not yet")
+        print(
+            f"  {arm}: legs {rec['legs']}, decided {rec['decided']}, win {wr_s}{band}, "
+            f"not on board {rec['not_on_board']}, slips {rec['slips']} "
+            f"({rec['slip_wins']}/{rec['slips_decided']} decided), {status}"
+        )
+    if stamped_slip_count is None:
+        print("\nl5_ranked_by_cell: module not on this tree, section skipped")
+        return
     stamped = stamped_slip_count()
     print(f"\n{L5_RANKED_TRACK}: stamped slips {stamped}")
     if stamped < COMPARE_AFTER:

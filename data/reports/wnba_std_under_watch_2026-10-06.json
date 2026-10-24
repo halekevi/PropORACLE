@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-06",
+  "logged_at": "2026-10-06T21:29:12+00:00",
+  "n": 0,
+  "decided": 0,
+  "hit": 0,
+  "miss": 0,
+  "pending": 0,
+  "hr": null,
+  "wilson_lo": null,
+  "watch": {
+    "pass": false,
+    "verdict": "HOLD",
+    "reasons": [
+      "decided 0 < 50",
+      "no Wilson LB (n=0)"
+    ],
+    "rule": "Treat WNBA Standard UNDER G70 as a real keep only if decided>=50 and Wilson 95% LB>=65.0% overall, then still split by prop before promoting any one market."
+  },
+  "per_prop": {},
+  "distinct_players": 0,
+  "note": "Live Flex sleeve. Generic L5=5+L10>=8+D+cover, mixed props. Not a keep-list pass. Do not read the aggregate as one market.",
+  "rows": []
+}

@@ -1,5 +1,34 @@
 """NFL keep gates from Week 1–2 2026 unique-game ledger.
 
+**FACE CONTAMINATION (audited 2026-10-24, ``NFL_KEEP_GATE_FACES_VERIFIED = False``).**
+Live NFL step1 did not persist ``pick_type`` before 2026-10-23 and
+``utils.nfl_prop_gate_ledger`` / step7 defaulted the blank to ``"Standard"``.
+Every Goblin and Demon rung on 09-09, 09-10, 09-13, 09-14, 09-17 and
+09-27..10-19 was therefore counted as a Standard face. Only 09-20 / 09-21 /
+09-24 carry real faces. The Standard UNDER keep cells below were measured on
+those default labels; the W1+W2 "lift" is mostly Demon rungs (line far above
+the Standard line) being graded as Standard UNDER hits. Same props, same
+ledger, split by face status (``%TEMP%``-free rerun: ``utils.face_ladder``):
+
+    Standard UNDER   default-label dates   real-face dates (09-20/21/24)
+    receptions         224/287 = 78.0%        25/42 = 59.5%
+    receiving_yards    242/318 = 76.1%        36/81 = 44.4%
+    rushing_yards      138/194 = 71.1%        23/36 = 63.9%
+    sacks              287/320 = 89.7%        (no real-face sample)
+    tackles            210/306 = 68.6%        (no real-face sample)
+    longest_reception  100/125 = 80.0%        (no real-face sample)
+    kicking_points      53/66  = 80.3%        (no real-face sample)
+
+The receptions 41/44 / rec-yds 44/55 soft stacks, the sacks / tackles_ast /
+kick-pts / longest-reception UNDER keeps and the pass-volume UNDER rates are
+**not** measured on verified Standard faces. The Goblin OVER wave-1 flip cells
+(fg_made 31/42, rec yds 311/448, receptions 174/243, pass yds 91/127, rush yds
+142/238) come only from the three real-face dates and are the only numbers in
+this module that survive the audit. Nothing here was changed on the ticket
+path by the audit; re-measure on ``pick_type``-persisted boards (10-23 onward,
+``face_status == verified``) before trusting any Standard UNDER keep again.
+Report: ``data/reports/face_contamination_2026-10-24.md``.
+
 Week 1+2 ledger uses **unique player-games** (see ``utils.nfl_prop_gate_ledger``).
 Standard UNDER keep: receptions (base-rate, skip L5=5) / longest reception /
 sacks / tackles_ast / kick pts / receiving yards (base-rate, skip L5=5) /
@@ -27,9 +56,10 @@ Ticket priority (UNDER-heavy, then soft-gated OVER):
   (punts / YPC / longest_completion). Everything else gated out.
 
 **NFL Goblin OVER is live** (``NFL_GOBLIN_TICKETS_ENABLED = True``) for
-wave-1 only (fg_made / receiving_yards / longest_reception / rushing_yards).
-Pass-side stays in ``NFL_GOBLIN_OVER_KEEP_PASS_LATER``. Week-3 binary
-``nfl_goblin_wave1_flip_go`` remains the audit check for those four chips.
+wave-1 (fg_made / receiving_yards / longest_reception / rushing_yards)
+plus passing_yards and rush_attempts. Other pass-side props stay in
+``NFL_GOBLIN_OVER_KEEP_PASS_LATER``. Week-3 binary
+``nfl_goblin_wave1_flip_go`` remains the audit check for the original four chips.
 
 Active monitors (not allowlisted):
   - rush_attempts UNDER — 3/3 at L5=5; watch.
@@ -37,7 +67,8 @@ Active monitors (not allowlisted):
     NOT Elite Rush Off + NOT Elite RB + Elite Rush D (`opp_rush_d_tier`) 9/9.
   - rushing_yards OVER — watch; gate on Elite OL + Weak Rush D after W3 volume.
   - passing_yards / passing_tds Standard OVER — watch; reopen at L5=5 n≥10.
-  - Goblin receptions / rush_attempts — watch.
+  - Goblin receptions — watch. Rush attempts Goblin OVER is on the live list
+    (same L5=5+L10>=8+cover stack as wave-1; no separate soft D).
   - longest_rush UNDER — 18/29 base 62%; Elite Rush D 11/14=79%.
   - receiving UNDER stack (soft): Elite Pass D primary; best
     NOT Elite Pass Off + Elite Pass D (receptions 41/44=93%; rec yds 44/55=80%);
@@ -64,9 +95,16 @@ from __future__ import annotations
 
 from typing import Any
 
+# False until the Standard UNDER keep cells are re-measured on boards whose
+# step1 persisted pick_type (2026-10-23+). See module docstring. Read-only flag:
+# callers that want to gate on it must opt in; it does not change ticket output.
+NFL_KEEP_GATE_FACES_VERIFIED = False
+NFL_KEEP_GATE_REAL_FACE_DATES = ("2026-09-20", "2026-09-21", "2026-09-24")
+
 # Wave-1 Goblin OVER tickets on (fg_made / receiving_yards / longest_reception /
-# rushing_yards). Pass-side still blocked via NFL_GOBLIN_OVER_KEEP_PASS_LATER.
-# Audit with ``nfl_goblin_wave1_flip_go`` — do NOT use overall Goblin HR.
+# rushing_yards) plus passing_yards and rush_attempts.
+# Remaining pass-side stays blocked via NFL_GOBLIN_OVER_KEEP_PASS_LATER.
+# Audit the original four with ``nfl_goblin_wave1_flip_go`` — do NOT use overall Goblin HR.
 NFL_GOBLIN_TICKETS_ENABLED = True
 
 # Binary Week-3 Goblin flag flip (wave-1 chips only):
@@ -209,13 +247,18 @@ NFL_GOBLIN_OVER_KEEP_FLIP = frozenset(
         "receiving_yards",  # 17/23=74%
         "longest_reception",  # 9/12=75%
         "rushing_yards",  # 10/14=71%
+        # Added after W1–W4 graded unique games: ungated 25/32=78%, L5=5 5/7=71%.
+        # The W1–W2 hold (L5=5 3/5=60% worse than ungated) no longer holds.
+        "passing_yards",
+        # Same L5=5+L10>=8+cover stack. Graded Goblin cell was empty while
+        # step1 dropped pick_type, so this is not a backtest reopen.
+        "rush_attempts",
     }
 )
 
-# Pass-side Goblin — L5=5 degrades vs ungated; validate separately, not on flip.
+# Pass-side Goblin still held — L5=5 degrades vs ungated.
 NFL_GOBLIN_OVER_KEEP_PASS_LATER = frozenset(
     {
-        "passing_yards",
         "pass_attempts",
         "pass_completions",
         "longest_completion",
@@ -229,7 +272,6 @@ NFL_GOBLIN_OVER_KEEP = NFL_GOBLIN_OVER_KEEP_FLIP | NFL_GOBLIN_OVER_KEEP_PASS_LAT
 NFL_GOBLIN_OVER_WATCH = frozenset(
     {
         "receptions",
-        "rush_attempts",
     }
 )
 
@@ -292,7 +334,7 @@ NFL_SOFT_UNIT_TICKET_GATES: dict[tuple[str, str], str] = {
 
 # Goblin-specific overrides when stack differs from Standard OVER.
 NFL_GOBLIN_SOFT_UNIT_TICKET_GATES: dict[str, str] = {
-    "passing_yards": "dlp_w+pass_off_ne",
+    # passing_yards moved onto the live flip list (L5=5+L10>=8+cover, D skipped).
     "pass_attempts": "pass_d_w+pass_off_ne",
     "pass_completions": "pass_d_w+pass_off_ne",
     "longest_completion": "pass_d_w+pass_off_ne",
@@ -633,8 +675,9 @@ def nfl_std_under_skips_l5_eq5(r: dict[str, Any]) -> bool:
 def nfl_goblin_ticket_eligible(r: dict[str, Any]) -> bool:
     """NFL Goblin OVER ticket gate — wave-1 keep when flag is on.
 
-    Only ``NFL_GOBLIN_OVER_KEEP_FLIP`` clears. Pass-side chips in
-    ``NFL_GOBLIN_OVER_KEEP_PASS_LATER`` stay blocked for a later validation.
+    Only ``NFL_GOBLIN_OVER_KEEP_FLIP`` clears (wave-1 plus passing_yards
+    and rush_attempts). Remaining pass-side chips in
+    ``NFL_GOBLIN_OVER_KEEP_PASS_LATER`` stay blocked.
     """
     if not NFL_GOBLIN_TICKETS_ENABLED:
         return False

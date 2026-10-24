@@ -1,0 +1,327 @@
+{
+  "date": "2026-09-28",
+  "generated_at": "2026-09-28T23:20:30.092154Z",
+  "tickets_path": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\tickets_latest.json",
+  "by_ticket_id": {
+    "2026-09-28|Tennis Goblin-70 Power 3|1": {
+      "power_min_x": 2.3,
+      "power_first_x": 6.0,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Tennis Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-27T21:57:52"
+    },
+    "2026-09-28|Probability Ladder · TENNIS · Stack70|1": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Probability Ladder · TENNIS · Stack70|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T21:57:52"
+    },
+    "2026-09-28|TENNIS 2-Leg Goblin OVER|1": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-27T23:34:49"
+    },
+    "2026-09-28|TENNIS 3-Leg Goblin OVER|1": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "2026-09-28|Soccer Goblin-70 Power 2|1": {
+      "power_min_x": 1.8,
+      "display_min_x": 1.8,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Soccer Goblin-70 Power 2|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-28T01:32:28"
+    },
+    "2026-09-28|Tennis Goblin-70 Power 2|1": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Tennis Goblin-70 Power 2|1",
+      "n_legs": 2,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T21:57:52"
+    },
+    "2026-09-28|X-Sport Goblin-70 Power 3|2": {
+      "power_min_x": 2.4,
+      "power_first_x": 6.0,
+      "display_min_x": 2.4,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|X-Sport Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-28T13:49:21"
+    }
+  },
+  "by_leg_sig": {
+    "daniil medvedev|total games|over|19.500||hubert hurkacz|total games|over|20.500||tamara zidansek|total games|over|18.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Probability Ladder · TENNIS · Stack70|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T21:57:52"
+    },
+    "daniil medvedev|total games|over|21.500||tamara zidansek|total games|over|19.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-27T23:34:49"
+    },
+    "daniil medvedev|total games|over|21.500||hubert hurkacz|total games|over|21.500||tamara zidansek|total games|over|19.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "daniil medvedev|total games|over|21.500||hubert hurkacz|total games|over|20.500||tamara zidansek|total games|over|19.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "daniil medvedev|total games|over|20.500||hubert hurkacz|total games|over|21.500||tamara zidansek|total games|over|19.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "michael olise|shots on target|over|0.500||ousmane dembélé|shots on target|over|0.500": {
+      "power_min_x": 1.8,
+      "display_min_x": 1.8,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Soccer Goblin-70 Power 2|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-28T01:32:28"
+    },
+    "daniil medvedev|total games|over|19.500||hubert hurkacz|total games|over|20.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Tennis Goblin-70 Power 2|1",
+      "n_legs": 2,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T21:57:52"
+    },
+    "daniil medvedev|total games|over|21.500||hubert hurkacz|total games|over|21.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-27T23:34:49"
+    },
+    "daniil medvedev|total games|over|21.500||hubert hurkacz|total games|over|20.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-27T23:34:49"
+    },
+    "daniil medvedev|total games|over|20.500||hubert hurkacz|total games|over|21.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-27T23:34:49"
+    },
+    "daniil medvedev|total games|over|20.500||hubert hurkacz|total games|over|20.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-27T23:34:49"
+    },
+    "daniil medvedev|total games|over|21.500||hubert hurkacz|total games|over|21.500||tamara zidansek|total games|over|26.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "daniil medvedev|total games|over|24.500||hubert hurkacz|total games|over|21.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-27T23:34:49"
+    },
+    "daniil medvedev|total games|over|24.500||hubert hurkacz|total games|over|21.500||tamara zidansek|total games|over|26.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "alexander zverev|total games|over|17.500||stefanos tsitsipas|total games|over|20.500||tommy paul|total games|over|19.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Probability Ladder · TENNIS · Stack70|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T21:57:52"
+    },
+    "alexander zverev|total games|over|18.500||frances tiafoe|total games|over|20.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-27T23:34:49"
+    },
+    "alexander zverev|total games|over|18.500||frances tiafoe|total games|over|20.500||tommy paul|total games|over|20.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "alexander zverev|total games|over|18.500||frances tiafoe|total games|over|20.500||stefanos tsitsipas|total games|over|20.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "alexander zverev|total games|over|18.500||brandon nakashima|total games|over|20.500||frances tiafoe|total games|over|20.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "alexander zverev|total games|over|17.500||daniil medvedev|total games|over|19.500||frances tiafoe|total games|over|19.500": {
+      "power_min_x": 2.3,
+      "power_first_x": 6.0,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Tennis Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "captured_at": "2026-09-27T21:57:52"
+    },
+    "alexander zverev|total games|over|17.500||daniil medvedev|total games|over|19.500||tommy paul|total games|over|19.500": {
+      "power_min_x": 2.4,
+      "power_first_x": 6.0,
+      "display_min_x": 2.4,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|X-Sport Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "slip_type": "main",
+      "captured_at": "2026-09-28T13:49:21"
+    },
+    "alexander zverev|total games|over|18.500||stefanos tsitsipas|total games|over|20.500||tommy paul|total games|over|19.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Probability Ladder · TENNIS · Stack70|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T21:57:52"
+    },
+    "alexander zverev|total games|over|18.500||tommy paul|total games|over|20.500": {
+      "power_min_x": 2.3,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0,
+      "captured_at": "2026-09-27T23:34:49"
+    },
+    "alexander zverev|total games|over|18.500||stefanos tsitsipas|total games|over|20.500||tommy paul|total games|over|20.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "alexander zverev|total games|over|18.500||brandon nakashima|total games|over|20.500||tommy paul|total games|over|20.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "alexander zverev|total games|over|18.500||quentin halys|total games|over|21.500||tommy paul|total games|over|20.500": {
+      "power_min_x": 3.0,
+      "display_min_x": 3.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0,
+      "captured_at": "2026-09-27T23:35:52"
+    },
+    "alexander zverev|total games|over|18.500||daniil medvedev|total games|over|19.500||tommy paul|total games|over|19.500": {
+      "power_min_x": 2.4,
+      "power_first_x": 6.0,
+      "display_min_x": 2.4,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|X-Sport Goblin-70 Power 3|2",
+      "n_legs": 3,
+      "captured_at": "2026-09-28T13:49:21"
+    },
+    "alexander zverev|total games|over|18.500||daniil medvedev|total games|over|19.500||frances tiafoe|total games|over|19.500": {
+      "power_min_x": 2.3,
+      "power_first_x": 6.0,
+      "display_min_x": 2.3,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-28|Tennis Goblin-70 Power 3|1",
+      "n_legs": 3,
+      "captured_at": "2026-09-27T21:57:52"
+    }
+  }
+}

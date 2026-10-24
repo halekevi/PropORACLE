@@ -634,6 +634,9 @@ def main():
 
     df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
     df.to_csv(args.output, index=False, encoding="utf-8-sig")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(args.output, sport="Soccer")
     print(f"\n✅ Saved {len(df)} rows -> {args.output}")
     league_counts = df["league"].value_counts().to_dict()
     print(f"   Leagues: {league_counts}")

@@ -1,0 +1,336 @@
+{
+  "slate": "2026-10-24",
+  "n_blocked": 16,
+  "by_sport": {
+    "CFB": {
+      "n": 4,
+      "reasons": {
+        "matchup_not_on_scoreboard": 3,
+        "team_not_on_scoreboard": 1
+      },
+      "rows": [
+        {
+          "ticket_id": "2026-10-24|CFB Standard Power 3|12",
+          "group": "CFB Standard Power 3",
+          "sport": "CFB",
+          "player": "Kaleb Edwards",
+          "team": "ALA",
+          "opp": "TAMU",
+          "reason": "matchup_not_on_scoreboard:ALA@TAM",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|CFB Standard Power 3|13",
+          "group": "CFB Standard Power 3",
+          "sport": "CFB",
+          "player": "Lotzeir Brooks",
+          "team": "ALA",
+          "opp": "TAMU",
+          "reason": "matchup_not_on_scoreboard:ALA@TAM",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|CFB Standard Power 3|14",
+          "group": "CFB Standard Power 3",
+          "sport": "CFB",
+          "player": "Marcel Reed",
+          "team": "TXAM",
+          "opp": "ALA",
+          "reason": "team_not_on_scoreboard:TXA",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|CFB Standard Power 3|16",
+          "group": "CFB Standard Power 3",
+          "sport": "CFB",
+          "player": "Rico Scott",
+          "team": "ALA",
+          "opp": "TAMU",
+          "reason": "matchup_not_on_scoreboard:ALA@TAM",
+          "slate": "2026-10-24"
+        }
+      ]
+    },
+    "SOCCER": {
+      "n": 6,
+      "reasons": {
+        "matchup_not_on_scoreboard": 3,
+        "team_not_on_scoreboard": 3
+      },
+      "rows": [
+        {
+          "ticket_id": "2026-10-24|X-Sport Goblin-70 Mix Power 2|1",
+          "group": "X-Sport Goblin-70 Mix Power 2",
+          "sport": "SOCCER",
+          "player": "Tom Barlow",
+          "team": "CINCINNATI",
+          "opp": "DC UNITED",
+          "reason": "matchup_not_on_scoreboard:CINCINNATI@DC UNITED",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|X-Sport Goblin-70 Power 3|1",
+          "group": "X-Sport Goblin-70 Power 3",
+          "sport": "SOCCER",
+          "player": "\u00cdsak J\u00f3hannesson",
+          "team": "KOLN",
+          "opp": "SCHALKE 04",
+          "reason": "team_not_on_scoreboard:KOLN",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|SOCCER Goblin-70 Power 3|1",
+          "group": "SOCCER Goblin-70 Power 3",
+          "sport": "SOCCER",
+          "player": "Hany Mukhtar",
+          "team": "NASHVILLE",
+          "opp": "MONTREAL",
+          "reason": "matchup_not_on_scoreboard:NASHVILLE@MONTREAL",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|YOLO Standard Power 6|1",
+          "group": "YOLO Standard Power 6",
+          "sport": "SOCCER",
+          "player": "Jared Stroud",
+          "team": "DC UNITED",
+          "opp": "CINCINNATI",
+          "reason": "team_not_on_scoreboard:DC UNITED",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|SOCCER Core Standard 2 #1|1",
+          "group": "SOCCER Core Standard 2 #1",
+          "sport": "SOCCER",
+          "player": "Mathieu Gorgelin",
+          "team": "LENS",
+          "opp": "PARIS",
+          "reason": "matchup_not_on_scoreboard:LENS@PARIS",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|SOCCER 3-Leg Goblin OVER|1",
+          "group": "SOCCER 3-Leg Goblin OVER",
+          "sport": "SOCCER",
+          "player": "\u00cdsak J\u00f3hannesson",
+          "team": "KOLN",
+          "opp": "SCHALKE 04",
+          "reason": "team_not_on_scoreboard:KOLN",
+          "slate": "2026-10-24"
+        }
+      ]
+    },
+    "WNBA": {
+      "n": 4,
+      "reasons": {
+        "team_not_on_scoreboard": 1,
+        "matchup_not_on_scoreboard": 3
+      },
+      "rows": [
+        {
+          "ticket_id": "2026-10-24|X-Sport Goblin-70 Power 3|2",
+          "group": "X-Sport Goblin-70 Power 3",
+          "sport": "WNBA",
+          "player": "Kiah Stokes",
+          "team": "GSV",
+          "opp": "ATL",
+          "reason": "team_not_on_scoreboard:GSV",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|STRONG 2-Leg|1",
+          "group": "STRONG 2-Leg",
+          "sport": "WNBA",
+          "player": "Jordin Canada",
+          "team": "ATL",
+          "opp": "GSV",
+          "reason": "matchup_not_on_scoreboard:ATL@GSV",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|STRONG 2-Leg|2",
+          "group": "STRONG 2-Leg",
+          "sport": "WNBA",
+          "player": "Angel Reese",
+          "team": "ATL",
+          "opp": "GSV",
+          "reason": "matchup_not_on_scoreboard:ATL@GSV",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|WNBA 2-Leg Mixed|1",
+          "group": "WNBA 2-Leg Mixed",
+          "sport": "WNBA",
+          "player": "Jordin Canada",
+          "team": "ATL",
+          "opp": "GSV",
+          "reason": "matchup_not_on_scoreboard:ATL@GSV",
+          "slate": "2026-10-24"
+        }
+      ]
+    },
+    "NFL": {
+      "n": 2,
+      "reasons": {
+        "empty_scoreboard": 2
+      },
+      "rows": [
+        {
+          "ticket_id": "2026-10-24|NFL Core Flex 3 #1|1",
+          "group": "NFL Core Flex 3 #1",
+          "sport": "NFL",
+          "player": "Jaxon Smith-Njigba",
+          "team": "SEA",
+          "opp": "KC",
+          "reason": "empty_scoreboard",
+          "slate": "2026-10-24"
+        },
+        {
+          "ticket_id": "2026-10-24|NFL Core Power 2 #1|1",
+          "group": "NFL Core Power 2 #1",
+          "sport": "NFL",
+          "player": "Pat Freiermuth",
+          "team": "PIT",
+          "opp": "NO",
+          "reason": "empty_scoreboard",
+          "slate": "2026-10-24"
+        }
+      ]
+    }
+  },
+  "espn_games": {
+    "CFB": [
+      "AGG@ALA",
+      "AGG@BOB",
+      "AKR@GOL",
+      "ARI@ASU",
+      "ARI@CYC",
+      "ARK@ARS",
+      "AUB@LSU",
+      "AZT@COL",
+      "BAD@TRO",
+      "BAL@CAR",
+      "BAY@BEA",
+      "BC@BOS",
+      "BEA@CIN",
+      "BGS@BOW",
+      "BIS@LOB",
+      "BOB@E M",
+      "BOI@BRO",
+      "BRO@ROC",
+      "BRU@MIC",
+      "BUF@COL",
+      "BUL@LOU",
+      "BUL@MIS",
+      "BYU@COU",
+      "C M@CEN",
+      "CAL@GOL",
+      "CLE@HOK",
+      "COM@KEN",
+      "COU@HOU",
+      "DUC@FIG",
+      "FAU@FLO",
+      "GAM@SC",
+      "GOL@HAW",
+      "GOL@LOU",
+      "GRE@ROA",
+      "HAW@HUS",
+      "HOO@IND",
+      "HOR@MOU",
+      "HUR@MIA",
+      "LON@MIS",
+      "MEA@MID",
+      "NEV@SAN",
+      "NOR@NU",
+      "NOR@ORA",
+      "TRO@UL "
+    ],
+    "MLB": [
+      "BRE@MIL"
+    ],
+    "NFL": [],
+    "NHL": [
+      "ANA@DUC",
+      "BLU@CAR",
+      "BLU@CBJ",
+      "BOS@BRU",
+      "BUF@CAP",
+      "CAL@CGY",
+      "DEV@KIN",
+      "EDM@MAP",
+      "KRA@MIN",
+      "LIG@MAM",
+      "NAS@NSH",
+      "NEW@NYR"
+    ],
+    "SOCCER": [
+      "ARS@EVE",
+      "ATL@CHI",
+      "ATM@DEP",
+      "ATX@SKC",
+      "AUC@WSW",
+      "AVL@MNC",
+      "BAH@SAN",
+      "BAN@LAN",
+      "BAY@LA",
+      "BIR@CAR",
+      "BLK@WXM",
+      "BOL@CAG",
+      "BOT@INT",
+      "BRA@PAL",
+      "BRC@STK",
+      "BUR@LCN",
+      "CAP@VIT",
+      "CCM@WEL",
+      "CHA@FLU",
+      "CHA@NOR",
+      "CHE@TOT",
+      "CIN@DC",
+      "CLB@TOR",
+      "CLT@POR",
+      "COL@VAN",
+      "COMO@SAS",
+      "COR@VAS",
+      "COV@FUL",
+      "DAL@SJ",
+      "DEN@LOU",
+      "DER@SHU",
+      "DOR@SGE",
+      "DYJ@TALL",
+      "ELC@RAY",
+      "ELV@RBL",
+      "ESP@RAC",
+      "FCA@FCU",
+      "GDL@MTY",
+      "HOU@MIN",
+      "HSV@SCP",
+      "HUR@ROS",
+      "KOE@S04",
+      "LAZ@PAR",
+      "LENS@PAR",
+      "LEO@LE\u00d3N",
+      "M05@SVW",
+      "MAC@NEW",
+      "MBC@MBV",
+      "MIA@RBNY",
+      "MIL@POR",
+      "MIR@SAO",
+      "MTL@NSH",
+      "NAP@ROMA",
+      "NE@PHI",
+      "NOB@SLO",
+      "NYC@ORL",
+      "PNE@WBA",
+      "QPR@SWA",
+      "RSL@STL",
+      "SD@SEA",
+      "SOU@WHU",
+      "UANL@UNAM",
+      "VAL@VIL",
+      "WAT@WOL"
+    ],
+    "WNBA": [
+      "ATL@DRE"
+    ]
+  }
+}

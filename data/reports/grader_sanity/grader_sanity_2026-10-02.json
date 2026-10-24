@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-02",
+  "alerts": [
+    "NHL 2026-10-02: VOID/PENDING share 74% (182/247) exceeds 50%",
+    "CFB 2026-10-02: actuals on disk but 0 graded rows (graded_cfb_2026-10-02.xlsx missing/empty)",
+    "Soccer 2026-10-02: VOID/PENDING share 91% (2858/3154) exceeds 50%",
+    "Tennis 2026-10-02: VOID/PENDING share 100% (452/452) exceeds 50%",
+    "MLB 2026-10-02: VOID/PENDING share 100% (997/997) exceeds 50%"
+  ],
+  "n_alerts": 5
+}

@@ -1,0 +1,37 @@
+{
+  "id": "F3-Calvert-Yamal-IonescuPRA",
+  "ok": false,
+  "n": 2,
+  "want_n": 3,
+  "legs": [
+    {
+      "sport": "Soccer",
+      "player": "Dominic Calvert-Lewin",
+      "prop": "SOT",
+      "prop_type": "SOT",
+      "direction": "OVER",
+      "line": 0.5,
+      "pick_type": "goblin"
+    },
+    {
+      "sport": "Soccer",
+      "player": "Lamine Yamal",
+      "prop": "SOT",
+      "prop_type": "SOT",
+      "direction": "OVER",
+      "line": 1.5,
+      "pick_type": "goblin"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Sabrina Ionescu",
+      "prop": "PRA",
+      "prop_type": "PRA",
+      "direction": "UNDER",
+      "line": 25.0,
+      "pick_type": "standard"
+    }
+  ],
+  "raw_head": "Current Lineup\n2 Players Selected\nClear\nLamine Yamal\n\nSOCCERSpain - Attacker\n\nTue, Sep 29 2:45 PM vs Croatia\n1.5SOT\nMore\nSabrina Ionescu\n\nWNBANYL - G\n\nTue, Sep 29 8:30 PM vs MIN\n25PRA\nMore\nLess\nPower Play\n\nYou must hit 1st place, or 2 out of 2 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n2 correct pays\n2.6X\nIn the event of contest ties, contest payouts are shared. If you qualify for the 1st place prize and the Minimum Guarantee payout, you will receive whichever payout is higher.\nEntry Fee\n$\nTo Win\nBalance: $63.60\nPromo: $0.00\n\nReversion lineup payouts are different than standard. Learn more\n\nAuto-accept projection changes\nSubmit Lineup\nPrivacy policy\nYour Privacy Choices\nResponsible ",
+  "px": 2.6
+}

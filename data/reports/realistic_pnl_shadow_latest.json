@@ -1,0 +1,1204 @@
+{
+  "generated_at": "2026-10-12T00:09:16.204053+00:00",
+  "stake": 20.0,
+  "bets": 20,
+  "wagered": 400.0,
+  "rule9_min_x": 2.0,
+  "note": "Hit rates are graded HIT and MISS only. PUSH and VOID are excluded. Goblin-70 and gated Standard are L5=5, L10>=8, and directional D. 3-leg Flex return is 3p^2, so the per-leg bar is 1/sqrt(3). Each scraped slip uses its own N-correct multiplier. All-hit under 2x fails the $20 to $40 rule. 4-leg and 6-leg are omitted. Neither live path is a ticket rule yet.",
+  "composition_2leg": {
+    "n_2_leg": 194,
+    "by_composition": {
+      "0S+2G+0D": 179,
+      "1S+1G+0D": 13,
+      "2S+0G+0D": 2
+    },
+    "all_goblin": 179,
+    "mixed_1s1g": 13,
+    "all_standard": 2,
+    "all_goblin_first_place_dropped": 2,
+    "all_goblin_n_correct_kept": 177
+  },
+  "flex_3leg_ladders": 0,
+  "pooled_rates": {
+    "standard_over": {
+      "rate": 0.4292132102962603,
+      "n": 32944
+    },
+    "standard_under": {
+      "rate": 0.547588483403631,
+      "n": 21812
+    },
+    "goblin_over": {
+      "rate": 0.5950884597152775,
+      "n": 130794
+    },
+    "goblin70_over": {
+      "rate": 0.7387267904509284,
+      "n": 754
+    }
+  },
+  "result_audit": {
+    "standard_under": {
+      "HIT": 11944,
+      "MISS": 9868,
+      "OTHER": 540,
+      "PUSH": 372,
+      "VOID": 5522
+    },
+    "standard_over": {
+      "HIT": 14140,
+      "MISS": 18804,
+      "OTHER": 181,
+      "PUSH": 400,
+      "VOID": 7877
+    }
+  },
+  "hit_rates": [
+    {
+      "sport": "CFB",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "hits": 374,
+      "n": 544,
+      "rate": 0.6875
+    },
+    {
+      "sport": "CFB",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "hits": 46,
+      "n": 81,
+      "rate": 0.5679
+    },
+    {
+      "sport": "CFB",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "hits": 147,
+      "n": 284,
+      "rate": 0.5176
+    },
+    {
+      "sport": "MLB",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "hits": 56853,
+      "n": 90255,
+      "rate": 0.6299
+    },
+    {
+      "sport": "MLB",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "hits": 7203,
+      "n": 14659,
+      "rate": 0.4914
+    },
+    {
+      "sport": "MLB",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "hits": 7131,
+      "n": 13285,
+      "rate": 0.5368
+    },
+    {
+      "sport": "NFL",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "hits": 814,
+      "n": 1205,
+      "rate": 0.6755
+    },
+    {
+      "sport": "NFL",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "hits": 911,
+      "n": 2134,
+      "rate": 0.4269
+    },
+    {
+      "sport": "NFL",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "hits": 901,
+      "n": 1252,
+      "rate": 0.7196
+    },
+    {
+      "sport": "NHL",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "hits": 1425,
+      "n": 6498,
+      "rate": 0.2193
+    },
+    {
+      "sport": "NHL",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "hits": 376,
+      "n": 738,
+      "rate": 0.5095
+    },
+    {
+      "sport": "SOCCER",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "hits": 4873,
+      "n": 11789,
+      "rate": 0.4134
+    },
+    {
+      "sport": "SOCCER",
+      "pick_type": "Goblin",
+      "direction": "UNDER",
+      "hits": 197,
+      "n": 321,
+      "rate": 0.6137
+    },
+    {
+      "sport": "SOCCER",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "hits": 64,
+      "n": 122,
+      "rate": 0.5246
+    },
+    {
+      "sport": "SOCCER",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "hits": 170,
+      "n": 327,
+      "rate": 0.5199
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "hits": 4518,
+      "n": 11358,
+      "rate": 0.3978
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "hits": 996,
+      "n": 2272,
+      "rate": 0.4384
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "hits": 701,
+      "n": 1187,
+      "rate": 0.5906
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "Goblin",
+      "direction": "OVER",
+      "hits": 10402,
+      "n": 15643,
+      "rate": 0.665
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "Standard",
+      "direction": "OVER",
+      "hits": 3495,
+      "n": 7178,
+      "rate": 0.4869
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "Standard",
+      "direction": "UNDER",
+      "hits": 2518,
+      "n": 4739,
+      "rate": 0.5313
+    }
+  ],
+  "goblin70": [
+    {
+      "sport": "*",
+      "direction": "OVER",
+      "hits": 557,
+      "n": 754,
+      "rate": 0.7387,
+      "wilson_lo": 0.7062
+    },
+    {
+      "sport": "NFL",
+      "direction": "OVER",
+      "hits": 51,
+      "n": 59,
+      "rate": 0.8644,
+      "wilson_lo": 0.7546
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "hits": 506,
+      "n": 695,
+      "rate": 0.7281,
+      "wilson_lo": 0.6938
+    }
+  ],
+  "gated_standard_flex": [
+    {
+      "label": "3-leg Flex, gated Standard NFL UNDER",
+      "product": "Flex",
+      "n_legs": 3,
+      "n_correct": {
+        "2": 1.0,
+        "3": 3.0
+      },
+      "source": "published_n_correct",
+      "hit_rate": 0.8984,
+      "hit_rate_n": 256,
+      "breakeven": {
+        "all_hit_x": 3.0,
+        "slip_win_rate": 0.3333333333333333,
+        "per_leg_rate": 0.5773502691896258,
+        "formula": "3p^2",
+        "rule9_pass": true
+      },
+      "rule9_pass": true,
+      "expected_profit": 568.63,
+      "cold_profit": 500.0,
+      "median_profit": 560.0,
+      "warm_profit": 640.0,
+      "hits": 230,
+      "wilson_lo": 0.8553,
+      "point_clears_58": true,
+      "wilson_clears_58": true
+    },
+    {
+      "label": "3-leg Flex, gated Standard WNBA UNDER",
+      "product": "Flex",
+      "n_legs": 3,
+      "n_correct": {
+        "2": 1.0,
+        "3": 3.0
+      },
+      "source": "published_n_correct",
+      "hit_rate": 0.6154,
+      "hit_rate_n": 26,
+      "breakeven": {
+        "all_hit_x": 3.0,
+        "slip_win_rate": 0.3333333333333333,
+        "per_leg_rate": 0.5773502691896258,
+        "formula": "3p^2",
+        "rule9_pass": true
+      },
+      "rule9_pass": true,
+      "expected_profit": 54.44,
+      "cold_profit": -40.0,
+      "median_profit": 40.0,
+      "warm_profit": 140.0,
+      "hits": 16,
+      "wilson_lo": 0.4253,
+      "point_clears_58": true,
+      "wilson_clears_58": false
+    },
+    {
+      "label": "3-leg Flex, gated Standard WNBA OVER",
+      "product": "Flex",
+      "n_legs": 3,
+      "n_correct": {
+        "2": 1.0,
+        "3": 3.0
+      },
+      "source": "published_n_correct",
+      "hit_rate": 0.4615,
+      "hit_rate_n": 26,
+      "breakeven": {
+        "all_hit_x": 3.0,
+        "slip_win_rate": 0.3333333333333333,
+        "per_leg_rate": 0.5773502691896258,
+        "formula": "3p^2",
+        "rule9_pass": true
+      },
+      "rule9_pass": true,
+      "expected_profit": -144.38,
+      "cold_profit": -220.0,
+      "median_profit": -140.0,
+      "warm_profit": -80.0,
+      "hits": 12,
+      "wilson_lo": 0.2876,
+      "point_clears_58": false,
+      "wilson_clears_58": false
+    },
+    {
+      "label": "3-leg Flex, gated Standard NFL OVER",
+      "product": "Flex",
+      "n_legs": 3,
+      "n_correct": {
+        "2": 1.0,
+        "3": 3.0
+      },
+      "source": "published_n_correct",
+      "hit_rate": 0.449,
+      "hit_rate_n": 49,
+      "breakeven": {
+        "all_hit_x": 3.0,
+        "slip_win_rate": 0.3333333333333333,
+        "per_leg_rate": 0.5773502691896258,
+        "formula": "3p^2",
+        "rule9_pass": true
+      },
+      "rule9_pass": true,
+      "expected_profit": -158.1,
+      "cold_profit": -220.0,
+      "median_profit": -160.0,
+      "warm_profit": -100.0,
+      "hits": 22,
+      "wilson_lo": 0.3185,
+      "point_clears_58": false,
+      "wilson_clears_58": false
+    }
+  ],
+  "gated_standard_props": [
+    {
+      "sport": "NFL",
+      "direction": "UNDER",
+      "prop": "receptions",
+      "hits": 34,
+      "n": 36,
+      "rate": 0.9444,
+      "wilson_lo": 0.8186,
+      "point_clears_58": true,
+      "wilson_clears_58": true
+    },
+    {
+      "sport": "NFL",
+      "direction": "UNDER",
+      "prop": "sacks",
+      "hits": 71,
+      "n": 79,
+      "rate": 0.8987,
+      "wilson_lo": 0.8127,
+      "point_clears_58": true,
+      "wilson_clears_58": true
+    },
+    {
+      "sport": "NFL",
+      "direction": "UNDER",
+      "prop": "receiving_yards",
+      "hits": 24,
+      "n": 27,
+      "rate": 0.8889,
+      "wilson_lo": 0.7194,
+      "point_clears_58": true,
+      "wilson_clears_58": true
+    },
+    {
+      "sport": "NFL",
+      "direction": "UNDER",
+      "prop": "longest_reception",
+      "hits": 60,
+      "n": 71,
+      "rate": 0.8451,
+      "wilson_lo": 0.7435,
+      "point_clears_58": true,
+      "wilson_clears_58": true
+    }
+  ],
+  "grade_extra_dates": [
+    "2026-07-12"
+  ],
+  "goblin_quote_join": {
+    "n_slips": 177,
+    "under_1_5": {
+      "n_slips": 105,
+      "slips_with_gap": 103,
+      "legs_matched": 199,
+      "g70_legs": 1,
+      "gate_fail_legs": 1,
+      "unknown_legs": 197,
+      "unmatched_legs": 11,
+      "slips_with_any_g70": 1,
+      "median_gap": 1.5
+    },
+    "from_1_5_to_2": {
+      "n_slips": 51,
+      "slips_with_gap": 51,
+      "legs_matched": 94,
+      "g70_legs": 0,
+      "gate_fail_legs": 0,
+      "unknown_legs": 94,
+      "unmatched_legs": 8,
+      "slips_with_any_g70": 0,
+      "median_gap": 1.5
+    },
+    "at_least_2": {
+      "n_slips": 21,
+      "slips_with_gap": 3,
+      "legs_matched": 40,
+      "g70_legs": 19,
+      "gate_fail_legs": 13,
+      "unknown_legs": 8,
+      "unmatched_legs": 2,
+      "slips_with_any_g70": 16,
+      "median_gap": 1.5
+    },
+    "g70_legs_on_2x": [
+      {
+        "date": "2026-07-12",
+        "player": "kelsey mitchell",
+        "prop": "assists",
+        "n_slips": 15,
+        "min_x": 2.1,
+        "max_x": 2.8
+      },
+      {
+        "date": "2026-07-13",
+        "player": "allisha gray",
+        "prop": "points",
+        "n_slips": 1,
+        "min_x": 2.4,
+        "max_x": 2.4
+      },
+      {
+        "date": "2026-07-12",
+        "player": "jade melbourne",
+        "prop": "assists",
+        "n_slips": 1,
+        "min_x": 2.6,
+        "max_x": 2.6
+      },
+      {
+        "date": "2026-07-12",
+        "player": "jonquel jones",
+        "prop": "assists",
+        "n_slips": 1,
+        "min_x": 2.5,
+        "max_x": 2.5
+      },
+      {
+        "date": "2026-07-12",
+        "player": "natisha hiedeman",
+        "prop": "rebounds",
+        "n_slips": 1,
+        "min_x": 2.1,
+        "max_x": 2.1
+      }
+    ],
+    "quote_breakeven": [
+      {
+        "quote": 1.4,
+        "per_leg_rate": 0.8452
+      },
+      {
+        "quote": 1.7,
+        "per_leg_rate": 0.767
+      },
+      {
+        "quote": 2.0,
+        "per_leg_rate": 0.7071
+      },
+      {
+        "quote": 2.5,
+        "per_leg_rate": 0.6325
+      }
+    ]
+  },
+  "published_3leg": [
+    {
+      "label": "All-Standard 3-leg Power",
+      "product": "Power",
+      "n_legs": 3,
+      "n_correct": {
+        "3": 6.0
+      },
+      "source": "published_n_correct",
+      "hit_rate": 0.4292,
+      "hit_rate_n": 32944,
+      "breakeven": {
+        "all_hit_x": 6.0,
+        "slip_win_rate": 0.16666666666666669,
+        "per_leg_rate": 0.5503212081491045,
+        "formula": "power",
+        "rule9_pass": true
+      },
+      "rule9_pass": true,
+      "expected_profit": -210.23,
+      "cold_profit": -280.0,
+      "median_profit": -280.0,
+      "warm_profit": -40.0
+    },
+    {
+      "label": "All-Standard 3-leg Flex",
+      "product": "Flex",
+      "n_legs": 3,
+      "n_correct": {
+        "2": 1.0,
+        "3": 3.0
+      },
+      "source": "published_n_correct",
+      "hit_rate": 0.4292,
+      "hit_rate_n": 32944,
+      "breakeven": {
+        "all_hit_x": 3.0,
+        "slip_win_rate": 0.3333333333333333,
+        "per_leg_rate": 0.5773502691896258,
+        "formula": "3p^2",
+        "rule9_pass": true
+      },
+      "rule9_pass": true,
+      "expected_profit": -178.93,
+      "cold_profit": -240.0,
+      "median_profit": -180.0,
+      "warm_profit": -120.0
+    }
+  ],
+  "scraped_shapes": [
+    {
+      "n_legs": 2,
+      "composition": "0S+2G+0D",
+      "product": "Power",
+      "n_scrapes": 177,
+      "matched_slips": 177,
+      "unmatched_slips": 0,
+      "median_x": 1.4,
+      "histogram": [
+        {
+          "payout_x": 1.2,
+          "n": 26
+        },
+        {
+          "payout_x": 1.3,
+          "n": 48
+        },
+        {
+          "payout_x": 1.4,
+          "n": 31
+        },
+        {
+          "payout_x": 1.5,
+          "n": 14
+        },
+        {
+          "payout_x": 1.6,
+          "n": 13
+        },
+        {
+          "payout_x": 1.7,
+          "n": 16
+        },
+        {
+          "payout_x": 1.8,
+          "n": 7
+        },
+        {
+          "payout_x": 1.9,
+          "n": 1
+        },
+        {
+          "payout_x": 2.0,
+          "n": 1
+        },
+        {
+          "payout_x": 2.1,
+          "n": 2
+        },
+        {
+          "payout_x": 2.2,
+          "n": 2
+        },
+        {
+          "payout_x": 2.3,
+          "n": 1
+        },
+        {
+          "payout_x": 2.4,
+          "n": 3
+        },
+        {
+          "payout_x": 2.5,
+          "n": 1
+        },
+        {
+          "payout_x": 2.6,
+          "n": 5
+        },
+        {
+          "payout_x": 2.8,
+          "n": 6
+        }
+      ],
+      "breakeven": {
+        "all_hit_x": 1.4,
+        "slip_win_rate": 0.7142857142857143,
+        "per_leg_rate": 0.8451542547285166,
+        "formula": "power",
+        "rule9_pass": false
+      },
+      "rule9_pass": false,
+      "sleeve": false,
+      "month": {
+        "expected": -150.68,
+        "cold": -212.0,
+        "median": -154.0,
+        "warm": -92.0
+      },
+      "label": "All-Goblin 2-leg Power",
+      "rate_source": "graded_sport_pick_direction"
+    },
+    {
+      "n_legs": 2,
+      "composition": "0S+2G+0D",
+      "product": "Power",
+      "n_scrapes": 177,
+      "matched_slips": 177,
+      "unmatched_slips": 0,
+      "median_x": 1.4,
+      "histogram": [
+        {
+          "payout_x": 1.2,
+          "n": 26
+        },
+        {
+          "payout_x": 1.3,
+          "n": 48
+        },
+        {
+          "payout_x": 1.4,
+          "n": 31
+        },
+        {
+          "payout_x": 1.5,
+          "n": 14
+        },
+        {
+          "payout_x": 1.6,
+          "n": 13
+        },
+        {
+          "payout_x": 1.7,
+          "n": 16
+        },
+        {
+          "payout_x": 1.8,
+          "n": 7
+        },
+        {
+          "payout_x": 1.9,
+          "n": 1
+        },
+        {
+          "payout_x": 2.0,
+          "n": 1
+        },
+        {
+          "payout_x": 2.1,
+          "n": 2
+        },
+        {
+          "payout_x": 2.2,
+          "n": 2
+        },
+        {
+          "payout_x": 2.3,
+          "n": 1
+        },
+        {
+          "payout_x": 2.4,
+          "n": 3
+        },
+        {
+          "payout_x": 2.5,
+          "n": 1
+        },
+        {
+          "payout_x": 2.6,
+          "n": 5
+        },
+        {
+          "payout_x": 2.8,
+          "n": 6
+        }
+      ],
+      "breakeven": {
+        "all_hit_x": 1.4,
+        "slip_win_rate": 0.7142857142857143,
+        "per_leg_rate": 0.8451542547285166,
+        "formula": "power",
+        "rule9_pass": false
+      },
+      "rule9_pass": false,
+      "sleeve": true,
+      "month": {
+        "expected": -65.03,
+        "cold": -128.0,
+        "median": -66.0,
+        "warm": -4.0
+      },
+      "label": "All-Goblin 2-leg Power",
+      "rate_source": "goblin70_sleeve"
+    },
+    {
+      "n_legs": 3,
+      "composition": "0S+3G+0D",
+      "product": "Power",
+      "n_scrapes": 48,
+      "matched_slips": 48,
+      "unmatched_slips": 0,
+      "median_x": 1.65,
+      "histogram": [
+        {
+          "payout_x": 1.4,
+          "n": 6
+        },
+        {
+          "payout_x": 1.5,
+          "n": 11
+        },
+        {
+          "payout_x": 1.6,
+          "n": 7
+        },
+        {
+          "payout_x": 1.7,
+          "n": 3
+        },
+        {
+          "payout_x": 1.8,
+          "n": 4
+        },
+        {
+          "payout_x": 1.9,
+          "n": 5
+        },
+        {
+          "payout_x": 2.0,
+          "n": 3
+        },
+        {
+          "payout_x": 2.4,
+          "n": 2
+        },
+        {
+          "payout_x": 2.5,
+          "n": 1
+        },
+        {
+          "payout_x": 2.9,
+          "n": 1
+        },
+        {
+          "payout_x": 3.0,
+          "n": 1
+        },
+        {
+          "payout_x": 3.25,
+          "n": 1
+        },
+        {
+          "payout_x": 3.5,
+          "n": 1
+        },
+        {
+          "payout_x": 4.0,
+          "n": 1
+        },
+        {
+          "payout_x": 6.0,
+          "n": 1
+        }
+      ],
+      "breakeven": {
+        "all_hit_x": 1.65,
+        "slip_win_rate": 0.606060606060606,
+        "per_leg_rate": 0.8462629974714685,
+        "formula": "power",
+        "rule9_pass": false
+      },
+      "rule9_pass": false,
+      "sleeve": false,
+      "month": {
+        "expected": -196.2,
+        "cold": -270.0,
+        "median": -204.0,
+        "warm": -127.0
+      },
+      "label": "All-Goblin 3-leg Power",
+      "rate_source": "graded_sport_pick_direction"
+    },
+    {
+      "n_legs": 3,
+      "composition": "0S+3G+0D",
+      "product": "Power",
+      "n_scrapes": 48,
+      "matched_slips": 48,
+      "unmatched_slips": 0,
+      "median_x": 1.65,
+      "histogram": [
+        {
+          "payout_x": 1.4,
+          "n": 6
+        },
+        {
+          "payout_x": 1.5,
+          "n": 11
+        },
+        {
+          "payout_x": 1.6,
+          "n": 7
+        },
+        {
+          "payout_x": 1.7,
+          "n": 3
+        },
+        {
+          "payout_x": 1.8,
+          "n": 4
+        },
+        {
+          "payout_x": 1.9,
+          "n": 5
+        },
+        {
+          "payout_x": 2.0,
+          "n": 3
+        },
+        {
+          "payout_x": 2.4,
+          "n": 2
+        },
+        {
+          "payout_x": 2.5,
+          "n": 1
+        },
+        {
+          "payout_x": 2.9,
+          "n": 1
+        },
+        {
+          "payout_x": 3.0,
+          "n": 1
+        },
+        {
+          "payout_x": 3.25,
+          "n": 1
+        },
+        {
+          "payout_x": 3.5,
+          "n": 1
+        },
+        {
+          "payout_x": 4.0,
+          "n": 1
+        },
+        {
+          "payout_x": 6.0,
+          "n": 1
+        }
+      ],
+      "breakeven": {
+        "all_hit_x": 1.65,
+        "slip_win_rate": 0.606060606060606,
+        "per_leg_rate": 0.8462629974714685,
+        "formula": "power",
+        "rule9_pass": false
+      },
+      "rule9_pass": false,
+      "sleeve": true,
+      "month": {
+        "expected": -87.96,
+        "cold": -172.0,
+        "median": -93.0,
+        "warm": -12.0
+      },
+      "label": "All-Goblin 3-leg Power",
+      "rate_source": "goblin70_sleeve"
+    },
+    {
+      "n_legs": 2,
+      "composition": "1S+1G+0D",
+      "product": "Power",
+      "n_scrapes": 13,
+      "matched_slips": 13,
+      "unmatched_slips": 0,
+      "median_x": 2.1,
+      "histogram": [
+        {
+          "payout_x": 1.9,
+          "n": 3
+        },
+        {
+          "payout_x": 2.0,
+          "n": 3
+        },
+        {
+          "payout_x": 2.1,
+          "n": 1
+        },
+        {
+          "payout_x": 2.3,
+          "n": 3
+        },
+        {
+          "payout_x": 2.6,
+          "n": 1
+        },
+        {
+          "payout_x": 2.8,
+          "n": 1
+        },
+        {
+          "payout_x": 3.0,
+          "n": 1
+        }
+      ],
+      "breakeven": {
+        "all_hit_x": 2.1,
+        "slip_win_rate": 0.4761904761904762,
+        "per_leg_rate": 0.6900655593423543,
+        "formula": "power",
+        "rule9_pass": true
+      },
+      "rule9_pass": true,
+      "sleeve": false,
+      "month": {
+        "expected": -110.1,
+        "cold": -192.0,
+        "median": -112.0,
+        "warm": -30.0
+      },
+      "label": "Mixed 2-leg Power (1 Standard + 1 Goblin)",
+      "rate_source": "graded_sport_pick_direction"
+    },
+    {
+      "n_legs": 2,
+      "composition": "1S+1G+0D",
+      "product": "Power",
+      "n_scrapes": 13,
+      "matched_slips": 13,
+      "unmatched_slips": 0,
+      "median_x": 2.1,
+      "histogram": [
+        {
+          "payout_x": 1.9,
+          "n": 3
+        },
+        {
+          "payout_x": 2.0,
+          "n": 3
+        },
+        {
+          "payout_x": 2.1,
+          "n": 1
+        },
+        {
+          "payout_x": 2.3,
+          "n": 3
+        },
+        {
+          "payout_x": 2.6,
+          "n": 1
+        },
+        {
+          "payout_x": 2.8,
+          "n": 1
+        },
+        {
+          "payout_x": 3.0,
+          "n": 1
+        }
+      ],
+      "breakeven": {
+        "all_hit_x": 2.1,
+        "slip_win_rate": 0.4761904761904762,
+        "per_leg_rate": 0.6900655593423543,
+        "formula": "power",
+        "rule9_pass": true
+      },
+      "rule9_pass": true,
+      "sleeve": true,
+      "month": {
+        "expected": -82.59,
+        "cold": -168.0,
+        "median": -86.0,
+        "warm": 2.0
+      },
+      "label": "Mixed 2-leg Power (1 Standard + 1 Goblin)",
+      "rate_source": "goblin70_sleeve"
+    }
+  ],
+  "histograms": {
+    "all_goblin_2": [
+      {
+        "payout_x": 1.2,
+        "n": 26
+      },
+      {
+        "payout_x": 1.3,
+        "n": 48
+      },
+      {
+        "payout_x": 1.4,
+        "n": 31
+      },
+      {
+        "payout_x": 1.5,
+        "n": 14
+      },
+      {
+        "payout_x": 1.6,
+        "n": 13
+      },
+      {
+        "payout_x": 1.7,
+        "n": 16
+      },
+      {
+        "payout_x": 1.8,
+        "n": 7
+      },
+      {
+        "payout_x": 1.9,
+        "n": 1
+      },
+      {
+        "payout_x": 2.0,
+        "n": 1
+      },
+      {
+        "payout_x": 2.1,
+        "n": 2
+      },
+      {
+        "payout_x": 2.2,
+        "n": 2
+      },
+      {
+        "payout_x": 2.3,
+        "n": 1
+      },
+      {
+        "payout_x": 2.4,
+        "n": 3
+      },
+      {
+        "payout_x": 2.5,
+        "n": 1
+      },
+      {
+        "payout_x": 2.6,
+        "n": 5
+      },
+      {
+        "payout_x": 2.8,
+        "n": 6
+      }
+    ],
+    "mixed_2": [
+      {
+        "payout_x": 1.9,
+        "n": 3
+      },
+      {
+        "payout_x": 2.0,
+        "n": 3
+      },
+      {
+        "payout_x": 2.1,
+        "n": 1
+      },
+      {
+        "payout_x": 2.3,
+        "n": 3
+      },
+      {
+        "payout_x": 2.6,
+        "n": 1
+      },
+      {
+        "payout_x": 2.8,
+        "n": 1
+      },
+      {
+        "payout_x": 3.0,
+        "n": 1
+      }
+    ],
+    "all_goblin_3": [
+      {
+        "payout_x": 1.4,
+        "n": 6
+      },
+      {
+        "payout_x": 1.5,
+        "n": 11
+      },
+      {
+        "payout_x": 1.6,
+        "n": 7
+      },
+      {
+        "payout_x": 1.7,
+        "n": 3
+      },
+      {
+        "payout_x": 1.8,
+        "n": 4
+      },
+      {
+        "payout_x": 1.9,
+        "n": 5
+      },
+      {
+        "payout_x": 2.0,
+        "n": 3
+      },
+      {
+        "payout_x": 2.4,
+        "n": 2
+      },
+      {
+        "payout_x": 2.5,
+        "n": 1
+      },
+      {
+        "payout_x": 2.9,
+        "n": 1
+      },
+      {
+        "payout_x": 3.0,
+        "n": 1
+      },
+      {
+        "payout_x": 3.25,
+        "n": 1
+      },
+      {
+        "payout_x": 3.5,
+        "n": 1
+      },
+      {
+        "payout_x": 4.0,
+        "n": 1
+      },
+      {
+        "payout_x": 6.0,
+        "n": 1
+      }
+    ],
+    "all_standard_3": [
+      {
+        "payout_x": 3.0,
+        "n": 1
+      },
+      {
+        "payout_x": 6.0,
+        "n": 2
+      }
+    ]
+  }
+}

@@ -169,6 +169,9 @@ def main() -> None:
         line_col="line",
         pick_type_col="pick_type",
         normalize_pick_type=False,
+        # Step1 already joined real Standard siblings. A Goblin with no sibling
+        # stays blank — an offset estimate would look like a payout gap.
+        backfill_goblin=False,
     )
     log_goblin_standard_line_fill(df, "[Tennis step2]")
 

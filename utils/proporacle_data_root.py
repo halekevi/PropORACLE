@@ -55,11 +55,21 @@ def persistent_data_dir(repo_root: Path) -> Path:
 
 
 def _parse_grade_history_runs(raw: Any) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]]
     if isinstance(raw, list):
-        return [x for x in raw if isinstance(x, dict)]
-    if isinstance(raw, dict) and isinstance(raw.get("runs"), list):
-        return [x for x in (raw.get("runs") or []) if isinstance(x, dict)]
-    return []
+        rows = [x for x in raw if isinstance(x, dict)]
+    elif isinstance(raw, dict) and isinstance(raw.get("runs"), list):
+        rows = [x for x in (raw.get("runs") or []) if isinstance(x, dict)]
+    else:
+        return []
+    skip = {"stale_board", "published_after_start", "unverified_face"}
+    return [
+        r
+        for r in rows
+        if str(r.get("invalid_reason") or "").strip().lower() not in skip
+        and not r.get("exclude_from_forward")
+        and not r.get("exclude_from_winrate")
+    ]
 
 
 def _grade_history_key(r: dict[str, Any]) -> tuple[str, str]:

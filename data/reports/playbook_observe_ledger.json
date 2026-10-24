@@ -1,0 +1,11 @@
+{
+  "criteria": "H:\\PropORACLE_main_cp\\data\\reports\\playbook_promotion_criteria.json",
+  "observe_after": "2026-10-11",
+  "forward_legs": {
+    "nfl_standard_under_3leg_flex": 0,
+    "goblin70_on_2x_plus": 0
+  },
+  "last_diagnostic": "H:\\PropORACLE_main_cp\\data\\reports\\playbook_observe_latest.json",
+  "face_label_caveat": "Label-based. The 10-11 Standard UNDER cells and the rule-4-for-NFL ruling were computed on pick_type that step1 never stored (defaulted to Standard downstream); Demon/Goblin rungs are mixed into the 'Standard' rows. Only slate dates with step1 pick_type persisted (2026-10-23+, plus 09-20/09-21/09-24) are real faces. Forward counting must use utils.face_ladder status == verified. See data/reports/face_contamination_2026-10-24.md.",
+  "forward_legs_require": "utils.face_ladder status == verified for the leg's sport-date"
+}

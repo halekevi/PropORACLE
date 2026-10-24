@@ -1168,6 +1168,9 @@ def main() -> None:
         print(f"  [WARN] shooting coverage log skipped: {_sc_exc}")
     df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
     df.to_csv(args.output, index=False, encoding="utf-8-sig")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(args.output, sport="NBA")
     try:
         _root = Path(__file__).resolve().parents[3]
         if str(_root) not in sys.path:

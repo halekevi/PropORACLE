@@ -812,6 +812,13 @@ if (-not $rebuildTickets) {
     }
 }
 else {
+Write-Host "[LATE_FETCH] NBA sequential rebuild first (parallel job skipped steps 2-4 at 10:30)..." -ForegroundColor Cyan
+& pwsh -NoProfile -File $pipeScript -Date $PipeDate -NBAOnly -SkipFetch -SkipCombined -SkipLivePayoutCapture -SkipPush -SkipDailyGrader
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[LATE_FETCH] NBA sequential failed (exit $LASTEXITCODE)" -ForegroundColor Red
+    exit 1
+}
+$env:PROPORACLE_SKIP_NBA_JOB = "1"
 Write-Host "[LATE_FETCH] Running full pipeline -SkipFetch -SkipLivePayoutCapture -TicketGenStarts $middayTicketStarts -Date $PipeDate..."
 # Pipeline skips embedded CDP (keeps rebuild fast). Parent publishes then scrapes
 # payouts while still holding refresh.lock so 9AM cannot fetch during 8AM CDP.
