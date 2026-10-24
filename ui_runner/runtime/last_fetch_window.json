@@ -1,52 +1,74 @@
 {
   "date": "2026-10-24",
-  "window": "1PM",
-  "generated_at": "2026-10-24T13:05:20-04:00",
-  "n_pulls_this_window": 5,
+  "window": "4:30",
+  "generated_at": "2026-10-24T16:31:55-04:00",
+  "n_pulls_this_window": 6,
   "n_moved_this_window": 0,
   "n_moved_from_initial": 3,
   "is_initial_stamp": false,
   "force_payout": false,
   "rebuild_tickets": false,
   "new_by_sport": {
-    "WNBA": {
-      "new_rows": 37,
+    "NBA": {
+      "new_rows": 6181,
       "new_prop_types": [
+        "3-PT Attempted",
+        "3-PT Made",
+        "3-PT Made (Combo)",
+        "Assists",
+        "Assists (Combo)",
+        "Blks+Stls",
+        "Blocked Shots",
+        "Defensive Rebounds",
         "Double-Double",
-        "Minutes Played"
+        "Dunks",
+        "FG Attempted",
+        "FG Made",
+        "Fantasy Score",
+        "Free Throws Attempted",
+        "Free Throws Made",
+        "Offensive Rebounds",
+        "Personal Fouls",
+        "Points",
+        "Points (Combo)",
+        "Pts+Asts",
+        "Pts+Rebs",
+        "Pts+Rebs+Asts",
+        "Rebounds",
+        "Rebounds (Combo)",
+        "Rebs+Asts",
+        "Steals",
+        "Triple-Double",
+        "Turnovers",
+        "Two Pointers Attempted",
+        "Two Pointers Made"
       ]
     },
     "NHL": {
-      "new_rows": 413,
+      "new_rows": 211,
       "new_prop_types": [
-        "Goalie Fantasy Score",
-        "Goalie Saves",
-        "Goalie Saves (Combo)",
-        "Goals Allowed"
+        "Goals (Combo)",
+        "Shots On Goal (Combo)"
       ]
     },
     "SOCCER": {
-      "new_rows": 461,
+      "new_rows": 312,
       "new_prop_types": []
     },
     "MLB": {
-      "new_rows": 16,
-      "new_prop_types": [
-        "Plate Appearances",
-        "Triples"
-      ]
+      "new_rows": 1,
+      "new_prop_types": []
     }
   },
   "sport_rebuild_triggered": [
-    "MLB",
+    "NBA",
     "NHL",
-    "SOCCER",
-    "WNBA"
+    "SOCCER"
   ],
   "sport_rebuild_enabled": [
     "TENNIS"
   ],
   "rebuild_sports": [],
-  "latest_fetched_at": "2026-10-24T13:04:01-04:00",
+  "latest_fetched_at": "2026-10-24T16:31:30-04:00",
   "initial_fetched_at": "2026-10-23T01:06:10-04:00"
 }
