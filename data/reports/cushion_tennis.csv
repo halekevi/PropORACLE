@@ -1,0 +1,2 @@
+sport,id,status,top_bucket,n,wilson_lo,wilson_hi,break_even,wired,detail
+Tennis,cushion_tennis,FAIL,0.6863,102,0.5909,0.7682,Goblin 0.845 / Standard 0.577,0,"holdout 440 legs from 2026-09-12 through 2026-10-13, cut 2026-09-12; match_total_games Goblin OVER high 70/102 (0.6863) holdout hit rate does not rise low to high"

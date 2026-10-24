@@ -8,8 +8,11 @@ import warnings
 from pathlib import Path
 
 _SCRIPTS = Path(__file__).resolve().parent
+_REPO = _SCRIPTS.parent
 if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
 
 import joblib
 import numpy as np
@@ -23,6 +26,7 @@ from edge_feature_engineering import (  # type: ignore
     build_feature_vector,
     fill_minutes_cv_median_by_sport,
 )
+from utils.ml_prob_tail_caps import apply_ml_prob_tail_caps
 
 # Shared with step7b_edge_score. Recalibrated 2026-07-18:
 #   MLB+WNBA (policy targets), SOCCER Goblin OVER + TENNIS (actual-target).
@@ -40,8 +44,8 @@ ML_PROB_CALIBRATION_SCALARS: dict[tuple[str, str, str], float] = {
     ("MLB", "demon", "OVER"): 1.4152,
     ("MLB", "standard", "UNDER"): 0.8002,
     ("SOCCER", "standard", "OVER"): 0.4675,
-    # step7b replaces ml_prob via the unified edge model (independent of step7 prop_model).
-    ("SOCCER", "goblin", "OVER"): 1.81,
+    # Jul-18 1.81 saturated August Std+Gob at ~0.99 vs ~40% HR. Cut so tail cap can bind.
+    ("SOCCER", "goblin", "OVER"): 0.85,
     ("SOCCER", "demon", "OVER"): 2.121,
     ("SOCCER", "goblin", "UNDER"): 0.9423,
     ("SOCCER", "standard", "UNDER"): 1.6788,
@@ -149,7 +153,7 @@ def apply_ml_prob_post_calibration(
     Post-process Platt-calibrated positive-class probabilities.
 
     Order: ``p_platt`` → per-slice isotonic (if key in ``edge_slice_calibrators.pkl``)
-    → linear ``ML_PROB_CALIBRATION_SCALARS`` (default 1.0) → clip [0, 1].
+    → linear ``ML_PROB_CALIBRATION_SCALARS`` (default 1.0) → tail caps → clip [0, 1].
 
     Isotonic regressors are fit on a stratified **train-fit** subset (disjoint from the
     Platt calibration slice and the untouched test set in ``train_edge_model.py``).
@@ -190,6 +194,7 @@ def apply_ml_prob_post_calibration(
         m = ptv.eq(p0) & drv.eq(d0)
         adj[m.to_numpy()] = float(mult)
     p *= adj
+    p = apply_ml_prob_tail_caps(p, sport=spu, pick_lower=ptv, dir_upper=drv)
     return np.clip(p, 0.0, 1.0)
 
 
@@ -213,7 +218,7 @@ def augment_graded_box_raw_for_edge(df: pd.DataFrame) -> pd.DataFrame:
 
 def graded_filename_sport_to_train_sport(s: str) -> str:
     u = str(s or "").strip().lower()
-    if u in ("nba1q", "nba1h", "wnba"):
+    if u in ("nba1q", "nba1h", "wnba", "wnba1h", "wnba1q"):
         return "NBA"
     if u == "wcbb":
         return "CBB"
@@ -230,7 +235,8 @@ def predict_unified_edge_scores(
 ) -> tuple[pd.Series, pd.Series, pd.Series] | None:
     """
     Returns (ml_prob, edge_score, blended_score) aligned to df.index.
-    sport_for_model: NBA, CBB, NHL, SOCCER, MLB (not nba1q / wcbb — normalize first).
+    sport_for_model: NBA, CBB, NHL, SOCCER, MLB, WNBA, TENNIS, NFL, CFB, GOLF
+    (not nba1q / wcbb / nflp / cfb1h — normalize first).
     """
     root = repo_root()
     mdir = models_dir or (root / "models")

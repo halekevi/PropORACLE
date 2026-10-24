@@ -1,0 +1,84 @@
+{
+  "sport": "nfl",
+  "season": 2026,
+  "source": "Sports/NFL/data/cache/nfl_boxscore_cache.csv",
+  "note": "Our ranks from boxscore averages. Bottoms require a role floor (not zeros).",
+  "categories": [
+    {
+      "id": "pass_yds",
+      "label": "Pass yards",
+      "min_avg": 50.0
+    },
+    {
+      "id": "rush_yds",
+      "label": "Rush yards",
+      "min_avg": 15.0
+    },
+    {
+      "id": "rec_yds",
+      "label": "Receiving yards",
+      "min_avg": 20.0
+    },
+    {
+      "id": "receptions",
+      "label": "Receptions",
+      "min_avg": 2.0
+    },
+    {
+      "id": "pass_td",
+      "label": "Pass TDs",
+      "min_avg": 0.4
+    },
+    {
+      "id": "rush_td",
+      "label": "Rush TDs",
+      "min_avg": 0.15
+    },
+    {
+      "id": "rec_td",
+      "label": "Receiving TDs",
+      "min_avg": 0.15
+    },
+    {
+      "id": "kick_pts",
+      "label": "Kicking points",
+      "min_avg": 4.0
+    }
+  ],
+  "league_boards": {
+    "pass_yds": {
+      "top": [],
+      "bottom": []
+    },
+    "rush_yds": {
+      "top": [],
+      "bottom": []
+    },
+    "rec_yds": {
+      "top": [],
+      "bottom": []
+    },
+    "receptions": {
+      "top": [],
+      "bottom": []
+    },
+    "pass_td": {
+      "top": [],
+      "bottom": []
+    },
+    "rush_td": {
+      "top": [],
+      "bottom": []
+    },
+    "rec_td": {
+      "top": [],
+      "bottom": []
+    },
+    "kick_pts": {
+      "top": [],
+      "bottom": []
+    }
+  },
+  "player_count": 0,
+  "block_count": 0
+}

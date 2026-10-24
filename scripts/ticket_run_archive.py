@@ -377,6 +377,17 @@ def prune_live_tickets_from_capture(
         return {"ok": False, "error": f"missing capture {cap}"}
 
     capture = json.loads(Path(cap).read_text(encoding="utf-8"))
+    summary = capture.get("summary") if isinstance(capture.get("summary"), dict) else {}
+    n_ok = int(summary.get("n_ok") or 0)
+    # A dead CDP scrape marks every slip failed/only_clicked — never wipe /tickets
+    # down to a thin mixer leftover from that.
+    if n_ok <= 0:
+        print(
+            "  [ticket-run] live prune SKIP: capture n_ok=0 "
+            "(scrape failed — keep dual card)"
+        )
+        return {"ok": True, "skipped": True, "reason": "n_ok=0", "path": str(latest)}
+
     unplayable: set[str] = set()
     for rec in capture.get("slips") or []:
         if not isinstance(rec, dict):
@@ -395,8 +406,43 @@ def prune_live_tickets_from_capture(
 
     payload = json.loads(latest.read_text(encoding="utf-8"))
     before = sum(len(g.get("tickets") or []) for g in payload.get("groups") or [])
+    if before <= 0:
+        return {"ok": True, "skipped": True, "reason": "empty_tickets", "path": str(latest)}
+    # Never destroy the dual card: keep at least half the slips, and keep any
+    # Goblin-70 track when the capture only partially failed.
+    max_remove = max(1, before // 2)
+    if len(unplayable) >= before or len(unplayable) > max_remove:
+        print(
+            f"  [ticket-run] live prune SKIP: would remove {len(unplayable)}/{before} "
+            f"(cap {max_remove}) — keep dual card"
+        )
+        return {
+            "ok": True,
+            "skipped": True,
+            "reason": "too_many_removals",
+            "would_remove": len(unplayable),
+            "before": before,
+            "path": str(latest),
+        }
+
     pruned, counts = filter_payload_playable(payload, unplayable_ticket_ids=unplayable)
     after = counts["kept"]
+    # Refuse mixer-only / empty outcomes after prune.
+    from utils.ui_live_json import tickets_card_kind  # local import
+
+    kind = tickets_card_kind(pruned)
+    if kind in ("mixer_only", "goblin70_only", "empty"):
+        print(
+            f"  [ticket-run] live prune SKIP: result would be {kind} "
+            f"(kept={after}) — keep dual card"
+        )
+        return {
+            "ok": True,
+            "skipped": True,
+            "reason": f"would_be_{kind}",
+            "before": before,
+            "path": str(latest),
+        }
     latest.write_text(json.dumps(pruned, indent=2, ensure_ascii=False), encoding="utf-8")
 
     from utils.ui_live_json import write_paths

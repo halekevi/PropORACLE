@@ -4,8 +4,8 @@
   Kick off the full 5AM daily in a visible PowerShell console window.
 
 .NOTES
-  Use this for manual catchups. Scheduled tasks use the same visible-window
-  pattern after you re-run Register_Daily_Task.ps1 (elevated).
+  Scheduled 5AM (`PropOracle - Daily 5AM`) and manual catchup. Overnight 1AM is
+  Launch_Daily_1AM_Visible.ps1 / "PropOracle - Daily 1AM".
 #>
 param()
 

@@ -1,0 +1,177 @@
+{
+  "source": {
+    "graded": "H:\\PropORACLE_main_cp\\ui_runner\\templates",
+    "step8": "H:\\PropORACLE_main_cp\\outputs",
+    "gap": "stat_last5_avg minus the posted PrizePicks line on that row",
+    "books": "Goblin OVER and Standard OVER",
+    "matched_legs": 4813,
+    "unmatched_legs": 4078,
+    "note": "Games Won bands sit on the 3.3 cover unit and the Standard keep of 5. Total Games bands sit on the 4.3 cover unit. Goblin Games Won tickets skip that cover floor. Bases are legs whose step8 row had stat_last5_avg. They are not the rank-join bases, which required both ranks instead."
+  },
+  "by_band": [
+    {
+      "prop": "Games Won",
+      "book": "Goblin",
+      "direction": "OVER",
+      "gap": "stat_last5_avg - posted line",
+      "base": {
+        "hits": 1387,
+        "n": 1879,
+        "rate": 0.7382
+      },
+      "bands": [
+        {
+          "band": "avg below line",
+          "hits": 523,
+          "n": 749,
+          "rate": 0.6983
+        },
+        {
+          "band": "0 to 3.3",
+          "hits": 482,
+          "n": 679,
+          "rate": 0.7099
+        },
+        {
+          "band": "3.3 to 5",
+          "hits": 189,
+          "n": 224,
+          "rate": 0.8438
+        },
+        {
+          "band": "5+",
+          "hits": 193,
+          "n": 227,
+          "rate": 0.8502
+        }
+      ],
+      "n_match": true,
+      "hits_match": true
+    },
+    {
+      "prop": "Games Won",
+      "book": "Standard",
+      "direction": "OVER",
+      "gap": "stat_last5_avg - posted line",
+      "base": {
+        "hits": 307,
+        "n": 482,
+        "rate": 0.6369
+      },
+      "bands": [
+        {
+          "band": "avg below line",
+          "hits": 1,
+          "n": 1,
+          "rate": 1.0
+        },
+        {
+          "band": "0 to 3.3",
+          "hits": 204,
+          "n": 330,
+          "rate": 0.6182
+        },
+        {
+          "band": "3.3 to 5",
+          "hits": 63,
+          "n": 101,
+          "rate": 0.6238
+        },
+        {
+          "band": "5+",
+          "hits": 39,
+          "n": 50,
+          "rate": 0.78
+        }
+      ],
+      "n_match": true,
+      "hits_match": true
+    },
+    {
+      "prop": "Total Games",
+      "book": "Goblin",
+      "direction": "OVER",
+      "gap": "stat_last5_avg - posted line",
+      "base": {
+        "hits": 1115,
+        "n": 1861,
+        "rate": 0.5991
+      },
+      "bands": [
+        {
+          "band": "avg below line",
+          "hits": 162,
+          "n": 359,
+          "rate": 0.4513
+        },
+        {
+          "band": "0 to 4.3",
+          "hits": 436,
+          "n": 711,
+          "rate": 0.6132
+        },
+        {
+          "band": "4.3+",
+          "hits": 517,
+          "n": 791,
+          "rate": 0.6536
+        }
+      ],
+      "n_match": true,
+      "hits_match": true
+    },
+    {
+      "prop": "Total Games",
+      "book": "Standard",
+      "direction": "OVER",
+      "gap": "stat_last5_avg - posted line",
+      "base": {
+        "hits": 283,
+        "n": 591,
+        "rate": 0.4788
+      },
+      "bands": [
+        {
+          "band": "avg below line",
+          "hits": 1,
+          "n": 2,
+          "rate": 0.5
+        },
+        {
+          "band": "0 to 4.3",
+          "hits": 187,
+          "n": 377,
+          "rate": 0.496
+        },
+        {
+          "band": "4.3+",
+          "hits": 95,
+          "n": 212,
+          "rate": 0.4481
+        }
+      ],
+      "n_match": true,
+      "hits_match": true
+    }
+  ],
+  "standard_games_won_over_l10": [
+    {
+      "cut": "L10<8",
+      "hits": 224,
+      "n": 372,
+      "rate": 0.6022
+    },
+    {
+      "cut": "L10>=8 and avg-line<5",
+      "hits": 62,
+      "n": 87,
+      "rate": 0.7126
+    },
+    {
+      "cut": "L10>=8 and avg-line>=5",
+      "hits": 21,
+      "n": 23,
+      "rate": 0.913
+    }
+  ]
+}

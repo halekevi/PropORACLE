@@ -1,0 +1,18 @@
+[load] dropped 200263 rows missing game_id/stat_type/direction/hit/model_prob
+[load] 692872 graded props across 5696 games
+[load] --skip-matrix: correlation cells not built
+## Top-confidence construction simulation
+
+Greedy daily tickets from highest-ranked eligible legs (Lever A + thin-competition).
+ticket_hit = all legs hit (sweep) -- comparable to N-correct payout, not Flex partial.
+
+- shape: 3-leg `all_standard` sport=ALL rank_by=player_shrunk
+- window: 2026-05-01 .. 2026-06-30
+- n=61  WR=42.6%  wilson_lower=31.0%
+- selected mean raw model_prob=67.6%  mean rank_signal=0.8278803278688525
+- player_shrunk prior_strength=150.0 history=walkforward_count mean_player_prior_n=75.04918032786885
+- payout_x=6.0  breakeven WR=16.7%
+- clears breakeven (raw)? True  (wilson)? True
+- ev_raw=1.5573770491803276  ev_conservative=0.8609017134780461
+
+[top-confidence] wrote data\reports\top_confidence_player_shrunk_std3_may_june.csv

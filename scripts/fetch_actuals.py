@@ -42,7 +42,24 @@ for _p in (_SCRIPTS_DIR, _REPO_ROOT):
         sys.path.insert(0, str(_p))
 
 from player_name_norm import fold_player_name  # noqa: E402
+from utils.actuals_file_guard import write_actuals_csv  # noqa: E402
+from utils.eastern_slate_date import (  # noqa: E402
+    eastern_slate_date,
+    event_start_raw,
+    keep_event_on_slate,
+)
 from utils.player_name_utils import normalize_player_name  # noqa: E402
+
+
+def _on_slate_start(event: dict, slate_date: str, queried_day: str = "") -> bool:
+    """Keep an ESPN event when its start is the Eastern slate day.
+
+    A missing start stays on the scoreboard page that listed it. A start on
+    another Eastern day is dropped, including games pulled from the next UTC
+    scoreboard page.
+    """
+    src = queried_day or str(event.get("_queried_day") or "")
+    return keep_event_on_slate(event_start_raw(event), slate_date, src)
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -616,7 +633,11 @@ SOCCER_LEAGUES = [
     ("concacaf.champions", "Concacaf Champions Cup"),
     # Brazilian Série A — frequent on PP soccer boards (Corinthians, Botafogo, etc.).
     ("bra.1",  "Brazil Serie A"),
-    # sau.1 (Saudi Pro League): ESPN scoreboard/summary often 400 — skip; no reliable boxscore.
+    # Saudi Pro League + Andean leagues that show up on the PP SOCCER tab.
+    # ESPN slug is ksa.1 (sau.1 400s). Scoreboard/summary is live as of 2026-08.
+    ("ksa.1",  "Saudi Pro League"),
+    ("col.1",  "Colombia Liga BetPlay"),
+    ("ecu.1",  "Ecuador LigaPro"),
     ("aus.1",  "A-League"),
     # CONMEBOL club competitions — needed for South American clubs appearing on PP boards.
     ("conmebol.libertadores", "CONMEBOL Libertadores"),
@@ -833,7 +854,11 @@ def fetch_sport(sport_path, date_str, window=2, nba_extra_days: int = 0):
             f"(primary {date_str} + {nba_extra_days} following day(s))"
         )
     else:
-        fetch_dates = [date_str]
+        # Next scoreboard page holds evening Eastern starts that ESPN files under UTC.
+        fetch_dates = [
+            date_str,
+            (target_dt + _td(days=1)).strftime("%Y-%m-%d"),
+        ]
         if is_college:
             lab = "CBB" if sport_path == "mens-college-basketball" else "WCBB"
             print(f"{lab} mode: single-date fetch for {date_str} (--window 0)")
@@ -850,7 +875,9 @@ def fetch_sport(sport_path, date_str, window=2, nba_extra_days: int = 0):
             eid = str(e.get('id', '')).strip()
             if eid and eid not in seen_ids:
                 seen_ids.add(eid)
-                events.append(e)
+                stamped = dict(e)
+                stamped["_queried_day"] = d
+                events.append(stamped)
                 new += 1
         print(f"  Day total: {len(day_events)} events ({new} new unique)")
 
@@ -870,6 +897,9 @@ def fetch_sport(sport_path, date_str, window=2, nba_extra_days: int = 0):
 
         if state != 'post' and not completed:
             print(f"  Skipping {game_name} — not final (state={state})")
+            continue
+        if not _on_slate_start(event, date_str):
+            print(f"  Skipping {game_name} — start is not Eastern {date_str}")
             continue
 
         if event_id in graded_event_ids:
@@ -933,7 +963,9 @@ def fetch_sport(sport_path, date_str, window=2, nba_extra_days: int = 0):
 
 # ── Parse NHL ESPN box score ──────────────────────────────────────────────────
 NHL_STAT_MAP = {
-    "shots_on_goal": ["SOG", "SHOTSONGOAL", "S", "SHOTS", "SHOT"],
+    # Label SOG on the ESPN NHL summary is shootout goals, not shots on goal.
+    # Shots are keys.shotsTotal, displayed as S.
+    "shots_on_goal": ["S", "SHOTS", "SHOT"],
     "goals":         ["G", "GOALS"],
     "assists":       ["A", "ASSISTS"],
     "points":        ["PTS", "P", "POINTS"],
@@ -942,7 +974,8 @@ NHL_STAT_MAP = {
     "pim":           ["PIM", "PENALTYMINUTES"],
     "plus_minus":    ["PLUSMINUS", "+/-", "PM"],
     "power_play_points": ["PPP", "PPPTS", "PP", "POWERPLAYPOINTS", "PPA", "PPG"],
-    "faceoffs_won":  ["FOW", "FO", "FACEOFFS", "FW", "FOFACEOFFSWON"],
+    # FO / FACEOFFS on the ESPN skater line is faceoff win percentage, not wins.
+    "faceoffs_won":  ["FOW", "FW"],
     "time_on_ice":   ["TOI", "MIN", "TIMEONICE", "ICETIME"],
     "saves":         ["SV", "SAVES"],
     "goals_allowed": ["GA", "GOALSAGAINST", "GOALSALLOWED"],
@@ -1002,6 +1035,27 @@ def _parse_nhl_stat(label_map, key):
     return None
 
 
+def _nhl_shots_on_goal(key_map: dict, label_map: dict):
+    """Shots on goal are shotsTotal / label S. SOG is shootout goals."""
+    if "shotsTotal" in key_map:
+        try:
+            return float(key_map["shotsTotal"])
+        except (TypeError, ValueError):
+            return None
+    return _parse_nhl_stat(label_map, "shots_on_goal")
+
+
+def _nhl_faceoffs_won(key_map: dict, label_map: dict):
+    """Faceoffs won are faceoffsWon / label FW. Label FO is win percentage."""
+    for key in ("faceoffsWon", "faceoffWins"):
+        if key in key_map and key_map[key] not in (None, "", "--"):
+            try:
+                return float(key_map[key])
+            except (TypeError, ValueError):
+                return None
+    return _parse_nhl_stat(label_map, "faceoffs_won")
+
+
 def _has_nhl_stat_label(norm_labels: list[str], key: str) -> bool:
     aliases = NHL_STAT_MAP.get(key, [key.upper()])
     alias_set = {re.sub(r"[^A-Z0-9]", "", str(a).upper()) for a in aliases}
@@ -1025,6 +1079,7 @@ def parse_nhl_boxscore(box):
             norm_labels = [re.sub(r"[^A-Z0-9]", "", str(l).upper()) for l in labels]
             athletes = stat_group.get("athletes") or []
 
+            espn_keys = stat_group.get("keys") or []
             for a in athletes:
                 athlete = a.get("athlete", {}) if isinstance(a, dict) else {}
                 name = str(athlete.get("displayName", "")).strip()
@@ -1036,8 +1091,11 @@ def parse_nhl_boxscore(box):
                 for i, lbl in enumerate(norm_labels):
                     if i < len(stats):
                         label_map[lbl] = stats[i]
+                key_map = {}
+                if len(espn_keys) == len(stats):
+                    key_map = {str(espn_keys[i]): stats[i] for i in range(len(stats))}
 
-                sog  = _parse_nhl_stat(label_map, "shots_on_goal")
+                sog = _nhl_shots_on_goal(key_map, label_map)
                 g    = _parse_nhl_stat(label_map, "goals")
                 ast  = _parse_nhl_stat(label_map, "assists")
                 pts  = (g + ast) if g is not None and ast is not None else (
@@ -1047,7 +1105,7 @@ def parse_nhl_boxscore(box):
                 pim  = _parse_nhl_stat(label_map, "pim")
                 pm   = _parse_nhl_stat(label_map, "plus_minus")
                 ppp  = _parse_nhl_stat(label_map, "power_play_points")
-                fow  = _parse_nhl_stat(label_map, "faceoffs_won")
+                fow  = _nhl_faceoffs_won(key_map, label_map)
                 toi_raw = _nhl_stat_from_label_map(label_map, "time_on_ice")
                 toi  = _nhl_toi_to_minutes(toi_raw)
                 sv   = _parse_nhl_stat(label_map, "saves")
@@ -1083,10 +1141,12 @@ def parse_nhl_boxscore(box):
                 if not has_skater_stat:
                     continue
 
-                # Only impute missing skater stats to 0 when that stat label exists in this stat group.
-                # This prevents mass-false 0.0 rows when ESPN changes/omits a label (notably SOG).
-                if sog is None and _has_nhl_stat_label(norm_labels, "shots_on_goal"):
-                    sog = 0.0
+                # Do not impute a blank Shots On Goal cell to 0. ESPN writes "0" for a
+                # real zero and "--" when the cell was not recorded. Filling "--"
+                # graded Standard UNDER as HIT (65.9% of those rows were zeros).
+                # Goals and the other counting stats still fill only when the
+                # label is present, so a dressed skater with an empty goals cell
+                # stays a real zero.
                 if g is None and _has_nhl_stat_label(norm_labels, "goals"):
                     g = 0.0
                 if ast is None and _has_nhl_stat_label(norm_labels, "assists"):
@@ -1180,21 +1240,20 @@ def fetch_nhl(date_str: str, adjacent_days: int = 1):
     print(f"  Primary URL: {primary_url}")
     print(f"  Found {len(primary_events)} events on {date_str}")
 
+    # Next scoreboard page can hold an evening Eastern start (UTC spill).
+    # Each event is still kept only when its own start is ``date_str`` Eastern.
+    base = date.fromisoformat(date_str)
     dates_to_fetch: list[str] = [date_str]
+    for delta in range(1, max(0, int(adjacent_days)) + 1):
+        dates_to_fetch.append((base + timedelta(days=delta)).strftime("%Y-%m-%d"))
     if not primary_events:
         preview = (primary_text or "")[:800].replace("\n", " ")
         print(f"  Response preview (first 800 chars): {preview!r}")
-        base = date.fromisoformat(date_str)
-        for delta in range(-adjacent_days, adjacent_days + 1):
-            if delta == 0:
-                continue
-            adj = (base + timedelta(days=delta)).strftime("%Y-%m-%d")
-            if adj not in dates_to_fetch:
-                dates_to_fetch.append(adj)
-        print(
-            "  No games on primary date — expanding scoreboard to: "
-            f"{', '.join(dates_to_fetch)}"
-        )
+        for delta in range(1, max(0, int(adjacent_days)) + 1):
+            prev = (base - timedelta(days=delta)).strftime("%Y-%m-%d")
+            if prev not in dates_to_fetch:
+                dates_to_fetch.append(prev)
+        print(f"  No games on primary date — also opening: {', '.join(dates_to_fetch)}")
 
     seen_event_ids: set[str] = set()
     events: list = []
@@ -1220,7 +1279,9 @@ def fetch_nhl(date_str: str, adjacent_days: int = 1):
                 if eid in seen_event_ids:
                     continue
                 seen_event_ids.add(eid)
-            events.append(e)
+            stamped = dict(e)
+            stamped["_queried_day"] = d
+            events.append(stamped)
 
     print(f"  Unique events to consider (after merge): {len(events)}")
 
@@ -1230,6 +1291,9 @@ def fetch_nhl(date_str: str, adjacent_days: int = 1):
         completed = event.get("status", {}).get("type", {}).get("completed", False)
         if state != "post" and not completed:
             print(f"  Skipping {event.get('shortName','')} — not final")
+            continue
+        if not _on_slate_start(event, date_str):
+            print(f"  Skipping {event.get('shortName','')} — start is not Eastern {date_str}")
             continue
         event_id = event.get("id", "")
         game_name = event.get("shortName", "")
@@ -1482,9 +1546,16 @@ def fetch_nhl_api_enrichment(date_str):
             for day in sched.get("gameWeek", []):
                 if not isinstance(day, dict):
                     continue
-                if str(day.get("date", ""))[:10] != date_str:
-                    continue
-                games.extend(day.get("games", []) or [])
+                for g in day.get("games", []) or []:
+                    if not isinstance(g, dict):
+                        continue
+                    start = g.get("startTimeUTC") or ""
+                    et = eastern_slate_date(start)
+                    if et:
+                        if et == date_str:
+                            games.append(g)
+                    elif str(day.get("date", ""))[:10] == date_str:
+                        games.append(g)
         elif isinstance(sched.get("games"), list):
             games = sched.get("games", [])
 
@@ -1752,10 +1823,10 @@ def fetch_soccer(date_str, adjacent_days: int = 1):
     """
     Fetch completed soccer games across all tracked leagues.
 
-    adjacent_days: also scan the following N calendar days (default 1). PrizePicks
-    slate files are keyed by board date while many soccer kickoffs (e.g. UCL) are
-    the next local day; without +1 day, grade-date actuals miss the slate and every
-    soccer row VOIDs.
+    adjacent_days: also open the following N scoreboard pages (default 1).
+    An evening Eastern kickoff can sit on the next UTC page. Each event is
+    kept only when its own start falls on ``date_str`` in America/New_York.
+    A match that starts the next Eastern day stays out of this file.
     """
     base = date.fromisoformat(date_str)
     all_rows = []
@@ -1782,6 +1853,8 @@ def fetch_soccer(date_str, adjacent_days: int = 1):
                     state     = event.get("status", {}).get("type", {}).get("state", "")
                     completed = event.get("status", {}).get("type", {}).get("completed", False)
                     if state != "post" and not completed:
+                        continue
+                    if not _on_slate_start(event, date_str, queried_day=day_iso):
                         continue
                     event_id = event.get("id", "")
                     if event_id in seen_event_ids:
@@ -1890,6 +1963,11 @@ def main():
     ap.add_argument('--soccer-window', default=1, type=int,
                     help='Soccer only: also fetch completed games for the following N calendar days after '
                          '--date (default: 1). Use 0 for single calendar day only.')
+    ap.add_argument(
+        '--force',
+        action='store_true',
+        help='Replace an existing actuals file after a dated backup. Default keeps existing rows and appends new keys.',
+    )
     ap.add_argument('--nba-window', default=1, type=int,
                     help='NBA / WNBA: also fetch scoreboards for the following N calendar days after --date '
                          '(default: 1) so games ESPN indexes on the next day are included. Use 0 for '
@@ -1937,7 +2015,7 @@ def main():
         # Always write a header-only stub so downstream grading never skips due to
         # missing files on pre-final slates or true off-days.
         stub = pd.DataFrame(columns=["player", "team", "prop_type", "actual"])
-        stub.to_csv(args.output, index=False)
+        write_actuals_csv(Path(args.output), stub, force=args.force)
         _export_injuries_sidecar(args)
         if args.sport in ("NBA", "WNBA") and nba_box_dnp:
             n_merged = merge_nba_box_dnp_into_injuries_csv(nba_box_dnp, args.date, args.output)
@@ -1950,7 +2028,7 @@ def main():
             print("Games may not be final yet; rerun after completion for decided grades.")
         return
 
-    df.to_csv(args.output, index=False)
+    write_actuals_csv(Path(args.output), df, force=args.force)
     _export_injuries_sidecar(args)
     if args.sport in ("NBA", "WNBA") and nba_box_dnp:
         n_merged = merge_nba_box_dnp_into_injuries_csv(nba_box_dnp, args.date, args.output)

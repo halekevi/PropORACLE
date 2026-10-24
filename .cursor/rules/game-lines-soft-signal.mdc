@@ -1,0 +1,39 @@
+---
+description: Game lines are soft environment only — freshness teeth + unsorted reference presentation
+globs: "{scripts/fetch_game_lines.py,scripts/attach_market_lines_to_grades.py,utils/pp_vegas_gap.py,utils/game_lines_freshness.py,scripts/game_script_risk.py,data/reports/game_line_environment.md}"
+alwaysApply: false
+---
+
+# Game lines: soft signal / hard gate (third instance)
+
+Same rule as **THIN_CLEAR_OVER** (visible to humans, invisible to ticket gates) and the **anchor-cap `--anchor` requirement** (structural teeth, not prose).
+
+Game spread / total / team win probability are **environment on a prop**. They are never:
+
+- a Goblin-70 / Standard / YOLO ticket gate
+- a badge or knot (NBA spread buckets failed the regular-season check)
+- a gap-sort / “highly probable” leaderboard key
+
+## Freshness before attach
+
+1. Fetch uses **US/Eastern** slate dates (not UTC).
+2. Default sports include **MLB** (was missing from `fetch_game_lines` defaults).
+3. After STEP C0: `assert_game_lines_fresh` — lag > 2 days on an expected sport **fails**.
+4. `attach_market_lines_to_grades._game_join` **refuses** to build a game index when the freshness report is not ok. Empty columns beat silent early-Sep lines on a late-Sep board.
+
+```powershell
+py -3.14 scripts/fetch_game_lines.py --date YYYY-MM-DD --refresh
+py -3.14 scripts/assert_game_lines_fresh.py --date YYYY-MM-DD
+```
+
+Do **not** wire live step8 attach until this gate is green for that slate.
+
+## Presentation (locked before explorer / browse tools)
+
+| Allowed | Forbidden |
+|---------|-----------|
+| Unsorted reference columns on a prop row (`game_spread`, `game_total`, `team_win_prob`) | Sorting step8 / explorer / tickets by those columns |
+| Soft `game_script_mult` nudge on rank score only | Ranked “best game script” browse tables |
+| Research batteries under `game_line_environment.md` | Treating battery PASS as a ticket gate |
+
+A caption that says “not a pick list” is not teeth — the outlier browse table already had that and was still read as a pick list. Do not expose these fields through anything that looks like a ranked view.

@@ -1,0 +1,42 @@
+---
+description: NFL Tuesday post-week cadence — refresh soft context + O/D current.md; never rely on sealed week archives for live tickets
+globs: "{Sports/NFL/**,utils/nfl_*.py,scripts/**/*nfl*}"
+alwaysApply: false
+---
+
+# NFL Tuesday post-week cadence
+
+After Week N is fully graded (Tue AM — not while MNF is live):
+
+1. `pwsh -File Sports/NFL/scripts/run_tuesday_post_week.ps1 -Season 2026 -Week N`
+   - Rebuilds route/WOPR, OL/DL/sec/box, pace, division team-unit ranks
+   - Regenerates **`Sports/NFL/data/nfl_od_rankings_current.md`** + `nfl_od_rankings_meta.json`
+   - Archives `nfl_od_rankings_week{N+1}.md` if not already sealed
+2. Grade Week-N prop-gate ledger → `Sports/NFL/data/nfl_prop_gate_ledger_weekN.*`
+3. Odds API: key may exist but **quota must be > 0** before NFL `step6b` (401 / remaining=0 blocks live odds)
+
+Manual steps (same as the pack)::
+
+```powershell
+py -3.14 Sports/NFL/scripts/build_nfl_route_participation.py --season 2026 --week N
+py -3.14 Sports/NFL/scripts/build_nfl_unit_line_ranks.py --season 2026
+py -3.14 Sports/NFL/scripts/build_nfl_pace_ranks.py --season 2026
+py -3.14 Sports/NFL/scripts/build_nfl_division_ranks.py
+py -3.14 Sports/NFL/scripts/build_nfl_od_rankings_md.py --season 2026 --week (N+1)
+```
+
+## Current vs sealed archives
+
+- **Live tickets / hand-checks / agents:** always read `nfl_od_rankings_current.md` (and `nfl_od_rankings_meta.json` for `built_at`).
+- **Sealed** `nfl_od_rankings_week2.md` (etc.) are historical snapshots — do not use for the live slate after the next Tuesday refresh.
+- NFL pipeline also regenerates `current.md` after division ranks so step8 soft context and the md stay aligned.
+- `utils/nfl_context_freshness.py` warns in step3 / pipeline when unit CSVs are older than ~7 days.
+
+Reference checklist: `Sports/NFL/data/nfl_tuesday_week3_checklist.md`.
+
+## Ledger must answer (ping when grades are in)
+
+- Does WOPR tier stratify UNDER hit rate above the 82–87% baseline?
+- Does the first Goblin sample show OVER or UNDER skew?
+- Do longest rush / rush attempts UNDER earn allowlist consideration?
+- Does pace tier correlate with receptions volume as expected?

@@ -1,0 +1,1302 @@
+{
+  "method": "walk_forward_prior_actuals_vs_todays_line",
+  "from": "2026-03-10",
+  "to": "2026-08-23",
+  "n_days": 152,
+  "hist_rows": 271862,
+  "definition": {
+    "list": "directional L5>=4, Gold/Silver, no Demons",
+    "Diamond": "Gold + L10>=8 AND season HR>70% (min 10 prior games vs today's line)",
+    "Platinum": "Gold + exactly one extra gate",
+    "Gold remain": "Gold with neither extra gate"
+  },
+  "skipped": {
+    "l5": 202387,
+    "book": 599,
+    "badge": 19507
+  },
+  "overall": {
+    "Goblin OVER": {
+      "Diamond": {
+        "n": 2926,
+        "hits": 2124,
+        "hr": 0.7259
+      },
+      "Platinum": {
+        "n": 1493,
+        "hits": 1014,
+        "hr": 0.6792
+      },
+      "Platinum L10-only": {
+        "n": 903,
+        "hits": 630,
+        "hr": 0.6977
+      },
+      "Platinum season-only": {
+        "n": 590,
+        "hits": 384,
+        "hr": 0.6508
+      },
+      "Gold remain": {
+        "n": 2534,
+        "hits": 1668,
+        "hr": 0.6582
+      },
+      "Silver": {
+        "n": 36843,
+        "hits": 25105,
+        "hr": 0.6814
+      },
+      "Gold all": {
+        "n": 6953,
+        "hits": 4806,
+        "hr": 0.6912
+      }
+    },
+    "Standard OVER": {
+      "Diamond": {
+        "n": 83,
+        "hits": 41,
+        "hr": 0.494
+      },
+      "Platinum": {
+        "n": 53,
+        "hits": 23,
+        "hr": 0.434
+      },
+      "Platinum L10-only": {
+        "n": 39,
+        "hits": 18,
+        "hr": 0.4615
+      },
+      "Platinum season-only": {
+        "n": 14,
+        "hits": 5,
+        "hr": 0.3571
+      },
+      "Gold remain": {
+        "n": 339,
+        "hits": 172,
+        "hr": 0.5074
+      },
+      "Silver": {
+        "n": 3193,
+        "hits": 1605,
+        "hr": 0.5027
+      },
+      "Gold all": {
+        "n": 475,
+        "hits": 236,
+        "hr": 0.4968
+      }
+    },
+    "Standard UNDER": {
+      "Diamond": {
+        "n": 83,
+        "hits": 50,
+        "hr": 0.6024
+      },
+      "Platinum": {
+        "n": 27,
+        "hits": 14,
+        "hr": 0.5185
+      },
+      "Platinum L10-only": {
+        "n": 14,
+        "hits": 6,
+        "hr": 0.4286
+      },
+      "Platinum season-only": {
+        "n": 13,
+        "hits": 8,
+        "hr": 0.6154
+      },
+      "Gold remain": {
+        "n": 166,
+        "hits": 88,
+        "hr": 0.5301
+      },
+      "Silver": {
+        "n": 1629,
+        "hits": 956,
+        "hr": 0.5869
+      },
+      "Gold all": {
+        "n": 276,
+        "hits": 152,
+        "hr": 0.5507
+      }
+    },
+    "ALL": {
+      "Diamond": {
+        "n": 3092,
+        "hits": 2215,
+        "hr": 0.7164
+      },
+      "Platinum": {
+        "n": 1573,
+        "hits": 1051,
+        "hr": 0.6682
+      },
+      "Platinum L10-only": {
+        "n": 956,
+        "hits": 654,
+        "hr": 0.6841
+      },
+      "Platinum season-only": {
+        "n": 617,
+        "hits": 397,
+        "hr": 0.6434
+      },
+      "Gold remain": {
+        "n": 3039,
+        "hits": 1928,
+        "hr": 0.6344
+      },
+      "Silver": {
+        "n": 41665,
+        "hits": 27666,
+        "hr": 0.664
+      },
+      "Gold all": {
+        "n": 7704,
+        "hits": 5194,
+        "hr": 0.6742
+      }
+    }
+  },
+  "by_sport": {
+    "WNBA": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 1530,
+          "hits": 1130,
+          "hr": 0.7386
+        },
+        "Platinum": {
+          "n": 689,
+          "hits": 495,
+          "hr": 0.7184
+        },
+        "Platinum L10-only": {
+          "n": 404,
+          "hits": 295,
+          "hr": 0.7302
+        },
+        "Platinum season-only": {
+          "n": 285,
+          "hits": 200,
+          "hr": 0.7018
+        },
+        "Gold remain": {
+          "n": 756,
+          "hits": 498,
+          "hr": 0.6587
+        },
+        "Silver": {
+          "n": 5739,
+          "hits": 4118,
+          "hr": 0.7175
+        },
+        "Gold all": {
+          "n": 2975,
+          "hits": 2123,
+          "hr": 0.7136
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 42,
+          "hits": 22,
+          "hr": 0.5238
+        },
+        "Platinum": {
+          "n": 31,
+          "hits": 8,
+          "hr": 0.2581
+        },
+        "Platinum L10-only": {
+          "n": 21,
+          "hits": 7,
+          "hr": 0.3333
+        },
+        "Platinum season-only": {
+          "n": 10,
+          "hits": 1,
+          "hr": 0.1
+        },
+        "Gold remain": {
+          "n": 134,
+          "hits": 59,
+          "hr": 0.4403
+        },
+        "Silver": {
+          "n": 873,
+          "hits": 457,
+          "hr": 0.5235
+        },
+        "Gold all": {
+          "n": 207,
+          "hits": 89,
+          "hr": 0.43
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 53,
+          "hits": 32,
+          "hr": 0.6038
+        },
+        "Platinum": {
+          "n": 25,
+          "hits": 13,
+          "hr": 0.52
+        },
+        "Platinum L10-only": {
+          "n": 13,
+          "hits": 5,
+          "hr": 0.3846
+        },
+        "Platinum season-only": {
+          "n": 12,
+          "hits": 8,
+          "hr": 0.6667
+        },
+        "Gold remain": {
+          "n": 104,
+          "hits": 57,
+          "hr": 0.5481
+        },
+        "Silver": {
+          "n": 686,
+          "hits": 370,
+          "hr": 0.5394
+        },
+        "Gold all": {
+          "n": 182,
+          "hits": 102,
+          "hr": 0.5604
+        }
+      }
+    },
+    "MLB": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 1354,
+          "hits": 969,
+          "hr": 0.7157
+        },
+        "Platinum": {
+          "n": 796,
+          "hits": 515,
+          "hr": 0.647
+        },
+        "Platinum L10-only": {
+          "n": 496,
+          "hits": 335,
+          "hr": 0.6754
+        },
+        "Platinum season-only": {
+          "n": 300,
+          "hits": 180,
+          "hr": 0.6
+        },
+        "Gold remain": {
+          "n": 1703,
+          "hits": 1133,
+          "hr": 0.6653
+        },
+        "Silver": {
+          "n": 28726,
+          "hits": 19286,
+          "hr": 0.6714
+        },
+        "Gold all": {
+          "n": 3853,
+          "hits": 2617,
+          "hr": 0.6792
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 25,
+          "hits": 13,
+          "hr": 0.52
+        },
+        "Platinum": {
+          "n": 17,
+          "hits": 10,
+          "hr": 0.5882
+        },
+        "Platinum L10-only": {
+          "n": 15,
+          "hits": 8,
+          "hr": 0.5333
+        },
+        "Platinum season-only": {
+          "n": 2,
+          "hits": 2,
+          "hr": 1.0
+        },
+        "Gold remain": {
+          "n": 109,
+          "hits": 52,
+          "hr": 0.4771
+        },
+        "Silver": {
+          "n": 1777,
+          "hits": 864,
+          "hr": 0.4862
+        },
+        "Gold all": {
+          "n": 151,
+          "hits": 75,
+          "hr": 0.4967
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 21,
+          "hits": 10,
+          "hr": 0.4762
+        },
+        "Platinum": {
+          "n": 2,
+          "hits": 1,
+          "hr": 0.5
+        },
+        "Platinum L10-only": {
+          "n": 1,
+          "hits": 1,
+          "hr": 1.0
+        },
+        "Platinum season-only": {
+          "n": 1,
+          "hits": 0,
+          "hr": 0.0
+        },
+        "Gold remain": {
+          "n": 37,
+          "hits": 20,
+          "hr": 0.5405
+        },
+        "Silver": {
+          "n": 673,
+          "hits": 392,
+          "hr": 0.5825
+        },
+        "Gold all": {
+          "n": 60,
+          "hits": 31,
+          "hr": 0.5167
+        }
+      }
+    },
+    "SOCCER": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 42,
+          "hits": 25,
+          "hr": 0.5952
+        },
+        "Platinum": {
+          "n": 8,
+          "hits": 4,
+          "hr": 0.5
+        },
+        "Platinum L10-only": {
+          "n": 3,
+          "hits": 0,
+          "hr": 0.0
+        },
+        "Platinum season-only": {
+          "n": 5,
+          "hits": 4,
+          "hr": 0.8
+        },
+        "Gold remain": {
+          "n": 75,
+          "hits": 37,
+          "hr": 0.4933
+        },
+        "Silver": {
+          "n": 649,
+          "hits": 381,
+          "hr": 0.5871
+        },
+        "Gold all": {
+          "n": 125,
+          "hits": 66,
+          "hr": 0.528
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 16,
+          "hits": 6,
+          "hr": 0.375
+        },
+        "Platinum": {
+          "n": 5,
+          "hits": 5,
+          "hr": 1.0
+        },
+        "Platinum L10-only": {
+          "n": 3,
+          "hits": 3,
+          "hr": 1.0
+        },
+        "Platinum season-only": {
+          "n": 2,
+          "hits": 2,
+          "hr": 1.0
+        },
+        "Gold remain": {
+          "n": 96,
+          "hits": 61,
+          "hr": 0.6354
+        },
+        "Silver": {
+          "n": 290,
+          "hits": 147,
+          "hr": 0.5069
+        },
+        "Gold all": {
+          "n": 117,
+          "hits": 72,
+          "hr": 0.6154
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 9,
+          "hits": 8,
+          "hr": 0.8889
+        },
+        "Platinum": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum L10-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum season-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold remain": {
+          "n": 25,
+          "hits": 11,
+          "hr": 0.44
+        },
+        "Silver": {
+          "n": 76,
+          "hits": 52,
+          "hr": 0.6842
+        },
+        "Gold all": {
+          "n": 34,
+          "hits": 19,
+          "hr": 0.5588
+        }
+      }
+    },
+    "TENNIS": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum L10-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum season-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold remain": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Silver": {
+          "n": 1729,
+          "hits": 1320,
+          "hr": 0.7634
+        },
+        "Gold all": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum L10-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum season-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold remain": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Silver": {
+          "n": 253,
+          "hits": 137,
+          "hr": 0.5415
+        },
+        "Gold all": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum L10-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum season-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold remain": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Silver": {
+          "n": 194,
+          "hits": 142,
+          "hr": 0.732
+        },
+        "Gold all": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        }
+      }
+    },
+    "NFL": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum L10-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum season-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold remain": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Silver": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold all": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum L10-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum season-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold remain": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Silver": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold all": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum L10-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum season-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold remain": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Silver": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold all": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        }
+      }
+    }
+  },
+  "monthly": {
+    "2026-04": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 295,
+          "hits": 221,
+          "hr": 0.7492
+        },
+        "Platinum": {
+          "n": 108,
+          "hits": 68,
+          "hr": 0.6296
+        },
+        "Platinum L10-only": {
+          "n": 60,
+          "hits": 36,
+          "hr": 0.6
+        },
+        "Platinum season-only": {
+          "n": 48,
+          "hits": 32,
+          "hr": 0.6667
+        },
+        "Gold remain": {
+          "n": 555,
+          "hits": 385,
+          "hr": 0.6937
+        },
+        "Silver": {
+          "n": 1480,
+          "hits": 946,
+          "hr": 0.6392
+        },
+        "Gold all": {
+          "n": 958,
+          "hits": 674,
+          "hr": 0.7035
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 4,
+          "hits": 1,
+          "hr": 0.25
+        },
+        "Platinum": {
+          "n": 5,
+          "hits": 4,
+          "hr": 0.8
+        },
+        "Platinum L10-only": {
+          "n": 5,
+          "hits": 4,
+          "hr": 0.8
+        },
+        "Platinum season-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold remain": {
+          "n": 26,
+          "hits": 16,
+          "hr": 0.6154
+        },
+        "Silver": {
+          "n": 65,
+          "hits": 34,
+          "hr": 0.5231
+        },
+        "Gold all": {
+          "n": 35,
+          "hits": 21,
+          "hr": 0.6
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum L10-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Platinum season-only": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "Gold remain": {
+          "n": 3,
+          "hits": 2,
+          "hr": 0.6667
+        },
+        "Silver": {
+          "n": 58,
+          "hits": 39,
+          "hr": 0.6724
+        },
+        "Gold all": {
+          "n": 3,
+          "hits": 2,
+          "hr": 0.6667
+        }
+      }
+    },
+    "2026-05": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 718,
+          "hits": 502,
+          "hr": 0.6992
+        },
+        "Platinum": {
+          "n": 475,
+          "hits": 314,
+          "hr": 0.6611
+        },
+        "Platinum L10-only": {
+          "n": 292,
+          "hits": 202,
+          "hr": 0.6918
+        },
+        "Platinum season-only": {
+          "n": 183,
+          "hits": 112,
+          "hr": 0.612
+        },
+        "Gold remain": {
+          "n": 722,
+          "hits": 461,
+          "hr": 0.6385
+        },
+        "Silver": {
+          "n": 3907,
+          "hits": 2567,
+          "hr": 0.657
+        },
+        "Gold all": {
+          "n": 1915,
+          "hits": 1277,
+          "hr": 0.6668
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 23,
+          "hits": 11,
+          "hr": 0.4783
+        },
+        "Platinum": {
+          "n": 13,
+          "hits": 8,
+          "hr": 0.6154
+        },
+        "Platinum L10-only": {
+          "n": 11,
+          "hits": 6,
+          "hr": 0.5455
+        },
+        "Platinum season-only": {
+          "n": 2,
+          "hits": 2,
+          "hr": 1.0
+        },
+        "Gold remain": {
+          "n": 139,
+          "hits": 75,
+          "hr": 0.5396
+        },
+        "Silver": {
+          "n": 545,
+          "hits": 275,
+          "hr": 0.5046
+        },
+        "Gold all": {
+          "n": 175,
+          "hits": 94,
+          "hr": 0.5371
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 26,
+          "hits": 16,
+          "hr": 0.6154
+        },
+        "Platinum": {
+          "n": 2,
+          "hits": 0,
+          "hr": 0.0
+        },
+        "Platinum L10-only": {
+          "n": 1,
+          "hits": 0,
+          "hr": 0.0
+        },
+        "Platinum season-only": {
+          "n": 1,
+          "hits": 0,
+          "hr": 0.0
+        },
+        "Gold remain": {
+          "n": 55,
+          "hits": 29,
+          "hr": 0.5273
+        },
+        "Silver": {
+          "n": 235,
+          "hits": 140,
+          "hr": 0.5957
+        },
+        "Gold all": {
+          "n": 83,
+          "hits": 45,
+          "hr": 0.5422
+        }
+      }
+    },
+    "2026-06": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 881,
+          "hits": 620,
+          "hr": 0.7037
+        },
+        "Platinum": {
+          "n": 424,
+          "hits": 286,
+          "hr": 0.6745
+        },
+        "Platinum L10-only": {
+          "n": 250,
+          "hits": 169,
+          "hr": 0.676
+        },
+        "Platinum season-only": {
+          "n": 174,
+          "hits": 117,
+          "hr": 0.6724
+        },
+        "Gold remain": {
+          "n": 857,
+          "hits": 582,
+          "hr": 0.6791
+        },
+        "Silver": {
+          "n": 10907,
+          "hits": 7386,
+          "hr": 0.6772
+        },
+        "Gold all": {
+          "n": 2162,
+          "hits": 1488,
+          "hr": 0.6883
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 31,
+          "hits": 17,
+          "hr": 0.5484
+        },
+        "Platinum": {
+          "n": 14,
+          "hits": 6,
+          "hr": 0.4286
+        },
+        "Platinum L10-only": {
+          "n": 10,
+          "hits": 4,
+          "hr": 0.4
+        },
+        "Platinum season-only": {
+          "n": 4,
+          "hits": 2,
+          "hr": 0.5
+        },
+        "Gold remain": {
+          "n": 125,
+          "hits": 62,
+          "hr": 0.496
+        },
+        "Silver": {
+          "n": 1105,
+          "hits": 542,
+          "hr": 0.4905
+        },
+        "Gold all": {
+          "n": 170,
+          "hits": 85,
+          "hr": 0.5
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 33,
+          "hits": 24,
+          "hr": 0.7273
+        },
+        "Platinum": {
+          "n": 8,
+          "hits": 3,
+          "hr": 0.375
+        },
+        "Platinum L10-only": {
+          "n": 4,
+          "hits": 2,
+          "hr": 0.5
+        },
+        "Platinum season-only": {
+          "n": 4,
+          "hits": 1,
+          "hr": 0.25
+        },
+        "Gold remain": {
+          "n": 74,
+          "hits": 40,
+          "hr": 0.5405
+        },
+        "Silver": {
+          "n": 657,
+          "hits": 356,
+          "hr": 0.5419
+        },
+        "Gold all": {
+          "n": 115,
+          "hits": 67,
+          "hr": 0.5826
+        }
+      }
+    },
+    "2026-07": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 477,
+          "hits": 360,
+          "hr": 0.7547
+        },
+        "Platinum": {
+          "n": 207,
+          "hits": 146,
+          "hr": 0.7053
+        },
+        "Platinum L10-only": {
+          "n": 136,
+          "hits": 103,
+          "hr": 0.7574
+        },
+        "Platinum season-only": {
+          "n": 71,
+          "hits": 43,
+          "hr": 0.6056
+        },
+        "Gold remain": {
+          "n": 179,
+          "hits": 104,
+          "hr": 0.581
+        },
+        "Silver": {
+          "n": 10768,
+          "hits": 7402,
+          "hr": 0.6874
+        },
+        "Gold all": {
+          "n": 863,
+          "hits": 610,
+          "hr": 0.7068
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 17,
+          "hits": 7,
+          "hr": 0.4118
+        },
+        "Platinum": {
+          "n": 11,
+          "hits": 4,
+          "hr": 0.3636
+        },
+        "Platinum L10-only": {
+          "n": 6,
+          "hits": 3,
+          "hr": 0.5
+        },
+        "Platinum season-only": {
+          "n": 5,
+          "hits": 1,
+          "hr": 0.2
+        },
+        "Gold remain": {
+          "n": 16,
+          "hits": 7,
+          "hr": 0.4375
+        },
+        "Silver": {
+          "n": 790,
+          "hits": 427,
+          "hr": 0.5405
+        },
+        "Gold all": {
+          "n": 44,
+          "hits": 18,
+          "hr": 0.4091
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 15,
+          "hits": 4,
+          "hr": 0.2667
+        },
+        "Platinum": {
+          "n": 12,
+          "hits": 6,
+          "hr": 0.5
+        },
+        "Platinum L10-only": {
+          "n": 8,
+          "hits": 3,
+          "hr": 0.375
+        },
+        "Platinum season-only": {
+          "n": 4,
+          "hits": 3,
+          "hr": 0.75
+        },
+        "Gold remain": {
+          "n": 22,
+          "hits": 10,
+          "hr": 0.4545
+        },
+        "Silver": {
+          "n": 340,
+          "hits": 207,
+          "hr": 0.6088
+        },
+        "Gold all": {
+          "n": 49,
+          "hits": 20,
+          "hr": 0.4082
+        }
+      }
+    },
+    "2026-08": {
+      "Goblin OVER": {
+        "Diamond": {
+          "n": 555,
+          "hits": 421,
+          "hr": 0.7586
+        },
+        "Platinum": {
+          "n": 279,
+          "hits": 200,
+          "hr": 0.7168
+        },
+        "Platinum L10-only": {
+          "n": 165,
+          "hits": 120,
+          "hr": 0.7273
+        },
+        "Platinum season-only": {
+          "n": 114,
+          "hits": 80,
+          "hr": 0.7018
+        },
+        "Gold remain": {
+          "n": 221,
+          "hits": 136,
+          "hr": 0.6154
+        },
+        "Silver": {
+          "n": 9781,
+          "hits": 6804,
+          "hr": 0.6956
+        },
+        "Gold all": {
+          "n": 1055,
+          "hits": 757,
+          "hr": 0.7175
+        }
+      },
+      "Standard OVER": {
+        "Diamond": {
+          "n": 8,
+          "hits": 5,
+          "hr": 0.625
+        },
+        "Platinum": {
+          "n": 10,
+          "hits": 1,
+          "hr": 0.1
+        },
+        "Platinum L10-only": {
+          "n": 7,
+          "hits": 1,
+          "hr": 0.1429
+        },
+        "Platinum season-only": {
+          "n": 3,
+          "hits": 0,
+          "hr": 0.0
+        },
+        "Gold remain": {
+          "n": 33,
+          "hits": 12,
+          "hr": 0.3636
+        },
+        "Silver": {
+          "n": 688,
+          "hits": 327,
+          "hr": 0.4753
+        },
+        "Gold all": {
+          "n": 51,
+          "hits": 18,
+          "hr": 0.3529
+        }
+      },
+      "Standard UNDER": {
+        "Diamond": {
+          "n": 9,
+          "hits": 6,
+          "hr": 0.6667
+        },
+        "Platinum": {
+          "n": 5,
+          "hits": 5,
+          "hr": 1.0
+        },
+        "Platinum L10-only": {
+          "n": 1,
+          "hits": 1,
+          "hr": 1.0
+        },
+        "Platinum season-only": {
+          "n": 4,
+          "hits": 4,
+          "hr": 1.0
+        },
+        "Gold remain": {
+          "n": 12,
+          "hits": 7,
+          "hr": 0.5833
+        },
+        "Silver": {
+          "n": 339,
+          "hits": 214,
+          "hr": 0.6313
+        },
+        "Gold all": {
+          "n": 26,
+          "hits": 18,
+          "hr": 0.6923
+        }
+      }
+    }
+  }
+}

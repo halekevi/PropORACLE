@@ -1,0 +1,854 @@
+{
+  "files_changed": 6,
+  "corrections": 0,
+  "soccer_shots_l5eq5_l10ge8": {
+    "rows": 0,
+    "unknown": 0,
+    "dnp": 0,
+    "played": 0,
+    "no_status": 0,
+    "hit": 0
+  },
+  "cells": {
+    "cfb_goblin__over": {
+      "before": {
+        "hits": 357,
+        "n": 521,
+        "hr": 0.6852,
+        "wilson_low": 0.6441
+      },
+      "after": {
+        "hits": 357,
+        "n": 484,
+        "hr": 0.7376,
+        "wilson_low": 0.6966
+      },
+      "shift": 0.0524,
+      "minutes_unknown_removed": 37,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_fg_made_over": {
+      "before": {
+        "hits": 24,
+        "n": 44,
+        "hr": 0.5455,
+        "wilson_low": 0.4007
+      },
+      "after": {
+        "hits": 24,
+        "n": 24,
+        "hr": 1.0,
+        "wilson_low": 0.862
+      },
+      "shift": 0.4545,
+      "minutes_unknown_removed": 20,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_int_over": {
+      "before": {
+        "hits": 10,
+        "n": 24,
+        "hr": 0.4167,
+        "wilson_low": 0.2447
+      },
+      "after": {
+        "hits": 10,
+        "n": 10,
+        "hr": 1.0,
+        "wilson_low": 0.7225
+      },
+      "shift": 0.5833,
+      "minutes_unknown_removed": 14,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_kick_pts_over": {
+      "before": {
+        "hits": 9,
+        "n": 16,
+        "hr": 0.5625,
+        "wilson_low": 0.3318
+      },
+      "after": {
+        "hits": 9,
+        "n": 15,
+        "hr": 0.6,
+        "wilson_low": 0.3575
+      },
+      "shift": 0.0375,
+      "minutes_unknown_removed": 1,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_longestrush_over": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_pass_att_over": {
+      "before": {
+        "hits": 19,
+        "n": 36,
+        "hr": 0.5278,
+        "wilson_low": 0.3701
+      },
+      "after": {
+        "hits": 19,
+        "n": 36,
+        "hr": 0.5278,
+        "wilson_low": 0.3701
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_pass_rush_yds_over": {
+      "before": {
+        "hits": 20,
+        "n": 36,
+        "hr": 0.5556,
+        "wilson_low": 0.3958
+      },
+      "after": {
+        "hits": 20,
+        "n": 36,
+        "hr": 0.5556,
+        "wilson_low": 0.3958
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_pass_td_over": {
+      "before": {
+        "hits": 63,
+        "n": 91,
+        "hr": 0.6923,
+        "wilson_low": 0.5913
+      },
+      "after": {
+        "hits": 63,
+        "n": 72,
+        "hr": 0.875,
+        "wilson_low": 0.7792
+      },
+      "shift": 0.1827,
+      "minutes_unknown_removed": 19,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_pass_yds_over": {
+      "before": {
+        "hits": 174,
+        "n": 250,
+        "hr": 0.696,
+        "wilson_low": 0.6364
+      },
+      "after": {
+        "hits": 174,
+        "n": 250,
+        "hr": 0.696,
+        "wilson_low": 0.6364
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_passcompletions_over": {
+      "before": {
+        "hits": 16,
+        "n": 28,
+        "hr": 0.5714,
+        "wilson_low": 0.3907
+      },
+      "after": {
+        "hits": 16,
+        "n": 28,
+        "hr": 0.5714,
+        "wilson_low": 0.3907
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_pat_made_over": {
+      "before": {
+        "hits": 4,
+        "n": 7,
+        "hr": 0.5714,
+        "wilson_low": 0.2505
+      },
+      "after": {
+        "hits": 4,
+        "n": 7,
+        "hr": 0.5714,
+        "wilson_low": 0.2505
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_player_td_over": {
+      "before": {
+        "hits": 75,
+        "n": 151,
+        "hr": 0.4967,
+        "wilson_low": 0.418
+      },
+      "after": {
+        "hits": 75,
+        "n": 75,
+        "hr": 1.0,
+        "wilson_low": 0.9513
+      },
+      "shift": 0.5033,
+      "minutes_unknown_removed": 76,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_rec_over": {
+      "before": {
+        "hits": 136,
+        "n": 205,
+        "hr": 0.6634,
+        "wilson_low": 0.5962
+      },
+      "after": {
+        "hits": 136,
+        "n": 199,
+        "hr": 0.6834,
+        "wilson_low": 0.6158
+      },
+      "shift": 0.02,
+      "minutes_unknown_removed": 6,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_rec_td_over": {
+      "before": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077
+      },
+      "after": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424
+      },
+      "shift": 0.3333,
+      "minutes_unknown_removed": 1,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_rec_yds_over": {
+      "before": {
+        "hits": 388,
+        "n": 611,
+        "hr": 0.635,
+        "wilson_low": 0.5961
+      },
+      "after": {
+        "hits": 388,
+        "n": 608,
+        "hr": 0.6382,
+        "wilson_low": 0.5992
+      },
+      "shift": 0.0032,
+      "minutes_unknown_removed": 3,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_rush_att_over": {
+      "before": {
+        "hits": 18,
+        "n": 37,
+        "hr": 0.4865,
+        "wilson_low": 0.3345
+      },
+      "after": {
+        "hits": 18,
+        "n": 37,
+        "hr": 0.4865,
+        "wilson_low": 0.3345
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_rush_rec_yds_over": {
+      "before": {
+        "hits": 6,
+        "n": 8,
+        "hr": 0.75,
+        "wilson_low": 0.4093
+      },
+      "after": {
+        "hits": 6,
+        "n": 8,
+        "hr": 0.75,
+        "wilson_low": 0.4093
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_rush_td_over": {
+      "before": {
+        "hits": 20,
+        "n": 41,
+        "hr": 0.4878,
+        "wilson_low": 0.3425
+      },
+      "after": {
+        "hits": 20,
+        "n": 20,
+        "hr": 1.0,
+        "wilson_low": 0.8389
+      },
+      "shift": 0.5122,
+      "minutes_unknown_removed": 21,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "cfb_goblin_rush_yds_over": {
+      "before": {
+        "hits": 279,
+        "n": 453,
+        "hr": 0.6159,
+        "wilson_low": 0.5703
+      },
+      "after": {
+        "hits": 279,
+        "n": 451,
+        "hr": 0.6186,
+        "wilson_low": 0.573
+      },
+      "shift": 0.0027,
+      "minutes_unknown_removed": 2,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_std_under_rec_yds": {
+      "before": {
+        "hits": 131,
+        "n": 262,
+        "hr": 0.5,
+        "wilson_low": 0.4399
+      },
+      "after": {
+        "hits": 125,
+        "n": 256,
+        "hr": 0.4883,
+        "wilson_low": 0.4277
+      },
+      "shift": -0.0117,
+      "minutes_unknown_removed": 6,
+      "dnp_removed": 0,
+      "break_even": 0.577,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "cfb_std_under_rush_yds": {
+      "before": {
+        "hits": 118,
+        "n": 183,
+        "hr": 0.6448,
+        "wilson_low": 0.5731
+      },
+      "after": {
+        "hits": 117,
+        "n": 182,
+        "hr": 0.6429,
+        "wilson_low": 0.5709
+      },
+      "shift": -0.0019,
+      "minutes_unknown_removed": 1,
+      "dnp_removed": 0,
+      "break_even": 0.577,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_fg_made_over": {
+      "before": {
+        "hits": 31,
+        "n": 42,
+        "hr": 0.7381,
+        "wilson_low": 0.5893
+      },
+      "after": {
+        "hits": 31,
+        "n": 34,
+        "hr": 0.9118,
+        "wilson_low": 0.7704
+      },
+      "shift": 0.1737,
+      "minutes_unknown_removed": 8,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_kickingpoints_over": {
+      "before": {
+        "hits": 37,
+        "n": 57,
+        "hr": 0.6491,
+        "wilson_low": 0.5194
+      },
+      "after": {
+        "hits": 37,
+        "n": 57,
+        "hr": 0.6491,
+        "wilson_low": 0.5194
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_longestcompletion_over": {
+      "before": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333,
+        "wilson_low": 0.0615
+      },
+      "after": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333,
+        "wilson_low": 0.0615
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_longestreception_over": {
+      "before": {
+        "hits": 3,
+        "n": 4,
+        "hr": 0.75,
+        "wilson_low": 0.3006
+      },
+      "after": {
+        "hits": 3,
+        "n": 4,
+        "hr": 0.75,
+        "wilson_low": 0.3006
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_longestrush_over": {
+      "before": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333,
+        "wilson_low": 0.0615
+      },
+      "after": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "shift": 0.1667,
+      "minutes_unknown_removed": 1,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_pass_rush_yds_over": {
+      "before": {
+        "hits": 0,
+        "n": 3,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 3,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_passattempts_over": {
+      "before": {
+        "hits": 2,
+        "n": 6,
+        "hr": 0.3333,
+        "wilson_low": 0.0968
+      },
+      "after": {
+        "hits": 2,
+        "n": 6,
+        "hr": 0.3333,
+        "wilson_low": 0.0968
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_passing_tds_over": {
+      "before": {
+        "hits": 19,
+        "n": 28,
+        "hr": 0.6786,
+        "wilson_low": 0.4934
+      },
+      "after": {
+        "hits": 19,
+        "n": 19,
+        "hr": 1.0,
+        "wilson_low": 0.8318
+      },
+      "shift": 0.3214,
+      "minutes_unknown_removed": 9,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_passing_yards_over": {
+      "before": {
+        "hits": 91,
+        "n": 127,
+        "hr": 0.7165,
+        "wilson_low": 0.6327
+      },
+      "after": {
+        "hits": 91,
+        "n": 127,
+        "hr": 0.7165,
+        "wilson_low": 0.6327
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_receiving_yards_over": {
+      "before": {
+        "hits": 311,
+        "n": 448,
+        "hr": 0.6942,
+        "wilson_low": 0.65
+      },
+      "after": {
+        "hits": 311,
+        "n": 428,
+        "hr": 0.7266,
+        "wilson_low": 0.6825
+      },
+      "shift": 0.0324,
+      "minutes_unknown_removed": 20,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_receptions_over": {
+      "before": {
+        "hits": 174,
+        "n": 243,
+        "hr": 0.716,
+        "wilson_low": 0.6563
+      },
+      "after": {
+        "hits": 174,
+        "n": 233,
+        "hr": 0.7468,
+        "wilson_low": 0.6873
+      },
+      "shift": 0.0308,
+      "minutes_unknown_removed": 10,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_rush_rec_yds_over": {
+      "before": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "after": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_rushing_yards_over": {
+      "before": {
+        "hits": 142,
+        "n": 238,
+        "hr": 0.5966,
+        "wilson_low": 0.5333
+      },
+      "after": {
+        "hits": 142,
+        "n": 234,
+        "hr": 0.6068,
+        "wilson_low": 0.543
+      },
+      "shift": 0.0102,
+      "minutes_unknown_removed": 4,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_goblin_sacks_over": {
+      "before": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "after": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "shift": 0.5,
+      "minutes_unknown_removed": 1,
+      "dnp_removed": 0,
+      "break_even": 0.769,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "nfl_std_under_passing_tds": {
+      "before": {
+        "hits": 13,
+        "n": 23,
+        "hr": 0.5652,
+        "wilson_low": 0.3681
+      },
+      "after": {
+        "hits": 8,
+        "n": 18,
+        "hr": 0.4444,
+        "wilson_low": 0.2456
+      },
+      "shift": -0.1208,
+      "minutes_unknown_removed": 5,
+      "dnp_removed": 0,
+      "break_even": 0.577,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    },
+    "nfl_std_under_passing_yards": {
+      "before": {
+        "hits": 28,
+        "n": 52,
+        "hr": 0.5385,
+        "wilson_low": 0.405
+      },
+      "after": {
+        "hits": 28,
+        "n": 52,
+        "hr": 0.5385,
+        "wilson_low": 0.405
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "dnp_removed": 0,
+      "break_even": 0.577,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_std_under_receiving_yards": {
+      "before": {
+        "hits": 153,
+        "n": 234,
+        "hr": 0.6538,
+        "wilson_low": 0.5908
+      },
+      "after": {
+        "hits": 126,
+        "n": 207,
+        "hr": 0.6087,
+        "wilson_low": 0.5408
+      },
+      "shift": -0.0451,
+      "minutes_unknown_removed": 27,
+      "dnp_removed": 0,
+      "break_even": 0.577,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_std_under_receptions": {
+      "before": {
+        "hits": 135,
+        "n": 183,
+        "hr": 0.7377,
+        "wilson_low": 0.6696
+      },
+      "after": {
+        "hits": 114,
+        "n": 162,
+        "hr": 0.7037,
+        "wilson_low": 0.6293
+      },
+      "shift": -0.034,
+      "minutes_unknown_removed": 21,
+      "dnp_removed": 0,
+      "break_even": 0.577,
+      "reprice": false,
+      "n_under_30": false,
+      "live_priced_cell": false
+    },
+    "nfl_std_under_sacks": {
+      "before": {
+        "hits": 158,
+        "n": 169,
+        "hr": 0.9349,
+        "wilson_low": 0.8872
+      },
+      "after": {
+        "hits": 11,
+        "n": 22,
+        "hr": 0.5,
+        "wilson_low": 0.3072
+      },
+      "shift": -0.4349,
+      "minutes_unknown_removed": 147,
+      "dnp_removed": 0,
+      "break_even": 0.577,
+      "reprice": false,
+      "n_under_30": true,
+      "live_priced_cell": false
+    }
+  }
+}

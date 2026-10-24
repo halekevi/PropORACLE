@@ -9,10 +9,13 @@ import pytest
 
 from proporacle.data.table_io import (
     copy_parquet_sidecar,
+    format_step8_meta_banner,
+    infer_slate_date_from_path,
     parquet_available,
     parquet_sidecar_path,
     read_table,
     read_table_str,
+    step8_freshness_label,
     table_exists,
     write_excel_sheets,
     write_parquet_sidecar,
@@ -76,11 +79,90 @@ def test_write_excel_sheets_roundtrip(tmp_path: Path):
             "ALL": pd.DataFrame({"Tier": ["A"], "player": ["X"]}),
             "ELIGIBLE": pd.DataFrame({"Tier": ["A"], "player": ["X"]}),
         },
+        stamp_meta=False,
     )
     assert path.is_file()
     df = pd.read_excel(path, sheet_name="ALL")
     assert list(df["player"]) == ["X"]
     assert list(df["Tier"]) == ["A"]
+
+
+def test_step8_meta_banner_marks_stale(tmp_path: Path):
+    assert step8_freshness_label("2026-10-20", "2026-10-21") == "STALE"
+    assert step8_freshness_label("2026-10-21", "2026-10-21") == "OK"
+    banner, fresh = format_step8_meta_banner(
+        slate_date="2026-10-20", run_date="2026-10-21", build_time="2026-10-20 09:00 ET"
+    )
+    assert fresh == "STALE"
+    assert "STALE" in banner
+    assert "slate_date=2026-10-20" in banner
+
+    dated = tmp_path / "outputs" / "2026-10-20" / "wnba" / "step8_wnba_direction_clean.xlsx"
+    dated.parent.mkdir(parents=True)
+    write_excel_sheets(
+        dated,
+        {"ALL": pd.DataFrame({"Tier": ["A"], "player": ["Chen"]})},
+        run_date="2026-10-21",
+    )
+    assert infer_slate_date_from_path(dated) == "2026-10-20"
+    meta = pd.read_excel(dated, sheet_name="_META")
+    assert list(meta["freshness"]) == ["STALE"]
+    assert list(meta["slate_date"]) == ["2026-10-20"]
+    assert "STALE" in str(meta["banner"].iloc[0])
+    # Banner lives on _META only. Naive pd.read_excel must see real headers.
+    raw = pd.read_excel(dated, sheet_name="ALL")
+    assert list(raw["player"]) == ["Chen"]
+    assert list(read_table(dated, prefer_parquet=False)["player"]) == ["Chen"]
+
+
+def test_read_table_skips_legacy_row0_banner(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    from openpyxl import Workbook
+
+    from proporacle.data.table_io import repair_banner_headers
+
+    monkeypatch.setattr("proporacle.data.table_io.parquet_available", lambda: False)
+    dated = tmp_path / "step8_nba_direction_clean.xlsx"
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "ALL"
+    ws["A1"] = "slate_date=2026-10-23 | build_time=x | run_date=2026-10-23"
+    ws["A2"] = "player"
+    ws["B2"] = "line"
+    ws["A3"] = "SGA"
+    ws["B3"] = 28.5
+    wb.save(dated)
+    df = read_table(dated, prefer_parquet=False)
+    assert list(df["player"]) == ["SGA"]
+    broken = pd.read_excel(dated, sheet_name="ALL")
+    assert any(str(c).startswith("slate_date=") for c in broken.columns)
+    assert list(repair_banner_headers(broken)["player"]) == ["SGA"]
+
+
+def test_parquet_mixed_na_rank_and_numeric_assign(tmp_path: Path):
+    xlsx = tmp_path / "step8_tennis_direction_clean.xlsx"
+    df = pd.DataFrame(
+        {
+            "player": ["A", "B", "C"],
+            "OVERALL_DEF_RANK": [12, "N/A", 3],
+            "l5_over": ["4", "5", None],
+        }
+    )
+    assert write_parquet_sidecar(df, xlsx) is not None
+    got = read_table(xlsx)
+    got.loc[got.index, "l5_over"] = [4.0, 5.0, 6.0]
+    assert list(got["l5_over"]) == [4.0, 5.0, 6.0]
+    assert "N/A" in list(got["OVERALL_DEF_RANK"].astype(str))
+
+
+def test_existing_arrow_string_l5_over_accepts_float(tmp_path: Path):
+    """Boards written before the numpy hop still assign L5 counts in combined."""
+    xlsx = tmp_path / "step8_mlb_direction_clean.xlsx"
+    raw = pd.DataFrame({"player": ["A", "B"], "l5_over": ["4", "5"]})
+    pq = parquet_sidecar_path(xlsx)
+    raw.convert_dtypes().to_parquet(pq, index=False)
+    got = read_table(xlsx)
+    got.loc[got.index, "l5_over"] = [4.0, 5.0]
+    assert list(got["l5_over"]) == [4.0, 5.0]
 
 
 def test_step7b_refresh_keeps_parquet_in_sync(tmp_path: Path):

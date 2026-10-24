@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-22",
+  "generated_at": "2026-10-22T19:42:56-04:00",
+  "line_pulls": [
+    {
+      "fetched_at": "2026-10-21T14:38:59-04:00",
+      "window": "14:38",
+      "n_props": 773,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-21T14:42:18-04:00",
+      "window": "14:42",
+      "n_props": 773,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-21T14:55:29-04:00",
+      "window": "14:55",
+      "n_props": 5130,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-21T16:13:52-04:00",
+      "window": "4:30",
+      "n_props": 5130,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-22T03:34:01-04:00",
+      "window": "03:34",
+      "n_props": 5932,
+      "n_moved": 420
+    },
+    {
+      "fetched_at": "2026-10-22T14:36:03-04:00",
+      "window": "14:36",
+      "n_props": 6322,
+      "n_moved": 460
+    },
+    {
+      "fetched_at": "2026-10-22T14:36:04-04:00",
+      "window": "14:36",
+      "n_props": 36,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-22T14:36:24-04:00",
+      "window": "14:36",
+      "n_props": 3598,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-22T14:36:40-04:00",
+      "window": "14:36",
+      "n_props": 311,
+      "n_moved": 58
+    },
+    {
+      "fetched_at": "2026-10-22T14:37:21-04:00",
+      "window": "14:37",
+      "n_props": 464,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-22T14:38:29-04:00",
+      "window": "14:38",
+      "n_props": 6308,
+      "n_moved": 736
+    },
+    {
+      "fetched_at": "2026-10-22T14:44:16-04:00",
+      "window": "14:44",
+      "n_props": 283,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-10-22T17:29:07-04:00",
+      "window": "17:29",
+      "n_props": 6647,
+      "n_moved": 390
+    },
+    {
+      "fetched_at": "2026-10-22T19:42:55-04:00",
+      "window": "19:42",
+      "n_props": 6054,
+      "n_moved": 42
+    }
+  ],
+  "payout_scrapes": [],
+  "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
+}

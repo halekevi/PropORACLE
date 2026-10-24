@@ -52,7 +52,18 @@ if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
 from player_name_norm import fold_player_name as _fold_player_name  # noqa: E402
 from espn_injuries import canon_team_abbr  # noqa: E402
-from utils.proporacle_data_root import persistent_data_dir  # noqa: E402
+from utils.proporacle_data_root import (  # noqa: E402
+    load_best_grade_history_runs,
+    persistent_data_dir,
+)
+from utils.gated_construction_tracks import (  # noqa: E402
+    GATED_CONSTRUCTION_TRACKS,
+    GATED_GOBLIN,
+    GATED_MIXED,
+    GATED_STANDARD,
+    TRACK_LABELS as GATED_TRACK_LABELS,
+)
+from utils.ticket_70_pool import ticket_excluded_from_winrate, yolo_ticket_track  # noqa: E402
 
 TEMPLATES_DIR = REPO_ROOT / "ui_runner" / "templates"
 TICKET_EVAL_SLATE_JSON = TEMPLATES_DIR / "ticket_eval_slate_latest.json"
@@ -389,10 +400,20 @@ def _norm_header(s: str) -> str:
 
 
 def _norm_player_name(s: str) -> str:
-    """Shared with MLB grader + slate_grader (scripts/player_name_norm.py)."""
+    """Fold a player name, then match on the full token set.
+
+    ESPN lists some tennis players surname-first (``Zheng Qinwen``) and the
+    board lists them given-name-first (``Qinwen Zheng``). Sorting the tokens
+    makes those the same key. A shared surname alone does not: ``Kevin
+    Viveros`` and ``Emiliano Viveros`` stay different.
+    """
     if s is None or (isinstance(s, float) and pd.isna(s)):
         return ""
-    return _fold_player_name(s)
+    folded = _fold_player_name(s)
+    parts = [p for p in folded.split(" ") if p]
+    if len(parts) < 2:
+        return folded
+    return " ".join(sorted(parts))
 
 
 def _canon_player(row: dict[str, Any]) -> str:
@@ -575,10 +596,15 @@ def _canon_void_note(row: dict[str, Any]) -> str:
 
 def _normalize_workbook_rows(path: Path) -> list[dict[str, Any]]:
     """Load all sheets; normalize headers to lowercase single-space keys."""
+    from proporacle.data.table_io import excel_data_header_row, repair_banner_headers
+
     xl = pd.ExcelFile(path)
     out: list[dict[str, Any]] = []
     for sheet in xl.sheet_names:
-        df = pd.read_excel(path, sheet_name=sheet)
+        if str(sheet) == "_META":
+            continue
+        header = excel_data_header_row(path, sheet)
+        df = repair_banner_headers(pd.read_excel(path, sheet_name=sheet, header=header))
         if df.empty:
             continue
         df.columns = [_norm_header(c) for c in df.columns]
@@ -1512,16 +1538,9 @@ def _append_grade_history(record: dict[str, Any]) -> None:
     """Append (or replace same-date+track) run summary to persistent data/grade_history.json (see utils.proporacle_data_root)."""
     path = persistent_data_dir(REPO_ROOT) / "grade_history.json"
     path.parent.mkdir(parents=True, exist_ok=True)
-    runs: list[Any] = []
-    if path.is_file():
-        try:
-            raw = json.loads(path.read_text(encoding="utf-8"))
-            if isinstance(raw, list):
-                runs = list(raw)
-            elif isinstance(raw, dict) and isinstance(raw.get("runs"), list):
-                runs = list(raw["runs"])
-        except (OSError, json.JSONDecodeError):
-            runs = []
+    runs: list[Any] = list(
+        load_best_grade_history_runs(REPO_ROOT, templates_dir=TEMPLATES_DIR)
+    )
     ds = str(record.get("date") or "")[:10]
     track = str(record.get("track") or "graded_main").strip().lower()
     runs = [
@@ -1549,6 +1568,11 @@ EVAL_TRACK_LABELS: dict[str, str] = {
     "strong_standard_shadow": "STRONG Standard HOT Shadow",
     "strong_mix_shadow": "STRONG Mix Shadow (Goblin+Standard HOT)",
     "strong_recombo_shadow": "STRONG Recombo Shadow (4-6L from STRONG 2-3L legs)",
+    "goblin70_yolo": "Goblin-70 YOLO (off card win-rate)",
+    "standard_yolo": "Standard YOLO (gate-cleared Standards; off card win-rate)",
+    GATED_GOBLIN: GATED_TRACK_LABELS[GATED_GOBLIN],
+    GATED_STANDARD: GATED_TRACK_LABELS[GATED_STANDARD],
+    GATED_MIXED: GATED_TRACK_LABELS[GATED_MIXED],
 }
 
 
@@ -1761,30 +1785,26 @@ def _ingest_workbook_rows_into_index(
     rows: list[dict[str, Any]],
     triple: dict[tuple[str, str, str], dict],
     pair_buckets: dict[tuple[str, str], list[dict]],
+    sport: str = "",
 ) -> None:
     for raw in rows:
         pl = _norm_player_name(_canon_player(raw))
-        pt = _prop_match_key_from_display(str(_canon_prop(raw) or ""))
+        prop_display = str(_canon_prop(raw) or "")
+        row_sport = str(raw.get("sport") or sport or "")
+        keys = _prop_index_keys(prop_display, sport=row_sport)
         dr = _canon_direction(raw)
-        if not pl or not pt:
+        if not pl or not keys:
             continue
         row = {
             "player_lower": pl,
-            "prop_lower": pt,
+            "prop_lower": keys[0],
             "direction": dr,
             "line": _canon_line(raw),
             "actual": _canon_actual(raw),
             "grade_raw": _canon_grade_raw(raw),
             "void_note": _canon_void_note(raw),
         }
-        # Include line in the triple key so multiple lines for the same
-        # player+prop+direction (e.g. Cameron Boozer reb 7.5 OVER vs 10.5 OVER)
-        # don't collide and overwrite each other.
-        line_val = row["line"]
-        line_key = round(float(line_val), 2) if line_val is not None else None
-        key3 = (pl, pt, dr, line_key)
-        triple[key3] = row
-        pair_buckets.setdefault((pl, pt), []).append(row)
+        _remember_graded_row(triple, pair_buckets, pl, keys, dr, row)
 
 
 def _graded_xlsx_in_dir(d: Path) -> list[Path]:
@@ -1884,24 +1904,20 @@ def _merge_strict_graded_date_workbooks(
             for _, grow in gdf.iterrows():
                 raw = {c: grow[c] for c in gdf.columns}
                 pl = _norm_player_name(_canon_player(raw))
-                pt = _prop_match_key_from_display(str(_canon_prop(raw) or ""))
+                keys = _prop_index_keys(str(_canon_prop(raw) or ""), sport=bucket)
                 dr = _canon_direction(raw)
-                if not pl or not pt:
+                if not pl or not keys:
                     continue
                 row_out = {
                     "player_lower": pl,
-                    "prop_lower": pt,
+                    "prop_lower": keys[0],
                     "direction": dr,
                     "line": _canon_line(raw),
                     "actual": _canon_actual(raw),
                     "grade_raw": _canon_grade_raw(raw),
                     "void_note": _canon_void_note(raw),
                 }
-                line_val = row_out["line"]
-                line_key = round(float(line_val), 2) if line_val is not None else None
-                key3 = (pl, pt, dr, line_key)
-                trip[key3] = row_out
-                pairs.setdefault((pl, pt), []).append(row_out)
+                _remember_graded_row(trip, pairs, pl, keys, dr, row_out)
             out[bucket] = (trip, pairs)
         except Exception:
             continue
@@ -1934,7 +1950,117 @@ def _sport_buckets_for_graded_filename(path: Path) -> list[str]:
         return ["NBA"]
     if "tennis" in n:
         return ["TENNIS"]
+    if "nfl" in n:
+        return ["NFL"]
+    if "cfb" in n or "ncaaf" in n:
+        return ["CFB"]
+    if "golf" in n or "pga" in n:
+        return ["GOLF"]
     return []
+
+
+def _sport_bucket_for_actuals_filename(path: Path) -> str | None:
+    """Map ``actuals_<sport>_<date>.csv`` → sport bucket."""
+    stem = path.stem.lower()  # actuals_nfl_2026-09-27
+    if not stem.startswith("actuals_"):
+        return None
+    rest = stem[len("actuals_") :]
+    # strip trailing _YYYY-MM-DD
+    m = re.match(r"^(.+)_(\d{4}-\d{2}-\d{2})$", rest)
+    slug = m.group(1) if m else rest
+    slug = slug.strip().lower()
+    mapping = {
+        "nba": "NBA",
+        "nba1h": "NBA1H",
+        "nba1q": "NBA1Q",
+        "wnba": "WNBA",
+        "wnba1h": "WNBA1H",
+        "wnba1q": "WNBA1Q",
+        "cbb": "CBB",
+        "wcbb": "WCBB",
+        "nfl": "NFL",
+        "cfb": "CFB",
+        "nhl": "NHL",
+        "soccer": "SOCCER",
+        "mlb": "MLB",
+        "tennis": "TENNIS",
+        "golf": "GOLF",
+        "pga": "GOLF",
+    }
+    return mapping.get(slug)
+
+
+def _actuals_csv_dirs_for_date(date_s: str) -> list[Path]:
+    """Local outputs, graded_slate bundle, then sibling main_cp outputs."""
+    d = str(date_s)[:10]
+    dirs = [
+        REPO_ROOT / "outputs" / d,
+        _graded_slate_bundle_dir(d),
+        REPO_ROOT.parent / "PropORACLE_main_cp" / "outputs" / d,
+    ]
+    out: list[Path] = []
+    seen: set[str] = set()
+    for p in dirs:
+        key = str(p.resolve()) if p.exists() else str(p)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(p)
+    return out
+
+
+def _load_actuals_csv_rows(path: Path) -> list[dict[str, Any]]:
+    """Normalize actuals_*.csv rows for the ticket-eval index."""
+    try:
+        df = pd.read_csv(path)
+    except Exception:
+        return []
+    if df is None or df.empty:
+        return []
+    rows: list[dict[str, Any]] = []
+    for rec in df.to_dict(orient="records"):
+        if not isinstance(rec, dict):
+            continue
+        # Drop NaN so _canon_* helpers see missing fields as absent.
+        clean = {
+            k: (None if (isinstance(v, float) and pd.isna(v)) else v)
+            for k, v in rec.items()
+        }
+        rows.append(clean)
+    return rows
+
+
+def _merge_actuals_csvs_for_date(
+    indices: dict[str, tuple[dict, dict]],
+    date_s: str,
+) -> int:
+    """Overlay player/prop actuals from ``actuals_<sport>_<date>.csv``.
+
+    Graded ``graded_*.xlsx`` exports are often summary boards without per-leg
+    rows. The CSV actuals are the ground truth used by combined_ticket_grader
+    and are required for NFL/CFB (and fill gaps on other sports).
+    """
+    merged = 0
+    seen_files: set[str] = set()
+    for d in _actuals_csv_dirs_for_date(date_s):
+        if not d.is_dir():
+            continue
+        for path in sorted(d.glob(f"actuals_*_{date_s[:10]}.csv")):
+            key = str(path.resolve())
+            if key in seen_files:
+                continue
+            bucket = _sport_bucket_for_actuals_filename(path)
+            if not bucket:
+                continue
+            rows = _load_actuals_csv_rows(path)
+            if not rows:
+                continue
+            trip, pairs = indices.get(bucket, ({}, {}))
+            _ingest_workbook_rows_into_index(rows, trip, pairs, sport=bucket)
+            indices[bucket] = (trip, pairs)
+            seen_files.add(key)
+            merged += 1
+    return merged
 
 
 def _merge_graded_workbooks_into_indices(
@@ -1958,7 +2084,7 @@ def _merge_graded_workbooks_into_indices(
             continue
         for bkt in buckets:
             trip, pairs = indices.get(bkt, ({}, {}))
-            _ingest_workbook_rows_into_index(rows, trip, pairs)
+            _ingest_workbook_rows_into_index(rows, trip, pairs, sport=bkt)
             indices[bkt] = (trip, pairs)
         merged += 1
     return merged
@@ -2098,6 +2224,8 @@ def _merge_graded_workbooks_for_date(
     outputs_dir = REPO_ROOT / "outputs" / d
     _merge_graded_workbooks_into_indices(out, _graded_xlsx_in_dir(outputs_dir))
     _merge_strict_graded_date_workbooks(out, outputs_dir, d)
+    # Per-leg actuals CSVs (NFL/CFB and gaps the summary graded_*.xlsx boards omit).
+    _merge_actuals_csvs_for_date(out, d)
 
 
 def _load_actuals_indices(
@@ -2121,7 +2249,7 @@ def _load_actuals_indices(
         except Exception:
             out[bucket] = (triple, pair_buckets)
             continue
-        _ingest_workbook_rows_into_index(rows, triple, pair_buckets)
+        _ingest_workbook_rows_into_index(rows, triple, pair_buckets, sport=bucket)
         out[bucket] = (triple, pair_buckets)
 
     for gd in graded_merge_dates:
@@ -2230,9 +2358,76 @@ def _prop_match_key_from_display(raw: str) -> str:
     Stable prop key for index lookups: alias map (CBB etc.) then alphanumeric fold like
     nhl_soccer_grader._norm_prop so 'Total Bases' and 'totalbases' both become 'totalbases'.
     """
-    if raw is None or not str(raw).strip():
+    if raw is None:
         return ""
-    return re.sub(r"[^a-z0-9]", "", _norm_prop_type(str(raw).strip()))
+    s = str(raw).strip()
+    if not s or s.lower() in {"nan", "none", "null", "<na>"}:
+        return ""
+    return re.sub(r"[^a-z0-9]", "", _norm_prop_type(s))
+
+
+# Same stat, different board vs fetch labels. Indexed under every key in the
+# group so a ticket "Total Games" hits an actuals row "match_total_games".
+# Shots and shots-on-target stay in different groups.
+PROP_ALIAS_INDEX = True
+_PROP_MATCH_GROUPS: tuple[frozenset[str], ...] = (
+    frozenset({"totalgames", "matchtotalgames", "playertotalgames", "gamesplayed"}),
+    frozenset({"totalgameswon", "gameswon", "playertotalgameswon", "playergameswon"}),
+    frozenset({"goaliesaves", "goalkeepersaves", "gksaves", "keepersaves"}),
+    frozenset({"rushyards", "rushingyards", "rushyds"}),
+    frozenset({
+        "sog",
+        "shotsongoal",
+        "shotsontarget",
+        "shotontarget",
+        "sot",
+        "playershotsontarget",
+    }),
+)
+
+
+def _soccer_sog_alias(sport: str) -> bool:
+    """Shots-on-target shares labels with 'sog'. NHL Shots On Goal must not."""
+    s = str(sport or "").strip().upper().replace(" ", "").replace("-", "")
+    return s in {"SOCCER", "SOC"} or s.startswith("SOCCER")
+
+
+def _prop_index_keys(raw: str, sport: str = "") -> list[str]:
+    """Primary match key plus labels that are the same stat under another name."""
+    primary = _prop_match_key_from_display(raw)
+    if not primary:
+        return []
+    if not PROP_ALIAS_INDEX:
+        return [primary]
+    for group in _PROP_MATCH_GROUPS:
+        if primary not in group:
+            continue
+        if "sog" in group and not _soccer_sog_alias(sport):
+            return [primary]
+        return [primary, *sorted(group - {primary})]
+    return [primary]
+
+
+def _remember_graded_row(
+    triple: dict[tuple, dict],
+    pairs: dict[tuple[str, str], list[dict]],
+    pl: str,
+    keys: list[str],
+    dr: str,
+    row: dict[str, Any],
+) -> None:
+    """Index one graded row under every alias of its prop.
+
+    Line stays in the triple key so two lines for the same player and prop
+    (Cameron Boozer reb 7.5 vs 10.5) do not overwrite each other.
+    """
+    line_val = row.get("line")
+    line_key = round(float(line_val), 2) if line_val is not None else None
+    for key in keys:
+        triple[(pl, key, dr, line_key)] = row
+        bucket = pairs.setdefault((pl, key), [])
+        if all(existing is not row for existing in bucket):
+            bucket.append(row)
 
 
 def _row_has_finite_actual_value(actual: object) -> bool:
@@ -2281,10 +2476,38 @@ def _match_leg_in_index(
     pair_buckets: dict[tuple[str, str], list[dict]],
 ) -> dict | None:
     pl = _norm_player_name(leg.get("player") or "")
-    pt = _prop_match_key_from_display(str(leg.get("prop_type") or ""))
+    keys = _prop_index_keys(
+        str(leg.get("prop_type") or leg.get("prop") or ""),
+        sport=str(leg.get("sport") or ""),
+    )
     dr = str(leg.get("direction") or "").strip().upper()
-    if not pl or not pt:
+    if not pl or not keys:
         return None
+    best: dict[str, Any] | None = None
+    best_score: tuple[int, int, int] | None = None
+    for pt in keys:
+        row = _match_leg_in_index_one(leg, triple, pair_buckets, pl, pt, dr)
+        if row is None:
+            continue
+        score = (
+            1 if _row_has_finite_actual_value(row.get("actual")) else 0,
+            1 if _cell_looks_like_grade_outcome(str(row.get("grade_raw") or "")) else 0,
+            1 if str(row.get("void_note") or "").strip() else 0,
+        )
+        if best_score is None or score > best_score:
+            best = row
+            best_score = score
+    return best
+
+
+def _match_leg_in_index_one(
+    leg: dict[str, Any],
+    triple: dict[tuple[str, str, str], dict],
+    pair_buckets: dict[tuple[str, str], list[dict]],
+    pl: str,
+    pt: str,
+    dr: str,
+) -> dict | None:
 
     try:
         leg_line = float(leg.get("line"))
@@ -2623,7 +2846,12 @@ def _payload_pool_mode(hdr: dict[str, Any] | None) -> str:
         return pm
     filters = hdr.get("filters")
     if isinstance(filters, dict):
-        return str(filters.get("pool_mode") or "").strip().lower()
+        fpm = str(filters.get("pool_mode") or "").strip().lower()
+        if fpm:
+            return fpm
+    mode = str(hdr.get("mode") or "").strip().lower()
+    if mode in ("goblin70", "goblin70+graded_main", "goblin_70"):
+        return mode
     return ""
 
 
@@ -3369,9 +3597,44 @@ def _group_is_high_prob_main_shipped(group_name: str) -> bool:
     n = str(group_name or "").strip()
     if _group_is_strong_shipped(n):
         return True
+    # Live mixer titles often append OVER/UNDER (e.g. "MLB 2-Leg Goblin OVER").
+    if re.match(
+        r"^[A-Za-z0-9]+\s+\d+-Leg (Goblin|Standard|Mixed)(?:\s+(OVER|UNDER))?$",
+        n,
+        re.I,
+    ):
+        return True
+    # Also "TENNIS Standard 2-Leg #1" style (sport + type + N-Leg).
+    n2 = re.sub(r"\s+#\d+\s*$", "", n).strip()
     return bool(
         re.match(
-            r"^[A-Za-z0-9]+\s+\d+-Leg (Goblin|Standard|Mixed)$",
+            r"^[A-Za-z0-9]+\s+(Goblin|Standard|Mixed)\s+\d+-Leg(?:\s+(OVER|UNDER))?$",
+            n2,
+            re.I,
+        )
+    )
+
+
+def _group_is_core_power_shipped(group_name: str) -> bool:
+    """Mixer Core Power / Core Standard tabs: 'MLB Core Power 2 #1'."""
+    n = re.sub(r"\s+#\d+\s*$", "", str(group_name or "").strip()).strip()
+    return bool(
+        re.match(
+            r"^[A-Za-z0-9]+\s+Core\s+(Power|Standard)\s+\d+$",
+            n,
+            re.I,
+        )
+    )
+
+
+def _group_is_goblin70_shipped(group_name: str) -> bool:
+    """Goblin-70 dual-card groups (+ YOLO), e.g. 'X-Sport Goblin-70 Power 3'."""
+    n = str(group_name or "").strip()
+    if re.match(r"^YOLO\b", n, re.I):
+        return True
+    return bool(
+        re.match(
+            r"^(?:X-Sport|[A-Za-z0-9]+)\s+Goblin-70\s+(?:Power|Flex)\s+\d+$",
             n,
             re.I,
         )
@@ -3396,10 +3659,23 @@ def _group_is_allowed(group_name: str, *, pool_mode: str = "") -> bool:
         return True
     if _group_is_strong_recombo(group_name):
         return True
-    if pool_mode == "high_prob_std_gob" and _group_is_high_prob_main_shipped(group_name):
+    # Goblin-70 / Core / OVER-suffixed mixer titles are first-class live cards.
+    if _group_is_goblin70_shipped(group_name) or _group_is_core_power_shipped(group_name):
         return True
-    if pool_mode in ("goblin_only", "goblin_only_3leg") and _group_is_goblin_only_3leg_shipped(
+    if pool_mode in ("goblin70", "goblin70+graded_main", "goblin_70") and _group_is_goblin70_shipped(
         group_name
+    ):
+        return True
+    if pool_mode == "high_prob_std_gob" and (
+        _group_is_high_prob_main_shipped(group_name)
+        or _group_is_core_power_shipped(group_name)
+        or _group_is_goblin70_shipped(group_name)
+    ):
+        return True
+    if pool_mode in ("goblin_only", "goblin_only_3leg") and (
+        _group_is_goblin_only_3leg_shipped(group_name)
+        or _group_is_high_prob_main_shipped(group_name)
+        or _group_is_goblin70_shipped(group_name)
     ):
         return True
     if pool_mode == "standard_only" and _group_is_high_prob_main_shipped(group_name):
@@ -3409,6 +3685,8 @@ def _group_is_allowed(group_name: str, *, pool_mode: str = "") -> bool:
     if not pool_mode and (
         _group_is_goblin_only_3leg_shipped(group_name)
         or _group_is_high_prob_main_shipped(group_name)
+        or _group_is_core_power_shipped(group_name)
+        or _group_is_goblin70_shipped(group_name)
     ):
         return True
     n = str(group_name or "").strip()
@@ -3785,6 +4063,204 @@ def _ticket_grade_payout_html(
     )
 
 
+def _build_efficiency_grade_history_records(
+    payload: dict[str, Any],
+    arg_date: str,
+    sport_candidates: dict[str, list[Path]],
+    graded_merge_dates: list[str],
+    *,
+    tracks: frozenset[str],
+    classify,
+    off_card: bool = True,
+) -> list[dict[str, Any]]:
+    """Grade slips into dedicated grade_history tracks via ``classify``.
+
+    ``classify(ticket, group_name) -> track | None``. Only tracks in
+    ``tracks`` are emitted. Used for YOLO side tracks and gated
+    Goblin / Standard / Mixed construction efficiency.
+    """
+    groups = payload.get("groups") or []
+    indices = _load_actuals_indices(
+        sport_candidates,
+        graded_merge_dates,
+        slate_date=arg_date,
+        payload=payload,
+    )
+    injury_dnp_by_sport = _injury_dnp_by_sport(graded_merge_dates)
+
+    by_track: dict[str, list[dict[str, Any]]] = {t: [] for t in tracks}
+    for g in groups:
+        gname = str(g.get("group_name") or "Group")
+        for t in g.get("tickets") or []:
+            if not isinstance(t, dict):
+                continue
+            if ticket_excluded_from_winrate(t, gname, slate_date=str(arg_date or "")[:10]):
+                continue
+            track = classify(t, gname)
+            if track not in by_track:
+                continue
+            legs = t.get("legs") or []
+            gs: list[str] = []
+            for leg in legs:
+                if not isinstance(leg, dict):
+                    continue
+                # G70 archives: direction as ``side``, prop as ``prop``.
+                need_copy = False
+                if not leg.get("direction") and leg.get("side"):
+                    need_copy = True
+                if not leg.get("prop_type") and leg.get("prop"):
+                    need_copy = True
+                if need_copy:
+                    leg = dict(leg)
+                    if not leg.get("direction") and leg.get("side"):
+                        leg["direction"] = leg.get("side")
+                    if not leg.get("prop_type") and leg.get("prop"):
+                        leg["prop_type"] = leg.get("prop")
+                row = _match_leg_to_row_multi(leg, indices)
+                try:
+                    lf = float(leg.get("line"))
+                except (TypeError, ValueError):
+                    lf = None
+                d = str(leg.get("direction") or leg.get("side") or "").strip().upper()
+                act = row["actual"] if row else None
+                gr = row["grade_raw"] if row else ""
+                vn = row.get("void_note", "") if row else ""
+                if row and row.get("line") is not None and lf is None:
+                    lf = row["line"]
+                g_leg = _leg_grade(act, lf, d, gr, vn)
+                g_leg = _resolve_void_pending_if_injury_dnp(
+                    g_leg, leg, act, lf, gr, vn, injury_dnp_by_sport
+                )
+                gs.append(g_leg)
+            if not gs:
+                continue
+            if any(x == "UNGRADED" for x in gs):
+                continue
+            if all(x == "VOID" for x in gs):
+                continue
+            oc = _ticket_eval_money_outcome(gname, gs, t)
+            if oc.get("pending"):
+                continue
+            if oc.get("result") == "VOID_LOSS" and not _ticket_pays_money(gname, gs):
+                by_track[track].append(
+                    {
+                        "result": "VOID",
+                        "n_legs": len(gs),
+                        "leg_voids": sum(1 for x in gs if x == "VOID"),
+                        "net_10": 0.0,
+                        "predicted_ev": oc.get("predicted_ev"),
+                    }
+                )
+                continue
+            pays = _ticket_pays_money(gname, gs)
+            by_track[track].append(
+                {
+                    "result": "WIN" if pays else "LOSS",
+                    "n_legs": len(gs),
+                    "leg_voids": sum(1 for x in gs if x == "VOID"),
+                    "net_10": float(oc.get("net_10") or 0.0),
+                    "predicted_ev": oc.get("predicted_ev"),
+                }
+            )
+
+    date_s = str(payload.get("date") or arg_date)[:10]
+    out: list[dict[str, Any]] = []
+    for track, rows in by_track.items():
+        if not rows:
+            continue
+        wins = sum(1 for r in rows if r["result"] == "WIN")
+        losses = sum(1 for r in rows if r["result"] == "LOSS")
+        voids = sum(1 for r in rows if r["result"] == "VOID")
+        decided = wins + losses
+        n_slips = len(rows)
+        avg_legs = sum(int(r["n_legs"]) for r in rows) / n_slips if n_slips else 0.0
+        leg_voids = sum(int(r["leg_voids"]) for r in rows)
+        win_rate = (wins / decided) if decided else 0.0
+        nets = [float(r.get("net_10") or 0.0) for r in rows if r["result"] in {"WIN", "LOSS"}]
+        total_net = sum(nets)
+        net_per = (total_net / len(nets)) if nets else None
+        roi_pct = (100.0 * total_net / (10.0 * len(nets))) if nets else None
+        evs = [
+            float(r["predicted_ev"])
+            for r in rows
+            if r.get("predicted_ev") is not None and r["result"] in {"WIN", "LOSS"}
+        ]
+        avg_ev = (sum(evs) / len(evs)) if evs else None
+        rec = {
+            "date": date_s,
+            "track": track,
+            "ticket_track": track,
+            "n_tickets": n_slips,
+            "n_slips": n_slips,
+            "wins": wins,
+            "losses": losses,
+            "voids": voids,
+            "leg_voids": leg_voids,
+            "guarantees": 0,
+            "win_rate": round(win_rate, 4),
+            "avg_legs": round(avg_legs, 2),
+            "exclude_from_winrate": bool(off_card),
+            "avg_ev_predicted": round(avg_ev, 4) if avg_ev is not None else None,
+            "net_per_10": round(net_per, 2) if net_per is not None else None,
+            "roi_pct": round(roi_pct, 2) if roi_pct is not None else None,
+        }
+        out.append(rec)
+        print(
+            f"[grade_history] {date_s} track={track}: "
+            f"slips={n_slips} W={wins} L={losses} V={voids} "
+            f"wr={win_rate:.1%} avg_legs={avg_legs:.1f}"
+            + (" (off card win-rate)" if off_card else "")
+        )
+    return out
+
+
+def _build_yolo_grade_history_records(
+    payload: dict[str, Any],
+    arg_date: str,
+    sport_candidates: dict[str, list[Path]],
+    graded_merge_dates: list[str],
+) -> list[dict[str, Any]]:
+    """Grade YOLO slips into dedicated tracks (still off card win-rate).
+
+    Returns zero or more grade_history rows keyed ``standard_yolo`` /
+    ``goblin70_yolo`` with wins/losses/voids/avg_legs. Empty when no
+    decided YOLO slips exist for the slate.
+    """
+    return _build_efficiency_grade_history_records(
+        payload,
+        arg_date,
+        sport_candidates,
+        graded_merge_dates,
+        tracks=frozenset({"standard_yolo", "goblin70_yolo"}),
+        classify=yolo_ticket_track,
+        off_card=True,
+    )
+
+
+def _build_gated_construction_grade_history_records(
+    payload: dict[str, Any],
+    arg_date: str,
+    sport_candidates: dict[str, list[Path]],
+    graded_merge_dates: list[str],
+) -> list[dict[str, Any]]:
+    """Grade keep-gated Goblin / Standard / Mixed slips for construction efficiency.
+
+    These tracks are the instrument for \"are we constructing efficiently?\"
+    They stay off the Income card win-rate (same shape as YOLO side tracks).
+    """
+    from utils.gated_construction_tracks import construction_track
+
+    return _build_efficiency_grade_history_records(
+        payload,
+        arg_date,
+        sport_candidates,
+        graded_merge_dates,
+        tracks=GATED_CONSTRUCTION_TRACKS,
+        classify=construction_track,
+        off_card=True,
+    )
+
+
 def _build_html(
     payload: dict[str, Any],
     arg_date: str,
@@ -3808,6 +4284,8 @@ def _build_html(
     for g in groups:
         gname = str(g.get("group_name") or "Group")
         for t in g.get("tickets") or []:
+            if ticket_excluded_from_winrate(t, gname, slate_date=str(arg_date or "")[:10]):
+                continue
             t["_group_name"] = gname
             tickets_flat.append(t)
             for leg in t.get("legs") or []:
@@ -5595,6 +6073,36 @@ def main() -> int:
         except OSError as e:
             print(f"  WARN: could not append grade_history.json: {e}")
 
+    # YOLO side tracks: still exclude_from_winrate on the card, but capture
+    # W/L so Standard YOLO / Goblin YOLO gates have a clean baseline.
+    if eval_track == "graded_main":
+        try:
+            yolo_recs = _build_yolo_grade_history_records(
+                payload, arg_date, sport_candidates, graded_merge_dates
+            )
+            for yrec in yolo_recs:
+                _append_grade_history(yrec)
+                print(
+                    f"  Appended YOLO track {yrec.get('track')} -> "
+                    f"{persistent_data_dir(REPO_ROOT) / 'grade_history.json'}"
+                )
+        except Exception as e:
+            print(f"  WARN: could not append YOLO grade_history tracks: {e}")
+        try:
+            gated_recs = _build_gated_construction_grade_history_records(
+                payload, arg_date, sport_candidates, graded_merge_dates
+            )
+            for grec in gated_recs:
+                _append_grade_history(grec)
+                print(
+                    f"  Appended gated construction track {grec.get('track')} -> "
+                    f"{persistent_data_dir(REPO_ROOT) / 'grade_history.json'}"
+                )
+        except Exception as e:
+            print(
+                f"  WARN: could not append gated construction grade_history tracks: {e}"
+            )
+
     try:
         from utils.income_sport_breakdown import refresh_cache as refresh_income_sport_cache
 
@@ -5614,7 +6122,7 @@ def main() -> int:
             print(f"  Mobile copy -> {mobile_dst}")
         except OSError as e:
             print(f"  WARN: mobile copy failed: {e}")
-    print("  (Serve /tickets from tickets_latest.json; graded view: Grades → Ticket evaluation.)")
+    print("  (Serve /tickets from tickets_latest.json; graded view: Grades -> Ticket evaluation.)")
 
     if args.debug_ungraded:
         debug_ungraded_report(

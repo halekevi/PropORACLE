@@ -1,0 +1,302 @@
+{
+  "cells": [
+    {
+      "book": "Goblin OVER",
+      "prop": "aces",
+      "n": 692,
+      "n_with_actual": 692,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 5.431,
+      "mean_line": 5.562,
+      "actual_over_line": 0.976,
+      "hr_all": 0.4523,
+      "flags": []
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "double_faults",
+      "n": 750,
+      "n_with_actual": 750,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 3.801,
+      "mean_line": 3.484,
+      "actual_over_line": 1.091,
+      "hr_all": 0.5107,
+      "flags": []
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "games_won",
+      "n": 2220,
+      "n_with_actual": 2220,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 13.084,
+      "mean_line": 10.789,
+      "actual_over_line": 1.213,
+      "hr_all": 0.7014,
+      "flags": []
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "match_total_games",
+      "n": 1823,
+      "n_with_actual": 1823,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 24.647,
+      "mean_line": 21.191,
+      "actual_over_line": 1.163,
+      "hr_all": 0.5963,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "aces",
+      "n": 120,
+      "n_with_actual": 120,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 3.192,
+      "mean_line": 4.183,
+      "actual_over_line": 0.763,
+      "hr_all": 0.3083,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "double_faults",
+      "n": 122,
+      "n_with_actual": 122,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 3.787,
+      "mean_line": 4.426,
+      "actual_over_line": 0.856,
+      "hr_all": 0.3689,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "games_won",
+      "n": 1251,
+      "n_with_actual": 1251,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 12.189,
+      "mean_line": 11.398,
+      "actual_over_line": 1.069,
+      "hr_all": 0.5276,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "match_total_games",
+      "n": 1422,
+      "n_with_actual": 1422,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 24.071,
+      "mean_line": 22.567,
+      "actual_over_line": 1.067,
+      "hr_all": 0.4866,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "aces",
+      "n": 28,
+      "n_with_actual": 28,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 7.286,
+      "mean_line": 7.214,
+      "actual_over_line": 1.01,
+      "hr_all": 0.6786,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "double_faults",
+      "n": 8,
+      "n_with_actual": 8,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 5.625,
+      "mean_line": 4.5,
+      "actual_over_line": 1.25,
+      "hr_all": 0.375,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "games_won",
+      "n": 776,
+      "n_with_actual": 776,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 14.106,
+      "mean_line": 14.202,
+      "actual_over_line": 0.993,
+      "hr_all": 0.5232,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "match_total_games",
+      "n": 640,
+      "n_with_actual": 640,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 25.225,
+      "mean_line": 24.853,
+      "actual_over_line": 1.015,
+      "hr_all": 0.5953,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "total_tie_breaks",
+      "n": 1,
+      "n_with_actual": 1,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 2.0,
+      "mean_line": 0.5,
+      "actual_over_line": 4.0,
+      "hr_all": 0.0,
+      "flags": []
+    }
+  ],
+  "flagged": [],
+  "split_imbalance": [
+    {
+      "book": "Standard OVER",
+      "prop": "double_faults",
+      "n": 122,
+      "train_n": 122,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 8,
+      "train_dates_n": 8,
+      "oos_dates_n": 0,
+      "first_date": "2026-04-26",
+      "last_date": "2026-05-15",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (122/122)"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "aces",
+      "n": 120,
+      "train_n": 120,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 10,
+      "train_dates_n": 10,
+      "oos_dates_n": 0,
+      "first_date": "2026-04-26",
+      "last_date": "2026-08-03",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (120/120)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "aces",
+      "n": 28,
+      "train_n": 28,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 11,
+      "train_dates_n": 11,
+      "oos_dates_n": 0,
+      "first_date": "2026-05-10",
+      "last_date": "2026-06-29",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (28/28)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "double_faults",
+      "n": 8,
+      "train_n": 8,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 4,
+      "train_dates_n": 4,
+      "oos_dates_n": 0,
+      "first_date": "2026-05-11",
+      "last_date": "2026-08-03",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (8/8)"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "double_faults",
+      "n": 750,
+      "train_n": 750,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 37,
+      "train_dates_n": 37,
+      "oos_dates_n": 0,
+      "first_date": "2026-05-14",
+      "last_date": "2026-08-03",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (750/750)"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "aces",
+      "n": 692,
+      "train_n": 692,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 37,
+      "train_dates_n": 37,
+      "oos_dates_n": 0,
+      "first_date": "2026-05-14",
+      "last_date": "2026-08-03",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (692/692)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "total_tie_breaks",
+      "n": 1,
+      "train_n": 1,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 1,
+      "train_dates_n": 1,
+      "oos_dates_n": 0,
+      "first_date": "2026-08-17",
+      "last_date": "2026-08-17",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (1/1)"
+      ]
+    }
+  ]
+}

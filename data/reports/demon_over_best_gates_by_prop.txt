@@ -1,0 +1,58 @@
+BEST DEMON OVER GATES (from graded diagnostic recommended_min_ml_prob)
+These are calibration floors on Demon OVER — not L5/L10/D keep gates (Demons are off that path).
+Compare base_hit_rate (ungated) vs recommended_hit_rate (gated).
+
+=== MLB ===
+  Walks                     ungated  28.4% n= 5552  |  BEST GATE ml>=0.21 ->  31.3% (n=1906, lift +2.9pp)
+  Hits Allowed              ungated  25.0% n=  501  |  BEST GATE ml>=0.13 ->  31.2% (n= 202, lift +6.2pp)
+  Runs                      ungated  25.9% n= 7724  |  BEST GATE ml>=0.13 ->  30.4% (n=5373, lift +4.5pp)
+  Total Bases               ungated  20.3% n=19213  |  BEST GATE ml>=0.11 ->  25.9% (n=8125, lift +5.6pp)
+  Walks Allowed             ungated  25.7% n=  253  |  BEST GATE ml>=nan ->  25.7% (n= 253, lift +0.0pp)
+  Hitter Strikeouts         ungated  20.1% n= 3192  |  BEST GATE ml>=0.13 ->  22.4% (n=1147, lift +2.3pp)
+  Pitcher Strikeouts        ungated  21.1% n=  648  |  BEST GATE ml>=0.13 ->  21.9% (n= 260, lift +0.8pp)
+  Hits                      ungated  19.1% n= 6468  |  BEST GATE ml>=0.08 ->  20.2% (n=4764, lift +1.1pp)
+  Home Runs                 ungated  11.5% n= 5015  |  BEST GATE ml>=0.13 ->  12.3% (n=3841, lift +0.7pp)
+  Stolen Bases              ungated  10.4% n= 3044  |  BEST GATE ml>=nan ->  10.4% (n=3044, lift +0.0pp)
+
+=== NBA ===
+  Two Pointers Made         ungated  52.2% n=  134  |  BEST GATE ml>=0.87 ->  60.0% (n=  40, lift +7.8pp)
+  Fantasy Score             ungated  43.2% n=  370  |  BEST GATE ml>=0.90 ->  56.8% (n= 111, lift +13.5pp)
+  Free Throws Attempted     ungated  47.8% n=  178  |  BEST GATE ml>=0.27 ->  48.1% (n= 160, lift +0.4pp)
+  FG Made                   ungated  45.8% n=  120  |  BEST GATE ml>=0.37 ->  46.4% (n=  84, lift +0.6pp)
+  Free Throws Made          ungated  45.8% n=  179  |  BEST GATE ml>=0.41 ->  46.4% (n= 125, lift +0.6pp)
+  Turnovers                 ungated  44.3% n=  194  |  BEST GATE ml>=nan ->  44.3% (n= 194, lift +0.0pp)
+  Steals                    ungated  41.2% n=  262  |  BEST GATE ml>=0.52 ->  44.3% (n=  79, lift +3.1pp)
+  Assists                   ungated  42.4% n=  550  |  BEST GATE ml>=0.42 ->  43.9% (n= 330, lift +1.6pp)
+  Blks+Stls                 ungated  40.0% n=  295  |  BEST GATE ml>=0.56 ->  42.7% (n=  89, lift +2.7pp)
+  Pts+Rebs                  ungated  35.8% n=  656  |  BEST GATE ml>=0.89 ->  39.6% (n= 197, lift +3.8pp)
+  3-PT Made                 ungated  38.4% n=  476  |  BEST GATE ml>=nan ->  38.4% (n= 476, lift +0.0pp)
+  Pts+Asts                  ungated  35.1% n=  596  |  BEST GATE ml>=0.89 ->  38.0% (n= 179, lift +2.9pp)
+  Blocked Shots             ungated  36.3% n=  422  |  BEST GATE ml>=0.31 ->  38.0% (n= 337, lift +1.7pp)
+  Pts+Rebs+Asts             ungated  35.8% n= 1401  |  BEST GATE ml>=0.89 ->  37.7% (n= 424, lift +1.9pp)
+  Points                    ungated  37.0% n=  652  |  BEST GATE ml>=0.43 ->  37.3% (n= 391, lift +0.4pp)
+  Rebounds                  ungated  35.7% n=  543  |  BEST GATE ml>=0.22 ->  35.9% (n= 488, lift +0.1pp)
+  Rebs+Asts                 ungated  33.1% n= 1204  |  BEST GATE ml>=0.51 ->  34.7% (n= 602, lift +1.6pp)
+  Double-Double             ungated  15.5% n=  464  |  BEST GATE ml>=0.92 ->  18.1% (n= 155, lift +2.5pp)
+
+=== NBA1Q ===
+  Assists                   ungated  71.5% n=  740  |  BEST GATE ml>=0.91 ->  91.1% (n= 224, lift +19.6pp)
+  Rebounds                  ungated  50.9% n=  901  |  BEST GATE ml>=0.91 ->  73.5% (n= 272, lift +22.6pp)
+  Points                    ungated  51.0% n= 1348  |  BEST GATE ml>=0.91 ->  71.4% (n= 406, lift +20.5pp)
+
+=== NHL ===
+  Power Play Points         ungated  73.4% n=  320  |  BEST GATE ml>=0.08 ->  78.5% (n= 130, lift +5.0pp)
+  Plus/Minus                ungated  26.1% n=  283  |  BEST GATE ml>=0.18 ->  35.4% (n= 113, lift +9.2pp)
+  Points                    ungated  21.4% n=  847  |  BEST GATE ml>=0.08 ->  31.5% (n= 254, lift +10.1pp)
+  Assists                   ungated  18.4% n=  776  |  BEST GATE ml>=0.08 ->  26.9% (n= 234, lift +8.5pp)
+  Goals                     ungated  15.9% n=  628  |  BEST GATE ml>=0.08 ->  25.4% (n= 189, lift +9.5pp)
+  Shots On Goal             ungated   0.0% n=  728  |  BEST GATE ml>=nan ->   0.0% (n= 728, lift +0.0pp)
+
+=== Soccer ===
+  Shots On Target           ungated  49.4% n=  791  |  BEST GATE ml>=0.06 ->  60.8% (n= 324, lift +11.4pp)
+  Tackles                   ungated  21.7% n=  530  |  BEST GATE ml>=0.06 ->  41.2% (n= 160, lift +19.6pp)
+  Fouls                     ungated  16.0% n=  144  |  BEST GATE ml>=0.06 ->  23.7% (n=  59, lift +7.8pp)
+  Goals                     ungated   9.8% n=  418  |  BEST GATE ml>=0.06 ->  17.6% (n= 131, lift +7.7pp)
+  Shots                     ungated  11.2% n= 1049  |  BEST GATE ml>=0.06 ->  15.0% (n= 420, lift +3.8pp)
+  Assists                   ungated   5.6% n=  445  |  BEST GATE ml>=0.06 ->   8.0% (n= 138, lift +2.4pp)
+  Goal + Assist             ungated   4.4% n=  573  |  BEST GATE ml>=0.06 ->   6.1% (n= 230, lift +1.7pp)
+

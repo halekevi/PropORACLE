@@ -1323,11 +1323,13 @@ function Invoke-PropOracleStep7b {
         [string]$Step7Xlsx = "",
         [string]$PipelineDate = ""
     )
+    $step7bExit = 0
     Push-Location $Root
     try {
         $sp = Join-Path $Root "scripts\step7b_edge_score.py"
         if (-not (Test-Path $sp)) {
-            Write-Host "  [$SportLabel] step7b: WARN (missing scripts\step7b_edge_score.py)" -ForegroundColor Yellow
+            Write-Host "  FAILED: [$SportLabel] step7b missing scripts\step7b_edge_score.py" -ForegroundColor Red
+            $step7bExit = 1
         } else {
             $argList = @("--sport", $SportLabel, "--repo-root", $Root)
             if ($Step7Xlsx -ne "") { $argList += @("--step7-xlsx", $Step7Xlsx) }
@@ -1335,16 +1337,17 @@ function Invoke-PropOracleStep7b {
             Write-Host "  --> step7b ($SportLabel)" -ForegroundColor Yellow
             Write-Host "        CMD: py -3.14 $sp $($argList -join ' ')" -ForegroundColor DarkGray
             $output = & py -3.14 $sp @argList 2>&1
-            $exit   = $LASTEXITCODE
+            $step7bExit = [int]$LASTEXITCODE
             foreach ($line in $output) { Write-Host "        $line" -ForegroundColor DarkGray }
-            if ($exit -ne 0) {
-                Write-Host "  [$SportLabel] step7b: WARN (exit $exit)" -ForegroundColor Yellow
+            if ($step7bExit -ne 0) {
+                Write-Host "  FAILED: [$SportLabel] step7b (exit $step7bExit)" -ForegroundColor Red
             } else {
                 Write-Host "  [$SportLabel] step7b: OK" -ForegroundColor Green
             }
         }
     } catch {
-        Write-Host "  [$SportLabel] step7b: WARN (exit 1)" -ForegroundColor Yellow
+        Write-Host "  FAILED: [$SportLabel] step7b EXCEPTION: $_" -ForegroundColor Red
+        $step7bExit = 1
     } finally {
         Pop-Location
     }
@@ -1352,6 +1355,7 @@ function Invoke-PropOracleStep7b {
         Write-Host "  FAILED: [$SportLabel] step7 xlsx missing after step7b: $Step7Xlsx" -ForegroundColor Red
         return $false
     }
+    if ($step7bExit -ne 0) { return $false }
     return $true
 }
 
@@ -1756,6 +1760,8 @@ function Run-Combined {
         $ticketStarts = [int]$env:PROPORACLE_TICKET_GEN_STARTS
     }
     Write-Host "  [combined] ticket-gen-starts=$ticketStarts" -ForegroundColor DarkGray
+    # --allow-cross-date-fallback is tennis/soccer overnight only (capped at 3 days
+    # in combined_slate_tickets). It must not load March CBB / May WNBA / May NBA1Q.
     $CombinedArgs += " --date $Date --tennis-date $TennisDate --soccer-date $Date --wnba-date $WnbaMlbExtraDate --mlb-date $WnbaMlbExtraDate --allow-cross-date-fallback --output `"$CombinedOut`" --tiers A,B --min-hit-rate 0.65 --min-edge -0.25 --max-tickets 15 --max-ticket-legs 4 --ticket-gen-starts $ticketStarts --nba-structured-variants 8 --ticket-candidate-sort rule --prioritize-ticket-hit --write-web --merge-web-latest --web-outdir `"$WebOutDir`" --max-legs 4 --min-leg-prob 0.62"
     $middayRebuild = ($TicketGenStarts -gt 0 -and $TicketGenStarts -le 32)
     $skipWinRate = $middayRebuild -or ("$($env:SKIP_TICKET_SIDECARS)".Trim() -in @("1", "true", "yes"))
@@ -2679,9 +2685,13 @@ if ($NBAOnly) {
         $ok = $false
     }
     if ($ok) { $ok = Run-Step "NBA Step 2 - Attach Pick Types"       $NBADir ".\scripts\step2_attach_picktypes.py"               "--input `"$nbaStep1Solo`" --output `"$NBARunOutDir\step2_with_picktypes.csv`"" }
+    if (-not $ok) { Write-Host "  [NBA] STOPPED after step 2 — steps 3-8 will not run" -ForegroundColor Red; }
     if ($ok) { $ok = Run-Step "NBA Step 3 - Attach Defense"          $NBADir ".\scripts\step3_attach_defense.py"                 "--input `"$NBARunOutDir\step2_with_picktypes.csv`" --defense data\cache\defense_team_summary.csv --output `"$NBARunOutDir\step3_with_defense.csv`"" }
+    if (-not $ok) { Write-Host "  [NBA] STOPPED after step 3 — steps 4-8 will not run" -ForegroundColor Red; }
     if ($ok) { $ok = Run-Step "NBA Step 4 - Player Stats (ESPN)"     $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate `"$NBARunOutDir\step3_with_defense.csv`" --out `"$NBARunOutDir\step4_with_stats.csv`"" }
+    if (-not $ok) { Write-Host "  [NBA] STOPPED after step 4 — steps 4b-8 will not run" -ForegroundColor Red; }
     if ($ok) { $ok = Run-Step "NBA Step 4b - Usage/Pace Context"      $NBADir ".\scripts\step4b_attach_nba_context.py"              "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step4_with_stats.csv`" --season $NbaStatsSeason" }
+    if (-not $ok) { Write-Host "  [NBA] STOPPED after step 4b — steps 4d-8 will not run" -ForegroundColor Red; }
     if ($ok) {
         $nbaStep4Csv = "$NBARunOutDir\step4_with_stats.csv"
         if (-not (Test-Path -LiteralPath $nbaStep4Csv)) {
@@ -2879,7 +2889,10 @@ Write-Host ""
 
 # -- NBA Job ------------------------------------------------------------------
 $NBAJob = $null
-if (-not $NBAOffSeason) {
+$skipNbaJob = ("$($env:PROPORACLE_SKIP_NBA_JOB)".Trim().ToLower() -in @("1", "true", "yes", "on"))
+if ($skipNbaJob) {
+    Write-Host "  [NBA] skip parallel job (PROPORACLE_SKIP_NBA_JOB) — sequential runner already rebuilt step8" -ForegroundColor Cyan
+} elseif (-not $NBAOffSeason) {
 Wait-FetchStagger
 $NBAJob = Start-Job -ScriptBlock {
     param($NBADir, $Date, $OddsApiKey, $SkipFetch, $RepoRoot, $NBARunOutDir, $OffSeason)

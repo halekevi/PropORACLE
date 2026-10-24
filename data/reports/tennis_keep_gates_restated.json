@@ -1,0 +1,198 @@
+{
+  "generated": "2026-09-15",
+  "legs": 19257,
+  "sw_thr": 45.7,
+  "sw_thr_search": [
+    {
+      "thr": 48,
+      "n": 334,
+      "hit_pct": 82.6
+    },
+    {
+      "thr": 50,
+      "n": 228,
+      "hit_pct": 80.7
+    },
+    {
+      "thr": 51,
+      "n": 188,
+      "hit_pct": 78.7
+    },
+    {
+      "thr": 52,
+      "n": 161,
+      "hit_pct": 76.4
+    },
+    {
+      "thr": 53,
+      "n": 118,
+      "hit_pct": 75.4
+    },
+    {
+      "thr": 54,
+      "n": 91,
+      "hit_pct": 80.2
+    },
+    {
+      "thr": 55,
+      "n": 74,
+      "hit_pct": 79.7
+    },
+    {
+      "thr": 56,
+      "n": 60,
+      "hit_pct": 81.7
+    },
+    {
+      "thr": 45.7,
+      "n": 444,
+      "hit_pct": 83.6
+    }
+  ],
+  "lefty_src_goblin_gw_l10": {
+    "today": 0,
+    "last": 986,
+    "none": 15
+  },
+  "keeps": [
+    {
+      "label": "Goblin OVER Games Won \u00b7 Std\u2212Goblin\u22654",
+      "n": 0,
+      "hits": 0,
+      "hit_pct": null
+    },
+    {
+      "label": "Goblin OVER Games Won \u00b7 L10\u22658 + vs lefty",
+      "n": 102,
+      "hits": 88,
+      "hit_pct": 86.3
+    },
+    {
+      "label": "Goblin OVER Games Won \u00b7 L10\u22658 + L5 2nd-won%\u226545.7",
+      "n": 444,
+      "hits": 371,
+      "hit_pct": 83.6
+    },
+    {
+      "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty OR 2nd-won\u226545.7)",
+      "n": 501,
+      "hits": 414,
+      "hit_pct": 82.6
+    },
+    {
+      "label": "Goblin OVER Games Won \u00b7 KEEP union (gap\u22654 OR L10\u22658+(lefty|2nd-won\u226545.7))",
+      "n": 501,
+      "hits": 414,
+      "hit_pct": 82.6
+    },
+    {
+      "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658",
+      "n": 61,
+      "hits": 48,
+      "hit_pct": 78.7
+    },
+    {
+      "label": "Goblin OVER Total Games \u00b7 L10\u22658 + vs lefty",
+      "n": 85,
+      "hits": 68,
+      "hit_pct": 80.0
+    },
+    {
+      "label": "Goblin OVER Total Games \u00b7 KEEP union (L5\u22654+L10\u22658 OR L10\u22658+lefty)",
+      "n": 135,
+      "hits": 107,
+      "hit_pct": 79.3
+    },
+    {
+      "label": "Standard UNDER Aces \u00b7 ungated",
+      "n": 96,
+      "hits": 87,
+      "hit_pct": 90.6
+    },
+    {
+      "label": "Standard UNDER Double Faults \u00b7 ungated",
+      "n": 50,
+      "hits": 45,
+      "hit_pct": 90.0
+    },
+    {
+      "label": "Standard OVER Games Won \u00b7 L10\u22658 + L5gap\u22655",
+      "n": 0,
+      "hits": 0,
+      "hit_pct": null
+    },
+    {
+      "label": "Standard OVER Games Won \u00b7 L10\u22658 + L5 2nd-won%\u226545.7",
+      "n": 40,
+      "hits": 30,
+      "hit_pct": 75.0
+    },
+    {
+      "label": "Standard OVER Games Won \u00b7 L10\u22658 + vs lefty",
+      "n": 13,
+      "hits": 8,
+      "hit_pct": 61.5
+    }
+  ],
+  "baselines": [
+    {
+      "label": "Goblin OVER Aces \u00b7 ungated",
+      "n": 3018,
+      "hits": 438,
+      "hit_pct": 14.5
+    },
+    {
+      "label": "Goblin OVER Double Faults \u00b7 ungated",
+      "n": 2898,
+      "hits": 544,
+      "hit_pct": 18.8
+    },
+    {
+      "label": "Standard OVER Aces \u00b7 ungated",
+      "n": 591,
+      "hits": 144,
+      "hit_pct": 24.4
+    },
+    {
+      "label": "Standard OVER Double Faults \u00b7 ungated",
+      "n": 643,
+      "hits": 194,
+      "hit_pct": 30.2
+    },
+    {
+      "label": "Standard OVER Total Games \u00b7 ungated",
+      "n": 1289,
+      "hits": 647,
+      "hit_pct": 50.2
+    },
+    {
+      "label": "Standard UNDER Games Won \u00b7 ungated",
+      "n": 656,
+      "hits": 331,
+      "hit_pct": 50.5
+    },
+    {
+      "label": "Standard UNDER Total Games \u00b7 ungated",
+      "n": 535,
+      "hits": 301,
+      "hit_pct": 56.3
+    },
+    {
+      "label": "Goblin OVER Games Won \u00b7 ungated",
+      "n": 4551,
+      "hits": 3365,
+      "hit_pct": 73.9
+    },
+    {
+      "label": "Goblin OVER Total Games \u00b7 ungated",
+      "n": 3678,
+      "hits": 2438,
+      "hit_pct": 66.3
+    }
+  ],
+  "notes": [
+    "opp_lefty prefers today's opp_team hand from Sackmann; falls back to last-match opp_hand.",
+    "L5 2nd-won% is mean of player's prior 5 Sackmann second_won_pct.",
+    "Std\u2212Goblin gap often missing on graded_props (no standard_line) \u2014 gap keep rate here is undercounted vs catalog join."
+  ]
+}

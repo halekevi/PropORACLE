@@ -1,0 +1,530 @@
+{
+  "meta": {
+    "tape": [
+      "2026-08-28",
+      "2026-08-29",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-12",
+      "2026-09-26",
+      "2026-10-10",
+      "2026-09-19",
+      "2026-09-20",
+      "2026-10-03",
+      "2026-10-04",
+      "2026-10-11",
+      "2026-10-17",
+      "2026-10-18"
+    ],
+    "volume_proxy": "ESPN receptions (game); season rec_tgt_pg from cfb_player_volume",
+    "note": "Game-level targets not on ESPN gamelog; box REC_TGT ~empty. Receptions are the per-game role count.",
+    "espn_target_game_rows": 0
+  },
+  "chips": {
+    "Goblin OVER L5=5": {
+      "unique_n": 293,
+      "stamp_dropped": 18,
+      "base": {
+        "h": 229,
+        "n": 293,
+        "rate": 0.782
+      },
+      "filled": {
+        "h": 176,
+        "n": 216,
+        "rate": 0.815
+      },
+      "median_rec_buckets": {
+        "2-3": {
+          "h": 96,
+          "n": 119,
+          "rate": 0.807
+        },
+        "4-5": {
+          "h": 44,
+          "n": 53,
+          "rate": 0.83
+        },
+        "6+": {
+          "h": 25,
+          "n": 33,
+          "rate": 0.758
+        },
+        "<2": {
+          "h": 11,
+          "n": 11,
+          "rate": 1.0
+        }
+      },
+      "season_tgt_pg_buckets": {
+        "3-5 tgt/g": {
+          "h": 52,
+          "n": 68,
+          "rate": 0.765
+        },
+        "5-8 tgt/g": {
+          "h": 79,
+          "n": 86,
+          "rate": 0.919
+        },
+        "8+ tgt/g": {
+          "h": 27,
+          "n": 37,
+          "rate": 0.73
+        },
+        "<3 tgt/g": {
+          "h": 14,
+          "n": 20,
+          "rate": 0.7
+        },
+        "blank": {
+          "h": 4,
+          "n": 5,
+          "rate": 0.8
+        }
+      },
+      "role_pass": {
+        "h": 175,
+        "n": 215,
+        "rate": 0.814
+      },
+      "role_fail": {
+        "h": 1,
+        "n": 1,
+        "rate": 1.0
+      },
+      "shared_wr_yes": {
+        "h": 2,
+        "n": 3,
+        "rate": 0.667
+      },
+      "shared_wr_no": {
+        "h": 159,
+        "n": 191,
+        "rate": 0.832
+      },
+      "shared_wr_unk": {
+        "h": 15,
+        "n": 22,
+        "rate": 0.682
+      },
+      "role_pass_not_shared": {
+        "h": 158,
+        "n": 190,
+        "rate": 0.832
+      },
+      "maxy_vs_line": {},
+      "role_fail_examples": [
+        {
+          "date": "2026-09-26",
+          "player": "Nyck Harbor",
+          "book": "Goblin OVER",
+          "line": 29.5,
+          "hit": 1,
+          "recs": [
+            1.0,
+            2.0,
+            5.0
+          ],
+          "yards": [
+            22.0,
+            35.0,
+            70.0
+          ],
+          "rec_tgt_pg": 6.667
+        }
+      ]
+    },
+    "Goblin OVER L5=5+D": {
+      "unique_n": 84,
+      "stamp_dropped": 1,
+      "base": {
+        "h": 64,
+        "n": 84,
+        "rate": 0.762
+      },
+      "filled": {
+        "h": 43,
+        "n": 54,
+        "rate": 0.796
+      },
+      "median_rec_buckets": {
+        "2-3": {
+          "h": 24,
+          "n": 29,
+          "rate": 0.828
+        },
+        "4-5": {
+          "h": 15,
+          "n": 20,
+          "rate": 0.75
+        },
+        "6+": {
+          "h": 1,
+          "n": 2,
+          "rate": 0.5
+        },
+        "<2": {
+          "h": 3,
+          "n": 3,
+          "rate": 1.0
+        }
+      },
+      "season_tgt_pg_buckets": {
+        "3-5 tgt/g": {
+          "h": 13,
+          "n": 18,
+          "rate": 0.722
+        },
+        "5-8 tgt/g": {
+          "h": 16,
+          "n": 17,
+          "rate": 0.941
+        },
+        "8+ tgt/g": {
+          "h": 7,
+          "n": 10,
+          "rate": 0.7
+        },
+        "<3 tgt/g": {
+          "h": 4,
+          "n": 5,
+          "rate": 0.8
+        },
+        "blank": {
+          "h": 3,
+          "n": 4,
+          "rate": 0.75
+        }
+      },
+      "role_pass": {
+        "h": 43,
+        "n": 54,
+        "rate": 0.796
+      },
+      "role_fail": {
+        "h": 0,
+        "n": 0,
+        "rate": null
+      },
+      "shared_wr_yes": {
+        "h": 0,
+        "n": 0,
+        "rate": null
+      },
+      "shared_wr_no": {
+        "h": 38,
+        "n": 45,
+        "rate": 0.844
+      },
+      "shared_wr_unk": {
+        "h": 5,
+        "n": 9,
+        "rate": 0.556
+      },
+      "role_pass_not_shared": {
+        "h": 38,
+        "n": 45,
+        "rate": 0.844
+      },
+      "maxy_vs_line": {},
+      "role_fail_examples": []
+    },
+    "Std OVER L5=5": {
+      "unique_n": 18,
+      "stamp_dropped": 1,
+      "base": {
+        "h": 11,
+        "n": 18,
+        "rate": 0.611
+      },
+      "filled": {
+        "h": 6,
+        "n": 10,
+        "rate": 0.6
+      },
+      "median_rec_buckets": {
+        "2-3": {
+          "h": 4,
+          "n": 6,
+          "rate": 0.667
+        },
+        "4-5": {
+          "h": 1,
+          "n": 2,
+          "rate": 0.5
+        },
+        "6+": {
+          "h": 0,
+          "n": 1,
+          "rate": 0.0
+        },
+        "<2": {
+          "h": 1,
+          "n": 1,
+          "rate": 1.0
+        }
+      },
+      "season_tgt_pg_buckets": {
+        "3-5 tgt/g": {
+          "h": 4,
+          "n": 5,
+          "rate": 0.8
+        },
+        "5-8 tgt/g": {
+          "h": 2,
+          "n": 3,
+          "rate": 0.667
+        },
+        "8+ tgt/g": {
+          "h": 0,
+          "n": 1,
+          "rate": 0.0
+        },
+        "<3 tgt/g": {
+          "h": 0,
+          "n": 1,
+          "rate": 0.0
+        }
+      },
+      "role_pass": {
+        "h": 6,
+        "n": 10,
+        "rate": 0.6
+      },
+      "role_fail": {
+        "h": 0,
+        "n": 0,
+        "rate": null
+      },
+      "shared_wr_yes": {
+        "h": 0,
+        "n": 0,
+        "rate": null
+      },
+      "shared_wr_no": {
+        "h": 5,
+        "n": 9,
+        "rate": 0.556
+      },
+      "shared_wr_unk": {
+        "h": 1,
+        "n": 1,
+        "rate": 1.0
+      },
+      "role_pass_not_shared": {
+        "h": 5,
+        "n": 9,
+        "rate": 0.556
+      },
+      "maxy_vs_line": {},
+      "role_fail_examples": []
+    },
+    "Std UNDER L5=5": {
+      "unique_n": 33,
+      "stamp_dropped": 1,
+      "base": {
+        "h": 17,
+        "n": 33,
+        "rate": 0.515
+      },
+      "filled": {
+        "h": 4,
+        "n": 11,
+        "rate": 0.364
+      },
+      "median_rec_buckets": {
+        "2-3": {
+          "h": 3,
+          "n": 5,
+          "rate": 0.6
+        },
+        "<2": {
+          "h": 1,
+          "n": 6,
+          "rate": 0.167
+        }
+      },
+      "season_tgt_pg_buckets": {
+        "3-5 tgt/g": {
+          "h": 2,
+          "n": 6,
+          "rate": 0.333
+        },
+        "5-8 tgt/g": {
+          "h": 2,
+          "n": 2,
+          "rate": 1.0
+        },
+        "8+ tgt/g": {
+          "h": 0,
+          "n": 1,
+          "rate": 0.0
+        },
+        "<3 tgt/g": {
+          "h": 0,
+          "n": 2,
+          "rate": 0.0
+        }
+      },
+      "role_pass": {
+        "h": 0,
+        "n": 5,
+        "rate": 0.0
+      },
+      "role_fail": {
+        "h": 4,
+        "n": 6,
+        "rate": 0.667
+      },
+      "shared_wr_yes": {
+        "h": 0,
+        "n": 0,
+        "rate": null
+      },
+      "shared_wr_no": {
+        "h": 3,
+        "n": 9,
+        "rate": 0.333
+      },
+      "shared_wr_unk": {
+        "h": 1,
+        "n": 2,
+        "rate": 0.5
+      },
+      "role_pass_not_shared": {
+        "h": 0,
+        "n": 5,
+        "rate": 0.0
+      },
+      "maxy_vs_line": {
+        "no window": {
+          "h": 8,
+          "n": 14,
+          "rate": 0.571
+        },
+        "maxY 40-70%": {
+          "h": 1,
+          "n": 3,
+          "rate": 0.333
+        },
+        "maxY >=70%": {
+          "h": 8,
+          "n": 16,
+          "rate": 0.5
+        }
+      },
+      "role_fail_examples": [
+        {
+          "date": "2026-09-26",
+          "player": "Branden Ganashamoorthy",
+          "book": "Standard UNDER",
+          "line": 27.5,
+          "hit": 0,
+          "recs": [
+            4.0,
+            1.0,
+            0.0
+          ],
+          "yards": [
+            67.0,
+            11.0,
+            0.0
+          ],
+          "rec_tgt_pg": 8.667
+        },
+        {
+          "date": "2026-09-26",
+          "player": "Chris Hunter III",
+          "book": "Standard UNDER",
+          "line": 40.5,
+          "hit": 1,
+          "recs": [
+            5.0,
+            1.0,
+            1.0
+          ],
+          "yards": [
+            73.0,
+            12.0,
+            11.0
+          ],
+          "rec_tgt_pg": 5.0
+        },
+        {
+          "date": "2026-09-26",
+          "player": "Ricky Johnson",
+          "book": "Standard UNDER",
+          "line": 25.5,
+          "hit": 1,
+          "recs": [
+            4.0,
+            1.0,
+            2.0
+          ],
+          "yards": [
+            43.0,
+            17.0,
+            25.0
+          ],
+          "rec_tgt_pg": 4.0
+        },
+        {
+          "date": "2026-09-26",
+          "player": "Tristen Brown",
+          "book": "Standard UNDER",
+          "line": 32.5,
+          "hit": 1,
+          "recs": [
+            4.0,
+            1.0,
+            2.0
+          ],
+          "yards": [
+            81.0,
+            9.0,
+            16.0
+          ],
+          "rec_tgt_pg": 3.0
+        },
+        {
+          "date": "2026-09-26",
+          "player": "Micah Gilbert",
+          "book": "Standard UNDER",
+          "line": 54.5,
+          "hit": 0,
+          "recs": [
+            8.0,
+            2.0,
+            3.0
+          ],
+          "yards": [
+            170.0,
+            47.0,
+            34.0
+          ],
+          "rec_tgt_pg": 4.714
+        },
+        {
+          "date": "2026-09-26",
+          "player": "Braylon Staley",
+          "book": "Standard UNDER",
+          "line": 45.5,
+          "hit": 1,
+          "recs": [
+            4.0,
+            1.0,
+            2.0
+          ],
+          "yards": [
+            59.0,
+            20.0,
+            8.0
+          ],
+          "rec_tgt_pg": 5.714
+        }
+      ]
+    }
+  }
+}

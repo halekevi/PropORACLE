@@ -1,0 +1,281 @@
+{
+  "prior_ok": [
+    {
+      "id": "P3-1",
+      "ready": true,
+      "n": 3,
+      "px": 1.4,
+      "fails": [],
+      "legs": [
+        [
+          "Tee Higgins",
+          "Rec Yards",
+          24.5,
+          "CIN"
+        ],
+        [
+          "Michael Pittman Jr.",
+          "Rec Yards",
+          9.5,
+          "PIT"
+        ],
+        [
+          "Keaton Mitchell",
+          "Rush Yards",
+          4.5,
+          "LAC"
+        ]
+      ],
+      "note": "NFL Goblin engine off \u2014 slip built, not READY-labeled"
+    },
+    {
+      "id": "P3-2",
+      "ready": true,
+      "n": 3,
+      "px": 1.5,
+      "fails": [],
+      "legs": [
+        [
+          "Jadarian Price",
+          "Rush Yards",
+          29.5,
+          "SEA"
+        ],
+        [
+          "Darnell Washington",
+          "Rec Yards",
+          4.5,
+          "PIT"
+        ],
+        [
+          "Patrick Mahomes",
+          "Rush Yards",
+          4.5,
+          "KC"
+        ]
+      ],
+      "note": "NFL Goblin engine off \u2014 slip built, not READY-labeled"
+    },
+    {
+      "id": "F4-1",
+      "ready": true,
+      "n": 4,
+      "px": 1.8,
+      "fails": [],
+      "legs": [
+        [
+          "Isaiah Likely",
+          "Rec Yards",
+          19.5,
+          "NYG"
+        ],
+        [
+          "Kayshon Boutte",
+          "Rec Yards",
+          14.5,
+          "HOU"
+        ],
+        [
+          "Romeo Doubs",
+          "Rec Yards",
+          19.5,
+          "NE"
+        ],
+        [
+          "Mack Hollins",
+          "Rec Yards",
+          14.5,
+          "NE"
+        ]
+      ],
+      "note": "NFL Goblin engine off \u2014 slip built, not READY-labeled"
+    }
+  ],
+  "retry_tickets": [
+    {
+      "id": "P3-3b",
+      "mode": "power",
+      "legs": [
+        {
+          "player": "Emanuel Wilson",
+          "team": "SEA",
+          "prop": "Rush Yards",
+          "prop_type": "Rush Yards",
+          "line": 10.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Emanuel Wilson"
+        },
+        {
+          "player": "Mike Gesicki",
+          "team": "CIN",
+          "prop": "Rec Yards",
+          "prop_type": "Rec Yards",
+          "line": 9.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Mike Gesicki"
+        },
+        {
+          "player": "Kenneth Walker III",
+          "team": "KC",
+          "prop": "Rush Yards",
+          "prop_type": "Rush Yards",
+          "line": 49.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Kenneth Walker III"
+        }
+      ]
+    },
+    {
+      "id": "P3-4b",
+      "mode": "power",
+      "legs": [
+        {
+          "player": "Cooper Kupp",
+          "team": "SEA",
+          "prop": "Recs",
+          "prop_type": "Recs",
+          "line": 1.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Cooper Kupp"
+        },
+        {
+          "player": "Darnell Mooney",
+          "team": "NYG",
+          "prop": "Rec Yards",
+          "prop_type": "Rec Yards",
+          "line": 4.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Darnell Mooney"
+        },
+        {
+          "player": "Kyler Murray",
+          "team": "MIN",
+          "prop": "Pass Yards",
+          "prop_type": "Pass Yards",
+          "line": 149.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Kyler Murray"
+        }
+      ]
+    },
+    {
+      "id": "F4-2b",
+      "mode": "flex",
+      "legs": [
+        {
+          "player": "Malachi Fields",
+          "team": "NYG",
+          "prop": "Rec Yards",
+          "prop_type": "Rec Yards",
+          "line": 4.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Malachi Fields"
+        },
+        {
+          "player": "David Montgomery",
+          "team": "HOU",
+          "prop": "Rec Yards",
+          "prop_type": "Rec Yards",
+          "line": 4.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "David Montgomery"
+        },
+        {
+          "player": "Foster Moreau",
+          "team": "HOU",
+          "prop": "Recs",
+          "prop_type": "Recs",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Foster Moreau"
+        },
+        {
+          "player": "Erick All Jr.",
+          "team": "CIN",
+          "prop": "Recs",
+          "prop_type": "Recs",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Erick All Jr."
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "P3-3b",
+      "ready": true,
+      "n": 3,
+      "px": 1.4,
+      "fails": [],
+      "legs": [
+        [
+          "Emanuel Wilson",
+          "Rush Yards",
+          10.5,
+          "SEA"
+        ],
+        [
+          "Mike Gesicki",
+          "Rec Yards",
+          9.5,
+          "CIN"
+        ],
+        [
+          "Kenneth Walker III",
+          "Rush Yards",
+          49.5,
+          "KC"
+        ]
+      ],
+      "raw_head": "Current Lineup\n3 Players Selected\nClear\nEmanuel Wilson\n\nNFLSEA - RB\n\nSun, Sep 27 1:00 PM @ WAS\n10.5Rush Yards\nMore\nMike Gesicki\n\nNFLCIN - TE\n\nSun, Sep 27 1:00 PM @ PIT\n9.5Rec Yards\nMore\nKenneth Walker III\n\nNFLKC - RB\n\nSun, Sep 27 1:00 PM @ MIA\n49.5Rush Yards\nMore\nFlex Play\n\nYou must hit 1st place, or 2 out of 3 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n3 correct pays\n1.2X\n2 correct pays\n0.5X\nPower Play\n\nYou must hit 1st place, or 3 out of 3 in the lineup.\n\n1st place pays\n6X\nMinimum Gua",
+      "note": "NFL Goblin engine off \u2014 slip built, not READY-labeled"
+    },
+    {
+      "id": "P3-4b",
+      "ready": false,
+      "fails": [
+        "Cooper Kupp"
+      ],
+      "n": 0
+    },
+    {
+      "id": "F4-2b",
+      "ready": false,
+      "fails": [
+        "David Montgomery"
+      ],
+      "n": 0
+    }
+  ]
+}

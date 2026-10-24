@@ -281,21 +281,31 @@ def main() -> None:
         else:
             print(f"[NFL step3] team form not found ({tf}); skip last-5 merge")
 
+    from utils.nfl_context_freshness import warn_if_stale
     from utils.nfl_team_unit_ranks import attach_nfl_unit_ranks
     from utils.nfl_scoring_vehicles import attach_nfl_identity_and_share
     from utils.nfl_unit_line_ranks import attach_nfl_unit_line_ranks
     from utils.nfl_route_participation_gate import attach_participation
+    from utils.nfl_context_layers import attach_nfl_context_layers
+
+    warn_if_stale(_REPO_ROOT, label="NFL step3")
 
     df = attach_nfl_unit_ranks(df, _REPO_ROOT)
     df = attach_nfl_identity_and_share(df, _REPO_ROOT)
     df = attach_nfl_unit_line_ranks(df, _REPO_ROOT)
     df = attach_participation(df, _REPO_ROOT)
+    df = attach_nfl_context_layers(df, _REPO_ROOT)
+    # Re-assign after unit ranks so tackle props can read opp_rush_off_rank.
+    df = assign_prop_aware_def_tier(df, n_teams=32)
+    if "opp_def_rank_prop" in df.columns:
+        df["OVERALL_DEF_RANK"] = df["opp_def_rank_prop"]
+    if "def_tier" in df.columns:
+        df["DEF_TIER"] = df["def_tier"]
 
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(out_path, index=False, encoding="utf-8-sig")
     print(f"[NFL step3] Wrote {out_path} rows={len(df)}")
-    # Prop-aware def_tier (pass/rush/rec) is assigned in step7 via utils.nfl_prop_defense.
 
 
 if __name__ == "__main__":

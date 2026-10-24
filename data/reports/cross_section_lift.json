@@ -1,0 +1,9367 @@
+{
+  "source": "H:/PropORACLE/data/retrain_dataset.csv",
+  "fill": {
+    "n_rows": 200722,
+    "date_min": "2026-05-06",
+    "date_max": "2026-08-24",
+    "dir_l5": 61.2,
+    "dir_l10": 9.8,
+    "stat_last5_avg": 62.5,
+    "stat_last10_avg": 51.6,
+    "stat_season_avg": 51.6,
+    "def_known": 100.0,
+    "minutes_tier": 68.2,
+    "team_top3_rank": 0.7,
+    "team_bottom3_rank": 0.0,
+    "usage_tier": 100.0,
+    "note": "team_bottom3_rank is not on retrain_dataset.csv; role uses team_top3_rank only."
+  },
+  "baselines": [
+    {
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "n": 113148,
+      "hr": 59.5
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "n": 72389,
+      "hr": 61.8
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "n": 10760,
+      "hr": 66.0
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA1Q",
+      "n": 1154,
+      "hr": 70.6
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "Soccer",
+      "n": 6917,
+      "hr": 31.5
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "Tennis",
+      "n": 7307,
+      "hr": 39.6
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "n": 14604,
+      "hr": 65.2
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "n": 66486,
+      "hr": 30.8
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "n": 13261,
+      "hr": 47.7
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "n": 4770,
+      "hr": 47.0
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA1H",
+      "n": 487,
+      "hr": 49.1
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA1Q",
+      "n": 237,
+      "hr": 49.8
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NHL",
+      "n": 7282,
+      "hr": 28.5
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "Soccer",
+      "n": 29288,
+      "hr": 14.4
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "Tennis",
+      "n": 2240,
+      "hr": 34.4
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "n": 8921,
+      "hr": 50.4
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "n": 21088,
+      "hr": 53.9
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "n": 10100,
+      "hr": 53.1
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA",
+      "n": 1998,
+      "hr": 57.6
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA1H",
+      "n": 314,
+      "hr": 57.0
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA1Q",
+      "n": 117,
+      "hr": 59.0
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NHL",
+      "n": 436,
+      "hr": 47.0
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "Soccer",
+      "n": 522,
+      "hr": 63.4
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "Tennis",
+      "n": 595,
+      "hr": 57.3
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "n": 7006,
+      "hr": 53.1
+    }
+  ],
+  "single_all": [
+    {
+      "hits": 451,
+      "n": 843,
+      "hr": 53.5,
+      "gate": "L5=5",
+      "lift": 22.7,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1765,
+      "n": 3314,
+      "hr": 53.3,
+      "gate": "D aligned",
+      "lift": 22.5,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1358,
+      "n": 2635,
+      "hr": 51.5,
+      "gate": "minutes MED",
+      "lift": 20.7,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2694,
+      "n": 5255,
+      "hr": 51.3,
+      "gate": "L5>=4",
+      "lift": 20.5,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 286,
+      "n": 557,
+      "hr": 51.3,
+      "gate": "D aligned + cover",
+      "lift": 20.5,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2243,
+      "n": 4412,
+      "hr": 50.8,
+      "gate": "L5=4",
+      "lift": 20.0,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 292,
+      "n": 586,
+      "hr": 49.8,
+      "gate": "L5>=4 + D aligned",
+      "lift": 19.0,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 672,
+      "n": 1354,
+      "hr": 49.6,
+      "gate": "L5>=4 + cover",
+      "lift": 18.8,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 6302,
+      "n": 12806,
+      "hr": 49.2,
+      "gate": "L10 covers line",
+      "lift": 18.4,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1392,
+      "n": 2834,
+      "hr": 49.1,
+      "gate": "D Avg",
+      "lift": 18.3,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 6666,
+      "n": 13611,
+      "hr": 49.0,
+      "gate": "season covers line",
+      "lift": 18.2,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 900,
+      "n": 1838,
+      "hr": 49.0,
+      "gate": "L5>=4 + season covers",
+      "lift": 18.2,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2851,
+      "n": 5825,
+      "hr": 48.9,
+      "gate": "cover vs L5",
+      "lift": 18.1,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 9789,
+      "n": 20238,
+      "hr": 48.4,
+      "gate": "minutes LOW",
+      "lift": 17.6,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 117,
+      "n": 242,
+      "hr": 48.3,
+      "gate": "L5=5 + cover",
+      "lift": 17.5,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 329,
+      "n": 694,
+      "hr": 47.4,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 16.6,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 271,
+      "n": 358,
+      "hr": 75.7,
+      "gate": "L10>=8",
+      "lift": 16.2,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 271,
+      "n": 358,
+      "hr": 75.7,
+      "gate": "L10>=9",
+      "lift": 16.2,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1337,
+      "n": 2846,
+      "hr": 47.0,
+      "gate": "minutes HIGH",
+      "lift": 16.2,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 609,
+      "n": 1302,
+      "hr": 46.8,
+      "gate": "L5>=4 + hot L5",
+      "lift": 16.0,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 123,
+      "n": 263,
+      "hr": 46.8,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 16.0,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 261,
+      "n": 346,
+      "hr": 75.4,
+      "gate": "L5>=4 + L10>=8",
+      "lift": 15.9,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1209,
+      "n": 2594,
+      "hr": 46.6,
+      "gate": "usage HIGH",
+      "lift": 15.8,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 890,
+      "n": 1187,
+      "hr": 75.0,
+      "gate": "L5>=4 + D + cover",
+      "lift": 15.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 4177,
+      "n": 9051,
+      "hr": 46.1,
+      "gate": "hot L5 vs season",
+      "lift": 15.3,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 3422,
+      "n": 7495,
+      "hr": 45.7,
+      "gate": "D misaligned",
+      "lift": 14.9,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 78,
+      "n": 105,
+      "hr": 74.3,
+      "gate": "listed L5>=4 + D + cover + minutes HIGH",
+      "lift": 14.8,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 69,
+      "n": 93,
+      "hr": 74.2,
+      "gate": "L5=5 + D + minutes HIGH",
+      "lift": 14.7,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 599,
+      "n": 810,
+      "hr": 74.0,
+      "gate": "L5=5 + D aligned",
+      "lift": 14.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1906,
+      "n": 2581,
+      "hr": 73.8,
+      "gate": "L5>=4 + D aligned",
+      "lift": 14.3,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 209,
+      "n": 284,
+      "hr": 73.6,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 14.1,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 114,
+      "n": 168,
+      "hr": 67.9,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 14.0,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 36,
+      "n": 81,
+      "hr": 44.4,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 13.6,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 4945,
+      "n": 11207,
+      "hr": 44.1,
+      "gate": "cold L5 vs season",
+      "lift": 13.3,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2245,
+      "n": 3086,
+      "hr": 72.7,
+      "gate": "D aligned + cover",
+      "lift": 13.2,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 57,
+      "n": 85,
+      "hr": 67.1,
+      "gate": "listed L5>=4 + D + cover + minutes HIGH",
+      "lift": 13.2,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 328,
+      "n": 454,
+      "hr": 72.2,
+      "gate": "L5=5 + D + cover",
+      "lift": 12.7,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2589,
+      "n": 3622,
+      "hr": 71.5,
+      "gate": "L5=5 + cover",
+      "lift": 12.0,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 8719,
+      "n": 20455,
+      "hr": 42.6,
+      "gate": "no cover vs L5",
+      "lift": 11.8,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 76,
+      "n": 179,
+      "hr": 42.5,
+      "gate": "L5>=4 + D + cover",
+      "lift": 11.7,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1381,
+      "n": 1946,
+      "hr": 71.0,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 11.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 4663,
+      "n": 6666,
+      "hr": 70.0,
+      "gate": "L5=5",
+      "lift": 10.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2406,
+      "n": 3453,
+      "hr": 69.7,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 10.2,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 7245,
+      "n": 10470,
+      "hr": 69.2,
+      "gate": "L5>=4 + cover",
+      "lift": 9.7,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 81,
+      "n": 128,
+      "hr": 63.3,
+      "gate": "L5=5 + D aligned",
+      "lift": 9.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 54,
+      "n": 79,
+      "hr": 68.4,
+      "gate": "top3 Weak overperformer",
+      "lift": 8.9,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 197,
+      "n": 314,
+      "hr": 62.7,
+      "gate": "L5>=4 + D + cover",
+      "lift": 8.8,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 3497,
+      "n": 5135,
+      "hr": 68.1,
+      "gate": "minutes MED",
+      "lift": 8.6,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 70,
+      "n": 112,
+      "hr": 62.5,
+      "gate": "L10>=8",
+      "lift": 8.6,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 70,
+      "n": 112,
+      "hr": 62.5,
+      "gate": "L10>=9",
+      "lift": 8.6,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 104,
+      "n": 167,
+      "hr": 62.3,
+      "gate": "L5=5 + cover",
+      "lift": 8.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 69,
+      "n": 111,
+      "hr": 62.2,
+      "gate": "L5>=4 + L10>=8",
+      "lift": 8.3,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 15017,
+      "n": 22359,
+      "hr": 67.2,
+      "gate": "L5>=4",
+      "lift": 7.7,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 8782,
+      "n": 13083,
+      "hr": 67.1,
+      "gate": "L5>=4 + season covers",
+      "lift": 7.6,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 23967,
+      "n": 35837,
+      "hr": 66.9,
+      "gate": "cover vs L5",
+      "lift": 7.4,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 4988,
+      "n": 7485,
+      "hr": 66.6,
+      "gate": "L10<=6",
+      "lift": 7.1,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 3944,
+      "n": 5944,
+      "hr": 66.4,
+      "gate": "minutes HIGH",
+      "lift": 6.9,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 92,
+      "n": 152,
+      "hr": 60.5,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 6.6,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 10354,
+      "n": 15693,
+      "hr": 66.0,
+      "gate": "L5=4",
+      "lift": 6.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 237,
+      "n": 393,
+      "hr": 60.3,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 6.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2456,
+      "n": 6647,
+      "hr": 36.9,
+      "gate": "season under line",
+      "lift": 6.1,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 6411,
+      "n": 9794,
+      "hr": 65.5,
+      "gate": "D aligned",
+      "lift": 6.0,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 4374,
+      "n": 6678,
+      "hr": 65.5,
+      "gate": "L5>=4 + hot L5",
+      "lift": 6.0,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 519,
+      "n": 872,
+      "hr": 59.5,
+      "gate": "L5>=4 + cover",
+      "lift": 5.6,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 864,
+      "n": 1332,
+      "hr": 64.9,
+      "gate": "top3 at stat",
+      "lift": 5.4,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 518,
+      "n": 874,
+      "hr": 59.3,
+      "gate": "L5>=4 + D aligned",
+      "lift": 5.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 4642,
+      "n": 7200,
+      "hr": 64.5,
+      "gate": "D Avg",
+      "lift": 5.0,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 3787,
+      "n": 5891,
+      "hr": 64.3,
+      "gate": "usage HIGH",
+      "lift": 4.8,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 3569,
+      "n": 10073,
+      "hr": 35.4,
+      "gate": "L10<=6",
+      "lift": 4.6,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 40922,
+      "n": 63942,
+      "hr": 64.0,
+      "gate": "L10 covers line",
+      "lift": 4.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 333,
+      "n": 520,
+      "hr": 64.0,
+      "gate": "top3 Elite fader",
+      "lift": 4.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 717,
+      "n": 1230,
+      "hr": 58.3,
+      "gate": "minutes HIGH",
+      "lift": 4.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 406,
+      "n": 698,
+      "hr": 58.2,
+      "gate": "D aligned + cover",
+      "lift": 4.3,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 42474,
+      "n": 66832,
+      "hr": 63.6,
+      "gate": "season covers line",
+      "lift": 4.1,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 20947,
+      "n": 33117,
+      "hr": 63.3,
+      "gate": "hot L5 vs season",
+      "lift": 3.8,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 11370,
+      "n": 17964,
+      "hr": 63.3,
+      "gate": "D misaligned",
+      "lift": 3.8,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1190,
+      "n": 2073,
+      "hr": 57.4,
+      "gate": "usage HIGH",
+      "lift": 3.5,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 482,
+      "n": 841,
+      "hr": 57.3,
+      "gate": "L5=5",
+      "lift": 3.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2007,
+      "n": 3549,
+      "hr": 56.6,
+      "gate": "D aligned",
+      "lift": 2.7,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 51996,
+      "n": 83734,
+      "hr": 62.1,
+      "gate": "minutes LOW",
+      "lift": 2.6,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1418,
+      "n": 2518,
+      "hr": 56.3,
+      "gate": "cover vs L5",
+      "lift": 2.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 24239,
+      "n": 39325,
+      "hr": 61.6,
+      "gate": "cold L5 vs season",
+      "lift": 2.1,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2530,
+      "n": 4529,
+      "hr": 55.9,
+      "gate": "L5>=4",
+      "lift": 2.0,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2048,
+      "n": 3688,
+      "hr": 55.5,
+      "gate": "L5=4",
+      "lift": 1.6,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 782,
+      "n": 1422,
+      "hr": 55.0,
+      "gate": "L5>=4 + season covers",
+      "lift": 1.1,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 4051,
+      "n": 7385,
+      "hr": 54.9,
+      "gate": "L5 avg missing",
+      "lift": 1.0,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2889,
+      "n": 5303,
+      "hr": 54.5,
+      "gate": "season covers line",
+      "lift": 0.6,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2553,
+      "n": 4686,
+      "hr": 54.5,
+      "gate": "minutes missing",
+      "lift": 0.6,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2917,
+      "n": 5359,
+      "hr": 54.4,
+      "gate": "L10 covers line",
+      "lift": 0.5,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 3118,
+      "n": 5774,
+      "hr": 54.0,
+      "gate": "cold L5 vs season",
+      "lift": 0.1,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 66410,
+      "n": 111816,
+      "hr": 59.4,
+      "gate": "role missing",
+      "lift": -0.1,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 4021,
+      "n": 7489,
+      "hr": 53.7,
+      "gate": "L5 0-3",
+      "lift": -0.2,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 7500,
+      "n": 13986,
+      "hr": 53.6,
+      "gate": "minutes LOW",
+      "lift": -0.3,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 921,
+      "n": 1725,
+      "hr": 53.4,
+      "gate": "D Avg",
+      "lift": -0.5,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 20601,
+      "n": 34998,
+      "hr": 58.9,
+      "gate": "L5 0-3",
+      "lift": -0.6,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 73,
+      "n": 124,
+      "hr": 58.9,
+      "gate": "L5>=4 + top3",
+      "lift": -0.6,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 5894,
+      "n": 11185,
+      "hr": 52.7,
+      "gate": "no cover vs L5",
+      "lift": -1.2,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 28620,
+      "n": 49598,
+      "hr": 57.7,
+      "gate": "no cover vs L5",
+      "lift": -1.8,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2629,
+      "n": 5043,
+      "hr": 52.1,
+      "gate": "hot L5 vs season",
+      "lift": -1.8,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 619,
+      "n": 1189,
+      "hr": 52.1,
+      "gate": "L5>=4 + hot L5",
+      "lift": -1.8,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1438,
+      "n": 2771,
+      "hr": 51.9,
+      "gate": "D misaligned",
+      "lift": -2.0,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2858,
+      "n": 5514,
+      "hr": 51.8,
+      "gate": "season under line",
+      "lift": -2.1,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 869,
+      "n": 1697,
+      "hr": 51.2,
+      "gate": "L10<=6",
+      "lift": -2.7,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 593,
+      "n": 1186,
+      "hr": 50.0,
+      "gate": "minutes MED",
+      "lift": -3.9,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 12480,
+      "n": 48301,
+      "hr": 25.8,
+      "gate": "L5 0-3",
+      "lift": -5.0,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 14687,
+      "n": 27713,
+      "hr": 53.0,
+      "gate": "L5 avg missing",
+      "lift": -6.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 8921,
+      "n": 40206,
+      "hr": 22.2,
+      "gate": "L5 avg missing",
+      "lift": -8.6,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2712,
+      "n": 5610,
+      "hr": 48.3,
+      "gate": "season under line",
+      "lift": -11.2,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 8007,
+      "n": 40767,
+      "hr": 19.6,
+      "gate": "minutes missing",
+      "lift": -11.2,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 7837,
+      "n": 18335,
+      "hr": 42.7,
+      "gate": "minutes missing",
+      "lift": -16.8,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 11343,
+      "n": 21060,
+      "hr": 53.9,
+      "gate": "role missing",
+      "lift": 0.0,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 20474,
+      "n": 66454,
+      "hr": 30.8,
+      "gate": "role missing",
+      "lift": -0.0,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    }
+  ],
+  "stacks_all": [
+    {
+      "hits": 286,
+      "n": 557,
+      "hr": 51.3,
+      "gate": "D aligned + cover",
+      "lift": 20.5,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 292,
+      "n": 586,
+      "hr": 49.8,
+      "gate": "L5>=4 + D aligned",
+      "lift": 19.0,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 672,
+      "n": 1354,
+      "hr": 49.6,
+      "gate": "L5>=4 + cover",
+      "lift": 18.8,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 900,
+      "n": 1838,
+      "hr": 49.0,
+      "gate": "L5>=4 + season covers",
+      "lift": 18.2,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 117,
+      "n": 242,
+      "hr": 48.3,
+      "gate": "L5=5 + cover",
+      "lift": 17.5,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 329,
+      "n": 694,
+      "hr": 47.4,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 16.6,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 609,
+      "n": 1302,
+      "hr": 46.8,
+      "gate": "L5>=4 + hot L5",
+      "lift": 16.0,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 123,
+      "n": 263,
+      "hr": 46.8,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 16.0,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 261,
+      "n": 346,
+      "hr": 75.4,
+      "gate": "L5>=4 + L10>=8",
+      "lift": 15.9,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 890,
+      "n": 1187,
+      "hr": 75.0,
+      "gate": "L5>=4 + D + cover",
+      "lift": 15.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 78,
+      "n": 105,
+      "hr": 74.3,
+      "gate": "listed L5>=4 + D + cover + minutes HIGH",
+      "lift": 14.8,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 69,
+      "n": 93,
+      "hr": 74.2,
+      "gate": "L5=5 + D + minutes HIGH",
+      "lift": 14.7,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 599,
+      "n": 810,
+      "hr": 74.0,
+      "gate": "L5=5 + D aligned",
+      "lift": 14.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1906,
+      "n": 2581,
+      "hr": 73.8,
+      "gate": "L5>=4 + D aligned",
+      "lift": 14.3,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 209,
+      "n": 284,
+      "hr": 73.6,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 14.1,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 114,
+      "n": 168,
+      "hr": 67.9,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 14.0,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 36,
+      "n": 81,
+      "hr": 44.4,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 13.6,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2245,
+      "n": 3086,
+      "hr": 72.7,
+      "gate": "D aligned + cover",
+      "lift": 13.2,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 57,
+      "n": 85,
+      "hr": 67.1,
+      "gate": "listed L5>=4 + D + cover + minutes HIGH",
+      "lift": 13.2,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 328,
+      "n": 454,
+      "hr": 72.2,
+      "gate": "L5=5 + D + cover",
+      "lift": 12.7,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2589,
+      "n": 3622,
+      "hr": 71.5,
+      "gate": "L5=5 + cover",
+      "lift": 12.0,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 76,
+      "n": 179,
+      "hr": 42.5,
+      "gate": "L5>=4 + D + cover",
+      "lift": 11.7,
+      "book": "Standard OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 1381,
+      "n": 1946,
+      "hr": 71.0,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 11.5,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 2406,
+      "n": 3453,
+      "hr": 69.7,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 10.2,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 7245,
+      "n": 10470,
+      "hr": 69.2,
+      "gate": "L5>=4 + cover",
+      "lift": 9.7,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 81,
+      "n": 128,
+      "hr": 63.3,
+      "gate": "L5=5 + D aligned",
+      "lift": 9.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 197,
+      "n": 314,
+      "hr": 62.7,
+      "gate": "L5>=4 + D + cover",
+      "lift": 8.8,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 104,
+      "n": 167,
+      "hr": 62.3,
+      "gate": "L5=5 + cover",
+      "lift": 8.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 69,
+      "n": 111,
+      "hr": 62.2,
+      "gate": "L5>=4 + L10>=8",
+      "lift": 8.3,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 8782,
+      "n": 13083,
+      "hr": 67.1,
+      "gate": "L5>=4 + season covers",
+      "lift": 7.6,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 92,
+      "n": 152,
+      "hr": 60.5,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 6.6,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 237,
+      "n": 393,
+      "hr": 60.3,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 6.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 4374,
+      "n": 6678,
+      "hr": 65.5,
+      "gate": "L5>=4 + hot L5",
+      "lift": 6.0,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 519,
+      "n": 872,
+      "hr": 59.5,
+      "gate": "L5>=4 + cover",
+      "lift": 5.6,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 518,
+      "n": 874,
+      "hr": 59.3,
+      "gate": "L5>=4 + D aligned",
+      "lift": 5.4,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 406,
+      "n": 698,
+      "hr": 58.2,
+      "gate": "D aligned + cover",
+      "lift": 4.3,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 782,
+      "n": 1422,
+      "hr": 55.0,
+      "gate": "L5>=4 + season covers",
+      "lift": 1.1,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 73,
+      "n": 124,
+      "hr": 58.9,
+      "gate": "L5>=4 + top3",
+      "lift": -0.6,
+      "book": "Goblin OVER",
+      "sport": "ALL"
+    },
+    {
+      "hits": 619,
+      "n": 1189,
+      "hr": 52.1,
+      "gate": "L5>=4 + hot L5",
+      "lift": -1.8,
+      "book": "Standard UNDER",
+      "sport": "ALL"
+    }
+  ],
+  "sport_stacks": [
+    {
+      "hits": 80,
+      "n": 139,
+      "hr": 57.6,
+      "gate": "L5=5",
+      "lift": 43.2,
+      "book": "Standard OVER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 86,
+      "n": 107,
+      "hr": 80.4,
+      "gate": "hot L5 vs season",
+      "lift": 40.8,
+      "book": "Goblin OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 351,
+      "n": 654,
+      "hr": 53.7,
+      "gate": "L5>=4",
+      "lift": 39.3,
+      "book": "Standard OVER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 62,
+      "n": 92,
+      "hr": 67.4,
+      "gate": "L5=5",
+      "lift": 38.9,
+      "book": "Standard OVER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 261,
+      "n": 354,
+      "hr": 73.7,
+      "gate": "season covers line",
+      "lift": 34.1,
+      "book": "Goblin OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 37,
+      "n": 78,
+      "hr": 47.4,
+      "gate": "cover vs L5",
+      "lift": 33.0,
+      "book": "Standard OVER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 412,
+      "n": 568,
+      "hr": 72.5,
+      "gate": "cover vs L5",
+      "lift": 32.9,
+      "book": "Goblin OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 320,
+      "n": 524,
+      "hr": 61.1,
+      "gate": "L5>=4",
+      "lift": 32.6,
+      "book": "Standard OVER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 195,
+      "n": 319,
+      "hr": 61.1,
+      "gate": "cover vs L5",
+      "lift": 32.6,
+      "book": "Standard OVER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 53,
+      "n": 75,
+      "hr": 70.7,
+      "gate": "L5=5 + cover",
+      "lift": 31.1,
+      "book": "Goblin OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 68,
+      "n": 118,
+      "hr": 57.6,
+      "gate": "L5>=4 + cover",
+      "lift": 29.1,
+      "book": "Standard OVER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 84,
+      "n": 125,
+      "hr": 67.2,
+      "gate": "L5=5",
+      "lift": 27.6,
+      "book": "Goblin OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 89,
+      "n": 134,
+      "hr": 66.4,
+      "gate": "L5>=4 + cover",
+      "lift": 26.8,
+      "book": "Goblin OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 65,
+      "n": 101,
+      "hr": 64.4,
+      "gate": "L5>=4 + season covers",
+      "lift": 24.8,
+      "book": "Goblin OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 136,
+      "n": 256,
+      "hr": 53.1,
+      "gate": "L5>=4 + season covers",
+      "lift": 24.6,
+      "book": "Standard OVER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 33,
+      "n": 47,
+      "hr": 70.2,
+      "gate": "L5>=4 + season covers",
+      "lift": 23.2,
+      "book": "Standard UNDER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 227,
+      "n": 424,
+      "hr": 53.5,
+      "gate": "cover vs L5",
+      "lift": 22.0,
+      "book": "Goblin OVER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 23,
+      "n": 43,
+      "hr": 53.5,
+      "gate": "D aligned + cover",
+      "lift": 22.0,
+      "book": "Goblin OVER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 32,
+      "n": 57,
+      "hr": 56.1,
+      "gate": "L5>=4",
+      "lift": 21.7,
+      "book": "Standard OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 222,
+      "n": 371,
+      "hr": 59.8,
+      "gate": "L5>=4",
+      "lift": 20.2,
+      "book": "Goblin OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 521,
+      "n": 1071,
+      "hr": 48.6,
+      "gate": "season covers line",
+      "lift": 20.1,
+      "book": "Standard OVER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 127,
+      "n": 256,
+      "hr": 49.6,
+      "gate": "season covers line",
+      "lift": 18.1,
+      "book": "Goblin OVER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 81,
+      "n": 126,
+      "hr": 64.3,
+      "gate": "L5=5",
+      "lift": 17.3,
+      "book": "Standard UNDER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 49,
+      "n": 59,
+      "hr": 83.1,
+      "gate": "L5=5 + D + cover",
+      "lift": 17.1,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 52,
+      "n": 66,
+      "hr": 78.8,
+      "gate": "L5=5 + D aligned",
+      "lift": 17.0,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 55,
+      "n": 87,
+      "hr": 63.2,
+      "gate": "season covers line",
+      "lift": 16.2,
+      "book": "Standard UNDER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 43,
+      "n": 97,
+      "hr": 44.3,
+      "gate": "L5>=4 + hot L5",
+      "lift": 15.8,
+      "book": "Standard OVER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 29,
+      "n": 40,
+      "hr": 72.5,
+      "gate": "season covers line",
+      "lift": 15.2,
+      "book": "Standard UNDER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 41,
+      "n": 60,
+      "hr": 68.3,
+      "gate": "L5=5 + D aligned",
+      "lift": 15.2,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 65,
+      "n": 105,
+      "hr": 61.9,
+      "gate": "L10>=8",
+      "lift": 14.9,
+      "book": "Standard UNDER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 64,
+      "n": 104,
+      "hr": 61.5,
+      "gate": "L5>=4 + L10>=8",
+      "lift": 14.5,
+      "book": "Standard UNDER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 70,
+      "n": 92,
+      "hr": 76.1,
+      "gate": "L5>=4 + D + cover",
+      "lift": 14.3,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 30,
+      "n": 62,
+      "hr": 48.4,
+      "gate": "season covers line",
+      "lift": 14.0,
+      "book": "Standard OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 184,
+      "n": 243,
+      "hr": 75.7,
+      "gate": "L5>=4 + D aligned",
+      "lift": 13.9,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 84,
+      "n": 135,
+      "hr": 62.2,
+      "gate": "L5>=4",
+      "lift": 13.1,
+      "book": "Standard OVER",
+      "sport": "NBA1H"
+    },
+    {
+      "hits": 82,
+      "n": 99,
+      "hr": 82.8,
+      "gate": "L5=5 + cover",
+      "lift": 12.2,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 125,
+      "n": 211,
+      "hr": 59.2,
+      "gate": "L5>=4",
+      "lift": 12.2,
+      "book": "Standard UNDER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 135,
+      "n": 173,
+      "hr": 78.0,
+      "gate": "D aligned + cover",
+      "lift": 12.0,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 99,
+      "n": 127,
+      "hr": 78.0,
+      "gate": "L5>=4 + D + cover",
+      "lift": 12.0,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 44,
+      "n": 57,
+      "hr": 77.2,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 12.0,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 44,
+      "n": 95,
+      "hr": 46.3,
+      "gate": "cover vs L5",
+      "lift": 11.9,
+      "book": "Standard OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 111,
+      "n": 172,
+      "hr": 64.5,
+      "gate": "L5>=4 + D + cover",
+      "lift": 11.4,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 110,
+      "n": 160,
+      "hr": 68.8,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 11.2,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 54,
+      "n": 79,
+      "hr": 68.4,
+      "gate": "cover vs L5",
+      "lift": 11.1,
+      "book": "Standard UNDER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 28,
+      "n": 47,
+      "hr": 59.6,
+      "gate": "L5>=4 + cover",
+      "lift": 10.5,
+      "book": "Standard OVER",
+      "sport": "NBA1H"
+    },
+    {
+      "hits": 38,
+      "n": 47,
+      "hr": 80.9,
+      "gate": "L5=5 + D aligned",
+      "lift": 10.3,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 1060,
+      "n": 1404,
+      "hr": 75.5,
+      "gate": "D aligned + cover",
+      "lift": 10.3,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 122,
+      "n": 292,
+      "hr": 41.8,
+      "gate": "D aligned",
+      "lift": 10.3,
+      "book": "Goblin OVER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 44,
+      "n": 106,
+      "hr": 41.5,
+      "gate": "hot L5 vs season",
+      "lift": 10.0,
+      "book": "Goblin OVER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 78,
+      "n": 136,
+      "hr": 57.4,
+      "gate": "minutes HIGH",
+      "lift": 9.7,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 156,
+      "n": 232,
+      "hr": 67.2,
+      "gate": "L5>=4 + cover",
+      "lift": 9.6,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 108,
+      "n": 143,
+      "hr": 75.5,
+      "gate": "L5=5 + D aligned",
+      "lift": 9.5,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 57,
+      "n": 85,
+      "hr": 67.1,
+      "gate": "listed L5>=4 + D + cover + minutes HIGH",
+      "lift": 9.5,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 55,
+      "n": 73,
+      "hr": 75.3,
+      "gate": "listed L5>=4 + D + cover + minutes HIGH",
+      "lift": 9.3,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 713,
+      "n": 959,
+      "hr": 74.3,
+      "gate": "L5>=4 + D + cover",
+      "lift": 9.1,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 30,
+      "n": 45,
+      "hr": 66.7,
+      "gate": "L5=5 + cover",
+      "lift": 9.1,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 304,
+      "n": 382,
+      "hr": 79.6,
+      "gate": "L5=5",
+      "lift": 9.0,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 234,
+      "n": 313,
+      "hr": 74.8,
+      "gate": "L10>=8",
+      "lift": 8.8,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 234,
+      "n": 313,
+      "hr": 74.8,
+      "gate": "L5>=4 + L10>=8",
+      "lift": 8.8,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 42,
+      "n": 68,
+      "hr": 61.8,
+      "gate": "L5=5 + cover",
+      "lift": 8.7,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 1332,
+      "n": 1807,
+      "hr": 73.7,
+      "gate": "L5>=4 + D aligned",
+      "lift": 8.5,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 119,
+      "n": 180,
+      "hr": 66.1,
+      "gate": "L5>=4 + season covers",
+      "lift": 8.5,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 1013,
+      "n": 1445,
+      "hr": 70.1,
+      "gate": "D aligned + cover",
+      "lift": 8.3,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 306,
+      "n": 501,
+      "hr": 61.1,
+      "gate": "L5>=4 + D aligned",
+      "lift": 8.0,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 62,
+      "n": 79,
+      "hr": 78.5,
+      "gate": "L5>=4 + D aligned",
+      "lift": 7.9,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 939,
+      "n": 1271,
+      "hr": 73.9,
+      "gate": "L5=5 + cover",
+      "lift": 7.9,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 52,
+      "n": 73,
+      "hr": 71.2,
+      "gate": "L5=5",
+      "lift": 7.8,
+      "book": "Standard UNDER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 401,
+      "n": 554,
+      "hr": 72.4,
+      "gate": "L5=5 + D aligned",
+      "lift": 7.2,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 327,
+      "n": 448,
+      "hr": 73.0,
+      "gate": "L5>=4 + D aligned",
+      "lift": 7.0,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 165,
+      "n": 227,
+      "hr": 72.7,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 6.7,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 28,
+      "n": 41,
+      "hr": 68.3,
+      "gate": "L5>=4 + cover + top3",
+      "lift": 6.5,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 25,
+      "n": 45,
+      "hr": 55.6,
+      "gate": "hot L5 vs season",
+      "lift": 6.5,
+      "book": "Standard OVER",
+      "sport": "NBA1H"
+    },
+    {
+      "hits": 1462,
+      "n": 2018,
+      "hr": 72.4,
+      "gate": "L5=5",
+      "lift": 6.4,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 1242,
+      "n": 2200,
+      "hr": 56.5,
+      "gate": "D aligned",
+      "lift": 6.1,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 500,
+      "n": 741,
+      "hr": 67.5,
+      "gate": "L5=5 + cover",
+      "lift": 5.7,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 199,
+      "n": 339,
+      "hr": 58.7,
+      "gate": "D aligned + cover",
+      "lift": 5.6,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 1015,
+      "n": 1436,
+      "hr": 70.7,
+      "gate": "L5=5 + cover",
+      "lift": 5.5,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 1993,
+      "n": 2962,
+      "hr": 67.3,
+      "gate": "L5>=4 + cover",
+      "lift": 5.5,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 262,
+      "n": 371,
+      "hr": 70.6,
+      "gate": "L5=5 + D + cover",
+      "lift": 5.4,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 143,
+      "n": 208,
+      "hr": 68.8,
+      "gate": "L5>=4",
+      "lift": 5.4,
+      "book": "Standard UNDER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 2340,
+      "n": 3284,
+      "hr": 71.3,
+      "gate": "L5>=4 + cover",
+      "lift": 5.3,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 1251,
+      "n": 1760,
+      "hr": 71.1,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 5.1,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 37,
+      "n": 71,
+      "hr": 52.1,
+      "gate": "hot L5 vs season",
+      "lift": 5.1,
+      "book": "Standard UNDER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 2939,
+      "n": 4185,
+      "hr": 70.2,
+      "gate": "D aligned",
+      "lift": 5.0,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 77,
+      "n": 102,
+      "hr": 75.5,
+      "gate": "D aligned",
+      "lift": 4.9,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 1429,
+      "n": 2147,
+      "hr": 66.6,
+      "gate": "L5=5",
+      "lift": 4.8,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 130,
+      "n": 186,
+      "hr": 69.9,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 4.7,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 71,
+      "n": 114,
+      "hr": 62.3,
+      "gate": "L5>=4 + D + cover",
+      "lift": 4.7,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 15893,
+      "n": 24020,
+      "hr": 66.2,
+      "gate": "cover vs L5",
+      "lift": 4.4,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 1233,
+      "n": 2143,
+      "hr": 57.5,
+      "gate": "D aligned",
+      "lift": 4.4,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 1384,
+      "n": 1994,
+      "hr": 69.4,
+      "gate": "L5=5",
+      "lift": 4.2,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 209,
+      "n": 338,
+      "hr": 61.8,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 4.2,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 641,
+      "n": 914,
+      "hr": 70.1,
+      "gate": "D aligned",
+      "lift": 4.1,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 2216,
+      "n": 3165,
+      "hr": 70.0,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 4.0,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 574,
+      "n": 772,
+      "hr": 74.4,
+      "gate": "L5>=4",
+      "lift": 3.8,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 4137,
+      "n": 5928,
+      "hr": 69.8,
+      "gate": "L5>=4",
+      "lift": 3.8,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 333,
+      "n": 542,
+      "hr": 61.4,
+      "gate": "cover vs L5",
+      "lift": 3.8,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 81,
+      "n": 132,
+      "hr": 61.4,
+      "gate": "L5>=4 + hot L5",
+      "lift": 3.8,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 156,
+      "n": 238,
+      "hr": 65.5,
+      "gate": "minutes HIGH",
+      "lift": 3.7,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 92,
+      "n": 150,
+      "hr": 61.3,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 3.7,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 272,
+      "n": 479,
+      "hr": 56.8,
+      "gate": "L5>=4 + cover",
+      "lift": 3.7,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 3864,
+      "n": 5616,
+      "hr": 68.8,
+      "gate": "cover vs L5",
+      "lift": 3.6,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 2623,
+      "n": 3818,
+      "hr": 68.7,
+      "gate": "L5>=4 + cover",
+      "lift": 3.5,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 5701,
+      "n": 8748,
+      "hr": 65.2,
+      "gate": "L5>=4",
+      "lift": 3.4,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 3246,
+      "n": 4740,
+      "hr": 68.5,
+      "gate": "L5>=4 + season covers",
+      "lift": 3.3,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 255,
+      "n": 372,
+      "hr": 68.5,
+      "gate": "minutes HIGH",
+      "lift": 3.3,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 3546,
+      "n": 5446,
+      "hr": 65.1,
+      "gate": "L5>=4 + season covers",
+      "lift": 3.3,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 168,
+      "n": 276,
+      "hr": 60.9,
+      "gate": "D aligned + cover",
+      "lift": 3.3,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 51,
+      "n": 96,
+      "hr": 53.1,
+      "gate": "L5>=4",
+      "lift": 3.3,
+      "book": "Standard OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 66,
+      "n": 126,
+      "hr": 52.4,
+      "gate": "cover vs L5",
+      "lift": 3.3,
+      "book": "Standard OVER",
+      "sport": "NBA1H"
+    },
+    {
+      "hits": 1516,
+      "n": 2331,
+      "hr": 65.0,
+      "gate": "L5>=4 + hot L5",
+      "lift": 3.2,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 864,
+      "n": 1332,
+      "hr": 64.9,
+      "gate": "top3 at stat",
+      "lift": 3.1,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 200,
+      "n": 272,
+      "hr": 73.5,
+      "gate": "L5>=4 + cover",
+      "lift": 2.9,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 345,
+      "n": 571,
+      "hr": 60.4,
+      "gate": "season covers line",
+      "lift": 2.8,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 51,
+      "n": 101,
+      "hr": 50.5,
+      "gate": "L5>=4 + cover",
+      "lift": 2.8,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 66,
+      "n": 90,
+      "hr": 73.3,
+      "gate": "L5>=4 + hot L5",
+      "lift": 2.7,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 1772,
+      "n": 2579,
+      "hr": 68.7,
+      "gate": "L5>=4 + season covers",
+      "lift": 2.7,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 231,
+      "n": 436,
+      "hr": 53.0,
+      "gate": "D aligned + cover",
+      "lift": 2.6,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 373,
+      "n": 1198,
+      "hr": 31.1,
+      "gate": "hot L5 vs season",
+      "lift": 2.6,
+      "book": "Standard OVER",
+      "sport": "NHL"
+    },
+    {
+      "hits": 595,
+      "n": 990,
+      "hr": 60.1,
+      "gate": "minutes HIGH",
+      "lift": 2.5,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 168,
+      "n": 302,
+      "hr": 55.6,
+      "gate": "L5=5",
+      "lift": 2.5,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 212,
+      "n": 428,
+      "hr": 49.5,
+      "gate": "L5>=4 + cover",
+      "lift": 2.5,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 6341,
+      "n": 9385,
+      "hr": 67.6,
+      "gate": "season covers line",
+      "lift": 2.4,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 427,
+      "n": 770,
+      "hr": 55.5,
+      "gate": "cover vs L5",
+      "lift": 2.4,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 179,
+      "n": 357,
+      "hr": 50.1,
+      "gate": "L5>=4 + season covers",
+      "lift": 2.4,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 3296,
+      "n": 4825,
+      "hr": 68.3,
+      "gate": "cover vs L5",
+      "lift": 2.3,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 551,
+      "n": 1121,
+      "hr": 49.2,
+      "gate": "L5>=4",
+      "lift": 2.2,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 583,
+      "n": 1189,
+      "hr": 49.0,
+      "gate": "cover vs L5",
+      "lift": 2.0,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 256,
+      "n": 522,
+      "hr": 49.0,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 2.0,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 167,
+      "n": 249,
+      "hr": 67.1,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 1.9,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 92,
+      "n": 127,
+      "hr": 72.4,
+      "gate": "hot L5 vs season",
+      "lift": 1.8,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 4382,
+      "n": 6539,
+      "hr": 67.0,
+      "gate": "L5>=4",
+      "lift": 1.8,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 412,
+      "n": 695,
+      "hr": 59.3,
+      "gate": "L5>=4",
+      "lift": 1.7,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 3246,
+      "n": 4857,
+      "hr": 66.8,
+      "gate": "hot L5 vs season",
+      "lift": 1.6,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 1388,
+      "n": 2539,
+      "hr": 54.7,
+      "gate": "season covers line",
+      "lift": 1.6,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 687,
+      "n": 1423,
+      "hr": 48.3,
+      "gate": "season covers line",
+      "lift": 1.3,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 2525,
+      "n": 4010,
+      "hr": 63.0,
+      "gate": "D aligned",
+      "lift": 1.2,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 1975,
+      "n": 2979,
+      "hr": 66.3,
+      "gate": "L5>=4 + hot L5",
+      "lift": 1.1,
+      "book": "Goblin OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 71,
+      "n": 121,
+      "hr": 58.7,
+      "gate": "L5=5",
+      "lift": 1.1,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 901,
+      "n": 1661,
+      "hr": 54.2,
+      "gate": "L5>=4",
+      "lift": 1.1,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 39,
+      "n": 72,
+      "hr": 54.2,
+      "gate": "L5>=4 + cover",
+      "lift": 1.1,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 275,
+      "n": 384,
+      "hr": 71.6,
+      "gate": "cover vs L5",
+      "lift": 1.0,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 16304,
+      "n": 26017,
+      "hr": 62.7,
+      "gate": "hot L5 vs season",
+      "lift": 0.9,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 515,
+      "n": 956,
+      "hr": 53.9,
+      "gate": "cover vs L5",
+      "lift": 0.8,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 107,
+      "n": 224,
+      "hr": 47.8,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 0.8,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 32485,
+      "n": 51953,
+      "hr": 62.5,
+      "gate": "season covers line",
+      "lift": 0.7,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 860,
+      "n": 1599,
+      "hr": 53.8,
+      "gate": "L5>=4",
+      "lift": 0.7,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 117,
+      "n": 229,
+      "hr": 51.1,
+      "gate": "L5=5",
+      "lift": 0.7,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 24,
+      "n": 47,
+      "hr": 51.1,
+      "gate": "L5=5 + D aligned",
+      "lift": 0.7,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 77,
+      "n": 159,
+      "hr": 48.4,
+      "gate": "L5=5",
+      "lift": 0.7,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 3472,
+      "n": 7182,
+      "hr": 48.3,
+      "gate": "season covers line",
+      "lift": 0.6,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 3002,
+      "n": 4513,
+      "hr": 66.5,
+      "gate": "season covers line",
+      "lift": 0.5,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 1495,
+      "n": 2939,
+      "hr": 50.9,
+      "gate": "hot L5 vs season",
+      "lift": 0.5,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 252,
+      "n": 495,
+      "hr": 50.9,
+      "gate": "minutes HIGH",
+      "lift": 0.5,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 29,
+      "n": 61,
+      "hr": 47.5,
+      "gate": "L5=5 + cover",
+      "lift": 0.5,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 29,
+      "n": 61,
+      "hr": 47.5,
+      "gate": "D aligned + cover",
+      "lift": 0.5,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 54,
+      "n": 101,
+      "hr": 53.5,
+      "gate": "minutes HIGH",
+      "lift": 0.4,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 3533,
+      "n": 5334,
+      "hr": 66.2,
+      "gate": "minutes HIGH",
+      "lift": 0.2,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 1882,
+      "n": 3720,
+      "hr": 50.6,
+      "gate": "season covers line",
+      "lift": 0.2,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 27,
+      "n": 54,
+      "hr": 50.0,
+      "gate": "season covers line",
+      "lift": 0.2,
+      "book": "Standard OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 1087,
+      "n": 2268,
+      "hr": 47.9,
+      "gate": "cover vs L5",
+      "lift": 0.2,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 283,
+      "n": 600,
+      "hr": 47.2,
+      "gate": "D aligned",
+      "lift": 0.2,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 153,
+      "n": 217,
+      "hr": 70.5,
+      "gate": "L5>=4 + season covers",
+      "lift": -0.1,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 1926,
+      "n": 4045,
+      "hr": 47.6,
+      "gate": "hot L5 vs season",
+      "lift": -0.1,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 31,
+      "n": 54,
+      "hr": 57.4,
+      "gate": "L5=5 + D aligned",
+      "lift": -0.2,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 1481,
+      "n": 2802,
+      "hr": 52.9,
+      "gate": "hot L5 vs season",
+      "lift": -0.2,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 58,
+      "n": 125,
+      "hr": 46.4,
+      "gate": "L5>=4 + D aligned",
+      "lift": -0.6,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 32,
+      "n": 69,
+      "hr": 46.4,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": -0.6,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 518,
+      "n": 911,
+      "hr": 56.9,
+      "gate": "D aligned",
+      "lift": -0.7,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 182,
+      "n": 387,
+      "hr": 47.0,
+      "gate": "D aligned",
+      "lift": -0.7,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 145,
+      "n": 314,
+      "hr": 46.2,
+      "gate": "L5>=4 + season covers",
+      "lift": -0.8,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 911,
+      "n": 1842,
+      "hr": 49.5,
+      "gate": "L5>=4",
+      "lift": -0.9,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 217,
+      "n": 438,
+      "hr": 49.5,
+      "gate": "L5>=4 + D aligned",
+      "lift": -0.9,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 1028,
+      "n": 1974,
+      "hr": 52.1,
+      "gate": "season covers line",
+      "lift": -1.0,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 258,
+      "n": 371,
+      "hr": 69.5,
+      "gate": "season covers line",
+      "lift": -1.1,
+      "book": "Goblin OVER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 258,
+      "n": 496,
+      "hr": 52.0,
+      "gate": "L5>=4 + season covers",
+      "lift": -1.1,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 182,
+      "n": 323,
+      "hr": 56.3,
+      "gate": "L5>=4 + D aligned",
+      "lift": -1.3,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 63,
+      "n": 138,
+      "hr": 45.7,
+      "gate": "L5=5",
+      "lift": -1.3,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 1007,
+      "n": 2215,
+      "hr": 45.5,
+      "gate": "minutes HIGH",
+      "lift": -1.5,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 416,
+      "n": 853,
+      "hr": 48.8,
+      "gate": "L5>=4 + season covers",
+      "lift": -1.6,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 911,
+      "n": 1773,
+      "hr": 51.4,
+      "gate": "hot L5 vs season",
+      "lift": -1.7,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 331,
+      "n": 645,
+      "hr": 51.3,
+      "gate": "L5>=4 + hot L5",
+      "lift": -1.8,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 388,
+      "n": 807,
+      "hr": 48.1,
+      "gate": "L5>=4 + hot L5",
+      "lift": -2.3,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 794,
+      "n": 1248,
+      "hr": 63.6,
+      "gate": "L5>=4 + hot L5",
+      "lift": -2.4,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 28,
+      "n": 88,
+      "hr": 31.8,
+      "gate": "D aligned",
+      "lift": -2.6,
+      "book": "Standard OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 181,
+      "n": 359,
+      "hr": 50.4,
+      "gate": "L5>=4 + hot L5",
+      "lift": -2.7,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 819,
+      "n": 1717,
+      "hr": 47.7,
+      "gate": "cover vs L5",
+      "lift": -2.7,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 107,
+      "n": 291,
+      "hr": 36.8,
+      "gate": "D aligned",
+      "lift": -2.8,
+      "book": "Goblin OVER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 73,
+      "n": 124,
+      "hr": 58.9,
+      "gate": "L5>=4 + top3",
+      "lift": -2.9,
+      "book": "Goblin OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 46,
+      "n": 82,
+      "hr": 56.1,
+      "gate": "D aligned",
+      "lift": -2.9,
+      "book": "Standard UNDER",
+      "sport": "NBA1Q"
+    },
+    {
+      "hits": 43,
+      "n": 93,
+      "hr": 46.2,
+      "gate": "season covers line",
+      "lift": -2.9,
+      "book": "Standard OVER",
+      "sport": "NBA1H"
+    },
+    {
+      "hits": 23,
+      "n": 46,
+      "hr": 50.0,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": -3.1,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 291,
+      "n": 617,
+      "hr": 47.2,
+      "gate": "L5>=4 + cover",
+      "lift": -3.2,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 92,
+      "n": 185,
+      "hr": 49.7,
+      "gate": "L5=5",
+      "lift": -3.4,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 25,
+      "n": 57,
+      "hr": 43.9,
+      "gate": "D aligned + cover",
+      "lift": -3.8,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 129,
+      "n": 263,
+      "hr": 49.0,
+      "gate": "D aligned",
+      "lift": -4.1,
+      "book": "Standard UNDER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 68,
+      "n": 139,
+      "hr": 48.9,
+      "gate": "minutes HIGH",
+      "lift": -4.2,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 1175,
+      "n": 1903,
+      "hr": 61.7,
+      "gate": "hot L5 vs season",
+      "lift": -4.3,
+      "book": "Goblin OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 29,
+      "n": 55,
+      "hr": 52.7,
+      "gate": "L5>=4",
+      "lift": -4.3,
+      "book": "Standard UNDER",
+      "sport": "NBA1H"
+    },
+    {
+      "hits": 323,
+      "n": 769,
+      "hr": 42.0,
+      "gate": "hot L5 vs season",
+      "lift": -5.0,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 29,
+      "n": 57,
+      "hr": 50.9,
+      "gate": "season covers line",
+      "lift": -6.1,
+      "book": "Standard UNDER",
+      "sport": "NBA1H"
+    },
+    {
+      "hits": 177,
+      "n": 345,
+      "hr": 51.3,
+      "gate": "hot L5 vs season",
+      "lift": -6.3,
+      "book": "Standard UNDER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 79,
+      "n": 196,
+      "hr": 40.3,
+      "gate": "L5>=4 + hot L5",
+      "lift": -6.7,
+      "book": "Standard OVER",
+      "sport": "NBA"
+    },
+    {
+      "hits": 55,
+      "n": 110,
+      "hr": 50.0,
+      "gate": "D aligned",
+      "lift": -7.0,
+      "book": "Standard UNDER",
+      "sport": "NBA1H"
+    },
+    {
+      "hits": 67,
+      "n": 156,
+      "hr": 42.9,
+      "gate": "L5>=4 + D + cover",
+      "lift": -7.5,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 38,
+      "n": 77,
+      "hr": 49.4,
+      "gate": "cover vs L5",
+      "lift": -7.6,
+      "book": "Standard UNDER",
+      "sport": "NBA1H"
+    },
+    {
+      "hits": 68,
+      "n": 159,
+      "hr": 42.8,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": -7.6,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 46,
+      "n": 110,
+      "hr": 41.8,
+      "gate": "L5=5 + cover",
+      "lift": -8.6,
+      "book": "Standard OVER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 21,
+      "n": 42,
+      "hr": 50.0,
+      "gate": "cover vs L5",
+      "lift": -13.4,
+      "book": "Standard UNDER",
+      "sport": "Soccer"
+    },
+    {
+      "hits": 43,
+      "n": 75,
+      "hr": 57.3,
+      "gate": "L5>=4",
+      "lift": -0.0,
+      "book": "Standard UNDER",
+      "sport": "Tennis"
+    },
+    {
+      "hits": 346,
+      "n": 651,
+      "hr": 53.1,
+      "gate": "L5>=4 + season covers",
+      "lift": -0.0,
+      "book": "Standard UNDER",
+      "sport": "WNBA"
+    },
+    {
+      "hits": 394,
+      "n": 826,
+      "hr": 47.7,
+      "gate": "L5>=4",
+      "lift": 0.0,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    },
+    {
+      "hits": 84,
+      "n": 176,
+      "hr": 47.7,
+      "gate": "L5>=4 + hot L5",
+      "lift": 0.0,
+      "book": "Standard OVER",
+      "sport": "MLB"
+    }
+  ],
+  "d_cover_ladder": [
+    {
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "open_n": 113148,
+      "open_hr": 59.5,
+      "L5>=4": {
+        "hits": 15017,
+        "n": 22359,
+        "hr": 67.2,
+        "gate": "L5>=4",
+        "lift": 7.7
+      },
+      "L5=5": {
+        "hits": 4663,
+        "n": 6666,
+        "hr": 70.0,
+        "gate": "L5=5",
+        "lift": 10.5
+      },
+      "L5>=4 + D aligned": {
+        "hits": 1906,
+        "n": 2581,
+        "hr": 73.8,
+        "gate": "L5>=4 + D aligned",
+        "lift": 14.3
+      },
+      "L5=5 + D aligned": {
+        "hits": 599,
+        "n": 810,
+        "hr": 74.0,
+        "gate": "L5=5 + D aligned",
+        "lift": 14.5
+      },
+      "L5>=4 + cover": {
+        "hits": 7245,
+        "n": 10470,
+        "hr": 69.2,
+        "gate": "L5>=4 + cover",
+        "lift": 9.7
+      },
+      "L5=5 + cover": {
+        "hits": 2589,
+        "n": 3622,
+        "hr": 71.5,
+        "gate": "L5=5 + cover",
+        "lift": 12.0
+      },
+      "L5>=4 + D + cover": {
+        "hits": 890,
+        "n": 1187,
+        "hr": 75.0,
+        "gate": "L5>=4 + D + cover",
+        "lift": 15.5
+      },
+      "L5=5 + D + cover": {
+        "hits": 328,
+        "n": 454,
+        "hr": 72.2,
+        "gate": "L5=5 + D + cover",
+        "lift": 12.7
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "open_n": 72389,
+      "open_hr": 61.8,
+      "L5>=4": {
+        "hits": 5701,
+        "n": 8748,
+        "hr": 65.2,
+        "gate": "L5>=4",
+        "lift": 3.4
+      },
+      "L5=5": {
+        "hits": 1429,
+        "n": 2147,
+        "hr": 66.6,
+        "gate": "L5=5",
+        "lift": 4.8
+      },
+      "L5>=4 + D aligned": {
+        "hits": 184,
+        "n": 243,
+        "hr": 75.7,
+        "gate": "L5>=4 + D aligned",
+        "lift": 13.9
+      },
+      "L5=5 + D aligned": {
+        "hits": 52,
+        "n": 66,
+        "hr": 78.8,
+        "gate": "L5=5 + D aligned",
+        "lift": 17.0
+      },
+      "L5>=4 + cover": {
+        "hits": 1993,
+        "n": 2962,
+        "hr": 67.3,
+        "gate": "L5>=4 + cover",
+        "lift": 5.5
+      },
+      "L5=5 + cover": {
+        "hits": 500,
+        "n": 741,
+        "hr": 67.5,
+        "gate": "L5=5 + cover",
+        "lift": 5.7
+      },
+      "L5>=4 + D + cover": {
+        "hits": 70,
+        "n": 92,
+        "hr": 76.1,
+        "gate": "L5>=4 + D + cover",
+        "lift": 14.3
+      },
+      "L5=5 + D + cover": {
+        "hits": 14,
+        "n": 21,
+        "hr": 66.7,
+        "gate": "L5=5 + D + cover",
+        "lift": 4.9
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "open_n": 10760,
+      "open_hr": 66.0,
+      "L5>=4": {
+        "hits": 4137,
+        "n": 5928,
+        "hr": 69.8,
+        "gate": "L5>=4",
+        "lift": 3.8
+      },
+      "L5=5": {
+        "hits": 1462,
+        "n": 2018,
+        "hr": 72.4,
+        "gate": "L5=5",
+        "lift": 6.4
+      },
+      "L5>=4 + D aligned": {
+        "hits": 327,
+        "n": 448,
+        "hr": 73.0,
+        "gate": "L5>=4 + D aligned",
+        "lift": 7.0
+      },
+      "L5=5 + D aligned": {
+        "hits": 108,
+        "n": 143,
+        "hr": 75.5,
+        "gate": "L5=5 + D aligned",
+        "lift": 9.5
+      },
+      "L5>=4 + cover": {
+        "hits": 2340,
+        "n": 3284,
+        "hr": 71.3,
+        "gate": "L5>=4 + cover",
+        "lift": 5.3
+      },
+      "L5=5 + cover": {
+        "hits": 939,
+        "n": 1271,
+        "hr": 73.9,
+        "gate": "L5=5 + cover",
+        "lift": 7.9
+      },
+      "L5>=4 + D + cover": {
+        "hits": 99,
+        "n": 127,
+        "hr": 78.0,
+        "gate": "L5>=4 + D + cover",
+        "lift": 12.0
+      },
+      "L5=5 + D + cover": {
+        "hits": 49,
+        "n": 59,
+        "hr": 83.1,
+        "gate": "L5=5 + D + cover",
+        "lift": 17.1
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA1Q",
+      "open_n": 1154,
+      "open_hr": 70.6,
+      "L5>=4": {
+        "hits": 574,
+        "n": 772,
+        "hr": 74.4,
+        "gate": "L5>=4",
+        "lift": 3.8
+      },
+      "L5=5": {
+        "hits": 304,
+        "n": 382,
+        "hr": 79.6,
+        "gate": "L5=5",
+        "lift": 9.0
+      },
+      "L5>=4 + D aligned": {
+        "hits": 62,
+        "n": 79,
+        "hr": 78.5,
+        "gate": "L5>=4 + D aligned",
+        "lift": 7.9
+      },
+      "L5=5 + D aligned": {
+        "hits": 38,
+        "n": 47,
+        "hr": 80.9,
+        "gate": "L5=5 + D aligned",
+        "lift": 10.3
+      },
+      "L5>=4 + cover": {
+        "hits": 200,
+        "n": 272,
+        "hr": 73.5,
+        "gate": "L5>=4 + cover",
+        "lift": 2.9
+      },
+      "L5=5 + cover": {
+        "hits": 82,
+        "n": 99,
+        "hr": 82.8,
+        "gate": "L5=5 + cover",
+        "lift": 12.2
+      },
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "Soccer",
+      "open_n": 6917,
+      "open_hr": 31.5,
+      "L5>=4": null,
+      "L5=5": null,
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": null,
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "Tennis",
+      "open_n": 7307,
+      "open_hr": 39.6,
+      "L5>=4": {
+        "hits": 222,
+        "n": 371,
+        "hr": 59.8,
+        "gate": "L5>=4",
+        "lift": 20.2
+      },
+      "L5=5": {
+        "hits": 84,
+        "n": 125,
+        "hr": 67.2,
+        "gate": "L5=5",
+        "lift": 27.6
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": {
+        "hits": 89,
+        "n": 134,
+        "hr": 66.4,
+        "gate": "L5>=4 + cover",
+        "lift": 26.8
+      },
+      "L5=5 + cover": {
+        "hits": 53,
+        "n": 75,
+        "hr": 70.7,
+        "gate": "L5=5 + cover",
+        "lift": 31.1
+      },
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "open_n": 14604,
+      "open_hr": 65.2,
+      "L5>=4": {
+        "hits": 4382,
+        "n": 6539,
+        "hr": 67.0,
+        "gate": "L5>=4",
+        "lift": 1.8
+      },
+      "L5=5": {
+        "hits": 1384,
+        "n": 1994,
+        "hr": 69.4,
+        "gate": "L5=5",
+        "lift": 4.2
+      },
+      "L5>=4 + D aligned": {
+        "hits": 1332,
+        "n": 1807,
+        "hr": 73.7,
+        "gate": "L5>=4 + D aligned",
+        "lift": 8.5
+      },
+      "L5=5 + D aligned": {
+        "hits": 401,
+        "n": 554,
+        "hr": 72.4,
+        "gate": "L5=5 + D aligned",
+        "lift": 7.2
+      },
+      "L5>=4 + cover": {
+        "hits": 2623,
+        "n": 3818,
+        "hr": 68.7,
+        "gate": "L5>=4 + cover",
+        "lift": 3.5
+      },
+      "L5=5 + cover": {
+        "hits": 1015,
+        "n": 1436,
+        "hr": 70.7,
+        "gate": "L5=5 + cover",
+        "lift": 5.5
+      },
+      "L5>=4 + D + cover": {
+        "hits": 713,
+        "n": 959,
+        "hr": 74.3,
+        "gate": "L5>=4 + D + cover",
+        "lift": 9.1
+      },
+      "L5=5 + D + cover": {
+        "hits": 262,
+        "n": 371,
+        "hr": 70.6,
+        "gate": "L5=5 + D + cover",
+        "lift": 5.4
+      }
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "open_n": 66486,
+      "open_hr": 30.8,
+      "L5>=4": {
+        "hits": 2694,
+        "n": 5255,
+        "hr": 51.3,
+        "gate": "L5>=4",
+        "lift": 20.5
+      },
+      "L5=5": {
+        "hits": 451,
+        "n": 843,
+        "hr": 53.5,
+        "gate": "L5=5",
+        "lift": 22.7
+      },
+      "L5>=4 + D aligned": {
+        "hits": 292,
+        "n": 586,
+        "hr": 49.8,
+        "gate": "L5>=4 + D aligned",
+        "lift": 19.0
+      },
+      "L5=5 + D aligned": {
+        "hits": 31,
+        "n": 66,
+        "hr": 47.0,
+        "gate": "L5=5 + D aligned",
+        "lift": 16.2
+      },
+      "L5>=4 + cover": {
+        "hits": 672,
+        "n": 1354,
+        "hr": 49.6,
+        "gate": "L5>=4 + cover",
+        "lift": 18.8
+      },
+      "L5=5 + cover": {
+        "hits": 117,
+        "n": 242,
+        "hr": 48.3,
+        "gate": "L5=5 + cover",
+        "lift": 17.5
+      },
+      "L5>=4 + D + cover": {
+        "hits": 76,
+        "n": 179,
+        "hr": 42.5,
+        "gate": "L5>=4 + D + cover",
+        "lift": 11.7
+      },
+      "L5=5 + D + cover": {
+        "hits": 12,
+        "n": 34,
+        "hr": 35.3,
+        "gate": "L5=5 + D + cover",
+        "lift": 4.5
+      }
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "open_n": 13261,
+      "open_hr": 47.7,
+      "L5>=4": {
+        "hits": 394,
+        "n": 826,
+        "hr": 47.7,
+        "gate": "L5>=4",
+        "lift": 0.0
+      },
+      "L5=5": {
+        "hits": 77,
+        "n": 159,
+        "hr": 48.4,
+        "gate": "L5=5",
+        "lift": 0.7
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": {
+        "hits": 51,
+        "n": 101,
+        "hr": 50.5,
+        "gate": "L5>=4 + cover",
+        "lift": 2.8
+      },
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "open_n": 4770,
+      "open_hr": 47.0,
+      "L5>=4": {
+        "hits": 551,
+        "n": 1121,
+        "hr": 49.2,
+        "gate": "L5>=4",
+        "lift": 2.2
+      },
+      "L5=5": {
+        "hits": 63,
+        "n": 138,
+        "hr": 45.7,
+        "gate": "L5=5",
+        "lift": -1.3
+      },
+      "L5>=4 + D aligned": {
+        "hits": 58,
+        "n": 125,
+        "hr": 46.4,
+        "gate": "L5>=4 + D aligned",
+        "lift": -0.6
+      },
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": {
+        "hits": 212,
+        "n": 428,
+        "hr": 49.5,
+        "gate": "L5>=4 + cover",
+        "lift": 2.5
+      },
+      "L5=5 + cover": {
+        "hits": 29,
+        "n": 61,
+        "hr": 47.5,
+        "gate": "L5=5 + cover",
+        "lift": 0.5
+      },
+      "L5>=4 + D + cover": {
+        "hits": 9,
+        "n": 23,
+        "hr": 39.1,
+        "gate": "L5>=4 + D + cover",
+        "lift": -7.9
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA1H",
+      "open_n": 487,
+      "open_hr": 49.1,
+      "L5>=4": {
+        "hits": 84,
+        "n": 135,
+        "hr": 62.2,
+        "gate": "L5>=4",
+        "lift": 13.1
+      },
+      "L5=5": {
+        "hits": 27,
+        "n": 35,
+        "hr": 77.1,
+        "gate": "L5=5",
+        "lift": 28.0
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": {
+        "hits": 28,
+        "n": 47,
+        "hr": 59.6,
+        "gate": "L5>=4 + cover",
+        "lift": 10.5
+      },
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA1Q",
+      "open_n": 237,
+      "open_hr": 49.8,
+      "L5>=4": {
+        "hits": 51,
+        "n": 96,
+        "hr": 53.1,
+        "gate": "L5>=4",
+        "lift": 3.3
+      },
+      "L5=5": {
+        "hits": 14,
+        "n": 30,
+        "hr": 46.7,
+        "gate": "L5=5",
+        "lift": -3.1
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": null,
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NHL",
+      "open_n": 7282,
+      "open_hr": 28.5,
+      "L5>=4": {
+        "hits": 320,
+        "n": 524,
+        "hr": 61.1,
+        "gate": "L5>=4",
+        "lift": 32.6
+      },
+      "L5=5": {
+        "hits": 62,
+        "n": 92,
+        "hr": 67.4,
+        "gate": "L5=5",
+        "lift": 38.9
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": {
+        "hits": 68,
+        "n": 118,
+        "hr": 57.6,
+        "gate": "L5>=4 + cover",
+        "lift": 29.1
+      },
+      "L5=5 + cover": {
+        "hits": 17,
+        "n": 27,
+        "hr": 63.0,
+        "gate": "L5=5 + cover",
+        "lift": 34.5
+      },
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "Soccer",
+      "open_n": 29288,
+      "open_hr": 14.4,
+      "L5>=4": {
+        "hits": 351,
+        "n": 654,
+        "hr": 53.7,
+        "gate": "L5>=4",
+        "lift": 39.3
+      },
+      "L5=5": {
+        "hits": 80,
+        "n": 139,
+        "hr": 57.6,
+        "gate": "L5=5",
+        "lift": 43.2
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": null,
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "Tennis",
+      "open_n": 2240,
+      "open_hr": 34.4,
+      "L5>=4": {
+        "hits": 32,
+        "n": 57,
+        "hr": 56.1,
+        "gate": "L5>=4",
+        "lift": 21.7
+      },
+      "L5=5": {
+        "hits": 11,
+        "n": 21,
+        "hr": 52.4,
+        "gate": "L5=5",
+        "lift": 18.0
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": null,
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "open_n": 8921,
+      "open_hr": 50.4,
+      "L5>=4": {
+        "hits": 911,
+        "n": 1842,
+        "hr": 49.5,
+        "gate": "L5>=4",
+        "lift": -0.9
+      },
+      "L5=5": {
+        "hits": 117,
+        "n": 229,
+        "hr": 51.1,
+        "gate": "L5=5",
+        "lift": 0.7
+      },
+      "L5>=4 + D aligned": {
+        "hits": 217,
+        "n": 438,
+        "hr": 49.5,
+        "gate": "L5>=4 + D aligned",
+        "lift": -0.9
+      },
+      "L5=5 + D aligned": {
+        "hits": 24,
+        "n": 47,
+        "hr": 51.1,
+        "gate": "L5=5 + D aligned",
+        "lift": 0.7
+      },
+      "L5>=4 + cover": {
+        "hits": 291,
+        "n": 617,
+        "hr": 47.2,
+        "gate": "L5>=4 + cover",
+        "lift": -3.2
+      },
+      "L5=5 + cover": {
+        "hits": 46,
+        "n": 110,
+        "hr": 41.8,
+        "gate": "L5=5 + cover",
+        "lift": -8.6
+      },
+      "L5>=4 + D + cover": {
+        "hits": 67,
+        "n": 156,
+        "hr": 42.9,
+        "gate": "L5>=4 + D + cover",
+        "lift": -7.5
+      },
+      "L5=5 + D + cover": {
+        "hits": 9,
+        "n": 27,
+        "hr": 33.3,
+        "gate": "L5=5 + D + cover",
+        "lift": -17.1
+      }
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "open_n": 21088,
+      "open_hr": 53.9,
+      "L5>=4": {
+        "hits": 2530,
+        "n": 4529,
+        "hr": 55.9,
+        "gate": "L5>=4",
+        "lift": 2.0
+      },
+      "L5=5": {
+        "hits": 482,
+        "n": 841,
+        "hr": 57.3,
+        "gate": "L5=5",
+        "lift": 3.4
+      },
+      "L5>=4 + D aligned": {
+        "hits": 518,
+        "n": 874,
+        "hr": 59.3,
+        "gate": "L5>=4 + D aligned",
+        "lift": 5.4
+      },
+      "L5=5 + D aligned": {
+        "hits": 81,
+        "n": 128,
+        "hr": 63.3,
+        "gate": "L5=5 + D aligned",
+        "lift": 9.4
+      },
+      "L5>=4 + cover": {
+        "hits": 519,
+        "n": 872,
+        "hr": 59.5,
+        "gate": "L5>=4 + cover",
+        "lift": 5.6
+      },
+      "L5=5 + cover": {
+        "hits": 104,
+        "n": 167,
+        "hr": 62.3,
+        "gate": "L5=5 + cover",
+        "lift": 8.4
+      },
+      "L5>=4 + D + cover": {
+        "hits": 197,
+        "n": 314,
+        "hr": 62.7,
+        "gate": "L5>=4 + D + cover",
+        "lift": 8.8
+      },
+      "L5=5 + D + cover": {
+        "hits": 37,
+        "n": 57,
+        "hr": 64.9,
+        "gate": "L5=5 + D + cover",
+        "lift": 11.0
+      }
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "open_n": 10100,
+      "open_hr": 53.1,
+      "L5>=4": {
+        "hits": 901,
+        "n": 1661,
+        "hr": 54.2,
+        "gate": "L5>=4",
+        "lift": 1.1
+      },
+      "L5=5": {
+        "hits": 168,
+        "n": 302,
+        "hr": 55.6,
+        "gate": "L5=5",
+        "lift": 2.5
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": {
+        "hits": 39,
+        "n": 72,
+        "hr": 54.2,
+        "gate": "L5>=4 + cover",
+        "lift": 1.1
+      },
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA",
+      "open_n": 1998,
+      "open_hr": 57.6,
+      "L5>=4": {
+        "hits": 412,
+        "n": 695,
+        "hr": 59.3,
+        "gate": "L5>=4",
+        "lift": 1.7
+      },
+      "L5=5": {
+        "hits": 71,
+        "n": 121,
+        "hr": 58.7,
+        "gate": "L5=5",
+        "lift": 1.1
+      },
+      "L5>=4 + D aligned": {
+        "hits": 182,
+        "n": 323,
+        "hr": 56.3,
+        "gate": "L5>=4 + D aligned",
+        "lift": -1.3
+      },
+      "L5=5 + D aligned": {
+        "hits": 31,
+        "n": 54,
+        "hr": 57.4,
+        "gate": "L5=5 + D aligned",
+        "lift": -0.2
+      },
+      "L5>=4 + cover": {
+        "hits": 156,
+        "n": 232,
+        "hr": 67.2,
+        "gate": "L5>=4 + cover",
+        "lift": 9.6
+      },
+      "L5=5 + cover": {
+        "hits": 30,
+        "n": 45,
+        "hr": 66.7,
+        "gate": "L5=5 + cover",
+        "lift": 9.1
+      },
+      "L5>=4 + D + cover": {
+        "hits": 71,
+        "n": 114,
+        "hr": 62.3,
+        "gate": "L5>=4 + D + cover",
+        "lift": 4.7
+      },
+      "L5=5 + D + cover": {
+        "hits": 11,
+        "n": 22,
+        "hr": 50.0,
+        "gate": "L5=5 + D + cover",
+        "lift": -7.6
+      }
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA1H",
+      "open_n": 314,
+      "open_hr": 57.0,
+      "L5>=4": {
+        "hits": 29,
+        "n": 55,
+        "hr": 52.7,
+        "gate": "L5>=4",
+        "lift": -4.3
+      },
+      "L5=5": null,
+      "L5>=4 + D aligned": {
+        "hits": 15,
+        "n": 27,
+        "hr": 55.6,
+        "gate": "L5>=4 + D aligned",
+        "lift": -1.4
+      },
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": {
+        "hits": 15,
+        "n": 32,
+        "hr": 46.9,
+        "gate": "L5>=4 + cover",
+        "lift": -10.1
+      },
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA1Q",
+      "open_n": 117,
+      "open_hr": 59.0,
+      "L5>=4": {
+        "hits": 17,
+        "n": 25,
+        "hr": 68.0,
+        "gate": "L5>=4",
+        "lift": 9.0
+      },
+      "L5=5": null,
+      "L5>=4 + D aligned": {
+        "hits": 15,
+        "n": 23,
+        "hr": 65.2,
+        "gate": "L5>=4 + D aligned",
+        "lift": 6.2
+      },
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": null,
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NHL",
+      "open_n": 436,
+      "open_hr": 47.0,
+      "L5>=4": {
+        "hits": 125,
+        "n": 211,
+        "hr": 59.2,
+        "gate": "L5>=4",
+        "lift": 12.2
+      },
+      "L5=5": {
+        "hits": 81,
+        "n": 126,
+        "hr": 64.3,
+        "gate": "L5=5",
+        "lift": 17.3
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": {
+        "hits": 17,
+        "n": 23,
+        "hr": 73.9,
+        "gate": "L5>=4 + cover",
+        "lift": 26.9
+      },
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "Soccer",
+      "open_n": 522,
+      "open_hr": 63.4,
+      "L5>=4": {
+        "hits": 143,
+        "n": 208,
+        "hr": 68.8,
+        "gate": "L5>=4",
+        "lift": 5.4
+      },
+      "L5=5": {
+        "hits": 52,
+        "n": 73,
+        "hr": 71.2,
+        "gate": "L5=5",
+        "lift": 7.8
+      },
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": null,
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "Tennis",
+      "open_n": 595,
+      "open_hr": 57.3,
+      "L5>=4": {
+        "hits": 43,
+        "n": 75,
+        "hr": 57.3,
+        "gate": "L5>=4",
+        "lift": -0.0
+      },
+      "L5=5": null,
+      "L5>=4 + D aligned": null,
+      "L5=5 + D aligned": null,
+      "L5>=4 + cover": null,
+      "L5=5 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "open_n": 7006,
+      "open_hr": 53.1,
+      "L5>=4": {
+        "hits": 860,
+        "n": 1599,
+        "hr": 53.8,
+        "gate": "L5>=4",
+        "lift": 0.7
+      },
+      "L5=5": {
+        "hits": 92,
+        "n": 185,
+        "hr": 49.7,
+        "gate": "L5=5",
+        "lift": -3.4
+      },
+      "L5>=4 + D aligned": {
+        "hits": 306,
+        "n": 501,
+        "hr": 61.1,
+        "gate": "L5>=4 + D aligned",
+        "lift": 8.0
+      },
+      "L5=5 + D aligned": {
+        "hits": 41,
+        "n": 60,
+        "hr": 68.3,
+        "gate": "L5=5 + D aligned",
+        "lift": 15.2
+      },
+      "L5>=4 + cover": {
+        "hits": 272,
+        "n": 479,
+        "hr": 56.8,
+        "gate": "L5>=4 + cover",
+        "lift": 3.7
+      },
+      "L5=5 + cover": {
+        "hits": 42,
+        "n": 68,
+        "hr": 61.8,
+        "gate": "L5=5 + cover",
+        "lift": 8.7
+      },
+      "L5>=4 + D + cover": {
+        "hits": 111,
+        "n": 172,
+        "hr": 64.5,
+        "gate": "L5>=4 + D + cover",
+        "lift": 11.4
+      },
+      "L5=5 + D + cover": {
+        "hits": 19,
+        "n": 24,
+        "hr": 79.2,
+        "gate": "L5=5 + D + cover",
+        "lift": 26.1
+      }
+    }
+  ],
+  "incremental_vs_listed": [
+    {
+      "hits": 14687,
+      "n": 27713,
+      "hr": 53.0,
+      "gate": "L5 avg missing",
+      "lift": -6.5,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": -14.2,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 20601,
+      "n": 34998,
+      "hr": 58.9,
+      "gate": "L5 0-3",
+      "lift": -0.6,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": -8.3,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 73,
+      "n": 124,
+      "hr": 58.9,
+      "gate": "L5>=4 + top3",
+      "lift": -0.6,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": -8.3,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 261,
+      "n": 346,
+      "hr": 75.4,
+      "gate": "L5>=4 + L10>=8",
+      "lift": 15.9,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 8.2,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 890,
+      "n": 1187,
+      "hr": 75.0,
+      "gate": "L5>=4 + D + cover",
+      "lift": 15.5,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 7.8,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 69,
+      "n": 93,
+      "hr": 74.2,
+      "gate": "L5=5 + D + minutes HIGH",
+      "lift": 14.7,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 7.0,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 599,
+      "n": 810,
+      "hr": 74.0,
+      "gate": "L5=5 + D aligned",
+      "lift": 14.5,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 6.8,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 1906,
+      "n": 2581,
+      "hr": 73.8,
+      "gate": "L5>=4 + D aligned",
+      "lift": 14.3,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 6.6,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 209,
+      "n": 284,
+      "hr": 73.6,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 14.1,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 6.4,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 328,
+      "n": 454,
+      "hr": 72.2,
+      "gate": "L5=5 + D + cover",
+      "lift": 12.7,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 5.0,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 2589,
+      "n": 3622,
+      "hr": 71.5,
+      "gate": "L5=5 + cover",
+      "lift": 12.0,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 4.3,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 1381,
+      "n": 1946,
+      "hr": 71.0,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 11.5,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 3.8,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 4663,
+      "n": 6666,
+      "hr": 70.0,
+      "gate": "L5=5",
+      "lift": 10.5,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 2.8,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 2406,
+      "n": 3453,
+      "hr": 69.7,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 10.2,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 2.5,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 7245,
+      "n": 10470,
+      "hr": 69.2,
+      "gate": "L5>=4 + cover",
+      "lift": 9.7,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 2.0,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 4374,
+      "n": 6678,
+      "hr": 65.5,
+      "gate": "L5>=4 + hot L5",
+      "lift": 6.0,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": -1.7,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 10354,
+      "n": 15693,
+      "hr": 66.0,
+      "gate": "L5=4",
+      "lift": 6.5,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": -1.2,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 8782,
+      "n": 13083,
+      "hr": 67.1,
+      "gate": "L5>=4 + season covers",
+      "lift": 7.6,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": -0.1,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 15017,
+      "n": 22359,
+      "hr": 67.2,
+      "gate": "L5>=4",
+      "lift": 7.7,
+      "book": "Goblin OVER",
+      "sport": "ALL",
+      "vs_listed": 0.0,
+      "listed_hr": 67.2,
+      "listed_n": 22359
+    },
+    {
+      "hits": 8921,
+      "n": 40206,
+      "hr": 22.2,
+      "gate": "L5 avg missing",
+      "lift": -8.6,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -29.1,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 12480,
+      "n": 48301,
+      "hr": 25.8,
+      "gate": "L5 0-3",
+      "lift": -5.0,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -25.5,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 76,
+      "n": 179,
+      "hr": 42.5,
+      "gate": "L5>=4 + D + cover",
+      "lift": 11.7,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -8.8,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 36,
+      "n": 81,
+      "hr": 44.4,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 13.6,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -6.9,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 609,
+      "n": 1302,
+      "hr": 46.8,
+      "gate": "L5>=4 + hot L5",
+      "lift": 16.0,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -4.5,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 123,
+      "n": 263,
+      "hr": 46.8,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 16.0,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -4.5,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 329,
+      "n": 694,
+      "hr": 47.4,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 16.6,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -3.9,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 117,
+      "n": 242,
+      "hr": 48.3,
+      "gate": "L5=5 + cover",
+      "lift": 17.5,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -3.0,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 900,
+      "n": 1838,
+      "hr": 49.0,
+      "gate": "L5>=4 + season covers",
+      "lift": 18.2,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -2.3,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 451,
+      "n": 843,
+      "hr": 53.5,
+      "gate": "L5=5",
+      "lift": 22.7,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": 2.2,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 672,
+      "n": 1354,
+      "hr": 49.6,
+      "gate": "L5>=4 + cover",
+      "lift": 18.8,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -1.7,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 292,
+      "n": 586,
+      "hr": 49.8,
+      "gate": "L5>=4 + D aligned",
+      "lift": 19.0,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -1.5,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 2243,
+      "n": 4412,
+      "hr": 50.8,
+      "gate": "L5=4",
+      "lift": 20.0,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": -0.5,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 2694,
+      "n": 5255,
+      "hr": 51.3,
+      "gate": "L5>=4",
+      "lift": 20.5,
+      "book": "Standard OVER",
+      "sport": "ALL",
+      "vs_listed": 0.0,
+      "listed_hr": 51.3,
+      "listed_n": 5255
+    },
+    {
+      "hits": 114,
+      "n": 168,
+      "hr": 67.9,
+      "gate": "L5>=4 + cover + minutes HIGH",
+      "lift": 14.0,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 12.0,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 81,
+      "n": 128,
+      "hr": 63.3,
+      "gate": "L5=5 + D aligned",
+      "lift": 9.4,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 7.4,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 197,
+      "n": 314,
+      "hr": 62.7,
+      "gate": "L5>=4 + D + cover",
+      "lift": 8.8,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 6.8,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 104,
+      "n": 167,
+      "hr": 62.3,
+      "gate": "L5=5 + cover",
+      "lift": 8.4,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 6.4,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 69,
+      "n": 111,
+      "hr": 62.2,
+      "gate": "L5>=4 + L10>=8",
+      "lift": 8.3,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 6.3,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 92,
+      "n": 152,
+      "hr": 60.5,
+      "gate": "L5>=4 + D + minutes HIGH",
+      "lift": 6.6,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 4.6,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 237,
+      "n": 393,
+      "hr": 60.3,
+      "gate": "L5>=4 + minutes HIGH",
+      "lift": 6.4,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 4.4,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 619,
+      "n": 1189,
+      "hr": 52.1,
+      "gate": "L5>=4 + hot L5",
+      "lift": -1.8,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": -3.8,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 519,
+      "n": 872,
+      "hr": 59.5,
+      "gate": "L5>=4 + cover",
+      "lift": 5.6,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 3.6,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 518,
+      "n": 874,
+      "hr": 59.3,
+      "gate": "L5>=4 + D aligned",
+      "lift": 5.4,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 3.4,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 4021,
+      "n": 7489,
+      "hr": 53.7,
+      "gate": "L5 0-3",
+      "lift": -0.2,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": -2.2,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 482,
+      "n": 841,
+      "hr": 57.3,
+      "gate": "L5=5",
+      "lift": 3.4,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 1.4,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 4051,
+      "n": 7385,
+      "hr": 54.9,
+      "gate": "L5 avg missing",
+      "lift": 1.0,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": -1.0,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 782,
+      "n": 1422,
+      "hr": 55.0,
+      "gate": "L5>=4 + season covers",
+      "lift": 1.1,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": -0.9,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 2048,
+      "n": 3688,
+      "hr": 55.5,
+      "gate": "L5=4",
+      "lift": 1.6,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": -0.4,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    },
+    {
+      "hits": 2530,
+      "n": 4529,
+      "hr": 55.9,
+      "gate": "L5>=4",
+      "lift": 2.0,
+      "book": "Standard UNDER",
+      "sport": "ALL",
+      "vs_listed": 0.0,
+      "listed_hr": 55.9,
+      "listed_n": 4529
+    }
+  ],
+  "prop_cells": [
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "hits",
+      "open_n": 14956,
+      "open_hr": 59.2,
+      "open": {
+        "hits": 8861,
+        "n": 14956,
+        "hr": 59.2
+      },
+      "L5>=4": {
+        "hits": 1287,
+        "n": 2070,
+        "hr": 62.2
+      },
+      "L5>=4 + D": {
+        "hits": 59,
+        "n": 79,
+        "hr": 74.7
+      },
+      "L5>=4 + cover": {
+        "hits": 124,
+        "n": 190,
+        "hr": 65.3
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": {
+        "hits": 34,
+        "n": 60,
+        "hr": 56.7
+      },
+      "L5=5": {
+        "hits": 286,
+        "n": 451,
+        "hr": 63.4
+      },
+      "L5=5 + D": {
+        "hits": 19,
+        "n": 25,
+        "hr": 76.0
+      },
+      "L5=5 + cover": {
+        "hits": 24,
+        "n": 37,
+        "hr": 64.9
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "hits+runs+rbis",
+      "open_n": 13909,
+      "open_hr": 63.2,
+      "open": {
+        "hits": 8796,
+        "n": 13909,
+        "hr": 63.2
+      },
+      "L5>=4": {
+        "hits": 864,
+        "n": 1235,
+        "hr": 70.0
+      },
+      "L5>=4 + D": {
+        "hits": 34,
+        "n": 41,
+        "hr": 82.9
+      },
+      "L5>=4 + cover": {
+        "hits": 418,
+        "n": 585,
+        "hr": 71.5
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 185,
+        "n": 265,
+        "hr": 69.8
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 83,
+        "n": 117,
+        "hr": 70.9
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "hits_allowed",
+      "open_n": 2540,
+      "open_hr": 65.8,
+      "open": {
+        "hits": 1671,
+        "n": 2540,
+        "hr": 65.8
+      },
+      "L5>=4": {
+        "hits": 247,
+        "n": 356,
+        "hr": 69.4
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 67,
+        "n": 81,
+        "hr": 82.7
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 73,
+        "n": 105,
+        "hr": 69.5
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 23,
+        "n": 27,
+        "hr": 85.2
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "hitter_ks",
+      "open_n": 12803,
+      "open_hr": 62.7,
+      "open": {
+        "hits": 8027,
+        "n": 12803,
+        "hr": 62.7
+      },
+      "L5>=4": {
+        "hits": 1244,
+        "n": 1869,
+        "hr": 66.6
+      },
+      "L5>=4 + D": {
+        "hits": 28,
+        "n": 38,
+        "hr": 73.7
+      },
+      "L5>=4 + cover": {
+        "hits": 651,
+        "n": 955,
+        "hr": 68.2
+      },
+      "L5>=4 + D + cover": {
+        "hits": 21,
+        "n": 27,
+        "hr": 77.8
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 360,
+        "n": 535,
+        "hr": 67.3
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 190,
+        "n": 281,
+        "hr": 67.6
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "pitcher_ks",
+      "open_n": 2619,
+      "open_hr": 69.8,
+      "open": {
+        "hits": 1829,
+        "n": 2619,
+        "hr": 69.8
+      },
+      "L5>=4": {
+        "hits": 313,
+        "n": 452,
+        "hr": 69.2
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 85,
+        "n": 118,
+        "hr": 72.0
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 93,
+        "n": 133,
+        "hr": 69.9
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 33,
+        "n": 47,
+        "hr": 70.2
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "pitcherfantasyscore",
+      "open_n": 817,
+      "open_hr": 67.6,
+      "open": {
+        "hits": 552,
+        "n": 817,
+        "hr": 67.6
+      },
+      "L5>=4": {
+        "hits": 99,
+        "n": 145,
+        "hr": 68.3
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 23,
+        "n": 39,
+        "hr": 59.0
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 40,
+        "n": 55,
+        "hr": 72.7
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "pitches_thrown",
+      "open_n": 867,
+      "open_hr": 68.4,
+      "open": {
+        "hits": 593,
+        "n": 867,
+        "hr": 68.4
+      },
+      "L5>=4": {
+        "hits": 123,
+        "n": 168,
+        "hr": 73.2
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 19,
+        "n": 29,
+        "hr": 65.5
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 45,
+        "n": 60,
+        "hr": 75.0
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "pitching_outs",
+      "open_n": 747,
+      "open_hr": 66.8,
+      "open": {
+        "hits": 499,
+        "n": 747,
+        "hr": 66.8
+      },
+      "L5>=4": {
+        "hits": 49,
+        "n": 81,
+        "hr": 60.5
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "singles",
+      "open_n": 1524,
+      "open_hr": 53.3,
+      "open": {
+        "hits": 813,
+        "n": 1524,
+        "hr": 53.3
+      },
+      "L5>=4": {
+        "hits": 30,
+        "n": 70,
+        "hr": 42.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "total_bases",
+      "open_n": 14842,
+      "open_hr": 59.3,
+      "open": {
+        "hits": 8800,
+        "n": 14842,
+        "hr": 59.3
+      },
+      "L5>=4": {
+        "hits": 1277,
+        "n": 2058,
+        "hr": 62.1
+      },
+      "L5>=4 + D": {
+        "hits": 57,
+        "n": 77,
+        "hr": 74.0
+      },
+      "L5>=4 + cover": {
+        "hits": 604,
+        "n": 960,
+        "hr": 62.9
+      },
+      "L5>=4 + D + cover": {
+        "hits": 26,
+        "n": 37,
+        "hr": 70.3
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": {
+        "hits": 39,
+        "n": 64,
+        "hr": 60.9
+      },
+      "L5=5": {
+        "hits": 279,
+        "n": 442,
+        "hr": 63.1
+      },
+      "L5=5 + D": {
+        "hits": 19,
+        "n": 25,
+        "hr": 76.0
+      },
+      "L5=5 + cover": {
+        "hits": 131,
+        "n": 207,
+        "hr": 63.3
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "MLB",
+      "prop": "walks_allowed",
+      "open_n": 1315,
+      "open_hr": 70.0,
+      "open": {
+        "hits": 921,
+        "n": 1315,
+        "hr": 70.0
+      },
+      "L5>=4": {
+        "hits": 147,
+        "n": 207,
+        "hr": 71.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 19,
+        "n": 33,
+        "hr": 57.6
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 54,
+        "n": 80,
+        "hr": 67.5
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "assists",
+      "open_n": 615,
+      "open_hr": 67.8,
+      "open": {
+        "hits": 417,
+        "n": 615,
+        "hr": 67.8
+      },
+      "L5>=4": {
+        "hits": 257,
+        "n": 350,
+        "hr": 73.4
+      },
+      "L5>=4 + D": {
+        "hits": 35,
+        "n": 51,
+        "hr": 68.6
+      },
+      "L5>=4 + cover": {
+        "hits": 127,
+        "n": 164,
+        "hr": 77.4
+      },
+      "L5>=4 + D + cover": {
+        "hits": 22,
+        "n": 30,
+        "hr": 73.3
+      },
+      "L5>=4 + minutes HIGH": {
+        "hits": 153,
+        "n": 210,
+        "hr": 72.9
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 105,
+        "n": 138,
+        "hr": 76.1
+      },
+      "L5=5 + D": {
+        "hits": 18,
+        "n": 21,
+        "hr": 85.7
+      },
+      "L5=5 + cover": {
+        "hits": 62,
+        "n": 75,
+        "hr": 82.7
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "blocks",
+      "open_n": 126,
+      "open_hr": 61.9,
+      "open": {
+        "hits": 78,
+        "n": 126,
+        "hr": 61.9
+      },
+      "L5>=4": {
+        "hits": 38,
+        "n": 60,
+        "hr": 63.3
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 28,
+        "n": 46,
+        "hr": 60.9
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 15,
+        "n": 21,
+        "hr": 71.4
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "fantasy",
+      "open_n": 363,
+      "open_hr": 69.4,
+      "open": {
+        "hits": 252,
+        "n": 363,
+        "hr": 69.4
+      },
+      "L5>=4": {
+        "hits": 177,
+        "n": 252,
+        "hr": 70.2
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 110,
+        "n": 158,
+        "hr": 69.6
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 108,
+        "n": 154,
+        "hr": 70.1
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 78,
+        "n": 101,
+        "hr": 77.2
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 59,
+        "n": 79,
+        "hr": 74.7
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "fg2m",
+      "open_n": 148,
+      "open_hr": 57.4,
+      "open": {
+        "hits": 85,
+        "n": 148,
+        "hr": 57.4
+      },
+      "L5>=4": {
+        "hits": 34,
+        "n": 64,
+        "hr": 53.1
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 25,
+        "n": 42,
+        "hr": 59.5
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 10,
+        "n": 17,
+        "hr": 58.8
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "fgm",
+      "open_n": 150,
+      "open_hr": 60.0,
+      "open": {
+        "hits": 90,
+        "n": 150,
+        "hr": 60.0
+      },
+      "L5>=4": {
+        "hits": 42,
+        "n": 66,
+        "hr": 63.6
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 15,
+        "n": 27,
+        "hr": 55.6
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 14,
+        "n": 21,
+        "hr": 66.7
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "points",
+      "open_n": 1851,
+      "open_hr": 68.9,
+      "open": {
+        "hits": 1276,
+        "n": 1851,
+        "hr": 68.9
+      },
+      "L5>=4": {
+        "hits": 845,
+        "n": 1163,
+        "hr": 72.7
+      },
+      "L5>=4 + D": {
+        "hits": 22,
+        "n": 28,
+        "hr": 78.6
+      },
+      "L5>=4 + cover": {
+        "hits": 488,
+        "n": 669,
+        "hr": 72.9
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 428,
+        "n": 587,
+        "hr": 72.9
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 359,
+        "n": 471,
+        "hr": 76.2
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 214,
+        "n": 274,
+        "hr": 78.1
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "pra",
+      "open_n": 1317,
+      "open_hr": 66.1,
+      "open": {
+        "hits": 870,
+        "n": 1317,
+        "hr": 66.1
+      },
+      "L5>=4": {
+        "hits": 522,
+        "n": 757,
+        "hr": 69.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 333,
+        "n": 472,
+        "hr": 70.6
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 268,
+        "n": 382,
+        "hr": 70.2
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 149,
+        "n": 210,
+        "hr": 71.0
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 97,
+        "n": 140,
+        "hr": 69.3
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "pts+ast",
+      "open_n": 1108,
+      "open_hr": 68.3,
+      "open": {
+        "hits": 757,
+        "n": 1108,
+        "hr": 68.3
+      },
+      "L5>=4": {
+        "hits": 464,
+        "n": 665,
+        "hr": 69.8
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 307,
+        "n": 443,
+        "hr": 69.3
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 262,
+        "n": 378,
+        "hr": 69.3
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 169,
+        "n": 226,
+        "hr": 74.8
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 119,
+        "n": 164,
+        "hr": 72.6
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "pts+reb",
+      "open_n": 1301,
+      "open_hr": 65.9,
+      "open": {
+        "hits": 858,
+        "n": 1301,
+        "hr": 65.9
+      },
+      "L5>=4": {
+        "hits": 514,
+        "n": 742,
+        "hr": 69.3
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 326,
+        "n": 463,
+        "hr": 70.4
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 246,
+        "n": 357,
+        "hr": 68.9
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 182,
+        "n": 245,
+        "hr": 74.3
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 119,
+        "n": 162,
+        "hr": 73.5
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "reb+ast",
+      "open_n": 1049,
+      "open_hr": 64.2,
+      "open": {
+        "hits": 673,
+        "n": 1049,
+        "hr": 64.2
+      },
+      "L5>=4": {
+        "hits": 357,
+        "n": 535,
+        "hr": 66.7
+      },
+      "L5>=4 + D": {
+        "hits": 39,
+        "n": 53,
+        "hr": 73.6
+      },
+      "L5>=4 + cover": {
+        "hits": 241,
+        "n": 340,
+        "hr": 70.9
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 204,
+        "n": 305,
+        "hr": 66.9
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 104,
+        "n": 167,
+        "hr": 62.3
+      },
+      "L5=5 + D": {
+        "hits": 9,
+        "n": 16,
+        "hr": 56.2
+      },
+      "L5=5 + cover": {
+        "hits": 79,
+        "n": 119,
+        "hr": 66.4
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "rebounds",
+      "open_n": 936,
+      "open_hr": 69.4,
+      "open": {
+        "hits": 650,
+        "n": 936,
+        "hr": 69.4
+      },
+      "L5>=4": {
+        "hits": 412,
+        "n": 546,
+        "hr": 75.5
+      },
+      "L5>=4 + D": {
+        "hits": 54,
+        "n": 71,
+        "hr": 76.1
+      },
+      "L5>=4 + cover": {
+        "hits": 227,
+        "n": 295,
+        "hr": 76.9
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 223,
+        "n": 286,
+        "hr": 78.0
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 143,
+        "n": 200,
+        "hr": 71.5
+      },
+      "L5=5 + D": {
+        "hits": 16,
+        "n": 24,
+        "hr": 66.7
+      },
+      "L5=5 + cover": {
+        "hits": 103,
+        "n": 139,
+        "hr": 74.1
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "steals",
+      "open_n": 326,
+      "open_hr": 66.0,
+      "open": {
+        "hits": 215,
+        "n": 326,
+        "hr": 66.0
+      },
+      "L5>=4": {
+        "hits": 118,
+        "n": 161,
+        "hr": 73.3
+      },
+      "L5>=4 + D": {
+        "hits": 21,
+        "n": 26,
+        "hr": 80.8
+      },
+      "L5>=4 + cover": {
+        "hits": 48,
+        "n": 63,
+        "hr": 76.2
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 80,
+        "n": 111,
+        "hr": 72.1
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 38,
+        "n": 52,
+        "hr": 73.1
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 24,
+        "n": 32,
+        "hr": 75.0
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "stocks",
+      "open_n": 209,
+      "open_hr": 59.3,
+      "open": {
+        "hits": 124,
+        "n": 209,
+        "hr": 59.3
+      },
+      "L5>=4": {
+        "hits": 47,
+        "n": 84,
+        "hr": 56.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 19,
+        "n": 32,
+        "hr": 59.4
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 24,
+        "n": 50,
+        "hr": 48.0
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 17,
+        "n": 27,
+        "hr": 63.0
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "threes",
+      "open_n": 424,
+      "open_hr": 65.6,
+      "open": {
+        "hits": 278,
+        "n": 424,
+        "hr": 65.6
+      },
+      "L5>=4": {
+        "hits": 146,
+        "n": 219,
+        "hr": 66.7
+      },
+      "L5>=4 + D": {
+        "hits": 26,
+        "n": 38,
+        "hr": 68.4
+      },
+      "L5>=4 + cover": {
+        "hits": 43,
+        "n": 65,
+        "hr": 66.2
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 82,
+        "n": 118,
+        "hr": 69.5
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 49,
+        "n": 74,
+        "hr": 66.2
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 24,
+        "n": 31,
+        "hr": 77.4
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA",
+      "prop": "turnovers",
+      "open_n": 152,
+      "open_hr": 63.8,
+      "open": {
+        "hits": 97,
+        "n": 152,
+        "hr": 63.8
+      },
+      "L5>=4": {
+        "hits": 33,
+        "n": 48,
+        "hr": 68.8
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 21,
+        "n": 30,
+        "hr": 70.0
+      },
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA1Q",
+      "prop": "assists",
+      "open_n": 130,
+      "open_hr": 66.9,
+      "open": {
+        "hits": 87,
+        "n": 130,
+        "hr": 66.9
+      },
+      "L5>=4": {
+        "hits": 63,
+        "n": 91,
+        "hr": 69.2
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 33,
+        "n": 46,
+        "hr": 71.7
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA1Q",
+      "prop": "points",
+      "open_n": 711,
+      "open_hr": 69.9,
+      "open": {
+        "hits": 497,
+        "n": 711,
+        "hr": 69.9
+      },
+      "L5>=4": {
+        "hits": 346,
+        "n": 470,
+        "hr": 73.6
+      },
+      "L5>=4 + D": {
+        "hits": 28,
+        "n": 32,
+        "hr": 87.5
+      },
+      "L5>=4 + cover": {
+        "hits": 148,
+        "n": 197,
+        "hr": 75.1
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 165,
+        "n": 215,
+        "hr": 76.7
+      },
+      "L5=5 + D": {
+        "hits": 19,
+        "n": 22,
+        "hr": 86.4
+      },
+      "L5=5 + cover": {
+        "hits": 50,
+        "n": 62,
+        "hr": 80.6
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "NBA1Q",
+      "prop": "rebounds",
+      "open_n": 306,
+      "open_hr": 73.5,
+      "open": {
+        "hits": 225,
+        "n": 306,
+        "hr": 73.5
+      },
+      "L5>=4": {
+        "hits": 165,
+        "n": 211,
+        "hr": 78.2
+      },
+      "L5>=4 + D": {
+        "hits": 25,
+        "n": 33,
+        "hr": 75.8
+      },
+      "L5>=4 + cover": {
+        "hits": 34,
+        "n": 51,
+        "hr": 66.7
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 106,
+        "n": 121,
+        "hr": 87.6
+      },
+      "L5=5 + D": {
+        "hits": 16,
+        "n": 21,
+        "hr": 76.2
+      },
+      "L5=5 + cover": {
+        "hits": 21,
+        "n": 24,
+        "hr": 87.5
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "Tennis",
+      "prop": "double_faults",
+      "open_n": 1608,
+      "open_hr": 0.0,
+      "open": {
+        "hits": 0,
+        "n": 1608,
+        "hr": 0.0
+      },
+      "L5>=4": {
+        "hits": 0,
+        "n": 42,
+        "hr": 0.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "Tennis",
+      "prop": "games_won",
+      "open_n": 2162,
+      "open_hr": 71.6,
+      "open": {
+        "hits": 1548,
+        "n": 2162,
+        "hr": 71.6
+      },
+      "L5>=4": {
+        "hits": 128,
+        "n": 171,
+        "hr": 74.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 45,
+        "n": 74,
+        "hr": 60.8
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 37,
+        "n": 52,
+        "hr": 71.2
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 21,
+        "n": 33,
+        "hr": 63.6
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "Tennis",
+      "prop": "match_total_games",
+      "open_n": 1953,
+      "open_hr": 69.0,
+      "open": {
+        "hits": 1348,
+        "n": 1953,
+        "hr": 69.0
+      },
+      "L5>=4": {
+        "hits": 94,
+        "n": 134,
+        "hr": 70.1
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 44,
+        "n": 60,
+        "hr": 73.3
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 47,
+        "n": 63,
+        "hr": 74.6
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 32,
+        "n": 42,
+        "hr": 76.2
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "assists",
+      "open_n": 1374,
+      "open_hr": 64.4,
+      "open": {
+        "hits": 885,
+        "n": 1374,
+        "hr": 64.4
+      },
+      "L5>=4": {
+        "hits": 419,
+        "n": 598,
+        "hr": 70.1
+      },
+      "L5>=4 + D": {
+        "hits": 161,
+        "n": 212,
+        "hr": 75.9
+      },
+      "L5>=4 + cover": {
+        "hits": 231,
+        "n": 325,
+        "hr": 71.1
+      },
+      "L5>=4 + D + cover": {
+        "hits": 80,
+        "n": 100,
+        "hr": 80.0
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 151,
+        "n": 199,
+        "hr": 75.9
+      },
+      "L5=5 + D": {
+        "hits": 65,
+        "n": 79,
+        "hr": 82.3
+      },
+      "L5=5 + cover": {
+        "hits": 100,
+        "n": 133,
+        "hr": 75.2
+      },
+      "L5=5 + D + cover": {
+        "hits": 40,
+        "n": 48,
+        "hr": 83.3
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "fantasy",
+      "open_n": 549,
+      "open_hr": 69.9,
+      "open": {
+        "hits": 384,
+        "n": 549,
+        "hr": 69.9
+      },
+      "L5>=4": {
+        "hits": 216,
+        "n": 305,
+        "hr": 70.8
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 144,
+        "n": 199,
+        "hr": 72.4
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 72,
+        "n": 98,
+        "hr": 73.5
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 69,
+        "n": 96,
+        "hr": 71.9
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 58,
+        "n": 80,
+        "hr": 72.5
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "points",
+      "open_n": 3642,
+      "open_hr": 66.6,
+      "open": {
+        "hits": 2425,
+        "n": 3642,
+        "hr": 66.6
+      },
+      "L5>=4": {
+        "hits": 1134,
+        "n": 1694,
+        "hr": 66.9
+      },
+      "L5>=4 + D": {
+        "hits": 332,
+        "n": 449,
+        "hr": 73.9
+      },
+      "L5>=4 + cover": {
+        "hits": 686,
+        "n": 1010,
+        "hr": 67.9
+      },
+      "L5>=4 + D + cover": {
+        "hits": 183,
+        "n": 246,
+        "hr": 74.4
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 372,
+        "n": 544,
+        "hr": 68.4
+      },
+      "L5=5 + D": {
+        "hits": 96,
+        "n": 136,
+        "hr": 70.6
+      },
+      "L5=5 + cover": {
+        "hits": 266,
+        "n": 390,
+        "hr": 68.2
+      },
+      "L5=5 + D + cover": {
+        "hits": 62,
+        "n": 91,
+        "hr": 68.1
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "pra",
+      "open_n": 1665,
+      "open_hr": 64.7,
+      "open": {
+        "hits": 1078,
+        "n": 1665,
+        "hr": 64.7
+      },
+      "L5>=4": {
+        "hits": 474,
+        "n": 739,
+        "hr": 64.1
+      },
+      "L5>=4 + D": {
+        "hits": 141,
+        "n": 202,
+        "hr": 69.8
+      },
+      "L5>=4 + cover": {
+        "hits": 313,
+        "n": 471,
+        "hr": 66.5
+      },
+      "L5>=4 + D + cover": {
+        "hits": 76,
+        "n": 112,
+        "hr": 67.9
+      },
+      "L5>=4 + minutes HIGH": {
+        "hits": 50,
+        "n": 75,
+        "hr": 66.7
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 147,
+        "n": 230,
+        "hr": 63.9
+      },
+      "L5=5 + D": {
+        "hits": 35,
+        "n": 56,
+        "hr": 62.5
+      },
+      "L5=5 + cover": {
+        "hits": 124,
+        "n": 182,
+        "hr": 68.1
+      },
+      "L5=5 + D + cover": {
+        "hits": 25,
+        "n": 40,
+        "hr": 62.5
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "pts+ast",
+      "open_n": 1078,
+      "open_hr": 65.6,
+      "open": {
+        "hits": 707,
+        "n": 1078,
+        "hr": 65.6
+      },
+      "L5>=4": {
+        "hits": 349,
+        "n": 531,
+        "hr": 65.7
+      },
+      "L5>=4 + D": {
+        "hits": 107,
+        "n": 139,
+        "hr": 77.0
+      },
+      "L5>=4 + cover": {
+        "hits": 209,
+        "n": 308,
+        "hr": 67.9
+      },
+      "L5>=4 + D + cover": {
+        "hits": 53,
+        "n": 71,
+        "hr": 74.6
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 100,
+        "n": 151,
+        "hr": 66.2
+      },
+      "L5=5 + D": {
+        "hits": 32,
+        "n": 43,
+        "hr": 74.4
+      },
+      "L5=5 + cover": {
+        "hits": 71,
+        "n": 103,
+        "hr": 68.9
+      },
+      "L5=5 + D + cover": {
+        "hits": 20,
+        "n": 29,
+        "hr": 69.0
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "pts+reb",
+      "open_n": 1393,
+      "open_hr": 65.5,
+      "open": {
+        "hits": 913,
+        "n": 1393,
+        "hr": 65.5
+      },
+      "L5>=4": {
+        "hits": 450,
+        "n": 671,
+        "hr": 67.1
+      },
+      "L5>=4 + D": {
+        "hits": 118,
+        "n": 161,
+        "hr": 73.3
+      },
+      "L5>=4 + cover": {
+        "hits": 268,
+        "n": 389,
+        "hr": 68.9
+      },
+      "L5>=4 + D + cover": {
+        "hits": 61,
+        "n": 84,
+        "hr": 72.6
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 125,
+        "n": 194,
+        "hr": 64.4
+      },
+      "L5=5 + D": {
+        "hits": 33,
+        "n": 50,
+        "hr": 66.0
+      },
+      "L5=5 + cover": {
+        "hits": 94,
+        "n": 141,
+        "hr": 66.7
+      },
+      "L5=5 + D + cover": {
+        "hits": 22,
+        "n": 35,
+        "hr": 62.9
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "reb+ast",
+      "open_n": 884,
+      "open_hr": 60.4,
+      "open": {
+        "hits": 534,
+        "n": 884,
+        "hr": 60.4
+      },
+      "L5>=4": {
+        "hits": 213,
+        "n": 333,
+        "hr": 64.0
+      },
+      "L5>=4 + D": {
+        "hits": 69,
+        "n": 90,
+        "hr": 76.7
+      },
+      "L5>=4 + cover": {
+        "hits": 128,
+        "n": 195,
+        "hr": 65.6
+      },
+      "L5>=4 + D + cover": {
+        "hits": 35,
+        "n": 45,
+        "hr": 77.8
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 74,
+        "n": 100,
+        "hr": 74.0
+      },
+      "L5=5 + D": {
+        "hits": 26,
+        "n": 35,
+        "hr": 74.3
+      },
+      "L5=5 + cover": {
+        "hits": 52,
+        "n": 67,
+        "hr": 77.6
+      },
+      "L5=5 + D + cover": {
+        "hits": 15,
+        "n": 20,
+        "hr": 75.0
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "rebounds",
+      "open_n": 2354,
+      "open_hr": 67.0,
+      "open": {
+        "hits": 1577,
+        "n": 2354,
+        "hr": 67.0
+      },
+      "L5>=4": {
+        "hits": 738,
+        "n": 1071,
+        "hr": 68.9
+      },
+      "L5>=4 + D": {
+        "hits": 273,
+        "n": 371,
+        "hr": 73.6
+      },
+      "L5>=4 + cover": {
+        "hits": 453,
+        "n": 636,
+        "hr": 71.2
+      },
+      "L5>=4 + D + cover": {
+        "hits": 163,
+        "n": 218,
+        "hr": 74.8
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 235,
+        "n": 327,
+        "hr": 71.9
+      },
+      "L5=5 + D": {
+        "hits": 76,
+        "n": 109,
+        "hr": 69.7
+      },
+      "L5=5 + cover": {
+        "hits": 179,
+        "n": 243,
+        "hr": 73.7
+      },
+      "L5=5 + D + cover": {
+        "hits": 58,
+        "n": 83,
+        "hr": 69.9
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "stocks",
+      "open_n": 152,
+      "open_hr": 53.9,
+      "open": {
+        "hits": 82,
+        "n": 152,
+        "hr": 53.9
+      },
+      "L5>=4": {
+        "hits": 25,
+        "n": 42,
+        "hr": 59.5
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "threes",
+      "open_n": 926,
+      "open_hr": 62.6,
+      "open": {
+        "hits": 580,
+        "n": 926,
+        "hr": 62.6
+      },
+      "L5>=4": {
+        "hits": 266,
+        "n": 398,
+        "hr": 66.8
+      },
+      "L5>=4 + D": {
+        "hits": 86,
+        "n": 118,
+        "hr": 72.9
+      },
+      "L5>=4 + cover": {
+        "hits": 175,
+        "n": 260,
+        "hr": 67.3
+      },
+      "L5>=4 + D + cover": {
+        "hits": 56,
+        "n": 75,
+        "hr": 74.7
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 91,
+        "n": 123,
+        "hr": 74.0
+      },
+      "L5=5 + D": {
+        "hits": 30,
+        "n": 36,
+        "hr": 83.3
+      },
+      "L5=5 + cover": {
+        "hits": 68,
+        "n": 94,
+        "hr": 72.3
+      },
+      "L5=5 + D + cover": {
+        "hits": 19,
+        "n": 24,
+        "hr": 79.2
+      }
+    },
+    {
+      "book": "Goblin OVER",
+      "sport": "WNBA",
+      "prop": "turnovers",
+      "open_n": 170,
+      "open_hr": 57.6,
+      "open": {
+        "hits": 98,
+        "n": 170,
+        "hr": 57.6
+      },
+      "L5>=4": {
+        "hits": 38,
+        "n": 62,
+        "hr": 61.3
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "prop": "hits",
+      "open_n": 741,
+      "open_hr": 46.2,
+      "open": {
+        "hits": 342,
+        "n": 741,
+        "hr": 46.2
+      },
+      "L5>=4": {
+        "hits": 23,
+        "n": 43,
+        "hr": 53.5
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "prop": "hits+runs+rbis",
+      "open_n": 2297,
+      "open_hr": 49.3,
+      "open": {
+        "hits": 1133,
+        "n": 2297,
+        "hr": 49.3
+      },
+      "L5>=4": {
+        "hits": 59,
+        "n": 118,
+        "hr": 50.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 9,
+        "n": 25,
+        "hr": 36.0
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 8,
+        "n": 19,
+        "hr": 42.1
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "prop": "hitter_ks",
+      "open_n": 849,
+      "open_hr": 47.3,
+      "open": {
+        "hits": 402,
+        "n": 849,
+        "hr": 47.3
+      },
+      "L5>=4": {
+        "hits": 71,
+        "n": 158,
+        "hr": 44.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 13,
+        "n": 28,
+        "hr": 46.4
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 22,
+        "n": 46,
+        "hr": 47.8
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "prop": "pitcher_ks",
+      "open_n": 799,
+      "open_hr": 50.7,
+      "open": {
+        "hits": 405,
+        "n": 799,
+        "hr": 50.7
+      },
+      "L5>=4": {
+        "hits": 26,
+        "n": 59,
+        "hr": 44.1
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "prop": "pitcherfantasyscore",
+      "open_n": 448,
+      "open_hr": 51.6,
+      "open": {
+        "hits": 231,
+        "n": 448,
+        "hr": 51.6
+      },
+      "L5>=4": {
+        "hits": 25,
+        "n": 52,
+        "hr": 48.1
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "prop": "runs",
+      "open_n": 1011,
+      "open_hr": 43.7,
+      "open": {
+        "hits": 442,
+        "n": 1011,
+        "hr": 43.7
+      },
+      "L5>=4": {
+        "hits": 25,
+        "n": 65,
+        "hr": 38.5
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "prop": "singles",
+      "open_n": 2059,
+      "open_hr": 48.8,
+      "open": {
+        "hits": 1005,
+        "n": 2059,
+        "hr": 48.8
+      },
+      "L5>=4": {
+        "hits": 59,
+        "n": 116,
+        "hr": 50.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 6,
+        "n": 23,
+        "hr": 26.1
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "MLB",
+      "prop": "total_bases",
+      "open_n": 1490,
+      "open_hr": 44.6,
+      "open": {
+        "hits": 665,
+        "n": 1490,
+        "hr": 44.6
+      },
+      "L5>=4": {
+        "hits": 31,
+        "n": 62,
+        "hr": 50.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "prop": "fantasy",
+      "open_n": 181,
+      "open_hr": 47.0,
+      "open": {
+        "hits": 85,
+        "n": 181,
+        "hr": 47.0
+      },
+      "L5>=4": {
+        "hits": 36,
+        "n": 70,
+        "hr": 51.4
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 22,
+        "n": 43,
+        "hr": 51.2
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 19,
+        "n": 40,
+        "hr": 47.5
+      },
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "prop": "fgm",
+      "open_n": 205,
+      "open_hr": 47.8,
+      "open": {
+        "hits": 98,
+        "n": 205,
+        "hr": 47.8
+      },
+      "L5>=4": {
+        "hits": 26,
+        "n": 59,
+        "hr": 44.1
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 17,
+        "n": 36,
+        "hr": 47.2
+      },
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "prop": "points",
+      "open_n": 401,
+      "open_hr": 46.9,
+      "open": {
+        "hits": 188,
+        "n": 401,
+        "hr": 46.9
+      },
+      "L5>=4": {
+        "hits": 50,
+        "n": 105,
+        "hr": 47.6
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 29,
+        "n": 56,
+        "hr": 51.8
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 24,
+        "n": 46,
+        "hr": 52.2
+      },
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "prop": "points_combo",
+      "open_n": 198,
+      "open_hr": 48.0,
+      "open": {
+        "hits": 95,
+        "n": 198,
+        "hr": 48.0
+      },
+      "L5>=4": {
+        "hits": 38,
+        "n": 72,
+        "hr": 52.8
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "prop": "pra",
+      "open_n": 520,
+      "open_hr": 47.7,
+      "open": {
+        "hits": 248,
+        "n": 520,
+        "hr": 47.7
+      },
+      "L5>=4": {
+        "hits": 56,
+        "n": 112,
+        "hr": 50.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 32,
+        "n": 61,
+        "hr": 52.5
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 20,
+        "n": 45,
+        "hr": 44.4
+      },
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "prop": "pts+ast",
+      "open_n": 416,
+      "open_hr": 49.5,
+      "open": {
+        "hits": 206,
+        "n": 416,
+        "hr": 49.5
+      },
+      "L5>=4": {
+        "hits": 47,
+        "n": 93,
+        "hr": 50.5
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 22,
+        "n": 48,
+        "hr": 45.8
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 26,
+        "n": 48,
+        "hr": 54.2
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 10,
+        "n": 16,
+        "hr": 62.5
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "prop": "pts+reb",
+      "open_n": 466,
+      "open_hr": 46.6,
+      "open": {
+        "hits": 217,
+        "n": 466,
+        "hr": 46.6
+      },
+      "L5>=4": {
+        "hits": 53,
+        "n": 113,
+        "hr": 46.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 29,
+        "n": 62,
+        "hr": 46.8
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 23,
+        "n": 52,
+        "hr": 44.2
+      },
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "prop": "reb+ast",
+      "open_n": 296,
+      "open_hr": 44.3,
+      "open": {
+        "hits": 131,
+        "n": 296,
+        "hr": 44.3
+      },
+      "L5>=4": {
+        "hits": 29,
+        "n": 54,
+        "hr": 53.7
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 16,
+        "n": 25,
+        "hr": 64.0
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA",
+      "prop": "rebounds",
+      "open_n": 239,
+      "open_hr": 48.1,
+      "open": {
+        "hits": 115,
+        "n": 239,
+        "hr": 48.1
+      },
+      "L5>=4": {
+        "hits": 25,
+        "n": 52,
+        "hr": 48.1
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA1H",
+      "prop": "points",
+      "open_n": 190,
+      "open_hr": 47.9,
+      "open": {
+        "hits": 91,
+        "n": 190,
+        "hr": 47.9
+      },
+      "L5>=4": {
+        "hits": 34,
+        "n": 52,
+        "hr": 65.4
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA1H",
+      "prop": "pra",
+      "open_n": 233,
+      "open_hr": 50.2,
+      "open": {
+        "hits": 117,
+        "n": 233,
+        "hr": 50.2
+      },
+      "L5>=4": {
+        "hits": 39,
+        "n": 64,
+        "hr": 60.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 16,
+        "n": 20,
+        "hr": 80.0
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NBA1Q",
+      "prop": "points",
+      "open_n": 145,
+      "open_hr": 50.3,
+      "open": {
+        "hits": 73,
+        "n": 145,
+        "hr": 50.3
+      },
+      "L5>=4": {
+        "hits": 27,
+        "n": 52,
+        "hr": 51.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NHL",
+      "prop": "blocked_shots",
+      "open_n": 474,
+      "open_hr": 42.8,
+      "open": {
+        "hits": 203,
+        "n": 474,
+        "hr": 42.8
+      },
+      "L5>=4": {
+        "hits": 52,
+        "n": 78,
+        "hr": 66.7
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NHL",
+      "prop": "hits",
+      "open_n": 311,
+      "open_hr": 38.9,
+      "open": {
+        "hits": 121,
+        "n": 311,
+        "hr": 38.9
+      },
+      "L5>=4": {
+        "hits": 27,
+        "n": 45,
+        "hr": 60.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NHL",
+      "prop": "points",
+      "open_n": 1235,
+      "open_hr": 29.6,
+      "open": {
+        "hits": 366,
+        "n": 1235,
+        "hr": 29.6
+      },
+      "L5>=4": {
+        "hits": 61,
+        "n": 90,
+        "hr": 67.8
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NHL",
+      "prop": "saves",
+      "open_n": 224,
+      "open_hr": 27.7,
+      "open": {
+        "hits": 62,
+        "n": 224,
+        "hr": 27.7
+      },
+      "L5>=4": {
+        "hits": 23,
+        "n": 48,
+        "hr": 47.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "NHL",
+      "prop": "sog",
+      "open_n": 1835,
+      "open_hr": 24.4,
+      "open": {
+        "hits": 447,
+        "n": 1835,
+        "hr": 24.4
+      },
+      "L5>=4": {
+        "hits": 80,
+        "n": 151,
+        "hr": 53.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 18,
+        "n": 32,
+        "hr": 56.2
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 32,
+        "n": 55,
+        "hr": 58.2
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 11,
+        "n": 16,
+        "hr": 68.8
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "Soccer",
+      "prop": "goal_assist",
+      "open_n": 4329,
+      "open_hr": 11.3,
+      "open": {
+        "hits": 488,
+        "n": 4329,
+        "hr": 11.3
+      },
+      "L5>=4": {
+        "hits": 14,
+        "n": 42,
+        "hr": 33.3
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "Soccer",
+      "prop": "saves",
+      "open_n": 1290,
+      "open_hr": 28.2,
+      "open": {
+        "hits": 364,
+        "n": 1290,
+        "hr": 28.2
+      },
+      "L5>=4": {
+        "hits": 69,
+        "n": 108,
+        "hr": 63.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 16,
+        "n": 28,
+        "hr": 57.1
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "Soccer",
+      "prop": "shots",
+      "open_n": 11268,
+      "open_hr": 17.2,
+      "open": {
+        "hits": 1940,
+        "n": 11268,
+        "hr": 17.2
+      },
+      "L5>=4": {
+        "hits": 253,
+        "n": 466,
+        "hr": 54.3
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 56,
+        "n": 93,
+        "hr": 60.2
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "fantasy",
+      "open_n": 630,
+      "open_hr": 49.8,
+      "open": {
+        "hits": 314,
+        "n": 630,
+        "hr": 49.8
+      },
+      "L5>=4": {
+        "hits": 69,
+        "n": 150,
+        "hr": 46.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 17,
+        "n": 37,
+        "hr": 45.9
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 20,
+        "n": 53,
+        "hr": 37.7
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 8,
+        "n": 15,
+        "hr": 53.3
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "fg2a",
+      "open_n": 269,
+      "open_hr": 49.1,
+      "open": {
+        "hits": 132,
+        "n": 269,
+        "hr": 49.1
+      },
+      "L5>=4": {
+        "hits": 29,
+        "n": 53,
+        "hr": 54.7
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "fg2m",
+      "open_n": 227,
+      "open_hr": 47.1,
+      "open": {
+        "hits": 107,
+        "n": 227,
+        "hr": 47.1
+      },
+      "L5>=4": {
+        "hits": 34,
+        "n": 64,
+        "hr": 53.1
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 17,
+        "n": 32,
+        "hr": 53.1
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "fga",
+      "open_n": 409,
+      "open_hr": 54.3,
+      "open": {
+        "hits": 222,
+        "n": 409,
+        "hr": 54.3
+      },
+      "L5>=4": {
+        "hits": 47,
+        "n": 95,
+        "hr": 49.5
+      },
+      "L5>=4 + D": {
+        "hits": 16,
+        "n": 30,
+        "hr": 53.3
+      },
+      "L5>=4 + cover": {
+        "hits": 29,
+        "n": 59,
+        "hr": 49.2
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "fgm",
+      "open_n": 403,
+      "open_hr": 52.6,
+      "open": {
+        "hits": 212,
+        "n": 403,
+        "hr": 52.6
+      },
+      "L5>=4": {
+        "hits": 56,
+        "n": 101,
+        "hr": 55.4
+      },
+      "L5>=4 + D": {
+        "hits": 14,
+        "n": 26,
+        "hr": 53.8
+      },
+      "L5>=4 + cover": {
+        "hits": 31,
+        "n": 57,
+        "hr": 54.4
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 9,
+        "n": 19,
+        "hr": 47.4
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "fta",
+      "open_n": 349,
+      "open_hr": 53.0,
+      "open": {
+        "hits": 185,
+        "n": 349,
+        "hr": 53.0
+      },
+      "L5>=4": {
+        "hits": 30,
+        "n": 65,
+        "hr": 46.2
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 12,
+        "n": 32,
+        "hr": 37.5
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "ftm",
+      "open_n": 418,
+      "open_hr": 49.5,
+      "open": {
+        "hits": 207,
+        "n": 418,
+        "hr": 49.5
+      },
+      "L5>=4": {
+        "hits": 36,
+        "n": 77,
+        "hr": 46.8
+      },
+      "L5>=4 + D": {
+        "hits": 15,
+        "n": 29,
+        "hr": 51.7
+      },
+      "L5>=4 + cover": {
+        "hits": 14,
+        "n": 37,
+        "hr": 37.8
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "points",
+      "open_n": 767,
+      "open_hr": 49.4,
+      "open": {
+        "hits": 379,
+        "n": 767,
+        "hr": 49.4
+      },
+      "L5>=4": {
+        "hits": 92,
+        "n": 189,
+        "hr": 48.7
+      },
+      "L5>=4 + D": {
+        "hits": 21,
+        "n": 47,
+        "hr": 44.7
+      },
+      "L5>=4 + cover": {
+        "hits": 28,
+        "n": 68,
+        "hr": 41.2
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 14,
+        "n": 29,
+        "hr": 48.3
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": {
+        "hits": 6,
+        "n": 17,
+        "hr": 35.3
+      },
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "points_combo",
+      "open_n": 434,
+      "open_hr": 51.8,
+      "open": {
+        "hits": 225,
+        "n": 434,
+        "hr": 51.8
+      },
+      "L5>=4": {
+        "hits": 65,
+        "n": 131,
+        "hr": 49.6
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 37,
+        "n": 73,
+        "hr": 50.7
+      },
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 10,
+        "n": 18,
+        "hr": 55.6
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "pra",
+      "open_n": 935,
+      "open_hr": 51.1,
+      "open": {
+        "hits": 478,
+        "n": 935,
+        "hr": 51.1
+      },
+      "L5>=4": {
+        "hits": 82,
+        "n": 173,
+        "hr": 47.4
+      },
+      "L5>=4 + D": {
+        "hits": 21,
+        "n": 44,
+        "hr": 47.7
+      },
+      "L5>=4 + cover": {
+        "hits": 34,
+        "n": 67,
+        "hr": 50.7
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 11,
+        "n": 21,
+        "hr": 52.4
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "pts+ast",
+      "open_n": 645,
+      "open_hr": 49.6,
+      "open": {
+        "hits": 320,
+        "n": 645,
+        "hr": 49.6
+      },
+      "L5>=4": {
+        "hits": 57,
+        "n": 126,
+        "hr": 45.2
+      },
+      "L5>=4 + D": {
+        "hits": 12,
+        "n": 33,
+        "hr": 36.4
+      },
+      "L5>=4 + cover": {
+        "hits": 18,
+        "n": 37,
+        "hr": 48.6
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "pts+reb",
+      "open_n": 836,
+      "open_hr": 50.8,
+      "open": {
+        "hits": 425,
+        "n": 836,
+        "hr": 50.8
+      },
+      "L5>=4": {
+        "hits": 85,
+        "n": 165,
+        "hr": 51.5
+      },
+      "L5>=4 + D": {
+        "hits": 19,
+        "n": 41,
+        "hr": 46.3
+      },
+      "L5>=4 + cover": {
+        "hits": 24,
+        "n": 51,
+        "hr": 47.1
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 12,
+        "n": 24,
+        "hr": 50.0
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "reb+ast",
+      "open_n": 481,
+      "open_hr": 46.6,
+      "open": {
+        "hits": 224,
+        "n": 481,
+        "hr": 46.6
+      },
+      "L5>=4": {
+        "hits": 37,
+        "n": 73,
+        "hr": 50.7
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "rebounds",
+      "open_n": 438,
+      "open_hr": 48.2,
+      "open": {
+        "hits": 211,
+        "n": 438,
+        "hr": 48.2
+      },
+      "L5>=4": {
+        "hits": 30,
+        "n": 69,
+        "hr": 43.5
+      },
+      "L5>=4 + D": {
+        "hits": 13,
+        "n": 29,
+        "hr": 44.8
+      },
+      "L5>=4 + cover": {
+        "hits": 16,
+        "n": 32,
+        "hr": 50.0
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "rebounds_combo",
+      "open_n": 175,
+      "open_hr": 54.3,
+      "open": {
+        "hits": 95,
+        "n": 175,
+        "hr": 54.3
+      },
+      "L5>=4": {
+        "hits": 23,
+        "n": 42,
+        "hr": 54.8
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "threes_att",
+      "open_n": 359,
+      "open_hr": 52.1,
+      "open": {
+        "hits": 187,
+        "n": 359,
+        "hr": 52.1
+      },
+      "L5>=4": {
+        "hits": 41,
+        "n": 76,
+        "hr": 53.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 15,
+        "n": 29,
+        "hr": 51.7
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard OVER",
+      "sport": "WNBA",
+      "prop": "turnovers",
+      "open_n": 257,
+      "open_hr": 54.9,
+      "open": {
+        "hits": 141,
+        "n": 257,
+        "hr": 54.9
+      },
+      "L5>=4": {
+        "hits": 22,
+        "n": 44,
+        "hr": 50.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "hits",
+      "open_n": 873,
+      "open_hr": 55.6,
+      "open": {
+        "hits": 485,
+        "n": 873,
+        "hr": 55.6
+      },
+      "L5>=4": {
+        "hits": 112,
+        "n": 192,
+        "hr": 58.3
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 17,
+        "n": 28,
+        "hr": 60.7
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "hits+runs+rbis",
+      "open_n": 1485,
+      "open_hr": 52.2,
+      "open": {
+        "hits": 775,
+        "n": 1485,
+        "hr": 52.2
+      },
+      "L5>=4": {
+        "hits": 135,
+        "n": 246,
+        "hr": 54.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 28,
+        "n": 47,
+        "hr": 59.6
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "hits_allowed",
+      "open_n": 354,
+      "open_hr": 47.7,
+      "open": {
+        "hits": 169,
+        "n": 354,
+        "hr": 47.7
+      },
+      "L5>=4": {
+        "hits": 28,
+        "n": 55,
+        "hr": 50.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "hitter_ks",
+      "open_n": 531,
+      "open_hr": 52.9,
+      "open": {
+        "hits": 281,
+        "n": 531,
+        "hr": 52.9
+      },
+      "L5>=4": {
+        "hits": 109,
+        "n": 223,
+        "hr": 48.9
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 24,
+        "n": 49,
+        "hr": 49.0
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "pitcher_ks",
+      "open_n": 603,
+      "open_hr": 49.9,
+      "open": {
+        "hits": 301,
+        "n": 603,
+        "hr": 49.9
+      },
+      "L5>=4": {
+        "hits": 40,
+        "n": 68,
+        "hr": 58.8
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "pitches_thrown",
+      "open_n": 583,
+      "open_hr": 54.7,
+      "open": {
+        "hits": 319,
+        "n": 583,
+        "hr": 54.7
+      },
+      "L5>=4": {
+        "hits": 24,
+        "n": 40,
+        "hr": 60.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "pitching_outs",
+      "open_n": 288,
+      "open_hr": 48.6,
+      "open": {
+        "hits": 140,
+        "n": 288,
+        "hr": 48.6
+      },
+      "L5>=4": {
+        "hits": 24,
+        "n": 40,
+        "hr": 60.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "runs",
+      "open_n": 889,
+      "open_hr": 54.6,
+      "open": {
+        "hits": 485,
+        "n": 889,
+        "hr": 54.6
+      },
+      "L5>=4": {
+        "hits": 116,
+        "n": 211,
+        "hr": 55.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 20,
+        "n": 41,
+        "hr": 48.8
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "singles",
+      "open_n": 1379,
+      "open_hr": 54.5,
+      "open": {
+        "hits": 752,
+        "n": 1379,
+        "hr": 54.5
+      },
+      "L5>=4": {
+        "hits": 120,
+        "n": 221,
+        "hr": 54.3
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 31,
+        "n": 48,
+        "hr": 64.6
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "total_bases",
+      "open_n": 1000,
+      "open_hr": 53.0,
+      "open": {
+        "hits": 530,
+        "n": 1000,
+        "hr": 53.0
+      },
+      "L5>=4": {
+        "hits": 142,
+        "n": 251,
+        "hr": 56.6
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 25,
+        "n": 43,
+        "hr": 58.1
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "MLB",
+      "prop": "walks",
+      "open_n": 171,
+      "open_hr": 48.5,
+      "open": {
+        "hits": 83,
+        "n": 171,
+        "hr": 48.5
+      },
+      "L5>=4": {
+        "hits": 24,
+        "n": 59,
+        "hr": 40.7
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA",
+      "prop": "fantasy",
+      "open_n": 243,
+      "open_hr": 53.1,
+      "open": {
+        "hits": 129,
+        "n": 243,
+        "hr": 53.1
+      },
+      "L5>=4": {
+        "hits": 16,
+        "n": 42,
+        "hr": 38.1
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 12,
+        "n": 28,
+        "hr": 42.9
+      },
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA",
+      "prop": "fg2a",
+      "open_n": 91,
+      "open_hr": 65.9,
+      "open": {
+        "hits": 60,
+        "n": 91,
+        "hr": 65.9
+      },
+      "L5>=4": {
+        "hits": 35,
+        "n": 46,
+        "hr": 76.1
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 22,
+        "n": 27,
+        "hr": 81.5
+      },
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA",
+      "prop": "fga",
+      "open_n": 142,
+      "open_hr": 52.8,
+      "open": {
+        "hits": 75,
+        "n": 142,
+        "hr": 52.8
+      },
+      "L5>=4": {
+        "hits": 20,
+        "n": 40,
+        "hr": 50.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA",
+      "prop": "points",
+      "open_n": 148,
+      "open_hr": 55.4,
+      "open": {
+        "hits": 82,
+        "n": 148,
+        "hr": 55.4
+      },
+      "L5>=4": {
+        "hits": 26,
+        "n": 42,
+        "hr": 61.9
+      },
+      "L5>=4 + D": {
+        "hits": 13,
+        "n": 27,
+        "hr": 48.1
+      },
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NBA",
+      "prop": "pts+reb",
+      "open_n": 93,
+      "open_hr": 63.4,
+      "open": {
+        "hits": 59,
+        "n": 93,
+        "hr": 63.4
+      },
+      "L5>=4": {
+        "hits": 26,
+        "n": 47,
+        "hr": 55.3
+      },
+      "L5>=4 + D": {
+        "hits": 15,
+        "n": 28,
+        "hr": 53.6
+      },
+      "L5>=4 + cover": {
+        "hits": 18,
+        "n": 28,
+        "hr": 64.3
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": {
+        "hits": 16,
+        "n": 28,
+        "hr": 57.1
+      },
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "NHL",
+      "prop": "sog",
+      "open_n": 145,
+      "open_hr": 60.7,
+      "open": {
+        "hits": 88,
+        "n": 145,
+        "hr": 60.7
+      },
+      "L5>=4": {
+        "hits": 74,
+        "n": 124,
+        "hr": 59.7
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 65,
+        "n": 106,
+        "hr": 61.3
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "Soccer",
+      "prop": "saves",
+      "open_n": 207,
+      "open_hr": 57.5,
+      "open": {
+        "hits": 119,
+        "n": 207,
+        "hr": 57.5
+      },
+      "L5>=4": {
+        "hits": 51,
+        "n": 85,
+        "hr": 60.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 13,
+        "n": 24,
+        "hr": 54.2
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "Soccer",
+      "prop": "shots",
+      "open_n": 301,
+      "open_hr": 67.8,
+      "open": {
+        "hits": 204,
+        "n": 301,
+        "hr": 67.8
+      },
+      "L5>=4": {
+        "hits": 91,
+        "n": 122,
+        "hr": 74.6
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 39,
+        "n": 49,
+        "hr": 79.6
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "assists",
+      "open_n": 219,
+      "open_hr": 59.8,
+      "open": {
+        "hits": 131,
+        "n": 219,
+        "hr": 59.8
+      },
+      "L5>=4": {
+        "hits": 39,
+        "n": 60,
+        "hr": 65.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "fantasy",
+      "open_n": 412,
+      "open_hr": 51.0,
+      "open": {
+        "hits": 210,
+        "n": 412,
+        "hr": 51.0
+      },
+      "L5>=4": {
+        "hits": 68,
+        "n": 135,
+        "hr": 50.4
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 15,
+        "n": 28,
+        "hr": 53.6
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 6,
+        "n": 16,
+        "hr": 37.5
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "fg2a",
+      "open_n": 271,
+      "open_hr": 62.7,
+      "open": {
+        "hits": 170,
+        "n": 271,
+        "hr": 62.7
+      },
+      "L5>=4": {
+        "hits": 41,
+        "n": 68,
+        "hr": 60.3
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 17,
+        "n": 28,
+        "hr": 60.7
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "fg2m",
+      "open_n": 251,
+      "open_hr": 56.6,
+      "open": {
+        "hits": 142,
+        "n": 251,
+        "hr": 56.6
+      },
+      "L5>=4": {
+        "hits": 41,
+        "n": 80,
+        "hr": 51.2
+      },
+      "L5>=4 + D": {
+        "hits": 16,
+        "n": 27,
+        "hr": 59.3
+      },
+      "L5>=4 + cover": {
+        "hits": 23,
+        "n": 38,
+        "hr": 60.5
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "fga",
+      "open_n": 367,
+      "open_hr": 53.7,
+      "open": {
+        "hits": 197,
+        "n": 367,
+        "hr": 53.7
+      },
+      "L5>=4": {
+        "hits": 51,
+        "n": 89,
+        "hr": 57.3
+      },
+      "L5>=4 + D": {
+        "hits": 25,
+        "n": 42,
+        "hr": 59.5
+      },
+      "L5>=4 + cover": {
+        "hits": 17,
+        "n": 30,
+        "hr": 56.7
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "fgm",
+      "open_n": 333,
+      "open_hr": 52.3,
+      "open": {
+        "hits": 174,
+        "n": 333,
+        "hr": 52.3
+      },
+      "L5>=4": {
+        "hits": 36,
+        "n": 77,
+        "hr": 46.8
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": {
+        "hits": 22,
+        "n": 40,
+        "hr": 55.0
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "fta",
+      "open_n": 181,
+      "open_hr": 48.1,
+      "open": {
+        "hits": 87,
+        "n": 181,
+        "hr": 48.1
+      },
+      "L5>=4": {
+        "hits": 22,
+        "n": 40,
+        "hr": 55.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "ftm",
+      "open_n": 227,
+      "open_hr": 48.9,
+      "open": {
+        "hits": 111,
+        "n": 227,
+        "hr": 48.9
+      },
+      "L5>=4": {
+        "hits": 26,
+        "n": 45,
+        "hr": 57.8
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "points",
+      "open_n": 712,
+      "open_hr": 51.8,
+      "open": {
+        "hits": 369,
+        "n": 712,
+        "hr": 51.8
+      },
+      "L5>=4": {
+        "hits": 92,
+        "n": 171,
+        "hr": 53.8
+      },
+      "L5>=4 + D": {
+        "hits": 40,
+        "n": 64,
+        "hr": 62.5
+      },
+      "L5>=4 + cover": {
+        "hits": 34,
+        "n": 54,
+        "hr": 63.0
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 10,
+        "n": 22,
+        "hr": 45.5
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "points_combo",
+      "open_n": 589,
+      "open_hr": 51.6,
+      "open": {
+        "hits": 304,
+        "n": 589,
+        "hr": 51.6
+      },
+      "L5>=4": {
+        "hits": 53,
+        "n": 100,
+        "hr": 53.0
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "pra",
+      "open_n": 418,
+      "open_hr": 51.9,
+      "open": {
+        "hits": 217,
+        "n": 418,
+        "hr": 51.9
+      },
+      "L5>=4": {
+        "hits": 79,
+        "n": 146,
+        "hr": 54.1
+      },
+      "L5>=4 + D": {
+        "hits": 35,
+        "n": 59,
+        "hr": 59.3
+      },
+      "L5>=4 + cover": {
+        "hits": 37,
+        "n": 64,
+        "hr": 57.8
+      },
+      "L5>=4 + D + cover": {
+        "hits": 15,
+        "n": 25,
+        "hr": 60.0
+      },
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 6,
+        "n": 19,
+        "hr": 31.6
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "pts+ast",
+      "open_n": 287,
+      "open_hr": 53.3,
+      "open": {
+        "hits": 153,
+        "n": 287,
+        "hr": 53.3
+      },
+      "L5>=4": {
+        "hits": 69,
+        "n": 116,
+        "hr": 59.5
+      },
+      "L5>=4 + D": {
+        "hits": 34,
+        "n": 46,
+        "hr": 73.9
+      },
+      "L5>=4 + cover": {
+        "hits": 26,
+        "n": 42,
+        "hr": 61.9
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 13,
+        "n": 20,
+        "hr": 65.0
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "pts+reb",
+      "open_n": 439,
+      "open_hr": 51.9,
+      "open": {
+        "hits": 228,
+        "n": 439,
+        "hr": 51.9
+      },
+      "L5>=4": {
+        "hits": 67,
+        "n": 140,
+        "hr": 47.9
+      },
+      "L5>=4 + D": {
+        "hits": 28,
+        "n": 52,
+        "hr": 53.8
+      },
+      "L5>=4 + cover": {
+        "hits": 27,
+        "n": 51,
+        "hr": 52.9
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": {
+        "hits": 7,
+        "n": 17,
+        "hr": 41.2
+      },
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "reb+ast",
+      "open_n": 198,
+      "open_hr": 56.6,
+      "open": {
+        "hits": 112,
+        "n": 198,
+        "hr": 56.6
+      },
+      "L5>=4": {
+        "hits": 40,
+        "n": 72,
+        "hr": 55.6
+      },
+      "L5>=4 + D": {
+        "hits": 17,
+        "n": 29,
+        "hr": 58.6
+      },
+      "L5>=4 + cover": {
+        "hits": 12,
+        "n": 27,
+        "hr": 44.4
+      },
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "rebounds",
+      "open_n": 389,
+      "open_hr": 51.9,
+      "open": {
+        "hits": 202,
+        "n": 389,
+        "hr": 51.9
+      },
+      "L5>=4": {
+        "hits": 30,
+        "n": 61,
+        "hr": 49.2
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    },
+    {
+      "book": "Standard UNDER",
+      "sport": "WNBA",
+      "prop": "threes_att",
+      "open_n": 198,
+      "open_hr": 51.5,
+      "open": {
+        "hits": 102,
+        "n": 198,
+        "hr": 51.5
+      },
+      "L5>=4": {
+        "hits": 22,
+        "n": 42,
+        "hr": 52.4
+      },
+      "L5>=4 + D": null,
+      "L5>=4 + cover": null,
+      "L5>=4 + D + cover": null,
+      "L5>=4 + minutes HIGH": null,
+      "L5>=4 + top3": null,
+      "L5=5": null,
+      "L5=5 + D": null,
+      "L5=5 + cover": null,
+      "L5=5 + D + cover": null
+    }
+  ],
+  "rules": {
+    "books": "Goblin OVER only; Standard OVER; Standard UNDER. Demons dropped.",
+    "d": "Overs vs Weak|Below; Unders vs Elite|Above; Avg never aligns. MLB hitter_ks inverted.",
+    "cover": "Play-side last5 avg minus line, per-prop unit from prop_hit_tiers.cover_need.",
+    "n_floor": {
+      "single_all": 80,
+      "stack": 60,
+      "sport": 40,
+      "prop": 40
+    },
+    "missing": "Bottom-3 on team at the stat is not in the retrain join."
+  }
+}

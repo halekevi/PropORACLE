@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-08",
+  "generated_at": "2026-10-08T15:38:10-04:00",
+  "line_pulls": [],
+  "payout_scrapes": [
+    {
+      "window": "15:24",
+      "n_scrapes": 1,
+      "median_power_x": 1.4,
+      "min_power_x": 1.4,
+      "max_power_x": 1.4,
+      "first_captured_at": "2026-10-08T15:24:57-04:00",
+      "last_captured_at": "2026-10-08T15:24:57-04:00"
+    },
+    {
+      "window": "15:26",
+      "n_scrapes": 1,
+      "median_power_x": 1.6,
+      "min_power_x": 1.6,
+      "max_power_x": 1.6,
+      "first_captured_at": "2026-10-08T15:26:16-04:00",
+      "last_captured_at": "2026-10-08T15:26:16-04:00"
+    },
+    {
+      "window": "15:27",
+      "n_scrapes": 1,
+      "median_power_x": 1.8,
+      "min_power_x": 1.8,
+      "max_power_x": 1.8,
+      "first_captured_at": "2026-10-08T15:27:43-04:00",
+      "last_captured_at": "2026-10-08T15:27:43-04:00"
+    },
+    {
+      "window": "15:28",
+      "n_scrapes": 2,
+      "median_power_x": 2.0,
+      "min_power_x": 1.8,
+      "max_power_x": 2.0,
+      "first_captured_at": "2026-10-08T15:28:13-04:00",
+      "last_captured_at": "2026-10-08T15:28:44-04:00"
+    },
+    {
+      "window": "15:29",
+      "n_scrapes": 2,
+      "median_power_x": 1.9,
+      "min_power_x": 1.4,
+      "max_power_x": 1.9,
+      "first_captured_at": "2026-10-08T15:29:14-04:00",
+      "last_captured_at": "2026-10-08T15:29:46-04:00"
+    },
+    {
+      "window": "15:32",
+      "n_scrapes": 2,
+      "median_power_x": 1.8,
+      "min_power_x": 1.8,
+      "max_power_x": 1.8,
+      "first_captured_at": "2026-10-08T15:32:20-04:00",
+      "last_captured_at": "2026-10-08T15:32:51-04:00"
+    },
+    {
+      "window": "15:33",
+      "n_scrapes": 1,
+      "median_power_x": 2.0,
+      "min_power_x": 2.0,
+      "max_power_x": 2.0,
+      "first_captured_at": "2026-10-08T15:33:51-04:00",
+      "last_captured_at": "2026-10-08T15:33:51-04:00"
+    },
+    {
+      "window": "15:36",
+      "n_scrapes": 1,
+      "median_power_x": 1.6,
+      "min_power_x": 1.6,
+      "max_power_x": 1.6,
+      "first_captured_at": "2026-10-08T15:36:33-04:00",
+      "last_captured_at": "2026-10-08T15:36:33-04:00"
+    },
+    {
+      "window": "15:37",
+      "n_scrapes": 2,
+      "median_power_x": 1.8,
+      "min_power_x": 1.6,
+      "max_power_x": 1.8,
+      "first_captured_at": "2026-10-08T15:37:04-04:00",
+      "last_captured_at": "2026-10-08T15:37:36-04:00"
+    },
+    {
+      "window": "15:38",
+      "n_scrapes": 1,
+      "median_power_x": 1.8,
+      "min_power_x": 1.8,
+      "max_power_x": 1.8,
+      "first_captured_at": "2026-10-08T15:38:08-04:00",
+      "last_captured_at": "2026-10-08T15:38:08-04:00"
+    }
+  ],
+  "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
+}

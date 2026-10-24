@@ -1,0 +1,244 @@
+{
+  "seasons": [
+    2024,
+    2025,
+    2026
+  ],
+  "one_score_max": 8,
+  "overall": {
+    "n": 576,
+    "mean_margin": 11.24,
+    "median_margin": 7.0,
+    "pct_one_score": 54.0,
+    "pct_fg_or_less": 24.8,
+    "pct_blowout_14": 34.7,
+    "mean_total": 45.9
+  },
+  "divisional": {
+    "n": 202,
+    "mean_margin": 10.55,
+    "median_margin": 7.0,
+    "pct_one_score": 59.4,
+    "pct_fg_or_less": 31.7,
+    "pct_blowout_14": 31.7,
+    "mean_total": 45.3
+  },
+  "non_divisional": {
+    "n": 374,
+    "mean_margin": 11.61,
+    "median_margin": 8.0,
+    "pct_one_score": 51.1,
+    "pct_fg_or_less": 21.1,
+    "pct_blowout_14": 36.4,
+    "mean_total": 46.2
+  },
+  "conference_non_div": {
+    "n": 204,
+    "mean_margin": 11.73,
+    "median_margin": 8.0,
+    "pct_one_score": 51.5,
+    "pct_fg_or_less": 22.1,
+    "pct_blowout_14": 37.3,
+    "mean_total": 46.2
+  },
+  "interconference": {
+    "n": 170,
+    "mean_margin": 11.47,
+    "median_margin": 8.0,
+    "pct_one_score": 50.6,
+    "pct_fg_or_less": 20.0,
+    "pct_blowout_14": 35.3,
+    "mean_total": 46.1
+  },
+  "full_seasons": {
+    "divisional": {
+      "n": 192,
+      "mean_margin": 10.28,
+      "median_margin": 7.0,
+      "pct_one_score": 60.9,
+      "pct_fg_or_less": 32.8,
+      "pct_blowout_14": 30.2,
+      "mean_total": 45.5
+    },
+    "non_divisional": {
+      "n": 352,
+      "mean_margin": 11.66,
+      "median_margin": 8.0,
+      "pct_one_score": 51.1,
+      "pct_fg_or_less": 21.3,
+      "pct_blowout_14": 36.4,
+      "mean_total": 46.2
+    }
+  },
+  "by_season": {
+    "2024": {
+      "all": {
+        "n": 272,
+        "mean_margin": 11.2,
+        "median_margin": 7.0,
+        "pct_one_score": 55.9,
+        "pct_fg_or_less": 23.9,
+        "pct_blowout_14": 33.1,
+        "mean_total": 45.8
+      },
+      "divisional": {
+        "n": 96,
+        "mean_margin": 9.33,
+        "median_margin": 6.0,
+        "pct_one_score": 67.7,
+        "pct_fg_or_less": 35.4,
+        "pct_blowout_14": 22.9,
+        "mean_total": 47.2
+      },
+      "non_divisional": {
+        "n": 176,
+        "mean_margin": 12.22,
+        "median_margin": 9.0,
+        "pct_one_score": 49.4,
+        "pct_fg_or_less": 17.6,
+        "pct_blowout_14": 38.6,
+        "mean_total": 45.0
+      }
+    },
+    "2025": {
+      "all": {
+        "n": 272,
+        "mean_margin": 11.15,
+        "median_margin": 8.0,
+        "pct_one_score": 53.3,
+        "pct_fg_or_less": 26.8,
+        "pct_blowout_14": 35.3,
+        "mean_total": 46.0
+      },
+      "divisional": {
+        "n": 96,
+        "mean_margin": 11.23,
+        "median_margin": 7.0,
+        "pct_one_score": 54.2,
+        "pct_fg_or_less": 30.2,
+        "pct_blowout_14": 37.5,
+        "mean_total": 43.7
+      },
+      "non_divisional": {
+        "n": 176,
+        "mean_margin": 11.11,
+        "median_margin": 8.0,
+        "pct_one_score": 52.8,
+        "pct_fg_or_less": 25.0,
+        "pct_blowout_14": 34.1,
+        "mean_total": 47.3
+      }
+    },
+    "2026": {
+      "all": {
+        "n": 32,
+        "mean_margin": 12.38,
+        "median_margin": 12.0,
+        "pct_one_score": 43.8,
+        "pct_fg_or_less": 15.6,
+        "pct_blowout_14": 43.8,
+        "mean_total": 44.9
+      },
+      "divisional": {
+        "n": 10,
+        "mean_margin": 15.8,
+        "median_margin": 17.0,
+        "pct_one_score": 30.0,
+        "pct_fg_or_less": 10.0,
+        "pct_blowout_14": 60.0,
+        "mean_total": 41.4
+      },
+      "non_divisional": {
+        "n": 22,
+        "mean_margin": 10.82,
+        "median_margin": 8.5,
+        "pct_one_score": 50.0,
+        "pct_fg_or_less": 18.2,
+        "pct_blowout_14": 36.4,
+        "mean_total": 46.5
+      }
+    }
+  },
+  "by_division": {
+    "AFC East": {
+      "n": 24,
+      "mean_margin": 13.29,
+      "median_margin": 11.0,
+      "pct_one_score": 45.8,
+      "pct_fg_or_less": 20.8,
+      "pct_blowout_14": 41.7,
+      "mean_total": 46.5
+    },
+    "AFC North": {
+      "n": 24,
+      "mean_margin": 9.67,
+      "median_margin": 6.5,
+      "pct_one_score": 62.5,
+      "pct_fg_or_less": 33.3,
+      "pct_blowout_14": 33.3,
+      "mean_total": 45.7
+    },
+    "AFC South": {
+      "n": 24,
+      "mean_margin": 9.71,
+      "median_margin": 6.5,
+      "pct_one_score": 70.8,
+      "pct_fg_or_less": 29.2,
+      "pct_blowout_14": 25.0,
+      "mean_total": 45.5
+    },
+    "AFC West": {
+      "n": 26,
+      "mean_margin": 10.23,
+      "median_margin": 7.0,
+      "pct_one_score": 57.7,
+      "pct_fg_or_less": 30.8,
+      "pct_blowout_14": 26.9,
+      "mean_total": 37.9
+    },
+    "NFC East": {
+      "n": 27,
+      "mean_margin": 10.96,
+      "median_margin": 8.0,
+      "pct_one_score": 63.0,
+      "pct_fg_or_less": 18.5,
+      "pct_blowout_14": 33.3,
+      "mean_total": 48.1
+    },
+    "NFC North": {
+      "n": 26,
+      "mean_margin": 8.73,
+      "median_margin": 6.0,
+      "pct_one_score": 61.5,
+      "pct_fg_or_less": 46.2,
+      "pct_blowout_14": 26.9,
+      "mean_total": 45.2
+    },
+    "NFC South": {
+      "n": 25,
+      "mean_margin": 10.92,
+      "median_margin": 5.0,
+      "pct_one_score": 64.0,
+      "pct_fg_or_less": 44.0,
+      "pct_blowout_14": 32.0,
+      "mean_total": 47.4
+    },
+    "NFC West": {
+      "n": 26,
+      "mean_margin": 11.0,
+      "median_margin": 8.0,
+      "pct_one_score": 50.0,
+      "pct_fg_or_less": 30.8,
+      "pct_blowout_14": 34.6,
+      "mean_total": 46.2
+    }
+  },
+  "delta": {
+    "mean_margin_div_minus_nondiv": -1.38,
+    "one_score_pp_div_minus_nondiv": 9.8,
+    "tighter_if_negative_margin": true,
+    "sample": "full regular seasons (>=200 games)"
+  },
+  "note": "Regular season only. One-score = margin <= 8. Headline delta uses completed 17-game seasons. Negative mean-margin delta means division games finish closer.",
+  "rank_season": 2025
+}

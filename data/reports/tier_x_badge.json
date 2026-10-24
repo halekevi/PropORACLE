@@ -1,0 +1,306 @@
+{
+  "listed": {
+    "hits": 7010,
+    "n": 10686,
+    "rate": 65.6
+  },
+  "by_tier": {
+    "S": {
+      "hits": 1040,
+      "n": 1328,
+      "rate": 78.3
+    },
+    "A": {
+      "hits": 2784,
+      "n": 3818,
+      "rate": 72.9
+    },
+    "B": {
+      "hits": 599,
+      "n": 943,
+      "rate": 63.5
+    },
+    "C": {
+      "hits": 1494,
+      "n": 2454,
+      "rate": 60.9
+    },
+    "D": {
+      "hits": 917,
+      "n": 1722,
+      "rate": 53.3
+    },
+    "W": {
+      "hits": 176,
+      "n": 421,
+      "rate": 41.8
+    }
+  },
+  "by_promo": {
+    "Diamond": {
+      "hits": 1170,
+      "n": 1606,
+      "rate": 72.9
+    },
+    "Platinum": {
+      "hits": 390,
+      "n": 563,
+      "rate": 69.3
+    },
+    "Gold": {
+      "hits": 399,
+      "n": 597,
+      "rate": 66.8
+    },
+    "Silver": {
+      "hits": 1673,
+      "n": 2600,
+      "rate": 64.3
+    },
+    "Bronze": {
+      "hits": 2589,
+      "n": 3895,
+      "rate": 66.5
+    },
+    "none": {
+      "hits": 789,
+      "n": 1425,
+      "rate": 55.4
+    }
+  },
+  "cross": {
+    "S": {
+      "all": {
+        "hits": 1040,
+        "n": 1328,
+        "rate": 78.3
+      },
+      "Diamond": {
+        "hits": 215,
+        "n": 266,
+        "rate": 80.8
+      },
+      "Platinum": {
+        "hits": 59,
+        "n": 68,
+        "rate": 86.8
+      },
+      "Gold": {
+        "hits": 75,
+        "n": 100,
+        "rate": 75.0
+      },
+      "Silver": {
+        "hits": 211,
+        "n": 263,
+        "rate": 80.2
+      },
+      "Bronze": {
+        "hits": 418,
+        "n": 546,
+        "rate": 76.6
+      },
+      "none": {
+        "hits": 62,
+        "n": 85,
+        "rate": 72.9
+      }
+    },
+    "A": {
+      "all": {
+        "hits": 2784,
+        "n": 3818,
+        "rate": 72.9
+      },
+      "Diamond": {
+        "hits": 679,
+        "n": 908,
+        "rate": 74.8
+      },
+      "Platinum": {
+        "hits": 238,
+        "n": 337,
+        "rate": 70.6
+      },
+      "Gold": {
+        "hits": 196,
+        "n": 275,
+        "rate": 71.3
+      },
+      "Silver": {
+        "hits": 787,
+        "n": 1078,
+        "rate": 73.0
+      },
+      "Bronze": {
+        "hits": 777,
+        "n": 1049,
+        "rate": 74.1
+      },
+      "none": {
+        "hits": 107,
+        "n": 171,
+        "rate": 62.6
+      }
+    },
+    "B": {
+      "all": {
+        "hits": 599,
+        "n": 943,
+        "rate": 63.5
+      },
+      "Diamond": {
+        "hits": 4,
+        "n": 7,
+        "rate": 57.1
+      },
+      "Platinum": {
+        "hits": 5,
+        "n": 9,
+        "rate": 55.6
+      },
+      "Silver": {
+        "hits": 126,
+        "n": 218,
+        "rate": 57.8
+      },
+      "Bronze": {
+        "hits": 430,
+        "n": 650,
+        "rate": 66.2
+      },
+      "none": {
+        "hits": 34,
+        "n": 59,
+        "rate": 57.6
+      }
+    },
+    "C": {
+      "all": {
+        "hits": 1494,
+        "n": 2454,
+        "rate": 60.9
+      },
+      "Diamond": {
+        "hits": 218,
+        "n": 325,
+        "rate": 67.1
+      },
+      "Platinum": {
+        "hits": 54,
+        "n": 81,
+        "rate": 66.7
+      },
+      "Gold": {
+        "hits": 91,
+        "n": 145,
+        "rate": 62.8
+      },
+      "Silver": {
+        "hits": 314,
+        "n": 533,
+        "rate": 58.9
+      },
+      "Bronze": {
+        "hits": 621,
+        "n": 1020,
+        "rate": 60.9
+      },
+      "none": {
+        "hits": 196,
+        "n": 350,
+        "rate": 56.0
+      }
+    },
+    "D": {
+      "all": {
+        "hits": 917,
+        "n": 1722,
+        "rate": 53.3
+      },
+      "Diamond": {
+        "hits": 40,
+        "n": 81,
+        "rate": 49.4
+      },
+      "Platinum": {
+        "hits": 25,
+        "n": 51,
+        "rate": 49.0
+      },
+      "Gold": {
+        "hits": 30,
+        "n": 63,
+        "rate": 47.6
+      },
+      "Silver": {
+        "hits": 182,
+        "n": 350,
+        "rate": 52.0
+      },
+      "Bronze": {
+        "hits": 293,
+        "n": 517,
+        "rate": 56.7
+      },
+      "none": {
+        "hits": 347,
+        "n": 660,
+        "rate": 52.6
+      }
+    },
+    "W": {
+      "all": {
+        "hits": 176,
+        "n": 421,
+        "rate": 41.8
+      },
+      "Diamond": {
+        "hits": 14,
+        "n": 19,
+        "rate": 73.7
+      },
+      "Platinum": {
+        "hits": 9,
+        "n": 17,
+        "rate": 52.9
+      },
+      "Gold": {
+        "hits": 7,
+        "n": 14,
+        "rate": 50.0
+      },
+      "Silver": {
+        "hits": 53,
+        "n": 158,
+        "rate": 33.5
+      },
+      "Bronze": {
+        "hits": 50,
+        "n": 113,
+        "rate": 44.2
+      },
+      "none": {
+        "hits": 43,
+        "n": 100,
+        "rate": 43.0
+      }
+    }
+  },
+  "S_plus_A": {
+    "hits": 3824,
+    "n": 5146,
+    "rate": 74.3
+  },
+  "S_plus_A_Gold_up": {
+    "hits": 1462,
+    "n": 1954,
+    "rate": 74.8
+  },
+  "promoted": {
+    "hits": 748,
+    "n": 1060,
+    "rate": 70.6
+  },
+  "promoted_by_reason": {}
+}

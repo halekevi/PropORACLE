@@ -1,0 +1,42 @@
+{
+  "built_at": "2026-10-24T02:53:45.722396+00:00",
+  "season": 2026,
+  "week": null,
+  "current_md": "Sports/NFL/data/nfl_od_rankings_current.md",
+  "archive_md": null,
+  "pairing_source": null,
+  "sources": {
+    "nfl_team_unit_ranks.csv": {
+      "mtime": "2026-10-24T02:53:44.471192+00:00",
+      "season": 2025,
+      "n": 32
+    },
+    "defense_rankings.csv": {
+      "mtime": "2026-10-24T02:53:17.074397+00:00",
+      "season": 2026,
+      "n": 32
+    },
+    "nfl_ol_ranks.csv": {
+      "mtime": "2026-09-22T21:14:38.230368+00:00",
+      "season": 2026,
+      "n": 32
+    },
+    "nfl_dl_ranks.csv": {
+      "mtime": "2026-09-22T21:14:38.233217+00:00",
+      "season": 2026,
+      "n": 32
+    },
+    "nfl_secondary_ranks.csv": {
+      "mtime": "2026-09-22T21:14:38.234732+00:00",
+      "season": 2026,
+      "n": 32
+    },
+    "nfl_box_ranks.csv": {
+      "mtime": "2026-09-22T21:14:38.237402+00:00",
+      "season": 2026,
+      "n": 32
+    }
+  },
+  "canonical": "nfl_od_rankings_current.md",
+  "note": "Prefer nfl_od_rankings_current.md over sealed weekN archives for live tickets."
+}

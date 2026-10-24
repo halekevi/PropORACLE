@@ -85,6 +85,7 @@ class SlipGrade:
     leg_decided: int = 0
     leg_void: int = 0
     leg_total: int = 0
+    same_game_pair: bool = False
 
 
 def _parse_date(s: str) -> date_cls:
@@ -273,6 +274,15 @@ def grade_slip(
         or f"{date_str}|{track}|{slip.get('ticket_no') or slip.get('web_group_name') or 'slip'}"
     )
 
+    same_game_pair = bool(slip.get("same_game_pair"))
+    if not same_game_pair:
+        try:
+            from utils.slip_correlation import has_same_game_pair
+
+            same_game_pair = has_same_game_pair(legs)
+        except Exception:
+            same_game_pair = False
+
     return SlipGrade(
         date=date_str,
         track=track,
@@ -294,6 +304,7 @@ def grade_slip(
         leg_decided=leg_decided,
         leg_void=missing_rows,
         leg_total=n_legs,
+        same_game_pair=same_game_pair,
     )
 
 
@@ -524,6 +535,14 @@ def build_slice_rows(slips: list[SlipGrade]) -> list[dict]:
             slips,
             "by_post_gate",
             lambda s: "post_gate" if s.post_gate_flag else "pre_gate",
+        )
+    )
+    # Flag-only until both sides clear 100 graded slips (utils.slip_correlation).
+    rows.extend(
+        _agg_rows(
+            slips,
+            "by_same_game_pair",
+            lambda s: "same_game_pair" if s.same_game_pair else "no_same_game_pair",
         )
     )
 

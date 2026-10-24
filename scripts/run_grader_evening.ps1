@@ -1,23 +1,24 @@
 #requires -Version 5.1
 <#
-  Overnight grader (1AM) via Register_Daily_Task.ps1.
+  Overnight grader at 3AM (Register_Daily_Task.ps1 → "PropOracle - Grader 3AM").
 
-  Evening grader wrapper:
-    - Prefer main worktree (Railway publishes from origin/main)
-    - Ensure-CleanPull (same stash/repair as 5AM/3AM)
-    - STEP A1 historical actuals refresh (so 5AM can skip it)
-    - Transcript under logs/task_grader_*.log
-    - run_grader.ps1 for yesterday's slate date
+  Split from Daily 1AM so the all-sport fetch does not share RAM/CPU with A1 + grader.
+  1AM: update fetch of last night's slate + live payout CDP + publish (skips grader/A1).
+  9PM: initial scrape + live publish for tomorrow.
+  3AM: historical actuals (A1) + grader for yesterday.
 
-  Single overnight grader at 1AM only, then Tennis Early 3AM (fetch only),
-  then Daily 5AM (pipeline/publish; skips grader + A1 when overnight outputs/stamp exist).
+  - Prefer main worktree (Railway publishes from origin/main)
+  - Ensure-CleanPull
+  - STEP A1 historical actuals refresh
+  - Transcript under logs/task_grader_*.log
+  - run_grader.ps1 for yesterday's slate date
 #>
 param(
-    [int]$A1TimeoutMinutes = 30
+    [int]$A1TimeoutMinutes = 90
 )
 
 $ErrorActionPreference = "Continue"
-try { $Host.UI.RawUI.WindowTitle = "PropOracle - Evening Grader" } catch { }
+try { $Host.UI.RawUI.WindowTitle = "PropOracle - Grader 3AM" } catch { }
 $Root = Split-Path $PSScriptRoot -Parent
 $Grader = Join-Path $Root "scripts\run_grader.ps1"
 
@@ -97,7 +98,7 @@ else {
 $gradeDate = (Get-Date).AddDays(-1).ToString("yyyy-MM-dd")
 $stampDay = (Get-Date).ToString("yyyy-MM-dd")
 
-# A1 historical actuals — owned overnight so 5AM daily stays on critical path.
+# A1 historical actuals — owned at 3AM so Daily 1AM stays on the fetch critical path.
 $fetchScript = Join-Path $Root "scripts\fetch_historical_actuals.py"
 $a1StampPath = Join-Path $Root "data\cache\historical_actuals_ok_$stampDay.flag"
 if (Test-Path -LiteralPath $fetchScript) {
@@ -147,6 +148,18 @@ if ($graderExit -ne 0) {
     Write-Host "[EVENING GRADER] run_grader failed (exit $graderExit)" -ForegroundColor Red
     try { Stop-Transcript | Out-Null } catch { }
     exit $graderExit
+}
+
+Write-Host "[EVENING GRADER] Compare pp_result to our grades" -ForegroundColor Cyan
+py -3.14 (Join-Path $PSScriptRoot "compare_pp_result_nightly.py")
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[EVENING GRADER] pp_result compare wrote a FAIL line (exit $LASTEXITCODE)" -ForegroundColor Yellow
+}
+
+Write-Host "[EVENING GRADER] Refresh NFL and CFB box caches (no slate required)" -ForegroundColor Cyan
+py -3.14 (Join-Path $PSScriptRoot "refresh_football_box_cache.py") --days 21
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[EVENING GRADER] football box refresh failed (exit $LASTEXITCODE)" -ForegroundColor Yellow
 }
 
 Write-Host "[EVENING GRADER] Complete" -ForegroundColor Green

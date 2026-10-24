@@ -1,0 +1,510 @@
+{
+  "espn_games": 67,
+  "espn_player_rows": 1991,
+  "missing_games_before": [
+    "401898406",
+    "401898407",
+    "401898408",
+    "401898409",
+    "401898719",
+    "401898843",
+    "401901822",
+    "401906509",
+    "401908622",
+    "401908943",
+    "401908945",
+    "401908946",
+    "401908948",
+    "401914126"
+  ],
+  "still_missing_games": [],
+  "n_missing_players": 405,
+  "n_conflicts": 1586,
+  "n_upserted": 1991,
+  "sports_sync_rows": 1991,
+  "spot_check": {
+    "match": 8,
+    "n": 8,
+    "rate": 100.0
+  },
+  "no_preseason_board_players": [
+    "Ajay Mitchell + DeMar DeRozan",
+    "Anfernee Simons",
+    "Chet Holmgren",
+    "Chet Holmgren + DeMar DeRozan",
+    "Isaiah Hartenstein + Jamal Murray",
+    "Jalen Williams + DeMar DeRozan",
+    "Jalen Williams + Jamal Murray",
+    "Jared McCain + Nikola Joki\u0107",
+    "Jaylen Brown + Donovan Mitchell",
+    "Jaylen Brown + James Harden",
+    "Joel Embiid + Donovan Mitchell",
+    "Joel Embiid + Evan Mobley",
+    "Joel Embiid + James Harden",
+    "Joel Embiid + Jarrett Allen",
+    "LeBron James + Donovan Mitchell",
+    "LeBron James + Evan Mobley",
+    "LeBron James + James Harden",
+    "LeBron James + Jarrett Allen",
+    "Marvin Bagley",
+    "Nikola Joki\u0107",
+    "Shai Gilgeous-Alexander + Jamal Murray",
+    "Shai Gilgeous-Alexander + Nikola Joki\u0107",
+    "Spencer Jones",
+    "Tyrese Maxey + Donovan Mitchell",
+    "Tyrese Maxey + Evan Mobley",
+    "Tyrese Maxey + James Harden"
+  ],
+  "conflicts_sample": [
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Cedric Coward",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Cameron Boozer",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Jaylen Wells",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Quinten Post",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Ty Jerome",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Jerami Grant",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Kris Murray",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Olivier-Maxence Prosper",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Taylor Hendricks",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "GG Jackson",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Karim Lopez",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Isaiah Stewart",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Carson Cooper",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Scotty Pippen Jr.",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Cam Spencer",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Jahmai Mashack",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Javon Small",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Walter Clayton Jr.",
+      "team": "MEM",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Onyeka Okongwu",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Jalen Johnson",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Nickeil Alexander-Walker",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Dyson Daniels",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Kingston Flemings",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Dorian Finney-Smith",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Corey Kispert",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Jalen Wilson",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Cameron Corhen",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Asa Newell",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Zuby Ejiofor",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Jock Landale",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Aaron Wiggins",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "RayJ Dennis",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Keshon Gilbert",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898388",
+      "date": "2026-10-05",
+      "player": "Kobe Johnson",
+      "team": "ATL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Kevon Looney",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Ziaire Williams",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Matisse Thybulle",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Luka Doncic",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Quentin Grimes",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->1"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Jarred Vanderbilt",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Sandro Mamukelashvili",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Jake LaRavia",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Dalton Knecht",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Adou Thiero",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "William Kyle III",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Bronny James",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Chris Manon",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Jaden Hardy",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Cameron Carr",
+      "team": "LAL",
+      "diffs": [
+        "starter:None->0"
+      ]
+    },
+    {
+      "event_id": "401898716",
+      "date": "2026-10-05",
+      "player": "Domantas Sabonis",
+      "team": "SAC",
+      "diffs": [
+        "starter:None->1"
+      ]
+    }
+  ]
+}

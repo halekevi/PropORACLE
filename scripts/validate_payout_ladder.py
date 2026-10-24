@@ -69,9 +69,63 @@ _SIMPLE_PROPS = {
     "hits allowed",
     "walks allowed",
     "pitching outs",
+    "total games",
+    "total games won",
+    "aces",
+    "double faults",
+    "total sets",
 }
 
+# CDP click reliability (lower rank is better). Pitcher K / pitch-count Goblins
+# live behind More and are the main mix×Δ capture misses on MLB.
+_CLICK_EASY_PROPS = {
+    "hits",
+    "total bases",
+    "tb",
+    "points",
+    "assists",
+    "rebounds",
+    "total games",
+    "total games won",
+    "aces",
+    "double faults",
+    "total sets",
+    "3-pt made",
+    "3ptm",
+}
+_CLICK_OK_PROPS = {
+    "hits+runs+rbis",
+    "hits-runs-rbis",
+    "hits runs rbis",
+}
+_CLICK_HARD_PROPS = {
+    "pitcher strikeouts",
+    "ks",
+    "pitches thrown",
+    "pitching outs",
+    "walks allowed",
+    "hits allowed",
+    "earned runs allowed",
+    "hitter strikeouts",
+    "hitter ks",
+}
+
+
+def click_prop_rank(prop: object) -> float:
+    """Lower is easier for CDP. Hard props are used only when that Δ bin has nothing else."""
+    p = str(prop or "").strip().lower()
+    if p in _CLICK_EASY_PROPS:
+        return 0.0
+    if p in _CLICK_OK_PROPS:
+        return 1.0
+    if p in _CLICK_HARD_PROPS:
+        return 6.0
+    if p in _SIMPLE_PROPS:
+        return 2.0
+    return 3.0
+
 # Fantasy / abbreviated props often fail CDP tab switch + lookup during discover.
+# Break Points Won / Total Tie Breaks were often missing on the live tennis grid.
 _DISCOVER_BLOCKED_PROPS = {
     "hitter fs",
     "hitter fantasy score",
@@ -80,6 +134,8 @@ _DISCOVER_BLOCKED_PROPS = {
     "fantasy score",
     "fantasy pts",
     "fantasy points",
+    "break points won",
+    "total tie breaks",
 }
 
 # PrizePicks sometimes shows "Starting" / TBA placeholders before names resolve.
@@ -605,10 +661,8 @@ def build_discovery_recipes_from_board(
         return True
 
     def _prop_pref(c: dict) -> tuple:
-        prop = str(c.get("prop_type") or "").lower()
-        simple = 0 if prop in _SIMPLE_PROPS else 1
         dist = _card_distance(c) or 99.0
-        return (simple, dist, str(c.get("player") or ""))
+        return (click_prop_rank(c.get("prop_type")), dist, str(c.get("player") or ""))
 
     g_pool = sorted([c for c in goblins if _ok_card(c)], key=_prop_pref)
     s_pool = sorted([c for c in standard if _ok_card(c)], key=_prop_pref)
@@ -978,14 +1032,10 @@ def _pick_cards_for_recipe(
 
     def _prop_rank(c: dict) -> float:
         prop = str(c.get("prop_type") or "").lower()
-        if prop in ("points", "assists", "rebounds", "hits+runs+rbis", "total bases", "tb", "pitcher strikeouts", "ks"):
-            return 0.0
         # PRA / combo props often fail CDP tab bind during force-alt clicks.
         if prop in ("pra", "pts+rebs+asts", "pts+reb+ast", "pts+rebs", "rebs+asts"):
-            return 4.0
-        if "+" in prop or "pts" in prop:
-            return 2.0
-        return 1.0
+            return 8.0
+        return click_prop_rank(prop)
 
     def _std_alt_pool(want_delta: float | None = None) -> list[dict]:
         # Prefer Standards that already have a cataloged Goblin at the target Δ.
@@ -2303,7 +2353,7 @@ def main() -> int:
             return sorted(
                 cards,
                 key=lambda c: (
-                    0 if str(c.get("prop_type") or "").lower() in _SIMPLE_PROPS else 1,
+                    click_prop_rank(c.get("prop_type")),
                     0 if _card_distance(c) is not None else 1,
                     _card_distance(c) or 99,
                     str(c.get("player") or ""),

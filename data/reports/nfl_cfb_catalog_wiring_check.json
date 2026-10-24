@@ -1,0 +1,42 @@
+{
+  "checked": "2026-09-18",
+  "question_1_catalog_scope": {
+    "verdict": "Catalog aggregates whatever graded_props contains — no prop allowlist.",
+    "builder": "scripts/all_ranked_prop_hit_rates.py",
+    "filters_only": ["fantasy props", "grading_suspect rows"],
+    "evidence": {
+      "NFL": "5 graded dates, 51 unique props including sacks, fantasy_score, tackles_ast, fg_made, player_touchdowns_combo",
+      "CFB": "3 graded dates, 23 unique props including FG Made, PAT Made, Pass Completions, INT, Rush/Rec/Pass Yards (Combo)",
+      "note": "Thin date coverage, not filter scope. Sep-12 zero Fantasy/Sacks/Tackles was board-that-day, not pipeline."
+    }
+  },
+  "question_2_nfl_prop_type_map": {
+    "verdict": "Normalize-only. Unmapped labels snake_case-fallback and still reach step5.",
+    "map_entries": 25,
+    "unique_norms": 15,
+    "proof": "step5_nfl_with_stats.csv contains fg_made, pat_made, player_touchdowns, fg_made_combo — none of which are in NFL_PROP_TYPE_MAP keys/values."
+  },
+  "combo_build": {
+    "grading": {
+      "CFB": "Already mostly works via slate_grader arm-sum (Sep graded_props: HIT 20 / MISS 12 / VOID 3).",
+      "NFL": "graded_props: HIT 42 / MISS 62 / VOID 21 on combo family (not 90-100% unwired)."
+    },
+    "pipeline_l5_gap": "step5b looked up collapsed player_norm for A+B → NO_BOX_HISTORY on all 21 CFB combo rows Sep 12; NFL fg_made_combo L5=0.",
+    "fix": "2026-09-18: step5b multi-player arm-sum L5 (reuse utils.combo_actuals split/strip; pair newest-first series by index). NFL inherits via step5 wrapper.",
+    "reality_smoke_cfb_2026-09-12": {
+      "before": "21/21 combo rows NO_BOX_HISTORY (collapsed player_norm lookup)",
+      "after_vs_cache": "16/21 resolve with L5>=5; 5 miss from thin/missing arm tape (not name collapse)",
+      "examples_fixed": [
+        "KJ Duff + Javarius Green Rec Yards — was NO_BOX_HISTORY → L5 avg 131.4",
+        "Antwan Raymond + Evan Dickens Rush Yards — was NO_BOX_HISTORY → L5 avg 314.2"
+      ]
+    },
+    "reality_smoke_nfl_step5_disk": {
+      "source": "Sports/NFL/data/outputs/step5_nfl_with_stats.csv + nfl_boxscore_cache.csv",
+      "before": "2/2 fg_made_combo rows l5_over=NaN (same collapsed-name failure)",
+      "after_vs_cache": "2/2 resolved — Andre Szmyt+Andy Borregales L5 avg 2.6 (n=16); Harrison Mevis+Cameron Dicker L5 avg 3.6 (n=12)",
+      "fg_made_combo_strip": "fg_made_combo → base fg_made → KICK_FG; covered by generic strip, no special case",
+      "report": "data/reports/nfl_combo_l5_before_after.json"
+    }
+  }
+}

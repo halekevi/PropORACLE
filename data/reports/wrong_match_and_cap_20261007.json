@@ -1,0 +1,297 @@
+{
+  "wrong_match": {
+    "checked": 2768,
+    "agree": 1852,
+    "wrong": 916,
+    "no_board": 1774,
+    "no_espn": 0,
+    "no_attach": 0,
+    "samples": [
+      {
+        "day": "2026-08-23",
+        "player": "Dhakshineswar Suresh",
+        "board_opp": "MARCOS GIRON",
+        "attached_opp": "Abdullah Shelbayh",
+        "gw": 12.0,
+        "mtg": 27.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Abdullah Shelbayh",
+        "board_opp": "MARTIN DAMM JR",
+        "attached_opp": "Dhakshineswar Suresh",
+        "gw": 15.0,
+        "mtg": 27.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Sebastian Gorzny",
+        "board_opp": "CRUZ HEWITT",
+        "attached_opp": "Felix Balshaw",
+        "gw": 13.0,
+        "mtg": 29.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Felix Balshaw",
+        "board_opp": "ALEKSANDAR KOVACEVIC",
+        "attached_opp": "Sebastian Gorzny",
+        "gw": 16.0,
+        "mtg": 29.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Mees Rottgering",
+        "board_opp": "JAN CHOINSKI",
+        "attached_opp": "Hugo Grenier",
+        "gw": 12.0,
+        "mtg": 17.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Quinn Vandecasteele",
+        "board_opp": "JAMES DUCKWORTH",
+        "attached_opp": "Pierre-Hugues Herbert",
+        "gw": 17.0,
+        "mtg": 34.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Jenson Brooksby",
+        "board_opp": "STEFANOS TSITSIPAS",
+        "attached_opp": "Giovanni Mpetshi Perricard",
+        "gw": 12.0,
+        "mtg": 17.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Francisco Comesana",
+        "board_opp": "DANIEL ALTMAIER",
+        "attached_opp": "Wu Yibing",
+        "gw": 12.0,
+        "mtg": 19.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Ariana Arseneault",
+        "board_opp": "TEREZA VALENTOVA",
+        "attached_opp": "Alexandra Osborne",
+        "gw": 13.0,
+        "mtg": 21.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Jaeda Daniel",
+        "board_opp": "KYLIE COLLINS",
+        "attached_opp": "Dang Yiming",
+        "gw": 12.0,
+        "mtg": 17.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Ekaterina Ovcharenko",
+        "board_opp": "KAITLIN QUEVEDO",
+        "attached_opp": "Esha Velaga",
+        "gw": 12.0,
+        "mtg": 18.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Capucine Jauffret",
+        "board_opp": "LOIS BOISSON",
+        "attached_opp": "Ella Seidel",
+        "gw": 8.0,
+        "mtg": 21.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-23",
+        "player": "Ella Seidel",
+        "board_opp": "JESSICA BOUZAS MANEIRO",
+        "attached_opp": "Capucine Jauffret",
+        "gw": 13.0,
+        "mtg": 21.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-24",
+        "player": "Rinky Hijikata",
+        "board_opp": "RAPHAEL COLLIGNON",
+        "attached_opp": "Darwin Blanch",
+        "gw": 13.0,
+        "mtg": 23.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-24",
+        "player": "Lorenzo Sonego",
+        "board_opp": "VIT KOPRIVA",
+        "attached_opp": "Pierre-Hugues Herbert",
+        "gw": 17.0,
+        "mtg": 32.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-24",
+        "player": "Hugo Grenier",
+        "board_opp": "SEBASTIAN BAEZ",
+        "attached_opp": "Roman Safiullin",
+        "gw": 17.0,
+        "mtg": 32.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-24",
+        "player": "Roman Safiullin",
+        "board_opp": "UNKNOWN_OPP",
+        "attached_opp": "Hugo Grenier",
+        "gw": 15.0,
+        "mtg": 32.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-24",
+        "player": "Juan Carlos Prado Angelo",
+        "board_opp": "UNKNOWN_OPP",
+        "attached_opp": "Tomas Barrios Vera",
+        "gw": 9.0,
+        "mtg": 26.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-24",
+        "player": "Gustavo Heide",
+        "board_opp": "UNKNOWN_OPP",
+        "attached_opp": "Joel Josef Schwaerzler",
+        "gw": 14.0,
+        "mtg": 28.0,
+        "status": "STATUS_FINAL"
+      },
+      {
+        "day": "2026-08-24",
+        "player": "August Holmgren",
+        "board_opp": "UNKNOWN_OPP",
+        "attached_opp": "Andrea Guerrieri",
+        "gw": 12.0,
+        "mtg": 30.0,
+        "status": "STATUS_FINAL"
+      }
+    ]
+  },
+  "cap_effect": {
+    "per_day": [
+      {
+        "date": "2026-08-26",
+        "old": 0,
+        "new": 0,
+        "old_gw_slips": 0,
+        "new_gw_slips": 0,
+        "drop": 0,
+        "drop_gw_slips": 0,
+        "pool": 33,
+        "gw_legs_in_pool": 1
+      },
+      {
+        "date": "2026-08-28",
+        "old": 0,
+        "new": 0,
+        "old_gw_slips": 0,
+        "new_gw_slips": 0,
+        "drop": 0,
+        "drop_gw_slips": 0,
+        "pool": 46,
+        "gw_legs_in_pool": 0
+      },
+      {
+        "date": "2026-08-30",
+        "old": 0,
+        "new": 0,
+        "old_gw_slips": 0,
+        "new_gw_slips": 0,
+        "drop": 0,
+        "drop_gw_slips": 0,
+        "pool": 59,
+        "gw_legs_in_pool": 15
+      },
+      {
+        "date": "2026-08-31",
+        "old": 0,
+        "new": 0,
+        "old_gw_slips": 0,
+        "new_gw_slips": 0,
+        "drop": 0,
+        "drop_gw_slips": 0,
+        "pool": 59,
+        "gw_legs_in_pool": 13
+      },
+      {
+        "date": "2026-09-06",
+        "old": 0,
+        "new": 0,
+        "old_gw_slips": 0,
+        "new_gw_slips": 0,
+        "drop": 0,
+        "drop_gw_slips": 0,
+        "pool": 31,
+        "gw_legs_in_pool": 5
+      },
+      {
+        "date": "2026-09-07",
+        "old": 0,
+        "new": 0,
+        "old_gw_slips": 0,
+        "new_gw_slips": 0,
+        "drop": 0,
+        "drop_gw_slips": 0,
+        "pool": 25,
+        "gw_legs_in_pool": 2
+      },
+      {
+        "date": "2026-09-08",
+        "old": 0,
+        "new": 0,
+        "old_gw_slips": 0,
+        "new_gw_slips": 0,
+        "drop": 0,
+        "drop_gw_slips": 0,
+        "pool": 27,
+        "gw_legs_in_pool": 0
+      },
+      {
+        "date": "2026-09-17",
+        "old": 0,
+        "new": 0,
+        "old_gw_slips": 0,
+        "new_gw_slips": 0,
+        "drop": 0,
+        "drop_gw_slips": 0,
+        "pool": 17,
+        "gw_legs_in_pool": 0
+      },
+      {
+        "date": "2026-09-20",
+        "old": 0,
+        "new": 0,
+        "old_gw_slips": 0,
+        "new_gw_slips": 0,
+        "drop": 0,
+        "drop_gw_slips": 0,
+        "pool": 33,
+        "gw_legs_in_pool": 1
+      }
+    ],
+    "old": 0,
+    "new": 0
+  }
+}

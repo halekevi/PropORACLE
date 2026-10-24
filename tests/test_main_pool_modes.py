@@ -50,9 +50,9 @@ def _base_leg(
         "rank_score": 80,
         "tier": tier,
         "l5_over": 5.0,
-        "l5_under": 4.0,
+        "l5_under": 5.0,
         "l10_over": 8.0,
-        "l10_under": 7.0,
+        "l10_under": 8.0,
         "l10_over_pct": 0.80,
         "l10_under_pct": 0.70,
         "consistency_grade": "A",
@@ -72,7 +72,9 @@ def test_standard_under_passes_without_elite_stack():
     row["def_tier"] = ""
     row["strat_hit_rate"] = 0.50
     row["strat_n"] = 5
-    row["l5_under"] = 2.0
+    row["l5_under"] = 5.0
+    row["l10_under"] = 8.0
+    row["l10_over"] = 2.0
     assert _row_win_rate_eligible(
         row, min_leg_prob=0.62, min_composite_hr=0.55, qualify_standard=True
     )
@@ -92,8 +94,8 @@ def test_standard_over_requires_elite_gate():
     )
 
 
-def test_soccer_standard_over_banned_under_allowed():
-    """Soccer Shots OVER is hard-gated on Standard; UNDER stays allowed."""
+def test_soccer_standard_over_and_under_allowed():
+    """Soccer no longer has a sport-wide UNDER/HQ OVER gate."""
     over = {
         "sport": "SOCCER",
         "pick_type": "Standard",
@@ -114,7 +116,7 @@ def test_soccer_standard_over_banned_under_allowed():
         "leg_prob": 0.70,
         "ml_prob": 0.70,
     }
-    assert soccer_allowed_leg(over) is False
+    assert soccer_allowed_leg(over) is True
     assert soccer_allowed_leg(under) is True
 
 
@@ -160,7 +162,7 @@ def test_standard_prop_gates_not_sport_wide():
 
 
 def test_standard_prop_gate_clears_on_perfect_l5():
-    """Basketball/Soccer clear at L5>=4; NFL/… at L5=5; MLB never clears via L5."""
+    """WNBA L5=5; NBA/CBB/Soccer L5>=4; NFL/CFB L5=5; MLB never via L5."""
     from combined_slate_tickets import (
         _leg_mlb_std_over_perfect_l5_avoid,
         _leg_standard_prop_direction_gated,
@@ -176,8 +178,8 @@ def test_standard_prop_gate_clears_on_perfect_l5():
         "l5_under": 2,
     }
     assert _leg_standard_prop_direction_gated(pra)
-    # L5>=4 clears basketball-family Standard gates.
-    assert not _leg_standard_prop_direction_gated({**pra, "l5_over": 4, "l5_under": 1})
+    # WNBA Standard ledger-clear is L5=5 (L5=4 stays gated).
+    assert _leg_standard_prop_direction_gated({**pra, "l5_over": 4, "l5_under": 1})
     assert not _leg_standard_prop_direction_gated({**pra, "l5_over": 5, "l5_under": 0})
 
     pr = {
@@ -189,7 +191,8 @@ def test_standard_prop_gate_clears_on_perfect_l5():
         "l5_under": 2,
     }
     assert _leg_standard_prop_direction_gated(pr)
-    assert not _leg_standard_prop_direction_gated({**pr, "l5_over": 4.0})
+    assert _leg_standard_prop_direction_gated({**pr, "l5_over": 4.0})
+    assert not _leg_standard_prop_direction_gated({**pr, "l5_over": 5.0})
 
     for sport in ("NBA", "CBB", "WCBB"):
         row = {**pra, "sport": sport, "l5_over": 4, "l5_under": 1}
@@ -290,7 +293,7 @@ def test_goblin_only_rejects_standard():
 
 
 def test_main_goblin_requires_l5_ge4():
-    """MAIN Goblin: directional L5>=4 and L10>=8 (sample>=8) on active sports."""
+    """MAIN Goblin: WNBA L5=5 plus L10>=8; other active sports still L5>=4."""
     from combined_slate_tickets import (
         TENNIS_GOBLIN_MIN_L5_HITS,
         _row_main_four_leg_eligible,
@@ -306,13 +309,15 @@ def test_main_goblin_requires_l5_ge4():
         cold, min_leg_prob=0.62, min_composite_hr=0.55, goblin_only=True
     )
 
-    warm = dict(cold, l5_over=4.0, l10_over=8.0, l10_under=2.0)
+    almost = dict(cold, l5_over=4.0, l10_over=8.0, l10_under=2.0)
+    assert not _row_main_goblin_l5_ok(almost)
+    warm = dict(cold, l5_over=5.0, l10_over=8.0, l10_under=2.0)
     assert _row_main_goblin_l5_ok(warm)
     assert _row_win_rate_eligible(
         warm, min_leg_prob=0.62, min_composite_hr=0.55, goblin_only=True
     )
 
-    # L5=4 but L10 cold fails the agreement gate.
+    # L5=5 but L10 cold fails the agreement gate.
     lukewarm = dict(warm, l10_over=6.0, l10_under=4.0)
     assert not _row_main_goblin_l5_ok(lukewarm)
     assert not _row_win_rate_eligible(
@@ -346,7 +351,7 @@ def test_main_goblin_requires_l5_ge4():
 
 
 def test_main_standard_requires_l10_by_direction():
-    """MAIN Standard: UNDER L10>=8; OVER L10>=8 + L5>=3 agreement."""
+    """MAIN Standard WNBA: L5=5 and L10>=8 on both sides."""
     from combined_slate_tickets import (
         _row_main_standard_recency_ok,
         _row_win_rate_eligible,
@@ -359,7 +364,9 @@ def test_main_standard_requires_l10_by_direction():
         under_cold, min_leg_prob=0.60, min_composite_hr=0.55, standard_only=True, qualify_standard=True
     )
 
-    under_warm = dict(under_cold, l10_under=8.0, l10_over=2.0)
+    under_l5_short = dict(under_cold, l5_under=4.0, l10_under=8.0, l10_over=2.0)
+    assert not _row_main_standard_recency_ok(under_l5_short)
+    under_warm = dict(under_cold, l5_under=5.0, l10_under=8.0, l10_over=2.0)
     assert _row_main_standard_recency_ok(under_warm)
 
     over_l10_only = _base_leg(pick_type="Standard", direction="OVER", sport="WNBA", leg_prob=0.72)
@@ -377,9 +384,10 @@ def test_main_standard_requires_l10_by_direction():
             "strat_n": 40,
         }
     )
-    # OVER needs L5>=3 agreement by default.
+    # OVER needs L5=5 on WNBA.
     assert not _row_main_standard_recency_ok(over_l10_only)
-    over_warm = dict(over_l10_only, l5_over=3.0)
+    assert not _row_main_standard_recency_ok(dict(over_l10_only, l5_over=4.0))
+    over_warm = dict(over_l10_only, l5_over=5.0)
     assert _row_main_standard_recency_ok(over_warm)
 
 

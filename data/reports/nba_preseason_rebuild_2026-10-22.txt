@@ -1,0 +1,12 @@
+NBA rebuild after preseason backfill  slate=2026-10-22
+box_max=2026-10-21  preseason_rows=3195
+
+===== CARD L5=5 BUCKET COUNTS =====
+before: {'pre_confirms': 16, 'pre_thin': 12, 'pre_conflicts': 48}  n_clears=76
+after:  {'pre_confirms': 27, 'pre_thin': 1, 'pre_conflicts': 48}  n_clears=76
+
+See also:
+  H:\PropORACLE\data\reports\nba_preseason_backfill_2026.txt
+  H:\PropORACLE\data\reports\nba_card_window_l5_2026-10-22.txt
+  H:\PropORACLE\data\reports\nba_attempt_l5eq5_2026-10-22.txt
+  H:\PropORACLE\data\reports\nba_card_l5_stale_vs_live_2026-10-22.txt

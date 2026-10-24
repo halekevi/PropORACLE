@@ -30,6 +30,33 @@ def _mlb(**kwargs) -> dict:
     return row
 
 
+def test_season_type_blocks_mlb_preseason_and_unknown():
+    """Preseason and unknown stay blocked. MLB postseason is allowed."""
+    from utils.postseason_slate import season_blocks_ticket
+
+    regular = _mlb(l5_over=5, season_type="regular-season", team="NYY", opp_team="BOS")
+    playoff = _mlb(l5_over=5, season_type="post-season", team="NYY", opp_team="BOS")
+    preseason = _mlb(l5_over=5, season_type="preseason", team="NYY", opp_team="BOS")
+    assert not season_blocks_ticket(regular)
+    assert not season_blocks_ticket(playoff)
+    assert season_blocks_ticket(preseason)
+    assert goblin_70_eligible(regular)
+    assert goblin_70_eligible(playoff)
+    assert not goblin_70_eligible(preseason)
+    # No confirmed game type is a missing cell. No team tokens, so this does not fetch.
+    assert season_blocks_ticket(_mlb(l5_over=5))
+
+
+def test_wnba_playoff_and_tennis_are_separate():
+    from utils.postseason_slate import season_blocks_ticket, season_class
+
+    assert season_class({"sport": "WNBA", "season_type": "post-season"}) == "postseason"
+    assert not season_blocks_ticket({"sport": "WNBA", "season_type": "3"})
+    assert season_blocks_ticket({"sport": "NBA", "season_type": "3"})
+    assert not season_blocks_ticket({"sport": "WNBA", "season_type": "regular-season"})
+    assert not season_blocks_ticket({"sport": "Tennis", "start_time": "2026-10-07"})
+
+
 def test_walks_pitches_era_pitcher_ks():
     assert mlb_goblin_keep_eligible(_mlb())
     assert goblin_70_eligible(_mlb())

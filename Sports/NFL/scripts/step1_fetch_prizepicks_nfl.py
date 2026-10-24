@@ -825,6 +825,18 @@ def main() -> int:
 
     if len(df) == 0:
         print(no_props_log_line("NFL", fetch_date))
+        try:
+            from utils.step1_board_reconcile import run_step1_reconcile
+
+            run_step1_reconcile(
+                sport="NFL",
+                df=pd.DataFrame(),
+                out_dir=out_path.parent,
+                fetched_n=int(fetched_rows),
+                fetch_failed=False,
+            )
+        except Exception as _rec_exc:
+            print(f"  [WARN] category reconcile skipped: {_rec_exc}")
         _write_empty(out_path)
         return 0
 
@@ -865,11 +877,29 @@ def main() -> int:
             "writing CSV anyway (off-season / light board)"
         )
 
-    out_df = df[[c for c in OUTPUT_COLS if c in df.columns]].copy()
-    for c in OUTPUT_COLS:
+    try:
+        from utils.step1_board_reconcile import run_step1_reconcile
+
+        df, _ = run_step1_reconcile(
+            sport="NFL",
+            df=df,
+            out_dir=out_path.parent,
+            fetched_n=int(fetched_rows),
+        )
+    except RuntimeError as _cov_exc:
+        print(f"❌ {_cov_exc}")
+        raise SystemExit(2) from _cov_exc
+    except Exception as _rec_exc:
+        print(f"  [WARN] category reconcile skipped: {_rec_exc}")
+
+    out_cols = list(OUTPUT_COLS)
+    if "ticketable" in df.columns and "ticketable" not in out_cols:
+        out_cols = out_cols + ["ticketable"]
+    out_df = df[[c for c in out_cols if c in df.columns]].copy()
+    for c in out_cols:
         if c not in out_df.columns:
             out_df[c] = ""
-    out_df = out_df[OUTPUT_COLS]
+    out_df = out_df[out_cols]
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_df.to_csv(out_path, index=False, encoding="utf-8-sig")
     _log_health(out_df)

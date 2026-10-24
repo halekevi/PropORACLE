@@ -1,0 +1,5626 @@
+{
+  "source": {
+    "graded": "H:\\PropORACLE_main_cp\\ui_runner\\templates",
+    "step8": "H:\\PropORACLE_main_cp\\outputs",
+    "join": "player + canon prop + line + pick_type to that date's step8_tennis_direction.csv",
+    "ranks": "player_atp_rank = offense, opponent_rank = defense",
+    "bands": "1-10 Elite, 11-25 Above Avg, 26-50 Avg, 51-100 Below Avg, 101+ Weak",
+    "books": "Goblin and Standard only",
+    "dates_with_a_matched_leg": [
+      "2026-08-24",
+      "2026-08-25",
+      "2026-08-26",
+      "2026-08-27",
+      "2026-08-29",
+      "2026-08-30",
+      "2026-08-31",
+      "2026-09-01",
+      "2026-09-02",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-06",
+      "2026-09-07",
+      "2026-09-08",
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20",
+      "2026-09-21",
+      "2026-09-22",
+      "2026-09-23",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26",
+      "2026-09-27",
+      "2026-09-28",
+      "2026-09-29",
+      "2026-09-30",
+      "2026-10-01",
+      "2026-10-02",
+      "2026-10-03",
+      "2026-10-04",
+      "2026-10-05",
+      "2026-10-06",
+      "2026-10-07",
+      "2026-10-08",
+      "2026-10-09",
+      "2026-10-10",
+      "2026-10-11",
+      "2026-10-12",
+      "2026-10-13"
+    ],
+    "matched_legs": 8179,
+    "unmatched_legs": 6936
+  },
+  "partitions": [
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "offense"
+      ],
+      "base": {
+        "hits": 0,
+        "n": 1402,
+        "rate": 0.0
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 0,
+          "n": 173,
+          "rate": 0.0
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 0,
+          "n": 183,
+          "rate": 0.0
+        },
+        {
+          "tier": "Avg",
+          "hits": 0,
+          "n": 255,
+          "rate": 0.0
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 0,
+          "n": 345,
+          "rate": 0.0
+        },
+        {
+          "tier": "Weak",
+          "hits": 0,
+          "n": 446,
+          "rate": 0.0
+        }
+      ],
+      "band_sum": {
+        "hits": 0,
+        "n": 1402,
+        "rate": 0.0
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "defense"
+      ],
+      "base": {
+        "hits": 0,
+        "n": 1402,
+        "rate": 0.0
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 0,
+          "n": 182,
+          "rate": 0.0
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 0,
+          "n": 205,
+          "rate": 0.0
+        },
+        {
+          "tier": "Avg",
+          "hits": 0,
+          "n": 260,
+          "rate": 0.0
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 0,
+          "n": 334,
+          "rate": 0.0
+        },
+        {
+          "tier": "Weak",
+          "hits": 0,
+          "n": 421,
+          "rate": 0.0
+        }
+      ],
+      "band_sum": {
+        "hits": 0,
+        "n": 1402,
+        "rate": 0.0
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "offense"
+      ],
+      "base": {
+        "hits": 0,
+        "n": 113,
+        "rate": 0.0
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 0,
+          "n": 31,
+          "rate": 0.0
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 0,
+          "n": 36,
+          "rate": 0.0
+        },
+        {
+          "tier": "Avg",
+          "hits": 0,
+          "n": 24,
+          "rate": 0.0
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 0,
+          "n": 14,
+          "rate": 0.0
+        },
+        {
+          "tier": "Weak",
+          "hits": 0,
+          "n": 8,
+          "rate": 0.0
+        }
+      ],
+      "band_sum": {
+        "hits": 0,
+        "n": 113,
+        "rate": 0.0
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "defense"
+      ],
+      "base": {
+        "hits": 0,
+        "n": 113,
+        "rate": 0.0
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 0,
+          "n": 23,
+          "rate": 0.0
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 0,
+          "n": 40,
+          "rate": 0.0
+        },
+        {
+          "tier": "Avg",
+          "hits": 0,
+          "n": 22,
+          "rate": 0.0
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 0,
+          "n": 20,
+          "rate": 0.0
+        },
+        {
+          "tier": "Weak",
+          "hits": 0,
+          "n": 8,
+          "rate": 0.0
+        }
+      ],
+      "band_sum": {
+        "hits": 0,
+        "n": 113,
+        "rate": 0.0
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "offense"
+      ],
+      "base": {
+        "hits": 0,
+        "n": 1001,
+        "rate": 0.0
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 0,
+          "n": 117,
+          "rate": 0.0
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 0,
+          "n": 116,
+          "rate": 0.0
+        },
+        {
+          "tier": "Avg",
+          "hits": 0,
+          "n": 144,
+          "rate": 0.0
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 0,
+          "n": 213,
+          "rate": 0.0
+        },
+        {
+          "tier": "Weak",
+          "hits": 0,
+          "n": 411,
+          "rate": 0.0
+        }
+      ],
+      "band_sum": {
+        "hits": 0,
+        "n": 1001,
+        "rate": 0.0
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "defense"
+      ],
+      "base": {
+        "hits": 0,
+        "n": 1001,
+        "rate": 0.0
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 0,
+          "n": 121,
+          "rate": 0.0
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 0,
+          "n": 133,
+          "rate": 0.0
+        },
+        {
+          "tier": "Avg",
+          "hits": 0,
+          "n": 153,
+          "rate": 0.0
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 0,
+          "n": 213,
+          "rate": 0.0
+        },
+        {
+          "tier": "Weak",
+          "hits": 0,
+          "n": 381,
+          "rate": 0.0
+        }
+      ],
+      "band_sum": {
+        "hits": 0,
+        "n": 1001,
+        "rate": 0.0
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "offense"
+      ],
+      "base": {
+        "hits": 0,
+        "n": 155,
+        "rate": 0.0
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 0,
+          "n": 21,
+          "rate": 0.0
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 0,
+          "n": 18,
+          "rate": 0.0
+        },
+        {
+          "tier": "Avg",
+          "hits": 0,
+          "n": 30,
+          "rate": 0.0
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 0,
+          "n": 41,
+          "rate": 0.0
+        },
+        {
+          "tier": "Weak",
+          "hits": 0,
+          "n": 45,
+          "rate": 0.0
+        }
+      ],
+      "band_sum": {
+        "hits": 0,
+        "n": 155,
+        "rate": 0.0
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "defense"
+      ],
+      "base": {
+        "hits": 0,
+        "n": 155,
+        "rate": 0.0
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 0,
+          "n": 21,
+          "rate": 0.0
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 0,
+          "n": 29,
+          "rate": 0.0
+        },
+        {
+          "tier": "Avg",
+          "hits": 0,
+          "n": 31,
+          "rate": 0.0
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 0,
+          "n": 36,
+          "rate": 0.0
+        },
+        {
+          "tier": "Weak",
+          "hits": 0,
+          "n": 38,
+          "rate": 0.0
+        }
+      ],
+      "band_sum": {
+        "hits": 0,
+        "n": 155,
+        "rate": 0.0
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "offense"
+      ],
+      "base": {
+        "hits": 1402,
+        "n": 1916,
+        "rate": 0.7317
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 88,
+          "n": 116,
+          "rate": 0.7586
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 167,
+          "n": 215,
+          "rate": 0.7767
+        },
+        {
+          "tier": "Avg",
+          "hits": 276,
+          "n": 343,
+          "rate": 0.8047
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 363,
+          "n": 544,
+          "rate": 0.6673
+        },
+        {
+          "tier": "Weak",
+          "hits": 508,
+          "n": 698,
+          "rate": 0.7278
+        }
+      ],
+      "band_sum": {
+        "hits": 1402,
+        "n": 1916,
+        "rate": 0.7317
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "defense"
+      ],
+      "base": {
+        "hits": 1402,
+        "n": 1916,
+        "rate": 0.7317
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 216,
+          "n": 266,
+          "rate": 0.812
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 251,
+          "n": 323,
+          "rate": 0.7771
+        },
+        {
+          "tier": "Avg",
+          "hits": 302,
+          "n": 412,
+          "rate": 0.733
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 328,
+          "n": 497,
+          "rate": 0.66
+        },
+        {
+          "tier": "Weak",
+          "hits": 305,
+          "n": 418,
+          "rate": 0.7297
+        }
+      ],
+      "band_sum": {
+        "hits": 1402,
+        "n": 1916,
+        "rate": 0.7317
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "offense"
+      ],
+      "base": {
+        "hits": 347,
+        "n": 559,
+        "rate": 0.6208
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 22,
+          "n": 47,
+          "rate": 0.4681
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 38,
+          "n": 54,
+          "rate": 0.7037
+        },
+        {
+          "tier": "Avg",
+          "hits": 62,
+          "n": 94,
+          "rate": 0.6596
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 73,
+          "n": 116,
+          "rate": 0.6293
+        },
+        {
+          "tier": "Weak",
+          "hits": 152,
+          "n": 248,
+          "rate": 0.6129
+        }
+      ],
+      "band_sum": {
+        "hits": 347,
+        "n": 559,
+        "rate": 0.6208
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "defense"
+      ],
+      "base": {
+        "hits": 347,
+        "n": 559,
+        "rate": 0.6208
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 96,
+          "n": 123,
+          "rate": 0.7805
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 60,
+          "n": 82,
+          "rate": 0.7317
+        },
+        {
+          "tier": "Avg",
+          "hits": 51,
+          "n": 93,
+          "rate": 0.5484
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 51,
+          "n": 98,
+          "rate": 0.5204
+        },
+        {
+          "tier": "Weak",
+          "hits": 89,
+          "n": 163,
+          "rate": 0.546
+        }
+      ],
+      "band_sum": {
+        "hits": 347,
+        "n": 559,
+        "rate": 0.6208
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "offense"
+      ],
+      "base": {
+        "hits": 189,
+        "n": 378,
+        "rate": 0.5
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 16,
+          "n": 38,
+          "rate": 0.4211
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 20,
+          "n": 35,
+          "rate": 0.5714
+        },
+        {
+          "tier": "Avg",
+          "hits": 28,
+          "n": 57,
+          "rate": 0.4912
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 66,
+          "n": 126,
+          "rate": 0.5238
+        },
+        {
+          "tier": "Weak",
+          "hits": 59,
+          "n": 122,
+          "rate": 0.4836
+        }
+      ],
+      "band_sum": {
+        "hits": 189,
+        "n": 378,
+        "rate": 0.5
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "defense"
+      ],
+      "base": {
+        "hits": 189,
+        "n": 378,
+        "rate": 0.5
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 16,
+          "n": 40,
+          "rate": 0.4
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 31,
+          "n": 67,
+          "rate": 0.4627
+        },
+        {
+          "tier": "Avg",
+          "hits": 35,
+          "n": 73,
+          "rate": 0.4795
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 59,
+          "n": 111,
+          "rate": 0.5315
+        },
+        {
+          "tier": "Weak",
+          "hits": 48,
+          "n": 87,
+          "rate": 0.5517
+        }
+      ],
+      "band_sum": {
+        "hits": 189,
+        "n": 378,
+        "rate": 0.5
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "offense"
+      ],
+      "base": {
+        "hits": 1040,
+        "n": 1783,
+        "rate": 0.5833
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 238,
+          "n": 382,
+          "rate": 0.623
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 183,
+          "n": 305,
+          "rate": 0.6
+        },
+        {
+          "tier": "Avg",
+          "hits": 190,
+          "n": 345,
+          "rate": 0.5507
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 231,
+          "n": 394,
+          "rate": 0.5863
+        },
+        {
+          "tier": "Weak",
+          "hits": 198,
+          "n": 357,
+          "rate": 0.5546
+        }
+      ],
+      "band_sum": {
+        "hits": 1040,
+        "n": 1783,
+        "rate": 0.5833
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "defense"
+      ],
+      "base": {
+        "hits": 1040,
+        "n": 1783,
+        "rate": 0.5833
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 15,
+          "n": 30,
+          "rate": 0.5
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 93,
+          "n": 148,
+          "rate": 0.6284
+        },
+        {
+          "tier": "Avg",
+          "hits": 185,
+          "n": 318,
+          "rate": 0.5818
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 338,
+          "n": 596,
+          "rate": 0.5671
+        },
+        {
+          "tier": "Weak",
+          "hits": 409,
+          "n": 691,
+          "rate": 0.5919
+        }
+      ],
+      "band_sum": {
+        "hits": 1040,
+        "n": 1783,
+        "rate": 0.5833
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "offense"
+      ],
+      "base": {
+        "hits": 277,
+        "n": 605,
+        "rate": 0.4579
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 42,
+          "n": 95,
+          "rate": 0.4421
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 45,
+          "n": 90,
+          "rate": 0.5
+        },
+        {
+          "tier": "Avg",
+          "hits": 43,
+          "n": 94,
+          "rate": 0.4574
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 58,
+          "n": 126,
+          "rate": 0.4603
+        },
+        {
+          "tier": "Weak",
+          "hits": 89,
+          "n": 200,
+          "rate": 0.445
+        }
+      ],
+      "band_sum": {
+        "hits": 277,
+        "n": 605,
+        "rate": 0.4579
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "defense"
+      ],
+      "base": {
+        "hits": 277,
+        "n": 605,
+        "rate": 0.4579
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 0,
+          "n": 2,
+          "rate": 0.0
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 18,
+          "n": 39,
+          "rate": 0.4615
+        },
+        {
+          "tier": "Avg",
+          "hits": 52,
+          "n": 98,
+          "rate": 0.5306
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 63,
+          "n": 156,
+          "rate": 0.4038
+        },
+        {
+          "tier": "Weak",
+          "hits": 144,
+          "n": 310,
+          "rate": 0.4645
+        }
+      ],
+      "band_sum": {
+        "hits": 277,
+        "n": 605,
+        "rate": 0.4579
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "offense"
+      ],
+      "base": {
+        "hits": 176,
+        "n": 267,
+        "rate": 0.6592
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 33,
+          "n": 57,
+          "rate": 0.5789
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 23,
+          "n": 33,
+          "rate": 0.697
+        },
+        {
+          "tier": "Avg",
+          "hits": 33,
+          "n": 40,
+          "rate": 0.825
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 39,
+          "n": 63,
+          "rate": 0.619
+        },
+        {
+          "tier": "Weak",
+          "hits": 48,
+          "n": 74,
+          "rate": 0.6486
+        }
+      ],
+      "band_sum": {
+        "hits": 176,
+        "n": 267,
+        "rate": 0.6592
+      },
+      "hits_match": true,
+      "n_match": true
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "defense"
+      ],
+      "base": {
+        "hits": 176,
+        "n": 267,
+        "rate": 0.6592
+      },
+      "bands": [
+        {
+          "tier": "Elite",
+          "hits": 6,
+          "n": 10,
+          "rate": 0.6
+        },
+        {
+          "tier": "Above Avg",
+          "hits": 13,
+          "n": 19,
+          "rate": 0.6842
+        },
+        {
+          "tier": "Avg",
+          "hits": 26,
+          "n": 39,
+          "rate": 0.6667
+        },
+        {
+          "tier": "Below Avg",
+          "hits": 56,
+          "n": 83,
+          "rate": 0.6747
+        },
+        {
+          "tier": "Weak",
+          "hits": 75,
+          "n": 116,
+          "rate": 0.6466
+        }
+      ],
+      "band_sum": {
+        "hits": 176,
+        "n": 267,
+        "rate": 0.6592
+      },
+      "hits_match": true,
+      "n_match": true
+    }
+  ],
+  "base": [
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER"
+      ],
+      "hits": 0,
+      "n": 1402,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER"
+      ],
+      "hits": 0,
+      "n": 113,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER"
+      ],
+      "hits": 0,
+      "n": 1001,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER"
+      ],
+      "hits": 0,
+      "n": 155,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER"
+      ],
+      "hits": 1402,
+      "n": 1916,
+      "rate": 0.7317
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER"
+      ],
+      "hits": 347,
+      "n": 559,
+      "rate": 0.6208
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER"
+      ],
+      "hits": 189,
+      "n": 378,
+      "rate": 0.5
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER"
+      ],
+      "hits": 1040,
+      "n": 1783,
+      "rate": 0.5833
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER"
+      ],
+      "hits": 277,
+      "n": 605,
+      "rate": 0.4579
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER"
+      ],
+      "hits": 176,
+      "n": 267,
+      "rate": 0.6592
+    }
+  ],
+  "cells": [
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 205,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 260,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 334,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 182,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 421,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 183,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 255,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 345,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 173,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 446,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 40,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 22,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 20,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 23,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 8,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 36,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 24,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 14,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 31,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 8,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 133,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 153,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 213,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 121,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 381,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 116,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 144,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 213,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 117,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 411,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 29,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 31,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 36,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 21,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 38,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 18,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 30,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 41,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 21,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 45,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 251,
+      "n": 323,
+      "rate": 0.7771
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 302,
+      "n": 412,
+      "rate": 0.733
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 328,
+      "n": 497,
+      "rate": 0.66
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 216,
+      "n": 266,
+      "rate": 0.812
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 305,
+      "n": 418,
+      "rate": 0.7297
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 167,
+      "n": 215,
+      "rate": 0.7767
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 276,
+      "n": 343,
+      "rate": 0.8047
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 363,
+      "n": 544,
+      "rate": 0.6673
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 88,
+      "n": 116,
+      "rate": 0.7586
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 508,
+      "n": 698,
+      "rate": 0.7278
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 60,
+      "n": 82,
+      "rate": 0.7317
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 51,
+      "n": 93,
+      "rate": 0.5484
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 51,
+      "n": 98,
+      "rate": 0.5204
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 96,
+      "n": 123,
+      "rate": 0.7805
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 89,
+      "n": 163,
+      "rate": 0.546
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 38,
+      "n": 54,
+      "rate": 0.7037
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 62,
+      "n": 94,
+      "rate": 0.6596
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 73,
+      "n": 116,
+      "rate": 0.6293
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 22,
+      "n": 47,
+      "rate": 0.4681
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 152,
+      "n": 248,
+      "rate": 0.6129
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 31,
+      "n": 67,
+      "rate": 0.4627
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 35,
+      "n": 73,
+      "rate": 0.4795
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 59,
+      "n": 111,
+      "rate": 0.5315
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 16,
+      "n": 40,
+      "rate": 0.4
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 48,
+      "n": 87,
+      "rate": 0.5517
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 20,
+      "n": 35,
+      "rate": 0.5714
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 28,
+      "n": 57,
+      "rate": 0.4912
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 66,
+      "n": 126,
+      "rate": 0.5238
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 16,
+      "n": 38,
+      "rate": 0.4211
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 59,
+      "n": 122,
+      "rate": 0.4836
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 93,
+      "n": 148,
+      "rate": 0.6284
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 185,
+      "n": 318,
+      "rate": 0.5818
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 338,
+      "n": 596,
+      "rate": 0.5671
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 15,
+      "n": 30,
+      "rate": 0.5
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 409,
+      "n": 691,
+      "rate": 0.5919
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 183,
+      "n": 305,
+      "rate": 0.6
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 190,
+      "n": 345,
+      "rate": 0.5507
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 231,
+      "n": 394,
+      "rate": 0.5863
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 238,
+      "n": 382,
+      "rate": 0.623
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 198,
+      "n": 357,
+      "rate": 0.5546
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 18,
+      "n": 39,
+      "rate": 0.4615
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 52,
+      "n": 98,
+      "rate": 0.5306
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 63,
+      "n": 156,
+      "rate": 0.4038
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 2,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 144,
+      "n": 310,
+      "rate": 0.4645
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 45,
+      "n": 90,
+      "rate": 0.5
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 43,
+      "n": 94,
+      "rate": 0.4574
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 58,
+      "n": 126,
+      "rate": 0.4603
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 42,
+      "n": 95,
+      "rate": 0.4421
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 89,
+      "n": 200,
+      "rate": 0.445
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Above Avg"
+      ],
+      "hits": 13,
+      "n": 19,
+      "rate": 0.6842
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Avg"
+      ],
+      "hits": 26,
+      "n": 39,
+      "rate": 0.6667
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Below Avg"
+      ],
+      "hits": 56,
+      "n": 83,
+      "rate": 0.6747
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Elite"
+      ],
+      "hits": 6,
+      "n": 10,
+      "rate": 0.6
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "defense",
+        "Weak"
+      ],
+      "hits": 75,
+      "n": 116,
+      "rate": 0.6466
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Above Avg"
+      ],
+      "hits": 23,
+      "n": 33,
+      "rate": 0.697
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Avg"
+      ],
+      "hits": 33,
+      "n": 40,
+      "rate": 0.825
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Below Avg"
+      ],
+      "hits": 39,
+      "n": 63,
+      "rate": 0.619
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Elite"
+      ],
+      "hits": 33,
+      "n": 57,
+      "rate": 0.5789
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "offense",
+        "Weak"
+      ],
+      "hits": 48,
+      "n": 74,
+      "rate": 0.6486
+    }
+  ],
+  "pairs": [
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 43,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 27,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 36,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 32,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 45,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 38,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 65,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 60,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 40,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 52,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 47,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 66,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 99,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 57,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 76,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 29,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 44,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 52,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 30,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 18,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 48,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 58,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 87,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 23,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 230,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 17,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 3,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 2,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 6,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 4,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 4,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 2,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 5,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 2,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 1,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 11,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 6,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 5,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 2,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 1,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 1,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 3,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 3,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 27,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 23,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 17,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 22,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 27,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 27,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 29,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 34,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 28,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 26,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 20,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 36,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 60,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 35,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 62,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 24,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 28,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 35,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 19,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 11,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 35,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 37,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 67,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 17,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 255,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 4,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 3,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 6,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 3,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 2,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 9,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 8,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 6,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 4,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 3,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 4,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 16,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 6,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 8,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 5,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 6,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 3,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Above Avg"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 0,
+      "n": 5,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 1,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 0,
+      "n": 25,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 48,
+      "n": 60,
+      "rate": 0.8
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 35,
+      "n": 45,
+      "rate": 0.7778
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 25,
+      "n": 40,
+      "rate": 0.625
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Elite"
+      ],
+      "hits": 35,
+      "n": 43,
+      "rate": 0.814
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 24,
+      "n": 27,
+      "rate": 0.8889
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Above Avg"
+      ],
+      "hits": 64,
+      "n": 82,
+      "rate": 0.7805
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 75,
+      "n": 94,
+      "rate": 0.7979
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 56,
+      "n": 78,
+      "rate": 0.7179
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Elite"
+      ],
+      "hits": 53,
+      "n": 60,
+      "rate": 0.8833
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Weak"
+      ],
+      "hits": 28,
+      "n": 29,
+      "rate": 0.9655
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Above Avg"
+      ],
+      "hits": 55,
+      "n": 73,
+      "rate": 0.7534
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 87,
+      "n": 127,
+      "rate": 0.685
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 95,
+      "n": 164,
+      "rate": 0.5793
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Elite"
+      ],
+      "hits": 57,
+      "n": 80,
+      "rate": 0.7125
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 69,
+      "n": 100,
+      "rate": 0.69
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 16,
+      "n": 20,
+      "rate": 0.8
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 17,
+      "n": 24,
+      "rate": 0.7083
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 12,
+      "n": 21,
+      "rate": 0.5714
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 41,
+      "n": 49,
+      "rate": 0.8367
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Weak"
+      ],
+      "hits": 2,
+      "n": 2,
+      "rate": 1.0
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Above Avg"
+      ],
+      "hits": 68,
+      "n": 88,
+      "rate": 0.7727
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 88,
+      "n": 122,
+      "rate": 0.7213
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 140,
+      "n": 194,
+      "rate": 0.7216
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Elite"
+      ],
+      "hits": 30,
+      "n": 34,
+      "rate": 0.8824
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 182,
+      "n": 260,
+      "rate": 0.7
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 9,
+      "n": 11,
+      "rate": 0.8182
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 5,
+      "n": 10,
+      "rate": 0.5
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 4,
+      "n": 7,
+      "rate": 0.5714
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Elite"
+      ],
+      "hits": 13,
+      "n": 17,
+      "rate": 0.7647
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 7,
+      "n": 9,
+      "rate": 0.7778
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Above Avg"
+      ],
+      "hits": 11,
+      "n": 14,
+      "rate": 0.7857
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 9,
+      "n": 17,
+      "rate": 0.5294
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 5,
+      "n": 13,
+      "rate": 0.3846
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Elite"
+      ],
+      "hits": 32,
+      "n": 38,
+      "rate": 0.8421
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Weak"
+      ],
+      "hits": 5,
+      "n": 12,
+      "rate": 0.4167
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Above Avg"
+      ],
+      "hits": 16,
+      "n": 22,
+      "rate": 0.7273
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 15,
+      "n": 24,
+      "rate": 0.625
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 7,
+      "n": 21,
+      "rate": 0.3333
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Elite"
+      ],
+      "hits": 28,
+      "n": 36,
+      "rate": 0.7778
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 7,
+      "n": 13,
+      "rate": 0.5385
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 2,
+      "n": 6,
+      "rate": 0.3333
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 5,
+      "n": 15,
+      "rate": 0.3333
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 2,
+      "n": 9,
+      "rate": 0.2222
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 10,
+      "n": 13,
+      "rate": 0.7692
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Weak"
+      ],
+      "hits": 3,
+      "n": 4,
+      "rate": 0.75
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Above Avg"
+      ],
+      "hits": 22,
+      "n": 29,
+      "rate": 0.7586
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 17,
+      "n": 27,
+      "rate": 0.6296
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 33,
+      "n": 48,
+      "rate": 0.6875
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Elite"
+      ],
+      "hits": 13,
+      "n": 19,
+      "rate": 0.6842
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 67,
+      "n": 125,
+      "rate": 0.536
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 3,
+      "n": 9,
+      "rate": 0.3333
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 2,
+      "n": 5,
+      "rate": 0.4
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 7,
+      "n": 8,
+      "rate": 0.875
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Above Avg",
+        "Elite"
+      ],
+      "hits": 4,
+      "n": 7,
+      "rate": 0.5714
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 4,
+      "n": 6,
+      "rate": 0.6667
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Avg",
+        "Above Avg"
+      ],
+      "hits": 6,
+      "n": 10,
+      "rate": 0.6
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 8,
+      "n": 14,
+      "rate": 0.5714
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 8,
+      "n": 18,
+      "rate": 0.4444
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Avg",
+        "Elite"
+      ],
+      "hits": 4,
+      "n": 10,
+      "rate": 0.4
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Avg",
+        "Weak"
+      ],
+      "hits": 2,
+      "n": 5,
+      "rate": 0.4
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Below Avg",
+        "Above Avg"
+      ],
+      "hits": 10,
+      "n": 22,
+      "rate": 0.4545
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 16,
+      "n": 24,
+      "rate": 0.6667
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 21,
+      "n": 38,
+      "rate": 0.5526
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Below Avg",
+        "Elite"
+      ],
+      "hits": 6,
+      "n": 17,
+      "rate": 0.3529
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 13,
+      "n": 25,
+      "rate": 0.52
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 6,
+      "n": 9,
+      "rate": 0.6667
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 2,
+      "n": 12,
+      "rate": 0.1667
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 7,
+      "n": 12,
+      "rate": 0.5833
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 1,
+      "n": 5,
+      "rate": 0.2
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Weak",
+        "Above Avg"
+      ],
+      "hits": 6,
+      "n": 17,
+      "rate": 0.3529
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 7,
+      "n": 18,
+      "rate": 0.3889
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 16,
+      "n": 35,
+      "rate": 0.4571
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Weak",
+        "Elite"
+      ],
+      "hits": 1,
+      "n": 1,
+      "rate": 1.0
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 29,
+      "n": 51,
+      "rate": 0.5686
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 26,
+      "n": 46,
+      "rate": 0.5652
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 43,
+      "n": 84,
+      "rate": 0.5119
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 63,
+      "n": 86,
+      "rate": 0.7326
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 2,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 51,
+      "n": 87,
+      "rate": 0.5862
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Above Avg"
+      ],
+      "hits": 13,
+      "n": 18,
+      "rate": 0.7222
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 47,
+      "n": 79,
+      "rate": 0.5949
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 77,
+      "n": 147,
+      "rate": 0.5238
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Avg",
+        "Weak"
+      ],
+      "hits": 53,
+      "n": 101,
+      "rate": 0.5248
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Above Avg"
+      ],
+      "hits": 6,
+      "n": 9,
+      "rate": 0.6667
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 23,
+      "n": 31,
+      "rate": 0.7419
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 92,
+      "n": 173,
+      "rate": 0.5318
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 110,
+      "n": 181,
+      "rate": 0.6077
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 48,
+      "n": 75,
+      "rate": 0.64
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 62,
+      "n": 109,
+      "rate": 0.5688
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 73,
+      "n": 120,
+      "rate": 0.6083
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 15,
+      "n": 28,
+      "rate": 0.5357
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Elite",
+        "Weak"
+      ],
+      "hits": 40,
+      "n": 50,
+      "rate": 0.8
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 10,
+      "n": 15,
+      "rate": 0.6667
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 33,
+      "n": 70,
+      "rate": 0.4714
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 155,
+      "n": 272,
+      "rate": 0.5699
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 9,
+      "n": 15,
+      "rate": 0.6
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 15,
+      "n": 26,
+      "rate": 0.5769
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 12,
+      "n": 26,
+      "rate": 0.4615
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 1,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 9,
+      "n": 22,
+      "rate": 0.4091
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Above Avg"
+      ],
+      "hits": 4,
+      "n": 6,
+      "rate": 0.6667
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 10,
+      "n": 23,
+      "rate": 0.4348
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 15,
+      "n": 35,
+      "rate": 0.4286
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Avg",
+        "Weak"
+      ],
+      "hits": 14,
+      "n": 30,
+      "rate": 0.4667
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Above Avg"
+      ],
+      "hits": 1,
+      "n": 3,
+      "rate": 0.3333
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 8,
+      "n": 11,
+      "rate": 0.7273
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 16,
+      "n": 42,
+      "rate": 0.381
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 33,
+      "n": 70,
+      "rate": 0.4714
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 4,
+      "n": 15,
+      "rate": 0.2667
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 16,
+      "n": 35,
+      "rate": 0.4571
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 12,
+      "n": 30,
+      "rate": 0.4
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 0,
+      "n": 1,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Elite",
+        "Weak"
+      ],
+      "hits": 10,
+      "n": 14,
+      "rate": 0.7143
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 3,
+      "n": 3,
+      "rate": 1.0
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 8,
+      "n": 23,
+      "rate": 0.3478
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 78,
+      "n": 174,
+      "rate": 0.4483
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Above Avg",
+        "Above Avg"
+      ],
+      "hits": 4,
+      "n": 5,
+      "rate": 0.8
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Above Avg",
+        "Avg"
+      ],
+      "hits": 8,
+      "n": 9,
+      "rate": 0.8889
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Above Avg",
+        "Below Avg"
+      ],
+      "hits": 6,
+      "n": 9,
+      "rate": 0.6667
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Above Avg",
+        "Weak"
+      ],
+      "hits": 5,
+      "n": 10,
+      "rate": 0.5
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Avg",
+        "Avg"
+      ],
+      "hits": 7,
+      "n": 10,
+      "rate": 0.7
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Avg",
+        "Below Avg"
+      ],
+      "hits": 18,
+      "n": 20,
+      "rate": 0.9
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Avg",
+        "Weak"
+      ],
+      "hits": 8,
+      "n": 10,
+      "rate": 0.8
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Below Avg",
+        "Avg"
+      ],
+      "hits": 0,
+      "n": 2,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Below Avg",
+        "Below Avg"
+      ],
+      "hits": 19,
+      "n": 30,
+      "rate": 0.6333
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Below Avg",
+        "Weak"
+      ],
+      "hits": 20,
+      "n": 31,
+      "rate": 0.6452
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Elite",
+        "Above Avg"
+      ],
+      "hits": 9,
+      "n": 14,
+      "rate": 0.6429
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Elite",
+        "Avg"
+      ],
+      "hits": 6,
+      "n": 12,
+      "rate": 0.5
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Elite",
+        "Below Avg"
+      ],
+      "hits": 9,
+      "n": 18,
+      "rate": 0.5
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Elite",
+        "Elite"
+      ],
+      "hits": 6,
+      "n": 10,
+      "rate": 0.6
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Elite",
+        "Weak"
+      ],
+      "hits": 3,
+      "n": 3,
+      "rate": 1.0
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Weak",
+        "Avg"
+      ],
+      "hits": 5,
+      "n": 6,
+      "rate": 0.8333
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Weak",
+        "Below Avg"
+      ],
+      "hits": 4,
+      "n": 6,
+      "rate": 0.6667
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "Weak",
+        "Weak"
+      ],
+      "hits": 39,
+      "n": 62,
+      "rate": 0.629
+    }
+  ],
+  "gaps": [
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "opponent better by 25+"
+      ],
+      "hits": 0,
+      "n": 471,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "player better by 25-49"
+      ],
+      "hits": 0,
+      "n": 135,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "player better by 50+"
+      ],
+      "hits": 0,
+      "n": 278,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Goblin",
+        "OVER",
+        "within 25 spots"
+      ],
+      "hits": 0,
+      "n": 518,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "opponent better by 25+"
+      ],
+      "hits": 0,
+      "n": 23,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "player better by 25-49"
+      ],
+      "hits": 0,
+      "n": 18,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "player better by 50+"
+      ],
+      "hits": 0,
+      "n": 7,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Aces",
+        "Standard",
+        "OVER",
+        "within 25 spots"
+      ],
+      "hits": 0,
+      "n": 65,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "opponent better by 25+"
+      ],
+      "hits": 0,
+      "n": 319,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "player better by 25-49"
+      ],
+      "hits": 0,
+      "n": 86,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "player better by 50+"
+      ],
+      "hits": 0,
+      "n": 184,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Goblin",
+        "OVER",
+        "within 25 spots"
+      ],
+      "hits": 0,
+      "n": 412,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "opponent better by 25+"
+      ],
+      "hits": 0,
+      "n": 56,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "player better by 25-49"
+      ],
+      "hits": 0,
+      "n": 19,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "player better by 50+"
+      ],
+      "hits": 0,
+      "n": 24,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Double Faults",
+        "Standard",
+        "OVER",
+        "within 25 spots"
+      ],
+      "hits": 0,
+      "n": 56,
+      "rate": 0.0
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "opponent better by 25+"
+      ],
+      "hits": 646,
+      "n": 883,
+      "rate": 0.7316
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "player better by 25-49"
+      ],
+      "hits": 110,
+      "n": 161,
+      "rate": 0.6832
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "player better by 50+"
+      ],
+      "hits": 148,
+      "n": 194,
+      "rate": 0.7629
+    },
+    {
+      "key": [
+        "Games Won",
+        "Goblin",
+        "OVER",
+        "within 25 spots"
+      ],
+      "hits": 498,
+      "n": 678,
+      "rate": 0.7345
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "opponent better by 25+"
+      ],
+      "hits": 199,
+      "n": 277,
+      "rate": 0.7184
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "player better by 25-49"
+      ],
+      "hits": 16,
+      "n": 32,
+      "rate": 0.5
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "player better by 50+"
+      ],
+      "hits": 27,
+      "n": 55,
+      "rate": 0.4909
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "OVER",
+        "within 25 spots"
+      ],
+      "hits": 105,
+      "n": 195,
+      "rate": 0.5385
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "opponent better by 25+"
+      ],
+      "hits": 77,
+      "n": 166,
+      "rate": 0.4639
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "player better by 25-49"
+      ],
+      "hits": 14,
+      "n": 34,
+      "rate": 0.4118
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "player better by 50+"
+      ],
+      "hits": 34,
+      "n": 60,
+      "rate": 0.5667
+    },
+    {
+      "key": [
+        "Games Won",
+        "Standard",
+        "UNDER",
+        "within 25 spots"
+      ],
+      "hits": 64,
+      "n": 118,
+      "rate": 0.5424
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "opponent better by 25+"
+      ],
+      "hits": 88,
+      "n": 163,
+      "rate": 0.5399
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "player better by 25-49"
+      ],
+      "hits": 208,
+      "n": 331,
+      "rate": 0.6284
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "player better by 50+"
+      ],
+      "hits": 388,
+      "n": 630,
+      "rate": 0.6159
+    },
+    {
+      "key": [
+        "Total Games",
+        "Goblin",
+        "OVER",
+        "within 25 spots"
+      ],
+      "hits": 356,
+      "n": 659,
+      "rate": 0.5402
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "opponent better by 25+"
+      ],
+      "hits": 26,
+      "n": 58,
+      "rate": 0.4483
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "player better by 25-49"
+      ],
+      "hits": 49,
+      "n": 93,
+      "rate": 0.5269
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "player better by 50+"
+      ],
+      "hits": 103,
+      "n": 216,
+      "rate": 0.4769
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "OVER",
+        "within 25 spots"
+      ],
+      "hits": 99,
+      "n": 238,
+      "rate": 0.416
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "opponent better by 25+"
+      ],
+      "hits": 10,
+      "n": 17,
+      "rate": 0.5882
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "player better by 25-49"
+      ],
+      "hits": 29,
+      "n": 39,
+      "rate": 0.7436
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "player better by 50+"
+      ],
+      "hits": 67,
+      "n": 100,
+      "rate": 0.67
+    },
+    {
+      "key": [
+        "Total Games",
+        "Standard",
+        "UNDER",
+        "within 25 spots"
+      ],
+      "hits": 70,
+      "n": 111,
+      "rate": 0.6306
+    }
+  ]
+}

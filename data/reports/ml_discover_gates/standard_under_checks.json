@@ -1,0 +1,1589 @@
+[
+  {
+    "sport": "NHL",
+    "gate": "L10>=8",
+    "ungated": {
+      "n": 4874,
+      "hits": 2854,
+      "hr": 0.5856,
+      "wilson_low": 0.5717,
+      "clears_3x_wilson": false
+    },
+    "slice": {
+      "n": 1266,
+      "hits": 897,
+      "hr": 0.7085,
+      "wilson_low": 0.6829,
+      "clears_3x_wilson": true
+    },
+    "dates": [
+      "2026-03-06",
+      "2026-10-23"
+    ],
+    "prop_line": {
+      "line_0.5": {
+        "n": 638,
+        "hits": 502,
+        "hr": 0.7868,
+        "wilson_low": 0.7534,
+        "clears_3x_wilson": true
+      },
+      "line_not_0.5": {
+        "n": 628,
+        "hits": 395,
+        "hr": 0.629,
+        "wilson_low": 0.5905,
+        "clears_3x_wilson": true
+      },
+      "share_0.5": 0.504,
+      "by_prop": [
+        {
+          "n": 334,
+          "hits": 172,
+          "hr": 0.515,
+          "wilson_low": 0.4615,
+          "clears_3x_wilson": false,
+          "prop": "hits",
+          "lines": {
+            "0.5": {
+              "n": 41,
+              "hits": 23,
+              "hr": 0.561,
+              "wilson_low": 0.4104,
+              "clears_3x_wilson": false
+            },
+            "1.5": {
+              "n": 99,
+              "hits": 57,
+              "hr": 0.5758,
+              "wilson_low": 0.4774,
+              "clears_3x_wilson": false
+            },
+            "2.5+": {
+              "n": 194,
+              "hits": 92,
+              "hr": 0.4742,
+              "wilson_low": 0.4051,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 287,
+          "hits": 237,
+          "hr": 0.8258,
+          "wilson_low": 0.7777,
+          "clears_3x_wilson": true,
+          "prop": "points",
+          "lines": {
+            "0.5": {
+              "n": 143,
+              "hits": 119,
+              "hr": 0.8322,
+              "wilson_low": 0.7624,
+              "clears_3x_wilson": true
+            },
+            "1.5": {
+              "n": 124,
+              "hits": 102,
+              "hr": 0.8226,
+              "wilson_low": 0.746,
+              "clears_3x_wilson": true
+            },
+            "2.5+": {
+              "n": 20,
+              "hits": 16,
+              "hr": 0.8,
+              "wilson_low": 0.584,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 287,
+          "hits": 228,
+          "hr": 0.7944,
+          "wilson_low": 0.7439,
+          "clears_3x_wilson": true,
+          "prop": "assists",
+          "lines": {
+            "0.5": {
+              "n": 234,
+              "hits": 183,
+              "hr": 0.7821,
+              "wilson_low": 0.7248,
+              "clears_3x_wilson": true
+            },
+            "1.5": {
+              "n": 52,
+              "hits": 44,
+              "hr": 0.8462,
+              "wilson_low": 0.7248,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 214,
+          "hits": 175,
+          "hr": 0.8178,
+          "wilson_low": 0.7606,
+          "clears_3x_wilson": true,
+          "prop": "goals",
+          "lines": {
+            "0.5": {
+              "n": 207,
+              "hits": 168,
+              "hr": 0.8116,
+              "wilson_low": 0.7528,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 124,
+          "hits": 71,
+          "hr": 0.5726,
+          "wilson_low": 0.4846,
+          "clears_3x_wilson": false,
+          "prop": "sog",
+          "lines": {
+            "1.5": {
+              "n": 69,
+              "hits": 43,
+              "hr": 0.6232,
+              "wilson_low": 0.5052,
+              "clears_3x_wilson": false
+            },
+            "2.5+": {
+              "n": 55,
+              "hits": 28,
+              "hr": 0.5091,
+              "wilson_low": 0.3808,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 13,
+          "hits": 9,
+          "hr": 0.6923,
+          "wilson_low": 0.4237,
+          "clears_3x_wilson": false,
+          "prop": "plus_minus",
+          "lines": {
+            "0.5": {
+              "n": 13,
+              "hits": 9,
+              "hr": 0.6923,
+              "wilson_low": 0.4237,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 5,
+          "hits": 3,
+          "hr": 0.6,
+          "wilson_low": 0.2307,
+          "clears_3x_wilson": false,
+          "prop": "blocked_shots",
+          "lines": {}
+        },
+        {
+          "n": 2,
+          "hits": 2,
+          "hr": 1.0,
+          "wilson_low": 0.3424,
+          "clears_3x_wilson": false,
+          "prop": "goals_allowed",
+          "lines": {}
+        }
+      ]
+    },
+    "quote": {
+      "flat_quote": {
+        "power2_x": 3.0,
+        "power3_x": 6.0,
+        "breakeven_2": 0.5774,
+        "breakeven_3": 0.5503
+      },
+      "scraped_all_standard": [
+        {
+          "date": "2026-07-13",
+          "n_legs": 2,
+          "power_x": 3.0,
+          "captured_at": "",
+          "sports": [
+            "WNBA"
+          ]
+        },
+        {
+          "date": "2026-07-21",
+          "n_legs": 5,
+          "power_x": 6.0,
+          "captured_at": "",
+          "sports": [
+            "MLB"
+          ]
+        }
+      ],
+      "scraped_all_standard_with_capture": 0,
+      "legs_with_board_standard_line": 0,
+      "legs_line_ne_standard_line": 0,
+      "mismatch_hr": null,
+      "labelled_standard": {
+        "n": 1255,
+        "hits": 891,
+        "hr": 0.71,
+        "wilson_low": 0.6842,
+        "clears_3x_wilson": true
+      },
+      "unlabelled_pick_type": {
+        "n": 11,
+        "hits": 6,
+        "hr": 0.5455,
+        "wilson_low": 0.2801,
+        "clears_3x_wilson": false
+      },
+      "note": "PrizePicks all-Standard Power pays a flat 3x (2-pick) / 6x (3-pick) by product rule; the only thing that can be wrong is the face label. A Standard leg whose line is not the board Standard line is an adjusted face recorded as Standard."
+    },
+    "walk_forward": {
+      "train": {
+        "n": 1196,
+        "hits": 853,
+        "hr": 0.7132,
+        "wilson_low": 0.6869,
+        "clears_3x_wilson": true
+      },
+      "oos": {
+        "n": 70,
+        "hits": 44,
+        "hr": 0.6286,
+        "wilson_low": 0.5115,
+        "clears_3x_wilson": false
+      },
+      "oos_dates": [
+        "2026-05-24",
+        "2026-05-25",
+        "2026-05-26",
+        "..."
+      ],
+      "by_month": [
+        {
+          "n": 781,
+          "hits": 638,
+          "hr": 0.8169,
+          "wilson_low": 0.7882,
+          "clears_3x_wilson": true,
+          "month": "2026-03"
+        },
+        {
+          "n": 280,
+          "hits": 144,
+          "hr": 0.5143,
+          "wilson_low": 0.4559,
+          "clears_3x_wilson": false,
+          "month": "2026-04"
+        },
+        {
+          "n": 154,
+          "hits": 84,
+          "hr": 0.5455,
+          "wilson_low": 0.4667,
+          "clears_3x_wilson": false,
+          "month": "2026-05"
+        },
+        {
+          "n": 9,
+          "hits": 3,
+          "hr": 0.3333,
+          "wilson_low": 0.1206,
+          "clears_3x_wilson": false,
+          "month": "2026-06"
+        },
+        {
+          "n": 42,
+          "hits": 28,
+          "hr": 0.6667,
+          "wilson_low": 0.5155,
+          "clears_3x_wilson": false,
+          "month": "2026-10"
+        }
+      ],
+      "expanding": [
+        {
+          "month": "2026-03",
+          "prior_hr": null,
+          "prior_n": 0,
+          "month_hr": 0.8169,
+          "month_n": 781,
+          "prior_said_play": false
+        },
+        {
+          "month": "2026-04",
+          "prior_hr": 0.8169,
+          "prior_n": 781,
+          "month_hr": 0.5143,
+          "month_n": 280,
+          "prior_said_play": true
+        },
+        {
+          "month": "2026-05",
+          "prior_hr": 0.737,
+          "prior_n": 1061,
+          "month_hr": 0.5455,
+          "month_n": 154,
+          "prior_said_play": true
+        },
+        {
+          "month": "2026-06",
+          "prior_hr": 0.7128,
+          "prior_n": 1215,
+          "month_hr": 0.3333,
+          "month_n": 9,
+          "prior_said_play": true
+        },
+        {
+          "month": "2026-10",
+          "prior_hr": 0.71,
+          "prior_n": 1224,
+          "month_hr": 0.6667,
+          "month_n": 42,
+          "prior_said_play": true
+        }
+      ],
+      "forward_only_when_prior_cleared": {
+        "n": 485,
+        "hits": 259,
+        "hr": 0.534,
+        "wilson_low": 0.4895,
+        "clears_3x_wilson": false
+      },
+      "regular_season": {
+        "n": 925,
+        "hits": 718,
+        "hr": 0.7762,
+        "wilson_low": 0.7482,
+        "clears_3x_wilson": true
+      },
+      "playoff_window": {
+        "n": 341,
+        "hits": 179,
+        "hr": 0.5249,
+        "wilson_low": 0.4719,
+        "clears_3x_wilson": false
+      }
+    },
+    "correlation": {
+      "leg_p": 0.7085,
+      "same_game_pairs": {
+        "pairs": 1125,
+        "joint_hr": 0.2987,
+        "independent_p2_pooled": 0.502,
+        "independent_date_matched": 0.315,
+        "lift_vs_date_matched": 0.948,
+        "ev_3x": -0.104
+      },
+      "same_team_pairs": {
+        "pairs": 599,
+        "joint_hr": 0.2738,
+        "independent_p2_pooled": 0.502,
+        "independent_date_matched": 0.3052,
+        "lift_vs_date_matched": 0.897,
+        "ev_3x": -0.1786
+      },
+      "different_game_pairs": {
+        "pairs": 2407,
+        "joint_hr": 0.2916,
+        "independent_p2_pooled": 0.502,
+        "independent_date_matched": 0.3067,
+        "lift_vs_date_matched": 0.951,
+        "ev_3x": -0.1251
+      },
+      "note": "Pairs are all same-date combinations inside the slice (not optimised slips). Date-matched baseline = that date's p_d^2, so a hot month with many legs does not masquerade as correlation."
+    },
+    "verdict": [
+      "50% of the slice is 0.5-line",
+      "non-0.5 lines still clear 3x on Wilson",
+      "OOS does not clear 3x Wilson (n=70)",
+      "forward-only months 53.4% n=485 misses 3x Wilson",
+      "regular season 77.6% n=925 vs playoff window 52.5% n=341",
+      "same-game pair joint 29.9% vs date-matched p\u00b2=31.5% (lift 0.948)",
+      "11 legs have blank/dash pick_type (HR 54.5%) \u2014 not verified Standard"
+    ]
+  },
+  {
+    "sport": "NFL",
+    "gate": "L5=5 + L10>=8 + D_ok",
+    "ungated": {
+      "n": 939,
+      "hits": 652,
+      "hr": 0.6944,
+      "wilson_low": 0.6641,
+      "clears_3x_wilson": true
+    },
+    "slice": {
+      "n": 136,
+      "hits": 115,
+      "hr": 0.8456,
+      "wilson_low": 0.7755,
+      "clears_3x_wilson": true
+    },
+    "dates": [
+      "2026-09-09",
+      "2026-10-22"
+    ],
+    "prop_line": {
+      "line_0.5": {
+        "n": 14,
+        "hits": 13,
+        "hr": 0.9286,
+        "wilson_low": 0.6853,
+        "clears_3x_wilson": true
+      },
+      "line_not_0.5": {
+        "n": 122,
+        "hits": 102,
+        "hr": 0.8361,
+        "wilson_low": 0.7603,
+        "clears_3x_wilson": true
+      },
+      "share_0.5": 0.103,
+      "by_prop": [
+        {
+          "n": 49,
+          "hits": 43,
+          "hr": 0.8776,
+          "wilson_low": 0.7576,
+          "clears_3x_wilson": true,
+          "prop": "sacks",
+          "lines": {
+            "0.5": {
+              "n": 14,
+              "hits": 13,
+              "hr": 0.9286,
+              "wilson_low": 0.6853,
+              "clears_3x_wilson": true
+            },
+            "1.5": {
+              "n": 21,
+              "hits": 21,
+              "hr": 1.0,
+              "wilson_low": 0.8454,
+              "clears_3x_wilson": true
+            },
+            "2.5+": {
+              "n": 14,
+              "hits": 9,
+              "hr": 0.6429,
+              "wilson_low": 0.3876,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 18,
+          "hits": 12,
+          "hr": 0.6667,
+          "wilson_low": 0.4375,
+          "clears_3x_wilson": false,
+          "prop": "receptions",
+          "lines": {
+            "2.5+": {
+              "n": 17,
+              "hits": 11,
+              "hr": 0.6471,
+              "wilson_low": 0.413,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 17,
+          "hits": 12,
+          "hr": 0.7059,
+          "wilson_low": 0.4687,
+          "clears_3x_wilson": false,
+          "prop": "receiving_yards",
+          "lines": {
+            "2.5+": {
+              "n": 17,
+              "hits": 12,
+              "hr": 0.7059,
+              "wilson_low": 0.4687,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 17,
+          "hits": 17,
+          "hr": 1.0,
+          "wilson_low": 0.8157,
+          "clears_3x_wilson": true,
+          "prop": "tackles",
+          "lines": {
+            "2.5+": {
+              "n": 17,
+              "hits": 17,
+              "hr": 1.0,
+              "wilson_low": 0.8157,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 13,
+          "hits": 11,
+          "hr": 0.8462,
+          "wilson_low": 0.5776,
+          "clears_3x_wilson": true,
+          "prop": "longestreception",
+          "lines": {
+            "2.5+": {
+              "n": 13,
+              "hits": 11,
+              "hr": 0.8462,
+              "wilson_low": 0.5776,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 6,
+          "hits": 6,
+          "hr": 1.0,
+          "wilson_low": 0.6097,
+          "clears_3x_wilson": true,
+          "prop": "rushing_yards",
+          "lines": {}
+        },
+        {
+          "n": 5,
+          "hits": 5,
+          "hr": 1.0,
+          "wilson_low": 0.5655,
+          "clears_3x_wilson": false,
+          "prop": "fantasy",
+          "lines": {}
+        },
+        {
+          "n": 4,
+          "hits": 2,
+          "hr": 0.5,
+          "wilson_low": 0.15,
+          "clears_3x_wilson": false,
+          "prop": "passcompletions",
+          "lines": {}
+        },
+        {
+          "n": 3,
+          "hits": 3,
+          "hr": 1.0,
+          "wilson_low": 0.4385,
+          "clears_3x_wilson": false,
+          "prop": "kickingpoints",
+          "lines": {}
+        },
+        {
+          "n": 2,
+          "hits": 2,
+          "hr": 1.0,
+          "wilson_low": 0.3424,
+          "clears_3x_wilson": false,
+          "prop": "passing_tds",
+          "lines": {}
+        },
+        {
+          "n": 1,
+          "hits": 1,
+          "hr": 1.0,
+          "wilson_low": 0.2065,
+          "clears_3x_wilson": false,
+          "prop": "passing_yards",
+          "lines": {}
+        },
+        {
+          "n": 1,
+          "hits": 1,
+          "hr": 1.0,
+          "wilson_low": 0.2065,
+          "clears_3x_wilson": false,
+          "prop": "interceptions",
+          "lines": {}
+        }
+      ]
+    },
+    "quote": {
+      "flat_quote": {
+        "power2_x": 3.0,
+        "power3_x": 6.0,
+        "breakeven_2": 0.5774,
+        "breakeven_3": 0.5503
+      },
+      "scraped_all_standard": [
+        {
+          "date": "2026-07-13",
+          "n_legs": 2,
+          "power_x": 3.0,
+          "captured_at": "",
+          "sports": [
+            "WNBA"
+          ]
+        },
+        {
+          "date": "2026-07-21",
+          "n_legs": 5,
+          "power_x": 6.0,
+          "captured_at": "",
+          "sports": [
+            "MLB"
+          ]
+        }
+      ],
+      "scraped_all_standard_with_capture": 0,
+      "legs_with_board_standard_line": 0,
+      "legs_line_ne_standard_line": 0,
+      "mismatch_hr": null,
+      "labelled_standard": {
+        "n": 136,
+        "hits": 115,
+        "hr": 0.8456,
+        "wilson_low": 0.7755,
+        "clears_3x_wilson": true
+      },
+      "unlabelled_pick_type": null,
+      "note": "PrizePicks all-Standard Power pays a flat 3x (2-pick) / 6x (3-pick) by product rule; the only thing that can be wrong is the face label. A Standard leg whose line is not the board Standard line is an adjusted face recorded as Standard."
+    },
+    "walk_forward": {
+      "train": {
+        "n": 64,
+        "hits": 56,
+        "hr": 0.875,
+        "wilson_low": 0.7723,
+        "clears_3x_wilson": true
+      },
+      "oos": {
+        "n": 72,
+        "hits": 59,
+        "hr": 0.8194,
+        "wilson_low": 0.7152,
+        "clears_3x_wilson": true
+      },
+      "oos_dates": [
+        "2026-10-11",
+        "2026-10-12",
+        "2026-10-15",
+        "..."
+      ],
+      "by_month": [
+        {
+          "n": 54,
+          "hits": 46,
+          "hr": 0.8519,
+          "wilson_low": 0.734,
+          "clears_3x_wilson": true,
+          "month": "2026-09"
+        },
+        {
+          "n": 82,
+          "hits": 69,
+          "hr": 0.8415,
+          "wilson_low": 0.7474,
+          "clears_3x_wilson": true,
+          "month": "2026-10"
+        }
+      ],
+      "expanding": [
+        {
+          "month": "2026-09",
+          "prior_hr": null,
+          "prior_n": 0,
+          "month_hr": 0.8519,
+          "month_n": 54,
+          "prior_said_play": false
+        },
+        {
+          "month": "2026-10",
+          "prior_hr": 0.8519,
+          "prior_n": 54,
+          "month_hr": 0.8415,
+          "month_n": 82,
+          "prior_said_play": true
+        }
+      ],
+      "forward_only_when_prior_cleared": {
+        "n": 82,
+        "hits": 69,
+        "hr": 0.8415,
+        "wilson_low": 0.7474,
+        "clears_3x_wilson": true
+      },
+      "regular_season": {
+        "n": 136,
+        "hits": 115,
+        "hr": 0.8456,
+        "wilson_low": 0.7755,
+        "clears_3x_wilson": true
+      },
+      "playoff_window": null
+    },
+    "correlation": {
+      "leg_p": 0.8456,
+      "same_game_pairs": {
+        "pairs": 877,
+        "joint_hr": 0.7811,
+        "independent_p2_pooled": 0.715,
+        "independent_date_matched": 0.7813,
+        "lift_vs_date_matched": 1.0,
+        "ev_3x": 1.3432
+      },
+      "same_team_pairs": {
+        "pairs": 508,
+        "joint_hr": 0.8012,
+        "independent_p2_pooled": 0.715,
+        "independent_date_matched": 0.7904,
+        "lift_vs_date_matched": 1.014,
+        "ev_3x": 1.4035
+      },
+      "different_game_pairs": {
+        "pairs": 79,
+        "joint_hr": 0.4684,
+        "independent_p2_pooled": 0.715,
+        "independent_date_matched": 0.5191,
+        "lift_vs_date_matched": 0.902,
+        "ev_3x": 0.4051
+      },
+      "note": "Pairs are all same-date combinations inside the slice (not optimised slips). Date-matched baseline = that date's p_d^2, so a hot month with many legs does not masquerade as correlation."
+    },
+    "verdict": [
+      "non-0.5 lines still clear 3x on Wilson",
+      "OOS clears 3x Wilson (n=72)",
+      "forward-only months 84.2% n=82 clears 3x Wilson",
+      "same-game pair joint 78.1% vs date-matched p\u00b2=78.1% (lift 1.0)"
+    ]
+  },
+  {
+    "sport": "NFL",
+    "gate": "L10>=8 + cover>=1",
+    "ungated": {
+      "n": 939,
+      "hits": 652,
+      "hr": 0.6944,
+      "wilson_low": 0.6641,
+      "clears_3x_wilson": true
+    },
+    "slice": {
+      "n": 375,
+      "hits": 311,
+      "hr": 0.8293,
+      "wilson_low": 0.788,
+      "clears_3x_wilson": true
+    },
+    "dates": [
+      "2026-09-09",
+      "2026-10-22"
+    ],
+    "prop_line": {
+      "line_0.5": {
+        "n": 0,
+        "hits": 0,
+        "hr": null,
+        "wilson_low": null,
+        "clears_3x_wilson": false
+      },
+      "line_not_0.5": {
+        "n": 375,
+        "hits": 311,
+        "hr": 0.8293,
+        "wilson_low": 0.788,
+        "clears_3x_wilson": true
+      },
+      "share_0.5": 0.0,
+      "by_prop": [
+        {
+          "n": 70,
+          "hits": 51,
+          "hr": 0.7286,
+          "wilson_low": 0.6146,
+          "clears_3x_wilson": true,
+          "prop": "receiving_yards",
+          "lines": {
+            "2.5+": {
+              "n": 70,
+              "hits": 51,
+              "hr": 0.7286,
+              "wilson_low": 0.6146,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 68,
+          "hits": 54,
+          "hr": 0.7941,
+          "wilson_low": 0.6836,
+          "clears_3x_wilson": true,
+          "prop": "receptions",
+          "lines": {
+            "2.5+": {
+              "n": 67,
+              "hits": 53,
+              "hr": 0.791,
+              "wilson_low": 0.6793,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 67,
+          "hits": 60,
+          "hr": 0.8955,
+          "wilson_low": 0.7997,
+          "clears_3x_wilson": true,
+          "prop": "tackles",
+          "lines": {
+            "2.5+": {
+              "n": 67,
+              "hits": 60,
+              "hr": 0.8955,
+              "wilson_low": 0.7997,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 54,
+          "hits": 54,
+          "hr": 1.0,
+          "wilson_low": 0.9336,
+          "clears_3x_wilson": true,
+          "prop": "sacks",
+          "lines": {
+            "1.5": {
+              "n": 44,
+              "hits": 44,
+              "hr": 1.0,
+              "wilson_low": 0.9197,
+              "clears_3x_wilson": true
+            },
+            "2.5+": {
+              "n": 10,
+              "hits": 10,
+              "hr": 1.0,
+              "wilson_low": 0.7225,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 23,
+          "hits": 20,
+          "hr": 0.8696,
+          "wilson_low": 0.6787,
+          "clears_3x_wilson": true,
+          "prop": "rushing_yards",
+          "lines": {
+            "2.5+": {
+              "n": 23,
+              "hits": 20,
+              "hr": 0.8696,
+              "wilson_low": 0.6787,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 23,
+          "hits": 19,
+          "hr": 0.8261,
+          "wilson_low": 0.6286,
+          "clears_3x_wilson": true,
+          "prop": "longestreception",
+          "lines": {
+            "2.5+": {
+              "n": 23,
+              "hits": 19,
+              "hr": 0.8261,
+              "wilson_low": 0.6286,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 16,
+          "hits": 15,
+          "hr": 0.9375,
+          "wilson_low": 0.7167,
+          "clears_3x_wilson": true,
+          "prop": "kickingpoints",
+          "lines": {
+            "2.5+": {
+              "n": 16,
+              "hits": 15,
+              "hr": 0.9375,
+              "wilson_low": 0.7167,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 15,
+          "hits": 7,
+          "hr": 0.4667,
+          "wilson_low": 0.2481,
+          "clears_3x_wilson": false,
+          "prop": "passcompletions",
+          "lines": {
+            "2.5+": {
+              "n": 15,
+              "hits": 7,
+              "hr": 0.4667,
+              "wilson_low": 0.2481,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 10,
+          "hits": 9,
+          "hr": 0.9,
+          "wilson_low": 0.5958,
+          "clears_3x_wilson": true,
+          "prop": "fantasy",
+          "lines": {
+            "2.5+": {
+              "n": 10,
+              "hits": 9,
+              "hr": 0.9,
+              "wilson_low": 0.5958,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 8,
+          "hits": 7,
+          "hr": 0.875,
+          "wilson_low": 0.5291,
+          "clears_3x_wilson": false,
+          "prop": "passing_tds",
+          "lines": {}
+        },
+        {
+          "n": 7,
+          "hits": 5,
+          "hr": 0.7143,
+          "wilson_low": 0.3589,
+          "clears_3x_wilson": false,
+          "prop": "passing_yards",
+          "lines": {}
+        },
+        {
+          "n": 6,
+          "hits": 6,
+          "hr": 1.0,
+          "wilson_low": 0.6097,
+          "clears_3x_wilson": true,
+          "prop": "interceptions",
+          "lines": {}
+        },
+        {
+          "n": 4,
+          "hits": 2,
+          "hr": 0.5,
+          "wilson_low": 0.15,
+          "clears_3x_wilson": false,
+          "prop": "longestcompletion",
+          "lines": {}
+        },
+        {
+          "n": 3,
+          "hits": 1,
+          "hr": 0.3333,
+          "wilson_low": 0.0615,
+          "clears_3x_wilson": false,
+          "prop": "completionpercentage",
+          "lines": {}
+        },
+        {
+          "n": 1,
+          "hits": 1,
+          "hr": 1.0,
+          "wilson_low": 0.2065,
+          "clears_3x_wilson": false,
+          "prop": "sackstaken",
+          "lines": {}
+        }
+      ]
+    },
+    "quote": {
+      "flat_quote": {
+        "power2_x": 3.0,
+        "power3_x": 6.0,
+        "breakeven_2": 0.5774,
+        "breakeven_3": 0.5503
+      },
+      "scraped_all_standard": [
+        {
+          "date": "2026-07-13",
+          "n_legs": 2,
+          "power_x": 3.0,
+          "captured_at": "",
+          "sports": [
+            "WNBA"
+          ]
+        },
+        {
+          "date": "2026-07-21",
+          "n_legs": 5,
+          "power_x": 6.0,
+          "captured_at": "",
+          "sports": [
+            "MLB"
+          ]
+        }
+      ],
+      "scraped_all_standard_with_capture": 0,
+      "legs_with_board_standard_line": 0,
+      "legs_line_ne_standard_line": 0,
+      "mismatch_hr": null,
+      "labelled_standard": {
+        "n": 375,
+        "hits": 311,
+        "hr": 0.8293,
+        "wilson_low": 0.788,
+        "clears_3x_wilson": true
+      },
+      "unlabelled_pick_type": null,
+      "note": "PrizePicks all-Standard Power pays a flat 3x (2-pick) / 6x (3-pick) by product rule; the only thing that can be wrong is the face label. A Standard leg whose line is not the board Standard line is an adjusted face recorded as Standard."
+    },
+    "walk_forward": {
+      "train": {
+        "n": 233,
+        "hits": 194,
+        "hr": 0.8326,
+        "wilson_low": 0.7794,
+        "clears_3x_wilson": true
+      },
+      "oos": {
+        "n": 142,
+        "hits": 117,
+        "hr": 0.8239,
+        "wilson_low": 0.753,
+        "clears_3x_wilson": true
+      },
+      "oos_dates": [
+        "2026-10-11",
+        "2026-10-12",
+        "2026-10-15",
+        "..."
+      ],
+      "by_month": [
+        {
+          "n": 167,
+          "hits": 136,
+          "hr": 0.8144,
+          "wilson_low": 0.7486,
+          "clears_3x_wilson": true,
+          "month": "2026-09"
+        },
+        {
+          "n": 208,
+          "hits": 175,
+          "hr": 0.8413,
+          "wilson_low": 0.7856,
+          "clears_3x_wilson": true,
+          "month": "2026-10"
+        }
+      ],
+      "expanding": [
+        {
+          "month": "2026-09",
+          "prior_hr": null,
+          "prior_n": 0,
+          "month_hr": 0.8144,
+          "month_n": 167,
+          "prior_said_play": false
+        },
+        {
+          "month": "2026-10",
+          "prior_hr": 0.8144,
+          "prior_n": 167,
+          "month_hr": 0.8413,
+          "month_n": 208,
+          "prior_said_play": true
+        }
+      ],
+      "forward_only_when_prior_cleared": {
+        "n": 208,
+        "hits": 175,
+        "hr": 0.8413,
+        "wilson_low": 0.7856,
+        "clears_3x_wilson": true
+      },
+      "regular_season": {
+        "n": 375,
+        "hits": 311,
+        "hr": 0.8293,
+        "wilson_low": 0.788,
+        "clears_3x_wilson": true
+      },
+      "playoff_window": null
+    },
+    "correlation": {
+      "leg_p": 0.8293,
+      "same_game_pairs": {
+        "pairs": 3110,
+        "joint_hr": 0.7669,
+        "independent_p2_pooled": 0.6877,
+        "independent_date_matched": 0.7573,
+        "lift_vs_date_matched": 1.013,
+        "ev_3x": 1.3006
+      },
+      "same_team_pairs": {
+        "pairs": 1783,
+        "joint_hr": 0.779,
+        "independent_p2_pooled": 0.6877,
+        "independent_date_matched": 0.7493,
+        "lift_vs_date_matched": 1.04,
+        "ev_3x": 1.3371
+      },
+      "different_game_pairs": {
+        "pairs": 1447,
+        "joint_hr": 0.5688,
+        "independent_p2_pooled": 0.6877,
+        "independent_date_matched": 0.5982,
+        "lift_vs_date_matched": 0.951,
+        "ev_3x": 0.7063
+      },
+      "note": "Pairs are all same-date combinations inside the slice (not optimised slips). Date-matched baseline = that date's p_d^2, so a hot month with many legs does not masquerade as correlation."
+    },
+    "verdict": [
+      "non-0.5 lines still clear 3x on Wilson",
+      "OOS clears 3x Wilson (n=142)",
+      "forward-only months 84.1% n=208 clears 3x Wilson",
+      "same-game pair joint 76.7% vs date-matched p\u00b2=75.7% (lift 1.013)"
+    ]
+  },
+  {
+    "sport": "NFL",
+    "gate": "L10>=8",
+    "ungated": {
+      "n": 939,
+      "hits": 652,
+      "hr": 0.6944,
+      "wilson_low": 0.6641,
+      "clears_3x_wilson": true
+    },
+    "slice": {
+      "n": 472,
+      "hits": 382,
+      "hr": 0.8093,
+      "wilson_low": 0.7714,
+      "clears_3x_wilson": true
+    },
+    "dates": [
+      "2026-09-09",
+      "2026-10-22"
+    ],
+    "prop_line": {
+      "line_0.5": {
+        "n": 44,
+        "hits": 41,
+        "hr": 0.9318,
+        "wilson_low": 0.8177,
+        "clears_3x_wilson": true
+      },
+      "line_not_0.5": {
+        "n": 428,
+        "hits": 341,
+        "hr": 0.7967,
+        "wilson_low": 0.756,
+        "clears_3x_wilson": true
+      },
+      "share_0.5": 0.093,
+      "by_prop": [
+        {
+          "n": 122,
+          "hits": 109,
+          "hr": 0.8934,
+          "wilson_low": 0.8262,
+          "clears_3x_wilson": true,
+          "prop": "sacks",
+          "lines": {
+            "0.5": {
+              "n": 44,
+              "hits": 41,
+              "hr": 0.9318,
+              "wilson_low": 0.8177,
+              "clears_3x_wilson": true
+            },
+            "1.5": {
+              "n": 44,
+              "hits": 44,
+              "hr": 1.0,
+              "wilson_low": 0.9197,
+              "clears_3x_wilson": true
+            },
+            "2.5+": {
+              "n": 34,
+              "hits": 24,
+              "hr": 0.7059,
+              "wilson_low": 0.5383,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 75,
+          "hits": 58,
+          "hr": 0.7733,
+          "wilson_low": 0.6666,
+          "clears_3x_wilson": true,
+          "prop": "receptions",
+          "lines": {
+            "2.5+": {
+              "n": 71,
+              "hits": 55,
+              "hr": 0.7746,
+              "wilson_low": 0.6648,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 72,
+          "hits": 53,
+          "hr": 0.7361,
+          "wilson_low": 0.6242,
+          "clears_3x_wilson": true,
+          "prop": "receiving_yards",
+          "lines": {
+            "2.5+": {
+              "n": 72,
+              "hits": 53,
+              "hr": 0.7361,
+              "wilson_low": 0.6242,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 71,
+          "hits": 63,
+          "hr": 0.8873,
+          "wilson_low": 0.7931,
+          "clears_3x_wilson": true,
+          "prop": "tackles",
+          "lines": {
+            "2.5+": {
+              "n": 71,
+              "hits": 63,
+              "hr": 0.8873,
+              "wilson_low": 0.7931,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 28,
+          "hits": 20,
+          "hr": 0.7143,
+          "wilson_low": 0.5294,
+          "clears_3x_wilson": false,
+          "prop": "longestreception",
+          "lines": {
+            "2.5+": {
+              "n": 28,
+              "hits": 20,
+              "hr": 0.7143,
+              "wilson_low": 0.5294,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 23,
+          "hits": 20,
+          "hr": 0.8696,
+          "wilson_low": 0.6787,
+          "clears_3x_wilson": true,
+          "prop": "rushing_yards",
+          "lines": {
+            "2.5+": {
+              "n": 23,
+              "hits": 20,
+              "hr": 0.8696,
+              "wilson_low": 0.6787,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 17,
+          "hits": 7,
+          "hr": 0.4118,
+          "wilson_low": 0.2161,
+          "clears_3x_wilson": false,
+          "prop": "passcompletions",
+          "lines": {
+            "2.5+": {
+              "n": 17,
+              "hits": 7,
+              "hr": 0.4118,
+              "wilson_low": 0.2161,
+              "clears_3x_wilson": false
+            }
+          }
+        },
+        {
+          "n": 16,
+          "hits": 15,
+          "hr": 0.9375,
+          "wilson_low": 0.7167,
+          "clears_3x_wilson": true,
+          "prop": "kickingpoints",
+          "lines": {
+            "2.5+": {
+              "n": 16,
+              "hits": 15,
+              "hr": 0.9375,
+              "wilson_low": 0.7167,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 11,
+          "hits": 10,
+          "hr": 0.9091,
+          "wilson_low": 0.6226,
+          "clears_3x_wilson": true,
+          "prop": "fantasy",
+          "lines": {
+            "2.5+": {
+              "n": 11,
+              "hits": 10,
+              "hr": 0.9091,
+              "wilson_low": 0.6226,
+              "clears_3x_wilson": true
+            }
+          }
+        },
+        {
+          "n": 9,
+          "hits": 8,
+          "hr": 0.8889,
+          "wilson_low": 0.565,
+          "clears_3x_wilson": false,
+          "prop": "passing_tds",
+          "lines": {}
+        },
+        {
+          "n": 8,
+          "hits": 8,
+          "hr": 1.0,
+          "wilson_low": 0.6756,
+          "clears_3x_wilson": true,
+          "prop": "interceptions",
+          "lines": {}
+        },
+        {
+          "n": 7,
+          "hits": 5,
+          "hr": 0.7143,
+          "wilson_low": 0.3589,
+          "clears_3x_wilson": false,
+          "prop": "passing_yards",
+          "lines": {}
+        },
+        {
+          "n": 6,
+          "hits": 3,
+          "hr": 0.5,
+          "wilson_low": 0.1876,
+          "clears_3x_wilson": false,
+          "prop": "longestcompletion",
+          "lines": {}
+        },
+        {
+          "n": 5,
+          "hits": 2,
+          "hr": 0.4,
+          "wilson_low": 0.1176,
+          "clears_3x_wilson": false,
+          "prop": "completionpercentage",
+          "lines": {}
+        },
+        {
+          "n": 1,
+          "hits": 1,
+          "hr": 1.0,
+          "wilson_low": 0.2065,
+          "clears_3x_wilson": false,
+          "prop": "sackstaken",
+          "lines": {}
+        },
+        {
+          "n": 1,
+          "hits": 0,
+          "hr": 0.0,
+          "wilson_low": 0.0,
+          "clears_3x_wilson": false,
+          "prop": "fg_made",
+          "lines": {}
+        }
+      ]
+    },
+    "quote": {
+      "flat_quote": {
+        "power2_x": 3.0,
+        "power3_x": 6.0,
+        "breakeven_2": 0.5774,
+        "breakeven_3": 0.5503
+      },
+      "scraped_all_standard": [
+        {
+          "date": "2026-07-13",
+          "n_legs": 2,
+          "power_x": 3.0,
+          "captured_at": "",
+          "sports": [
+            "WNBA"
+          ]
+        },
+        {
+          "date": "2026-07-21",
+          "n_legs": 5,
+          "power_x": 6.0,
+          "captured_at": "",
+          "sports": [
+            "MLB"
+          ]
+        }
+      ],
+      "scraped_all_standard_with_capture": 0,
+      "legs_with_board_standard_line": 0,
+      "legs_line_ne_standard_line": 0,
+      "mismatch_hr": null,
+      "labelled_standard": {
+        "n": 472,
+        "hits": 382,
+        "hr": 0.8093,
+        "wilson_low": 0.7714,
+        "clears_3x_wilson": true
+      },
+      "unlabelled_pick_type": null,
+      "note": "PrizePicks all-Standard Power pays a flat 3x (2-pick) / 6x (3-pick) by product rule; the only thing that can be wrong is the face label. A Standard leg whose line is not the board Standard line is an adjusted face recorded as Standard."
+    },
+    "walk_forward": {
+      "train": {
+        "n": 273,
+        "hits": 222,
+        "hr": 0.8132,
+        "wilson_low": 0.7627,
+        "clears_3x_wilson": true
+      },
+      "oos": {
+        "n": 199,
+        "hits": 160,
+        "hr": 0.804,
+        "wilson_low": 0.7433,
+        "clears_3x_wilson": true
+      },
+      "oos_dates": [
+        "2026-10-11",
+        "2026-10-12",
+        "2026-10-15",
+        "..."
+      ],
+      "by_month": [
+        {
+          "n": 187,
+          "hits": 145,
+          "hr": 0.7754,
+          "wilson_low": 0.7104,
+          "clears_3x_wilson": true,
+          "month": "2026-09"
+        },
+        {
+          "n": 285,
+          "hits": 237,
+          "hr": 0.8316,
+          "wilson_low": 0.7838,
+          "clears_3x_wilson": true,
+          "month": "2026-10"
+        }
+      ],
+      "expanding": [
+        {
+          "month": "2026-09",
+          "prior_hr": null,
+          "prior_n": 0,
+          "month_hr": 0.7754,
+          "month_n": 187,
+          "prior_said_play": false
+        },
+        {
+          "month": "2026-10",
+          "prior_hr": 0.7754,
+          "prior_n": 187,
+          "month_hr": 0.8316,
+          "month_n": 285,
+          "prior_said_play": true
+        }
+      ],
+      "forward_only_when_prior_cleared": {
+        "n": 285,
+        "hits": 237,
+        "hr": 0.8316,
+        "wilson_low": 0.7838,
+        "clears_3x_wilson": true
+      },
+      "regular_season": {
+        "n": 472,
+        "hits": 382,
+        "hr": 0.8093,
+        "wilson_low": 0.7714,
+        "clears_3x_wilson": true
+      },
+      "playoff_window": null
+    },
+    "correlation": {
+      "leg_p": 0.8093,
+      "same_game_pairs": {
+        "pairs": 4513,
+        "joint_hr": 0.7383,
+        "independent_p2_pooled": 0.655,
+        "independent_date_matched": 0.73,
+        "lift_vs_date_matched": 1.011,
+        "ev_3x": 1.2149
+      },
+      "same_team_pairs": {
+        "pairs": 2664,
+        "joint_hr": 0.7526,
+        "independent_p2_pooled": 0.655,
+        "independent_date_matched": 0.7252,
+        "lift_vs_date_matched": 1.038,
+        "ev_3x": 1.2579
+      },
+      "different_game_pairs": {
+        "pairs": 2670,
+        "joint_hr": 0.539,
+        "independent_p2_pooled": 0.655,
+        "independent_date_matched": 0.5618,
+        "lift_vs_date_matched": 0.959,
+        "ev_3x": 0.6169
+      },
+      "note": "Pairs are all same-date combinations inside the slice (not optimised slips). Date-matched baseline = that date's p_d^2, so a hot month with many legs does not masquerade as correlation."
+    },
+    "verdict": [
+      "non-0.5 lines still clear 3x on Wilson",
+      "OOS clears 3x Wilson (n=199)",
+      "forward-only months 83.2% n=285 clears 3x Wilson",
+      "same-game pair joint 73.8% vs date-matched p\u00b2=73.0% (lift 1.011)"
+    ]
+  }
+]

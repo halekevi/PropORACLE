@@ -1,0 +1,41 @@
+{
+  "dnp": 28193,
+  "postponed": 5494,
+  "retirement": 191,
+  "walkover": 198,
+  "fetch_gap": 178212,
+  "other_unsettled_top": [
+    [
+      "NO_ACTUAL",
+      231133
+    ],
+    [
+      "FORCED_OVER_NEG_EDGE; NO_ACTUAL",
+      3664
+    ],
+    [
+      "VOID_TIER_D;VOID_LOW_MINUTES_NON_A; NO_ACTUAL",
+      2303
+    ],
+    [
+      "VOID_LOW_MINUTES_NON_A; NO_ACTUAL",
+      1937
+    ],
+    [
+      "VOID_TIER_D; NO_ACTUAL",
+      918
+    ],
+    [
+      "BLOCKED_STD_UNDER_LOW_HR",
+      776
+    ],
+    [
+      "PUSH",
+      770
+    ],
+    [
+      "STD_OVER_EDGE_BELOW_MIN_PTS",
+      483
+    ]
+  ]
+}

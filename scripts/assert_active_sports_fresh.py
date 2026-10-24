@@ -38,6 +38,7 @@ ET = ZoneInfo("America/New_York")
 NBA_SEASON_RESUME = "2026-10-01"
 NHL_SEASON_RESUME = "2026-09-01"
 NFL_SEASON_RESUME = "2026-08-13"  # match run_pipeline.ps1; override via PROPORACLE_NFL_RESUME
+CFB_SEASON_RESUME = "2026-08-18"  # match run_pipeline.ps1; override via PROPORACLE_CFB_RESUME
 WNBA_SEASON_START = "2026-05-01"
 WNBA_ALLSTAR_PAUSE_START = "2026-07-19"
 WNBA_SEASON_RESUME = "2026-07-28"
@@ -46,7 +47,10 @@ WNBA_SEASON_RESUME = "2026-07-28"
 # NFL/CFB scaffolding can show failed/no_slate without killing the summer daily.
 SUMMER_CORE = ("mlb", "soccer", "tennis", "wnba")
 # Added only after season resume dates (not summer scaffolding).
-WINTER_CORE = ("nba", "nba1h", "nba1q", "nhl")
+# Period boards (nba1h/nba1q) are opportunistic — only expected when that
+# board actually ran. A leftover `failed` status must not fail the daily gate.
+WINTER_CORE = ("nba", "nhl")
+PERIOD_SPORTS = ("nba1h", "nba1q", "wnba1h", "wnba1q")
 
 # Site SLATE_STRICT_GAME_DAY_SPORTS + tennis.
 STRICT_GAME_DAY = frozenset({"nhl", "nfl", "mlb", "nba1h", "nba1q", "soccer", "wnba", "tennis"})
@@ -74,6 +78,10 @@ STEP1_CANDIDATES: dict[str, tuple[str, ...]] = {
         "outputs/{d}/nba/step1_pp_props_today.csv",
         "Sports/NBA/step1_pp_props_today.csv",
     ),
+    "nba1h": ("outputs/{d}/nba1h/step1_nba1h_props.csv",),
+    "nba1q": ("outputs/{d}/nba1q/step1_nba1q_props.csv",),
+    "wnba1h": ("outputs/{d}/wnba1h/step1_wnba1h_props.csv",),
+    "wnba1q": ("outputs/{d}/wnba1q/step1_wnba1q_props.csv",),
     "nhl": (
         "outputs/{d}/nhl/step1_nhl_props.csv",
         "Sports/NHL/outputs/step1_nhl_props.csv",
@@ -81,6 +89,10 @@ STEP1_CANDIDATES: dict[str, tuple[str, ...]] = {
     "nfl": (
         "outputs/{d}/nfl/step1_nfl_props.csv",
         "Sports/NFL/outputs/step1_nfl_props.csv",
+    ),
+    "cfb": (
+        "outputs/{d}/cfb/step1_cfb.csv",
+        "Sports/CFB/outputs/step1_cfb.csv",
     ),
     "golf": (
         "outputs/{d}/golf/step1_golf_props.csv",
@@ -162,18 +174,24 @@ def _csv_has_data_rows(path: Path) -> bool:
 
 
 def step1_has_props(repo: Path, sport: str, run_date: str) -> bool:
-    for rel in STEP1_CANDIDATES.get(sport, ()):
-        p = repo / rel.format(d=run_date)
-        if _csv_has_data_rows(p):
-            return True
-    return False
+    """True only when the dated outputs/ tree has props.
+
+    Sports/ leftovers (May WNBA, May NBA) must not make today's gate expect a board.
+    """
+    rels = STEP1_CANDIDATES.get(sport, ())
+    if not rels:
+        return False
+    dated = rels[0]
+    if "{d}" not in dated:
+        return False
+    return _csv_has_data_rows(repo / dated.format(d=run_date))
 
 
 def in_season_candidates(today: str) -> list[str]:
     """Sports that *could* be active today for the hard gate.
 
     Summer daily focuses on MLB/Soccer/Tennis/WNBA. NBA/NHL join after resume.
-    NFL is only considered when status/fetch says it actually ran (see resolve_expected).
+    NFL/CFB are only considered when status/fetch says they actually ran (see resolve_expected).
     """
     wnba_pause_start = _env_ymd("WNBA_PAUSE_START", WNBA_ALLSTAR_PAUSE_START)
     wnba_resume = _env_ymd(
@@ -188,7 +206,7 @@ def in_season_candidates(today: str) -> list[str]:
     if today >= WNBA_SEASON_START and not wnba_off:
         out.append("wnba")
     if today >= nba_resume:
-        out.extend(["nba", "nba1h", "nba1q"])
+        out.append("nba")
     if today >= nhl_resume:
         out.append("nhl")
     return out
@@ -273,10 +291,42 @@ def resolve_expected(
         if st_nfl == "complete" or step1_has_props(repo, "nfl", today):
             candidates.append("nfl")
 
+    cfb_resume = _env_ymd(
+        "CFB_SEASON_RESUME",
+        _env_ymd("PROPORACLE_CFB_RESUME", CFB_SEASON_RESUME),
+    )
+    if today >= cfb_resume:
+        st_cfb = status.get("cfb", "")
+        if st_cfb == "complete" or step1_has_props(repo, "cfb", today):
+            candidates.append("cfb")
+
     # Golf is year-round but empty Mon–Wed (no_slate). Only gate when a board actually ran.
     st_golf = status.get("golf", "")
     if st_golf == "complete" or step1_has_props(repo, "golf", today):
         candidates.append("golf")
+
+    # Period boards: only when that slate actually ran (dated step1 or complete).
+    # Held NBA1Q is never a freshness requirement.
+    nba1q_held = False
+    try:
+        from utils.ticket_sport_holds import nba1q_tickets_held
+
+        nba1q_held = bool(nba1q_tickets_held())
+    except Exception:
+        nba1q_held = True
+    for period in PERIOD_SPORTS:
+        if period == "nba1q" and nba1q_held:
+            skipped.append((period, "nba1q_tickets_held"))
+            continue
+        st_p = status.get(period, "")
+        if st_p == "complete" or step1_has_props(repo, period, today):
+            candidates.append(period)
+        elif st_p == "no_slate":
+            skipped.append((period, "no_slate (empty PP board after fetch)"))
+        elif st_p == "failed":
+            skipped.append((period, "period_board_failed_not_required"))
+        elif st_p == "off_season":
+            skipped.append((period, "off_season"))
 
     core_fail_set = frozenset(SUMMER_CORE) | frozenset(WINTER_CORE)
 

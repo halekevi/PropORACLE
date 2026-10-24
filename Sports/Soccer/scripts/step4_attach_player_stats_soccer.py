@@ -33,6 +33,11 @@ for _ in range(6):
     _here = _here.parent
 from step4_db_reader import open_db, attach_stats, db_summary, DB_PATH
 
+_soc_scripts = Path(__file__).resolve().parent
+if str(_soc_scripts) not in sys.path:
+    sys.path.insert(0, str(_soc_scripts))
+from soccer_sofascore_matchlog import enrich_slate_matchlog
+
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
@@ -195,6 +200,12 @@ def main():
     ap.add_argument("--summary",     action="store_true")
     # Legacy args accepted but ignored (kept for run_pipeline.ps1 compatibility)
     ap.add_argument("--workers",     type=int, default=6)
+    ap.add_argument("--skip-matchlog", action="store_true",
+                    help="Skip Sofascore fill for passes/clearances/dribbles/tackles/crosses")
+    ap.add_argument("--skip-recent-backfill", action="store_true",
+                    help="Skip ESPN boxscore backfill for the last 16 days of PP leagues")
+    ap.add_argument("--full-matchlog", action="store_true",
+                    help="Sofascore every matchlog market (shots/SOT/goals too), not just ESPN-gap props")
     ap.add_argument("--season",      default="2025")
     ap.add_argument("--debug_misses",  default="")
     ap.add_argument("--debug_player",  default="")
@@ -223,6 +234,25 @@ def main():
             "No espn_player_id column found — soccer step4 requires ESPN IDs.\n"
             f"Columns available: {list(slate.columns)}"
         )
+
+    if not args.skip_recent_backfill:
+        print("\n→ ESPN recent boxscores (Championship/EPL/etc so Last 5 is not one cup game)")
+        try:
+            from build_boxscore_ref import backfill_recent_soccer
+            n_bf = backfill_recent_soccer(con, days=16)
+            print(f"  backfilled {n_bf} rows")
+        except Exception as exc:
+            print(f"  ⚠️  recent boxscore backfill failed ({exc}) — continuing")
+
+    if not args.skip_matchlog:
+        print("\n→ Sofascore match log (L5 for ESPN-gap markets: passes/tackles/...)")
+        try:
+            n_up = enrich_slate_matchlog(
+                con, slate, workers=args.workers, gap_only=not args.full_matchlog
+            )
+            print(f"  upserted {n_up} rows")
+        except Exception as exc:
+            print(f"  ⚠️  matchlog failed ({exc}) — continuing with ESPN-only L5")
 
     print(f"\n→ Attaching Soccer stats from DB (id_col={id_col}, n={args.n})...")
     match_before = float((slate[id_col].astype(str).str.strip() != "").mean())

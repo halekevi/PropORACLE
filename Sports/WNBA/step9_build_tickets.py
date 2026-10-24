@@ -368,7 +368,9 @@ def main():
 
     print(f"→ Loading: {args.input} (sheet={args.sheet})")
     try:
-        df = pd.read_excel(args.input, sheet_name=args.sheet)
+        peek = pd.read_excel(args.input, sheet_name=args.sheet, header=None, nrows=1)
+        header = 1 if (not peek.empty and str(peek.iloc[0, 0]).startswith("slate_date=")) else 0
+        df = pd.read_excel(args.input, sheet_name=args.sheet, header=header)
     except ValueError:
         # Empty step8 workbooks may not contain Tier A; emit a valid empty tickets file.
         print(f"  ⚠ Sheet '{args.sheet}' not found. Writing empty ticket workbook.")

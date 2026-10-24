@@ -1,0 +1,18 @@
+{
+  "not_in_box_keys": 264,
+  "decided": {
+    "shots": 62602,
+    "sog": 24921,
+    "saves": 7170
+  },
+  "lost_from_cell": {
+    "shots": 273,
+    "sog": 111,
+    "saves": 39
+  },
+  "remaining": {
+    "shots": 62329,
+    "sog": 24810,
+    "saves": 7131
+  }
+}

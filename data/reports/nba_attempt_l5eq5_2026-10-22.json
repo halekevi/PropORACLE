@@ -1,0 +1,1479 @@
+{
+  "slate": "2026-10-22",
+  "board": "H:\\PropORACLE\\outputs\\2026-10-22\\nba\\step1_pp_props_today.csv",
+  "tonight_one_per_player": [
+    {
+      "player": "Anfernee Simons",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Made",
+      "pick_type": "Demon",
+      "side": "OVER",
+      "line": 1.5,
+      "l5avg": 3.4,
+      "ratio": 0.4411764705882353,
+      "card_vals": [
+        2.0,
+        2.0,
+        3.0,
+        2.0,
+        8.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-02-21",
+        "2026-02-19",
+        "2026-02-11",
+        "2026-02-09"
+      ],
+      "window_mix": "RRRRR",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        2.0,
+        0.0,
+        4.0
+      ],
+      "pre_dates": [
+        "2025-10-15",
+        "2025-10-12",
+        "2025-10-10"
+      ],
+      "flags": [
+        "team_changed:CHI->PHI",
+        "pre_conflicts"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Cameron Johnson",
+      "team": "DEN",
+      "opp": "nan",
+      "prop": "Two Pointers Made",
+      "pick_type": "Goblin",
+      "side": "OVER",
+      "line": 1.5,
+      "l5avg": 3.4,
+      "ratio": 0.4411764705882353,
+      "card_vals": [
+        3.0,
+        6.0,
+        2.0,
+        2.0,
+        4.0
+      ],
+      "card_dates": [
+        "2026-04-30",
+        "2026-04-27",
+        "2026-04-25",
+        "2026-04-23",
+        "2026-04-20"
+      ],
+      "window_mix": "OOOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        3.0,
+        1.0,
+        1.0,
+        2.0,
+        1.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-14",
+        "2026-10-11",
+        "2026-10-06",
+        "2026-10-04"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 21:30"
+    },
+    {
+      "player": "Evan Mobley",
+      "team": "CLE",
+      "opp": "nan",
+      "prop": "3-PT Attempted",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 2.5,
+      "l5avg": 5.0,
+      "ratio": 0.5,
+      "card_vals": [
+        4.0,
+        6.0,
+        3.0,
+        8.0,
+        4.0
+      ],
+      "card_dates": [
+        "2026-05-25",
+        "2026-05-23",
+        "2026-05-21",
+        "2026-05-19",
+        "2026-05-17"
+      ],
+      "window_mix": "OOOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        6.0,
+        1.0,
+        0.0
+      ],
+      "pre_dates": [
+        "2026-10-13",
+        "2026-10-11",
+        "2026-10-08"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Jaylen Brown",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "3-PT Attempted",
+      "pick_type": "Goblin",
+      "side": "OVER",
+      "line": 3.5,
+      "l5avg": 6.0,
+      "ratio": 0.5833333333333334,
+      "card_vals": [
+        4.0,
+        9.0,
+        6.0,
+        4.0,
+        7.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-02",
+        "2026-04-30",
+        "2026-04-28",
+        "2026-04-26"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        5.0,
+        3.0,
+        5.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "team_changed:BOS->PHI",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Kentavious Caldwell-Pope",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "FG Attempted",
+      "pick_type": "Demon",
+      "side": "OVER",
+      "line": 5.5,
+      "l5avg": 9.0,
+      "ratio": 0.6111111111111112,
+      "card_vals": [
+        8.0,
+        8.0,
+        6.0,
+        14.0,
+        9.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-02-11",
+        "2026-02-09",
+        "2026-02-07",
+        "2026-02-04"
+      ],
+      "window_mix": "RRRRR",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        5.0,
+        3.0,
+        6.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "team_changed:MEM->PHI",
+        "pre_conflicts"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Jamal Murray",
+      "team": "DEN",
+      "opp": "nan",
+      "prop": "Two Pointers Attempted",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 9.5,
+      "l5avg": 14.6,
+      "ratio": 0.6506849315068494,
+      "card_vals": [
+        15.0,
+        17.0,
+        18.0,
+        12.0,
+        11.0
+      ],
+      "card_dates": [
+        "2026-04-30",
+        "2026-04-27",
+        "2026-04-25",
+        "2026-04-23",
+        "2026-04-20"
+      ],
+      "window_mix": "OOOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        12.0,
+        5.0,
+        6.0,
+        3.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-14",
+        "2026-10-11",
+        "2026-10-06"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 21:30"
+    },
+    {
+      "player": "LeBron James",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "FG Attempted",
+      "pick_type": "Demon",
+      "side": "OVER",
+      "line": 11.5,
+      "l5avg": 17.0,
+      "ratio": 0.6764705882352942,
+      "card_vals": [
+        13.0,
+        18.0,
+        19.0,
+        18.0,
+        17.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-11",
+        "2026-05-09",
+        "2026-05-07",
+        "2026-05-05"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        9.0,
+        1.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "team_changed:LAL->PHI",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Jared McCain",
+      "team": "OKC",
+      "opp": "nan",
+      "prop": "FG Attempted",
+      "pick_type": "Demon",
+      "side": "OVER",
+      "line": 8.5,
+      "l5avg": 12.2,
+      "ratio": 0.6967213114754098,
+      "card_vals": [
+        9.0,
+        12.0,
+        11.0,
+        19.0,
+        10.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-30",
+        "2026-05-28",
+        "2026-05-26",
+        "2026-05-24"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_confirms",
+      "pre_vals": [
+        13.0,
+        13.0,
+        11.0,
+        10.0
+      ],
+      "pre_dates": [
+        "2026-10-15",
+        "2026-10-13",
+        "2026-10-07",
+        "2026-10-06"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 21:30"
+    },
+    {
+      "player": "VJ Edgecombe",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Made",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 2.5,
+      "l5avg": 3.4,
+      "ratio": 0.7352941176470589,
+      "card_vals": [
+        4.0,
+        4.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-10",
+        "2026-05-08",
+        "2026-05-06",
+        "2026-05-04"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_confirms",
+      "pre_vals": [
+        4.0,
+        3.0,
+        4.0
+      ],
+      "pre_dates": [
+        "2026-10-10",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    }
+  ],
+  "tonight_all_clears": [
+    {
+      "player": "Jared McCain",
+      "team": "OKC",
+      "opp": "nan",
+      "prop": "FG Attempted",
+      "pick_type": "Demon",
+      "side": "OVER",
+      "line": 8.5,
+      "l5avg": 12.2,
+      "ratio": 0.6967213114754098,
+      "card_vals": [
+        9.0,
+        12.0,
+        11.0,
+        19.0,
+        10.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-30",
+        "2026-05-28",
+        "2026-05-26",
+        "2026-05-24"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_confirms",
+      "pre_vals": [
+        13.0,
+        13.0,
+        11.0,
+        10.0
+      ],
+      "pre_dates": [
+        "2026-10-15",
+        "2026-10-13",
+        "2026-10-07",
+        "2026-10-06"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 21:30"
+    },
+    {
+      "player": "Kentavious Caldwell-Pope",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "FG Attempted",
+      "pick_type": "Demon",
+      "side": "OVER",
+      "line": 5.5,
+      "l5avg": 9.0,
+      "ratio": 0.6111111111111112,
+      "card_vals": [
+        8.0,
+        8.0,
+        6.0,
+        14.0,
+        9.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-02-11",
+        "2026-02-09",
+        "2026-02-07",
+        "2026-02-04"
+      ],
+      "window_mix": "RRRRR",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        5.0,
+        3.0,
+        6.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "team_changed:MEM->PHI",
+        "pre_conflicts"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Evan Mobley",
+      "team": "CLE",
+      "opp": "nan",
+      "prop": "3-PT Attempted",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 2.5,
+      "l5avg": 5.0,
+      "ratio": 0.5,
+      "card_vals": [
+        4.0,
+        6.0,
+        3.0,
+        8.0,
+        4.0
+      ],
+      "card_dates": [
+        "2026-05-25",
+        "2026-05-23",
+        "2026-05-21",
+        "2026-05-19",
+        "2026-05-17"
+      ],
+      "window_mix": "OOOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        6.0,
+        1.0,
+        0.0
+      ],
+      "pre_dates": [
+        "2026-10-13",
+        "2026-10-11",
+        "2026-10-08"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "VJ Edgecombe",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Made",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 2.5,
+      "l5avg": 3.4,
+      "ratio": 0.7352941176470589,
+      "card_vals": [
+        4.0,
+        4.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-10",
+        "2026-05-08",
+        "2026-05-06",
+        "2026-05-04"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_confirms",
+      "pre_vals": [
+        4.0,
+        3.0,
+        4.0
+      ],
+      "pre_dates": [
+        "2026-10-10",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Kentavious Caldwell-Pope",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "FG Attempted",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 5.0,
+      "l5avg": 9.0,
+      "ratio": 0.5555555555555556,
+      "card_vals": [
+        8.0,
+        8.0,
+        6.0,
+        14.0,
+        9.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-02-11",
+        "2026-02-09",
+        "2026-02-07",
+        "2026-02-04"
+      ],
+      "window_mix": "RRRRR",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        5.0,
+        3.0,
+        6.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "team_changed:MEM->PHI",
+        "pre_conflicts"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "LeBron James",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "FG Attempted",
+      "pick_type": "Demon",
+      "side": "OVER",
+      "line": 11.5,
+      "l5avg": 17.0,
+      "ratio": 0.6764705882352942,
+      "card_vals": [
+        13.0,
+        18.0,
+        19.0,
+        18.0,
+        17.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-11",
+        "2026-05-09",
+        "2026-05-07",
+        "2026-05-05"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        9.0,
+        1.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "team_changed:LAL->PHI",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "LeBron James",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Attempted",
+      "pick_type": "Demon",
+      "side": "OVER",
+      "line": 8.5,
+      "l5avg": 12.0,
+      "ratio": 0.7083333333333334,
+      "card_vals": [
+        10.0,
+        12.0,
+        13.0,
+        14.0,
+        11.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-11",
+        "2026-05-09",
+        "2026-05-07",
+        "2026-05-05"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        7.0,
+        1.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "team_changed:LAL->PHI",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "LeBron James",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Made",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 4.5,
+      "l5avg": 6.6,
+      "ratio": 0.6818181818181819,
+      "card_vals": [
+        5.0,
+        6.0,
+        5.0,
+        8.0,
+        9.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-11",
+        "2026-05-09",
+        "2026-05-07",
+        "2026-05-05"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        4.0,
+        1.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "team_changed:LAL->PHI",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Jaylen Brown",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "3-PT Attempted",
+      "pick_type": "Goblin",
+      "side": "OVER",
+      "line": 3.5,
+      "l5avg": 6.0,
+      "ratio": 0.5833333333333334,
+      "card_vals": [
+        4.0,
+        9.0,
+        6.0,
+        4.0,
+        7.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-02",
+        "2026-04-30",
+        "2026-04-28",
+        "2026-04-26"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        5.0,
+        3.0,
+        5.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "team_changed:BOS->PHI",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "VJ Edgecombe",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "FG Made",
+      "pick_type": "Goblin",
+      "side": "OVER",
+      "line": 3.5,
+      "l5avg": 4.6,
+      "ratio": 0.7608695652173914,
+      "card_vals": [
+        4.0,
+        4.0,
+        4.0,
+        6.0,
+        5.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-10",
+        "2026-05-08",
+        "2026-05-06",
+        "2026-05-04"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        6.0,
+        3.0,
+        4.0
+      ],
+      "pre_dates": [
+        "2026-10-10",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "pre_conflicts"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "VJ Edgecombe",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Made",
+      "pick_type": "Goblin",
+      "side": "OVER",
+      "line": 2.5,
+      "l5avg": 3.4,
+      "ratio": 0.7352941176470589,
+      "card_vals": [
+        4.0,
+        4.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-10",
+        "2026-05-08",
+        "2026-05-06",
+        "2026-05-04"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_confirms",
+      "pre_vals": [
+        4.0,
+        3.0,
+        4.0
+      ],
+      "pre_dates": [
+        "2026-10-10",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Kentavious Caldwell-Pope",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Attempted",
+      "pick_type": "Goblin",
+      "side": "OVER",
+      "line": 1.5,
+      "l5avg": 5.2,
+      "ratio": 0.28846153846153844,
+      "card_vals": [
+        2.0,
+        3.0,
+        5.0,
+        10.0,
+        6.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-02-11",
+        "2026-02-09",
+        "2026-02-07",
+        "2026-02-04"
+      ],
+      "window_mix": "RRRRR",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        1.0,
+        2.0,
+        4.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "team_changed:MEM->PHI",
+        "pre_conflicts"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Anfernee Simons",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Made",
+      "pick_type": "Demon",
+      "side": "OVER",
+      "line": 1.5,
+      "l5avg": 3.4,
+      "ratio": 0.4411764705882353,
+      "card_vals": [
+        2.0,
+        2.0,
+        3.0,
+        2.0,
+        8.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-02-21",
+        "2026-02-19",
+        "2026-02-11",
+        "2026-02-09"
+      ],
+      "window_mix": "RRRRR",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        2.0,
+        0.0,
+        4.0
+      ],
+      "pre_dates": [
+        "2025-10-15",
+        "2025-10-12",
+        "2025-10-10"
+      ],
+      "flags": [
+        "team_changed:CHI->PHI",
+        "pre_conflicts"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Kentavious Caldwell-Pope",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Made",
+      "pick_type": "Goblin",
+      "side": "OVER",
+      "line": 0.5,
+      "l5avg": 2.6,
+      "ratio": 0.1923076923076923,
+      "card_vals": [
+        1.0,
+        1.0,
+        2.0,
+        4.0,
+        5.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-02-11",
+        "2026-02-09",
+        "2026-02-07",
+        "2026-02-04"
+      ],
+      "window_mix": "RRRRR",
+      "pre_flag": "pre_confirms",
+      "pre_vals": [
+        1.0,
+        1.0,
+        2.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "team_changed:MEM->PHI"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "LeBron James",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "Two Pointers Attempted",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 8.0,
+      "l5avg": 12.0,
+      "ratio": 0.6666666666666666,
+      "card_vals": [
+        10.0,
+        12.0,
+        13.0,
+        14.0,
+        11.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-05-11",
+        "2026-05-09",
+        "2026-05-07",
+        "2026-05-05"
+      ],
+      "window_mix": "ROOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        7.0,
+        1.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "team_changed:LAL->PHI",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Kentavious Caldwell-Pope",
+      "team": "PHI",
+      "opp": "nan",
+      "prop": "FG Attempted",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 5.5,
+      "l5avg": 9.0,
+      "ratio": 0.6111111111111112,
+      "card_vals": [
+        8.0,
+        8.0,
+        6.0,
+        14.0,
+        9.0
+      ],
+      "card_dates": [
+        "2026-10-20",
+        "2026-02-11",
+        "2026-02-09",
+        "2026-02-07",
+        "2026-02-04"
+      ],
+      "window_mix": "RRRRR",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        5.0,
+        3.0,
+        6.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-08",
+        "2026-10-05"
+      ],
+      "flags": [
+        "team_changed:MEM->PHI",
+        "pre_conflicts"
+      ],
+      "tip": "2026-10-22 19:00"
+    },
+    {
+      "player": "Jamal Murray",
+      "team": "DEN",
+      "opp": "nan",
+      "prop": "Two Pointers Attempted",
+      "pick_type": "Standard",
+      "side": "OVER",
+      "line": 9.5,
+      "l5avg": 14.6,
+      "ratio": 0.6506849315068494,
+      "card_vals": [
+        15.0,
+        17.0,
+        18.0,
+        12.0,
+        11.0
+      ],
+      "card_dates": [
+        "2026-04-30",
+        "2026-04-27",
+        "2026-04-25",
+        "2026-04-23",
+        "2026-04-20"
+      ],
+      "window_mix": "OOOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        12.0,
+        5.0,
+        6.0,
+        3.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-14",
+        "2026-10-11",
+        "2026-10-06"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 21:30"
+    },
+    {
+      "player": "Cameron Johnson",
+      "team": "DEN",
+      "opp": "nan",
+      "prop": "Two Pointers Made",
+      "pick_type": "Goblin",
+      "side": "OVER",
+      "line": 1.5,
+      "l5avg": 3.4,
+      "ratio": 0.4411764705882353,
+      "card_vals": [
+        3.0,
+        6.0,
+        2.0,
+        2.0,
+        4.0
+      ],
+      "card_dates": [
+        "2026-04-30",
+        "2026-04-27",
+        "2026-04-25",
+        "2026-04-23",
+        "2026-04-20"
+      ],
+      "window_mix": "OOOOO",
+      "pre_flag": "pre_conflicts",
+      "pre_vals": [
+        3.0,
+        1.0,
+        1.0,
+        2.0,
+        1.0
+      ],
+      "pre_dates": [
+        "2026-10-16",
+        "2026-10-14",
+        "2026-10-11",
+        "2026-10-06",
+        "2026-10-04"
+      ],
+      "flags": [
+        "l5_is_playoffs",
+        "pre_conflicts",
+        "stale_gap"
+      ],
+      "tip": "2026-10-22 21:30"
+    }
+  ],
+  "backtest": {
+    "n_files": 164,
+    "n_checked": 98936,
+    "n_no_box": 2419,
+    "by_family_pick": {
+      "attempt|demon": {
+        "hits": 68,
+        "n": 113,
+        "hit_rate": 0.6018,
+        "wilson_low": 0.5096,
+        "wilson_high": 0.6873,
+        "gate_ready": true
+      },
+      "attempt|goblin": {
+        "hits": 215,
+        "n": 278,
+        "hit_rate": 0.7734,
+        "wilson_low": 0.7206,
+        "wilson_high": 0.8187,
+        "gate_ready": true
+      },
+      "attempt|standard": {
+        "hits": 186,
+        "n": 271,
+        "hit_rate": 0.6863,
+        "wilson_low": 0.6288,
+        "wilson_high": 0.7387,
+        "gate_ready": true
+      },
+      "combo|demon": {
+        "hits": 87,
+        "n": 161,
+        "hit_rate": 0.5404,
+        "wilson_low": 0.4633,
+        "wilson_high": 0.6155,
+        "gate_ready": true
+      },
+      "combo|goblin": {
+        "hits": 2472,
+        "n": 3092,
+        "hit_rate": 0.7995,
+        "wilson_low": 0.785,
+        "wilson_high": 0.8132,
+        "gate_ready": true
+      },
+      "combo|standard": {
+        "hits": 730,
+        "n": 1181,
+        "hit_rate": 0.6181,
+        "wilson_low": 0.5901,
+        "wilson_high": 0.6454,
+        "gate_ready": true
+      },
+      "core|demon": {
+        "hits": 47,
+        "n": 80,
+        "hit_rate": 0.5875,
+        "wilson_low": 0.478,
+        "wilson_high": 0.6889,
+        "gate_ready": false
+      },
+      "core|goblin": {
+        "hits": 2549,
+        "n": 3171,
+        "hit_rate": 0.8038,
+        "wilson_low": 0.7897,
+        "wilson_high": 0.8173,
+        "gate_ready": true
+      },
+      "core|standard": {
+        "hits": 328,
+        "n": 541,
+        "hit_rate": 0.6063,
+        "wilson_low": 0.5645,
+        "wilson_high": 0.6466,
+        "gate_ready": true
+      }
+    },
+    "by_attempt_prop_pick": {
+      "3-PT Attempted|demon": {
+        "hits": 9,
+        "n": 20,
+        "hit_rate": 0.45,
+        "wilson_low": 0.2582,
+        "wilson_high": 0.6579,
+        "gate_ready": false
+      },
+      "FG Attempted|demon": {
+        "hits": 8,
+        "n": 15,
+        "hit_rate": 0.5333,
+        "wilson_low": 0.3012,
+        "wilson_high": 0.7519,
+        "gate_ready": false
+      },
+      "FG Made|demon": {
+        "hits": 10,
+        "n": 17,
+        "hit_rate": 0.5882,
+        "wilson_low": 0.3601,
+        "wilson_high": 0.7839,
+        "gate_ready": false
+      },
+      "Free Throws Attempted|demon": {
+        "hits": 8,
+        "n": 11,
+        "hit_rate": 0.7273,
+        "wilson_low": 0.4343,
+        "wilson_high": 0.9025,
+        "gate_ready": false
+      },
+      "Free Throws Made|demon": {
+        "hits": 17,
+        "n": 24,
+        "hit_rate": 0.7083,
+        "wilson_low": 0.5083,
+        "wilson_high": 0.8509,
+        "gate_ready": false
+      },
+      "Two Pointers Attempted|demon": {
+        "hits": 4,
+        "n": 9,
+        "hit_rate": 0.4444,
+        "wilson_low": 0.1888,
+        "wilson_high": 0.7334,
+        "gate_ready": false
+      },
+      "Two Pointers Made|demon": {
+        "hits": 12,
+        "n": 17,
+        "hit_rate": 0.7059,
+        "wilson_low": 0.4687,
+        "wilson_high": 0.8672,
+        "gate_ready": false
+      },
+      "3-PT Attempted|goblin": {
+        "hits": 37,
+        "n": 51,
+        "hit_rate": 0.7255,
+        "wilson_low": 0.5905,
+        "wilson_high": 0.8289,
+        "gate_ready": false
+      },
+      "FG Attempted|goblin": {
+        "hits": 17,
+        "n": 23,
+        "hit_rate": 0.7391,
+        "wilson_low": 0.5353,
+        "wilson_high": 0.8745,
+        "gate_ready": false
+      },
+      "FG Made|goblin": {
+        "hits": 32,
+        "n": 41,
+        "hit_rate": 0.7805,
+        "wilson_low": 0.6329,
+        "wilson_high": 0.88,
+        "gate_ready": false
+      },
+      "Free Throws Attempted|goblin": {
+        "hits": 28,
+        "n": 34,
+        "hit_rate": 0.8235,
+        "wilson_low": 0.6649,
+        "wilson_high": 0.9165,
+        "gate_ready": false
+      },
+      "Free Throws Made|goblin": {
+        "hits": 23,
+        "n": 32,
+        "hit_rate": 0.7188,
+        "wilson_low": 0.5463,
+        "wilson_high": 0.8444,
+        "gate_ready": false
+      },
+      "Two Pointers Attempted|goblin": {
+        "hits": 32,
+        "n": 39,
+        "hit_rate": 0.8205,
+        "wilson_low": 0.6733,
+        "wilson_high": 0.9102,
+        "gate_ready": false
+      },
+      "Two Pointers Made|goblin": {
+        "hits": 46,
+        "n": 58,
+        "hit_rate": 0.7931,
+        "wilson_low": 0.6723,
+        "wilson_high": 0.8775,
+        "gate_ready": false
+      },
+      "3-PT Attempted|standard": {
+        "hits": 19,
+        "n": 28,
+        "hit_rate": 0.6786,
+        "wilson_low": 0.4934,
+        "wilson_high": 0.8207,
+        "gate_ready": false
+      },
+      "FG Attempted|standard": {
+        "hits": 42,
+        "n": 74,
+        "hit_rate": 0.5676,
+        "wilson_low": 0.4541,
+        "wilson_high": 0.6743,
+        "gate_ready": false
+      },
+      "FG Made|standard": {
+        "hits": 28,
+        "n": 37,
+        "hit_rate": 0.7568,
+        "wilson_low": 0.5988,
+        "wilson_high": 0.8664,
+        "gate_ready": false
+      },
+      "Free Throws Attempted|standard": {
+        "hits": 30,
+        "n": 38,
+        "hit_rate": 0.7895,
+        "wilson_low": 0.6365,
+        "wilson_high": 0.8893,
+        "gate_ready": false
+      },
+      "Free Throws Made|standard": {
+        "hits": 23,
+        "n": 32,
+        "hit_rate": 0.7188,
+        "wilson_low": 0.5463,
+        "wilson_high": 0.8444,
+        "gate_ready": false
+      },
+      "Two Pointers Attempted|standard": {
+        "hits": 25,
+        "n": 37,
+        "hit_rate": 0.6757,
+        "wilson_low": 0.5146,
+        "wilson_high": 0.8037,
+        "gate_ready": false
+      },
+      "Two Pointers Made|standard": {
+        "hits": 19,
+        "n": 25,
+        "hit_rate": 0.76,
+        "wilson_low": 0.5657,
+        "wilson_high": 0.885,
+        "gate_ready": false
+      }
+    },
+    "lebron_attempt_l5eq5_samples": [
+      {
+        "slate": "2026-04-02",
+        "prop": "FG Attempted",
+        "pick": "standard",
+        "line": 12.5,
+        "hit": false,
+        "card": [
+          13.0,
+          18.0,
+          19.0,
+          18.0,
+          17.0
+        ],
+        "mix": "ROOOO"
+      },
+      {
+        "slate": "2026-10-20",
+        "prop": "Two Pointers Attempted",
+        "pick": "standard",
+        "line": 8.5,
+        "hit": true,
+        "card": [
+          10.0,
+          12.0,
+          13.0,
+          14.0,
+          11.0
+        ],
+        "mix": "ROOOO"
+      },
+      {
+        "slate": "2026-10-20",
+        "prop": "Two Pointers Made",
+        "pick": "standard",
+        "line": 4.5,
+        "hit": true,
+        "card": [
+          5.0,
+          6.0,
+          5.0,
+          8.0,
+          9.0
+        ],
+        "mix": "ROOOO"
+      },
+      {
+        "slate": "2026-10-20",
+        "prop": "FG Attempted",
+        "pick": "goblin",
+        "line": 11.5,
+        "hit": true,
+        "card": [
+          13.0,
+          18.0,
+          19.0,
+          18.0,
+          17.0
+        ],
+        "mix": "ROOOO"
+      }
+    ],
+    "note": "Report only. No ticket gate until family|pick n>=100."
+  }
+}

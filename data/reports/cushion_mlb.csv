@@ -1,0 +1,2 @@
+sport,id,status,top_bucket,n,wilson_lo,wilson_hi,break_even,wired,detail
+MLB,cushion_mlb,FAIL,0.8261,276,0.777,0.8662,Goblin 0.845 / Standard 0.577,0,"holdout 5655 legs from 2026-08-04 through 2026-09-27, cut 2026-08-04; pitcher_ks Goblin OVER high 228/276 (0.8261) holdout hit rate does not rise low to high"

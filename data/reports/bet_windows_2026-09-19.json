@@ -1,0 +1,14 @@
+{
+  "date": "2026-09-19",
+  "generated_at": "2026-09-19T01:16:27-04:00",
+  "line_pulls": [
+    {
+      "fetched_at": "2026-09-19T01:16:26-04:00",
+      "window": "1AM",
+      "n_props": 8313,
+      "n_moved": 0
+    }
+  ],
+  "payout_scrapes": [],
+  "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
+}

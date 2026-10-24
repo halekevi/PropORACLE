@@ -109,6 +109,8 @@ VALID_PROP_KEYWORDS = [
     "Rebounds",
     "Steals",
     "Blocks",
+    "Tackles",
+    "Tackles+Ast",
     "Turnovers",
     "3-PT Made",
     "Points+Assists",
@@ -135,6 +137,8 @@ VALID_PROP_KEYWORDS = [
     "Outs",
     # Soccer / World Cup / tennis-ish board text
     "Shots",
+    "SOG",
+    "Shots On Goal",
     "SOT",
     "Shots On Target",
     "Goalie Saves",
@@ -149,7 +153,7 @@ VALID_PROP_KEYWORDS = [
 _TEAM_POS_RE = re.compile(
     r"(?i).+\s[-–]\s*(attacker|midfielder|defender|goalkeeper|forward|guard|center|"
     r"pitcher|catcher|infielder|outfielder|shortstop|baseman|designated hitter|"
-    r"sp|rp|c|1b|2b|3b|ss|lf|cf|rf|dh|g|f|c)\b"
+    r"sp|rp|qb|rb|wr|te|fb|pk|c|1b|2b|3b|ss|lf|cf|rf|dh|g|f|k|p|c)\b"
 )
 # Live board clock overlays (e.g. "Q2 9:08") are not player names.
 _GAME_CLOCK_RE = re.compile(r"^(?:Q[1-4]|OT|HT|H[12])\s+\d{1,2}:\d{2}$", re.I)
@@ -623,10 +627,12 @@ def prop_type_to_board_filter(prop: str) -> str:
         "rebs+asts": "Rebs+Asts",
         "reb+asts": "Rebs+Asts",
         "rebounds+assists": "Rebs+Asts",
-        "pts+reb+ast": "Pts+Reb+Ast",
-        "pts+reb+asts": "Pts+Reb+Ast",
-        "pra": "Pts+Reb+Ast",
-        "points+rebounds+assists": "Pts+Reb+Ast",
+        # Board chip is Pts-Rebs-Asts; card text is Pts+Rebs+Asts.
+        "pts+reb+ast": "Pts-Rebs-Asts",
+        "pts+reb+asts": "Pts-Rebs-Asts",
+        "pts-rebs-asts": "Pts-Rebs-Asts",
+        "pra": "Pts-Rebs-Asts",
+        "points+rebounds+assists": "Pts-Rebs-Asts",
         "fantasyscore": "Fantasy Score",
         "hitterfs": "Hitter Fantasy Score",
         "hitterfantasyscore": "Hitter Fantasy Score",
@@ -642,7 +648,26 @@ def prop_type_to_board_filter(prop: str) -> str:
         "totalbases": "Total Bases",
         "fgmade": "FG Made",
         "fgattempted": "FG Attempted",
+        "fieldgoalsattempted": "FG Attempted",
         "freethrowsmade": "Free Throws Made",
+        "freethrowsattempted": "Free Throws Attempted",
+        "3ptattempted": "3-PT Attempted",
+        "threesattempted": "3-PT Attempted",
+        "twopointersmade": "Two Pointers Made",
+        "2ptmade": "Two Pointers Made",
+        "twopointersattempted": "Two Pointers Attempted",
+        "2ptattempted": "Two Pointers Attempted",
+        "defensiverebounds": "Defensive Rebounds",
+        "offensiverebounds": "Offensive Rebounds",
+        "personalfouls": "Personal Fouls",
+        "dunks": "Dunks",
+        "blks+stls": "Blks+Stls",
+        "blockedshots": "Blocked Shots",
+        "sog": "Shots On Goal",
+        "shotsongoal": "Shots On Goal",
+        "tackles": "Tackles",
+        "tacklesast": "Tackles+Ast",
+        "tackles+ast": "Tackles+Ast",
     }
     if key in mapping:
         return mapping[key]
@@ -731,10 +756,14 @@ def _resolve_ticket_leg_card(
             "ks": ("pitcher strikeouts", "strikeouts"),
             "shots on target": ("sot",),
             "sot": ("shots on target",),
+            "shots on goal": ("sog",),
+            "sog": ("shots on goal",),
             "goalie saves": ("saves",),
             "saves": ("goalie saves",),
             "total games won": ("games won",),
             "games won": ("total games won",),
+            "tackles": ("tackles+ast", "tackles + ast"),
+            "tackles+ast": ("tackles", "tackles + ast"),
             "hits+runs+rbis": ("h+r+rbi", "hits runs rbis"),
         }
         for a in aliases.get(np, ()):
@@ -1144,16 +1173,34 @@ el => {
     const lessCount = (t.match(/\\bLess\\b/g) || []).length;
     if (hasGame && hasStat && moreCount === 1 && lessCount <= 1) { best = p; break; }
   }
+  if (!best) {
+    p = el;
+    for (let i = 0; i < 10; i++) {
+      p = p ? p.parentElement : null;
+      if (!p) break;
+      const t = (p.innerText || '');
+      if (/\\bMore\\b/.test(t) && /\\s(vs|@)\\s/i.test(t) && /\\b\\d+(?:\\.\\d+)?/.test(t) && t.length < 800) {
+        best = p; break;
+      }
+    }
+  }
   if (!best) return {ok: false, reason: 'no_root'};
   const btns = Array.from(best.querySelectorAll('button')).filter(b => {
     const text = (b.innerText || '').trim();
     if (/more|less/i.test(text)) return false;
-    return !!b.querySelector('svg');
+    const cls = (b.className || '').toString();
+    return !!b.querySelector('svg') || /bg-soFresh-120/.test(cls);
   });
   let target = null;
   for (const b of btns) {
     const cls = (b.className || '').toString();
     if (/soFresh/.test(cls) && !/absolute left-2 top-2/.test(cls)) { target = b; break; }
+  }
+  if (!target) {
+    for (const b of btns) {
+      const cls = (b.className || '').toString();
+      if (/bg-soFresh-120/.test(cls)) { target = b; break; }
+    }
   }
   if (!target) {
     for (const b of btns) {
@@ -1196,7 +1243,7 @@ def _eval_more_js(js: str, more_btn=None, *, frame=None, more_index=None, arg: A
               return fn(el);
             }"""
         )
-        return frame.locator("body").evaluate(wrapped, int(more_index), timeout=8000)
+        return frame.evaluate(wrapped, int(more_index))
     except Exception as e:
         print(f"[CARDS] more-index eval failed: {e}")
         return None
@@ -1472,12 +1519,19 @@ _JS_PLAYER_CARD_ACTION = """
     const btns = Array.from(hit.best.querySelectorAll('button')).filter(b => {
       const text = (b.innerText || '').trim();
       if (/more|less/i.test(text)) return false;
-      return !!b.querySelector('svg');
+      const cls = (b.className || '').toString();
+      return !!b.querySelector('svg') || /bg-soFresh-120/.test(cls);
     });
     let target = null;
     for (const b of btns) {
       const cls = (b.className || '').toString();
       if (/soFresh/.test(cls) && !/absolute left-2 top-2/.test(cls)) { target = b; break; }
+    }
+    if (!target) {
+      for (const b of btns) {
+        const cls = (b.className || '').toString();
+        if (/bg-soFresh-120/.test(cls)) { target = b; break; }
+      }
     }
     if (!target) {
       for (const b of btns) {
@@ -1548,35 +1602,49 @@ def click_leg(frame, card: dict, direction: str) -> bool:
             return True
         print(f"[CLICK] JS miss {player}: {js}")
         btn = card.get("more_btn")
-        if btn is not None:
-            if action == "click_more":
-                try:
-                    btn.click(timeout=1200, no_wait_after=True)
-                except Exception:
-                    btn.click(force=True, timeout=2000, no_wait_after=True)
-            else:
-                found_less = _eval_more_js(
-                    """
-                    el => {
-                      let p = el;
-                      for (let i = 0; i < 4; i++) p = p?.parentElement;
-                      if (!p) return false;
-                      const btns = p.querySelectorAll('button');
-                      for (const b of btns) {
-                        if ((b.innerText || '').trim() === 'Less') { b.click(); return true; }
-                      }
-                      return false;
-                    }
-                    """,
-                    btn,
-                    frame=frame,
-                    more_index=card.get("more_index"),
-                )
-                if not found_less:
-                    return False
+        more_index = card.get("more_index")
+        if btn is None and more_index is None:
+            return False
+        if action == "click_more" and btn is not None:
+            try:
+                btn.click(timeout=1200, no_wait_after=True)
+            except Exception:
+                btn.click(force=True, timeout=2000, no_wait_after=True)
             time.sleep(0.4)
             return True
-        return False
+        if action == "click_more" and more_index is not None:
+            clicked = _eval_more_js("el => { el.click(); return true; }", btn, frame=frame, more_index=more_index)
+            if not clicked:
+                return False
+            time.sleep(0.4)
+            return True
+        found_less = _eval_more_js(
+            """
+            el => {
+              let p = el;
+              for (let i = 0; i < 10; i++) {
+                p = p && p.parentElement;
+                if (!p) return false;
+                const t = p.innerText || '';
+                const moreCount = (t.match(/\\bMore\\b/g) || []).length;
+                const lessCount = (t.match(/\\bLess\\b/g) || []).length;
+                if (moreCount !== 1 || lessCount < 1 || t.length > 4000) continue;
+                const btns = p.querySelectorAll('button');
+                for (const b of btns) {
+                  if ((b.innerText || '').trim() === 'Less') { b.click(); return true; }
+                }
+              }
+              return false;
+            }
+            """,
+            btn,
+            frame=frame,
+            more_index=more_index,
+        )
+        if not found_less:
+            return False
+        time.sleep(0.4)
+        return True
     except Exception as e:
         print(f"[CLICK] {card.get('player', '?')} failed: {e}")
         return False
@@ -3054,8 +3122,8 @@ _SPORT_TAB_LABELS: dict[str, tuple[str, ...]] = {
     "CFB": ("CFB", "NCAAF"),
     "CBB": ("CBB", "NCAAB"),
     "NHL": ("NHL",),
-    "SOCCER": ("Soccer",),
-    "SOC": ("Soccer",),
+    "SOCCER": ("SOCCER", "Soccer"),
+    "SOC": ("SOCCER", "Soccer"),
     "TENNIS": ("TENNIS", "Tennis"),
     "GOLF": ("Golf",),
 }
@@ -3110,6 +3178,44 @@ def switch_sport_tab(frame, page, sport: str, *, settle_ms: int = 1500):
     sp = str(sport or "").strip().upper()
     labels = _SPORT_TAB_LABELS.get(sp) or (sp.title(),)
     last_err = ""
+    targets = [frame]
+    try:
+        for fr in page.frames:
+            if fr not in targets:
+                targets.append(fr)
+    except Exception:
+        pass
+    _TAB_JS = """(labels) => {
+      const wants = (labels || []).map(s =>
+        String(s || '').toLowerCase().replace(/[^a-z]/g, '')
+      ).filter(Boolean);
+      const els = Array.from(document.querySelectorAll('button, [role="tab"]'));
+      const el = els.find(e => {
+        const t = (e.innerText || '').trim().split('\\n')[0]
+          .toLowerCase().replace(/[^a-z]/g, '');
+        return wants.includes(t);
+      });
+      if (!el) return false;
+      el.scrollIntoView({ block: 'nearest', inline: 'center' });
+      el.click();
+      return true;
+    }"""
+    for target in targets:
+        try:
+            clicked = target.locator("body").evaluate(
+                _TAB_JS, list(labels), timeout=4000
+            )
+        except Exception as e:
+            last_err = str(e).split("\n", 1)[0]
+            continue
+        if clicked:
+            page.wait_for_timeout(int(settle_ms))
+            _POPULAR_READY = False
+            print(f"[PAYOUT] sport tab -> {sp} (scroll)", flush=True)
+            new_frame = find_prizepicks_frame(page)
+            ensure_popular_filter(new_frame, page)
+            dismiss_modal(new_frame, page)
+            return new_frame
     for label in labels:
         try:
             loc = frame.get_by_text(label, exact=True).first
@@ -3272,6 +3378,15 @@ def load_main_strong_tickets(
                         "standard_line": leg.get("standard_line") or leg.get("std_line"),
                         "line_distance": leg.get("line_distance") or leg.get("delta"),
                         "delta": leg.get("delta") or leg.get("line_distance"),
+                        "team": str(leg.get("team") or "").strip(),
+                        "opp": str(leg.get("opp") or leg.get("opponent") or "").strip(),
+                        "game_id": str(leg.get("game_id") or leg.get("pp_game_id") or "").strip(),
+                        "start_time": str(
+                            leg.get("start_time")
+                            or leg.get("event_start_time")
+                            or leg.get("game_time")
+                            or ""
+                        ).strip(),
                     }
                 )
             if len(legs) < 2:
@@ -3662,6 +3777,15 @@ def write_payout_patch_and_apply_to_tickets(
         except Exception as e:
             print(f"[PAYOUT] WARN: rate-card / ladder merge failed: {e}")
 
+    try:
+        from utils.archive_payout_stamp import stamp_scraped_payouts_on_archives
+
+        n_arch = stamp_scraped_payouts_on_archives(date_str, patch, root=ROOT)
+        if n_arch:
+            print(f"[PAYOUT] archive stamp live_cdp={n_arch} date={date_str}")
+    except Exception as e:
+        print(f"[PAYOUT] WARN: archive stamp failed: {e}")
+
     return {
         "patch_path": str(patch_path),
         "n_patched": n_patched,
@@ -4015,7 +4139,7 @@ def capture_tickets_from_board(
     gentle=True: human-paced delays + random cooloff between slips (less DataDome).
     only_missing_live=True: skip slips that already have payout_source=live_cdp.
     ticket_ids: if set, scrape only those slips (and merge them into the prior capture JSON).
-    window: scheduled job label (1AM / 8AM / 9:45 / …) stamped onto each slip + jsonl.
+    window: scheduled job label (1AM / 8AM / 9AM / 10:30 / …) stamped onto each slip + jsonl.
     max_runtime_sec>0: stop after wall-clock budget and save whatever was captured.
     """
     global _CAPTURE_WINDOW
@@ -5115,6 +5239,14 @@ def _capture_to_ladder_row(rec: dict, date_str: str) -> dict[str, Any] | None:
             window = job_window_label(captured_at)
         except Exception:
             window = ""
+    try:
+        from utils.bet_windows import captured_hhmm, slip_share_flags
+
+        share = slip_share_flags(legs)
+        hhmm = captured_hhmm(captured_at)
+    except Exception:
+        share = {"shared_game": None, "shared_team": None}
+        hhmm = ""
     return {
         "date": date_str,
         "n_legs": str(n_legs),
@@ -5130,9 +5262,12 @@ def _capture_to_ladder_row(rec: dict, date_str: str) -> dict[str, Any] | None:
         "notes": f"ticket_id={tid}; sports={sport_note}; CDP power_min_x Min Guarantee",
         "ticket_id": tid,
         "captured_at": captured_at,
+        "captured_time_et": hhmm,
         "first_captured_at": captured_at,
         "last_captured_at": captured_at,
         "window": window,
+        "shared_game": share["shared_game"],
+        "shared_team": share["shared_team"],
     }
 
 
@@ -5206,7 +5341,7 @@ def sync_captures_to_payout_ladder_live(
     keep_same_date=True (default): keep prior same-date rows and upsert by
     date|leg-sig|payout. Same lines+payout refresh last_captured_at; a line
     or N-correct move writes a new row so you can review movement through
-    1AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30.
+    1AM / 8AM / 9AM / 10:30 / 1PM / 4:30.
     keep_same_date=False: drop prior rows for date_str then write this batch.
 
     By default, slips with any tipped/in-progress leg (parseable start_time <= now)
@@ -5645,6 +5780,9 @@ def run_mix_grid_capture(
                                     or card.get("event_start_time")
                                     or card.get("game_start_time"),
                                     "standard_line": card.get("standard_line"),
+                                    "team": card.get("team"),
+                                    "opp": card.get("opp") or card.get("opponent"),
+                                    "game_id": card.get("game_id") or card.get("pp_game_id"),
                                 }
                             )
                         else:
@@ -5903,7 +6041,7 @@ def main():
     ap.add_argument(
         "--window",
         default="",
-        help="Scheduled job label stamped on slips (1AM / 5AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30).",
+        help="Scheduled job label stamped on slips (1AM / 5AM / 8AM / 9AM / 10:30 / 1PM / 4:30).",
     )
     ap.add_argument(
         "--check-unchanged",

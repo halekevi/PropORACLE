@@ -765,7 +765,7 @@ def _normalize_payout_source(source: str | None) -> str:
         return "fallback_estimate"
     if src == "exact":
         return "exact"
-    if src in ("n_correct_median", "n_correct_live", "n_correct_delta"):
+    if src in ("n_correct_median", "n_correct_live", "n_correct_delta", "n_correct_p25"):
         return src
     return src or "calibrated"
 
@@ -779,7 +779,7 @@ def _resolve_ticket_display_min_x(payout: dict | None, ticket: dict | None = Non
     pay = payout if isinstance(payout, dict) else {}
     ticket = ticket if isinstance(ticket, dict) else {}
     src = str(pay.get("payout_source") or ticket.get("payout_source") or "").strip().lower()
-    if src in ("n_correct_median", "n_correct_live", "n_correct_delta"):
+    if src in ("n_correct_median", "n_correct_live", "n_correct_delta", "n_correct_p25"):
         for raw in (
             pay.get("display_min_x"),
             ticket.get("display_min_x"),
@@ -881,7 +881,7 @@ def _board_payout_label(
             mult_text, badge, title = f"~{mult}x", "model est", f"Model estimate ~{mult}x"
         elif src == "exact":
             mult_text, badge, title = f"{mult}x", "exact", f"Exact payout {mult}x"
-        elif src in ("n_correct_median", "n_correct_live", "n_correct_delta"):
+        elif src in ("n_correct_median", "n_correct_live", "n_correct_delta", "n_correct_p25"):
             mult_text, badge, title = (
                 f"{mult}x",
                 "N-correct",
@@ -914,7 +914,7 @@ def _payout_source_badge_html(source: str, *, badge_label: str | None = None) ->
             badge_label = "model est"
         elif src == "exact":
             badge_label = "exact"
-        elif src in ("n_correct_median", "n_correct_live", "n_correct_delta"):
+        elif src in ("n_correct_median", "n_correct_live", "n_correct_delta", "n_correct_p25"):
             badge_label = "N-correct"
         else:
             badge_label = "est"
@@ -1082,11 +1082,18 @@ def _group_is_goblin70(group: dict | None, group_name: str = "") -> bool:
 
 
 def _group_data_track(group: dict | None, group_name: str = "") -> str:
+    tickets = (group or {}).get("tickets") or []
+    if tickets and isinstance(tickets[0], dict):
+        tr0 = str(tickets[0].get("ticket_track") or "").lower()
+        if tr0 in {"standard_yolo", "goblin70_yolo"}:
+            return tr0
     if _group_is_yolo(group, group_name):
+        name = str(group_name or (group or {}).get("group_name") or "").upper()
+        if "STANDARD YOLO" in name or "YOLO STANDARD" in name:
+            return "standard_yolo"
         return "goblin70_yolo"
     if _group_is_goblin70(group, group_name):
         return "goblin70"
-    tickets = (group or {}).get("tickets") or []
     if tickets and isinstance(tickets[0], dict):
         return str(tickets[0].get("ticket_track") or "").lower()
     return ""

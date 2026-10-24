@@ -20,6 +20,7 @@ def league_to_sport(league: str | None) -> str | None:
         return None
 
     # Explicit non-target leagues (do not guess basketball).
+    # PrizePicks women's college hoops: NCAABB Women / WCBB / CWBB — not men's CBB.
     if any(
         x in u
         for x in (
@@ -34,6 +35,8 @@ def league_to_sport(league: str | None) -> str | None:
             "WCBB",
         )
     ):
+        return None
+    if "WOMEN" in u and ("NCAAB" in u or "CBB" in u or ("COLLEGE" in u and "BASKETBALL" in u)):
         return None
 
     if "NBA" in u or u == "BASKETBALL":

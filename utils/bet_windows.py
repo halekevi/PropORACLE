@@ -1,7 +1,7 @@
 """Slate-day bet windows: line pulls + payout scrapes with timestamps.
 
 Used to see when lines and N-correct floors moved (9PM day-ahead / 1AM / 5AM /
-8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30). Never uses 1st-place multipliers.
+8AM / 9AM / 10:30 / 1PM / 4:30; 9:45 kept as a historical label only). Never uses 1st-place multipliers.
 """
 from __future__ import annotations
 
@@ -55,6 +55,49 @@ WINDOW_ALIASES: dict[str, str] = {
     "430PM": "4:30",
     "4:30": "4:30",
 }
+
+
+def captured_hhmm(raw: object) -> str:
+    """Eastern clock time HH:MM from a scrape stamp. Empty when it will not parse."""
+    dt = parse_et(raw)
+    if dt is None:
+        return ""
+    return f"{dt.hour:02d}:{dt.minute:02d}"
+
+
+def _name_key(raw: object) -> str:
+    return "".join(ch for ch in str(raw or "").casefold() if ch.isalnum())
+
+
+def slip_share_flags(legs: list[dict[str, Any]]) -> dict[str, Any]:
+    """Whether legs share a game or a team.
+
+    A game key is game_id when the leg has one, otherwise sport plus the two
+    team names. A flag stays null when fewer than two legs carry that field,
+    so a missing team is not logged as a different game.
+    """
+    game_keys: list[tuple] = []
+    teams: list[str] = []
+    for leg in legs or []:
+        if not isinstance(leg, dict):
+            continue
+        gid = str(leg.get("game_id") or leg.get("pp_game_id") or "").strip()
+        team = _name_key(leg.get("team"))
+        opp = _name_key(leg.get("opp") or leg.get("opponent") or leg.get("opp_team"))
+        sport = _name_key(leg.get("sport"))
+        if gid:
+            game_keys.append(("id", gid))
+        elif team and opp:
+            game_keys.append(("pair", sport, tuple(sorted((team, opp)))))
+        if team:
+            teams.append(team)
+    shared_game = None
+    if len(game_keys) >= 2:
+        shared_game = len(game_keys) != len(set(game_keys))
+    shared_team = None
+    if len(teams) >= 2:
+        shared_team = len(teams) != len(set(teams))
+    return {"shared_game": shared_game, "shared_team": shared_team}
 
 
 def now_et_iso() -> str:
@@ -139,22 +182,60 @@ def append_payout_scrape_log(
             for leg in legs:
                 if not isinstance(leg, dict):
                     continue
+                src = str(leg.get("standard_line_source") or "").strip().lower()
+                # Only a posted Standard sibling is a payout gap. A blank source
+                # can be an old offset estimate that was copied onto the ticket
+                # without its label. An explicit gap from step1 is trusted.
+                trusted_src = src in {"sibling", "sibling_or_pp", "pp_or_step1"}
+                gap = leg.get("gap")
+                if gap in (None, "", 0, 0.0):
+                    gap = None
+                if gap is None and trusted_src:
+                    gap = (
+                        leg.get("line_distance")
+                        if leg.get("line_distance") not in (None, "", 0, 0.0)
+                        else leg.get("delta")
+                    )
+                    if gap in (None, "", 0, 0.0):
+                        try:
+                            gap = abs(float(leg.get("line")) - float(leg.get("standard_line")))
+                            if gap <= 0:
+                                gap = None
+                        except (TypeError, ValueError):
+                            gap = None
+                logged_std = leg.get("standard_line") if (gap is not None or trusted_src) else None
                 lines.append(
                     {
                         "player": str(leg.get("player") or "").strip(),
+                        "sport": str(leg.get("sport") or "").strip().upper(),
                         "prop": str(leg.get("prop_type") or leg.get("prop") or "").strip(),
                         "line": leg.get("line"),
+                        "side": str(leg.get("direction") or leg.get("side") or "").strip().upper(),
                         "pick_type": str(leg.get("pick_type") or "").strip(),
-                        "standard_line": leg.get("standard_line"),
+                        "standard_line": logged_std,
+                        "gap": gap,
+                        "team": str(leg.get("team") or "").strip(),
+                        "opp": str(leg.get("opp") or leg.get("opponent") or leg.get("opp_team") or "").strip(),
+                        "game_id": str(leg.get("game_id") or leg.get("pp_game_id") or "").strip(),
+                        "start_time": str(
+                            leg.get("start_time")
+                            or leg.get("event_start_time")
+                            or leg.get("game_start_time")
+                            or ""
+                        ).strip(),
                     }
                 )
+            share = slip_share_flags(lines)
             row = {
                 "captured_at": at,
+                "captured_time_et": captured_hhmm(at),
                 "window": win,
                 "ticket_id": str(rec.get("ticket_id") or ""),
                 "n_legs": rec.get("n_legs") or len(lines),
                 "power_min_x": px,
                 "flex_n_correct": rec.get("flex_n_correct") or {},
+                "shared_game": share["shared_game"],
+                "shared_team": share["shared_team"],
                 "lines": lines,
                 "source": "live_cdp",
             }

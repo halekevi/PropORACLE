@@ -1,0 +1,1516 @@
+{
+  "CFB": {
+    "combinations_searched": 0,
+    "n_rows_unique": 1049,
+    "dates": [
+      "2026-09-03",
+      "2026-09-05"
+    ],
+    "top": [
+      {
+        "book": "Goblin OVER",
+        "prop": "rec",
+        "gate": "D_elite",
+        "hits": 19,
+        "n": 25,
+        "hr": 0.76,
+        "base_hr": 0.7414,
+        "oos_hr": 0.7857,
+        "oos_n": 14,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "n_under_30",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "rec_yds",
+        "gate": "line_ge10",
+        "hits": 89,
+        "n": 127,
+        "hr": 0.7008,
+        "base_hr": 0.7077,
+        "oos_hr": 0.7222,
+        "oos_n": 90,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "rec_yds",
+        "gate": "L5>=4",
+        "hits": 23,
+        "n": 29,
+        "hr": 0.7931,
+        "base_hr": 0.7077,
+        "oos_hr": 0.8333,
+        "oos_n": 24,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance",
+          "n_under_30",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "rec_yds",
+        "gate": "L5>=4 + cover>=1",
+        "hits": 23,
+        "n": 29,
+        "hr": 0.7931,
+        "base_hr": 0.7077,
+        "oos_hr": 0.8333,
+        "oos_n": 24,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance",
+          "n_under_30",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "rec_yds",
+        "gate": "L5>=4 + cover>=2",
+        "hits": 23,
+        "n": 29,
+        "hr": 0.7931,
+        "base_hr": 0.7077,
+        "oos_hr": 0.8333,
+        "oos_n": 24,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance",
+          "n_under_30",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "rush_yds",
+        "gate": "cover>=2",
+        "hits": 31,
+        "n": 41,
+        "hr": 0.7561,
+        "base_hr": 0.6627,
+        "oos_hr": 0.8065,
+        "oos_n": 31,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pass_yds",
+        "gate": "line_ge10",
+        "hits": 31,
+        "n": 41,
+        "hr": 0.7561,
+        "base_hr": 0.7561,
+        "oos_hr": 0.7857,
+        "oos_n": 28,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pass_yds",
+        "gate": "line_ge20",
+        "hits": 31,
+        "n": 41,
+        "hr": 0.7561,
+        "base_hr": 0.7561,
+        "oos_hr": 0.7857,
+        "oos_n": 28,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pass_yds",
+        "gate": "line_ge40",
+        "hits": 31,
+        "n": 41,
+        "hr": 0.7561,
+        "base_hr": 0.7561,
+        "oos_hr": 0.7857,
+        "oos_n": 28,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "rec_yds",
+        "gate": "line_ge20",
+        "hits": 56,
+        "n": 79,
+        "hr": 0.7089,
+        "base_hr": 0.7077,
+        "oos_hr": 0.7241,
+        "oos_n": 58,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "rush_yds",
+        "gate": "cover>=1",
+        "hits": 32,
+        "n": 43,
+        "hr": 0.7442,
+        "base_hr": 0.6627,
+        "oos_hr": 0.7812,
+        "oos_n": 32,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "rec_yds",
+        "gate": "D_ok",
+        "hits": 34,
+        "n": 47,
+        "hr": 0.7234,
+        "base_hr": 0.7077,
+        "oos_hr": 0.7353,
+        "oos_n": 34,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "split_balance",
+          "wilson_under_3leg_breakeven"
+        ]
+      }
+    ]
+  },
+  "MLB": {
+    "combinations_searched": 0,
+    "n_rows_unique": null,
+    "dates": [
+      "2026-03-30",
+      "2026-09-16"
+    ],
+    "top": [
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "gate": "L5=5 + opp_bats_Strong + season_cush>=1",
+        "hits": 170,
+        "n": 186,
+        "hr": 0.914,
+        "base_hr": 0.6976,
+        "oos_hr": 0.9167,
+        "oos_n": 144,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L5=5 + opp_bats_Strong + season_cush>=1",
+        "hits": 121,
+        "n": 132,
+        "hr": 0.9167,
+        "base_hr": 0.7102,
+        "oos_hr": 0.9208,
+        "oos_n": 101,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L5=5 + L10>=8 + line_0.5",
+        "hits": 222,
+        "n": 247,
+        "hr": 0.8988,
+        "base_hr": 0.7102,
+        "oos_hr": 0.9227,
+        "oos_n": 194,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L5=5 + line_0.5",
+        "hits": 256,
+        "n": 286,
+        "hr": 0.8951,
+        "base_hr": 0.7102,
+        "oos_hr": 0.9156,
+        "oos_n": 225,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "walks_allowed",
+        "gate": "L5=5 + opp_pitch_leaky + cover>=1",
+        "hits": 93,
+        "n": 101,
+        "hr": 0.9208,
+        "base_hr": 0.739,
+        "oos_hr": 0.939,
+        "oos_n": 82,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L10=10 + opp_bats_Strong",
+        "hits": 60,
+        "n": 64,
+        "hr": 0.9375,
+        "base_hr": 0.7102,
+        "oos_hr": 0.9444,
+        "oos_n": 54,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L5=5 + opp_bats_Strong + cover>=1",
+        "hits": 120,
+        "n": 132,
+        "hr": 0.9091,
+        "base_hr": 0.7102,
+        "oos_hr": 0.9118,
+        "oos_n": 102,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L5=5 + opp_bats_Strong",
+        "hits": 125,
+        "n": 138,
+        "hr": 0.9058,
+        "base_hr": 0.7102,
+        "oos_hr": 0.9151,
+        "oos_n": 106,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "hits_allowed",
+        "gate": "L10=10 + cover>=1",
+        "hits": 41,
+        "n": 43,
+        "hr": 0.9535,
+        "base_hr": 0.6958,
+        "oos_hr": 0.9744,
+        "oos_n": 39,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitcher_ks",
+        "gate": "L5=5 + opp_pitch_stingy + season_cush>=1",
+        "hits": 166,
+        "n": 185,
+        "hr": 0.8973,
+        "base_hr": 0.6976,
+        "oos_hr": 0.8819,
+        "oos_n": 144,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "earned_runs",
+        "gate": "L5=5 + L10>=8",
+        "hits": 264,
+        "n": 298,
+        "hr": 0.8859,
+        "base_hr": 0.7102,
+        "oos_hr": 0.906,
+        "oos_n": 234,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pitching_outs",
+        "gate": "L10=10 + own_pitch_leaky",
+        "hits": 40,
+        "n": 42,
+        "hr": 0.9524,
+        "base_hr": 0.7023,
+        "oos_hr": 0.9375,
+        "oos_n": 32,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": false,
+        "unreliable_reasons": []
+      }
+    ]
+  },
+  "NFL": {
+    "combinations_searched": 0,
+    "n_rows_unique": 1769,
+    "dates": [
+      "2026-09-09",
+      "2026-10-05"
+    ],
+    "top": [
+      {
+        "book": "Standard UNDER",
+        "prop": "receptions",
+        "gate": "L10>=8",
+        "hits": 34,
+        "n": 44,
+        "hr": 0.7727,
+        "base_hr": 0.6735,
+        "oos_hr": 0.7273,
+        "oos_n": 11,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "receptions",
+        "gate": "L5>=4 + L10>=8",
+        "hits": 32,
+        "n": 42,
+        "hr": 0.7619,
+        "base_hr": 0.6735,
+        "oos_hr": 0.7,
+        "oos_n": 10,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Standard OVER",
+        "prop": "receptions",
+        "gate": "D_elite",
+        "hits": 34,
+        "n": 48,
+        "hr": 0.7083,
+        "base_hr": 0.5304,
+        "oos_hr": 0.7778,
+        "oos_n": 9,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "receiving_yards",
+        "gate": "D_ok",
+        "hits": 46,
+        "n": 56,
+        "hr": 0.8214,
+        "base_hr": 0.7285,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "receiving_yards",
+        "gate": "D_weak",
+        "hits": 46,
+        "n": 56,
+        "hr": 0.8214,
+        "base_hr": 0.7285,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "receptions",
+        "gate": "L10>=9",
+        "hits": 24,
+        "n": 28,
+        "hr": 0.8571,
+        "base_hr": 0.6735,
+        "oos_hr": 0.8333,
+        "oos_n": 6,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "n_under_30"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "receptions",
+        "gate": "line_1.5",
+        "hits": 36,
+        "n": 44,
+        "hr": 0.8182,
+        "base_hr": 0.7325,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "receptions",
+        "gate": "L10>=8",
+        "hits": 23,
+        "n": 27,
+        "hr": 0.8519,
+        "base_hr": 0.7325,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "n_under_30",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "receptions",
+        "gate": "L10>=9 + cover>=1",
+        "hits": 23,
+        "n": 27,
+        "hr": 0.8519,
+        "base_hr": 0.6735,
+        "oos_hr": 0.8,
+        "oos_n": 5,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "n_under_30"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "receptions",
+        "gate": "D_elite",
+        "hits": 56,
+        "n": 73,
+        "hr": 0.7671,
+        "base_hr": 0.7325,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "receptions",
+        "gate": "L5>=4 + D_elite",
+        "hits": 21,
+        "n": 25,
+        "hr": 0.84,
+        "base_hr": 0.7325,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "n_under_30",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "receptions",
+        "gate": "L5>=4",
+        "hits": 37,
+        "n": 47,
+        "hr": 0.7872,
+        "base_hr": 0.7325,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "wilson_under_3leg_breakeven"
+        ]
+      }
+    ]
+  },
+  "NHL": {
+    "combinations_searched": 1488,
+    "n_rows_unique": 15638,
+    "dates": [
+      "2026-02-25",
+      "2026-10-07"
+    ],
+    "top": [
+      {
+        "book": "Standard UNDER",
+        "prop": "goals",
+        "gate": "L10=10",
+        "hits": 58,
+        "n": 66,
+        "hr": 0.8788,
+        "base_hr": 0.7847,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "search_chance"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "goals",
+        "gate": "L5=5",
+        "hits": 112,
+        "n": 132,
+        "hr": 0.8485,
+        "base_hr": 0.7847,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "search_chance"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "points",
+        "gate": "L10>=8",
+        "hits": 232,
+        "n": 281,
+        "hr": 0.8256,
+        "base_hr": 0.6122,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "goals",
+        "gate": "L5=5 + L10>=8",
+        "hits": 107,
+        "n": 126,
+        "hr": 0.8492,
+        "base_hr": 0.7847,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "search_chance"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "points",
+        "gate": "L10>=9",
+        "hits": 141,
+        "n": 168,
+        "hr": 0.8393,
+        "base_hr": 0.6122,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "assists",
+        "gate": "L10>=9",
+        "hits": 141,
+        "n": 168,
+        "hr": 0.8393,
+        "base_hr": 0.6947,
+        "oos_hr": 1.0,
+        "oos_n": 1,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": false,
+        "unreliable_reasons": []
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "goals",
+        "gate": "L10>=9",
+        "hits": 122,
+        "n": 145,
+        "hr": 0.8414,
+        "base_hr": 0.7847,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "search_chance"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "goals",
+        "gate": "L5=5 + line_0.5",
+        "hits": 108,
+        "n": 128,
+        "hr": 0.8438,
+        "base_hr": 0.7847,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "search_chance"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "goals",
+        "gate": "L5=5 + L10>=8 + line_0.5",
+        "hits": 103,
+        "n": 122,
+        "hr": 0.8443,
+        "base_hr": 0.7847,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty",
+          "search_chance"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "points",
+        "gate": "L5>=4 + L10>=8",
+        "hits": 221,
+        "n": 270,
+        "hr": 0.8185,
+        "base_hr": 0.6122,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "goals",
+        "gate": "L5>=4 + L10>=8",
+        "hits": 174,
+        "n": 212,
+        "hr": 0.8208,
+        "base_hr": 0.7847,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty"
+        ]
+      },
+      {
+        "book": "Standard UNDER",
+        "prop": "goals",
+        "gate": "L10>=8",
+        "hits": 175,
+        "n": 214,
+        "hr": 0.8178,
+        "base_hr": 0.7847,
+        "oos_hr": null,
+        "oos_n": 0,
+        "break_even_2leg": 0.577,
+        "break_even_3leg": 0.55,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "holdout_empty"
+        ]
+      }
+    ]
+  },
+  "Soccer": {
+    "combinations_searched": 2232,
+    "n_rows_unique": 28359,
+    "dates": [
+      "2026-03-10",
+      "2026-10-04"
+    ],
+    "top": [
+      {
+        "book": "Goblin OVER",
+        "prop": "fouls",
+        "gate": "line_0.5",
+        "hits": 715,
+        "n": 954,
+        "hr": 0.7495,
+        "base_hr": 0.583,
+        "oos_hr": 1.0,
+        "oos_n": 59,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "sog",
+        "gate": "L5>=4",
+        "hits": 78,
+        "n": 98,
+        "hr": 0.7959,
+        "base_hr": 0.6555,
+        "oos_hr": 0.791,
+        "oos_n": 67,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "shots",
+        "gate": "line_0.5",
+        "hits": 1901,
+        "n": 2640,
+        "hr": 0.7201,
+        "base_hr": 0.5771,
+        "oos_hr": 0.7108,
+        "oos_n": 1798,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "saves",
+        "gate": "line_1.5",
+        "hits": 155,
+        "n": 210,
+        "hr": 0.7381,
+        "base_hr": 0.6283,
+        "oos_hr": 0.7273,
+        "oos_n": 121,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "sog",
+        "gate": "cover>=1",
+        "hits": 160,
+        "n": 218,
+        "hr": 0.7339,
+        "base_hr": 0.6555,
+        "oos_hr": 0.7416,
+        "oos_n": 209,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "shots",
+        "gate": "L5=5",
+        "hits": 53,
+        "n": 69,
+        "hr": 0.7681,
+        "base_hr": 0.5771,
+        "oos_hr": 0.7843,
+        "oos_n": 51,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "shots",
+        "gate": "L5>=4 + D_ok",
+        "hits": 50,
+        "n": 65,
+        "hr": 0.7692,
+        "base_hr": 0.5771,
+        "oos_hr": 0.7955,
+        "oos_n": 44,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "shots",
+        "gate": "L5>=4 + D_weak",
+        "hits": 50,
+        "n": 65,
+        "hr": 0.7692,
+        "base_hr": 0.5771,
+        "oos_hr": 0.7955,
+        "oos_n": 44,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "fouls_drawn",
+        "gate": "cover>=1",
+        "hits": 61,
+        "n": 81,
+        "hr": 0.7531,
+        "base_hr": 0.6258,
+        "oos_hr": 0.7531,
+        "oos_n": 81,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "shots",
+        "gate": "L5>=4 + cover>=1",
+        "hits": 75,
+        "n": 106,
+        "hr": 0.7075,
+        "base_hr": 0.5771,
+        "oos_hr": 0.7033,
+        "oos_n": 91,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "shots",
+        "gate": "L5>=4 + L10>=8",
+        "hits": 41,
+        "n": 56,
+        "hr": 0.7321,
+        "base_hr": 0.5771,
+        "oos_hr": 0.7143,
+        "oos_n": 42,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "shots",
+        "gate": "L10>=8",
+        "hits": 46,
+        "n": 64,
+        "hr": 0.7188,
+        "base_hr": 0.5771,
+        "oos_hr": 0.7292,
+        "oos_n": 48,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      }
+    ]
+  },
+  "Tennis": {
+    "combinations_searched": 806,
+    "n_rows_unique": 9853,
+    "dates": [
+      "2026-04-26",
+      "2026-10-07"
+    ],
+    "top": [
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "L5=5 + D_elite",
+        "hits": 49,
+        "n": 56,
+        "hr": 0.875,
+        "base_hr": 0.7014,
+        "oos_hr": 0.9038,
+        "oos_n": 52,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "L5=5 + L10>=8",
+        "hits": 96,
+        "n": 119,
+        "hr": 0.8067,
+        "base_hr": 0.7014,
+        "oos_hr": 0.8594,
+        "oos_n": 64,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "L5=5",
+        "hits": 114,
+        "n": 145,
+        "hr": 0.7862,
+        "base_hr": 0.7014,
+        "oos_hr": 0.8571,
+        "oos_n": 77,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "L5=5 + cover>=1",
+        "hits": 111,
+        "n": 142,
+        "hr": 0.7817,
+        "base_hr": 0.7014,
+        "oos_hr": 0.8533,
+        "oos_n": 75,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "L5=5 + cover>=2",
+        "hits": 103,
+        "n": 132,
+        "hr": 0.7803,
+        "base_hr": 0.7014,
+        "oos_hr": 0.8406,
+        "oos_n": 69,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "D_elite",
+        "hits": 181,
+        "n": 240,
+        "hr": 0.7542,
+        "base_hr": 0.7014,
+        "oos_hr": 0.7905,
+        "oos_n": 210,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "L5>=4 + D_elite",
+        "hits": 99,
+        "n": 130,
+        "hr": 0.7615,
+        "base_hr": 0.7014,
+        "oos_hr": 0.7965,
+        "oos_n": 113,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "L5>=4",
+        "hits": 309,
+        "n": 427,
+        "hr": 0.7237,
+        "base_hr": 0.7014,
+        "oos_hr": 0.7345,
+        "oos_n": 226,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "cover>=2",
+        "hits": 440,
+        "n": 617,
+        "hr": 0.7131,
+        "base_hr": 0.7014,
+        "oos_hr": 0.7353,
+        "oos_n": 340,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "L10>=8",
+        "hits": 313,
+        "n": 435,
+        "hr": 0.7195,
+        "base_hr": 0.7014,
+        "oos_hr": 0.7319,
+        "oos_n": 138,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "L10=10",
+        "hits": 49,
+        "n": 62,
+        "hr": 0.7903,
+        "base_hr": 0.7014,
+        "oos_hr": 0.8182,
+        "oos_n": 22,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "games_won",
+        "gate": "cover>=1",
+        "hits": 581,
+        "n": 827,
+        "hr": 0.7025,
+        "base_hr": 0.7014,
+        "oos_hr": 0.7291,
+        "oos_n": 454,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      }
+    ]
+  },
+  "WNBA": {
+    "combinations_searched": 4650,
+    "n_rows_unique": 43217,
+    "dates": [
+      "2026-05-01",
+      "2026-10-07"
+    ],
+    "top": [
+      {
+        "book": "Goblin OVER",
+        "prop": "threes",
+        "gate": "L10>=9 + D_elite",
+        "hits": 57,
+        "n": 71,
+        "hr": 0.8028,
+        "base_hr": 0.669,
+        "oos_hr": 0.8276,
+        "oos_n": 29,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "threes",
+        "gate": "L5=5",
+        "hits": 170,
+        "n": 225,
+        "hr": 0.7556,
+        "base_hr": 0.669,
+        "oos_hr": 0.7917,
+        "oos_n": 72,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pts+ast",
+        "gate": "L10>=9 + D_ok",
+        "hits": 38,
+        "n": 46,
+        "hr": 0.8261,
+        "base_hr": 0.6582,
+        "oos_hr": 0.7273,
+        "oos_n": 11,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "pts+ast",
+        "gate": "L10>=9 + D_weak",
+        "hits": 38,
+        "n": 46,
+        "hr": 0.8261,
+        "base_hr": 0.6582,
+        "oos_hr": 0.7273,
+        "oos_n": 11,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "threes",
+        "gate": "L5=5 + L10>=8",
+        "hits": 126,
+        "n": 166,
+        "hr": 0.759,
+        "base_hr": 0.669,
+        "oos_hr": 0.75,
+        "oos_n": 52,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "threes_att",
+        "gate": "L5=5",
+        "hits": 40,
+        "n": 49,
+        "hr": 0.8163,
+        "base_hr": 0.6414,
+        "oos_hr": 0.8148,
+        "oos_n": 27,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "threes",
+        "gate": "L5>=4 + L10>=8",
+        "hits": 276,
+        "n": 381,
+        "hr": 0.7244,
+        "base_hr": 0.669,
+        "oos_hr": 0.75,
+        "oos_n": 136,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "threes",
+        "gate": "L5>=4",
+        "hits": 523,
+        "n": 736,
+        "hr": 0.7106,
+        "base_hr": 0.669,
+        "oos_hr": 0.7642,
+        "oos_n": 246,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "threes",
+        "gate": "L10>=9",
+        "hits": 127,
+        "n": 170,
+        "hr": 0.7471,
+        "base_hr": 0.669,
+        "oos_hr": 0.75,
+        "oos_n": 56,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "threes",
+        "gate": "L10>=8",
+        "hits": 314,
+        "n": 437,
+        "hr": 0.7185,
+        "base_hr": 0.669,
+        "oos_hr": 0.7468,
+        "oos_n": 154,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "threes",
+        "gate": "line_0.5",
+        "hits": 752,
+        "n": 1073,
+        "hr": 0.7008,
+        "base_hr": 0.669,
+        "oos_hr": 0.7534,
+        "oos_n": 365,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "wilson_under_3leg_breakeven"
+        ]
+      },
+      {
+        "book": "Goblin OVER",
+        "prop": "threes",
+        "gate": "L5=5 + D_ok",
+        "hits": 67,
+        "n": 87,
+        "hr": 0.7701,
+        "base_hr": 0.669,
+        "oos_hr": 0.7826,
+        "oos_n": 23,
+        "break_even_2leg": 0.845,
+        "break_even_3leg": 0.769,
+        "unreliable": true,
+        "unreliable_reasons": [
+          "search_chance",
+          "wilson_under_3leg_breakeven"
+        ]
+      }
+    ]
+  }
+}

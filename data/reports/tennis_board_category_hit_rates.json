@@ -1,0 +1,403 @@
+{
+  "generated_at": "2026-09-15T17:13:00.065675+00:00",
+  "script": "scripts/tennis_board_category_hit_rates.py",
+  "method": {
+    "sources": [
+      "H:\\PropORACLE_main_cp\\ui_runner\\templates",
+      "H:\\PropORACLE_main_cp\\mobile\\www",
+      "H:\\PropORACLE\\ui_runner\\templates",
+      "H:\\PropORACLE\\mobile\\www"
+    ],
+    "dedupe": "slate|player|prop|book|line|result|pp_projection_id; first file wins (main_cp before open)",
+    "window": {
+      "min": "2026-02-19",
+      "max": "2026-09-14"
+    },
+    "files": 204,
+    "legs": 65611,
+    "decided": 41178,
+    "voids": 24433
+  },
+    "consistency_notes": {
+        "issue": "Std OVER Aces 29.6% n=541 vs 24.5% n=587",
+        "resolution": "Not a single running ledger. 29.6%/541 came from an earlier all_ranked / canvas snapshot with a different date window and/or pre-backfill actuals. Canonical now is this script on deduped graded_props (main_cp first).",
+        "canonical_std_over_aces": {
+            "n": 587,
+            "hits": 144,
+            "hit_pct": 24.5,
+            "void": 0
+        },
+        "contamination_overlap": {
+            "note": "blank actual_source and main_cp Aces slice are the SAME rows (100% overlap), not two independent batches. slate>=2026-08-15 is a subset of that one batch. Unique contaminated ~142; clean open+sourced pre-0815 still ~32% (n=449).",
+            "blank_actual_source_n": 142,
+            "main_cp_n": 142,
+            "intersection_n": 142,
+            "slate_ge_2026_08_15_n": 123,
+            "unique_contaminated_n": 142,
+            "clean_open_sourced_pre_0815": {"n": 449, "hit_pct": 32.1}
+        },
+        "by_actual_source": {
+            "(blank)": {"n": 142, "hit_pct": 0.0},
+            "tennis_abstract": {"n": 186, "hit_pct": 33.3},
+            "sackmann": {"n": 263, "hit_pct": 31.2}
+        },
+        "paths_on_disk": {
+            "script": "H:/PropORACLE/scripts/tennis_board_category_hit_rates.py",
+            "report": "H:/PropORACLE/data/reports/tennis_board_category_hit_rates.json"
+        }
+    },
+  "props": [
+    {
+      "label": "Total Games",
+      "norm": "match_total_games",
+      "books": [
+        {
+          "book": "Goblin OVER",
+          "n": 3678,
+          "hits": 2438,
+          "hit_pct": 66.3,
+          "void": 935
+        },
+        {
+          "book": "Standard OVER",
+          "n": 1289,
+          "hits": 647,
+          "hit_pct": 50.2,
+          "void": 587
+        },
+        {
+          "book": "Standard UNDER",
+          "n": 535,
+          "hits": 301,
+          "hit_pct": 56.3,
+          "void": 136
+        },
+        {
+          "book": "Demon OVER",
+          "n": 4083,
+          "hits": 1326,
+          "hit_pct": 32.5,
+          "void": 1017
+        }
+      ],
+      "keep_paths": [
+        {
+          "path": "Goblin OVER L5\u22654 + L10\u22658",
+          "n": 61,
+          "hits": 48,
+          "hit_pct": 78.7,
+          "void": 0,
+          "call": "KEEP path"
+        },
+        {
+          "path": "Goblin OVER L10\u22658 + vs lefty",
+          "n": 85,
+          "hits": 68,
+          "hit_pct": 80.0,
+          "void": 0,
+          "call": "KEEP path"
+        },
+        {
+          "path": "Goblin OVER (L5\u22654+L10\u22658)|lefty union",
+          "n": 135,
+          "hits": 107,
+          "hit_pct": 79.3,
+          "void": 0,
+          "call": "KEEP"
+        },
+        {
+          "path": "Goblin OVER tennis_goblin_keep_eligible()",
+          "n": 135,
+          "hits": 107,
+          "hit_pct": 79.3,
+          "void": 0,
+          "call": "KEEP live fn"
+        }
+      ]
+    },
+    {
+      "label": "Total Games Won",
+      "norm": "games_won",
+      "books": [
+        {
+          "book": "Goblin OVER",
+          "n": 4551,
+          "hits": 3365,
+          "hit_pct": 73.9,
+          "void": 1150
+        },
+        {
+          "book": "Standard OVER",
+          "n": 1249,
+          "hits": 638,
+          "hit_pct": 51.1,
+          "void": 473
+        },
+        {
+          "book": "Standard UNDER",
+          "n": 656,
+          "hits": 331,
+          "hit_pct": 50.5,
+          "void": 154
+        },
+        {
+          "book": "Demon OVER",
+          "n": 5771,
+          "hits": 1664,
+          "hit_pct": 28.8,
+          "void": 1422
+        }
+      ],
+      "keep_paths": [
+        {
+          "path": "Goblin OVER Std\u2212Goblin\u22654",
+          "n": 0,
+          "hits": 0,
+          "hit_pct": null,
+          "void": 0,
+          "call": "KEEP path",
+          "note": "standard_line often missing on graded_props"
+        },
+        {
+          "path": "Goblin OVER L10\u22658 + vs lefty",
+          "n": 102,
+          "hits": 88,
+          "hit_pct": 86.3,
+          "void": 0,
+          "call": "KEEP path"
+        },
+        {
+          "path": "Goblin OVER L10\u22658 + L5 2nd-won%\u226545.7",
+          "n": 444,
+          "hits": 371,
+          "hit_pct": 83.6,
+          "void": 0,
+          "call": "KEEP path"
+        },
+        {
+          "path": "Goblin OVER L10\u22658+(lefty|2nd-won) union",
+          "n": 501,
+          "hits": 414,
+          "hit_pct": 82.6,
+          "void": 0,
+          "call": "KEEP"
+        },
+        {
+          "path": "Goblin OVER tennis_goblin_keep_eligible()",
+          "n": 501,
+          "hits": 414,
+          "hit_pct": 82.6,
+          "void": 0,
+          "call": "KEEP live fn"
+        },
+        {
+          "path": "Std OVER L10\u22658 + 2nd-won keep",
+          "n": 40,
+          "hits": 30,
+          "hit_pct": 75.0,
+          "void": 0,
+          "call": "KEEP thin"
+        },
+        {
+          "path": "Std OVER tennis_standard_games_won_over_eligible()",
+          "n": 40,
+          "hits": 30,
+          "hit_pct": 75.0,
+          "void": 0,
+          "call": "KEEP thin"
+        }
+      ]
+    },
+    {
+      "label": "Fantasy Score",
+      "norm": "fantasy_score",
+      "books": [
+        {
+          "book": "Standard OVER",
+          "n": 0,
+          "hits": 0,
+          "hit_pct": null,
+          "void": 52
+        }
+      ],
+      "keep_paths": []
+    },
+    {
+      "label": "Total Sets",
+      "norm": "total_sets",
+      "books": [
+        {
+          "book": "Demon OVER",
+          "n": 83,
+          "hits": 38,
+          "hit_pct": 45.8,
+          "void": 0
+        }
+      ],
+      "keep_paths": []
+    },
+    {
+      "label": "Aces",
+      "norm": "aces",
+      "books": [
+        {
+          "book": "Goblin OVER",
+          "n": 2991,
+          "hits": 438,
+          "hit_pct": 14.6,
+          "void": 989
+        },
+        {
+          "book": "Standard OVER",
+          "n": 587,
+          "hits": 144,
+          "hit_pct": 24.5,
+          "void": 155
+        },
+        {
+          "book": "Standard UNDER",
+          "n": 96,
+          "hits": 87,
+          "hit_pct": 90.6,
+          "void": 34
+        },
+        {
+          "book": "Demon OVER",
+          "n": 5197,
+          "hits": 293,
+          "hit_pct": 5.6,
+          "void": 1700
+        }
+      ],
+      "keep_paths": [
+        {
+          "path": "Std UNDER ungated",
+          "n": 96,
+          "hits": 87,
+          "hit_pct": 90.6,
+          "void": 0,
+          "call": "KEEP"
+        }
+      ]
+    },
+    {
+      "label": "Break Points Won",
+      "norm": "break_points_won",
+      "books": [],
+      "keep_paths": []
+    },
+    {
+      "label": "Total Tie Breaks",
+      "norm": "total_tie_breaks",
+      "books": [
+        {
+          "book": "Standard OVER",
+          "n": 1,
+          "hits": 0,
+          "hit_pct": 0.0,
+          "void": 0
+        },
+        {
+          "book": "Standard UNDER",
+          "n": 2,
+          "hits": 1,
+          "hit_pct": 50.0,
+          "void": 0
+        },
+        {
+          "book": "Demon OVER",
+          "n": 87,
+          "hits": 29,
+          "hit_pct": 33.3,
+          "void": 0
+        }
+      ],
+      "keep_paths": []
+    },
+    {
+      "label": "1st Set Total Games",
+      "norm": "first_set_total_games",
+      "books": [],
+      "keep_paths": []
+    },
+    {
+      "label": "1st Set Total Games Won",
+      "norm": "first_set_games_won",
+      "books": [],
+      "keep_paths": []
+    },
+    {
+      "label": "1st Set Aces",
+      "norm": "first_set_aces",
+      "books": [
+        {
+          "book": "Goblin OVER",
+          "n": 27,
+          "hits": 0,
+          "hit_pct": 0.0,
+          "void": 0
+        },
+        {
+          "book": "Standard OVER",
+          "n": 4,
+          "hits": 0,
+          "hit_pct": 0.0,
+          "void": 0
+        },
+        {
+          "book": "Demon OVER",
+          "n": 17,
+          "hits": 0,
+          "hit_pct": 0.0,
+          "void": 0
+        }
+      ],
+      "keep_paths": []
+    },
+    {
+      "label": "Double Faults",
+      "norm": "double_faults",
+      "books": [
+        {
+          "book": "Goblin OVER",
+          "n": 2898,
+          "hits": 544,
+          "hit_pct": 18.8,
+          "void": 1034
+        },
+        {
+          "book": "Standard OVER",
+          "n": 643,
+          "hits": 194,
+          "hit_pct": 30.2,
+          "void": 202
+        },
+        {
+          "book": "Standard UNDER",
+          "n": 50,
+          "hits": 45,
+          "hit_pct": 90.0,
+          "void": 3
+        },
+        {
+          "book": "Demon OVER",
+          "n": 6683,
+          "hits": 367,
+          "hit_pct": 5.5,
+          "void": 2235
+        }
+      ],
+      "keep_paths": [
+        {
+          "path": "Std UNDER ungated",
+          "n": 50,
+          "hits": 45,
+          "hit_pct": 90.0,
+          "void": 0,
+          "call": "KEEP"
+        }
+      ]
+    }
+  ],
+  "catalog_gap_note": "Std\u2212Goblin\u22654 keep rate 83.1% n=331 is from a separate Standard-Line catalog join; graded_props often lack standard_line so that path undercounts here."
+}

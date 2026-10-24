@@ -1,0 +1,32 @@
+{
+  "date": "2026-08-27",
+  "step8_root": "H:\\PropORACLE_main_cp",
+  "gate": "L5==5",
+  "sports": {
+    "WNBA": {
+      "standard_over": 4,
+      "standard_under": 0,
+      "goblin_over": 24
+    },
+    "MLB": {
+      "standard_over": 0,
+      "standard_under": 0,
+      "goblin_over": 0
+    },
+    "SOCCER": {
+      "standard_over": 0,
+      "standard_under": 0,
+      "goblin_over": 0
+    },
+    "TENNIS": {
+      "standard_over": 1,
+      "standard_under": 0,
+      "goblin_over": 2
+    },
+    "NFL": {
+      "standard_over": 6,
+      "standard_under": 0,
+      "goblin_over": 0
+    }
+  }
+}

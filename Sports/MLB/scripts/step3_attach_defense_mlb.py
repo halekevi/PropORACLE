@@ -2,12 +2,10 @@
 """
 step3_attach_defense_mlb.py  (MLB Pipeline)
 
-Merges starting pitcher quality and team-level defensive ratings
-onto each prop row.
+Merges opponent pitching (hitter props) and opponent offense (pitcher props).
 
-For MLB, "defense context" means two things:
-  1. Team pitching rank (for hitter props) — how good is the opposing pitcher?
-  2. Team fielding/run-prevention rank (general)
+Hitter TB / H+R+RBI / hits / hitter Ks: opposing team OVERALL_DEF_RANK (pitching).
+Pitcher hits allowed / ERA / Ks: opposing lineup hits / runs / K-rate.
 
 Inputs:
   --input    step2_mlb_picktypes.csv
@@ -39,6 +37,7 @@ _MLB_REPO = Path(__file__).resolve().parents[3]
 if str(_MLB_REPO) not in sys.path:
     sys.path.insert(0, str(_MLB_REPO))
 from utils.defense_tiers import assert_def_tier_column, format_def_tier_counts
+from utils.mlb_prop_matchup import batting_strength_label, overlay_pitcher_offense_matchup
 
 
 def _col(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
@@ -55,6 +54,46 @@ def _safe_upper(x) -> str:
 def split_slash(s: str) -> Tuple[str, str]:
     parts = [p.strip() for p in str(s or "").split("/")]
     return (parts[0], parts[1]) if len(parts) >= 2 else (parts[0], "")
+
+
+def _attach_own_team_context(out: pd.DataFrame, d: pd.DataFrame, key: str) -> pd.DataFrame:
+    """Own lineup hits + own pitching, plus batting-strength display labels."""
+    if "team" not in out.columns:
+        return out
+    rename: dict[str, str] = {}
+    keep = [key]
+    if "OFF_HITS_TIER" in d.columns:
+        keep.append("OFF_HITS_TIER")
+        rename["OFF_HITS_TIER"] = "team_off_hits_tier"
+    if "OFF_HITS_RANK" in d.columns:
+        keep.append("OFF_HITS_RANK")
+        rename["OFF_HITS_RANK"] = "team_off_hits_rank"
+    if "DEF_TIER" in d.columns:
+        keep.append("DEF_TIER")
+        rename["DEF_TIER"] = "team_def_tier"
+    elif "def_tier" in d.columns:
+        keep.append("def_tier")
+        rename["def_tier"] = "team_def_tier"
+    if "OVERALL_DEF_RANK" in d.columns:
+        keep.append("OVERALL_DEF_RANK")
+        rename["OVERALL_DEF_RANK"] = "team_def_rank"
+    own = d[keep].drop_duplicates(subset=[key]).rename(columns=rename)
+    out = out.copy()
+    out["_team_key"] = out["team"].astype(str).str.strip().str.upper()
+    own[key] = own[key].astype(str).str.strip().str.upper()
+    out = out.merge(own, how="left", left_on="_team_key", right_on=key)
+    drop = ["_team_key"]
+    if key in out.columns:
+        drop.append(key)
+    out.drop(columns=[c for c in drop if c in out.columns], inplace=True)
+    if "team_off_hits_tier" in out.columns:
+        out["own_off_hits_tier"] = out["team_off_hits_tier"]
+        out["batting_strength"] = out["team_off_hits_tier"].map(
+            lambda v: batting_strength_label(v) or ""
+        )
+    if "team_def_tier" in out.columns:
+        out["own_def_tier"] = out["team_def_tier"]
+    return out
 
 
 def main() -> None:
@@ -136,6 +175,17 @@ def main() -> None:
         ], axis=1)
 
     out = pd.concat([singles, combos], axis=0, ignore_index=True)
+
+    _tier_src = "DEF_TIER" if "DEF_TIER" in out.columns else (
+        "def_tier" if "def_tier" in out.columns else None
+    )
+    if _tier_src:
+        out["opp_pitching_tier"] = out[_tier_src]
+    if "OVERALL_DEF_RANK" in out.columns:
+        out["opp_pitching_rank"] = out["OVERALL_DEF_RANK"]
+
+    out = _attach_own_team_context(out, d, key)
+    out = overlay_pitcher_offense_matchup(out)
 
     if "def_tier" in out.columns and "DEF_TIER" not in out.columns:
         out = out.rename(columns={"def_tier": "DEF_TIER"})

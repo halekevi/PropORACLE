@@ -116,6 +116,22 @@ def _ticket_base_ev(ticket: dict[str, Any]) -> float:
     return 0.0
 
 
+def _has_same_player_multistat(legs: list[dict[str, Any]]) -> bool:
+    """True when one player appears on 2+ different props (cat1 stack).
+
+    Empirically cat1 lift is >1 across sports (same-player multi-stat moves
+    together). Packer hard-blocks these; EV pairwise lift is a separate lever.
+    """
+    props_by_player: dict[str, set[str]] = {}
+    for leg in legs:
+        player = _player_token(leg)
+        prop = _prop_token(leg)
+        if not player or not prop:
+            continue
+        props_by_player.setdefault(player, set()).add(prop)
+    return any(len(props) >= 2 for props in props_by_player.values())
+
+
 def apply_diversity_filter(candidate_tickets: list[dict[str, Any]], config: dict[str, Any]) -> list[dict[str, Any]]:
     """
     Post-process candidate tickets with diversity / overlap constraints.
@@ -131,6 +147,8 @@ def apply_diversity_filter(candidate_tickets: list[dict[str, Any]], config: dict
     max_player_exposure = max(1, _as_int(cfg.get("max_player_exposure"), 3))
     # Default 1: same player+prop (e.g. Ionescu rebounds) on at most one ticket.
     max_player_prop_exposure = max(1, _as_int(cfg.get("max_player_prop_exposure"), 1))
+    # Default on: block same-player different-prop stacks within one ticket (cat1).
+    block_same_player_multistat = _bool(cfg.get("block_same_player_multistat", True))
     void_risk_min_sample = max(0, _as_int(cfg.get("void_risk_min_sample"), 10))
     max_jaccard_overlap = max(0.0, min(1.0, _as_float(cfg.get("max_jaccard_overlap"), 0.5)))
     exposure_w = _as_float(cfg.get("exposure_penalty_weight"), 0.1)
@@ -160,6 +178,10 @@ def apply_diversity_filter(candidate_tickets: list[dict[str, Any]], config: dict
         min_len = max(2, original_len)
         if len(clean_rows) < min_len:
             reasons["void_filter"] += 1
+            continue
+
+        if block_same_player_multistat and _has_same_player_multistat(clean_rows):
+            reasons["same_player_multistat"] += 1
             continue
 
         # Initial adjusted score (for sorting only).
@@ -232,8 +254,10 @@ def apply_diversity_filter(candidate_tickets: list[dict[str, Any]], config: dict
         max(0, n_in - len(accepted)),
     )
     _log.info(
-        "[diversity] dropped: void_filter=%d exposure_cap=%d (leg=%d player=%d player_prop=%d) overlap=%d",
+        "[diversity] dropped: void_filter=%d same_player_multistat=%d "
+        "exposure_cap=%d (leg=%d player=%d player_prop=%d) overlap=%d",
         int(reasons.get("void_filter", 0)),
+        int(reasons.get("same_player_multistat", 0)),
         int(reasons.get("exposure_cap", 0)),
         int(reasons.get("exposure_leg_cap", 0)),
         int(reasons.get("exposure_player_cap", 0)),

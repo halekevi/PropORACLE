@@ -45,6 +45,9 @@ PITCHER_PROP_KEYWORDS = (
     "hits allowed",
     "pitches thrown",
     "innings",
+    "batters faced",
+    "balls thrown",
+    "strikes thrown",
 )
 
 RELIABILITY_PRIOR = 0.55
@@ -52,6 +55,8 @@ RELIABILITY_PRIOR = 0.55
 # Prefer canonical prop_norm so "Hitter Strikeouts" is not treated as a pitcher prop.
 _MLB_PITCHER_PROP_NORMS = frozenset({
     "strikeouts",
+    "strikeouts_combo",
+    "strikeouts_total_bases",
     "pitching_outs",
     "innings_pitched",
     "hits_allowed",
@@ -59,6 +64,11 @@ _MLB_PITCHER_PROP_NORMS = frozenset({
     "walks_allowed",
     "batters_faced",
     "pitches_thrown",
+    "balls_thrown",
+    "strikes_thrown",
+    "pitches_thrown_95",
+    "first_inning_runs_allowed",
+    "first_inning_walks_allowed",
 })
 
 

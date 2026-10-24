@@ -1,0 +1,40 @@
+{
+  "n": 3,
+  "px": 1.5,
+  "legs": [
+    {
+      "sport": "MLB",
+      "player": "Andre Pallante",
+      "prop_type": "Hits Allowed",
+      "prop": "Hits Allowed",
+      "line": 2.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Andre Pallante"
+    },
+    {
+      "sport": "MLB",
+      "player": "Sean Manaea",
+      "prop_type": "Hits Allowed",
+      "prop": "Hits Allowed",
+      "line": 3.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Sean Manaea"
+    },
+    {
+      "sport": "MLB",
+      "player": "Max Scherzer",
+      "prop_type": "Pitching Outs",
+      "prop": "Pitching Outs",
+      "line": 8.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Max Scherzer"
+    }
+  ],
+  "raw": "Current Lineup\n3 Players Selected\nClear\nAndre Pallante\n\nMLBSTL - P\n\nSun, Sep 27 3:10 PM @ MIL\n2.5Hits Allowed\nMore\nSean Manaea\n\nMLBNYM - P\n\nSun, Sep 27 1:05 PM @ WSH\n3.5Hits Allowed\nMore\nMax Scherzer\n\nMLBTOR - P\n\nSun, Sep 27 3:07 PM vs CIN\n8.5PO\nMore\nFlex Play\n\nYou must hit 1st place, or 2 out of 3 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n3 correct pays\n1.3X\n2 correct pays\n0.5X\nPower Play\n\nYou must hit 1st place, or 3 out of 3 in the lineup.\n\n1st place pays\n6X\nMinimum Guarantee\n3 correct pays\n1.5X\nIn the event of contest ties, contest payouts are shared. If you qualify for the 1st place prize and the Minimum Guarantee payout, you will receive whichever payout is higher.\nEntry Fee\n$\nTo Win\nBalance: $66.00\nPromo: $0.00\n\nReversion lineup payouts are different than standard. Learn m"
+}

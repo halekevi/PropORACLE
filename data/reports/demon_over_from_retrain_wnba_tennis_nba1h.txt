@@ -1,0 +1,128 @@
+DEMON OVER from retrain_dataset_graded_only (already graded — was missing from diagnostic export)
+NFL/CFB/Golf/CBB men not in this retrain export; CFB/CBB step6 now keeps Demons on ALL for future grades.
+NFL step1 pick_type fixed since ~2026-10-11; no graded_nfl after 2026-09-27 yet (re-grade Sundays to fill).
+
+=== MLB  n=284013  ungated 19.9% ===
+  Total Bases                19.4%  n=60445  |  ml>=0.56 -> 19.3% n=36483
+  Hits+Runs+RBIs             21.2%  n=40481  |  ml>=0.56 -> 21.1% n=31860
+  Runs                       23.6%  n=25379  |  ml>=0.54 -> 23.3% n=16729
+  RBIs                       19.1%  n=23424  |  ml>=0.54 -> 19.3% n=18927
+  Hits                       17.0%  n=22520  |  ml>=0.57 -> 16.2% n=14468
+  Hitter Strikeouts          19.3%  n=20735  |  ml>=0.52 -> 18.9% n=13216
+  Walks                      26.8%  n=16144  |  ml>=0.54 -> 27.4% n=10039
+  Home Runs                  12.3%  n=15482  |  ml>=0.47 -> 12.0% n=12226
+  Doubles                    14.6%  n=13488  |  ml>=0.50 -> 14.6% n=9147
+  Singles                    26.0%  n=13478  |  ml>=0.56 -> 27.9% n=9114
+  Stolen Bases                8.2%  n=10800  |  ml>=0.53 -> 7.2% n=7136
+  Pitcher Strikeouts         23.1%  n= 5245  |  ml>=0.63 -> 22.8% n=3187
+  Hits Allowed               21.6%  n= 4458  |  ml>=0.53 -> 21.7% n=2926
+  Hitter Fantasy Score       29.5%  n= 3034  |  ml>=0.53 -> 29.5% n=3019
+  Walks Allowed              26.2%  n= 2077  |  ml>=0.52 -> 25.5% n=1445
+  Plate Appearances          31.2%  n= 1886  |  ml>=0.53 -> 32.1% n=1612
+  Earned Runs Allowed        20.6%  n= 1657  |  ml>=0.53 -> 20.4% n=1629
+  Pitches Thrown             21.0%  n=  883  |  ml>=0.56 -> 22.6% n=576
+  Triples                     3.3%  n=  823  |  ml>=0.45 -> 3.1% n=780
+  Pitcher Fantasy Score      27.6%  n=  821  |  ml>=0.53 -> 28.1% n=691
+  Pitching Outs              25.0%  n=  731  |  ml>=0.62 -> 23.0% n=538
+  1st Inning Walks Allowed   31.8%  n=   22  |  (thin for ml gate)
+
+=== NBA  n=6093  ungated 27.5% ===
+  Points                     26.5%  n=  675  |  ml>=0.36 -> 46.1% n=102
+  Pts+Rebs+Asts              28.2%  n=  588  |  ml>=0.35 -> 35.0% n=120
+  Rebounds                   26.9%  n=  576  |  ml>=0.36 -> 44.4% n=81
+  Rebs+Asts                  28.1%  n=  552  |  ml>=0.35 -> 29.0% n=107
+  Pts+Rebs                   25.7%  n=  509  |  ml>=0.35 -> 34.1% n=88
+  Pts+Asts                   25.6%  n=  426  |  ml>=0.35 -> 34.8% n=69
+  Assists                    21.9%  n=  420  |  ml>=0.35 -> 47.1% n=51
+  3-PT Made                  25.8%  n=  357  |  ml>=0.35 -> 34.0% n=50
+  Steals                     21.6%  n=  287  |  ml>=0.35 -> 27.9% n=43
+  Blocked Shots              22.7%  n=  242  |  ml>=0.35 -> 38.2% n=34
+  Blks+Stls                  29.4%  n=  187  |  ml>=0.36 -> 31.2% n=32
+  Double-Double               9.6%  n=  166  |  ml>=0.36 -> 8.7% n=69
+  Fantasy Score              27.0%  n=  126  |  ml>=0.28 -> 0.0% n=10
+  Turnovers                  37.5%  n=  112  |  ml>=0.37 -> 57.7% n=26
+  Free Throws Attempted      36.0%  n=  111  |  ml>=0.45 -> 40.0% n=30
+  Free Throws Made           38.7%  n=  111  |  ml>=0.37 -> 50.0% n=28
+  Two Pointers Made          41.6%  n=  101  |  ml>=0.39 -> 28.6% n=28
+  FG Made                    44.6%  n=  101  |  ml>=0.37 -> 44.4% n=27
+  3-PT Attempted             45.2%  n=   84  |  ml>=0.36 -> 45.0% n=20
+  Two Pointers Attempted     40.5%  n=   79  |  ml>=0.42 -> 42.1% n=19
+  Quarters with 3+ Points    19.5%  n=   77  |  ml>=0.37 -> 22.7% n=22
+  Personal Fouls             34.3%  n=   70  |  ml>=0.37 -> 42.9% n=14
+  FG Attempted               59.6%  n=   52  |  ml>=0.37 -> 61.5% n=13
+  Offensive Rebounds         35.7%  n=   42  |  (thin for ml gate)
+  Quarters with 5+ Points    13.5%  n=   37  |  (thin for ml gate)
+  Defensive Rebounds         60.0%  n=    5  |  (thin for ml gate)
+
+=== NBA1H  n=28  ungated 50.0% ===
+  3-PT Made                  52.0%  n=   25  |  (thin for ml gate)
+  Free Throws Made           33.3%  n=    3  |  (thin for ml gate)
+
+=== NBA1Q  n=976  ungated 30.5% ===
+  Points                     31.3%  n=  435  |  ml>=0.58 -> 31.6% n=209
+  Rebounds                   29.7%  n=  290  |  ml>=0.58 -> 37.2% n=156
+  Assists                    30.4%  n=  247  |  ml>=0.58 -> 29.6% n=162
+  Free Throws Made           25.0%  n=    4  |  (thin for ml gate)
+
+=== NHL  n=215  ungated 17.7% ===
+  Shots On Goal              12.2%  n=   49  |  ml>=0.24 -> 12.2% n=49
+  Goals                      12.5%  n=   40  |  ml>=0.24 -> 12.5% n=40
+  Points                     24.2%  n=   33  |  (thin for ml gate)
+  Assists                    21.9%  n=   32  |  (thin for ml gate)
+  Plus/Minus                 27.8%  n=   18  |  (thin for ml gate)
+  Power Play Points           6.2%  n=   16  |  (thin for ml gate)
+  Blocked Shots              15.4%  n=   13  |  (thin for ml gate)
+  Goalie Saves                0.0%  n=    6  |  (thin for ml gate)
+  Hits                       40.0%  n=    5  |  (thin for ml gate)
+  Faceoffs Won              100.0%  n=    2  |  (thin for ml gate)
+  Goals Allowed               0.0%  n=    1  |  (thin for ml gate)
+
+=== SOCCER  n=31207  ungated 9.2% ===
+  Shots                       9.9%  n= 7537  |  ml>=0.43 -> 13.0% n=2219
+  Shots On Target             8.8%  n= 3840  |  ml>=0.50 -> 12.3% n=710
+  Goal + Assist               9.4%  n= 3773  |  ml>=0.43 -> 8.9% n=1141
+  Fouls                      11.2%  n= 3296  |  ml>=0.43 -> 10.3% n=1320
+  Assists                     5.9%  n= 3080  |  ml>=0.43 -> 6.6% n=876
+  Goals                       8.2%  n= 2962  |  ml>=0.43 -> 8.7% n=634
+  Fouls Drawn                 9.1%  n= 2820  |  ml>=0.43 -> 8.7% n=1407
+  Cards                       6.0%  n= 2507  |  ml>=0.43 -> 5.6% n=1280
+  Offsides                    7.7%  n=  796  |  ml>=0.27 -> 8.2% n=672
+  Goalie Saves               25.3%  n=  529  |  ml>=0.43 -> 28.9% n=235
+  Shots (Combo)              36.1%  n=   36  |  (thin for ml gate)
+  Shots On Target (Combo)    29.4%  n=   17  |  (thin for ml gate)
+  Goalie Saves (Combo)       33.3%  n=    9  |  (thin for ml gate)
+  Goals (Combo)              20.0%  n=    5  |  (thin for ml gate)
+
+=== TENNIS  n=11394  ungated 14.0% ===
+  Double Faults               0.0%  n= 3538  |  ml>=0.13 -> 0.0% n=1415
+  Total Games Won            27.7%  n= 2855  |  ml>=0.55 -> 27.2% n=1296
+  Aces                        0.0%  n= 2675  |  ml>=0.12 -> 0.0% n=1074
+  Total Games                34.0%  n= 2156  |  ml>=0.53 -> 37.4% n=914
+  Total Tie Breaks           34.5%  n=   87  |  ml>=0.37 -> 34.5% n=87
+  Total Sets                 45.8%  n=   83  |  ml>=0.37 -> 46.8% n=79
+
+=== WNBA  n=17095  ungated 25.4% ===
+  Points                     25.8%  n= 3322  |  ml>=0.55 -> 29.8% n=1331
+  Rebounds                   23.5%  n= 3115  |  ml>=0.59 -> 29.0% n=1246
+  Assists                    23.4%  n= 2035  |  ml>=0.54 -> 32.1% n=829
+  Pts+Rebs                   23.9%  n= 1648  |  ml>=0.56 -> 31.1% n=660
+  Pts+Rebs+Asts              26.5%  n= 1575  |  ml>=0.57 -> 31.0% n=630
+  3-PT Made                  23.1%  n= 1492  |  ml>=0.61 -> 29.0% n=597
+  Rebs+Asts                  27.7%  n= 1342  |  ml>=0.63 -> 37.1% n=537
+  Pts+Asts                   24.9%  n= 1212  |  ml>=0.54 -> 30.3% n=485
+  Fantasy Score              30.5%  n=  351  |  ml>=0.52 -> 32.9% n=155
+  Double-Double              24.3%  n=  267  |  ml>=1.00 -> 26.5% n=132
+  Offensive Rebounds         36.3%  n=  168  |  ml>=1.00 -> 41.7% n=84
+  Blks+Stls                  42.7%  n=  143  |  ml>=0.99 -> 51.7% n=58
+  Blocked Shots              30.0%  n=  120  |  ml>=1.00 -> 21.3% n=61
+  Steals                     38.6%  n=  114  |  ml>=0.88 -> 32.6% n=46
+  Turnovers                  39.4%  n=  104  |  ml>=0.99 -> 45.2% n=42
+  3-PT Attempted             28.0%  n=   25  |  (thin for ml gate)
+  Triple-Double               0.0%  n=   18  |  (thin for ml gate)
+  Free Throws Made           60.0%  n=   15  |  (thin for ml gate)
+  Free Throws Attempted      50.0%  n=   12  |  (thin for ml gate)
+  Two Pointers Made          42.9%  n=    7  |  (thin for ml gate)
+  FG Made                    16.7%  n=    6  |  (thin for ml gate)
+  Defensive Rebounds         50.0%  n=    2  |  (thin for ml gate)
+  Two Pointers Attempted     50.0%  n=    2  |  (thin for ml gate)
+

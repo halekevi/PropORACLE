@@ -7,7 +7,7 @@ Takes raw pp_cbb_scraper.py output and guarantees a stable schema
 for all downstream steps.
 
 Adds:
-- prop_norm          : canonical prop key (pts/reb/ast/pra/pr/pa/ra/stl/blk/stocks/tov/fantasy)
+- prop_norm          : canonical prop key (pts/reb/ast/pra/.../fgm/fga/fg3m/fg3a/ftm/fta/fg2m/fg2a)
 - pick_type          : normalized (Standard/Goblin/Demon)
 - cbb_player_key     : espn_athlete_id if present, else player_norm|team_abbr
 - team_abbr          : canonical team abbreviation (from pp_team)
@@ -72,6 +72,28 @@ PROP_NORM_MAP = {
     "threes made": "fg3m",
     "3pm": "fg3m",
     "fg3m": "fg3m",
+    # shooting (pregame PrizePicks markets)
+    "fg attempted": "fga",
+    "fg made": "fgm",
+    "field goals attempted": "fga",
+    "field goals made": "fgm",
+    "fga": "fga",
+    "fgm": "fgm",
+    "3-pt attempted": "fg3a",
+    "3 pt attempted": "fg3a",
+    "3 pointers attempted": "fg3a",
+    "threes attempted": "fg3a",
+    "fg3a": "fg3a",
+    "free throws made": "ftm",
+    "free throws attempted": "fta",
+    "ftm": "ftm",
+    "fta": "fta",
+    "two pointers made": "fg2m",
+    "two pointers attempted": "fg2a",
+    "2-pt made": "fg2m",
+    "2-pt attempted": "fg2a",
+    "fg2m": "fg2m",
+    "fg2a": "fg2a",
     # fantasy
     "fantasy score": "fantasy",
     "fantasy": "fantasy",

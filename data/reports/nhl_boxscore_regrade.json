@@ -1,0 +1,31 @@
+{
+  "box_rows_indexed": 17243,
+  "graded_files": 227,
+  "files_written": 50,
+  "before": {
+    "sog": {
+      "n": 13786,
+      "zero": 6488
+    },
+    "hits": {
+      "n": 1254,
+      "zero": 305
+    }
+  },
+  "after_matched": {
+    "sog": {
+      "n": 11963,
+      "zero": 1626,
+      "matched": 11963,
+      "flipped": 1475,
+      "unmatched": 1823
+    },
+    "hits": {
+      "n": 1054,
+      "zero": 182,
+      "matched": 1054,
+      "flipped": 116,
+      "unmatched": 200
+    }
+  }
+}

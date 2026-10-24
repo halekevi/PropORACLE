@@ -171,11 +171,24 @@ def main() -> None:
                 match_cache = json.loads(cache_path.read_text(encoding="utf-8"))
             except Exception:
                 match_cache = {}
-    sack_lookup: dict[tuple[str, str], tuple[float, float]] = {}
+    sack_lookup: dict[tuple[str, str], tuple[float | None, float | None]] = {}
     if not sack.empty:
+        def _opt_f(v: object) -> float | None:
+            try:
+                f = float(v)
+            except (TypeError, ValueError):
+                return None
+            if f != f:
+                return None
+            return f
+
         for r in sack.itertuples(index=False):
             key = (str(getattr(r, "player_key", "")), str(getattr(r, "opponent_key", "")))
-            sack_lookup[key] = (float(getattr(r, "aces", 0.0) or 0.0), float(getattr(r, "double_faults", 0.0) or 0.0))
+            aces_v = _opt_f(getattr(r, "aces", None))
+            df_v = _opt_f(getattr(r, "double_faults", None))
+            if aces_v is None and df_v is None:
+                continue
+            sack_lookup[key] = (aces_v, df_v)
     if match_cache:
         for aid, rows_for_player in match_cache.items():
             if not isinstance(rows_for_player, list):
@@ -186,8 +199,10 @@ def main() -> None:
                 aces_df = sack_lookup.get((pkey, okey))
                 if not aces_df:
                     continue
-                m["aces"] = aces_df[0]
-                m["double_faults"] = aces_df[1]
+                if aces_df[0] is not None:
+                    m["aces"] = aces_df[0]
+                if aces_df[1] is not None:
+                    m["double_faults"] = aces_df[1]
         cache_path.write_text(json.dumps(match_cache, ensure_ascii=False, indent=2), encoding="utf-8")
 
     s7 = Path(args.step7_out)

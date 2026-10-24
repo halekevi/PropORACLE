@@ -169,6 +169,9 @@ def nhl_player_aliases(player: str) -> List[str]:
 
 def prop_norm_from_label(prop: str) -> str:
     p = strip_norm(prop)
+    # Drop trailing PrizePicks "(Combo)" / " combo" so duo labels share solo actual keys.
+    p = re.sub(r"\(\s*combo\s*\)", "", p, flags=re.I).strip()
+    p = re.sub(r"\s+combo$", "", p, flags=re.I).strip()
     # NHL normalization (ticket labels vs actuals CSV wording differ)
     if "shots on goal" in p or p == "shots_on_goal":
         return "shots_on_goal"
@@ -178,10 +181,12 @@ def prop_norm_from_label(prop: str) -> str:
     # Soccer normalization (ticket tokens vs actuals CSV wording differ)
     if "goalie saves" in p or "goalkeeper saves" in p:
         return "goalie saves"
-    if "shots on target (combo)" in p:
-        return "shots on target"
     if "shots on target" in p:
         return "shots on target"
+    if "passes attempted" in p or p == "passes":
+        return "passes"
+    if "clearance" in p:
+        return "clearances"
     if p == "shots":
         # Soccer actuals appear to use a generic "shots" label.
         return "shots on target"
@@ -1218,11 +1223,50 @@ def _lookup_actual_with_combo_fallback(
     if not pd.isna(val):
         return val
     from grading.leg_grade_utils import is_nba_combo_prop, sum_nba_combo_from_actuals_df
+    from utils.combo_actuals import sum_multiplayer_combo_actual
 
     if act_df is not None and not act_df.empty and is_nba_combo_prop(prop_norm):
         combo = sum_nba_combo_from_actuals_df(act_df, player, team, prop_norm)
         if combo is not None:
             return float(combo)
+
+    # Multi-player combos (A + B): sum solo arm actuals on the base prop.
+    # Needed for MLB/NHL/Soccer (and NBA/WNBA when duo rows were not pre-materialized).
+    def _arm_lookup(pname: str, tm: str, pk: str):
+        return lookup_actual(
+            sport,
+            pname,
+            tm,
+            pk,
+            nba_lpt,
+            nba_lp,
+            cbb_lpt,
+            cbb_lp,
+            nba1h_lpt=nba1h_lpt,
+            nba1h_lp=nba1h_lp,
+            nba1q_lpt=nba1q_lpt,
+            nba1q_lp=nba1q_lp,
+            wnba_lpt=wnba_lpt,
+            wnba_lp=wnba_lp,
+            wnba1h_lpt=wnba1h_lpt,
+            wnba1h_lp=wnba1h_lp,
+            wnba1q_lpt=wnba1q_lpt,
+            wnba1q_lp=wnba1q_lp,
+            nhl_lpt=nhl_lpt,
+            nhl_lp=nhl_lp,
+            soccer_lpt=soccer_lpt,
+            soccer_lp=soccer_lp,
+            tennis_lpt=tennis_lpt,
+            tennis_lp=tennis_lp,
+            mlb_lpt=mlb_lpt,
+            mlb_lp=mlb_lp,
+            golf_lpt=golf_lpt,
+            golf_lp=golf_lp,
+        )
+
+    duo = sum_multiplayer_combo_actual(player, team, prop_norm, _arm_lookup)
+    if duo is not None:
+        return float(duo)
     return np.nan
 
 

@@ -1,0 +1,20 @@
+﻿label,hits,n,hr,lift_pp
+Elite combined DL (old),10,18,55.6,-11.699999999999996
+Elite dl_pass_tier,12,18,66.7,-0.5999999999999943
+Elite dl_run_tier,10,18,55.6,-11.699999999999996
+"Elite pass-only (pass Elite, run NOT)",8,11,72.7,5.400000000000006
+"Elite run-only (run Elite, pass NOT)",6,11,54.5,-12.799999999999997
+Elite both pass+run,4,7,57.1,-10.199999999999996
+Elite Rush D (defense_rankings),15,19,78.9,11.600000000000009
+Watch (no DL filter),9,9,100.0,32.7
+Watch + Elite combined DL,3,3,100.0,32.7
+Watch + Elite dl_pass,7,7,100.0,32.7
+Watch + Elite dl_run,3,3,100.0,32.7
+Watch + Elite pass-only,5,5,100.0,32.7
+Watch + Elite run-only,1,1,100.0,32.7
+Watch + Elite both,2,2,100.0,32.7
+Elite Rush D + Elite combined DL,7,11,63.6,-3.6999999999999957
+Elite Rush D + Elite dl_pass,10,13,76.9,9.600000000000009
+Elite Rush D + Elite dl_run,6,9,66.7,-0.5999999999999943
+Elite Rush D + Elite pass-only,7,8,87.5,20.200000000000003
+Elite Rush D + Elite run-only,3,4,75.0,7.700000000000003

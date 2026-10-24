@@ -1,0 +1,281 @@
+{
+  "generated_at": "2026-09-15T18:12:22.218515+00:00",
+  "script_note": "scripts inline / tennis next cuts from graded_props",
+  "method": "same dedupe as tennis_board_category_hit_rates.py; Wilson 95% CI",
+  "confidence_intervals": [
+    {
+      "label": "Goblin GW L10\u22658 + 2nd-won\u226545.7",
+      "n": 444,
+      "hits": 371,
+      "hit_pct": 83.6,
+      "ci95_lo": 79.8,
+      "ci95_hi": 86.7,
+      "ci95": "[79.8, 86.7]%"
+    },
+    {
+      "label": "Goblin GW L10\u22658+(lefty|2nd-won) union",
+      "n": 501,
+      "hits": 414,
+      "hit_pct": 82.6,
+      "ci95_lo": 79.1,
+      "ci95_hi": 85.7,
+      "ci95": "[79.1, 85.7]%"
+    },
+    {
+      "label": "Goblin GW L10\u22658 + lefty",
+      "n": 102,
+      "hits": 88,
+      "hit_pct": 86.3,
+      "ci95_lo": 78.3,
+      "ci95_hi": 91.6,
+      "ci95": "[78.3, 91.6]%"
+    },
+    {
+      "label": "Goblin TG (L5\u22654+L10\u22658)|lefty union",
+      "n": 135,
+      "hits": 107,
+      "hit_pct": 79.3,
+      "ci95_lo": 71.7,
+      "ci95_hi": 85.2,
+      "ci95": "[71.7, 85.2]%"
+    },
+    {
+      "label": "Goblin TG L10\u22658 + lefty",
+      "n": 85,
+      "hits": 68,
+      "hit_pct": 80.0,
+      "ci95_lo": 70.3,
+      "ci95_hi": 87.1,
+      "ci95": "[70.3, 87.1]%"
+    },
+    {
+      "label": "Goblin TG L5\u22654 + L10\u22658",
+      "n": 61,
+      "hits": 48,
+      "hit_pct": 78.7,
+      "ci95_lo": 66.9,
+      "ci95_hi": 87.1,
+      "ci95": "[66.9, 87.1]%"
+    },
+    {
+      "label": "Std UNDER Aces ungated",
+      "n": 54,
+      "hits": 31,
+      "hit_pct": 57.4,
+      "ci95_lo": 44.2,
+      "ci95_hi": 69.7,
+      "ci95": "[44.2, 69.7]%"
+    },
+    {
+      "label": "Std UNDER Double Faults ungated",
+      "n": 28,
+      "hits": 8,
+      "hit_pct": 28.6,
+      "ci95_lo": 15.3,
+      "ci95_hi": 47.1,
+      "ci95": "[15.3, 47.1]%"
+    },
+    {
+      "label": "Std OVER Aces pooled (contaminated)",
+      "n": 473,
+      "hits": 153,
+      "hit_pct": 32.3,
+      "ci95_lo": 28.3,
+      "ci95_hi": 36.7,
+      "ci95": "[28.3, 36.7]%"
+    },
+    {
+      "label": "Std OVER Aces clean (excl blank/main_cp)",
+      "n": 452,
+      "hits": 144,
+      "hit_pct": 31.9,
+      "ci95_lo": 27.7,
+      "ci95_hi": 36.3,
+      "ci95": "[27.7, 36.3]%"
+    }
+  ],
+  "std_under_aces_windows": [
+    {
+      "label": "Std UNDER Aces \u00b7 ungated",
+      "n": 54,
+      "hits": 31,
+      "hit_pct": 57.4,
+      "ci95_lo": 44.2,
+      "ci95_hi": 69.7,
+      "ci95": "[44.2, 69.7]%"
+    },
+    {
+      "label": "Std UNDER Aces \u00b7 L5\u22654",
+      "n": 5,
+      "hits": 3,
+      "hit_pct": 60.0,
+      "ci95_lo": 23.1,
+      "ci95_hi": 88.2,
+      "ci95": "[23.1, 88.2]%"
+    },
+    {
+      "label": "Std UNDER Aces \u00b7 L5=5",
+      "n": 0,
+      "hits": 0,
+      "hit_pct": null,
+      "ci95_lo": null,
+      "ci95_hi": null,
+      "ci95": null
+    },
+    {
+      "label": "Std UNDER Aces \u00b7 L10\u22658",
+      "n": 8,
+      "hits": 5,
+      "hit_pct": 62.5,
+      "ci95_lo": 30.6,
+      "ci95_hi": 86.3,
+      "ci95": "[30.6, 86.3]%"
+    },
+    {
+      "label": "Std UNDER Aces \u00b7 L10=10",
+      "n": 3,
+      "hits": 1,
+      "hit_pct": 33.3,
+      "ci95_lo": 6.1,
+      "ci95_hi": 79.2,
+      "ci95": "[6.1, 79.2]%"
+    },
+    {
+      "label": "Std UNDER Aces \u00b7 L10\u22659",
+      "n": 6,
+      "hits": 3,
+      "hit_pct": 50.0,
+      "ci95_lo": 18.8,
+      "ci95_hi": 81.2,
+      "ci95": "[18.8, 81.2]%"
+    },
+    {
+      "label": "Std UNDER Aces \u00b7 L5\u22654+L10\u22658",
+      "n": 1,
+      "hits": 1,
+      "hit_pct": 100.0,
+      "ci95_lo": 20.7,
+      "ci95_hi": 100.0,
+      "ci95": "[20.7, 100.0]%"
+    },
+    {
+      "label": "Std UNDER Aces \u00b7 L5\u22654+L10=10",
+      "n": 0,
+      "hits": 0,
+      "hit_pct": null,
+      "ci95_lo": null,
+      "ci95_hi": null,
+      "ci95": null
+    }
+  ],
+  "std_under_df_windows": [
+    {
+      "label": "Std UNDER DF \u00b7 ungated",
+      "n": 28,
+      "hits": 8,
+      "hit_pct": 28.6,
+      "ci95_lo": 15.3,
+      "ci95_hi": 47.1,
+      "ci95": "[15.3, 47.1]%"
+    },
+    {
+      "label": "Std UNDER DF \u00b7 L5\u22654",
+      "n": 1,
+      "hits": 1,
+      "hit_pct": 100.0,
+      "ci95_lo": 20.7,
+      "ci95_hi": 100.0,
+      "ci95": "[20.7, 100.0]%"
+    },
+    {
+      "label": "Std UNDER DF \u00b7 L5=5",
+      "n": 1,
+      "hits": 1,
+      "hit_pct": 100.0,
+      "ci95_lo": 20.7,
+      "ci95_hi": 100.0,
+      "ci95": "[20.7, 100.0]%"
+    },
+    {
+      "label": "Std UNDER DF \u00b7 L10\u22658",
+      "n": 4,
+      "hits": 3,
+      "hit_pct": 75.0,
+      "ci95_lo": 30.1,
+      "ci95_hi": 95.4,
+      "ci95": "[30.1, 95.4]%"
+    },
+    {
+      "label": "Std UNDER DF \u00b7 L10=10",
+      "n": 1,
+      "hits": 1,
+      "hit_pct": 100.0,
+      "ci95_lo": 20.7,
+      "ci95_hi": 100.0,
+      "ci95": "[20.7, 100.0]%"
+    },
+    {
+      "label": "Std UNDER DF \u00b7 L10\u22659",
+      "n": 1,
+      "hits": 1,
+      "hit_pct": 100.0,
+      "ci95_lo": 20.7,
+      "ci95_hi": 100.0,
+      "ci95": "[20.7, 100.0]%"
+    },
+    {
+      "label": "Std UNDER DF \u00b7 L5\u22654+L10\u22658",
+      "n": 1,
+      "hits": 1,
+      "hit_pct": 100.0,
+      "ci95_lo": 20.7,
+      "ci95_hi": 100.0,
+      "ci95": "[20.7, 100.0]%"
+    },
+    {
+      "label": "Std UNDER DF \u00b7 L5\u22654+L10=10",
+      "n": 1,
+      "hits": 1,
+      "hit_pct": 100.0,
+      "ci95_lo": 20.7,
+      "ci95_hi": 100.0,
+      "ci95": "[20.7, 100.0]%"
+    }
+  ],
+  "std_over_aces_rebacfill_proxy": {
+    "note": "True re-backfill not run; proxy = exclude contaminated blank/main_cp batch (same 142 rows).",
+    "pooled": {
+      "label": "pooled",
+      "n": 473,
+      "hits": 153,
+      "hit_pct": 32.3,
+      "ci95_lo": 28.3,
+      "ci95_hi": 36.7,
+      "ci95": "[28.3, 36.7]%"
+    },
+    "contaminated": {
+      "label": "contaminated",
+      "n": 21,
+      "hits": 9,
+      "hit_pct": 42.9,
+      "ci95_lo": 24.5,
+      "ci95_hi": 63.5,
+      "ci95": "[24.5, 63.5]%"
+    },
+    "clean": {
+      "label": "clean",
+      "n": 452,
+      "hits": 144,
+      "hit_pct": 31.9,
+      "ci95_lo": 27.7,
+      "ci95_hi": 36.3,
+      "ci95": "[27.7, 36.3]%"
+    }
+  },
+  "takeaways": [
+    "GW 2nd-won keep: 83.6% n=444 CI [79.8, 86.7]%",
+    "Std UNDER Aces ungated stays best; L10=10 n=3 hit=33.3% vs ungated 57.4%",
+    "Std UNDER DF L10=10 n=1 hit=100.0% vs ungated 28.6%",
+    "Std OVER Aces clean proxy 31.9% n=452 (not a live re-backfill)"
+  ]
+}

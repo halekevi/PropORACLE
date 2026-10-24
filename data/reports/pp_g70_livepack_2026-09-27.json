@@ -1,0 +1,433 @@
+{
+  "live": [
+    {
+      "sport": "MLB",
+      "player": "Daniel Lynch IV",
+      "team": "KC",
+      "prop_type": "Walks Allowed",
+      "prop": "Walks Allowed",
+      "line": 0.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Daniel Lynch IV",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Jackson Chourio",
+      "team": "MIL",
+      "prop_type": "Hits+Runs+RBIs",
+      "prop": "Hits+Runs+RBIs",
+      "line": 0.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Jackson Chourio",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Jared Jones",
+      "team": "PIT",
+      "prop_type": "Walks Allowed",
+      "prop": "Walks Allowed",
+      "line": 0.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Jared Jones",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Michael Soroka",
+      "team": "AZ",
+      "prop_type": "Earned Runs Allowed",
+      "prop": "Earned Runs Allowed",
+      "line": 0.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Michael Soroka",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Shane Baz",
+      "team": "BAL",
+      "prop_type": "Earned Runs Allowed",
+      "prop": "Earned Runs Allowed",
+      "line": 0.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Shane Baz",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Shota Imanaga",
+      "team": "CHC",
+      "prop_type": "Earned Runs Allowed",
+      "prop": "Earned Runs Allowed",
+      "line": 0.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Shota Imanaga",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Andre Pallante",
+      "team": "STL",
+      "prop_type": "Hits Allowed",
+      "prop": "Hits Allowed",
+      "line": 2.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Andre Pallante",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Parker Messick",
+      "team": "CLE",
+      "prop_type": "Pitcher Strikeouts",
+      "prop": "Pitcher Strikeouts",
+      "line": 2.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Parker Messick",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Sean Manaea",
+      "team": "NYM",
+      "prop_type": "Hits Allowed",
+      "prop": "Hits Allowed",
+      "line": 3.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Sean Manaea",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Jacob Misiorowski",
+      "team": "MIL",
+      "prop_type": "Pitcher Strikeouts",
+      "prop": "Pitcher Strikeouts",
+      "line": 4.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Jacob Misiorowski",
+      "p": 0.745
+    },
+    {
+      "sport": "MLB",
+      "player": "Max Scherzer",
+      "team": "TOR",
+      "prop_type": "Pitching Outs",
+      "prop": "Pitching Outs",
+      "line": 8.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Max Scherzer",
+      "p": 0.745
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Konstantinos Mavropanos",
+      "team": "GREECE",
+      "prop_type": "Shots",
+      "prop": "Shots",
+      "line": 0.5,
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "search": "Konstantinos Mavropanos",
+      "p": 0.745
+    }
+  ],
+  "tickets": [
+    {
+      "id": "P3-L1",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Daniel Lynch IV",
+          "team": "KC",
+          "prop_type": "Walks Allowed",
+          "prop": "Walks Allowed",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Daniel Lynch IV",
+          "p": 0.745
+        },
+        {
+          "sport": "MLB",
+          "player": "Jackson Chourio",
+          "team": "MIL",
+          "prop_type": "Hits+Runs+RBIs",
+          "prop": "Hits+Runs+RBIs",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Jackson Chourio",
+          "p": 0.745
+        },
+        {
+          "sport": "MLB",
+          "player": "Jared Jones",
+          "team": "PIT",
+          "prop_type": "Walks Allowed",
+          "prop": "Walks Allowed",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Jared Jones",
+          "p": 0.745
+        }
+      ]
+    },
+    {
+      "id": "P3-L2",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Michael Soroka",
+          "team": "AZ",
+          "prop_type": "Earned Runs Allowed",
+          "prop": "Earned Runs Allowed",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Michael Soroka",
+          "p": 0.745
+        },
+        {
+          "sport": "MLB",
+          "player": "Shane Baz",
+          "team": "BAL",
+          "prop_type": "Earned Runs Allowed",
+          "prop": "Earned Runs Allowed",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Shane Baz",
+          "p": 0.745
+        },
+        {
+          "sport": "MLB",
+          "player": "Shota Imanaga",
+          "team": "CHC",
+          "prop_type": "Earned Runs Allowed",
+          "prop": "Earned Runs Allowed",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Shota Imanaga",
+          "p": 0.745
+        }
+      ]
+    },
+    {
+      "id": "P3-L3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Andre Pallante",
+          "team": "STL",
+          "prop_type": "Hits Allowed",
+          "prop": "Hits Allowed",
+          "line": 2.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Andre Pallante",
+          "p": 0.745
+        },
+        {
+          "sport": "MLB",
+          "player": "Parker Messick",
+          "team": "CLE",
+          "prop_type": "Pitcher Strikeouts",
+          "prop": "Pitcher Strikeouts",
+          "line": 2.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Parker Messick",
+          "p": 0.745
+        },
+        {
+          "sport": "MLB",
+          "player": "Sean Manaea",
+          "team": "NYM",
+          "prop_type": "Hits Allowed",
+          "prop": "Hits Allowed",
+          "line": 3.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Sean Manaea",
+          "p": 0.745
+        }
+      ]
+    },
+    {
+      "id": "P3-L4",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Jacob Misiorowski",
+          "team": "MIL",
+          "prop_type": "Pitcher Strikeouts",
+          "prop": "Pitcher Strikeouts",
+          "line": 4.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Jacob Misiorowski",
+          "p": 0.745
+        },
+        {
+          "sport": "MLB",
+          "player": "Max Scherzer",
+          "team": "TOR",
+          "prop_type": "Pitching Outs",
+          "prop": "Pitching Outs",
+          "line": 8.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Max Scherzer",
+          "p": 0.745
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Konstantinos Mavropanos",
+          "team": "GREECE",
+          "prop_type": "Shots",
+          "prop": "Shots",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "search": "Konstantinos Mavropanos",
+          "p": 0.745
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "P3-L1",
+      "ok": true,
+      "n": 3,
+      "px": 1.8,
+      "fails": [],
+      "legs": [
+        [
+          "MLB",
+          "Daniel Lynch IV",
+          "Walks Allowed",
+          0.5
+        ],
+        [
+          "MLB",
+          "Jackson Chourio",
+          "Hits+Runs+RBIs",
+          0.5
+        ],
+        [
+          "MLB",
+          "Jared Jones",
+          "Walks Allowed",
+          0.5
+        ]
+      ]
+    },
+    {
+      "id": "P3-L2",
+      "ok": true,
+      "n": 3,
+      "px": 1.6,
+      "fails": [],
+      "legs": [
+        [
+          "MLB",
+          "Michael Soroka",
+          "Earned Runs Allowed",
+          0.5
+        ],
+        [
+          "MLB",
+          "Shane Baz",
+          "Earned Runs Allowed",
+          0.5
+        ],
+        [
+          "MLB",
+          "Shota Imanaga",
+          "Earned Runs Allowed",
+          0.5
+        ]
+      ]
+    },
+    {
+      "id": "P3-L3",
+      "ok": false,
+      "fails": [
+        "Parker Messick"
+      ],
+      "n": 0
+    },
+    {
+      "id": "P3-L4",
+      "ok": false,
+      "n": 1,
+      "px": null,
+      "fails": [],
+      "legs": [
+        [
+          "MLB",
+          "Jacob Misiorowski",
+          "Pitcher Strikeouts",
+          4.5
+        ],
+        [
+          "MLB",
+          "Max Scherzer",
+          "Pitching Outs",
+          8.5
+        ],
+        [
+          "SOCCER",
+          "Konstantinos Mavropanos",
+          "Shots",
+          0.5
+        ]
+      ]
+    }
+  ]
+}

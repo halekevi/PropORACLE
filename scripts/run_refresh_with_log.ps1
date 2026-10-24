@@ -1,7 +1,8 @@
 #requires -Version 5.1
 <#
-  Line-move refresh (8 AM morning update, 9:00, 9:45, 10:30, 1 PM, 4:30 PM).
+  Line-move refresh (8 AM morning update, 9:00, 10:30, 1 PM, 4:30 PM).
   Initial scrape + live publish is 9PM day-ahead; 1AM / 8AM+ are updates.
+  945AM retired — it collided with 9AM when windows ran long.
   Every window: fetch + line timestamps + live publish.
   Payout Force timestamps only when lines moved vs the previous/initial stamp.
   Wait for refresh.lock instead of skipping (9AM/10:30 must still stamp + publish).
@@ -9,7 +10,7 @@
   while 8AM still owned PrizePicks Chrome, tickets JSON, and git publish.
 #>
 param(
-    [string]$RunLabel = "945AM"
+    [string]$RunLabel = "9AM"
 )
 
 $ErrorActionPreference = "Continue"
@@ -210,9 +211,22 @@ function Publish-RefreshWindow {
         $g70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
         if (Test-Path -LiteralPath $g70) {
             Write-Host "[REFRESH $Label] Ensuring Goblin-70 dual card before publish..." -ForegroundColor Cyan
-            & py -3.14 $g70 --date $Date --write-web
-            if ($LASTEXITCODE -ne 0) {
-                Write-Host "[REFRESH $Label] WARN: Goblin-70 rebuild exit $LASTEXITCODE" -ForegroundColor Yellow
+            $loggedHelper = Join-Path $PSScriptRoot "Invoke-LoggedPwsh.ps1"
+            if (-not (Test-Path -LiteralPath $loggedHelper)) { $loggedHelper = Join-Path $Root "scripts\Invoke-LoggedPwsh.ps1" }
+            $g70Log = Join-Path $LogsDir ("g70_writeweb_refresh_{0}_{1}_{2:yyyyMMdd_HHmmss}.log" -f $Label, $Date, (Get-Date))
+            $g70Exit = 1
+            if (Test-Path -LiteralPath $loggedHelper) {
+                . $loggedHelper
+                $g70Exit = Invoke-G70WriteWebStandalone -ScriptPath $g70 -Date $Date -LogPath $g70Log -WorkingDirectory $Root
+            }
+            else {
+                Write-Host "[REFRESH $Label] WARN: Invoke-LoggedPwsh.ps1 missing — falling back to Tee-Object for --write-web" -ForegroundColor Yellow
+                & py -3.14 -u -X utf8 $g70 --date $Date --write-web 2>&1 | Tee-Object -FilePath $g70Log
+                $g70Exit = $LASTEXITCODE
+                Write-Host "write-web exit code: $g70Exit"
+            }
+            if ($g70Exit -ne 0) {
+                Write-Host "[REFRESH $Label] WARN: Goblin-70 rebuild exit $g70Exit" -ForegroundColor Yellow
             }
         }
     }

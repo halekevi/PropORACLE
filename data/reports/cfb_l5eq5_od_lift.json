@@ -1,0 +1,1634 @@
+{
+  "n_fbs": 137,
+  "unique": 3120,
+  "chips": [
+    {
+      "prop": "rush_yds",
+      "label": "Rush Yards",
+      "book": "Goblin OVER",
+      "axis": "rush",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 122,
+          "n": 211,
+          "hr": 57.8,
+          "lift_vs_l5eq5": -31.7
+        },
+        {
+          "label": "L5=5",
+          "h": 17,
+          "n": 19,
+          "hr": 89.5,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 11,
+          "n": 12,
+          "hr": 91.7,
+          "lift_vs_l5eq5": 2.2
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 6,
+          "n": 7,
+          "hr": 85.7,
+          "lift_vs_l5eq5": -3.8
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 6,
+          "n": 6,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 10.5
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 7,
+          "n": 7,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 10.5
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 5,
+          "n": 5,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 10.5
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 3,
+          "n": 3,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 10.5
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 1,
+          "n": 3,
+          "hr": 33.3,
+          "lift_vs_l5eq5": -56.2
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 4,
+          "n": 4,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 10.5
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7,
+          "lift_vs_l5eq5": -22.8
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0,
+          "lift_vs_l5eq5": -14.5
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 5,
+          "n": 5,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 4,
+          "n": 4,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 4,
+          "n": 4,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 1,
+          "n": 3,
+          "hr": 33.3
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        }
+      ]
+    },
+    {
+      "prop": "pass_yds",
+      "label": "Pass Yards",
+      "book": "Goblin OVER",
+      "axis": "pass",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 71,
+          "n": 101,
+          "hr": 70.3,
+          "lift_vs_l5eq5": -11.5
+        },
+        {
+          "label": "L5=5",
+          "h": 9,
+          "n": 11,
+          "hr": 81.8,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 8,
+          "n": 10,
+          "hr": 80.0,
+          "lift_vs_l5eq5": -1.8
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 5,
+          "n": 7,
+          "hr": 71.4,
+          "lift_vs_l5eq5": -10.4
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0,
+          "lift_vs_l5eq5": -6.8
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 7,
+          "n": 9,
+          "hr": 77.8,
+          "lift_vs_l5eq5": -4.0
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0,
+          "lift_vs_l5eq5": -6.8
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0,
+          "lift_vs_l5eq5": -6.8
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0,
+          "lift_vs_l5eq5": -81.8
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7,
+          "lift_vs_l5eq5": -15.1
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 18.2
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 4,
+          "n": 4,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        }
+      ]
+    },
+    {
+      "prop": "rec_yds",
+      "label": "Rec Yards",
+      "book": "Goblin OVER",
+      "axis": "pass",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 201,
+          "n": 321,
+          "hr": 62.6,
+          "lift_vs_l5eq5": -2.9
+        },
+        {
+          "label": "L5=5",
+          "h": 19,
+          "n": 29,
+          "hr": 65.5,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 11,
+          "n": 15,
+          "hr": 73.3,
+          "lift_vs_l5eq5": 7.8
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 7,
+          "n": 12,
+          "hr": 58.3,
+          "lift_vs_l5eq5": -7.2
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 7,
+          "n": 10,
+          "hr": 70.0,
+          "lift_vs_l5eq5": 4.5
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 5,
+          "n": 7,
+          "hr": 71.4,
+          "lift_vs_l5eq5": 5.9
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0,
+          "lift_vs_l5eq5": 9.5
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 34.5
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 6,
+          "n": 8,
+          "hr": 75.0,
+          "lift_vs_l5eq5": 9.5
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 4,
+          "n": 8,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -15.5
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 5,
+          "n": 10,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -15.5
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 4,
+          "n": 8,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -15.5
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 4,
+          "n": 6,
+          "hr": 66.7
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 4,
+          "n": 6,
+          "hr": 66.7
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0
+        }
+      ]
+    },
+    {
+      "prop": "rec",
+      "label": "Receptions",
+      "book": "Goblin OVER",
+      "axis": "pass",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 124,
+          "n": 190,
+          "hr": 65.3,
+          "lift_vs_l5eq5": -3.9
+        },
+        {
+          "label": "L5=5",
+          "h": 9,
+          "n": 13,
+          "hr": 69.2,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 7,
+          "n": 8,
+          "hr": 87.5,
+          "lift_vs_l5eq5": 18.3
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 4,
+          "n": 5,
+          "hr": 80.0,
+          "lift_vs_l5eq5": 10.8
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7,
+          "lift_vs_l5eq5": -2.5
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 3,
+          "n": 5,
+          "hr": 60.0,
+          "lift_vs_l5eq5": -9.2
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7,
+          "lift_vs_l5eq5": -2.5
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 30.8
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 30.8
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0,
+          "lift_vs_l5eq5": 5.8
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0,
+          "lift_vs_l5eq5": 5.8
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7,
+          "lift_vs_l5eq5": -2.5
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        }
+      ]
+    },
+    {
+      "prop": "pass_td",
+      "label": "Pass TDs",
+      "book": "Goblin OVER",
+      "axis": "pass_td",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 63,
+          "n": 91,
+          "hr": 69.2,
+          "lift_vs_l5eq5": -14.1
+        },
+        {
+          "label": "L5=5",
+          "h": 5,
+          "n": 6,
+          "hr": 83.3,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 5,
+          "n": 6,
+          "hr": 83.3,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 16.7
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 4,
+          "n": 5,
+          "hr": 80.0,
+          "lift_vs_l5eq5": -3.3
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -33.3
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 16.7
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        }
+      ]
+    },
+    {
+      "prop": "rush_yds",
+      "label": "Rush Yards",
+      "book": "Standard UNDER",
+      "axis": "rush",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 118,
+          "n": 183,
+          "hr": 64.5,
+          "lift_vs_l5eq5": -13.8
+        },
+        {
+          "label": "L5=5",
+          "h": 18,
+          "n": 23,
+          "hr": 78.3,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 11,
+          "n": 15,
+          "hr": 73.3,
+          "lift_vs_l5eq5": -5.0
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 8,
+          "n": 8,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 21.7
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 8,
+          "n": 8,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 21.7
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 6,
+          "n": 6,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 21.7
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 6,
+          "n": 6,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 21.7
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 3,
+          "n": 3,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 21.7
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 8,
+          "n": 10,
+          "hr": 80.0,
+          "lift_vs_l5eq5": 1.7
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 6,
+          "n": 8,
+          "hr": 75.0,
+          "lift_vs_l5eq5": -3.3
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 3,
+          "n": 3,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 21.7
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 4,
+          "n": 5,
+          "hr": 80.0,
+          "lift_vs_l5eq5": 1.7
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 6,
+          "n": 7,
+          "hr": 85.7
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 0,
+          "n": 2,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 6,
+          "n": 6,
+          "hr": 100.0
+        }
+      ]
+    },
+    {
+      "prop": "rec_yds",
+      "label": "Rec Yards",
+      "book": "Standard UNDER",
+      "axis": "pass",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 131,
+          "n": 262,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -4.5
+        },
+        {
+          "label": "L5=5",
+          "h": 12,
+          "n": 22,
+          "hr": 54.5,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 3,
+          "n": 5,
+          "hr": 60.0,
+          "lift_vs_l5eq5": 5.5
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 10,
+          "n": 12,
+          "hr": 83.3,
+          "lift_vs_l5eq5": 28.8
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 7,
+          "n": 10,
+          "hr": 70.0,
+          "lift_vs_l5eq5": 15.5
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0,
+          "lift_vs_l5eq5": -54.5
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0,
+          "lift_vs_l5eq5": -54.5
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0,
+          "lift_vs_l5eq5": -54.5
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 1,
+          "n": 6,
+          "hr": 16.7,
+          "lift_vs_l5eq5": -37.8
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 1,
+          "n": 3,
+          "hr": 33.3,
+          "lift_vs_l5eq5": -21.2
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 3,
+          "n": 6,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -4.5
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 2,
+          "n": 6,
+          "hr": 33.3,
+          "lift_vs_l5eq5": -21.2
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 0,
+          "n": 2,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 3,
+          "n": 6,
+          "hr": 50.0
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 7,
+          "n": 8,
+          "hr": 87.5
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        }
+      ]
+    },
+    {
+      "prop": "pass_yds",
+      "label": "Pass Yards",
+      "book": "Standard UNDER",
+      "axis": "pass",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 56,
+          "n": 115,
+          "hr": 48.7,
+          "lift_vs_l5eq5": -24.6
+        },
+        {
+          "label": "L5=5",
+          "h": 11,
+          "n": 15,
+          "hr": 73.3,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 7,
+          "n": 8,
+          "hr": 87.5,
+          "lift_vs_l5eq5": 14.2
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 26.7
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 26.7
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 26.7
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 3,
+          "n": 7,
+          "hr": 42.9,
+          "lift_vs_l5eq5": -30.4
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 2,
+          "n": 5,
+          "hr": 40.0,
+          "lift_vs_l5eq5": -33.3
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 3,
+          "n": 3,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 26.7
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7,
+          "lift_vs_l5eq5": -6.6
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 1,
+          "n": 4,
+          "hr": 25.0
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        }
+      ]
+    },
+    {
+      "prop": "longestreception",
+      "label": "longestreception",
+      "book": "Standard UNDER",
+      "axis": "pass",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 52,
+          "n": 86,
+          "hr": 60.5,
+          "lift_vs_l5eq5": 4.9
+        },
+        {
+          "label": "L5=5",
+          "h": 5,
+          "n": 9,
+          "hr": 55.6,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 2,
+          "n": 4,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -5.6
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 3,
+          "n": 6,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -5.6
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -5.6
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0,
+          "lift_vs_l5eq5": -55.6
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -5.6
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -5.6
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 44.4
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 0,
+          "n": 2,
+          "hr": 0.0,
+          "lift_vs_l5eq5": -55.6
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 3,
+          "n": 4,
+          "hr": 75.0
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        }
+      ]
+    },
+    {
+      "prop": "player_td",
+      "label": "Player TDs",
+      "book": "Goblin OVER",
+      "axis": "td",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 75,
+          "n": 151,
+          "hr": 49.7,
+          "lift_vs_l5eq5": -12.8
+        },
+        {
+          "label": "L5=5",
+          "h": 5,
+          "n": 8,
+          "hr": 62.5,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 5,
+          "n": 8,
+          "hr": 62.5,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 2,
+          "n": 4,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -12.5
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7,
+          "lift_vs_l5eq5": 4.2
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 2,
+          "n": 4,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -12.5
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0,
+          "lift_vs_l5eq5": -62.5
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0,
+          "lift_vs_l5eq5": -62.5
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 37.5
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        }
+      ]
+    },
+    {
+      "prop": "rec_yds",
+      "label": "Rec Yards",
+      "book": "Standard OVER",
+      "axis": "pass",
+      "cuts": [
+        {
+          "label": "ungated",
+          "h": 78,
+          "n": 168,
+          "hr": 46.4,
+          "lift_vs_l5eq5": -16.1
+        },
+        {
+          "label": "L5=5",
+          "h": 5,
+          "n": 8,
+          "hr": 62.5,
+          "lift_vs_l5eq5": 0.0
+        },
+        {
+          "label": "L5=5+L10>=8",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7,
+          "lift_vs_l5eq5": 4.2
+        },
+        {
+          "label": "L5=5 + board D aligned",
+          "h": 3,
+          "n": 6,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -12.5
+        },
+        {
+          "label": "L5=5 + opp D aligned (CSV)",
+          "h": 2,
+          "n": 3,
+          "hr": 66.7,
+          "lift_vs_l5eq5": 4.2
+        },
+        {
+          "label": "L5=5 + own Off aligned",
+          "h": 3,
+          "n": 3,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 37.5
+        },
+        {
+          "label": "L5=5 + own Off x opp D aligned",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 37.5
+        },
+        {
+          "label": "L5=5+L10 + own Off x opp D",
+          "h": 1,
+          "n": 1,
+          "hr": 100.0,
+          "lift_vs_l5eq5": 37.5
+        },
+        {
+          "label": "L5=5 + own Off opposite",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -12.5
+        },
+        {
+          "label": "L5=5 + opp D opposite",
+          "h": 0,
+          "n": 0,
+          "hr": null,
+          "lift_vs_l5eq5": null
+        },
+        {
+          "label": "L5=5 + opp Off strong (script)",
+          "h": 2,
+          "n": 4,
+          "hr": 50.0,
+          "lift_vs_l5eq5": -12.5
+        },
+        {
+          "label": "L5=5 + own D leaky",
+          "h": 1,
+          "n": 3,
+          "hr": 33.3,
+          "lift_vs_l5eq5": -29.2
+        }
+      ],
+      "grid": [
+        {
+          "label": "own Off strong x opp D weak",
+          "h": 2,
+          "n": 2,
+          "hr": 100.0
+        },
+        {
+          "label": "own Off strong x opp D avg",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off strong x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off avg x opp D weak",
+          "h": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "label": "own Off avg x opp D avg",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0
+        },
+        {
+          "label": "own Off avg x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D weak",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "label": "own Off weak x opp D avg",
+          "h": 1,
+          "n": 2,
+          "hr": 50.0
+        },
+        {
+          "label": "own Off weak x opp D strong",
+          "h": 0,
+          "n": 0,
+          "hr": null
+        }
+      ]
+    }
+  ]
+}

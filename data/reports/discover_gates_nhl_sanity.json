@@ -1,0 +1,766 @@
+{
+  "cells": [
+    {
+      "book": "Goblin OVER",
+      "prop": "assists",
+      "n": 144,
+      "n_with_actual": 144,
+      "zero_n": 66,
+      "zero_rate": 0.4583,
+      "mean_actual": 0.84,
+      "mean_line": 0.5,
+      "actual_over_line": 1.681,
+      "hr_all": 0.5417,
+      "flags": []
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "blocked_shots",
+      "n": 7,
+      "n_with_actual": 7,
+      "zero_n": 1,
+      "zero_rate": 0.1429,
+      "mean_actual": 1.857,
+      "mean_line": 0.929,
+      "actual_over_line": 2.0,
+      "hr_all": 0.8571,
+      "flags": []
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "goals_allowed",
+      "n": 14,
+      "n_with_actual": 14,
+      "zero_n": 1,
+      "zero_rate": 0.0714,
+      "mean_actual": 2.571,
+      "mean_line": 2.214,
+      "actual_over_line": 1.161,
+      "hr_all": 0.5714,
+      "flags": []
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "n": 2,
+      "n_with_actual": 2,
+      "zero_n": 0,
+      "zero_rate": 0.0,
+      "mean_actual": 4.0,
+      "mean_line": 2.0,
+      "actual_over_line": 2.0,
+      "hr_all": 1.0,
+      "flags": []
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "points",
+      "n": 960,
+      "n_with_actual": 960,
+      "zero_n": 383,
+      "zero_rate": 0.399,
+      "mean_actual": 0.943,
+      "mean_line": 0.5,
+      "actual_over_line": 1.885,
+      "hr_all": 0.601,
+      "flags": []
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "sog",
+      "n": 2326,
+      "n_with_actual": 2326,
+      "zero_n": 302,
+      "zero_rate": 0.1298,
+      "mean_actual": 2.316,
+      "mean_line": 1.512,
+      "actual_over_line": 1.532,
+      "hr_all": 0.6578,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "assists",
+      "n": 1625,
+      "n_with_actual": 1625,
+      "zero_n": 952,
+      "zero_rate": 0.5858,
+      "mean_actual": 0.534,
+      "mean_line": 0.763,
+      "actual_over_line": 0.699,
+      "hr_all": 0.3102,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "blocked_shots",
+      "n": 308,
+      "n_with_actual": 308,
+      "zero_n": 42,
+      "zero_rate": 0.1364,
+      "mean_actual": 2.026,
+      "mean_line": 2.213,
+      "actual_over_line": 0.916,
+      "hr_all": 0.4253,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "goals",
+      "n": 1991,
+      "n_with_actual": 1991,
+      "zero_n": 1389,
+      "zero_rate": 0.6976,
+      "mean_actual": 0.339,
+      "mean_line": 0.537,
+      "actual_over_line": 0.631,
+      "hr_all": 0.2883,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "goals_allowed",
+      "n": 44,
+      "n_with_actual": 44,
+      "zero_n": 1,
+      "zero_rate": 0.0227,
+      "mean_actual": 3.023,
+      "mean_line": 2.864,
+      "actual_over_line": 1.056,
+      "hr_all": 0.6136,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "hits",
+      "n": 320,
+      "n_with_actual": 320,
+      "zero_n": 41,
+      "zero_rate": 0.1281,
+      "mean_actual": 2.388,
+      "mean_line": 2.43,
+      "actual_over_line": 0.983,
+      "hr_all": 0.4125,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "plus_minus",
+      "n": 916,
+      "n_with_actual": 916,
+      "zero_n": 245,
+      "zero_rate": 0.2675,
+      "mean_actual": 0.152,
+      "mean_line": 0.5,
+      "actual_over_line": 0.303,
+      "hr_all": 0.405,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "points",
+      "n": 1902,
+      "n_with_actual": 1902,
+      "zero_n": 867,
+      "zero_rate": 0.4558,
+      "mean_actual": 0.769,
+      "mean_line": 1.043,
+      "actual_over_line": 0.737,
+      "hr_all": 0.3297,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "pp_points",
+      "n": 302,
+      "n_with_actual": 302,
+      "zero_n": 265,
+      "zero_rate": 0.8775,
+      "mean_actual": 0.129,
+      "mean_line": 0.586,
+      "actual_over_line": 0.22,
+      "hr_all": 0.1126,
+      "flags": []
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "sog",
+      "n": 1349,
+      "n_with_actual": 1349,
+      "zero_n": 189,
+      "zero_rate": 0.1401,
+      "mean_actual": 2.067,
+      "mean_line": 2.664,
+      "actual_over_line": 0.776,
+      "hr_all": 0.3121,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "assists",
+      "n": 511,
+      "n_with_actual": 511,
+      "zero_n": 331,
+      "zero_rate": 0.6477,
+      "mean_actual": 0.444,
+      "mean_line": 0.621,
+      "actual_over_line": 0.715,
+      "hr_all": 0.6947,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=64.8%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "blocked_shots",
+      "n": 398,
+      "n_with_actual": 398,
+      "zero_n": 74,
+      "zero_rate": 0.1859,
+      "mean_actual": 1.776,
+      "mean_line": 1.51,
+      "actual_over_line": 1.176,
+      "hr_all": 0.4523,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "goals",
+      "n": 288,
+      "n_with_actual": 288,
+      "zero_n": 220,
+      "zero_rate": 0.7639,
+      "mean_actual": 0.25,
+      "mean_line": 0.524,
+      "actual_over_line": 0.477,
+      "hr_all": 0.7847,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=76.4%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "goals_allowed",
+      "n": 42,
+      "n_with_actual": 42,
+      "zero_n": 2,
+      "zero_rate": 0.0476,
+      "mean_actual": 3.0,
+      "mean_line": 2.524,
+      "actual_over_line": 1.189,
+      "hr_all": 0.4286,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hits",
+      "n": 605,
+      "n_with_actual": 605,
+      "zero_n": 109,
+      "zero_rate": 0.1802,
+      "mean_actual": 2.623,
+      "mean_line": 2.299,
+      "actual_over_line": 1.141,
+      "hr_all": 0.5074,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "plus_minus",
+      "n": 27,
+      "n_with_actual": 27,
+      "zero_n": 9,
+      "zero_rate": 0.3333,
+      "mean_actual": -0.296,
+      "mean_line": 0.5,
+      "actual_over_line": -0.593,
+      "hr_all": 0.7778,
+      "flags": []
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "points",
+      "n": 722,
+      "n_with_actual": 722,
+      "zero_n": 360,
+      "zero_rate": 0.4986,
+      "mean_actual": 0.708,
+      "mean_line": 0.784,
+      "actual_over_line": 0.903,
+      "hr_all": 0.6122,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=49.9%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "pp_points",
+      "n": 19,
+      "n_with_actual": 19,
+      "zero_n": 9,
+      "zero_rate": 0.4737,
+      "mean_actual": 0.895,
+      "mean_line": 0.553,
+      "actual_over_line": 1.619,
+      "hr_all": 0.5263,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=47.4%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "sog",
+      "n": 816,
+      "n_with_actual": 816,
+      "zero_n": 115,
+      "zero_rate": 0.1409,
+      "mean_actual": 2.143,
+      "mean_line": 2.4,
+      "actual_over_line": 0.893,
+      "hr_all": 0.5956,
+      "flags": []
+    }
+  ],
+  "flagged": [
+    {
+      "book": "Standard UNDER",
+      "prop": "assists",
+      "n": 511,
+      "n_with_actual": 511,
+      "zero_n": 331,
+      "zero_rate": 0.6477,
+      "mean_actual": 0.444,
+      "mean_line": 0.621,
+      "actual_over_line": 0.715,
+      "hr_all": 0.6947,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=64.8%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "goals",
+      "n": 288,
+      "n_with_actual": 288,
+      "zero_n": 220,
+      "zero_rate": 0.7639,
+      "mean_actual": 0.25,
+      "mean_line": 0.524,
+      "actual_over_line": 0.477,
+      "hr_all": 0.7847,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=76.4%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "points",
+      "n": 722,
+      "n_with_actual": 722,
+      "zero_n": 360,
+      "zero_rate": 0.4986,
+      "mean_actual": 0.708,
+      "mean_line": 0.784,
+      "actual_over_line": 0.903,
+      "hr_all": 0.6122,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=49.9%"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "pp_points",
+      "n": 19,
+      "n_with_actual": 19,
+      "zero_n": 9,
+      "zero_rate": 0.4737,
+      "mean_actual": 0.895,
+      "mean_line": 0.553,
+      "actual_over_line": 1.619,
+      "hr_all": 0.5263,
+      "flags": [
+        "zero_actual_under_inflation zero_rate=47.4%"
+      ]
+    }
+  ],
+  "split_imbalance": [
+    {
+      "book": "Standard OVER",
+      "prop": "pp_points",
+      "n": 302,
+      "train_n": 226,
+      "oos_n": 76,
+      "train_share": 0.7483,
+      "oos_share": 0.2517,
+      "n_dates": 21,
+      "train_dates_n": 11,
+      "oos_dates_n": 10,
+      "first_date": "2026-05-08",
+      "last_date": "2026-06-11",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 75% of cell rows fall in global train (226/302)"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "sog",
+      "n": 1349,
+      "train_n": 1043,
+      "oos_n": 306,
+      "train_share": 0.7732,
+      "oos_share": 0.2268,
+      "n_dates": 81,
+      "train_dates_n": 60,
+      "oos_dates_n": 21,
+      "first_date": "2026-03-06",
+      "last_date": "2026-10-07",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 77% of cell rows fall in global train (1043/1349)"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "plus_minus",
+      "n": 916,
+      "train_n": 741,
+      "oos_n": 175,
+      "train_share": 0.809,
+      "oos_share": 0.191,
+      "n_dates": 42,
+      "train_dates_n": 28,
+      "oos_dates_n": 14,
+      "first_date": "2026-02-25",
+      "last_date": "2026-06-14",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 81% of cell rows fall in global train (741/916)"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "goals",
+      "n": 1991,
+      "train_n": 1680,
+      "oos_n": 311,
+      "train_share": 0.8438,
+      "oos_share": 0.1562,
+      "n_dates": 55,
+      "train_dates_n": 24,
+      "oos_dates_n": 31,
+      "first_date": "2026-02-25",
+      "last_date": "2026-10-07",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 84% of cell rows fall in global train (1680/1991)"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "assists",
+      "n": 1625,
+      "train_n": 1405,
+      "oos_n": 220,
+      "train_share": 0.8646,
+      "oos_share": 0.1354,
+      "n_dates": 75,
+      "train_dates_n": 61,
+      "oos_dates_n": 14,
+      "first_date": "2026-02-25",
+      "last_date": "2026-06-14",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 86% of cell rows fall in global train (1405/1625)"
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "points",
+      "n": 1902,
+      "train_n": 1651,
+      "oos_n": 251,
+      "train_share": 0.868,
+      "oos_share": 0.132,
+      "n_dates": 82,
+      "train_dates_n": 68,
+      "oos_dates_n": 14,
+      "first_date": "2026-02-25",
+      "last_date": "2026-06-14",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 87% of cell rows fall in global train (1651/1902)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hits",
+      "n": 605,
+      "train_n": 549,
+      "oos_n": 56,
+      "train_share": 0.9074,
+      "oos_share": 0.0926,
+      "n_dates": 58,
+      "train_dates_n": 47,
+      "oos_dates_n": 11,
+      "first_date": "2026-03-09",
+      "last_date": "2026-06-14",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 91% of cell rows fall in global train (549/605)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "sog",
+      "n": 816,
+      "train_n": 762,
+      "oos_n": 54,
+      "train_share": 0.9338,
+      "oos_share": 0.0662,
+      "n_dates": 72,
+      "train_dates_n": 60,
+      "oos_dates_n": 12,
+      "first_date": "2026-03-06",
+      "last_date": "2026-06-14",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 93% of cell rows fall in global train (762/816)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "goals_allowed",
+      "n": 42,
+      "train_n": 40,
+      "oos_n": 2,
+      "train_share": 0.9524,
+      "oos_share": 0.0476,
+      "n_dates": 27,
+      "train_dates_n": 25,
+      "oos_dates_n": 2,
+      "first_date": "2026-03-21",
+      "last_date": "2026-05-25",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 95% of cell rows fall in global train (40/42)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "blocked_shots",
+      "n": 398,
+      "train_n": 385,
+      "oos_n": 13,
+      "train_share": 0.9673,
+      "oos_share": 0.0327,
+      "n_dates": 65,
+      "train_dates_n": 56,
+      "oos_dates_n": 9,
+      "first_date": "2026-03-09",
+      "last_date": "2026-06-14",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 97% of cell rows fall in global train (385/398)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "points",
+      "n": 722,
+      "train_n": 714,
+      "oos_n": 8,
+      "train_share": 0.9889,
+      "oos_share": 0.0111,
+      "n_dates": 72,
+      "train_dates_n": 64,
+      "oos_dates_n": 8,
+      "first_date": "2026-03-06",
+      "last_date": "2026-06-14",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 99% of cell rows fall in global train (714/722)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "assists",
+      "n": 511,
+      "train_n": 509,
+      "oos_n": 2,
+      "train_share": 0.9961,
+      "oos_share": 0.0039,
+      "n_dates": 35,
+      "train_dates_n": 33,
+      "oos_dates_n": 2,
+      "first_date": "2026-03-06",
+      "last_date": "2026-06-11",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (509/511)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "goals",
+      "n": 288,
+      "train_n": 288,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 15,
+      "train_dates_n": 15,
+      "oos_dates_n": 0,
+      "first_date": "2026-03-06",
+      "last_date": "2026-05-05",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (288/288)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "pp_points",
+      "n": 19,
+      "train_n": 19,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 4,
+      "train_dates_n": 4,
+      "oos_dates_n": 0,
+      "first_date": "2026-03-08",
+      "last_date": "2026-04-20",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (19/19)"
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "plus_minus",
+      "n": 27,
+      "train_n": 27,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 7,
+      "train_dates_n": 7,
+      "oos_dates_n": 0,
+      "first_date": "2026-03-08",
+      "last_date": "2026-04-15",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (27/27)"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "sog",
+      "n": 2326,
+      "train_n": 2326,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 48,
+      "train_dates_n": 48,
+      "oos_dates_n": 0,
+      "first_date": "2026-03-09",
+      "last_date": "2026-05-05",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (2326/2326)"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "points",
+      "n": 960,
+      "train_n": 960,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 48,
+      "train_dates_n": 48,
+      "oos_dates_n": 0,
+      "first_date": "2026-03-09",
+      "last_date": "2026-05-05",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (960/960)"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "assists",
+      "n": 144,
+      "train_n": 144,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 35,
+      "train_dates_n": 35,
+      "oos_dates_n": 0,
+      "first_date": "2026-03-10",
+      "last_date": "2026-05-05",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (144/144)"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "goals_allowed",
+      "n": 14,
+      "train_n": 14,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 12,
+      "train_dates_n": 12,
+      "oos_dates_n": 0,
+      "first_date": "2026-03-21",
+      "last_date": "2026-05-04",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (14/14)"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "blocked_shots",
+      "n": 7,
+      "train_n": 7,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 1,
+      "train_dates_n": 1,
+      "oos_dates_n": 0,
+      "first_date": "2026-05-07",
+      "last_date": "2026-05-07",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (7/7)"
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "n": 2,
+      "train_n": 2,
+      "oos_n": 0,
+      "train_share": 1.0,
+      "oos_share": 0.0,
+      "n_dates": 1,
+      "train_dates_n": 1,
+      "oos_dates_n": 0,
+      "first_date": "2026-05-07",
+      "last_date": "2026-05-07",
+      "oos_split_reliable": true,
+      "flags": [
+        "early_prop_train_skew: 100% of cell rows fall in global train (2/2)"
+      ]
+    }
+  ]
+}

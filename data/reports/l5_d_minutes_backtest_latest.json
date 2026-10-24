@@ -1,0 +1,482 @@
+{
+  "generated_at": "2026-08-22T16:23:14+00:00",
+  "window": [
+    "2026-05-01",
+    "2026-08-17"
+  ],
+  "dates_n": 74,
+  "date_from": "2026-05-01",
+  "date_to": "2026-08-22",
+  "sports": [
+    "CBB",
+    "NBA",
+    "WNBA"
+  ],
+  "d_gate": {
+    "OVER": "Weak | Below Avg",
+    "UNDER": "Elite | Above Avg",
+    "source": "utils.best_props_pool._over_d_ok / _under_d_ok"
+  },
+  "minutes_align": {
+    "OVER": "HIGH",
+    "UNDER": "LOW",
+    "field": "minutes_tier",
+    "nba_bands": {
+      "LOW": "<=20",
+      "MEDIUM": "<=30",
+      "HIGH": ">30"
+    },
+    "note": "Raw minute averages absent from graded cache \u2014 re-grade after pipeline fix"
+  },
+  "meta": {
+    "minutes_tier_dist_by_sport": {
+      "NBA": {
+        "LOW": 3221,
+        "HIGH": 10032,
+        "MEDIUM": 5412,
+        "(empty)": 1299
+      },
+      "WNBA": {
+        "LOW": 24389,
+        "(empty)": 2248,
+        "MEDIUM": 2903,
+        "HIGH": 877
+      }
+    },
+    "field_presence": {
+      "WNBA:minutes_tier": 30417,
+      "NBA:minutes_tier": 19964
+    },
+    "source_row_counts": {
+      "templates": 50381
+    },
+    "minutes_field_used": "minutes_tier",
+    "minutes_tier_source_counts": {
+      "WNBA:minutes_tier": 30417,
+      "NBA:minutes_tier": 19964
+    },
+    "raw_mpg_rows": 0,
+    "stored_tier_rows": 50381,
+    "raw_minutes_fields_found": false
+  },
+  "caveats": [
+    "Graded JSON has minutes_tier only \u2014 no min_per_game / min_last5_avg to recompute tiers. Historical WNBA/CBB tiers may predate the real-MPG fix.",
+    "Backtest prefers raw MPG when present, else stored minutes_tier.",
+    "OVER minutes-align = HIGH only; UNDER = LOW only; MEDIUM does not pass.",
+    "Defense-like labels (Elite/Above Avg) in minutes_tier are discarded as invalid.",
+    "CBB: no May\u2013Aug graded rows in this cache (offseason).",
+    "Std/Gob only; Goblin OVER-only; Demons excluded. D bands match best_props_pool wide rules.",
+    "Goblin minutes gate is OVER+HIGH only (cleaner); Standard pool mixes UNDER+LOW.",
+    "Soft score (\u00b10.03) still uses HIGH\u2192OVER / LOW\u2192UNDER; hard void remains OVER+LOW+non-A only."
+  ],
+  "pools": {
+    "1_baseline_open": {
+      "n": 50381,
+      "hits": 29623,
+      "misses": 20758,
+      "hr": 0.588,
+      "hr_pct": 58.8,
+      "vs_baseline_pp": 0.0
+    },
+    "1b_baseline_with_l5": {
+      "n": 47042,
+      "hits": 27816,
+      "misses": 19226,
+      "hr": 0.5913,
+      "hr_pct": 59.1,
+      "vs_baseline_pp": 0.3
+    },
+    "2_l5_ge4": {
+      "n": 18531,
+      "hits": 11760,
+      "misses": 6771,
+      "hr": 0.6346,
+      "hr_pct": 63.5,
+      "vs_baseline_pp": 4.7
+    },
+    "3_l5_ge4_D": {
+      "n": 4290,
+      "hits": 2694,
+      "misses": 1596,
+      "hr": 0.628,
+      "hr_pct": 62.8,
+      "vs_baseline_pp": 4.0
+    },
+    "4_l5_ge4_D_minutes": {
+      "n": 771,
+      "hits": 455,
+      "misses": 316,
+      "hr": 0.5901,
+      "hr_pct": 59.0,
+      "vs_baseline_pp": 0.2
+    },
+    "5_l5_ge4_minutes_no_D": {
+      "n": 6161,
+      "hits": 3889,
+      "misses": 2272,
+      "hr": 0.6312,
+      "hr_pct": 63.1,
+      "vs_baseline_pp": 4.3
+    },
+    "6_l5_eq5_D": {
+      "n": 948,
+      "hits": 644,
+      "misses": 304,
+      "hr": 0.6793,
+      "hr_pct": 67.9,
+      "vs_baseline_pp": 9.1
+    },
+    "7_l5_eq5_D_minutes": {
+      "n": 129,
+      "hits": 78,
+      "misses": 51,
+      "hr": 0.6047,
+      "hr_pct": 60.5,
+      "vs_baseline_pp": 1.7
+    },
+    "minutes_alone_known": {
+      "n": 46834,
+      "hits": 27697,
+      "misses": 19137,
+      "hr": 0.5914,
+      "hr_pct": 59.1,
+      "vs_baseline_pp": 0.3
+    },
+    "minutes_align_alone": {
+      "n": 14793,
+      "hits": 8613,
+      "misses": 6180,
+      "hr": 0.5822,
+      "hr_pct": 58.2,
+      "vs_baseline_pp": -0.6
+    }
+  },
+  "by_sport": {
+    "CBB": {
+      "n": 0,
+      "note": "no graded rows in window"
+    },
+    "NBA": {
+      "pools": {
+        "1_baseline_open": {
+          "n": 19964,
+          "hits": 11968,
+          "misses": 7996,
+          "hr": 0.5995,
+          "hr_pct": 59.9,
+          "vs_baseline_pp": 0.0
+        },
+        "2_l5_ge4": {
+          "n": 8652,
+          "hits": 5671,
+          "misses": 2981,
+          "hr": 0.6555,
+          "hr_pct": 65.5,
+          "vs_baseline_pp": 5.6
+        },
+        "3_l5_ge4_D": {
+          "n": 839,
+          "hits": 507,
+          "misses": 332,
+          "hr": 0.6043,
+          "hr_pct": 60.4,
+          "vs_baseline_pp": 0.5
+        },
+        "4_l5_ge4_D_minutes": {
+          "n": 229,
+          "hits": 141,
+          "misses": 88,
+          "hr": 0.6157,
+          "hr_pct": 61.6,
+          "vs_baseline_pp": 1.6
+        },
+        "5_l5_ge4_minutes_no_D": {
+          "n": 4428,
+          "hits": 2932,
+          "misses": 1496,
+          "hr": 0.6621,
+          "hr_pct": 66.2,
+          "vs_baseline_pp": 6.3
+        },
+        "6_l5_eq5_D": {
+          "n": 148,
+          "hits": 88,
+          "misses": 60,
+          "hr": 0.5946,
+          "hr_pct": 59.5,
+          "vs_baseline_pp": -0.5
+        },
+        "7_l5_eq5_D_minutes": {
+          "n": 46,
+          "hits": 27,
+          "misses": 19,
+          "hr": 0.587,
+          "hr_pct": 58.7,
+          "vs_baseline_pp": -1.3
+        }
+      },
+      "by_pick_l5_ge4_D": {
+        "Goblin": {
+          "n": 269,
+          "hits": 181,
+          "misses": 88,
+          "hr": 0.6729,
+          "hr_pct": 67.3,
+          "vs_baseline_pp": 7.3
+        },
+        "Standard": {
+          "n": 570,
+          "hits": 326,
+          "misses": 244,
+          "hr": 0.5719,
+          "hr_pct": 57.2,
+          "vs_baseline_pp": -2.8
+        }
+      },
+      "by_pick_l5_ge4_D_minutes": {
+        "Goblin": {
+          "n": 140,
+          "hits": 100,
+          "misses": 40,
+          "hr": 0.7143,
+          "hr_pct": 71.4,
+          "vs_baseline_pp": 11.5
+        },
+        "Standard": {
+          "n": 89,
+          "hits": 41,
+          "misses": 48,
+          "hr": 0.4607,
+          "hr_pct": 46.1,
+          "vs_baseline_pp": -13.9
+        }
+      },
+      "minutes_coverage": {
+        "known_tier_n": 18665,
+        "align_n": 9270,
+        "raw_mpg_n": 0,
+        "known_pct": 93.5
+      }
+    },
+    "WNBA": {
+      "pools": {
+        "1_baseline_open": {
+          "n": 30417,
+          "hits": 17655,
+          "misses": 12762,
+          "hr": 0.5804,
+          "hr_pct": 58.0,
+          "vs_baseline_pp": 0.0
+        },
+        "2_l5_ge4": {
+          "n": 9879,
+          "hits": 6089,
+          "misses": 3790,
+          "hr": 0.6164,
+          "hr_pct": 61.6,
+          "vs_baseline_pp": 3.6
+        },
+        "3_l5_ge4_D": {
+          "n": 3451,
+          "hits": 2187,
+          "misses": 1264,
+          "hr": 0.6337,
+          "hr_pct": 63.4,
+          "vs_baseline_pp": 5.3
+        },
+        "4_l5_ge4_D_minutes": {
+          "n": 542,
+          "hits": 314,
+          "misses": 228,
+          "hr": 0.5793,
+          "hr_pct": 57.9,
+          "vs_baseline_pp": -0.1
+        },
+        "5_l5_ge4_minutes_no_D": {
+          "n": 1733,
+          "hits": 957,
+          "misses": 776,
+          "hr": 0.5522,
+          "hr_pct": 55.2,
+          "vs_baseline_pp": -2.8
+        },
+        "6_l5_eq5_D": {
+          "n": 800,
+          "hits": 556,
+          "misses": 244,
+          "hr": 0.695,
+          "hr_pct": 69.5,
+          "vs_baseline_pp": 11.5
+        },
+        "7_l5_eq5_D_minutes": {
+          "n": 83,
+          "hits": 51,
+          "misses": 32,
+          "hr": 0.6145,
+          "hr_pct": 61.4,
+          "vs_baseline_pp": 3.4
+        }
+      },
+      "by_pick_l5_ge4_D": {
+        "Goblin": {
+          "n": 2418,
+          "hits": 1649,
+          "misses": 769,
+          "hr": 0.682,
+          "hr_pct": 68.2,
+          "vs_baseline_pp": 10.2
+        },
+        "Standard": {
+          "n": 1033,
+          "hits": 538,
+          "misses": 495,
+          "hr": 0.5208,
+          "hr_pct": 52.1,
+          "vs_baseline_pp": -6.0
+        }
+      },
+      "by_pick_l5_ge4_D_minutes": {
+        "Goblin": {
+          "n": 60,
+          "hits": 48,
+          "misses": 12,
+          "hr": 0.8,
+          "hr_pct": 80.0,
+          "vs_baseline_pp": 22.0
+        },
+        "Standard": {
+          "n": 482,
+          "hits": 266,
+          "misses": 216,
+          "hr": 0.5519,
+          "hr_pct": 55.2,
+          "vs_baseline_pp": -2.9
+        }
+      },
+      "minutes_coverage": {
+        "known_tier_n": 28169,
+        "align_n": 5523,
+        "raw_mpg_n": 0,
+        "known_pct": 92.6
+      }
+    }
+  },
+  "by_pick": {
+    "l5_ge4_D": {
+      "Goblin": {
+        "n": 2687,
+        "hits": 1830,
+        "misses": 857,
+        "hr": 0.6811,
+        "hr_pct": 68.1,
+        "vs_baseline_pp": 9.3
+      },
+      "Standard": {
+        "n": 1603,
+        "hits": 864,
+        "misses": 739,
+        "hr": 0.539,
+        "hr_pct": 53.9,
+        "vs_baseline_pp": -4.9
+      }
+    },
+    "l5_ge4_D_minutes": {
+      "Goblin": {
+        "n": 200,
+        "hits": 148,
+        "misses": 52,
+        "hr": 0.74,
+        "hr_pct": 74.0,
+        "vs_baseline_pp": 15.2
+      },
+      "Standard": {
+        "n": 571,
+        "hits": 307,
+        "misses": 264,
+        "hr": 0.5377,
+        "hr_pct": 53.8,
+        "vs_baseline_pp": -5.0
+      }
+    },
+    "l5_ge4_minutes_no_D": {
+      "Goblin": {
+        "n": 3852,
+        "hits": 2677,
+        "misses": 1175,
+        "hr": 0.695,
+        "hr_pct": 69.5,
+        "vs_baseline_pp": 10.7
+      },
+      "Standard": {
+        "n": 2309,
+        "hits": 1212,
+        "misses": 1097,
+        "hr": 0.5249,
+        "hr_pct": 52.5,
+        "vs_baseline_pp": -6.3
+      }
+    },
+    "l5_eq5_D": {
+      "Goblin": {
+        "n": 764,
+        "hits": 547,
+        "misses": 217,
+        "hr": 0.716,
+        "hr_pct": 71.6,
+        "vs_baseline_pp": 12.8
+      },
+      "Standard": {
+        "n": 184,
+        "hits": 97,
+        "misses": 87,
+        "hr": 0.5272,
+        "hr_pct": 52.7,
+        "vs_baseline_pp": -6.1
+      }
+    },
+    "l5_eq5_D_minutes": {
+      "Goblin": {
+        "n": 65,
+        "hits": 48,
+        "misses": 17,
+        "hr": 0.7385,
+        "hr_pct": 73.8,
+        "vs_baseline_pp": 15.0
+      },
+      "Standard": {
+        "n": 64,
+        "hits": 30,
+        "misses": 34,
+        "hr": 0.4688,
+        "hr_pct": 46.9,
+        "vs_baseline_pp": -11.9
+      }
+    }
+  },
+  "verdict": {
+    "label": "MINUTES_HELPS_GOBLIN_OVER_HIGH_BUT_HURTS_OVERALL",
+    "minutes_on_l5d_pp": -3.8,
+    "minutes_on_l5_pp": -0.4,
+    "d_on_l5_pp": -0.7,
+    "goblin_minutes_on_l5d_pp": 5.9,
+    "standard_minutes_on_l5d_pp": -0.1,
+    "sport_lifts": {
+      "NBA": {
+        "minutes_on_l5d_pp": 1.2,
+        "l5d_hr_pct": 60.4,
+        "l5d_n": 839,
+        "l5d_min_hr_pct": 61.6,
+        "l5d_min_n": 229
+      },
+      "WNBA": {
+        "minutes_on_l5d_pp": -5.5,
+        "l5d_hr_pct": 63.4,
+        "l5d_n": 3451,
+        "l5d_min_hr_pct": 57.9,
+        "l5d_min_n": 542
+      }
+    },
+    "summary": "L5\u22654: 63.5% n=18531; L5\u22654+D: 62.8% n=4290 (\u0394 vs L5 -0.7pp); L5\u22654+D+min: 59.0% n=771 (\u0394 vs L5+D -3.8pp); L5\u22654+min no-D: 63.1% n=6161 (\u0394 vs L5 -0.4pp). Goblin L5+D\u2192+min: 68.1%\u219274.0% (\u0394 5.9pp, n=200); Standard: 53.9%\u219253.8% (\u0394 -0.1pp).",
+    "recommendation": "Keep minutes soft-only (\u00b10.03) for the full Std+Gob pool. Optional: Goblin OVER+HIGH showed +5.9pp on L5+D (n=200) \u2014 re-check after re-grade with real MPG tiers."
+  }
+}

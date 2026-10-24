@@ -1,0 +1,26 @@
+{
+  "date": "2026-08-28",
+  "generated_at": "2026-08-28T06:57:16-04:00",
+  "line_pulls": [
+    {
+      "fetched_at": "2026-08-27T22:14:19-04:00",
+      "window": "22:14",
+      "n_props": 3403,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-08-27T22:15:28-04:00",
+      "window": "22:15",
+      "n_props": 1215,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-08-28T06:57:16-04:00",
+      "window": "06:57",
+      "n_props": 2130,
+      "n_moved": 24
+    }
+  ],
+  "payout_scrapes": [],
+  "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
+}

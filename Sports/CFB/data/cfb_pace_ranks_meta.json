@@ -1,0 +1,7 @@
+{
+  "season": 2026,
+  "built_at": "2026-09-21T14:56:07Z",
+  "source": "cfb_team_unit_rankings.csv off_plays_pg + off_clock_tier",
+  "n": 136,
+  "note": "No CFBD PBP. pace_rank 1=fastest (most plays/G)."
+}

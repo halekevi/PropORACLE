@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "id": "P3-1",
+      "ready": true,
+      "n": 3,
+      "px": 2.0,
+      "fails": [],
+      "raw": "Current Lineup\n3 Players Selected\nClear\nBailey Ober\n\nMLBMIN - P\n\nSat, Sep 26 4:10 PM vs TEX\n0.5Walks Allowed\nMore\nDavis Martin\n\nMLBCWS - P\n\nSat, Sep 26 7:10 PM vs COL\n0.5Walks Allowed\nMore\nGriffin Jax\n\nMLBTB - P\n\nSat, Sep 26 7:15 PM @ PHI\n1.5Hits Allowed\nMore\nFlex Play\n\nYou must hit 1st place, or 2 out of 3 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n3 correct pays\n1.7X\n2 correct pays\n0.5X"
+    },
+    {
+      "id": "P3-2",
+      "ready": false,
+      "fails": [
+        "Luka Sucic"
+      ],
+      "n": 0
+    }
+  ]
+}

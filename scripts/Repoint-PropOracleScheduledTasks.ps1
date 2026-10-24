@@ -12,7 +12,7 @@
 #>
 param(
     [string]$NewRepoRoot = "",
-    [string]$OldRepoRoot = "C:\Users\halek\OneDrive\Desktop\PropORACLE",
+    [string]$OldRepoRoot = "H:\halek\ProfileFromC\Desktop\PropORACLE_main_cp",  # legacy Desktop path; use -OldRepoRoot for feature tree
     [switch]$WhatIf
 )
 
@@ -44,7 +44,10 @@ function Normalize-DoubledQuotesAroundFileArg([string]$argLine) {
 }
 
 $names = @(
+    "PropOracle - Daily 1AM",
+    "PropOracle - Grader 3AM",
     "PropOracle - Tennis Early 3AM",
+    "PropOracle - Daily 5AM",
     "PropOracle - Grader 5AM",
     "PropOracle - Grader 7PM",
     "PropOracle - Grader 8PM",
@@ -54,9 +57,11 @@ $names = @(
     "PropOracle - Grader 12AM",
     "PropOracle - Grader 1AM",
     "PropOracle - Daily 7AM",
+    "PropOracle - Daily 8AM",
     "PropOracle - Refresh 9AM",
     "PropOracle - Refresh 1030AM",
     "PropOracle - Refresh 1PM",
+    "PropOracle - Refresh 430PM",
     "PropORACLE Daily Pipeline",
     "PropORACLE_AllSports_Daily",
     "PropORACLE_NBA_LateFetch"

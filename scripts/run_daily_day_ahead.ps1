@@ -119,10 +119,13 @@ $loggedHelper = Join-Path $PSScriptRoot "Invoke-LoggedPwsh.ps1"
 if (-not (Test-Path -LiteralPath $loggedHelper)) { $loggedHelper = Join-Path $Root "scripts\Invoke-LoggedPwsh.ps1" }
 $childLog = Join-Path $LogsDir ("run_daily_child_dayahead_{0:yyyy-MM-dd_HHmmss}.log" -f (Get-Date))
 $dailyExit = 1
+$loggedHelperLoaded = $false
 if (Test-Path -LiteralPath $loggedHelper) {
     . $loggedHelper
+    $loggedHelperLoaded = $true
     $dailyExit = Invoke-LoggedPwsh -File $Daily -ArgumentList $dailyArgs -LogPath $childLog -WorkingDirectory $Root
 } else {
+    Write-Host "[DAY-AHEAD] WARN: Invoke-LoggedPwsh.ps1 missing — child output may not be logged" -ForegroundColor Yellow
     & pwsh -NoProfile -File $Daily @dailyArgs
     $dailyExit = $LASTEXITCODE
 }
@@ -130,9 +133,19 @@ if (Test-Path -LiteralPath $loggedHelper) {
 $goblin70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
 if (Test-Path -LiteralPath $goblin70) {
     Write-Host "[DAY-AHEAD] Goblin-70 + mixer dual card for $SlateDate..." -ForegroundColor Cyan
-    & py -3.14 $goblin70 --date $SlateDate --write-web
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "[DAY-AHEAD] WARN: Goblin-70 dual card exit $LASTEXITCODE" -ForegroundColor Yellow
+    $g70Log = Join-Path $LogsDir ("g70_writeweb_dayahead_{0}_{1:yyyyMMdd_HHmmss}.log" -f $SlateDate, (Get-Date))
+    $g70Exit = 1
+    if ($loggedHelperLoaded -and (Get-Command Invoke-G70WriteWebStandalone -ErrorAction SilentlyContinue)) {
+        $g70Exit = Invoke-G70WriteWebStandalone -ScriptPath $goblin70 -Date $SlateDate -LogPath $g70Log -WorkingDirectory $Root
+    }
+    else {
+        Write-Host "[DAY-AHEAD] WARN: Invoke-LoggedPwsh.ps1 missing — falling back to Tee-Object for --write-web" -ForegroundColor Yellow
+        & py -3.14 -u -X utf8 $goblin70 --date $SlateDate --write-web 2>&1 | Tee-Object -FilePath $g70Log
+        $g70Exit = $LASTEXITCODE
+        Write-Host "write-web exit code: $g70Exit"
+    }
+    if ($g70Exit -ne 0) {
+        Write-Host "[DAY-AHEAD] WARN: Goblin-70 dual card exit $g70Exit" -ForegroundColor Yellow
     }
 }
 

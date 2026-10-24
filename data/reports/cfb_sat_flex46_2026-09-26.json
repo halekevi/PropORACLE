@@ -1,0 +1,262 @@
+{
+  "live": [
+    {
+      "player": "Katin Houser",
+      "team": "ILL",
+      "prop": "Pass Yards",
+      "line": 124.5,
+      "l5": 5.0,
+      "l10": 10.0
+    },
+    {
+      "player": "Cam Edwards",
+      "team": "MSU",
+      "prop": "Rush Yards",
+      "line": 39.5,
+      "l5": 5.0,
+      "l10": 10.0
+    },
+    {
+      "player": "Emmett Mosley V",
+      "team": "TEX",
+      "prop": "Rec Yards",
+      "line": 14.5,
+      "l5": 5.0,
+      "l10": 10.0
+    },
+    {
+      "player": "Da'Shawn Martin",
+      "team": "UVA",
+      "prop": "Rec Yards",
+      "line": 4.5,
+      "l5": 5.0,
+      "l10": 10.0
+    },
+    {
+      "player": "Terrance Carter Jr.",
+      "team": "TTU",
+      "prop": "Rec Yards",
+      "line": 14.5,
+      "l5": 5.0,
+      "l10": 10.0
+    },
+    {
+      "player": "Sam Leavitt",
+      "team": "LSU",
+      "prop": "Pass Yards",
+      "line": 159.5,
+      "l5": 5.0,
+      "l10": 9.0
+    },
+    {
+      "player": "Jayden Maiava",
+      "team": "USC",
+      "prop": "Pass Yards",
+      "line": 189.5,
+      "l5": 5.0,
+      "l10": 9.0
+    },
+    {
+      "player": "Keshaun Singleton",
+      "team": "AUB",
+      "prop": "Rec Yards",
+      "line": 39.5,
+      "l5": 5.0,
+      "l10": 9.0
+    },
+    {
+      "player": "Rodney Fields Jr.",
+      "team": "KSU",
+      "prop": "Rush Yards",
+      "line": 34.5,
+      "l5": 5.0,
+      "l10": 9.0
+    },
+    {
+      "player": "Avery Johnson",
+      "team": "KSU",
+      "prop": "Rush Yards",
+      "line": 19.5,
+      "l5": 5.0,
+      "l10": 9.0
+    },
+    {
+      "player": "Arch Manning",
+      "team": "TEX",
+      "prop": "Pass Yards",
+      "line": 174.5,
+      "l5": 5.0,
+      "l10": 8.0
+    },
+    {
+      "player": "Junior Sherrill",
+      "team": "VAN",
+      "prop": "Rec Yards",
+      "line": 39.5,
+      "l5": 5.0,
+      "l10": 8.0
+    },
+    {
+      "player": "J'Koby Williams",
+      "team": "TTU",
+      "prop": "Rush Yards",
+      "line": 49.5,
+      "l5": 5.0,
+      "l10": 8.0
+    },
+    {
+      "player": "Caden Knighten",
+      "team": "BAY",
+      "prop": "Rush Yards",
+      "line": 19.5,
+      "l5": 5.0,
+      "l10": 8.0
+    }
+  ],
+  "tickets": [
+    {
+      "id": "F5-1",
+      "mode": "flex",
+      "n": 5,
+      "legs": [
+        {
+          "player": "Da'Shawn Martin",
+          "team": "UVA",
+          "prop": "Rec Yards",
+          "line": 4.5
+        },
+        {
+          "player": "Sam Leavitt",
+          "team": "LSU",
+          "prop": "Pass Yards",
+          "line": 159.5
+        },
+        {
+          "player": "Jayden Maiava",
+          "team": "USC",
+          "prop": "Pass Yards",
+          "line": 189.5
+        },
+        {
+          "player": "Keshaun Singleton",
+          "team": "AUB",
+          "prop": "Rec Yards",
+          "line": 39.5
+        },
+        {
+          "player": "Rodney Fields Jr.",
+          "team": "KSU",
+          "prop": "Rush Yards",
+          "line": 34.5
+        }
+      ]
+    },
+    {
+      "id": "F4-2",
+      "mode": "flex",
+      "n": 4,
+      "legs": [
+        {
+          "player": "Avery Johnson",
+          "team": "KSU",
+          "prop": "Rush Yards",
+          "line": 19.5
+        },
+        {
+          "player": "Junior Sherrill",
+          "team": "VAN",
+          "prop": "Rec Yards",
+          "line": 39.5
+        },
+        {
+          "player": "J'Koby Williams",
+          "team": "TTU",
+          "prop": "Rush Yards",
+          "line": 49.5
+        },
+        {
+          "player": "Caden Knighten",
+          "team": "BAY",
+          "prop": "Rush Yards",
+          "line": 19.5
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "F5-1",
+      "ready": true,
+      "n": 5,
+      "px": 1.6,
+      "fails": [],
+      "legs": [
+        [
+          "Da'Shawn Martin",
+          "Rec Yards",
+          4.5,
+          "UVA"
+        ],
+        [
+          "Sam Leavitt",
+          "Pass Yards",
+          159.5,
+          "LSU"
+        ],
+        [
+          "Jayden Maiava",
+          "Pass Yards",
+          189.5,
+          "USC"
+        ],
+        [
+          "Keshaun Singleton",
+          "Rec Yards",
+          39.5,
+          "AUB"
+        ],
+        [
+          "Rodney Fields Jr.",
+          "Rush Yards",
+          34.5,
+          "KSU"
+        ]
+      ],
+      "raw": "Current Lineup\n5 Players Selected\nClear\nDa'Shawn Martin\n\nCFBUVA - WR\n\nSat, Sep 26 6:00 PM vs DEL\n4.5Rec Yards\nMore\nSam Leavitt\n\nCFBLSU - QB\n\nSat, Sep 26 7:30 PM vs TXAM\n159.5Pass Yards\nMore\nJayden Maiava\n\nCFBUSC - QB\n\nSat, Sep 26 7:30 PM vs ORE\n189.5Pass Yards\nMore\nKeshaun Singleton\n\nCFBAUB - WR\n\nSat, Sep 26 4:15 PM vs VAN\n39.5Rec Yards\nMore\nRodney Fields Jr.\n\nCFBKSU - RB\n\nSat, Sep 26 7:00 PM @ CIN\n34.5Rush Yards\nMore\nFlex Play\n\nYou must hit 1st place, or 3 out of 5 in the lineup.\n\n1st place pays\n10X\nMinimum Guarantee\n5 correct pays\n1.6X\n4 correct pays\n0.5X\n3 correct pays\n0.25X\nPower Play\n\nYou must hit 1st place, or 5 out of 5 in the lineup.\n\n1st place pays\n20X\nMinimum Guarantee\n5 correct pa"
+    },
+    {
+      "id": "F4-2",
+      "ready": true,
+      "n": 4,
+      "px": 1.3,
+      "fails": [],
+      "legs": [
+        [
+          "Avery Johnson",
+          "Rush Yards",
+          19.5,
+          "KSU"
+        ],
+        [
+          "Junior Sherrill",
+          "Rec Yards",
+          39.5,
+          "VAN"
+        ],
+        [
+          "J'Koby Williams",
+          "Rush Yards",
+          49.5,
+          "TTU"
+        ],
+        [
+          "Caden Knighten",
+          "Rush Yards",
+          19.5,
+          "BAY"
+        ]
+      ],
+      "raw": "Current Lineup\n4 Players Selected\nClear\nAvery Johnson\n\nCFBKSU - QB\n\nSat, Sep 26 7:00 PM @ CIN\n19.5Rush Yards\nMore\nJunior Sherrill\n\nCFBVAN - WR\n\nSat, Sep 26 4:15 PM @ AUB\n39.5Rec Yards\nMore\nJ'Koby Williams\n\nCFBTTU - RB\n\nSat, Sep 26 12:00 PM vs SHSU\n49.5Rush Yards\nMore\nCaden Knighten\n\nCFBBAY - RB\n\nSat, Sep 26 12:00 PM vs COLO\n19.5Rush Yards\nMore\nFlex Play\n\nYou must hit 1st place, or 3 out of 4 in the lineup.\n\n1st place pays\n6X\nMinimum Guarantee\n4 correct pays\n1.3X\n3 correct pays\n0.5X\nPower Play\n\nYou must hit 1st place, or 4 out of 4 in the lineup.\n\n1st place pays\n10X\nMinimum Guarantee\n4 correct pays\n1.7X\nIn the event of contest ties, contest payouts are shared. If you qualify for the 1st place"
+    }
+  ]
+}

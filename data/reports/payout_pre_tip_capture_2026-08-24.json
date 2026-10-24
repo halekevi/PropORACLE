@@ -1,0 +1,1191 @@
+{
+  "date": "2026-08-24",
+  "generated_at": "2026-08-25T02:21:39.674519Z",
+  "cdp_url": "http://127.0.0.1:9222",
+  "tickets_path": "ui_runner\\data\\payout_ladder_validation_tickets.json",
+  "tickets_fingerprint": "a3882edd202585e76f80751200c69e5b8b18dacc3992322f0624b811eaf58528",
+  "fingerprint_n_slips": 16,
+  "fingerprint_n_missing_live": 16,
+  "fields": [
+    "power_min_x",
+    "power_first_x",
+    "min_guarantee",
+    "flex_min",
+    "flex_n_correct"
+  ],
+  "primary_field": "power_min_x",
+  "entry_amount": 1.0,
+  "only_missing_live": false,
+  "timed_out": false,
+  "max_runtime_sec": 2400.0,
+  "slips": [
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|1",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Botic Van de Zandschulp",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Miomir Kecmanovic",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|10",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Fantasy Score",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 15.0,
+          "line_distance": 11.5,
+          "delta": 11.5
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Botic Van de Zandschulp",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|11",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Fantasy Score",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 15.0,
+          "line_distance": 11.5,
+          "delta": 11.5
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Botic Van de Zandschulp",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Miomir Kecmanovic",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Guiomar Maristany Zuleta de Reales",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 9.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 9.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|12",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Fantasy Score",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 15.0,
+          "line_distance": 11.5,
+          "delta": 11.5
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jodie Burrage",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 8.75,
+      "power_first_x": 10.0,
+      "min_guarantee": 8.75,
+      "flex_min": 1.25,
+      "flex_n_correct": {
+        "4": 5.0,
+        "3": 1.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|13",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Fantasy Score",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 15.0,
+          "line_distance": 11.5,
+          "delta": 11.5
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_1_expected_4",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|14",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Fantasy Score",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 15.0,
+          "line_distance": 11.5,
+          "delta": 11.5
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Botic Van de Zandschulp",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 9.5,
+      "power_first_x": 10.0,
+      "min_guarantee": 9.5,
+      "flex_min": 1.5,
+      "flex_n_correct": {
+        "4": 5.0,
+        "3": 1.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|15",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Fantasy Score",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 15.0,
+          "line_distance": 11.5,
+          "delta": 11.5
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Botic Van de Zandschulp",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Miomir Kecmanovic",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_2_expected_4",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|16",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 3,
+      "legs": [
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jodie Burrage",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_3",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|2",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 18.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jodie Burrage",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Priscilla Hon",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Yunchaokete Bu",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 18.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_3_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|3",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 17.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 4.0,
+          "delta": 4.0
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jodie Burrage",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Priscilla Hon",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_missing_players:Raphael Collignon",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|4",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 12.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jodie Burrage",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Botic Van de Zandschulp",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|5",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 10.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 12.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Botic Van de Zandschulp",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Miomir Kecmanovic",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|6",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 12.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Botic Van de Zandschulp",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Miomir Kecmanovic",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Katie Volynets",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 19.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|7",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 12.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Botic Van de Zandschulp",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Miomir Kecmanovic",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Mia Pohankova",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 7.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 7.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 21.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|8",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Fantasy Score",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 15.0,
+          "line_distance": 11.5,
+          "delta": 11.5
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jodie Burrage",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Priscilla Hon",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_missing_players:Donna Vekic,Diane Parry,Aliaksandra Sasnovich,Jodie Burrage,Priscilla Hon",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|9",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Donna Vekic",
+          "prop_type": "Fantasy Score",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 15.0,
+          "line_distance": 11.5,
+          "delta": 11.5
+        },
+        {
+          "player": "Diane Parry",
+          "prop_type": "Double Faults",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 21.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jodie Burrage",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "TENNIS",
+          "standard_line": 20.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Raphael Collignon",
+          "prop_type": "Break Points Won",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "TENNIS",
+          "standard_line": 2.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_missing_players:Donna Vekic,Diane Parry,Aliaksandra Sasnovich,Jodie Burrage,Raphael Collignon",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    }
+  ],
+  "summary": {
+    "n_total": 16,
+    "n_ok": 2,
+    "n_partial": 0,
+    "n_failed": 14,
+    "n_strong": 16,
+    "n_main": 0,
+    "n_skipped_live": 0,
+    "timed_out": false
+  }
+}

@@ -1,0 +1,547 @@
+{
+  "holdout": "dates on or after 2026-09-21",
+  "keep_day": "at least 12 gated legs and 4 games",
+  "pick": "top 6, one leg per player",
+  "random_draws": 1000,
+  "sports": [
+    {
+      "id": "gap_rank_mlb",
+      "sport": "MLB",
+      "status": "FAIL",
+      "decision": "leave gap_z unused",
+      "qualifying_days": 5,
+      "holdout_days": 7,
+      "census": [
+        {
+          "date": "2026-09-21",
+          "gated_legs": 3,
+          "games": 2
+        },
+        {
+          "date": "2026-09-22",
+          "gated_legs": 17,
+          "games": 8
+        },
+        {
+          "date": "2026-09-23",
+          "gated_legs": 23,
+          "games": 11
+        },
+        {
+          "date": "2026-09-24",
+          "gated_legs": 18,
+          "games": 8
+        },
+        {
+          "date": "2026-09-25",
+          "gated_legs": 22,
+          "games": 13
+        },
+        {
+          "date": "2026-09-26",
+          "gated_legs": 9,
+          "games": 4
+        },
+        {
+          "date": "2026-09-27",
+          "gated_legs": 15,
+          "games": 9
+        }
+      ],
+      "rules": {
+        "gap_z": {
+          "legs": "29/30",
+          "leg_rate": 0.9667,
+          "day_rate": 0.9667,
+          "slip2_cash": "5/5",
+          "slip3_cash": "5/5"
+        },
+        "cell_wilson_low": {
+          "legs": "28/30",
+          "leg_rate": 0.9333,
+          "day_rate": 0.9333,
+          "slip2_cash": "3/5",
+          "slip3_cash": "3/5"
+        },
+        "cell_then_gap": {
+          "legs": "28/30",
+          "leg_rate": 0.9333,
+          "day_rate": 0.9333,
+          "slip2_cash": "4/5",
+          "slip3_cash": "3/5"
+        },
+        "random": {
+          "leg_rate": 0.9307,
+          "day_rate": 0.9307,
+          "slip2_cash_rate": 0.8496,
+          "slip3_cash_rate": 0.787
+        }
+      },
+      "gap_minus_random_band": [
+        -0.0194,
+        0.0962
+      ],
+      "gap_minus_cell_band": [
+        0.0,
+        0.1
+      ],
+      "beats_random": false,
+      "loses_to_cell": false,
+      "days": [
+        {
+          "date": "2026-09-22",
+          "pool": 17,
+          "games": 8,
+          "gap_z": {
+            "n": 6,
+            "hits": 5,
+            "rate": 0.8333333333333334,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_wilson_low": {
+            "n": 6,
+            "hits": 5,
+            "rate": 0.8333333333333334,
+            "slip2_cash": 0,
+            "slip3_cash": 0,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_then_gap": {
+            "n": 6,
+            "hits": 5,
+            "rate": 0.8333333333333334,
+            "slip2_cash": 1,
+            "slip3_cash": 0,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "random_rate": 0.8753333333333335,
+          "random_slip2": 0.793,
+          "random_slip3": 0.674
+        },
+        {
+          "date": "2026-09-23",
+          "pool": 23,
+          "games": 11,
+          "gap_z": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_wilson_low": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_then_gap": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "random_rate": 0.9288333333333335,
+          "random_slip2": 0.838,
+          "random_slip3": 0.766
+        },
+        {
+          "date": "2026-09-24",
+          "pool": 18,
+          "games": 8,
+          "gap_z": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_wilson_low": {
+            "n": 6,
+            "hits": 5,
+            "rate": 0.8333333333333334,
+            "slip2_cash": 0,
+            "slip3_cash": 0,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_then_gap": {
+            "n": 6,
+            "hits": 5,
+            "rate": 0.8333333333333334,
+            "slip2_cash": 0,
+            "slip3_cash": 0,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "random_rate": 0.8493333333333335,
+          "random_slip2": 0.617,
+          "random_slip3": 0.495
+        },
+        {
+          "date": "2026-09-25",
+          "pool": 22,
+          "games": 13,
+          "gap_z": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_wilson_low": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_then_gap": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "random_rate": 1.0,
+          "random_slip2": 1.0,
+          "random_slip3": 1.0
+        },
+        {
+          "date": "2026-09-27",
+          "pool": 15,
+          "games": 9,
+          "gap_z": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_wilson_low": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_then_gap": {
+            "n": 6,
+            "hits": 6,
+            "rate": 1.0,
+            "slip2_cash": 1,
+            "slip3_cash": 1,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "random_rate": 1.0,
+          "random_slip2": 1.0,
+          "random_slip3": 1.0
+        }
+      ]
+    },
+    {
+      "id": "gap_rank_tennis",
+      "sport": "Tennis",
+      "status": "OPEN",
+      "decision": "too few qualifying days",
+      "qualifying_days": 0,
+      "holdout_days": 23,
+      "census": [
+        {
+          "date": "2026-09-21",
+          "gated_legs": 2,
+          "games": 0
+        },
+        {
+          "date": "2026-09-22",
+          "gated_legs": 8,
+          "games": 0
+        },
+        {
+          "date": "2026-09-23",
+          "gated_legs": 5,
+          "games": 0
+        },
+        {
+          "date": "2026-09-24",
+          "gated_legs": 3,
+          "games": 0
+        },
+        {
+          "date": "2026-09-25",
+          "gated_legs": 1,
+          "games": 0
+        },
+        {
+          "date": "2026-09-26",
+          "gated_legs": 1,
+          "games": 0
+        },
+        {
+          "date": "2026-09-27",
+          "gated_legs": 4,
+          "games": 0
+        },
+        {
+          "date": "2026-09-28",
+          "gated_legs": 8,
+          "games": 0
+        },
+        {
+          "date": "2026-09-29",
+          "gated_legs": 8,
+          "games": 0
+        },
+        {
+          "date": "2026-09-30",
+          "gated_legs": 22,
+          "games": 0
+        },
+        {
+          "date": "2026-10-01",
+          "gated_legs": 14,
+          "games": 0
+        },
+        {
+          "date": "2026-10-02",
+          "gated_legs": 22,
+          "games": 0
+        },
+        {
+          "date": "2026-10-03",
+          "gated_legs": 13,
+          "games": 0
+        },
+        {
+          "date": "2026-10-04",
+          "gated_legs": 2,
+          "games": 0
+        },
+        {
+          "date": "2026-10-05",
+          "gated_legs": 6,
+          "games": 0
+        },
+        {
+          "date": "2026-10-06",
+          "gated_legs": 8,
+          "games": 0
+        },
+        {
+          "date": "2026-10-07",
+          "gated_legs": 12,
+          "games": 0
+        },
+        {
+          "date": "2026-10-08",
+          "gated_legs": 3,
+          "games": 0
+        },
+        {
+          "date": "2026-10-09",
+          "gated_legs": 11,
+          "games": 0
+        },
+        {
+          "date": "2026-10-10",
+          "gated_legs": 9,
+          "games": 0
+        },
+        {
+          "date": "2026-10-11",
+          "gated_legs": 7,
+          "games": 0
+        },
+        {
+          "date": "2026-10-12",
+          "gated_legs": 6,
+          "games": 0
+        },
+        {
+          "date": "2026-10-13",
+          "gated_legs": 5,
+          "games": 0
+        }
+      ],
+      "rules": {
+        "gap_z": {
+          "legs": "0/0",
+          "leg_rate": null,
+          "day_rate": null,
+          "slip2_cash": "0/0",
+          "slip3_cash": "0/0"
+        },
+        "cell_wilson_low": {
+          "legs": "0/0",
+          "leg_rate": null,
+          "day_rate": null,
+          "slip2_cash": "0/0",
+          "slip3_cash": "0/0"
+        },
+        "cell_then_gap": {
+          "legs": "0/0",
+          "leg_rate": null,
+          "day_rate": null,
+          "slip2_cash": "0/0",
+          "slip3_cash": "0/0"
+        }
+      },
+      "gap_minus_random_band": null,
+      "gap_minus_cell_band": null,
+      "beats_random": false,
+      "loses_to_cell": false,
+      "days": []
+    },
+    {
+      "id": "gap_rank_wnba",
+      "sport": "WNBA",
+      "status": "OPEN",
+      "decision": "too few qualifying days",
+      "qualifying_days": 1,
+      "holdout_days": 9,
+      "census": [
+        {
+          "date": "2026-09-21",
+          "gated_legs": 10,
+          "games": 2
+        },
+        {
+          "date": "2026-09-22",
+          "gated_legs": 23,
+          "games": 4
+        },
+        {
+          "date": "2026-09-23",
+          "gated_legs": 3,
+          "games": 2
+        },
+        {
+          "date": "2026-09-24",
+          "gated_legs": 5,
+          "games": 3
+        },
+        {
+          "date": "2026-09-29",
+          "gated_legs": 10,
+          "games": 2
+        },
+        {
+          "date": "2026-09-30",
+          "gated_legs": 4,
+          "games": 2
+        },
+        {
+          "date": "2026-10-02",
+          "gated_legs": 3,
+          "games": 1
+        },
+        {
+          "date": "2026-10-04",
+          "gated_legs": 2,
+          "games": 1
+        },
+        {
+          "date": "2026-10-07",
+          "gated_legs": 1,
+          "games": 1
+        }
+      ],
+      "rules": {
+        "gap_z": {
+          "legs": "3/6",
+          "leg_rate": 0.5,
+          "day_rate": 0.5,
+          "slip2_cash": "0/1",
+          "slip3_cash": "0/1"
+        },
+        "cell_wilson_low": {
+          "legs": "2/6",
+          "leg_rate": 0.3333,
+          "day_rate": 0.3333,
+          "slip2_cash": "0/1",
+          "slip3_cash": "0/1"
+        },
+        "cell_then_gap": {
+          "legs": "3/6",
+          "leg_rate": 0.5,
+          "day_rate": 0.5,
+          "slip2_cash": "0/1",
+          "slip3_cash": "0/1"
+        },
+        "random": {
+          "leg_rate": 0.4395,
+          "day_rate": 0.4395,
+          "slip2_cash_rate": 0.151,
+          "slip3_cash_rate": 0.0
+        }
+      },
+      "gap_minus_random_band": null,
+      "gap_minus_cell_band": null,
+      "beats_random": false,
+      "loses_to_cell": false,
+      "days": [
+        {
+          "date": "2026-09-22",
+          "pool": 23,
+          "games": 4,
+          "gap_z": {
+            "n": 6,
+            "hits": 3,
+            "rate": 0.5,
+            "slip2_cash": 0,
+            "slip3_cash": 0,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_wilson_low": {
+            "n": 6,
+            "hits": 2,
+            "rate": 0.3333333333333333,
+            "slip2_cash": 0,
+            "slip3_cash": 0,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "cell_then_gap": {
+            "n": 6,
+            "hits": 3,
+            "rate": 0.5,
+            "slip2_cash": 0,
+            "slip3_cash": 0,
+            "slip2_n": 2,
+            "slip3_n": 3
+          },
+          "random_rate": 0.4395,
+          "random_slip2": 0.151,
+          "random_slip3": 0.0
+        }
+      ]
+    }
+  ]
+}

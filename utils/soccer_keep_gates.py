@@ -1,26 +1,39 @@
 """Soccer keep props and per-prop best gates.
 
+**FACE AUDIT 2026-10-24 (``SOCCER_KEEP_GATE_FACES_VERIFIED = False``).**
+Soccer graded rows carry default labels (zero Goblin/Demon) on 35 dates
+2026-05-09..06-16 and laddered Standard (36%) on 11 dates 03-26..04-11
+(``utils.face_ladder``; 28,301 decided legs). The Goblin OVER cells below
+(Shots 16/21, SOT 46/68, Saves 205/343 on Sep 1–27) were taken from
+Goblin-labeled rows, so the default-label dates could not inflate them by
+inclusion — but any soccer **Standard** cell from Mar 26–Jun 16 is label-only
+(Standard UNDER Shots 136/195 = 69.7% on those dates vs 183/344 = 53.2% on
+real faces), and the Shots / SOT L5 cells could not be re-measured from the
+leg ledger (soccer stores hits in ``last5_over``; the ledger ``l5_over`` is
+blank for most soccer rows — verified L5=5 Shots Goblin is 7/11). Re-measure
+the three keep cells from a face-verified step8 join before quoting them as
+prices again. Report: ``data/reports/face_contamination_2026-10-24.md``,
+``data/reports/keep_gate_face_split.json``.
+
 Graded Std+Goblin combo catalog (listed L5/L10/D/Off stacks):
 
 - Shots: L5=5 and L10>=8 (76.2% 16/21). D is thinner (4/5) — not required.
 - Shots On Target (sog): L5>=4 and Off (67.6% 46/68). Off = STARTER or
   HIGH_VOL or team top-3. D does not beat that cell at n>=20.
-- Goalie Saves: L5>=4 + own D (OWN_DEF_TIER: Weak|Below OVER, Elite|Above
-  UNDER). Own-team DEF is attached in soccer step3. Opponent DEF_TIER is
-  the wrong polarity (leaky opp D cuts shots faced) — never fall back to
-  it. Optional OPP_OFF_TIER / opp attack (Elite|Above for OVER; Weak|Below
-  for UNDER) tightens when filled; missing or Avg still pass.
-  Watch (2026-09-24): rebuilt-history own-leaky OVER was weak (5/14) while
-  legacy opp-D blanks looked strong — likely join contamination + possible
-  goals-against capping of saves. Do not revert; recheck with
-  ``scripts/_soccer_best_gate_od_alignment.py --forward-from 2026-09-15
-  --own-d-only`` once forward OWN_DEF n is 30-40+.
+- Goalie Saves: off tickets. Goblin 1.5 is 205/343 (59.8%, band 55–65%),
+  under the ~77% a 3-leg needs at 2.2x. The L5>=4 cell 21/26 (80.8%) is
+  not a price. Own-defense stays off: within a posted line the tier split
+  is about one standard error, and shots-on-target faced does not follow
+  the goals-conceded tier (Elite 4.57, Weak 5.43, Avg 5.91). Opponent
+  attack is retired. List entry is L5>=4 plus settlement (past boxes for
+  the competition; a posted keeper must be the starter).
 - Goals / G+A / assists / fouls / volume props: best gated cell is 20-41%.
   Fade. Demons fade. Combos fade.
 
-Same gates for the printed list and Goblin-70 / Standard Flex.
-Mixer hygiene still allows these three props without the L5/L10/D/Off
-cut (combined seed stays L5>=4 until that mixer is retuned).
+List / pool entry uses the per-prop gates above (SOT may clear at L5>=4;
+Saves may list at L5>=4 with settlement and do not ticket). Goblin-70 /
+Standard Flex tickets still require directional **L5 = 5** on Shots and
+SOT. Saves are off every ticket path, including the mixer.
 
 Thin-history competitions (World Cup, Olympics, …) are blocked via
 ``utils.competition_history`` when ``league`` has too little prior depth —
@@ -33,6 +46,12 @@ from typing import Any
 from utils.competition_history import row_competition_ok
 from utils.defense_tiers import d_aligned, normalize_def_tier_label
 from utils.prop_norm import canon_prop as _canon
+from utils.soccer_board_coverage import game_on_covered_board, saves_leg_settleable
+
+# False until Shots / SOT / Saves keep cells are re-measured on face-verified
+# sport-dates (see module docstring). Read-only; does not change ticket output.
+SOCCER_KEEP_GATE_FACES_VERIFIED = False
+SOCCER_UNVERIFIED_FACE_WINDOWS = (("2026-03-26", "2026-04-11"), ("2026-05-09", "2026-06-16"))
 
 SHOTS = "shots"
 SOG = "sog"
@@ -153,12 +172,12 @@ def _own_def_tier(r: dict[str, Any]) -> str:
 
 
 def _saves_own_d_ok(r: dict[str, Any]) -> bool:
-    """Required: OVER Weak|Below; UNDER Elite|Above. Own D only — never opp DEF_TIER."""
+    """Retired from the gate. OVER Weak|Below; UNDER Elite|Above. Own team only."""
     return d_aligned("Soccer", _side(r), _own_def_tier(r), "saves")
 
 
 def _saves_opp_off_ok(r: dict[str, Any]) -> bool:
-    """Optional: OVER wants strong opp attack; UNDER wants weak. Missing = pass."""
+    """Retired. Filled on 40/630 Sep keeper-days and the bands overlapped."""
     tier = _opp_off_tier(r)
     if not tier or tier in ("N/A", "Avg"):
         return True
@@ -182,12 +201,15 @@ def _sot_gate(r: dict[str, Any]) -> bool:
 
 
 def _saves_gate(r: dict[str, Any]) -> bool:
+    """List only. Own-defense and opponent attack are off.
+
+    Settlement still requires past boxes for the competition and, when a
+    lineup is posted, a starting keeper.
+    """
     l5 = _l5(r)
     if l5 is None or l5 < 4:
         return False
-    if not _saves_own_d_ok(r):
-        return False
-    return _saves_opp_off_ok(r)
+    return saves_leg_settleable(r)
 
 
 def _prop_gate(r: dict[str, Any]) -> bool:
@@ -207,6 +229,10 @@ def soccer_keep_eligible(r: dict[str, Any]) -> bool:
         return False
     if not row_competition_ok(r):
         return False
+    # Named matches must appear on a covered scoreboard. Rows with no matchup
+    # (unit fixtures, partial joins) keep the prop gates only.
+    if game_on_covered_board(r) is False:
+        return False
     pick = _pick(r)
     if pick == "Demon":
         return False
@@ -223,9 +249,19 @@ def soccer_keep_eligible(r: dict[str, Any]) -> bool:
 
 
 def soccer_list_eligible(r: dict[str, Any]) -> bool:
+    """Printed best-props list / pool. SOT and Saves may enter at L5>=4."""
     return soccer_keep_eligible(r)
 
 
 def soccer_ticket_gate_passes(r: dict[str, Any]) -> bool:
-    """Goblin-70 + Standard Flex. Same per-prop gates as the list."""
-    return soccer_keep_eligible(r)
+    """Goblin-70 + Standard Flex.
+
+    Shots / SOT clear their list gate, then directional L5=5. Saves never
+    ticket: own-defense has the wrong sign on the Sep 1–27 boxes.
+    """
+    if _prop(r) == SAVES:
+        return False
+    if not soccer_keep_eligible(r):
+        return False
+    l5 = _l5(r)
+    return l5 is not None and l5 >= 5

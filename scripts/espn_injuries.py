@@ -82,6 +82,19 @@ NHL_TEAM_CANON: Dict[str, str] = {
     "cgy": "CGY",
 }
 
+NFL_TEAM_CANON: Dict[str, str] = {
+    "was": "WSH",
+    "wsh": "WSH",
+    "la": "LAR",
+    "lar": "LAR",
+    "jac": "JAX",
+    "jax": "JAX",
+    "lvr": "LV",
+    "oak": "LV",
+    "sd": "LAC",
+    "stl": "LAR",
+}
+
 MLB_TEAM_CANON: Dict[str, str] = {
     "az": "ARI",
     "ari": "ARI",
@@ -119,7 +132,10 @@ def canon_team_abbr(sport: str, abbr: str) -> str:
     if st == "MLB":
         u = str(abbr).strip().upper()
         return MLB_TEAM_CANON.get(key, u)[:3]
-    if st in ("CBB", "WCBB"):
+    if st == "NFL":
+        u = str(abbr).strip().upper()
+        return NFL_TEAM_CANON.get(key, u)
+    if st in ("CBB", "WCBB", "CFB"):
         u = str(abbr).strip().upper()
         return u[:8] if len(u) > 3 else NBA_TEAM_CANON.get(key, u)
     u = str(abbr).strip().upper()
@@ -303,6 +319,58 @@ def collect_mlb_injuries_league(date_str: str) -> pd.DataFrame:
     return df
 
 
+def collect_nfl_injuries_league(date_str: str) -> pd.DataFrame:
+    """League-wide NFL injury feed (IR / OUT / questionable)."""
+    if str(_REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(_REPO_ROOT))
+    from utils.nfl_espn_context import fetch_nfl_injuries
+
+    all_rows: List[dict] = []
+    for rec in fetch_nfl_injuries():
+        name = str(rec.get("player") or "").strip()
+        team_abbr = canon_team_abbr("NFL", rec.get("team", ""))
+        if not name or not team_abbr:
+            continue
+        abbrev = str(rec.get("injury_type") or "").strip()
+        desc = str(rec.get("injury_type_desc") or "").strip()
+        status = str(rec.get("injury_status") or "").strip()
+        pen = _penalty_for_injury_type(abbrev, desc or status)
+        all_rows.append(
+            {
+                "sport": "NFL",
+                "event_id": "",
+                "team": team_abbr,
+                "player": name,
+                "injury_status": status,
+                "injury_type": abbrev,
+                "injury_type_desc": desc,
+                "injury_detail": str(rec.get("injury_detail") or "").strip(),
+                "injury_side": "",
+                "rank_penalty": round(pen, 4),
+            }
+        )
+    if not all_rows:
+        return pd.DataFrame(
+            columns=[
+                "date",
+                "sport",
+                "event_id",
+                "team",
+                "player",
+                "injury_status",
+                "injury_type",
+                "injury_type_desc",
+                "injury_detail",
+                "injury_side",
+                "rank_penalty",
+            ]
+        )
+    df = pd.DataFrame(all_rows)
+    df.insert(0, "date", date_str)
+    df = df.drop_duplicates(subset=["sport", "team", "player", "injury_type"], keep="first")
+    return df
+
+
 def _scoreboard_url(sport_key: str, date_espn: str) -> str:
     if sport_key == "nhl":
         return f"https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard?dates={date_espn}"
@@ -342,6 +410,8 @@ def collect_injuries_raw(sport_literal: str, date_str: str) -> pd.DataFrame:
         label = "NHL"
     elif lit == "MLB":
         return collect_mlb_injuries_league(date_str)
+    elif lit == "NFL":
+        return collect_nfl_injuries_league(date_str)
     else:
         raise ValueError(f"Unsupported sport for injuries: {sport_literal}")
 
@@ -414,6 +484,8 @@ def injuries_csv_path_for_actuals(
         "WCBB": ("actuals_wcbb_", "injuries_wcbb_"),
         "NHL": ("actuals_nhl_", "injuries_nhl_"),
         "MLB": ("actuals_mlb_", "injuries_mlb_"),
+        "NFL": ("actuals_nfl_", "injuries_nfl_"),
+        "CFB": ("actuals_cfb_", "injuries_cfb_"),
         "SOCCER": ("actuals_soccer_", "injuries_soccer_"),
     }[sport_literal.upper()]
     if stem.startswith(m[0]):
@@ -492,6 +564,8 @@ def auto_injuries_csv_from_outputs(repo_root: Path, slate_date: str, sport_liter
         "WCBB": "injuries_wcbb",
         "NHL": "injuries_nhl",
         "MLB": "injuries_mlb",
+        "NFL": "injuries_nfl",
+        "CFB": "injuries_cfb",
         "SOCCER": "injuries_soccer",
     }.get(lit)
     if not fname:
@@ -504,7 +578,7 @@ if __name__ == "__main__":
     import argparse
 
     ap = argparse.ArgumentParser(description="Fetch ESPN injury report CSV for a slate date.")
-    ap.add_argument("--sport", required=True, help="NBA | WNBA | CBB | WCBB | NHL | MLB")
+    ap.add_argument("--sport", required=True, help="NBA | WNBA | CBB | WCBB | NHL | MLB | NFL")
     ap.add_argument("--date", required=True, help="YYYY-MM-DD")
     ap.add_argument(
         "--output",
@@ -520,6 +594,7 @@ if __name__ == "__main__":
         "WCBB": "wcbb",
         "NHL": "nhl",
         "MLB": "mlb",
+        "NFL": "nfl",
     }.get(lit)
     if not slug:
         raise SystemExit(f"Unsupported sport: {args.sport}")

@@ -80,7 +80,7 @@ def main() -> None:
 
     dropped = apply_format_matched_stat_g(df, n=10)
     if dropped:
-        print(f"[Tennis step5] Format filter dropped BO5 history on {dropped} BO3-line rows")
+        print(f"[Tennis step5] Format filter dropped mismatched BO3/BO5 history on {dropped} rows")
 
     if args.line_col not in df.columns:
         raise RuntimeError(f"Missing column: {args.line_col}")

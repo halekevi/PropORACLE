@@ -1,0 +1,13 @@
+{
+  "built_at": "2026-09-22T15:04:11Z",
+  "season": 2026,
+  "n_fbs": 137,
+  "line_secondary_source": "CANNOT-OBTAIN",
+  "note": "OL/DL/secondary ranks are percentiles of existing ol_index/dl_index/secondary_index. Box is alias of dl_index. ESPN sacks ranks are a separate axis from dl_index.",
+  "paths": {
+    "ol": "Sports/CFB/data/cfb_ol_ranks.csv",
+    "dl": "Sports/CFB/data/cfb_dl_ranks.csv",
+    "secondary": "Sports/CFB/data/cfb_secondary_ranks.csv",
+    "box": "Sports/CFB/data/cfb_box_ranks.csv"
+  }
+}

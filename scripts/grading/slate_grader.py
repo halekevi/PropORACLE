@@ -577,16 +577,19 @@ def _coalesce_line_from_projection(df):
 
 
 def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
+    from proporacle.data.table_io import read_table, repair_banner_headers
+
     if str(path).lower().endswith(".csv"):
         df = pd.read_csv(path, dtype=str).fillna("")
         sheet = "ALL"
     else:
         xls = pd.ExcelFile(path, engine="openpyxl")
         preferred = ["ALL", "Full Slate", "Box Raw", "Props", "Sheet1"]
-        sheet = next((s for s in preferred if s in xls.sheet_names), xls.sheet_names[0])
+        names = [s for s in xls.sheet_names if str(s) != "_META"]
+        sheet = next((s for s in preferred if s in names), names[0] if names else xls.sheet_names[0])
         if sheet != "ALL":
             print(f"⚠️ NBA: sheet 'ALL' not found in {os.path.basename(path)}. Using sheet='{sheet}'.")
-        df = pd.read_excel(path, sheet_name=sheet, engine="openpyxl")
+        df = repair_banner_headers(read_table(path, sheet=sheet))
 
     # --- Normalize column names from PipelineA output ---
     df.columns = [str(c).strip() for c in df.columns]
@@ -782,12 +785,15 @@ def filter_nba_slate_by_grade_date(df: pd.DataFrame, date_str: str) -> pd.DataFr
 
 
 def load_cbb(path: str) -> pd.DataFrame:
+    from proporacle.data.table_io import read_table, repair_banner_headers
+
     # CBB graded files sometimes have 'ALL', but sometimes just Sheet1
     xls = pd.ExcelFile(path, engine="openpyxl")
-    sheet = "ALL" if "ALL" in xls.sheet_names else xls.sheet_names[0]
+    names = [s for s in xls.sheet_names if str(s) != "_META"]
+    sheet = "ALL" if "ALL" in names else (names[0] if names else xls.sheet_names[0])
     if sheet != "ALL":
         print(f"⚠️ CBB: sheet 'ALL' not found in {os.path.basename(path)}. Using sheet='{sheet}'.")
-    df = pd.read_excel(path, sheet_name=sheet, engine="openpyxl")
+    df = repair_banner_headers(read_table(path, sheet=sheet))
     df.columns = [str(c).strip() for c in df.columns]
 
     # ── FIX: rename CBB pipeline column names to grader-expected names ──────────
@@ -1916,7 +1922,7 @@ def write_raw(wb,df):
              'projection','rank_score','ml_prob','ml_edge',
              'edge_score','blended_score',
              'deviation_level',
-             'actual','result','margin','void_reason_grade']
+             'actual','result','margin','void_reason_grade','invalid_reason']
     cols=[c for c in desired if c in df.columns]
     widths={'pp_projection_id':14,'ticket_id':28,'player':22,'team':6,'opp_team':6,'prop_type_norm':20,'pick_type':10,
             'line':7,'bet_direction':10,'tier':5,'def_tier':10,'minutes_tier':12,
@@ -1925,7 +1931,7 @@ def write_raw(wb,df):
             'last5_over':9,'last5_under':10,'projection':12,'rank_score':12,
             'ml_prob':10,'ml_edge':10,'edge_score':11,'blended_score':12,
             'deviation_level':8,
-            'actual':9,'result':8,'margin':8,'void_reason_grade':22}
+            'actual':9,'result':8,'margin':8,'void_reason_grade':22,'invalid_reason':14}
     for ci,col in enumerate(cols,1):
         ws.column_dimensions[get_column_letter(ci)].width=widths.get(col,12)
         hc(ws,1,ci,col,bg=C['hdr'])
@@ -2114,6 +2120,16 @@ def main():
     if not args.slate: print('ERROR: --slate required.'); return
     if not args.output: args.output=f'{args.sport.lower()}_graded_{args.date}.xlsx'
 
+    ticket_sport = str(args.ticket_sport or "").strip().upper()
+    slate_l = str(args.slate).lower().replace("\\", "/")
+    if not ticket_sport:
+        if "nba1q" in slate_l:
+            ticket_sport = "NBA1Q"
+        elif "nba1h" in slate_l:
+            ticket_sport = "NBA1H"
+        else:
+            ticket_sport = str(args.sport or "").strip().upper()
+
     print(f'Loading {args.sport} slate...')
     if args.sport in ("CBB", "CFB"):
         df = load_cbb(args.slate)
@@ -2155,15 +2171,6 @@ def main():
         from ticket_leg_index import union_ticket_faces_into_slate  # noqa: WPS433
 
         before = len(df)
-        ticket_sport = str(args.ticket_sport or "").strip().upper()
-        slate_l = str(args.slate).lower().replace("\\", "/")
-        if not ticket_sport:
-            if "nba1q" in slate_l:
-                ticket_sport = "NBA1Q"
-            elif "nba1h" in slate_l:
-                ticket_sport = "NBA1H"
-            else:
-                ticket_sport = str(args.sport or "").strip().upper()
         df = union_ticket_faces_into_slate(
             df, date_str=args.date, sport=ticket_sport, repo=_REPO_ROOT
         )
@@ -2177,7 +2184,23 @@ def main():
     if args.actuals:
         print(f'Applying actuals from {args.actuals}...')
         df=apply_actuals(df,args.actuals)
-        decided=df[df['result'].isin(['HIT','MISS'])]
+        try:
+            from utils.stale_board_tickets import stamp_grade_dataframe
+
+            n_stale = stamp_grade_dataframe(
+                df, slate_date=args.date, sport=ticket_sport or args.sport
+            )
+            if n_stale:
+                print(
+                    f"  tagged {n_stale} stale_board row(s) — excluded from decided / forward"
+                )
+        except Exception as exc:
+            print(f"  [stale_board] stamp skipped: {exc}")
+        if "invalid_reason" in df.columns:
+            stale_mask = df["invalid_reason"].astype(str).str.strip().str.lower().eq("stale_board")
+        else:
+            stale_mask = pd.Series(False, index=df.index)
+        decided=df[df['result'].isin(['HIT','MISS']) & ~stale_mask]
         hits=(decided['result']=='HIT').sum()
         print(f'  Graded: {len(decided)} decided — {hits} HIT / {len(decided)-hits} MISS')
     else:

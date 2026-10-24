@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Orphaned CBB defense attach copied into the CFB tree.
+
+Not invoked by run_pipeline.ps1 for CFB (live path is step3_attach_unit_rankings.py).
+The sport='cbb' SQL below is a known-dead leftover — a CBB grep hit here is not
+a live mis-score. Keep the file until this CBB-shaped copy is collapsed; do not
+wire it into CFB.
+"""
 import argparse
 import sys
 from pathlib import Path
@@ -202,6 +209,8 @@ def main():
             import sqlite3 as _sq
             _con = _sq.connect(str(_db_path))
             _rows = _con.execute(
+                # Known-dead: this module is not on the CFB run path. Query stays
+                # sport='cbb' because the file is a CBB copy, not a CFB attach.
                 "SELECT team, extra_json, def_tier, updated_at FROM defense WHERE sport='cbb' AND team IS NOT NULL"
             ).fetchall()
             _con.close()

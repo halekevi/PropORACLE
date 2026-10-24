@@ -2,8 +2,8 @@
   "date": "2026-07-13",
   "generated_at": "2026-07-13T14:08:45.531015+00:00",
   "tickets_path": "ui_runner\\data\\tickets_latest.json",
-  "live_cdp_path": "H:\\halek\\ProfileFromC\\Desktop\\PropORACLE\\ui_runner\\data\\payout_ladder_live_cdp.json",
-  "rate_card_path": "H:\\halek\\ProfileFromC\\Desktop\\PropORACLE\\ui_runner\\data\\sg_delta_payout_rate_card_latest.json",
+  "live_cdp_path": "H:\\Desktop\\PropORACLE\\ui_runner\\data\\payout_ladder_live_cdp.json",
+  "rate_card_path": "H:\\Desktop\\PropORACLE\\ui_runner\\data\\sg_delta_payout_rate_card_latest.json",
   "summary": {
     "n_tickets": 20,
     "n_with_live_cdp": 0,

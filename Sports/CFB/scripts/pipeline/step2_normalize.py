@@ -14,7 +14,7 @@ Adds:
 - opp_team_abbr      : canonical opp abbreviation (from pp_opp_team)
 - player_norm        : lowercased, alphanumeric only
 
-Input : step1_fetch_prizepicks_api_cbb.csv
+Input : step1_fetch_prizepicks_api_cfb.csv
 Output: step2_normalized_cfb.csv
 """
 
@@ -34,6 +34,8 @@ if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
 
 from scripts.db_utils import log_pipeline_health
+from utils.cfb_opp_fill import fill_cfb_opp_from_espn
+from utils.cfb_playoff_metadata import norm_cfb_team_abbr
 from utils.fantasy_prop_filter import drop_fantasy_props
 
 PROP_NORM_MAP = {
@@ -73,11 +75,40 @@ PROP_NORM_MAP = {
     "pass att": "pass_att",
     "completions": "pass_cmp",
     "pass completions": "pass_cmp",
-}
-
-TEAM_ALIASES = {
-    "GCU": "GC", "NEVADA": "NEV", "SDST": "SDSU",
-    "MIZ": "MIZZ", "NCSU": "NCST", "GTECH": "GT",
+    "kicking points": "kick_pts",
+    "kicking pts": "kick_pts",
+    "kick pts": "kick_pts",
+    "fg made": "fg_made",
+    "field goals": "fg_made",
+    "field goals made": "fg_made",
+    "pat made": "pat_made",
+    "extra points": "pat_made",
+    "xp made": "pat_made",
+    "player touchdowns": "player_td",
+    "player tds": "player_td",
+    "player td": "player_td",
+    "touchdowns": "player_td",
+    "tds": "player_td",
+    "sacks": "sacks",
+    "sack": "sacks",
+    "tackles": "tackles",
+    "total tackles": "tackles",
+    "tackles assists": "tackles",
+    "tackles for loss": "tfl",
+    "tfl": "tfl",
+    "longest reception": "rec_long",
+    "longest rush": "rush_long",
+    "longest completion": "pass_long",
+    "pass+rush yds": "pass_rush_yds",
+    "pass + rush yds": "pass_rush_yds",
+    "rush+rec yds": "rush_rec_yds",
+    "rush + rec yds": "rush_rec_yds",
+    "pass+rush+rec tds": "pass_rush_rec_td",
+    "pass + rush + rec tds": "pass_rush_rec_td",
+    "rec targets": "rec_tgt",
+    "receiving targets": "rec_tgt",
+    "targets": "rec_tgt",
+    "rush attempts": "rush_att",
 }
 
 
@@ -99,8 +130,7 @@ def norm_str(s: str) -> str:
 
 
 def norm_team(s: str) -> str:
-    t = str(s or "").strip().upper()
-    return TEAM_ALIASES.get(t, t)
+    return norm_cfb_team_abbr(s)
 
 
 def norm_pick_type(x: str) -> str:
@@ -170,6 +200,12 @@ def main():
     # team_abbr / opp_team_abbr
     df["team_abbr"]     = df.get("pp_team",     pd.Series([""] * len(df))).astype(str).apply(norm_team)
     df["opp_team_abbr"] = df.get("pp_opp_team", pd.Series([""] * len(df))).astype(str).apply(norm_team)
+    df = fill_cfb_opp_from_espn(df)
+    df["team_abbr"] = df["team_abbr"].astype(str).apply(norm_team)
+    df["opp_team_abbr"] = df["opp_team_abbr"].astype(str).apply(norm_team)
+    if "pp_opp_team" in df.columns:
+        blank_pp = df["pp_opp_team"].astype(str).str.strip().isin(["", "nan", "None"])
+        df.loc[blank_pp, "pp_opp_team"] = df.loc[blank_pp, "opp_team_abbr"]
 
     # prop_norm — prefer stat_type, fallback to prop_type
     stat_col = "stat_type" if "stat_type" in df.columns else ("prop_type" if "prop_type" in df.columns else "")
@@ -177,6 +213,13 @@ def main():
         df["prop_norm"] = df[stat_col].astype(str).apply(norm_prop)
     else:
         df["prop_norm"] = ""
+
+    from utils.nfl_unsupported_props import mark_football_unsupported_props
+
+    df = mark_football_unsupported_props(df, prop_col="prop_norm")
+    n_unsup = int(pd.to_numeric(df["unsupported_prop"], errors="coerce").fillna(0).sum())
+    if n_unsup:
+        print(f"  unsupported_prop={n_unsup} (period/first-N; no box L5)")
 
     # pick_type normalized
     odds_col = "odds_type" if "odds_type" in df.columns else ("pick_type" if "pick_type" in df.columns else "")
@@ -208,10 +251,18 @@ def main():
         df["prop_type"] = df["stat_type"]
 
     # Guarantee column order: identity first, then prop details, then rest
+    hint = f"{args.input} {args.output}".lower()
+    if "sport" not in df.columns or df["sport"].astype(str).str.strip().eq("").all():
+        df["sport"] = "CFB1H" if ("cfb1h" in hint or "cfb_1h" in hint) else "CFB"
+    else:
+        df["sport"] = df["sport"].astype(str).str.strip()
+        if "cfb1h" in hint or "cfb_1h" in hint:
+            df.loc[df["sport"].eq("") | df["sport"].str.upper().eq("CFB"), "sport"] = "CFB1H"
+
     identity = ["proj_id", "player_id", "cfb_player_key", "player", "player_norm",
                 "team_abbr", "opp_team_abbr", "pp_team", "pp_opp_team", "pos",
                 "prop_type", "prop_norm", "pick_type", "line", "start_time",
-                "pp_game_id", "league_id"]
+                "pp_game_id", "league_id", "sport"]
     present  = [c for c in identity if c in df.columns]
     rest     = [c for c in df.columns if c not in present]
     df       = df[present + rest]

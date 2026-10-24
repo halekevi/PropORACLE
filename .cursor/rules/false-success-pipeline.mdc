@@ -1,0 +1,32 @@
+---
+description: False-success pipeline reports — fail correctly but log OK; require unattended daily proof before building on a gate
+globs: "{scripts/run_daily.ps1,scripts/fetch_game_lines.py,scripts/assert_*.py,utils/*freshness*.py,Sports/NFL/scripts/run_tuesday_post_week.ps1}"
+alwaysApply: false
+---
+
+# False success (recurring category)
+
+**Shape:** the pipeline failed correctly (stale data, wrong calendar boundary, soft catch) but **reported success** — so the next step looks safe and proceeds.
+
+Named instances this session:
+
+1. **Game lines C0** — logged OK while `game_lines.db` max dates lagged the ET slate by ~19 days (UTC-vs-ET fetch + MLB missing from defaults).
+2. **Submit-guard soft catch** — exception path that did not hard-fail the job.
+3. **NFL unit-rank mixed freshness** — attach/use path that could look current while CSV ages disagreed.
+
+A wrong date that **flags** is a minor bug. A wrong date that **logs OK** is the dangerous version. Prefer exit ≠ 0 / explicit `*_FreshFailed` / refuse-attach over “WARN then continue” when the artifact is an input to a later silent join.
+
+## Boundary bugs (same family)
+
+UTC-vs-ET slate day and cross-season L5 contamination are the same structure: a boundary (calendar day, season start) computed against the **wrong reference**, producing rows that look current but are not. Catch before attach/ticket — not after money is on the line.
+
+## “Stays green” before building on a gate
+
+One clean **manual** run ≠ trustworthy daily path.
+
+Before wiring a dependent step (e.g. live step8 game-line attach on top of `assert_game_lines_fresh`):
+
+- Watch the **unattended** daily/cron path succeed for several real days.
+- Do not re-prove only by hand each time and call that “stays green.”
+
+Until then: gate + refuse-attach stay; the dependent feature stays deferred for real.

@@ -1,0 +1,81 @@
+{
+  "date": "2026-08-24",
+  "generated_at": "2026-08-25T02:21:39.686260Z",
+  "tickets_path": "ui_runner\\data\\payout_ladder_validation_tickets.json",
+  "by_ticket_id": {
+    "2026-08-24|LADDER_VAL|discover|12": {
+      "power_min_x": 8.75,
+      "power_first_x": 10.0,
+      "display_min_x": 8.75,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|12",
+      "n_legs": 4,
+      "slip_type": "strong"
+    },
+    "2026-08-24|LADDER_VAL|discover|13": {
+      "power_min_x": 8.25,
+      "power_first_x": 10.0,
+      "display_min_x": 8.25,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|13",
+      "n_legs": 4,
+      "slip_type": "strong"
+    },
+    "2026-08-24|LADDER_VAL|discover|16": {
+      "power_min_x": 4.5,
+      "power_first_x": 6.0,
+      "display_min_x": 4.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|16",
+      "n_legs": 3,
+      "slip_type": "strong"
+    },
+    "2026-08-24|LADDER_VAL|discover|14": {
+      "power_min_x": 9.5,
+      "power_first_x": 10.0,
+      "display_min_x": 9.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|14",
+      "n_legs": 4,
+      "slip_type": "strong"
+    }
+  },
+  "by_leg_sig": {
+    "aliaksandra sasnovich|total games|over|20.500||diane parry|double faults|over|2.500||donna vekic|fantasy score|over|3.500||jodie burrage|total games|over|19.500": {
+      "power_min_x": 8.75,
+      "power_first_x": 10.0,
+      "display_min_x": 8.75,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|12",
+      "n_legs": 4,
+      "slip_type": "strong"
+    },
+    "aliaksandra sasnovich|total games|over|20.500||diane parry|double faults|over|2.500||donna vekic|fantasy score|over|3.500||raphael collignon|break points won|over|2.500": {
+      "power_min_x": 8.25,
+      "power_first_x": 10.0,
+      "display_min_x": 8.25,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|13",
+      "n_legs": 4,
+      "slip_type": "strong"
+    },
+    "aliaksandra sasnovich|total games|over|20.500||diane parry|double faults|over|2.500||jodie burrage|total games|over|19.500": {
+      "power_min_x": 4.5,
+      "power_first_x": 6.0,
+      "display_min_x": 4.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|16",
+      "n_legs": 3,
+      "slip_type": "strong"
+    },
+    "botic van de zandschulp|break points won|over|2.500||diane parry|double faults|over|2.500||donna vekic|fantasy score|over|3.500||raphael collignon|break points won|over|2.500": {
+      "power_min_x": 9.5,
+      "power_first_x": 10.0,
+      "display_min_x": 9.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-24|LADDER_VAL|discover|14",
+      "n_legs": 4,
+      "slip_type": "strong"
+    }
+  }
+}

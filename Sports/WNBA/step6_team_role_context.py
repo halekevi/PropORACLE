@@ -4,7 +4,8 @@ step6_team_role_context.py  (WNBA)
 
 WNBA Step 6:
 - Adds minutes / shot / usage tiers for downstream ranking context
-- Uses available stat columns from Step 4/5
+- minutes_tier from real MPG (min_last5_avg / min_per_game / min_season_avg),
+  NBA bands via utils.basketball_minutes_tier — never prop-stat averages
 """
 
 from __future__ import annotations
@@ -22,6 +23,7 @@ import requests
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
+from utils.basketball_minutes_tier import assign_minutes_tier, resolve_mpg_series
 from utils.pipeline_dated_outputs import copy_pipeline_output_to_dated_dirs
 
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
@@ -49,15 +51,6 @@ WNBA_TEAM_NAME_MAP = {
 # ----------------------------
 # Tiering
 # ----------------------------
-
-def tier_minutes(x):
-    if pd.isna(x):
-        return "UNKNOWN"
-    if x < 24:
-        return "LOW"
-    if x < 32:
-        return "MED"
-    return "HIGH"
 
 def tier_shots(x):
     if pd.isna(x):
@@ -245,12 +238,10 @@ def main():
     df = pd.read_csv(args.input, low_memory=False, encoding="utf-8-sig")
 
     # -----------------------------------
-    # Basic tiers (already in Step5 stats)
+    # Basic tiers (already in Step4/4b stats)
     # -----------------------------------
 
-    # WNBA boards mainly include pts/ast/reb/3ptmade/stl/blk. Use last5 + season
-    # values from step4 as role signals (minutes metric falls back to season stat
-    # signal when explicit minutes are unavailable).
+    # minutes_tier: real MPG only (NBA bands). Shot/usage still use prop averages.
     def _num_series(name: str) -> pd.Series:
         if name in df.columns:
             return pd.to_numeric(df[name], errors="coerce")
@@ -259,20 +250,19 @@ def main():
     last5 = _num_series("stat_last5_avg")
     season = _num_series("stat_season_avg")
     line = _num_series("line")
-    min_signal = _num_series("min_player_avg")
-    min_signal = min_signal.where(min_signal.notna(), season.where(season.notna(), last5))
+    mpg = resolve_mpg_series(df)
+    if mpg.isna().all():
+        print("⚠️  No real minutes columns (min_last5_avg / min_per_game / min_season_avg) — minutes_tier=UNKNOWN.")
+        print("   Re-run step4 (boxscore MIN) and/or step4b (usage min_per_game).")
+    df = assign_minutes_tier(df)
     shot_signal = last5.where(last5.notna(), season.where(season.notna(), line))
     usage_signal = season.where(season.notna(), last5.where(last5.notna(), line))
-    new_cols = {
-        "min_player_avg": min_signal,
-        "fga_player_avg": shot_signal,
-        "pts_player_avg": usage_signal,
-        "minutes_tier":   min_signal.apply(tier_minutes),
-        "shot_role":      shot_signal.apply(tier_shots),
-        "usage_role":     usage_signal.apply(tier_usage),
-    }
-    for c, s in new_cols.items():
-        df[c] = s
+    df["fga_player_avg"] = shot_signal
+    df["pts_player_avg"] = usage_signal
+    df["shot_role"] = shot_signal.apply(tier_shots)
+    df["usage_role"] = usage_signal.apply(tier_usage)
+    print("minutes_tier breakdown:")
+    print(df["minutes_tier"].value_counts(dropna=False).to_string())
 
     # -----------------------------------
     # Odds API game totals/spreads

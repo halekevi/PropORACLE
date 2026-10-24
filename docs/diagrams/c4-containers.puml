@@ -12,39 +12,50 @@ skinparam shadowing false
 title PropORACLE — C4 Level 2: Containers
 
 Person(bettor,    "Bettor / Analyst", "Reviews picks daily")
-Person(operator,  "Operator",         "Runs pipeline, retrains model")
+Person(operator,  "Operator",         "Runs pipeline, grades, publishes")
 
-System_Boundary(sys, "PropORACLE") {
-
-  Container(webapp,    "Web App",         "Jinja2 + JS\nRailway / Gunicorn",   "Goblin-70 + mixer /tickets,\ngrades, income, payout, slate")
-  Container(mobile,    "Mobile App",      "Capacitor · server.url mode",        "Top edges, sparklines,\ntier badges, OTA updates")
-  Container(flaskapi,  "Flask API",       "Python · Gunicorn · Railway",        "/api/props  /api/grades\n/api/tickets  /api/run")
-  Container(pipeline,  "Pipeline",        "Python · run_daily.ps1",             "Steps 1–8 per sport\nDaily PS1 orchestration")
-  Container(g70,       "Goblin-70 builder","Python · build_goblin70_tickets.py","Goblin-70 groups first;\nmerges graded-main mixer under")
-  Container(mlmodel,   "ML Model",        "XGBoost · edge_model_unified.pkl",   "AUC 0.7567 (2026-06-13)\nPlatt + isotonic calibration")
-  ContainerDb(cache,   "JSON Cache",      "Flat-file store · GitHub / Railway", "step8 + tickets_latest.json\n(origin/main is live source)")
-  Container(ps1,       "run_daily.ps1",   "PowerShell · local",                 "Orchestrates full daily run\nand Publish-LiveSite.ps1")
+System_Boundary(railway_b, "Railway (cloud)") {
+  Container(webapp,   "Web App",   "Jinja2 + JS",                    "Goblin-70 + mixer /tickets,\ngrades, income, payout, account")
+  Container(flaskapi, "Flask API", "Python · Gunicorn",              "/api/props /api/grades\n/api/tickets")
+  Container(mobile,   "Mobile App","Capacitor · server.url",         "Same live site in an app shell.\nBundled www/ = offline fallback only;\nOTA off")
 }
 
-System_Ext(sbApis,    "Sportsbook APIs", "Odds + lines")
-System_Ext(statsApis, "Stats APIs",      "Player + game stats")
-System_Ext(wt,        "Chrome CDP :9222", "Soccer / Tennis / WNBA / MLB")
+System_Boundary(local_b, "Local ops (PropORACLE_main_cp, Windows)") {
+  Container(ps1,      "Orchestrators",    "PowerShell · Task Scheduler",      "run_daily / refresh / late_fetch,\nPublish-LiveSite.ps1")
+  Container(pipeline, "Pipeline",         "Python",                           "Steps 1–8 per sport")
+  Container(mlmodel,  "ML Model",         "XGBoost · edge_model_unified.pkl", "AUC 0.7567 (2026-06-13)\nPlatt + isotonic")
+  Container(g70,      "Ticket builders",  "combined_slate_tickets.py +\nbuild_goblin70_tickets.py", "Mixer, then Goblin-70 first;\nmerges graded-main pool under")
+  Container(grader,   "Grader",           "run_grader.ps1 · 3AM",             "Leg classification\n(combined_ticket_grader.py)\n+ settlement (build_ticket_eval.py)")
+  Container(payout,   "Payout capture",   "run_live_payout_capture.ps1",      "N-correct floors via CDP;\npublishes on its own schedule")
+  Container(scrub,    "Keep scrub",       "scrub_goblin70_keep_live.py",      "Drops published G70 legs\nthat now fail keep gates")
+}
 
-Rel(bettor,    webapp,   "Views picks, grades,\nincome, payout tools",  "HTTPS")
-Rel(bettor,    mobile,   "Views top edges\non mobile",                  "HTTPS · server.url")
-Rel(operator,  ps1,      "Triggers daily run",                          "PowerShell")
-Rel(operator,  webapp,   "Views pipeline status,\nruns step from UI",   "HTTPS")
+ContainerDb(repo, "origin/main (live JSON)", "GitHub", "tickets_latest.json,\ngraded_props, ticket_eval HTML,\ngrade_history.json")
 
-Rel(webapp,    flaskapi, "Reads props, grades,\ntickets",               "JSON / HTTP")
-Rel(mobile,    flaskapi, "Reads top edges,\nsparklines",                "JSON / HTTP")
-Rel(flaskapi,  cache,    "Reads cached output",                         "File I/O")
-Rel(ps1,       pipeline, "Triggers sport pipelines",                    "subprocess")
-Rel(pipeline,  mlmodel,  "Scores props via step7",                      "pkl · predict_proba")
-Rel(pipeline,  cache,    "Writes step8 JSON output",                    "File I/O")
-Rel(ps1,       g70,      "Rebuilds Goblin-70 +\npatches mixer lines",    "--write-web")
-Rel(g70,       cache,    "Writes dual tickets_latest.json",             "File I/O")
-Rel(pipeline,  sbApis,   "Fetches odds + lines",                        "HTTPS")
-Rel(pipeline,  statsApis,"Fetches player + game stats",                 "HTTPS")
-Rel(pipeline,  wt,       "CDP step1 when Chrome is warm",               "Chrome DevTools")
+System_Ext(pp,    "PrizePicks", "Board + slip payouts")
+System_Ext(chrome,"Chrome CDP :9222", "Local debug browser")
+System_Ext(ext,   "Stats / line / weather sources", "ESPN, CFBD, nflverse,\nOdds API, Pinnacle, Open-Meteo")
+
+Rel(bettor,   webapp,   "Views picks, grades,\nincome, payout tools", "HTTPS")
+Rel(bettor,   mobile,   "Same site on phone",                         "HTTPS · server.url")
+Rel(operator, ps1,      "Triggers / schedules runs",                  "PowerShell")
+Rel(operator, webapp,   "Views pipeline status",                      "HTTPS")
+
+Rel(webapp,   flaskapi, "Reads props, grades, tickets", "JSON / HTTP")
+Rel(mobile,   flaskapi, "Same routes via webview",      "JSON / HTTP")
+Rel(flaskapi, repo,     "Reads live JSON / HTML",       "HTTPS raw")
+
+Rel(ps1,      pipeline, "Runs sport pipelines",          "subprocess")
+Rel(pipeline, chrome,   "CDP step1 when warm",           "Chrome DevTools")
+Rel(chrome,   pp,       "In-page fetch",                 "HTTPS")
+Rel(pipeline, ext,      "Stats, lines, weather",         "HTTPS")
+Rel(pipeline, mlmodel,  "Scores props (step7)",          "pkl · predict_proba")
+Rel(ps1,      g70,      "--write-web",                   "subprocess")
+Rel(pipeline, g70,      "step8 workbooks",               "File I/O")
+Rel(ps1,      repo,     "Publish-LiveSite.ps1",          "git push")
+Rel(grader,   repo,     "Commits graded props + eval",   "git push")
+Rel(payout,   chrome,   "Reads N-correct pays",          "Chrome DevTools")
+Rel(payout,   repo,     "Patches floors, publishes",     "git push")
+Rel(scrub,    repo,     "Drops failing G70 legs",        "verify publish path")
 
 @enduml

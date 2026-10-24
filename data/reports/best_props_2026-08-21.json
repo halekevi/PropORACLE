@@ -1,0 +1,774 @@
+{
+  "date": "2026-08-21",
+  "sports": {
+    "WNBA": {
+      "std_o": [
+        {
+          "badge": "GOLD",
+          "player": "Bridget Carleton",
+          "prop": "Pts+Rebs",
+          "side": "O19.5",
+          "l5": "4/1",
+          "avg": 24.3,
+          "cov": 4.8,
+          "rest": "Weak#15       PDX vs TOR"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Natasha Cloud",
+          "prop": "Pts+Rebs+Asts",
+          "side": "O18.5",
+          "l5": "4/1",
+          "avg": 24.8,
+          "cov": 6.3,
+          "rest": "Elite#1       miss D, Rank  CHI vs GSV"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Sydney Taylor",
+          "prop": "Points",
+          "side": "O12.5",
+          "l5": "4/1",
+          "avg": 18.6,
+          "cov": 6.1,
+          "rest": "Elite#1       miss D, Rank  CHI vs GSV"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Natasha Cloud",
+          "prop": "Pts+Asts",
+          "side": "O15.0",
+          "l5": "4/0",
+          "avg": 20.9,
+          "cov": 5.9,
+          "rest": "Elite#1       miss D, Rank  CHI vs GSV"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Kamilla Cardoso",
+          "prop": "Pts+Rebs",
+          "side": "O21.5",
+          "l5": "5/0",
+          "avg": 25.8,
+          "cov": 4.3,
+          "rest": "Elite#1       miss D, Rank  CHI vs GSV"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Kamilla Cardoso",
+          "prop": "Pts+Rebs+Asts",
+          "side": "O24.5",
+          "l5": "5/0",
+          "avg": 28.3,
+          "cov": 3.8,
+          "rest": "Elite#1       miss D, Rank  CHI vs GSV"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Olivia Miles",
+          "prop": "Points",
+          "side": "O17.5",
+          "l5": "4/1",
+          "avg": 20.6,
+          "cov": 3.1,
+          "rest": "Elite#3       miss D, Rank  MIN vs WAS"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Kamilla Cardoso",
+          "prop": "Points",
+          "side": "O13.5",
+          "l5": "5/0",
+          "avg": 16.3,
+          "cov": 2.8,
+          "rest": "Elite#1       miss D, Rank  CHI vs GSV"
+        }
+      ],
+      "std_u": [
+        {
+          "badge": "GOLD",
+          "player": "Courtney Williams",
+          "prop": "Pts+Rebs+Asts",
+          "side": "U23.5",
+          "l5": "1/4",
+          "avg": 19.3,
+          "cov": -4.2,
+          "rest": "Elite#3       MIN vs WAS"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Courtney Williams",
+          "prop": "Points",
+          "side": "U14.5",
+          "l5": "0/5",
+          "avg": 10.7,
+          "cov": -3.8,
+          "rest": "Elite#3       MIN vs WAS"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Courtney Williams",
+          "prop": "Pts+Rebs",
+          "side": "U18.5",
+          "l5": "1/4",
+          "avg": 14.7,
+          "cov": -3.8,
+          "rest": "Elite#3       MIN vs WAS"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Courtney Williams",
+          "prop": "Pts+Asts",
+          "side": "U18.5",
+          "l5": "1/4",
+          "avg": 15.3,
+          "cov": -3.2,
+          "rest": "Elite#3       MIN vs WAS"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Kayla McBride",
+          "prop": "Rebs+Asts",
+          "side": "U4.5",
+          "l5": "0/5",
+          "avg": 3.3,
+          "cov": -1.2,
+          "rest": "Elite#3       MIN vs WAS"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Azur\u251c\u00ed Stevens",
+          "prop": "Points",
+          "side": "U10.5",
+          "l5": "1/4",
+          "avg": 11.3,
+          "cov": 0.8,
+          "rest": "Elite#1       miss Cover, Delta  CHI vs GSV"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Kamilla Cardoso",
+          "prop": "Assists",
+          "side": "U2.5",
+          "l5": "1/4",
+          "avg": 2.5,
+          "cov": 0.0,
+          "rest": "Elite#1       miss Cover, Delta  CHI vs GSV"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Courtney Williams",
+          "prop": "Rebounds",
+          "side": "U4.0",
+          "l5": "1/4",
+          "avg": 4.0,
+          "cov": 0.0,
+          "rest": "Elite#3       miss Cover, Delta  MIN vs WAS"
+        }
+      ],
+      "gob": [
+        {
+          "badge": "GOLD",
+          "player": "Brittney Sykes",
+          "prop": "Pts+Rebs+Asts",
+          "side": "O14.5",
+          "l5": "5/0",
+          "avg": 24.4,
+          "cov": 9.9,
+          "rest": "Weak#13       TOR vs PDX"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Bridget Carleton",
+          "prop": "Pts+Rebs",
+          "side": "O14.5",
+          "l5": "4/1",
+          "avg": 24.3,
+          "cov": 9.8,
+          "rest": "Weak#15       PDX vs TOR"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Brittney Sykes",
+          "prop": "Points",
+          "side": "O9.5",
+          "l5": "5/0",
+          "avg": 18.2,
+          "cov": 8.7,
+          "rest": "Weak#13       TOR vs PDX"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Bridget Carleton",
+          "prop": "Points",
+          "side": "O9.5",
+          "l5": "4/1",
+          "avg": 17.6,
+          "cov": 8.1,
+          "rest": "Weak#15       PDX vs TOR"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Brittney Sykes",
+          "prop": "Pts+Rebs+Asts",
+          "side": "O16.5",
+          "l5": "4/1",
+          "avg": 24.4,
+          "cov": 7.9,
+          "rest": "Weak#13       TOR vs PDX"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Brittney Sykes",
+          "prop": "Points",
+          "side": "O10.5",
+          "l5": "5/0",
+          "avg": 18.2,
+          "cov": 7.7,
+          "rest": "Weak#13       TOR vs PDX"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Bridget Carleton",
+          "prop": "Pts+Rebs+Asts",
+          "side": "O19.5",
+          "l5": "4/1",
+          "avg": 26.4,
+          "cov": 6.9,
+          "rest": "Weak#15       PDX vs TOR"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Brittney Sykes",
+          "prop": "Pts+Asts",
+          "side": "O14.5",
+          "l5": "4/1",
+          "avg": 21.1,
+          "cov": 6.6,
+          "rest": "Weak#13       TOR vs PDX"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Megan DiLeo",
+          "prop": "Pts+Rebs+Asts",
+          "side": "O14.5",
+          "l5": "5/0",
+          "avg": 21.0,
+          "cov": 6.5,
+          "rest": "Weak#15       PDX vs TOR"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Marina Mabrey",
+          "prop": "Pts+Rebs+Asts",
+          "side": "O19.5",
+          "l5": "4/1",
+          "avg": 25.7,
+          "cov": 6.2,
+          "rest": "Weak#13       TOR vs PDX"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Megan DiLeo",
+          "prop": "Pts+Rebs",
+          "side": "O14.5",
+          "l5": "5/0",
+          "avg": 20.0,
+          "cov": 5.5,
+          "rest": "Weak#15       PDX vs TOR"
+        },
+        {
+          "badge": "GOLD",
+          "player": "Megan DiLeo",
+          "prop": "Points",
+          "side": "O9.5",
+          "l5": "5/0",
+          "avg": 14.9,
+          "cov": 5.4,
+          "rest": "Weak#15       PDX vs TOR"
+        }
+      ],
+      "counts": {
+        "std_o": 8,
+        "std_u": 8,
+        "gob": 57
+      },
+      "gold": 40,
+      "silver": 22
+    },
+    "MLB": {
+      "std_o": [
+        {
+          "badge": "BRONZE",
+          "player": "Jarren Duran",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O1.5",
+          "l5": "5/0",
+          "avg": 1.7,
+          "cov": 0.2,
+          "rest": "Avg#14        miss Delta, D  BOS vs SF"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Rafael Devers",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O1.5",
+          "l5": "4/1",
+          "avg": 1.7,
+          "cov": 0.2,
+          "rest": "Avg#16        miss Delta, D  SF vs BOS"
+        }
+      ],
+      "std_u": [
+        {
+          "badge": "BRONZE",
+          "player": "Andrew Knizner",
+          "prop": "Total Bases",
+          "side": "U0.5",
+          "l5": "0/4",
+          "avg": 0.0,
+          "cov": -0.5,
+          "rest": "Avg#16        miss D, Rank  SF vs BOS"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Andrew Knizner",
+          "prop": "Hits",
+          "side": "U0.5",
+          "l5": "0/4",
+          "avg": 0.0,
+          "cov": -0.5,
+          "rest": "Avg#16        miss D, Rank  SF vs BOS"
+        }
+      ],
+      "gob": [
+        {
+          "badge": "SILVER",
+          "player": "Caleb Durbin",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 2.6,
+          "cov": 2.1,
+          "rest": "Avg#14        miss D  BOS vs SF"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Sonny Gray",
+          "prop": "Hits Allowed",
+          "side": "O3.5",
+          "l5": "4/1",
+          "avg": 5.3,
+          "cov": 1.8,
+          "rest": "Avg#14        miss D  BOS vs SF"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Ceddanne Rafaela",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 2.2,
+          "cov": 1.7,
+          "rest": "Avg#14        miss D  BOS vs SF"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Wilyer Abreu",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 2.2,
+          "cov": 1.7,
+          "rest": "Avg#14        miss D  BOS vs SF"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Willson Contreras",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 2.1,
+          "cov": 1.6,
+          "rest": "Avg#14        miss D  BOS vs SF"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Bryce Eldridge",
+          "prop": "Total Bases",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 1.8,
+          "cov": 1.3,
+          "rest": "Avg#16        miss D  SF vs BOS"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Bryce Eldridge",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 1.8,
+          "cov": 1.3,
+          "rest": "Avg#16        miss D  SF vs BOS"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Mickey Gasper",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 1.8,
+          "cov": 1.3,
+          "rest": "Avg#14        miss D  BOS vs SF"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Willson Contreras",
+          "prop": "Total Bases",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 1.8,
+          "cov": 1.3,
+          "rest": "Avg#14        miss D  BOS vs SF"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Jarren Duran",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O0.5",
+          "l5": "5/0",
+          "avg": 1.7,
+          "cov": 1.2,
+          "rest": "Avg#14        miss D  BOS vs SF"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Sonny Gray",
+          "prop": "Walks Allowed",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 1.7,
+          "cov": 1.2,
+          "rest": "no-D          miss D  BOS vs SF"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Rafael Devers",
+          "prop": "Hits+Runs+RBIs",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 1.7,
+          "cov": 1.2,
+          "rest": "Avg#16        miss D  SF vs BOS"
+        }
+      ],
+      "counts": {
+        "std_o": 2,
+        "std_u": 2,
+        "gob": 25
+      },
+      "gold": 0,
+      "silver": 24
+    },
+    "SOCCER": {
+      "std_o": [
+        {
+          "badge": "SILVER",
+          "player": "\u251c\u00fclex Remiro",
+          "prop": "Goalie Saves",
+          "side": "O3.0",
+          "l5": "4/1",
+          "avg": 3.6,
+          "cov": 0.6,
+          "rest": "no-D          miss D  REAL SOCIEDAD vs REAL BETIS"
+        }
+      ],
+      "std_u": [
+        {
+          "badge": "SILVER",
+          "player": "Cristiano Ronaldo",
+          "prop": "Shots",
+          "side": "U5.5",
+          "l5": "0/5",
+          "avg": 0.25,
+          "cov": -5.25,
+          "rest": "no-D          miss D  NASSR vs RIYADH"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Fernando Tapia",
+          "prop": "Goalie Saves",
+          "side": "U2.5",
+          "l5": "0/5",
+          "avg": 0.0,
+          "cov": -2.5,
+          "rest": "no-D          miss D  CLUB AM\u251c\u00ebRICA vs JU\u251c\u00fcREZ"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Cristiano Ronaldo",
+          "prop": "Shots On Target",
+          "side": "U2.5",
+          "l5": "0/5",
+          "avg": 0.0,
+          "cov": -2.5,
+          "rest": "no-D          miss D  NASSR vs RIYADH"
+        }
+      ],
+      "gob": [
+        {
+          "badge": "SILVER",
+          "player": "\u251c\u00fclex Remiro",
+          "prop": "Goalie Saves",
+          "side": "O2.5",
+          "l5": "4/1",
+          "avg": 3.6,
+          "cov": 1.1,
+          "rest": "no-D          miss D  REAL SOCIEDAD vs REAL BETIS"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Mikel Oyarzabal",
+          "prop": "Shots On Target",
+          "side": "O0.5",
+          "l5": "5/0",
+          "avg": 1.3,
+          "cov": 0.8,
+          "rest": "no-D          miss D  REAL SOCIEDAD vs REAL BETIS"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Ander Barrenetxea",
+          "prop": "Shots",
+          "side": "O0.5",
+          "l5": "5/0",
+          "avg": 1.22,
+          "cov": 0.72,
+          "rest": "no-D          miss D  REAL SOCIEDAD vs REAL BETIS"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Kevin \u251c\u00fclvarez",
+          "prop": "Shots",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 1.1,
+          "cov": 0.6,
+          "rest": "no-D          miss D  CLUB AM\u251c\u00ebRICA vs JU\u251c\u00fcREZ"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Ram\u251c\u2502n Ju\u251c\u00edrez",
+          "prop": "Shots",
+          "side": "O0.5",
+          "l5": "4/1",
+          "avg": 1.1,
+          "cov": 0.6,
+          "rest": "no-D          miss D  CLUB AM\u251c\u00ebRICA vs JU\u251c\u00fcREZ"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Jairo Torres",
+          "prop": "Shots",
+          "side": "O1.5",
+          "l5": "4/1",
+          "avg": 2.0,
+          "cov": 0.5,
+          "rest": "no-D          miss D  JU\u251c\u00fcREZ vs AMERICA"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Abde Ezzalzouli",
+          "prop": "Shots On Target",
+          "side": "O0.5",
+          "l5": "5/0",
+          "avg": 1.0,
+          "cov": 0.5,
+          "rest": "Avg#6         miss D, Rank  BETIS vs REAL SOCIEDAD"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Sebasti\u251c\u00edn Jurado",
+          "prop": "Goalie Saves",
+          "side": "O2.5",
+          "l5": "4/1",
+          "avg": 2.9,
+          "cov": 0.4,
+          "rest": "no-D          miss Delta, D  JU\u251c\u00fcREZ vs AMERICA"
+        }
+      ],
+      "counts": {
+        "std_o": 1,
+        "std_u": 3,
+        "gob": 8
+      },
+      "gold": 0,
+      "silver": 10
+    },
+    "TENNIS": {
+      "std_o": [],
+      "std_u": [
+        {
+          "badge": "SILVER",
+          "player": "Taylor Fritz",
+          "prop": "Total Games",
+          "side": "U25.5",
+          "l5": "0/5",
+          "avg": 22.3,
+          "cov": -3.2,
+          "rest": "Above Avg#22  miss Delta  TAYLOR FRITZ vs BRANDON NAKASHIMA"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Taylor Fritz",
+          "prop": "Total Games Won",
+          "side": "U13.5",
+          "l5": "0/5",
+          "avg": 12.2,
+          "cov": -1.3,
+          "rest": "Above Avg#22  miss Delta  TAYLOR FRITZ vs BRANDON NAKASHIMA"
+        },
+        {
+          "badge": "SILVER",
+          "player": "Frances Tiafoe",
+          "prop": "Total Tie Breaks",
+          "side": "U0.5",
+          "l5": "0/5",
+          "avg": 0.3,
+          "cov": -0.2,
+          "rest": "Above Avg#15  miss Delta  FRANCES TIAFOE vs LORENZO MUSETTI"
+        }
+      ],
+      "gob": [
+        {
+          "badge": "BRONZE",
+          "player": "Brandon Nakashima",
+          "prop": "Total Games Won",
+          "side": "O8.5",
+          "l5": "5/0",
+          "avg": 14.4,
+          "cov": 5.9,
+          "rest": "Elite#9       miss D, Rank  BRANDON NAKASHIMA vs TAYLOR FRITZ"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Marta Kostyuk",
+          "prop": "Total Games Won",
+          "side": "O7.5",
+          "l5": "5/0",
+          "avg": 12.9,
+          "cov": 5.4,
+          "rest": "Elite#4       miss D, Rank  MARTA KOSTYUK vs COCO GAUFF"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Brandon Nakashima",
+          "prop": "Total Games Won",
+          "side": "O9.5",
+          "l5": "4/1",
+          "avg": 14.4,
+          "cov": 4.9,
+          "rest": "Elite#9       miss D, Rank  BRANDON NAKASHIMA vs TAYLOR FRITZ"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Sara Bejlek",
+          "prop": "Total Games Won",
+          "side": "O6.5",
+          "l5": "4/1",
+          "avg": 11.4,
+          "cov": 4.9,
+          "rest": "Above Avg#24  miss D, Rank  SARA BEJLEK vs MADISON KEYS"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Marta Kostyuk",
+          "prop": "Total Games Won",
+          "side": "O8.5",
+          "l5": "5/0",
+          "avg": 12.9,
+          "cov": 4.4,
+          "rest": "Elite#4       miss D, Rank  MARTA KOSTYUK vs COCO GAUFF"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Frances Tiafoe",
+          "prop": "Total Games Won",
+          "side": "O9.5",
+          "l5": "5/0",
+          "avg": 13.6,
+          "cov": 4.1,
+          "rest": "Above Avg#15  miss D, Rank  FRANCES TIAFOE vs LORENZO MUSETTI"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Brandon Nakashima",
+          "prop": "Total Games Won",
+          "side": "O10.5",
+          "l5": "4/1",
+          "avg": 14.4,
+          "cov": 3.9,
+          "rest": "Elite#9       miss D, Rank  BRANDON NAKASHIMA vs TAYLOR FRITZ"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Sara Bejlek",
+          "prop": "Total Games Won",
+          "side": "O7.5",
+          "l5": "4/1",
+          "avg": 11.4,
+          "cov": 3.9,
+          "rest": "Above Avg#24  miss D, Rank  SARA BEJLEK vs MADISON KEYS"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Coco Gauff",
+          "prop": "Total Games Won",
+          "side": "O9.5",
+          "l5": "5/0",
+          "avg": 13.3,
+          "cov": 3.8,
+          "rest": "Above Avg#11  miss D, Rank  COCO GAUFF vs MARTA KOSTYUK"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Frances Tiafoe",
+          "prop": "Total Games Won",
+          "side": "O10.5",
+          "l5": "5/0",
+          "avg": 13.6,
+          "cov": 3.1,
+          "rest": "Above Avg#15  miss D, Rank  FRANCES TIAFOE vs LORENZO MUSETTI"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Coco Gauff",
+          "prop": "Total Games Won",
+          "side": "O10.5",
+          "l5": "5/0",
+          "avg": 13.3,
+          "cov": 2.8,
+          "rest": "Above Avg#11  miss D, Rank  COCO GAUFF vs MARTA KOSTYUK"
+        },
+        {
+          "badge": "BRONZE",
+          "player": "Frances Tiafoe",
+          "prop": "Total Games Won",
+          "side": "O11.5",
+          "l5": "5/0",
+          "avg": 13.6,
+          "cov": 2.1,
+          "rest": "Above Avg#15  miss D, Rank  FRANCES TIAFOE vs LORENZO MUSETTI"
+        }
+      ],
+      "counts": {
+        "std_o": 0,
+        "std_u": 3,
+        "gob": 12
+      },
+      "gold": 0,
+      "silver": 3
+    }
+  }
+}

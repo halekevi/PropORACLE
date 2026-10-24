@@ -1,0 +1,402 @@
+{
+  "date": "2026-08-24",
+  "method": "diamond_2x_v1",
+  "pool_n": 112,
+  "promo_counts": {
+    "Diamond": 17,
+    "Platinum": 19,
+    "Gold": 38,
+    "Silver": 38
+  },
+  "tickets": [
+    {
+      "id": "F4-1",
+      "n": 4,
+      "product": "Flex",
+      "mean_leg_p": 0.708,
+      "leg_p": 0.708,
+      "cash_pct": 66.6,
+      "ev": 2.129,
+      "clears_2x": true,
+      "sweep_pct": 25.1,
+      "payouts": {
+        "4": 6.0,
+        "3": 1.5
+      },
+      "sports": [
+        "MLB",
+        "TENNIS",
+        "WNBA"
+      ],
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Jeffrey Springs",
+          "prop": "Earned Runs Allowed",
+          "side": "OVER",
+          "line": 1.5,
+          "l5": 5,
+          "l10": 10,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 80.0,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "ATH vs MIN"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Jesper De Jong",
+          "prop": "Total Games Won",
+          "side": "OVER",
+          "line": 7.5,
+          "l5": 4,
+          "l10": 10,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 100.0,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "JESPER DE JONG vs ADAM WALTON (ATP / HARD)"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Allisha Gray",
+          "prop": "Assists",
+          "side": "OVER",
+          "line": 1.5,
+          "l5": 5,
+          "l10": 6,
+          "badge": "Gold",
+          "promo": "Platinum",
+          "season_hr": 78.1,
+          "p": 0.69,
+          "hit": null,
+          "matchup": "ATL vs LAS"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Clara Tauson",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 16.5,
+          "l5": 5,
+          "l10": 0,
+          "badge": "Gold",
+          "promo": "Gold",
+          "season_hr": 13.0,
+          "p": 0.69,
+          "hit": null,
+          "matchup": "CLARA TAUSON vs RENATA ZARAZUA (WTA / HARD)"
+        }
+      ]
+    },
+    {
+      "id": "F4-2",
+      "n": 4,
+      "product": "Flex",
+      "mean_leg_p": 0.708,
+      "leg_p": 0.708,
+      "cash_pct": 66.6,
+      "ev": 2.129,
+      "clears_2x": true,
+      "sweep_pct": 25.1,
+      "payouts": {
+        "4": 6.0,
+        "3": 1.5
+      },
+      "sports": [
+        "MLB",
+        "TENNIS",
+        "WNBA"
+      ],
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Kevin Gausman",
+          "prop": "Hits Allowed",
+          "side": "OVER",
+          "line": 3.5,
+          "l5": 5,
+          "l10": 10,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 75.7,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "CHC vs AZ"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Marcos Giron",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 20.5,
+          "l5": 4,
+          "l10": 10,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 100.0,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "MARCOS GIRON vs DHAKSHINESWAR SURESH (ATP / HARD)"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Angel Reese",
+          "prop": "Rebounds",
+          "side": "OVER",
+          "line": 9.5,
+          "l5": 5,
+          "l10": 6,
+          "badge": "Gold",
+          "promo": "Gold",
+          "season_hr": 58.4,
+          "p": 0.69,
+          "hit": null,
+          "matchup": "ATL vs LAS"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Adam Walton",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 18.5,
+          "l5": 5,
+          "l10": null,
+          "badge": "Gold",
+          "promo": "Gold",
+          "season_hr": 50.0,
+          "p": 0.69,
+          "hit": null,
+          "matchup": "ADAM WALTON vs JESPER DE JONG (ATP / HARD)"
+        }
+      ]
+    },
+    {
+      "id": "F5-1",
+      "n": 5,
+      "product": "Flex",
+      "mean_leg_p": 0.726,
+      "leg_p": 0.726,
+      "cash_pct": 58.2,
+      "ev": 2.778,
+      "clears_2x": true,
+      "sweep_pct": 20.2,
+      "payouts": {
+        "5": 10.0,
+        "4": 2.0
+      },
+      "sports": [
+        "MLB"
+      ],
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Jake Cronenworth",
+          "prop": "Hitter Strikeouts",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 71.2,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "SD vs PIT"
+        },
+        {
+          "sport": "MLB",
+          "player": "Kumar Rocker",
+          "prop": "Hits Allowed",
+          "side": "OVER",
+          "line": 2.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 86.2,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "TEX vs CWS"
+        },
+        {
+          "sport": "MLB",
+          "player": "Logan Gilbert",
+          "prop": "Hits Allowed",
+          "side": "OVER",
+          "line": 2.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 73.9,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "SEA vs PHI"
+        },
+        {
+          "sport": "MLB",
+          "player": "Colson Montgomery",
+          "prop": "Hitter Strikeouts",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 8,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 83.8,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "CWS vs TEX"
+        },
+        {
+          "sport": "MLB",
+          "player": "Jake McCarthy",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 8,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 81.0,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "COL vs WSH"
+        }
+      ]
+    },
+    {
+      "id": "P3-1",
+      "n": 3,
+      "product": "Power",
+      "mean_leg_p": 0.726,
+      "leg_p": 0.726,
+      "cash_pct": 38.3,
+      "ev": 2.296,
+      "clears_2x": true,
+      "sweep_pct": 38.3,
+      "payouts": {
+        "3": 6.0
+      },
+      "sports": [
+        "MLB",
+        "TENNIS"
+      ],
+      "legs": [
+        {
+          "sport": "TENNIS",
+          "player": "Stefanos Tsitsipas",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 19.5,
+          "l5": 4,
+          "l10": 10,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 100.0,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "STEFANOS TSITSIPAS vs JENSON BROOKSBY (ATP / HARD)"
+        },
+        {
+          "sport": "MLB",
+          "player": "Munetaka Murakami",
+          "prop": "Hitter Strikeouts",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 4,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 81.8,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "CWS vs TEX"
+        },
+        {
+          "sport": "MLB",
+          "player": "Willi Castro",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 4,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 72.5,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "COL vs WSH"
+        }
+      ]
+    },
+    {
+      "id": "P3-2",
+      "n": 3,
+      "product": "Power",
+      "mean_leg_p": 0.7147,
+      "leg_p": 0.7147,
+      "cash_pct": 36.5,
+      "ev": 2.19,
+      "clears_2x": true,
+      "sweep_pct": 36.5,
+      "payouts": {
+        "3": 6.0
+      },
+      "sports": [
+        "MLB",
+        "TENNIS"
+      ],
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Zebby Matthews",
+          "prop": "Pitcher Strikeouts",
+          "side": "OVER",
+          "line": 2.5,
+          "l5": 4,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 85.7,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "MIN vs ATH"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Janice Tjen",
+          "prop": "Total Games Won",
+          "side": "OVER",
+          "line": 9.5,
+          "l5": 4,
+          "l10": 8,
+          "badge": "Gold",
+          "promo": "Platinum",
+          "season_hr": 57.1,
+          "p": 0.709,
+          "hit": null,
+          "matchup": "JANICE TJEN vs DAYANA YASTREMSKA (WTA / HARD)"
+        },
+        {
+          "sport": "MLB",
+          "player": "Willy Adames",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 4,
+          "l10": 8,
+          "badge": "Gold",
+          "promo": "Platinum",
+          "season_hr": 65.0,
+          "p": 0.709,
+          "hit": null,
+          "matchup": "SF vs CIN"
+        }
+      ]
+    }
+  ]
+}

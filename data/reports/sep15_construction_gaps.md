@@ -37,28 +37,61 @@ these rows in isolation. Failures:
 CORE/STRONG short-circuits; `_prepare_core_pipeline_pool` also drops MLB legs
 that fail keep.
 
-## Gap 2 — no cross-ticket leg exposure cap
+**Replay against real Sep-15 data** (`scripts/replay_sep15_mlb_keep_fix.py`):
 
-Same-player-same-ticket block exists. **Same leg across many tickets does not.**
+| Check | Result |
+|--|--|
+| CORE pool prep on Sep-15 MLB step8 | **PASS** — 15 flagged goblin counting legs in → 0 out |
+| `filter_main` on published CORE+mixer (MAIN mode) | **PASS** — Wood / Jensen / Mesa / Palacios all dropped |
+| Live dual card `pool_mode` | `'goblin70'` — filter_main **early-returns** on the merged artifact |
 
-Sep-15 combined snapshot reuse (same player|prop|line|dir):
+ce04cad8c is confirmed for the MAIN/CORE build path. It does **not** scrub the
+already-merged dual card mid-flight (see Gap 1b).
 
-- James Wood H+R+RBI 0.5 — **8** tickets
-- Carter Jensen H+R+RBI 0.5 — **4**
-- Also soccer: Isak Shots **8**, Mbappé SOT **7** (same pattern, other sport)
+## Gap 1b — G70 / dual-card staleness (**fixed**) + keep scrub
 
-`MAX_SLIPS_PER_PLAYER = 4` is a soft per-player slip count inside some builders;
-it does **not** cap identical leg fingerprints across CORE + mixer + Goblin-70.
+Rebuilds are automatic (day-ahead / 1AM / 5AM / late-fetch / MLB fill). The
+structural bug was: merge set `pool_mode=goblin70`, and `filter_main` treated
+that as "skip all hygiene," so CORE/mixer keep failures rode the card's entire
+lifetime across every subsequent G70 refresh (one-way door, not a timing gap).
 
-## Tomorrow’s slate
+**Fix:** `pool_mode` routes MAIN *structure* rules only. Construction hygiene
+(`scrub_payload_construction_hygiene`) always runs on CORE/mixer — including
+dual-card `goblin70`. G70 `--write-web` calls the same filter after merge.
+G70-family slips are not re-checked from published web legs (incomplete L10 /
+own-def would false-drop pitchers); they are rebuilt from the board each G70 run.
 
-Tennis / Soccer / WNBA keep catalogs are the strong ones — when gates fire.
-MLB is fine **if** keep is enforced (yesterday proves the opposite path).
-CFB/NFL remain the thinner / allowlist categories — more caution there than on
-gated MLB.
+**Lightweight keep scrub (addresses the remaining G70 window):**
+`scripts/scrub_goblin70_keep_live.py` re-matches published G70 legs to today's
+board and drops slips that fail `goblin_70_eligible` / keep. Scheduled every
+30m via `PropOracle - G70 Keep Scrub` (`run_g70_keep_scrub.ps1`). Off-board legs
+are left alone (no false-drop).
 
-## Follow-ups (not done here)
+**Rebuild freshness alert:** each successful `--write-web` stamps
+`logs/LAST_G70_REBUILD.json`. `assert_g70_freshness.py` (default max 6h) writes
+`logs/LAST_G70_STALE.alert` and exits 2 when the chain goes quiet — so consecutive
+failed windows cannot silently stretch the exposure.
 
-- Cross-ticket **leg-fingerprint** exposure cap (CORE ↔ mixer ↔ G70).
-- Confirm next Goblin-70 rebuild cannot admit BA<.275 H+R+RBI/TB (Mesa-class).
-- Optional: assert `mlb_keep_failing_legs == 0` on MAIN payload in CI/smoke.
+## Gap 2 — MAX_SLIPS_PER_PLAYER did not hold inside CORE+mixer
+
+Isak/Mbappé hit **5×** inside CORE+mixer (not explained by G70 siloing).
+
+Root causes:
+
+1. **`_ticket_cap_register` treated empty `defaultdict` as falsy** (`if not counts:
+   return`), so the shared counter never incremented from an empty start — the
+   stated cap of 4 was effectively dead for most builders.
+2. CORE is **injected after** the win-rate mixer, and the mixer used a fresh
+   per-call counter during candidate gen — so even a working register would not
+   span CORE ↔ mixer without a post-assemble trim.
+
+**Fix:** register uses `if counts is None`; win-rate `_try_pick` shares one
+counter across sports×sizes; `trim_payload_max_slips_per_player` runs after CORE
+inject and on every dual-card merge. Sep-15 replay: Isak/Mbappé 5 → 4.
+
+Cross-pool (CORE/mixer ↔ G70) registry remains a separate follow-up.
+
+## Follow-ups (still open)
+
+- Cross-pool **leg-fingerprint** exposure registry shared by CORE / mixer / G70.
+- Optional: assert `mlb_keep_failing_legs == 0` on MAIN-family payload in CI/smoke.

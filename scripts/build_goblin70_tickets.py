@@ -361,6 +361,12 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
             if nba1q_tickets_held():
                 print(NBA1Q_HOLD_REASON, flush=True)
                 continue
+        if loader_name in {"load_nba", "load_nba1h"}:
+            from utils.ticket_sport_holds import NBA_G70_HOLD_REASON, nba_g70_tickets_held
+
+            if nba_g70_tickets_held():
+                print(NBA_G70_HOLD_REASON, flush=True)
+                continue
         loader = getattr(R, loader_name, None)
         if not callable(loader):
             continue
@@ -370,13 +376,29 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     if drop_golf:
         rows = [r for r in rows if str(r.get("sport") or "").upper() != "GOLF"]
         print(golf_skip_warning(rows), flush=True)
-    from utils.ticket_sport_holds import NBA1Q_HOLD_REASON, nba1q_tickets_held
+    from utils.ticket_sport_holds import (
+        NBA1Q_HOLD_REASON,
+        NBA_G70_HOLD_REASON,
+        nba1q_tickets_held,
+        nba_g70_tickets_held,
+    )
 
     if nba1q_tickets_held():
         n_q = sum(1 for r in rows if str(r.get("sport") or "").upper() == "NBA1Q")
         if n_q:
             rows = [r for r in rows if str(r.get("sport") or "").upper() != "NBA1Q"]
             print(f"{NBA1Q_HOLD_REASON} dropped {n_q} board row(s)", flush=True)
+    if nba_g70_tickets_held():
+        n_nba = sum(
+            1 for r in rows if str(r.get("sport") or "").upper() in {"NBA", "NBA1H"}
+        )
+        if n_nba:
+            rows = [
+                r
+                for r in rows
+                if str(r.get("sport") or "").upper() not in {"NBA", "NBA1H"}
+            ]
+            print(f"{NBA_G70_HOLD_REASON} dropped {n_nba} board row(s)", flush=True)
     return rows
 
 # PAY lives in utils.n_correct_payout. Resolve order: CDP scrape (matching
@@ -1073,7 +1095,7 @@ def _ticket_to_web(ticket: dict, *, date: str, ticket_no: int, group_name: str) 
         core_label = "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)"
     # Ticket win% is the historical Goblin-70 gate rate (mean_leg_p), not XGBoost.
     # ml_prob stays on each leg for display only. YOLO is display-only vs win-rate.
-    return {
+    out = {
         "web_group_name": group_name,
         "ticket_id": ticket_id,
         "ticket_no": ticket_no,
@@ -1118,6 +1140,39 @@ def _ticket_to_web(ticket: dict, *, date: str, ticket_no: int, group_name: str) 
             "captured_at": ticket.get("captured_at"),
         },
     }
+    # mix_floor / rate-card / median are not rule-9 scrapes. Do not publish them
+    # as priced floors (n_correct_live without captured_at was the Soccer mislabel).
+    return _hold_unscraped_web_payout(out)
+
+
+def _hold_unscraped_web_payout(ticket: dict) -> dict:
+    from utils.scraped_quote import is_real_scraped_quote
+
+    raw = (os.getenv("PROPORACLE_REQUIRE_LIVE_PAYOUT") or "1").strip().lower()
+    if raw in ("0", "false", "no", "off"):
+        return ticket
+    pay = ticket.get("payout") if isinstance(ticket.get("payout"), dict) else {}
+    src = pay.get("payout_source") or ticket.get("payout_source")
+    if is_real_scraped_quote(src, pay.get("captured_at") or ticket.get("captured_at")):
+        return ticket
+    pay = dict(pay)
+    pay["payout_source"] = "pending_live"
+    pay["recommendation"] = "HOLD"
+    for k in (
+        "display_min_x",
+        "min_guarantee",
+        "min_payout_x",
+        "sweep_payout",
+        "sweep_payout_x",
+        "payout",
+        "power_min_x",
+    ):
+        pay.pop(k, None)
+    ticket["payout"] = pay
+    ticket.pop("display_min_x", None)
+    ticket.pop("power_payout", None)
+    ticket.pop("flex_payout", None)
+    return ticket
 
 
 def to_web_payload(payload: dict) -> dict:
@@ -1137,9 +1192,19 @@ def to_web_payload(payload: dict) -> dict:
             _ticket_to_web(t, date=date, ticket_no=i, group_name=gname)
             for i, t in enumerate(slips, start=1)
         ]
-        n_legs = int(slips[0].get("n_legs") or 0)
+        # Keep pending_live slips on the dual card so CDP can quote them.
+        # Dropping them here left goblin70_groups=0 and blocked publish as mixer-only.
+        if not web_slips:
+            continue
+        n_legs = int(web_slips[0].get("n_legs") or slips[0].get("n_legs") or 0)
         product = str(slips[0].get("product") or "Power")
-        sweep = _sweep_x(slips[0])
+        sweep = _sweep_x(
+            {
+                "n_correct": (web_slips[0].get("payout") or {}).get("n_correct")
+                or slips[0].get("n_correct"),
+                "n_legs": n_legs,
+            }
+        )
         groups.append(
             {
                 "group_name": gname,
@@ -1513,6 +1578,9 @@ def merge_web_payload(
 
 
 def write_web(payload: dict, board: list[dict] | None = None) -> list[Path]:
+    from utils.stale_board_tickets import annotate_ticket_payload
+
+    annotate_ticket_payload(payload)
     g70 = to_web_payload(payload)
     date = str(g70.get("date") or "")[:10]
     main_payload, main_groups = load_graded_main(date)
@@ -1525,6 +1593,14 @@ def write_web(payload: dict, board: list[dict] | None = None) -> list[Path]:
             f"unchanged={patch_stats['unchanged']}"
         )
     web = merge_web_payload(g70, main_payload, main_groups)
+    n_stale = annotate_ticket_payload(web)
+    if n_stale:
+        print(f"stale_board: marked {n_stale} invalid NBA1Q leftover-board slip(s)")
+    from utils.slate_schedule_gate import filter_payload_to_espn_schedule
+
+    web, blocked = filter_payload_to_espn_schedule(web)
+    if blocked:
+        print(f"schedule-gate: {len(blocked)} slip(s) not on today's ESPN board")
     web = mark_dup_players(web)
     dup_n = int(web.get("dup_player_tickets") or 0)
     print(
@@ -1560,6 +1636,14 @@ def write_web(payload: dict, board: list[dict] | None = None) -> list[Path]:
             print(f"scrape patch: {n_scrape} tickets -> live_cdp")
     except Exception as exc:
         print(f"WARN: scrape patch skipped ({exc})")
+    try:
+        from utils.scraped_quote import iter_payload_tickets, log_real_quote_coverage
+
+        log_real_quote_coverage(
+            iter_payload_tickets(web), label="write_web"
+        )
+    except Exception as exc:
+        print(f"WARN: real_quote coverage log skipped ({exc})")
     if not main_groups:
         print(
             "WARN: mixer groups empty — /tickets would be Goblin-70 only. "
@@ -1821,6 +1905,15 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         slip["n_correct"] = {str(k): v for k, v in scored["n_correct"].items()}
         slip["payout_note"] = scored["payout_note"]
         slip["payout_source"] = scored["payout_source"]
+        # EV score has no CDP stamp; keep make_ticket capture only when the
+        # scored source is itself a real scrape (else clear stale resolve labels).
+        from utils.scraped_quote import is_real_scraped_quote
+
+        scored_cap = scored.get("captured_at") or slip.get("captured_at")
+        if is_real_scraped_quote(scored["payout_source"], scored_cap):
+            slip["captured_at"] = scored_cap
+        else:
+            slip["captured_at"] = None
         slip["stake"] = scored["stake"]
         slip["ticket_track"] = track
         slip["track"] = comparison_track
@@ -2263,9 +2356,40 @@ def main() -> int:
             f"(decided {std_u.get('decided') or 0}, hr {std_u.get('hr')}, "
             f"Wilson LB {std_u.get('wilson_lo')})"
         )
+        try:
+            from utils.nfl_std_under_shadow import grade_pending, record_nfl_std_under_shadow
+
+            grade_pending()
+            nfl_u = record_nfl_std_under_shadow(board or [], date=args.date)
+            payload["nfl_std_under_shadow"] = {
+                "track": nfl_u["track"],
+                "placed": False,
+                "face_verified_board": nfl_u["face_verified_board"],
+                "n_legs": nfl_u["n_legs"],
+                "n_rule4_blocked": nfl_u["n_rule4_blocked"],
+                "n_slips": nfl_u["n_slips"],
+                "skipped": nfl_u["skipped"],
+                "legs": [
+                    f"{l.get('player')} {l.get('prop_canon')} U{l.get('line')}"
+                    + (" [rule4]" if l.get("rule4_blocked") else "")
+                    for l in nfl_u["legs"]
+                ],
+            }
+            print(
+                f"  [shadow] NFL Standard UNDER (prereg 2026-10-24): {nfl_u['n_legs']} legs "
+                f"({nfl_u['n_rule4_blocked']} rule-4 lines), slips {nfl_u['n_slips']}, "
+                f"face_verified={nfl_u['face_verified_board']}, skipped {nfl_u['skipped']}"
+            )
+        except Exception as exc:
+            print(f"WARN: NFL Standard UNDER shadow skipped ({exc})")
     suffix = "_l5eq5" if args.l5_eq_5 else ""
     out = OUT_DIR / f"goblin70_tickets_{args.date}{suffix}.json"
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    from utils.stale_board_tickets import annotate_ticket_payload
+
+    n_stale = annotate_ticket_payload(payload)
+    if n_stale:
+        print(f"stale_board: marked {n_stale} invalid NBA1Q leftover-board slip(s)")
     out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     if not args.l5_eq_5:
         # Local latest always (pre-existing). Peer main_cp only on --write-web so a
@@ -2281,6 +2405,12 @@ def main() -> int:
         pass
     print_card(payload)
     print("\nwrote", out)
+    try:
+        from utils.scraped_quote import log_real_quote_coverage
+
+        log_real_quote_coverage(payload.get("tickets") or [], label="g70_build")
+    except Exception as exc:
+        print(f"WARN: real_quote coverage log skipped ({exc})")
     if args.write_web and not args.l5_eq_5:
         write_web(payload, board=board)
         if args.publish_live:

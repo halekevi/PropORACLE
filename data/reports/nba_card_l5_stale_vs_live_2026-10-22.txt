@@ -1,0 +1,191 @@
+NBA card L5=5 stale vs live  slate=2026-10-22
+stale_cut=2026-06-13  live_max=2026-10-21
+before clears=91
+after  clears=80
+
+===== GAINED 5/5 (n=4) =====
++ Chet Holmgren | Blocked Shots O0.5 (goblin)
+    before: clears=False  vals=[2.0, 2.0, 1.0, 1.0, 0.0] dates=['2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24', '2026-05-22'] mix=OOOOO
+    after:  clears=True   vals=[4.0, 2.0, 2.0, 1.0, 1.0] dates=['2026-10-20', '2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24'] mix=ROOOO pre=pre_thin
++ Kentavious Caldwell-Pope | 3-PT Made O0.5 (goblin)
+    before: clears=False  vals=[1.0, 1.0, 1.0, 1.0, 0.0] dates=['2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04', '2026-02-02'] mix=RRRRR
+    after:  clears=True   vals=[2.0, 1.0, 1.0, 1.0, 1.0] dates=['2026-10-20', '2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04'] mix=RRRRR pre=pre_conflicts
++ Kentavious Caldwell-Pope | Points O4.5 (goblin)
+    before: clears=False  vals=[5.0, 15.0, 11.0, 15.0, 4.0] dates=['2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04', '2026-02-02'] mix=RRRRR
+    after:  clears=True   vals=[10.0, 5.0, 15.0, 11.0, 15.0] dates=['2026-10-20', '2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04'] mix=RRRRR pre=pre_conflicts
++ Tyrese Maxey | Turnovers O1.5 (goblin)
+    before: clears=False  vals=[2.0, 2.0, 6.0, 4.0, 1.0] dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] mix=OOOOO
+    after:  clears=True   vals=[2.0, 2.0, 2.0, 6.0, 4.0] dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] mix=ROOOO pre=pre_conflicts
+
+===== LOST 5/5 (n=15) =====
+- Cason Wallace | 3-PT Made O0.5 (goblin)
+    before: clears=True   vals=[5.0, 3.0, 1.0, 1.0, 2.0] dates=['2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24', '2026-05-22'] mix=OOOOO pre=pre_confirms
+    after:  clears=False  vals=[0.0, 5.0, 3.0, 1.0, 1.0] dates=['2026-10-20', '2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24'] mix=ROOOO
+- Isaiah Hartenstein | Points O4.5 (goblin)
+    before: clears=True   vals=[7.0, 10.0, 12.0, 12.0, 5.0] dates=['2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24', '2026-05-22'] mix=OOOOO pre=pre_confirms
+    after:  clears=False  vals=[4.0, 7.0, 10.0, 12.0, 12.0] dates=['2026-10-20', '2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24'] mix=ROOOO
+- Isaiah Hartenstein | Pts+Rebs O11.5 (goblin)
+    before: clears=True   vals=[12.0, 15.0, 27.0, 19.0, 13.0] dates=['2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24', '2026-05-22'] mix=OOOOO pre=pre_conflicts
+    after:  clears=False  vals=[7.0, 12.0, 15.0, 27.0, 19.0] dates=['2026-10-20', '2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24'] mix=ROOOO
+- Jaylen Brown | Turnovers O2.5 (standard)
+    before: clears=True   vals=[3.0, 5.0, 3.0, 3.0, 6.0] dates=['2026-05-02', '2026-04-30', '2026-04-28', '2026-04-26', '2026-04-24'] mix=OOOOO pre=pre_conflicts
+    after:  clears=False  vals=[2.0, 3.0, 5.0, 3.0, 3.0] dates=['2026-10-20', '2026-05-02', '2026-04-30', '2026-04-28', '2026-04-26'] mix=ROOOO
+- LeBron James | 3-PT Made O0.5 (goblin)
+    before: clears=True   vals=[2.0, 2.0, 1.0, 3.0, 2.0] dates=['2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05', '2026-05-01'] mix=OOOOO pre=pre_thin
+    after:  clears=False  vals=[0.0, 2.0, 2.0, 1.0, 3.0] dates=['2026-10-20', '2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05'] mix=ROOOO
+- LeBron James | Points O15.5 (standard)
+    before: clears=True   vals=[24.0, 19.0, 23.0, 27.0, 28.0] dates=['2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05', '2026-05-01'] mix=OOOOO pre=pre_thin
+    after:  clears=False  vals=[14.0, 24.0, 19.0, 23.0, 27.0] dates=['2026-10-20', '2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05'] mix=ROOOO
+- LeBron James | Pts+Asts O21.5 (goblin)
+    before: clears=True   vals=[27.0, 27.0, 29.0, 33.0, 36.0] dates=['2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05', '2026-05-01'] mix=OOOOO pre=pre_thin
+    after:  clears=False  vals=[21.0, 27.0, 27.0, 29.0, 33.0] dates=['2026-10-20', '2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05'] mix=ROOOO
+- LeBron James | Pts+Asts O23.0 (standard)
+    before: clears=True   vals=[27.0, 27.0, 29.0, 33.0, 36.0] dates=['2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05', '2026-05-01'] mix=OOOOO pre=pre_thin
+    after:  clears=False  vals=[21.0, 27.0, 27.0, 29.0, 33.0] dates=['2026-10-20', '2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05'] mix=ROOOO
+- LeBron James | Pts+Rebs+Asts O30.5 (standard)
+    before: clears=True   vals=[39.0, 33.0, 31.0, 37.0, 43.0] dates=['2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05', '2026-05-01'] mix=OOOOO pre=pre_thin
+    after:  clears=False  vals=[30.0, 39.0, 33.0, 31.0, 37.0] dates=['2026-10-20', '2026-05-11', '2026-05-09', '2026-05-07', '2026-05-05'] mix=ROOOO
+- Tyrese Maxey | Blocked Shots U0.5 (standard)
+    before: clears=True   vals=[0.0, 0.0, 0.0, 0.0, 0.0] dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] mix=OOOOO pre=pre_conflicts
+    after:  clears=False  vals=[3.0, 0.0, 0.0, 0.0, 0.0] dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] mix=ROOOO
+- Tyrese Maxey | Steals U1.5 (standard)
+    before: clears=True   vals=[0.0, 1.0, 1.0, 0.0, 0.0] dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] mix=OOOOO pre=pre_conflicts
+    after:  clears=False  vals=[3.0, 0.0, 1.0, 1.0, 0.0] dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] mix=ROOOO
+- VJ Edgecombe | Assists O1.5 (goblin)
+    before: clears=True   vals=[7.0, 4.0, 3.0, 2.0, 4.0] dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] mix=OOOOO pre=pre_thin
+    after:  clears=False  vals=[1.0, 7.0, 4.0, 3.0, 2.0] dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] mix=ROOOO
+- VJ Edgecombe | Pts+Asts O12.5 (goblin)
+    before: clears=True   vals=[15.0, 15.0, 20.0, 14.0, 27.0] dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] mix=OOOOO pre=pre_thin
+    after:  clears=False  vals=[10.0, 15.0, 15.0, 20.0, 14.0] dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] mix=ROOOO
+- VJ Edgecombe | Pts+Asts O13.5 (standard)
+    before: clears=True   vals=[15.0, 15.0, 20.0, 14.0, 27.0] dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] mix=OOOOO pre=pre_thin
+    after:  clears=False  vals=[10.0, 15.0, 15.0, 20.0, 14.0] dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] mix=ROOOO
+- VJ Edgecombe | Pts+Rebs+Asts O14.5 (goblin)
+    before: clears=True   vals=[21.0, 22.0, 25.0, 15.0, 33.0] dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] mix=OOOOO pre=pre_thin
+    after:  clears=False  vals=[14.0, 21.0, 22.0, 25.0, 15.0] dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] mix=ROOOO
+
+===== PRE FLAG FLIP (still 5/5) (n=30) =====
+~ DeMar DeRozan | Points O7.5  pre_confirms -> pre_conflicts
+    before dates=['2026-04-05', '2026-04-03', '2026-04-01', '2026-03-28', '2026-03-26'] vals=[9.0, 14.0, 28.0, 22.0, 33.0]
+    after  dates=['2026-04-05', '2026-04-03', '2026-04-01', '2026-03-28', '2026-03-26'] vals=[9.0, 14.0, 28.0, 22.0, 33.0]
+~ Donovan Mitchell | 3-PT Made O1.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[5.0, 3.0, 2.0, 4.0, 2.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[5.0, 3.0, 2.0, 4.0, 2.0]
+~ Donovan Mitchell | Points O17.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[31.0, 23.0, 26.0, 29.0, 26.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[31.0, 23.0, 26.0, 29.0, 26.0]
+~ Donovan Mitchell | Points O19.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[31.0, 23.0, 26.0, 29.0, 26.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[31.0, 23.0, 26.0, 29.0, 26.0]
+~ Donovan Mitchell | Pts+Asts O22.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[32.0, 27.0, 27.0, 32.0, 34.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[32.0, 27.0, 27.0, 32.0, 34.0]
+~ Donovan Mitchell | Pts+Asts O24.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[32.0, 27.0, 27.0, 32.0, 34.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[32.0, 27.0, 27.0, 32.0, 34.0]
+~ Donovan Mitchell | Pts+Rebs O21.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[35.0, 24.0, 30.0, 34.0, 32.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[35.0, 24.0, 30.0, 34.0, 32.0]
+~ Donovan Mitchell | Pts+Rebs+Asts O26.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[36.0, 28.0, 31.0, 37.0, 40.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[36.0, 28.0, 31.0, 37.0, 40.0]
+~ Evan Mobley | 3-PT Made O0.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[1.0, 1.0, 2.0, 2.0, 1.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[1.0, 1.0, 2.0, 2.0, 1.0]
+~ Evan Mobley | Points O11.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[15.0, 24.0, 14.0, 15.0, 21.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[15.0, 24.0, 14.0, 15.0, 21.0]
+~ Evan Mobley | Pts+Asts O14.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[19.0, 26.0, 17.0, 18.0, 27.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[19.0, 26.0, 17.0, 18.0, 27.0]
+~ Evan Mobley | Pts+Asts O15.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[19.0, 26.0, 17.0, 18.0, 27.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[19.0, 26.0, 17.0, 18.0, 27.0]
+~ Evan Mobley | Pts+Rebs O19.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[22.0, 30.0, 20.0, 29.0, 33.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[22.0, 30.0, 20.0, 29.0, 33.0]
+~ Evan Mobley | Pts+Rebs+Asts O22.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[26.0, 32.0, 23.0, 32.0, 39.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[26.0, 32.0, 23.0, 32.0, 39.0]
+~ Isaiah Hartenstein | Points O3.5  pre_confirms -> pre_conflicts
+    before dates=['2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24', '2026-05-22'] vals=[7.0, 10.0, 12.0, 12.0, 5.0]
+    after  dates=['2026-10-20', '2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24'] vals=[4.0, 7.0, 10.0, 12.0, 12.0]
+~ Isaiah Hartenstein | Pts+Asts O6.5  pre_confirms -> pre_conflicts
+    before dates=['2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24', '2026-05-22'] vals=[7.0, 13.0, 16.0, 15.0, 9.0]
+    after  dates=['2026-10-20', '2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24'] vals=[7.0, 7.0, 13.0, 16.0, 15.0]
+~ James Harden | Rebounds O2.5  pre_confirms -> pre_conflicts
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[4.0, 5.0, 6.0, 4.0, 5.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[4.0, 5.0, 6.0, 4.0, 5.0]
+~ Jared McCain | Rebounds O0.5  pre_thin -> pre_confirms
+    before dates=['2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24', '2026-05-22'] vals=[1.0, 2.0, 3.0, 2.0, 4.0]
+    after  dates=['2026-10-20', '2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24'] vals=[2.0, 1.0, 2.0, 3.0, 2.0]
+~ Jared McCain | Turnovers O0.5  pre_thin -> pre_conflicts
+    before dates=['2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24', '2026-05-22'] vals=[1.0, 2.0, 2.0, 2.0, 1.0]
+    after  dates=['2026-10-20', '2026-05-30', '2026-05-28', '2026-05-26', '2026-05-24'] vals=[2.0, 1.0, 2.0, 2.0, 2.0]
+~ Kentavious Caldwell-Pope | Points O2.5  pre_confirms -> pre_conflicts
+    before dates=['2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04', '2026-02-02'] vals=[5.0, 15.0, 11.0, 15.0, 4.0]
+    after  dates=['2026-10-20', '2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04'] vals=[10.0, 5.0, 15.0, 11.0, 15.0]
+~ Kentavious Caldwell-Pope | Pts+Rebs+Asts O8.5  pre_confirms -> pre_conflicts
+    before dates=['2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04', '2026-02-02'] vals=[10.0, 18.0, 15.0, 19.0, 10.0]
+    after  dates=['2026-10-20', '2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04'] vals=[15.0, 10.0, 18.0, 15.0, 19.0]
+~ Kentavious Caldwell-Pope | Rebs+Asts O2.5  pre_confirms -> pre_conflicts
+    before dates=['2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04', '2026-02-02'] vals=[5.0, 3.0, 4.0, 4.0, 6.0]
+    after  dates=['2026-10-20', '2026-02-11', '2026-02-09', '2026-02-07', '2026-02-04'] vals=[5.0, 5.0, 3.0, 4.0, 4.0]
+~ Sam Merrill | Points O3.5  pre_thin -> pre_confirms
+    before dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[5.0, 6.0, 4.0, 12.0, 23.0]
+    after  dates=['2026-05-25', '2026-05-23', '2026-05-21', '2026-05-19', '2026-05-17'] vals=[5.0, 6.0, 4.0, 12.0, 23.0]
+~ VJ Edgecombe | Points O5.5  pre_thin -> pre_confirms
+    before dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] vals=[8.0, 11.0, 17.0, 12.0, 23.0]
+    after  dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] vals=[9.0, 8.0, 11.0, 17.0, 12.0]
+~ VJ Edgecombe | Points O7.5  pre_thin -> pre_confirms
+    before dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] vals=[8.0, 11.0, 17.0, 12.0, 23.0]
+    after  dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] vals=[9.0, 8.0, 11.0, 17.0, 12.0]
+~ VJ Edgecombe | Pts+Asts O8.5  pre_thin -> pre_confirms
+    before dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] vals=[15.0, 15.0, 20.0, 14.0, 27.0]
+    after  dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] vals=[10.0, 15.0, 15.0, 20.0, 14.0]
+~ VJ Edgecombe | Pts+Asts O9.5  pre_thin -> pre_confirms
+    before dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] vals=[15.0, 15.0, 20.0, 14.0, 27.0]
+    after  dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] vals=[10.0, 15.0, 15.0, 20.0, 14.0]
+~ VJ Edgecombe | Pts+Rebs O9.5  pre_thin -> pre_confirms
+    before dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] vals=[14.0, 18.0, 22.0, 13.0, 29.0]
+    after  dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] vals=[13.0, 14.0, 18.0, 22.0, 13.0]
+~ VJ Edgecombe | Pts+Rebs O11.5  pre_thin -> pre_confirms
+    before dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] vals=[14.0, 18.0, 22.0, 13.0, 29.0]
+    after  dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] vals=[13.0, 14.0, 18.0, 22.0, 13.0]
+~ VJ Edgecombe | Pts+Rebs+Asts O12.5  pre_thin -> pre_confirms
+    before dates=['2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04', '2026-05-02'] vals=[21.0, 22.0, 25.0, 15.0, 33.0]
+    after  dates=['2026-10-20', '2026-05-10', '2026-05-08', '2026-05-06', '2026-05-04'] vals=[14.0, 21.0, 22.0, 25.0, 15.0]
+
+===== TICKET SPOT CARDS (live) =====
+Chet Holmgren | 3-PT Attempted UNDER 2.5
+  2026-10-20  regular    3-PT Attempted=1  HIT
+  2026-05-30  playoffs   3-PT Attempted=0  HIT
+  2026-05-28  playoffs   3-PT Attempted=1  HIT
+  2026-05-26  playoffs   3-PT Attempted=1  HIT
+  2026-05-24  playoffs   3-PT Attempted=1  HIT
+  L5 avg=0.80  hits=5/5  mix=ROOOO  clears_5of5=True
+
+Jaylon Tyson | Two Pointers Attempted UNDER 3.5
+  2026-05-25  playoffs   Two Pointers Attempted=2  HIT
+  2026-05-23  playoffs   Two Pointers Attempted=1  HIT
+  2026-05-21  playoffs   Two Pointers Attempted=1  HIT
+  2026-05-17  playoffs   Two Pointers Attempted=0  HIT
+  2026-05-15  playoffs   Two Pointers Attempted=1  HIT
+  L5 avg=1.00  hits=5/5  mix=OOOOO  clears_5of5=True
+
+LeBron James | Two Pointers Attempted OVER 8.5
+  2026-10-20  regular    Two Pointers Attempted=10  HIT
+  2026-05-11  playoffs   Two Pointers Attempted=12  HIT
+  2026-05-09  playoffs   Two Pointers Attempted=13  HIT
+  2026-05-07  playoffs   Two Pointers Attempted=14  HIT
+  2026-05-05  playoffs   Two Pointers Attempted=11  HIT
+  L5 avg=12.00  hits=5/5  mix=ROOOO  clears_5of5=True
+
+VJ Edgecombe | Points OVER 5.5
+  2026-10-20  regular    Points=9  HIT
+  2026-05-10  playoffs   Points=8  HIT
+  2026-05-08  playoffs   Points=11  HIT
+  2026-05-06  playoffs   Points=17  HIT
+  2026-05-04  playoffs   Points=12  HIT
+  L5 avg=11.40  hits=5/5  mix=ROOOO  clears_5of5=True
+

@@ -1,8 +1,8 @@
 """Shared PrizePicks CDP (Chrome DevTools) in-page fetch helpers.
 
 Used when HTTP is blocked by DataDome. Attach to an already-warmed Chrome on
---remote-debugging-port (default 9222), then call api.prizepicks.com via the
-page's authenticated fetch().
+--remote-debugging-port (default 9222), then call partner-api / api.prizepicks.com
+via the page's authenticated fetch().
 """
 from __future__ import annotations
 
@@ -16,6 +16,23 @@ def connect_over_cdp(playwright: Any, cdp_url: str, *, timeout_ms: int = 30_000)
         raise ValueError("cdp_url is required")
     print(f"🌐 Connecting to existing Chrome via CDP: {cdp} (timeout={timeout_ms}ms)")
     return playwright.chromium.connect_over_cdp(cdp, timeout=int(timeout_ms))
+
+
+def probe_cdp_attach(cdp_url: str, *, timeout_ms: int = 8_000) -> bool:
+    """True only if Playwright can attach. json/version can succeed while connect hangs."""
+    cdp = (cdp_url or "").strip()
+    if not cdp:
+        return False
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception:
+        return False
+    try:
+        with sync_playwright() as p:
+            p.chromium.connect_over_cdp(cdp, timeout=int(timeout_ms))
+        return True
+    except Exception:
+        return False
 
 
 def align_cdp_context_for_datadome(context: Any) -> None:
@@ -32,11 +49,42 @@ def align_cdp_context_for_datadome(context: Any) -> None:
         pass
 
 
-def pick_cdp_warmed_page(context: Any, league_id: str | None = None) -> Any | None:
+def _page_has_focus(page: Any) -> bool:
     try:
-        pages = list(context.pages)
+        return bool(page.evaluate("() => document.hasFocus()"))
     except Exception:
-        return None
+        return False
+
+
+def pick_cdp_warmed_page(
+    context: Any,
+    league_id: str | None = None,
+    *,
+    browser: Any | None = None,
+) -> Any | None:
+    """Prefer focused /board tab, then any prizepicks.com tab. Never opens pages.
+
+    Scan order (highest score wins):
+      focused + /board  >>  /board  >>  app.prizepicks.com  >>  any prizepicks.com
+    Optional league_id= in the URL is a soft bonus only.
+    When ``browser`` is passed, every context is scanned (not just one).
+    """
+    pages: list[Any] = []
+    if browser is not None:
+        try:
+            for ctx in browser.contexts:
+                try:
+                    pages.extend(list(ctx.pages))
+                except Exception:
+                    continue
+        except Exception:
+            pages = []
+    if not pages:
+        try:
+            pages = list(context.pages)
+        except Exception:
+            return None
+
     league_needle = f"league_id={league_id}" if league_id else ""
     scored: list[tuple[int, Any]] = []
     for pg in pages:
@@ -46,11 +94,13 @@ def pick_cdp_warmed_page(context: Any, league_id: str | None = None) -> Any | No
             continue
         if "prizepicks.com" not in url:
             continue
-        score = 10 if "app.prizepicks.com" in url else 0
+        score = 10 if "app.prizepicks.com" in url else 5
         if "/board" in url:
             score += 20
         if league_needle and league_needle in url:
-            score += 50
+            score += 15
+        if _page_has_focus(pg):
+            score += 100
         scored.append((score, pg))
     if not scored:
         return None
@@ -59,15 +109,16 @@ def pick_cdp_warmed_page(context: Any, league_id: str | None = None) -> Any | No
 
 
 def cdp_board_ready(page: Any, league_id: str | None = None) -> bool:
+    """True if this tab can run in-page fetch(). Any PP /board is enough — do not
+    require league_id= in the URL (navigating leagues is what DataDome flags).
+    """
     try:
         url = (page.url or "").lower()
     except Exception:
         return False
     if "app.prizepicks.com" not in url:
         return False
-    if league_id and f"league_id={league_id}" in url:
-        return True
-    return "/board" in url
+    return "/board" in url or "prizepicks.com" in url
 
 
 def fetch_projections_inpage(
@@ -76,10 +127,16 @@ def fetch_projections_inpage(
     *,
     per_page: int = 250,
     request_timeout_ms: int = 25_000,
+    max_pages: int = 40,
 ) -> tuple[list[dict], list[dict], int, str]:
-    """In-page fetch for one league_id. Returns (data, included, status, url)."""
+    """In-page fetch for one league_id. Returns (data, included, status, url).
+
+    Tries partner-api first (unpaginated dump includes MLB chip markets that
+    sit at the tail of the public Popular ranking). Falls back to paginating
+    api.prizepicks.com. Merges pregame (in_game=false) and live (in_game=true).
+    """
     payload = page.evaluate(
-        """async ({ leagueId, perPage, timeoutMs }) => {
+        """async ({ leagueId, perPage, timeoutMs, maxPages }) => {
             const hdrs = () => ({
                 "accept": "application/json, text/plain, */*",
                 "accept-language": (navigator.languages && navigator.languages.length)
@@ -87,13 +144,8 @@ def fetch_projections_inpage(
                 "referer": window.location.href,
                 "x-requested-with": "XMLHttpRequest",
             });
-            const urls = [
-                `https://api.prizepicks.com/projections?league_id=${leagueId}&per_page=${perPage}&single_stat=true&in_game=true&game_mode=pickem`,
-                `https://api.prizepicks.com/projections?league_id=${leagueId}&per_page=${perPage}&single_stat=true&in_game=false&game_mode=pickem`,
-                `https://api.prizepicks.com/projections?league_id=${leagueId}&per_page=${perPage}&single_stat=true&game_mode=pickem`,
-            ];
-            let best = { data: [], included: [], status: 0, url: '' };
-            for (const url of urls) {
+            const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+            const fetchJson = async (url) => {
                 const ctrl = new AbortController();
                 const timer = setTimeout(() => ctrl.abort(), timeoutMs);
                 try {
@@ -104,27 +156,88 @@ def fetch_projections_inpage(
                         signal: ctrl.signal,
                     });
                     clearTimeout(timer);
-                    if (!r.ok) {
-                        if (!best.status) best = { data: [], included: [], status: r.status, url };
-                        continue;
-                    }
+                    if (!r.ok) return { ok: false, status: r.status, data: [], included: [], url };
                     const j = await r.json();
-                    const data = Array.isArray(j?.data) ? j.data : [];
-                    const included = Array.isArray(j?.included) ? j.included : [];
-                    const cand = { data, included, status: r.status, url };
-                    if (data.length > (best.data || []).length) best = cand;
-                    if (data.length > 0) return cand;
+                    return {
+                        ok: true,
+                        status: r.status,
+                        data: Array.isArray(j?.data) ? j.data : [],
+                        included: Array.isArray(j?.included) ? j.included : [],
+                        url,
+                    };
                 } catch (e) {
                     clearTimeout(timer);
-                    if (!best.status) best = { data: [], included: [], status: 0, url, error: String(e) };
+                    return { ok: false, status: 0, data: [], included: [], url, error: String(e) };
+                }
+            };
+
+            const seen = new Set();
+            const allData = [];
+            const allIncluded = [];
+            let lastStatus = 0;
+            let lastUrl = '';
+            const flags = ["false", "true"];
+            const mergeChunk = (res) => {
+                lastStatus = res.status || lastStatus;
+                lastUrl = res.url || lastUrl;
+                const data = res.data || [];
+                const included = res.included || [];
+                let added = 0;
+                for (const row of data) {
+                    const id = row && row.id != null ? String(row.id) : '';
+                    if (!id || seen.has(id)) continue;
+                    seen.add(id);
+                    allData.push(row);
+                    added += 1;
+                }
+                for (const obj of included) allIncluded.push(obj);
+                return { ok: !!res.ok, added, len: data.length };
+            };
+            // Partner dump is unpaginated and includes chip markets (Pitches Seen, etc.).
+            let partnerDump = false;
+            for (const inGame of flags) {
+                const url = `https://partner-api.prizepicks.com/projections?league_id=${leagueId}`
+                    + `&per_page=${perPage}&single_stat=true&in_game=${inGame}`;
+                const res = await fetchJson(url);
+                const m = mergeChunk(res);
+                if (m.ok && m.len > 0) partnerDump = true;
+            }
+            // Partner dump is often complete — but NBA FG/FT/2PT can be missing
+            // from a thin dump. Only short-circuit when core shooting is present
+            // (or this is not a hoops board). Caller merges both in_game flags.
+            const hasFga = allData.some((row) => {
+                const st = String((row && row.attributes && row.attributes.stat_type) || "").toLowerCase();
+                return st.includes("fg attempted") || st.includes("field goals attempted");
+            });
+            const hasPoints = allData.some((row) => {
+                const st = String((row && row.attributes && row.attributes.stat_type) || "").toLowerCase();
+                return st === "points";
+            });
+            if (partnerDump && allData.length > perPage && (hasFga || !hasPoints)) {
+                return { data: allData, included: allIncluded, status: lastStatus || 200, url: lastUrl };
+            }
+            // Pregame first: FG Made/Attempted, FT, 2PT live on in_game=false.
+            for (const inGame of flags) {
+                for (let pageNum = 1; pageNum <= maxPages; pageNum++) {
+                    const url = `https://api.prizepicks.com/projections?league_id=${leagueId}`
+                        + `&per_page=${perPage}&single_stat=true&in_game=${inGame}`
+                        + `&game_mode=pickem&page=${pageNum}&page[number]=${pageNum}`
+                        + `&page[size]=${perPage}`;
+                    const res = await fetchJson(url);
+                    const m = mergeChunk(res);
+                    if (!m.ok) break;
+                    if (m.len === 0 || m.added === 0) break;
+                    if (m.len < perPage) break;
+                    await sleep(350);
                 }
             }
-            return best;
+            return { data: allData, included: allIncluded, status: lastStatus || (allData.length ? 200 : 0), url: lastUrl };
         }""",
         {
             "leagueId": str(league_id),
             "perPage": int(per_page),
             "timeoutMs": int(request_timeout_ms),
+            "maxPages": int(max_pages),
         },
     )
     data = list((payload or {}).get("data") or [])
@@ -132,3 +245,90 @@ def fetch_projections_inpage(
     status = int((payload or {}).get("status") or 0)
     url = str((payload or {}).get("url") or "")
     return data, included, status, url
+
+
+def session_fetch_projections(
+    league_id: str,
+    *,
+    cdp_url: str = "",
+    playwright: bool = False,
+    per_page: int = 250,
+    attach_timeout_ms: int = 30_000,
+    request_timeout_ms: int = 25_000,
+    max_pages: int = 40,
+) -> tuple[list[dict], list[dict], int]:
+    """Fetch one league via warmed CDP Chrome, or a launched Playwright Chromium.
+
+    Pipeline contract: HTTP first (caller), then this with cdp_url, then playwright=True.
+    Returns (data, included, http_status).
+    """
+    from playwright.sync_api import sync_playwright
+
+    lid = str(league_id).strip()
+    cdp = (cdp_url or "").strip()
+    if not cdp and not playwright:
+        raise ValueError("session_fetch_projections requires cdp_url or playwright=True")
+
+    with sync_playwright() as p:
+        opened_new = False
+        launched = False
+        if cdp:
+            browser = connect_over_cdp(p, cdp, timeout_ms=attach_timeout_ms)
+            if not browser.contexts:
+                raise RuntimeError("CDP browser has no contexts; start Chrome with --remote-debugging-port.")
+            context = browser.contexts[0]
+            align_cdp_context_for_datadome(context)
+            page = pick_cdp_warmed_page(context, lid, browser=browser)
+            if page is not None:
+                print(f"  Reusing warmed PP tab: {page.url}")
+                try:
+                    page.bring_to_front()
+                except Exception:
+                    pass
+            else:
+                # Only when literally zero PrizePicks tabs exist across contexts.
+                page = context.new_page()
+                opened_new = True
+                print("  No warmed PP tab — opened new page (solve DataDome in Chrome if 403).")
+        else:
+            launched = True
+            browser = p.chromium.launch(headless=False)
+            context = browser.new_context()
+            align_cdp_context_for_datadome(context)
+            page = context.new_page()
+            opened_new = True
+            print("  [playwright] launched Chromium for PrizePicks board fetch")
+
+        page.set_default_timeout(max(30_000, int(request_timeout_ms) + 5_000))
+        if not cdp_board_ready(page, lid):
+            board_url = f"https://app.prizepicks.com/board?league_id={lid}"
+            page.goto("https://app.prizepicks.com/", wait_until="domcontentloaded", timeout=30_000)
+            page.wait_for_timeout(2000)
+            page.goto(board_url, wait_until="domcontentloaded", timeout=30_000)
+            page.wait_for_timeout(3000)
+        else:
+            try:
+                page.bring_to_front()
+            except Exception:
+                pass
+            page.wait_for_timeout(800)
+
+        data, included, status, url = fetch_projections_inpage(
+            page,
+            lid,
+            per_page=per_page,
+            request_timeout_ms=request_timeout_ms,
+            max_pages=max_pages,
+        )
+        print(f"  [PP session] league_id={lid} status={status} rows={len(data)} url={url}")
+        if opened_new:
+            try:
+                page.close()
+            except Exception:
+                pass
+        if launched:
+            try:
+                browser.close()
+            except Exception:
+                pass
+        return data, included, status

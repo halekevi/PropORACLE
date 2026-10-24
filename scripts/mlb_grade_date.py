@@ -38,6 +38,14 @@ import numpy as np
 import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from utils.combo_actuals import (  # noqa: E402
+    split_combo_players,
+    split_combo_teams,
+    strip_combo_prop_token,
+)
 
 # Lazily filled: schedule entries for postponed games often omit abbreviation; resolve by team id.
 _MLB_TEAM_ID_TO_ABBR: Dict[int, str] | None = None
@@ -188,31 +196,12 @@ def grader_norm_prop(s: str) -> str:
 
 def _combo_player_parts(player: str) -> list[str]:
     """Split PrizePicks combo labels (``A + B``) into individual player names."""
-    raw = str(player or "").strip()
-    if "+" not in raw:
-        return [raw] if raw else []
-    return [p.strip() for p in raw.split("+") if p.strip()]
+    return split_combo_players(player)
 
 
 def _combo_team_parts(team: str, n_players: int) -> list[str]:
     """Align team tokens with combo arms (``STL/LAA`` → one team per player)."""
-    if n_players <= 1:
-        tok = str(team or "").strip().upper()
-        return [tok]
-    raw = str(team or "").strip()
-    if not raw or raw.lower() in ("nan", "none", "-", "—"):
-        return [""] * n_players
-    if "/" in raw:
-        parts = [p.strip().upper() for p in raw.split("/") if p.strip()]
-        if len(parts) >= n_players:
-            return parts[:n_players]
-        if len(parts) == 1:
-            return parts * n_players
-        while len(parts) < n_players:
-            parts.append(parts[-1] if parts else "")
-        return parts[:n_players]
-    tok = raw.upper()
-    return [tok] * n_players
+    return split_combo_teams(team, n_players)
 
 
 def resolve_date(s: str) -> str:
@@ -343,10 +332,7 @@ def _fetch_actuals_csv(
     if update_id_cache:
         _merge_id_cache(id_cache_path, id_map)
 
-    target_date = pd.Timestamp(d).date()
     log_cache: Dict[Tuple[str, str], List[dict]] = {}
-    # One log line per (mlb_id, hitting|pitching) when +1 day fallback is used
-    fallback_logged: Set[Tuple[str, str]] = set()
 
     def get_splits(player_id: str, group: str) -> List[dict]:
         k = (player_id, group)
@@ -355,40 +341,25 @@ def _fetch_actuals_csv(
         return log_cache[k]
 
     def split_for_date(player_id: str, ptype: str, player_name: str) -> Optional[dict]:
-        """Pick game-log split for slate date ``d``. Prefer exact calendar date; if none,
-        accept logs dated the next calendar day (Stats API local dates vs slate ET night games).
+        """Pick the game-log split whose start is the Eastern slate date.
+
+        A date-only log stamp is the official game day and is not shifted.
+        The next calendar day's game is a different start and is not used,
+        even when this player appears on both days.
         """
+        from utils.eastern_slate_date import eastern_slate_date
+
         group = "pitching" if ptype == "pitcher" else "hitting"
         splits = get_splits(player_id, group)
-        dated: List[Tuple[date, dict]] = []
+        exact: List[dict] = []
         for sp in splits:
-            gd = str(sp.get("date") or "").strip()
+            gd = str(sp.get("date") or sp.get("gameDate") or "").strip()
             if not gd:
                 continue
-            try:
-                log_d = pd.to_datetime(gd).date()
-            except Exception:
-                continue
-            dated.append((log_d, sp))
-        if not dated:
-            return None
-        exact = [sp for log_d, sp in dated if log_d == target_date]
+            if eastern_slate_date(gd) == d:
+                exact.append(sp)
         if exact:
             return exact[0]
-        next_d = target_date + timedelta(days=1)
-        fallback = [sp for log_d, sp in dated if log_d == next_d]
-        if fallback:
-            sp = fallback[0]
-            log_date_used = str(sp.get("date") or next_d.isoformat())
-            fk = (player_id, group)
-            if fk not in fallback_logged:
-                fallback_logged.add(fk)
-                print(
-                    f"  [MLB actuals] date fallback: {player_name} log_date={log_date_used} "
-                    f"used for slate_date={d}",
-                    flush=True,
-                )
-            return sp
         return None
 
     out_rows: Dict[Tuple[str, str], dict] = {}
@@ -457,6 +428,73 @@ def _fetch_actuals_csv(
         arms = _combo_player_parts(player)
         teams = _combo_team_parts(team, len(arms))
         gkey = grader_norm_prop(prop_disp)
+        # Solo arm rows must use the base prop key so graders can sum A+B without
+        # requiring a synthetic duo row keyed as pitcherstrikeoutscombo.
+        arm_gkey = grader_norm_prop(strip_combo_prop_token(prop_disp)) or gkey
+
+        if prop_norm == "strikeouts_total_bases":
+            pos_raw = ""
+            if "Pos" in slate_df.columns:
+                pos_raw = str(r.get("Pos", "") or "")
+            elif "pos" in slate_df.columns:
+                pos_raw = str(r.get("pos", "") or "")
+            if len(arms) >= 2:
+                t0, t1 = teams[0] if teams else "", teams[1] if len(teams) > 1 else ""
+                names = list(arms[:2])
+                ordered = s2.order_ks_tb_ids("0", "1", pos_raw)
+                if ordered == ("1", "0"):
+                    names = [names[1], names[0]]
+                    t0, t1 = t1, t0
+                ks_got = _stat_for_arm(names[0], t0, "strikeouts", "pitcher")
+                tb_got = _stat_for_arm(names[1], t1, "total_bases", "hitter")
+                if ks_got is None or tb_got is None:
+                    no_game += 1
+                    continue
+                combo_val = float(ks_got[0]) + float(tb_got[0])
+                nk = (s2.norm_name(player), gkey)
+                if nk not in out_rows:
+                    out_rows[nk] = {
+                        "player": player,
+                        "prop": gkey,
+                        "actual": combo_val,
+                        "game_date": d,
+                        "mlb_player_id": f"{ks_got[1]}|{tb_got[1]}",
+                        "team": team,
+                        "opp_team": "/".join(x for x in (ks_got[3], tb_got[3]) if x) or "",
+                    }
+                    combo_resolved += 1
+                continue
+
+            key = s2.norm_name(player)
+            mlb_id = (id_map.get(key) or "").strip()
+            if not mlb_id:
+                no_id += 1
+                continue
+            pitch_spl = split_for_date(mlb_id, "pitcher", player)
+            hit_spl = split_for_date(mlb_id, "hitter", player)
+            val = float(s4.strikeouts_plus_total_bases(pitch_spl, hit_spl))
+            if np.isnan(val):
+                no_game += 1
+                continue
+            nk = (key, gkey)
+            if nk not in out_rows:
+                opp_team = ""
+                try:
+                    opp = (pitch_spl or {}).get("opponent") or {}
+                    opp_abbr = str(opp.get("abbreviation") or "").strip()
+                    opp_team = str(opp_abbr).strip().upper()
+                except Exception:
+                    pass
+                out_rows[nk] = {
+                    "player": player,
+                    "prop": gkey,
+                    "actual": val,
+                    "game_date": d,
+                    "mlb_player_id": mlb_id,
+                    "team": team,
+                    "opp_team": opp_team,
+                }
+            continue
 
         if len(arms) >= 2:
             arm_vals: List[float] = []
@@ -471,11 +509,11 @@ def _fetch_actuals_csv(
                 arm_vals.append(val)
                 arm_meta.append((arm_name, mlb_id, tm, opp))
                 # Also persist solo arm actuals so grader can sum on re-grade.
-                arm_key = (s2.norm_name(arm_name), gkey)
+                arm_key = (s2.norm_name(arm_name), arm_gkey)
                 if arm_key not in out_rows:
                     out_rows[arm_key] = {
                         "player": arm_name,
-                        "prop": gkey,
+                        "prop": arm_gkey,
                         "actual": val,
                         "game_date": d,
                         "mlb_player_id": mlb_id,

@@ -24,7 +24,8 @@ def fold_player_name(s) -> str:
     if isinstance(s, float) and s != s:  # NaN
         return ""
     t = _ascii_player_name(s)
-    p = t.lower().replace(".", " ")
+    # Strip initials-dots and apostrophes (Lil'Jordan ↔ LilJordan, D.J. ↔ DJ).
+    p = t.lower().replace(".", " ").replace("'", "").replace("\u2019", "")
     p = re.sub(r"\s+", " ", p)
     suffixes = {"jr", "sr", "ii", "iii", "iv", "v"}
     parts = [x for x in p.split(" ") if x and x not in suffixes]

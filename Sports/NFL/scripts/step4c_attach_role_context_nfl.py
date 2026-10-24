@@ -190,8 +190,18 @@ def main() -> None:
             slot = rec.get("depth_slot") or ""
             df.at[idx, "depth_slot"] = slot
             df.at[idx, "depth_rank"] = rec.get("depth_rank")
-            cur_exp = str(row.get("expected_snaps") or "").strip()
-            if not cur_exp or cur_exp.lower() in {"nan", "none"}:
+            raw_exp = row.get("expected_snaps")
+            if raw_exp is None or (isinstance(raw_exp, float) and pd.isna(raw_exp)):
+                cur_exp = ""
+            else:
+                try:
+                    if pd.isna(raw_exp):
+                        cur_exp = ""
+                    else:
+                        cur_exp = str(raw_exp).strip()
+                except (TypeError, ValueError):
+                    cur_exp = str(raw_exp or "").strip()
+            if not cur_exp or cur_exp.lower() in {"nan", "none", "<na>"}:
                 df.at[idx, "expected_snaps"] = rec.get("expected_snaps") or expected_snaps_from_slot(str(slot))
             depth_hits += 1
         print(f"[NFL step4c] Depth cache hit rows={depth_hits}/{len(df)} from {depth_path}")

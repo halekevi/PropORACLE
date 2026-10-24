@@ -1,0 +1,345 @@
+{
+  "date": "2026-08-17",
+  "generated_at": "2026-08-17T19:27:27.825346Z",
+  "tickets_path": "H:\\Desktop\\PropORACLE\\ui_runner\\data\\combined_slate_tickets_2026-08-17.json",
+  "by_ticket_id": {
+    "2026-08-17|STRONG 2-Leg|1": {
+      "power_min_x": 1.4,
+      "display_min_x": 1.4,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "2026-08-17|STRONG 2-Leg|2": {
+      "power_min_x": 1.5,
+      "display_min_x": 1.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|2",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "2026-08-17|STRONG 2-Leg|3": {
+      "power_min_x": 1.4,
+      "display_min_x": 1.4,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|3",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "2026-08-17|STRONG 2-Leg|6": {
+      "power_min_x": 1.4,
+      "display_min_x": 1.4,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|6",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "2026-08-17|STRONG 2-Leg|7": {
+      "power_min_x": 1.5,
+      "display_min_x": 1.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|7",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "2026-08-17|STRONG 3-Leg|2": {
+      "power_min_x": 1.7,
+      "display_min_x": 1.7,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 3-Leg|2",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|STRONG 3-Leg|4": {
+      "power_min_x": 1.8,
+      "display_min_x": 1.8,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 3-Leg|4",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|Probability Ladder · TENNIS · Stack70|1": {
+      "power_min_x": 1.7,
+      "display_min_x": 1.7,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|Probability Ladder · TENNIS · Stack70|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|STRONG 3-Leg|1": {
+      "power_min_x": 1.9,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 3-Leg|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|TENNIS 2-Leg Goblin OVER|1": {
+      "power_min_x": 1.6,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "2026-08-17|TENNIS 3-Leg Goblin OVER|1": {
+      "power_min_x": 2.5,
+      "display_min_x": 2.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|TENNIS Core Power 2 #1|1": {
+      "power_min_x": 1.6,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS Core Power 2 #1|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "2026-08-17|TENNIS Core Power 3 #1|1": {
+      "power_min_x": 1.9,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS Core Power 3 #1|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|TENNIS Goblin 3-Leg #1|1": {
+      "power_min_x": 2.5,
+      "display_min_x": 2.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS Goblin 3-Leg #1|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|STRONG 2-Leg|12": {
+      "power_min_x": 1.7,
+      "display_min_x": 1.7,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|12",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "2026-08-17|SOCCER Core Flex 3 #1|1": {
+      "power_min_x": 1.9,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|SOCCER Core Flex 3 #1|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|SOCCER Core Flex 3 #2|1": {
+      "power_min_x": 2.0,
+      "display_min_x": 2.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|SOCCER Core Flex 3 #2|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|Probability Ladder · SOCCER · Stack70|1": {
+      "power_min_x": 2.0,
+      "display_min_x": 2.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|Probability Ladder · SOCCER · Stack70|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "2026-08-17|SOCCER Goblin 3-Leg #1|1": {
+      "power_min_x": 1.9,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|SOCCER Goblin 3-Leg #1|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    }
+  },
+  "by_leg_sig": {
+    "arthur fery|total games won|over|5.500||terence atmane|total games won|over|6.500": {
+      "power_min_x": 1.4,
+      "display_min_x": 1.4,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "diana shnaider|total games|over|16.500||magdalena frech|total games won|over|5.500": {
+      "power_min_x": 1.5,
+      "display_min_x": 1.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|2",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "jakub mensik|total games|over|17.500||rafael jodar|total games|over|18.500": {
+      "power_min_x": 1.4,
+      "display_min_x": 1.4,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|3",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "adolfo daniel vallejo|total games won|over|5.500||maja chwalinska|total games won|over|5.500": {
+      "power_min_x": 1.4,
+      "display_min_x": 1.4,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|6",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "alejandro tabilo|total games won|over|6.500||emma navarro|total games won|over|5.500": {
+      "power_min_x": 1.5,
+      "display_min_x": 1.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|7",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "jakub mensik|total games|over|17.500||rafael jodar|total games|over|18.500||tommy paul|total games|over|17.500": {
+      "power_min_x": 1.7,
+      "display_min_x": 1.7,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 3-Leg|2",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "alejandro tabilo|total games won|over|6.500||emma navarro|total games won|over|5.500||rinky hijikata|total games won|over|6.500": {
+      "power_min_x": 1.8,
+      "display_min_x": 1.8,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 3-Leg|4",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "arthur fery|total games won|over|5.500||magdalena frech|total games won|over|5.500||terence atmane|total games won|over|6.500": {
+      "power_min_x": 1.9,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 3-Leg|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "rafael jodar|total games|over|20.500||tommy paul|total games|over|19.500": {
+      "power_min_x": 1.6,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "emma navarro|total games won|over|6.500||magdalena frech|total games won|over|5.500": {
+      "power_min_x": 1.6,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "adolfo daniel vallejo|total games won|over|7.500||magdalena frech|total games won|over|5.500": {
+      "power_min_x": 1.6,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "emma navarro|total games won|over|6.500||terence atmane|total games won|over|7.500": {
+      "power_min_x": 1.6,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "alexander zverev|total games|over|20.500||rafael jodar|total games won|over|11.500": {
+      "power_min_x": 1.6,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "magdalena frech|total games won|over|5.500||rafael jodar|total games|over|20.500||terence atmane|total games won|over|7.500": {
+      "power_min_x": 2.5,
+      "display_min_x": 2.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "magdalena frech|total games won|over|5.500||terence atmane|total games won|over|7.500||tommy paul|total games|over|19.500": {
+      "power_min_x": 2.5,
+      "display_min_x": 2.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "jakub mensik|total games|over|17.500||rafael jodar|total games|over|20.500": {
+      "power_min_x": 1.6,
+      "display_min_x": 1.6,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS Core Power 2 #1|1",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "jakub mensik|total games|over|17.500||rafael jodar|total games|over|20.500||terence atmane|total games won|over|6.500": {
+      "power_min_x": 1.9,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS Core Power 3 #1|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "alexander zverev|total games|over|20.500||martin landaluce|total games won|over|10.500||rafael jodar|total games|over|20.500": {
+      "power_min_x": 2.5,
+      "display_min_x": 2.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "martin landaluce|total games won|over|10.500||rafael jodar|total games|over|20.500||tommy paul|total games|over|19.500": {
+      "power_min_x": 2.5,
+      "display_min_x": 2.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "alexander zverev|total games|over|20.500||martin landaluce|total games won|over|10.500||tommy paul|total games|over|19.500": {
+      "power_min_x": 2.5,
+      "display_min_x": 2.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|TENNIS 3-Leg Goblin OVER|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "michael wacha|pitches thrown|over|88.500||nolan mclean|pitches thrown|over|89.500": {
+      "power_min_x": 1.7,
+      "display_min_x": 1.7,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|STRONG 2-Leg|12",
+      "n_legs": 2,
+      "power_first_x": 3.0
+    },
+    "ezequiel unsain|goalie saves|over|2.500||marcelo rangel|goalie saves|over|2.500||thiago martínez|shots|over|0.500": {
+      "power_min_x": 1.9,
+      "display_min_x": 1.9,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|SOCCER Core Flex 3 #1|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    },
+    "césar rigamonti|goalie saves|over|2.500||marcelo rangel|goalie saves|over|2.500||thiago martínez|shots|over|0.500": {
+      "power_min_x": 2.0,
+      "display_min_x": 2.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-08-17|SOCCER Core Flex 3 #2|1",
+      "n_legs": 3,
+      "power_first_x": 6.0
+    }
+  }
+}

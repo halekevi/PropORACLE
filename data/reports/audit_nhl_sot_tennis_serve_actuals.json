@@ -1,0 +1,1297 @@
+{
+  "source": "graded_props_*.json (main_cp preferred, same as all_ranked_prop_hit_rates)",
+  "window": {
+    "from": "2026-02-19",
+    "to": "2026-09-16",
+    "n_files": 206
+  },
+  "nhl_sog_raw_prop_labels": [
+    [
+      "Shots On Goal",
+      10385
+    ],
+    [
+      "shots_on_goal",
+      3190
+    ]
+  ],
+  "note": "NHL canon prop sog displays as 'Shots On Target' in the master catalog (utils/prop_norm.py DISPLAY). Raw graded labels are usually Shots On Goal.",
+  "nhl_std_under_sog": {
+    "label": "nhl_std_under_sog",
+    "n": 1110,
+    "hits": 906,
+    "hr": 0.8162162162162162,
+    "actual_known": 1110,
+    "actual_blank": 0,
+    "actual_zero": 731,
+    "zero_share": 0.6585585585585586,
+    "mean_actual": 0.8351351351351352,
+    "buckets": {
+      "0": 731,
+      ">5": 14,
+      "(0,1]": 123,
+      "(1,2]": 108,
+      "(2,3]": 69,
+      "(3,5]": 65
+    },
+    "zero_actual_hits": 731,
+    "zero_actual_misses": 0,
+    "nonzero_n": 379,
+    "nonzero_hits": 175,
+    "hr_excl_zero_actual": 0.46174142480211083,
+    "top_lines": [
+      [
+        "1.5",
+        425
+      ],
+      [
+        "2.5",
+        342
+      ],
+      [
+        "3.5",
+        208
+      ],
+      [
+        "4.5",
+        87
+      ],
+      [
+        "5.5",
+        28
+      ],
+      [
+        "6.5",
+        7
+      ],
+      [
+        "2.0",
+        7
+      ],
+      [
+        "3.0",
+        4
+      ],
+      [
+        "4.0",
+        2
+      ]
+    ],
+    "sample_zero_hits": [
+      {
+        "date": "2026-03-06",
+        "player": "Seth Jarvis",
+        "line": "5.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Cole Caufield",
+        "line": "5.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Sebastian Aho",
+        "line": "4.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Will Smith",
+        "line": "4.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Lane Hutson",
+        "line": "2.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Juraj Slafkovsk\u00fd",
+        "line": "4.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Nick Suzuki",
+        "line": "4.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Tyler Toffoli",
+        "line": "4.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Evander Kane",
+        "line": "4.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Andrei Svechnikov",
+        "line": "4.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "Jake DeBrusk",
+        "line": "4.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-06",
+        "player": "John Klingberg",
+        "line": "3.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      }
+    ],
+    "sample_nonzero": [
+      {
+        "date": "2026-03-21",
+        "player": "Alex DeBrincat",
+        "line": "3.5",
+        "actual": 7.0,
+        "result": "MISS",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Adam Fantilli",
+        "line": "2.5",
+        "actual": 1.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "David Perron",
+        "line": "1.5",
+        "actual": 2.0,
+        "result": "MISS",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Lane Hutson",
+        "line": "1.5",
+        "actual": 1.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Jamie Benn",
+        "line": "1.5",
+        "actual": 1.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "David Pastrnak",
+        "line": "3.5",
+        "actual": 2.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Patrick Kane",
+        "line": "2.5",
+        "actual": 7.0,
+        "result": "MISS",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Kirill Marchenko",
+        "line": "2.5",
+        "actual": 1.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      }
+    ]
+  },
+  "nhl_std_over_sog": {
+    "label": "nhl_std_over_sog",
+    "n": 3575,
+    "hits": 582,
+    "hr": 0.1627972027972028,
+    "actual_known": 3575,
+    "actual_blank": 0,
+    "actual_zero": 2032,
+    "zero_share": 0.5683916083916084,
+    "mean_actual": 1.0363636363636364,
+    "buckets": {
+      "0": 2032,
+      "(0,1]": 477,
+      "(2,3]": 367,
+      "(1,2]": 442,
+      "(3,5]": 210,
+      ">5": 47
+    },
+    "zero_actual_hits": 0,
+    "zero_actual_misses": 2032,
+    "nonzero_n": 1543,
+    "nonzero_hits": 582,
+    "hr_excl_zero_actual": 0.3771872974724563,
+    "top_lines": [
+      [
+        "2.5",
+        1042
+      ],
+      [
+        "1.5",
+        947
+      ],
+      [
+        "3.5",
+        830
+      ],
+      [
+        "4.5",
+        393
+      ],
+      [
+        "0.5",
+        211
+      ],
+      [
+        "5.5",
+        110
+      ],
+      [
+        "6.5",
+        22
+      ],
+      [
+        "2.0",
+        18
+      ],
+      [
+        "7.5",
+        2
+      ]
+    ],
+    "sample_zero_hits": [],
+    "sample_nonzero": [
+      {
+        "date": "2026-03-21",
+        "player": "Charlie McAvoy",
+        "line": "1.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Dylan Holloway",
+        "line": "2.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Robert Thomas",
+        "line": "1.5",
+        "actual": 3.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Justin Faulk",
+        "line": "1.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Nicholas Robertson",
+        "line": "1.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Fabian Zetterlund",
+        "line": "1.5",
+        "actual": 2.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Evan Bouchard",
+        "line": "2.5",
+        "actual": 3.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Matthew Schaefer",
+        "line": "2.5",
+        "actual": 3.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      }
+    ]
+  },
+  "nhl_goblin_over_sog": {
+    "label": "nhl_goblin_over_sog",
+    "n": 2412,
+    "hits": 1106,
+    "hr": 0.45854063018242125,
+    "actual_known": 2412,
+    "actual_blank": 0,
+    "actual_zero": 962,
+    "zero_share": 0.3988391376451078,
+    "mean_actual": 1.6256218905472637,
+    "buckets": {
+      "0": 962,
+      "(1,2]": 389,
+      "(0,1]": 382,
+      "(2,3]": 299,
+      ">5": 87,
+      "(3,5]": 293
+    },
+    "zero_actual_hits": 0,
+    "zero_actual_misses": 962,
+    "nonzero_n": 1450,
+    "nonzero_hits": 1106,
+    "hr_excl_zero_actual": 0.7627586206896552,
+    "top_lines": [
+      [
+        "1.5",
+        1603
+      ],
+      [
+        "2.5",
+        396
+      ],
+      [
+        "0.5",
+        392
+      ],
+      [
+        "3.5",
+        21
+      ]
+    ],
+    "sample_zero_hits": [],
+    "sample_nonzero": [
+      {
+        "date": "2026-03-21",
+        "player": "Dylan Cozens",
+        "line": "1.5",
+        "actual": 2.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Jack Quinn",
+        "line": "1.5",
+        "actual": 2.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Nicholas Robertson",
+        "line": "0.5",
+        "actual": 1.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "William Nylander",
+        "line": "1.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Kent Johnson",
+        "line": "0.5",
+        "actual": 2.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Brady Tkachuk",
+        "line": "2.5",
+        "actual": 3.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Alex DeBrincat",
+        "line": "2.5",
+        "actual": 7.0,
+        "result": "HIT",
+        "prop_raw": "Shots On Goal"
+      },
+      {
+        "date": "2026-03-21",
+        "player": "Drake Batherson",
+        "line": "1.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Shots On Goal"
+      }
+    ]
+  },
+  "nhl_std_under_hits": {
+    "label": "nhl_std_under_hits",
+    "n": 672,
+    "hits": 384,
+    "hr": 0.5714285714285714,
+    "actual_known": 672,
+    "actual_blank": 0,
+    "actual_zero": 187,
+    "zero_share": 0.27827380952380953,
+    "mean_actual": 2.2544642857142856,
+    "buckets": {
+      "(1,2]": 127,
+      "(2,3]": 64,
+      "0": 187,
+      "(0,1]": 128,
+      "(3,5]": 99,
+      ">5": 67
+    },
+    "zero_actual_hits": 187,
+    "zero_actual_misses": 0,
+    "nonzero_n": 485,
+    "nonzero_hits": 197,
+    "hr_excl_zero_actual": 0.4061855670103093,
+    "top_lines": [
+      [
+        "1.5",
+        188
+      ],
+      [
+        "2.5",
+        135
+      ],
+      [
+        "0.5",
+        100
+      ],
+      [
+        "3.0",
+        96
+      ],
+      [
+        "3.5",
+        69
+      ],
+      [
+        "4.0",
+        39
+      ],
+      [
+        "4.5",
+        33
+      ],
+      [
+        "5.5",
+        5
+      ],
+      [
+        "5.0",
+        3
+      ],
+      [
+        "2.0",
+        2
+      ]
+    ],
+    "sample_zero_hits": [
+      {
+        "date": "2026-03-10",
+        "player": "Brandon Hagel",
+        "line": "0.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "Colton Dach",
+        "line": "3.0",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "Alex Laferriere",
+        "line": "3.0",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "Adam Erne",
+        "line": "3.0",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "Jeff Malott",
+        "line": "3.0",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "Ryan Lindgren",
+        "line": "0.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-12",
+        "player": "Keegan Kolesar",
+        "line": "3.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-13",
+        "player": "Samuel Helenius",
+        "line": "3.0",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-13",
+        "player": "Trent Frederic",
+        "line": "3.0",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-14",
+        "player": "Elias Lindholm",
+        "line": "0.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-14",
+        "player": "Dylan Cozens",
+        "line": "3.0",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-14",
+        "player": "Cole Koepke",
+        "line": "2.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      }
+    ],
+    "sample_nonzero": [
+      {
+        "date": "2026-03-09",
+        "player": "Wyatt Kaiser",
+        "line": "0.5",
+        "actual": 2.0,
+        "result": "MISS",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-09",
+        "player": "Elias Pettersson",
+        "line": "0.5",
+        "actual": 2.0,
+        "result": "MISS",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-09",
+        "player": "Tyler Kleven",
+        "line": "1.5",
+        "actual": 3.0,
+        "result": "MISS",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "Tyler Toffoli",
+        "line": "0.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "Tye Kartye",
+        "line": "3.0",
+        "actual": 1.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "Elias Lindholm",
+        "line": "0.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "A.J. Greer",
+        "line": "2.5",
+        "actual": 1.0,
+        "result": "HIT",
+        "prop_raw": "Hits"
+      },
+      {
+        "date": "2026-03-10",
+        "player": "Gustav Forsling",
+        "line": "0.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Hits"
+      }
+    ]
+  },
+  "tennis_std_under_aces": {
+    "label": "tennis_std_under_aces",
+    "n": 54,
+    "hits": 31,
+    "hr": 0.5740740740740741,
+    "actual_known": 54,
+    "actual_blank": 0,
+    "actual_zero": 1,
+    "zero_share": 0.018518518518518517,
+    "mean_actual": 6.925925925925926,
+    "buckets": {
+      "(3,5]": 11,
+      "(2,3]": 9,
+      "(1,2]": 7,
+      ">5": 22,
+      "(0,1]": 4,
+      "0": 1
+    },
+    "zero_actual_hits": 1,
+    "zero_actual_misses": 0,
+    "nonzero_n": 53,
+    "nonzero_hits": 30,
+    "hr_excl_zero_actual": 0.5660377358490566,
+    "top_lines": [
+      [
+        "3.5",
+        10
+      ],
+      [
+        "4.5",
+        8
+      ],
+      [
+        "2.5",
+        5
+      ],
+      [
+        "5.5",
+        5
+      ],
+      [
+        "6.5",
+        5
+      ],
+      [
+        "8.5",
+        5
+      ],
+      [
+        "1.5",
+        3
+      ],
+      [
+        "10.5",
+        3
+      ],
+      [
+        "7.5",
+        3
+      ],
+      [
+        "12.5",
+        2
+      ]
+    ],
+    "sample_zero_hits": [
+      {
+        "date": "2026-06-04",
+        "player": "Flavio Cobolli",
+        "line": "6.5",
+        "actual": 0.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      }
+    ],
+    "sample_nonzero": [
+      {
+        "date": "2026-05-10",
+        "player": "Luciano Darderi",
+        "line": "3.5",
+        "actual": 4.0,
+        "result": "MISS",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-05-10",
+        "player": "Matteo Arnaldi",
+        "line": "2.5",
+        "actual": 3.0,
+        "result": "MISS",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-05-11",
+        "player": "Karolina Pliskova",
+        "line": "2.5",
+        "actual": 2.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-05-11",
+        "player": "Hamad Medjedovic",
+        "line": "4.5",
+        "actual": 3.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-05-11",
+        "player": "Jannik Sinner",
+        "line": "4.5",
+        "actual": 2.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-05-11",
+        "player": "Daniil Medvedev",
+        "line": "4.5",
+        "actual": 2.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-05-12",
+        "player": "Alexander Zverev",
+        "line": "5.5",
+        "actual": 4.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-05-12",
+        "player": "Andrey Rublev",
+        "line": "5.5",
+        "actual": 13.0,
+        "result": "MISS",
+        "prop_raw": "Aces"
+      }
+    ]
+  },
+  "tennis_std_under_df": {
+    "label": "tennis_std_under_df",
+    "n": 28,
+    "hits": 8,
+    "hr": 0.2857142857142857,
+    "actual_known": 28,
+    "actual_blank": 0,
+    "actual_zero": 0,
+    "zero_share": 0.0,
+    "mean_actual": 6.75,
+    "buckets": {
+      "(3,5]": 2,
+      ">5": 18,
+      "(2,3]": 5,
+      "(0,1]": 1,
+      "(1,2]": 2
+    },
+    "zero_actual_hits": 0,
+    "zero_actual_misses": 0,
+    "nonzero_n": 28,
+    "nonzero_hits": 8,
+    "hr_excl_zero_actual": 0.2857142857142857,
+    "top_lines": [
+      [
+        "5.5",
+        7
+      ],
+      [
+        "4.5",
+        6
+      ],
+      [
+        "3.5",
+        6
+      ],
+      [
+        "2.5",
+        3
+      ],
+      [
+        "1.5",
+        2
+      ],
+      [
+        "7.5",
+        2
+      ],
+      [
+        "8.5",
+        1
+      ],
+      [
+        "6.5",
+        1
+      ]
+    ],
+    "sample_zero_hits": [],
+    "sample_nonzero": [
+      {
+        "date": "2026-05-11",
+        "player": "Karolina Pliskova",
+        "line": "4.5",
+        "actual": 5.0,
+        "result": "MISS",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-05-11",
+        "player": "Mirra Andreeva",
+        "line": "2.5",
+        "actual": 6.0,
+        "result": "MISS",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-05-11",
+        "player": "Nikola Bartunkova",
+        "line": "4.5",
+        "actual": 8.0,
+        "result": "MISS",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-05-11",
+        "player": "Daniil Medvedev",
+        "line": "3.5",
+        "actual": 3.0,
+        "result": "HIT",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-05-22",
+        "player": "Ignacio Buse",
+        "line": "1.5",
+        "actual": 1.0,
+        "result": "HIT",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-06-21",
+        "player": "Talia Gibson",
+        "line": "5.5",
+        "actual": 8.0,
+        "result": "MISS",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-07-16",
+        "player": "Raphael Collignon",
+        "line": "5.5",
+        "actual": 8.0,
+        "result": "MISS",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-07-16",
+        "player": "Alycia Parks",
+        "line": "7.5",
+        "actual": 14.0,
+        "result": "MISS",
+        "prop_raw": "Double Faults"
+      }
+    ]
+  },
+  "tennis_std_over_aces": {
+    "label": "tennis_std_over_aces",
+    "n": 521,
+    "hits": 169,
+    "hr": 0.32437619961612285,
+    "actual_known": 521,
+    "actual_blank": 0,
+    "actual_zero": 107,
+    "zero_share": 0.2053742802303263,
+    "mean_actual": 2.6679462571976966,
+    "buckets": {
+      "(0,1]": 105,
+      "(2,3]": 76,
+      "(3,5]": 88,
+      "0": 107,
+      "(1,2]": 88,
+      ">5": 57
+    },
+    "zero_actual_hits": 0,
+    "zero_actual_misses": 107,
+    "nonzero_n": 414,
+    "nonzero_hits": 169,
+    "hr_excl_zero_actual": 0.4082125603864734,
+    "top_lines": [
+      [
+        "3.5",
+        110
+      ],
+      [
+        "2.5",
+        104
+      ],
+      [
+        "1.5",
+        75
+      ],
+      [
+        "4.5",
+        70
+      ],
+      [
+        "5.5",
+        47
+      ],
+      [
+        "6.5",
+        42
+      ],
+      [
+        "0.5",
+        35
+      ],
+      [
+        "7.5",
+        17
+      ],
+      [
+        "8.5",
+        12
+      ],
+      [
+        "10.5",
+        3
+      ]
+    ],
+    "sample_zero_hits": [],
+    "sample_nonzero": [
+      {
+        "date": "2026-04-26",
+        "player": "Taylah Preston",
+        "line": "3.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Taylah Preston",
+        "line": "2.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Taylah Preston",
+        "line": "1.5",
+        "actual": 1.0,
+        "result": "MISS",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Taylah Preston",
+        "line": "0.5",
+        "actual": 1.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Aoi Ito",
+        "line": "3.5",
+        "actual": 3.0,
+        "result": "MISS",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Aoi Ito",
+        "line": "2.5",
+        "actual": 3.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Aoi Ito",
+        "line": "1.5",
+        "actual": 3.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Aoi Ito",
+        "line": "0.5",
+        "actual": 3.0,
+        "result": "HIT",
+        "prop_raw": "Aces"
+      }
+    ]
+  },
+  "tennis_std_over_df": {
+    "label": "tennis_std_over_df",
+    "n": 563,
+    "hits": 213,
+    "hr": 0.3783303730017762,
+    "actual_known": 563,
+    "actual_blank": 0,
+    "actual_zero": 72,
+    "zero_share": 0.12788632326820604,
+    "mean_actual": 3.326820603907638,
+    "buckets": {
+      "(3,5]": 143,
+      "(2,3]": 127,
+      ">5": 82,
+      "0": 72,
+      "(1,2]": 88,
+      "(0,1]": 51
+    },
+    "zero_actual_hits": 0,
+    "zero_actual_misses": 72,
+    "nonzero_n": 491,
+    "nonzero_hits": 213,
+    "hr_excl_zero_actual": 0.43380855397148677,
+    "top_lines": [
+      [
+        "3.5",
+        115
+      ],
+      [
+        "2.5",
+        108
+      ],
+      [
+        "4.5",
+        88
+      ],
+      [
+        "5.5",
+        85
+      ],
+      [
+        "1.5",
+        63
+      ],
+      [
+        "6.5",
+        51
+      ],
+      [
+        "7.5",
+        28
+      ],
+      [
+        "0.5",
+        11
+      ],
+      [
+        "8.5",
+        9
+      ],
+      [
+        "9.5",
+        3
+      ]
+    ],
+    "sample_zero_hits": [],
+    "sample_nonzero": [
+      {
+        "date": "2026-04-26",
+        "player": "Taylah Preston",
+        "line": "5.5",
+        "actual": 4.0,
+        "result": "MISS",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Taylah Preston",
+        "line": "4.5",
+        "actual": 4.0,
+        "result": "MISS",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Taylah Preston",
+        "line": "3.5",
+        "actual": 4.0,
+        "result": "HIT",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Taylah Preston",
+        "line": "2.5",
+        "actual": 4.0,
+        "result": "HIT",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Taylah Preston",
+        "line": "1.5",
+        "actual": 4.0,
+        "result": "HIT",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Aoi Ito",
+        "line": "5.5",
+        "actual": 5.0,
+        "result": "MISS",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Aoi Ito",
+        "line": "4.5",
+        "actual": 5.0,
+        "result": "HIT",
+        "prop_raw": "Double Faults"
+      },
+      {
+        "date": "2026-04-26",
+        "player": "Aoi Ito",
+        "line": "2.5",
+        "actual": 5.0,
+        "result": "HIT",
+        "prop_raw": "Double Faults"
+      }
+    ]
+  },
+  "prior_backfill_report": {
+    "aces_standard_over": {
+      "n": 473,
+      "hit_pct": 32.3,
+      "ci95": [
+        28.3,
+        36.7
+      ],
+      "void": 273,
+      "call": "FADE"
+    },
+    "aces_standard_under": {
+      "n": 54,
+      "hit_pct": 57.4,
+      "ci95": [
+        44.2,
+        69.7
+      ],
+      "void": 76,
+      "call": "FADE (was KEEP 90.6%)"
+    },
+    "double_faults_standard_over": {
+      "n": 523,
+      "hit_pct": 38.6,
+      "ci95": [
+        34.5,
+        42.9
+      ],
+      "void": 322,
+      "call": "FADE"
+    },
+    "double_faults_standard_under": {
+      "n": 28,
+      "hit_pct": 28.6,
+      "ci95": [
+        15.3,
+        47.1
+      ],
+      "void": 25,
+      "call": "FADE (was KEEP 90.0%)"
+    },
+    "aces_under_actual_gt0": {
+      "n": 53,
+      "hit_pct": 56.6,
+      "note": "only 1 actual==0 UNDER HIT remains"
+    },
+    "df_under_actual_gt0": {
+      "n": 28,
+      "hit_pct": 28.6,
+      "note": "zero actual==0 survivors"
+    }
+  }
+}

@@ -49,12 +49,13 @@ The system is batch-first (PowerShell + Python), with the UI fed from generated 
 
 ## 3) End-to-end daily flow (current behavior)
 
-1. **3AM** — Tennis early light fetch + rebuild (when scheduled).
-2. **5AM** — `run_daily.ps1`: grade yesterday, fetch today, combine, publish.
-3. **8AM / 9AM / 10:30AM / 1PM** — refresh → late_fetch (CDP-first when `:9222` up) + pipeline `-SkipFetch`.
-4. **11:00** — live payout CDP capture (MAIN floors).
-5. Build combined tickets from available sport outputs; write dated + latest UI artifacts.
-6. Optionally commit/push and optionally retrain models (gated).
+1. **1AM** — `run_daily.ps1`: fetch **all** sports, combine, live payout CDP, publish (no grader).
+2. **3AM** — A1 historical actuals + grader for yesterday (separate process so 1AM fetch stays lighter).
+3. **5AM** — second overnight fetch + line snapshot + live payout CDP (skips grader/A1 when 3AM finished).
+4. **8AM / 9AM / 10:30AM / 1PM / 4:30PM** — refresh → late_fetch + pipeline `-SkipFetch` (combined/graded-main archive, then **Goblin-70** overwrites `/tickets`) + `Publish-LiveSite.ps1`.
+5. Live payout CDP also rides with 1AM / 5AM and each refresh (standalone 11:00 CDP task is retired).
+6. Build combined tickets from available sport outputs; write dated + latest UI artifacts.
+7. Optionally commit/push and optionally retrain models (gated).
 
 ## 4) System flow diagram
 

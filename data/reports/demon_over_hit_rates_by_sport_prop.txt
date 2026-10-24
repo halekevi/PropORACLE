@@ -1,0 +1,80 @@
+DEMON OVER hit rates by sport x prop category
+Source: data/reports/graded_stratification/all_props_diagnostic.csv (graded book)
+Demon UNDER excluded (invalid). base_hit_rate = ungated Demon OVER.
+Discover-gates / live-books catalogs exclude Demons — this is the graded strat book.
+
+=== MLB  ~20.5% weighted  (props below) ===
+  Walks                          28.4%  n=5,552
+  Runs                           25.9%  n=7,724
+  Walks Allowed                  25.7%  n=253
+  Hits Allowed                   25.0%  n=501
+  Pitcher Strikeouts             21.1%  n=648
+  Total Bases                    20.3%  n=19,213
+  Hitter Strikeouts              20.1%  n=3,192
+  Hits                           19.1%  n=6,468
+  Home Runs                      11.5%  n=5,015
+  Stolen Bases                   10.4%  n=3,044
+
+=== NBA  ~36.6% weighted  (props below) ===
+  Two Pointers Made              52.2%  n=134
+  Free Throws Attempted          47.8%  n=178
+  FG Made                        45.8%  n=120
+  Free Throws Made               45.8%  n=179
+  Turnovers                      44.3%  n=194
+  Fantasy Score                  43.2%  n=370
+  Assists                        42.4%  n=550
+  Steals                         41.2%  n=262
+  Blks+Stls                      40.0%  n=295
+  3-PT Made                      38.4%  n=476
+  Points                         37.0%  n=652
+  Blocked Shots                  36.3%  n=422
+  Pts+Rebs+Asts                  35.8%  n=1,401
+  Pts+Rebs                       35.8%  n=656
+  Rebounds                       35.7%  n=543
+  Pts+Asts                       35.1%  n=596
+  Rebs+Asts                      33.1%  n=1,204
+  Double-Double                  15.5%  n=464
+
+=== NBA1Q  ~56.0% weighted  (props below) ===
+  Assists                        71.5%  n=740
+  Points                         51.0%  n=1,348
+  Rebounds                       50.9%  n=901
+
+=== NHL  ~20.5% weighted  (props below) ===
+  Power Play Points              73.4%  n=320
+  Plus/Minus                     26.1%  n=283
+  Points                         21.4%  n=847
+  Assists                        18.4%  n=776
+  Goals                          15.9%  n=628
+  Shots On Goal                   0.0%  n=728
+
+=== Soccer  ~18.7% weighted  (props below) ===
+  Shots On Target                49.4%  n=791
+  Tackles                        21.7%  n=530
+  Fouls                          16.0%  n=144
+  Shots                          11.2%  n=1,049
+  Goals                           9.8%  n=418
+  Assists                         5.6%  n=445
+  Goal + Assist                   4.4%  n=573
+
+=== NFL ===
+  (no Demon OVER cell in this graded diagnostic export)
+
+=== CFB ===
+  (no Demon OVER cell in this graded diagnostic export)
+
+=== GOLF ===
+  (no Demon OVER cell in this graded diagnostic export)
+
+=== CBB ===
+  (no Demon OVER cell in this graded diagnostic export)
+
+SPORT ROLLUP (daily_accuracy Demon OVER, all props pooled):
+  NBA1H        52.4%  n=42
+  NBA1Q        40.6%  n=1,814
+  NBA          30.3%  n=8,758
+  WNBA         25.3%  n=17,284
+  NHL          23.7%  n=3,094
+  MLB          20.0%  n=314,690
+  TENNIS       13.3%  n=11,038
+  SOCCER       11.3%  n=44,906

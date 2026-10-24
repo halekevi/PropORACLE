@@ -1,0 +1,1569 @@
+{
+  "sport": "NFL",
+  "invalid_reason": "unverified_face",
+  "not": "VOID",
+  "window": [
+    "2026-09-04",
+    "2026-10-23"
+  ],
+  "verdicts": {
+    "no_board_rows": 29,
+    "goblin_rung": 83,
+    "single_line_unverified": 39,
+    "labeled_goblin": 31
+  },
+  "tickets_checked": 91,
+  "legs_checked": 182,
+  "rung_tickets": 48,
+  "stamped": false,
+  "stamped_files": [],
+  "account_placed_rows": [],
+  "date_status": {
+    "2026-09-04": null,
+    "2026-09-05": null,
+    "2026-09-09": "default_labels",
+    "2026-09-10": "default_labels",
+    "2026-09-12": null,
+    "2026-09-13": "default_labels",
+    "2026-09-14": "default_labels",
+    "2026-09-17": "default_labels",
+    "2026-09-19": null,
+    "2026-09-20": "verified",
+    "2026-09-26": null,
+    "2026-09-28": "default_labels",
+    "2026-10-21": "verified"
+  },
+  "by_date": {
+    "2026-09-04": {
+      "date": "2026-09-04",
+      "date_status": "no_graded_rows",
+      "tickets": 2,
+      "legs": 2,
+      "rung_tickets": 0,
+      "verdicts": {
+        "no_board_rows": 2
+      }
+    },
+    "2026-09-05": {
+      "date": "2026-09-05",
+      "date_status": "no_graded_rows",
+      "tickets": 2,
+      "legs": 2,
+      "rung_tickets": 0,
+      "verdicts": {
+        "no_board_rows": 2
+      }
+    },
+    "2026-09-09": {
+      "date": "2026-09-09",
+      "date_status": "default_labels",
+      "tickets": 9,
+      "legs": 18,
+      "rung_tickets": 9,
+      "verdicts": {
+        "goblin_rung": 18
+      }
+    },
+    "2026-09-10": {
+      "date": "2026-09-10",
+      "date_status": "default_labels",
+      "tickets": 12,
+      "legs": 24,
+      "rung_tickets": 10,
+      "verdicts": {
+        "single_line_unverified": 6,
+        "goblin_rung": 18
+      }
+    },
+    "2026-09-12": {
+      "date": "2026-09-12",
+      "date_status": "no_graded_rows",
+      "tickets": 1,
+      "legs": 1,
+      "rung_tickets": 0,
+      "verdicts": {
+        "no_board_rows": 1
+      }
+    },
+    "2026-09-13": {
+      "date": "2026-09-13",
+      "date_status": "default_labels",
+      "tickets": 17,
+      "legs": 34,
+      "rung_tickets": 3,
+      "verdicts": {
+        "no_board_rows": 24,
+        "single_line_unverified": 7,
+        "goblin_rung": 3
+      }
+    },
+    "2026-09-14": {
+      "date": "2026-09-14",
+      "date_status": "default_labels",
+      "tickets": 17,
+      "legs": 34,
+      "rung_tickets": 15,
+      "verdicts": {
+        "single_line_unverified": 10,
+        "goblin_rung": 24
+      }
+    },
+    "2026-09-17": {
+      "date": "2026-09-17",
+      "date_status": "default_labels",
+      "tickets": 12,
+      "legs": 24,
+      "rung_tickets": 6,
+      "verdicts": {
+        "single_line_unverified": 14,
+        "goblin_rung": 10
+      }
+    },
+    "2026-09-19": {
+      "date": "2026-09-19",
+      "date_status": "no_graded_rows",
+      "tickets": 4,
+      "legs": 10,
+      "rung_tickets": 0,
+      "verdicts": {
+        "labeled_goblin": 10
+      }
+    },
+    "2026-09-20": {
+      "date": "2026-09-20",
+      "date_status": "verified",
+      "tickets": 4,
+      "legs": 10,
+      "rung_tickets": 0,
+      "verdicts": {
+        "labeled_goblin": 10
+      }
+    },
+    "2026-09-26": {
+      "date": "2026-09-26",
+      "date_status": "no_graded_rows",
+      "tickets": 3,
+      "legs": 7,
+      "rung_tickets": 0,
+      "verdicts": {
+        "labeled_goblin": 7
+      }
+    },
+    "2026-09-28": {
+      "date": "2026-09-28",
+      "date_status": "default_labels",
+      "tickets": 6,
+      "legs": 12,
+      "rung_tickets": 5,
+      "verdicts": {
+        "single_line_unverified": 2,
+        "goblin_rung": 10
+      }
+    },
+    "2026-10-21": {
+      "date": "2026-10-21",
+      "date_status": "verified",
+      "tickets": 2,
+      "legs": 4,
+      "rung_tickets": 0,
+      "verdicts": {
+        "labeled_goblin": 4
+      }
+    }
+  },
+  "flagged_tickets": [
+    {
+      "date": "2026-09-09",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-09.json",
+      "group": "NFL Standard 2-Leg #1",
+      "ticket_id": "2026-09-09|NFL Standard 2-Leg #1|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Craig Woodson",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 9.5 != line 3.5"
+        },
+        {
+          "player": "Christian Gonzalez",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 8.5 != line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-09.json",
+      "group": "NFL Standard 2-Leg #1",
+      "ticket_id": "2026-09-09|NFL Standard 2-Leg #1|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Craig Woodson",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 9.5 != line 3.5"
+        },
+        {
+          "player": "Christian Gonzalez",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 8.5 != line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-09.json",
+      "group": "TENNIS Standard 3-Leg #1",
+      "ticket_id": "2026-09-09|NFL Standard 2-Leg #2|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Mack Hollins",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 58.5 != line 4.5"
+        },
+        {
+          "player": "Christian Gonzalez",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 8.5 != line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-09.json",
+      "group": "TENNIS Standard 3-Leg #1",
+      "ticket_id": "2026-09-09|NFL Standard 2-Leg #2|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Mack Hollins",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 8.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 59.5 != line 8.5"
+        },
+        {
+          "player": "Elijah Arroyo",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 59.5 != line 4.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-09.json",
+      "group": "TENNIS Standard 3-Leg #1",
+      "ticket_id": "2026-09-09|NFL Standard 2-Leg #3|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Mack Hollins",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 14.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 59.5 != line 14.5"
+        },
+        {
+          "player": "Craig Woodson",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 9.5 != line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-09.json",
+      "group": "TENNIS Standard 3-Leg #1",
+      "ticket_id": "2026-09-09|NFL Standard 2-Leg #4|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Mack Hollins",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 59.5 != line 19.5"
+        },
+        {
+          "player": "Christian Gonzalez",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 8.5 != line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-09.json",
+      "group": "TENNIS Standard 3-Leg #1",
+      "ticket_id": "2026-09-09|NFL Standard 2-Leg #5|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Mack Hollins",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 3.5 != line 0.5"
+        },
+        {
+          "player": "Elijah Arroyo",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 3.5 != line 0.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-09.json",
+      "group": "TENNIS Standard 3-Leg #1",
+      "ticket_id": "2026-09-09|NFL Standard 2-Leg #3|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Mack Hollins",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 14.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 14.5"
+        },
+        {
+          "player": "Christian Gonzalez",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 8.5 != line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-09.json",
+      "group": "TENNIS Standard 3-Leg #1",
+      "ticket_id": "2026-09-09|NFL Standard 2-Leg #4|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Mack Hollins",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 19.5"
+        },
+        {
+          "player": "Devon Witherspoon",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 10.5 != line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #10",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #10|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 15.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 15.5"
+        },
+        {
+          "player": "Tyler Higbee",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 9.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 74.5 != line 9.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #10",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #10|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 15.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 15.5"
+        },
+        {
+          "player": "Tyler Higbee",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 9.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 74.5 != line 9.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #11",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #11|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 19.5"
+        },
+        {
+          "player": "Kyren Williams",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 0.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #11",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #11|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 19.5"
+        },
+        {
+          "player": "Kyren Williams",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 0.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #12",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #12|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Terrance Ferguson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 89.5 != line 4.5"
+        },
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 24.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 24.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #12",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #12|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Terrance Ferguson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 89.5 != line 4.5"
+        },
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 24.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 24.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #13",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #13|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 25.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 25.5"
+        },
+        {
+          "player": "Kyren Williams",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 4.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #13",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #13|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 25.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 25.5"
+        },
+        {
+          "player": "Kyren Williams",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 4.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #14",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #14|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Kyren Williams",
+          "prop": "yards_on_first_reception",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 4.5"
+        },
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 30.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 30.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-10.json",
+      "group": "NFL Standard 2-Leg #14",
+      "ticket_id": "2026-09-10|NFL Standard 2-Leg #14|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Kyren Williams",
+          "prop": "yards_on_first_reception",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 4.5"
+        },
+        {
+          "player": "Colby Parkinson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 30.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 70.5 != line 30.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-13",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-13.json",
+      "group": "NFL Standard 2-Leg #14",
+      "ticket_id": "2026-09-13|NFL Standard 2-Leg #3|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Cam Skattebo",
+          "prop": "halves_with_25_rush_yards",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 1.5"
+        },
+        {
+          "player": "Ryan Flournoy",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 10.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 104.5 != line 10.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-13",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-13.json",
+      "group": "NFL Standard 2-Leg #14",
+      "ticket_id": "2026-09-13|NFL Standard 2-Leg #4|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Cam Skattebo",
+          "prop": "quarters_with_5_rush_yards",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 3.5"
+        },
+        {
+          "player": "Theo Johnson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 75.5 != line 0.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-13",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-13.json",
+      "group": "NFL Standard 2-Leg #14",
+      "ticket_id": "2026-09-13|NFL Standard 2-Leg #5|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Cam Skattebo",
+          "prop": "yards_on_first_rush_attempt",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 3.5"
+        },
+        {
+          "player": "Theo Johnson",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 75.5 != line 5.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #1",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #1|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Rashee Rice",
+          "prop": "halves_with_25_receiving_yards",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 1.5"
+        },
+        {
+          "player": "Tyquan Thornton",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 89.5 != line 4.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #1",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #1|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Rashee Rice",
+          "prop": "halves_with_25_receiving_yards",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 1.5"
+        },
+        {
+          "player": "Tyquan Thornton",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 89.5 != line 4.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #2",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #2|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Rashee Rice",
+          "prop": "quarters_with_5_receiving_yards",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 3.5"
+        },
+        {
+          "player": "Adam Trautman",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 67.5 != line 2.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #2",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #2|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Rashee Rice",
+          "prop": "quarters_with_5_receiving_yards",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 3.5"
+        },
+        {
+          "player": "Adam Trautman",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 67.5 != line 2.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #4",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #4|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Rashee Rice",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 24.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 136.5 != line 24.5"
+        },
+        {
+          "player": "Drue Tranquill",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 11.5 != line 4.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #4",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #4|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Rashee Rice",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 24.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 136.5 != line 24.5"
+        },
+        {
+          "player": "Drue Tranquill",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 11.5 != line 4.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #5",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #5|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Harrison Butker",
+          "prop": "kicking_points",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 12.5 != line 5.5"
+        },
+        {
+          "player": "Rashee Rice",
+          "prop": "quarters_with_1_reception",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #5",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #5|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Harrison Butker",
+          "prop": "kicking_points",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 12.5 != line 5.5"
+        },
+        {
+          "player": "Rashee Rice",
+          "prop": "quarters_with_1_reception",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #6",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #6|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Harrison Butker",
+          "prop": "kicking_points",
+          "direction": "OVER",
+          "line": 6.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 12.5 != line 6.5"
+        },
+        {
+          "player": "Rashee Rice",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 10.5 != line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #6",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #6|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Harrison Butker",
+          "prop": "kicking_points",
+          "direction": "OVER",
+          "line": 6.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 12.5 != line 6.5"
+        },
+        {
+          "player": "Rashee Rice",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 10.5 != line 3.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #6",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #10|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Adam Trautman",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 4.5 != line 0.5"
+        },
+        {
+          "player": "Pat Surtain II",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 7.5 != line 2.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #6",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #11|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Noah Gray",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 3.5 != line 0.5"
+        },
+        {
+          "player": "Tyquan Thornton",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 4.5 != line 0.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #6",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #10|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Rashee Rice",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 10.5 != line 3.5"
+        },
+        {
+          "player": "Adam Trautman",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 4.5 != line 0.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #6",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #11|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Pat Surtain II",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 7.5 != line 2.5"
+        },
+        {
+          "player": "Noah Gray",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 3.5 != line 0.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-14.json",
+      "group": "NFL Standard 2-Leg #6",
+      "ticket_id": "2026-09-14|NFL Standard 2-Leg #12|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Pat Surtain II",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 7.5 != line 2.5"
+        },
+        {
+          "player": "Brashard Smith",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 1.5 != line 0.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-17.json",
+      "group": "NFL Standard 2-Leg #4",
+      "ticket_id": "2026-09-17|NFL Standard 2-Leg #4|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "James Cook III",
+          "prop": "rush_yards_per_carry",
+          "direction": "OVER",
+          "line": 4.3,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 4.3"
+        },
+        {
+          "player": "Khalil Shakir",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 123.5 != line 19.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-17.json",
+      "group": "NFL Standard 2-Leg #4",
+      "ticket_id": "2026-09-17|NFL Standard 2-Leg #4|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "James Cook III",
+          "prop": "rush_yards_per_carry",
+          "direction": "OVER",
+          "line": 4.3,
+          "pick_type": "Standard",
+          "verdict": "single_line_unverified",
+          "evidence": "single line 4.3"
+        },
+        {
+          "player": "Khalil Shakir",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 123.5 != line 19.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-17.json",
+      "group": "NFL Standard 2-Leg #5",
+      "ticket_id": "2026-09-17|NFL Standard 2-Leg #5|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Khalil Shakir",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 24.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 123.5 != line 24.5"
+        },
+        {
+          "player": "Tyler Bass",
+          "prop": "kicking_points",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 12.5 != line 5.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-17.json",
+      "group": "NFL Standard 2-Leg #5",
+      "ticket_id": "2026-09-17|NFL Standard 2-Leg #5|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Khalil Shakir",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 24.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 123.5 != line 24.5"
+        },
+        {
+          "player": "Tyler Bass",
+          "prop": "kicking_points",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 12.5 != line 5.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-17.json",
+      "group": "NFL Standard 2-Leg #6",
+      "ticket_id": "2026-09-17|NFL Standard 2-Leg #6|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Tyler Bass",
+          "prop": "kicking_points",
+          "direction": "OVER",
+          "line": 6.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 12.5 != line 6.5"
+        },
+        {
+          "player": "Greg Rousseau",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 7.5 != line 1.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-17.json",
+      "group": "NFL Standard 2-Leg #6",
+      "ticket_id": "2026-09-17|NFL Standard 2-Leg #6|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Tyler Bass",
+          "prop": "kicking_points",
+          "direction": "OVER",
+          "line": 6.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 12.5 != line 6.5"
+        },
+        {
+          "player": "Greg Rousseau",
+          "prop": "tackles_ast",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 7.5 != line 1.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-28.json",
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "ticket_id": "2026-09-28|NFL Standard 2-Leg #2|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Luther Burden III",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 104.5 != line 19.5"
+        },
+        {
+          "player": "Kyle Monangai",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 6.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 39.5 != line 6.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-28.json",
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "ticket_id": "2026-09-28|NFL Standard 2-Leg #3|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Luther Burden III",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 14.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 104.5 != line 14.5"
+        },
+        {
+          "player": "Kyle Monangai",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 39.5 != line 4.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-28.json",
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "ticket_id": "2026-09-28|NFL Standard 2-Leg #4|1",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Kyle Monangai",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 9.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 39.5 != line 9.5"
+        },
+        {
+          "player": "Luther Burden III",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 7.5 != line 2.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-28.json",
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "ticket_id": "2026-09-28|NFL Standard 2-Leg #2|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Luther Burden III",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 105.5 != line 19.5"
+        },
+        {
+          "player": "Kyle Monangai",
+          "prop": "receiving_yards",
+          "direction": "OVER",
+          "line": 8.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 39.5 != line 8.5"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "file": "H:\\PropORACLE_main_cp\\ui_runner\\data\\combined_slate_tickets_2026-09-28.json",
+      "group": "TENNIS 3-Leg Goblin OVER",
+      "ticket_id": "2026-09-28|NFL Standard 2-Leg #4|2",
+      "ticket_track": "graded_main",
+      "placed": null,
+      "result": null,
+      "legs": [
+        {
+          "player": "Kyle Monangai",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 4.5 != line 0.5"
+        },
+        {
+          "player": "Luther Burden III",
+          "prop": "receptions",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "verdict": "goblin_rung",
+          "evidence": "standard_line 7.5 != line 2.5"
+        }
+      ]
+    }
+  ],
+  "note": "date_status default_labels = graded set had zero Goblin/Demon that day (pick_type defaulted). Verdicts come from the ladder of lines seen for that player-prop-date: min of 3+ = Goblin rung, max of 3+ = Demon rung, 2 rungs without a cross-book line = ambiguous. A single line stays valid but face_unverified. 'placed' is the Goblin-70 EV flag, not a PrizePicks submit; account_placed_rows is the website checkbox."
+}

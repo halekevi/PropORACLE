@@ -1,0 +1,330 @@
+{
+  "generated_at": "2026-08-22T05:10:42+00:00",
+  "sport": "SOCCER",
+  "window": [
+    "2026-05-01",
+    "2026-08-16"
+  ],
+  "dates_n": 58,
+  "step8_enriched_days": 4,
+  "pools": {
+    "baseline_std_gob": {
+      "n": 37643,
+      "hits": 7188,
+      "misses": 30455,
+      "hr": 0.19095183699492602,
+      "hr_pct": 19.1
+    },
+    "Goblin_OVER_only": {
+      "n": 7151,
+      "hits": 2245,
+      "misses": 4906,
+      "hr": 0.31394210599916095,
+      "hr_pct": 31.4
+    },
+    "Standard_only": {
+      "n": 30065,
+      "hits": 4647,
+      "misses": 25418,
+      "hr": 0.15456510893065026,
+      "hr_pct": 15.5
+    },
+    "D_align": {
+      "n": 11311,
+      "hits": 1970,
+      "misses": 9341,
+      "hr": 0.17416674034126073,
+      "hr_pct": 17.4
+    },
+    "L5ge4": {
+      "n": 1191,
+      "hits": 682,
+      "misses": 509,
+      "hr": 0.5726280436607892,
+      "hr_pct": 57.3
+    },
+    "L5_4_D": {
+      "n": 289,
+      "hits": 168,
+      "misses": 121,
+      "hr": 0.5813148788927336,
+      "hr_pct": 58.1
+    },
+    "L5_5_D": {
+      "n": 97,
+      "hits": 59,
+      "misses": 38,
+      "hr": 0.6082474226804123,
+      "hr_pct": 60.8
+    },
+    "MAIN": {
+      "n": 92,
+      "hits": 59,
+      "misses": 33,
+      "hr": 0.6413043478260869,
+      "hr_pct": 64.1
+    },
+    "L5_5_D_AND_MAIN": {
+      "n": 5,
+      "hits": 4,
+      "misses": 1,
+      "hr": 0.8,
+      "hr_pct": 80.0
+    },
+    "Goblin_L5ge4_L10ge4": {
+      "n": 815,
+      "hits": 291,
+      "misses": 524,
+      "hr": 0.3570552147239264,
+      "hr_pct": 35.7
+    },
+    "Goblin_L5ge4_L10ge6": {
+      "n": 770,
+      "hits": 271,
+      "misses": 499,
+      "hr": 0.35194805194805195,
+      "hr_pct": 35.2
+    },
+    "Goblin_L5ge4_L10ge8": {
+      "n": 688,
+      "hits": 230,
+      "misses": 458,
+      "hr": 0.33430232558139533,
+      "hr_pct": 33.4
+    },
+    "Goblin_OVER_D_align": {
+      "n": 1129,
+      "hits": 351,
+      "misses": 778,
+      "hr": 0.31089459698848537,
+      "hr_pct": 31.1
+    },
+    "Goblin_OVER_L5ge4_D": {
+      "n": 58,
+      "hits": 31,
+      "misses": 27,
+      "hr": 0.5344827586206896,
+      "hr_pct": 53.4
+    }
+  },
+  "lift_vs_baseline_pp": {
+    "Goblin_OVER_only": 12.3,
+    "Standard_only": -3.6,
+    "D_align": -1.7,
+    "L5ge4": 38.2,
+    "L5_4_D": 39.0,
+    "L5_5_D": 41.7,
+    "MAIN": 45.0,
+    "L5_5_D_AND_MAIN": 60.9,
+    "Goblin_L5ge4_L10ge4": 16.6,
+    "Goblin_L5ge4_L10ge6": 16.1,
+    "Goblin_L5ge4_L10ge8": 14.3,
+    "Goblin_OVER_D_align": 12.0,
+    "Goblin_OVER_L5ge4_D": 34.3
+  },
+  "MAIN_by_pick": {
+    "Goblin": {
+      "n": 89,
+      "hits": 56,
+      "misses": 33,
+      "hr": 0.6292134831460674,
+      "hr_pct": 62.9
+    },
+    "Standard": {
+      "n": 3,
+      "hits": 3,
+      "misses": 0,
+      "hr": 1.0,
+      "hr_pct": 100.0
+    }
+  },
+  "MAIN_by_prop": {
+    "Shots": {
+      "n": 61,
+      "hits": 39,
+      "misses": 22,
+      "hr": 0.639344262295082,
+      "hr_pct": 63.9
+    },
+    "Goalie Saves": {
+      "n": 17,
+      "hits": 9,
+      "misses": 8,
+      "hr": 0.5294117647058824,
+      "hr_pct": 52.9
+    },
+    "Shots On Target": {
+      "n": 13,
+      "hits": 10,
+      "misses": 3,
+      "hr": 0.7692307692307693,
+      "hr_pct": 76.9
+    },
+    "Fouls": {
+      "n": 1,
+      "hits": 1,
+      "misses": 0,
+      "hr": 1.0,
+      "hr_pct": 100.0
+    }
+  },
+  "L5_5_D_by_pick": {
+    "Standard": {
+      "n": 84,
+      "hits": 52,
+      "misses": 32,
+      "hr": 0.6190476190476191,
+      "hr_pct": 61.9
+    },
+    "Goblin": {
+      "n": 13,
+      "hits": 7,
+      "misses": 6,
+      "hr": 0.5384615384615384,
+      "hr_pct": 53.8
+    }
+  },
+  "L5_5_D_by_prop": {
+    "Shots": {
+      "n": 59,
+      "hits": 39,
+      "misses": 20,
+      "hr": 0.6610169491525424,
+      "hr_pct": 66.1
+    },
+    "Goalie Saves": {
+      "n": 26,
+      "hits": 17,
+      "misses": 9,
+      "hr": 0.6538461538461539,
+      "hr_pct": 65.4
+    },
+    "Goal + Assist": {
+      "n": 4,
+      "hits": 0,
+      "misses": 4,
+      "hr": 0.0,
+      "hr_pct": 0.0
+    },
+    "Goals": {
+      "n": 4,
+      "hits": 2,
+      "misses": 2,
+      "hr": 0.5,
+      "hr_pct": 50.0
+    },
+    "Shots On Target": {
+      "n": 3,
+      "hits": 1,
+      "misses": 2,
+      "hr": 0.3333333333333333,
+      "hr_pct": 33.3
+    },
+    "Fouls": {
+      "n": 1,
+      "hits": 0,
+      "misses": 1,
+      "hr": 0.0,
+      "hr_pct": 0.0
+    }
+  },
+  "baseline_by_prop_top": {
+    "Shots": {
+      "n": 14245,
+      "hits": 3173,
+      "misses": 11072,
+      "hr": 0.22274482274482274,
+      "hr_pct": 22.3
+    },
+    "Fouls": {
+      "n": 5482,
+      "hits": 1095,
+      "misses": 4387,
+      "hr": 0.1997446187522802,
+      "hr_pct": 20.0
+    },
+    "Goal + Assist": {
+      "n": 4429,
+      "hits": 519,
+      "misses": 3910,
+      "hr": 0.11718220817340258,
+      "hr_pct": 11.7
+    },
+    "Goals": {
+      "n": 3967,
+      "hits": 377,
+      "misses": 3590,
+      "hr": 0.09503403075371818,
+      "hr_pct": 9.5
+    },
+    "Assists": {
+      "n": 3676,
+      "hits": 256,
+      "misses": 3420,
+      "hr": 0.06964091403699674,
+      "hr_pct": 7.0
+    },
+    "Fouls Drawn": {
+      "n": 1988,
+      "hits": 574,
+      "misses": 1414,
+      "hr": 0.2887323943661972,
+      "hr_pct": 28.9
+    },
+    "Goalie Saves": {
+      "n": 1960,
+      "hits": 692,
+      "misses": 1268,
+      "hr": 0.35306122448979593,
+      "hr_pct": 35.3
+    },
+    "Shots On Target": {
+      "n": 1771,
+      "hits": 431,
+      "misses": 1340,
+      "hr": 0.24336533032185206,
+      "hr_pct": 24.3
+    },
+    "Offsides": {
+      "n": 47,
+      "hits": 18,
+      "misses": 29,
+      "hr": 0.3829787234042553,
+      "hr_pct": 38.3
+    },
+    "Shots (Combo)": {
+      "n": 38,
+      "hits": 29,
+      "misses": 9,
+      "hr": 0.7631578947368421,
+      "hr_pct": 76.3
+    },
+    "Shots On Target (Combo)": {
+      "n": 32,
+      "hits": 20,
+      "misses": 12,
+      "hr": 0.625,
+      "hr_pct": 62.5
+    },
+    "Goalie Saves (Combo)": {
+      "n": 4,
+      "hits": 3,
+      "misses": 1,
+      "hr": 0.75,
+      "hr_pct": 75.0
+    }
+  },
+  "verdict": {
+    "baseline_hr_pct": 19.1,
+    "best_pool_n30": "MAIN",
+    "best_hr_pct": 64.1,
+    "best_n": 92,
+    "best_lift_pp": 45.0,
+    "main_hr_pct": 64.1,
+    "main_n": 92,
+    "l5_5_d_hr_pct": 60.8,
+    "l5_5_d_n": 97,
+    "clears_70": false,
+    "summary": "Soccer baseline 19.1%; MAIN 64.1% (n=92); L5=5+D 60.8% (n=97); best n>=30 = MAIN @ 64.1%."
+  }
+}

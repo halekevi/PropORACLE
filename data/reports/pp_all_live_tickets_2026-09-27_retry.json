@@ -1,0 +1,126 @@
+{
+  "planned": 9,
+  "skipped": [
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|2",
+      "reason": "leg_gone"
+    },
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|3",
+      "reason": "leg_gone"
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|1",
+      "reason": "leg_gone"
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|3",
+      "reason": "leg_gone"
+    },
+    {
+      "id": "2026-09-27|YOLO Standard Power 4|1",
+      "reason": "leg_gone"
+    },
+    {
+      "id": "2026-09-27|STRONG 3-Leg|2",
+      "reason": "leg_gone"
+    }
+  ],
+  "resolved": [
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|1",
+      "legs": [
+        [
+          "J.K. Dobbins",
+          "Rush Yards",
+          29.5,
+          false
+        ],
+        [
+          "Tre Tucker",
+          "Rec Yards",
+          14.5,
+          false
+        ],
+        [
+          "Chase McLaughlin",
+          "FG Made",
+          0.5,
+          false
+        ]
+      ]
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|1",
+      "legs": [
+        [
+          "James Duckworth",
+          "Total Games",
+          17.5,
+          false
+        ],
+        [
+          "Michael Soroka",
+          "Earned Runs Allowed",
+          0.5,
+          false
+        ],
+        [
+          "Sean Manaea",
+          "Earned Runs Allowed",
+          0.5,
+          false
+        ]
+      ]
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|2",
+      "legs": [
+        [
+          "Andre Pallante",
+          "Earned Runs Allowed",
+          0.5,
+          false
+        ],
+        [
+          "Shane Baz",
+          "Earned Runs Allowed",
+          0.5,
+          false
+        ],
+        [
+          "Shota Imanaga",
+          "Earned Runs Allowed",
+          0.5,
+          false
+        ]
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|1",
+      "ok": false,
+      "fails": [
+        "J.K. Dobbins"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|1",
+      "ok": false,
+      "fails": [
+        "James Duckworth"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|2",
+      "ok": false,
+      "fails": [
+        "Locator.click: Timeout 2500ms exceeded.\nCall log:\n  - waiting for locator(\"button\").filter(has_text=re.compile(r\"^(\\+\\s*)?More$\", re.IGNORECASE)).nth(5)\n"
+      ],
+      "n": 0
+    }
+  ]
+}

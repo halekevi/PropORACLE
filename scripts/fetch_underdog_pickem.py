@@ -4,10 +4,14 @@ Fetch Underdog Fantasy pick'em lines from the public board API and write a
 PrizePicks-shaped CSV (plus source_book / Underdog ids).
 
 Endpoint (unauthenticated, browser-like headers):
-  GET https://api.underdogfantasy.com/v1/over_under_lines
+  GET https://api.underdogfantasy.com/beta/v5/over_under_lines
+
+v1 of the same path only returns the main (balanced / ~1.87x) rung. v5 also
+returns ``line_type=alternate`` ladder rungs (the up/down arrows on the card).
 
 Sports match Underdog's sport_id on games/solo_games (e.g. NBA, NHL, MLB, CBB,
-WCBB, FIFA, TENNIS). Use --sport ALL for every open line.
+WCBB, FIFA, TENNIS, PGA). Use --sport ALL for every open line (pipeline default).
+Aliases: soccer=FIFA/MASL/UFL, tennis=TENNIS, golf=PGA/GOLF, nfl=NFL/NFLP.
 
 Examples:
   py -3 scripts/fetch_underdog_pickem.py --sport NBA --output ud_nba.csv
@@ -25,7 +29,7 @@ import os
 import random
 import sys
 import time
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 import pandas as pd
 import requests
@@ -36,7 +40,7 @@ if _SCRIPT_DIR not in sys.path:
 
 from pickem_step1_schema import OUTPUT_COLUMNS
 
-API_URL = "https://api.underdogfantasy.com/v1/over_under_lines"
+API_URL = "https://api.underdogfantasy.com/beta/v5/over_under_lines"
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
@@ -62,6 +66,10 @@ SPORT_ALIASES: Dict[str, List[str]] = {
     "ufl": ["UFL"],
     "esports": ["CS", "LOL", "VAL", "ESPORTS"],
     "tennis": ["TENNIS"],
+    "nfl": ["NFL", "NFLP"],
+    "cfb": ["CFB"],
+    "golf": ["PGA", "GOLF"],
+    "pga": ["PGA"],
 }
 
 
@@ -101,18 +109,75 @@ def _opp_team(player_abbr: str, home: str, away: str) -> str:
     return ""
 
 
-def _pick_type(line: dict) -> str:
-    nd = line.get("non_discounted_stat_value")
+def _over_under_id(line: dict) -> str:
+    return str(
+        line.get("over_under_id")
+        or (line.get("over_under") or {}).get("id")
+        or ""
+    ).strip()
+
+
+def _pick_type(line: dict, balanced_value: object = None) -> str:
+    """Map Underdog rungs onto PrizePicks pick_type labels.
+
+    Balanced (~even Higher/Lower) → Standard.
+    Alternate below the main line → Goblin (easier Over).
+    Alternate above the main line → Demon (harder Over).
+    """
+    lt = str(line.get("line_type") or "").lower()
     sv = line.get("stat_value")
+    if lt == "alternate":
+        ref = balanced_value if balanced_value is not None else line.get("non_discounted_stat_value")
+        try:
+            alt = float(sv)
+            bal = float(ref)
+            if alt < bal - 1e-9:
+                return "Goblin"
+            if alt > bal + 1e-9:
+                return "Demon"
+        except (TypeError, ValueError):
+            pass
+        higher_mult = _higher_payout_multiplier(line)
+        if higher_mult is not None and higher_mult < 0.99:
+            return "Goblin"
+        if higher_mult is not None and higher_mult > 1.01:
+            return "Demon"
+        return "Standard"
+    nd = line.get("non_discounted_stat_value")
     try:
         if nd is not None and sv is not None and float(nd) != float(sv):
             return "Goblin"
     except (TypeError, ValueError):
         pass
-    lt = str(line.get("line_type") or "").lower()
     if "discount" in lt or lt == "boosted":
         return "Goblin"
     return "Standard"
+
+
+def _higher_payout_multiplier(line: dict) -> Optional[float]:
+    for opt in line.get("options") or []:
+        if not isinstance(opt, dict):
+            continue
+        if str(opt.get("choice") or "").lower() != "higher":
+            continue
+        try:
+            return float(opt.get("payout_multiplier"))
+        except (TypeError, ValueError):
+            return None
+    return None
+
+
+def _balanced_line_by_over_under(payload: dict) -> Dict[str, object]:
+    out: Dict[str, object] = {}
+    for line in payload.get("over_under_lines") or []:
+        if not isinstance(line, dict):
+            continue
+        if str(line.get("line_type") or "").lower() != "balanced":
+            continue
+        ouid = _over_under_id(line)
+        if ouid:
+            out[ouid] = line.get("stat_value")
+    return out
 
 
 def _expand_sports_arg(sports_csv: str) -> Optional[Set[str]]:
@@ -181,6 +246,7 @@ def build_rows(payload: dict, sport_filter: Optional[Set[str]]) -> List[dict]:
             app_by_id[aid] = app
 
     rows: List[dict] = []
+    balanced_by_ou = _balanced_line_by_over_under(payload)
     for line in payload.get("over_under_lines") or []:
         if str(line.get("status") or "").lower() != "active":
             continue
@@ -237,6 +303,8 @@ def build_rows(payload: dict, sport_filter: Optional[Set[str]]) -> List[dict]:
         line_val = line.get("stat_value")
 
         line_id = str(line.get("stable_id") or line.get("id") or "").strip()
+        ouid = _over_under_id(line)
+        lt = str(line.get("line_type") or "balanced").strip() or "balanced"
 
         rows.append(
             {
@@ -251,7 +319,7 @@ def build_rows(payload: dict, sport_filter: Optional[Set[str]]) -> List[dict]:
                 "opp_team": opp,
                 "prop_type": prop_type,
                 "line": line_val,
-                "pick_type": _pick_type(line),
+                "pick_type": _pick_type(line, balanced_by_ou.get(ouid)),
                 "pp_home_team": home_abbr,
                 "pp_away_team": away_abbr,
                 "image_url": image_url,
@@ -259,6 +327,7 @@ def build_rows(payload: dict, sport_filter: Optional[Set[str]]) -> List[dict]:
                 "ud_sport_id": ud_sport,
                 "ud_line_id": str(line.get("id") or "").strip(),
                 "ud_stat_key": stat_key,
+                "ud_line_type": lt,
             }
         )
 
@@ -303,7 +372,16 @@ def main() -> None:
     else:
         df["line"] = pd.to_numeric(df["line"], errors="coerce")
         df = df.drop_duplicates(subset=["projection_id"], keep="first").reset_index(drop=True)
+        for c in OUTPUT_COLUMNS:
+            if c not in df.columns:
+                df[c] = ""
         df = df[OUTPUT_COLUMNS]
+        n_alt = int((df["ud_line_type"].astype(str).str.lower() == "alternate").sum()) if "ud_line_type" in df.columns else 0
+        print(
+            f"[underdog] {len(df)} rows ({n_alt} alternate rungs, "
+            f"{int((df['pick_type'] == 'Goblin').sum())} Goblin, "
+            f"{int((df['pick_type'] == 'Demon').sum())} Demon)"
+        )
 
     df.to_csv(args.output, index=False, encoding="utf-8-sig")
     print(f"[ok] {len(df)} rows -> {args.output}")

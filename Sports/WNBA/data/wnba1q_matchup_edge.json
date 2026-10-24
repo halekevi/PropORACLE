@@ -1,0 +1,206 @@
+{
+  "sport": "wnba1q",
+  "display_name": "WNBA 1Q",
+  "matchup_mode": "team",
+  "generated_at": "2026-10-21T19:02:43.801794+00:00",
+  "slate_note": "",
+  "n_teams": 15,
+  "elite_rank_cut": 4,
+  "weak_rank_cut": 10,
+  "opp_metric_label": "Opp def rank",
+  "categories": [
+    {
+      "id": "pts",
+      "label": "Points (1Q)",
+      "threshold": 5.0
+    },
+    {
+      "id": "reb",
+      "label": "Rebounds (1Q)",
+      "threshold": 2.0
+    },
+    {
+      "id": "ast",
+      "label": "Assists (1Q)",
+      "threshold": 1.5
+    }
+  ],
+  "teams": [
+    {
+      "def_key": "ATL",
+      "slate_abbr": "ATL",
+      "name": "Atlanta Dream",
+      "def_rank": 9,
+      "def_tier": "Avg"
+    },
+    {
+      "def_key": "GS",
+      "slate_abbr": "GSV",
+      "name": "Golden State Valkyries",
+      "def_rank": 1,
+      "def_tier": "Elite"
+    }
+  ],
+  "matchups": {
+    "GSV": {
+      "opponent_slate": "ATL",
+      "opponent_name": "Atlanta Dream",
+      "opponent_def_rank": 9,
+      "opponent_def_tier": "Avg",
+      "team_def_rank": 1,
+      "team_def_tier": "Elite"
+    },
+    "ATL": {
+      "opponent_slate": "GSV",
+      "opponent_name": "Golden State Valkyries",
+      "opponent_def_rank": 1,
+      "opponent_def_tier": "Elite",
+      "team_def_rank": 9,
+      "team_def_tier": "Avg"
+    }
+  },
+  "players_by_team_cat": {
+    "ATL|pts": {
+      "team_slate": "ATL",
+      "category": "pts",
+      "category_label": "Points (1Q)",
+      "threshold": 5.0,
+      "opponent": {
+        "slate_abbr": "GSV",
+        "name": "Golden State Valkyries",
+        "def_rank": 1,
+        "def_tier": "Elite"
+      },
+      "players": [
+        {
+          "player": "Angel Reese",
+          "player_norm": "angel reese",
+          "pos": "",
+          "rank_on_team": 1,
+          "leader_slice": "top",
+          "season_avg": 18.1,
+          "game_score": 18.1,
+          "edge": "TOP_EDGE",
+          "notes": "PP edge +17.6 on board tonight vs #1 defense.",
+          "overperform_vs_weak": false,
+          "def_boost": null,
+          "pp_line": 3.5,
+          "pp_edge": 17.59
+        },
+        {
+          "player": "Allisha Gray",
+          "player_norm": "allisha gray",
+          "pos": "",
+          "rank_on_team": 2,
+          "leader_slice": "top",
+          "season_avg": 16.4,
+          "game_score": 16.4,
+          "edge": "TOP_EDGE",
+          "notes": "PP edge +14.9 on board tonight vs #1 defense.",
+          "overperform_vs_weak": false,
+          "def_boost": null,
+          "pp_line": 3.5,
+          "pp_edge": 14.94
+        },
+        {
+          "player": "Jordin Canada",
+          "player_norm": "jordin canada",
+          "pos": "",
+          "rank_on_team": 3,
+          "leader_slice": "top",
+          "season_avg": 15.9,
+          "game_score": 15.9,
+          "edge": "TOP_EDGE",
+          "notes": "PP edge +15.7 on board tonight vs #1 defense.",
+          "overperform_vs_weak": false,
+          "def_boost": null,
+          "pp_line": 2.5,
+          "pp_edge": 15.69
+        },
+        {
+          "player": "Rhyne Howard",
+          "player_norm": "rhyne howard",
+          "pos": "",
+          "rank_on_team": 4,
+          "leader_slice": "top",
+          "season_avg": 15.1,
+          "game_score": 15.1,
+          "edge": "TOP_EDGE",
+          "notes": "PP edge +12.7 on board tonight vs #1 defense.",
+          "overperform_vs_weak": false,
+          "def_boost": null,
+          "pp_line": 3.5,
+          "pp_edge": 12.69
+        }
+      ]
+    },
+    "GSV|pts": {
+      "team_slate": "GSV",
+      "category": "pts",
+      "category_label": "Points (1Q)",
+      "threshold": 5.0,
+      "opponent": {
+        "slate_abbr": "ATL",
+        "name": "Atlanta Dream",
+        "def_rank": 9,
+        "def_tier": "Avg"
+      },
+      "players": [
+        {
+          "player": "Gabby Williams",
+          "player_norm": "gabby williams",
+          "pos": "",
+          "rank_on_team": 1,
+          "leader_slice": "top",
+          "season_avg": 20.7,
+          "game_score": 20.7,
+          "edge": "TOP_EDGE",
+          "notes": "PP edge +16.9 on board tonight vs #9 defense.",
+          "overperform_vs_weak": false,
+          "def_boost": null,
+          "pp_line": 3.5,
+          "pp_edge": 16.95
+        },
+        {
+          "player": "Veronica Burton",
+          "player_norm": "veronica burton",
+          "pos": "",
+          "rank_on_team": 2,
+          "leader_slice": "top",
+          "season_avg": 10.3,
+          "game_score": 10.3,
+          "edge": "TOP_EDGE",
+          "notes": "PP edge +6.2 on board tonight vs #9 defense.",
+          "overperform_vs_weak": false,
+          "def_boost": null,
+          "pp_line": 2.5,
+          "pp_edge": 6.25
+        },
+        {
+          "player": "Cecilia Zandalasini",
+          "player_norm": "cecilia zandalasini",
+          "pos": "",
+          "rank_on_team": 3,
+          "leader_slice": "top",
+          "season_avg": 7.3,
+          "game_score": 7.3,
+          "edge": "TOP_EDGE",
+          "notes": "PP edge +4.4 on board tonight vs #9 defense.",
+          "overperform_vs_weak": false,
+          "def_boost": null,
+          "pp_line": 2.5,
+          "pp_edge": 4.35
+        }
+      ]
+    }
+  },
+  "edge_legend": {
+    "TOP_EDGE": "Positive PP edge (+1.5+) or strong avg vs soft defense (high rank = weak).",
+    "OK_EDGE": "PP edge on board or solid production vs average-or-softer defense.",
+    "TOP_UNDER": "PP edge -2+ vs elite defense, or historically fades vs elite D.",
+    "OK_UNDER": "Negative PP edge vs elite defense \u2014 lean UNDER.",
+    "NEUTRAL": "No clear edge.",
+    "AVOID": "Negative PP edge without elite matchup \u2014 skip OVER."
+  },
+  "source_hash": "6db1ee662b713bf86639"
+}

@@ -2,7 +2,7 @@
 
 Living one-pager for after a break. Update when something big ships (model promote, pool-mode change, sport season flip, experiment ship/kill). Not a C4 diagram.
 
-**As of:** 2026-07-20 (STRONG 2+3 leg p_win floors / 0.76 leg ceiling)  
+**As of:** 2026-08-27 (cache-enriched candidate isolated; production still Jun-13)  
 **Ops overview (audiences + daily cadence):** [guides/DAILY_OPS_OVERVIEW.md](guides/DAILY_OPS_OVERVIEW.md)
 
 ---
@@ -13,11 +13,11 @@ Living one-pager for after a break. Update when something big ships (model promo
 |------|--------|------|
 | **Active edge model** | `models/edge_model_unified.pkl` | Trained **2026-06-13**; overall AUC **0.7567** (calibrated = same). Tennis excluded from tree training. |
 | **Edge metadata** | `models/edge_model_metadata.json` | Points at the Jun-13 no-tennis artifact; slice isotonic refresh exists separately. |
-| **Jul 9 candidate** | `models/edge_model_candidate.pkl` | Evaluated; **production kept** (not promoted). |
+| **Aug 27 candidate** | `models/edge_model_candidate.pkl` | Cache-enriched holdout **0.7826** (Goblin corr **0.296**, WNBA **0.618**). **Not promoted:** WNBA still below prod 0.689; no NBA/NHL in Jul–Aug test. Usage/stat_def/surface now fill from season caches (`scripts/enrich_retrain_from_caches.py`). |
 | **Active MAIN pool mode** | `high_prob_std_gob` (live filters) | Mixed Standard+Goblin high-prob MAIN; see `combined_slate_tickets` filters on latest tickets. Standard legs also use **prop×direction** gates (`_STANDARD_PROP_GATE_*`). |
 | **STRONG gate** | Rolling HR + player appearance cap; 2+3 leg p_win | Exclude players with rolling HR &lt; 0.25 when n ≥ 20; max appearances per slate (env `PROPORACLE_STRONG_MAX_PLAYER_APPS`, default 2). Ticket floors: 2-leg ≥ **0.45**, 3-leg ≥ **0.35** (clears common 0.72³ legs); STRONG per-leg p_win ceiling **0.76** (`PROPORACLE_STRONG_MAX_LEG_PROB`) so stronger ML/L5 legs rank above the clip (MAIN stays on 0.72). |
 | **Ticket model** | `models/ticket_model*.pkl` | Registry refreshed 2026-07-09; combined AUC test ~0.67 (cash label). Secondary to edge model for day-to-day. |
-| **Next edge retrain** | **~2026-08-14** | ~2 months after Jun-13 promote; see **Aug 14 retrain pre-work** below. |
+| **Next edge retrain** | WNBA holdout still the blocker | Enrichment fill is now >85% on WNBA/NBA from caches. Need WNBA ≥ prod 0.689 and/or a mid-season NBA/NHL slice before promote. |
 | **Void settlement** | Reduced-slip (not miss) | `scripts/build_ticket_eval.py`: provider VOID / NO_ACTUAL → drop leg, pay reduced tier; &lt;2 playable → refund / no contest. |
 | **Live payout rate card** | `data/reports/payout_rate_card.json` | Mix-grid fit 2026-07-11: `goblin_discount_per_unit` bucket **1.0 = 0.1521** (n=4). Fill **1.5 / 2.0** buckets before treating curve as final. |
 | **Post-ticket payout scrape** | `scripts/run_live_payout_capture.ps1` | Scheduled **Payout CDP @ 11:00** (after 10:30 refresh). Midday refresh uses `-UpdateOnly`. Skip: `-SkipLivePayoutCapture` / `PROPORACLE_SKIP_LIVE_PAYOUT=1`. |

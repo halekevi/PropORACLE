@@ -786,6 +786,7 @@ select option,
 [data-theme="light"] .sbadge.fresh { background:rgba(26,140,69,.10) !important; }
 [data-theme="light"] .sbadge.stale { background:rgba(179,96,0,.10) !important; }
 [data-theme="light"] .sbadge.missing { background:rgba(204,34,0,.10) !important; }
+[data-theme="light"] .tier-S { background:rgba(180,140,40,.14) !important; }
 [data-theme="light"] .tier-A { background:rgba(75,111,150,.10) !important; }
 [data-theme="light"] .tier-B { background:rgba(0,119,204,.10) !important; }
 [data-theme="light"] .tier-C { background:rgba(102,68,187,.10) !important; }
@@ -1326,6 +1327,7 @@ body > nav.snav.glass-card {
   .conf-dot.conf-medium{background:#e6c84a;box-shadow:0 0 4px rgba(230,200,74,.35);}
   .conf-dot.conf-low{background:#e85d5d;box-shadow:0 0 4px rgba(232,93,93,.4);}
   .conf-dot.conf-tracking{background:#6b7280;opacity:.85;}
+  .tier-S{background:rgba(255,215,120,.18);color:#f0d060;border:1px solid rgba(240,208,96,.45);}
   .tier-A{background:rgba(212,175,55,.12);color:var(--accent);border:1px solid rgba(212,175,55,.25);}
   .tier-B{background:rgba(127,199,217,.1);color:var(--cyan);border:1px solid rgba(127,199,217,.2);}
   .tier-C{background:rgba(183,168,255,.1);color:var(--purple);border:1px solid rgba(183,168,255,.2);}
@@ -1788,6 +1790,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-nba-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('nba','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('nba','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('nba','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('nba','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('nba','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('nba','C',this)">C</button>
@@ -1827,6 +1830,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-nba1h-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('nba1h','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('nba1h','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('nba1h','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('nba1h','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('nba1h','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('nba1h','C',this)">C</button>
@@ -1866,6 +1870,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-nba1q-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('nba1q','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('nba1q','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('nba1q','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('nba1q','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('nba1q','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('nba1q','C',this)">C</button>
@@ -1905,6 +1910,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-cbb-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('cbb','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('cbb','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('cbb','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('cbb','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('cbb','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('cbb','C',this)">C</button>
@@ -1944,6 +1950,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-cfb-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('cfb','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('cfb','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('cfb','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('cfb','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('cfb','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('cfb','C',this)">C</button>
@@ -1983,6 +1990,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-nhl-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('nhl','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('nhl','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('nhl','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('nhl','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('nhl','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('nhl','C',this)">C</button>
@@ -2022,6 +2030,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-soccer-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('soccer','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('soccer','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('soccer','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('soccer','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('soccer','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('soccer','C',this)">C</button>
@@ -2061,6 +2070,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-mlb-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('mlb','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('mlb','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('mlb','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('mlb','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('mlb','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('mlb','C',this)">C</button>
@@ -2100,6 +2110,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-nfl-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('nfl','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('nfl','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('nfl','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('nfl','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('nfl','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('nfl','C',this)">C</button>
@@ -2139,6 +2150,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-tennis-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('tennis','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('tennis','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('tennis','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('tennis','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('tennis','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('tennis','C',this)">C</button>
@@ -2203,6 +2215,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-wnba-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('wnba','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('wnba','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('wnba','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('wnba','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('wnba','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('wnba','C',this)">C</button>
@@ -2242,6 +2255,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-wnba1h-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('wnba1h','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('wnba1h','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('wnba1h','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('wnba1h','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('wnba1h','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('wnba1h','C',this)">C</button>
@@ -2281,6 +2295,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-wnba1q-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('wnba1q','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('wnba1q','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('wnba1q','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('wnba1q','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('wnba1q','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('wnba1q','C',this)">C</button>
@@ -2321,6 +2336,7 @@ body > nav.snav.glass-card {
         <button class="slate-filter-btn" id="sfb-combined-ud" type="button" title="Underdog-only picks or props with a matched Underdog line" onclick="togglePlatformFilter('combined','underdog',this)">Underdog</button>
         <span class="slate-tier-group" role="group" aria-label="Tier filter">
           <button type="button" class="slate-filter-btn slate-tier-btn on" data-tier="" onclick="setSlateTierFilter('combined','',this)">All</button>
+          <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="S" onclick="setSlateTierFilter('combined','S',this)">S</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="A" onclick="setSlateTierFilter('combined','A',this)">A</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="B" onclick="setSlateTierFilter('combined','B',this)">B</button>
           <button type="button" class="slate-filter-btn slate-tier-btn" data-tier="C" onclick="setSlateTierFilter('combined','C',this)">C</button>
@@ -2330,6 +2346,7 @@ body > nav.snav.glass-card {
       </div>
       <div class="slate-table-wrap"><table class="slate-table" id="st-combined">
         <thead><tr><th style="color:var(--muted2);">Loading…</th></tr></thead>
+        <tbody id="stb-combined"></tbody>
       </table></div>
     </div>
 
@@ -4117,6 +4134,9 @@ async function refreshStatus() {
   const tennisMd = d.tennis_match_day || tennisMatchDayEt();
   if (tennisVal && tennisMd) tennisVal.textContent = tennisMd;
   applyStatusCard("wnba",     d.wnba?.slate,     "WNBA Slate", statusOpts("wnba"));
+  const wnbaVal = document.getElementById("sc-wnba-val");
+  const wnbaMd = d.wnba_match_day;
+  if (wnbaVal && wnbaMd && d.wnba?.slate?.exists) wnbaVal.textContent = wnbaMd;
   applyStatusCard("wnba1h",   d.wnba1h?.slate,   "WNBA 1H Slate", statusOpts("wnba1h"));
   applyStatusCard("wnba1q",   d.wnba1q?.slate,   "WNBA 1Q Slate", statusOpts("wnba1q"));
   applyStatusCard("combined", d.combined?.slate, "Combined Tickets");
@@ -4374,7 +4394,7 @@ function buildEdgeCard(p, idx, rec) {
         <div class="edge-tags">
           <span class="edge-sport ${sc}">${sportLabel}</span>
           <span class="edge-pick ${pc}">${p.pick}</span>
-          ${p.tier ? `<span class="tier-badge tier-${p.tier}">${p.tier}</span>` : ''}${confDotHtml(p)}
+          ${(() => { const t = (p.prop_tier || p.tier || ''); return t ? `<span class="tier-badge tier-${t}">${t}</span>` : ''; })()}${confDotHtml(p)}
         </div>
         <div class="edge-line-badge">${rec && rec.badge ? rec.badge : `${hitPct}% hit`}</div>
         <button type="button" class="my-slip-add" title="Add to my slip">+</button>
@@ -5649,7 +5669,8 @@ async function loadSlatePicks() {
 }
 
 function loadSlateSport(sport) {
-  if (sport === 'combined') { loadSlateExcel(); return; }
+  // Combined Full Slate: JSON merge is the live source (Excel sheet often absent on Railway).
+  if (sport === 'combined') { loadCombinedFromMergedJson(); return; }
   if (SLATE_SPORT_CACHE[sport] && SLATE_DATA[sport]) { scheduleRenderSlateTable(sport); return; }
   fetchSlateSport(sport).then(() => scheduleRenderSlateTable(sport));
 }
@@ -5678,7 +5699,7 @@ function renderSlateTable(sport) {
     if (state.pick && r.pick_type !== state.pick) return false;
     if (state.platform && !_rowMatchesPlatformFilter(r, state.platform)) return false;
     if (state.tier) {
-      const tv = String(r.tier == null ? '' : r.tier).trim().toUpperCase();
+      const tv = slateDisplayTier(r);
       if (tv !== String(state.tier).toUpperCase()) return false;
     }
     if (!_passesL5FilterForObjectRow(r, state.l5)) return false;
@@ -5691,6 +5712,9 @@ function renderSlateTable(sport) {
       if (av == null) av = state.sortDir < 0 ? -Infinity : Infinity;
       if (bv == null) bv = state.sortDir < 0 ? -Infinity : Infinity;
       return state.sortDir * (av - bv);
+    }
+    if (state.sortKey === 'tier') {
+      return state.sortDir * (slateTierSortKey(a) - slateTierSortKey(b));
     }
     let av = a[state.sortKey], bv = b[state.sortKey];
     if (av == null) av = state.sortDir < 0 ? -Infinity : Infinity;
@@ -5738,7 +5762,8 @@ function renderSlateTable(sport) {
     const edgeCls = (r.edge || 0) >= 0 ? 'edge-pos' : 'edge-neg';
     const edgeStr = r.edge != null ? (r.edge >= 0 ? '+' : '') + r.edge.toFixed(2) : '—';
     const hitStr  = r.hit_rate != null ? Math.round(r.hit_rate * 100) + '%' : '—';
-    const tierCls = `tier-${r.tier || 'D'}`;
+    const displayTier = slateDisplayTier(r) || '?';
+    const tierCls = `tier-${displayTier}`;
     const pickNorm = String(r.pick_type || '').trim().toLowerCase();
     const pickCls = pickNorm === 'goblin' ? 'pick-goblin-cell' : pickNorm === 'demon' ? 'pick-demon-cell' : 'pick-standard-cell';
     const l5fmt = formatL5Cell(r.l5_over, r.l5_under, r.l5_games_played, 5);
@@ -5750,7 +5775,7 @@ function renderSlateTable(sport) {
     const tightChip = window.TopEdgesBadgeBoard && TopEdgesBadgeBoard.tightMatchChipHtml ? TopEdgesBadgeBoard.tightMatchChipHtml(tightNote) : "";
     const oppTitle = tightNote ? tightNote : (r.opp || "");
     return `<tr class="slate-row-clickable" data-slate-idx="${rowIdx}">
-      <td class="scol-tier"><span class="tier-badge ${tierCls}">${r.tier || '?'}</span>${confDotHtml(r)}</td>
+      <td class="scol-tier"><span class="tier-badge ${tierCls}">${displayTier}</span>${confDotHtml(r)}</td>
       <td class="scol-rank slate-rank-cell">${rankStr}</td>
       <td class="scol-player" style="color:var(--text);font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;" data-my-slip-leg="${mySlipLegAttr(r)}"><button type="button" class="my-slip-add" title="Add to my slip">+</button>${r.player || '—'}${l10StreakBadgeHtml(r)}${consLineBadgeHtml(r)}</td>
       <td class="scol-team" style="color:var(--muted);" title="${r.team || ''}">${r.team || '—'}</td>
@@ -5883,6 +5908,22 @@ function toggleL5Filter(sport, mode, btn) {
 }
 
 /** Tier chips: optional client filter; default is All (no tier constraint). */
+const SLATE_PROP_TIER_ORDER = { S: 0, A: 1, B: 2, C: 3, D: 4, W: 5 };
+
+function slateDisplayTier(r) {
+  const pt = String(r?.prop_tier || '').trim().toUpperCase();
+  if (pt && Object.prototype.hasOwnProperty.call(SLATE_PROP_TIER_ORDER, pt)) return pt;
+  const edge = String(r?.edge_tier || r?.tier || '').trim().toUpperCase();
+  return edge || '';
+}
+
+function slateTierSortKey(r) {
+  const t = slateDisplayTier(r);
+  return Object.prototype.hasOwnProperty.call(SLATE_PROP_TIER_ORDER, t)
+    ? SLATE_PROP_TIER_ORDER[t]
+    : 9;
+}
+
 function setSlateTierFilter(sport, tier, btn) {
   const s = SLATE_STATE[sport];
   if (!s) return;
@@ -5899,13 +5940,23 @@ function ensureFixedCombinedTheadFromNbaTemplate() {
   const nba = document.getElementById('st-nba');
   if (!table || !nba) return;
   const src = nba.querySelector('thead tr');
-  const dst = table.querySelector('thead');
+  let dst = table.querySelector('thead');
   if (!src || !dst) return;
   dst.innerHTML = src.innerHTML.replace(/sortSlate\('nba'/g, "sortSlate('combined'");
+  // Older markup omitted tbody — renderSlateTable looks up #stb-combined and no-ops without it.
+  if (!document.getElementById('stb-combined')) {
+    const tb = document.createElement('tbody');
+    tb.id = 'stb-combined';
+    table.appendChild(tb);
+  }
 }
 
 async function loadCombinedFromMergedJson() {
-  const tbody = document.getElementById('stb-combined');
+  let tbody = document.getElementById('stb-combined');
+  if (!tbody) {
+    ensureFixedCombinedTheadFromNbaTemplate();
+    tbody = document.getElementById('stb-combined');
+  }
   try {
     void loadSlateData().catch(() => {});
     let d = null;
@@ -6033,6 +6084,21 @@ function renderSlateTableDynamic(sport) {
     const si = ci(state.sortKey);
     if (si >= 0) {
       filtered.sort((a, b) => {
+        if (String(state.sortKey || '').toLowerCase() === 'tier') {
+          const ar = Object.prototype.hasOwnProperty.call(
+            SLATE_PROP_TIER_ORDER,
+            String(a[si] || '').trim().toUpperCase()
+          )
+            ? SLATE_PROP_TIER_ORDER[String(a[si] || '').trim().toUpperCase()]
+            : 9;
+          const br = Object.prototype.hasOwnProperty.call(
+            SLATE_PROP_TIER_ORDER,
+            String(b[si] || '').trim().toUpperCase()
+          )
+            ? SLATE_PROP_TIER_ORDER[String(b[si] || '').trim().toUpperCase()]
+            : 9;
+          return state.sortDir * (ar - br);
+        }
         let av = a[si], bv = b[si];
         const an = parseFloat(av), bn = parseFloat(bv);
         if (!isNaN(an) && !isNaN(bn)) return state.sortDir * (an - bn);

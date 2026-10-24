@@ -144,6 +144,56 @@
     }
     return { checks, misses, badge, miss_s: misses.join(", ") };
   }
+  function escHtml(s) {
+    return String(s || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+  function isTennisTotalGames(prop) {
+    const p = String(prop || "").toLowerCase();
+    const compact = p.replace(/[^a-z0-9]/g, "");
+    if (p.includes("games won") || compact === "gameswon" || compact === "totalgameswon") return false;
+    return (
+      p.includes("total games") ||
+      p.includes("games played") ||
+      compact === "totalgames" ||
+      compact === "gamesplayed" ||
+      compact === "matchtotalgames"
+    );
+  }
+  function tightMatchNote(p, rec) {
+    const sport = String((rec && rec.sport) || p?.sport || "").toUpperCase();
+    if (sport && sport !== "TENNIS") return "";
+    const prop = String((rec && rec.prop) || p?.prop || p?.prop_type || "");
+    if (!isTennisTotalGames(prop)) return "";
+    const rank =
+      rec && rec.def_rank != null
+        ? rec.def_rank
+        : intNum(p?.opponent_rank) ?? intNum(p?.opponent_def_rank);
+    if (rank == null || rank < 11 || rank > 25) return "";
+    let opp = "";
+    if (rec && rec.matchup) {
+      const parts = String(rec.matchup).split(/\s+vs\s+/i);
+      if (parts.length > 1) opp = parts[parts.length - 1].trim();
+    }
+    if (!opp) opp = clean(p?.opp || p?.opp_team);
+    const who = opp ? ` ${opp}` : "";
+    const dir = String((rec && rec.side) || p?.dir || p?.direction || p?.final_bet_direction || "").toUpperCase();
+    if (dir === "UNDER" || dir === "LOWER") {
+      return `Tight-match opponent${who} (#${rank}) — Total Games OVER fades (11–25); UNDER also fades on mid lines.`;
+    }
+    return `Tight-match opponent${who} (#${rank}) — Total Games OVER fades (11–25).`;
+  }
+  function tightMatchBannerHtml(note) {
+    if (!note) return "";
+    return '<div class="te-tight-match">' + escHtml(note) + "</div>";
+  }
+  function tightMatchChipHtml(note) {
+    if (!note) return "";
+    return '<span class="tight-match-chip" title="' + escHtml(note) + '">TIGHT</span>';
+  }
   function toRec(p) {
     const sport = sportOf(p);
     const prop = String(p?.prop || p?.prop_type || "").trim();
@@ -174,6 +224,7 @@
       matchup: [clean(p?.team), clean(p?.opp || p?.opp_team)].filter(Boolean).join(" vs "),
     };
     Object.assign(rec, badgeOf(rec));
+    rec.matchup_note = tightMatchNote(p, rec);
     return rec;
   }
   function sortBucket(list, over) {
@@ -234,5 +285,9 @@
     underDOk,
     defTierOf,
     atpTier,
+    tightMatchNote,
+    tightMatchBannerHtml,
+    tightMatchChipHtml,
+    isTennisTotalGames,
   };
 })(typeof window !== "undefined" ? window : globalThis);

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "2026-09-27|MLB Goblin-70 Power 3|2",
+    "ok": false,
+    "fails": [
+      "no_goblin Andre Pallante Earned Runs Allowed"
+    ],
+    "n": 0,
+    "legs": []
+  },
+  {
+    "id": "2026-09-27|MLB Goblin-70 Power 3|3",
+    "ok": false,
+    "n": 4,
+    "want_n": 3,
+    "px": 2.9,
+    "fails": [],
+    "legs": [
+      [
+        "MLB",
+        "Daniel Lynch IV",
+        "Walks Allowed",
+        "OVER",
+        0.5
+      ],
+      [
+        "MLB",
+        "Anthony Kay",
+        "Hits Allowed",
+        "OVER",
+        2.5
+      ],
+      [
+        "MLB",
+        "Max Scherzer",
+        "Pitching Outs",
+        "OVER",
+        8.5
+      ]
+    ],
+    "raw_head": "Current Lineup\n4 Players Selected\nClear\nMatt McLain\n\nMLBCIN - IF\n\n@ TOR 35m 58s\n4Hitter FS\nMore\nLess\nDaniel Lynch IV\n\nMLBKC - P\n\nvs CLE 38m 58s\n0.5Walks Allowed\nMore\nAnthony Kay\n\nMLBCWS - P\n\nvs COL 38m 58s\n2.5Hits Allowed\nMore\nMax Scherzer\n\nMLBTOR - P\n\nvs CIN 35m 58s\n8.5PO\nMore\nFlex Play\n\nYou must hit 1st place, or 3 out of 4 in the lineup.\n\n1st place pays\n6X\nMinimum Guarantee\n4 correct pays\n2.25X"
+  },
+  {
+    "id": "2026-09-27|STRONG 3-Leg|2",
+    "ok": false,
+    "n": 1,
+    "want_n": 3,
+    "px": null,
+    "fails": [],
+    "legs": [
+      [
+        "MLB",
+        "Parker Messick",
+        "Pitching Outs",
+        "OVER",
+        5.5
+      ],
+      [
+        "MLB",
+        "Logan Gilbert",
+        "Hits Allowed",
+        "OVER",
+        3.5
+      ],
+      [
+        "MLB",
+        "Jacob Misiorowski",
+        "Pitching Outs",
+        "OVER",
+        11.5
+      ]
+    ],
+    "raw_head": "Current Lineup\n1 Players Selected\nClear\nJacob Misiorowski\n\nMLBMIL - P\n\nvs STL 37m 20s\n11.5PO\nMore\nYou can complete your lineup when 2+ players are selected.\nEntry Fee\n$\nTo Win\nBalance: $46.00\nPromo: $0.00\nAuto-accept projection changes\nSubmit Lineup\nPrivacy policy\nYour Privacy Choices\nResponsible gaming\nPrizePicks Blog\nTerms\nCareers\nContact Us\nAccessibility Statement"
+  }
+]

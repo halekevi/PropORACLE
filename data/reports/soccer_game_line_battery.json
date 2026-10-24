@@ -1,0 +1,342 @@
+{
+  "generated_at": "2026-09-25T01:39:17.841376+00:00",
+  "total_cuts": {
+    "n_games_with_total": 1578,
+    "histogram": {
+      "1.5": 139,
+      "2.5": 1096,
+      "3.5": 329,
+      "4.5": 14
+    },
+    "low_max": 2.5,
+    "high_min": 3.5,
+    "n_low": 1235,
+    "n_high": 343,
+    "n_mid": 0
+  },
+  "eligibility": {
+    "over_heavy_fav_vs_pickem": {
+      "treat_games": 127,
+      "ctrl_games": 715,
+      "eligible": false,
+      "status": "ineligible (below floor)"
+    },
+    "under_heavy_fav_vs_pickem": {
+      "treat_games": 127,
+      "ctrl_games": 715,
+      "eligible": false,
+      "status": "ineligible (below floor)"
+    },
+    "over_high_vs_low_total": {
+      "treat_games": 343,
+      "ctrl_games": 1235,
+      "eligible": true,
+      "status": "eligible"
+    },
+    "note": "Counts are unique closing-line games pooled across soccer leagues. Floor is 200 per bucket. Pooled slate size is not enough \u2014 WP and goal-line bands can still fall short the same way MLB's heavy-fav band did."
+  },
+  "lock_provenance": {
+    "summary": "The three Soccer contrasts are the same named contrasts locked for all team sports in this note (heavy-fav WP >= 0.70 vs pick'em [0.42, 0.58] overs and unders; high vs low total overs), written under **Named contrasts (MLB first; same shape for other team sports)** before any Soccer multi-league hit join. The note file is still untracked in git (no commit hash); the shared names and WP bands were set with the MLB pre-registration on 24 Sep 2026, after MLB results were known but before Soccer hit rates. Soccer total edges **low <= 2.5 / high >= 3.5** were locked from the per-game total histogram after the multi-league line fetch and before joining hits (`lock_total_cuts` in `scripts/score_soccer_game_line_battery.py`) \u2014 same process as MLB 7.5/9.0. The 343 vs 1,235 split is that fixed cut on the closing-line pool (effectively 3.5+ vs <=2.5; mid empty because soccer O/U bunches at halves).",
+    "named_contrasts_locked": "2026-09-24 (shared three-contrast rule; note untracked)",
+    "total_cuts_locked": "after multi-league fetch, before hit join (low<=2.5, high>=3.5)"
+  },
+  "wp_fix": {
+    "note": "Prior Soccer WP used two-way home/(home+away), which ignores the draw and inflates outright win probability (e.g. a -270 favorite near 0.85). Corrected: when drawOdds is present, implied probs are normalized by home+draw+away. WP is the player's team **winning outright**, not 'not losing'. Two-way sports without drawOdds are unchanged. WP contrasts were re-scored after this rewrite; the total contrast is unaffected. This is a fix to the locked rule, not a new contrast.",
+    "recompute": {
+      "updated": 1574,
+      "skipped_no_draw": 11,
+      "failed": 0
+    }
+  },
+  "spot_check": [
+    {
+      "date": "2026-09-05",
+      "matchup": "DER@WHU",
+      "event_id": "401880281",
+      "stored_spread": -1.5,
+      "stored_total": 3.5,
+      "refetch_spread": -1.5,
+      "refetch_total": 3.5,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    },
+    {
+      "date": "2026-09-05",
+      "matchup": "WAT@WBA",
+      "event_id": "401880282",
+      "stored_spread": -0.5,
+      "stored_total": 2.5,
+      "refetch_spread": -0.5,
+      "refetch_total": 2.5,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    },
+    {
+      "date": "2026-09-05",
+      "matchup": "DEP@VIL",
+      "event_id": "401882887",
+      "stored_spread": -1.5,
+      "stored_total": 2.5,
+      "refetch_spread": -1.5,
+      "refetch_total": 2.5,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    },
+    {
+      "date": "2026-09-05",
+      "matchup": "EST@VEL",
+      "event_id": "401841540",
+      "stored_spread": -0.5,
+      "stored_total": 1.5,
+      "refetch_spread": -0.5,
+      "refetch_total": 1.5,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    },
+    {
+      "date": "2026-09-05",
+      "matchup": "STL@VAN",
+      "event_id": "761784",
+      "stored_spread": -1.5,
+      "stored_total": 3.5,
+      "refetch_spread": -1.5,
+      "refetch_total": 3.5,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    }
+  ],
+  "median_date": "2026-05-15",
+  "n_rows": 81636,
+  "n_games": 524,
+  "primary": {
+    "over_heavy_fav_vs_pickem": {
+      "scored": false,
+      "eligibility": {
+        "treat_games": 127,
+        "ctrl_games": 715,
+        "eligible": false,
+        "status": "ineligible (below floor)"
+      },
+      "pooled": {
+        "empty": true
+      },
+      "pre_median": {
+        "empty": true
+      },
+      "post_median": {
+        "empty": true
+      },
+      "decision": {
+        "status": "ineligible (below floor)",
+        "pass": false,
+        "reason": "ineligible (below floor)"
+      }
+    },
+    "over_high_vs_low_total": {
+      "scored": true,
+      "eligibility": {
+        "treat_games": 343,
+        "ctrl_games": 1235,
+        "eligible": true,
+        "status": "eligible"
+      },
+      "pooled": {
+        "empty": false,
+        "treat_hits": 2920,
+        "treat_n": 19357,
+        "treat_rate": 0.15084982176990236,
+        "treat_games": 129,
+        "ctrl_hits": 8803,
+        "ctrl_n": 61377,
+        "ctrl_rate": 0.14342506150512407,
+        "ctrl_games": 395,
+        "lift": 0.007424760264778295,
+        "se": 0.005618662339016644,
+        "ci_lo": -0.006020698712488532,
+        "ci_hi": 0.020870219242045122,
+        "excludes_zero": false,
+        "clears_200": false
+      },
+      "pre_median": {
+        "empty": false,
+        "treat_hits": 1016,
+        "treat_n": 6337,
+        "treat_rate": 0.16032823102414392,
+        "treat_games": 59,
+        "ctrl_hits": 3548,
+        "ctrl_n": 21131,
+        "ctrl_rate": 0.16790497373527047,
+        "ctrl_games": 209,
+        "lift": -0.007576742711126541,
+        "se": 0.011960553467381927,
+        "ci_lo": -0.03619834715857149,
+        "ci_hi": 0.021044861736318407,
+        "excludes_zero": false,
+        "clears_200": false
+      },
+      "post_median": {
+        "empty": false,
+        "treat_hits": 1904,
+        "treat_n": 13020,
+        "treat_rate": 0.14623655913978495,
+        "treat_games": 70,
+        "ctrl_hits": 5255,
+        "ctrl_n": 40246,
+        "ctrl_rate": 0.13057198230880088,
+        "ctrl_games": 186,
+        "lift": 0.015664576830984073,
+        "se": 0.005944102873415605,
+        "ci_lo": 0.0014403386549005307,
+        "ci_hi": 0.029888815007067616,
+        "excludes_zero": true,
+        "clears_200": false
+      },
+      "decision": {
+        "status": "fail",
+        "pass": false,
+        "reason": "rs_ci_includes_zero"
+      }
+    },
+    "under_heavy_fav_vs_pickem": {
+      "scored": false,
+      "eligibility": {
+        "treat_games": 127,
+        "ctrl_games": 715,
+        "eligible": false,
+        "status": "ineligible (below floor)"
+      },
+      "pooled": {
+        "empty": true
+      },
+      "pre_median": {
+        "empty": true
+      },
+      "post_median": {
+        "empty": true
+      },
+      "decision": {
+        "status": "ineligible (below floor)",
+        "pass": false,
+        "reason": "ineligible (below floor)"
+      }
+    }
+  },
+  "collapsed": {
+    "over_heavy_fav_vs_pickem": {
+      "scored": false,
+      "eligibility": {
+        "treat_games": 127,
+        "ctrl_games": 715,
+        "eligible": false,
+        "status": "ineligible (below floor)"
+      },
+      "pooled": {
+        "empty": true
+      },
+      "pre_median": {
+        "empty": true
+      },
+      "post_median": {
+        "empty": true
+      },
+      "decision": {
+        "status": "ineligible (below floor)",
+        "pass": false,
+        "reason": "ineligible (below floor)"
+      }
+    },
+    "over_high_vs_low_total": {
+      "scored": true,
+      "eligibility": {
+        "treat_games": 343,
+        "ctrl_games": 1235,
+        "eligible": true,
+        "status": "eligible"
+      },
+      "pooled": {
+        "empty": false,
+        "treat_hits": 487,
+        "treat_n": 3319,
+        "treat_rate": 0.1467309430551371,
+        "treat_games": 129,
+        "ctrl_hits": 1515,
+        "ctrl_n": 10279,
+        "ctrl_rate": 0.14738787819826832,
+        "ctrl_games": 395,
+        "lift": -0.000374705878572715,
+        "se": 0.006558693372570737,
+        "ci_lo": -0.016069659119134487,
+        "ci_hi": 0.015320247361989057,
+        "excludes_zero": false,
+        "clears_200": false
+      },
+      "pre_median": {
+        "empty": false,
+        "treat_hits": 212,
+        "treat_n": 1362,
+        "treat_rate": 0.15565345080763582,
+        "treat_games": 59,
+        "ctrl_hits": 817,
+        "ctrl_n": 4695,
+        "ctrl_rate": 0.17401490947816825,
+        "ctrl_games": 209,
+        "lift": -0.01779424090521128,
+        "se": 0.013208180877038187,
+        "ci_lo": -0.04940141774396366,
+        "ci_hi": 0.0138129359335411,
+        "excludes_zero": false,
+        "clears_200": false
+      },
+      "post_median": {
+        "empty": false,
+        "treat_hits": 275,
+        "treat_n": 1957,
+        "treat_rate": 0.14052120592743997,
+        "treat_games": 70,
+        "ctrl_hits": 697,
+        "ctrl_n": 5584,
+        "ctrl_rate": 0.12482091690544413,
+        "ctrl_games": 186,
+        "lift": 0.015618601400678967,
+        "se": 0.005950882897061149,
+        "ci_lo": 0.0013781386280116385,
+        "ci_hi": 0.029859064173346293,
+        "excludes_zero": true,
+        "clears_200": false
+      },
+      "decision": {
+        "status": "fail",
+        "pass": false,
+        "reason": "rs_ci_includes_zero"
+      }
+    },
+    "under_heavy_fav_vs_pickem": {
+      "scored": false,
+      "eligibility": {
+        "treat_games": 127,
+        "ctrl_games": 715,
+        "eligible": false,
+        "status": "ineligible (below floor)"
+      },
+      "pooled": {
+        "empty": true
+      },
+      "pre_median": {
+        "empty": true
+      },
+      "post_median": {
+        "empty": true
+      },
+      "decision": {
+        "status": "ineligible (below floor)",
+        "pass": false,
+        "reason": "ineligible (below floor)"
+      }
+    }
+  }
+}

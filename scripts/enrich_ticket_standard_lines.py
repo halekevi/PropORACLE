@@ -115,7 +115,7 @@ def enrich_leg(leg: dict, siblings: dict[tuple[str, str, str], float]) -> bool:
         std = siblings.get((sport, player, prop))
         if std is not None:
             source = "sibling_step2"
-    if std is None:
+    if std is None and sport != "TENNIS":
         dev = leg.get("deviation_level") or 1
         if "demon" in pt:
             std = estimate_demon_standard_line(played, dev, sport=sport or "default")

@@ -1,0 +1,169 @@
+{
+  "leavitt_flash": {
+    "player": "Sam Leavitt",
+    "team": "LSU",
+    "prop": "Pass Yards",
+    "prop_type": "Pass Yards",
+    "line": 169.5,
+    "l5": 5.0,
+    "l10": 9.0,
+    "cover": 121.30000000000001,
+    "pick_type": "goblin",
+    "direction": "OVER",
+    "side": "OVER",
+    "sport": "CFB",
+    "search": "Sam Leavitt",
+    "flash": true
+  },
+  "live": [
+    {
+      "player": "Sam Leavitt",
+      "prop": "Pass Yards",
+      "line": 169.5,
+      "flash": true
+    },
+    {
+      "player": "Jaylen Raynor",
+      "prop": "Pass Yards",
+      "line": 99.5,
+      "flash": false
+    },
+    {
+      "player": "Cam Edwards",
+      "prop": "Rush Yards",
+      "line": 39.5,
+      "flash": false
+    },
+    {
+      "player": "Da'Shawn Martin",
+      "prop": "Rec Yards",
+      "line": 4.5,
+      "flash": false
+    },
+    {
+      "player": "Jayden Maiava",
+      "prop": "Pass Yards",
+      "line": 189.5,
+      "flash": false
+    },
+    {
+      "player": "Keshaun Singleton",
+      "prop": "Rec Yards",
+      "line": 39.5,
+      "flash": false
+    },
+    {
+      "player": "Rodney Fields Jr.",
+      "prop": "Rush Yards",
+      "line": 34.5,
+      "flash": false
+    },
+    {
+      "player": "Avery Johnson",
+      "prop": "Rush Yards",
+      "line": 19.5,
+      "flash": false
+    },
+    {
+      "player": "Junior Sherrill",
+      "prop": "Rec Yards",
+      "line": 39.5,
+      "flash": false
+    }
+  ],
+  "tickets": [
+    {
+      "id": "F4-1",
+      "mode": "flex",
+      "legs": [
+        {
+          "player": "Sam Leavitt",
+          "prop": "Pass Yards",
+          "line": 169.5,
+          "flash": true
+        },
+        {
+          "player": "Jaylen Raynor",
+          "prop": "Pass Yards",
+          "line": 99.5,
+          "flash": false
+        },
+        {
+          "player": "Cam Edwards",
+          "prop": "Rush Yards",
+          "line": 39.5,
+          "flash": false
+        },
+        {
+          "player": "Da'Shawn Martin",
+          "prop": "Rec Yards",
+          "line": 4.5,
+          "flash": false
+        }
+      ]
+    },
+    {
+      "id": "P3-1",
+      "mode": "power",
+      "legs": [
+        {
+          "player": "Jayden Maiava",
+          "prop": "Pass Yards",
+          "line": 189.5,
+          "flash": false
+        },
+        {
+          "player": "Keshaun Singleton",
+          "prop": "Rec Yards",
+          "line": 39.5,
+          "flash": false
+        },
+        {
+          "player": "Rodney Fields Jr.",
+          "prop": "Rush Yards",
+          "line": 34.5,
+          "flash": false
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "F4-1",
+      "ready": true,
+      "n": 4,
+      "px": 1.9,
+      "fails": [],
+      "legs": [
+        [
+          "Sam Leavitt",
+          "Pass Yards",
+          169.5
+        ],
+        [
+          "Jaylen Raynor",
+          "Pass Yards",
+          99.5
+        ],
+        [
+          "Cam Edwards",
+          "Rush Yards",
+          39.5
+        ],
+        [
+          "Da'Shawn Martin",
+          "Rec Yards",
+          4.5
+        ]
+      ]
+    },
+    {
+      "id": "P3-1",
+      "ready": false,
+      "fails": [
+        "Jayden Maiava"
+      ],
+      "n": 0
+    }
+  ]
+}

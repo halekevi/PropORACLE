@@ -10,6 +10,7 @@ Build a master table of ESPN Men's NCAA basketball athlete IDs by:
 
 Usage:
   py -3.14 build_ncaa_mbb_espn_athletes_master.py --out ncaa_mbb_athletes_master.csv
+  py -3.14 build_ncaa_mbb_espn_athletes_master.py --gender women --out ncaa_wbb_athletes_master.csv
 """
 
 from __future__ import annotations
@@ -50,12 +51,18 @@ def http_get_json(url: str, timeout: int = 30, retries: int = 4):
     raise RuntimeError(f"Failed GET {url} after {retries} retries. Last error: {last_err}")
 
 
-def teams_endpoint(page: int, limit: int) -> str:
-    return f"https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams?limit={limit}&page={page}"
+ESPN_SLUGS = {
+    "men": "mens-college-basketball",
+    "women": "womens-college-basketball",
+}
 
 
-def roster_endpoint(team_id: str) -> str:
-    return f"https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/{team_id}/roster"
+def teams_endpoint(page: int, limit: int, slug: str) -> str:
+    return f"https://site.api.espn.com/apis/site/v2/sports/basketball/{slug}/teams?limit={limit}&page={page}"
+
+
+def roster_endpoint(team_id: str, slug: str) -> str:
+    return f"https://site.api.espn.com/apis/site/v2/sports/basketball/{slug}/teams/{team_id}/roster"
 
 
 @dataclass
@@ -112,14 +119,20 @@ def extract_roster(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="ncaa_mbb_athletes_master.csv")
+    ap.add_argument("--out", default="")
+    ap.add_argument("--gender", choices=["men", "women"], default="men",
+                    help="ESPN D1 roster set. women → ncaa_wbb_athletes_master.csv")
     ap.add_argument("--limit", type=int, default=500)
     ap.add_argument("--max_pages", type=int, default=50)
     args = ap.parse_args()
+    slug = ESPN_SLUGS[args.gender]
+    out_path = args.out.strip() or (
+        "ncaa_wbb_athletes_master.csv" if args.gender == "women" else "ncaa_mbb_athletes_master.csv"
+    )
 
     all_teams = []
     for page in range(1, args.max_pages + 1):
-        payload = http_get_json(teams_endpoint(page, args.limit))
+        payload = http_get_json(teams_endpoint(page, args.limit, slug))
         teams = extract_teams(payload)
         if not teams:
             break
@@ -135,7 +148,7 @@ def main():
 
     for i, t in enumerate(teams_list, start=1):
         try:
-            payload = http_get_json(roster_endpoint(t.team_id))
+            payload = http_get_json(roster_endpoint(t.team_id, slug))
             athletes = extract_roster(payload)
             for a in athletes:
                 aid = str(a.get("id", "")).strip()
@@ -167,13 +180,13 @@ def main():
         "team_id", "team_name", "team_abbr"
     ]
 
-    with open(args.out, "w", newline="", encoding="utf-8") as f:
+    with open(out_path, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fieldnames)
         w.writeheader()
         for r in sorted(final_rows, key=lambda x: (x["team_abbr"], x["athlete_name_norm"])):
             w.writerow(r)
 
-    print(f"Written: {args.out}")
+    print(f"Written: {out_path} ({args.gender} / {slug})")
 
 
 if __name__ == "__main__":

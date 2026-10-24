@@ -1,0 +1,680 @@
+{
+  "date": "2026-08-19",
+  "n_decided": 13862,
+  "by_sport": [
+    {
+      "sport": "WNBA",
+      "overall": {
+        "hits": 287,
+        "n": 483,
+        "hr": 0.5942
+      },
+      "l5": {
+        "hits": 136,
+        "n": 186,
+        "hr": 0.7312
+      },
+      "l5_d": {
+        "hits": 23,
+        "n": 43,
+        "hr": 0.5349
+      }
+    },
+    {
+      "sport": "MLB",
+      "overall": {
+        "hits": 2034,
+        "n": 7631,
+        "hr": 0.2665
+      },
+      "l5": {
+        "hits": 428,
+        "n": 714,
+        "hr": 0.5994
+      },
+      "l5_d": {
+        "hits": 70,
+        "n": 103,
+        "hr": 0.6796
+      }
+    },
+    {
+      "sport": "SOCCER",
+      "overall": {
+        "hits": 694,
+        "n": 5325,
+        "hr": 0.1303
+      },
+      "l5": {
+        "hits": 30,
+        "n": 62,
+        "hr": 0.4839
+      },
+      "l5_d": {
+        "hits": 10,
+        "n": 20,
+        "hr": 0.5
+      }
+    },
+    {
+      "sport": "TENNIS",
+      "overall": {
+        "hits": 110,
+        "n": 423,
+        "hr": 0.26
+      },
+      "l5": {
+        "hits": 45,
+        "n": 65,
+        "hr": 0.6923
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    }
+  ],
+  "by_sport_prop": [
+    {
+      "sport": "WNBA",
+      "prop": "3-PT Made",
+      "mean_cover_delta": 0.76,
+      "overall": {
+        "hits": 27,
+        "n": 43,
+        "hr": 0.6279
+      },
+      "l5": {
+        "hits": 19,
+        "n": 22,
+        "hr": 0.8636
+      },
+      "l5_d": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0
+      }
+    },
+    {
+      "sport": "WNBA",
+      "prop": "Assists",
+      "mean_cover_delta": 0.819,
+      "overall": {
+        "hits": 26,
+        "n": 32,
+        "hr": 0.8125
+      },
+      "l5": {
+        "hits": 9,
+        "n": 10,
+        "hr": 0.9
+      },
+      "l5_d": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0
+      }
+    },
+    {
+      "sport": "WNBA",
+      "prop": "FG Attempted",
+      "mean_cover_delta": 1.6,
+      "overall": {
+        "hits": 9,
+        "n": 18,
+        "hr": 0.5
+      },
+      "l5": {
+        "hits": 4,
+        "n": 6,
+        "hr": 0.6667
+      },
+      "l5_d": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5
+      }
+    },
+    {
+      "sport": "WNBA",
+      "prop": "Points",
+      "mean_cover_delta": 2.617,
+      "overall": {
+        "hits": 64,
+        "n": 102,
+        "hr": 0.6275
+      },
+      "l5": {
+        "hits": 39,
+        "n": 56,
+        "hr": 0.6964
+      },
+      "l5_d": {
+        "hits": 4,
+        "n": 9,
+        "hr": 0.4444
+      }
+    },
+    {
+      "sport": "WNBA",
+      "prop": "Pts+Asts",
+      "mean_cover_delta": 2.358,
+      "overall": {
+        "hits": 21,
+        "n": 36,
+        "hr": 0.5833
+      },
+      "l5": {
+        "hits": 9,
+        "n": 13,
+        "hr": 0.6923
+      },
+      "l5_d": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333
+      }
+    },
+    {
+      "sport": "WNBA",
+      "prop": "Pts+Rebs",
+      "mean_cover_delta": 2.267,
+      "overall": {
+        "hits": 19,
+        "n": 39,
+        "hr": 0.4872
+      },
+      "l5": {
+        "hits": 10,
+        "n": 15,
+        "hr": 0.6667
+      },
+      "l5_d": {
+        "hits": 3,
+        "n": 5,
+        "hr": 0.6
+      }
+    },
+    {
+      "sport": "WNBA",
+      "prop": "Pts+Rebs+Asts",
+      "mean_cover_delta": 1.86,
+      "overall": {
+        "hits": 30,
+        "n": 60,
+        "hr": 0.5
+      },
+      "l5": {
+        "hits": 13,
+        "n": 20,
+        "hr": 0.65
+      },
+      "l5_d": {
+        "hits": 1,
+        "n": 5,
+        "hr": 0.2
+      }
+    },
+    {
+      "sport": "WNBA",
+      "prop": "Rebounds",
+      "mean_cover_delta": 0.915,
+      "overall": {
+        "hits": 46,
+        "n": 75,
+        "hr": 0.6133
+      },
+      "l5": {
+        "hits": 15,
+        "n": 18,
+        "hr": 0.8333
+      },
+      "l5_d": {
+        "hits": 4,
+        "n": 7,
+        "hr": 0.5714
+      }
+    },
+    {
+      "sport": "WNBA",
+      "prop": "Rebs+Asts",
+      "mean_cover_delta": 0.791,
+      "overall": {
+        "hits": 24,
+        "n": 32,
+        "hr": 0.75
+      },
+      "l5": {
+        "hits": 12,
+        "n": 12,
+        "hr": 1.0
+      },
+      "l5_d": {
+        "hits": 3,
+        "n": 3,
+        "hr": 1.0
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Double Faults",
+      "mean_cover_delta": -0.354,
+      "overall": {
+        "hits": 35,
+        "n": 276,
+        "hr": 0.1268
+      },
+      "l5": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Hits",
+      "mean_cover_delta": -0.935,
+      "overall": {
+        "hits": 704,
+        "n": 2397,
+        "hr": 0.2937
+      },
+      "l5": {
+        "hits": 165,
+        "n": 273,
+        "hr": 0.6044
+      },
+      "l5_d": {
+        "hits": 25,
+        "n": 33,
+        "hr": 0.7576
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Pitches Thrown",
+      "mean_cover_delta": -1.939,
+      "overall": {
+        "hits": 39,
+        "n": 69,
+        "hr": 0.5652
+      },
+      "l5": {
+        "hits": 14,
+        "n": 21,
+        "hr": 0.6667
+      },
+      "l5_d": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Pitching Outs",
+      "mean_cover_delta": -1.561,
+      "overall": {
+        "hits": 35,
+        "n": 88,
+        "hr": 0.3977
+      },
+      "l5": {
+        "hits": 12,
+        "n": 18,
+        "hr": 0.6667
+      },
+      "l5_d": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Plate Appearances",
+      "mean_cover_delta": -0.249,
+      "overall": {
+        "hits": 49,
+        "n": 117,
+        "hr": 0.4188
+      },
+      "l5": {
+        "hits": 13,
+        "n": 19,
+        "hr": 0.6842
+      },
+      "l5_d": {
+        "hits": 3,
+        "n": 4,
+        "hr": 0.75
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "RBIs",
+      "mean_cover_delta": -0.827,
+      "overall": {
+        "hits": 89,
+        "n": 560,
+        "hr": 0.1589
+      },
+      "l5": {
+        "hits": 1,
+        "n": 7,
+        "hr": 0.1429
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Runs",
+      "mean_cover_delta": -0.515,
+      "overall": {
+        "hits": 193,
+        "n": 969,
+        "hr": 0.1992
+      },
+      "l5": {
+        "hits": 27,
+        "n": 50,
+        "hr": 0.54
+      },
+      "l5_d": {
+        "hits": 4,
+        "n": 7,
+        "hr": 0.5714
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Singles",
+      "mean_cover_delta": -0.165,
+      "overall": {
+        "hits": 133,
+        "n": 368,
+        "hr": 0.3614
+      },
+      "l5": {
+        "hits": 26,
+        "n": 55,
+        "hr": 0.4727
+      },
+      "l5_d": {
+        "hits": 3,
+        "n": 6,
+        "hr": 0.5
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Stolen Bases",
+      "mean_cover_delta": -0.439,
+      "overall": {
+        "hits": 17,
+        "n": 226,
+        "hr": 0.0752
+      },
+      "l5": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Strikeouts",
+      "mean_cover_delta": -0.425,
+      "overall": {
+        "hits": 430,
+        "n": 1171,
+        "hr": 0.3672
+      },
+      "l5": {
+        "hits": 106,
+        "n": 159,
+        "hr": 0.6667
+      },
+      "l5_d": {
+        "hits": 22,
+        "n": 32,
+        "hr": 0.6875
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Total Bases",
+      "mean_cover_delta": -1.272,
+      "overall": {
+        "hits": 310,
+        "n": 1375,
+        "hr": 0.2255
+      },
+      "l5": {
+        "hits": 64,
+        "n": 112,
+        "hr": 0.5714
+      },
+      "l5_d": {
+        "hits": 10,
+        "n": 15,
+        "hr": 0.6667
+      }
+    },
+    {
+      "sport": "MLB",
+      "prop": "Triples",
+      "mean_cover_delta": -0.473,
+      "overall": {
+        "hits": 0,
+        "n": 15,
+        "hr": 0.0
+      },
+      "l5": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    },
+    {
+      "sport": "SOCCER",
+      "prop": "Assists",
+      "mean_cover_delta": -0.53,
+      "overall": {
+        "hits": 96,
+        "n": 1216,
+        "hr": 0.0789
+      },
+      "l5": {
+        "hits": 1,
+        "n": 7,
+        "hr": 0.1429
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0
+      }
+    },
+    {
+      "sport": "SOCCER",
+      "prop": "Fouls",
+      "mean_cover_delta": -0.738,
+      "overall": {
+        "hits": 88,
+        "n": 486,
+        "hr": 0.1811
+      },
+      "l5": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    },
+    {
+      "sport": "SOCCER",
+      "prop": "Fouls Drawn",
+      "mean_cover_delta": -0.392,
+      "overall": {
+        "hits": 20,
+        "n": 65,
+        "hr": 0.3077
+      },
+      "l5": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    },
+    {
+      "sport": "SOCCER",
+      "prop": "Goals",
+      "mean_cover_delta": -0.655,
+      "overall": {
+        "hits": 98,
+        "n": 803,
+        "hr": 0.122
+      },
+      "l5": {
+        "hits": 6,
+        "n": 10,
+        "hr": 0.6
+      },
+      "l5_d": {
+        "hits": 4,
+        "n": 6,
+        "hr": 0.6667
+      }
+    },
+    {
+      "sport": "SOCCER",
+      "prop": "Shots",
+      "mean_cover_delta": -1.338,
+      "overall": {
+        "hits": 392,
+        "n": 2755,
+        "hr": 0.1423
+      },
+      "l5": {
+        "hits": 22,
+        "n": 42,
+        "hr": 0.5238
+      },
+      "l5_d": {
+        "hits": 6,
+        "n": 13,
+        "hr": 0.4615
+      }
+    },
+    {
+      "sport": "TENNIS",
+      "prop": "Aces",
+      "mean_cover_delta": 0.0,
+      "overall": {
+        "hits": 0,
+        "n": 113,
+        "hr": 0.0
+      },
+      "l5": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    },
+    {
+      "sport": "TENNIS",
+      "prop": "Double Faults",
+      "mean_cover_delta": 0.0,
+      "overall": {
+        "hits": 0,
+        "n": 118,
+        "hr": 0.0
+      },
+      "l5": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    },
+    {
+      "sport": "TENNIS",
+      "prop": "Total Games",
+      "mean_cover_delta": 1.13,
+      "overall": {
+        "hits": 50,
+        "n": 81,
+        "hr": 0.6173
+      },
+      "l5": {
+        "hits": 13,
+        "n": 20,
+        "hr": 0.65
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    },
+    {
+      "sport": "TENNIS",
+      "prop": "Total Games Won",
+      "mean_cover_delta": 1.394,
+      "overall": {
+        "hits": 60,
+        "n": 111,
+        "hr": 0.5405
+      },
+      "l5": {
+        "hits": 32,
+        "n": 45,
+        "hr": 0.7111
+      },
+      "l5_d": {
+        "hits": 0,
+        "n": 0,
+        "hr": null
+      }
+    }
+  ]
+}

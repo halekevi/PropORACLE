@@ -2,13 +2,20 @@
 """
 mlb_defense_report.py
 
-Pull MLB team pitching context (current season) from statsapi.mlb.com and write
-mlb_defense_summary.csv for step3_attach_defense_mlb.py.
+Pull MLB team pitching + hitting context (current season) from statsapi.mlb.com
+and write mlb_defense_summary.csv for step3_attach_defense_mlb.py.
 
-Mirrors other leagues:
-  - Composite OVERALL_DEF_RANK (weighted rank-of-ranks)
+Pitching (hitter props: TB, H+R+RBI, hits, hitter Ks):
+  - Composite OVERALL_DEF_RANK (weighted rank-of-ranks of ERA / WHIP / OBP allowed)
   - DEF_TIER / def_tier via utils.defense_tiers (quintiles)
-  - Team abbreviations match PrizePicks / step2 (e.g. AZ, ATH, WSH)
+
+Offense (pitcher props: hits allowed, ERA, pitcher Ks):
+  - OFF_HITS_RANK / OFF_RUNS_RANK / OFF_SO_RANK — rank 1 = hardest pitcher OVER
+    (fewest hits, fewest runs, lowest K-rate)
+  - Matching OFF_*_TIER labels (same Weak→Elite buckets)
+  - Display inverts hits to batting strength (Weak hits → Strong lineup)
+
+Team abbreviations match PrizePicks / step2 (e.g. AZ, ATH, WSH)
 
 Usage:
   py -3.14 mlb_defense_report.py
@@ -89,7 +96,7 @@ def team_id_to_abbrev() -> dict[int, str]:
 def pull_team_pitching(season: int, game_type: str = "R") -> pd.DataFrame:
     """
     Regular-season team pitching; one row per franchise.
-    Lower ERA / WHIP / opponent OBP = stronger pitching staff (stingier vs hitters).
+    Lower ERA / WHIP / opponent OBP = stronger team pitching (stingier vs hitters).
     """
     url = (
         f"{STATS_API}/teams/stats"
@@ -134,6 +141,80 @@ def pull_team_pitching(season: int, game_type: str = "R") -> pd.DataFrame:
             }
         )
     return pd.DataFrame(rows)
+
+
+def pull_team_hitting(season: int, game_type: str = "R") -> pd.DataFrame:
+    """Regular-season team batting. High hits/runs = easier pitcher HA/ERA overs.
+
+    High K-rate = easier pitcher strikeout overs (lineup gets punched out).
+    """
+    url = (
+        f"{STATS_API}/teams/stats"
+        f"?season={season}&sportIds=1&group=hitting&stats=season&gameType={game_type}"
+    )
+    print(f"📡 MLB team hitting stats (season={season}, gameType={game_type})...")
+    data = fetch_json(url)
+    stats_blocks = (data or {}).get("stats") or []
+    if not stats_blocks:
+        return pd.DataFrame()
+
+    splits = stats_blocks[0].get("splits") or []
+    id_abbr = team_id_to_abbrev()
+    rows: list[dict[str, Any]] = []
+    for sp in splits:
+        team_obj = sp.get("team") or {}
+        tid = team_obj.get("id")
+        abbr = id_abbr.get(int(tid)) if tid is not None else ""
+        if not abbr:
+            continue
+        st = sp.get("stat") or {}
+        hits = parse_stat_float(st.get("hits"))
+        runs = parse_stat_float(st.get("runs"))
+        so = parse_stat_float(st.get("strikeOuts"))
+        pa = parse_stat_float(st.get("plateAppearances"))
+        ab = parse_stat_float(st.get("atBats"))
+        gp = parse_stat_float(st.get("gamesPlayed"))
+        denom = pa if pa and pa > 0 and not math.isnan(pa) else ab
+        so_rate = (so / denom) if denom and denom > 0 and not math.isnan(so) else float("nan")
+        rows.append(
+            {
+                "TEAM_ABBREVIATION": abbr,
+                "OFF_HITS": hits,
+                "OFF_RUNS": runs,
+                "OFF_SO": so,
+                "OFF_PA": pa,
+                "OFF_AB": ab,
+                "OFF_AVG": parse_stat_float(st.get("avg")),
+                "OFF_OBP": parse_stat_float(st.get("obp")),
+                "OFF_HITS_PG": (hits / gp) if gp and gp > 0 and not math.isnan(hits) else float("nan"),
+                "OFF_RUNS_PG": (runs / gp) if gp and gp > 0 and not math.isnan(runs) else float("nan"),
+                "OFF_SO_RATE": so_rate,
+                "OFF_GAMES": gp,
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def add_offense_ranks_and_tiers(df: pd.DataFrame) -> pd.DataFrame:
+    """Rank 1 = hardest pitcher OVER (few hits, few runs, low K-rate)."""
+    df = df.copy()
+    n_teams = max(len(df), 1)
+    if "OFF_HITS_PG" in df.columns:
+        df["OFF_HITS_RANK"] = rank_series(df["OFF_HITS_PG"], ascending=True)
+        df["OFF_HITS_TIER"] = df["OFF_HITS_RANK"].apply(
+            lambda r: def_tier_from_overall_rank(r, n_teams)
+        )
+    if "OFF_RUNS_PG" in df.columns:
+        df["OFF_RUNS_RANK"] = rank_series(df["OFF_RUNS_PG"], ascending=True)
+        df["OFF_RUNS_TIER"] = df["OFF_RUNS_RANK"].apply(
+            lambda r: def_tier_from_overall_rank(r, n_teams)
+        )
+    if "OFF_SO_RATE" in df.columns:
+        df["OFF_SO_RANK"] = rank_series(df["OFF_SO_RATE"], ascending=True)
+        df["OFF_SO_TIER"] = df["OFF_SO_RANK"].apply(
+            lambda r: def_tier_from_overall_rank(r, n_teams)
+        )
+    return df
 
 
 def add_ranks_and_tiers(df: pd.DataFrame) -> pd.DataFrame:
@@ -194,6 +275,9 @@ def print_leaders(df: pd.DataFrame, topn: int) -> None:
     show("MOST HITS ALLOWED PER GAME — HITS_PER_GAME", "HITS_PER_GAME", asc=False)
     show("MOST RUNS ALLOWED PER GAME — RUNS_PER_GAME", "RUNS_PER_GAME", asc=False)
     show("MOST HR ALLOWED PER GAME — HR_PER_GAME", "HR_PER_GAME", asc=False)
+    show("FEWEST HITS/G (hardest HA OVER) — OFF_HITS_RANK", "OFF_HITS_RANK", asc=True)
+    show("FEWEST RUNS/G (hardest ERA OVER) — OFF_RUNS_RANK", "OFF_RUNS_RANK", asc=True)
+    show("LOWEST K-RATE (hardest pitcher K OVER) — OFF_SO_RANK", "OFF_SO_RANK", asc=True)
 
 
 def main() -> None:
@@ -211,6 +295,12 @@ def main() -> None:
         sys.exit(1)
 
     df = add_ranks_and_tiers(df)
+    hitting = pull_team_hitting(season=season)
+    if hitting.empty:
+        print("❌ No team hitting stats returned.")
+        sys.exit(1)
+    hitting = add_offense_ranks_and_tiers(hitting)
+    df = df.merge(hitting, on="TEAM_ABBREVIATION", how="left")
 
     front = [
         "TEAM_ABBREVIATION",
@@ -234,6 +324,17 @@ def main() -> None:
         "DEF_TIER",
         "def_rank",
         "def_tier",
+        "OFF_HITS_PG",
+        "OFF_RUNS_PG",
+        "OFF_SO_RATE",
+        "OFF_AVG",
+        "OFF_OBP",
+        "OFF_HITS_RANK",
+        "OFF_HITS_TIER",
+        "OFF_RUNS_RANK",
+        "OFF_RUNS_TIER",
+        "OFF_SO_RANK",
+        "OFF_SO_TIER",
     ]
     extra = [c for c in df.columns if c not in front]
     df = df[[c for c in front if c in df.columns] + extra]

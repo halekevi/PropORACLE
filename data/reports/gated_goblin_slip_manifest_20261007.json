@@ -1,0 +1,4937 @@
+{
+  "written_at": "2026-10-07T16:48:40-04:00",
+  "n": 165,
+  "resolved": 127,
+  "unresolved": 38,
+  "slips": [
+    {
+      "id": "2026-08-26|2026-08-26|P3-1",
+      "date": "2026-08-26",
+      "ticket_id": "2026-08-26|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "MacKenzie Gore",
+        "Toby Samuel",
+        "Jade Melbourne"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Points"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-26|2026-08-26|P3-2",
+      "date": "2026-08-26",
+      "ticket_id": "2026-08-26|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Bryan Woo",
+        "Arthur Fery",
+        "Tiffany Hayes"
+      ],
+      "props": [
+        "Hits Allowed",
+        "Total Games",
+        "Pts+Rebs"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-26|2026-08-26|P3-3",
+      "date": "2026-08-26",
+      "ticket_id": "2026-08-26|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Connor Prielipp",
+        "Mary Stoiana",
+        "Cecilia Zandalasini"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Points"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-26|2026-08-26|P3-4",
+      "date": "2026-08-26",
+      "ticket_id": "2026-08-26|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Matthew Boyd",
+        "Kristina Liutova",
+        "Veronica Burton"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Points"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-26|2026-08-26|P3-5",
+      "date": "2026-08-26",
+      "ticket_id": "2026-08-26|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Kyle Bradish",
+        "Stefanos Tsitsipas",
+        "Janelle Salaün"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Points"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-26|2026-08-26|F4-1",
+      "date": "2026-08-26",
+      "ticket_id": "2026-08-26|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "HIT",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Landen Roupp",
+        "Sebastian Baez",
+        "Charlisse Leger-Walker",
+        "Colson Montgomery"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Total Games",
+        "Pts+Rebs+Asts",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-26|2026-08-26|F4-2",
+      "date": "2026-08-26",
+      "ticket_id": "2026-08-26|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Munetaka Murakami",
+        "Tamara Zidansek",
+        "Kennedy Burke",
+        "Michael McGreevy"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Total Games",
+        "Points",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-26|2026-08-26|F4-3",
+      "date": "2026-08-26",
+      "ticket_id": "2026-08-26|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Randy Dobnak",
+        "Henrique Rocha",
+        "Saniya Rivers",
+        "Bubba Chandler"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Total Games",
+        "Points",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-26|2026-08-26|F4-4",
+      "date": "2026-08-26",
+      "ticket_id": "2026-08-26|F4-4",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Ryan Gusto",
+        "Darja Vidmanova",
+        "Dominique Malonga",
+        "Troy Melton"
+      ],
+      "props": [
+        "Hits Allowed",
+        "Total Games",
+        "Pts+Rebs+Asts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|P3-1",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "HIT",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "not_in_window",
+      "players": [
+        "Gerrit Cole",
+        "Kiki Iriafen",
+        "Qinwen Zheng"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pts+Rebs+Asts",
+        "Total Games"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|P3-2",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Trevor Rogers",
+        "Sonia Citron",
+        "Gabriel Hughes"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Assists",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|P3-3",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jake Irvin",
+        "Cecilia Zandalasini",
+        "Spencer Arrighetti"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Points",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|P3-4",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Noah Cameron",
+        "Janelle Salaün",
+        "Sean Manaea"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Points",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|P3-5",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jacob Misiorowski",
+        "Veronica Burton",
+        "Chris Sale"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Points",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|F4-1",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Hayden Wesneski",
+        "Kiah Stokes",
+        "Landen Roupp",
+        "Francisco Alvarez"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Rebounds",
+        "Hits Allowed",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|F4-2",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Austin Riley",
+        "Kahleah Copper",
+        "Ronald Acuña Jr.",
+        "Jose Cabrera"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Pts+Asts",
+        "Hitter Strikeouts",
+        "Hits Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|F4-3",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Spencer Jones",
+        "Alyssa Thomas",
+        "Connor Norby",
+        "Alec Burleson"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Pts+Rebs+Asts",
+        "Hits+Runs+RBIs",
+        "Hits+Runs+RBIs"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|F4-4",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|F4-4",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Cody Bellinger",
+        "Marine Johannes",
+        "Willi Castro",
+        "George Lombard Jr."
+      ],
+      "props": [
+        "Hits+Runs+RBIs",
+        "3-PT Made",
+        "Hits+Runs+RBIs",
+        "Hits+Runs+RBIs"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|WNB3-1",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|WNB3-1",
+      "group": "WNBA Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Kiki Iriafen",
+        "Sonia Citron",
+        "Cecilia Zandalasini"
+      ],
+      "props": [
+        "Pts+Rebs+Asts",
+        "Assists",
+        "Points"
+      ],
+      "sports": [
+        "WNBA",
+        "WNBA",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|WNB3-2",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|WNB3-2",
+      "group": "WNBA Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Janelle Salaün",
+        "Veronica Burton",
+        "Kahleah Copper"
+      ],
+      "props": [
+        "Points",
+        "Points",
+        "Pts+Asts"
+      ],
+      "sports": [
+        "WNBA",
+        "WNBA",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|WNB3-3",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|WNB3-3",
+      "group": "WNBA Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Kiah Stokes",
+        "Alyssa Thomas",
+        "Marine Johannes"
+      ],
+      "props": [
+        "Rebounds",
+        "Pts+Rebs+Asts",
+        "3-PT Made"
+      ],
+      "sports": [
+        "WNBA",
+        "WNBA",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|MLB3-1",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Gerrit Cole",
+        "Trevor Rogers",
+        "Gabriel Hughes"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|MLB3-2",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jake Irvin",
+        "Spencer Arrighetti",
+        "Noah Cameron"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Walks Allowed",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-27|2026-08-27|MLB3-3",
+      "date": "2026-08-27",
+      "ticket_id": "2026-08-27|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Sean Manaea",
+        "Jacob Misiorowski",
+        "Chris Sale"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|P3-1",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Joshua Báez",
+        "Darja Semenistaja",
+        "Antonio Rodríguez"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Total Games Won",
+        "Goalie Saves"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|P3-2",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Teoscar Hernández",
+        "Colton Smith",
+        "Keylor Navas"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Total Games Won",
+        "Goalie Saves"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|P3-3",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tarik Skubal",
+        "Pablo Llamas Ruiz",
+        "Danny Ward"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games Won",
+        "Goalie Saves"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|P3-4",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Christian Scott",
+        "Federico Cina",
+        "Andrés Martín"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games Won",
+        "Shots"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|P3-5",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "HIT",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Patrick Sandoval",
+        "Elvina Kalieva",
+        "Álvaro Mantilla"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games Won",
+        "Tackles"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|F4-1",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "MISS",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Hunter Brown",
+        "Arthur Gea",
+        "Nicolás Valentini",
+        "Colson Montgomery"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Tackles",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|F4-2",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Esmerlyn Valdez",
+        "Dalibor Svrcina",
+        "Iñigo Vicente",
+        "Munetaka Murakami"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Total Games",
+        "Tackles",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|F4-3",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Luis Castillo",
+        "Mary Stoiana",
+        "Pablo Ramón",
+        "Nolan Gorman"
+      ],
+      "props": [
+        "Earned Runs Allowed",
+        "Total Games",
+        "Tackles",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|F4-4",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|F4-4",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Cam Schlittler",
+        "Agustín Palavecino",
+        "Eury Pérez",
+        "Jared Jones"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Shots",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|MLB3-1",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Joshua Báez",
+        "Teoscar Hernández",
+        "Christian Scott"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Hitter Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|MLB3-2",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tarik Skubal",
+        "Patrick Sandoval",
+        "Hunter Brown"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-28|2026-08-28|MLB3-3",
+      "date": "2026-08-28",
+      "ticket_id": "2026-08-28|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Colson Montgomery",
+        "Esmerlyn Valdez",
+        "Munetaka Murakami"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Hitter Strikeouts",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|P3-1",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Zac Thornton",
+        "Ekaterina Alexandrova",
+        "Jade Melbourne"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Pts+Rebs"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|P3-2",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Zebby Matthews",
+        "Liudmila Samsonova",
+        "Kiah Stokes"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Rebounds"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|P3-3",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Shota Imanaga",
+        "Karolina Muchova",
+        "Veronica Burton"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "3-PT Made"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|P3-4",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Teoscar Hernández",
+        "Marie Bouzkova",
+        "Kayla McBride"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Total Games",
+        "Pts+Rebs+Asts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|P3-5",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jeremy Peña",
+        "Tamara Zidansek",
+        "Nneka Ogwumike"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Total Games Won",
+        "Pts+Rebs+Asts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|F4-1",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Joshua Báez",
+        "Amanda Anisimova",
+        "Rae Burrell",
+        "Logan Gilbert"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Total Games",
+        "Pts+Rebs+Asts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|F4-2",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Parker Messick",
+        "Sorana Cirstea",
+        "Natasha Howard",
+        "Will Warren"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Points",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|F4-3",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Chase Burns",
+        "Sofia Kenin",
+        "Olivia Miles",
+        "Kumar Rocker"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Rebs+Asts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|F4-4",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|F4-4",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Seth Lugo",
+        "Jessica Pegula",
+        "Saniya Rivers",
+        "Colson Montgomery"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Points",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|WNB3-1",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|WNB3-1",
+      "group": "WNBA Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jade Melbourne",
+        "Kiah Stokes",
+        "Veronica Burton"
+      ],
+      "props": [
+        "Pts+Rebs",
+        "Rebounds",
+        "3-PT Made"
+      ],
+      "sports": [
+        "WNBA",
+        "WNBA",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|WNB3-2",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|WNB3-2",
+      "group": "WNBA Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Kayla McBride",
+        "Nneka Ogwumike",
+        "Rae Burrell"
+      ],
+      "props": [
+        "Pts+Rebs+Asts",
+        "Pts+Rebs+Asts",
+        "Pts+Rebs+Asts"
+      ],
+      "sports": [
+        "WNBA",
+        "WNBA",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|WNB3-3",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|WNB3-3",
+      "group": "WNBA Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Natasha Howard",
+        "Olivia Miles",
+        "Saniya Rivers"
+      ],
+      "props": [
+        "Points",
+        "Rebs+Asts",
+        "Points"
+      ],
+      "sports": [
+        "WNBA",
+        "WNBA",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|MLB3-1",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Zac Thornton",
+        "Zebby Matthews",
+        "Shota Imanaga"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|MLB3-2",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Teoscar Hernández",
+        "Jeremy Peña",
+        "Joshua Báez"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Hitter Strikeouts",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-30|2026-08-30|MLB3-3",
+      "date": "2026-08-30",
+      "ticket_id": "2026-08-30|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Logan Gilbert",
+        "Parker Messick",
+        "Will Warren"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|P3-1",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Michael King",
+        "Elena Rybakina",
+        "Brady Singer"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|P3-2",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Ian Seymour",
+        "Marie Bouzkova",
+        "Liudmila Samsonova"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Total Games"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|P3-3",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Karolina Muchova",
+        "Tamara Zidansek",
+        "Amanda Anisimova"
+      ],
+      "props": [
+        "Total Games",
+        "Total Games Won",
+        "Total Games"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|P3-4",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Sorana Cirstea",
+        "Oksana Selekhmeteva",
+        "Leolia Jeanjean"
+      ],
+      "props": [
+        "Total Games",
+        "Total Games",
+        "Total Games"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|P3-5",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "HIT",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "not_in_window",
+      "players": [
+        "Paula Badosa",
+        "Himeno Sakatsume",
+        "Francesca Jones"
+      ],
+      "props": [
+        "Total Games Won",
+        "Total Games Won",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|F4-1",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Darja Vidmanova",
+        "Elise Mertens",
+        "Harriet Dart",
+        "Aryna Sabalenka"
+      ],
+      "props": [
+        "Total Games Won",
+        "Total Games",
+        "Total Games Won",
+        "Total Games"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|F4-2",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "not_in_window",
+      "players": [
+        "Diane Parry",
+        "Panna Udvardy",
+        "Nikola Bartunkova",
+        "Kristina Liutova"
+      ],
+      "props": [
+        "Total Games",
+        "Total Games Won",
+        "Total Games",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|F4-3",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "MISS",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Sinja Kraus",
+        "Xiyu Wang",
+        "Julia Grabher",
+        "Janice Tjen"
+      ],
+      "props": [
+        "Total Games Won",
+        "Total Games Won",
+        "Total Games Won",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|F4-4",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|F4-4",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Mary Stoiana",
+        "Kaitlin Quevedo",
+        "Taylor Townsend",
+        "Tamara Korpatsch"
+      ],
+      "props": [
+        "Total Games Won",
+        "Total Games Won",
+        "Total Games",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-08-31|2026-08-31|MLB3-1",
+      "date": "2026-08-31",
+      "ticket_id": "2026-08-31|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Michael King",
+        "Brady Singer",
+        "Ian Seymour"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|P3-1",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Justin Wrobleski",
+        "Iga Swiatek",
+        "Raúl Jiménez"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Shots"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|P3-2",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tyler Mahle",
+        "Qinwen Zheng",
+        "Rodrigo Gomes"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games Won",
+        "Shots"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|P3-3",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "CJ Abrams",
+        "Iva Jovic",
+        "MacKenzie Gore"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Total Games Won",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|P3-4",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tyler Phillips",
+        "Sorana Cirstea",
+        "Rece Hinds"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games Won",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|P3-5",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Paul Skenes",
+        "Naomi Osaka",
+        "Bailey Ober"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Total Games Won",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|F4-1",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "MISS",
+        "MISS",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Peter Lambert",
+        "Anna Kalinskaya",
+        "Randy Dobnak",
+        "Gage Jump"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Total Games Won",
+        "Walks Allowed",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|F4-2",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Brady Singer",
+        "Emma Navarro",
+        "Walbert Ureña",
+        "Payton Tolle"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Total Games Won",
+        "Pitches Thrown",
+        "Pitching Outs"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|F4-3",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Cal Raleigh",
+        "Mookie Betts",
+        "TJ Rumfield",
+        "Teoscar Hernández"
+      ],
+      "props": [
+        "Total Bases",
+        "Hits+Runs+RBIs",
+        "Hits+Runs+RBIs",
+        "Hits+Runs+RBIs"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|F4-4",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|F4-4",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Bryan Reynolds",
+        "Joshua Báez",
+        "Jake McCarthy",
+        "Dominic Canzone"
+      ],
+      "props": [
+        "Hits+Runs+RBIs",
+        "Total Bases",
+        "Hits+Runs+RBIs",
+        "Total Bases"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|MLB3-1",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Justin Wrobleski",
+        "Tyler Mahle",
+        "MacKenzie Gore"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|MLB3-2",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "CJ Abrams",
+        "Tyler Phillips",
+        "Rece Hinds"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Pitcher Strikeouts",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|MLB3-3",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Paul Skenes",
+        "Bailey Ober",
+        "Peter Lambert"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Walks Allowed",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|TEN3-1",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|TEN3-1",
+      "group": "Tennis Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Iga Swiatek",
+        "Iva Jovic",
+        "Sorana Cirstea"
+      ],
+      "props": [
+        "Total Games",
+        "Total Games Won",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|TEN3-2",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|TEN3-2",
+      "group": "Tennis Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Qinwen Zheng",
+        "Naomi Osaka",
+        "Anna Kalinskaya"
+      ],
+      "props": [
+        "Total Games Won",
+        "Total Games Won",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-06|2026-09-06|SOC2-1",
+      "date": "2026-09-06",
+      "ticket_id": "2026-09-06|SOC2-1",
+      "group": "Soccer Goblin-70 Power 2",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Raúl Jiménez",
+        "Rodrigo Gomes"
+      ],
+      "props": [
+        "Shots",
+        "Shots"
+      ],
+      "sports": [
+        "Soccer",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|P3-1",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Troy Melton",
+        "Álex Remiro",
+        "Iva Jovic"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Goalie Saves",
+        "Total Games Won"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|P3-2",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Noah Cameron",
+        "Emma Navarro",
+        "Jake Irvin"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Total Games Won",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|P3-3",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Robert Gasser",
+        "Naomi Osaka",
+        "Michael McGreevy"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games Won",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|P3-4",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Zach Neto",
+        "Linda Noskova",
+        "Logan Webb"
+      ],
+      "props": [
+        "Hitter Strikeouts",
+        "Total Games Won",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|P3-5",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Chase Burns",
+        "Riley Greene",
+        "Brett Bateman"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Hits+Runs+RBIs",
+        "Hits+Runs+RBIs"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|F4-1",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Grayson Rodriguez",
+        "Matthew Boyd",
+        "Emmet Sheehan",
+        "Joey Cantillo"
+      ],
+      "props": [
+        "Hits Allowed",
+        "Hits Allowed",
+        "Earned Runs Allowed",
+        "Earned Runs Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|MLB3-1",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Troy Melton",
+        "Noah Cameron",
+        "Jake Irvin"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|MLB3-2",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Robert Gasser",
+        "Michael McGreevy",
+        "Zach Neto"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Hitter Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|MLB3-3",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Logan Webb",
+        "Chase Burns",
+        "Riley Greene"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Walks Allowed",
+        "Hits+Runs+RBIs"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-07|2026-09-07|TEN3-1",
+      "date": "2026-09-07",
+      "ticket_id": "2026-09-07|TEN3-1",
+      "group": "Tennis Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Iva Jovic",
+        "Emma Navarro",
+        "Naomi Osaka"
+      ],
+      "props": [
+        "Total Games Won",
+        "Total Games Won",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|P3-1",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Landen Roupp",
+        "Gregor Kobel",
+        "Emma Navarro"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Goalie Saves",
+        "Total Games Won"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|P3-2",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tanner Bibee",
+        "Nicolas Pepe",
+        "Mirra Andreeva"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Shots",
+        "Total Games Won"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|P3-3",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tarik Skubal",
+        "Kylian Mbappé",
+        "Riley Greene"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Shots",
+        "Hits+Runs+RBIs"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|P3-4",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jonah Cox",
+        "Jarrod Bowen",
+        "Casey Mize"
+      ],
+      "props": [
+        "Hits+Runs+RBIs",
+        "Shots",
+        "Hits Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|P3-5",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "MISS"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "José Soriano",
+        "Tijjani Reijnders",
+        "Jack Perkins"
+      ],
+      "props": [
+        "Hits Allowed",
+        "Shots",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|F4-1",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Dean Kremer",
+        "Rayane Messi",
+        "Zach Neto",
+        "Michael Wacha"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Shots On Target",
+        "Hitter Strikeouts",
+        "Pitches Thrown"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|F4-2",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Riley Cornelio",
+        "Bubba Chandler",
+        "Nick Lodolo",
+        "Drew Anderson"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Pitches Thrown",
+        "Walks Allowed",
+        "Pitching Outs"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|F4-3",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Freddy Peralta",
+        "Jacob Misiorowski",
+        "Tristan Peters",
+        "Sean Manaea"
+      ],
+      "props": [
+        "Pitching Outs",
+        "Hits Allowed",
+        "Hits+Runs+RBIs",
+        "Earned Runs Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|MLB3-1",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Landen Roupp",
+        "Tanner Bibee",
+        "Tarik Skubal"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|MLB3-2",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Riley Greene",
+        "Jonah Cox",
+        "Casey Mize"
+      ],
+      "props": [
+        "Hits+Runs+RBIs",
+        "Hits+Runs+RBIs",
+        "Hits Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|MLB3-3",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "José Soriano",
+        "Jack Perkins",
+        "Dean Kremer"
+      ],
+      "props": [
+        "Hits Allowed",
+        "Walks Allowed",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|TEN2-1",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|TEN2-1",
+      "group": "Tennis Goblin-70 Power 2",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Emma Navarro",
+        "Mirra Andreeva"
+      ],
+      "props": [
+        "Total Games Won",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|SOC3-1",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|SOC3-1",
+      "group": "Soccer Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Gregor Kobel",
+        "Nicolas Pepe",
+        "Kylian Mbappé"
+      ],
+      "props": [
+        "Goalie Saves",
+        "Shots",
+        "Shots"
+      ],
+      "sports": [
+        "Soccer",
+        "Soccer",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-08|2026-09-08|SOC3-2",
+      "date": "2026-09-08",
+      "ticket_id": "2026-09-08|SOC3-2",
+      "group": "Soccer Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Jarrod Bowen",
+        "Tijjani Reijnders",
+        "Rayane Messi"
+      ],
+      "props": [
+        "Shots",
+        "Shots",
+        "Shots On Target"
+      ],
+      "sports": [
+        "Soccer",
+        "Soccer",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-17|2026-09-17|P3-1",
+      "date": "2026-09-17",
+      "ticket_id": "2026-09-17|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Drew Rasmussen",
+        "Peyton Stearns",
+        "Nicolas Pepe"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Shots"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-17|2026-09-17|P3-2",
+      "date": "2026-09-17",
+      "ticket_id": "2026-09-17|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Taj Bradley",
+        "Alfonso Herrero",
+        "Seth Lugo"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Goalie Saves",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-17|2026-09-17|P3-3",
+      "date": "2026-09-17",
+      "ticket_id": "2026-09-17|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Fernando Tatis Jr.",
+        "Andre Brooks",
+        "Framber Valdez"
+      ],
+      "props": [
+        "Hits+Runs+RBIs",
+        "Shots",
+        "Pitching Outs"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-17|2026-09-17|P3-4",
+      "date": "2026-09-17",
+      "ticket_id": "2026-09-17|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Walbert Ureña",
+        "Erling Haaland",
+        "Sonny Gray"
+      ],
+      "props": [
+        "Hits Allowed",
+        "Shots On Target",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-17|2026-09-17|P3-5",
+      "date": "2026-09-17",
+      "ticket_id": "2026-09-17|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Justin Wrobleski",
+        "Aaron Nola",
+        "Jeffrey Springs"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-17|2026-09-17|MLB3-1",
+      "date": "2026-09-17",
+      "ticket_id": "2026-09-17|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Drew Rasmussen",
+        "Taj Bradley",
+        "Seth Lugo"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-17|2026-09-17|MLB3-2",
+      "date": "2026-09-17",
+      "ticket_id": "2026-09-17|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Fernando Tatis Jr.",
+        "Framber Valdez",
+        "Walbert Ureña"
+      ],
+      "props": [
+        "Hits+Runs+RBIs",
+        "Pitching Outs",
+        "Hits Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-17|2026-09-17|MLB3-3",
+      "date": "2026-09-17",
+      "ticket_id": "2026-09-17|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Sonny Gray",
+        "Justin Wrobleski",
+        "Aaron Nola"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-17|2026-09-17|SOC3-1",
+      "date": "2026-09-17",
+      "ticket_id": "2026-09-17|SOC3-1",
+      "group": "Soccer Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "MISS",
+        "HIT",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Nicolas Pepe",
+        "Alfonso Herrero",
+        "Andre Brooks"
+      ],
+      "props": [
+        "Shots",
+        "Goalie Saves",
+        "Shots"
+      ],
+      "sports": [
+        "Soccer",
+        "Soccer",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|P3-1",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "MISS",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "placeholder_23",
+      "players": [
+        "Jake Irvin",
+        "Anna Bondar",
+        "Kiki Iriafen"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Total Games",
+        "Points"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|P3-2",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "placeholder_23",
+      "players": [
+        "Dean Kremer",
+        "Maria Sakkari",
+        "Rae Burrell"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Total Games",
+        "Assists"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|P3-3",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Gavin Williams",
+        "Erica Wheeler",
+        "Lanlana Tararudee"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Assists",
+        "Total Games"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|P3-4",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Will Warren",
+        "Janice Tjen",
+        "Kevin Viveros"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Shots On Target"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|P3-5",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Ryan Johnson",
+        "Moyuka Uchijima",
+        "Kiki Rice"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Total Games Won",
+        "Assists"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|F4-1",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "placeholder_23",
+      "players": [
+        "Polina Kudermetova",
+        "Troy Melton",
+        "Díber Cambindo",
+        "Renata Zarazua"
+      ],
+      "props": [
+        "Total Games Won",
+        "Pitcher Strikeouts",
+        "Shots",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "MLB",
+        "Soccer",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|F4-2",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tomoyuki Sugano",
+        "Jonathan Clauss",
+        "Mananchaya Sawangkaew",
+        "Martín Pérez"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Shots",
+        "Total Games Won",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|F4-3",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "MISS",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "placeholder_23",
+      "players": [
+        "Griffin Jax",
+        "Josh Sheehan",
+        "Anastasia Zakharova",
+        "Cristopher Sánchez"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Shots",
+        "Total Games Won",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|F4-4",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|F4-4",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Patrick Sandoval",
+        "Ousmane Diakité",
+        "Rebecca Sramkova",
+        "Hunter Brown"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Shots",
+        "Total Games Won",
+        "Hits Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "Tennis",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|WNB3-1",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|WNB3-1",
+      "group": "WNBA Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Kiki Iriafen",
+        "Rae Burrell",
+        "Erica Wheeler"
+      ],
+      "props": [
+        "Points",
+        "Assists",
+        "Assists"
+      ],
+      "sports": [
+        "WNBA",
+        "WNBA",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|MLB3-1",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jake Irvin",
+        "Dean Kremer",
+        "Gavin Williams"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Walks Allowed",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|MLB3-2",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Will Warren",
+        "Ryan Johnson",
+        "Troy Melton"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|MLB3-3",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tomoyuki Sugano",
+        "Martín Pérez",
+        "Griffin Jax"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Pitcher Strikeouts",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|TEN3-1",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|TEN3-1",
+      "group": "Tennis Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "placeholder_23",
+      "players": [
+        "Anna Bondar",
+        "Maria Sakkari",
+        "Lanlana Tararudee"
+      ],
+      "props": [
+        "Total Games",
+        "Total Games",
+        "Total Games"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|TEN3-2",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|TEN3-2",
+      "group": "Tennis Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Janice Tjen",
+        "Moyuka Uchijima",
+        "Polina Kudermetova"
+      ],
+      "props": [
+        "Total Games",
+        "Total Games Won",
+        "Total Games Won"
+      ],
+      "sports": [
+        "Tennis",
+        "Tennis",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|SOC3-1",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|SOC3-1",
+      "group": "Soccer Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Kevin Viveros",
+        "Díber Cambindo",
+        "Jonathan Clauss"
+      ],
+      "props": [
+        "Shots On Target",
+        "Shots",
+        "Shots"
+      ],
+      "sports": [
+        "Soccer",
+        "Soccer",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-20|2026-09-20|SOC3-2",
+      "date": "2026-09-20",
+      "ticket_id": "2026-09-20|SOC3-2",
+      "group": "Soccer Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Josh Sheehan",
+        "Ousmane Diakité",
+        "Andre Brooks"
+      ],
+      "props": [
+        "Shots",
+        "Shots",
+        "Shots On Target"
+      ],
+      "sports": [
+        "Soccer",
+        "Soccer",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|P3-1",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Peter Lambert",
+        "Jackie Young",
+        "Elise Mertens"
+      ],
+      "props": [
+        "Hits Allowed",
+        "Assists",
+        "Total Games"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|P3-2",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tyler Mahle",
+        "A'ja Wilson",
+        "Yordan Alvarez"
+      ],
+      "props": [
+        "Pitching Outs",
+        "Rebs+Asts",
+        "Total Bases"
+      ],
+      "sports": [
+        "MLB",
+        "WNBA",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|P3-3",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Cam Schlittler",
+        "Kyle Leahy",
+        "Daniel Espino"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Hits Allowed",
+        "Hits Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|P3-4",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tyler Glasnow",
+        "Paul Skenes",
+        "Ian Seymour"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|P3-5",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Andrew Painter",
+        "Brady Singer",
+        "Kumar Rocker"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|F4-1",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tyler Phillips",
+        "Randy Dobnak",
+        "Grayson Rodriguez",
+        "Zac Thornton"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Walks Allowed",
+        "Earned Runs Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|WNB2-1",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|WNB2-1",
+      "group": "WNBA Goblin-70 Power 2",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jackie Young",
+        "A'ja Wilson"
+      ],
+      "props": [
+        "Assists",
+        "Rebs+Asts"
+      ],
+      "sports": [
+        "WNBA",
+        "WNBA"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|MLB3-1",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Peter Lambert",
+        "Tyler Mahle",
+        "Yordan Alvarez"
+      ],
+      "props": [
+        "Hits Allowed",
+        "Pitching Outs",
+        "Total Bases"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|MLB3-2",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Cam Schlittler",
+        "Kyle Leahy",
+        "Daniel Espino"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Hits Allowed",
+        "Hits Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-24|2026-09-24|MLB3-3",
+      "date": "2026-09-24",
+      "ticket_id": "2026-09-24|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "HIT",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tyler Glasnow",
+        "Paul Skenes",
+        "Ian Seymour"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|P3-1",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "HIT",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Robert Gasser",
+        "Daniil Medvedev",
+        "Michael Olise"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Total Games",
+        "Shots On Target"
+      ],
+      "sports": [
+        "MLB",
+        "Tennis",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|P3-2",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Hunter Brown",
+        "Alan Vega",
+        "Freddy Peralta"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Shots",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|P3-3",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Jacob Lopez",
+        "Estéban Lepaul",
+        "Yordan Alvarez"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Shots On Target",
+        "Hits+Runs+RBIs"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|P3-4",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Tomoyuki Sugano",
+        "Camilo Vargas",
+        "Nick Lodolo"
+      ],
+      "props": [
+        "Earned Runs Allowed",
+        "Goalie Saves",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "Soccer",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|P3-5",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Michael McGreevy",
+        "Tarik Skubal",
+        "Eury Pérez"
+      ],
+      "props": [
+        "Hits Allowed",
+        "Hits Allowed",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|F4-1",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jackson Jobe",
+        "Noah Cameron",
+        "Alec Gamboa",
+        "Clay Holmes"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Hits Allowed",
+        "Hits Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|F4-2",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Gavin Williams",
+        "Sean Burke",
+        "Cristopher Sánchez",
+        "Bubba Chandler"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Hits Allowed",
+        "Pitcher Strikeouts",
+        "Walks Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|F4-3",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jacob deGrom",
+        "Reid Detmers",
+        "Joe Ryan",
+        "Trevor Rogers"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Pitches Thrown",
+        "Walks Allowed",
+        "Earned Runs Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|MLB3-1",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|MLB3-1",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Robert Gasser",
+        "Hunter Brown",
+        "Freddy Peralta"
+      ],
+      "props": [
+        "Pitcher Strikeouts",
+        "Walks Allowed",
+        "Pitcher Strikeouts"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|MLB3-2",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|MLB3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Jacob Lopez",
+        "Yordan Alvarez",
+        "Tomoyuki Sugano"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Hits+Runs+RBIs",
+        "Earned Runs Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|MLB3-3",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|MLB3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Nick Lodolo",
+        "Michael McGreevy",
+        "Tarik Skubal"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Hits Allowed",
+        "Hits Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-25|2026-09-25|SOC3-1",
+      "date": "2026-09-25",
+      "ticket_id": "2026-09-25|SOC3-1",
+      "group": "Soccer Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Michael Olise",
+        "Alan Vega",
+        "Estéban Lepaul"
+      ],
+      "props": [
+        "Shots On Target",
+        "Shots",
+        "Shots On Target"
+      ],
+      "sports": [
+        "Soccer",
+        "Soccer",
+        "Soccer"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|P3-1",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|P3-1",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "MISS"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Kevin Jennings",
+        "Julian Sayin",
+        "Cam Edwards"
+      ],
+      "props": [
+        "Pass Yards",
+        "Pass Yards",
+        "Rush Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|P3-2",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|P3-2",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "John Mateer",
+        "Drew Mestemaker",
+        "Arch Manning"
+      ],
+      "props": [
+        "Pass Yards",
+        "Pass Yards",
+        "Pass Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|P3-3",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|P3-3",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Trinidad Chambliss",
+        "Devon Dampier",
+        "Rodney Fields Jr."
+      ],
+      "props": [
+        "Pass Yards",
+        "Pass Yards",
+        "Rush Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|P3-4",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|P3-4",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Trequan Jones",
+        "Byrum Brown",
+        "Jeremiah Koger"
+      ],
+      "props": [
+        "Rush Yards",
+        "Pass Yards",
+        "Receiving Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|P3-5",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|P3-5",
+      "group": "Power 3 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Jayvontay Conner",
+        "Wayne Knight",
+        "Junior Sherrill"
+      ],
+      "props": [
+        "Receiving Yards",
+        "Rush Yards",
+        "Receiving Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|F4-1",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|F4-1",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Emmett Mosley V",
+        "J'Koby Williams",
+        "Da'Shawn Martin",
+        "Avery Johnson"
+      ],
+      "props": [
+        "Receiving Yards",
+        "Rush Yards",
+        "Receiving Yards",
+        "Rush Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|F4-2",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|F4-2",
+      "group": "Flex 4 · goblin",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "MISS",
+        "HIT",
+        "MISS"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Caden Knighten",
+        "Keshaun Singleton",
+        "Joe Jackson",
+        "Marcellous Hawkins Jr."
+      ],
+      "props": [
+        "Rush Yards",
+        "Receiving Yards",
+        "Rush Yards",
+        "Rush Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|F4-3",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|F4-3",
+      "group": "Flex 4 · goblin",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Terrance Carter Jr.",
+        "Sam Leavitt",
+        "Gio Lopez",
+        "Jayden Maiava"
+      ],
+      "props": [
+        "Receiving Yards",
+        "Pass Yards",
+        "Pass Yards",
+        "Pass Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|CFB3-1",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|CFB3-1",
+      "group": "CFB Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "MISS"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Kevin Jennings",
+        "Julian Sayin",
+        "Cam Edwards"
+      ],
+      "props": [
+        "Pass Yards",
+        "Pass Yards",
+        "Rush Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-26|2026-09-26|CFB3-2",
+      "date": "2026-09-26",
+      "ticket_id": "2026-09-26|CFB3-2",
+      "group": "CFB Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "John Mateer",
+        "Drew Mestemaker",
+        "Arch Manning"
+      ],
+      "props": [
+        "Pass Yards",
+        "Pass Yards",
+        "Pass Yards"
+      ],
+      "sports": [
+        "CFB",
+        "CFB",
+        "CFB"
+      ]
+    },
+    {
+      "id": "2026-09-27|2026-09-27|G3-NFL1",
+      "date": "2026-09-27",
+      "ticket_id": "2026-09-27|G3-NFL1",
+      "group": "NFL Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "J.K. Dobbins",
+        "Tre Tucker",
+        "Chase McLaughlin"
+      ],
+      "props": [
+        "rushing_yards",
+        "receiving_yards",
+        "fg_made"
+      ],
+      "sports": [
+        "NFL",
+        "NFL",
+        "NFL"
+      ]
+    },
+    {
+      "id": "2026-09-27|2026-09-27|G3-NFL2",
+      "date": "2026-09-27",
+      "ticket_id": "2026-09-27|G3-NFL2",
+      "group": "NFL Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Juwan Johnson",
+        "Parker Washington",
+        "Greg Dulcich"
+      ],
+      "props": [
+        "receiving_yards",
+        "receiving_yards",
+        "receiving_yards"
+      ],
+      "sports": [
+        "NFL",
+        "NFL",
+        "NFL"
+      ]
+    },
+    {
+      "id": "2026-09-27|2026-09-27|G3-NFL3",
+      "date": "2026-09-27",
+      "ticket_id": "2026-09-27|G3-NFL3",
+      "group": "NFL Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "MISS",
+        "HIT",
+        "UNRESOLVED"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Joey Slye",
+        "Andy Borregales",
+        "Cairo Santos"
+      ],
+      "props": [
+        "fg_made",
+        "fg_made",
+        "fg_made"
+      ],
+      "sports": [
+        "NFL",
+        "NFL",
+        "NFL"
+      ]
+    },
+    {
+      "id": "2026-09-27|2026-09-27|G3-1",
+      "date": "2026-09-27",
+      "ticket_id": "2026-09-27|G3-1",
+      "group": "X-Sport Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "UNRESOLVED",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "placeholder_23",
+      "players": [
+        "James Duckworth",
+        "Michael Soroka",
+        "Sean Manaea"
+      ],
+      "props": [
+        "Total Games",
+        "Earned Runs Allowed",
+        "Earned Runs Allowed"
+      ],
+      "sports": [
+        "Tennis",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-27|2026-09-27|G3-2",
+      "date": "2026-09-27",
+      "ticket_id": "2026-09-27|G3-2",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": true,
+      "grades": [
+        "HIT",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Yordan Alvarez",
+        "MacKenzie Gore",
+        "Jackson Chourio"
+      ],
+      "props": [
+        "Hits+Runs+RBIs",
+        "Walks Allowed",
+        "Hits+Runs+RBIs"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-27|2026-09-27|G3-3",
+      "date": "2026-09-27",
+      "ticket_id": "2026-09-27|G3-3",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": false,
+      "win": null,
+      "grades": [
+        "HIT",
+        "UNRESOLVED",
+        "HIT"
+      ],
+      "unresolved_reason": "missing_start",
+      "players": [
+        "Andre Pallante",
+        "Shane Baz",
+        "Shota Imanaga"
+      ],
+      "props": [
+        "Earned Runs Allowed",
+        "Earned Runs Allowed",
+        "Earned Runs Allowed"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    },
+    {
+      "id": "2026-09-27|2026-09-27|G3-4",
+      "date": "2026-09-27",
+      "ticket_id": "2026-09-27|G3-4",
+      "group": "MLB Goblin-70 Power 3",
+      "resolved": true,
+      "win": false,
+      "grades": [
+        "MISS",
+        "HIT",
+        "HIT"
+      ],
+      "unresolved_reason": "",
+      "players": [
+        "Daniel Lynch IV",
+        "Anthony Kay",
+        "Max Scherzer"
+      ],
+      "props": [
+        "Walks Allowed",
+        "Hits Allowed",
+        "Pitching Outs"
+      ],
+      "sports": [
+        "MLB",
+        "MLB",
+        "MLB"
+      ]
+    }
+  ]
+}

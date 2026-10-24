@@ -1224,10 +1224,22 @@ def main():
     rows_n = len(df)
     if rows_n == 0:
         print(no_props_log_line(sport_tag, str(args.date).strip()[:10]))
+        try:
+            from utils.step1_board_reconcile import run_step1_reconcile
+
+            run_step1_reconcile(
+                sport=sport_tag,
+                df=pd.DataFrame(),
+                out_dir=out_path.parent,
+                fetched_n=0,
+                fetch_failed=False,
+            )
+        except Exception as _rec_exc:
+            print(f"  [WARN] category reconcile skipped: {_rec_exc}")
         empty_cols = [
             "projection_id", "pp_projection_id", "player_id", "pp_game_id", "start_time",
             "player", "pos", "team", "opp_team", "prop_type", "line", "pick_type", "game_date",
-            "board_date", "line_asof", "fetched_at", "pp_updated_at", "sport",
+            "board_date", "line_asof", "fetched_at", "pp_updated_at", "sport", "ticketable",
         ]
         pd.DataFrame(columns=empty_cols).to_csv(out_path, index=False, encoding="utf-8-sig")
         sys.exit(0)
@@ -1235,6 +1247,18 @@ def main():
     teams_n = df["team"].astype(str).nunique()
 
     if rows_n < args.min_rows or teams_n < args.min_teams:
+        try:
+            from utils.step1_board_reconcile import run_step1_reconcile
+
+            run_step1_reconcile(
+                sport=sport_tag,
+                df=pd.DataFrame(),
+                out_dir=out_path.parent,
+                fetched_n=int(rows_n),
+                fetch_failed=True,
+            )
+        except Exception as _rec_exc:
+            print(f"  [WARN] category reconcile skipped: {_rec_exc}")
         print(
             f"❌ FETCH_FAILED: BOARD_TOO_SMALL after slate filter "
             f"(rows={rows_n}, teams={teams_n}; need min_rows={args.min_rows}, min_teams={args.min_teams}). "
@@ -1244,6 +1268,20 @@ def main():
 
     df = _stamp_fetched_at(df)
     df["sport"] = sport_tag
+    try:
+        from utils.step1_board_reconcile import run_step1_reconcile
+
+        df, _ = run_step1_reconcile(
+            sport=sport_tag,
+            df=df,
+            out_dir=out_path.parent,
+            fetched_n=int(rows_n),
+        )
+    except RuntimeError as _cov_exc:
+        print(f"❌ {_cov_exc}")
+        raise SystemExit(2) from _cov_exc
+    except Exception as _rec_exc:
+        print(f"  [WARN] category reconcile skipped: {_rec_exc}")
     if sport_tag == "WNBA":
         try:
             from utils.pp_basketball_markets import log_shooting_coverage
@@ -1253,6 +1291,9 @@ def main():
         except Exception as _sc_exc:
             print(f"  [WARN] shooting coverage log skipped: {_sc_exc}")
     df.to_csv(out_path, index=False, encoding="utf-8-sig")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(out_path, sport="WNBA")
     try:
         _root = Path(__file__).resolve().parents[2]
         if str(_root) not in sys.path:

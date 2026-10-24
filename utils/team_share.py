@@ -61,6 +61,11 @@ CAT_ID_TO_PROP: dict[str, str] = {
     "rush_td": "Rush TDs",
     "rec_td": "Receiving TDs",
     "receptions": "Receptions",
+    "rush_att": "Rush Attempts",
+    "pass_att": "Pass Attempts",
+    "rec_tgt": "Rec Targets",
+    "kick_pts": "Kick Pts",
+    "kick_fg": "Kick FG",
 }
 
 SLATE_PROP_TO_SHARE: dict[str, str] = {
@@ -105,10 +110,26 @@ SLATE_PROP_TO_SHARE: dict[str, str] = {
     "rec yards": "Receiving Yards",
     "receptions": "Receptions",
     "pass tds": "Pass TDs",
+    "passing tds": "Pass TDs",
     "passing touchdowns": "Pass TDs",
     "rush tds": "Rush TDs",
+    "rushing tds": "Rush TDs",
     "rushing touchdowns": "Rush TDs",
+    "receiving tds": "Receiving TDs",
     "receiving touchdowns": "Receiving TDs",
+    "rushing attempts": "Rush Attempts",
+    "rush attempts": "Rush Attempts",
+    "carries": "Rush Attempts",
+    "pass attempts": "Pass Attempts",
+    "passing attempts": "Pass Attempts",
+    "rec targets": "Rec Targets",
+    "receiving targets": "Rec Targets",
+    "targets": "Rec Targets",
+    "kicking points": "Kick Pts",
+    "kicking pts": "Kick Pts",
+    "kicking_points": "Kick Pts",
+    "field goals made": "Kick FG",
+    "field_goals_made": "Kick FG",
 }
 
 
@@ -118,7 +139,11 @@ def _norm_name(s: object) -> str:
 
 def _norm_prop(s: object) -> str:
     p = str(s or "").strip().lower().replace(" (combo)", "")
-    return SLATE_PROP_TO_SHARE.get(p, str(s or "").strip())
+    hit = SLATE_PROP_TO_SHARE.get(p)
+    if hit:
+        return hit
+    p2 = p.replace("_", " ")
+    return SLATE_PROP_TO_SHARE.get(p2, str(s or "").strip())
 
 
 def share_artifact_path(sport: str, repo: Path | None = None) -> Path:
@@ -688,7 +713,7 @@ def build_nhl_share(repo: Path | None = None) -> dict[str, Any]:
 
 
 def _football_team_id_map(root: Path, *, league: str) -> dict[str, str]:
-    """team_id -> abbr. Prefer CFB unit rankings; fall back to T{id}."""
+    """team_id -> abbr. Prefer CFB unit rankings / NFL defense table; fall back to T{id}."""
     out: dict[str, str] = {}
     if league in ("cfb", "ncaaf"):
         path = root / "Sports/CFB/data/reference/cfb_team_unit_rankings.csv"
@@ -697,6 +722,23 @@ def _football_team_id_map(root: Path, *, league: str) -> dict[str, str]:
             d["team_id"] = d["team_id"].astype(str)
             d["team_abbr"] = d["team_abbr"].astype(str).str.strip().str.upper()
             out.update(dict(zip(d["team_id"], d["team_abbr"])))
+        return out
+    if league == "nfl":
+        for path in (
+            root / "data/reference/nfl_team_defense.csv",
+            root / "data/rosters/nfl_rosters.csv",
+        ):
+            if not path.exists():
+                continue
+            try:
+                d = pd.read_csv(path, usecols=["team_id", "team_abbr"])
+            except Exception:
+                continue
+            d["team_id"] = d["team_id"].astype(str)
+            d["team_abbr"] = d["team_abbr"].astype(str).str.strip().str.upper()
+            out.update(dict(zip(d["team_id"], d["team_abbr"])))
+            if out:
+                break
     return out
 
 
@@ -728,7 +770,23 @@ def build_football_share(
         }
 
     df = pd.read_csv(path)
-    if "SEASON" in df.columns and season is not None:
+    if sport == "nfl" and "game_date" in df.columns:
+        from utils.nfl_stat_leaders import season_from_game_date
+        from utils.nfl_prop_defense import last_completed_nfl_season
+
+        df["_season"] = df["game_date"].map(season_from_game_date)
+        want = int(season) if season is not None else last_completed_nfl_season()
+        present = sorted({int(x) for x in df["_season"].dropna().tolist()}) if df["_season"].notna().any() else []
+        if present and want not in present:
+            want = max(present)
+        if present and want in present:
+            n_want = int((df["_season"] == want).sum())
+            # Early new year: stay on last full season if this year is a handful of games.
+            if n_want < 2000 and any(s < want for s in present):
+                want = max(s for s in present if s < want)
+        df = df[df["_season"] == want].copy()
+        season = want
+    elif "SEASON" in df.columns and season is not None:
         df = df[pd.to_numeric(df["SEASON"], errors="coerce") == int(season)].copy()
     elif "SEASON" in df.columns and not df.empty:
         # Prefer latest season in cache (keeps CFB ready between seasons)
@@ -748,9 +806,14 @@ def build_football_share(
         "Rush Yards": "RUSH_YDS",
         "Receiving Yards": "REC_YDS",
         "Receptions": "REC",
+        "Rec Targets": "REC_TGT",
         "Pass TDs": "PASS_TD",
         "Rush TDs": "RUSH_TD",
         "Receiving TDs": "REC_TD",
+        "Pass Attempts": "PASS_ATT",
+        "Rush Attempts": "RUSH_ATT",
+        "Kick FG": "KICK_FG",
+        "Kick Pts": "KICK_PTS",
     }
     for src in col_map.values():
         if src not in df.columns:
@@ -811,7 +874,8 @@ def build_football_share(
             tval = float(r.get(f"{col}_TEAM", np.nan))
             if not np.isfinite(tval) or tval <= 0:
                 continue
-            # Skip near-zero specialists for pass yards monopoly noise? keep all
+            if not np.isfinite(pval) or pval <= 0:
+                continue
             rec = {
                 "player": str(r["PLAYER"]),
                 "player_norm": pn,
@@ -837,9 +901,9 @@ def build_football_share(
         "source": str(path.relative_to(root)),
         "applicable": True,
         "note": (
-            "NCAAF/CFB ready: Pass/Rush/Rec yards (+ TDs/REC) as % of team game totals. "
-            "Pass yards share is usually near-QB monopoly — still useful vs inflated Demon lines. "
-            "Refresh cache when the new season starts."
+            "Pass/Rush/Rec yards, receptions, targets, TDs, and kick FG/pts as % of "
+            "team game totals. Rush/pass attempts fill when RUSH_ATT/PASS_ATT are in "
+            "the boxscore cache. Pass yards share is usually a QB monopoly."
         ),
         "team_averages": team_avgs_out,
         "leaders": leaders,
@@ -916,7 +980,31 @@ def write_sport_share(sport: str, repo: Path | None = None) -> Path:
                 "min_avg": rec.get("min_avg"),
             }
         lean["by_player"] = compact
-    path.write_text(json.dumps(lean, separators=(",", ":")), encoding="utf-8")
+    if str(sport).strip().lower() == "nfl" and payload.get("applicable"):
+        csv_path = root / "Sports/NFL/data/nfl_player_prop_share.csv"
+        rows = []
+        for rec in (payload.get("by_player") or {}).values():
+            if not isinstance(rec, dict):
+                continue
+            rows.append(
+                {
+                    "team": rec.get("team"),
+                    "player": rec.get("player"),
+                    "player_norm": rec.get("player_norm"),
+                    "prop": rec.get("prop"),
+                    "share_pct": rec.get("share_pct"),
+                    "player_avg": rec.get("player_avg"),
+                    "team_avg": rec.get("team_avg"),
+                    "games": rec.get("games"),
+                }
+            )
+        if rows:
+            pd.DataFrame(rows).sort_values(
+                ["team", "prop", "share_pct"], ascending=[True, True, False]
+            ).to_csv(csv_path, index=False, encoding="utf-8-sig")
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(lean, separators=(",", ":")), encoding="utf-8")
+    tmp.replace(path)
     # Optional human-readable leaders sidecar for analysis canvases
     leaders = payload.get("leaders")
     if leaders:
@@ -1023,6 +1111,13 @@ def enrich_matchup_edge_payload(
         "player_count": share.get("player_count"),
         "note": share.get("note"),
     }
+    if str(sport or "").strip().lower() == "nfl":
+        try:
+            from utils.nfl_scoring_vehicles import enrich_nfl_matchup_edge_payload
+
+            payload = enrich_nfl_matchup_edge_payload(payload, repo)
+        except Exception:
+            pass
     return payload
 
 
@@ -1030,16 +1125,22 @@ def enrich_slate_rows(
     rows: list[dict[str, Any]], sport: str, repo: Path | None = None
 ) -> list[dict[str, Any]]:
     share = load_share_payload(sport, repo)
-    if not share or not share.get("applicable") or not rows:
-        return rows
-    for r in rows:
-        if not isinstance(r, dict):
-            continue
-        team = str(r.get("team") or "").strip().upper()
-        prop = str(r.get("prop") or r.get("prop_type") or "")
+    if share and share.get("applicable") and rows:
+        for r in rows:
+            if not isinstance(r, dict):
+                continue
+            team = str(r.get("team") or "").strip().upper()
+            prop = str(r.get("prop") or r.get("prop_type") or "")
+            try:
+                line = float(r.get("line")) if r.get("line") is not None else None
+            except Exception:
+                line = None
+            attach_share_fields(r, share, team=team, prop=prop, line=line)
+    if str(sport or "").strip().lower() == "nfl":
         try:
-            line = float(r.get("line")) if r.get("line") is not None else None
+            from utils.nfl_scoring_vehicles import enrich_nfl_web_rows
+
+            enrich_nfl_web_rows(rows, repo)
         except Exception:
-            line = None
-        attach_share_fields(r, share, team=team, prop=prop, line=line)
+            pass
     return rows

@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-09-15T18:30:00+00:00",
+  "title": "Tennis serve backfill + UNDER inflation finding",
+  "backfill": {
+    "script": "scripts/backfill_tennis_serve_actuals.py",
+    "trees": ["H:/PropORACLE", "H:/PropORACLE_main_cp"],
+    "result": "patched=14238 voided=16439 (missing Sackmann/TA → VOID, not fake 0)"
+  },
+  "failure_mode": {
+    "summary": "Missing ESPN serve actuals historically coerced to 0.0. That is asymmetric by direction.",
+    "over": "actual 0 vs line 2.5+ → always MISS (the 142-row contaminated Std OVER Aces batch at 0%)",
+    "under": "actual 0 vs line 2.5+ → always HIT (inflated pre-backfill Std UNDER Aces/DF to ~90%)",
+    "code": {
+      "tennis_grader.py": "Now keeps aces/DF as None→VOID (comment documents the OVER MISS bug). Historical graded_props still had coerced zeros until backfill.",
+      "fetch_tennis_actuals.py": "Only emits aces/DF rows when ESPN value is non-null (correct).",
+      "backfill_tennis_serve_actuals.py": "Rewrites from Sackmann/TA; voids when no match."
+    }
+  },
+  "post_backfill_std_serve": {
+    "aces_standard_over": {"n": 473, "hit_pct": 32.3, "ci95": [28.3, 36.7], "void": 273, "call": "FADE"},
+    "aces_standard_under": {"n": 54, "hit_pct": 57.4, "ci95": [44.2, 69.7], "void": 76, "call": "FADE (was KEEP 90.6%)"},
+    "double_faults_standard_over": {"n": 523, "hit_pct": 38.6, "ci95": [34.5, 42.9], "void": 322, "call": "FADE"},
+    "double_faults_standard_under": {"n": 28, "hit_pct": 28.6, "ci95": [15.3, 47.1], "void": 25, "call": "FADE (was KEEP 90.0%)"},
+    "aces_under_actual_gt0": {"n": 53, "hit_pct": 56.6, "note": "only 1 actual==0 UNDER HIT remains"},
+    "df_under_actual_gt0": {"n": 28, "hit_pct": 28.6, "note": "zero actual==0 survivors"}
+  },
+  "gate_change": {
+    "removed": "Std UNDER Aces / Double Faults ungated keep",
+    "reason": "Post-backfill sourced rates are not ≥70% at usable n",
+    "unchanged_keeps": [
+      "Goblin Games Won L10≥8+(lefty|2nd-won≥45.7) / Std−Goblin≥4",
+      "Goblin Total Games L5≥4+L10≥8 | L10≥8+lefty",
+      "Std OVER Games Won L10≥8+(gap|2nd-won) thin"
+    ]
+  }
+}

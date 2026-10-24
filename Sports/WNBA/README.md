@@ -19,6 +19,7 @@ Common options:
 | `-CdpWhenListening` | Skip HTTP when Chrome debug port 9222 is up (warm session) |
 | `-HttpOnly` | Do not fall back to CDP after HTTP fails |
 | `-UsePlaywright` | Step 1 via in-browser fetch (no HTTP API) |
+| `-SkipPeriod` | Full-game only; skip PrizePicks WNBA1H (193) / WNBA1Q (308) tabs |
 
 Default step 1 uses **`Sports/WNBA/step1_fetch_prizepicks.py`** (HTTP: `/leagues` warmup, `curl_cffi` **chrome131**, session waves on 403). On failure it retries the NBA API script with **chrome120**, then CDP on port 9222 if Chrome is running.
 
@@ -39,6 +40,14 @@ pwsh -File scripts\run_wnba_pipeline.ps1 -Cdp http://127.0.0.1:9222 -Date 2026-0
 If HTTP fails, the runner tries **chrome120** via the NBA API script, then **auto-retries CDP** when port 9222 is up (unless `-NoCdpFallback` or `-HttpOnly`). Use `-CdpWhenListening` to skip HTTP when debug Chrome is already warm.  
 **L5 / L10 stats** come from **ESPN** (`wnba_espn_cache.csv`), not PrizePicks — backfill 2025 with `scripts/backfill_wnba_espn_range.py`.
 
+## Graded export gaps
+
+`usage_pct` / `usage_tier` are written by step4b and carried through step8, but
+`graded_props_*.json` currently keeps those keys empty (~0% fill). Treat this
+like other hypothesis-space fields that never landed in the grade archive
+(`competition_history` / `player_prior_n`): gate searches that need usage must
+join step8 until the grader export persists them.
+
 ## Rolling stats (L5 / last season)
 
 `step4_fetch_player_stats.py` **by default** combines **current and previous** `SEASON` rows in `wnba_espn_cache.csv` and uses a **~420-day** lookback so early-season slates still get up to five prior games for L5. Pass `--no-include-prior-season-stats` to restrict to one season only.
@@ -56,13 +65,14 @@ Other presets: `full-2025` (May–Oct), `late-2025` (Sep–Oct). ESPN is queried
 ## Where outputs go
 
 - **Per-step artifacts (canonical run):** `outputs/<date>/wnba/` — e.g. `step1_wnba_props.csv` through step 9 outputs.
+- **Period boards:** after full-game step8, the same runner fetches PrizePicks **WNBA1H** (`outputs/<date>/wnba1h/`) and **WNBA1Q** (`outputs/<date>/wnba1q/`). Empty tabs skip; they do not fail the full WNBA run.
 - **Published clean sheet:** after step 8, `scripts/run_wnba_pipeline.ps1` mirrors the direction-clean workbook to `outputs/<date>/` (e.g. `step8_wnba_direction_clean_<date>.xlsx`) for dated consumers and mobile sync patterns.
 - **Slate Explorer / mobile:** after step 9, the same runner calls `scripts/publish_wnba_slate_to_ui.py`, which **merges** WNBA rows into `ui_runner/templates/slate_latest.json` and `mobile/www/slate_latest.json` (and writes `slate_sport_wnba.json`) without wiping other sports. Run that script manually with `--date` if you need to refresh only the web JSON.
 - **Matchup Edge panel:** Slate Explorer includes a **Matchup Edge** block per sport (NBA, WNBA, NHL, Soccer, …). Build all: `py -3 scripts/build_matchup_edge_json.py --sport all`. API: `GET /api/<sport>/matchup-edge`. WNBA also runs `Sports/WNBA/scripts/build_wnba_matchup_edge_json.py` in its pipeline.
 
 ## Combined slate / web tickets
 
-`scripts/combined_slate_tickets.py` already merges **WNBA** into the full slate (same `build_combined_slate` path as NBA, NHL, etc.) when a step8 workbook is found. Resolution order matches other sports: `outputs/<date>/wnba/step8_wnba_direction_clean.xlsx`, then the dated mirror `outputs/<date>/step8_wnba_direction_clean_<date>.xlsx`, then legacy `Sports/WNBA/...` paths.
+`scripts/combined_slate_tickets.py` already merges **WNBA** (and **WNBA1H** / **WNBA1Q** when those step8 workbooks exist) into the full slate. Resolution order matches other sports: `outputs/<date>/wnba/step8_wnba_direction_clean.xlsx` (period: `outputs/<date>/wnba1h/` and `wnba1q/`), then dated mirrors, then legacy `Sports/WNBA/...` paths. Period boards show in Slate Explorer; they stay off MAIN tickets until period-specific L5 exists.
 
 - **Full / partial master run:** `run_pipeline.ps1` runs WNBA in parallel (on/after `WNBA_SEASON_START`, or with `-ForceWNBA`) and then **combined**, so WNBA props flow into `combined_slate_tickets_<date>.xlsx` and web JSON when those steps succeed.
 - **Standalone WNBA only:** run `scripts/run_wnba_pipeline.ps1`, then either `run_pipeline.ps1 -CombinedOnly ...` for the same date, or invoke `combined_slate_tickets.py` with `--date <YYYY-MM-DD>` (and your usual `--output` / `--web-outdir` flags). `-WNBAOnly` runs the WNBA pipeline and then combined automatically.

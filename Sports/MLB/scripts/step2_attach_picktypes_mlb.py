@@ -108,6 +108,19 @@ PROP_NORM_MAP = {
     "battersfaced":            "batters_faced",
     "pitches thrown":          "pitches_thrown",
     "pitchesthrown":           "pitches_thrown",
+    "pitches seen":            "pitches_seen",
+    "pitchesseen":             "pitches_seen",
+    "balls counted":           "balls_counted",
+    "ballscounted":            "balls_counted",
+    "strikes counted":         "strikes_counted",
+    "strikescounted":          "strikes_counted",
+    "balls thrown":            "balls_thrown",
+    "ballsthrown":             "balls_thrown",
+    "strikes thrown":          "strikes_thrown",
+    "strikesthrown":           "strikes_thrown",
+    "pitches thrown 95+ mph":  "pitches_thrown_95",
+    "pitchesthrown95mph":      "pitches_thrown_95",
+    "pitchesthrown95+mph":     "pitches_thrown_95",
 }
 
 PITCHER_PROPS = {
@@ -115,6 +128,7 @@ PITCHER_PROPS = {
     "hits_allowed", "earned_runs", "earned_runs_allowed", "walks_allowed", "batters_faced",
     "pitches_thrown", "first_inning_runs_allowed", "first_inning_walks_allowed",
     "strikeouts_combo", "strikeouts_total_bases", "pitcher_fantasy_score",
+    "balls_thrown", "strikes_thrown", "pitches_thrown_95",
 }
 
 HITTER_PROPS = {
@@ -122,6 +136,7 @@ HITTER_PROPS = {
     "walks", "stolen_bases", "fantasy_score", "hitter_fantasy_score", "hits_runs_rbi",
     "singles", "doubles", "triples",
     "hitter_strikeouts", "plate_appearances",
+    "pitches_seen", "balls_counted", "strikes_counted",
 }
 
 PICKTYPE_MAP = {"standard": "Standard", "goblin": "Goblin", "demon": "Demon"}
@@ -159,6 +174,31 @@ def norm_prop(s: str) -> str:
         if flat == re.sub(r"[^a-z0-9]", "", k):
             return v
     return raw
+
+
+_PITCHER_POS_TOKENS = frozenset({"p", "sp", "rp", "lhp", "rhp", "pitcher"})
+
+
+def is_pitcher_pos_token(pos: str) -> bool:
+    tok = re.sub(r"[^a-z]", "", str(pos or "").lower())
+    return tok in _PITCHER_POS_TOKENS
+
+
+def order_ks_tb_ids(id1: str, id2: str, pos: str) -> Tuple[str, str]:
+    """Pitcher Strikeouts + Total Bases: pitcher id first, hitter id second.
+
+    PrizePicks lists the pitcher first. If ``pos`` is like ``OF+P``, swap.
+    """
+    a, b = str(id1 or "").strip(), str(id2 or "").strip()
+    tokens = [p.strip() for p in re.split(r"[+/]", str(pos or "")) if p.strip()]
+    if len(tokens) >= 2:
+        a_p = is_pitcher_pos_token(tokens[0])
+        b_p = is_pitcher_pos_token(tokens[1])
+        if b_p and not a_p:
+            return b, a
+        if a_p and not b_p:
+            return a, b
+    return a, b
 
 
 def player_type(prop_norm: str) -> str:
@@ -547,12 +587,18 @@ def main() -> None:
                 df.at[idx, "id_status"] = "UNRESOLVED"
 
         # Combos
-        for idx, row in df.loc[combos_mask, ["player_1", "player_2"]].iterrows():
+        combo_cols = [c for c in ("player_1", "player_2", "prop_norm", "pos") if c in df.columns]
+        for idx, row in df.loc[combos_mask, combo_cols].iterrows():
             id1 = id_cache.get(norm_name(row["player_1"]), "")
             id2 = id_cache.get(norm_name(row["player_2"]), "")
             if id1 and id2:
-                ids = sorted([int(id1), int(id2)])
-                df.at[idx, "mlb_player_id"] = f"{ids[0]}{COMBO_SEP}{ids[1]}"
+                prop_n = str(row.get("prop_norm", "") or "").lower().strip()
+                if prop_n == "strikeouts_total_bases":
+                    pid_p, pid_h = order_ks_tb_ids(str(id1), str(id2), str(row.get("pos", "") or ""))
+                    df.at[idx, "mlb_player_id"] = f"{pid_p}{COMBO_SEP}{pid_h}"
+                else:
+                    ids = sorted([int(id1), int(id2)])
+                    df.at[idx, "mlb_player_id"] = f"{ids[0]}{COMBO_SEP}{ids[1]}"
             else:
                 df.at[idx, "id_status"] = "UNRESOLVED_COMBO"
     else:

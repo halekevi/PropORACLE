@@ -157,6 +157,8 @@ $SoccerAdvancedGraderScript = Join-Path $Root "scripts\soccer_grader_advanced.py
 $VoidValidatorScript = Join-Path $Root "scripts\validate_unacceptable_voids.py"
 $BuildGradesHtmlScript = Join-Path $Root "scripts\grading\build_grades_html.py"
 $BackfillGradedPropsJsonScript = Join-Path $Root "scripts\backfill_graded_props_json.py"
+$JoinWnbaPraOffObserveScript  = Join-Path $Root "scripts\join_wnba_pra_off_observe.py"
+$JoinWnbaThreesVolObserveScript = Join-Path $Root "scripts\join_wnba_threes_vol_observe.py"
 $IngestGradedIncomeScript     = Join-Path $Root "scripts\ingest_graded_to_income_db.py"
 $NBABacktestScript = Join-Path $SportsRoot "NBA\scripts\backtest_nba.py"
 # Prefer build_ticket_eval.py (multi-date graded merge from leg game_time); fallback to legacy HTML-only builder.
@@ -1098,6 +1100,12 @@ if (Test-Path -LiteralPath $NFLActuals) {
 if ($NFLActualsNeedFetch -and (Test-Path $FetchFootballActualsScript)) {
     Run-Py "Fetch NFL Actuals" $Root $FetchFootballActualsScript @("--league", "nfl", "--date", $Date, "--output", $NFLActuals)
 }
+$ActualsCoverageScript = Join-Path $Root "scripts\check_actuals_game_coverage.py"
+if ((Test-Path -LiteralPath $NFLActuals) -and (Test-Path $ActualsCoverageScript)) {
+    Run-Py "NFL actuals coverage" $Root $ActualsCoverageScript @(
+        "--league", "nfl", "--date", $Date, "--actuals", $NFLActuals
+    )
+}
 if ((Test-Path $NFLActuals) -and $NFLSlateFile -and (Test-Path $NFLSlateFile) -and (Test-Path $SlateGraderScript)) {
     Run-Py "Grade NFL Slate" $Root $SlateGraderScript @(
         "--sport", "NFL",
@@ -1134,6 +1142,11 @@ if (Test-Path -LiteralPath $CFBActuals) {
 if ($CFBActualsNeedFetch -and (Test-Path $FetchFootballActualsScript)) {
     Run-Py "Fetch CFB Actuals" $Root $FetchFootballActualsScript @("--league", "cfb", "--date", $Date, "--output", $CFBActuals)
 }
+if ((Test-Path -LiteralPath $CFBActuals) -and (Test-Path $ActualsCoverageScript)) {
+    Run-Py "CFB actuals coverage" $Root $ActualsCoverageScript @(
+        "--league", "cfb", "--date", $Date, "--actuals", $CFBActuals
+    )
+}
 if ((Test-Path $CFBActuals) -and $CFBSlateFile -and (Test-Path $CFBSlateFile) -and (Test-Path $SlateGraderScript)) {
     Run-Py "Grade CFB Slate" $Root $SlateGraderScript @(
         "--sport", "CFB",
@@ -1142,6 +1155,11 @@ if ((Test-Path $CFBActuals) -and $CFBSlateFile -and (Test-Path $CFBSlateFile) -a
         "--output", $CFBGradedFile,
         "--date", $Date
     )
+    $cfbGradeRc = $LASTEXITCODE
+    if (-not (Test-Path -LiteralPath $CFBGradedFile)) {
+        $script:CfbWorkbookMissing = $true
+        Write-Host "[GRADER] ERROR: CFB step8 is present ($(Split-Path $CFBSlateFile -Leaf)) but $CFBGradedFile was not written (python exit $cfbGradeRc)." -ForegroundColor Red
+    }
 }
 else {
     Write-Host "Skipping CFB slate grading (missing actuals_cfb, step6 CFB slate, or slate_grader)." -ForegroundColor Yellow
@@ -1308,6 +1326,11 @@ else {
     Write-Host "Skipping VOID validator (validate_unacceptable_voids.py not found)." -ForegroundColor Yellow
 }
 
+$PlayerCoverageScript = Join-Path $Root "scripts\check_actuals_player_coverage.py"
+if (Test-Path $PlayerCoverageScript) {
+    Run-Py "Player actuals coverage" $Root $PlayerCoverageScript @("--date", $Date, "--outputs", $DateDir)
+}
+
 $MissAttributionScript = Join-Path $Root "scripts\report_miss_attribution.py"
 if (Test-Path $MissAttributionScript) {
     Run-Py "Miss attribution report" $Root $MissAttributionScript @("--date", $Date, "--repo-root", $Root)
@@ -1367,6 +1390,17 @@ if (Test-Path $BackfillGradedPropsJsonScript) {
 }
 else {
     Write-Host "Skipping graded props JSON build (backfill_graded_props_json.py not found)." -ForegroundColor Yellow
+}
+
+if (Test-Path $JoinWnbaPraOffObserveScript) {
+    Run-Py "Join WNBA PRA Off observe grades" $Root $JoinWnbaPraOffObserveScript @(
+        "--date", $Date
+    )
+}
+if (Test-Path $JoinWnbaThreesVolObserveScript) {
+    Run-Py "Join WNBA 3PM volume observe grades" $Root $JoinWnbaThreesVolObserveScript @(
+        "--date", $Date
+    )
 }
 
 # =============================
@@ -1719,10 +1753,25 @@ if (Test-Path $TicketEvalBuilderScript) {
     }
 
     # STRONG Recombo shadow (4-6L from STRONG 2-3L legs) — validation only, never MAIN.
+    # Never bake strong_recombo_shadow_latest.json into ticket_eval_strong_recombo_$Date.html
+    # unless its payload "date" matches $Date (that bug cloned Aug-31 slips onto Sep 2–4).
     $RecomboStrongShadowJson = Join-Path $Root "ui_runner\data\combined_slate_tickets_strong_recombo_$Date.json"
     $RecomboStrongShadowLatest = Join-Path $Root "ui_runner\data\strong_recombo_shadow_latest.json"
     if (-not (Test-Path $RecomboStrongShadowJson) -and (Test-Path $RecomboStrongShadowLatest)) {
-        $RecomboStrongShadowJson = $RecomboStrongShadowLatest
+        $latestDate = $null
+        try {
+            $hdr = Get-Content -LiteralPath $RecomboStrongShadowLatest -Raw -Encoding UTF8 | ConvertFrom-Json
+            $latestDate = [string]$hdr.date
+            if ($latestDate.Length -ge 10) { $latestDate = $latestDate.Substring(0, 10) }
+        } catch {
+            $latestDate = $null
+        }
+        if ($latestDate -eq $Date) {
+            $RecomboStrongShadowJson = $RecomboStrongShadowLatest
+        }
+        else {
+            Write-Host "[GRADER] Skip STRONG Recombo shadow for $Date (no dated JSON; latest is '$latestDate')." -ForegroundColor Yellow
+        }
     }
     if (Test-Path $RecomboStrongShadowJson) {
         $TeRecomboStrongOut = Join-Path $TemplatesDir "ticket_eval_strong_recombo_$Date.html"
@@ -1930,6 +1979,12 @@ if ($ShouldRetrain) {
     Write-Host "[AUTO-RETRAIN] Complete." -ForegroundColor Green
 }
 
-# Explicit success — do not leak LASTEXITCODE from the last Run-Py / auto-retrain
-# failure into scheduled evening graders (Task Scheduler was showing Result=1 every night).
+# Do not leak LASTEXITCODE from the last Run-Py / auto-retrain failure into
+# scheduled evening graders (Task Scheduler was showing Result=1 every night).
+# A present CFB step8 with no graded_cfb workbook is the exception: that state
+# was logging as success on 2026-09-26 and 2026-10-10.
+if ($script:CfbWorkbookMissing) {
+    Write-Host "[GRADER] FAILED: CFB step8 existed and graded_cfb was not written." -ForegroundColor Red
+    exit 1
+}
 exit 0

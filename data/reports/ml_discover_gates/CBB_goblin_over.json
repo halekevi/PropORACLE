@@ -1,0 +1,780 @@
+{
+  "sport": "CBB",
+  "book": "Goblin OVER",
+  "n": 2826,
+  "dates": [
+    "2026-02-24",
+    "2026-02-25",
+    "2026-03-17",
+    "2026-03-18",
+    "2026-03-19",
+    "2026-03-20",
+    "2026-03-21",
+    "2026-03-22",
+    "2026-03-24",
+    "2026-03-25",
+    "2026-03-26",
+    "2026-03-27",
+    "2026-03-29",
+    "2026-04-01",
+    "2026-04-02",
+    "2026-04-04",
+    "2026-04-05",
+    "2026-04-06"
+  ],
+  "train_dates_n": 13,
+  "oos_dates_n": 5,
+  "oos_dates": [
+    "2026-04-01",
+    "2026-04-02",
+    "2026-04-04",
+    "2026-04-05",
+    "2026-04-06"
+  ],
+  "ungated": {
+    "hr": 0.6985,
+    "n": 2826,
+    "hits": 1974,
+    "wilson_low": 0.6813,
+    "train_hr": 0.6967,
+    "train_n": 2456,
+    "oos_hr": 0.7108,
+    "oos_n": 370,
+    "quotes": {
+      "power2_1.40x": {
+        "n_legs": 2,
+        "payout_x": 1.4,
+        "breakeven": 0.8452,
+        "ev": -0.3169,
+        "oos_ev": -0.2927,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_1.65x": {
+        "n_legs": 3,
+        "payout_x": 1.65,
+        "breakeven": 0.8463,
+        "ev": -0.4377,
+        "oos_ev": -0.4074,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_2.00x": {
+        "n_legs": 3,
+        "payout_x": 2.0,
+        "breakeven": 0.7937,
+        "ev": -0.3184,
+        "oos_ev": -0.2818,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_2.50x": {
+        "n_legs": 3,
+        "payout_x": 2.5,
+        "breakeven": 0.7368,
+        "ev": -0.148,
+        "oos_ev": -0.1022,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      }
+    },
+    "split_flag": false,
+    "train_share": 0.8691,
+    "gate": "all"
+  },
+  "generic_stack": {
+    "hr": null,
+    "n": 0,
+    "hits": 0,
+    "wilson_low": null,
+    "train_hr": null,
+    "train_n": 0,
+    "oos_hr": null,
+    "oos_n": 0,
+    "quotes": {
+      "power2_1.40x": {
+        "n_legs": 2,
+        "payout_x": 1.4,
+        "breakeven": 0.8452,
+        "ev": null,
+        "oos_ev": null,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_1.65x": {
+        "n_legs": 3,
+        "payout_x": 1.65,
+        "breakeven": 0.8463,
+        "ev": null,
+        "oos_ev": null,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_2.00x": {
+        "n_legs": 3,
+        "payout_x": 2.0,
+        "breakeven": 0.7937,
+        "ev": null,
+        "oos_ev": null,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_2.50x": {
+        "n_legs": 3,
+        "payout_x": 2.5,
+        "breakeven": 0.7368,
+        "ev": null,
+        "oos_ev": null,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      }
+    },
+    "split_flag": false,
+    "train_share": null,
+    "gate": "L5=5 + L10>=8 + D_ok"
+  },
+  "l5_l10": {
+    "hr": null,
+    "n": 0,
+    "hits": 0,
+    "wilson_low": null,
+    "train_hr": null,
+    "train_n": 0,
+    "oos_hr": null,
+    "oos_n": 0,
+    "quotes": {
+      "power2_1.40x": {
+        "n_legs": 2,
+        "payout_x": 1.4,
+        "breakeven": 0.8452,
+        "ev": null,
+        "oos_ev": null,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_1.65x": {
+        "n_legs": 3,
+        "payout_x": 1.65,
+        "breakeven": 0.8463,
+        "ev": null,
+        "oos_ev": null,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_2.00x": {
+        "n_legs": 3,
+        "payout_x": 2.0,
+        "breakeven": 0.7937,
+        "ev": null,
+        "oos_ev": null,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_2.50x": {
+        "n_legs": 3,
+        "payout_x": 2.5,
+        "breakeven": 0.7368,
+        "ev": null,
+        "oos_ev": null,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      }
+    },
+    "split_flag": false,
+    "train_share": null,
+    "gate": "L5=5 + L10>=8"
+  },
+  "n_catalog": 8,
+  "clears_wilson_primary": [
+    "line_0.5"
+  ],
+  "clears_wilson_observe": [
+    "line_0.5"
+  ],
+  "bh_keep_gates": [
+    "line_0.5"
+  ],
+  "top": [
+    {
+      "hr": 1.0,
+      "n": 519,
+      "hits": 519,
+      "wilson_low": 0.9927,
+      "train_hr": 1.0,
+      "train_n": 460,
+      "oos_hr": 1.0,
+      "oos_n": 59,
+      "quotes": {
+        "power2_1.40x": {
+          "n_legs": 2,
+          "payout_x": 1.4,
+          "breakeven": 0.8452,
+          "ev": 0.4,
+          "oos_ev": 0.4,
+          "clears": true,
+          "oos_clears": true,
+          "wilson_clears": true
+        },
+        "power3_1.65x": {
+          "n_legs": 3,
+          "payout_x": 1.65,
+          "breakeven": 0.8463,
+          "ev": 0.65,
+          "oos_ev": 0.65,
+          "clears": true,
+          "oos_clears": true,
+          "wilson_clears": true
+        },
+        "power3_2.00x": {
+          "n_legs": 3,
+          "payout_x": 2.0,
+          "breakeven": 0.7937,
+          "ev": 1.0,
+          "oos_ev": 1.0,
+          "clears": true,
+          "oos_clears": true,
+          "wilson_clears": true
+        },
+        "power3_2.50x": {
+          "n_legs": 3,
+          "payout_x": 2.5,
+          "breakeven": 0.7368,
+          "ev": 1.5,
+          "oos_ev": 1.5,
+          "clears": true,
+          "oos_clears": true,
+          "wilson_clears": true
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.8863,
+      "gate": "line_0.5",
+      "p_vs_quote": 2.3728902452595405e-38,
+      "bh_keep": true
+    },
+    {
+      "hr": 0.6985,
+      "n": 2826,
+      "hits": 1974,
+      "wilson_low": 0.6813,
+      "train_hr": 0.6967,
+      "train_n": 2456,
+      "oos_hr": 0.7108,
+      "oos_n": 370,
+      "quotes": {
+        "power2_1.40x": {
+          "n_legs": 2,
+          "payout_x": 1.4,
+          "breakeven": 0.8452,
+          "ev": -0.3169,
+          "oos_ev": -0.2927,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_1.65x": {
+          "n_legs": 3,
+          "payout_x": 1.65,
+          "breakeven": 0.8463,
+          "ev": -0.4377,
+          "oos_ev": -0.4074,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.00x": {
+          "n_legs": 3,
+          "payout_x": 2.0,
+          "breakeven": 0.7937,
+          "ev": -0.3184,
+          "oos_ev": -0.2818,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.50x": {
+          "n_legs": 3,
+          "payout_x": 2.5,
+          "breakeven": 0.7368,
+          "ev": -0.148,
+          "oos_ev": -0.1022,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.8691,
+      "gate": "all",
+      "p_vs_quote": 1.0,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.6941,
+      "n": 1811,
+      "hits": 1257,
+      "wilson_low": 0.6725,
+      "train_hr": 0.6888,
+      "train_n": 1549,
+      "oos_hr": 0.7252,
+      "oos_n": 262,
+      "quotes": {
+        "power2_1.40x": {
+          "n_legs": 2,
+          "payout_x": 1.4,
+          "breakeven": 0.8452,
+          "ev": -0.3255,
+          "oos_ev": -0.2637,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_1.65x": {
+          "n_legs": 3,
+          "payout_x": 1.65,
+          "breakeven": 0.8463,
+          "ev": -0.4482,
+          "oos_ev": -0.3707,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.00x": {
+          "n_legs": 3,
+          "payout_x": 2.0,
+          "breakeven": 0.7937,
+          "ev": -0.3312,
+          "oos_ev": -0.2372,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.50x": {
+          "n_legs": 3,
+          "payout_x": 2.5,
+          "breakeven": 0.7368,
+          "ev": -0.164,
+          "oos_ev": -0.0465,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.8553,
+      "gate": "D_elite",
+      "p_vs_quote": 1.0,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.711,
+      "n": 346,
+      "hits": 246,
+      "wilson_low": 0.6611,
+      "train_hr": 0.7115,
+      "train_n": 305,
+      "oos_hr": 0.7073,
+      "oos_n": 41,
+      "quotes": {
+        "power2_1.40x": {
+          "n_legs": 2,
+          "payout_x": 1.4,
+          "breakeven": 0.8452,
+          "ev": -0.2923,
+          "oos_ev": -0.2996,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_1.65x": {
+          "n_legs": 3,
+          "payout_x": 1.65,
+          "breakeven": 0.8463,
+          "ev": -0.4069,
+          "oos_ev": -0.4162,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.00x": {
+          "n_legs": 3,
+          "payout_x": 2.0,
+          "breakeven": 0.7937,
+          "ev": -0.2811,
+          "oos_ev": -0.2923,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.50x": {
+          "n_legs": 3,
+          "payout_x": 2.5,
+          "breakeven": 0.7368,
+          "ev": -0.1014,
+          "oos_ev": -0.1154,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.8815,
+      "gate": "line_1.5",
+      "p_vs_quote": 0.999999999942388,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.6635,
+      "n": 318,
+      "hits": 211,
+      "wilson_low": 0.6099,
+      "train_hr": 0.6642,
+      "train_n": 268,
+      "oos_hr": 0.66,
+      "oos_n": 50,
+      "quotes": {
+        "power2_1.40x": {
+          "n_legs": 2,
+          "payout_x": 1.4,
+          "breakeven": 0.8452,
+          "ev": -0.3837,
+          "oos_ev": -0.3902,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_1.65x": {
+          "n_legs": 3,
+          "payout_x": 1.65,
+          "breakeven": 0.8463,
+          "ev": -0.518,
+          "oos_ev": -0.5256,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.00x": {
+          "n_legs": 3,
+          "payout_x": 2.0,
+          "breakeven": 0.7937,
+          "ev": -0.4158,
+          "oos_ev": -0.425,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.50x": {
+          "n_legs": 3,
+          "payout_x": 2.5,
+          "breakeven": 0.7368,
+          "ev": -0.2698,
+          "oos_ev": -0.2813,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.8428,
+      "gate": "D_ok",
+      "p_vs_quote": 0.9999999999999998,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.6635,
+      "n": 318,
+      "hits": 211,
+      "wilson_low": 0.6099,
+      "train_hr": 0.6642,
+      "train_n": 268,
+      "oos_hr": 0.66,
+      "oos_n": 50,
+      "quotes": {
+        "power2_1.40x": {
+          "n_legs": 2,
+          "payout_x": 1.4,
+          "breakeven": 0.8452,
+          "ev": -0.3837,
+          "oos_ev": -0.3902,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_1.65x": {
+          "n_legs": 3,
+          "payout_x": 1.65,
+          "breakeven": 0.8463,
+          "ev": -0.518,
+          "oos_ev": -0.5256,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.00x": {
+          "n_legs": 3,
+          "payout_x": 2.0,
+          "breakeven": 0.7937,
+          "ev": -0.4158,
+          "oos_ev": -0.425,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.50x": {
+          "n_legs": 3,
+          "payout_x": 2.5,
+          "breakeven": 0.7368,
+          "ev": -0.2698,
+          "oos_ev": -0.2813,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.8428,
+      "gate": "D_weak",
+      "p_vs_quote": 0.9999999999999998,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.6099,
+      "n": 869,
+      "hits": 530,
+      "wilson_low": 0.577,
+      "train_hr": 0.607,
+      "train_n": 743,
+      "oos_hr": 0.627,
+      "oos_n": 126,
+      "quotes": {
+        "power2_1.40x": {
+          "n_legs": 2,
+          "payout_x": 1.4,
+          "breakeven": 0.8452,
+          "ev": -0.4792,
+          "oos_ev": -0.4496,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_1.65x": {
+          "n_legs": 3,
+          "payout_x": 1.65,
+          "breakeven": 0.8463,
+          "ev": -0.6257,
+          "oos_ev": -0.5933,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.00x": {
+          "n_legs": 3,
+          "payout_x": 2.0,
+          "breakeven": 0.7937,
+          "ev": -0.5463,
+          "oos_ev": -0.507,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.50x": {
+          "n_legs": 3,
+          "payout_x": 2.5,
+          "breakeven": 0.7368,
+          "ev": -0.4328,
+          "oos_ev": -0.3838,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.855,
+      "gate": "line_ge10",
+      "p_vs_quote": 1.0,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.5924,
+      "n": 157,
+      "hits": 93,
+      "wilson_low": 0.5142,
+      "train_hr": 0.6,
+      "train_n": 125,
+      "oos_hr": 0.5625,
+      "oos_n": 32,
+      "quotes": {
+        "power2_1.40x": {
+          "n_legs": 2,
+          "payout_x": 1.4,
+          "breakeven": 0.8452,
+          "ev": -0.5087,
+          "oos_ev": -0.557,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_1.65x": {
+          "n_legs": 3,
+          "payout_x": 1.65,
+          "breakeven": 0.8463,
+          "ev": -0.657,
+          "oos_ev": -0.7063,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.00x": {
+          "n_legs": 3,
+          "payout_x": 2.0,
+          "breakeven": 0.7937,
+          "ev": -0.5842,
+          "oos_ev": -0.644,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_2.50x": {
+          "n_legs": 3,
+          "payout_x": 2.5,
+          "breakeven": 0.7368,
+          "ev": -0.4803,
+          "oos_ev": -0.5551,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.7962,
+      "gate": "line_ge20",
+      "p_vs_quote": 0.9999999999999954,
+      "bh_keep": false
+    }
+  ],
+  "line_0_5": null,
+  "optional": {
+    "pysubgroup": {
+      "status": "skipped",
+      "rules": []
+    },
+    "figs": {
+      "status": "ok",
+      "version": "present",
+      "rules": [
+        "FIGSClassifier",
+        "FIGS: a sum of small trees.",
+        "3 trees, added together  \u00b7  9 leaves  \u00b7  2,456 training samples  \u00b7  classes: 0, 1",
+        "Each tree adds the value of the leaf a sample reaches; P(1) = sigmoid(sum).",
+        "Tree 1 of 3",
+        "line_0.5 \u2264 0.5 ?               2,456 samples",
+        "\u251c\u2500 yes season_HR>70% \u2264 0.5 ?   1,996",
+        "\u2502  \u251c\u2500 yes D_ok \u2264 0.5 ?         1,993",
+        "\u2502  \u2502  \u251c\u2500 yes \u2192 +0.2616         1,774",
+        "\u2502  \u2502  \u2514\u2500 no  \u2192 +0.1781           219",
+        "\u2502  \u2514\u2500 no  \u2192 +1                     3",
+        "\u2514\u2500 no  \u2192 +1                      460",
+        "Tree 2 of 3 (+)",
+        "D_ok \u2264 0.5 ?   2,456 samples",
+        "\u251c\u2500 yes \u2192 0     2,188",
+        "\u2514\u2500 no  \u2192 0       268",
+        "Tree 3 of 3 (+)",
+        "D_ok \u2264 0.5 ?              2,456 samples",
+        "\u251c\u2500 yes line_0.5 \u2264 0.5 ?   2,188",
+        "\u2502  \u251c\u2500 yes \u2192 0             1,776",
+        "\u2502  \u2514\u2500 no  \u2192 0               412",
+        "\u2514\u2500 no  \u2192 0                  268"
+      ],
+      "raw": "FIGSClassifier\n  FIGS: a sum of small trees.\n  3 trees, added together  \u00b7  9 leaves  \u00b7  2,456 training samples  \u00b7  classes: 0, 1\n  Each tree adds the value of the leaf a sample reaches; P(1) = sigmoid(sum).\n\n  Tree 1 of 3\n    line_0.5 \u2264 0.5 ?               2,456 samples\n    \u251c\u2500 yes season_HR>70% \u2264 0.5 ?   1,996\n    \u2502  \u251c\u2500 yes D_ok \u2264 0.5 ?         1,993\n    \u2502  \u2502  \u251c\u2500 yes \u2192 +0.2616         1,774\n    \u2502  \u2502  \u2514\u2500 no  \u2192 +0.1781           219\n    \u2502  \u2514\u2500 no  \u2192 +1                     3\n    \u2514\u2500 no  \u2192 +1                      460\n\n  Tree 2 of 3 (+)\n    D_ok \u2264 0.5 ?   2,456 samples\n    \u251c\u2500 yes \u2192 0     2,188\n    \u2514\u2500 no  \u2192 0       268\n\n  Tree 3 of 3 (+)\n    D_ok \u2264 0.5 ?              2,456 samples\n    \u251c\u2500 yes line_0.5 \u2264 0.5 ?   2,188\n    \u2502  \u251c\u2500 yes \u2192 0             1,776\n    \u2502  \u2514\u2500 no  \u2192 0               412\n    \u2514\u2500 no  \u2192 0                  268"
+    },
+    "optbinning_line": {
+      "status": "ok",
+      "version": "1.0.0",
+      "name": "line",
+      "bins": [
+        {
+          "bin": "(-inf, 2.00)",
+          "n": 765,
+          "event_rate": 0.8849673202614379
+        },
+        {
+          "bin": "[2.00, 3.00)",
+          "n": 210,
+          "event_rate": 0.680952380952381
+        },
+        {
+          "bin": "[3.00, 6.00)",
+          "n": 410,
+          "event_rate": 0.6146341463414634
+        },
+        {
+          "bin": "[6.00, 9.00)",
+          "n": 236,
+          "event_rate": 0.5254237288135594
+        },
+        {
+          "bin": "[9.00, 17.75)",
+          "n": 565,
+          "event_rate": 0.6159292035398231
+        },
+        {
+          "bin": "[17.75, inf)",
+          "n": 270,
+          "event_rate": 0.6185185185185185
+        },
+        {
+          "bin": "Special",
+          "n": 0,
+          "event_rate": 0.0
+        },
+        {
+          "bin": "Missing",
+          "n": 0,
+          "event_rate": 0.0
+        },
+        {
+          "bin": "",
+          "n": 2456,
+          "event_rate": 0.6966612377850163
+        }
+      ]
+    },
+    "sklearn_tree": {
+      "status": "ok",
+      "version": "1.8.0",
+      "rules": [
+        {
+          "rule": "line_0.5>0.5",
+          "hr": 1.0,
+          "n": 460,
+          "hits": 460
+        },
+        {
+          "rule": "line_0.5<=0.5 AND D_ok<=0.5",
+          "hr": 0.6312,
+          "n": 1776,
+          "hits": 1121
+        },
+        {
+          "rule": "line_0.5<=0.5 AND D_ok>0.5",
+          "hr": 0.5909,
+          "n": 220,
+          "hits": 130
+        }
+      ]
+    }
+  },
+  "note": "Wilson must clear the quote. A point-estimate lift is not enough. split_flag / train_n<15 means do not wire."
+}

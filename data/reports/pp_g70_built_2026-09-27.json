@@ -1,0 +1,261 @@
+{
+  "tickets": [
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|1",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Anthony Kay",
+          "search": "Anthony Kay",
+          "prop_type": "Hits Allowed",
+          "prop": "Hits Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 1.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "Soccer",
+          "player": "Konstantinos Mavropanos",
+          "search": "Konstantinos Mavropanos",
+          "prop_type": "Shots",
+          "prop": "Shots",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "MacKenzie Gore",
+          "search": "MacKenzie Gore",
+          "prop_type": "Walks Allowed",
+          "prop": "Walks Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        }
+      ]
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|2",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Jacob Misiorowski",
+          "search": "Jacob Misiorowski",
+          "prop_type": "Pitcher Strikeouts",
+          "prop": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 4.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "Soccer",
+          "player": "Michael Gregoritsch",
+          "search": "Michael Gregoritsch",
+          "prop_type": "Shots On Target",
+          "prop": "Shots On Target",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Sean Manaea",
+          "search": "Sean Manaea",
+          "prop_type": "Hits Allowed",
+          "prop": "Hits Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 3.5,
+          "pick_type": "goblin"
+        }
+      ]
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Max Scherzer",
+          "search": "Max Scherzer",
+          "prop_type": "Pitching Outs",
+          "prop": "Pitching Outs",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 8.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "Soccer",
+          "player": "Liel Abada",
+          "search": "Liel Abada",
+          "prop_type": "Shots On Target",
+          "prop": "Shots On Target",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Yordan Alvarez",
+          "search": "Yordan Alvarez",
+          "prop_type": "Hits+Runs+RBIs",
+          "prop": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        }
+      ]
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|4",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Jackson Chourio",
+          "search": "Jackson Chourio",
+          "prop_type": "Hits+Runs+RBIs",
+          "prop": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Daniel Lynch IV",
+          "search": "Daniel Lynch IV",
+          "prop_type": "Walks Allowed",
+          "prop": "Walks Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Logan Gilbert",
+          "search": "Logan Gilbert",
+          "prop_type": "Pitcher Strikeouts",
+          "prop": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 4.5,
+          "pick_type": "goblin"
+        }
+      ]
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|5",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Parker Messick",
+          "search": "Parker Messick",
+          "prop_type": "Pitcher Strikeouts",
+          "prop": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 2.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Andre Pallante",
+          "search": "Andre Pallante",
+          "prop_type": "Hits Allowed",
+          "prop": "Hits Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 2.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Jared Jones",
+          "search": "Jared Jones",
+          "prop_type": "Walks Allowed",
+          "prop": "Walks Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|1",
+      "ok": false,
+      "fails": [
+        "Anthony Kay"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|2",
+      "ok": false,
+      "fails": [
+        "Jacob Misiorowski"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|3",
+      "ok": false,
+      "fails": [
+        "Liel Abada"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|4",
+      "ok": false,
+      "fails": [
+        "Jackson Chourio"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|5",
+      "ok": true,
+      "n": 3,
+      "px": 1.7,
+      "fails": [],
+      "legs": [
+        [
+          "MLB",
+          "Parker Messick",
+          "Pitcher Strikeouts",
+          2.5
+        ],
+        [
+          "MLB",
+          "Andre Pallante",
+          "Hits Allowed",
+          2.5
+        ],
+        [
+          "MLB",
+          "Jared Jones",
+          "Walks Allowed",
+          0.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n3 Players Selected\nClear\nParker Messick\n\nMLBCLE - P\n\nSun, Sep 27 3:10 PM @ KC\n2.5Ks\nMore\nAndre Pallante\n\nMLBSTL - P\n\nSun, Sep 27 3:10 PM @ MIL\n2.5Hits Allowed\nMore\nJared Jones\n\nMLBPIT - P\n\nSun, Sep 27 3:10 PM @ DET\n0.5Walks Allowed\nMore\nFlex Play\n\nYou must hit 1st place, or 2 out of 3 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n3 correct pays\n1.4X\n2 correct pays\n0.5X\nPower Play\n\nYou must hit 1st place, or 3 out of 3 in the lineup.\n\n1st place pays\n6X\nMinimum Guarantee\n3 cor"
+    }
+  ]
+}

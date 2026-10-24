@@ -33,6 +33,7 @@ if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
 
 from utils.pipeline_dated_outputs import copy_pipeline_output_to_dated_dirs
+from utils.mlb_starter_k9 import starter_k9_from_staff_rec
 
 _DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 _ID_CACHE = _DATA_DIR / "mlb_player_id_cache.json"
@@ -567,7 +568,7 @@ def main() -> None:
         "top_of_order", "bottom_of_order",
         "opp_pitcher_era_vs_batter_hand", "opp_pitcher_k9_vs_batter_hand", "opp_pitcher_whip_vs_batter_hand",
         "pitcher_advantage",
-        "opp_starter_era", "opp_starter_whip",
+        "opp_starter_era", "opp_starter_whip", "opp_starter_k9",
         "opp_closer_name", "opp_closer_hand", "opp_closer_era", "opp_closer_saves",
         "opp_sp1_name", "opp_sp1_hand", "opp_sp2_name", "opp_sp2_hand", "opp_sp3_name", "opp_sp3_hand",
         "opp_staff_lhp", "opp_staff_rhp",
@@ -684,6 +685,9 @@ def main() -> None:
             if sp_rec:
                 df.at[idx, "opp_starter_era"] = sp_rec.get("era")
                 df.at[idx, "opp_starter_whip"] = sp_rec.get("whip")
+                k9_season = starter_k9_from_staff_rec(sp_rec)
+                if k9_season is not None:
+                    df.at[idx, "opp_starter_k9"] = k9_season
 
         season = args.season or (gdate[:4] if len(gdate) >= 4 else "2026")
         ptype = str(row.get("player_type", "")).lower()

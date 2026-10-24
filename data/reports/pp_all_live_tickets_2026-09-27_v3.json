@@ -1,0 +1,79 @@
+{
+  "results": [
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|1",
+      "ok": false,
+      "fails": [
+        "no_goblin J.K. Dobbins Rush Yards"
+      ],
+      "n": 0,
+      "legs": []
+    },
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|2",
+      "ok": false,
+      "fails": [
+        "no_card Juwan Johnson"
+      ],
+      "n": 0,
+      "legs": []
+    },
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|3",
+      "ok": false,
+      "fails": [
+        "no_card Joey Slye"
+      ],
+      "n": 0,
+      "legs": []
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|1",
+      "ok": false,
+      "fails": [
+        "Page.wait_for_timeout: Target page, context or browser has been closed"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|1",
+      "ok": false,
+      "fails": [
+        "Page.bring_to_front: Target page, context or browser has been closed"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|2",
+      "ok": false,
+      "fails": [
+        "Page.bring_to_front: Target page, context or browser has been closed"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|3",
+      "ok": false,
+      "fails": [
+        "Page.bring_to_front: Target page, context or browser has been closed"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|YOLO Standard Power 4|1",
+      "ok": false,
+      "fails": [
+        "Page.bring_to_front: Target page, context or browser has been closed"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|STRONG 3-Leg|2",
+      "ok": false,
+      "fails": [
+        "Page.bring_to_front: Target page, context or browser has been closed"
+      ],
+      "n": 0
+    }
+  ]
+}

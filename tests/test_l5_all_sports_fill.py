@@ -47,6 +47,22 @@ def test_fill_l5_from_stat_games_counts_vs_line():
     assert float(out.loc[1, "l5_under"]) == 5.0
 
 
+def test_fill_l5_sot_half_line_is_four_of_five_not_five():
+    df = pd.DataFrame(
+        {
+            "line": [0.5],
+            "stat_g1": [0],
+            "stat_g2": [0],
+            "stat_g3": [0],
+            "stat_g4": [0],
+            "stat_g5": [1],
+        }
+    )
+    out = fill_l5_from_stat_games(df)
+    assert float(out.loc[0, "l5_under"]) == 4.0
+    assert float(out.loc[0, "l5_over"]) == 1.0
+
+
 def test_attach_hit_window_coalesces_line_hits_to_l5_and_last5():
     df = pd.DataFrame(
         {
@@ -124,6 +140,11 @@ def test_gate_clear_thresholds_by_sport_family():
     for sport in ("NBA", "NFL", "CBB", "WCBB", "CFB", "NHL", "WNBA", "SOCCER"):
         assert sport in L5_PERFECT_GATE_CLEAR_SPORTS
         assert l5_perfect_gate_clear_sport(sport)
+    assert "WNBA" not in L5_GE4_GATE_CLEAR_SPORTS
+    assert "WNBA" in L5_PERFECT_ONLY_GATE_CLEAR_SPORTS
+    assert l5_gate_clear_min_hits("WNBA") == 5.0
+    assert not l5_clears_standard_prop_gate("WNBA", 4.0)
+    assert l5_clears_standard_prop_gate("WNBA", 5.0)
     assert not l5_perfect_gate_clear_sport("MLB")
     assert l5_gate_clear_min_hits("SOCCER") == 4.0
     assert l5_clears_standard_prop_gate("SOCCER", 4.0)

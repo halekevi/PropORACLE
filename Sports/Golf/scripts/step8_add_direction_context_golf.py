@@ -157,7 +157,9 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
 
     keep = [
         "tier", "rank_score",
-        "player", "pos", "team", "event", "tournament", "course", "opp_team", "league", "game_time",
+        "player", "pos", "team", "event", "tournament", "course", "opp_team", "league",
+        "pp_projection_id", "projection_id",
+        "game_time",
         "prop_type", "pick_type", "line",
         "final_bet_direction",
         "edge", "abs_edge", "projection",

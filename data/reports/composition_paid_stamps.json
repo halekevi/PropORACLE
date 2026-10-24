@@ -1,0 +1,25 @@
+{
+  "note": "Paid N-correct multiples from settled slips. Not 1st-place figures. Merged into the composition quote samples.",
+  "stamps": [
+    {
+      "date": "2026-10-12",
+      "ticket_id": "paid-2026-10-12-tennis-2",
+      "n_legs": 2,
+      "n_standard": 0,
+      "n_goblin": 2,
+      "power_min_x": 1.7,
+      "sport": "TENNIS",
+      "note": "Mertens Total Games 17.5 and Samsonova Total Games 19.5. $10 to $17."
+    },
+    {
+      "date": "2026-10-12",
+      "ticket_id": "paid-2026-10-12-mlb-3",
+      "n_legs": 3,
+      "n_standard": 0,
+      "n_goblin": 3,
+      "power_min_x": 1.5,
+      "sport": "MLB",
+      "note": "Rasmussen Pitching Outs 11.5, Griffin Strikeouts 2.5, Henderson Pitching Outs 11.5. $20 to $30."
+    }
+  ]
+}

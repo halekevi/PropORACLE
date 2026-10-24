@@ -3,6 +3,7 @@
 
 Reads every graded_props_*.json (main_cp first, then OPEN). Demons included
 as their own books. Live list books = Goblin OVER / Standard OVER / Standard UNDER.
+Rows with grading_suspect (NBA1Q/1H full-game contamination) are excluded.
 D = opponent def aligned (OVER Weak|Below Avg; UNDER Elite|Above Avg; Avg/unknown
 fail; MLB hitter Ks invert). Tennis opponent D is ATP/WTA rank (1–10 Elite …
 101+ Weak) from the row or Sackmann winner/loser rank. Joints are L5/L10 ∩ D.
@@ -27,17 +28,61 @@ if str(_REPO) not in sys.path:
 import prop_hit_tiers as T  # noqa: E402
 from utils.defense_tiers import d_aligned, normalize_def_tier_label  # noqa: E402
 from utils.fantasy_prop_filter import is_fantasy_prop_label  # noqa: E402
+from utils.pp_vegas_gap import is_grading_suspect  # noqa: E402
 from utils.prop_norm import display_prop  # noqa: E402
 from utils.tennis_rank_d import TennisOppRankIndex, rank_to_tier, tennis_opp_tier  # noqa: E402
 
 OUT = _REPO / "data" / "reports" / "all_ranked_prop_hit_rates.json"
 LIVE_BOOKS = ("Goblin OVER", "Standard OVER", "Standard UNDER")
+# Correction / backfill reports that invalidate a stale master if newer than OUT.
+CORRECTION_REPORTS = (
+    _REPO / "data" / "reports" / "tennis_serve_backfill_under_inflation.json",
+    _REPO / "data" / "reports" / "audit_nhl_sot_tennis_serve_actuals.json",
+)
 GRADED_DIRS = [
     MAIN / "ui_runner" / "templates",
     MAIN / "mobile" / "www",
     _REPO / "ui_runner" / "templates",
     _REPO / "mobile" / "www",
 ]
+
+
+def _mtime(path: Path) -> float | None:
+    try:
+        return path.stat().st_mtime
+    except OSError:
+        return None
+
+
+def warn_if_master_stale(paths: list[Path]) -> list[dict]:
+    """Print + return correction/graded inputs newer than the last master write."""
+    out_m = _mtime(OUT)
+    stale: list[dict] = []
+    newest_graded = max((_mtime(p) or 0.0 for p in paths), default=0.0)
+    if out_m is not None and newest_graded > out_m + 1.0:
+        stale.append(
+            {
+                "kind": "graded_props",
+                "path": str(paths[-1]) if paths else None,
+                "newer_than_master": True,
+            }
+        )
+    for p in CORRECTION_REPORTS:
+        m = _mtime(p)
+        if m is None:
+            continue
+        if out_m is None or m > out_m + 1.0:
+            stale.append(
+                {
+                    "kind": "correction_report",
+                    "path": str(p),
+                    "newer_than_master": True,
+                }
+            )
+            print(
+                f"WARN: correction report newer than master — rebuild recommended: {p.name}"
+            )
+    return stale
 
 
 def empty():
@@ -180,6 +225,7 @@ def fmt(h: int, n: int) -> str:
 
 def main() -> None:
     paths = graded_paths()
+    stale_inputs = warn_if_master_stale(paths)
     tennis_idx = TennisOppRankIndex.from_repo(_REPO)
     cells: dict[tuple[str, str, str], dict] = defaultdict(empty)
     sports: dict[str, dict] = defaultdict(lambda: {"n": 0, "hits": 0, "dates": set()})
@@ -203,6 +249,8 @@ def main() -> None:
             n_raw += 1
             res = str(r.get("result") or "").strip().upper()
             if res not in ("HIT", "MISS"):
+                continue
+            if is_grading_suspect(r):
                 continue
             sport = T.norm_sport(str(r.get("sport") or ""))
             if not sport or sport == "UNKNOWN":
@@ -308,7 +356,7 @@ def main() -> None:
             "sport": sport,
             "book": book,
             "prop": prop,
-            "prop_display": display_prop(prop),
+            "prop_display": display_prop(prop, sport=sport),
             "n": c["n"],
             "hits": c["hits"],
             "hr": round(c["hits"] / c["n"], 4) if c["n"] else None,
@@ -386,7 +434,10 @@ def main() -> None:
         rows.append(rec)
     rows.sort(key=lambda r: (r["sport"], 0 if r["live_book"] else 1, r["book"], -(r["listed_n"] or 0), -r["n"], r["prop"]))
 
+    from datetime import datetime, timezone
+
     payload = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
         "generated_from": str(paths[0].parent) if paths else None,
         "from": dates[0] if dates else None,
         "to": dates[-1] if dates else None,
@@ -394,6 +445,8 @@ def main() -> None:
         "n_raw": n_raw,
         "n_decided": n_decided,
         "n_categories": len(rows),
+        "correction_reports_watched": [str(p) for p in CORRECTION_REPORTS],
+        "stale_inputs_at_start": stale_inputs,
         "note": (
             "Every HIT/MISS on graded_props_*.json. Fantasy markets dropped. "
             "Category = sport × book × canon prop. all = ungated. listed = L5>=4. "
@@ -403,7 +456,9 @@ def main() -> None:
             "rank (1-10 Elite, 11-25 Above Avg, 26-50 Avg, 51-100 Below Avg, 101+ Weak) "
             "from the graded row or Sackmann winner/loser rank on that match. "
             "Live list books are Goblin OVER / Standard OVER / Standard UNDER; Demons "
-            "are included for the full catalog."
+            "are included for the full catalog. "
+            "Rebuild after any correction_reports_watched update (e.g. tennis serve "
+            "backfill) — warn_if_master_stale prints when those files beat this OUT."
         ),
         "by_sport": {
             sp: {

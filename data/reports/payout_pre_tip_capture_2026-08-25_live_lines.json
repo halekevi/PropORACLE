@@ -1,0 +1,972 @@
+{
+  "date": "2026-08-25",
+  "generated_at": "2026-08-25T21:36:06Z",
+  "tickets_path": "H:\\PropORACLE\\ui_runner\\data\\payout_ladder_validation_tickets_all_combos_live.json",
+  "salvaged_from": "C:\\Users\\halek\\.cursor\\projects\\h-PropORACLE\\terminals\\440616.txt",
+  "fields": [
+    "power_min_x",
+    "power_first_x",
+    "min_guarantee",
+    "flex_min",
+    "flex_n_correct"
+  ],
+  "primary_field": "power_min_x",
+  "slips": [
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 5,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 7.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.5,
+      "flex_min": [
+        [
+          "5",
+          6.0
+        ],
+        [
+          "4",
+          0.5
+        ],
+        [
+          "3",
+          0.25
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 6.0,
+        "4": 0.5,
+        "3": 0.25
+      },
+      "flex_all_correct_x": 6.0,
+      "legs": [
+        {
+          "player": "Yordan Alvarez",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T19:05:00.000-04:00"
+        },
+        {
+          "player": "Shohei Ohtani",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T19:15:00.000-04:00"
+        },
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|10",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 6,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 14.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 14.0,
+      "flex_min": [
+        [
+          "6",
+          9.0
+        ],
+        [
+          "5",
+          1.0
+        ],
+        [
+          "4",
+          0.4
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 9.0,
+        "5": 1.0,
+        "4": 0.4
+      },
+      "flex_all_correct_x": 9.0,
+      "legs": [
+        {
+          "player": "Yordan Alvarez",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T19:05:00.000-04:00"
+        },
+        {
+          "player": "Shohei Ohtani",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T19:15:00.000-04:00"
+        },
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Ryan Jeffers",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1000",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 3,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 3.0,
+      "power_first_x": 6.0,
+      "min_guarantee": 3.0,
+      "flex_min": [
+        [
+          "3",
+          2.5
+        ],
+        [
+          "2",
+          0.5
+        ]
+      ],
+      "flex_n_correct": {
+        "3": 2.5,
+        "2": 0.5
+      },
+      "flex_all_correct_x": 2.5,
+      "legs": [
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1001",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 5,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 9.75,
+      "power_first_x": 20.0,
+      "min_guarantee": 9.75,
+      "flex_min": [
+        [
+          "5",
+          5.0
+        ],
+        [
+          "4",
+          1.25
+        ],
+        [
+          "3",
+          0.4
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 5.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_correct_x": 5.0,
+      "legs": [
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Ryan Jeffers",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1002",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 5,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 9.75,
+      "power_first_x": 20.0,
+      "min_guarantee": 9.75,
+      "flex_min": [
+        [
+          "5",
+          5.0
+        ],
+        [
+          "4",
+          1.25
+        ],
+        [
+          "3",
+          0.4
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 5.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_correct_x": 5.0,
+      "legs": [
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Ryan Jeffers",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "line_distance": null,
+          "standard_line": 1.5,
+          "role": "standard",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1003",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 5,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 9.75,
+      "power_first_x": 20.0,
+      "min_guarantee": 9.75,
+      "flex_min": [
+        [
+          "5",
+          5.0
+        ],
+        [
+          "4",
+          1.25
+        ],
+        [
+          "3",
+          0.4
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 5.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_correct_x": 5.0,
+      "legs": [
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "line_distance": null,
+          "standard_line": 1.5,
+          "role": "standard",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Ryan Jeffers",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "line_distance": null,
+          "standard_line": 1.5,
+          "role": "standard",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1004",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 4,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 5.5,
+      "power_first_x": 10.0,
+      "min_guarantee": 5.5,
+      "flex_min": [
+        [
+          "4",
+          4.0
+        ],
+        [
+          "3",
+          0.75
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 4.0,
+        "3": 0.75
+      },
+      "flex_all_correct_x": 4.0,
+      "legs": [
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Ryan Jeffers",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1005",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 4,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 5.5,
+      "power_first_x": 10.0,
+      "min_guarantee": 5.5,
+      "flex_min": [
+        [
+          "4",
+          4.0
+        ],
+        [
+          "3",
+          0.75
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 4.0,
+        "3": 0.75
+      },
+      "flex_all_correct_x": 4.0,
+      "legs": [
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "line_distance": null,
+          "standard_line": 1.5,
+          "role": "standard",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1009",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 6,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 18.5,
+      "power_first_x": 37.5,
+      "min_guarantee": 18.5,
+      "flex_min": [
+        [
+          "6",
+          11.0
+        ],
+        [
+          "5",
+          1.5
+        ],
+        [
+          "4",
+          0.4
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 11.0,
+        "5": 1.5,
+        "4": 0.4
+      },
+      "flex_all_correct_x": 11.0,
+      "legs": [
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "line_distance": null,
+          "standard_line": 1.5,
+          "role": "standard",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Ryan Jeffers",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "line_distance": null,
+          "standard_line": 1.5,
+          "role": "standard",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Yordan Alvarez",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "line_distance": null,
+          "standard_line": 1.5,
+          "role": "standard",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T19:05:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|101",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "n_legs": 5,
+      "status": "ok",
+      "ticket_type_captured": "power",
+      "power_min_x": 7.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.5,
+      "flex_min": [
+        [
+          "5",
+          6.0
+        ],
+        [
+          "4",
+          0.5
+        ],
+        [
+          "3",
+          0.25
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 6.0,
+        "4": 0.5,
+        "3": 0.25
+      },
+      "flex_all_correct_x": 6.0,
+      "legs": [
+        {
+          "player": "Yordan Alvarez",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T19:05:00.000-04:00"
+        },
+        {
+          "player": "Shohei Ohtani",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T19:15:00.000-04:00"
+        },
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "line_distance": 1.0,
+          "standard_line": 1.5,
+          "role": "goblin",
+          "force_alt_cycle": false,
+          "start_time": "2026-08-25T21:40:00.000-04:00"
+        }
+      ],
+      "group_name": "discover"
+    }
+  ],
+  "summary": {
+    "n_total": 10,
+    "n_ok": 10,
+    "n_partial": 0,
+    "n_failed": 0,
+    "salvaged": true
+  }
+}

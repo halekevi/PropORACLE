@@ -39,6 +39,7 @@ from fetch_actuals import (
     fetch_events_for_date,
     parse_stats,
 )
+from utils.eastern_slate_date import eastern_slate_date, event_start_raw
 
 # ESPN core XHR (same JSON shape for NBA and men's CBB).
 CORE_PBP_URL = "https://cdn.espn.com/core/{sport}/playbyplay?gameId={event_id}&xhr=1"
@@ -349,12 +350,19 @@ def main() -> None:
         help="Period window: single quarter or half (1H=Q1+Q2, 2H=Q3+Q4 regulation).",
     )
     ap.add_argument("--output", required=True, help="Output CSV path")
+    ap.add_argument(
+        "--espn-only",
+        action="store_true",
+        help="Skip NBA.com Scoreboard/boxscore. ESPN play-by-play only (backfill).",
+    )
     args = ap.parse_args()
 
     start_period, end_period = SEGMENT_TO_PERIODS[args.segment]
     all_rows: list[dict] = []
     sport_u = args.sport.upper()
-    use_nba_com = sport_u == "NBA"
+    use_nba_com = sport_u == "NBA" and not bool(args.espn_only)
+    if args.espn_only and sport_u == "NBA":
+        print("  NBA.com skipped (--espn-only); ESPN PBP only")
 
     if use_nba_com:
         nba_ids: list[str] = []
@@ -379,7 +387,16 @@ def main() -> None:
             espn_path = "mens-college-basketball"
         else:
             espn_path = "nba"
-        events = fetch_events_for_date(espn_path, args.date, is_cbb=(espn_path == "mens-college-basketball"))
+        slate = str(args.date)[:10]
+        nxt = (date.fromisoformat(slate) + timedelta(days=1)).isoformat()
+        events = []
+        for qday in (slate, nxt):
+            for event in fetch_events_for_date(
+                espn_path, qday, is_cbb=(espn_path == "mens-college-basketball")
+            ):
+                et = eastern_slate_date(event_start_raw(event))
+                if et == slate or (not et and qday == slate):
+                    events.append(event)
         event_ids = sorted({str((e or {}).get("id", "")).strip() for e in events if (e or {}).get("id")})
         if use_nba_com:
             label = "ESPN PBP fallback"

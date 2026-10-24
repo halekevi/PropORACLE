@@ -59,15 +59,18 @@ Jul-25 construction env knobs (MAIN / Goblin / Long; EV = WR × floor):
 - PROPORACLE_REQUIRE_LIVE_PAYOUT (default 1) — board floors must be exact live_cdp
 - PROPORACLE_ALLOW_SG_DELTA_PAYOUT (default 0) — opt-in peer SG-Δ stamps (untrusted)
 - PROPORACLE_MAIN_MAX_LEGS (default 3) / PROPORACLE_GOBLIN_MAX_LEGS (default 6)
-- PROPORACLE_MAIN_GOBLIN_MIN_L5_HITS (default 4) — MAIN Goblin directional L5 floor
+- PROPORACLE_MAIN_GOBLIN_MIN_L5_HITS (default 5) — MAIN Goblin directional L5 floor
 - PROPORACLE_MAIN_LONG_GOBLIN_MIN_L5_HITS (default 5) — 4+ leg Goblin L5 floor
 - PROPORACLE_MAIN_GOBLIN_MIN_L10_HITS (default 8) — MAIN Goblin directional L10 hits
 - PROPORACLE_MAIN_GOBLIN_MIN_L10_SAMPLE (default 8) — min L10 games for that floor
 - PROPORACLE_MAIN_STANDARD_OVER_MIN_L10_HITS (default 8) — Standard OVER L10 floor
 - PROPORACLE_MAIN_STANDARD_UNDER_MIN_L10_HITS (default 8) — Standard UNDER L10 floor
-- PROPORACLE_MAIN_STANDARD_OVER_MIN_L5_HITS (default 4) — Standard OVER L5 agreement (Aug-19 L5≥4)
-- PROPORACLE_MAIN_STANDARD_UNDER_MIN_L5_HITS (default 0) — Standard UNDER L5 (off; no lift)
-- PROPORACLE_MAIN_MAX_LEGS_PER_GAME (default 2) — hard same-game stack cap
+- PROPORACLE_MAIN_STANDARD_OVER_MIN_L5_HITS (default 5) — Standard OVER L5 agreement (mixer L5=5)
+- PROPORACLE_MAIN_STANDARD_UNDER_MIN_L5_HITS (default 5) — Standard UNDER L5 agreement (mixer L5=5)
+- PROPORACLE_MAIN_MAX_LEGS_PER_GAME — retired as a hard reject (same-game is
+  flagged ``same_game_pair`` only). Hard within-ticket blocks are all-same-team
+  and the same player twice. Gate on same_game_pair only after both graded
+  groups reach 100 slips (see utils/slip_correlation.py).
 - PROPORACLE_GOBLIN_4L_SEED_EXTRA / PROPORACLE_MLB_GOBLIN_4L_RANK_BOOST — upweight 4L
 - PROPORACLE_LONG_PARLAY_MAX_SLIPS (default 6) / PROPORACLE_LONG_PARLAY_MIN_FLOOR_EV (default 0)
 
@@ -243,6 +246,7 @@ from utils.player_prob_shrinkage import (
 )
 from utils.pipeline_read_enrichment import (
     READ_SLATE_EXPORT_KEYS,
+    _fillna_text_cols,
     enrich_read_fields_dataframe,
 )
 from utils.stack_70_eligible import (
@@ -681,20 +685,24 @@ def apply_default_sport_inputs(args: argparse.Namespace) -> None:
         )
 
     if not str(getattr(args, "wnba1h", "") or "").strip():
-        args.wnba1h = _first_existing_path(
-            os.path.join(out, "wnba1h", "step8_wnba1h_direction_clean.xlsx"),
-            os.path.join(out, f"step8_wnba1h_direction_clean_{d}.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "WNBA", "step8_wnba1h_direction_clean.xlsx"),
-            DEFAULT_WNBA1H_PATH,
-        )
+        dated_w1h = os.path.join(out, "wnba1h", "step8_wnba1h_direction_clean.xlsx")
+        dated_w1h2 = os.path.join(out, f"step8_wnba1h_direction_clean_{d}.xlsx")
+        if os.path.isfile(dated_w1h):
+            args.wnba1h = dated_w1h
+        elif os.path.isfile(dated_w1h2):
+            args.wnba1h = dated_w1h2
+        else:
+            args.wnba1h = ""
 
     if not str(getattr(args, "wnba1q", "") or "").strip():
-        args.wnba1q = _first_existing_path(
-            os.path.join(out, "wnba1q", "step8_wnba1q_direction_clean.xlsx"),
-            os.path.join(out, f"step8_wnba1q_direction_clean_{d}.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "WNBA", "step8_wnba1q_direction_clean.xlsx"),
-            DEFAULT_WNBA1Q_PATH,
-        )
+        dated_w1q = os.path.join(out, "wnba1q", "step8_wnba1q_direction_clean.xlsx")
+        dated_w1q2 = os.path.join(out, f"step8_wnba1q_direction_clean_{d}.xlsx")
+        if os.path.isfile(dated_w1q):
+            args.wnba1q = dated_w1q
+        elif os.path.isfile(dated_w1q2):
+            args.wnba1q = dated_w1q2
+        else:
+            args.wnba1q = ""
 
     if not str(args.mlb).strip():
         args.mlb = _first_existing_path(
@@ -706,20 +714,25 @@ def apply_default_sport_inputs(args: argparse.Namespace) -> None:
         )
 
     if not str(args.nba1q).strip():
-        args.nba1q = _first_existing_path(
-            os.path.join(out, "nba1q", "step8_nba1q_direction_clean.xlsx"),
-            os.path.join(out, f"step8_nba1q_direction_clean_{d}.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "NBA", "step8_nba1q_direction_clean.xlsx"),
-            os.path.join(REPO_ROOT, "NBA", "step8_nba1q_direction_clean.xlsx"),
-        )
+        # Dated outputs only. Sports/NBA/step8_nba1q_*.xlsx is the May Finals leftover.
+        dated_q = os.path.join(out, "nba1q", "step8_nba1q_direction_clean.xlsx")
+        dated_q2 = os.path.join(out, f"step8_nba1q_direction_clean_{d}.xlsx")
+        if os.path.isfile(dated_q):
+            args.nba1q = dated_q
+        elif os.path.isfile(dated_q2):
+            args.nba1q = dated_q2
+        else:
+            args.nba1q = ""
 
     if not str(args.nba1h).strip():
-        args.nba1h = _first_existing_path(
-            os.path.join(out, "nba1h", "step8_nba1h_direction_clean.xlsx"),
-            os.path.join(out, f"step8_nba1h_direction_clean_{d}.xlsx"),
-            os.path.join(REPO_ROOT, "Sports", "NBA", "step8_nba1h_direction_clean.xlsx"),
-            os.path.join(REPO_ROOT, "NBA", "step8_nba1h_direction_clean.xlsx"),
-        )
+        dated_h = os.path.join(out, "nba1h", "step8_nba1h_direction_clean.xlsx")
+        dated_h2 = os.path.join(out, f"step8_nba1h_direction_clean_{d}.xlsx")
+        if os.path.isfile(dated_h):
+            args.nba1h = dated_h
+        elif os.path.isfile(dated_h2):
+            args.nba1h = dated_h2
+        else:
+            args.nba1h = ""
 
     if not str(args.nfl).strip():
         dated_nfl_s8 = os.path.join(out, "nfl", "step8_nfl_direction_clean.xlsx")
@@ -3739,7 +3752,9 @@ def _soccer_ticket_pool_exclusion_mask(df: pd.DataFrame) -> tuple[pd.Series, int
 
 
 def soccer_allowed_leg(leg) -> bool:
-    """Soccer hygiene: no Demon, no Goblin UNDER, keep props only (Shots/SOT/Saves).
+    """Soccer hygiene: no Demon, no Goblin UNDER, keep props only (Shots/SOT).
+
+    Saves are off tickets.
 
     Also drops thin-history competitions (World Cup / Olympics / …) via
     ``utils.competition_history`` when ``league`` is present on the row.
@@ -3761,6 +3776,8 @@ def soccer_allowed_leg(leg) -> bool:
     if "prop" not in keep_row or not keep_row.get("prop"):
         keep_row["prop"] = row.get("prop_type") or row.get("prop") or ""
     if not _soccer_keep_prop(keep_row):
+        return False
+    if canon_prop("Soccer", str(keep_row.get("prop") or "")) == "saves":
         return False
     try:
         from utils.competition_history import row_competition_ok as _row_comp_ok
@@ -3898,7 +3915,7 @@ _JOIN_SPORT_TO_ODDS_KEY: dict[str, str] = {
 
 
 def _sport_display_from_join_key(js: object) -> str:
-    j = str(js or "").strip().upper()
+    j = _join_text(js).upper()
     if j == "SOCCER":
         return "Soccer"
     if j == "GOLF":
@@ -4024,7 +4041,7 @@ def _load_vegas_alt_lines_detail(path: str) -> pd.DataFrame:
 
 
 def _odds_key_for_join_sport(js: object) -> str:
-    u = str(js or "").strip().upper()
+    u = _join_text(js).upper()
     if u == "SOCCER":
         return _JOIN_SPORT_TO_ODDS_KEY.get("SOCCER", "")
     return _JOIN_SPORT_TO_ODDS_KEY.get(u, "")
@@ -4034,7 +4051,7 @@ def _pp_odds_market(prop_type: object, join_sport: object) -> str:
     sk = _odds_key_for_join_sport(join_sport)
     if not sk:
         return ""
-    m = str(_odds_market_for_prop_cached(str(prop_type or ""), sk) or "").strip().lower()
+    m = str(_odds_market_for_prop_cached(_join_text(prop_type), sk) or "").strip().lower()
     if m.startswith("player_") or m.startswith("batter_") or m.startswith("pitcher_"):
         return m
     return ""
@@ -4885,6 +4902,16 @@ def _nba1h_gated(gate_recs: dict) -> bool:
 def _sport_ticket_gated(sport: str) -> tuple[bool, str]:
     """True if sport must not enter EV / win-rate ticket pools (slate unchanged)."""
     su = str(sport or "").strip().upper()
+    if su in {"NBA", "NBA1H"}:
+        from utils.ticket_sport_holds import NBA_MIXER_HOLD_REASON, nba_mixer_tickets_held
+
+        if nba_mixer_tickets_held():
+            return True, NBA_MIXER_HOLD_REASON
+    if su == "NHL":
+        from utils.ticket_sport_holds import NHL_MIXER_HOLD_REASON, nhl_mixer_tickets_held
+
+        if nhl_mixer_tickets_held():
+            return True, NHL_MIXER_HOLD_REASON
     if not su or su in ALWAYS_ALLOW_SPORTS:
         return False, ""
     if su == "NFL" and NFL_TICKET_GATE:
@@ -5033,11 +5060,11 @@ MAX_LEGS_TENNIS = 3
 TENNIS_LEG_MIN_HIT_RATE = {2: 0.68, 3: 0.72, 4: 0.75}
 TENNIS_HIT_RATE_PROXY_FLOOR = 0.62
 TENNIS_HIT_RATE_PROXY_CAP = 0.88
-# Aug-8 grades: Tennis Goblin L5>=4 ~69% (was min 3).
-TENNIS_GOBLIN_MIN_L5_HITS = 4
-TENNIS_STD_MIN_L5_HITS = 3
-# MAIN Goblin directional L5 floor (Aug-8: L5>=4 ~67% Goblin HR). Env overrideable.
-MAIN_GOBLIN_MIN_L5_HITS: float = float(os.getenv("PROPORACLE_MAIN_GOBLIN_MIN_L5_HITS", "4"))
+# Aug-8 grades: Tennis Goblin L5>=4 ~69% (was min 3). Mixer now requires L5=5.
+TENNIS_GOBLIN_MIN_L5_HITS = 5
+TENNIS_STD_MIN_L5_HITS = 5
+# MAIN Goblin directional L5 floor (mixer locked to L5=5; env overrideable).
+MAIN_GOBLIN_MIN_L5_HITS: float = float(os.getenv("PROPORACLE_MAIN_GOBLIN_MIN_L5_HITS", "5"))
 MAIN_LONG_GOBLIN_MIN_L5_HITS: float = float(
     os.getenv("PROPORACLE_MAIN_LONG_GOBLIN_MIN_L5_HITS", "5")
 )
@@ -5054,13 +5081,12 @@ MAIN_STANDARD_OVER_MIN_L10_HITS: float = float(
 MAIN_STANDARD_UNDER_MIN_L10_HITS: float = float(
     os.getenv("PROPORACLE_MAIN_STANDARD_UNDER_MIN_L10_HITS", "8")
 )
-# Aug-19 graded: L5≥4 lifted decided HR (WNBA ~73%, MLB ~60%, Tennis ~69%).
-# Std OVER agreement floor matches Goblin L5 bar so tickets seed from that pool.
+# Mixer / graded-main: directional L5 = 5 for Standard O/U (same as Goblin-70 floor).
 MAIN_STANDARD_OVER_MIN_L5_HITS: float = float(
-    os.getenv("PROPORACLE_MAIN_STANDARD_OVER_MIN_L5_HITS", "4")
+    os.getenv("PROPORACLE_MAIN_STANDARD_OVER_MIN_L5_HITS", "5")
 )
 MAIN_STANDARD_UNDER_MIN_L5_HITS: float = float(
-    os.getenv("PROPORACLE_MAIN_STANDARD_UNDER_MIN_L5_HITS", "0")
+    os.getenv("PROPORACLE_MAIN_STANDARD_UNDER_MIN_L5_HITS", "5")
 )
 MAIN_STANDARD_MIN_L10_SAMPLE: float = float(
     os.getenv("PROPORACLE_MAIN_STANDARD_MIN_L10_SAMPLE", "8")
@@ -6400,7 +6426,7 @@ def _row_category_def_align(row_d: dict) -> bool:
 def _row_main_goblin_l5_ok(row_d: dict, *, min_hits: float | None = None) -> bool:
     """
     MAIN Goblin recency floors for MLB/WNBA/Tennis/Soccer:
-      - directional L5 >= MAIN_GOBLIN_MIN_L5_HITS (default 4; long slips may pass 5)
+      - directional L5 >= MAIN_GOBLIN_MIN_L5_HITS (default 5)
       - directional L10 >= MAIN_GOBLIN_MIN_L10_HITS with sample >= MIN_L10_SAMPLE (default 8/8)
 
     Standards are not gated here. Disable L5 with MIN_L5=0; disable L10 with MIN_L10=0.
@@ -7414,18 +7440,33 @@ def _ticket_same_game_overstack(
     *,
     max_per_game: int | None = None,
 ) -> bool:
-    """True when any matchup contributes more than max_per_game legs."""
-    cap = int(MAIN_MAX_LEGS_PER_GAME if max_per_game is None else max_per_game)
-    if cap <= 0 or not rows:
-        return False
-    from collections import Counter
+    """Retired hard same-game cap. Same-game pairs are flagged, not blocked.
 
-    counts = Counter()
-    for leg in rows:
-        key = _ticket_game_key(leg)
-        if key:
-            counts[key] += 1
-    return any(n > cap for n in counts.values())
+    Kept as a name for call sites; always False. Use
+    ``_ticket_correlation_hard_block`` for all-same-team / same-player blocks.
+    """
+    return False
+
+
+def _ticket_correlation_hard_block(rows: list | None) -> bool:
+    """True when a ticket is all one team or repeats a player."""
+    if not rows:
+        return False
+    from utils.slip_correlation import hard_block_reason
+
+    legs = [_ticket_leg_as_dict(leg) for leg in rows if leg is not None]
+    return hard_block_reason(legs) is not None
+
+
+def _ticket_stamp_same_game_pair(ticket: dict) -> dict:
+    """Attach same_game_pair flag (never a place gate until n>=100 both sides)."""
+    from utils.slip_correlation import annotate_slip
+
+    legs = list(ticket.get("legs") or ticket.get("rows") or [])
+    meta = annotate_slip({"legs": [_ticket_leg_as_dict(leg) for leg in legs if leg is not None]})
+    ticket["same_game_pair"] = bool(meta.get("same_game_pair"))
+    ticket["correlation_block"] = meta.get("correlation_block")
+    return ticket
 
 
 def _winrate_ticket_same_game_bench_stack(ticket: dict) -> bool:
@@ -7485,7 +7526,7 @@ def _winrate_ticket_mlb_same_game_hitter_stack(ticket: dict) -> bool:
 def _winrate_ticket_construction_reject(ticket: dict) -> bool:
     """Hard construction rejects for MAIN/win-rate pick loop (correlation stacks)."""
     legs = list(ticket.get("legs") or ticket.get("rows") or [])
-    if _ticket_same_game_overstack(legs):
+    if _ticket_correlation_hard_block(legs):
         return True
     # Bench-stack helper expects dict legs.
     dict_legs = [_ticket_leg_as_dict(leg) for leg in legs if leg is not None]
@@ -8399,8 +8440,8 @@ def _finalize_structure_ticket_dict(
     if len(rows_use) < int(n_legs):
         return None
     rows = rows_use
-    # Hard same-game cap (default ≤2) — soft correlation discount is not enough.
-    if _ticket_same_game_overstack(rows):
+    # Hard blocks: all-same-team, same player twice. Same-game is flag-only.
+    if _ticket_correlation_hard_block(rows):
         return None
 
     leg_probs = [_resolve_leg_prob(pd.Series(r)) for r in rows]
@@ -8437,7 +8478,7 @@ def _finalize_structure_ticket_dict(
         return None
     _ticket_cap_register(rows, pct_out)
 
-    return {
+    ticket = {
         "key": _ticket_row_dedup_key(rows),
         "rows": rows,
         "avg_hit_rate": float(np.mean(hrs)) if hrs else 0.0,
@@ -8470,6 +8511,7 @@ def _finalize_structure_ticket_dict(
         ),
         "sport": sport_label,
     }
+    return _ticket_stamp_same_game_pair(ticket)
 
 
 def _same_game_density_multiplier(ticket_rows: list) -> float:
@@ -8733,8 +8775,26 @@ def enforce_target_date(
     if df is None or df.empty:
         print(f"  [{sport} date] no rows to filter")
         return df
+    sport_u_early = str(sport).upper()
+    # Missing game_time + this flag used to keep the entire leftover file
+    # (May NBA1Q, March CBB, May WNBA). NBA family / CBB never keep-all.
+    _never_keep_all = sport_u_early in {
+        "NBA",
+        "NBA1Q",
+        "NBA1H",
+        "MLB",
+        "WNBA",
+        "WNBA1H",
+        "WNBA1Q",
+        "NFL",
+        "NHL",
+        "CBB",
+        "WCBB",
+        "CFB",
+        "CFB1H",
+    }
     if "game_time" not in df.columns:
-        if allow_cross_date_fallback:
+        if allow_cross_date_fallback and not _never_keep_all:
             print(f"  [{sport} date] missing game_time column; fallback enabled -> keeping {len(df)} rows")
             return df
         print(f"  [{sport} date] missing game_time column; strict mode -> skipping {sport}")
@@ -8755,7 +8815,7 @@ def enforce_target_date(
         top = ", ".join([f"{str(k)}={int(v)}" for k, v in counts.head(5).items()])
         print(f"  [{sport} date] available: {top}")
     else:
-        if allow_cross_date_fallback:
+        if allow_cross_date_fallback and not _never_keep_all:
             print(f"  [{sport} date] no parseable game_date values; fallback enabled -> keeping {len(out)} rows")
             return out
         print(f"  [{sport} date] no parseable game_date values; strict mode -> skipping {sport}")
@@ -8786,16 +8846,24 @@ def enforce_target_date(
     else:
         use_date_fallback = allow_cross_date_fallback or (sport_u in fallback_sports)
     if kept == 0 and use_date_fallback and len(keep_dates) <= 1:
+        from utils.stale_board_tickets import cross_date_fallback_allowed
+
         avail = [str(d) for d in counts.index.tolist() if str(d)]
         if avail:
             future_dates = sorted([d for d in avail if d >= target_date])
             chosen = future_dates[0] if future_dates else max(avail)
-            keep_mask = out["game_date"].eq(chosen)
-            kept = int(keep_mask.sum())
-            print(
-                f"  [{sport} date] no rows for {target_date}; "
-                f"date fallback -> using nearest date {chosen} ({kept} rows)"
-            )
+            if not cross_date_fallback_allowed(chosen, str(target_date)[:10]):
+                print(
+                    f"  [{sport} date] no rows for {target_date}; "
+                    f"nearest {chosen} is beyond the 3-day fallback cap -> skipping"
+                )
+            else:
+                keep_mask = out["game_date"].eq(chosen)
+                kept = int(keep_mask.sum())
+                print(
+                    f"  [{sport} date] no rows for {target_date}; "
+                    f"date fallback -> using nearest date {chosen} ({kept} rows)"
+                )
 
     filtered = out.loc[keep_mask].copy()
     dropped = total - len(filtered)
@@ -8958,6 +9026,9 @@ def attach_standard_refs(df: pd.DataFrame) -> pd.DataFrame:
             row = out.loc[idx]
             pt = str(row.get("pick_type") or "").strip().lower()
             sport = str(row.get("sport") or "").strip() or "default"
+            # Tennis orphans have no Standard sibling. Do not invent one.
+            if sport.lower() == "tennis":
+                continue
             dev = row.get("deviation_level")
             if pt == "goblin":
                 est = estimate_goblin_standard_line(row.get("line"), dev, sport=sport)
@@ -9481,6 +9552,13 @@ def extract_long_parlay_payload(full_payload: dict) -> dict:
         payload_mode="long_parlay",
     )
     long_p = filter_payload_mlb_construction_hygiene(long_p)
+    try:
+        from utils.power6_std_buckets import annotate_long_parlay_power6_buckets
+
+        # Log-only: do not drop long_parlay tickets from bucket table (held).
+        long_p = annotate_long_parlay_power6_buckets(long_p)
+    except Exception as exc:  # noqa: BLE001
+        print(f"  [WARN] power6 bucket annotate skipped: {exc}")
     return tighten_long_parlay_payload(long_p)
 
 
@@ -11057,7 +11135,7 @@ def filter_main_high_prob_payload(payload: dict) -> dict:
                 continue
             if n >= 4 and not _ticket_passes_main_four_leg_gate(legs):
                 continue
-            if _ticket_same_game_overstack(legs):
+            if _ticket_correlation_hard_block(legs):
                 continue
             kept.append(t)
         if not kept:
@@ -13162,6 +13240,16 @@ def write_web_outputs(
     skip_ui_filters: bool = False,
 ):
     """Write tickets_latest.json for /tickets; graded HTML is build_ticket_eval.py → ticket_eval_<date>.html."""
+    from utils.stale_board_tickets import annotate_ticket_payload
+
+    n_stale = annotate_ticket_payload(payload)
+    if n_stale:
+        print(f"  [stale_board] marked {n_stale} invalid NBA1Q leftover-board slip(s)")
+    from utils.slate_schedule_gate import filter_payload_to_espn_schedule
+
+    payload, blocked = filter_payload_to_espn_schedule(payload)
+    if blocked:
+        print(f"  [schedule-gate] {len(blocked)} slip(s) not on today's ESPN board")
     os.makedirs(outdir, exist_ok=True)
     json_path = os.path.join(outdir, json_filename)
     if skip_ui_filters:
@@ -13635,6 +13723,9 @@ def load_nba(path: str) -> pd.DataFrame:
             "Game Time": "game_time",
             "Prop": "prop_type",
             "Pick Type": "pick_type",
+            "League": "league",
+            "league": "league",
+            "league_id": "league_id",
             "Line": "line",
             "Direction": "direction",
             "Edge": "edge",
@@ -15640,6 +15731,7 @@ def load_nba1q(path: str) -> pd.DataFrame:
         "Team":             "team",
         "Opp":              "opp",
         "Game Time":        "game_time",
+        "Game Date":        "game_date",
         "Prop":             "prop_type",
         "Pick Type":        "pick_type",
         "Line":             "line",
@@ -15813,6 +15905,7 @@ def load_nba1h(path: str) -> pd.DataFrame:
         "Team":             "team",
         "Opp":              "opp",
         "Game Time":        "game_time",
+        "Game Date":        "game_date",
         "Prop":             "prop_type",
         "Pick Type":        "pick_type",
         "Line":             "line",
@@ -16292,9 +16385,16 @@ def add_prop_quality_score(df: pd.DataFrame) -> pd.DataFrame:
         out.get("direction", pd.Series("", index=out.index)).astype(str).str.upper().str.strip()
     )
     is_under_side = direction_u.isin({"UNDER", "LOWER"})
-    hr = pd.to_numeric(out.get("hit_rate"), errors="coerce").apply(_to_prob_0_1)
-    l5o = pd.to_numeric(out.get("l5_over"), errors="coerce").fillna(0.0)
-    l5u = pd.to_numeric(out.get("l5_under"), errors="coerce").fillna(0.0)
+    def _num_col(col: str) -> pd.Series:
+        if col not in out.columns:
+            return pd.Series(np.nan, index=out.index, dtype=float)
+        s = out[col]
+        if isinstance(s, pd.DataFrame):
+            s = s.iloc[:, 0]
+        return pd.to_numeric(s, errors="coerce")
+    hr = _num_col("hit_rate").apply(_to_prob_0_1)
+    l5o = _num_col("l5_over").fillna(0.0)
+    l5u = _num_col("l5_under").fillna(0.0)
     l5_side = np.maximum(l5o, l5u)
     l5_side_rate = np.clip(l5_side / 5.0, 0.0, 1.0)
     hr = hr.fillna(pd.Series(l5_side_rate, index=out.index))
@@ -16481,9 +16581,16 @@ def filter_eligible(
         sport_series = in_df.get("sport", pd.Series([""] * len(in_df), index=in_df.index)).astype(str).str.upper().str.strip()
         for sport, grp in in_df.groupby(sport_series):
             t = thresholds.get(str(sport).upper(), default)
-            l5_over = pd.to_numeric(grp.get("l5_over"), errors="coerce").fillna(0)
-            l5_under = pd.to_numeric(grp.get("l5_under"), errors="coerce").fillna(0)
-            hit_rate = pd.to_numeric(grp.get("hit_rate"), errors="coerce")
+            def _gnum(col: str) -> pd.Series:
+                if col not in grp.columns:
+                    return pd.Series(np.nan, index=grp.index, dtype=float)
+                s = grp[col]
+                if isinstance(s, pd.DataFrame):
+                    s = s.iloc[:, 0]
+                return pd.to_numeric(s, errors="coerce")
+            l5_over = _gnum("l5_over").fillna(0)
+            l5_under = _gnum("l5_under").fillna(0)
+            hit_rate = _gnum("hit_rate")
             dir_s = (
                 grp.get("direction", pd.Series([""] * len(grp), index=grp.index))
                 if "direction" in grp.columns
@@ -16590,6 +16697,14 @@ def filter_eligible(
     if "league" in df.columns:
         lg = df["league"].astype(str).str.strip().str.upper()
         _apply_gate(~lg.isin({"NFLSZN", "SOCCERSZN"}), "season_long_board", "after_season_long_board")
+        _apply_gate(
+            ~lg.isin({"NBAP", "NBA PRESEASON", "NBA-PRESEASON"}),
+            "nba_preseason_board",
+            "after_nba_preseason_board",
+        )
+    if "league_id" in df.columns:
+        lid = df["league_id"].astype(str).str.strip()
+        _apply_gate(~lid.eq("237"), "nba_preseason_board", "after_nba_preseason_id")
 
     if {"pick_type", "direction"}.issubset(df.columns):
         invalid_side = df.apply(
@@ -16797,7 +16912,7 @@ CORE_PROP_FOCUS_NORMS: dict[str, frozenset[str]] = {
             "gamesplayed",
         }
     ),
-    # Soccer Goblin OVER + Standard O/U — shots/SOT/goals/assists/saves (no tackles/fouls).
+    # Soccer Goblin OVER + Standard O/U — shots/SOT/goals/assists. Saves are off tickets.
     "SOCCER": frozenset(
         {
             "shots",
@@ -16805,8 +16920,6 @@ CORE_PROP_FOCUS_NORMS: dict[str, frozenset[str]] = {
             "goals",
             "assists",
             "goalassist",
-            "saves",
-            "goaliesaves",
         }
     ),
     "SOC": frozenset(
@@ -16816,8 +16929,6 @@ CORE_PROP_FOCUS_NORMS: dict[str, frozenset[str]] = {
             "goals",
             "assists",
             "goalassist",
-            "saves",
-            "goaliesaves",
         }
     ),
     "NHL": frozenset(
@@ -18114,6 +18225,10 @@ def _strong_sport_leg_allowed(row: dict | pd.Series) -> bool:
     else:
         row_d = dict(row)
     sp = str(row_d.get("sport") or "").strip().upper()
+    lg = str(row_d.get("league") or row_d.get("League") or "").strip().upper()
+    lid = str(row_d.get("league_id") or "").strip()
+    if sp == "NBAP" or lg in {"NBAP", "NBA PRESEASON", "NBA-PRESEASON"} or lid == "237":
+        return False
     if sp in ("SOCCER", "SOC"):
         return bool(soccer_allowed_leg(row_d))
     if sp == "TENNIS":
@@ -18465,7 +18580,7 @@ def build_strong_tickets(
                 continue
             if not _ticket_cap_can_add(rows, player_ticket_counts):
                 continue
-            if _ticket_same_game_overstack(rows):
+            if _ticket_correlation_hard_block(rows):
                 continue
             if not _strong_player_prop_can_add(rows, prop_counts_n):
                 continue
@@ -18844,7 +18959,7 @@ def build_tickets(
 
         if _ticket_rows_mlb_construction_banned(rows):
             continue
-        if _ticket_same_game_overstack(rows):
+        if _ticket_correlation_hard_block(rows):
             continue
 
         key = frozenset(_leg_fp_tuple(r) for r in rows)
@@ -18949,7 +19064,7 @@ def build_mixed_picktype_tickets(
 
         if _ticket_rows_mlb_construction_banned(rows):
             continue
-        if _ticket_same_game_overstack(rows):
+        if _ticket_correlation_hard_block(rows):
             continue
 
         key = frozenset(_leg_fp_tuple(r) for r in rows)
@@ -21270,7 +21385,12 @@ def main():
     ap.add_argument(
         "--allow-cross-date-fallback",
         action="store_true",
-        help="Allow non-target game dates when target date has zero rows (default: strict target-date only).",
+        help=(
+            "Allow a nearby non-target game date when the target day has zero rows "
+            "(tennis/soccer overnight). Capped at 3 calendar days. Never keep-all "
+            "on missing game_time for NBA/WNBA/CBB, and never load Sports leftover "
+            "period boards (May NBA1Q / March CBB)."
+        ),
     )
     ap.add_argument(
         "--underdog-csv",
@@ -21743,8 +21863,6 @@ def main():
         _load_audit_row("WNBA1Q", "", pd.DataFrame())
     else:
         wnba1h_path = str(getattr(args, "wnba1h", "") or "").strip()
-        if not wnba1h_path and os.path.exists(DEFAULT_WNBA1H_PATH):
-            wnba1h_path = DEFAULT_WNBA1H_PATH
         if wnba1h_path:
             try:
                 wnba1h = load_wnba1h(wnba1h_path)
@@ -21757,8 +21875,6 @@ def main():
         else:
             print("  [WNBA1H] skipped (empty --wnba1h)")
         wnba1q_path = str(getattr(args, "wnba1q", "") or "").strip()
-        if not wnba1q_path and os.path.exists(DEFAULT_WNBA1Q_PATH):
-            wnba1q_path = DEFAULT_WNBA1Q_PATH
         if wnba1q_path:
             try:
                 wnba1q = load_wnba1q(wnba1q_path)
@@ -21807,13 +21923,20 @@ def main():
             mlb = None
 
     nba1q = None
-    if _nba_family_off_season(args.date):
+    from utils.ticket_sport_holds import NBA1Q_HOLD_REASON, nba1q_tickets_held
+
+    if nba1q_tickets_held():
+        print(f"  [NBA1Q] {NBA1Q_HOLD_REASON}")
+    elif _nba_family_off_season(args.date):
         print("  [NBA1Q] Off-season — skipped until 2026-10-01")
     else:
-        nba1q_path = str(args.nba1q or "").strip() or (DEFAULT_NBA1Q_PATH if os.path.exists(DEFAULT_NBA1Q_PATH) else "")
+        nba1q_path = str(args.nba1q or "").strip()
         if nba1q_path:
             try:
                 nba1q = load_nba1q(nba1q_path)
+                nba1q = enforce_target_date(
+                    nba1q, "NBA1Q", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+                )
                 nba1q = attach_standard_refs(nba1q)
                 print(f"  {len(nba1q)} NBA1Q props loaded")
             except Exception as e:
@@ -21824,10 +21947,13 @@ def main():
     if _nba_family_off_season(args.date):
         print("  [NBA1H] Off-season — skipped until 2026-10-01")
     else:
-        nba1h_path = str(args.nba1h or "").strip() or (DEFAULT_NBA1H_PATH if os.path.exists(DEFAULT_NBA1H_PATH) else "")
+        nba1h_path = str(args.nba1h or "").strip()
         if nba1h_path:
             try:
                 nba1h = load_nba1h(nba1h_path)
+                nba1h = enforce_target_date(
+                    nba1h, "NBA1H", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+                )
                 nba1h = attach_standard_refs(nba1h)
                 print(f"  {len(nba1h)} NBA1H props loaded")
             except Exception as e:
@@ -21909,16 +22035,19 @@ def main():
             return df
         td = str(target_date).strip()[:10]
         if "game_date" not in df.columns:
-            # Only synthesize for NBA period sheets; other sports intentionally rely on explicit game_date.
-            if sport_label not in ("NBA1Q", "NBA1H", "WNBA1H", "WNBA1Q") or "game_time" not in df.columns:
-                return df
-            # Build game_date on the fly for sheets that only carry Game Time.
+            if "game_time" not in df.columns:
+                print(
+                    f"  [{sport_label}] no game_date/game_time; "
+                    f"dropping {len(df)} undated rows"
+                )
+                return df.iloc[0:0].copy()
+            # Time-only stamps ("8:00 PM") stay NA — fail closed below.
             target_year = int(td[:4]) if len(td) >= 4 and td[:4].isdigit() else datetime.now().year
             tmp = df.copy()
             tmp["game_date"] = _extract_game_dates(tmp["game_time"], target_year)
             df = tmp
-        dated = df["game_date"].notna()
-        gd_str = df["game_date"].astype(str).str[:10]
+        gd_str = df["game_date"].astype(str).str.strip().str[:10]
+        dated = gd_str.str.match(r"^\d{4}-\d{2}-\d{2}$", na=False)
         keep_extra = {str(d).strip()[:10] for d in (extra_dates or []) if str(d).strip()[:10]}
         keep_extra.discard("")
         # WNBA / MLB day-ahead: keep --date plus --wnba-date / --mlb-date (typically Eastern tomorrow).
@@ -21930,25 +22059,47 @@ def main():
             stale = dated & ~gd_str.isin(keep)
         # NBA boards (full + period) can be posted ahead of the run date.
         # Keep only the nearest future slate date (or latest available if all are past).
+        # Cap: May Finals on an October run is not "nearest overnight".
         elif sport_label in ("NBA", "NFL"):
+            from utils.stale_board_tickets import cross_date_fallback_allowed
+
             avail = sorted(gd_str[dated].dropna().unique().tolist())
             if not avail:
-                return df
-            future = [d for d in avail if d >= td]
-            chosen = min(future) if future else max(avail)
-            if chosen != td and not allow_cross_date_fallback:
-                stale = dated
+                stale = ~dated
                 print(
-                    f"  [{sport_label}] strict date: no props on {td}, "
-                    f"dropping {int(stale.sum())} off-slate rows (nearest {chosen})"
+                    f"  [{sport_label}] no resolvable game_date on {td}; "
+                    f"dropping {int(stale.sum())} undated rows"
                 )
             else:
-                stale = dated & (gd_str != chosen)
-                if chosen != td:
+                future = [d for d in avail if d >= td]
+                chosen = min(future) if future else max(avail)
+                too_far = chosen != td and not cross_date_fallback_allowed(chosen, td)
+                if chosen != td and (not allow_cross_date_fallback or too_far):
+                    stale = dated
+                    why = "beyond 3-day fallback cap" if too_far else "strict date"
                     print(
-                        f"  [{sport_label}] date fallback: no props on {td}, "
-                        f"using nearest date {chosen} ({int((~stale).sum())} rows)"
+                        f"  [{sport_label}] {why}: no props on {td}, "
+                        f"dropping {int(stale.sum())} off-slate rows (nearest {chosen})"
                     )
+                else:
+                    stale = dated & (gd_str != chosen)
+                    if chosen != td:
+                        print(
+                            f"  [{sport_label}] date fallback: no props on {td}, "
+                            f"using nearest date {chosen} ({int((~stale).sum())} rows)"
+                        )
+        elif sport_label in ("NBA1Q", "NBA1H"):
+            # Period boards: never nearest-date. Undated rows are May leftovers.
+            if not dated.any():
+                print(
+                    f"  [{sport_label}] undated period board on {td}; "
+                    f"dropping {len(df)} rows (no game_date)"
+                )
+                return df.iloc[0:0].copy()
+            stale = ~gd_str.isin({td} | keep_extra)
+            n_undated = int((~dated).sum())
+            if n_undated:
+                stale = stale | (~dated)
         # Tennis: boards may not carry the pipeline calendar day (late refresh / ET drift).
         # If a strict "drop everything before td" would empty the slate, keep the nearest available
         # slate date (same idea as NBA), otherwise PP-only runs lose Tennis entirely.
@@ -21960,7 +22111,10 @@ def main():
                 if avail:
                     future = [d for d in avail if d >= td]
                     chosen = min(future) if future else max(avail)
-                    if chosen != td and not allow_cross_date_fallback:
+                    from utils.stale_board_tickets import cross_date_fallback_allowed
+
+                    too_far = chosen != td and not cross_date_fallback_allowed(chosen, td)
+                    if chosen != td and (not allow_cross_date_fallback or too_far):
                         stale = dated
                         print(
                             f"  [{sport_label}] strict date: no rows on {td}, "
@@ -21980,16 +22134,25 @@ def main():
         elif sport_label == "Soccer":
             # World Cup / same-day boards: never wipe the slate because soccer_date drifted to +1.
             if dated.any() and not (dated & (gd_str == td)).any() and allow_cross_date_fallback:
+                from utils.stale_board_tickets import cross_date_fallback_allowed
+
                 avail = sorted(gd_str[dated].dropna().unique().tolist())
                 if avail:
                     past_or_eq = [d for d in avail if d <= td]
                     chosen = max(past_or_eq) if past_or_eq else min(avail)
-                    stale = dated & (gd_str != chosen)
-                    if chosen != td:
+                    if not cross_date_fallback_allowed(chosen, td):
+                        stale = dated & (gd_str != td)
                         print(
-                            f"  [{sport_label}] date fallback: no rows on {td}, "
-                            f"using nearest slate date {chosen} ({int((~stale).sum())} rows)"
+                            f"  [{sport_label}] nearest {chosen} beyond 3-day cap; "
+                            f"dropping off-slate rows for {td}"
                         )
+                    else:
+                        stale = dated & (gd_str != chosen)
+                        if chosen != td:
+                            print(
+                                f"  [{sport_label}] date fallback: no rows on {td}, "
+                                f"using nearest slate date {chosen} ({int((~stale).sum())} rows)"
+                            )
                 else:
                     stale = dated & (gd_str != td)
             else:
@@ -22001,6 +22164,14 @@ def main():
             stale = dated & ((gd_str < td) | (~is_roll & (gd_str != td)))
         else:
             stale = dated & (gd_str != td)
+        # Live slates: time-only "8:00 PM" / blank game_date is stale, not today.
+        n_undated = int((~dated).sum())
+        if n_undated:
+            stale = stale | (~dated)
+            print(
+                f"  [{sport_label}] undated rows: dropping {n_undated} "
+                f"(no resolvable YYYY-MM-DD)"
+            )
         n_stale = int(stale.sum())
         if n_stale > 0:
             print(f"  [date-filter] {sport_label}: dropped {n_stale} stale-dated rows (target slate {td})")
@@ -22271,6 +22442,7 @@ def main():
         # NHL + MLB: row-wise low-signal exclusions.
 
         filtered_df = ensure_prop_signal_columns(df.copy())
+        filtered_df = _fillna_text_cols(filtered_df)
         filtered_df = _attach_reliability_columns(filtered_df, reliability_index)
         filtered_df = _attach_strat_columns(filtered_df, strat_index)
         filtered_df = attach_stack_70_columns(filtered_df)

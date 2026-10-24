@@ -1,0 +1,197 @@
+{
+  "wnba_2026-07-22": {
+    "hist": {
+      "HIT": 33,
+      "MISS": 38,
+      "PUSH": 4,
+      "VOID": 4
+    },
+    "n": 79,
+    "hist_void": 4,
+    "hist_void_pct": 5.1,
+    "after_arm_sum_solo_csv_ok": 75,
+    "after_arm_sum_solo_csv_miss": 4,
+    "after_arm_sum_with_duo_ok": 75,
+    "after_arm_sum_with_duo_miss": 4,
+    "direct_duo_lookup_only_ok": 0,
+    "note": "Local WNBA actuals have 0 pre-materialized duo rows; arm-sum resolves 75/79. Same 4 misses as hist VOID. Direct duo lookup still 0 (cross-team combos). New fallback does not regress — it is what makes WNBA resolve here."
+  },
+  "mlb_workbook": [
+    {
+      "date": "2026-07-29",
+      "n": 28,
+      "before_void": 12,
+      "after_void": 3,
+      "before_void_pct": 42.9,
+      "after_void_pct": 10.7
+    },
+    {
+      "date": "2026-07-26",
+      "n": 22,
+      "before_void": 14,
+      "after_void": 0,
+      "before_void_pct": 63.6,
+      "after_void_pct": 0.0
+    },
+    {
+      "date": "2026-07-25",
+      "n": 29,
+      "before_void": 14,
+      "after_void": 3,
+      "before_void_pct": 48.3,
+      "after_void_pct": 10.3
+    }
+  ],
+  "soccer": [
+    {
+      "date": "2026-07-14",
+      "n": 18,
+      "hist": {
+        "MISS": 8,
+        "HIT": 10
+      },
+      "before_void_or_pending": 0,
+      "before_pct": 0.0,
+      "after_unresolved": 0,
+      "after_pct": 0.0,
+      "resolved": 18,
+      "actuals_has_passes": false,
+      "actuals_prop_sample": [
+        "Assists",
+        "Fouls",
+        "Fouls Drawn",
+        "Goal + Assist",
+        "Goalkeeper Saves",
+        "Goals",
+        "Shots",
+        "Shots On Target",
+        "Yellow Cards"
+      ],
+      "by_prop": {
+        "Shots (Combo)": {
+          "n": 8,
+          "after_ok": 8
+        },
+        "Goalie Saves (Combo)": {
+          "n": 2,
+          "after_ok": 2
+        },
+        "Shots On Target (Combo)": {
+          "n": 8,
+          "after_ok": 8
+        }
+      }
+    },
+    {
+      "date": "2026-07-12",
+      "n": 37,
+      "hist": {
+        "VOID": 37
+      },
+      "before_void_or_pending": 37,
+      "before_pct": 100.0,
+      "after_unresolved": 37,
+      "after_pct": 100.0,
+      "resolved": 0,
+      "actuals_has_passes": false,
+      "actuals_prop_sample": [
+        "Assists",
+        "Fouls",
+        "Fouls Drawn",
+        "Goal + Assist",
+        "Goalkeeper Saves",
+        "Goals",
+        "Shots",
+        "Shots On Target",
+        "Yellow Cards"
+      ],
+      "by_prop": {
+        "Shots (Combo)": {
+          "n": 8,
+          "before_void": 8,
+          "after_void": 8
+        },
+        "Goalie Saves (Combo)": {
+          "n": 2,
+          "before_void": 2,
+          "after_void": 2
+        },
+        "Shots On Target (Combo)": {
+          "n": 8,
+          "before_void": 8,
+          "after_void": 8
+        },
+        "Goals Allowed (Combo)": {
+          "n": 3,
+          "before_void": 3,
+          "after_void": 3
+        },
+        "Passes Attempted (Combo)": {
+          "n": 15,
+          "before_void": 15,
+          "after_void": 15
+        },
+        "Clearances (Combo)": {
+          "n": 1,
+          "before_void": 1,
+          "after_void": 1
+        }
+      }
+    },
+    {
+      "date": "2026-07-09",
+      "n": 17,
+      "hist": {
+        "MISS": 2,
+        "VOID": 15
+      },
+      "before_void_or_pending": 15,
+      "before_pct": 88.2,
+      "after_unresolved": 15,
+      "after_pct": 88.2,
+      "resolved": 2,
+      "actuals_has_passes": false,
+      "actuals_prop_sample": [
+        "Assists",
+        "Fouls",
+        "Fouls Drawn",
+        "Goal + Assist",
+        "Goalkeeper Saves",
+        "Goals",
+        "Shots",
+        "Shots On Target",
+        "Yellow Cards"
+      ],
+      "by_prop": {
+        "Shots On Target (Combo)": {
+          "n": 3,
+          "after_ok": 1,
+          "before_void": 2,
+          "after_void": 2
+        },
+        "Goals (Combo)": {
+          "n": 2,
+          "after_ok": 1,
+          "before_void": 1,
+          "after_void": 1
+        },
+        "Passes Attempted (Combo)": {
+          "n": 10,
+          "before_void": 10,
+          "after_void": 10
+        },
+        "Goalie Saves (Combo)": {
+          "n": 1,
+          "before_void": 1,
+          "after_void": 1
+        },
+        "Clearances (Combo)": {
+          "n": 1,
+          "before_void": 1,
+          "after_void": 1
+        }
+      }
+    }
+  ],
+  "nhl": []
+}

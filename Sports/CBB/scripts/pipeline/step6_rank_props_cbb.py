@@ -888,8 +888,8 @@ def main():
     eligible.loc[miss]   = False
     void_reason.loc[miss] = "NO_PROJECTION_OR_LINE"
 
-    # Drop Demon entirely + neg-edge Goblin to audit sheet (not eligible)
-    # WCBB can have much thinner markets; keep these rows in active sheets.
+    # Mark Demon + neg-edge Goblin ticket-ineligible, but keep them on ALL so the
+    # grader can record Demon OVER hit rates (data collection). WCBB keeps all rows.
     is_demon     = pick_type.apply(lambda x: _norm_pick_type(x) == "Demon")
     goblin_neg   = pick_type.apply(lambda x: _norm_pick_type(x) == "Goblin") & (out.get("edge", pd.Series(0.0, index=out.index)).pipe(lambda s: pd.to_numeric(s, errors="coerce")).fillna(0) < 0)
     drop_mask    = pd.Series(False, index=out.index) if is_wcbb_slate else (is_demon | goblin_neg)
@@ -1229,10 +1229,11 @@ def main():
     out.drop(columns=drop_cols, inplace=True)
 
     # ── Sort ──────────────────────────────────────────────────────────────────
+    # Demons / neg-edge Goblins stay on ALL (grader data collection) and also on
+    # DROPPED as an audit mirror. ELIGIBLE still excludes them via eligible=0.
     drop_mask_final = out["void_reason"].isin(["DROPPED_DEMON_AUDIT", "DROPPED_NEG_EDGE_GOBDEM"])
     dropped_df  = out[drop_mask_final].copy()
-    out_active  = out[~drop_mask_final].copy()
-    out_sorted  = out_active.sort_values("final_score", ascending=False, na_position="last")
+    out_sorted  = out.sort_values("final_score", ascending=False, na_position="last")
     elig_sorted = elig_mask.reindex(out_sorted.index).fillna(False)
 
     # ── Head-to-Head stats ───────────────────────────────────────────────────
@@ -1271,8 +1272,8 @@ def main():
     write_parquet_sidecar(out_sorted.loc[elig_sorted], args.output)
 
     print(f"✅ Saved → {args.output}")
-    print(f"ALL rows (active) : {len(out_sorted)}")
-    print(f"DROPPED rows      : {len(dropped_df)}  (Demon + neg-edge Goblin, audit only)")
+    print(f"ALL rows (incl. Demon observe) : {len(out_sorted)}")
+    print(f"DROPPED audit mirror : {len(dropped_df)}  (Demon + neg-edge Goblin; still on ALL)")
     print("Tier breakdown:")
     print(out_sorted["tier"].value_counts().to_string())
     print("\nVoid reasons (active):")

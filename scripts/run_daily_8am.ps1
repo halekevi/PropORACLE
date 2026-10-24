@@ -4,8 +4,8 @@
   Scheduled 8:00 AM line-move update: git pull main, then mid-day-style refresh.
 
 .NOTES
-  First full multi-sport fetch is PropOracle - Daily 1AM (run_daily_1am.ps1).
-  This task is the PRIMARY same-day lock; 9:45 / 10:30 / 1PM / 4:30 follow via run_refresh_with_log.ps1.
+  First scrape + live publish is PropOracle - DayAhead 9PM. 1AM is the overnight update.
+  This task is a morning line update; 9AM / 10:30 / 1PM / 4:30 follow via run_refresh_with_log.ps1.
   Scheduled at 8:00 (was 7:00) so the 5AM full daily usually finishes first.
   Registered by scripts\Register_Daily_Task.ps1 as "PropOracle - Daily 8AM".
 #>

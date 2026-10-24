@@ -1,0 +1,579 @@
+{
+  "chip": "rush_yds Standard UNDER",
+  "n_l5eq5_unique": 21,
+  "baseline": {
+    "label": "L5=5",
+    "h": 17,
+    "n": 21,
+    "hr": 81.0
+  },
+  "joint_2x2": [
+    {
+      "label": "own Off strong x opp D leaky",
+      "h": 6,
+      "n": 7,
+      "hr": 85.7
+    },
+    {
+      "label": "own Off strong x opp D stingy",
+      "h": 0,
+      "n": 0,
+      "hr": null
+    },
+    {
+      "label": "own Off weak x opp D leaky",
+      "h": 0,
+      "n": 0,
+      "hr": null
+    },
+    {
+      "label": "own Off weak x opp D stingy",
+      "h": 6,
+      "n": 6,
+      "hr": 100.0
+    }
+  ],
+  "avg_leftover": {
+    "label": "Avg leftover (Off or D is Avg/blank)",
+    "h": 5,
+    "n": 8,
+    "hr": 62.5
+  },
+  "grid_3x3": [
+    {
+      "label": "Off strong x D weak",
+      "h": 6,
+      "n": 7,
+      "hr": 85.7
+    },
+    {
+      "label": "Off strong x D avg",
+      "h": 0,
+      "n": 0,
+      "hr": null
+    },
+    {
+      "label": "Off strong x D strong",
+      "h": 0,
+      "n": 0,
+      "hr": null
+    },
+    {
+      "label": "Off strong x D blank",
+      "h": 2,
+      "n": 3,
+      "hr": 66.7
+    },
+    {
+      "label": "Off avg x D weak",
+      "h": 0,
+      "n": 1,
+      "hr": 0.0
+    },
+    {
+      "label": "Off avg x D avg",
+      "h": 0,
+      "n": 1,
+      "hr": 0.0
+    },
+    {
+      "label": "Off avg x D strong",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    },
+    {
+      "label": "Off avg x D blank",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    },
+    {
+      "label": "Off weak x D weak",
+      "h": 0,
+      "n": 0,
+      "hr": null
+    },
+    {
+      "label": "Off weak x D avg",
+      "h": 0,
+      "n": 0,
+      "hr": null
+    },
+    {
+      "label": "Off weak x D strong",
+      "h": 6,
+      "n": 6,
+      "hr": 100.0
+    },
+    {
+      "label": "Off weak x D blank",
+      "h": 0,
+      "n": 0,
+      "hr": null
+    },
+    {
+      "label": "Off blank x D blank",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    }
+  ],
+  "share_buckets": [
+    {
+      "label": "<25%",
+      "h": 5,
+      "n": 7,
+      "hr": 71.4
+    },
+    {
+      "label": "25-50%",
+      "h": 2,
+      "n": 3,
+      "hr": 66.7
+    },
+    {
+      "label": "50%+",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    }
+  ],
+  "share_x_d": [
+    {
+      "label": "<25% x D leaky",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    },
+    {
+      "label": "<25% x D stingy",
+      "h": 4,
+      "n": 4,
+      "hr": 100.0
+    },
+    {
+      "label": "25-50% x D leaky",
+      "h": 0,
+      "n": 1,
+      "hr": 0.0
+    },
+    {
+      "label": "25-50% x D stingy",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    },
+    {
+      "label": "50%+ x D leaky",
+      "h": 0,
+      "n": 0,
+      "hr": null
+    },
+    {
+      "label": "50%+ x D stingy",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    }
+  ],
+  "share_on_stingy_d": [
+    {
+      "label": "stingy D + <25%",
+      "h": 4,
+      "n": 4,
+      "hr": 100.0
+    },
+    {
+      "label": "stingy D + 25-50%",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    },
+    {
+      "label": "stingy D + 50%+",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    }
+  ],
+  "share_on_aligned_cell": [
+    {
+      "label": "aligned + <25%",
+      "h": 3,
+      "n": 3,
+      "hr": 100.0
+    },
+    {
+      "label": "aligned + 25-50%",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    },
+    {
+      "label": "aligned + 50%+",
+      "h": 1,
+      "n": 1,
+      "hr": 100.0
+    }
+  ],
+  "roster": [
+    {
+      "date": "2026-08-29",
+      "player": "Benjamin Hall",
+      "team": "UNC",
+      "opp": "TCU",
+      "line": 46.5,
+      "hit": 1,
+      "own_off": "Avg",
+      "own_off_b": "avg",
+      "opp_def": "Elite",
+      "opp_def_b": "strong",
+      "board_d": "Above Avg",
+      "share": 23.2,
+      "share_b": "<25%",
+      "share_src": "step8",
+      "l10": 8.0
+    },
+    {
+      "date": "2026-08-29",
+      "player": "Ousmane Kromah",
+      "team": "FSU",
+      "opp": "NMSU",
+      "line": 75.5,
+      "hit": 0,
+      "own_off": "Avg",
+      "own_off_b": "avg",
+      "opp_def": "Avg",
+      "opp_def_b": "avg",
+      "board_d": "Below Avg",
+      "share": 14.2,
+      "share_b": "<25%",
+      "share_src": "step8",
+      "l10": 10.0
+    },
+    {
+      "date": "2026-09-03",
+      "player": "Ca'Lil Valentine",
+      "team": "ILL",
+      "opp": "UAB",
+      "line": 76.5,
+      "hit": 0,
+      "own_off": "Avg",
+      "own_off_b": "avg",
+      "opp_def": "Weak",
+      "opp_def_b": "weak",
+      "board_d": "Weak",
+      "share": 27.7,
+      "share_b": "25-50%",
+      "share_src": "step8",
+      "l10": 9.0
+    },
+    {
+      "date": "2026-09-03",
+      "player": "Jamal Roberts",
+      "team": "MIZZ",
+      "opp": "",
+      "line": 113.5,
+      "hit": 1,
+      "own_off": "",
+      "own_off_b": "blank",
+      "opp_def": "",
+      "opp_def_b": "blank",
+      "board_d": "",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 10.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Anthony Woods",
+      "team": "UCLA",
+      "opp": "CAL",
+      "line": 33.5,
+      "hit": 0,
+      "own_off": "Elite",
+      "own_off_b": "strong",
+      "opp_def": "Below",
+      "opp_def_b": "weak",
+      "board_d": "Below Avg",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 7.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Chauncey Bowens",
+      "team": "UGA",
+      "opp": "TNST",
+      "line": 53.5,
+      "hit": 1,
+      "own_off": "Elite",
+      "own_off_b": "strong",
+      "opp_def": "",
+      "opp_def_b": "blank",
+      "board_d": "",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 6.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Daniel Hill",
+      "team": "ALA",
+      "opp": "ECU",
+      "line": 54.5,
+      "hit": 1,
+      "own_off": "Above",
+      "own_off_b": "strong",
+      "opp_def": "Below",
+      "opp_def_b": "weak",
+      "board_d": "Elite",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 9.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Dante Moore",
+      "team": "ORE",
+      "opp": "BSU",
+      "line": 11.5,
+      "hit": 1,
+      "own_off": "Avg",
+      "own_off_b": "avg",
+      "opp_def": "",
+      "opp_def_b": "blank",
+      "board_d": "",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 8.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Fluff Bothwell",
+      "team": "MSST",
+      "opp": "ULM",
+      "line": 85.5,
+      "hit": 1,
+      "own_off": "Elite",
+      "own_off_b": "strong",
+      "opp_def": "Weak",
+      "opp_def_b": "weak",
+      "board_d": "Below Avg",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 7.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Isaiah Mozee",
+      "team": "NEB",
+      "opp": "OHIO",
+      "line": 44.5,
+      "hit": 1,
+      "own_off": "Elite",
+      "own_off_b": "strong",
+      "opp_def": "Weak",
+      "opp_def_b": "weak",
+      "board_d": "Avg",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 10.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Jaylin Lucas",
+      "team": "TULN",
+      "opp": "DUKE",
+      "line": 39.5,
+      "hit": 1,
+      "own_off": "Below",
+      "own_off_b": "weak",
+      "opp_def": "Elite",
+      "opp_def_b": "strong",
+      "board_d": "Avg",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 9.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Kevin Riley",
+      "team": "ALA",
+      "opp": "ECU",
+      "line": 46.5,
+      "hit": 1,
+      "own_off": "Above",
+      "own_off_b": "strong",
+      "opp_def": "Below",
+      "opp_def_b": "weak",
+      "board_d": "Elite",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 9.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Maurice Turner",
+      "team": "TULN",
+      "opp": "DUKE",
+      "line": 32.5,
+      "hit": 1,
+      "own_off": "Below",
+      "own_off_b": "weak",
+      "opp_def": "Elite",
+      "opp_def_b": "strong",
+      "board_d": "Avg",
+      "share": 100.0,
+      "share_b": "50%+",
+      "share_src": "vol_2025",
+      "l10": 5.0
+    },
+    {
+      "date": "2026-09-05",
+      "player": "Xavier Williams",
+      "team": "IOWA",
+      "opp": "NIU",
+      "line": 36.5,
+      "hit": 1,
+      "own_off": "Elite",
+      "own_off_b": "strong",
+      "opp_def": "Below",
+      "opp_def_b": "weak",
+      "board_d": "Weak",
+      "share": null,
+      "share_b": "blank",
+      "share_src": "blank",
+      "l10": 8.0
+    },
+    {
+      "date": "2026-09-12",
+      "player": "AJ Newberry",
+      "team": "ORST",
+      "opp": "TTU",
+      "line": 22.5,
+      "hit": 1,
+      "own_off": "Weak",
+      "own_off_b": "weak",
+      "opp_def": "Above",
+      "opp_def_b": "strong",
+      "board_d": "Elite",
+      "share": 6.2,
+      "share_b": "<25%",
+      "share_src": "step8",
+      "l10": 9.0
+    },
+    {
+      "date": "2026-09-12",
+      "player": "CJ Baxter Jr.",
+      "team": "UK",
+      "opp": "ALA",
+      "line": 44.5,
+      "hit": 1,
+      "own_off": "Below",
+      "own_off_b": "weak",
+      "opp_def": "Elite",
+      "opp_def_b": "strong",
+      "board_d": "Above Avg",
+      "share": 21.4,
+      "share_b": "<25%",
+      "share_src": "step8",
+      "l10": 7.0
+    },
+    {
+      "date": "2026-09-12",
+      "player": "Chauncey Bowens",
+      "team": "UGA",
+      "opp": "WKU",
+      "line": 47.5,
+      "hit": 1,
+      "own_off": "Elite",
+      "own_off_b": "strong",
+      "opp_def": "Weak",
+      "opp_def_b": "weak",
+      "board_d": "Below Avg",
+      "share": 21.0,
+      "share_b": "<25%",
+      "share_src": "step8",
+      "l10": 6.0
+    },
+    {
+      "date": "2026-09-12",
+      "player": "Dilin Jones",
+      "team": "LSU",
+      "opp": "LT",
+      "line": 76.5,
+      "hit": 1,
+      "own_off": "Above",
+      "own_off_b": "strong",
+      "opp_def": "",
+      "opp_def_b": "blank",
+      "board_d": "Above Avg",
+      "share": 32.1,
+      "share_b": "25-50%",
+      "share_src": "step8",
+      "l10": 7.0
+    },
+    {
+      "date": "2026-09-12",
+      "player": "Gideon Davidson",
+      "team": "CLEM",
+      "opp": "GASO",
+      "line": 72.5,
+      "hit": 1,
+      "own_off": "Below",
+      "own_off_b": "weak",
+      "opp_def": "Above",
+      "opp_def_b": "strong",
+      "board_d": "Weak",
+      "share": 16.1,
+      "share_b": "<25%",
+      "share_src": "step8",
+      "l10": 10.0
+    },
+    {
+      "date": "2026-09-12",
+      "player": "Jaylin Carter",
+      "team": "MEM",
+      "opp": "BSU",
+      "line": 75.5,
+      "hit": 0,
+      "own_off": "Elite",
+      "own_off_b": "strong",
+      "opp_def": "",
+      "opp_def_b": "blank",
+      "board_d": "",
+      "share": 12.2,
+      "share_b": "<25%",
+      "share_src": "step8",
+      "l10": 9.0
+    },
+    {
+      "date": "2026-09-12",
+      "player": "Lloyd Avant",
+      "team": "OKLA",
+      "opp": "MICH",
+      "line": 45.5,
+      "hit": 1,
+      "own_off": "Weak",
+      "own_off_b": "weak",
+      "opp_def": "Above",
+      "opp_def_b": "strong",
+      "board_d": "Elite",
+      "share": 26.7,
+      "share_b": "25-50%",
+      "share_src": "step8",
+      "l10": 7.0
+    }
+  ]
+}

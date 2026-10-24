@@ -1,0 +1,1355 @@
+{
+  "from": "2026-07-13",
+  "to": "2026-08-25",
+  "n_joined": 33876,
+  "by_book": {
+    "Goblin OVER": {
+      "all": {
+        "hits": 15486,
+        "n": 26090,
+        "rate": 59.4
+      },
+      "L5>=4": {
+        "hits": 6445,
+        "n": 9390,
+        "rate": 68.6
+      },
+      "L5=5": {
+        "hits": 2181,
+        "n": 2995,
+        "rate": 72.8
+      },
+      "L10>=8": {
+        "hits": 4097,
+        "n": 5715,
+        "rate": 71.7
+      },
+      "szn>70": {
+        "hits": 5016,
+        "n": 7164,
+        "rate": 70.0
+      },
+      "gap>=1": {
+        "hits": 6692,
+        "n": 9651,
+        "rate": 69.3
+      },
+      "gap>=2": {
+        "hits": 3537,
+        "n": 4895,
+        "rate": 72.3
+      },
+      "sport cover floor": {
+        "hits": 4881,
+        "n": 6866,
+        "rate": 71.1
+      },
+      "D aligned": {
+        "hits": 5940,
+        "n": 9392,
+        "rate": 63.2
+      },
+      "D not Avg": {
+        "hits": 11193,
+        "n": 17792,
+        "rate": 62.9
+      },
+      "not shadow": {
+        "hits": 15059,
+        "n": 24117,
+        "rate": 62.4
+      },
+      "S/A market": {
+        "hits": 6141,
+        "n": 8630,
+        "rate": 71.2
+      },
+      "L5>=4 + cover": {
+        "hits": 3551,
+        "n": 4837,
+        "rate": 73.4
+      },
+      "L5>=4 + gap>=1": {
+        "hits": 4682,
+        "n": 6530,
+        "rate": 71.7
+      },
+      "L5>=4 + gap>=2": {
+        "hits": 2751,
+        "n": 3723,
+        "rate": 73.9
+      },
+      "L5>=4 + L10>=8": {
+        "hits": 3551,
+        "n": 4923,
+        "rate": 72.1
+      },
+      "L5>=4 + szn>70": {
+        "hits": 4855,
+        "n": 6881,
+        "rate": 70.6
+      },
+      "L5>=4 + D aligned": {
+        "hits": 2443,
+        "n": 3473,
+        "rate": 70.3
+      },
+      "L5>=4 + D not Avg": {
+        "hits": 4724,
+        "n": 6800,
+        "rate": 69.5
+      },
+      "L5>=4 + not shadow": {
+        "hits": 6370,
+        "n": 9137,
+        "rate": 69.7
+      },
+      "L5>=4 + S/A market": {
+        "hits": 3341,
+        "n": 4426,
+        "rate": 75.5
+      },
+      "L5>=4 + cover + not shadow": {
+        "hits": 3546,
+        "n": 4818,
+        "rate": 73.6
+      },
+      "L5>=4 + cover + L10>=8": {
+        "hits": 2353,
+        "n": 3151,
+        "rate": 74.7
+      },
+      "L5>=4 + cover + szn>70": {
+        "hits": 3053,
+        "n": 4122,
+        "rate": 74.1
+      },
+      "L5>=4 + cover + L10>=8 + szn>70": {
+        "hits": 2353,
+        "n": 3151,
+        "rate": 74.7
+      },
+      "L5>=4 + cover + D aligned": {
+        "hits": 1280,
+        "n": 1697,
+        "rate": 75.4
+      },
+      "L5>=4 + cover + D not Avg": {
+        "hits": 2513,
+        "n": 3397,
+        "rate": 74.0
+      },
+      "L5=5 + cover": {
+        "hits": 1537,
+        "n": 2015,
+        "rate": 76.3
+      },
+      "L5=5 + cover + not shadow": {
+        "hits": 1533,
+        "n": 2003,
+        "rate": 76.5
+      },
+      "L5=5 + gap>=1": {
+        "hits": 1916,
+        "n": 2572,
+        "rate": 74.5
+      },
+      "L5=5 + gap>=2": {
+        "hits": 1366,
+        "n": 1766,
+        "rate": 77.3
+      },
+      "L5=5 + L10>=8": {
+        "hits": 1619,
+        "n": 2185,
+        "rate": 74.1
+      },
+      "L5=5 + szn>70": {
+        "hits": 2155,
+        "n": 2953,
+        "rate": 73.0
+      },
+      "L5=5 + D aligned": {
+        "hits": 821,
+        "n": 1113,
+        "rate": 73.8
+      },
+      "L5=5 + D not Avg": {
+        "hits": 1575,
+        "n": 2155,
+        "rate": 73.1
+      },
+      "L5=5 + not shadow": {
+        "hits": 2150,
+        "n": 2915,
+        "rate": 73.8
+      },
+      "L5=5 + S/A market": {
+        "hits": 1371,
+        "n": 1736,
+        "rate": 79.0
+      },
+      "L5=5 + HIGH min": {
+        "hits": 239,
+        "n": 343,
+        "rate": 69.7
+      },
+      "L5=5 + Diamond (L10+szn)": {
+        "hits": 1619,
+        "n": 2185,
+        "rate": 74.1
+      },
+      "L5=5 + cover + Diamond": {
+        "hits": 1250,
+        "n": 1635,
+        "rate": 76.5
+      },
+      "L5=5 + D aligned + gap>=1": {
+        "hits": 702,
+        "n": 923,
+        "rate": 76.1
+      },
+      "L5=5 + cover + D aligned": {
+        "hits": 556,
+        "n": 710,
+        "rate": 78.3
+      },
+      "L5>=4 + cover + S/A": {
+        "hits": 2317,
+        "n": 2993,
+        "rate": 77.4
+      },
+      "Platinum-like (L5>=4 + one of L10/szn)": {
+        "hits": 1304,
+        "n": 1958,
+        "rate": 66.6
+      },
+      "Diamond-like (L5>=4 + L10 + szn)": {
+        "hits": 3551,
+        "n": 4923,
+        "rate": 72.1
+      },
+      "L5>=4 + cover + Platinum-like": {
+        "hits": 3053,
+        "n": 4122,
+        "rate": 74.1
+      },
+      "L5>=4 + HIGH min": {
+        "hits": 589,
+        "n": 932,
+        "rate": 63.2
+      },
+      "L5>=4 + D aligned + gap>=1": {
+        "hits": 1720,
+        "n": 2333,
+        "rate": 73.7
+      }
+    },
+    "Standard OVER": {
+      "all": {
+        "hits": 2374,
+        "n": 4746,
+        "rate": 50.0
+      },
+      "L5>=4": {
+        "hits": 567,
+        "n": 1066,
+        "rate": 53.2
+      },
+      "L5=5": {
+        "hits": 104,
+        "n": 201,
+        "rate": 51.7
+      },
+      "L10>=8": {
+        "hits": 137,
+        "n": 279,
+        "rate": 49.1
+      },
+      "szn>70": {
+        "hits": 316,
+        "n": 620,
+        "rate": 51.0
+      },
+      "gap>=1": {
+        "hits": 928,
+        "n": 1727,
+        "rate": 53.7
+      },
+      "gap>=2": {
+        "hits": 459,
+        "n": 857,
+        "rate": 53.6
+      },
+      "sport cover floor": {
+        "hits": 339,
+        "n": 668,
+        "rate": 50.7
+      },
+      "D aligned": {
+        "hits": 846,
+        "n": 1731,
+        "rate": 48.9
+      },
+      "D not Avg": {
+        "hits": 1707,
+        "n": 3364,
+        "rate": 50.7
+      },
+      "not shadow": {
+        "hits": 2242,
+        "n": 4489,
+        "rate": 49.9
+      },
+      "S/A market": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "L5>=4 + cover": {
+        "hits": 181,
+        "n": 340,
+        "rate": 53.2
+      },
+      "L5>=4 + gap>=1": {
+        "hits": 396,
+        "n": 729,
+        "rate": 54.3
+      },
+      "L5>=4 + gap>=2": {
+        "hits": 244,
+        "n": 443,
+        "rate": 55.1
+      },
+      "L5>=4 + L10>=8": {
+        "hits": 112,
+        "n": 229,
+        "rate": 48.9
+      },
+      "L5>=4 + szn>70": {
+        "hits": 272,
+        "n": 523,
+        "rate": 52.0
+      },
+      "L5>=4 + D aligned": {
+        "hits": 176,
+        "n": 360,
+        "rate": 48.9
+      },
+      "L5>=4 + D not Avg": {
+        "hits": 373,
+        "n": 717,
+        "rate": 52.0
+      },
+      "L5>=4 + not shadow": {
+        "hits": 536,
+        "n": 1000,
+        "rate": 53.6
+      },
+      "L5>=4 + S/A market": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "L5>=4 + cover + not shadow": {
+        "hits": 170,
+        "n": 314,
+        "rate": 54.1
+      },
+      "L5>=4 + cover + L10>=8": {
+        "hits": 62,
+        "n": 125,
+        "rate": 49.6
+      },
+      "L5>=4 + cover + szn>70": {
+        "hits": 132,
+        "n": 245,
+        "rate": 53.9
+      },
+      "L5>=4 + cover + L10>=8 + szn>70": {
+        "hits": 62,
+        "n": 125,
+        "rate": 49.6
+      },
+      "L5>=4 + cover + D aligned": {
+        "hits": 52,
+        "n": 110,
+        "rate": 47.3
+      },
+      "L5>=4 + cover + D not Avg": {
+        "hits": 105,
+        "n": 197,
+        "rate": 53.3
+      },
+      "L5=5 + cover": {
+        "hits": 52,
+        "n": 99,
+        "rate": 52.5
+      },
+      "L5=5 + cover + not shadow": {
+        "hits": 48,
+        "n": 92,
+        "rate": 52.2
+      },
+      "L5=5 + gap>=1": {
+        "hits": 88,
+        "n": 159,
+        "rate": 55.3
+      },
+      "L5=5 + gap>=2": {
+        "hits": 64,
+        "n": 116,
+        "rate": 55.2
+      },
+      "L5=5 + L10>=8": {
+        "hits": 38,
+        "n": 91,
+        "rate": 41.8
+      },
+      "L5=5 + szn>70": {
+        "hits": 104,
+        "n": 193,
+        "rate": 53.9
+      },
+      "L5=5 + D aligned": {
+        "hits": 21,
+        "n": 60,
+        "rate": 35.0
+      },
+      "L5=5 + D not Avg": {
+        "hits": 60,
+        "n": 131,
+        "rate": 45.8
+      },
+      "L5=5 + not shadow": {
+        "hits": 99,
+        "n": 190,
+        "rate": 52.1
+      },
+      "L5=5 + S/A market": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "L5=5 + HIGH min": {
+        "hits": 26,
+        "n": 45,
+        "rate": 57.8
+      },
+      "L5=5 + Diamond (L10+szn)": {
+        "hits": 38,
+        "n": 91,
+        "rate": 41.8
+      },
+      "L5=5 + cover + Diamond": {
+        "hits": 22,
+        "n": 53,
+        "rate": 41.5
+      },
+      "L5=5 + D aligned + gap>=1": {
+        "hits": 16,
+        "n": 42,
+        "rate": 38.1
+      },
+      "L5=5 + cover + D aligned": {
+        "hits": 12,
+        "n": 29,
+        "rate": 41.4
+      },
+      "L5>=4 + cover + S/A": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "Platinum-like (L5>=4 + one of L10/szn)": {
+        "hits": 160,
+        "n": 294,
+        "rate": 54.4
+      },
+      "Diamond-like (L5>=4 + L10 + szn)": {
+        "hits": 112,
+        "n": 229,
+        "rate": 48.9
+      },
+      "L5>=4 + cover + Platinum-like": {
+        "hits": 132,
+        "n": 245,
+        "rate": 53.9
+      },
+      "L5>=4 + HIGH min": {
+        "hits": 83,
+        "n": 150,
+        "rate": 55.3
+      },
+      "L5>=4 + D aligned + gap>=1": {
+        "hits": 116,
+        "n": 230,
+        "rate": 50.4
+      }
+    },
+    "Standard UNDER": {
+      "all": {
+        "hits": 1624,
+        "n": 3040,
+        "rate": 53.4
+      },
+      "L5>=4": {
+        "hits": 701,
+        "n": 1295,
+        "rate": 54.1
+      },
+      "L5=5": {
+        "hits": 157,
+        "n": 280,
+        "rate": 56.1
+      },
+      "L10>=8": {
+        "hits": 230,
+        "n": 426,
+        "rate": 54.0
+      },
+      "szn>70": {
+        "hits": 343,
+        "n": 639,
+        "rate": 53.7
+      },
+      "gap>=1": {
+        "hits": 535,
+        "n": 975,
+        "rate": 54.9
+      },
+      "gap>=2": {
+        "hits": 281,
+        "n": 513,
+        "rate": 54.8
+      },
+      "sport cover floor": {
+        "hits": 207,
+        "n": 375,
+        "rate": 55.2
+      },
+      "D aligned": {
+        "hits": 548,
+        "n": 1036,
+        "rate": 52.9
+      },
+      "D not Avg": {
+        "hits": 1138,
+        "n": 2190,
+        "rate": 52.0
+      },
+      "not shadow": {
+        "hits": 1451,
+        "n": 2710,
+        "rate": 53.5
+      },
+      "S/A market": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "L5>=4 + cover": {
+        "hits": 97,
+        "n": 183,
+        "rate": 53.0
+      },
+      "L5>=4 + gap>=1": {
+        "hits": 286,
+        "n": 505,
+        "rate": 56.6
+      },
+      "L5>=4 + gap>=2": {
+        "hits": 157,
+        "n": 282,
+        "rate": 55.7
+      },
+      "L5>=4 + L10>=8": {
+        "hits": 192,
+        "n": 354,
+        "rate": 54.2
+      },
+      "L5>=4 + szn>70": {
+        "hits": 277,
+        "n": 525,
+        "rate": 52.8
+      },
+      "L5>=4 + D aligned": {
+        "hits": 218,
+        "n": 417,
+        "rate": 52.3
+      },
+      "L5>=4 + D not Avg": {
+        "hits": 468,
+        "n": 911,
+        "rate": 51.4
+      },
+      "L5>=4 + not shadow": {
+        "hits": 611,
+        "n": 1131,
+        "rate": 54.0
+      },
+      "L5>=4 + S/A market": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "L5>=4 + cover + not shadow": {
+        "hits": 87,
+        "n": 168,
+        "rate": 51.8
+      },
+      "L5>=4 + cover + L10>=8": {
+        "hits": 45,
+        "n": 83,
+        "rate": 54.2
+      },
+      "L5>=4 + cover + szn>70": {
+        "hits": 59,
+        "n": 110,
+        "rate": 53.6
+      },
+      "L5>=4 + cover + L10>=8 + szn>70": {
+        "hits": 29,
+        "n": 59,
+        "rate": 49.2
+      },
+      "L5>=4 + cover + D aligned": {
+        "hits": 29,
+        "n": 61,
+        "rate": 47.5
+      },
+      "L5>=4 + cover + D not Avg": {
+        "hits": 57,
+        "n": 116,
+        "rate": 49.1
+      },
+      "L5=5 + cover": {
+        "hits": 35,
+        "n": 67,
+        "rate": 52.2
+      },
+      "L5=5 + cover + not shadow": {
+        "hits": 30,
+        "n": 60,
+        "rate": 50.0
+      },
+      "L5=5 + gap>=1": {
+        "hits": 96,
+        "n": 162,
+        "rate": 59.3
+      },
+      "L5=5 + gap>=2": {
+        "hits": 45,
+        "n": 84,
+        "rate": 53.6
+      },
+      "L5=5 + L10>=8": {
+        "hits": 85,
+        "n": 152,
+        "rate": 55.9
+      },
+      "L5=5 + szn>70": {
+        "hits": 127,
+        "n": 234,
+        "rate": 54.3
+      },
+      "L5=5 + D aligned": {
+        "hits": 36,
+        "n": 63,
+        "rate": 57.1
+      },
+      "L5=5 + D not Avg": {
+        "hits": 101,
+        "n": 191,
+        "rate": 52.9
+      },
+      "L5=5 + not shadow": {
+        "hits": 132,
+        "n": 241,
+        "rate": 54.8
+      },
+      "L5=5 + S/A market": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "L5=5 + HIGH min": {
+        "hits": 23,
+        "n": 32,
+        "rate": 71.9
+      },
+      "L5=5 + Diamond (L10+szn)": {
+        "hits": 72,
+        "n": 135,
+        "rate": 53.3
+      },
+      "L5=5 + cover + Diamond": {
+        "hits": 16,
+        "n": 36,
+        "rate": 44.4
+      },
+      "L5=5 + D aligned + gap>=1": {
+        "hits": 20,
+        "n": 36,
+        "rate": 55.6
+      },
+      "L5=5 + cover + D aligned": {
+        "hits": 5,
+        "n": 11,
+        "rate": 45.5
+      },
+      "L5>=4 + cover + S/A": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "Platinum-like (L5>=4 + one of L10/szn)": {
+        "hits": 159,
+        "n": 295,
+        "rate": 53.9
+      },
+      "Diamond-like (L5>=4 + L10 + szn)": {
+        "hits": 155,
+        "n": 292,
+        "rate": 53.1
+      },
+      "L5>=4 + cover + Platinum-like": {
+        "hits": 75,
+        "n": 134,
+        "rate": 56.0
+      },
+      "L5>=4 + HIGH min": {
+        "hits": 72,
+        "n": 105,
+        "rate": 68.6
+      },
+      "L5>=4 + D aligned + gap>=1": {
+        "hits": 76,
+        "n": 149,
+        "rate": 51.0
+      }
+    }
+  },
+  "standard_by_sport": {
+    "Standard OVER": {
+      "WNBA": {
+        "all": {
+          "hits": 1061,
+          "n": 2033,
+          "rate": 52.2
+        },
+        "L5>=4": {
+          "hits": 243,
+          "n": 440,
+          "rate": 55.2
+        },
+        "L5=5": {
+          "hits": 36,
+          "n": 65,
+          "rate": 55.4
+        },
+        "Diamond-like (L5>=4 + L10 + szn)": {
+          "hits": 34,
+          "n": 70,
+          "rate": 48.6
+        },
+        "L5=5 + Diamond (L10+szn)": {
+          "hits": 6,
+          "n": 21,
+          "rate": 28.6
+        },
+        "L5=5 + L10>=8": {
+          "hits": 6,
+          "n": 21,
+          "rate": 28.6
+        },
+        "L5=5 + szn>70": {
+          "hits": 36,
+          "n": 65,
+          "rate": 55.4
+        },
+        "L5=5 + gap>=1": {
+          "hits": 35,
+          "n": 64,
+          "rate": 54.7
+        },
+        "L5=5 + D aligned": {
+          "hits": 4,
+          "n": 15,
+          "rate": 26.7
+        },
+        "L5=5 + not shadow": {
+          "hits": 31,
+          "n": 54,
+          "rate": 57.4
+        },
+        "L5=5 + cover": {
+          "hits": 16,
+          "n": 31,
+          "rate": 51.6
+        },
+        "L5=5 + HIGH min": {
+          "hits": 5,
+          "n": 10,
+          "rate": 50.0
+        },
+        "L5>=4 + D aligned": {
+          "hits": 60,
+          "n": 131,
+          "rate": 45.8
+        },
+        "L5>=4 + not shadow": {
+          "hits": 212,
+          "n": 374,
+          "rate": 56.7
+        },
+        "L10>=8": {
+          "hits": 44,
+          "n": 91,
+          "rate": 48.4
+        }
+      },
+      "MLB": {
+        "all": {
+          "hits": 1149,
+          "n": 2360,
+          "rate": 48.7
+        },
+        "L5>=4": {
+          "hits": 265,
+          "n": 515,
+          "rate": 51.5
+        },
+        "L5=5": {
+          "hits": 46,
+          "n": 99,
+          "rate": 46.5
+        },
+        "Diamond-like (L5>=4 + L10 + szn)": {
+          "hits": 58,
+          "n": 122,
+          "rate": 47.5
+        },
+        "L5=5 + Diamond (L10+szn)": {
+          "hits": 20,
+          "n": 48,
+          "rate": 41.7
+        },
+        "L5=5 + L10>=8": {
+          "hits": 20,
+          "n": 48,
+          "rate": 41.7
+        },
+        "L5=5 + szn>70": {
+          "hits": 46,
+          "n": 92,
+          "rate": 50.0
+        },
+        "L5=5 + gap>=1": {
+          "hits": 31,
+          "n": 59,
+          "rate": 52.5
+        },
+        "L5=5 + D aligned": {
+          "hits": 16,
+          "n": 41,
+          "rate": 39.0
+        },
+        "L5=5 + not shadow": {
+          "hits": 46,
+          "n": 99,
+          "rate": 46.5
+        },
+        "L5=5 + cover": {
+          "hits": 18,
+          "n": 38,
+          "rate": 47.4
+        },
+        "L5=5 + HIGH min": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5>=4 + D aligned": {
+          "hits": 112,
+          "n": 218,
+          "rate": 51.4
+        },
+        "L5>=4 + not shadow": {
+          "hits": 265,
+          "n": 515,
+          "rate": 51.5
+        },
+        "L10>=8": {
+          "hits": 70,
+          "n": 148,
+          "rate": 47.3
+        }
+      },
+      "Soccer": {
+        "all": {
+          "hits": 6,
+          "n": 17,
+          "rate": 35.3
+        },
+        "L5>=4": {
+          "hits": 2,
+          "n": 4,
+          "rate": 50.0
+        },
+        "L5=5": {
+          "hits": 0,
+          "n": 1,
+          "rate": 0.0
+        },
+        "Diamond-like (L5>=4 + L10 + szn)": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + Diamond (L10+szn)": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + L10>=8": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + szn>70": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + gap>=1": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + D aligned": {
+          "hits": 0,
+          "n": 1,
+          "rate": 0.0
+        },
+        "L5=5 + not shadow": {
+          "hits": 0,
+          "n": 1,
+          "rate": 0.0
+        },
+        "L5=5 + cover": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + HIGH min": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5>=4 + D aligned": {
+          "hits": 1,
+          "n": 3,
+          "rate": 33.3
+        },
+        "L5>=4 + not shadow": {
+          "hits": 2,
+          "n": 4,
+          "rate": 50.0
+        },
+        "L10>=8": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      },
+      "Tennis": {
+        "all": {
+          "hits": 158,
+          "n": 336,
+          "rate": 47.0
+        },
+        "L5>=4": {
+          "hits": 57,
+          "n": 107,
+          "rate": 53.3
+        },
+        "L5=5": {
+          "hits": 22,
+          "n": 36,
+          "rate": 61.1
+        },
+        "Diamond-like (L5>=4 + L10 + szn)": {
+          "hits": 20,
+          "n": 37,
+          "rate": 54.1
+        },
+        "L5=5 + Diamond (L10+szn)": {
+          "hits": 12,
+          "n": 22,
+          "rate": 54.5
+        },
+        "L5=5 + L10>=8": {
+          "hits": 12,
+          "n": 22,
+          "rate": 54.5
+        },
+        "L5=5 + szn>70": {
+          "hits": 22,
+          "n": 36,
+          "rate": 61.1
+        },
+        "L5=5 + gap>=1": {
+          "hits": 22,
+          "n": 36,
+          "rate": 61.1
+        },
+        "L5=5 + D aligned": {
+          "hits": 1,
+          "n": 3,
+          "rate": 33.3
+        },
+        "L5=5 + not shadow": {
+          "hits": 22,
+          "n": 36,
+          "rate": 61.1
+        },
+        "L5=5 + cover": {
+          "hits": 18,
+          "n": 30,
+          "rate": 60.0
+        },
+        "L5=5 + HIGH min": {
+          "hits": 21,
+          "n": 35,
+          "rate": 60.0
+        },
+        "L5>=4 + D aligned": {
+          "hits": 3,
+          "n": 8,
+          "rate": 37.5
+        },
+        "L5>=4 + not shadow": {
+          "hits": 57,
+          "n": 107,
+          "rate": 53.3
+        },
+        "L10>=8": {
+          "hits": 23,
+          "n": 40,
+          "rate": 57.5
+        }
+      }
+    },
+    "Standard UNDER": {
+      "WNBA": {
+        "all": {
+          "hits": 558,
+          "n": 1032,
+          "rate": 54.1
+        },
+        "L5>=4": {
+          "hits": 163,
+          "n": 292,
+          "rate": 55.8
+        },
+        "L5=5": {
+          "hits": 28,
+          "n": 50,
+          "rate": 56.0
+        },
+        "Diamond-like (L5>=4 + L10 + szn)": {
+          "hits": 26,
+          "n": 44,
+          "rate": 59.1
+        },
+        "L5=5 + Diamond (L10+szn)": {
+          "hits": 14,
+          "n": 20,
+          "rate": 70.0
+        },
+        "L5=5 + L10>=8": {
+          "hits": 14,
+          "n": 20,
+          "rate": 70.0
+        },
+        "L5=5 + szn>70": {
+          "hits": 28,
+          "n": 50,
+          "rate": 56.0
+        },
+        "L5=5 + gap>=1": {
+          "hits": 27,
+          "n": 48,
+          "rate": 56.2
+        },
+        "L5=5 + D aligned": {
+          "hits": 7,
+          "n": 13,
+          "rate": 53.8
+        },
+        "L5=5 + not shadow": {
+          "hits": 28,
+          "n": 50,
+          "rate": 56.0
+        },
+        "L5=5 + cover": {
+          "hits": 10,
+          "n": 17,
+          "rate": 58.8
+        },
+        "L5=5 + HIGH min": {
+          "hits": 0,
+          "n": 1,
+          "rate": 0.0
+        },
+        "L5>=4 + D aligned": {
+          "hits": 52,
+          "n": 99,
+          "rate": 52.5
+        },
+        "L5>=4 + not shadow": {
+          "hits": 163,
+          "n": 292,
+          "rate": 55.8
+        },
+        "L10>=8": {
+          "hits": 42,
+          "n": 72,
+          "rate": 58.3
+        }
+      },
+      "MLB": {
+        "all": {
+          "hits": 922,
+          "n": 1765,
+          "rate": 52.2
+        },
+        "L5>=4": {
+          "hits": 462,
+          "n": 885,
+          "rate": 52.2
+        },
+        "L5=5": {
+          "hits": 103,
+          "n": 195,
+          "rate": 52.8
+        },
+        "Diamond-like (L5>=4 + L10 + szn)": {
+          "hits": 126,
+          "n": 244,
+          "rate": 51.6
+        },
+        "L5=5 + Diamond (L10+szn)": {
+          "hits": 58,
+          "n": 115,
+          "rate": 50.4
+        },
+        "L5=5 + L10>=8": {
+          "hits": 58,
+          "n": 115,
+          "rate": 50.4
+        },
+        "L5=5 + szn>70": {
+          "hits": 96,
+          "n": 180,
+          "rate": 53.3
+        },
+        "L5=5 + gap>=1": {
+          "hits": 44,
+          "n": 81,
+          "rate": 54.3
+        },
+        "L5=5 + D aligned": {
+          "hits": 29,
+          "n": 50,
+          "rate": 58.0
+        },
+        "L5=5 + not shadow": {
+          "hits": 91,
+          "n": 173,
+          "rate": 52.6
+        },
+        "L5=5 + cover": {
+          "hits": 13,
+          "n": 35,
+          "rate": 37.1
+        },
+        "L5=5 + HIGH min": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5>=4 + D aligned": {
+          "hits": 165,
+          "n": 312,
+          "rate": 52.9
+        },
+        "L5>=4 + not shadow": {
+          "hits": 409,
+          "n": 778,
+          "rate": 52.6
+        },
+        "L10>=8": {
+          "hits": 166,
+          "n": 322,
+          "rate": 51.6
+        }
+      },
+      "Soccer": {
+        "all": {
+          "hits": 22,
+          "n": 50,
+          "rate": 44.0
+        },
+        "L5>=4": {
+          "hits": 12,
+          "n": 23,
+          "rate": 52.2
+        },
+        "L5=5": {
+          "hits": 3,
+          "n": 4,
+          "rate": 75.0
+        },
+        "Diamond-like (L5>=4 + L10 + szn)": {
+          "hits": 3,
+          "n": 4,
+          "rate": 75.0
+        },
+        "L5=5 + Diamond (L10+szn)": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + L10>=8": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + szn>70": {
+          "hits": 3,
+          "n": 4,
+          "rate": 75.0
+        },
+        "L5=5 + gap>=1": {
+          "hits": 3,
+          "n": 3,
+          "rate": 100.0
+        },
+        "L5=5 + D aligned": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + not shadow": {
+          "hits": 3,
+          "n": 3,
+          "rate": 100.0
+        },
+        "L5=5 + cover": {
+          "hits": 3,
+          "n": 3,
+          "rate": 100.0
+        },
+        "L5=5 + HIGH min": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5>=4 + D aligned": {
+          "hits": 1,
+          "n": 6,
+          "rate": 16.7
+        },
+        "L5>=4 + not shadow": {
+          "hits": 7,
+          "n": 10,
+          "rate": 70.0
+        },
+        "L10>=8": {
+          "hits": 3,
+          "n": 4,
+          "rate": 75.0
+        }
+      },
+      "Tennis": {
+        "all": {
+          "hits": 122,
+          "n": 193,
+          "rate": 63.2
+        },
+        "L5>=4": {
+          "hits": 64,
+          "n": 95,
+          "rate": 67.4
+        },
+        "L5=5": {
+          "hits": 23,
+          "n": 31,
+          "rate": 74.2
+        },
+        "Diamond-like (L5>=4 + L10 + szn)": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + Diamond (L10+szn)": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + L10>=8": {
+          "hits": 13,
+          "n": 17,
+          "rate": 76.5
+        },
+        "L5=5 + szn>70": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + gap>=1": {
+          "hits": 22,
+          "n": 30,
+          "rate": 73.3
+        },
+        "L5=5 + D aligned": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5=5 + not shadow": {
+          "hits": 10,
+          "n": 15,
+          "rate": 66.7
+        },
+        "L5=5 + cover": {
+          "hits": 9,
+          "n": 12,
+          "rate": 75.0
+        },
+        "L5=5 + HIGH min": {
+          "hits": 23,
+          "n": 31,
+          "rate": 74.2
+        },
+        "L5>=4 + D aligned": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "L5>=4 + not shadow": {
+          "hits": 32,
+          "n": 51,
+          "rate": 62.7
+        },
+        "L10>=8": {
+          "hits": 19,
+          "n": 28,
+          "rate": 67.9
+        }
+      }
+    }
+  }
+}

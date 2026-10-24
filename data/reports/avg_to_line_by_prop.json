@@ -1,0 +1,4548 @@
+{
+  "gap": "Overs and Goblins: L10 average minus the posted line. Unders: line minus L10 average.",
+  "bands": {
+    "short": "average is on the wrong side of the line",
+    "between": "average is past the line and short of the cover unit",
+    "clears": "average clears the line by at least the cover unit"
+  },
+  "filter": "Goblin OVER, Standard OVER, Standard UNDER. At least 8 of the last 10 games. DNP out. L5=5 is not required. Categories with n under 30 are omitted.",
+  "eligible_legs": 207881,
+  "rows": [
+    {
+      "sport": "CBB",
+      "prop": "assists",
+      "book": "Goblin OVER",
+      "cover_unit": 1.1,
+      "n": 74,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        {
+          "band": "between",
+          "hits": 33,
+          "n": 41,
+          "rate": 0.8049
+        },
+        {
+          "band": "clears",
+          "hits": 19,
+          "n": 33,
+          "rate": 0.5758
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "points",
+      "book": "Goblin OVER",
+      "cover_unit": 3.1,
+      "n": 74,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 5,
+          "n": 6,
+          "rate": 0.8333
+        },
+        {
+          "band": "between",
+          "hits": 34,
+          "n": 53,
+          "rate": 0.6415
+        },
+        {
+          "band": "clears",
+          "hits": 12,
+          "n": 15,
+          "rate": 0.8
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "points",
+      "book": "Standard OVER",
+      "cover_unit": 3.1,
+      "n": 49,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 7,
+          "n": 8,
+          "rate": 0.875
+        },
+        {
+          "band": "between",
+          "hits": 17,
+          "n": 37,
+          "rate": 0.4595
+        },
+        {
+          "band": "clears",
+          "hits": 4,
+          "n": 4,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "points",
+      "book": "Standard UNDER",
+      "cover_unit": 3.1,
+      "n": 77,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 10,
+          "n": 26,
+          "rate": 0.3846
+        },
+        {
+          "band": "between",
+          "hits": 23,
+          "n": 48,
+          "rate": 0.4792
+        },
+        {
+          "band": "clears",
+          "hits": 1,
+          "n": 3,
+          "rate": 0.3333
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "pra",
+      "book": "Goblin OVER",
+      "cover_unit": 3.7,
+      "n": 38,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 5,
+          "n": 7,
+          "rate": 0.7143
+        },
+        {
+          "band": "between",
+          "hits": 17,
+          "n": 30,
+          "rate": 0.5667
+        },
+        {
+          "band": "clears",
+          "hits": 1,
+          "n": 1,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "pra",
+      "book": "Standard OVER",
+      "cover_unit": 3.7,
+      "n": 40,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 4,
+          "n": 8,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 16,
+          "n": 31,
+          "rate": 0.5161
+        },
+        {
+          "band": "clears",
+          "hits": 1,
+          "n": 1,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "pra",
+      "book": "Standard UNDER",
+      "cover_unit": 3.7,
+      "n": 85,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 10,
+          "n": 20,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 34,
+          "n": 60,
+          "rate": 0.5667
+        },
+        {
+          "band": "clears",
+          "hits": 3,
+          "n": 5,
+          "rate": 0.6
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "pts+ast",
+      "book": "Standard OVER",
+      "cover_unit": 3.7,
+      "n": 55,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 2,
+          "n": 4,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 28,
+          "n": 50,
+          "rate": 0.56
+        },
+        {
+          "band": "clears",
+          "hits": 1,
+          "n": 1,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "pts+ast",
+      "book": "Standard UNDER",
+      "cover_unit": 3.7,
+      "n": 72,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 9,
+          "n": 22,
+          "rate": 0.4091
+        },
+        {
+          "band": "between",
+          "hits": 28,
+          "n": 50,
+          "rate": 0.56
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "pts+reb",
+      "book": "Standard OVER",
+      "cover_unit": 3.7,
+      "n": 36,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 2,
+          "n": 5,
+          "rate": 0.4
+        },
+        {
+          "band": "between",
+          "hits": 15,
+          "n": 30,
+          "rate": 0.5
+        },
+        {
+          "band": "clears",
+          "hits": 1,
+          "n": 1,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "pts+reb",
+      "book": "Standard UNDER",
+      "cover_unit": 3.7,
+      "n": 85,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 8,
+          "n": 17,
+          "rate": 0.4706
+        },
+        {
+          "band": "between",
+          "hits": 34,
+          "n": 63,
+          "rate": 0.5397
+        },
+        {
+          "band": "clears",
+          "hits": 2,
+          "n": 5,
+          "rate": 0.4
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "reb+ast",
+      "book": "Standard UNDER",
+      "cover_unit": 1.3,
+      "n": 53,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 4,
+          "n": 9,
+          "rate": 0.4444
+        },
+        {
+          "band": "between",
+          "hits": 20,
+          "n": 36,
+          "rate": 0.5556
+        },
+        {
+          "band": "clears",
+          "hits": 7,
+          "n": 8,
+          "rate": 0.875
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "rebounds",
+      "book": "Goblin OVER",
+      "cover_unit": 1.3,
+      "n": 79,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 5,
+          "n": 10,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 40,
+          "n": 58,
+          "rate": 0.6897
+        },
+        {
+          "band": "clears",
+          "hits": 6,
+          "n": 11,
+          "rate": 0.5455
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "rebounds",
+      "book": "Standard UNDER",
+      "cover_unit": 1.3,
+      "n": 55,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 5,
+          "n": 11,
+          "rate": 0.4545
+        },
+        {
+          "band": "between",
+          "hits": 18,
+          "n": 35,
+          "rate": 0.5143
+        },
+        {
+          "band": "clears",
+          "hits": 6,
+          "n": 9,
+          "rate": 0.6667
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "steals",
+      "book": "Goblin OVER",
+      "cover_unit": 2.0,
+      "n": 59,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        {
+          "band": "between",
+          "hits": 32,
+          "n": 59,
+          "rate": 0.5424
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "CBB",
+      "prop": "threes",
+      "book": "Goblin OVER",
+      "cover_unit": 0.7,
+      "n": 31,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        {
+          "band": "between",
+          "hits": 7,
+          "n": 11,
+          "rate": 0.6364
+        },
+        {
+          "band": "clears",
+          "hits": 15,
+          "n": 20,
+          "rate": 0.75
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "earned_runs",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 2551,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 137,
+          "n": 202,
+          "rate": 0.6782
+        },
+        {
+          "band": "between",
+          "hits": 640,
+          "n": 827,
+          "rate": 0.7739
+        },
+        {
+          "band": "clears",
+          "hits": 1376,
+          "n": 1522,
+          "rate": 0.9041
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "earned_runs",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 263,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 27,
+          "n": 51,
+          "rate": 0.5294
+        },
+        {
+          "band": "between",
+          "hits": 85,
+          "n": 153,
+          "rate": 0.5556
+        },
+        {
+          "band": "clears",
+          "hits": 34,
+          "n": 59,
+          "rate": 0.5763
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "earned_runs",
+      "book": "Standard UNDER",
+      "cover_unit": 1.0,
+      "n": 311,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 37,
+          "n": 80,
+          "rate": 0.4625
+        },
+        {
+          "band": "between",
+          "hits": 100,
+          "n": 177,
+          "rate": 0.565
+        },
+        {
+          "band": "clears",
+          "hits": 26,
+          "n": 54,
+          "rate": 0.4815
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hits",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 9971,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 933,
+          "n": 989,
+          "rate": 0.9434
+        },
+        {
+          "band": "between",
+          "hits": 8424,
+          "n": 8685,
+          "rate": 0.9699
+        },
+        {
+          "band": "clears",
+          "hits": 294,
+          "n": 297,
+          "rate": 0.9899
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hits",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 1070,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 130,
+          "n": 207,
+          "rate": 0.628
+        },
+        {
+          "band": "between",
+          "hits": 592,
+          "n": 861,
+          "rate": 0.6876
+        },
+        {
+          "band": "clears",
+          "hits": 2,
+          "n": 2,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hits",
+      "book": "Standard UNDER",
+      "cover_unit": 1.0,
+      "n": 1422,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 162,
+          "n": 498,
+          "rate": 0.3253
+        },
+        {
+          "band": "between",
+          "hits": 288,
+          "n": 924,
+          "rate": 0.3117
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hits+runs+rbis",
+      "book": "Goblin OVER",
+      "cover_unit": 1.1,
+      "n": 15837,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 537,
+          "n": 670,
+          "rate": 0.8015
+        },
+        {
+          "band": "between",
+          "hits": 6030,
+          "n": 6667,
+          "rate": 0.9045
+        },
+        {
+          "band": "clears",
+          "hits": 7903,
+          "n": 8500,
+          "rate": 0.9298
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hits+runs+rbis",
+      "book": "Standard OVER",
+      "cover_unit": 1.1,
+      "n": 2665,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 213,
+          "n": 323,
+          "rate": 0.6594
+        },
+        {
+          "band": "between",
+          "hits": 1314,
+          "n": 1808,
+          "rate": 0.7268
+        },
+        {
+          "band": "clears",
+          "hits": 400,
+          "n": 534,
+          "rate": 0.7491
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hits+runs+rbis",
+      "book": "Standard UNDER",
+      "cover_unit": 1.1,
+      "n": 2755,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 541,
+          "n": 1326,
+          "rate": 0.408
+        },
+        {
+          "band": "between",
+          "hits": 498,
+          "n": 1376,
+          "rate": 0.3619
+        },
+        {
+          "band": "clears",
+          "hits": 23,
+          "n": 53,
+          "rate": 0.434
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hits_allowed",
+      "book": "Goblin OVER",
+      "cover_unit": 1.1,
+      "n": 3745,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 319,
+          "n": 504,
+          "rate": 0.6329
+        },
+        {
+          "band": "between",
+          "hits": 982,
+          "n": 1430,
+          "rate": 0.6867
+        },
+        {
+          "band": "clears",
+          "hits": 1441,
+          "n": 1811,
+          "rate": 0.7957
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hits_allowed",
+      "book": "Standard OVER",
+      "cover_unit": 1.1,
+      "n": 373,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 57,
+          "n": 104,
+          "rate": 0.5481
+        },
+        {
+          "band": "between",
+          "hits": 121,
+          "n": 234,
+          "rate": 0.5171
+        },
+        {
+          "band": "clears",
+          "hits": 15,
+          "n": 35,
+          "rate": 0.4286
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hits_allowed",
+      "book": "Standard UNDER",
+      "cover_unit": 1.1,
+      "n": 643,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 59,
+          "n": 119,
+          "rate": 0.4958
+        },
+        {
+          "band": "between",
+          "hits": 193,
+          "n": 396,
+          "rate": 0.4874
+        },
+        {
+          "band": "clears",
+          "hits": 61,
+          "n": 128,
+          "rate": 0.4766
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hitter_ks",
+      "book": "Goblin OVER",
+      "cover_unit": 0.5,
+      "n": 9088,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 905,
+          "n": 950,
+          "rate": 0.9526
+        },
+        {
+          "band": "between",
+          "hits": 4557,
+          "n": 4674,
+          "rate": 0.975
+        },
+        {
+          "band": "clears",
+          "hits": 3425,
+          "n": 3464,
+          "rate": 0.9887
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hitter_ks",
+      "book": "Standard OVER",
+      "cover_unit": 0.5,
+      "n": 757,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 73,
+          "n": 168,
+          "rate": 0.4345
+        },
+        {
+          "band": "between",
+          "hits": 247,
+          "n": 530,
+          "rate": 0.466
+        },
+        {
+          "band": "clears",
+          "hits": 36,
+          "n": 59,
+          "rate": 0.6102
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "hitter_ks",
+      "book": "Standard UNDER",
+      "cover_unit": 0.5,
+      "n": 625,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 134,
+          "n": 233,
+          "rate": 0.5751
+        },
+        {
+          "band": "between",
+          "hits": 193,
+          "n": 369,
+          "rate": 0.523
+        },
+        {
+          "band": "clears",
+          "hits": 12,
+          "n": 23,
+          "rate": 0.5217
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "pitcher_ks",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 4421,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 339,
+          "n": 539,
+          "rate": 0.6289
+        },
+        {
+          "band": "between",
+          "hits": 884,
+          "n": 1372,
+          "rate": 0.6443
+        },
+        {
+          "band": "clears",
+          "hits": 1857,
+          "n": 2510,
+          "rate": 0.7398
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "pitcher_ks",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 903,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 123,
+          "n": 221,
+          "rate": 0.5566
+        },
+        {
+          "band": "between",
+          "hits": 260,
+          "n": 497,
+          "rate": 0.5231
+        },
+        {
+          "band": "clears",
+          "hits": 87,
+          "n": 185,
+          "rate": 0.4703
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "pitcher_ks",
+      "book": "Standard UNDER",
+      "cover_unit": 1.0,
+      "n": 1189,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 143,
+          "n": 277,
+          "rate": 0.5162
+        },
+        {
+          "band": "between",
+          "hits": 339,
+          "n": 663,
+          "rate": 0.5113
+        },
+        {
+          "band": "clears",
+          "hits": 124,
+          "n": 249,
+          "rate": 0.498
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "pitches_thrown",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 973,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 200,
+          "n": 286,
+          "rate": 0.6993
+        },
+        {
+          "band": "between",
+          "hits": 33,
+          "n": 62,
+          "rate": 0.5323
+        },
+        {
+          "band": "clears",
+          "hits": 455,
+          "n": 625,
+          "rate": 0.728
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "pitches_thrown",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 327,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 90,
+          "n": 175,
+          "rate": 0.5143
+        },
+        {
+          "band": "between",
+          "hits": 20,
+          "n": 37,
+          "rate": 0.5405
+        },
+        {
+          "band": "clears",
+          "hits": 59,
+          "n": 115,
+          "rate": 0.513
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "pitches_thrown",
+      "book": "Standard UNDER",
+      "cover_unit": 1.0,
+      "n": 1108,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 47,
+          "n": 134,
+          "rate": 0.3507
+        },
+        {
+          "band": "between",
+          "hits": 45,
+          "n": 76,
+          "rate": 0.5921
+        },
+        {
+          "band": "clears",
+          "hits": 486,
+          "n": 898,
+          "rate": 0.5412
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "pitching_outs",
+      "book": "Goblin OVER",
+      "cover_unit": 1.5,
+      "n": 2278,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 428,
+          "n": 695,
+          "rate": 0.6158
+        },
+        {
+          "band": "between",
+          "hits": 400,
+          "n": 616,
+          "rate": 0.6494
+        },
+        {
+          "band": "clears",
+          "hits": 769,
+          "n": 967,
+          "rate": 0.7952
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "pitching_outs",
+      "book": "Standard OVER",
+      "cover_unit": 1.5,
+      "n": 399,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 79,
+          "n": 162,
+          "rate": 0.4877
+        },
+        {
+          "band": "between",
+          "hits": 95,
+          "n": 187,
+          "rate": 0.508
+        },
+        {
+          "band": "clears",
+          "hits": 24,
+          "n": 50,
+          "rate": 0.48
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "pitching_outs",
+      "book": "Standard UNDER",
+      "cover_unit": 1.5,
+      "n": 689,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 48,
+          "n": 97,
+          "rate": 0.4948
+        },
+        {
+          "band": "between",
+          "hits": 166,
+          "n": 342,
+          "rate": 0.4854
+        },
+        {
+          "band": "clears",
+          "hits": 120,
+          "n": 250,
+          "rate": 0.48
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "plate_appearances",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 2228,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 742,
+          "n": 1517,
+          "rate": 0.4891
+        },
+        {
+          "band": "between",
+          "hits": 401,
+          "n": 709,
+          "rate": 0.5656
+        },
+        {
+          "band": "clears",
+          "hits": 2,
+          "n": 2,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "plate_appearances",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 214,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 30,
+          "n": 78,
+          "rate": 0.3846
+        },
+        {
+          "band": "between",
+          "hits": 55,
+          "n": 136,
+          "rate": 0.4044
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "plate_appearances",
+      "book": "Standard UNDER",
+      "cover_unit": 1.0,
+      "n": 622,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 29,
+          "n": 54,
+          "rate": 0.537
+        },
+        {
+          "band": "between",
+          "hits": 298,
+          "n": 522,
+          "rate": 0.5709
+        },
+        {
+          "band": "clears",
+          "hits": 24,
+          "n": 46,
+          "rate": 0.5217
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "runs",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 337,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 68,
+          "n": 70,
+          "rate": 0.9714
+        },
+        {
+          "band": "between",
+          "hits": 239,
+          "n": 262,
+          "rate": 0.9122
+        },
+        {
+          "band": "clears",
+          "hits": 5,
+          "n": 5,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "runs",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 1553,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 181,
+          "n": 318,
+          "rate": 0.5692
+        },
+        {
+          "band": "between",
+          "hits": 812,
+          "n": 1235,
+          "rate": 0.6575
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "runs",
+      "book": "Standard UNDER",
+      "cover_unit": 1.0,
+      "n": 1295,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 189,
+          "n": 468,
+          "rate": 0.4038
+        },
+        {
+          "band": "between",
+          "hits": 284,
+          "n": 825,
+          "rate": 0.3442
+        },
+        {
+          "band": "clears",
+          "hits": 1,
+          "n": 2,
+          "rate": 0.5
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "singles",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 1312,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 193,
+          "n": 210,
+          "rate": 0.919
+        },
+        {
+          "band": "between",
+          "hits": 1042,
+          "n": 1088,
+          "rate": 0.9577
+        },
+        {
+          "band": "clears",
+          "hits": 14,
+          "n": 14,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "singles",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 2997,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 270,
+          "n": 411,
+          "rate": 0.6569
+        },
+        {
+          "band": "between",
+          "hits": 1910,
+          "n": 2580,
+          "rate": 0.7403
+        },
+        {
+          "band": "clears",
+          "hits": 6,
+          "n": 6,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "singles",
+      "book": "Standard UNDER",
+      "cover_unit": 1.0,
+      "n": 1998,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 221,
+          "n": 702,
+          "rate": 0.3148
+        },
+        {
+          "band": "between",
+          "hits": 342,
+          "n": 1296,
+          "rate": 0.2639
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "total_bases",
+      "book": "Goblin OVER",
+      "cover_unit": 0.9,
+      "n": 10042,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 381,
+          "n": 423,
+          "rate": 0.9007
+        },
+        {
+          "band": "between",
+          "hits": 5002,
+          "n": 5248,
+          "rate": 0.9531
+        },
+        {
+          "band": "clears",
+          "hits": 4258,
+          "n": 4371,
+          "rate": 0.9741
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "total_bases",
+      "book": "Standard OVER",
+      "cover_unit": 0.9,
+      "n": 1580,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 131,
+          "n": 235,
+          "rate": 0.5574
+        },
+        {
+          "band": "between",
+          "hits": 726,
+          "n": 1044,
+          "rate": 0.6954
+        },
+        {
+          "band": "clears",
+          "hits": 220,
+          "n": 301,
+          "rate": 0.7309
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "total_bases",
+      "book": "Standard UNDER",
+      "cover_unit": 0.9,
+      "n": 1734,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 381,
+          "n": 1041,
+          "rate": 0.366
+        },
+        {
+          "band": "between",
+          "hits": 209,
+          "n": 668,
+          "rate": 0.3129
+        },
+        {
+          "band": "clears",
+          "hits": 9,
+          "n": 25,
+          "rate": 0.36
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "walks",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 76,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 5,
+          "n": 8,
+          "rate": 0.625
+        },
+        {
+          "band": "between",
+          "hits": 54,
+          "n": 63,
+          "rate": 0.8571
+        },
+        {
+          "band": "clears",
+          "hits": 5,
+          "n": 5,
+          "rate": 1.0
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "walks",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 380,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 34,
+          "n": 58,
+          "rate": 0.5862
+        },
+        {
+          "band": "between",
+          "hits": 220,
+          "n": 317,
+          "rate": 0.694
+        },
+        {
+          "band": "clears",
+          "hits": 4,
+          "n": 5,
+          "rate": 0.8
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "walks",
+      "book": "Standard UNDER",
+      "cover_unit": 1.0,
+      "n": 361,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 60,
+          "n": 158,
+          "rate": 0.3797
+        },
+        {
+          "band": "between",
+          "hits": 72,
+          "n": 203,
+          "rate": 0.3547
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "walks_allowed",
+      "book": "Goblin OVER",
+      "cover_unit": 0.75,
+      "n": 1742,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 65,
+          "n": 99,
+          "rate": 0.6566
+        },
+        {
+          "band": "between",
+          "hits": 527,
+          "n": 645,
+          "rate": 0.8171
+        },
+        {
+          "band": "clears",
+          "hits": 936,
+          "n": 998,
+          "rate": 0.9379
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "walks_allowed",
+      "book": "Standard OVER",
+      "cover_unit": 0.75,
+      "n": 311,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 40,
+          "n": 65,
+          "rate": 0.6154
+        },
+        {
+          "band": "between",
+          "hits": 128,
+          "n": 219,
+          "rate": 0.5845
+        },
+        {
+          "band": "clears",
+          "hits": 18,
+          "n": 27,
+          "rate": 0.6667
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "prop": "walks_allowed",
+      "book": "Standard UNDER",
+      "cover_unit": 0.75,
+      "n": 293,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 46,
+          "n": 86,
+          "rate": 0.5349
+        },
+        {
+          "band": "between",
+          "hits": 85,
+          "n": 191,
+          "rate": 0.445
+        },
+        {
+          "band": "clears",
+          "hits": 9,
+          "n": 16,
+          "rate": 0.5625
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "assists",
+      "book": "Goblin OVER",
+      "cover_unit": 1.1,
+      "n": 2175,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 62,
+          "n": 106,
+          "rate": 0.5849
+        },
+        {
+          "band": "between",
+          "hits": 1038,
+          "n": 1642,
+          "rate": 0.6322
+        },
+        {
+          "band": "clears",
+          "hits": 293,
+          "n": 427,
+          "rate": 0.6862
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "assists",
+      "book": "Standard OVER",
+      "cover_unit": 1.1,
+      "n": 556,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 47,
+          "n": 89,
+          "rate": 0.5281
+        },
+        {
+          "band": "between",
+          "hits": 191,
+          "n": 435,
+          "rate": 0.4391
+        },
+        {
+          "band": "clears",
+          "hits": 15,
+          "n": 32,
+          "rate": 0.4688
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "assists",
+      "book": "Standard UNDER",
+      "cover_unit": 1.1,
+      "n": 625,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 62,
+          "n": 110,
+          "rate": 0.5636
+        },
+        {
+          "band": "between",
+          "hits": 238,
+          "n": 431,
+          "rate": 0.5522
+        },
+        {
+          "band": "clears",
+          "hits": 43,
+          "n": 84,
+          "rate": 0.5119
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "fga",
+      "book": "Goblin OVER",
+      "cover_unit": 1.1,
+      "n": 194,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 15,
+          "n": 25,
+          "rate": 0.6
+        },
+        {
+          "band": "between",
+          "hits": 53,
+          "n": 90,
+          "rate": 0.5889
+        },
+        {
+          "band": "clears",
+          "hits": 47,
+          "n": 79,
+          "rate": 0.5949
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "fga",
+      "book": "Standard OVER",
+      "cover_unit": 1.1,
+      "n": 848,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 76,
+          "n": 165,
+          "rate": 0.4606
+        },
+        {
+          "band": "between",
+          "hits": 174,
+          "n": 349,
+          "rate": 0.4986
+        },
+        {
+          "band": "clears",
+          "hits": 168,
+          "n": 334,
+          "rate": 0.503
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "fga",
+      "book": "Standard UNDER",
+      "cover_unit": 1.1,
+      "n": 835,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 62,
+          "n": 120,
+          "rate": 0.5167
+        },
+        {
+          "band": "between",
+          "hits": 166,
+          "n": 326,
+          "rate": 0.5092
+        },
+        {
+          "band": "clears",
+          "hits": 214,
+          "n": 389,
+          "rate": 0.5501
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "points",
+      "book": "Goblin OVER",
+      "cover_unit": 3.1,
+      "n": 1720,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 150,
+          "n": 246,
+          "rate": 0.6098
+        },
+        {
+          "band": "between",
+          "hits": 774,
+          "n": 1240,
+          "rate": 0.6242
+        },
+        {
+          "band": "clears",
+          "hits": 154,
+          "n": 234,
+          "rate": 0.6581
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "points",
+      "book": "Standard OVER",
+      "cover_unit": 3.1,
+      "n": 1468,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 144,
+          "n": 314,
+          "rate": 0.4586
+        },
+        {
+          "band": "between",
+          "hits": 536,
+          "n": 1057,
+          "rate": 0.5071
+        },
+        {
+          "band": "clears",
+          "hits": 47,
+          "n": 97,
+          "rate": 0.4845
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "points",
+      "book": "Standard UNDER",
+      "cover_unit": 3.1,
+      "n": 1655,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 183,
+          "n": 354,
+          "rate": 0.5169
+        },
+        {
+          "band": "between",
+          "hits": 529,
+          "n": 1029,
+          "rate": 0.5141
+        },
+        {
+          "band": "clears",
+          "hits": 146,
+          "n": 272,
+          "rate": 0.5368
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "pra",
+      "book": "Goblin OVER",
+      "cover_unit": 3.7,
+      "n": 1109,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 255,
+          "n": 409,
+          "rate": 0.6235
+        },
+        {
+          "band": "between",
+          "hits": 340,
+          "n": 575,
+          "rate": 0.5913
+        },
+        {
+          "band": "clears",
+          "hits": 79,
+          "n": 125,
+          "rate": 0.632
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "pra",
+      "book": "Standard OVER",
+      "cover_unit": 3.7,
+      "n": 1263,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 260,
+          "n": 568,
+          "rate": 0.4577
+        },
+        {
+          "band": "between",
+          "hits": 301,
+          "n": 634,
+          "rate": 0.4748
+        },
+        {
+          "band": "clears",
+          "hits": 29,
+          "n": 61,
+          "rate": 0.4754
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "pra",
+      "book": "Standard UNDER",
+      "cover_unit": 3.7,
+      "n": 1125,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 56,
+          "n": 108,
+          "rate": 0.5185
+        },
+        {
+          "band": "between",
+          "hits": 334,
+          "n": 631,
+          "rate": 0.5293
+        },
+        {
+          "band": "clears",
+          "hits": 200,
+          "n": 386,
+          "rate": 0.5181
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "pts+ast",
+      "book": "Goblin OVER",
+      "cover_unit": 3.7,
+      "n": 994,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 155,
+          "n": 242,
+          "rate": 0.6405
+        },
+        {
+          "band": "between",
+          "hits": 407,
+          "n": 633,
+          "rate": 0.643
+        },
+        {
+          "band": "clears",
+          "hits": 79,
+          "n": 119,
+          "rate": 0.6639
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "pts+ast",
+      "book": "Standard OVER",
+      "cover_unit": 3.7,
+      "n": 1580,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 233,
+          "n": 522,
+          "rate": 0.4464
+        },
+        {
+          "band": "between",
+          "hits": 487,
+          "n": 960,
+          "rate": 0.5073
+        },
+        {
+          "band": "clears",
+          "hits": 51,
+          "n": 98,
+          "rate": 0.5204
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "pts+ast",
+      "book": "Standard UNDER",
+      "cover_unit": 3.7,
+      "n": 1145,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 77,
+          "n": 135,
+          "rate": 0.5704
+        },
+        {
+          "band": "between",
+          "hits": 379,
+          "n": 737,
+          "rate": 0.5142
+        },
+        {
+          "band": "clears",
+          "hits": 135,
+          "n": 273,
+          "rate": 0.4945
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "pts+reb",
+      "book": "Goblin OVER",
+      "cover_unit": 3.7,
+      "n": 1193,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 154,
+          "n": 259,
+          "rate": 0.5946
+        },
+        {
+          "band": "between",
+          "hits": 482,
+          "n": 778,
+          "rate": 0.6195
+        },
+        {
+          "band": "clears",
+          "hits": 101,
+          "n": 156,
+          "rate": 0.6474
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "pts+reb",
+      "book": "Standard OVER",
+      "cover_unit": 3.7,
+      "n": 1647,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 247,
+          "n": 557,
+          "rate": 0.4434
+        },
+        {
+          "band": "between",
+          "hits": 505,
+          "n": 999,
+          "rate": 0.5055
+        },
+        {
+          "band": "clears",
+          "hits": 50,
+          "n": 91,
+          "rate": 0.5495
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "pts+reb",
+      "book": "Standard UNDER",
+      "cover_unit": 3.7,
+      "n": 1299,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 89,
+          "n": 167,
+          "rate": 0.5329
+        },
+        {
+          "band": "between",
+          "hits": 412,
+          "n": 803,
+          "rate": 0.5131
+        },
+        {
+          "band": "clears",
+          "hits": 179,
+          "n": 329,
+          "rate": 0.5441
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "reb+ast",
+      "book": "Goblin OVER",
+      "cover_unit": 1.3,
+      "n": 1496,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 203,
+          "n": 350,
+          "rate": 0.58
+        },
+        {
+          "band": "between",
+          "hits": 501,
+          "n": 860,
+          "rate": 0.5826
+        },
+        {
+          "band": "clears",
+          "hits": 187,
+          "n": 286,
+          "rate": 0.6538
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "reb+ast",
+      "book": "Standard OVER",
+      "cover_unit": 1.3,
+      "n": 894,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 195,
+          "n": 396,
+          "rate": 0.4924
+        },
+        {
+          "band": "between",
+          "hits": 210,
+          "n": 443,
+          "rate": 0.474
+        },
+        {
+          "band": "clears",
+          "hits": 30,
+          "n": 55,
+          "rate": 0.5455
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "reb+ast",
+      "book": "Standard UNDER",
+      "cover_unit": 1.3,
+      "n": 762,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 33,
+          "n": 69,
+          "rate": 0.4783
+        },
+        {
+          "band": "between",
+          "hits": 225,
+          "n": 395,
+          "rate": 0.5696
+        },
+        {
+          "band": "clears",
+          "hits": 153,
+          "n": 298,
+          "rate": 0.5134
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "rebounds",
+      "book": "Goblin OVER",
+      "cover_unit": 1.3,
+      "n": 2151,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 90,
+          "n": 166,
+          "rate": 0.5422
+        },
+        {
+          "band": "between",
+          "hits": 1050,
+          "n": 1644,
+          "rate": 0.6387
+        },
+        {
+          "band": "clears",
+          "hits": 239,
+          "n": 341,
+          "rate": 0.7009
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "rebounds",
+      "book": "Standard OVER",
+      "cover_unit": 1.3,
+      "n": 911,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 95,
+          "n": 211,
+          "rate": 0.4502
+        },
+        {
+          "band": "between",
+          "hits": 303,
+          "n": 637,
+          "rate": 0.4757
+        },
+        {
+          "band": "clears",
+          "hits": 33,
+          "n": 63,
+          "rate": 0.5238
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "rebounds",
+      "book": "Standard UNDER",
+      "cover_unit": 1.3,
+      "n": 1041,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 96,
+          "n": 194,
+          "rate": 0.4948
+        },
+        {
+          "band": "between",
+          "hits": 379,
+          "n": 731,
+          "rate": 0.5185
+        },
+        {
+          "band": "clears",
+          "hits": 67,
+          "n": 116,
+          "rate": 0.5776
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "steals",
+      "book": "Goblin OVER",
+      "cover_unit": 2.0,
+      "n": 2239,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 15,
+          "n": 25,
+          "rate": 0.6
+        },
+        {
+          "band": "between",
+          "hits": 1360,
+          "n": 2214,
+          "rate": 0.6143
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "steals",
+      "book": "Standard OVER",
+      "cover_unit": 2.0,
+      "n": 329,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 15,
+          "n": 26,
+          "rate": 0.5769
+        },
+        {
+          "band": "between",
+          "hits": 131,
+          "n": 303,
+          "rate": 0.4323
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "steals",
+      "book": "Standard UNDER",
+      "cover_unit": 2.0,
+      "n": 205,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 19,
+          "n": 36,
+          "rate": 0.5278
+        },
+        {
+          "band": "between",
+          "hits": 102,
+          "n": 169,
+          "rate": 0.6036
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "stocks",
+      "book": "Goblin OVER",
+      "cover_unit": 2.0,
+      "n": 1400,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 22,
+          "n": 37,
+          "rate": 0.5946
+        },
+        {
+          "band": "between",
+          "hits": 800,
+          "n": 1361,
+          "rate": 0.5878
+        },
+        {
+          "band": "clears",
+          "hits": 1,
+          "n": 2,
+          "rate": 0.5
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "stocks",
+      "book": "Standard OVER",
+      "cover_unit": 2.0,
+      "n": 343,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 26,
+          "n": 56,
+          "rate": 0.4643
+        },
+        {
+          "band": "between",
+          "hits": 133,
+          "n": 287,
+          "rate": 0.4634
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "stocks",
+      "book": "Standard UNDER",
+      "cover_unit": 2.0,
+      "n": 243,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 26,
+          "n": 38,
+          "rate": 0.6842
+        },
+        {
+          "band": "between",
+          "hits": 103,
+          "n": 205,
+          "rate": 0.5024
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "threes",
+      "book": "Goblin OVER",
+      "cover_unit": 0.7,
+      "n": 2116,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 25,
+          "n": 42,
+          "rate": 0.5952
+        },
+        {
+          "band": "between",
+          "hits": 697,
+          "n": 1124,
+          "rate": 0.6201
+        },
+        {
+          "band": "clears",
+          "hits": 646,
+          "n": 950,
+          "rate": 0.68
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "threes",
+      "book": "Standard OVER",
+      "cover_unit": 0.7,
+      "n": 317,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 20,
+          "n": 38,
+          "rate": 0.5263
+        },
+        {
+          "band": "between",
+          "hits": 109,
+          "n": 234,
+          "rate": 0.4658
+        },
+        {
+          "band": "clears",
+          "hits": 20,
+          "n": 45,
+          "rate": 0.4444
+        }
+      ]
+    },
+    {
+      "sport": "NBA",
+      "prop": "threes",
+      "book": "Standard UNDER",
+      "cover_unit": 0.7,
+      "n": 254,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 37,
+          "n": 62,
+          "rate": 0.5968
+        },
+        {
+          "band": "between",
+          "hits": 91,
+          "n": 170,
+          "rate": 0.5353
+        },
+        {
+          "band": "clears",
+          "hits": 12,
+          "n": 22,
+          "rate": 0.5455
+        }
+      ]
+    },
+    {
+      "sport": "NHL",
+      "prop": "assists",
+      "book": "Standard OVER",
+      "cover_unit": 0.5,
+      "n": 4296,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 693,
+          "n": 3578,
+          "rate": 0.1937
+        },
+        {
+          "band": "between",
+          "hits": 207,
+          "n": 677,
+          "rate": 0.3058
+        },
+        {
+          "band": "clears",
+          "hits": 29,
+          "n": 41,
+          "rate": 0.7073
+        }
+      ]
+    },
+    {
+      "sport": "NHL",
+      "prop": "assists",
+      "book": "Standard UNDER",
+      "cover_unit": 0.5,
+      "n": 564,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 57,
+          "n": 127,
+          "rate": 0.4488
+        },
+        {
+          "band": "between",
+          "hits": 260,
+          "n": 384,
+          "rate": 0.6771
+        },
+        {
+          "band": "clears",
+          "hits": 44,
+          "n": 53,
+          "rate": 0.8302
+        }
+      ]
+    },
+    {
+      "sport": "NHL",
+      "prop": "goals",
+      "book": "Standard OVER",
+      "cover_unit": 0.4,
+      "n": 4653,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 727,
+          "n": 4191,
+          "rate": 0.1735
+        },
+        {
+          "band": "between",
+          "hits": 154,
+          "n": 441,
+          "rate": 0.3492
+        },
+        {
+          "band": "clears",
+          "hits": 4,
+          "n": 21,
+          "rate": 0.1905
+        }
+      ]
+    },
+    {
+      "sport": "NHL",
+      "prop": "goals",
+      "book": "Standard UNDER",
+      "cover_unit": 0.4,
+      "n": 285,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 3,
+          "n": 6,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 90,
+          "n": 126,
+          "rate": 0.7143
+        },
+        {
+          "band": "clears",
+          "hits": 127,
+          "n": 153,
+          "rate": 0.8301
+        }
+      ]
+    },
+    {
+      "sport": "NHL",
+      "prop": "points",
+      "book": "Standard OVER",
+      "cover_unit": 0.5,
+      "n": 4761,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 710,
+          "n": 3843,
+          "rate": 0.1848
+        },
+        {
+          "band": "between",
+          "hits": 282,
+          "n": 743,
+          "rate": 0.3795
+        },
+        {
+          "band": "clears",
+          "hits": 102,
+          "n": 175,
+          "rate": 0.5829
+        }
+      ]
+    },
+    {
+      "sport": "NHL",
+      "prop": "points",
+      "book": "Standard UNDER",
+      "cover_unit": 0.5,
+      "n": 849,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 162,
+          "n": 328,
+          "rate": 0.4939
+        },
+        {
+          "band": "between",
+          "hits": 262,
+          "n": 423,
+          "rate": 0.6194
+        },
+        {
+          "band": "clears",
+          "hits": 76,
+          "n": 98,
+          "rate": 0.7755
+        }
+      ]
+    },
+    {
+      "sport": "NHL",
+      "prop": "sog",
+      "book": "Goblin OVER",
+      "cover_unit": 0.8,
+      "n": 224,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 0,
+          "n": 2,
+          "rate": 0.0
+        },
+        {
+          "band": "between",
+          "hits": 61,
+          "n": 120,
+          "rate": 0.5083
+        },
+        {
+          "band": "clears",
+          "hits": 49,
+          "n": 102,
+          "rate": 0.4804
+        }
+      ]
+    },
+    {
+      "sport": "NHL",
+      "prop": "sog",
+      "book": "Standard OVER",
+      "cover_unit": 0.8,
+      "n": 4376,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 450,
+          "n": 3270,
+          "rate": 0.1376
+        },
+        {
+          "band": "between",
+          "hits": 232,
+          "n": 677,
+          "rate": 0.3427
+        },
+        {
+          "band": "clears",
+          "hits": 210,
+          "n": 429,
+          "rate": 0.4895
+        }
+      ]
+    },
+    {
+      "sport": "NHL",
+      "prop": "sog",
+      "book": "Standard UNDER",
+      "cover_unit": 0.8,
+      "n": 1298,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 437,
+          "n": 611,
+          "rate": 0.7152
+        },
+        {
+          "band": "between",
+          "hits": 451,
+          "n": 601,
+          "rate": 0.7504
+        },
+        {
+          "band": "clears",
+          "hits": 72,
+          "n": 86,
+          "rate": 0.8372
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "goals",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 425,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 57,
+          "n": 378,
+          "rate": 0.1508
+        },
+        {
+          "band": "between",
+          "hits": 25,
+          "n": 47,
+          "rate": 0.5319
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "goals",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 3518,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 315,
+          "n": 3400,
+          "rate": 0.0926
+        },
+        {
+          "band": "between",
+          "hits": 30,
+          "n": 118,
+          "rate": 0.2542
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "saves",
+      "book": "Goblin OVER",
+      "cover_unit": 0.9,
+      "n": 163,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 37,
+          "n": 60,
+          "rate": 0.6167
+        },
+        {
+          "band": "between",
+          "hits": 39,
+          "n": 59,
+          "rate": 0.661
+        },
+        {
+          "band": "clears",
+          "hits": 35,
+          "n": 44,
+          "rate": 0.7955
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "saves",
+      "book": "Standard UNDER",
+      "cover_unit": 0.9,
+      "n": 73,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 2,
+          "n": 6,
+          "rate": 0.3333
+        },
+        {
+          "band": "between",
+          "hits": 19,
+          "n": 38,
+          "rate": 0.5
+        },
+        {
+          "band": "clears",
+          "hits": 18,
+          "n": 29,
+          "rate": 0.6207
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "shots",
+      "book": "Goblin OVER",
+      "cover_unit": 0.5,
+      "n": 4928,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 1101,
+          "n": 2533,
+          "rate": 0.4347
+        },
+        {
+          "band": "between",
+          "hits": 799,
+          "n": 1293,
+          "rate": 0.6179
+        },
+        {
+          "band": "clears",
+          "hits": 780,
+          "n": 1102,
+          "rate": 0.7078
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "shots",
+      "book": "Standard OVER",
+      "cover_unit": 0.5,
+      "n": 4918,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 507,
+          "n": 4480,
+          "rate": 0.1132
+        },
+        {
+          "band": "between",
+          "hits": 130,
+          "n": 308,
+          "rate": 0.4221
+        },
+        {
+          "band": "clears",
+          "hits": 67,
+          "n": 130,
+          "rate": 0.5154
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "shots",
+      "book": "Standard UNDER",
+      "cover_unit": 0.5,
+      "n": 505,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 53,
+          "n": 107,
+          "rate": 0.4953
+        },
+        {
+          "band": "between",
+          "hits": 89,
+          "n": 164,
+          "rate": 0.5427
+        },
+        {
+          "band": "clears",
+          "hits": 155,
+          "n": 234,
+          "rate": 0.6624
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "sog",
+      "book": "Goblin OVER",
+      "cover_unit": 1.0,
+      "n": 1598,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 280,
+          "n": 705,
+          "rate": 0.3972
+        },
+        {
+          "band": "between",
+          "hits": 560,
+          "n": 822,
+          "rate": 0.6813
+        },
+        {
+          "band": "clears",
+          "hits": 57,
+          "n": 71,
+          "rate": 0.8028
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "sog",
+      "book": "Standard OVER",
+      "cover_unit": 1.0,
+      "n": 202,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 29,
+          "n": 161,
+          "rate": 0.1801
+        },
+        {
+          "band": "between",
+          "hits": 23,
+          "n": 38,
+          "rate": 0.6053
+        },
+        {
+          "band": "clears",
+          "hits": 2,
+          "n": 3,
+          "rate": 0.6667
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "prop": "sog",
+      "book": "Standard UNDER",
+      "cover_unit": 1.0,
+      "n": 32,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 6,
+          "n": 15,
+          "rate": 0.4
+        },
+        {
+          "band": "between",
+          "hits": 4,
+          "n": 17,
+          "rate": 0.2353
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "Tennis",
+      "prop": "games_won",
+      "book": "Goblin OVER",
+      "cover_unit": 3.3,
+      "n": 3358,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 630,
+          "n": 936,
+          "rate": 0.6731
+        },
+        {
+          "band": "between",
+          "hits": 1068,
+          "n": 1484,
+          "rate": 0.7197
+        },
+        {
+          "band": "clears",
+          "hits": 731,
+          "n": 938,
+          "rate": 0.7793
+        }
+      ]
+    },
+    {
+      "sport": "Tennis",
+      "prop": "games_won",
+      "book": "Standard OVER",
+      "cover_unit": 3.3,
+      "n": 853,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 133,
+          "n": 265,
+          "rate": 0.5019
+        },
+        {
+          "band": "between",
+          "hits": 234,
+          "n": 444,
+          "rate": 0.527
+        },
+        {
+          "band": "clears",
+          "hits": 101,
+          "n": 144,
+          "rate": 0.7014
+        }
+      ]
+    },
+    {
+      "sport": "Tennis",
+      "prop": "games_won",
+      "book": "Standard UNDER",
+      "cover_unit": 3.3,
+      "n": 748,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 53,
+          "n": 121,
+          "rate": 0.438
+        },
+        {
+          "band": "between",
+          "hits": 190,
+          "n": 376,
+          "rate": 0.5053
+        },
+        {
+          "band": "clears",
+          "hits": 139,
+          "n": 251,
+          "rate": 0.5538
+        }
+      ]
+    },
+    {
+      "sport": "Tennis",
+      "prop": "match_total_games",
+      "book": "Goblin OVER",
+      "cover_unit": 4.3,
+      "n": 3074,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 231,
+          "n": 442,
+          "rate": 0.5226
+        },
+        {
+          "band": "between",
+          "hits": 737,
+          "n": 1249,
+          "rate": 0.5901
+        },
+        {
+          "band": "clears",
+          "hits": 941,
+          "n": 1383,
+          "rate": 0.6804
+        }
+      ]
+    },
+    {
+      "sport": "Tennis",
+      "prop": "match_total_games",
+      "book": "Standard OVER",
+      "cover_unit": 4.3,
+      "n": 1039,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 87,
+          "n": 191,
+          "rate": 0.4555
+        },
+        {
+          "band": "between",
+          "hits": 306,
+          "n": 624,
+          "rate": 0.4904
+        },
+        {
+          "band": "clears",
+          "hits": 117,
+          "n": 224,
+          "rate": 0.5223
+        }
+      ]
+    },
+    {
+      "sport": "Tennis",
+      "prop": "match_total_games",
+      "book": "Standard UNDER",
+      "cover_unit": 4.3,
+      "n": 657,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 133,
+          "n": 233,
+          "rate": 0.5708
+        },
+        {
+          "band": "between",
+          "hits": 168,
+          "n": 293,
+          "rate": 0.5734
+        },
+        {
+          "band": "clears",
+          "hits": 81,
+          "n": 131,
+          "rate": 0.6183
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "assists",
+      "book": "Goblin OVER",
+      "cover_unit": 1.1,
+      "n": 1818,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 46,
+          "n": 92,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 568,
+          "n": 903,
+          "rate": 0.629
+        },
+        {
+          "band": "clears",
+          "hits": 606,
+          "n": 823,
+          "rate": 0.7363
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "assists",
+      "book": "Standard OVER",
+      "cover_unit": 1.1,
+      "n": 311,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 19,
+          "n": 44,
+          "rate": 0.4318
+        },
+        {
+          "band": "between",
+          "hits": 117,
+          "n": 233,
+          "rate": 0.5021
+        },
+        {
+          "band": "clears",
+          "hits": 12,
+          "n": 34,
+          "rate": 0.3529
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "assists",
+      "book": "Standard UNDER",
+      "cover_unit": 1.1,
+      "n": 362,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 32,
+          "n": 58,
+          "rate": 0.5517
+        },
+        {
+          "band": "between",
+          "hits": 157,
+          "n": 262,
+          "rate": 0.5992
+        },
+        {
+          "band": "clears",
+          "hits": 21,
+          "n": 42,
+          "rate": 0.5
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "blocks",
+      "book": "Goblin OVER",
+      "cover_unit": 2.0,
+      "n": 62,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 1,
+          "n": 2,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 40,
+          "n": 60,
+          "rate": 0.6667
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "blocks",
+      "book": "Standard OVER",
+      "cover_unit": 2.0,
+      "n": 38,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 0,
+          "n": 1,
+          "rate": 0.0
+        },
+        {
+          "band": "between",
+          "hits": 16,
+          "n": 37,
+          "rate": 0.4324
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fg2a",
+      "book": "Standard OVER",
+      "cover_unit": 0.9,
+      "n": 53,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 3,
+          "n": 8,
+          "rate": 0.375
+        },
+        {
+          "band": "between",
+          "hits": 17,
+          "n": 25,
+          "rate": 0.68
+        },
+        {
+          "band": "clears",
+          "hits": 8,
+          "n": 20,
+          "rate": 0.4
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fg2a",
+      "book": "Standard UNDER",
+      "cover_unit": 0.9,
+      "n": 58,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 4,
+          "n": 6,
+          "rate": 0.6667
+        },
+        {
+          "band": "between",
+          "hits": 17,
+          "n": 30,
+          "rate": 0.5667
+        },
+        {
+          "band": "clears",
+          "hits": 14,
+          "n": 22,
+          "rate": 0.6364
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fg2m",
+      "book": "Standard OVER",
+      "cover_unit": 0.7,
+      "n": 36,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 4,
+          "n": 10,
+          "rate": 0.4
+        },
+        {
+          "band": "between",
+          "hits": 8,
+          "n": 18,
+          "rate": 0.4444
+        },
+        {
+          "band": "clears",
+          "hits": 3,
+          "n": 8,
+          "rate": 0.375
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fg2m",
+      "book": "Standard UNDER",
+      "cover_unit": 0.7,
+      "n": 39,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 1,
+          "n": 3,
+          "rate": 0.3333
+        },
+        {
+          "band": "between",
+          "hits": 17,
+          "n": 25,
+          "rate": 0.68
+        },
+        {
+          "band": "clears",
+          "hits": 8,
+          "n": 11,
+          "rate": 0.7273
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fga",
+      "book": "Goblin OVER",
+      "cover_unit": 1.1,
+      "n": 381,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 8,
+          "n": 12,
+          "rate": 0.6667
+        },
+        {
+          "band": "between",
+          "hits": 41,
+          "n": 67,
+          "rate": 0.6119
+        },
+        {
+          "band": "clears",
+          "hits": 217,
+          "n": 302,
+          "rate": 0.7185
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fga",
+      "book": "Standard OVER",
+      "cover_unit": 1.1,
+      "n": 634,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 51,
+          "n": 110,
+          "rate": 0.4636
+        },
+        {
+          "band": "between",
+          "hits": 198,
+          "n": 355,
+          "rate": 0.5577
+        },
+        {
+          "band": "clears",
+          "hits": 86,
+          "n": 169,
+          "rate": 0.5089
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fga",
+      "book": "Standard UNDER",
+      "cover_unit": 1.1,
+      "n": 578,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 44,
+          "n": 94,
+          "rate": 0.4681
+        },
+        {
+          "band": "between",
+          "hits": 156,
+          "n": 272,
+          "rate": 0.5735
+        },
+        {
+          "band": "clears",
+          "hits": 118,
+          "n": 212,
+          "rate": 0.5566
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fgm",
+      "book": "Standard OVER",
+      "cover_unit": 0.75,
+      "n": 79,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 3,
+          "n": 5,
+          "rate": 0.6
+        },
+        {
+          "band": "between",
+          "hits": 23,
+          "n": 41,
+          "rate": 0.561
+        },
+        {
+          "band": "clears",
+          "hits": 19,
+          "n": 33,
+          "rate": 0.5758
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fgm",
+      "book": "Standard UNDER",
+      "cover_unit": 0.75,
+      "n": 69,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 9,
+          "n": 14,
+          "rate": 0.6429
+        },
+        {
+          "band": "between",
+          "hits": 14,
+          "n": 31,
+          "rate": 0.4516
+        },
+        {
+          "band": "clears",
+          "hits": 16,
+          "n": 24,
+          "rate": 0.6667
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fta",
+      "book": "Standard OVER",
+      "cover_unit": 0.9,
+      "n": 78,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 9,
+          "n": 14,
+          "rate": 0.6429
+        },
+        {
+          "band": "between",
+          "hits": 24,
+          "n": 33,
+          "rate": 0.7273
+        },
+        {
+          "band": "clears",
+          "hits": 15,
+          "n": 31,
+          "rate": 0.4839
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "fta",
+      "book": "Standard UNDER",
+      "cover_unit": 0.9,
+      "n": 56,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 3,
+          "n": 6,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 12,
+          "n": 36,
+          "rate": 0.3333
+        },
+        {
+          "band": "clears",
+          "hits": 7,
+          "n": 14,
+          "rate": 0.5
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "ftm",
+      "book": "Standard OVER",
+      "cover_unit": 0.7,
+      "n": 81,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 9,
+          "n": 18,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 18,
+          "n": 32,
+          "rate": 0.5625
+        },
+        {
+          "band": "clears",
+          "hits": 17,
+          "n": 31,
+          "rate": 0.5484
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "ftm",
+      "book": "Standard UNDER",
+      "cover_unit": 0.7,
+      "n": 53,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 2,
+          "n": 6,
+          "rate": 0.3333
+        },
+        {
+          "band": "between",
+          "hits": 13,
+          "n": 25,
+          "rate": 0.52
+        },
+        {
+          "band": "clears",
+          "hits": 10,
+          "n": 22,
+          "rate": 0.4545
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "oreb",
+      "book": "Goblin OVER",
+      "cover_unit": 2.0,
+      "n": 44,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 2,
+          "n": 2,
+          "rate": 1.0
+        },
+        {
+          "band": "between",
+          "hits": 27,
+          "n": 42,
+          "rate": 0.6429
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "points",
+      "book": "Goblin OVER",
+      "cover_unit": 3.1,
+      "n": 3788,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 98,
+          "n": 151,
+          "rate": 0.649
+        },
+        {
+          "band": "between",
+          "hits": 1104,
+          "n": 1738,
+          "rate": 0.6352
+        },
+        {
+          "band": "clears",
+          "hits": 1357,
+          "n": 1899,
+          "rate": 0.7146
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "points",
+      "book": "Standard OVER",
+      "cover_unit": 3.1,
+      "n": 874,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 69,
+          "n": 156,
+          "rate": 0.4423
+        },
+        {
+          "band": "between",
+          "hits": 303,
+          "n": 611,
+          "rate": 0.4959
+        },
+        {
+          "band": "clears",
+          "hits": 61,
+          "n": 107,
+          "rate": 0.5701
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "points",
+      "book": "Standard UNDER",
+      "cover_unit": 3.1,
+      "n": 1103,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 118,
+          "n": 227,
+          "rate": 0.5198
+        },
+        {
+          "band": "between",
+          "hits": 396,
+          "n": 770,
+          "rate": 0.5143
+        },
+        {
+          "band": "clears",
+          "hits": 48,
+          "n": 106,
+          "rate": 0.4528
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "pra",
+      "book": "Goblin OVER",
+      "cover_unit": 3.7,
+      "n": 2010,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 108,
+          "n": 187,
+          "rate": 0.5775
+        },
+        {
+          "band": "between",
+          "hits": 589,
+          "n": 944,
+          "rate": 0.6239
+        },
+        {
+          "band": "clears",
+          "hits": 594,
+          "n": 879,
+          "rate": 0.6758
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "pra",
+      "book": "Standard OVER",
+      "cover_unit": 3.7,
+      "n": 1166,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 195,
+          "n": 398,
+          "rate": 0.4899
+        },
+        {
+          "band": "between",
+          "hits": 338,
+          "n": 689,
+          "rate": 0.4906
+        },
+        {
+          "band": "clears",
+          "hits": 39,
+          "n": 79,
+          "rate": 0.4937
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "pra",
+      "book": "Standard UNDER",
+      "cover_unit": 3.7,
+      "n": 602,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 24,
+          "n": 58,
+          "rate": 0.4138
+        },
+        {
+          "band": "between",
+          "hits": 194,
+          "n": 374,
+          "rate": 0.5187
+        },
+        {
+          "band": "clears",
+          "hits": 86,
+          "n": 170,
+          "rate": 0.5059
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "pts+ast",
+      "book": "Goblin OVER",
+      "cover_unit": 3.7,
+      "n": 1270,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 52,
+          "n": 76,
+          "rate": 0.6842
+        },
+        {
+          "band": "between",
+          "hits": 354,
+          "n": 565,
+          "rate": 0.6265
+        },
+        {
+          "band": "clears",
+          "hits": 457,
+          "n": 629,
+          "rate": 0.7266
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "pts+ast",
+      "book": "Standard OVER",
+      "cover_unit": 3.7,
+      "n": 823,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 112,
+          "n": 226,
+          "rate": 0.4956
+        },
+        {
+          "band": "between",
+          "hits": 274,
+          "n": 539,
+          "rate": 0.5083
+        },
+        {
+          "band": "clears",
+          "hits": 29,
+          "n": 58,
+          "rate": 0.5
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "pts+ast",
+      "book": "Standard UNDER",
+      "cover_unit": 3.7,
+      "n": 489,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 27,
+          "n": 62,
+          "rate": 0.4355
+        },
+        {
+          "band": "between",
+          "hits": 184,
+          "n": 341,
+          "rate": 0.5396
+        },
+        {
+          "band": "clears",
+          "hits": 44,
+          "n": 86,
+          "rate": 0.5116
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "pts+reb",
+      "book": "Goblin OVER",
+      "cover_unit": 3.7,
+      "n": 1500,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 56,
+          "n": 95,
+          "rate": 0.5895
+        },
+        {
+          "band": "between",
+          "hits": 417,
+          "n": 664,
+          "rate": 0.628
+        },
+        {
+          "band": "clears",
+          "hits": 528,
+          "n": 741,
+          "rate": 0.7126
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "pts+reb",
+      "book": "Standard OVER",
+      "cover_unit": 3.7,
+      "n": 940,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 133,
+          "n": 271,
+          "rate": 0.4908
+        },
+        {
+          "band": "between",
+          "hits": 303,
+          "n": 599,
+          "rate": 0.5058
+        },
+        {
+          "band": "clears",
+          "hits": 33,
+          "n": 70,
+          "rate": 0.4714
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "pts+reb",
+      "book": "Standard UNDER",
+      "cover_unit": 3.7,
+      "n": 678,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 34,
+          "n": 83,
+          "rate": 0.4096
+        },
+        {
+          "band": "between",
+          "hits": 261,
+          "n": 484,
+          "rate": 0.5393
+        },
+        {
+          "band": "clears",
+          "hits": 50,
+          "n": 111,
+          "rate": 0.4505
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "reb+ast",
+      "book": "Goblin OVER",
+      "cover_unit": 1.3,
+      "n": 1662,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 89,
+          "n": 178,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 372,
+          "n": 601,
+          "rate": 0.619
+        },
+        {
+          "band": "clears",
+          "hits": 592,
+          "n": 883,
+          "rate": 0.6704
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "reb+ast",
+      "book": "Standard OVER",
+      "cover_unit": 1.3,
+      "n": 658,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 107,
+          "n": 240,
+          "rate": 0.4458
+        },
+        {
+          "band": "between",
+          "hits": 157,
+          "n": 333,
+          "rate": 0.4715
+        },
+        {
+          "band": "clears",
+          "hits": 39,
+          "n": 85,
+          "rate": 0.4588
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "reb+ast",
+      "book": "Standard UNDER",
+      "cover_unit": 1.3,
+      "n": 341,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 16,
+          "n": 27,
+          "rate": 0.5926
+        },
+        {
+          "band": "between",
+          "hits": 100,
+          "n": 184,
+          "rate": 0.5435
+        },
+        {
+          "band": "clears",
+          "hits": 78,
+          "n": 130,
+          "rate": 0.6
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "rebounds",
+      "book": "Goblin OVER",
+      "cover_unit": 1.3,
+      "n": 2738,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 104,
+          "n": 158,
+          "rate": 0.6582
+        },
+        {
+          "band": "between",
+          "hits": 850,
+          "n": 1337,
+          "rate": 0.6358
+        },
+        {
+          "band": "clears",
+          "hits": 913,
+          "n": 1243,
+          "rate": 0.7345
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "rebounds",
+      "book": "Standard OVER",
+      "cover_unit": 1.3,
+      "n": 487,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 41,
+          "n": 103,
+          "rate": 0.3981
+        },
+        {
+          "band": "between",
+          "hits": 164,
+          "n": 331,
+          "rate": 0.4955
+        },
+        {
+          "band": "clears",
+          "hits": 26,
+          "n": 53,
+          "rate": 0.4906
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "rebounds",
+      "book": "Standard UNDER",
+      "cover_unit": 1.3,
+      "n": 601,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 48,
+          "n": 97,
+          "rate": 0.4948
+        },
+        {
+          "band": "between",
+          "hits": 225,
+          "n": 432,
+          "rate": 0.5208
+        },
+        {
+          "band": "clears",
+          "hits": 44,
+          "n": 72,
+          "rate": 0.6111
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "steals",
+      "book": "Goblin OVER",
+      "cover_unit": 2.0,
+      "n": 214,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 2,
+          "n": 7,
+          "rate": 0.2857
+        },
+        {
+          "band": "between",
+          "hits": 130,
+          "n": 207,
+          "rate": 0.628
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "steals",
+      "book": "Standard OVER",
+      "cover_unit": 2.0,
+      "n": 135,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 4,
+          "n": 6,
+          "rate": 0.6667
+        },
+        {
+          "band": "between",
+          "hits": 66,
+          "n": 129,
+          "rate": 0.5116
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "steals",
+      "book": "Standard UNDER",
+      "cover_unit": 2.0,
+      "n": 51,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 3,
+          "n": 6,
+          "rate": 0.5
+        },
+        {
+          "band": "between",
+          "hits": 34,
+          "n": 45,
+          "rate": 0.7556
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "stocks",
+      "book": "Goblin OVER",
+      "cover_unit": 2.0,
+      "n": 285,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 9,
+          "n": 16,
+          "rate": 0.5625
+        },
+        {
+          "band": "between",
+          "hits": 150,
+          "n": 269,
+          "rate": 0.5576
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "stocks",
+      "book": "Standard OVER",
+      "cover_unit": 2.0,
+      "n": 309,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 17,
+          "n": 48,
+          "rate": 0.3542
+        },
+        {
+          "band": "between",
+          "hits": 139,
+          "n": 261,
+          "rate": 0.5326
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "stocks",
+      "book": "Standard UNDER",
+      "cover_unit": 2.0,
+      "n": 133,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 11,
+          "n": 21,
+          "rate": 0.5238
+        },
+        {
+          "band": "between",
+          "hits": 65,
+          "n": 112,
+          "rate": 0.5804
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "threes",
+      "book": "Goblin OVER",
+      "cover_unit": 0.7,
+      "n": 1166,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 21,
+          "n": 34,
+          "rate": 0.6176
+        },
+        {
+          "band": "between",
+          "hits": 264,
+          "n": 427,
+          "rate": 0.6183
+        },
+        {
+          "band": "clears",
+          "hits": 509,
+          "n": 705,
+          "rate": 0.722
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "threes",
+      "book": "Standard OVER",
+      "cover_unit": 0.7,
+      "n": 144,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 6,
+          "n": 15,
+          "rate": 0.4
+        },
+        {
+          "band": "between",
+          "hits": 49,
+          "n": 104,
+          "rate": 0.4712
+        },
+        {
+          "band": "clears",
+          "hits": 14,
+          "n": 25,
+          "rate": 0.56
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "threes",
+      "book": "Standard UNDER",
+      "cover_unit": 0.7,
+      "n": 65,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 6,
+          "n": 15,
+          "rate": 0.4
+        },
+        {
+          "band": "between",
+          "hits": 18,
+          "n": 39,
+          "rate": 0.4615
+        },
+        {
+          "band": "clears",
+          "hits": 5,
+          "n": 11,
+          "rate": 0.4545
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "threes_att",
+      "book": "Goblin OVER",
+      "cover_unit": 0.7,
+      "n": 105,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 3,
+          "n": 5,
+          "rate": 0.6
+        },
+        {
+          "band": "between",
+          "hits": 19,
+          "n": 34,
+          "rate": 0.5588
+        },
+        {
+          "band": "clears",
+          "hits": 45,
+          "n": 66,
+          "rate": 0.6818
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "threes_att",
+      "book": "Standard OVER",
+      "cover_unit": 0.7,
+      "n": 73,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 2,
+          "n": 7,
+          "rate": 0.2857
+        },
+        {
+          "band": "between",
+          "hits": 23,
+          "n": 45,
+          "rate": 0.5111
+        },
+        {
+          "band": "clears",
+          "hits": 10,
+          "n": 21,
+          "rate": 0.4762
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "threes_att",
+      "book": "Standard UNDER",
+      "cover_unit": 0.7,
+      "n": 58,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 6,
+          "n": 8,
+          "rate": 0.75
+        },
+        {
+          "band": "between",
+          "hits": 13,
+          "n": 35,
+          "rate": 0.3714
+        },
+        {
+          "band": "clears",
+          "hits": 10,
+          "n": 15,
+          "rate": 0.6667
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "turnovers",
+      "book": "Goblin OVER",
+      "cover_unit": 2.0,
+      "n": 107,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 0,
+          "n": 2,
+          "rate": 0.0
+        },
+        {
+          "band": "between",
+          "hits": 55,
+          "n": 105,
+          "rate": 0.5238
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "turnovers",
+      "book": "Standard OVER",
+      "cover_unit": 2.0,
+      "n": 42,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 1,
+          "n": 3,
+          "rate": 0.3333
+        },
+        {
+          "band": "between",
+          "hits": 11,
+          "n": 39,
+          "rate": 0.2821
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    },
+    {
+      "sport": "WNBA",
+      "prop": "turnovers",
+      "book": "Standard UNDER",
+      "cover_unit": 2.0,
+      "n": 32,
+      "bands": [
+        {
+          "band": "short",
+          "hits": 6,
+          "n": 8,
+          "rate": 0.75
+        },
+        {
+          "band": "between",
+          "hits": 12,
+          "n": 24,
+          "rate": 0.5
+        },
+        {
+          "band": "clears",
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        }
+      ]
+    }
+  ]
+}

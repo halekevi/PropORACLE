@@ -1,0 +1,1333 @@
+{
+  "generated_at": "2026-10-22T02:58:00.176611+00:00",
+  "break_even_6pick_37_5x": 0.547,
+  "ci_method": "wilson_95",
+  "power6_trusted": false,
+  "primary": "ui_runner/templates",
+  "sources": [
+    {
+      "source": "ui_runner/templates",
+      "date_range": {
+        "min": "2026-02-25",
+        "max": "2026-10-20"
+      },
+      "break_even_6pick_37_5x": 0.547,
+      "power6_trusted": false,
+      "filters": {
+        "dnp_zero_void": "positive_evidence_only",
+        "exclude_source_board_date_mismatch": true,
+        "board_date_mismatch_excluded_n": 0,
+        "n_base": 5005,
+        "true_dnp_void_n": 27,
+        "old_unknown_pt_would_void_n": 393,
+        "clean_exclusions": {
+          "defaulted_pick_type_n": 26,
+          "std_over_line_lt_goblin_n": 213,
+          "leakage_fail_n": 1152,
+          "leakage_unchecked_n": 2544,
+          "n_after_clean": 1305
+        }
+      },
+      "audits": {
+        "pick_type_labels": {
+          "\u2014": 26,
+          "Standard": 4979
+        },
+        "defaulted_pick_type_n": 26,
+        "std_line_eq_goblin_n": 12,
+        "std_over_line_lt_goblin_n": 213,
+        "leakage": {
+          "checked_n": 2461,
+          "ok_n": 1309,
+          "fail_n": 1152,
+          "unchecked_n": 2544,
+          "fail_rate": 0.4681,
+          "sports": [
+            "NBA",
+            "NHL",
+            "SOCCER",
+            "NFL"
+          ],
+          "note": "L5 recomputed from boxes using games strictly before game_date. NBA1Q/1H stay unchecked (full-game boxes only)."
+        },
+        "leakage_pass_vs_fail": {
+          "overall": {
+            "pass": {
+              "hits": 863,
+              "n": 1309,
+              "hit_rate": 0.6593,
+              "ci95_low": 0.6332,
+              "ci95_high": 0.6845,
+              "ci_low_above_be": true
+            },
+            "fail": {
+              "hits": 714,
+              "n": 1152,
+              "hit_rate": 0.6198,
+              "ci95_low": 0.5914,
+              "ci95_high": 0.6474,
+              "ci_low_above_be": true
+            },
+            "delta_hr": -0.0395,
+            "lookahead_rescues_among_fails": 54,
+            "lookahead_rescue_rate_among_fails": 0.0469
+          },
+          "by_sport": [
+            {
+              "sport": "NBA",
+              "pass": {
+                "hits": 456,
+                "n": 786,
+                "hit_rate": 0.5802,
+                "ci95_low": 0.5453,
+                "ci95_high": 0.6142,
+                "ci_low_above_be": false
+              },
+              "fail": {
+                "hits": 156,
+                "n": 292,
+                "hit_rate": 0.5342,
+                "ci95_low": 0.477,
+                "ci95_high": 0.5906,
+                "ci_low_above_be": false
+              },
+              "delta_hr": -0.0459
+            },
+            {
+              "sport": "NFL",
+              "pass": {
+                "hits": 179,
+                "n": 195,
+                "hit_rate": 0.9179,
+                "ci95_low": 0.8709,
+                "ci95_high": 0.9489,
+                "ci_low_above_be": true
+              },
+              "fail": {
+                "hits": 131,
+                "n": 180,
+                "hit_rate": 0.7278,
+                "ci95_low": 0.6585,
+                "ci95_high": 0.7875,
+                "ci_low_above_be": true
+              },
+              "delta_hr": -0.1902
+            },
+            {
+              "sport": "NHL",
+              "pass": {
+                "hits": 164,
+                "n": 226,
+                "hit_rate": 0.7257,
+                "ci95_low": 0.6641,
+                "ci95_high": 0.7797,
+                "ci_low_above_be": true
+              },
+              "fail": {
+                "hits": 387,
+                "n": 618,
+                "hit_rate": 0.6262,
+                "ci95_low": 0.5874,
+                "ci95_high": 0.6635,
+                "ci_low_above_be": true
+              },
+              "delta_hr": -0.0995
+            },
+            {
+              "sport": "SOCCER",
+              "pass": {
+                "hits": 64,
+                "n": 102,
+                "hit_rate": 0.6275,
+                "ci95_low": 0.5306,
+                "ci95_high": 0.7151,
+                "ci_low_above_be": false
+              },
+              "fail": {
+                "hits": 40,
+                "n": 62,
+                "hit_rate": 0.6452,
+                "ci95_low": 0.5208,
+                "ci95_high": 0.7526,
+                "ci_low_above_be": false
+              },
+              "delta_hr": 0.0177
+            }
+          ]
+        },
+        "hand_check_10_fails": [
+          {
+            "sport": "NHL",
+            "player": "Jake Guentzel",
+            "prop": "points",
+            "direction": "UNDER",
+            "line": 2.5,
+            "game_date": "2026-03-07",
+            "actual": 2.0,
+            "hit": 1,
+            "recomputed_l5_before": 4,
+            "recomputed_l5_incl_game": 4,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2026-02-25",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-02-26",
+                "value": 3.0,
+                "clear": false
+              },
+              {
+                "date": "2026-02-28",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-03",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-05",
+                "value": 1.0,
+                "clear": true
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2026-02-26",
+                "value": 3.0,
+                "clear": false
+              },
+              {
+                "date": "2026-02-28",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-03",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-05",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-07",
+                "value": 2.0,
+                "clear": true
+              }
+            ],
+            "box_value_on_game_date": 2.0,
+            "actual_matches_box": true,
+            "verdict": "recompute_mismatch"
+          },
+          {
+            "sport": "NHL",
+            "player": "Nick Schmaltz",
+            "prop": "assists",
+            "direction": "UNDER",
+            "line": 1.5,
+            "game_date": "2026-03-07",
+            "actual": 0.0,
+            "hit": 1,
+            "recomputed_l5_before": 4,
+            "recomputed_l5_incl_game": 4,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2026-02-25",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-02-27",
+                "value": 2.0,
+                "clear": false
+              },
+              {
+                "date": "2026-03-01",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-03",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-05",
+                "value": 1.0,
+                "clear": true
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2026-02-27",
+                "value": 2.0,
+                "clear": false
+              },
+              {
+                "date": "2026-03-01",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-03",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-05",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-07",
+                "value": 0.0,
+                "clear": true
+              }
+            ],
+            "box_value_on_game_date": 0.0,
+            "actual_matches_box": true,
+            "verdict": "recompute_mismatch"
+          },
+          {
+            "sport": "NHL",
+            "player": "Seth Jarvis",
+            "prop": "assists",
+            "direction": "UNDER",
+            "line": 1.5,
+            "game_date": "2026-03-07",
+            "actual": 2.0,
+            "hit": 0,
+            "recomputed_l5_before": 4,
+            "recomputed_l5_incl_game": 3,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2026-02-26",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-02-28",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-02",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-04",
+                "value": 2.0,
+                "clear": false
+              },
+              {
+                "date": "2026-03-06",
+                "value": 1.0,
+                "clear": true
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2026-02-28",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-02",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-04",
+                "value": 2.0,
+                "clear": false
+              },
+              {
+                "date": "2026-03-06",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-07",
+                "value": 2.0,
+                "clear": false
+              }
+            ],
+            "box_value_on_game_date": 2.0,
+            "actual_matches_box": true,
+            "verdict": "recompute_mismatch"
+          },
+          {
+            "sport": "NBA",
+            "player": "Karl-Anthony Towns",
+            "prop": "fantasy score",
+            "direction": "OVER",
+            "line": 41.0,
+            "game_date": "2026-03-15",
+            "actual": 48.0,
+            "hit": 1,
+            "recomputed_l5_before": 2,
+            "recomputed_l5_incl_game": 2,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2026-03-04",
+                "value": 38.9,
+                "clear": false
+              },
+              {
+                "date": "2026-03-06",
+                "value": 37.6,
+                "clear": false
+              },
+              {
+                "date": "2026-03-08",
+                "value": 51.2,
+                "clear": true
+              },
+              {
+                "date": "2026-03-09",
+                "value": 59.9,
+                "clear": true
+              },
+              {
+                "date": "2026-03-11",
+                "value": 37.9,
+                "clear": false
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2026-03-06",
+                "value": 37.6,
+                "clear": false
+              },
+              {
+                "date": "2026-03-08",
+                "value": 51.2,
+                "clear": true
+              },
+              {
+                "date": "2026-03-09",
+                "value": 59.9,
+                "clear": true
+              },
+              {
+                "date": "2026-03-11",
+                "value": 37.9,
+                "clear": false
+              },
+              {
+                "date": "2026-03-15",
+                "value": 37.4,
+                "clear": false
+              }
+            ],
+            "box_value_on_game_date": 37.4,
+            "actual_matches_box": false,
+            "verdict": "recompute_mismatch"
+          },
+          {
+            "sport": "NBA",
+            "player": "Brandon Williams",
+            "prop": "fantasy score",
+            "direction": "OVER",
+            "line": 22.0,
+            "game_date": "2026-03-15",
+            "actual": 30.5,
+            "hit": 1,
+            "recomputed_l5_before": 2,
+            "recomputed_l5_incl_game": 2,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2026-03-06",
+                "value": 25.4,
+                "clear": true
+              },
+              {
+                "date": "2026-03-08",
+                "value": 20.5,
+                "clear": false
+              },
+              {
+                "date": "2026-03-10",
+                "value": 21.9,
+                "clear": false
+              },
+              {
+                "date": "2026-03-12",
+                "value": 39.1,
+                "clear": true
+              },
+              {
+                "date": "2026-03-13",
+                "value": 20.1,
+                "clear": false
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2026-03-08",
+                "value": 20.5,
+                "clear": false
+              },
+              {
+                "date": "2026-03-10",
+                "value": 21.9,
+                "clear": false
+              },
+              {
+                "date": "2026-03-12",
+                "value": 39.1,
+                "clear": true
+              },
+              {
+                "date": "2026-03-13",
+                "value": 20.1,
+                "clear": false
+              },
+              {
+                "date": "2026-03-15",
+                "value": 27.9,
+                "clear": true
+              }
+            ],
+            "box_value_on_game_date": 27.9,
+            "actual_matches_box": false,
+            "verdict": "recompute_mismatch"
+          },
+          {
+            "sport": "NBA",
+            "player": "Jalen Brunson",
+            "prop": "fantasy score",
+            "direction": "OVER",
+            "line": 43.0,
+            "game_date": "2026-03-15",
+            "actual": 54.8,
+            "hit": 1,
+            "recomputed_l5_before": 3,
+            "recomputed_l5_incl_game": 4,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2026-03-06",
+                "value": 37.1,
+                "clear": false
+              },
+              {
+                "date": "2026-03-08",
+                "value": 34.7,
+                "clear": false
+              },
+              {
+                "date": "2026-03-09",
+                "value": 44.8,
+                "clear": true
+              },
+              {
+                "date": "2026-03-11",
+                "value": 50.8,
+                "clear": true
+              },
+              {
+                "date": "2026-03-13",
+                "value": 49.5,
+                "clear": true
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2026-03-08",
+                "value": 34.7,
+                "clear": false
+              },
+              {
+                "date": "2026-03-09",
+                "value": 44.8,
+                "clear": true
+              },
+              {
+                "date": "2026-03-11",
+                "value": 50.8,
+                "clear": true
+              },
+              {
+                "date": "2026-03-13",
+                "value": 49.5,
+                "clear": true
+              },
+              {
+                "date": "2026-03-15",
+                "value": 50.7,
+                "clear": true
+              }
+            ],
+            "box_value_on_game_date": 50.7,
+            "actual_matches_box": false,
+            "verdict": "partial_lookahead_not_to_5"
+          },
+          {
+            "sport": "SOCCER",
+            "player": "Eduardo Camavinga",
+            "prop": "shots",
+            "direction": "UNDER",
+            "line": 0.5,
+            "game_date": "2026-04-24",
+            "actual": 1.0,
+            "hit": 0,
+            "recomputed_l5_before": 4,
+            "recomputed_l5_incl_game": 3,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2026-03-17",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-22",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-07",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-15",
+                "value": 1.0,
+                "clear": false
+              },
+              {
+                "date": "2026-04-21",
+                "value": 0.0,
+                "clear": true
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2026-03-22",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-07",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-15",
+                "value": 1.0,
+                "clear": false
+              },
+              {
+                "date": "2026-04-21",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-24",
+                "value": 1.0,
+                "clear": false
+              }
+            ],
+            "box_value_on_game_date": 1.0,
+            "actual_matches_box": true,
+            "verdict": "recompute_mismatch"
+          },
+          {
+            "sport": "SOCCER",
+            "player": "Kai Havertz",
+            "prop": "shots",
+            "direction": "UNDER",
+            "line": 2.5,
+            "game_date": "2026-04-25",
+            "actual": 0.0,
+            "hit": 1,
+            "recomputed_l5_before": 4,
+            "recomputed_l5_incl_game": 4,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2026-03-14",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-03-17",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-07",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-15",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-19",
+                "value": 5.0,
+                "clear": false
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2026-03-17",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-07",
+                "value": 1.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-15",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-04-19",
+                "value": 5.0,
+                "clear": false
+              },
+              {
+                "date": "2026-04-25",
+                "value": 0.0,
+                "clear": true
+              }
+            ],
+            "box_value_on_game_date": 0.0,
+            "actual_matches_box": true,
+            "verdict": "recompute_mismatch"
+          },
+          {
+            "sport": "NFL",
+            "player": "Rashid Shaheed",
+            "prop": "longest reception",
+            "direction": "UNDER",
+            "line": 49.5,
+            "game_date": "2026-09-09",
+            "actual": 4.0,
+            "hit": 1,
+            "recomputed_l5_before": 4,
+            "recomputed_l5_incl_game": 4,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2025-12-28",
+                "value": 8.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-04",
+                "value": 2.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-18",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-25",
+                "value": 51.0,
+                "clear": false
+              },
+              {
+                "date": "2026-02-08",
+                "value": 16.0,
+                "clear": true
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2025-12-28",
+                "value": 8.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-04",
+                "value": 2.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-18",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-25",
+                "value": 51.0,
+                "clear": false
+              },
+              {
+                "date": "2026-02-08",
+                "value": 16.0,
+                "clear": true
+              }
+            ],
+            "box_value_on_game_date": null,
+            "actual_matches_box": false,
+            "verdict": "recompute_mismatch"
+          },
+          {
+            "sport": "NFL",
+            "player": "Rhamondre Stevenson",
+            "prop": "longest reception",
+            "direction": "UNDER",
+            "line": 39.5,
+            "game_date": "2026-09-09",
+            "actual": 17.0,
+            "hit": 1,
+            "recomputed_l5_before": 4,
+            "recomputed_l5_incl_game": 4,
+            "lookahead_rescue": false,
+            "window_before": [
+              {
+                "date": "2026-01-04",
+                "value": 15.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-12",
+                "value": 48.0,
+                "clear": false
+              },
+              {
+                "date": "2026-01-18",
+                "value": 9.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-25",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-02-08",
+                "value": 13.0,
+                "clear": true
+              }
+            ],
+            "window_incl": [
+              {
+                "date": "2026-01-04",
+                "value": 15.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-12",
+                "value": 48.0,
+                "clear": false
+              },
+              {
+                "date": "2026-01-18",
+                "value": 9.0,
+                "clear": true
+              },
+              {
+                "date": "2026-01-25",
+                "value": 0.0,
+                "clear": true
+              },
+              {
+                "date": "2026-02-08",
+                "value": 13.0,
+                "clear": true
+              }
+            ],
+            "box_value_on_game_date": null,
+            "actual_matches_box": false,
+            "verdict": "recompute_mismatch"
+          }
+        ],
+        "hand_check_verdict_counts": {
+          "recompute_mismatch": 9,
+          "partial_lookahead_not_to_5": 1
+        },
+        "nfl_under_clean_note": "NFL UNDER leakage-pass cell is ~99% \u2014 not trusted. Pass filter selects easy lines where box L5 already=5; fail/unchecked NFL UNDER still ~75\u201379%. Treat as selection artifact until resolved.",
+        "true_dnp_by_bucket": {
+          "SOCCER|UNDER": 20,
+          "SOCCER|OVER": 7
+        },
+        "old_unknown_pt_by_bucket": {
+          "NHL|UNDER": 256,
+          "NHL|OVER": 27,
+          "NBA|UNDER": 5,
+          "SOCCER|OVER": 25,
+          "SOCCER|UNDER": 15,
+          "NBA1Q|OVER": 15,
+          "NBA1Q|UNDER": 1,
+          "WNBA|OVER": 1,
+          "WNBA|UNDER": 2,
+          "NFL|UNDER": 37,
+          "NFL|OVER": 8,
+          "CFB|OVER": 1
+        },
+        "box_db": "H:\\PropORACLE\\data\\cache\\proporacle_ref.db",
+        "nfl_cache": "H:\\PropORACLE\\Sports\\NFL\\data\\cache\\nfl_boxscore_cache.csv"
+      },
+      "overall_base": {
+        "hits": 3065,
+        "n": 5005,
+        "hit_rate": 0.6124,
+        "ci95_low": 0.5988,
+        "ci95_high": 0.6258,
+        "ci_low_above_be": true
+      },
+      "overall_clean": {
+        "hits": 860,
+        "n": 1305,
+        "hit_rate": 0.659,
+        "ci95_low": 0.6329,
+        "ci95_high": 0.6842,
+        "ci_low_above_be": true
+      },
+      "by_sport_direction": [
+        {
+          "sport": "CFB",
+          "direction": "OVER",
+          "hits": 36,
+          "n": 62,
+          "hit_rate": 0.5806,
+          "ci95_low": 0.4567,
+          "ci95_high": 0.6952,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 1,
+          "unproven": false
+        },
+        {
+          "sport": "CFB",
+          "direction": "UNDER",
+          "hits": 98,
+          "n": 172,
+          "hit_rate": 0.5698,
+          "ci95_low": 0.495,
+          "ci95_high": 0.6414,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 0,
+          "unproven": false
+        },
+        {
+          "sport": "MLB",
+          "direction": "OVER",
+          "hits": 101,
+          "n": 214,
+          "hit_rate": 0.472,
+          "ci95_low": 0.4062,
+          "ci95_high": 0.5388,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 0,
+          "unproven": false
+        },
+        {
+          "sport": "MLB",
+          "direction": "UNDER",
+          "hits": 227,
+          "n": 400,
+          "hit_rate": 0.5675,
+          "ci95_low": 0.5185,
+          "ci95_high": 0.6152,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 0,
+          "unproven": false
+        },
+        {
+          "sport": "NBA",
+          "direction": "OVER",
+          "hits": 367,
+          "n": 684,
+          "hit_rate": 0.5365,
+          "ci95_low": 0.4991,
+          "ci95_high": 0.5736,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 0,
+          "unproven": false
+        },
+        {
+          "sport": "NBA",
+          "direction": "UNDER",
+          "hits": 454,
+          "n": 787,
+          "hit_rate": 0.5769,
+          "ci95_low": 0.5421,
+          "ci95_high": 0.6109,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 5,
+          "unproven": false
+        },
+        {
+          "sport": "NBA1H",
+          "direction": "OVER",
+          "hits": 90,
+          "n": 160,
+          "hit_rate": 0.5625,
+          "ci95_low": 0.4851,
+          "ci95_high": 0.637,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 0,
+          "unproven": false
+        },
+        {
+          "sport": "NBA1H",
+          "direction": "UNDER",
+          "hits": 11,
+          "n": 16,
+          "hit_rate": 0.6875,
+          "ci95_low": 0.444,
+          "ci95_high": 0.8584,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 0,
+          "unproven": false
+        },
+        {
+          "sport": "NBA1Q",
+          "direction": "OVER",
+          "hits": 152,
+          "n": 197,
+          "hit_rate": 0.7716,
+          "ci95_low": 0.7081,
+          "ci95_high": 0.8247,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 15,
+          "unproven": false
+        },
+        {
+          "sport": "NBA1Q",
+          "direction": "UNDER",
+          "hits": 9,
+          "n": 15,
+          "hit_rate": 0.6,
+          "ci95_low": 0.3575,
+          "ci95_high": 0.8018,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 1,
+          "unproven": false
+        },
+        {
+          "sport": "NFL",
+          "direction": "OVER",
+          "hits": 55,
+          "n": 106,
+          "hit_rate": 0.5189,
+          "ci95_low": 0.4248,
+          "ci95_high": 0.6117,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 8,
+          "unproven": false
+        },
+        {
+          "sport": "NFL",
+          "direction": "UNDER",
+          "hits": 330,
+          "n": 387,
+          "hit_rate": 0.8527,
+          "ci95_low": 0.8139,
+          "ci95_high": 0.8846,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 37,
+          "unproven": false
+        },
+        {
+          "sport": "NHL",
+          "direction": "OVER",
+          "hits": 86,
+          "n": 127,
+          "hit_rate": 0.6772,
+          "ci95_low": 0.5917,
+          "ci95_high": 0.7522,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 27,
+          "unproven": false
+        },
+        {
+          "sport": "NHL",
+          "direction": "UNDER",
+          "hits": 648,
+          "n": 945,
+          "hit_rate": 0.6857,
+          "ci95_low": 0.6554,
+          "ci95_high": 0.7145,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 256,
+          "unproven": false
+        },
+        {
+          "sport": "SOCCER",
+          "direction": "OVER",
+          "hits": 87,
+          "n": 146,
+          "hit_rate": 0.5959,
+          "ci95_low": 0.5148,
+          "ci95_high": 0.672,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 25,
+          "unproven": false
+        },
+        {
+          "sport": "SOCCER",
+          "direction": "UNDER",
+          "hits": 58,
+          "n": 92,
+          "hit_rate": 0.6304,
+          "ci95_low": 0.5284,
+          "ci95_high": 0.722,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 15,
+          "unproven": false
+        },
+        {
+          "sport": "TENNIS",
+          "direction": "OVER",
+          "hits": 13,
+          "n": 34,
+          "hit_rate": 0.3824,
+          "ci95_low": 0.239,
+          "ci95_high": 0.5496,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 0,
+          "unproven": true
+        },
+        {
+          "sport": "TENNIS",
+          "direction": "UNDER",
+          "hits": 34,
+          "n": 47,
+          "hit_rate": 0.7234,
+          "ci95_low": 0.5824,
+          "ci95_high": 0.8306,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 0,
+          "unproven": true
+        },
+        {
+          "sport": "WNBA",
+          "direction": "OVER",
+          "hits": 117,
+          "n": 229,
+          "hit_rate": 0.5109,
+          "ci95_low": 0.4465,
+          "ci95_high": 0.5749,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 1,
+          "unproven": false
+        },
+        {
+          "sport": "WNBA",
+          "direction": "UNDER",
+          "hits": 92,
+          "n": 185,
+          "hit_rate": 0.4973,
+          "ci95_low": 0.426,
+          "ci95_high": 0.5687,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 2,
+          "unproven": false
+        }
+      ],
+      "by_sport_direction_clean": [
+        {
+          "sport": "NBA",
+          "direction": "OVER",
+          "hits": 182,
+          "n": 326,
+          "hit_rate": 0.5583,
+          "ci95_low": 0.504,
+          "ci95_high": 0.6112,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 0,
+          "unproven": false
+        },
+        {
+          "sport": "NBA",
+          "direction": "UNDER",
+          "hits": 274,
+          "n": 460,
+          "hit_rate": 0.5957,
+          "ci95_low": 0.5502,
+          "ci95_high": 0.6395,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 5,
+          "unproven": false
+        },
+        {
+          "sport": "NFL",
+          "direction": "OVER",
+          "hits": 29,
+          "n": 44,
+          "hit_rate": 0.6591,
+          "ci95_low": 0.5114,
+          "ci95_high": 0.7812,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 8,
+          "unproven": false
+        },
+        {
+          "sport": "NFL",
+          "direction": "UNDER",
+          "hits": 150,
+          "n": 151,
+          "hit_rate": 0.9934,
+          "ci95_low": 0.9634,
+          "ci95_high": 0.9988,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 37,
+          "unproven": false
+        },
+        {
+          "sport": "NHL",
+          "direction": "OVER",
+          "hits": 41,
+          "n": 61,
+          "hit_rate": 0.6721,
+          "ci95_low": 0.5472,
+          "ci95_high": 0.7767,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 27,
+          "unproven": false
+        },
+        {
+          "sport": "NHL",
+          "direction": "UNDER",
+          "hits": 121,
+          "n": 162,
+          "hit_rate": 0.7469,
+          "ci95_low": 0.6748,
+          "ci95_high": 0.8076,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 256,
+          "unproven": false
+        },
+        {
+          "sport": "SOCCER",
+          "direction": "OVER",
+          "hits": 38,
+          "n": 63,
+          "hit_rate": 0.6032,
+          "ci95_low": 0.4798,
+          "ci95_high": 0.7147,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 25,
+          "unproven": false
+        },
+        {
+          "sport": "SOCCER",
+          "direction": "UNDER",
+          "hits": 25,
+          "n": 38,
+          "hit_rate": 0.6579,
+          "ci95_low": 0.4989,
+          "ci95_high": 0.7879,
+          "ci_low_above_be": false,
+          "old_unknown_pt_would_void_n": 15,
+          "unproven": false
+        }
+      ],
+      "buckets_ci_low_above_be_clean": [
+        {
+          "sport": "NBA",
+          "direction": "UNDER",
+          "hits": 274,
+          "n": 460,
+          "hit_rate": 0.5957,
+          "ci95_low": 0.5502,
+          "ci95_high": 0.6395,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 5,
+          "unproven": false
+        },
+        {
+          "sport": "NFL",
+          "direction": "UNDER",
+          "hits": 150,
+          "n": 151,
+          "hit_rate": 0.9934,
+          "ci95_low": 0.9634,
+          "ci95_high": 0.9988,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 37,
+          "unproven": false
+        },
+        {
+          "sport": "NHL",
+          "direction": "OVER",
+          "hits": 41,
+          "n": 61,
+          "hit_rate": 0.6721,
+          "ci95_low": 0.5472,
+          "ci95_high": 0.7767,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 27,
+          "unproven": false
+        },
+        {
+          "sport": "NHL",
+          "direction": "UNDER",
+          "hits": 121,
+          "n": 162,
+          "hit_rate": 0.7469,
+          "ci95_low": 0.6748,
+          "ci95_high": 0.8076,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 256,
+          "unproven": false
+        }
+      ],
+      "recommended_6pick_buckets": [
+        {
+          "sport": "NFL",
+          "direction": "UNDER",
+          "hits": 150,
+          "n": 151,
+          "hit_rate": 0.9934,
+          "ci95_low": 0.9634,
+          "ci95_high": 0.9988,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 37,
+          "unproven": false
+        },
+        {
+          "sport": "NHL",
+          "direction": "OVER",
+          "hits": 41,
+          "n": 61,
+          "hit_rate": 0.6721,
+          "ci95_low": 0.5472,
+          "ci95_high": 0.7767,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 27,
+          "unproven": false
+        },
+        {
+          "sport": "NHL",
+          "direction": "UNDER",
+          "hits": 121,
+          "n": 162,
+          "hit_rate": 0.7469,
+          "ci95_low": 0.6748,
+          "ci95_high": 0.8076,
+          "ci_low_above_be": true,
+          "old_unknown_pt_would_void_n": 256,
+          "unproven": false
+        }
+      ],
+      "hold_note": "power6_trusted=false \u2014 log-only. Clean table uses leakage-pass + explicit Standard pick_type + drop OVER Standard-below-Goblin."
+    }
+  ]
+}

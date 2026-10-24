@@ -6,8 +6,11 @@ This file defines the primary scripts to run and maintain. Prefer these over mac
 
 - `run_pipeline.ps1` - top-level daily orchestration entrypoint.
 - `scripts/run_daily.ps1` - core daily data pipeline (includes WNBA via `run_pipeline.ps1`; NFL/CBB are season/input-gated).
-- `scripts/run_daily_5am.ps1` - scheduled 5AM wrapper (main worktree pull + `run_daily.ps1`).
-- `scripts/run_tennis_early_3am.ps1` - early tennis light fetch + rebuild.
+- `scripts/run_daily_day_ahead.ps1` - scheduled 9PM initial fetch + live publish for Eastern tomorrow.
+- `scripts/run_daily_1am.ps1` - scheduled 1AM wrapper (update fetch + `run_daily.ps1`; skips grader/A1).
+- `scripts/run_grader_evening.ps1` - scheduled 3AM grader + A1 (unchanged).
+- `scripts/run_daily_5am.ps1` - juice-window update (skips grader/A1 when 3AM finished).
+- `scripts/run_tennis_early_3am.ps1` - retired from scheduler (tennis is part of Daily 1AM).
 - `scripts/run_refresh_with_log.ps1` - line-move refresh wrapper (lock + PRE/POST prop snapshot).
 - `scripts/run_nba_late_fetch.ps1` - multi-sport step1 append + pipeline `-SkipFetch` (CDP-first when `:9222` up; per-sport wall-clock timeouts).
 - `scripts/run_post_pipeline_grader.ps1` - post-pipeline grading follow-up.

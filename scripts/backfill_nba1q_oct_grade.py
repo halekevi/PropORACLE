@@ -75,17 +75,35 @@ def _run(cmd: list[str], *, cwd: Path) -> int:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--from", dest="date_from", default="2026-10-01")
+    ap.add_argument("--from", dest="date_from", default="2026-10-20")
     ap.add_argument("--to", dest="date_to", default="2026-10-22")
     ap.add_argument("--output-root", default="", help="outputs tree (default: this repo)")
     ap.add_argument("--skip-existing", action="store_true", help="Skip dates that already have graded_nba1q xlsx")
+    ap.add_argument(
+        "--espn-only",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Skip NBA.com; ESPN play-by-play only (default on so backfill does not contend with live stats.nba.com).",
+    )
+    ap.add_argument(
+        "--include-stale-board",
+        action="store_true",
+        help="Also grade 2026-10-01..10-19 phantom OKC@SAS tickets (invalid/stale_board; not leak cost).",
+    )
     args = ap.parse_args()
     out_root = Path(args.output_root) if args.output_root else ROOT / "outputs"
     fetch = ROOT / "scripts" / "fetch_nba_period_actuals.py"
     grader = ROOT / "scripts" / "grading" / "slate_grader.py"
     py = [sys.executable]
     rc = 0
-    for ds in _daterange(args.date_from, args.date_to):
+    date_from = args.date_from
+    if not args.include_stale_board and date_from < "2026-10-20":
+        print(
+            f"  skipping stale_board dates {date_from}..<2026-10-20 "
+            "(pass --include-stale-board to grade phantom OKC@SAS slips)"
+        )
+        date_from = "2026-10-20"
+    for ds in _daterange(date_from, args.date_to):
         dated = out_root / ds
         dated.mkdir(parents=True, exist_ok=True)
         graded = dated / f"graded_nba1q_{ds}.xlsx"
@@ -94,7 +112,10 @@ def main() -> int:
             continue
         actuals = dated / f"actuals_nba1q_{ds}.csv"
         print(f"=== NBA1Q {ds} ===")
-        if _run(py + [str(fetch), "--date", ds, "--segment", "1Q", "--output", str(actuals)], cwd=ROOT):
+        fetch_cmd = py + [str(fetch), "--date", ds, "--segment", "1Q", "--output", str(actuals)]
+        if args.espn_only:
+            fetch_cmd.append("--espn-only")
+        if _run(fetch_cmd, cwd=ROOT):
             print(f"  WARN: 1Q actuals fetch failed for {ds}")
             rc = 1
             continue
@@ -135,6 +156,11 @@ def main() -> int:
             rc = 1
         elif graded.is_file():
             print(f"  wrote {graded}")
+            from utils.stale_board_tickets import stamp_graded_xlsx
+
+            n_tag = stamp_graded_xlsx(graded, slate_date=ds, sport="NBA1Q")
+            if n_tag:
+                print(f"  tagged {n_tag} Box Raw row(s) invalid_reason=stale_board")
     return rc
 
 

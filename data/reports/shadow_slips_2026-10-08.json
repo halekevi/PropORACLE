@@ -1,0 +1,1204 @@
+{
+  "date": "2026-10-08",
+  "submit": false,
+  "pool_n": 12,
+  "slips": 30,
+  "tennis_total_games_pair_ev_at_1_40x": -0.3101,
+  "tennis_price": 0.702,
+  "two_leg_break_even": 0.8452,
+  "legs": [
+    {
+      "player": "Novak Djokovic",
+      "prop_type": "Total Games",
+      "direction": "OVER",
+      "line": 19.5,
+      "pick_type": "Goblin",
+      "sport": "Tennis",
+      "p": 0.702
+    },
+    {
+      "player": "Frances Tiafoe",
+      "prop_type": "Total Games",
+      "direction": "OVER",
+      "line": 19.5,
+      "pick_type": "Goblin",
+      "sport": "Tennis",
+      "p": 0.702
+    },
+    {
+      "player": "Andrey Rublev",
+      "prop_type": "Total Games",
+      "direction": "OVER",
+      "line": 19.5,
+      "pick_type": "Goblin",
+      "sport": "Tennis",
+      "p": 0.702
+    },
+    {
+      "player": "Alejo Veliz",
+      "prop_type": "Shots",
+      "direction": "OVER",
+      "line": 1.5,
+      "pick_type": "Goblin",
+      "sport": "Soccer",
+      "p": 0.763
+    },
+    {
+      "player": "Jhon Arias",
+      "prop_type": "Shots",
+      "direction": "UNDER",
+      "line": 2.5,
+      "pick_type": "Standard",
+      "sport": "Soccer",
+      "p": 0.763
+    },
+    {
+      "player": "Erick",
+      "prop_type": "Shots",
+      "direction": "OVER",
+      "line": 0.5,
+      "pick_type": "Goblin",
+      "sport": "Soccer",
+      "p": 0.763
+    },
+    {
+      "player": "Qinwen Zheng",
+      "prop_type": "Total Games Won",
+      "direction": "OVER",
+      "line": 10.5,
+      "pick_type": "Goblin",
+      "sport": "Tennis",
+      "p": 0.62
+    },
+    {
+      "player": "Quentin Halys",
+      "prop_type": "Total Games Won",
+      "direction": "OVER",
+      "line": 11.5,
+      "pick_type": "Goblin",
+      "sport": "Tennis",
+      "p": 0.62
+    },
+    {
+      "player": "Kyoka Okamura",
+      "prop_type": "Total Games Won",
+      "direction": "OVER",
+      "line": 8.5,
+      "pick_type": "Goblin",
+      "sport": "Tennis",
+      "p": 0.62
+    },
+    {
+      "player": "Jenson Brooksby",
+      "prop_type": "Total Games Won",
+      "direction": "OVER",
+      "line": 9.5,
+      "pick_type": "Goblin",
+      "sport": "Tennis",
+      "p": 0.62
+    },
+    {
+      "player": "Aliaksandra Sasnovich",
+      "prop_type": "Total Games",
+      "direction": "UNDER",
+      "line": 20.5,
+      "pick_type": "Standard",
+      "sport": "Tennis",
+      "p": 0.702
+    },
+    {
+      "player": "Jalon Daniels",
+      "prop_type": "passing_yards",
+      "direction": "UNDER",
+      "line": 322.5,
+      "pick_type": "Standard",
+      "sport": "NFL",
+      "p": 0.763
+    }
+  ],
+  "tickets": [
+    {
+      "ticket_id": "shadow|2026-10-08|1",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": 0.0842,
+      "live_n_correct_x": 1.4,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|2",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": 0.0842,
+      "live_n_correct_x": 1.4,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|3",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Alejo Veliz",
+          "prop_type": "Shots",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "sport": "Soccer",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_median",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": 0.1784,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|4",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Jhon Arias",
+          "prop_type": "Shots",
+          "direction": "UNDER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "Soccer",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_p25",
+      "n_correct": {
+        "2": 2.0
+      },
+      "all_hit_x": 2.0,
+      "ev_at_quote": 0.0713,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|5",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Erick",
+          "prop_type": "Shots",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "Soccer",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_median",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": 0.1784,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|6",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Qinwen Zheng",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 10.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 1.6,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|7",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Quentin Halys",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 1.6,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|8",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Kyoka Okamura",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 8.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 1.8,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|9",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Jenson Brooksby",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 1.8,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|10",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "UNDER",
+          "line": 20.5,
+          "pick_type": "Standard",
+          "sport": "Tennis",
+          "p": 0.702
+        }
+      ],
+      "quote_source": "n_correct_p25",
+      "n_correct": {
+        "2": 2.0
+      },
+      "all_hit_x": 2.0,
+      "ev_at_quote": -0.0144,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|11",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Novak Djokovic",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Jalon Daniels",
+          "prop_type": "passing_yards",
+          "direction": "UNDER",
+          "line": 322.5,
+          "pick_type": "Standard",
+          "sport": "NFL",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_p25",
+      "n_correct": {
+        "2": 2.0
+      },
+      "all_hit_x": 2.0,
+      "ev_at_quote": 0.0713,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|12",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": 0.0842,
+      "live_n_correct_x": 1.6,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|13",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Alejo Veliz",
+          "prop_type": "Shots",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "sport": "Soccer",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_median",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": 0.1784,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|14",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Jhon Arias",
+          "prop_type": "Shots",
+          "direction": "UNDER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "Soccer",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_p25",
+      "n_correct": {
+        "2": 2.0
+      },
+      "all_hit_x": 2.0,
+      "ev_at_quote": 0.0713,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|15",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Erick",
+          "prop_type": "Shots",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "Soccer",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_median",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": 0.1784,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|16",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Qinwen Zheng",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 10.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 1.8,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|17",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Quentin Halys",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 1.8,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|18",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Kyoka Okamura",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 8.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 2.0,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|19",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Jenson Brooksby",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 1.9,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|20",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "UNDER",
+          "line": 20.5,
+          "pick_type": "Standard",
+          "sport": "Tennis",
+          "p": 0.702
+        }
+      ],
+      "quote_source": "n_correct_p25",
+      "n_correct": {
+        "2": 2.0
+      },
+      "all_hit_x": 2.0,
+      "ev_at_quote": -0.0144,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|21",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Frances Tiafoe",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Jalon Daniels",
+          "prop_type": "passing_yards",
+          "direction": "UNDER",
+          "line": 322.5,
+          "pick_type": "Standard",
+          "sport": "NFL",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_p25",
+      "n_correct": {
+        "2": 2.0
+      },
+      "all_hit_x": 2.0,
+      "ev_at_quote": 0.0713,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|22",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Alejo Veliz",
+          "prop_type": "Shots",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "sport": "Soccer",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_median",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": 0.1784,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|23",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Jhon Arias",
+          "prop_type": "Shots",
+          "direction": "UNDER",
+          "line": 2.5,
+          "pick_type": "Standard",
+          "sport": "Soccer",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_p25",
+      "n_correct": {
+        "2": 2.0
+      },
+      "all_hit_x": 2.0,
+      "ev_at_quote": 0.0713,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|24",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Erick",
+          "prop_type": "Shots",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "Soccer",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_median",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": 0.1784,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|25",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Qinwen Zheng",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 10.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 1.8,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|26",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Quentin Halys",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 1.8,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|27",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Kyoka Okamura",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 8.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "n_correct_median",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|28",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Jenson Brooksby",
+          "prop_type": "Total Games Won",
+          "direction": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.62
+        }
+      ],
+      "quote_source": "live_cdp",
+      "n_correct": {
+        "2": 2.2
+      },
+      "all_hit_x": 2.2,
+      "ev_at_quote": -0.0425,
+      "live_n_correct_x": 2.0,
+      "quote_status": "live_n_correct",
+      "accounting": "payout_only"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|29",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Aliaksandra Sasnovich",
+          "prop_type": "Total Games",
+          "direction": "UNDER",
+          "line": 20.5,
+          "pick_type": "Standard",
+          "sport": "Tennis",
+          "p": 0.702
+        }
+      ],
+      "quote_source": "n_correct_p25",
+      "n_correct": {
+        "2": 2.0
+      },
+      "all_hit_x": 2.0,
+      "ev_at_quote": -0.0144,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    },
+    {
+      "ticket_id": "shadow|2026-10-08|30",
+      "submit": false,
+      "product": "Power",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Andrey Rublev",
+          "prop_type": "Total Games",
+          "direction": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "sport": "Tennis",
+          "p": 0.702
+        },
+        {
+          "player": "Jalon Daniels",
+          "prop_type": "passing_yards",
+          "direction": "UNDER",
+          "line": 322.5,
+          "pick_type": "Standard",
+          "sport": "NFL",
+          "p": 0.763
+        }
+      ],
+      "quote_source": "n_correct_p25",
+      "n_correct": {
+        "2": 2.0
+      },
+      "all_hit_x": 2.0,
+      "ev_at_quote": 0.0713,
+      "scrape_status": "failed",
+      "quote_status": "legs_not_on_board"
+    }
+  ],
+  "live_scraped": 14,
+  "live_n_correct_x": [
+    1.4,
+    1.6,
+    1.8,
+    1.9,
+    2.0
+  ],
+  "accounting": "payout_only",
+  "roi_sample": false,
+  "quoted_n": 14,
+  "unquoted_n": 16,
+  "quotes_by_shape": [
+    {
+      "n_legs": 2,
+      "n_goblin": 2,
+      "n_standard": 0,
+      "n_correct_x": 1.4,
+      "slips": 2
+    },
+    {
+      "n_legs": 2,
+      "n_goblin": 2,
+      "n_standard": 0,
+      "n_correct_x": 1.6,
+      "slips": 3
+    },
+    {
+      "n_legs": 2,
+      "n_goblin": 2,
+      "n_standard": 0,
+      "n_correct_x": 1.8,
+      "slips": 6
+    },
+    {
+      "n_legs": 2,
+      "n_goblin": 2,
+      "n_standard": 0,
+      "n_correct_x": 1.9,
+      "slips": 1
+    },
+    {
+      "n_legs": 2,
+      "n_goblin": 2,
+      "n_standard": 0,
+      "n_correct_x": 2.0,
+      "slips": 2
+    }
+  ]
+}

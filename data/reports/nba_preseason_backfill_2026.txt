@@ -1,0 +1,192 @@
+NBA 2026 preseason ESPN backfill
+espn_games=67  espn_player_rows=1991
+fetch_errors=0
+db_before_keys=1587  db_after_keys=1992
+missing_games_before=14  still_missing=0
+missing_player_rows=405  conflicts=1586  exact_matches=0
+upserted=1991  sports_sync_rows=1991
+
+===== MISSING GAMES (before) =====
+  401898406  {'date': '2026-10-16', 'event_id': '401898406', 'home': 'ORL', 'away': 'MIA', 'name': 'MIA @ ORL'}
+  401898407  {'date': '2026-10-16', 'event_id': '401898407', 'home': 'PHI', 'away': 'BOS', 'name': 'BOS @ PHI'}
+  401898408  {'date': '2026-10-16', 'event_id': '401898408', 'home': 'DAL', 'away': 'ATL', 'name': 'ATL @ DAL'}
+  401898409  {'date': '2026-10-16', 'event_id': '401898409', 'home': 'GS', 'away': 'POR', 'name': 'POR @ GS'}
+  401898719  {'date': '2026-10-16', 'event_id': '401898719', 'home': 'LAL', 'away': 'DEN', 'name': 'DEN @ LAL'}
+  401898843  {'date': '2026-10-16', 'event_id': '401898843', 'home': 'SA', 'away': 'SAC', 'name': 'SAC @ SA'}
+  401901822  {'date': '2026-10-16', 'event_id': '401901822', 'home': 'MEM', 'away': 'CHA', 'name': 'CHA @ MEM'}
+  401906509  {'date': '2026-10-16', 'event_id': '401906509', 'home': 'NO', 'away': 'WSH', 'name': 'WSH @ NO'}
+  401908622  {'date': '2026-10-15', 'event_id': '401908622', 'home': 'HOU', 'away': 'OKC', 'name': 'OKC @ HOU'}
+  401908943  {'date': '2026-10-16', 'event_id': '401908943', 'home': 'CHI', 'away': 'MIN', 'name': 'MIN @ CHI'}
+  401908945  {'date': '2026-10-15', 'event_id': '401908945', 'home': 'NY', 'away': 'TOR', 'name': 'TOR @ NY'}
+  401908946  {'date': '2026-10-16', 'event_id': '401908946', 'home': 'DET', 'away': 'TOR', 'name': 'TOR @ DET'}
+  401908948  {'date': '2026-10-16', 'event_id': '401908948', 'home': 'PHX', 'away': 'UTAH', 'name': 'UTAH @ PHX'}
+  401914126  {'date': '2026-10-16', 'event_id': '401914126', 'home': 'IND', 'away': 'MIL', 'name': 'MIL @ IND'}
+
+===== CONFLICTS (ESPN wins) n=1586 =====
+  2026-10-05 Cedric Coward (MEM) starter:None->1
+  2026-10-05 Cameron Boozer (MEM) starter:None->1
+  2026-10-05 Jaylen Wells (MEM) starter:None->1
+  2026-10-05 Quinten Post (MEM) starter:None->1
+  2026-10-05 Ty Jerome (MEM) starter:None->1
+  2026-10-05 Jerami Grant (MEM) starter:None->0
+  2026-10-05 Kris Murray (MEM) starter:None->0
+  2026-10-05 Olivier-Maxence Prosper (MEM) starter:None->0
+  2026-10-05 Taylor Hendricks (MEM) starter:None->0
+  2026-10-05 GG Jackson (MEM) starter:None->0
+  2026-10-05 Karim Lopez (MEM) starter:None->0
+  2026-10-05 Isaiah Stewart (MEM) starter:None->0
+  2026-10-05 Carson Cooper (MEM) starter:None->0
+  2026-10-05 Scotty Pippen Jr. (MEM) starter:None->0
+  2026-10-05 Cam Spencer (MEM) starter:None->0
+  2026-10-05 Jahmai Mashack (MEM) starter:None->0
+  2026-10-05 Javon Small (MEM) starter:None->0
+  2026-10-05 Walter Clayton Jr. (MEM) starter:None->0
+  2026-10-05 Onyeka Okongwu (ATL) starter:None->1
+  2026-10-05 Jalen Johnson (ATL) starter:None->1
+  2026-10-05 Nickeil Alexander-Walker (ATL) starter:None->1
+  2026-10-05 Dyson Daniels (ATL) starter:None->1
+  2026-10-05 Kingston Flemings (ATL) starter:None->1
+  2026-10-05 Dorian Finney-Smith (ATL) starter:None->0
+  2026-10-05 Corey Kispert (ATL) starter:None->0
+  2026-10-05 Jalen Wilson (ATL) starter:None->0
+  2026-10-05 Cameron Corhen (ATL) starter:None->0
+  2026-10-05 Asa Newell (ATL) starter:None->0
+  2026-10-05 Zuby Ejiofor (ATL) starter:None->0
+  2026-10-05 Jock Landale (ATL) starter:None->0
+  2026-10-05 Aaron Wiggins (ATL) starter:None->0
+  2026-10-05 RayJ Dennis (ATL) starter:None->0
+  2026-10-05 Keshon Gilbert (ATL) starter:None->0
+  2026-10-05 Kobe Johnson (ATL) starter:None->0
+  2026-10-05 Kevon Looney (LAL) starter:None->1
+  2026-10-05 Ziaire Williams (LAL) starter:None->1
+  2026-10-05 Matisse Thybulle (LAL) starter:None->1
+  2026-10-05 Luka Doncic (LAL) starter:None->1
+  2026-10-05 Quentin Grimes (LAL) starter:None->1
+  2026-10-05 Jarred Vanderbilt (LAL) starter:None->0
+  2026-10-05 Sandro Mamukelashvili (LAL) starter:None->0
+  2026-10-05 Jake LaRavia (LAL) starter:None->0
+  2026-10-05 Dalton Knecht (LAL) starter:None->0
+  2026-10-05 Adou Thiero (LAL) starter:None->0
+  2026-10-05 William Kyle III (LAL) starter:None->0
+  2026-10-05 Bronny James (LAL) starter:None->0
+  2026-10-05 Chris Manon (LAL) starter:None->0
+  2026-10-05 Jaden Hardy (LAL) starter:None->0
+  2026-10-05 Cameron Carr (LAL) starter:None->0
+  2026-10-05 Domantas Sabonis (SAC) starter:None->1
+  2026-10-05 De'Andre Hunter (SAC) starter:None->1
+  2026-10-05 Precious Achiuwa (SAC) starter:None->1
+  2026-10-05 Zach LaVine (SAC) starter:None->1
+  2026-10-05 Darius Acuff Jr. (SAC) starter:None->1
+  2026-10-05 Alex Karaban (SAC) starter:None->0
+  2026-10-05 Dylan Cardwell (SAC) starter:None->0
+  2026-10-05 Maxime Raynaud (SAC) starter:None->0
+  2026-10-05 Elfrid Payton (SAC) starter:None->0
+  2026-10-05 Daeqwon Plowden (SAC) starter:None->0
+  2026-10-05 Adam Flagler (SAC) starter:None->0
+  2026-10-05 Nique Clifford (SAC) starter:None->0
+  2026-10-05 Emanuel Sharp (SAC) starter:None->0
+  2026-10-05 Dillon Brooks (PHX) starter:None->1
+  2026-10-05 Miles Bridges (PHX) starter:None->1
+  2026-10-05 Oso Ighodaro (PHX) starter:None->1
+  2026-10-05 Devin Booker (PHX) starter:None->1
+  2026-10-05 Jalen Green (PHX) starter:None->1
+  2026-10-05 Haywood Highsmith (PHX) starter:None->0
+  2026-10-05 Ryan Dunn (PHX) starter:None->0
+  2026-10-05 Koa Peat (PHX) starter:None->0
+  2026-10-05 Rasheer Fleming (PHX) starter:None->0
+  2026-10-05 Duop Reath (PHX) starter:None->0
+  2026-10-05 Khaman Maluach (PHX) starter:None->0
+  2026-10-05 Luke Kennard (PHX) starter:None->0
+  2026-10-05 Jordan Goodwin (PHX) starter:None->0
+  2026-10-05 Collin Gillespie (PHX) starter:None->0
+  2026-10-05 Jamaree Bouyea (PHX) starter:None->0
+  2026-10-05 Kennedy Chandler (PHX) starter:None->0
+  2026-10-05 Pat Spencer (PHX) starter:None->0
+  2026-10-05 Duncan Robinson (DET) starter:None->1
+  ... 1506 more
+
+===== MISSING PLAYERS sample n=405 =====
+  2026-10-14 Jorge Diaz-Graham (DAL) eid=401901825
+  2026-10-15 Isaiah Hartenstein (OKC) eid=401908622
+  2026-10-15 Alex Caruso (OKC) eid=401908622
+  2026-10-15 Shai Gilgeous-Alexander (OKC) eid=401908622
+  2026-10-15 Jalen Williams (OKC) eid=401908622
+  2026-10-15 Ajay Mitchell (OKC) eid=401908622
+  2026-10-15 Brooks Barnhizer (OKC) eid=401908622
+  2026-10-15 Andrew Holifield (OKC) eid=401908622
+  2026-10-15 Christoph Tilly (OKC) eid=401908622
+  2026-10-15 Aday Mara (OKC) eid=401908622
+  2026-10-15 Kenrich Williams (OKC) eid=401908622
+  2026-10-15 Jared McCain (OKC) eid=401908622
+  2026-10-15 Anthony Pritchard (OKC) eid=401908622
+  2026-10-15 Josh Dix (OKC) eid=401908622
+  2026-10-15 Bennett Stirtz (OKC) eid=401908622
+  2026-10-15 Kevin Durant (HOU) eid=401908622
+  2026-10-15 Jabari Smith Jr. (HOU) eid=401908622
+  2026-10-15 Alperen Sengun (HOU) eid=401908622
+  2026-10-15 Fred VanVleet (HOU) eid=401908622
+  2026-10-15 Amen Thompson (HOU) eid=401908622
+  2026-10-15 Jae'Sean Tate (HOU) eid=401908622
+  2026-10-15 Cameron Matthews (HOU) eid=401908622
+  2026-10-15 Tari Eason (HOU) eid=401908622
+  2026-10-15 Isaiah Crawford (HOU) eid=401908622
+  2026-10-15 Julian Phillips (HOU) eid=401908622
+  2026-10-15 Clint Capela (HOU) eid=401908622
+  2026-10-15 Oscar Tshiebwe (HOU) eid=401908622
+  2026-10-15 Marcus Smart (HOU) eid=401908622
+  2026-10-15 Bogdan Bogdanovic (HOU) eid=401908622
+  2026-10-15 Quadir Copeland (HOU) eid=401908622
+  2026-10-15 Sean Pedulla (HOU) eid=401908622
+  2026-10-15 Reed Sheppard (HOU) eid=401908622
+  2026-10-15 Bruce Thornton (HOU) eid=401908622
+  2026-10-15 Kawhi Leonard (TOR) eid=401908945
+  2026-10-15 RJ Barrett (TOR) eid=401908945
+  2026-10-15 Scottie Barnes (TOR) eid=401908945
+  2026-10-15 Jakob Poeltl (TOR) eid=401908945
+  2026-10-15 Immanuel Quickley (TOR) eid=401908945
+  2026-10-15 Kyle Anderson (TOR) eid=401908945
+  2026-10-15 Jamison Battle (TOR) eid=401908945
+  ... 365 more
+
+===== FETCH ERRORS =====
+
+===== SPOT-CHECK 10 players (ESPN vs DB) =====
+  MATCH Jaylon Tyson 2026-10-13 min=25.0 pts=12.0 fg2a=6.0 starter=0
+  Chet Holmgren: no ESPN preseason row
+  MATCH LeBron James 2026-10-16 min=25.0 pts=8.0 fg2a=7.0 starter=1
+  MATCH VJ Edgecombe 2026-10-10 min=26.0 pts=19.0 fg2a=6.0 starter=1
+  MATCH Donovan Mitchell 2026-10-13 min=25.0 pts=15.0 fg2a=10.0 starter=1
+  MATCH Evan Mobley 2026-10-13 min=27.0 pts=14.0 fg2a=8.0 starter=1
+  MATCH Tyrese Maxey 2026-10-16 min=30.0 pts=22.0 fg2a=8.0 starter=1
+  MATCH Jalen Williams 2026-10-15 min=25.0 pts=18.0 fg2a=9.0 starter=1
+  MATCH Cason Wallace 2026-10-13 min=20.0 pts=7.0 fg2a=2.0 starter=1
+  Anfernee Simons: no ESPN preseason row
+spot-check match rate: 8/8 (100%)
+
+===== BOARD PLAYERS WITH NO 2026 PRESEASON (n=26) =====
+  Ajay Mitchell + DeMar DeRozan
+  Anfernee Simons
+  Chet Holmgren
+  Chet Holmgren + DeMar DeRozan
+  Isaiah Hartenstein + Jamal Murray
+  Jalen Williams + DeMar DeRozan
+  Jalen Williams + Jamal Murray
+  Jared McCain + Nikola Jokić
+  Jaylen Brown + Donovan Mitchell
+  Jaylen Brown + James Harden
+  Joel Embiid + Donovan Mitchell
+  Joel Embiid + Evan Mobley
+  Joel Embiid + James Harden
+  Joel Embiid + Jarrett Allen
+  LeBron James + Donovan Mitchell
+  LeBron James + Evan Mobley
+  LeBron James + James Harden
+  LeBron James + Jarrett Allen
+  Marvin Bagley
+  Nikola Jokić
+  Shai Gilgeous-Alexander + Jamal Murray
+  Shai Gilgeous-Alexander + Nikola Jokić
+  Spencer Jones
+  Tyrese Maxey + Donovan Mitchell
+  Tyrese Maxey + Evan Mobley
+  Tyrese Maxey + James Harden

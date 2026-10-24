@@ -1,0 +1,767 @@
+{
+  "date": "2026-08-25",
+  "generated_at": "2026-08-25T11:27:08.277778Z",
+  "cdp_url": "http://127.0.0.1:9222",
+  "tickets_path": "ui_runner\\data\\payout_ladder_validation_tickets.json",
+  "tickets_fingerprint": "7e378d5957c9f0985e3b274333aa339ac43c950bff8da4215e6a5f5d8fbdf0c6",
+  "fingerprint_n_slips": 8,
+  "fingerprint_n_missing_live": 8,
+  "fields": [
+    "power_min_x",
+    "power_first_x",
+    "min_guarantee",
+    "flex_min",
+    "flex_n_correct"
+  ],
+  "primary_field": "power_min_x",
+  "entry_amount": 1.0,
+  "only_missing_live": false,
+  "timed_out": false,
+  "max_runtime_sec": 1800.0,
+  "slips": [
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Nick Sogard",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Jarren Duran",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Willson Contreras",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 7.0,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.0,
+      "flex_min": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 4.0,
+        "4": 1.0,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|2",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Nick Sogard",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Jarren Duran",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Willson Contreras",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 7.75,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.75,
+      "flex_min": [
+        [
+          "5",
+          "6"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 6.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|3",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jarren Duran",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Willson Contreras",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Adley Rutschman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 7.75,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.75,
+      "flex_min": [
+        [
+          "5",
+          "6"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 6.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|4",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jarren Duran",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Willson Contreras",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Adley Rutschman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 9.75,
+      "power_first_x": 20.0,
+      "min_guarantee": 9.75,
+      "flex_min": [
+        [
+          "5",
+          "5"
+        ],
+        [
+          "4",
+          "1.25"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 5.0,
+        "4": 1.25,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|5",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Willson Contreras",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Adley Rutschman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 11.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 11.5,
+      "flex_min": [
+        [
+          "5",
+          "6"
+        ],
+        [
+          "4",
+          "1.25"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 6.0,
+        "4": 1.25,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|6",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Adley Rutschman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Dillon Dingler",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 7.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.5,
+      "flex_min": [
+        [
+          "5",
+          "6"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 6.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|7",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Adley Rutschman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Nick Sogard",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Willson Contreras",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jarren Duran",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 4.0,
+      "flex_min": [
+        [
+          "6",
+          "3"
+        ],
+        [
+          "5",
+          "0.5"
+        ],
+        [
+          "4",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 3.0,
+        "5": 0.5,
+        "4": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|8",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Adley Rutschman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Nick Sogard",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Willson Contreras",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 6.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 6.0,
+      "flex_min": [
+        [
+          "6",
+          "5"
+        ],
+        [
+          "5",
+          "0.5"
+        ],
+        [
+          "4",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 5.0,
+        "5": 0.5,
+        "4": 0.25
+      }
+    }
+  ],
+  "summary": {
+    "n_total": 8,
+    "n_ok": 8,
+    "n_partial": 0,
+    "n_failed": 0,
+    "n_strong": 8,
+    "n_main": 0,
+    "n_skipped_live": 0,
+    "timed_out": false
+  }
+}

@@ -22,10 +22,28 @@ Source tables (built by `Sports/NFL/scripts/build_nfl_unit_line_ranks.py` from f
 
 | Column | Better D when | Prop impact |
 |--------|---------------|-------------|
-| `pass_rush_rank` | low (elite rush) | Opp **passing_yards UNDER**, own **sacks OVER** vs that OL |
-| `run_stop_rank` | low | Opp **rushing_yards UNDER** |
+| `pass_rush_rank` / **`dl_pass_tier`** | low / Elite | Opp **passing_yards UNDER**, own **sacks OVER** vs that OL |
+| `run_stop_rank` / **`dl_run_tier`** | low / Elite | Soft rush context only — Elite run-stop did **not** lift UNDER in W1+W2 |
+| `tier` (combined) | average of pass+run ranks | Badge only — mixes sack and run-stop signal |
 | `sacks_pg` / `pressures` | high | Sack props OVER; pass volume UNDER |
 | `yards_before_contact_allowed` | low | Opp rush UNDER |
+
+**Do not** gate rush yards on combined `tier` / `opp_dl_tier`. Soft W1+W2 under
+`rushing_yards` Standard UNDER (n=52, base 67%):
+
+| Elite DL definition | HR | vs base |
+|---------------------|----|---------|
+| combined `tier` | 10/18 = 56% | −12pp |
+| `dl_pass_tier` | 12/18 = 67% | flat |
+| `dl_run_tier` | 10/18 = 56% | −12pp |
+| pass-only (pass Elite, run not) | 8/11 = 73% | +5pp |
+| run-only (run Elite, pass not) | 6/11 = 55% | −13pp |
+
+Split did **not** rescue Elite DL as an UNDER lift — Elite **run-stop** still
+hurts in this sample (likely line still prices run-stop D). Prefer
+`defense_rankings.rush_def` / `opp_rush_d_tier` for rush UNDER (15/19 = 79%,
++12pp). Keep `opp_dl_run_tier` as soft context only; use `opp_dl_pass_tier` for
+sacks / pass pressure.
 
 ## Opp secondary (`nfl_secondary_ranks`)
 
@@ -55,7 +73,51 @@ Do **not** replace existing `def_tier` pass/rush axes yet. Attach as badges / so
 2. Display: `OL Above` / `Opp DL Elite` / `Opp Sec Weak`
 3. After Week 2+ ledger: promote secondary yards/target into receiving D axis when n supports it
 
-Existing coarse D stays in `utils/nfl_prop_defense.py` (pass/rush/kick from `defense_rankings.csv`).
+Existing coarse D stays in `utils/nfl_prop_defense.py`:
+
+| Prop family | Axis | Column |
+|-------------|------|--------|
+| Pass / receiving | `pass` | `opp_pass_def_rank` |
+| Rush skill | `rush` | `opp_rush_def_rank` |
+| Kick | `kick` | `opp_fg_def_rank` |
+| **Tackles / Tackles+Ast** | **`opp_rush_off`** | **`opp_rush_off_rank`** (opp rush *offense*) |
+
+Keep/fade book + polarity: `Sports/NFL/data/nfl_keep_fade.md`.
+
+## Soft hierarchy (W1+W2 unique-game) — parallel to rush
+
+**Receiving yards / receptions / longest reception**
+
+| Side | Primary signal | Noise / anti |
+|------|----------------|--------------|
+| UNDER | `opp_pass_d_tier` Elite/Above | `opp_secondary_tier` alone flat-to-hurt; WOPR low alone flat |
+| UNDER stack | NOT Elite Pass Off + Elite Pass D (rec 41/44=93%; rec yds 44/55=80%) | — |
+| UNDER stack | WOPR low + Elite Pass D on **receptions** (42/44=96%) | WOPR low alone ~+1–6pp |
+
+**Option C (live):** receptions UNDER allowlist unchanged. Pack sort
+(`standard_sort_key`) bumps WOPR low + Pass D Elite|Above ahead of other
+receptions UNDER at equal L5. Not a ticket gate.
+
+Week 3 grade check (ledger split on bump fired vs not):
+- Bumped ~96% expected; **90%+** with larger n → Option A candidate
+- Non-bumped ~75% expected
+- Bumped drift to ~80% while non-bumped holds → do not harden
+- Option A also needs ticket D = `opp_pass_d_tier` (not badge-only)
+| OVER | `opp_pass_d_tier` Weak/Below | Weak Sec alone hurts receptions OVER (−13pp) |
+| OVER stack | Fast pace + Weak Pass D on rec yds (14/23=61%, +20pp) | Elite WR alone weak (line inflation) |
+
+Same line-inflation mirror as rush: market overprices elite WR/pass-off; mid-tier + favorable D is the lift.
+
+**Passing yards / completions / completion%**
+
+| Side | Primary | Soft note |
+|------|---------|-----------|
+| UNDER | Elite Pass D | + Elite DL pass helps completion% (8/12=67%) but chip still weak |
+| OVER | Weak Pass D / Elite own pass block | thin n |
+
+**Sacks taken UNDER** — `opp_dl_pass_tier` Weak + own Elite pass block (thin n; correct DL axis).
+
+**Dead even with context:** player_touchdowns OVER (~14%), sacks OVER (~14%), FG made-yds combo UNDER (0%).
 
 ## Own pace (`nfl_pace_ranks`)
 
@@ -88,4 +150,14 @@ First validation to run when Goblin grades land:
 | `target_share_L3` | share of team targets | Receptions OVER floor (`<0.20` blocks when hard-on) |
 
 Soft attach via `utils.nfl_route_participation_gate.attach_participation`. See `nfl_route_participation_readme.md`.
+
+## QB mobility + red zone (soft)
+
+| Soft layer | Column | Props |
+|---|---|---|
+| QB mobility | `qb_mobility_tier` (Pocket/Mixed/Mobile) | `sacks_taken` UNDER soft-split |
+| Red zone team | `own_rz_rush_tier` / `own_rz_td_tier` | `rush_tds` / `rec_tds` soft |
+| Red zone player | `player_high_rz_rush` / `player_high_rz_target` | TD watches |
+
+Builders: `build_nfl_qb_mobility.py`, `build_nfl_red_zone_rates.py`. Attach: `utils.nfl_context_layers` via step3.
 

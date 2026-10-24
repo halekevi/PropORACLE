@@ -1,10 +1,10 @@
 @startuml PropORACLE_Grading
-' Grading — 3AM grader + void-aware ticket eval (reality + known gaps)
+' Grading — 3AM grader, leg classification, void-aware settlement in eval
 ' Render: PlantUML extension or https://www.plantuml.com/plantuml
 
 title PropORACLE — Grading
 
-actor Sched as "Task Scheduler\n(3AM)"
+actor "Task Scheduler\n(3AM)" as Sched
 participant "run_grader.ps1" as Grader
 participant "Sport actuals\n(ESPN / boxes / period CSVs)" as Actuals
 participant "find_ticket_payload_path" as Resolve
@@ -13,7 +13,7 @@ participant "build_ticket_eval.py" as Eval
 participant "grade_history.json" as Hist
 participant "/grades · /income" as UI
 
-Sched -> Grader : yesterday's slate
+Sched -> Grader : grade yesterday (N-1)
 Grader -> Actuals : fetch / join actuals\n(WNBA1H/1Q never fall back to full-game)
 Actuals --> Grader : per-prop actuals
 
@@ -27,43 +27,53 @@ note right of Resolve
      (nonempty groups preferred)
   4) tickets_latest.json if date matches
 
-  **Gap (Sep 19–23 class):**
-  xlsx-first can beat a good JSON when the
-  workbook is empty / sport-slate only →
-  UNGRADED / empty Income day.
-  Intended harden: nonempty JSON before
-  empty xlsx (not fully flipped yet).
+  **Gap (Sep 19–23 class):** an empty /
+  sport-slate-only xlsx beats a good JSON
+  → UNGRADED / empty Income day.
+  Intended: nonempty JSON before empty xlsx
+  (not fully flipped yet).
 end note
 Resolve --> Grader : path (xlsx or JSON)
 
-Grader -> TickGrade : grade slips vs actuals
-TickGrade --> Grader : WIN / LOSS / VOID per leg
-
+Grader -> TickGrade : grade slip legs vs actuals
+TickGrade --> Grader : per-leg HIT / MISS / VOID / NO_ACTUAL
 note right of TickGrade
-  VOID / NO_ACTUAL → drop leg,
-  pay **reduced N-correct** tier
-  (payouts change, not hygiene only —
-  e.g. NFL anytime_td alias voids,
-  NO_FG_MADE classification).
-  <2 playable → refund / no contest.
+  **Classifies legs only.**
+  Injury / DNP fills, NO_ACTUAL,
+  NO_FG_MADE, anytime_td alias.
   Unacceptable voids flagged
   (validate_unacceptable_voids.py).
 end note
 
-Grader -> Eval : ticket_eval_<date>.html\ngraded_props_<date>.json
-Eval -> Hist : append W/L/voids
-note right of Hist
-  Tracks: main Goblin-70 + mixer → Income WR.
-  standard_yolo + goblin70_yolo → separate;
-  **not** in day-to-day Income / ~23% WR.
+Grader -> Eval : classified legs
+note right of Eval
+  **Settles slips.**
+  VOID / NO_ACTUAL leg → dropped;
+  slip pays the smaller-leg
+  N-correct multiplier.
+  <2 playable legs → refund / no contest.
+  (Voids move payouts, not just hygiene.)
 end note
-Eval --> UI : Grades hub + income
-Grader -> Grader : Publish eval artifacts
+Eval -> Eval : ticket_eval_<date>.html\ngraded_props_<date>.json
+Eval -> Hist : append W / L / voids per track
+note right of Hist
+  **Income WR tracks (MAIN):**
+  graded_main, and high_prob_std_gob
+  (MAIN row name since Sep 19).
+  standard_yolo + goblin70_yolo +
+  shadows / long_parlay → separate;
+  **not** in day-to-day Income WR.
+end note
+Eval --> UI : Grades hub + /income
+Grader -> Grader : git commit graded_props JSON\n+ ticket_eval HTML
 
 note over Grader, UI
-  Published G70 cards are **not** re-gated inside grading.
-  Keep revalidation is scrub_goblin70_keep_live.py
-  (ticket-design side path), not the 3AM grader.
+  Completion check lives in run_daily.ps1:
+  a sport counts as graded only if its own
+  graded_<sport>_*.xlsx exists (e.g. CFB when
+  step8_cfb_direction_clean* is present).
+  Published G70 cards are **not** re-gated here —
+  keep revalidation is scrub_goblin70_keep_live.py.
 end note
 
 @enduml

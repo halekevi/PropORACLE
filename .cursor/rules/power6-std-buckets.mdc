@@ -1,0 +1,25 @@
+---
+description: Power-6 Standards held log-only; strict DNP voids; team_changed + card-window L5
+alwaysApply: true
+---
+
+# Power-6 Standards
+
+Break-even for independent 6-leg Power at 37.5x is ~54.7%/leg.
+
+**Hold:** `power6_trusted` is false. `annotate_long_parlay_power6_buckets` is **log-only** — it must not drop long_parlay tickets from a bucket table. The post-void 80%+ OVER cells were inflated by voiding unknown playing time (deleting real OVER misses). Do not wire buckets into the builder until audits clear.
+
+## Before trusting any bucket
+
+1. **DNP-zero → VOID only with positive evidence** — player inactive / absent from box / minutes|TOI|snaps == 0. Unknown playing time stays graded (HIT/MISS). The old “unknown PT + volume prop → void” rule is retired; reports still count how many legs it would have voided.
+2. **Leakage check** — directional L5=5 must use only games strictly before that leg’s game date. Compare fail vs pass hit rates: if fails hit far more, it’s lookahead; if similar, it’s recompute mismatch. Hand-check fails against box logs. NFL must be in the check.
+3. **True Standard** — confirm `pick_type` is Standard (drop empty/dash defaults); drop OVER legs whose line is below a Goblin twin.
+4. **Tennis UNDER** — treat as unproven at small n regardless of rate.
+5. **SOURCE_BOARD_DATE mismatch excluded** — board/file date ≠ game date.
+6. **team_changed** — NBA players whose prior-RS team ≠ board team stay out of L5=5 power plays until 5 games on the new club (`utils.nba_board_team.team_changed_status`).
+
+Report: `data/reports/standard_l5eq5_hit_rates.json` via `scripts/_std_l5eq5_hit_rates.py`.
+
+**NBA and WNBA full-game Standards** stay on **2–3 pick** slips only — not Power-6.
+
+**Card-window L5** = 5 newest RS + playoff boxes (preseason excluded; shown separately as `pre_*` flags). A mix tag like `OOOO R` / `RRRRR` is the PP card window — not a preseason pad.

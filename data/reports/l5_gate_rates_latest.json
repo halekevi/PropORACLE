@@ -1,0 +1,2506 @@
+{
+  "generated_at": "2026-08-20T03:08:39.933445+00:00",
+  "date_range": {
+    "min": "2026-07-17",
+    "max": "2026-08-17"
+  },
+  "total_props_with_l5": 4998,
+  "overall_hit_rate": 0.4962,
+  "d_gate_rules": {
+    "WNBA/MLB": {
+      "over": "Weak",
+      "under": "Elite"
+    },
+    "Soccer/Tennis": {
+      "over": "Weak|Below Avg",
+      "under": "Elite|Above Avg"
+    }
+  },
+  "sport_l5": [
+    {
+      "sport": "TENNIS",
+      "l5_label": "5/5",
+      "n": 156,
+      "hits": 91,
+      "hit_rate": 0.5833
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "4/5",
+      "n": 242,
+      "hits": 117,
+      "hit_rate": 0.4835
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "3/5",
+      "n": 288,
+      "hits": 129,
+      "hit_rate": 0.4479
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "2/5",
+      "n": 341,
+      "hits": 112,
+      "hit_rate": 0.3284
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "1/5",
+      "n": 350,
+      "hits": 65,
+      "hit_rate": 0.1857
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "0/5",
+      "n": 497,
+      "hits": 35,
+      "hit_rate": 0.0704
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "5/5",
+      "n": 334,
+      "hits": 259,
+      "hit_rate": 0.7754
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "4/5",
+      "n": 729,
+      "hits": 492,
+      "hit_rate": 0.6749
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "3/5",
+      "n": 986,
+      "hits": 576,
+      "hit_rate": 0.5842
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "2/5",
+      "n": 821,
+      "hits": 447,
+      "hit_rate": 0.5445
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "1/5",
+      "n": 250,
+      "hits": 154,
+      "hit_rate": 0.616
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "0/5",
+      "n": 4,
+      "hits": 3,
+      "hit_rate": 0.75
+    }
+  ],
+  "sport_l5_d_gate": [
+    {
+      "sport": "TENNIS",
+      "l5_label": "5/5",
+      "d_gate": false,
+      "n": 156,
+      "hits": 91,
+      "hit_rate": 0.5833
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "4/5",
+      "d_gate": false,
+      "n": 242,
+      "hits": 117,
+      "hit_rate": 0.4835
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "3/5",
+      "d_gate": false,
+      "n": 288,
+      "hits": 129,
+      "hit_rate": 0.4479
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "2/5",
+      "d_gate": false,
+      "n": 341,
+      "hits": 112,
+      "hit_rate": 0.3284
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "1/5",
+      "d_gate": false,
+      "n": 350,
+      "hits": 65,
+      "hit_rate": 0.1857
+    },
+    {
+      "sport": "TENNIS",
+      "l5_label": "0/5",
+      "d_gate": false,
+      "n": 497,
+      "hits": 35,
+      "hit_rate": 0.0704
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "5/5",
+      "d_gate": true,
+      "n": 56,
+      "hits": 44,
+      "hit_rate": 0.7857
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "5/5",
+      "d_gate": false,
+      "n": 278,
+      "hits": 215,
+      "hit_rate": 0.7734
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "4/5",
+      "d_gate": true,
+      "n": 137,
+      "hits": 106,
+      "hit_rate": 0.7737
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "4/5",
+      "d_gate": false,
+      "n": 592,
+      "hits": 386,
+      "hit_rate": 0.652
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "3/5",
+      "d_gate": true,
+      "n": 149,
+      "hits": 93,
+      "hit_rate": 0.6242
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "3/5",
+      "d_gate": false,
+      "n": 837,
+      "hits": 483,
+      "hit_rate": 0.5771
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "2/5",
+      "d_gate": true,
+      "n": 156,
+      "hits": 101,
+      "hit_rate": 0.6474
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "2/5",
+      "d_gate": false,
+      "n": 665,
+      "hits": 346,
+      "hit_rate": 0.5203
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "1/5",
+      "d_gate": true,
+      "n": 44,
+      "hits": 27,
+      "hit_rate": 0.6136
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "1/5",
+      "d_gate": false,
+      "n": 206,
+      "hits": 127,
+      "hit_rate": 0.6165
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "0/5",
+      "d_gate": true,
+      "n": 1,
+      "hits": 1,
+      "hit_rate": 1.0
+    },
+    {
+      "sport": "WNBA",
+      "l5_label": "0/5",
+      "d_gate": false,
+      "n": 3,
+      "hits": 2,
+      "hit_rate": 0.6667
+    }
+  ],
+  "sport_direction_l5_d": [
+    {
+      "sport": "TENNIS",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "d_gate": false,
+      "n": 146,
+      "hits": 84,
+      "hit_rate": 0.5753
+    },
+    {
+      "sport": "TENNIS",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "d_gate": false,
+      "n": 222,
+      "hits": 102,
+      "hit_rate": 0.4595
+    },
+    {
+      "sport": "TENNIS",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "d_gate": false,
+      "n": 266,
+      "hits": 114,
+      "hit_rate": 0.4286
+    },
+    {
+      "sport": "TENNIS",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "d_gate": false,
+      "n": 341,
+      "hits": 112,
+      "hit_rate": 0.3284
+    },
+    {
+      "sport": "TENNIS",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "d_gate": false,
+      "n": 350,
+      "hits": 65,
+      "hit_rate": 0.1857
+    },
+    {
+      "sport": "TENNIS",
+      "direction": "OVER",
+      "l5_label": "0/5",
+      "d_gate": false,
+      "n": 497,
+      "hits": 35,
+      "hit_rate": 0.0704
+    },
+    {
+      "sport": "TENNIS",
+      "direction": "UNDER",
+      "l5_label": "4/5",
+      "d_gate": false,
+      "n": 20,
+      "hits": 15,
+      "hit_rate": 0.75
+    },
+    {
+      "sport": "TENNIS",
+      "direction": "UNDER",
+      "l5_label": "3/5",
+      "d_gate": false,
+      "n": 22,
+      "hits": 15,
+      "hit_rate": 0.6818
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "d_gate": true,
+      "n": 56,
+      "hits": 44,
+      "hit_rate": 0.7857
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "d_gate": false,
+      "n": 272,
+      "hits": 209,
+      "hit_rate": 0.7684
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "d_gate": true,
+      "n": 132,
+      "hits": 103,
+      "hit_rate": 0.7803
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "d_gate": false,
+      "n": 529,
+      "hits": 358,
+      "hit_rate": 0.6767
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "d_gate": true,
+      "n": 128,
+      "hits": 80,
+      "hit_rate": 0.625
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "d_gate": false,
+      "n": 724,
+      "hits": 433,
+      "hit_rate": 0.5981
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "d_gate": true,
+      "n": 147,
+      "hits": 94,
+      "hit_rate": 0.6395
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "d_gate": false,
+      "n": 576,
+      "hits": 318,
+      "hit_rate": 0.5521
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "d_gate": true,
+      "n": 41,
+      "hits": 25,
+      "hit_rate": 0.6098
+    },
+    {
+      "sport": "WNBA",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "d_gate": false,
+      "n": 176,
+      "hits": 109,
+      "hit_rate": 0.6193
+    },
+    {
+      "sport": "WNBA",
+      "direction": "UNDER",
+      "l5_label": "4/5",
+      "d_gate": false,
+      "n": 63,
+      "hits": 28,
+      "hit_rate": 0.4444
+    },
+    {
+      "sport": "WNBA",
+      "direction": "UNDER",
+      "l5_label": "3/5",
+      "d_gate": true,
+      "n": 21,
+      "hits": 13,
+      "hit_rate": 0.619
+    },
+    {
+      "sport": "WNBA",
+      "direction": "UNDER",
+      "l5_label": "3/5",
+      "d_gate": false,
+      "n": 113,
+      "hits": 50,
+      "hit_rate": 0.4425
+    },
+    {
+      "sport": "WNBA",
+      "direction": "UNDER",
+      "l5_label": "2/5",
+      "d_gate": false,
+      "n": 89,
+      "hits": 28,
+      "hit_rate": 0.3146
+    },
+    {
+      "sport": "WNBA",
+      "direction": "UNDER",
+      "l5_label": "1/5",
+      "d_gate": false,
+      "n": 30,
+      "hits": 18,
+      "hit_rate": 0.6
+    }
+  ],
+  "sport_pick_type_l5_d_pass": [
+    {
+      "sport": "WNBA",
+      "pick_type": "demon",
+      "l5_label": "3/5",
+      "n": 21,
+      "hits": 10,
+      "hit_rate": 0.4762
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "demon",
+      "l5_label": "2/5",
+      "n": 34,
+      "hits": 15,
+      "hit_rate": 0.4412
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "5/5",
+      "n": 54,
+      "hits": 42,
+      "hit_rate": 0.7778
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "4/5",
+      "n": 99,
+      "hits": 84,
+      "hit_rate": 0.8485
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "3/5",
+      "n": 70,
+      "hits": 45,
+      "hit_rate": 0.6429
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "2/5",
+      "n": 72,
+      "hits": 54,
+      "hit_rate": 0.75
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "1/5",
+      "n": 22,
+      "hits": 16,
+      "hit_rate": 0.7273
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "standard",
+      "l5_label": "4/5",
+      "n": 29,
+      "hits": 17,
+      "hit_rate": 0.5862
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "standard",
+      "l5_label": "3/5",
+      "n": 58,
+      "hits": 38,
+      "hit_rate": 0.6552
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "standard",
+      "l5_label": "2/5",
+      "n": 50,
+      "hits": 32,
+      "hit_rate": 0.64
+    }
+  ],
+  "sport_pick_type_l5": [
+    {
+      "sport": "TENNIS",
+      "pick_type": "demon",
+      "l5_label": "5/5",
+      "n": 37,
+      "hits": 12,
+      "hit_rate": 0.3243
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "demon",
+      "l5_label": "4/5",
+      "n": 55,
+      "hits": 12,
+      "hit_rate": 0.2182
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "demon",
+      "l5_label": "3/5",
+      "n": 95,
+      "hits": 22,
+      "hit_rate": 0.2316
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "demon",
+      "l5_label": "2/5",
+      "n": 214,
+      "hits": 58,
+      "hit_rate": 0.271
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "demon",
+      "l5_label": "1/5",
+      "n": 254,
+      "hits": 41,
+      "hit_rate": 0.1614
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "demon",
+      "l5_label": "0/5",
+      "n": 445,
+      "hits": 33,
+      "hit_rate": 0.0742
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "goblin",
+      "l5_label": "5/5",
+      "n": 92,
+      "hits": 63,
+      "hit_rate": 0.6848
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "goblin",
+      "l5_label": "4/5",
+      "n": 149,
+      "hits": 81,
+      "hit_rate": 0.5436
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "goblin",
+      "l5_label": "3/5",
+      "n": 148,
+      "hits": 81,
+      "hit_rate": 0.5473
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "goblin",
+      "l5_label": "2/5",
+      "n": 106,
+      "hits": 40,
+      "hit_rate": 0.3774
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "goblin",
+      "l5_label": "1/5",
+      "n": 95,
+      "hits": 24,
+      "hit_rate": 0.2526
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "goblin",
+      "l5_label": "0/5",
+      "n": 52,
+      "hits": 2,
+      "hit_rate": 0.0385
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "standard",
+      "l5_label": "5/5",
+      "n": 27,
+      "hits": 16,
+      "hit_rate": 0.5926
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "standard",
+      "l5_label": "4/5",
+      "n": 38,
+      "hits": 24,
+      "hit_rate": 0.6316
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "standard",
+      "l5_label": "3/5",
+      "n": 45,
+      "hits": 26,
+      "hit_rate": 0.5778
+    },
+    {
+      "sport": "TENNIS",
+      "pick_type": "standard",
+      "l5_label": "2/5",
+      "n": 21,
+      "hits": 14,
+      "hit_rate": 0.6667
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "demon",
+      "l5_label": "4/5",
+      "n": 57,
+      "hits": 32,
+      "hit_rate": 0.5614
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "demon",
+      "l5_label": "3/5",
+      "n": 139,
+      "hits": 55,
+      "hit_rate": 0.3957
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "demon",
+      "l5_label": "2/5",
+      "n": 179,
+      "hits": 67,
+      "hit_rate": 0.3743
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "demon",
+      "l5_label": "1/5",
+      "n": 72,
+      "hits": 28,
+      "hit_rate": 0.3889
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "5/5",
+      "n": 293,
+      "hits": 227,
+      "hit_rate": 0.7747
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "4/5",
+      "n": 471,
+      "hits": 349,
+      "hit_rate": 0.741
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "3/5",
+      "n": 471,
+      "hits": 328,
+      "hit_rate": 0.6964
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "2/5",
+      "n": 295,
+      "hits": 203,
+      "hit_rate": 0.6881
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "goblin",
+      "l5_label": "1/5",
+      "n": 82,
+      "hits": 60,
+      "hit_rate": 0.7317
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "standard",
+      "l5_label": "5/5",
+      "n": 31,
+      "hits": 24,
+      "hit_rate": 0.7742
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "standard",
+      "l5_label": "4/5",
+      "n": 201,
+      "hits": 111,
+      "hit_rate": 0.5522
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "standard",
+      "l5_label": "3/5",
+      "n": 376,
+      "hits": 193,
+      "hit_rate": 0.5133
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "standard",
+      "l5_label": "2/5",
+      "n": 347,
+      "hits": 177,
+      "hit_rate": 0.5101
+    },
+    {
+      "sport": "WNBA",
+      "pick_type": "standard",
+      "l5_label": "1/5",
+      "n": 96,
+      "hits": 66,
+      "hit_rate": 0.6875
+    }
+  ],
+  "sport_prop_l5_ge4": [
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "l5_label": "5/5",
+      "n": 26,
+      "hits": 22,
+      "hit_rate": 0.8462
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "l5_label": "5/5",
+      "n": 84,
+      "hits": 68,
+      "hit_rate": 0.8095
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "l5_label": "5/5",
+      "n": 36,
+      "hits": 29,
+      "hit_rate": 0.8056
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "3-PT Made",
+      "l5_label": "5/5",
+      "n": 24,
+      "hits": 19,
+      "hit_rate": 0.7917
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "l5_label": "5/5",
+      "n": 34,
+      "hits": 26,
+      "hit_rate": 0.7647
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "l5_label": "5/5",
+      "n": 50,
+      "hits": 38,
+      "hit_rate": 0.76
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "l5_label": "5/5",
+      "n": 45,
+      "hits": 34,
+      "hit_rate": 0.7556
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "l5_label": "4/5",
+      "n": 69,
+      "hits": 50,
+      "hit_rate": 0.7246
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "l5_label": "4/5",
+      "n": 177,
+      "hits": 125,
+      "hit_rate": 0.7062
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "l5_label": "4/5",
+      "n": 57,
+      "hits": 40,
+      "hit_rate": 0.7018
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "l5_label": "5/5",
+      "n": 30,
+      "hits": 21,
+      "hit_rate": 0.7
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "l5_label": "4/5",
+      "n": 99,
+      "hits": 69,
+      "hit_rate": 0.697
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "l5_label": "4/5",
+      "n": 111,
+      "hits": 76,
+      "hit_rate": 0.6847
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Turnovers",
+      "l5_label": "4/5",
+      "n": 19,
+      "hits": 13,
+      "hit_rate": 0.6842
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "l5_label": "4/5",
+      "n": 62,
+      "hits": 42,
+      "hit_rate": 0.6774
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "l5_label": "5/5",
+      "n": 65,
+      "hits": 41,
+      "hit_rate": 0.6308
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "l5_label": "4/5",
+      "n": 55,
+      "hits": 34,
+      "hit_rate": 0.6182
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "l5_label": "5/5",
+      "n": 70,
+      "hits": 42,
+      "hit_rate": 0.6
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "3-PT Made",
+      "l5_label": "4/5",
+      "n": 44,
+      "hits": 26,
+      "hit_rate": 0.5909
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "l5_label": "4/5",
+      "n": 70,
+      "hits": 41,
+      "hit_rate": 0.5857
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "l5_label": "4/5",
+      "n": 124,
+      "hits": 66,
+      "hit_rate": 0.5323
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "l5_label": "5/5",
+      "n": 12,
+      "hits": 6,
+      "hit_rate": 0.5
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "l5_label": "4/5",
+      "n": 18,
+      "hits": 6,
+      "hit_rate": 0.3333
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Double Faults",
+      "l5_label": "4/5",
+      "n": 23,
+      "hits": 1,
+      "hit_rate": 0.0435
+    }
+  ],
+  "sport_prop_l5_d_ge4": [
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "l5_label": "4/5",
+      "def_tier": "Weak",
+      "n": 35,
+      "hits": 31,
+      "hit_rate": 0.8857
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "l5_label": "5/5",
+      "def_tier": "Weak",
+      "n": 17,
+      "hits": 15,
+      "hit_rate": 0.8824
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "l5_label": "4/5",
+      "def_tier": "Weak",
+      "n": 21,
+      "hits": 17,
+      "hit_rate": 0.8095
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "l5_label": "4/5",
+      "def_tier": "Weak",
+      "n": 18,
+      "hits": 14,
+      "hit_rate": 0.7778
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "l5_label": "4/5",
+      "def_tier": "Weak",
+      "n": 11,
+      "hits": 8,
+      "hit_rate": 0.7273
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "l5_label": "5/5",
+      "def_tier": "Weak",
+      "n": 10,
+      "hits": 7,
+      "hit_rate": 0.7
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "l5_label": "4/5",
+      "def_tier": "Weak",
+      "n": 17,
+      "hits": 11,
+      "hit_rate": 0.6471
+    }
+  ],
+  "sport_prop_pick_dir_l5": [
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 12,
+      "hits": 12,
+      "hit_rate": 1.0
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 19,
+      "hits": 18,
+      "hit_rate": 0.9474
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 16,
+      "hits": 15,
+      "hit_rate": 0.9375
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "FG Attempted",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 12,
+      "hits": 11,
+      "hit_rate": 0.9167
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 10,
+      "hits": 9,
+      "hit_rate": 0.9
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 10,
+      "hits": 9,
+      "hit_rate": 0.9
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 22,
+      "hits": 19,
+      "hit_rate": 0.8636
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 26,
+      "hits": 22,
+      "hit_rate": 0.8462
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 22,
+      "hits": 18,
+      "hit_rate": 0.8182
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 11,
+      "hits": 9,
+      "hit_rate": 0.8182
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 16,
+      "hits": 13,
+      "hit_rate": 0.8125
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "3-PT Made",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 21,
+      "hits": 17,
+      "hit_rate": 0.8095
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 112,
+      "hits": 90,
+      "hit_rate": 0.8036
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 71,
+      "hits": 57,
+      "hit_rate": 0.8028
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "3-PT Made",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 10,
+      "hits": 8,
+      "hit_rate": 0.8
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 10,
+      "hits": 8,
+      "hit_rate": 0.8
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 10,
+      "hits": 8,
+      "hit_rate": 0.8
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Steals",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 10,
+      "hits": 8,
+      "hit_rate": 0.8
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 29,
+      "hits": 23,
+      "hit_rate": 0.7931
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 48,
+      "hits": 38,
+      "hit_rate": 0.7917
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 38,
+      "hits": 30,
+      "hit_rate": 0.7895
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 42,
+      "hits": 33,
+      "hit_rate": 0.7857
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 28,
+      "hits": 22,
+      "hit_rate": 0.7857
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 14,
+      "hits": 11,
+      "hit_rate": 0.7857
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 63,
+      "hits": 49,
+      "hit_rate": 0.7778
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 40,
+      "hits": 31,
+      "hit_rate": 0.775
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 39,
+      "hits": 30,
+      "hit_rate": 0.7692
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 69,
+      "hits": 53,
+      "hit_rate": 0.7681
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 111,
+      "hits": 84,
+      "hit_rate": 0.7568
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 31,
+      "hits": 23,
+      "hit_rate": 0.7419
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 34,
+      "hits": 25,
+      "hit_rate": 0.7353
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 45,
+      "hits": 33,
+      "hit_rate": 0.7333
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 41,
+      "hits": 30,
+      "hit_rate": 0.7317
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 29,
+      "hits": 21,
+      "hit_rate": 0.7241
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "3-PT Made",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 18,
+      "hits": 13,
+      "hit_rate": 0.7222
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 64,
+      "hits": 46,
+      "hit_rate": 0.7188
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 39,
+      "hits": 28,
+      "hit_rate": 0.7179
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 39,
+      "hits": 28,
+      "hit_rate": 0.7179
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 41,
+      "hits": 29,
+      "hit_rate": 0.7073
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 64,
+      "hits": 45,
+      "hit_rate": 0.7031
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 39,
+      "hits": 27,
+      "hit_rate": 0.6923
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 26,
+      "hits": 18,
+      "hit_rate": 0.6923
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Turnovers",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 13,
+      "hits": 9,
+      "hit_rate": 0.6923
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 84,
+      "hits": 58,
+      "hit_rate": 0.6905
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 48,
+      "hits": 33,
+      "hit_rate": 0.6875
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "3-PT Made",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 32,
+      "hits": 22,
+      "hit_rate": 0.6875
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 76,
+      "hits": 52,
+      "hit_rate": 0.6842
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 40,
+      "hits": 27,
+      "hit_rate": 0.675
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 24,
+      "hits": 16,
+      "hit_rate": 0.6667
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 18,
+      "hits": 12,
+      "hit_rate": 0.6667
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 53,
+      "hits": 35,
+      "hit_rate": 0.6604
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 32,
+      "hits": 21,
+      "hit_rate": 0.6562
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 58,
+      "hits": 38,
+      "hit_rate": 0.6552
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 34,
+      "hits": 22,
+      "hit_rate": 0.6471
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 36,
+      "hits": 23,
+      "hit_rate": 0.6389
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "1/5",
+      "n": 11,
+      "hits": 7,
+      "hit_rate": 0.6364
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 38,
+      "hits": 24,
+      "hit_rate": 0.6316
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 26,
+      "hits": 16,
+      "hit_rate": 0.6154
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 13,
+      "hits": 8,
+      "hit_rate": 0.6154
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 31,
+      "hits": 19,
+      "hit_rate": 0.6129
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 18,
+      "hits": 11,
+      "hit_rate": 0.6111
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 23,
+      "hits": 14,
+      "hit_rate": 0.6087
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 20,
+      "hits": 12,
+      "hit_rate": 0.6
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "FG Made",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 10,
+      "hits": 6,
+      "hit_rate": 0.6
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 10,
+      "hits": 6,
+      "hit_rate": 0.6
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 27,
+      "hits": 16,
+      "hit_rate": 0.5926
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 21,
+      "hits": 12,
+      "hit_rate": 0.5714
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 14,
+      "hits": 8,
+      "hit_rate": 0.5714
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 20,
+      "hits": 11,
+      "hit_rate": 0.55
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 11,
+      "hits": 6,
+      "hit_rate": 0.5455
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "4/5",
+      "n": 17,
+      "hits": 9,
+      "hit_rate": 0.5294
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 46,
+      "hits": 24,
+      "hit_rate": 0.5217
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 28,
+      "hits": 14,
+      "hit_rate": 0.5
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Sets",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 24,
+      "hits": 12,
+      "hit_rate": 0.5
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "3/5",
+      "n": 14,
+      "hits": 7,
+      "hit_rate": 0.5
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 12,
+      "hits": 6,
+      "hit_rate": 0.5
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 12,
+      "hits": 6,
+      "hit_rate": 0.5
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "FG Attempted",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "3/5",
+      "n": 10,
+      "hits": 5,
+      "hit_rate": 0.5
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "2/5",
+      "n": 10,
+      "hits": 5,
+      "hit_rate": 0.5
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 10,
+      "hits": 5,
+      "hit_rate": 0.5
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 47,
+      "hits": 23,
+      "hit_rate": 0.4894
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "3/5",
+      "n": 41,
+      "hits": 20,
+      "hit_rate": 0.4878
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 23,
+      "hits": 11,
+      "hit_rate": 0.4783
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 45,
+      "hits": 21,
+      "hit_rate": 0.4667
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "3-PT Made",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 30,
+      "hits": 14,
+      "hit_rate": 0.4667
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 26,
+      "hits": 12,
+      "hit_rate": 0.4615
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 24,
+      "hits": 11,
+      "hit_rate": 0.4583
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 11,
+      "hits": 5,
+      "hit_rate": 0.4545
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "3/5",
+      "n": 11,
+      "hits": 5,
+      "hit_rate": 0.4545
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 11,
+      "hits": 5,
+      "hit_rate": 0.4545
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 11,
+      "hits": 5,
+      "hit_rate": 0.4545
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 20,
+      "hits": 9,
+      "hit_rate": 0.45
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebs+Asts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 27,
+      "hits": 12,
+      "hit_rate": 0.4444
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Assists",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 16,
+      "hits": 7,
+      "hit_rate": 0.4375
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "3/5",
+      "n": 12,
+      "hits": 5,
+      "hit_rate": 0.4167
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "0/5",
+      "n": 17,
+      "hits": 7,
+      "hit_rate": 0.4118
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 32,
+      "hits": 13,
+      "hit_rate": 0.4062
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 15,
+      "hits": 6,
+      "hit_rate": 0.4
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Strikeouts",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 10,
+      "hits": 4,
+      "hit_rate": 0.4
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Strikeouts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 23,
+      "hits": 9,
+      "hit_rate": 0.3913
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Turnovers",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 21,
+      "hits": 8,
+      "hit_rate": 0.381
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 16,
+      "hits": 6,
+      "hit_rate": 0.375
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "3-PT Made",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 16,
+      "hits": 6,
+      "hit_rate": 0.375
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "2/5",
+      "n": 27,
+      "hits": 10,
+      "hit_rate": 0.3704
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs+Asts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 27,
+      "hits": 10,
+      "hit_rate": 0.3704
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "5/5",
+      "n": 14,
+      "hits": 5,
+      "hit_rate": 0.3571
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 17,
+      "hits": 6,
+      "hit_rate": 0.3529
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 21,
+      "hits": 7,
+      "hit_rate": 0.3333
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Strikeouts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 15,
+      "hits": 5,
+      "hit_rate": 0.3333
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "0/5",
+      "n": 64,
+      "hits": 21,
+      "hit_rate": 0.3281
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "3-PT Made",
+      "pick_type": "standard",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 13,
+      "hits": 4,
+      "hit_rate": 0.3077
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 10,
+      "hits": 3,
+      "hit_rate": 0.3
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 71,
+      "hits": 21,
+      "hit_rate": 0.2958
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 17,
+      "hits": 5,
+      "hit_rate": 0.2941
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 18,
+      "hits": 5,
+      "hit_rate": 0.2778
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Points",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 23,
+      "hits": 6,
+      "hit_rate": 0.2609
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 16,
+      "hits": 4,
+      "hit_rate": 0.25
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 76,
+      "hits": 18,
+      "hit_rate": 0.2368
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 32,
+      "hits": 7,
+      "hit_rate": 0.2188
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Strikeouts",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "0/5",
+      "n": 19,
+      "hits": 4,
+      "hit_rate": 0.2105
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 50,
+      "hits": 10,
+      "hit_rate": 0.2
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Asts",
+      "pick_type": "standard",
+      "direction": "UNDER",
+      "l5_label": "2/5",
+      "n": 10,
+      "hits": 2,
+      "hit_rate": 0.2
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Total Games Won",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 30,
+      "hits": 5,
+      "hit_rate": 0.1667
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Rebounds",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 12,
+      "hits": 2,
+      "hit_rate": 0.1667
+    },
+    {
+      "sport": "WNBA",
+      "prop_type": "Pts+Rebs",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 19,
+      "hits": 3,
+      "hit_rate": 0.1579
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Double Faults",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "0/5",
+      "n": 200,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "0/5",
+      "n": 140,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 61,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Double Faults",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 59,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 43,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "0/5",
+      "n": 33,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Double Faults",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 32,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Double Faults",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 28,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 26,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 26,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Double Faults",
+      "pick_type": "demon",
+      "direction": "OVER",
+      "l5_label": "2/5",
+      "n": 26,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Double Faults",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "1/5",
+      "n": 26,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Double Faults",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 22,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Double Faults",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "0/5",
+      "n": 17,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "3/5",
+      "n": 12,
+      "hits": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "sport": "TENNIS",
+      "prop_type": "Aces",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "l5_label": "4/5",
+      "n": 10,
+      "hits": 0,
+      "hit_rate": 0.0
+    }
+  ],
+  "threshold_by_sport": {
+    "TENNIS": {
+      "5/5": {
+        "hits": 91,
+        "n": 156,
+        "hit_rate": 0.5833
+      },
+      ">=4/5": {
+        "hits": 208,
+        "n": 398,
+        "hit_rate": 0.5226
+      },
+      ">=3/5": {
+        "hits": 337,
+        "n": 686,
+        "hit_rate": 0.4913
+      }
+    },
+    "WNBA": {
+      "5/5": {
+        "hits": 259,
+        "n": 334,
+        "hit_rate": 0.7754
+      },
+      "5/5+D": {
+        "hits": 44,
+        "n": 56,
+        "hit_rate": 0.7857
+      },
+      ">=4/5": {
+        "hits": 751,
+        "n": 1063,
+        "hit_rate": 0.7065
+      },
+      ">=4+D": {
+        "hits": 150,
+        "n": 193,
+        "hit_rate": 0.7772
+      },
+      ">=3/5": {
+        "hits": 1327,
+        "n": 2049,
+        "hit_rate": 0.6476
+      },
+      "D only": {
+        "hits": 372,
+        "n": 543,
+        "hit_rate": 0.6851
+      }
+    }
+  }
+}

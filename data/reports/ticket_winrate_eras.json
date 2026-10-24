@@ -1,0 +1,462 @@
+{
+  "note": "Live-card grade_history cash = wins + Flex N-1 guarantees. Goblin-70 is published slips joined to graded_props HIT/MISS. Power cash = all legs; Flex cash = miss at most one.",
+  "grade_history": {
+    "by_era_track": [
+      {
+        "era": "Apr-May",
+        "track": "unknown",
+        "days": 50,
+        "n": 9659,
+        "wins": 2121,
+        "guarantees": 11,
+        "sweep_pct": 22.0,
+        "cash_pct": 22.1,
+        "void_loss": 23
+      },
+      {
+        "era": "Aug 1-25 pre-G70",
+        "track": "graded_main",
+        "days": 5,
+        "n": 137,
+        "wins": 56,
+        "guarantees": 0,
+        "sweep_pct": 40.9,
+        "cash_pct": 40.9,
+        "void_loss": 1
+      },
+      {
+        "era": "Aug 1-25 pre-G70",
+        "track": "strong_recombo_shadow",
+        "days": 2,
+        "n": 32,
+        "wins": 0,
+        "guarantees": 0,
+        "sweep_pct": 0.0,
+        "cash_pct": 0.0,
+        "void_loss": 12
+      },
+      {
+        "era": "Aug 1-25 pre-G70",
+        "track": "strong_standard_shadow",
+        "days": 3,
+        "n": 14,
+        "wins": 5,
+        "guarantees": 0,
+        "sweep_pct": 35.7,
+        "cash_pct": 35.7,
+        "void_loss": 0
+      },
+      {
+        "era": "Aug 1-25 pre-G70",
+        "track": "long_parlay",
+        "days": 2,
+        "n": 4,
+        "wins": 0,
+        "guarantees": 0,
+        "sweep_pct": 0.0,
+        "cash_pct": 0.0,
+        "void_loss": 0
+      },
+      {
+        "era": "Aug 1-25 pre-G70",
+        "track": "strong_mix_shadow",
+        "days": 2,
+        "n": 2,
+        "wins": 1,
+        "guarantees": 0,
+        "sweep_pct": 50.0,
+        "cash_pct": 50.0,
+        "void_loss": 0
+      },
+      {
+        "era": "Aug 26+ G70 live",
+        "track": "graded_main",
+        "days": 6,
+        "n": 198,
+        "wins": 70,
+        "guarantees": 0,
+        "sweep_pct": 35.4,
+        "cash_pct": 35.4,
+        "void_loss": 9
+      },
+      {
+        "era": "Aug 26+ G70 live",
+        "track": "strong_recombo_shadow",
+        "days": 3,
+        "n": 60,
+        "wins": 18,
+        "guarantees": 0,
+        "sweep_pct": 30.0,
+        "cash_pct": 30.0,
+        "void_loss": 0
+      },
+      {
+        "era": "Aug 26+ G70 live",
+        "track": "strong_standard_shadow",
+        "days": 4,
+        "n": 11,
+        "wins": 2,
+        "guarantees": 0,
+        "sweep_pct": 18.2,
+        "cash_pct": 18.2,
+        "void_loss": 0
+      },
+      {
+        "era": "Aug 26+ G70 live",
+        "track": "long_parlay",
+        "days": 2,
+        "n": 2,
+        "wins": 1,
+        "guarantees": 0,
+        "sweep_pct": 50.0,
+        "cash_pct": 50.0,
+        "void_loss": 0
+      },
+      {
+        "era": "Jul",
+        "track": "graded_main",
+        "days": 21,
+        "n": 5573,
+        "wins": 1478,
+        "guarantees": 0,
+        "sweep_pct": 26.5,
+        "cash_pct": 26.5,
+        "void_loss": 46
+      },
+      {
+        "era": "Jul",
+        "track": "long_parlay",
+        "days": 24,
+        "n": 1420,
+        "wins": 155,
+        "guarantees": 0,
+        "sweep_pct": 10.9,
+        "cash_pct": 10.9,
+        "void_loss": 0
+      },
+      {
+        "era": "Jul",
+        "track": "strong_standard_shadow",
+        "days": 10,
+        "n": 86,
+        "wins": 15,
+        "guarantees": 0,
+        "sweep_pct": 17.4,
+        "cash_pct": 17.4,
+        "void_loss": 2
+      },
+      {
+        "era": "Jul",
+        "track": "winrate_goblin_opt3_shadow",
+        "days": 10,
+        "n": 67,
+        "wins": 38,
+        "guarantees": 0,
+        "sweep_pct": 56.7,
+        "cash_pct": 56.7,
+        "void_loss": 0
+      },
+      {
+        "era": "Jul",
+        "track": "goblin_only_3leg",
+        "days": 5,
+        "n": 65,
+        "wins": 37,
+        "guarantees": 0,
+        "sweep_pct": 56.9,
+        "cash_pct": 56.9,
+        "void_loss": 1
+      },
+      {
+        "era": "Jul",
+        "track": "strong_recombo_shadow",
+        "days": 2,
+        "n": 40,
+        "wins": 20,
+        "guarantees": 0,
+        "sweep_pct": 50.0,
+        "cash_pct": 50.0,
+        "void_loss": 0
+      },
+      {
+        "era": "Jul",
+        "track": "high_prob_std_gob",
+        "days": 2,
+        "n": 24,
+        "wins": 20,
+        "guarantees": 0,
+        "sweep_pct": 83.3,
+        "cash_pct": 83.3,
+        "void_loss": 13
+      },
+      {
+        "era": "Jul",
+        "track": "strong_mix_shadow",
+        "days": 5,
+        "n": 11,
+        "wins": 4,
+        "guarantees": 0,
+        "sweep_pct": 36.4,
+        "cash_pct": 36.4,
+        "void_loss": 1
+      },
+      {
+        "era": "Jun",
+        "track": "graded_main",
+        "days": 21,
+        "n": 2752,
+        "wins": 411,
+        "guarantees": 0,
+        "sweep_pct": 14.9,
+        "cash_pct": 14.9,
+        "void_loss": 26
+      },
+      {
+        "era": "Jun",
+        "track": "unknown",
+        "days": 7,
+        "n": 825,
+        "wins": 163,
+        "guarantees": 0,
+        "sweep_pct": 19.8,
+        "cash_pct": 19.8,
+        "void_loss": 6
+      },
+      {
+        "era": "Jun",
+        "track": "long_parlay",
+        "days": 21,
+        "n": 578,
+        "wins": 22,
+        "guarantees": 0,
+        "sweep_pct": 3.8,
+        "cash_pct": 3.8,
+        "void_loss": 0
+      }
+    ],
+    "graded_main_monthly": [
+      {
+        "month": "2026-04",
+        "n": 1522,
+        "wins": 307,
+        "guarantees": 11,
+        "sweep_pct": 20.2,
+        "cash_pct": 20.9
+      },
+      {
+        "month": "2026-05",
+        "n": 8137,
+        "wins": 1814,
+        "guarantees": 0,
+        "sweep_pct": 22.3,
+        "cash_pct": 22.3
+      },
+      {
+        "month": "2026-06",
+        "n": 3577,
+        "wins": 574,
+        "guarantees": 0,
+        "sweep_pct": 16.0,
+        "cash_pct": 16.0
+      },
+      {
+        "month": "2026-07",
+        "n": 5573,
+        "wins": 1478,
+        "guarantees": 0,
+        "sweep_pct": 26.5,
+        "cash_pct": 26.5
+      },
+      {
+        "month": "2026-08",
+        "n": 335,
+        "wins": 126,
+        "guarantees": 0,
+        "sweep_pct": 37.6,
+        "cash_pct": 37.6
+      }
+    ]
+  },
+  "goblin70": {
+    "files": [
+      {
+        "date": "2026-08-26",
+        "path": "H:\\PropORACLE\\data\\reports\\goblin70_tickets_2026-08-26.json",
+        "n": 11,
+        "graded": 10,
+        "sweep": 6,
+        "cash": 8
+      },
+      {
+        "date": "2026-08-27",
+        "path": "H:\\PropORACLE_main_cp\\data\\reports\\goblin70_tickets_2026-08-27.json",
+        "n": 16,
+        "graded": 15,
+        "sweep": 7,
+        "cash": 9
+      },
+      {
+        "date": "2026-08-28",
+        "path": "H:\\PropORACLE\\data\\reports\\goblin70_tickets_2026-08-28.json",
+        "n": 13,
+        "graded": 4,
+        "sweep": 3,
+        "cash": 3
+      },
+      {
+        "date": "2026-08-30",
+        "path": "H:\\PropORACLE\\data\\reports\\goblin70_tickets_2026-08-30.json",
+        "n": 17,
+        "graded": 8,
+        "sweep": 3,
+        "cash": 4
+      },
+      {
+        "date": "2026-08-31",
+        "path": "H:\\PropORACLE\\data\\reports\\goblin70_tickets_2026-08-31.json",
+        "n": 11,
+        "graded": 3,
+        "sweep": 2,
+        "cash": 2
+      },
+      {
+        "date": "2026-09-06",
+        "path": "H:\\PropORACLE_main_cp\\data\\reports\\goblin70_tickets_2026-09-06.json",
+        "n": 14,
+        "graded": 0,
+        "sweep": 0,
+        "cash": 0
+      }
+    ],
+    "by_sleeve": [
+      {
+        "sleeve": "Power 2-3",
+        "tickets": 51,
+        "graded": 28,
+        "sweep": 18,
+        "cash": 18,
+        "legs_hit": 68,
+        "legs": 153,
+        "sweep_pct": 64.3,
+        "cash_pct": 64.3,
+        "leg_hr": 44.4
+      },
+      {
+        "sleeve": "Flex 4",
+        "tickets": 28,
+        "graded": 10,
+        "sweep": 3,
+        "cash": 8,
+        "legs_hit": 30,
+        "legs": 112,
+        "sweep_pct": 30.0,
+        "cash_pct": 80.0,
+        "leg_hr": 26.8
+      },
+      {
+        "sleeve": "Flex 3",
+        "tickets": 3,
+        "graded": 2,
+        "sweep": 0,
+        "cash": 0,
+        "legs_hit": 2,
+        "legs": 9,
+        "sweep_pct": 0.0,
+        "cash_pct": 0.0,
+        "leg_hr": 22.2
+      }
+    ],
+    "daily": [
+      {
+        "date": "2026-08-26",
+        "graded": 10,
+        "sweep_pct": 60.0,
+        "cash_pct": 80.0,
+        "sweep": 6,
+        "cash": 8
+      },
+      {
+        "date": "2026-08-27",
+        "graded": 15,
+        "sweep_pct": 46.7,
+        "cash_pct": 60.0,
+        "sweep": 7,
+        "cash": 9
+      },
+      {
+        "date": "2026-08-28",
+        "graded": 4,
+        "sweep_pct": 75.0,
+        "cash_pct": 75.0,
+        "sweep": 3,
+        "cash": 3
+      },
+      {
+        "date": "2026-08-30",
+        "graded": 8,
+        "sweep_pct": 37.5,
+        "cash_pct": 50.0,
+        "sweep": 3,
+        "cash": 4
+      },
+      {
+        "date": "2026-08-31",
+        "graded": 3,
+        "sweep_pct": 66.7,
+        "cash_pct": 66.7,
+        "sweep": 2,
+        "cash": 2
+      }
+    ],
+    "all": {
+      "graded": 40,
+      "sweep": 21,
+      "cash": 26,
+      "sweep_pct": 52.5,
+      "cash_pct": 65.0
+    }
+  },
+  "benchmarks": {
+    "ticket_leg_count_2026-05-05_06-09": {
+      "main_2_4": {
+        "n": 1824,
+        "sweep_pct": 16.1
+      },
+      "long_5_6": {
+        "n": 4178,
+        "sweep_pct": 5.5
+      },
+      "all": {
+        "n": 6002,
+        "sweep_pct": 8.7
+      }
+    },
+    "diamond_2x_2026-03-10_08-22": {
+      "P3": {
+        "n": 276,
+        "sweep_pct": 42.0,
+        "cash_pct": 42.0
+      },
+      "F4": {
+        "n": 280,
+        "sweep_pct": 26.8,
+        "cash_pct": 70.7
+      },
+      "F5": {
+        "n": 139,
+        "sweep_pct": 17.3,
+        "cash_pct": 59.0
+      }
+    },
+    "goblin70_prop_gate": {
+      "old_l5ge4_cover": {
+        "n": 17879,
+        "hr": 68.3
+      },
+      "l5eq5_l10ge8_cover": {
+        "n": 2941,
+        "hr": 74.1
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "slate": "2026-10-22",
+  "gate": "card_l5eq5_then_pre_flag",
+  "n_clears": 76,
+  "spot_check_n": 10,
+  "spot_check_match": 10,
+  "spot_check_rate": 100.0,
+  "n_stale": 0,
+  "pre_flags": {
+    "pre_confirms": 27,
+    "pre_thin": 1,
+    "pre_conflicts": 48
+  },
+  "paths": {
+    "report": "H:\\PropORACLE\\data\\reports\\nba_card_window_l5_2026-10-22.txt",
+    "synced": "H:\\PropORACLE\\outputs\\2026-10-22\\nba_card_window_l5_2026-10-22.txt"
+  }
+}

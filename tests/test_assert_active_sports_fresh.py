@@ -157,3 +157,67 @@ def test_assert_ok_all_fresh(tmp_path: Path):
     report = assert_active_sports_fresh(tmp_path, today=today, templates_dir=templates)
     assert report["ok"] is True
     assert not report["bad"]
+
+
+def test_wnba_sports_leftover_does_not_expect(tmp_path: Path):
+    today = "2026-10-23"
+    status = {
+        "mlb": "complete",
+        "soccer": "complete",
+        "tennis": "complete",
+        "wnba": "no_slate",
+        "nba": "complete",
+        "nba1h": "failed",
+        "nba1q": "failed",
+        "nhl": "complete",
+    }
+    _write_csv(
+        tmp_path / "Sports" / "WNBA" / "step1_wnba_props.csv",
+        [{"player_name": "Leftover", "line": "1.5"}],
+    )
+    expected, skipped, failed = resolve_expected(today, status, tmp_path)
+    assert "wnba" not in expected
+    assert any(s == "wnba" and "no_slate" in r for s, r in skipped)
+    assert "nba1q" not in expected
+    assert "nba1h" not in expected
+    assert "nba" in expected
+    assert not failed
+
+
+def test_period_board_expected_only_when_dated_step1(tmp_path: Path):
+    today = "2026-10-23"
+    status = {
+        "mlb": "complete",
+        "soccer": "complete",
+        "tennis": "complete",
+        "wnba": "no_slate",
+        "nba": "complete",
+        "nba1h": "complete",
+        "nba1q": "complete",
+        "nhl": "complete",
+    }
+    _write_csv(
+        tmp_path / "outputs" / today / "nba1h" / "step1_nba1h_props.csv",
+        [{"player": "X", "line": "1.5"}],
+    )
+    expected, skipped, _ = resolve_expected(today, status, tmp_path)
+    assert "nba1h" in expected
+    assert "nba1q" not in expected
+    assert any(s == "nba1q" for s, _ in skipped)
+
+
+def test_cfb_expected_when_complete_after_resume(tmp_path: Path):
+    today = "2026-09-04"
+    status = {
+        "mlb": "complete",
+        "soccer": "complete",
+        "tennis": "complete",
+        "wnba": "no_slate",
+        "nba": "off_season",
+        "nhl": "no_slate",
+        "cfb": "complete",
+    }
+    expected, skipped, failed = resolve_expected(today, status, tmp_path)
+    assert "cfb" in expected
+    assert not failed
+    assert any(s == "wnba" and "no_slate" in r for s, r in skipped)

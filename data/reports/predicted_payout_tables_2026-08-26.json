@@ -1,0 +1,4328 @@
+{
+  "generated_at": "2026-08-26T00:42:42.506017+00:00",
+  "scope": "N-correct only (ignore 1st place). Standard + Goblin. Demons excluded.",
+  "gates": {
+    "min_scrapes_observed": 3,
+    "min_scrapes_family_to_predict": 5,
+    "min_scrapes_global_dpu_fit": 8,
+    "typical_goblin_delta": 1.833
+  },
+  "standard": {
+    "power": {
+      "2": 3.0,
+      "3": 6.0,
+      "4": 10.0,
+      "5": 20.0,
+      "6": 40.0
+    },
+    "flex": {
+      "2": {
+        "2": 3.0
+      },
+      "3": {
+        "3": 2.25,
+        "2": 1.25
+      },
+      "4": {
+        "4": 5.0,
+        "3": 1.5,
+        "2": 0.4
+      },
+      "5": {
+        "5": 10.0,
+        "4": 2.0,
+        "3": 0.4
+      },
+      "6": {
+        "6": 25.0,
+        "5": 2.0,
+        "4": 0.4
+      }
+    }
+  },
+  "fit": {
+    "ready": true,
+    "n": 194,
+    "dpu": 0.0986,
+    "need": 0,
+    "delta_steps": {
+      "model": "per_goblin_delta_additive_cut",
+      "n_slips": 194,
+      "min_slips_per_bin": 3,
+      "cuts": {
+        "0.5": 0.2174,
+        "1": 0.1617,
+        "1.5": 0.1604,
+        "2": 0.1788,
+        "2.5": 0.1433,
+        "3": 0.215,
+        "4": 0.1902,
+        "5": 0.1887,
+        "6": 0.1904
+      },
+      "bin_slips": {
+        "0.5": 7,
+        "1": 212,
+        "1.5": 126,
+        "2": 61,
+        "2.5": 23,
+        "3": 34,
+        "3.5": 1,
+        "4": 19,
+        "4.5": 1,
+        "5": 24,
+        "6": 21
+      },
+      "note": "Ticket scale = 1 - sum(cut[delta_bin] for each Goblin). Not mean-delta * n_g."
+    }
+  },
+  "scrape_counts": {
+    "n_live_ok": 302,
+    "n_mix": 284,
+    "by_n_legs_mix": {
+      "2": 91,
+      "3": 68,
+      "4": 41,
+      "5": 46,
+      "6": 38
+    }
+  },
+  "summary": {
+    "n_power_cells": 25,
+    "n_observed": 20,
+    "n_predicted": 0,
+    "n_need_scrapes": 0,
+    "n_canonical": 5,
+    "n_mix_by_delta": 160,
+    "n_mix_by_delta_unknown": 20,
+    "n_mix_catalog": 27138,
+    "n_mix_catalog_observed": 135,
+    "n_mix_catalog_predicted": 26978
+  },
+  "power_grid": [
+    {
+      "n_legs": 2,
+      "n_s": 2,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "2S+0G",
+      "power_x": 3.0,
+      "status": "canonical",
+      "n_scrapes": 3,
+      "scale": 1.0
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "power_x": 2.3,
+      "status": "observed",
+      "n_scrapes": 18,
+      "scale": 0.7667,
+      "range": [
+        1.9,
+        3.0
+      ]
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "power_x": 2.0,
+      "status": "observed",
+      "n_scrapes": 73,
+      "scale": 0.6667,
+      "range": [
+        1.2,
+        2.8
+      ]
+    },
+    {
+      "n_legs": 3,
+      "n_s": 3,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "3S+0G",
+      "power_x": 6.0,
+      "status": "canonical",
+      "n_scrapes": 5,
+      "scale": 1.0
+    },
+    {
+      "n_legs": 3,
+      "n_s": 2,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "2S+1G",
+      "power_x": 4.0,
+      "status": "observed",
+      "n_scrapes": 12,
+      "scale": 0.6667,
+      "range": [
+        2.0,
+        5.25
+      ]
+    },
+    {
+      "n_legs": 3,
+      "n_s": 1,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "1S+2G",
+      "power_x": 3.75,
+      "status": "observed",
+      "n_scrapes": 12,
+      "scale": 0.625,
+      "range": [
+        2.5,
+        4.5
+      ]
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "power_x": 2.9,
+      "status": "observed",
+      "n_scrapes": 44,
+      "scale": 0.4833,
+      "range": [
+        1.3,
+        6.0
+      ]
+    },
+    {
+      "n_legs": 4,
+      "n_s": 4,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "4S+0G",
+      "power_x": 10.0,
+      "status": "canonical",
+      "n_scrapes": 5,
+      "scale": 1.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 3,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "3S+1G",
+      "power_x": 5.25,
+      "status": "observed",
+      "n_scrapes": 5,
+      "scale": 0.525,
+      "range": [
+        4.0,
+        9.5
+      ]
+    },
+    {
+      "n_legs": 4,
+      "n_s": 2,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "2S+2G",
+      "power_x": 6.5,
+      "status": "observed",
+      "n_scrapes": 7,
+      "scale": 0.65,
+      "range": [
+        3.75,
+        9.5
+      ]
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "power_x": 5.125,
+      "status": "observed",
+      "n_scrapes": 16,
+      "scale": 0.5125,
+      "range": [
+        3.75,
+        8.25
+      ]
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "power_x": 4.5,
+      "status": "observed",
+      "n_scrapes": 13,
+      "scale": 0.45,
+      "range": [
+        3.25,
+        8.75
+      ]
+    },
+    {
+      "n_legs": 5,
+      "n_s": 5,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "5S+0G",
+      "power_x": 20.0,
+      "status": "canonical",
+      "n_scrapes": 3,
+      "scale": 1.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 4,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "4S+1G",
+      "power_x": 7.125,
+      "status": "observed",
+      "n_scrapes": 4,
+      "scale": 0.3563,
+      "range": [
+        3.75,
+        13.0
+      ]
+    },
+    {
+      "n_legs": 5,
+      "n_s": 3,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "3S+2G",
+      "power_x": 8.0,
+      "status": "observed",
+      "n_scrapes": 8,
+      "scale": 0.4,
+      "range": [
+        7.0,
+        14.0
+      ]
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "power_x": 7.875,
+      "status": "observed",
+      "n_scrapes": 12,
+      "scale": 0.3937,
+      "range": [
+        6.75,
+        10.0
+      ]
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "power_x": 7.75,
+      "status": "observed",
+      "n_scrapes": 13,
+      "scale": 0.3875,
+      "range": [
+        5.0,
+        12.5
+      ]
+    },
+    {
+      "n_legs": 5,
+      "n_s": 0,
+      "n_g": 5,
+      "family": "all_goblin",
+      "composition": "0S+5G",
+      "power_x": 6.5,
+      "status": "observed",
+      "n_scrapes": 9,
+      "scale": 0.325,
+      "range": [
+        4.75,
+        9.75
+      ]
+    },
+    {
+      "n_legs": 6,
+      "n_s": 6,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "6S+0G",
+      "power_x": 40.0,
+      "status": "canonical",
+      "n_scrapes": 2,
+      "scale": 1.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 5,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "5S+1G",
+      "power_x": 7.75,
+      "status": "observed",
+      "n_scrapes": 3,
+      "scale": 0.1938,
+      "range": [
+        7.75,
+        16.0
+      ]
+    },
+    {
+      "n_legs": 6,
+      "n_s": 4,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "4S+2G",
+      "power_x": 14.375,
+      "status": "observed",
+      "n_scrapes": 4,
+      "scale": 0.3594,
+      "range": [
+        6.0,
+        25.5
+      ]
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "power_x": 13.25,
+      "status": "observed",
+      "n_scrapes": 12,
+      "scale": 0.3312,
+      "range": [
+        4.5,
+        21.5
+      ]
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "power_x": 13.25,
+      "status": "observed",
+      "n_scrapes": 8,
+      "scale": 0.3312,
+      "range": [
+        6.5,
+        16.0
+      ]
+    },
+    {
+      "n_legs": 6,
+      "n_s": 1,
+      "n_g": 5,
+      "family": "mix",
+      "composition": "1S+5G",
+      "power_x": 8.75,
+      "status": "observed",
+      "n_scrapes": 5,
+      "scale": 0.2188,
+      "range": [
+        4.5,
+        13.0
+      ]
+    },
+    {
+      "n_legs": 6,
+      "n_s": 0,
+      "n_g": 6,
+      "family": "all_goblin",
+      "composition": "0S+6G",
+      "power_x": 9.5,
+      "status": "observed",
+      "n_scrapes": 6,
+      "scale": 0.2375,
+      "range": [
+        4.0,
+        15.0
+      ]
+    }
+  ],
+  "flex_grid": [
+    {
+      "n_legs": 2,
+      "n_s": 2,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "2S+0G",
+      "status": "canonical",
+      "n_scrapes": 0,
+      "ladder": {
+        "2": 3.0
+      },
+      "all_correct_x": 3.0
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "status": "scaled_from_power",
+      "n_scrapes": 1,
+      "ladder": {
+        "2": 2.3
+      },
+      "all_correct_x": 2.3
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "status": "scaled_from_power",
+      "n_scrapes": 0,
+      "ladder": {
+        "2": 2.0001
+      },
+      "all_correct_x": 2.0001
+    },
+    {
+      "n_legs": 3,
+      "n_s": 3,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "3S+0G",
+      "status": "canonical",
+      "n_scrapes": 0,
+      "ladder": {
+        "3": 2.25,
+        "2": 1.25
+      },
+      "all_correct_x": 2.25
+    },
+    {
+      "n_legs": 3,
+      "n_s": 2,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "2S+1G",
+      "status": "scaled_from_power",
+      "n_scrapes": 0,
+      "ladder": {
+        "3": 1.5001,
+        "2": 0.8334
+      },
+      "all_correct_x": 1.5001
+    },
+    {
+      "n_legs": 3,
+      "n_s": 1,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "1S+2G",
+      "status": "scaled_from_power",
+      "n_scrapes": 0,
+      "ladder": {
+        "3": 1.4062,
+        "2": 0.7812
+      },
+      "all_correct_x": 1.4062
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "status": "observed",
+      "n_scrapes": 8,
+      "ladder": {
+        "3": 2.125,
+        "2": 0.5
+      },
+      "all_correct_x": 2.125
+    },
+    {
+      "n_legs": 4,
+      "n_s": 4,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "4S+0G",
+      "status": "canonical",
+      "n_scrapes": 0,
+      "ladder": {
+        "4": 5.0,
+        "3": 1.5,
+        "2": 0.4
+      },
+      "all_correct_x": 5.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 3,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "3S+1G",
+      "status": "scaled_from_power",
+      "n_scrapes": 0,
+      "ladder": {
+        "4": 2.625,
+        "3": 0.7875,
+        "2": 0.21
+      },
+      "all_correct_x": 2.625
+    },
+    {
+      "n_legs": 4,
+      "n_s": 2,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "2S+2G",
+      "status": "scaled_from_power",
+      "n_scrapes": 2,
+      "ladder": {
+        "4": 3.75,
+        "3": 1.125,
+        "2": 0.26
+      },
+      "all_correct_x": 3.75
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "status": "observed",
+      "n_scrapes": 10,
+      "ladder": {
+        "4": 3.0,
+        "3": 0.75
+      },
+      "all_correct_x": 3.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "status": "observed",
+      "n_scrapes": 8,
+      "ladder": {
+        "4": 3.0,
+        "3": 0.75
+      },
+      "all_correct_x": 3.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 5,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "5S+0G",
+      "status": "canonical",
+      "n_scrapes": 0,
+      "ladder": {
+        "5": 10.0,
+        "4": 2.0,
+        "3": 0.4
+      },
+      "all_correct_x": 10.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 4,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "4S+1G",
+      "status": "scaled_from_power",
+      "n_scrapes": 1,
+      "ladder": {
+        "5": 2.5,
+        "4": 1.0,
+        "3": 0.4
+      },
+      "all_correct_x": 2.5
+    },
+    {
+      "n_legs": 5,
+      "n_s": 3,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "3S+2G",
+      "status": "observed",
+      "n_scrapes": 6,
+      "ladder": {
+        "5": 6.0,
+        "4": 0.75,
+        "3": 0.325
+      },
+      "all_correct_x": 6.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "status": "observed",
+      "n_scrapes": 9,
+      "ladder": {
+        "5": 4.0,
+        "4": 1.0,
+        "3": 0.4
+      },
+      "all_correct_x": 4.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "status": "observed",
+      "n_scrapes": 8,
+      "ladder": {
+        "5": 5.0,
+        "4": 0.75,
+        "3": 0.325
+      },
+      "all_correct_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 0,
+      "n_g": 5,
+      "family": "all_goblin",
+      "composition": "0S+5G",
+      "status": "observed",
+      "n_scrapes": 4,
+      "ladder": {
+        "5": 4.5,
+        "4": 0.75,
+        "3": 0.325
+      },
+      "all_correct_x": 4.5
+    },
+    {
+      "n_legs": 6,
+      "n_s": 6,
+      "n_g": 0,
+      "family": "all_standard",
+      "composition": "6S+0G",
+      "status": "canonical",
+      "n_scrapes": 0,
+      "ladder": {
+        "6": 25.0,
+        "5": 2.0,
+        "4": 0.4
+      },
+      "all_correct_x": 25.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 5,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "5S+1G",
+      "status": "scaled_from_power",
+      "n_scrapes": 0,
+      "ladder": {
+        "6": 4.845,
+        "5": 0.3876,
+        "4": 0.0775
+      },
+      "all_correct_x": 4.845
+    },
+    {
+      "n_legs": 6,
+      "n_s": 4,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "4S+2G",
+      "status": "scaled_from_power",
+      "n_scrapes": 0,
+      "ladder": {
+        "6": 8.985,
+        "5": 0.7188,
+        "4": 0.1438
+      },
+      "all_correct_x": 8.985
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "status": "observed",
+      "n_scrapes": 7,
+      "ladder": {
+        "6": 7.0,
+        "5": 1.5,
+        "4": 0.4
+      },
+      "all_correct_x": 7.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "status": "observed",
+      "n_scrapes": 5,
+      "ladder": {
+        "6": 7.0,
+        "5": 1.5,
+        "4": 0.4
+      },
+      "all_correct_x": 7.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 1,
+      "n_g": 5,
+      "family": "mix",
+      "composition": "1S+5G",
+      "status": "scaled_from_power",
+      "n_scrapes": 1,
+      "ladder": {
+        "6": 5.0,
+        "5": 0.5,
+        "4": 0.25
+      },
+      "all_correct_x": 5.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 0,
+      "n_g": 6,
+      "family": "all_goblin",
+      "composition": "0S+6G",
+      "status": "observed",
+      "n_scrapes": 3,
+      "ladder": {
+        "6": 5.0,
+        "5": 0.5,
+        "4": 0.25
+      },
+      "all_correct_x": 5.0
+    }
+  ],
+  "mix_by_delta": [
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "0.5",
+      "n_scrapes": 1,
+      "power_x": 2.8,
+      "range": [
+        2.8,
+        2.8
+      ],
+      "predicted_power_x": 2.3478,
+      "predicted_scale": 0.7826,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "1",
+      "n_scrapes": 3,
+      "power_x": 2.6,
+      "range": [
+        2.3,
+        2.9
+      ],
+      "predicted_power_x": 2.5149,
+      "predicted_scale": 0.8383,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "1.5",
+      "n_scrapes": 1,
+      "power_x": 2.1,
+      "range": [
+        2.1,
+        2.1
+      ],
+      "predicted_power_x": 2.5188,
+      "predicted_scale": 0.8396,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "2",
+      "n_scrapes": 1,
+      "power_x": 2.3,
+      "range": [
+        2.3,
+        2.3
+      ],
+      "predicted_power_x": 2.4636,
+      "predicted_scale": 0.8212,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "2.5",
+      "n_scrapes": 1,
+      "power_x": 3.0,
+      "range": [
+        3.0,
+        3.0
+      ],
+      "predicted_power_x": 2.5701,
+      "predicted_scale": 0.8567,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "3",
+      "n_scrapes": 2,
+      "power_x": 2.3,
+      "range": [
+        2.3,
+        2.3
+      ],
+      "predicted_power_x": 2.355,
+      "predicted_scale": 0.785,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "2": 2.3
+      },
+      "flex_all_x": 2.3
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "3.5",
+      "n_scrapes": 1,
+      "power_x": 2.0,
+      "range": [
+        2.0,
+        2.0
+      ],
+      "predicted_power_x": 1.9647,
+      "predicted_scale": 0.6549,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "4",
+      "n_scrapes": 1,
+      "power_x": 2.0,
+      "range": [
+        2.0,
+        2.0
+      ],
+      "predicted_power_x": 2.4294,
+      "predicted_scale": 0.8098,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "4.5",
+      "n_scrapes": 1,
+      "power_x": 2.0,
+      "range": [
+        2.0,
+        2.0
+      ],
+      "predicted_power_x": 1.6689,
+      "predicted_scale": 0.5563,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "5",
+      "n_scrapes": 1,
+      "power_x": 1.9,
+      "range": [
+        1.9,
+        1.9
+      ],
+      "predicted_power_x": 2.4339,
+      "predicted_scale": 0.8113,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "6",
+      "n_scrapes": 2,
+      "power_x": 1.9,
+      "range": [
+        1.9,
+        1.9
+      ],
+      "predicted_power_x": 2.4288,
+      "predicted_scale": 0.8096,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 1,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "1S+1G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 3,
+      "power_x": 2.3,
+      "range": [
+        2.3,
+        2.4
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "0.5+1",
+      "n_scrapes": 2,
+      "power_x": 2.5,
+      "range": [
+        2.5,
+        2.5
+      ],
+      "predicted_power_x": 1.8627,
+      "predicted_scale": 0.6209,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1+1",
+      "n_scrapes": 4,
+      "power_x": 1.75,
+      "range": [
+        1.4,
+        2.4
+      ],
+      "predicted_power_x": 2.0298,
+      "predicted_scale": 0.6766,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1+1.5",
+      "n_scrapes": 3,
+      "power_x": 1.5,
+      "range": [
+        1.3,
+        2.6
+      ],
+      "predicted_power_x": 2.0337,
+      "predicted_scale": 0.6779,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1+2",
+      "n_scrapes": 2,
+      "power_x": 1.9,
+      "range": [
+        1.6,
+        2.2
+      ],
+      "predicted_power_x": 1.9785,
+      "predicted_scale": 0.6595,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1+2.5",
+      "n_scrapes": 1,
+      "power_x": 2.3,
+      "range": [
+        2.3,
+        2.3
+      ],
+      "predicted_power_x": 2.085,
+      "predicted_scale": 0.695,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1+3",
+      "n_scrapes": 1,
+      "power_x": 2.1,
+      "range": [
+        2.1,
+        2.1
+      ],
+      "predicted_power_x": 1.8699,
+      "predicted_scale": 0.6233,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1+4",
+      "n_scrapes": 1,
+      "power_x": 2.1,
+      "range": [
+        2.1,
+        2.1
+      ],
+      "predicted_power_x": 1.9443,
+      "predicted_scale": 0.6481,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1+5",
+      "n_scrapes": 1,
+      "power_x": 2.1,
+      "range": [
+        2.1,
+        2.1
+      ],
+      "predicted_power_x": 1.9488,
+      "predicted_scale": 0.6496,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1.5+1.5",
+      "n_scrapes": 3,
+      "power_x": 2.0,
+      "range": [
+        1.5,
+        2.5
+      ],
+      "predicted_power_x": 2.0376,
+      "predicted_scale": 0.6792,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1.5+2",
+      "n_scrapes": 2,
+      "power_x": 1.6,
+      "range": [
+        1.2,
+        2.0
+      ],
+      "predicted_power_x": 1.9824,
+      "predicted_scale": 0.6608,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1.5+2.5",
+      "n_scrapes": 1,
+      "power_x": 2.3,
+      "range": [
+        2.3,
+        2.3
+      ],
+      "predicted_power_x": 2.0889,
+      "predicted_scale": 0.6963,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1.5+3",
+      "n_scrapes": 2,
+      "power_x": 1.9,
+      "range": [
+        1.8,
+        2.0
+      ],
+      "predicted_power_x": 1.8738,
+      "predicted_scale": 0.6246,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1.5+4",
+      "n_scrapes": 2,
+      "power_x": 1.95,
+      "range": [
+        1.9,
+        2.0
+      ],
+      "predicted_power_x": 1.9482,
+      "predicted_scale": 0.6494,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "1.5+5",
+      "n_scrapes": 3,
+      "power_x": 2.0,
+      "range": [
+        1.9,
+        2.8
+      ],
+      "predicted_power_x": 1.9527,
+      "predicted_scale": 0.6509,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "2",
+      "n_scrapes": 14,
+      "power_x": 2.15,
+      "range": [
+        1.2,
+        2.8
+      ],
+      "predicted_power_x": 2.4636,
+      "predicted_scale": 0.8212,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "2+2",
+      "n_scrapes": 3,
+      "power_x": 1.3,
+      "range": [
+        1.2,
+        1.8
+      ],
+      "predicted_power_x": 1.9272,
+      "predicted_scale": 0.6424,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "2+2.5",
+      "n_scrapes": 1,
+      "power_x": 2.1,
+      "range": [
+        2.1,
+        2.1
+      ],
+      "predicted_power_x": 2.0337,
+      "predicted_scale": 0.6779,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "2+3",
+      "n_scrapes": 1,
+      "power_x": 1.2,
+      "range": [
+        1.2,
+        1.2
+      ],
+      "predicted_power_x": 1.8186,
+      "predicted_scale": 0.6062,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "2+5",
+      "n_scrapes": 1,
+      "power_x": 1.6,
+      "range": [
+        1.6,
+        1.6
+      ],
+      "predicted_power_x": 1.8975,
+      "predicted_scale": 0.6325,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "2.5",
+      "n_scrapes": 2,
+      "power_x": 2.8,
+      "range": [
+        2.8,
+        2.8
+      ],
+      "predicted_power_x": 2.5701,
+      "predicted_scale": 0.8567,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "3+3",
+      "n_scrapes": 1,
+      "power_x": 1.6,
+      "range": [
+        1.6,
+        1.6
+      ],
+      "predicted_power_x": 1.71,
+      "predicted_scale": 0.57,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "3+4",
+      "n_scrapes": 1,
+      "power_x": 1.6,
+      "range": [
+        1.6,
+        1.6
+      ],
+      "predicted_power_x": 1.7844,
+      "predicted_scale": 0.5948,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "3+5",
+      "n_scrapes": 1,
+      "power_x": 2.2,
+      "range": [
+        2.2,
+        2.2
+      ],
+      "predicted_power_x": 1.7889,
+      "predicted_scale": 0.5963,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "4",
+      "n_scrapes": 1,
+      "power_x": 2.8,
+      "range": [
+        2.8,
+        2.8
+      ],
+      "predicted_power_x": 2.4294,
+      "predicted_scale": 0.8098,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "4+4",
+      "n_scrapes": 1,
+      "power_x": 2.2,
+      "range": [
+        2.2,
+        2.2
+      ],
+      "predicted_power_x": 1.8588,
+      "predicted_scale": 0.6196,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "4+5",
+      "n_scrapes": 1,
+      "power_x": 2.2,
+      "range": [
+        2.2,
+        2.2
+      ],
+      "predicted_power_x": 1.8633,
+      "predicted_scale": 0.6211,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "5+5",
+      "n_scrapes": 1,
+      "power_x": 2.2,
+      "range": [
+        2.2,
+        2.2
+      ],
+      "predicted_power_x": 1.8678,
+      "predicted_scale": 0.6226,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "5+6",
+      "n_scrapes": 1,
+      "power_x": 1.7,
+      "range": [
+        1.7,
+        1.7
+      ],
+      "predicted_power_x": 1.8627,
+      "predicted_scale": 0.6209,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 2,
+      "n_s": 0,
+      "n_g": 2,
+      "family": "all_goblin",
+      "composition": "0S+2G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 15,
+      "power_x": 1.7,
+      "range": [
+        1.2,
+        2.6
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 2,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "2S+1G",
+      "goblin_delta_sig": "1",
+      "n_scrapes": 4,
+      "power_x": 4.0,
+      "range": [
+        2.3,
+        5.25
+      ],
+      "predicted_power_x": 5.0298,
+      "predicted_scale": 0.8383,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 2,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "2S+1G",
+      "goblin_delta_sig": "1.5",
+      "n_scrapes": 1,
+      "power_x": 2.8,
+      "range": [
+        2.8,
+        2.8
+      ],
+      "predicted_power_x": 5.0376,
+      "predicted_scale": 0.8396,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 2,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "2S+1G",
+      "goblin_delta_sig": "2",
+      "n_scrapes": 1,
+      "power_x": 2.3,
+      "range": [
+        2.3,
+        2.3
+      ],
+      "predicted_power_x": 4.9272,
+      "predicted_scale": 0.8212,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 2,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "2S+1G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 6,
+      "power_x": 4.625,
+      "range": [
+        2.0,
+        5.0
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 1,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "1S+2G",
+      "goblin_delta_sig": "1+1",
+      "n_scrapes": 3,
+      "power_x": 3.25,
+      "range": [
+        2.5,
+        4.25
+      ],
+      "predicted_power_x": 4.0596,
+      "predicted_scale": 0.6766,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 1,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "1S+2G",
+      "goblin_delta_sig": "1+1.5",
+      "n_scrapes": 1,
+      "power_x": 4.5,
+      "range": [
+        4.5,
+        4.5
+      ],
+      "predicted_power_x": 4.0674,
+      "predicted_scale": 0.6779,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 1,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "1S+2G",
+      "goblin_delta_sig": "1+2",
+      "n_scrapes": 1,
+      "power_x": 3.75,
+      "range": [
+        3.75,
+        3.75
+      ],
+      "predicted_power_x": 3.957,
+      "predicted_scale": 0.6595,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 1,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "1S+2G",
+      "goblin_delta_sig": "1.5+1.5",
+      "n_scrapes": 1,
+      "power_x": 4.25,
+      "range": [
+        4.25,
+        4.25
+      ],
+      "predicted_power_x": 4.0752,
+      "predicted_scale": 0.6792,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 1,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "1S+2G",
+      "goblin_delta_sig": "1.5+2",
+      "n_scrapes": 1,
+      "power_x": 3.75,
+      "range": [
+        3.75,
+        3.75
+      ],
+      "predicted_power_x": 3.9648,
+      "predicted_scale": 0.6608,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 1,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "1S+2G",
+      "goblin_delta_sig": "2+2",
+      "n_scrapes": 1,
+      "power_x": 3.25,
+      "range": [
+        3.25,
+        3.25
+      ],
+      "predicted_power_x": 3.8544,
+      "predicted_scale": 0.6424,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 1,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "1S+2G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 4,
+      "power_x": 3.5,
+      "range": [
+        2.8,
+        4.5
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1+1+1",
+      "n_scrapes": 4,
+      "power_x": 3.125,
+      "range": [
+        2.5,
+        4.5
+      ],
+      "predicted_power_x": 3.0894,
+      "predicted_scale": 0.5149,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "3": 2.75,
+        "2": 0.625
+      },
+      "flex_all_x": 2.75
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1+1+1.5",
+      "n_scrapes": 2,
+      "power_x": 3.375,
+      "range": [
+        3.25,
+        3.5
+      ],
+      "predicted_power_x": 3.0972,
+      "predicted_scale": 0.5162,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1+1+2",
+      "n_scrapes": 4,
+      "power_x": 2.6,
+      "range": [
+        2.0,
+        3.5
+      ],
+      "predicted_power_x": 2.9868,
+      "predicted_scale": 0.4978,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1+1+3",
+      "n_scrapes": 1,
+      "power_x": 2.9,
+      "range": [
+        2.9,
+        2.9
+      ],
+      "predicted_power_x": 2.7696,
+      "predicted_scale": 0.4616,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1+1+4",
+      "n_scrapes": 1,
+      "power_x": 2.4,
+      "range": [
+        2.4,
+        2.4
+      ],
+      "predicted_power_x": 2.9184,
+      "predicted_scale": 0.4864,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1+1.5+1.5",
+      "n_scrapes": 1,
+      "power_x": 3.5,
+      "range": [
+        3.5,
+        3.5
+      ],
+      "predicted_power_x": 3.105,
+      "predicted_scale": 0.5175,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1+1.5+4",
+      "n_scrapes": 2,
+      "power_x": 2.975,
+      "range": [
+        2.7,
+        3.25
+      ],
+      "predicted_power_x": 2.9262,
+      "predicted_scale": 0.4877,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1+2+2",
+      "n_scrapes": 1,
+      "power_x": 3.0,
+      "range": [
+        3.0,
+        3.0
+      ],
+      "predicted_power_x": 2.8842,
+      "predicted_scale": 0.4807,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1+2+4",
+      "n_scrapes": 1,
+      "power_x": 2.8,
+      "range": [
+        2.8,
+        2.8
+      ],
+      "predicted_power_x": 2.8158,
+      "predicted_scale": 0.4693,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1.5+1.5+1.5",
+      "n_scrapes": 2,
+      "power_x": 3.375,
+      "range": [
+        3.25,
+        3.5
+      ],
+      "predicted_power_x": 3.1128,
+      "predicted_scale": 0.5188,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1.5+1.5+2",
+      "n_scrapes": 1,
+      "power_x": 3.25,
+      "range": [
+        3.25,
+        3.25
+      ],
+      "predicted_power_x": 3.0024,
+      "predicted_scale": 0.5004,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1.5+2+2",
+      "n_scrapes": 1,
+      "power_x": 2.9,
+      "range": [
+        2.9,
+        2.9
+      ],
+      "predicted_power_x": 2.892,
+      "predicted_scale": 0.482,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1.5+2.5+3",
+      "n_scrapes": 1,
+      "power_x": 2.5,
+      "range": [
+        2.5,
+        2.5
+      ],
+      "predicted_power_x": 2.8878,
+      "predicted_scale": 0.4813,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "3": 2.0,
+        "2": 0.5
+      },
+      "flex_all_x": 2.0
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1.5+2.5+5",
+      "n_scrapes": 1,
+      "power_x": 2.7,
+      "range": [
+        2.7,
+        2.7
+      ],
+      "predicted_power_x": 3.0456,
+      "predicted_scale": 0.5076,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "3": 2.25,
+        "2": 0.5
+      },
+      "flex_all_x": 2.25
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1.5+2.5+6",
+      "n_scrapes": 2,
+      "power_x": 2.55,
+      "range": [
+        2.3,
+        2.8
+      ],
+      "predicted_power_x": 3.0354,
+      "predicted_scale": 0.5059,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "3": 2.075,
+        "2": 0.5
+      },
+      "flex_all_x": 2.075
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1.5+3+4",
+      "n_scrapes": 1,
+      "power_x": 2.3,
+      "range": [
+        2.3,
+        2.3
+      ],
+      "predicted_power_x": 2.6064,
+      "predicted_scale": 0.4344,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "3": 1.9,
+        "2": 0.5
+      },
+      "flex_all_x": 1.9
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1.5+3+5",
+      "n_scrapes": 1,
+      "power_x": 2.2,
+      "range": [
+        2.2,
+        2.2
+      ],
+      "predicted_power_x": 2.6154,
+      "predicted_scale": 0.4359,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "3": 1.8,
+        "2": 0.5
+      },
+      "flex_all_x": 1.8
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "1.5+4+5",
+      "n_scrapes": 1,
+      "power_x": 2.2,
+      "range": [
+        2.2,
+        2.2
+      ],
+      "predicted_power_x": 2.7642,
+      "predicted_scale": 0.4607,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "2",
+      "n_scrapes": 3,
+      "power_x": 1.7,
+      "range": [
+        1.3,
+        2.5
+      ],
+      "predicted_power_x": 4.9272,
+      "predicted_scale": 0.8212,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "2+2+2",
+      "n_scrapes": 1,
+      "power_x": 1.4,
+      "range": [
+        1.4,
+        1.4
+      ],
+      "predicted_power_x": 2.7816,
+      "predicted_scale": 0.4636,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "2+2+2.5",
+      "n_scrapes": 3,
+      "power_x": 3.0,
+      "range": [
+        2.9,
+        6.0
+      ],
+      "predicted_power_x": 2.9946,
+      "predicted_scale": 0.4991,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "2+3",
+      "n_scrapes": 1,
+      "power_x": 2.3,
+      "range": [
+        2.3,
+        2.3
+      ],
+      "predicted_power_x": 3.6372,
+      "predicted_scale": 0.6062,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "3+3+3",
+      "n_scrapes": 1,
+      "power_x": 2.9,
+      "range": [
+        2.9,
+        2.9
+      ],
+      "predicted_power_x": 2.13,
+      "predicted_scale": 0.355,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "3+4+4",
+      "n_scrapes": 1,
+      "power_x": 2.9,
+      "range": [
+        2.9,
+        2.9
+      ],
+      "predicted_power_x": 2.4276,
+      "predicted_scale": 0.4046,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "3+5+5",
+      "n_scrapes": 1,
+      "power_x": 2.9,
+      "range": [
+        2.9,
+        2.9
+      ],
+      "predicted_power_x": 2.4456,
+      "predicted_scale": 0.4076,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 3,
+      "n_s": 0,
+      "n_g": 3,
+      "family": "all_goblin",
+      "composition": "0S+3G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 5,
+      "power_x": 3.5,
+      "range": [
+        1.5,
+        4.0
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 4,
+      "n_s": 3,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "3S+1G",
+      "goblin_delta_sig": "1",
+      "n_scrapes": 2,
+      "power_x": 4.625,
+      "range": [
+        4.0,
+        5.25
+      ],
+      "predicted_power_x": 8.383,
+      "predicted_scale": 0.8383,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 4,
+      "n_s": 3,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "3S+1G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 3,
+      "power_x": 8.25,
+      "range": [
+        4.25,
+        9.5
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 4,
+      "n_s": 2,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "2S+2G",
+      "goblin_delta_sig": "1+1",
+      "n_scrapes": 1,
+      "power_x": 4.25,
+      "range": [
+        4.25,
+        4.25
+      ],
+      "predicted_power_x": 6.766,
+      "predicted_scale": 0.6766,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 4,
+      "n_s": 2,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "2S+2G",
+      "goblin_delta_sig": "1+1.5",
+      "n_scrapes": 1,
+      "power_x": 3.75,
+      "range": [
+        3.75,
+        3.75
+      ],
+      "predicted_power_x": 6.779,
+      "predicted_scale": 0.6779,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 2.5,
+        "3": 0.75
+      },
+      "flex_all_x": 2.5
+    },
+    {
+      "n_legs": 4,
+      "n_s": 2,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "2S+2G",
+      "goblin_delta_sig": "1+6",
+      "n_scrapes": 1,
+      "power_x": 9.5,
+      "range": [
+        9.5,
+        9.5
+      ],
+      "predicted_power_x": 6.479,
+      "predicted_scale": 0.6479,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 5.0,
+        "3": 1.5
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 2,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "2S+2G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 4,
+      "power_x": 7.0,
+      "range": [
+        4.25,
+        7.75
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "1+1+1",
+      "n_scrapes": 3,
+      "power_x": 5.5,
+      "range": [
+        4.5,
+        6.0
+      ],
+      "predicted_power_x": 5.149,
+      "predicted_scale": 0.5149,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 4.0,
+        "3": 0.75
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "1+1+6",
+      "n_scrapes": 1,
+      "power_x": 8.25,
+      "range": [
+        8.25,
+        8.25
+      ],
+      "predicted_power_x": 4.862,
+      "predicted_scale": 0.4862,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 6.0,
+        "3": 0.75
+      },
+      "flex_all_x": 6.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "1+1.5+2",
+      "n_scrapes": 1,
+      "power_x": 3.75,
+      "range": [
+        3.75,
+        3.75
+      ],
+      "predicted_power_x": 4.991,
+      "predicted_scale": 0.4991,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 3.0,
+        "3": 0.5
+      },
+      "flex_all_x": 3.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "1.5+1.5+2",
+      "n_scrapes": 1,
+      "power_x": 4.5,
+      "range": [
+        4.5,
+        4.5
+      ],
+      "predicted_power_x": 5.004,
+      "predicted_scale": 0.5004,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 3.0,
+        "3": 0.75
+      },
+      "flex_all_x": 3.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "1.5+2.5+5",
+      "n_scrapes": 1,
+      "power_x": 5.0,
+      "range": [
+        5.0,
+        5.0
+      ],
+      "predicted_power_x": 5.076,
+      "predicted_scale": 0.5076,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 4.0,
+        "3": 0.5
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "1.5+2.5+6",
+      "n_scrapes": 2,
+      "power_x": 4.75,
+      "range": [
+        4.25,
+        5.25
+      ],
+      "predicted_power_x": 5.059,
+      "predicted_scale": 0.5059,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "4": 3.5,
+        "3": 0.625
+      },
+      "flex_all_x": 3.5
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "1.5+3+4",
+      "n_scrapes": 1,
+      "power_x": 4.25,
+      "range": [
+        4.25,
+        4.25
+      ],
+      "predicted_power_x": 4.344,
+      "predicted_scale": 0.4344,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 3.0,
+        "3": 0.75
+      },
+      "flex_all_x": 3.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "1.5+3+5",
+      "n_scrapes": 1,
+      "power_x": 4.0,
+      "range": [
+        4.0,
+        4.0
+      ],
+      "predicted_power_x": 4.359,
+      "predicted_scale": 0.4359,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 3.0,
+        "3": 0.5
+      },
+      "flex_all_x": 3.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "1.5+3+6",
+      "n_scrapes": 1,
+      "power_x": 4.5,
+      "range": [
+        4.5,
+        4.5
+      ],
+      "predicted_power_x": 4.342,
+      "predicted_scale": 0.4342,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 3.0,
+        "3": 0.75
+      },
+      "flex_all_x": 3.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 1,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "1S+3G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 4,
+      "power_x": 5.625,
+      "range": [
+        5.5,
+        5.75
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "goblin_delta_sig": "1+1+1+1",
+      "n_scrapes": 2,
+      "power_x": 4.5,
+      "range": [
+        3.5,
+        5.5
+      ],
+      "predicted_power_x": 3.532,
+      "predicted_scale": 0.3532,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 4.0,
+        "3": 0.75
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "goblin_delta_sig": "1+1+1+6",
+      "n_scrapes": 1,
+      "power_x": 8.75,
+      "range": [
+        8.75,
+        8.75
+      ],
+      "predicted_power_x": 3.245,
+      "predicted_scale": 0.3245,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 5.0,
+        "3": 1.25
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "goblin_delta_sig": "1+1+1.5+1.5",
+      "n_scrapes": 1,
+      "power_x": 4.5,
+      "range": [
+        4.5,
+        4.5
+      ],
+      "predicted_power_x": 3.558,
+      "predicted_scale": 0.3558,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 3.0,
+        "3": 0.75
+      },
+      "flex_all_x": 3.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "goblin_delta_sig": "1+1+1.5+2",
+      "n_scrapes": 1,
+      "power_x": 3.75,
+      "range": [
+        3.75,
+        3.75
+      ],
+      "predicted_power_x": 3.374,
+      "predicted_scale": 0.3374,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 2.5,
+        "3": 0.75
+      },
+      "flex_all_x": 2.5
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+2.5",
+      "n_scrapes": 1,
+      "power_x": 4.75,
+      "range": [
+        4.75,
+        4.75
+      ],
+      "predicted_power_x": 3.755,
+      "predicted_scale": 0.3755,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 3.0,
+        "3": 0.75
+      },
+      "flex_all_x": 3.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+3",
+      "n_scrapes": 1,
+      "power_x": 4.25,
+      "range": [
+        4.25,
+        4.25
+      ],
+      "predicted_power_x": 3.038,
+      "predicted_scale": 0.3038,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 3.0,
+        "3": 0.5
+      },
+      "flex_all_x": 3.0
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+5",
+      "n_scrapes": 1,
+      "power_x": 3.25,
+      "range": [
+        3.25,
+        3.25
+      ],
+      "predicted_power_x": 3.301,
+      "predicted_scale": 0.3301,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 2.5,
+        "3": 0.5
+      },
+      "flex_all_x": 2.5
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+6",
+      "n_scrapes": 1,
+      "power_x": 3.75,
+      "range": [
+        3.75,
+        3.75
+      ],
+      "predicted_power_x": 3.284,
+      "predicted_scale": 0.3284,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "4": 2.5,
+        "3": 0.75
+      },
+      "flex_all_x": 2.5
+    },
+    {
+      "n_legs": 4,
+      "n_s": 0,
+      "n_g": 4,
+      "family": "all_goblin",
+      "composition": "0S+4G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 4,
+      "power_x": 4.625,
+      "range": [
+        4.25,
+        5.5
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 5,
+      "n_s": 4,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "4S+1G",
+      "goblin_delta_sig": "1",
+      "n_scrapes": 2,
+      "power_x": 7.125,
+      "range": [
+        4.5,
+        9.75
+      ],
+      "predicted_power_x": 16.766,
+      "predicted_scale": 0.8383,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 2.5,
+        "4": 1.0,
+        "3": 0.4
+      },
+      "flex_all_x": 2.5
+    },
+    {
+      "n_legs": 5,
+      "n_s": 4,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "4S+1G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 2,
+      "power_x": 8.375,
+      "range": [
+        3.75,
+        13.0
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 5,
+      "n_s": 3,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "3S+2G",
+      "goblin_delta_sig": "0.5+1",
+      "n_scrapes": 2,
+      "power_x": 7.75,
+      "range": [
+        7.75,
+        7.75
+      ],
+      "predicted_power_x": 12.418,
+      "predicted_scale": 0.6209,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "5": 6.0,
+        "4": 0.5,
+        "3": 0.25
+      },
+      "flex_all_x": 6.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 3,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "3S+2G",
+      "goblin_delta_sig": "0.5+2",
+      "n_scrapes": 1,
+      "power_x": 9.75,
+      "range": [
+        9.75,
+        9.75
+      ],
+      "predicted_power_x": 12.076,
+      "predicted_scale": 0.6038,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 5.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 3,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "3S+2G",
+      "goblin_delta_sig": "0.5+3",
+      "n_scrapes": 1,
+      "power_x": 11.5,
+      "range": [
+        11.5,
+        11.5
+      ],
+      "predicted_power_x": 11.352,
+      "predicted_scale": 0.5676,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 6.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_x": 6.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 3,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "3S+2G",
+      "goblin_delta_sig": "1+1",
+      "n_scrapes": 2,
+      "power_x": 7.25,
+      "range": [
+        7.0,
+        7.5
+      ],
+      "predicted_power_x": 13.532,
+      "predicted_scale": 0.6766,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "5": 5.0,
+        "4": 0.75,
+        "3": 0.325
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 3,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "3S+2G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 2,
+      "power_x": 11.125,
+      "range": [
+        8.25,
+        14.0
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "goblin_delta_sig": "1+1+1",
+      "n_scrapes": 2,
+      "power_x": 8.75,
+      "range": [
+        7.75,
+        9.75
+      ],
+      "predicted_power_x": 10.298,
+      "predicted_scale": 0.5149,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 5.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "goblin_delta_sig": "1+1.5+2",
+      "n_scrapes": 1,
+      "power_x": 6.75,
+      "range": [
+        6.75,
+        6.75
+      ],
+      "predicted_power_x": 9.982,
+      "predicted_scale": 0.4991,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 5.0,
+        "4": 0.5,
+        "3": 0.25
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "goblin_delta_sig": "1.5+1.5+2",
+      "n_scrapes": 1,
+      "power_x": 8.25,
+      "range": [
+        8.25,
+        8.25
+      ],
+      "predicted_power_x": 10.008,
+      "predicted_scale": 0.5004,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 4.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "goblin_delta_sig": "1.5+2.5+3",
+      "n_scrapes": 1,
+      "power_x": 8.5,
+      "range": [
+        8.5,
+        8.5
+      ],
+      "predicted_power_x": 9.626,
+      "predicted_scale": 0.4813,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 5.0,
+        "4": 1.0,
+        "3": 0.4
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "goblin_delta_sig": "1.5+2.5+6",
+      "n_scrapes": 2,
+      "power_x": 8.375,
+      "range": [
+        7.25,
+        9.5
+      ],
+      "predicted_power_x": 10.118,
+      "predicted_scale": 0.5059,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "5": 4.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "goblin_delta_sig": "1.5+3+4",
+      "n_scrapes": 1,
+      "power_x": 8.0,
+      "range": [
+        8.0,
+        8.0
+      ],
+      "predicted_power_x": 8.688,
+      "predicted_scale": 0.4344,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 4.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "goblin_delta_sig": "1.5+3+5",
+      "n_scrapes": 1,
+      "power_x": 7.0,
+      "range": [
+        7.0,
+        7.0
+      ],
+      "predicted_power_x": 8.718,
+      "predicted_scale": 0.4359,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 4.0,
+        "4": 1.0,
+        "3": 0.4
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "goblin_delta_sig": "1.5+3+6",
+      "n_scrapes": 1,
+      "power_x": 7.0,
+      "range": [
+        7.0,
+        7.0
+      ],
+      "predicted_power_x": 8.684,
+      "predicted_scale": 0.4342,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 5.0,
+        "4": 0.5,
+        "3": 0.25
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 2,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "2S+3G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 2,
+      "power_x": 8.375,
+      "range": [
+        6.75,
+        10.0
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "goblin_delta_sig": "1+1+1+1",
+      "n_scrapes": 3,
+      "power_x": 9.75,
+      "range": [
+        6.25,
+        12.5
+      ],
+      "predicted_power_x": 7.064,
+      "predicted_scale": 0.3532,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 5.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "goblin_delta_sig": "1+1+1+1.5",
+      "n_scrapes": 1,
+      "power_x": 5.0,
+      "range": [
+        5.0,
+        5.0
+      ],
+      "predicted_power_x": 7.09,
+      "predicted_scale": 0.3545,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "goblin_delta_sig": "1+1+1.5+1.5",
+      "n_scrapes": 1,
+      "power_x": 8.25,
+      "range": [
+        8.25,
+        8.25
+      ],
+      "predicted_power_x": 7.116,
+      "predicted_scale": 0.3558,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 4.0,
+        "4": 1.25,
+        "3": 0.4
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "goblin_delta_sig": "1+1+1.5+2",
+      "n_scrapes": 1,
+      "power_x": 5.25,
+      "range": [
+        5.25,
+        5.25
+      ],
+      "predicted_power_x": 6.748,
+      "predicted_scale": 0.3374,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 4.0,
+        "4": 0.5,
+        "3": 0.25
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+2.5",
+      "n_scrapes": 1,
+      "power_x": 8.5,
+      "range": [
+        8.5,
+        8.5
+      ],
+      "predicted_power_x": 7.51,
+      "predicted_scale": 0.3755,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 5.0,
+        "4": 1.0,
+        "3": 0.4
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+3",
+      "n_scrapes": 2,
+      "power_x": 7.75,
+      "range": [
+        7.5,
+        8.0
+      ],
+      "predicted_power_x": 6.076,
+      "predicted_scale": 0.3038,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "5": 6.0,
+        "4": 0.5,
+        "3": 0.25
+      },
+      "flex_all_x": 6.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+5",
+      "n_scrapes": 1,
+      "power_x": 6.25,
+      "range": [
+        6.25,
+        6.25
+      ],
+      "predicted_power_x": 6.602,
+      "predicted_scale": 0.3301,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 3.0,
+        "4": 1.0,
+        "3": 0.4
+      },
+      "flex_all_x": 3.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+6",
+      "n_scrapes": 1,
+      "power_x": 6.25,
+      "range": [
+        6.25,
+        6.25
+      ],
+      "predicted_power_x": 6.568,
+      "predicted_scale": 0.3284,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 5.0,
+        "4": 0.5,
+        "3": 0.25
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 1,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "1S+4G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 2,
+      "power_x": 8.375,
+      "range": [
+        7.75,
+        9.0
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 5,
+      "n_s": 0,
+      "n_g": 5,
+      "family": "all_goblin",
+      "composition": "0S+5G",
+      "goblin_delta_sig": "1+1+1+1+1",
+      "n_scrapes": 3,
+      "power_x": 7.5,
+      "range": [
+        4.75,
+        9.75
+      ],
+      "predicted_power_x": 4.4,
+      "predicted_scale": 0.22,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "5": 5.5,
+        "4": 0.875,
+        "3": 0.325
+      },
+      "flex_all_x": 5.5
+    },
+    {
+      "n_legs": 5,
+      "n_s": 0,
+      "n_g": 5,
+      "family": "all_goblin",
+      "composition": "0S+5G",
+      "goblin_delta_sig": "1+1+1+1.5+2",
+      "n_scrapes": 1,
+      "power_x": 4.75,
+      "range": [
+        4.75,
+        4.75
+      ],
+      "predicted_power_x": 4.4,
+      "predicted_scale": 0.22,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 2.5,
+        "4": 1.0,
+        "3": 0.4
+      },
+      "flex_all_x": 2.5
+    },
+    {
+      "n_legs": 5,
+      "n_s": 0,
+      "n_g": 5,
+      "family": "all_goblin",
+      "composition": "0S+5G",
+      "goblin_delta_sig": "1+1+1.5+2+2",
+      "n_scrapes": 1,
+      "power_x": 5.75,
+      "range": [
+        5.75,
+        5.75
+      ],
+      "predicted_power_x": 4.4,
+      "predicted_scale": 0.22,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 5,
+      "n_s": 0,
+      "n_g": 5,
+      "family": "all_goblin",
+      "composition": "0S+5G",
+      "goblin_delta_sig": "1+1.5+2+2+2",
+      "n_scrapes": 1,
+      "power_x": 5.5,
+      "range": [
+        5.5,
+        5.5
+      ],
+      "predicted_power_x": 4.4,
+      "predicted_scale": 0.22,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "5": 4.0,
+        "4": 0.5,
+        "3": 0.25
+      },
+      "flex_all_x": 4.0
+    },
+    {
+      "n_legs": 5,
+      "n_s": 0,
+      "n_g": 5,
+      "family": "all_goblin",
+      "composition": "0S+5G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 3,
+      "power_x": 7.25,
+      "range": [
+        6.5,
+        9.25
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 5,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "5S+1G",
+      "goblin_delta_sig": "1",
+      "n_scrapes": 1,
+      "power_x": 7.75,
+      "range": [
+        7.75,
+        7.75
+      ],
+      "predicted_power_x": 33.532,
+      "predicted_scale": 0.8383,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 5,
+      "n_g": 1,
+      "family": "mix",
+      "composition": "5S+1G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 2,
+      "power_x": 11.875,
+      "range": [
+        7.75,
+        16.0
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 4,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "4S+2G",
+      "goblin_delta_sig": "1+1",
+      "n_scrapes": 2,
+      "power_x": 15.75,
+      "range": [
+        6.0,
+        25.5
+      ],
+      "predicted_power_x": 27.064,
+      "predicted_scale": 0.6766,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 4,
+      "n_g": 2,
+      "family": "mix",
+      "composition": "4S+2G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 2,
+      "power_x": 14.375,
+      "range": [
+        7.25,
+        21.5
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "goblin_delta_sig": "1+1+1",
+      "n_scrapes": 3,
+      "power_x": 6.25,
+      "range": [
+        4.5,
+        18.5
+      ],
+      "predicted_power_x": 20.596,
+      "predicted_scale": 0.5149,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 11.0,
+        "5": 1.5,
+        "4": 0.4
+      },
+      "flex_all_x": 11.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "goblin_delta_sig": "1+1+1.5",
+      "n_scrapes": 1,
+      "power_x": 21.5,
+      "range": [
+        21.5,
+        21.5
+      ],
+      "predicted_power_x": 20.648,
+      "predicted_scale": 0.5162,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "goblin_delta_sig": "1.5+2.5+5",
+      "n_scrapes": 1,
+      "power_x": 16.0,
+      "range": [
+        16.0,
+        16.0
+      ],
+      "predicted_power_x": 20.304,
+      "predicted_scale": 0.5076,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 10.0,
+        "5": 1.25,
+        "4": 0.4
+      },
+      "flex_all_x": 10.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "goblin_delta_sig": "1.5+2.5+6",
+      "n_scrapes": 2,
+      "power_x": 15.25,
+      "range": [
+        12.5,
+        18.0
+      ],
+      "predicted_power_x": 20.236,
+      "predicted_scale": 0.5059,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "6": 8.5,
+        "5": 1.5,
+        "4": 0.4
+      },
+      "flex_all_x": 8.5
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "goblin_delta_sig": "1.5+3+4",
+      "n_scrapes": 1,
+      "power_x": 14.0,
+      "range": [
+        14.0,
+        14.0
+      ],
+      "predicted_power_x": 17.376,
+      "predicted_scale": 0.4344,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 7.0,
+        "5": 1.75,
+        "4": 0.4
+      },
+      "flex_all_x": 7.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "goblin_delta_sig": "1.5+3+5",
+      "n_scrapes": 1,
+      "power_x": 13.5,
+      "range": [
+        13.5,
+        13.5
+      ],
+      "predicted_power_x": 17.436,
+      "predicted_scale": 0.4359,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 7.0,
+        "5": 1.5,
+        "4": 0.4
+      },
+      "flex_all_x": 7.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "goblin_delta_sig": "1.5+3+6",
+      "n_scrapes": 1,
+      "power_x": 13.0,
+      "range": [
+        13.0,
+        13.0
+      ],
+      "predicted_power_x": 17.368,
+      "predicted_scale": 0.4342,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 7.0,
+        "5": 1.5,
+        "4": 0.4
+      },
+      "flex_all_x": 7.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 3,
+      "n_g": 3,
+      "family": "mix",
+      "composition": "3S+3G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 2,
+      "power_x": 9.75,
+      "range": [
+        9.0,
+        10.5
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "goblin_delta_sig": "1+1+1+1",
+      "n_scrapes": 1,
+      "power_x": 6.5,
+      "range": [
+        6.5,
+        6.5
+      ],
+      "predicted_power_x": 14.128,
+      "predicted_scale": 0.3532,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "goblin_delta_sig": "1+1+1+6",
+      "n_scrapes": 1,
+      "power_x": 13.5,
+      "range": [
+        13.5,
+        13.5
+      ],
+      "predicted_power_x": 12.98,
+      "predicted_scale": 0.3245,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 8.0,
+        "5": 1.25,
+        "4": 0.4
+      },
+      "flex_all_x": 8.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "goblin_delta_sig": "1+1.5+2+2",
+      "n_scrapes": 1,
+      "power_x": 16.0,
+      "range": [
+        16.0,
+        16.0
+      ],
+      "predicted_power_x": 12.812,
+      "predicted_scale": 0.3203,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+2.5",
+      "n_scrapes": 1,
+      "power_x": 15.0,
+      "range": [
+        15.0,
+        15.0
+      ],
+      "predicted_power_x": 15.02,
+      "predicted_scale": 0.3755,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 9.0,
+        "5": 1.25,
+        "4": 0.4
+      },
+      "flex_all_x": 9.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+3",
+      "n_scrapes": 1,
+      "power_x": 14.5,
+      "range": [
+        14.5,
+        14.5
+      ],
+      "predicted_power_x": 12.152,
+      "predicted_scale": 0.3038,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 7.0,
+        "5": 1.75,
+        "4": 0.4
+      },
+      "flex_all_x": 7.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+5",
+      "n_scrapes": 1,
+      "power_x": 11.5,
+      "range": [
+        11.5,
+        11.5
+      ],
+      "predicted_power_x": 13.204,
+      "predicted_scale": 0.3301,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 5.0,
+        "5": 1.75,
+        "4": 0.4
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "goblin_delta_sig": "1.5+1.5+1.5+6",
+      "n_scrapes": 1,
+      "power_x": 13.0,
+      "range": [
+        13.0,
+        13.0
+      ],
+      "predicted_power_x": 13.136,
+      "predicted_scale": 0.3284,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 7.0,
+        "5": 1.5,
+        "4": 0.4
+      },
+      "flex_all_x": 7.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 2,
+      "n_g": 4,
+      "family": "mix",
+      "composition": "2S+4G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 1,
+      "power_x": 6.75,
+      "range": [
+        6.75,
+        6.75
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 1,
+      "n_g": 5,
+      "family": "mix",
+      "composition": "1S+5G",
+      "goblin_delta_sig": "1+1+1+1+1",
+      "n_scrapes": 3,
+      "power_x": 6.0,
+      "range": [
+        4.5,
+        9.5
+      ],
+      "predicted_power_x": 8.8,
+      "predicted_scale": 0.22,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 5.0,
+        "5": 0.5,
+        "4": 0.25
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 1,
+      "n_g": 5,
+      "family": "mix",
+      "composition": "1S+5G",
+      "goblin_delta_sig": "1+1.5+2+2+2",
+      "n_scrapes": 1,
+      "power_x": 13.0,
+      "range": [
+        13.0,
+        13.0
+      ],
+      "predicted_power_x": 8.8,
+      "predicted_scale": 0.22,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 1,
+      "n_g": 5,
+      "family": "mix",
+      "composition": "1S+5G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 1,
+      "power_x": 8.75,
+      "range": [
+        8.75,
+        8.75
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 0,
+      "n_g": 6,
+      "family": "all_goblin",
+      "composition": "0S+6G",
+      "goblin_delta_sig": "1+1+1+1+1+1",
+      "n_scrapes": 2,
+      "power_x": 9.0,
+      "range": [
+        4.0,
+        14.0
+      ],
+      "predicted_power_x": 8.8,
+      "predicted_scale": 0.22,
+      "flex_n_scrapes": 2,
+      "flex_ladder": {
+        "6": 6.0,
+        "5": 0.75,
+        "4": 0.325
+      },
+      "flex_all_x": 6.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 0,
+      "n_g": 6,
+      "family": "all_goblin",
+      "composition": "0S+6G",
+      "goblin_delta_sig": "1+1+1+1+1.5+2",
+      "n_scrapes": 1,
+      "power_x": 6.0,
+      "range": [
+        6.0,
+        6.0
+      ],
+      "predicted_power_x": 8.8,
+      "predicted_scale": 0.22,
+      "flex_n_scrapes": 1,
+      "flex_ladder": {
+        "6": 5.0,
+        "5": 0.5,
+        "4": 0.25
+      },
+      "flex_all_x": 5.0
+    },
+    {
+      "n_legs": 6,
+      "n_s": 0,
+      "n_g": 6,
+      "family": "all_goblin",
+      "composition": "0S+6G",
+      "goblin_delta_sig": "1+1.5+2+2+2+2",
+      "n_scrapes": 1,
+      "power_x": 10.5,
+      "range": [
+        10.5,
+        10.5
+      ],
+      "predicted_power_x": 8.8,
+      "predicted_scale": 0.22,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    },
+    {
+      "n_legs": 6,
+      "n_s": 0,
+      "n_g": 6,
+      "family": "all_goblin",
+      "composition": "0S+6G",
+      "goblin_delta_sig": "unknown",
+      "n_scrapes": 2,
+      "power_x": 11.75,
+      "range": [
+        8.5,
+        15.0
+      ],
+      "predicted_power_x": null,
+      "predicted_scale": null,
+      "flex_n_scrapes": 0,
+      "flex_ladder": {},
+      "flex_all_x": null
+    }
+  ],
+  "coverage": [
+    {
+      "composition": "2S+0G",
+      "n_legs": 2,
+      "n_g": 0,
+      "power_status": "canonical",
+      "flex_status": "canonical",
+      "n_scrapes": 3,
+      "need_scrapes": null
+    },
+    {
+      "composition": "1S+1G",
+      "n_legs": 2,
+      "n_g": 1,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 18,
+      "need_scrapes": null
+    },
+    {
+      "composition": "0S+2G",
+      "n_legs": 2,
+      "n_g": 2,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 73,
+      "need_scrapes": null
+    },
+    {
+      "composition": "3S+0G",
+      "n_legs": 3,
+      "n_g": 0,
+      "power_status": "canonical",
+      "flex_status": "canonical",
+      "n_scrapes": 5,
+      "need_scrapes": null
+    },
+    {
+      "composition": "2S+1G",
+      "n_legs": 3,
+      "n_g": 1,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 12,
+      "need_scrapes": null
+    },
+    {
+      "composition": "1S+2G",
+      "n_legs": 3,
+      "n_g": 2,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 12,
+      "need_scrapes": null
+    },
+    {
+      "composition": "0S+3G",
+      "n_legs": 3,
+      "n_g": 3,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 44,
+      "need_scrapes": null
+    },
+    {
+      "composition": "4S+0G",
+      "n_legs": 4,
+      "n_g": 0,
+      "power_status": "canonical",
+      "flex_status": "canonical",
+      "n_scrapes": 5,
+      "need_scrapes": null
+    },
+    {
+      "composition": "3S+1G",
+      "n_legs": 4,
+      "n_g": 1,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 5,
+      "need_scrapes": null
+    },
+    {
+      "composition": "2S+2G",
+      "n_legs": 4,
+      "n_g": 2,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 7,
+      "need_scrapes": null
+    },
+    {
+      "composition": "1S+3G",
+      "n_legs": 4,
+      "n_g": 3,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 16,
+      "need_scrapes": null
+    },
+    {
+      "composition": "0S+4G",
+      "n_legs": 4,
+      "n_g": 4,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 13,
+      "need_scrapes": null
+    },
+    {
+      "composition": "5S+0G",
+      "n_legs": 5,
+      "n_g": 0,
+      "power_status": "canonical",
+      "flex_status": "canonical",
+      "n_scrapes": 3,
+      "need_scrapes": null
+    },
+    {
+      "composition": "4S+1G",
+      "n_legs": 5,
+      "n_g": 1,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 4,
+      "need_scrapes": null
+    },
+    {
+      "composition": "3S+2G",
+      "n_legs": 5,
+      "n_g": 2,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 8,
+      "need_scrapes": null
+    },
+    {
+      "composition": "2S+3G",
+      "n_legs": 5,
+      "n_g": 3,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 12,
+      "need_scrapes": null
+    },
+    {
+      "composition": "1S+4G",
+      "n_legs": 5,
+      "n_g": 4,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 13,
+      "need_scrapes": null
+    },
+    {
+      "composition": "0S+5G",
+      "n_legs": 5,
+      "n_g": 5,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 9,
+      "need_scrapes": null
+    },
+    {
+      "composition": "6S+0G",
+      "n_legs": 6,
+      "n_g": 0,
+      "power_status": "canonical",
+      "flex_status": "canonical",
+      "n_scrapes": 2,
+      "need_scrapes": null
+    },
+    {
+      "composition": "5S+1G",
+      "n_legs": 6,
+      "n_g": 1,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 3,
+      "need_scrapes": null
+    },
+    {
+      "composition": "4S+2G",
+      "n_legs": 6,
+      "n_g": 2,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 4,
+      "need_scrapes": null
+    },
+    {
+      "composition": "3S+3G",
+      "n_legs": 6,
+      "n_g": 3,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 12,
+      "need_scrapes": null
+    },
+    {
+      "composition": "2S+4G",
+      "n_legs": 6,
+      "n_g": 4,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 8,
+      "need_scrapes": null
+    },
+    {
+      "composition": "1S+5G",
+      "n_legs": 6,
+      "n_g": 5,
+      "power_status": "observed",
+      "flex_status": "scaled_from_power",
+      "n_scrapes": 5,
+      "need_scrapes": null
+    },
+    {
+      "composition": "0S+6G",
+      "n_legs": 6,
+      "n_g": 6,
+      "power_status": "observed",
+      "flex_status": "observed",
+      "n_scrapes": 6,
+      "need_scrapes": null
+    }
+  ],
+  "notes": [
+    "All-Standard cells are canonical N-correct, not scrape-fitted.",
+    "power_grid / flex_grid are composition medians (3S+2G, 2S+3G, \u2026). They hide Goblin-\u0394 mix.",
+    "mix_by_delta is scraped (composition, Goblin-\u0394) rows only.",
+    "mix_catalog is every S/G split \u00d7 every Goblin-\u0394 multiset from fitted bins.",
+    "Observed = median live CDP Power N-correct (or composition floor) with n \u2265 min_scrapes_observed.",
+    "Predicted = Standard Power \u00d7 (1 \u2212 sum of per-Goblin delta-bin cuts), blended with thin floors.",
+    "Each Goblin applies cut[its \u0394] from live scrapes. Not mean-\u0394 \u00d7 n_g \u00d7 one slope.",
+    "Flex ladders: scraped N-correct rows when available; otherwise Standard Flex \u00d7 Power scale."
+  ]
+}

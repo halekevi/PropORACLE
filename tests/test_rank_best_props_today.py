@@ -13,13 +13,17 @@ sys.path.insert(0, str(_REPO / "scripts"))
 from rank_best_props_today import (  # noqa: E402
     _atp_tier_from_rank,
     _avg_windows,
+    _badge,
+    _cfb_prior_fill,
     _over_d_ok,
+    _promo,
     _under_d_ok,
     bucket,
     filter_step8_to_slate_date,
     l5_window_sort_key,
     recs,
     step8_empty_reason,
+    _clears_list_gate,
 )
 
 
@@ -69,6 +73,54 @@ def test_mlb_hitter_strikeouts_d_invert():
     assert not _over_d_ok("MLB", "Elite", "Hits")
     assert _under_d_ok("MLB", "Elite", "Hits")
     assert _under_d_ok("MLB", "Above Avg", "Hits")
+
+
+def _dante_pass_yards_rec(**overrides):
+    """Board-shaped Pass Yards Goblin row (D blank → would be Silver without skip)."""
+    rec = {
+        "sport": "CFB",
+        "player": "Dante Moore",
+        "prop": "Pass Yards",
+        "pick_type": "Goblin",
+        "side": "OVER",
+        "line": 174.5,
+        "l5_over": 5,
+        "l5_under": 0,
+        "cover": 40.0,
+        "dist_l5": 40.0,
+        "def": "",
+        "def_rank": None,
+        "model_dir": "OVER",
+    }
+    rec.update(overrides)
+    return rec
+
+
+def test_cfb_pass_yards_goblin_badge_skips_d():
+    """Same cfb_pass_yards_goblin_skip_d as tickets — D is N/A, not a Silver miss."""
+    out = _badge(_dante_pass_yards_rec(), n_teams=122)
+    assert out["checks"]["D"] is None
+    assert "D" not in out["misses"]
+    assert out["badge"] == "Gold"
+
+
+def test_cfb_pass_yards_goblin_badge_skips_d_even_when_elite():
+    rec = _dante_pass_yards_rec()
+    rec["def"] = "Elite"
+    rec["def_rank"] = 5
+    out = _badge(rec, n_teams=122)
+    assert out["checks"]["D"] is None
+    assert "D" not in out["misses"]
+
+
+def test_cfb_rush_yards_goblin_still_pays_d_miss():
+    """Rush Yards keeps D — negative control vs Pass Yards skip."""
+    rec = _dante_pass_yards_rec()
+    rec["prop"] = "Rush Yards"
+    out = _badge(rec, n_teams=122)
+    assert out["checks"]["D"] is False
+    assert "D" in out["misses"]
+    assert out["badge"] == "Silver"
 
 
 def test_tennis_atp_tiers():
@@ -179,6 +231,101 @@ def test_tennis_fills_opp_rank_from_slate_player_and_skips_placeholder():
     assert pd.isna(out.loc[2, "opponent_rank"]) or out.loc[2, "opponent_rank"] is None
 
 
+def test_wnba_list_gate_requires_l5_eq5():
+    """WNBA family list is L5=5 for Standard OVER, Standard UNDER, and Goblin."""
+    gob = {
+        "sport": "WNBA",
+        "pick_type": "Goblin",
+        "side": "OVER",
+        "prop": "Points",
+        "l5_over": 5,
+        "l5_under": 0,
+    }
+    assert _clears_list_gate(gob)
+    assert not _clears_list_gate(dict(gob, l5_over=4))
+    std_o = dict(gob, pick_type="Standard")
+    assert _clears_list_gate(std_o)
+    assert not _clears_list_gate(dict(std_o, l5_over=4))
+    std_u = {
+        "sport": "WNBA",
+        "pick_type": "Standard",
+        "side": "UNDER",
+        "prop": "Points",
+        "l5_over": 0,
+        "l5_under": 5,
+    }
+    assert _clears_list_gate(std_u)
+    assert not _clears_list_gate(dict(std_u, l5_under=4))
+    q = dict(gob, sport="WNBA1Q", l5_over=4)
+    assert not _clears_list_gate(q)
+    assert _clears_list_gate(dict(q, l5_over=5))
+    nba = dict(gob, sport="NBA", l5_over=4)
+    assert _clears_list_gate(nba)
+
+
+def test_wnba_best_props_pool_requires_l5_eq5():
+    from utils.best_props_pool import row_to_best_props_rec
+
+    row = {
+        "sport": "WNBA",
+        "player": "A'ja Wilson",
+        "prop_type": "Points",
+        "pick_type": "Goblin",
+        "final_bet_direction": "OVER",
+        "line": 8.5,
+        "l5_over": 4,
+        "l5_under": 1,
+        "stat_season_avg": 12.0,
+        "def_tier": "Weak",
+    }
+    assert row_to_best_props_rec(row) is None
+    rec = row_to_best_props_rec(dict(row, l5_over=5))
+    assert rec is not None
+    assert rec["l5_over"] == 5
+    std_u = {
+        "sport": "WNBA",
+        "player": "Under Star",
+        "prop_type": "Points",
+        "pick_type": "Standard",
+        "final_bet_direction": "UNDER",
+        "line": 14.5,
+        "l5_over": 1,
+        "l5_under": 4,
+        "stat_season_avg": 10.0,
+        "def_tier": "Elite",
+    }
+    assert row_to_best_props_rec(std_u) is None
+    assert row_to_best_props_rec(dict(std_u, l5_under=5)) is not None
+
+
+def test_mixer_seed_pool_rejects_l5_eq4():
+    from utils.best_props_pool import (
+        SEED_TIER_L5_5_D,
+        SEED_TIER_L5_5_NO_D,
+        row_to_best_props_rec,
+    )
+
+    mlb4 = {
+        "sport": "MLB",
+        "player": "Max Scherzer",
+        "prop_type": "Hits Allowed",
+        "pick_type": "Goblin",
+        "final_bet_direction": "OVER",
+        "line": 1.5,
+        "l5_over": 4,
+        "l5_under": 1,
+        "stat_season_avg": 4.0,
+        "def_tier": "Weak",
+    }
+    assert row_to_best_props_rec(mlb4) is None
+    mlb5 = row_to_best_props_rec(dict(mlb4, l5_over=5))
+    assert mlb5 is not None
+    assert mlb5["seed_tier"] == SEED_TIER_L5_5_D
+    mlb5_no_d = row_to_best_props_rec(dict(mlb4, l5_over=5, def_tier="Avg"))
+    assert mlb5_no_d is not None
+    assert mlb5_no_d["seed_tier"] == SEED_TIER_L5_5_NO_D
+
+
 def test_wnba_weak_over_and_elite_under_buckets():
     over = _row(
         sport="WNBA",
@@ -199,7 +346,7 @@ def test_wnba_weak_over_and_elite_under_buckets():
         final_bet_direction="UNDER",
         model_dir="UNDER",
         l5_over=1,
-        l5_under=4,
+        l5_under=5,
         def_tier="Elite",
         OVERALL_DEF_RANK=2,
         opp_team="NY",
@@ -532,4 +679,66 @@ def test_load_nba_skips_off_season_slate(tmp_path: Path):
     assert load_nba(tmp_path, day).empty
     assert load_nba1q(tmp_path, day).empty
     assert load_nba1h(tmp_path, day).empty
+
+
+def test_load_nba1q_skips_may_sports_leftover(tmp_path: Path):
+    from rank_best_props_today import load_nba1q
+
+    day = "2026-10-08"
+    sports = tmp_path / "Sports" / "NBA"
+    sports.mkdir(parents=True)
+    df = pd.DataFrame(
+        [
+            {
+                "Player": "Jalen Williams",
+                "Team": "OKC",
+                "Opp": "SAS",
+                "Game Date": "2026-05-30",
+                "Prop": "Points",
+                "Line": 5.5,
+                "Direction": "OVER",
+                "Pick Type": "Goblin",
+            }
+        ]
+    )
+    df.to_excel(sports / "step8_nba1q_direction_clean.xlsx", index=False)
+    assert load_nba1q(tmp_path, day).empty
+
+
+def test_cfb_prior_fill_blocks_diamond_platinum():
+    gold = {
+        "sport": "CFB",
+        "badge": "Gold",
+        "l10": 9,
+        "season_hr": 0.85,
+        "season_n": 12,
+        "season_l5_flag": "PRIOR_SEASON_FILL",
+    }
+    assert _cfb_prior_fill(gold)
+    assert _promo(gold) == "Gold"
+    gold["season_l5_flag"] = "PRIOR_SEASON_L5"
+    assert _promo(gold) == "Gold"
+    gold["season_l5_flag"] = ""
+    assert _promo(gold) == "Diamond"
+    plat = {
+        "sport": "CFB",
+        "badge": "Gold",
+        "l10": 9,
+        "season_hr": 0.5,
+        "season_n": 2,
+        "season_l5_flag": "PRIOR_SEASON_FILL",
+    }
+    assert _promo(plat) == "Gold"
+    plat["season_l5_flag"] = ""
+    assert _promo(plat) == "Platinum"
+    nfl = {
+        "sport": "NFL",
+        "badge": "Gold",
+        "l10": 9,
+        "season_hr": 0.85,
+        "season_n": 12,
+        "season_l5_flag": "PRIOR_SEASON_FILL",
+    }
+    assert not _cfb_prior_fill(nfl)
+    assert _promo(nfl) == "Diamond"
 

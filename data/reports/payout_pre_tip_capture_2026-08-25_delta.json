@@ -1,0 +1,684 @@
+{
+  "date": "2026-08-25",
+  "generated_at": "2026-08-25T14:29:47.202830Z",
+  "cdp_url": "http://127.0.0.1:9222",
+  "tickets_path": "ui_runner\\data\\payout_ladder_validation_tickets.json",
+  "tickets_fingerprint": "446049b2a945cc373ee6fb80b6ab2cf33acc5fe10827267d4e051686c7d78301",
+  "fingerprint_n_slips": 8,
+  "fingerprint_n_missing_live": 8,
+  "fields": [
+    "power_min_x",
+    "power_first_x",
+    "min_guarantee",
+    "flex_min",
+    "flex_n_correct"
+  ],
+  "primary_field": "power_min_x",
+  "entry_amount": 1.0,
+  "only_missing_live": false,
+  "timed_out": false,
+  "max_runtime_sec": 1800.0,
+  "slips": [
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Adley Rutschman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.75,
+      "power_first_x": 20.0,
+      "min_guarantee": 4.75,
+      "flex_min": [
+        [
+          "5",
+          "2.5"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 2.5,
+        "4": 1.0,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|2",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Kevin McGonigle",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 5.25,
+      "power_first_x": 20.0,
+      "min_guarantee": 5.25,
+      "flex_min": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 4.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|3",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Connor Norby",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Daylen Lile",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 6.75,
+      "power_first_x": 20.0,
+      "min_guarantee": 6.75,
+      "flex_min": [
+        [
+          "5",
+          "5"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 5.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|4",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Daylen Lile",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Jesús Sánchez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Francisco Lindor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "partial",
+      "error": "missing_power_min_x",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": 20.0,
+      "min_guarantee": null,
+      "flex_min": 10.0,
+      "flex_n_correct": {
+        "5": 790.0,
+        "4": 50.0,
+        "3": 10.0
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|5",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jesús Sánchez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Francisco Lindor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Angel Genao",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Nathaniel Lowe",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 4.5,
+      "flex_min": [
+        [
+          "5",
+          "2.5"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 2.5,
+        "4": 1.0,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|6",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 3.75,
+      "power_first_x": 10.0,
+      "min_guarantee": 3.75,
+      "flex_min": [
+        [
+          "4",
+          "2.5"
+        ],
+        [
+          "3",
+          "0.75"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 2.5,
+        "3": 0.75
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|7",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Angel Genao",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 3.75,
+      "power_first_x": 10.0,
+      "min_guarantee": 3.75,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|8",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Angel Genao",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Nathaniel Lowe",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 3.75,
+      "power_first_x": 10.0,
+      "min_guarantee": 3.75,
+      "flex_min": [
+        [
+          "4",
+          "2.5"
+        ],
+        [
+          "3",
+          "0.75"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 2.5,
+        "3": 0.75
+      }
+    }
+  ],
+  "summary": {
+    "n_total": 8,
+    "n_ok": 7,
+    "n_partial": 1,
+    "n_failed": 0,
+    "n_strong": 8,
+    "n_main": 0,
+    "n_skipped_live": 0,
+    "timed_out": false
+  }
+}

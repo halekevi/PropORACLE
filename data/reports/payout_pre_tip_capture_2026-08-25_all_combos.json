@@ -1,0 +1,6421 @@
+{
+  "date": "2026-08-25",
+  "generated_at": "2026-08-25T17:36:45.964863Z",
+  "cdp_url": "http://127.0.0.1:9222",
+  "tickets_path": "ui_runner\\data\\payout_ladder_validation_tickets_all_combos.json",
+  "tickets_fingerprint": "66d6df6dfa2139d7e9d3e990047a5f5caa1bbdfb75ccac2f2794d6669dceb53b",
+  "fingerprint_n_slips": 4078,
+  "fingerprint_n_missing_live": 4078,
+  "fields": [
+    "power_min_x",
+    "power_first_x",
+    "min_guarantee",
+    "flex_min",
+    "flex_n_correct"
+  ],
+  "primary_field": "power_min_x",
+  "entry_amount": 1.0,
+  "only_missing_live": false,
+  "timed_out": false,
+  "max_runtime_sec": 14400.0,
+  "slips": [
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Adley Rutschman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.75,
+      "power_first_x": 20.0,
+      "min_guarantee": 4.75,
+      "flex_min": [
+        [
+          "5",
+          "2.5"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 2.5,
+        "4": 1.0,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|10",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Caleb Durbin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Otto Lopez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Adley Rutschman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Nick Sogard",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 6.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 6.0,
+      "flex_min": [
+        [
+          "6",
+          "5"
+        ],
+        [
+          "5",
+          "0.5"
+        ],
+        [
+          "4",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 5.0,
+        "5": 0.5,
+        "4": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|100",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 2,
+      "legs": [
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Tyler Glasnow",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 6.0,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 2.3,
+      "power_first_x": 3.0,
+      "min_guarantee": 2.3,
+      "flex_min": 2.3,
+      "flex_n_correct": {
+        "2": 2.3
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1000",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 3,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 2.5,
+      "power_first_x": 6.0,
+      "min_guarantee": 2.5,
+      "flex_min": [
+        [
+          "3",
+          "2"
+        ],
+        [
+          "2",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "3": 2.0,
+        "2": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1001",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1002",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "Brandon Pfaadt",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 4.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1003",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Clay Holmes",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Paul Skenes",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 6.0,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 8.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 8.5,
+      "flex_min": [
+        [
+          "5",
+          "5"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 5.0,
+        "4": 1.0,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1004",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_2_expected_4",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1005",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_3_expected_4",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1006",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 2.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jackson Jobe",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_3_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1007",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_missing_players:Dominic Canzone,Pete Crow-Armstrong",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1008",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1009",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Nico Hoerner",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_1_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|101",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Will Warren",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jackson Jobe",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Andrew Alvarez",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 5.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 5.5,
+      "flex_min": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 4.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1010",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 3,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "partial",
+      "error": "missing_power_multipliers",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": [],
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1011",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1012",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 83.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 90.5,
+          "line_distance": 7.0,
+          "delta": 7.0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_1_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1013",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_6_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1014",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 83.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 90.5,
+          "line_distance": 7.0,
+          "delta": 7.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_3_expected_4",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1015",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 5.0,
+      "power_first_x": 10.0,
+      "min_guarantee": 5.0,
+      "flex_min": [
+        [
+          "4",
+          "4"
+        ],
+        [
+          "3",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 4.0,
+        "3": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1016",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 2.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jackson Jobe",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_2_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1017",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "only_clicked_5_of_6_legs",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1018",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 83.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 90.5,
+          "line_distance": 7.0,
+          "delta": 7.0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1019",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        },
+        {
+          "player": "Corbin Carroll",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Nico Hoerner",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Ian Happ",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 16.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 16.0,
+      "flex_min": [
+        [
+          "6",
+          "10"
+        ],
+        [
+          "5",
+          "1.25"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 10.0,
+        "5": 1.25,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|102",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jackson Jobe",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Will Warren",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ethan Pecko",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.0,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 8.25,
+      "power_first_x": 20.0,
+      "min_guarantee": 8.25,
+      "flex_min": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "1.25"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 4.0,
+        "4": 1.25,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1020",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 3,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 2.7,
+      "power_first_x": 6.0,
+      "min_guarantee": 2.7,
+      "flex_min": [
+        [
+          "3",
+          "2.25"
+        ],
+        [
+          "2",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "3": 2.25,
+        "2": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1021",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1022",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Paul Skenes",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Alex Bregman",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 8.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 8.5,
+      "flex_min": [
+        [
+          "5",
+          "5"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 5.0,
+        "4": 1.0,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1023",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "Seiya Suzuki",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Pedro Ramirez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 7.25,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.25,
+      "flex_min": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 4.0,
+        "4": 1.0,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1024",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Paul Skenes",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.75,
+      "power_first_x": 10.0,
+      "min_guarantee": 4.75,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.75"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.75
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1025",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "Michael Busch",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.25,
+      "power_first_x": 10.0,
+      "min_guarantee": 4.25,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.75"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.75
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1026",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Trea Turner",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1027",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Geraldo Perdomo",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1028",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Paul Skenes",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Lars Nootbaar",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Nolan Arenado",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 15.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 15.0,
+      "flex_min": [
+        [
+          "6",
+          "9"
+        ],
+        [
+          "5",
+          "1.25"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 9.0,
+        "5": 1.25,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1029",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "Nolan Arenado",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Michael King",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.0,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Alec Bohm",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 12.5,
+      "power_first_x": 37.5,
+      "min_guarantee": 12.5,
+      "flex_min": [
+        [
+          "6",
+          "7"
+        ],
+        [
+          "5",
+          "1.25"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 7.0,
+        "5": 1.25,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|103",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Will Warren",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ethan Pecko",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Teoscar Hernández",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Drake Baldwin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 8.25,
+      "power_first_x": 20.0,
+      "min_guarantee": 8.25,
+      "flex_min": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "1.25"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 4.0,
+        "4": 1.25,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1030",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 3,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 2.3,
+      "power_first_x": 6.0,
+      "min_guarantee": 2.3,
+      "flex_min": [
+        [
+          "3",
+          "1.9"
+        ],
+        [
+          "2",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "3": 1.9,
+        "2": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1031",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1032",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Alec Bohm",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 8.0,
+      "power_first_x": 20.0,
+      "min_guarantee": 8.0,
+      "flex_min": [
+        [
+          "5",
+          "6"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 6.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1033",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 83.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 90.5,
+          "line_distance": 7.0,
+          "delta": 7.0
+        },
+        {
+          "player": "Alec Bohm",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Kyle Schwarber",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 9.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 9.5,
+      "flex_min": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "1.5"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 4.0,
+        "4": 1.5,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1034",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.25,
+      "power_first_x": 10.0,
+      "min_guarantee": 4.25,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1035",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 83.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 90.5,
+          "line_distance": 7.0,
+          "delta": 7.0
+        },
+        {
+          "player": "Alec Bohm",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 5.25,
+      "power_first_x": 10.0,
+      "min_guarantee": 5.25,
+      "flex_min": [
+        [
+          "4",
+          "4"
+        ],
+        [
+          "3",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 4.0,
+        "3": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1036",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Trea Turner",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1037",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Alec Bohm",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1038",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Alec Bohm",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Kyle Schwarber",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 14.5,
+      "power_first_x": 37.5,
+      "min_guarantee": 14.5,
+      "flex_min": [
+        [
+          "6",
+          "7"
+        ],
+        [
+          "5",
+          "1.75"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 7.0,
+        "5": 1.75,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1039",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 83.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 90.5,
+          "line_distance": 7.0,
+          "delta": 7.0
+        },
+        {
+          "player": "Kyle Schwarber",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Julio Rodríguez",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Trea Turner",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 18.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 18.0,
+      "flex_min": [
+        [
+          "6",
+          "10"
+        ],
+        [
+          "5",
+          "1.75"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 10.0,
+        "5": 1.75,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|104",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jackson Jobe",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Teoscar Hernández",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Drake Baldwin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Kyle Tucker",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1040",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 3,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 83.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 90.5,
+          "line_distance": 7.0,
+          "delta": 7.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 2.8,
+      "power_first_x": 6.0,
+      "min_guarantee": 2.8,
+      "flex_min": [
+        [
+          "3",
+          "2.25"
+        ],
+        [
+          "2",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "3": 2.25,
+        "2": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1041",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1042",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 7.5,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.5,
+      "flex_min": [
+        [
+          "5",
+          "6"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 6.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1043",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitching Outs",
+          "direction": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 15.5,
+          "line_distance": 4.0,
+          "delta": 4.0
+        },
+        {
+          "player": "Bryce Harper",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 8.0,
+      "power_first_x": 20.0,
+      "min_guarantee": 8.0,
+      "flex_min": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "1.25"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 4.0,
+        "4": 1.25,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1044",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.25,
+      "power_first_x": 10.0,
+      "min_guarantee": 4.25,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1045",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitching Outs",
+          "direction": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 15.5,
+          "line_distance": 4.0,
+          "delta": 4.0
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.25,
+      "power_first_x": 10.0,
+      "min_guarantee": 4.25,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.75"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.75
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1046",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1047",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Kody Clemens",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1048",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Kody Clemens",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1049",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitching Outs",
+          "direction": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 15.5,
+          "line_distance": 4.0,
+          "delta": 4.0
+        },
+        {
+          "player": "Kody Clemens",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Lawrence Butler",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 14.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 14.0,
+      "flex_min": [
+        [
+          "6",
+          "7"
+        ],
+        [
+          "5",
+          "1.75"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 7.0,
+        "5": 1.75,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|105",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitching Outs",
+          "direction": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 15.5,
+          "line_distance": 4.0,
+          "delta": 4.0
+        },
+        {
+          "player": "Drake Baldwin",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Kyle Tucker",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Max Muncy",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Michael Harris II",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1050",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 3,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Bryce Elder",
+          "prop_type": "Pitching Outs",
+          "direction": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 15.5,
+          "line_distance": 4.0,
+          "delta": 4.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 2.3,
+      "power_first_x": 6.0,
+      "min_guarantee": 2.3,
+      "flex_min": [
+        [
+          "3",
+          "1.9"
+        ],
+        [
+          "2",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "3": 1.9,
+        "2": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1051",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1052",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 6.25,
+      "power_first_x": 20.0,
+      "min_guarantee": 6.25,
+      "flex_min": [
+        [
+          "5",
+          "3"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 3.0,
+        "4": 1.0,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1053",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        },
+        {
+          "player": "Lawrence Butler",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Zack Gelof",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 7.0,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.0,
+      "flex_min": [
+        [
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 4.0,
+        "4": 1.0,
+        "3": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1054",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 3.25,
+      "power_first_x": 10.0,
+      "min_guarantee": 3.25,
+      "flex_min": [
+        [
+          "4",
+          "2.5"
+        ],
+        [
+          "3",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 2.5,
+        "3": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1055",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        },
+        {
+          "player": "Ryan Jeffers",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.0,
+      "power_first_x": 10.0,
+      "min_guarantee": 4.0,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1056",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 5.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Randy Arozarena",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 2.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1057",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Tommy White",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1058",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        },
+        {
+          "player": "Luke Keaschall",
+          "prop_type": "Total Bases",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Brooks Lee",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 11.5,
+      "power_first_x": 37.5,
+      "min_guarantee": 11.5,
+      "flex_min": [
+        [
+          "6",
+          "5"
+        ],
+        [
+          "5",
+          "1.75"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 5.0,
+        "5": 1.75,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1059",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        },
+        {
+          "player": "Brooks Lee",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Adrian Houser",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Drew Gilbert",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 13.5,
+      "power_first_x": 37.5,
+      "min_guarantee": 13.5,
+      "flex_min": [
+        [
+          "6",
+          "7"
+        ],
+        [
+          "5",
+          "1.5"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 7.0,
+        "5": 1.5,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|106",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Jackson Jobe",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Will Warren",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ethan Pecko",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.5,
+      "power_first_x": 10.0,
+      "min_guarantee": 4.5,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.75"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.75
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1060",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 3,
+      "legs": [
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 90.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 95.5,
+          "line_distance": 5.0,
+          "delta": 5.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 2.2,
+      "power_first_x": 6.0,
+      "min_guarantee": 2.2,
+      "flex_min": [
+        [
+          "3",
+          "1.8"
+        ],
+        [
+          "2",
+          "0.5"
+        ]
+      ],
+      "flex_n_correct": {
+        "3": 1.8,
+        "2": 0.5
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1061",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 2.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Aaron Nola",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_3_expected_5",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1062",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "Adrian Houser",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 6.25,
+      "power_first_x": 20.0,
+      "min_guarantee": 6.25,
+      "flex_min": [
+        [
+          "5",
+          "5"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 5.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1063",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 5,
+      "legs": [
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "Adrian Houser",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Drew Gilbert",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 7.0,
+      "power_first_x": 20.0,
+      "min_guarantee": 7.0,
+      "flex_min": [
+        [
+          "5",
+          "5"
+        ],
+        [
+          "4",
+          "0.5"
+        ],
+        [
+          "3",
+          "0.25"
+        ]
+      ],
+      "flex_n_correct": {
+        "5": 5.0,
+        "4": 0.5,
+        "3": 0.25
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1064",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 3.75,
+      "power_first_x": 10.0,
+      "min_guarantee": 3.75,
+      "flex_min": [
+        [
+          "4",
+          "2.5"
+        ],
+        [
+          "3",
+          "0.75"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 2.5,
+        "3": 0.75
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1065",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "Adrian Houser",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 3.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.5,
+      "power_first_x": 10.0,
+      "min_guarantee": 4.5,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.75"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.75
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1066",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 0.5,
+          "delta": 0.5
+        },
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Josh Naylor",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Tyler Phillips",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_5_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1067",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Dominic Canzone",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": 1.0,
+          "delta": 1.0
+        },
+        {
+          "player": "Taj Bradley",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Byron Buxton",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 2.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "George Kirby",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 2.5,
+          "delta": 2.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Drew Gilbert",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "failed",
+      "error": "slip_n_4_expected_6",
+      "ticket_type_captured": "power",
+      "power_min_x": null,
+      "power_first_x": null,
+      "min_guarantee": null,
+      "flex_min": null,
+      "flex_n_correct": {}
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1068",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Brady Singer",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Payton Tolle",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "Tyler Stephenson",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "JJ Bleday",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 13.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 13.0,
+      "flex_min": [
+        [
+          "6",
+          "7"
+        ],
+        [
+          "5",
+          "1.5"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 7.0,
+        "5": 1.5,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|1069",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 6,
+      "legs": [
+        {
+          "player": "Gage Jump",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Jacob deGrom",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 6.5,
+          "line_distance": 3.0,
+          "delta": 3.0
+        },
+        {
+          "player": "Seth Lugo",
+          "prop_type": "Pitches Thrown",
+          "direction": "OVER",
+          "line": 87.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 93.5,
+          "line_distance": 6.0,
+          "delta": 6.0
+        },
+        {
+          "player": "JJ Bleday",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Rafael Devers",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        },
+        {
+          "player": "Dillon Dingler",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 13.0,
+      "power_first_x": 37.5,
+      "min_guarantee": 13.0,
+      "flex_min": [
+        [
+          "6",
+          "7"
+        ],
+        [
+          "5",
+          "1.5"
+        ],
+        [
+          "4",
+          "0.4"
+        ]
+      ],
+      "flex_n_correct": {
+        "6": 7.0,
+        "5": 1.5,
+        "4": 0.4
+      }
+    },
+    {
+      "ticket_id": "2026-08-25|LADDER_VAL|discover|107",
+      "slip_type": "strong",
+      "strong_builder": true,
+      "group_name": "LADDER VALIDATION",
+      "n_legs": 4,
+      "legs": [
+        {
+          "player": "Will Warren",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ethan Pecko",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 4.0,
+          "line_distance": 1.5,
+          "delta": 1.5
+        },
+        {
+          "player": "Ian Seymour",
+          "prop_type": "Pitcher Strikeouts",
+          "direction": "OVER",
+          "line": 3.5,
+          "pick_type": "Goblin",
+          "sport": "MLB",
+          "standard_line": 5.5,
+          "line_distance": 2.0,
+          "delta": 2.0
+        },
+        {
+          "player": "Max Muncy",
+          "prop_type": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "sport": "MLB",
+          "standard_line": 1.5,
+          "line_distance": null,
+          "delta": null
+        }
+      ],
+      "status": "ok",
+      "error": null,
+      "ticket_type_captured": "power",
+      "power_min_x": 4.5,
+      "power_first_x": 10.0,
+      "min_guarantee": 4.5,
+      "flex_min": [
+        [
+          "4",
+          "3"
+        ],
+        [
+          "3",
+          "0.75"
+        ]
+      ],
+      "flex_n_correct": {
+        "4": 3.0,
+        "3": 0.75
+      }
+    }
+  ],
+  "summary": {
+    "n_total": 80,
+    "n_ok": 46,
+    "n_partial": 1,
+    "n_failed": 33,
+    "n_strong": 80,
+    "n_main": 0,
+    "n_skipped_live": 0,
+    "timed_out": false
+  }
+}

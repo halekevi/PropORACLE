@@ -143,6 +143,35 @@ ENRICHMENT_RAW_COLS = [
     "l10_under",
     "l10_over_pct",
     "l10_streak",
+    # Per-stat D + minutes + season avg (step8 keep-list upgrades)
+    "stat_def_rank",
+    "stat_def_tier",
+    "stat_def_category",
+    "stat_season_avg",
+    "stat_last5_avg",
+    "stat_last10_avg",
+    "min_last5_avg",
+    "min_per_game",
+    "min_season_avg",
+    "SHOTS_DEF_RANK",
+    "SHOTS_DEF_TIER",
+    # Football snap / role (NFL + CFB step4c/step8)
+    "snap_pct_L3",
+    "snap_pct_season",
+    "target_share_L3",
+    "route_pct_L3",
+    "expected_snaps",
+    # Tennis surface (next retrain)
+    "surface",
+    "surface_encoded",
+    "aces_per_match_mean",
+    "first_serve_pct",
+    "win_rate_on_surface",
+    "games_won_per_match",
+    "surface_specialist",
+    "surface_struggle",
+    "n_matches_on_surface",
+    "h2h_win_rate_on_surface",
     # 70% stack / opponent context (step7/step8)
     "consistency_grade",
     "team_top3_rank",
@@ -332,6 +361,13 @@ def _canonicalize_step8_columns(df: pd.DataFrame) -> pd.DataFrame:
         "Line Hit Rate": "line_hit_rate",
         "Hit Rate (5g)": "hit_rate_L5",
         "Hit Rate (10g)": "hit_rate_L10",
+        "Last 5 Avg": "stat_last5_avg",
+        "l5_avg": "stat_last5_avg",
+        "avg_L5": "stat_last5_avg",
+        "Last 10 Avg": "stat_last10_avg",
+        "avg_L10": "stat_last10_avg",
+        "Season Avg": "stat_season_avg",
+        "avg_season": "stat_season_avg",
         "Opp": "opp_team",
         "Team": "team",
     }
@@ -463,6 +499,42 @@ def load_step8_sport(root: Path, sport: str) -> pd.DataFrame | None:
             if df is not None:
                 return df
         return None
+    if sport_u in ("NFL", "NFLP"):
+        return _first_step_table(
+            [
+                root / "Sports" / "NFL" / "outputs" / "step8_nfl_direction_clean.xlsx",
+                root / "Sports" / "NFL" / "data" / "outputs" / "step8_nfl_direction_clean.xlsx",
+                root / "NFL" / "outputs" / "step8_nfl_direction_clean.xlsx",
+            ]
+        )
+    if sport_u == "CFB":
+        return _first_step_table(
+            [
+                root / "Sports" / "CFB" / "outputs" / "step8_cfb_direction_clean.xlsx",
+                root / "Sports" / "CFB" / "step8_cfb_direction_clean.xlsx",
+            ]
+        )
+    if sport_u in ("CFB1H", "CFB1"):
+        return _first_step_table(
+            [
+                root / "Sports" / "CFB" / "outputs" / "step8_cfb1h_direction_clean.xlsx",
+                root / "Sports" / "CFB" / "step8_cfb1h_direction_clean.xlsx",
+            ]
+        )
+    if sport_u == "WCBB":
+        return _first_step_table(
+            [
+                root / "Sports" / "CBB" / "outputs" / "step6_ranked_wcbb.xlsx",
+                root / "Sports" / "CBB" / "data" / "outputs" / "step6_ranked_wcbb.xlsx",
+            ]
+        )
+    if sport_u == "GOLF":
+        return _first_step_table(
+            [
+                root / "Sports" / "Golf" / "outputs" / "step8_golf_direction_clean.xlsx",
+                root / "Sports" / "Golf" / "step8_golf_direction_clean.xlsx",
+            ]
+        )
     return None
 
 
@@ -485,7 +557,7 @@ def _cbb_step6_paths(root: Path, file_date: str | None = None) -> list[Path]:
     return dated + static
 
 
-def _read_cbb_step6_table(path: Path) -> pd.DataFrame | None:
+def _read_step_table(path: Path) -> pd.DataFrame | None:
     if not path.is_file():
         return None
     try:
@@ -496,6 +568,17 @@ def _read_cbb_step6_table(path: Path) -> pd.DataFrame | None:
     except Exception:
         return None
     return df if df is not None and len(df) > 0 else None
+
+
+def _first_step_table(paths: list[Path]) -> pd.DataFrame | None:
+    for p in paths:
+        df = _read_step_table(p)
+        if df is not None:
+            return df
+    return None
+
+
+_read_cbb_step6_table = _read_step_table
 
 
 # Dated outputs/<YYYY-MM-DD>/ pipeline CSVs for NBA1H (not full-game step8_all_direction).
@@ -792,6 +875,70 @@ def load_step8_dated_snapshot(root: Path, sport: str, file_date: str) -> tuple[p
         if df is not None:
             return df, True
         return None, False
+    if sport_u in ("NFL", "NFLP"):
+        dated = [
+            root / "outputs" / d / "nfl" / "step8_nfl_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_nfl_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "nfl" / "step7_nfl_ranked.xlsx",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
+    if sport_u == "CFB":
+        dated = [
+            root / "outputs" / d / "cfb" / "step8_cfb_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_cfb_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "cfb" / "step6_ranked_cfb.xlsx",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
+    if sport_u in ("CFB1H", "CFB1"):
+        dated = [
+            root / "outputs" / d / "cfb1h" / "step8_cfb1h_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_cfb1h_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "cfb1h" / "step6_ranked_cfb1h.xlsx",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
+    if sport_u == "WCBB":
+        dated = [
+            root / "outputs" / d / "wcbb" / "step6_ranked_wcbb.xlsx",
+            root / "outputs" / d / "wcbb" / "step6_ranked_wcbb.csv",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
+    if sport_u == "GOLF":
+        dated = [
+            root / "outputs" / d / "golf" / "step8_golf_direction_clean.xlsx",
+            root / "outputs" / d / "golf" / "step8_golf_direction.csv",
+            root / "outputs" / d / f"step8_golf_direction_clean_{d}.xlsx",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
     return None, False
 
 
@@ -872,6 +1019,35 @@ def has_dated_step8_snapshot(root: Path, sport: str, file_date: str) -> bool:
             root / "outputs" / d / f"step6_ranked_cbb_{d}.xlsx",
             root / "outputs" / d / f"step6_ranked_cbb_{d}_FILTERED.xlsx",
             root / "outputs" / d / "step6_ranked_cbb.xlsx",
+        ]
+    elif sport_u in ("NFL", "NFLP"):
+        candidates = [
+            root / "outputs" / d / "nfl" / "step8_nfl_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_nfl_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "nfl" / "step7_nfl_ranked.xlsx",
+        ]
+    elif sport_u == "CFB":
+        candidates = [
+            root / "outputs" / d / "cfb" / "step8_cfb_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_cfb_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "cfb" / "step6_ranked_cfb.xlsx",
+        ]
+    elif sport_u in ("CFB1H", "CFB1"):
+        candidates = [
+            root / "outputs" / d / "cfb1h" / "step8_cfb1h_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_cfb1h_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "cfb1h" / "step6_ranked_cfb1h.xlsx",
+        ]
+    elif sport_u == "WCBB":
+        candidates = [
+            root / "outputs" / d / "wcbb" / "step6_ranked_wcbb.xlsx",
+            root / "outputs" / d / "wcbb" / "step6_ranked_wcbb.csv",
+        ]
+    elif sport_u == "GOLF":
+        candidates = [
+            root / "outputs" / d / "golf" / "step8_golf_direction_clean.xlsx",
+            root / "outputs" / d / "golf" / "step8_golf_direction.csv",
+            root / "outputs" / d / f"step8_golf_direction_clean_{d}.xlsx",
         ]
     return any(p.is_file() for p in candidates)
 
@@ -1451,8 +1627,10 @@ def main() -> int:
                 if c not in m.columns:
                     m[c] = np.nan
                 m.loc[~m["_joined"], c] = np.nan
-            if "_file_d" in m.columns and "_game_d" in m.columns:
-                m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
+            if "_game_d" not in m.columns:
+                m["_game_d"] = pd.NaT
+            m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
+            m = m.copy()
         elif sk_u == "TENNIS":
             m = g.copy()
             m["_joined"] = False
@@ -1494,6 +1672,7 @@ def main() -> int:
             if "_game_d" not in m.columns:
                 m["_game_d"] = pd.NaT
             m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
+            m = m.copy()
         else:
             loose_pick = sk_u in ("NHL", "SOCCER")
             if loose_pick:
@@ -1513,6 +1692,13 @@ def main() -> int:
             m = _merge_step8(g, merge_on, dedupe_keys)
             m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
 
+        if "_joined" not in m.columns:
+            m["_joined"] = False
+        if "_date_diff" not in m.columns:
+            if "_file_d" in m.columns and "_game_d" in m.columns:
+                m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
+            else:
+                m["_date_diff"] = np.nan
         m = m.sort_values(["_joined", "_date_diff"], ascending=[False, True])
         dedupe_keys = ["file_date", "sport", "player", "prop", "line", "pick_type", "direction", "result_binary"]
         dedupe_keys = [k for k in dedupe_keys if k in m.columns]
@@ -1707,6 +1893,13 @@ def main() -> int:
         except Exception as e:
             print(f"[retrain] MLB opp_team_id backfill failed: {e}")
 
+    try:
+        from enrich_retrain_from_caches import enrich_retrain_dataframe
+
+        out_df = enrich_retrain_dataframe(out_df, root)
+    except Exception as e:
+        print(f"[retrain] cache enrich failed: {e}")
+
     # Critical training hygiene: supervised target must be present.
     # Keep only rows with known hit outcome before any final export.
     before_hit = len(out_df)
@@ -1736,7 +1929,11 @@ def main() -> int:
         "blended_score",
         "opp_team_id",
     ]
-    drop_cols = [c for c in drop_cols if c not in keep_always]
+    drop_cols = [
+        c
+        for c in drop_cols
+        if c not in keep_always and c not in ENRICHMENT_RAW_COLS and c not in JOIN_FEATURE_COLS
+    ]
     if drop_cols:
         out_df = out_df.drop(columns=drop_cols, errors="ignore")
     print(f"Dropped {len(drop_cols)} all-null columns: {drop_cols}")
@@ -1774,7 +1971,20 @@ def main() -> int:
         jr = round(100.0 * jn / ng, 2) if ng else 0.0
         print(f"  sport={sp}  decided={ng:,}  joined={jn:,}  join_rate%={jr}  unjoined%={up}")
 
-    sport_labels = ["NBA", "NHL", "MLB", "Soccer", "WNBA", "Tennis"]
+    sport_labels = [
+        "NBA",
+        "NHL",
+        "MLB",
+        "Soccer",
+        "WNBA",
+        "Tennis",
+        "NFL",
+        "CFB",
+        "CBB",
+        "WCBB",
+        "Golf",
+        "CFB1H",
+    ]
     sport_norm = out_df.get("sport", pd.Series("", index=out_df.index)).astype(str).str.strip().str.upper()
     for sport in sport_labels:
         key = "SOCCER" if sport == "Soccer" else sport.upper()

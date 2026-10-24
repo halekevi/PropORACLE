@@ -1,0 +1,589 @@
+CFB L5=5 ALL picks  slate=2026-10-24
+source=outputs\2026-10-24\cfb\step5b_cfb.csv  tip_rows=5533
+Includes Goblin / Standard / Demon. No keep-gate filter.
+Goblin+Demon = OVER only when L5 Over=5. Standard OVER/UNDER when directional L5=5.
+
+===== Goblin OVER (n=254) =====
+  1. Malik Knight (PITT vs MIA)  Receiving Yards  O4.5  L5avg=44.2  line/avg=0.102  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  30, 62, 20, 53, 56
+  2. Ja'Cory Thomas (VAN vs UK)  Receiving Yards  O4.5  L5avg=39.0  line/avg=0.115  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 19:30
+     L5  57, 60, 43, 18, 17
+  3. JC French IV (CIN vs TTU)  Rush Yards  O4.5  L5avg=38.6  line/avg=0.117  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  52, 29, 21, 39, 52
+  4. Dierre Hill Jr. (ORE vs ILL)  Receiving Yards  O4.5  L5avg=38.4  line/avg=0.117  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 15:00
+     L5  14, 15, 105, 50, 8
+  5. Chris Barnes (OKST vs COLO)  Receiving Yards  O4.5  L5avg=38.4  line/avg=0.117  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:00
+     L5  27, 58, 51, 36, 20
+  6. Koby Young (HOU vs UTAH)  Receiving Yards  O4.5  L5avg=36.6  line/avg=0.123  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  68, 40, 5, 22, 48
+  7. Chris Brooks Jr. (WIS vs USC)  Receiving Yards  O4.5  L5avg=34.6  line/avg=0.130  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 19:30
+     L5  17, 10, 16, 91, 39
+  8. Damon Ferguson Jr. (PITT vs MIA)  Rush Yards  O9.5  L5avg=71.4  line/avg=0.133  flag=nan  D=Elite  tip=2026-10-24 12:00
+     L5  119, 49, 31, 56, 102
+  9. Trey'Dez Green (LSU vs AUB)  Receiving Yards  O9.5  L5avg=66.4  line/avg=0.143  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  60, 104, 58, 80, 30
+ 10. Mekhi Collins (NDSU vs UNM)  Receiving Yards  O4.5  L5avg=31.2  line/avg=0.144  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:00
+     L5  33, 11, 30, 38, 44
+ 11. Reis Kessel (NDSU vs UNM)  Receiving Yards  O4.5  L5avg=31.0  line/avg=0.145  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:00
+     L5  23, 30, 44, 16, 42
+ 12. Keelon Russell (ALA vs TAMU)  Rush Yards  O4.5  L5avg=30.8  line/avg=0.146  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:30
+     L5  6, 41, 16, 35, 56
+ 13. Abu Sama III (WIS vs USC)  Rush Yards  O9.5  L5avg=62.2  line/avg=0.153  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  34, 34, 107, 49, 87
+ 14. Hogan Hansen (MICH vs IND)  Receiving Yards  O4.5  L5avg=28.0  line/avg=0.161  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  31, 22, 13, 31, 43
+ 15. Jeremiah Koger (AUB vs LSU)  Receiving Yards  O4.5  L5avg=26.8  line/avg=0.168  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  18, 5, 29, 25, 57
+ 16. Jaylen Raynor (ISU vs ARIZ)  Rush Yards  O4.5  L5avg=26.8  line/avg=0.168  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  14, 15, 27, 60, 18
+ 17. Dylan Edwards (KU vs BAY)  Receiving Yards  O4.5  L5avg=24.2  line/avg=0.186  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 13:00
+     L5  28, 29, 30, 16, 18
+ 18. Jayden Maiava (USC vs WIS)  Pass TDs  O0.5  L5avg=2.6  line/avg=0.192  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  3, 1, 2, 2, 5
+ 19. Traylon Ray (MISS vs TEX)  Receiving Yards  O9.5  L5avg=49.2  line/avg=0.193  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  45, 43, 17, 115, 26
+ 20. Zacharyus Williams (USC vs WIS)  Receiving Yards  O9.5  L5avg=48.6  line/avg=0.195  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  57, 78, 37, 27, 44
+ 21. Dylan Riley (BSU vs WSU)  Receiving Yards  O4.5  L5avg=23.0  line/avg=0.196  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 18:00
+     L5  64, 7, 15, 18, 11
+ 22. Bailen George (UNM vs NDSU)  Receiving Yards  O9.5  L5avg=48.0  line/avg=0.198  flag=nan  D=Elite  tip=2026-10-24 22:00
+     L5  22, 62, 102, 18, 36
+ 23. Javian Mallory (MIA vs PITT)  Rush Yards  O14.5  L5avg=73.2  line/avg=0.198  flag=nan  D=Elite  tip=2026-10-24 12:00
+     L5  108, 63, 30, 23, 142
+ 24. Dawson Pendergrass (BAY vs KU)  Rush Yards  O9.5  L5avg=47.8  line/avg=0.199  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 13:00
+     L5  11, 29, 84, 46, 69
+ 25. Devon Dampier (UTAH vs HOU)  Pass TDs  O0.5  L5avg=2.4  line/avg=0.208  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  3, 3, 2, 2, 2
+ 26. Daune Morris (TENN vs SC)  Rush Yards  O9.5  L5avg=45.2  line/avg=0.210  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  12, 33, 32, 33, 116
+ 27. Creed Whittemore (UTAH vs HOU)  Receiving Yards  O9.5  L5avg=45.2  line/avg=0.210  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 22:15
+     L5  88, 34, 44, 43, 17
+ 28. Malik Knight (PITT vs MIA)  Receiving Yards  O9.5  L5avg=44.2  line/avg=0.215  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  30, 62, 20, 53, 56
+ 29. Reece Vander Zee (IOWA vs MINN)  Receiving Yards  O9.5  L5avg=43.0  line/avg=0.221  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  69, 35, 66, 13, 32
+ 30. Isaiah Marshall (KU vs BAY)  Rush Yards  O14.5  L5avg=64.6  line/avg=0.224  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 13:00
+     L5  117, 21, 110, 52, 23
+ 31. Ethan Grunkemeyer (VT vs ADRN)  Pass TDs  O0.5  L5avg=2.2  line/avg=0.227  flag=PRIOR_SEASON_FILL  D=nan  tip=2026-10-24 19:00
+     L5  3, 1, 3, 1, 3
+ 32. Trinidad Chambliss (MISS vs TEX)  Pass TDs  O0.5  L5avg=2.2  line/avg=0.227  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  3, 3, 1, 2, 2
+ 33. Ricky Johnson (UTAH vs HOU)  Receiving Yards  O9.5  L5avg=41.6  line/avg=0.228  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 22:15
+     L5  28, 104, 16, 43, 17
+ 34. Noah Bennee (UTAH vs HOU)  Receiving Yards  O9.5  L5avg=41.2  line/avg=0.231  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 22:15
+     L5  29, 11, 18, 113, 35
+ 35. Landon Ellis (UCLA vs MSU)  Receiving Yards  O9.5  L5avg=40.2  line/avg=0.236  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  57, 26, 22, 20, 76
+ 36. LaNorris Sellers (SC vs TENN)  Rush Yards  O19.5  L5avg=82.0  line/avg=0.238  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  20, 147, 72, 52, 119
+ 37. Waden Charles (UCF vs BYU)  Receiving Yards  O9.5  L5avg=39.8  line/avg=0.239  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  30, 68, 14, 46, 41
+ 38. Josh Manning (KSU vs ASU)  Receiving Yards  O9.5  L5avg=39.4  line/avg=0.241  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:45
+     L5  24, 24, 19, 97, 33
+ 39. Ja'Cory Thomas (VAN vs UK)  Receiving Yards  O9.5  L5avg=39.0  line/avg=0.244  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 19:30
+     L5  57, 60, 43, 18, 17
+ 40. JC French IV (CIN vs TTU)  Rush Yards  O9.5  L5avg=38.6  line/avg=0.246  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  52, 29, 21, 39, 52
+ 41. Conner Weigman (HOU vs UTAH)  Rush Yards  O9.5  L5avg=38.6  line/avg=0.246  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:15
+     L5  52, 21, 50, 14, 56
+ 42. Cam Cook (WVU vs TCU)  Receiving Yards  O4.5  L5avg=18.2  line/avg=0.247  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  41, 18, 5, 22, 5
+ 43. Chris Barnes (OKST vs COLO)  Receiving Yards  O9.5  L5avg=38.4  line/avg=0.247  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:00
+     L5  27, 58, 51, 36, 20
+ 44. Josh Hoover (IND vs MICH)  Pass TDs  O0.5  L5avg=2.0  line/avg=0.250  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  1, 2, 4, 1, 2
+ 45. Maddux Madsen (BSU vs WSU)  Pass TDs  O0.5  L5avg=2.0  line/avg=0.250  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 18:00
+     L5  2, 2, 3, 2, 1
+ 46. Clay Thevenin (RUTG vs NW)  Rush Yards  O14.5  L5avg=57.0  line/avg=0.254  flag=PRIOR_SEASON_FILL  D=nan  tip=2026-10-24 12:00
+     L5  109, 47, 69, 24, 36
+ 47. J'Koby Williams (TTU vs CIN)  Receiving Yards  O4.5  L5avg=17.6  line/avg=0.256  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  8, 26, 24, 14, 16
+ 48. Nathan Hayes (NDSU vs UNM)  Rush Yards  O9.5  L5avg=37.0  line/avg=0.257  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:00
+     L5  42, 33, 79, 14, 17
+ 49. Hudson Clement (ILL vs ORE)  Receiving Yards  O19.5  L5avg=75.6  line/avg=0.258  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:00
+     L5  105, 72, 87, 69, 45
+ 50. Dawson Pough (BC vs GT)  Receiving Yards  O9.5  L5avg=36.0  line/avg=0.264  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:30
+     L5  22, 12, 29, 11, 106
+ 51. Javian Mallory (MIA vs PITT)  Rush Yards  O19.5  L5avg=73.2  line/avg=0.266  flag=nan  D=Elite  tip=2026-10-24 12:00
+     L5  108, 63, 30, 23, 142
+ 52. Ayo Adeyi (OKST vs COLO)  Rush Yards  O9.5  L5avg=35.2  line/avg=0.270  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  20, 21, 44, 67, 24
+ 53. Caleb Odom (MISS vs TEX)  Receiving Yards  O14.5  L5avg=53.4  line/avg=0.272  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  37, 29, 47, 88, 66
+ 54. Damon Ferguson Jr. (PITT vs MIA)  Rush Yards  O19.5  L5avg=71.4  line/avg=0.273  flag=nan  D=Elite  tip=2026-10-24 12:00
+     L5  119, 49, 31, 56, 102
+ 55. JJ Buchanan (MICH vs IND)  Receiving Yards  O19.5  L5avg=71.2  line/avg=0.274  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  36, 50, 130, 92, 48
+ 56. Chris Brooks Jr. (WIS vs USC)  Receiving Yards  O9.5  L5avg=34.6  line/avg=0.275  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 19:30
+     L5  17, 10, 16, 91, 39
+ 57. Addison Ostrenga (IOWA vs MINN)  Receptions  O0.5  L5avg=1.8  line/avg=0.278  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  1, 3, 1, 3, 1
+ 58. Alberto Mendoza (GT vs BC)  Pass TDs  O0.5  L5avg=1.8  line/avg=0.278  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  2, 1, 2, 3, 1
+ 59. Billy Edwards Jr. (UNC vs SYR)  Pass TDs  O0.5  L5avg=1.8  line/avg=0.278  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:30
+     L5  1, 2, 3, 1, 2
+ 60. Darian Mensah (MIA vs PITT)  Rush Yards  O4.5  L5avg=16.0  line/avg=0.281  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  6, 27, 21, 5, 21
+ 61. Emmett Mosley V (TEX vs MISS)  Receiving Yards  O14.5  L5avg=51.0  line/avg=0.284  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:30
+     L5  76, 43, 43, 28, 65
+ 62. JV Gibson (CIN vs TTU)  Receiving Yards  O19.5  L5avg=68.4  line/avg=0.285  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  75, 66, 68, 79, 54
+ 63. Ed Small (TCU vs WVU)  Receiving Yards  O24.5  L5avg=85.8  line/avg=0.286  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  91, 32, 41, 164, 101
+ 64. Re'Shaun Sanford II (HOU vs UTAH)  Rush Yards  O19.5  L5avg=67.6  line/avg=0.288  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:15
+     L5  36, 90, 62, 120, 30
+ 65. Fredrick Moore (MSU vs UCLA)  Receiving Yards  O9.5  L5avg=32.8  line/avg=0.290  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  43, 42, 23, 43, 13
+ 66. Kyson Brown (ASU vs KSU)  Rush Yards  O14.5  L5avg=49.8  line/avg=0.291  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:45
+     L5  39, 29, 34, 81, 66
+ 67. Dawson Pough (BC vs GT)  Receiving Yards  O10.5  L5avg=36.0  line/avg=0.292  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:30
+     L5  22, 12, 29, 11, 106
+ 68. Mason Mini (CAL vs SMU)  Receiving Yards  O9.5  L5avg=32.4  line/avg=0.293  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  49, 19, 42, 14, 38
+ 69. Jayden Savoury (MSU vs UCLA)  Receiving Yards  O9.5  L5avg=32.4  line/avg=0.293  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  33, 49, 26, 24, 30
+ 70. Trey'Dez Green (LSU vs AUB)  Receiving Yards  O19.5  L5avg=66.4  line/avg=0.294  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  60, 104, 58, 80, 30
+ 71. Caden Knighten (BAY vs KU)  Rush Yards  O14.5  L5avg=49.2  line/avg=0.295  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 13:00
+     L5  35, 84, 19, 42, 66
+ 72. Colton Joseph (WIS vs USC)  Rush Yards  O19.5  L5avg=66.0  line/avg=0.295  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  71, 141, 39, 46, 33
+ 73. Isaiah Marshall (KU vs BAY)  Rush Yards  O19.5  L5avg=64.6  line/avg=0.302  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 13:00
+     L5  117, 21, 110, 52, 23
+ 74. Bailen George (UNM vs NDSU)  Receiving Yards  O14.5  L5avg=48.0  line/avg=0.302  flag=nan  D=Elite  tip=2026-10-24 22:00
+     L5  22, 62, 102, 18, 36
+ 75. Mekhi Collins (NDSU vs UNM)  Receiving Yards  O9.5  L5avg=31.2  line/avg=0.304  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:00
+     L5  33, 11, 30, 38, 44
+ 76. Reis Kessel (NDSU vs UNM)  Receiving Yards  O9.5  L5avg=31.0  line/avg=0.306  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:00
+     L5  23, 30, 44, 16, 42
+ 77. Aiden Flora (ISU vs ARIZ)  Rush Yards  O39.5  L5avg=127.0  line/avg=0.311  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  86, 212, 54, 194, 89
+ 78. Byrum Brown (AUB vs LSU)  Pass TDs  O0.5  L5avg=1.6  line/avg=0.312  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  1, 1, 1, 3, 2
+ 79. Wayne Knight (UCLA vs MSU)  Rush TDs  O0.5  L5avg=1.6  line/avg=0.312  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:30
+     L5  1, 1, 1, 2, 3
+ 80. DeAndre Moore Jr. (COLO vs OKST)  Receiving Yards  O19.5  L5avg=62.4  line/avg=0.312  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  70, 42, 56, 107, 37
+ 81. Abu Sama III (WIS vs USC)  Rush Yards  O19.5  L5avg=62.2  line/avg=0.314  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  34, 34, 107, 49, 87
+ 82. DJ Vonnahme (IOWA vs MINN)  Receiving Yards  O14.5  L5avg=43.8  line/avg=0.331  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  44, 64, 44, 25, 42
+ 83. Chas Nimrod (AUB vs LSU)  Receiving Yards  O19.5  L5avg=58.4  line/avg=0.334  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  60, 33, 52, 95, 52
+ 84. Hogan Hansen (MICH vs IND)  Receiving Yards  O9.5  L5avg=28.0  line/avg=0.339  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  31, 22, 13, 31, 43
+ 85. Rocky Beers (OU vs MSST)  Receiving Yards  O19.5  L5avg=57.2  line/avg=0.341  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 15:30
+     L5  45, 29, 84, 34, 94
+ 86. Byrum Brown (AUB vs LSU)  Rush Yards  O29.5  L5avg=86.4  line/avg=0.341  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  115, 107, 57, 65, 88
+ 87. Clay Thevenin (RUTG vs NW)  Rush Yards  O19.5  L5avg=57.0  line/avg=0.342  flag=PRIOR_SEASON_FILL  D=nan  tip=2026-10-24 12:00
+     L5  109, 47, 69, 24, 36
+ 88. Ed Small (TCU vs WVU)  Receiving Yards  O29.5  L5avg=85.8  line/avg=0.344  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  91, 32, 41, 164, 101
+ 89. Rodney Bullard Jr. (MSU vs UCLA)  Receiving Yards  O9.5  L5avg=27.4  line/avg=0.347  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  11, 36, 13, 11, 66
+ 90. Keshaun Singleton (AUB vs LSU)  Receiving Yards  O19.5  L5avg=55.6  line/avg=0.351  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  45, 54, 38, 99, 42
+ 91. King Miller (USC vs WIS)  Rush Yards  O34.5  L5avg=97.4  line/avg=0.354  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  102, 81, 74, 102, 128
+ 92. Jaylen Raynor (ISU vs ARIZ)  Rush Yards  O9.5  L5avg=26.8  line/avg=0.354  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  14, 15, 27, 60, 18
+ 93. Mark Bowman (USC vs WIS)  Receiving Yards  O14.5  L5avg=40.8  line/avg=0.355  flag=nan  D=Elite  tip=2026-10-24 19:30
+     L5  44, 32, 83, 30, 15
+ 94. Isaiah Marshall (KU vs BAY)  Pass TDs  O0.5  L5avg=1.4  line/avg=0.357  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 13:00
+     L5  1, 2, 1, 1, 2
+ 95. Matt Fuller (SC vs TENN)  Rush Yards  O29.5  L5avg=82.2  line/avg=0.359  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  52, 49, 112, 73, 125
+ 96. Charlie Becker (IND vs MICH)  Receiving Yards  O39.5  L5avg=109.8  line/avg=0.360  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  165, 52, 107, 98, 127
+ 97. Caleb Odom (MISS vs TEX)  Receiving Yards  O19.5  L5avg=53.4  line/avg=0.365  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  37, 29, 47, 88, 66
+ 98. Collin Dixon (ILL vs ORE)  Receiving Yards  O39.5  L5avg=107.6  line/avg=0.367  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:00
+     L5  62, 116, 63, 131, 166
+ 99. Mike Matthews (TENN vs SC)  Receiving Yards  O24.5  L5avg=66.6  line/avg=0.368  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  85, 78, 57, 72, 41
+100. Trech Kekahuna (UNC vs SYR)  Receiving Yards  O9.5  L5avg=25.8  line/avg=0.368  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  42, 16, 17, 16, 38
+101. Patrick Overmyer (HOU vs UTAH)  Receiving Yards  O24.5  L5avg=66.4  line/avg=0.369  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  32, 83, 76, 68, 73
+102. Daniel Blood (WSU vs BSU)  Receiving Yards  O14.5  L5avg=39.0  line/avg=0.372  flag=PRIOR_SEASON_FILL  D=nan  tip=2026-10-24 18:00
+     L5  59, 17, 29, 57, 33
+103. Justice Haynes (GT vs BC)  Rush Yards  O34.5  L5avg=92.4  line/avg=0.373  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  69, 107, 141, 81, 64
+104. Jeffrey Overton Jr. (VT vs ADRN)  Rush Yards  O34.5  L5avg=92.4  line/avg=0.373  flag=PRIOR_SEASON_FILL  D=nan  tip=2026-10-24 19:00
+     L5  85, 73, 46, 209, 49
+105. JC French IV (CIN vs TTU)  Rush Yards  O14.5  L5avg=38.6  line/avg=0.376  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  52, 29, 21, 39, 52
+106. Amare Thomas (HOU vs UTAH)  Receiving Yards  O24.5  L5avg=65.0  line/avg=0.377  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  126, 31, 43, 50, 75
+107. Marshall Pritchett (ALA vs TAMU)  Receiving Yards  O14.5  L5avg=38.4  line/avg=0.378  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  39, 32, 46, 60, 15
+108. Emmett Mosley V (TEX vs MISS)  Receiving Yards  O19.5  L5avg=51.0  line/avg=0.382  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:30
+     L5  76, 43, 43, 28, 65
+109. Ayo Adeyi (OKST vs COLO)  Rush Yards  O13.5  L5avg=35.2  line/avg=0.384  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  20, 21, 44, 67, 24
+110. Chase Hendricks (CAL vs SMU)  Receiving Yards  O24.5  L5avg=63.6  line/avg=0.385  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  54, 94, 35, 37, 98
+111. Lloyd Avant (OU vs MSST)  Rush Yards  O14.5  L5avg=37.6  line/avg=0.386  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  31, 72, 23, 27, 35
+112. Kenny Darby (UK vs VAN)  Receiving Yards  O24.5  L5avg=63.4  line/avg=0.386  flag=nan  D=Avg  tip=2026-10-24 19:30
+     L5  35, 79, 96, 43, 64
+113. Aiden Flora (ISU vs ARIZ)  Rush Yards  O49.5  L5avg=127.0  line/avg=0.390  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  86, 212, 54, 194, 89
+114. Hudson Clement (ILL vs ORE)  Receiving Yards  O29.5  L5avg=75.6  line/avg=0.390  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:00
+     L5  105, 72, 87, 69, 45
+115. Jordan Marshall (MICH vs IND)  Rush Yards  O19.5  L5avg=49.8  line/avg=0.392  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  49, 50, 59, 59, 32
+116. Kyson Brown (ASU vs KSU)  Rush Yards  O19.5  L5avg=49.8  line/avg=0.392  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:45
+     L5  39, 29, 34, 81, 66
+117. Dylan Edwards (KU vs BAY)  Receiving Yards  O9.5  L5avg=24.2  line/avg=0.393  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 13:00
+     L5  28, 29, 30, 16, 18
+118. DeAndre Moore Jr. (COLO vs OKST)  Receiving Yards  O24.5  L5avg=62.4  line/avg=0.393  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  70, 42, 56, 107, 37
+119. Nick Marsh (IND vs MICH)  Receiving Yards  O39.5  L5avg=99.4  line/avg=0.397  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  57, 187, 120, 52, 81
+120. Tony Diaz (IOWA vs MINN)  Receiving Yards  O19.5  L5avg=49.0  line/avg=0.398  flag=nan  D=Elite  tip=2026-10-24 15:30
+     L5  23, 59, 46, 22, 95
+121. Zacharyus Williams (USC vs WIS)  Receiving Yards  O19.5  L5avg=48.6  line/avg=0.401  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  57, 78, 37, 27, 44
+122. Michael Hawkins Jr. (WVU vs TCU)  Rush Yards  O44.5  L5avg=110.0  line/avg=0.405  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  77, 98, 149, 103, 123
+123. Joseph Williams (COLO vs OKST)  Receiving Yards  O39.5  L5avg=97.0  line/avg=0.407  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  54, 93, 127, 88, 123
+124. JJ Buchanan (MICH vs IND)  Receiving Yards  O29.5  L5avg=71.2  line/avg=0.414  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  36, 50, 130, 92, 48
+125. Antonio Chadha (PITT vs MIA)  Kicking Points  O3.5  L5avg=8.4  line/avg=0.417  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  13, 5, 5, 10, 9
+126. Malik Knight (PITT vs MIA)  Receptions  O1.5  L5avg=3.6  line/avg=0.417  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  3, 3, 2, 5, 5
+127. Brayden Trimble (ILL vs ORE)  Receptions  O1.5  L5avg=3.6  line/avg=0.417  flag=nan  D=Below Avg  tip=2026-10-24 15:00
+     L5  4, 2, 4, 5, 3
+128. Aidan Chiles (NW vs RUTG)  Rush TDs  O0.5  L5avg=1.2  line/avg=0.417  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 12:00
+     L5  1, 1, 1, 1, 2
+129. Kewan Lacy (MISS vs TEX)  Rush Yards  O29.5  L5avg=70.4  line/avg=0.419  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  122, 39, 43, 87, 61
+130. Micah Hudson (TTU vs CIN)  Receiving Yards  O9.5  L5avg=22.4  line/avg=0.424  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  34, 16, 18, 18, 26
+131. Jeffrey Overton Jr. (VT vs ADRN)  Rush Yards  O39.5  L5avg=92.4  line/avg=0.427  flag=PRIOR_SEASON_FILL  D=nan  tip=2026-10-24 19:00
+     L5  85, 73, 46, 209, 49
+132. JV Gibson (CIN vs TTU)  Receiving Yards  O29.5  L5avg=68.4  line/avg=0.431  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  75, 66, 68, 79, 54
+133. Re'Shaun Sanford II (HOU vs UTAH)  Rush Yards  O29.5  L5avg=67.6  line/avg=0.436  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:15
+     L5  36, 90, 62, 120, 30
+134. Malik Knight (PITT vs MIA)  Receiving Yards  O19.5  L5avg=44.2  line/avg=0.441  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  30, 62, 20, 53, 56
+135. Dylan Riley (BSU vs WSU)  Rush Yards  O69.5  L5avg=157.0  line/avg=0.443  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 18:00
+     L5  150, 93, 138, 198, 206
+136. Mike Matthews (TENN vs SC)  Receiving Yards  O29.5  L5avg=66.6  line/avg=0.443  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  85, 78, 57, 72, 41
+137. Trey'Dez Green (LSU vs AUB)  Receiving Yards  O29.5  L5avg=66.4  line/avg=0.444  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  60, 104, 58, 80, 30
+138. Patrick Overmyer (HOU vs UTAH)  Receiving Yards  O29.5  L5avg=66.4  line/avg=0.444  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  32, 83, 76, 68, 73
+139. DJ Vonnahme (IOWA vs MINN)  Receiving Yards  O19.5  L5avg=43.8  line/avg=0.445  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  44, 64, 44, 25, 42
+140. Colton Joseph (WIS vs USC)  Rush Yards  O29.5  L5avg=66.0  line/avg=0.447  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  71, 141, 39, 46, 33
+141. Michael Hawkins Jr. (WVU vs TCU)  Rush Yards  O49.5  L5avg=110.0  line/avg=0.450  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  77, 98, 149, 103, 123
+142. Charlie Becker (IND vs MICH)  Receiving Yards  O49.5  L5avg=109.8  line/avg=0.451  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  165, 52, 107, 98, 127
+143. Willie Rodriguez (UK vs VAN)  Receiving Yards  O14.5  L5avg=32.0  line/avg=0.453  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:30
+     L5  38, 25, 57, 18, 22
+144. Nik McMillan (KU vs BAY)  Receiving Yards  O24.5  L5avg=54.0  line/avg=0.454  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 13:00
+     L5  55, 89, 30, 44, 52
+145. Amare Thomas (HOU vs UTAH)  Receiving Yards  O29.5  L5avg=65.0  line/avg=0.454  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  126, 31, 43, 50, 75
+146. Collin Dixon (ILL vs ORE)  Receiving Yards  O49.5  L5avg=107.6  line/avg=0.460  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:00
+     L5  62, 116, 63, 131, 166
+147. Mark Fletcher Jr. (MIA vs PITT)  Rush Yards  O34.5  L5avg=74.6  line/avg=0.462  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  66, 77, 85, 105, 40
+148. Chas Nimrod (AUB vs LSU)  Receptions  O2.5  L5avg=5.4  line/avg=0.463  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  6, 3, 5, 6, 7
+149. Justin Bowick (OKST vs COLO)  Receptions  O2.5  L5avg=5.4  line/avg=0.463  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:00
+     L5  3, 6, 4, 9, 5
+150. Chase Hendricks (CAL vs SMU)  Receiving Yards  O29.5  L5avg=63.6  line/avg=0.464  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  54, 94, 35, 37, 98
+151. Kenny Darby (UK vs VAN)  Receiving Yards  O29.5  L5avg=63.4  line/avg=0.465  flag=nan  D=Avg  tip=2026-10-24 19:30
+     L5  35, 79, 96, 43, 64
+152. Nyck Harbor (SC vs TENN)  Receiving Yards  O19.5  L5avg=41.6  line/avg=0.469  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  83, 26, 42, 22, 35
+153. Wayshawn Parker (UTAH vs HOU)  Receptions  O1.5  L5avg=3.2  line/avg=0.469  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 22:15
+     L5  2, 2, 5, 2, 5
+154. Josh Manning (KSU vs ASU)  Receiving Yards  O18.5  L5avg=39.4  line/avg=0.470  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:45
+     L5  24, 24, 19, 97, 33
+155. Aidan Laughery (ILL vs ORE)  Rush Yards  O34.5  L5avg=72.4  line/avg=0.477  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:00
+     L5  70, 49, 113, 93, 37
+156. Matt Fuller (SC vs TENN)  Rush Yards  O39.5  L5avg=82.2  line/avg=0.481  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  52, 49, 112, 73, 125
+157. Andrew Marsh (MICH vs IND)  Receptions  O2.5  L5avg=5.2  line/avg=0.481  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  3, 3, 7, 10, 3
+158. Kyler Kasper (BYU vs UCF)  Receiving Yards  O19.5  L5avg=40.4  line/avg=0.483  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  66, 40, 22, 23, 51
+159. Landon Ellis (UCLA vs MSU)  Receiving Yards  O19.5  L5avg=40.2  line/avg=0.485  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  57, 26, 22, 20, 76
+160. Nick Marsh (IND vs MICH)  Receiving Yards  O49.5  L5avg=99.4  line/avg=0.498  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  57, 187, 120, 52, 81
+161. Will Hammond (TTU vs CIN)  Pass TDs  O0.5  L5avg=1.0  line/avg=0.500  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  1, 1, 1, 1, 1
+162. Fredrick Moore (MSU vs UCLA)  Receptions  O1.5  L5avg=3.0  line/avg=0.500  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  3, 2, 4, 4, 2
+163. Drew Mestemaker (OKST vs COLO)  Pass TDs  O1.5  L5avg=3.0  line/avg=0.500  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 19:00
+     L5  3, 2, 3, 5, 2
+164. Wyatt Young (OKST vs COLO)  Rec TDs  O0.5  L5avg=1.0  line/avg=0.500  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 19:00
+     L5  1, 1, 1, 1, 1
+165. Jaylen Raynor (ISU vs ARIZ)  Pass TDs  O0.5  L5avg=1.0  line/avg=0.500  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  1, 1, 1, 1, 1
+166. Zacharyus Williams (USC vs WIS)  Receiving Yards  O24.5  L5avg=48.6  line/avg=0.504  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  57, 78, 37, 27, 44
+167. DeAndre Moore Jr. (COLO vs OKST)  Receiving Yards  O31.5  L5avg=62.4  line/avg=0.505  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  70, 42, 56, 107, 37
+168. Chas Nimrod (AUB vs LSU)  Receiving Yards  O29.5  L5avg=58.4  line/avg=0.505  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  60, 33, 52, 95, 52
+169. Michael Hawkins Jr. (WVU vs TCU)  Pass Yards  O124.5  L5avg=246.4  line/avg=0.505  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  464, 219, 227, 132, 190
+170. Dylan Riley (BSU vs WSU)  Rush Yards  O79.5  L5avg=157.0  line/avg=0.506  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 18:00
+     L5  150, 93, 138, 198, 206
+171. Chris Barnes (OKST vs COLO)  Receiving Yards  O19.5  L5avg=38.4  line/avg=0.508  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:00
+     L5  27, 58, 51, 36, 20
+172. King Miller (USC vs WIS)  Rush Yards  O49.5  L5avg=97.4  line/avg=0.508  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  102, 81, 74, 102, 128
+173. Joseph Williams (COLO vs OKST)  Receiving Yards  O49.5  L5avg=97.0  line/avg=0.510  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  54, 93, 127, 88, 123
+174. Hollywood Smothers (TEX vs MISS)  Rush Yards  O29.5  L5avg=57.8  line/avg=0.510  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 19:30
+     L5  52, 39, 54, 74, 70
+175. Lloyd Avant (OU vs MSST)  Rush Yards  O19.5  L5avg=37.6  line/avg=0.519  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  31, 72, 23, 27, 35
+176. Hudson Clement (ILL vs ORE)  Receptions  O2.5  L5avg=4.8  line/avg=0.521  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:00
+     L5  6, 4, 5, 5, 4
+177. Hudson Clement (ILL vs ORE)  Receiving Yards  O39.5  L5avg=75.6  line/avg=0.522  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:00
+     L5  105, 72, 87, 69, 45
+178. Keshaun Singleton (AUB vs LSU)  Receiving Yards  O29.5  L5avg=55.6  line/avg=0.531  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  45, 54, 38, 99, 42
+179. Junior Sherrill (VAN vs UK)  Receiving Yards  O49.5  L5avg=92.8  line/avg=0.533  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 19:30
+     L5  99, 55, 107, 95, 108
+180. Anthony Woods (UCLA vs MSU)  Rush Yards  O24.5  L5avg=45.8  line/avg=0.535  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:30
+     L5  39, 39, 41, 80, 30
+181. Mike Matthews (TENN vs SC)  Receptions  O2.5  L5avg=4.6  line/avg=0.543  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  7, 4, 4, 4, 4
+182. Drew Wagner (NW vs RUTG)  Receiving Yards  O14.5  L5avg=26.6  line/avg=0.545  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  18, 61, 19, 19, 16
+183. KJ Duff (RUTG vs NW)  Receiving Yards  O59.5  L5avg=109.0  line/avg=0.546  flag=PRIOR_SEASON_FILL  D=nan  tip=2026-10-24 12:00
+     L5  113, 78, 131, 86, 137
+184. Nik McMillan (KU vs BAY)  Receiving Yards  O29.5  L5avg=54.0  line/avg=0.546  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 13:00
+     L5  55, 89, 30, 44, 52
+185. JC French IV (CIN vs TTU)  Pass+Rush Yds  O159.5  L5avg=290.8  line/avg=0.548  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  441, 182, 186, 348, 297
+186. Collin Dixon (ILL vs ORE)  Receptions  O4.5  L5avg=8.2  line/avg=0.549  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:00
+     L5  7, 10, 5, 8, 11
+187. Nathan Hayes (NDSU vs UNM)  Pass Yards  O99.5  L5avg=180.4  line/avg=0.552  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:00
+     L5  153, 124, 187, 210, 228
+188. Ayo Adeyi (OKST vs COLO)  Rush Yards  O19.5  L5avg=35.2  line/avg=0.554  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  20, 21, 44, 67, 24
+189. Conner Weigman (HOU vs UTAH)  Pass Yards  O149.5  L5avg=269.2  line/avg=0.555  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  343, 242, 239, 239, 283
+190. Kedrick Reescano (ARIZ vs ISU)  Rush Yards  O24.5  L5avg=42.8  line/avg=0.572  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 19:30
+     L5  44, 57, 34, 30, 49
+191. Byrum Brown (AUB vs LSU)  Rush Yards  O49.5  L5avg=86.4  line/avg=0.573  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  115, 107, 57, 65, 88
+192. Dilin Jones (LSU vs AUB)  Rush Yards  O44.5  L5avg=77.4  line/avg=0.575  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  84, 56, 78, 63, 106
+193. Hogan Hansen (MICH vs IND)  Receptions  O1.5  L5avg=2.6  line/avg=0.577  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  2, 3, 2, 3, 3
+194. J'Koby Williams (TTU vs CIN)  Receptions  O1.5  L5avg=2.6  line/avg=0.577  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  2, 3, 3, 3, 2
+195. Byrum Brown (AUB vs LSU)  Pass+Rush Yds  O159.5  L5avg=275.6  line/avg=0.579  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  265, 266, 197, 336, 314
+196. Alberto Mendoza (GT vs BC)  Pass Yards  O149.5  L5avg=258.2  line/avg=0.579  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  335, 218, 268, 249, 221
+197. Caleb Hawkins (OKST vs COLO)  Rush Yards  O59.5  L5avg=102.6  line/avg=0.580  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  68, 83, 180, 72, 110
+198. Josh Hoover (IND vs MICH)  Pass Yards  O149.5  L5avg=256.8  line/avg=0.582  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  296, 263, 251, 201, 273
+199. Conner Weigman (HOU vs UTAH)  Pass+Rush Yds  O179.5  L5avg=307.8  line/avg=0.583  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:15
+     L5  395, 263, 289, 253, 339
+200. Jordan Marshall (MICH vs IND)  Rush Yards  O29.5  L5avg=49.8  line/avg=0.592  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  49, 50, 59, 59, 32
+201. JC French IV (CIN vs TTU)  Pass Yards  O149.5  L5avg=252.2  line/avg=0.593  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  389, 153, 165, 309, 245
+202. Trinidad Chambliss (MISS vs TEX)  Pass Yards  O159.5  L5avg=268.0  line/avg=0.595  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  241, 213, 298, 363, 225
+203. Legend Glasker (BYU vs UCF)  Receptions  O2.5  L5avg=4.2  line/avg=0.595  flag=nan  D=Below Avg  tip=2026-10-24 15:30
+     L5  5, 5, 3, 5, 3
+204. Caleb Odom (MISS vs TEX)  Receptions  O2.5  L5avg=4.2  line/avg=0.595  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  4, 4, 5, 5, 3
+205. Mark Bowman (USC vs WIS)  Receptions  O2.5  L5avg=4.2  line/avg=0.595  flag=nan  D=Elite  tip=2026-10-24 19:30
+     L5  6, 3, 6, 3, 3
+206. Jayden Savoury (MSU vs UCLA)  Receiving Yards  O19.5  L5avg=32.4  line/avg=0.602  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  33, 49, 26, 24, 30
+207. King Miller (USC vs WIS)  Rush Yards  O59.5  L5avg=97.4  line/avg=0.611  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  102, 81, 74, 102, 128
+208. Jayden Maiava (USC vs WIS)  Pass Yards  O174.5  L5avg=282.0  line/avg=0.619  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  301, 245, 326, 277, 261
+209. Dawson Pough (BC vs GT)  Receptions  O1.5  L5avg=2.4  line/avg=0.625  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:30
+     L5  2, 2, 2, 2, 4
+210. Jared Curtis (VAN vs UK)  Pass Yards  O149.5  L5avg=236.4  line/avg=0.632  flag=nan  D=Weak  tip=2026-10-24 19:30
+     L5  274, 222, 199, 277, 210
+211. KJ Duff (RUTG vs NW)  Receiving Yards  O69.5  L5avg=109.0  line/avg=0.638  flag=PRIOR_SEASON_FILL  D=nan  tip=2026-10-24 12:00
+     L5  113, 78, 131, 86, 137
+212. Mason McKenzie (BC vs GT)  Pass+Rush Yds  O179.5  L5avg=281.0  line/avg=0.639  flag=nan  D=Below Avg  tip=2026-10-24 15:30
+     L5  302, 282, 249, 226, 346
+213. Dilin Jones (LSU vs AUB)  Rush Yards  O49.5  L5avg=77.4  line/avg=0.640  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  84, 56, 78, 63, 106
+214. Anthony Woods (UCLA vs MSU)  Rush Yards  O29.5  L5avg=45.8  line/avg=0.644  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:30
+     L5  39, 39, 41, 80, 30
+215. Micah Hudson (TTU vs CIN)  Receiving Yards  O14.5  L5avg=22.4  line/avg=0.647  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  34, 16, 18, 18, 26
+216. Conner Weigman (HOU vs UTAH)  Pass Yards  O174.5  L5avg=269.2  line/avg=0.648  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  343, 242, 239, 239, 283
+217. Isaiah Marshall (KU vs BAY)  Pass+Rush Yds  O179.5  L5avg=274.2  line/avg=0.655  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 13:00
+     L5  268, 354, 271, 287, 191
+218. Byrum Brown (AUB vs LSU)  Pass Yards  O124.5  L5avg=189.2  line/avg=0.658  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  150, 159, 140, 271, 226
+219. Darian Mensah (MIA vs PITT)  Pass Yards  O179.5  L5avg=272.6  line/avg=0.658  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 12:00
+     L5  326, 227, 338, 220, 252
+220. Drew Mestemaker (OKST vs COLO)  Pass Yards  O224.5  L5avg=339.8  line/avg=0.661  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:00
+     L5  365, 304, 389, 324, 317
+221. Maddux Madsen (BSU vs WSU)  Pass Yards  O149.5  L5avg=223.0  line/avg=0.670  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 18:00
+     L5  238, 244, 204, 208, 221
+222. Kari Ashley (TCU vs WVU)  Receptions  O3.5  L5avg=5.2  line/avg=0.673  flag=nan  D=Weak  tip=2026-10-24 12:00
+     L5  4, 6, 4, 5, 7
+223. Trinidad Chambliss (MISS vs TEX)  Pass+Rush Yds  O189.5  L5avg=281.4  line/avg=0.673  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  255, 218, 342, 365, 227
+224. Noah Fifita (ARIZ vs ISU)  Pass Yards  O199.5  L5avg=295.4  line/avg=0.675  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  341, 284, 297, 325, 230
+225. Avery Johnson (KSU vs ASU)  Pass Yards  O149.5  L5avg=220.4  line/avg=0.678  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:45
+     L5  209, 182, 292, 227, 192
+226. Devon Dampier (UTAH vs HOU)  Pass Yards  O169.5  L5avg=247.2  line/avg=0.686  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 22:15
+     L5  278, 238, 206, 253, 261
+227. Kedrick Reescano (ARIZ vs ISU)  Rush Yards  O29.5  L5avg=42.8  line/avg=0.689  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 19:30
+     L5  44, 57, 34, 30, 49
+228. Junior Sherrill (VAN vs UK)  Receptions  O4.5  L5avg=6.4  line/avg=0.703  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 19:30
+     L5  8, 5, 7, 6, 6
+229. Jayden Maiava (USC vs WIS)  Pass Yards  O199.5  L5avg=282.0  line/avg=0.707  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  301, 245, 326, 277, 261
+230. Isaiah Marshall (KU vs BAY)  Pass Yards  O149.5  L5avg=209.6  line/avg=0.713  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 13:00
+     L5  151, 333, 161, 235, 168
+231. JV Gibson (CIN vs TTU)  Receiving Yards  O49.5  L5avg=68.4  line/avg=0.724  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  75, 66, 68, 79, 54
+232. Avery Johnson (KSU vs ASU)  Pass Yards  O159.5  L5avg=220.4  line/avg=0.724  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:45
+     L5  209, 182, 292, 227, 192
+233. Hudson Clement (ILL vs ORE)  Receptions  O3.5  L5avg=4.8  line/avg=0.729  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:00
+     L5  6, 4, 5, 5, 4
+234. Darian Mensah (MIA vs PITT)  Pass Yards  O199.5  L5avg=272.6  line/avg=0.732  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 12:00
+     L5  326, 227, 338, 220, 252
+235. Drew Mestemaker (OKST vs COLO)  Pass Yards  O249.5  L5avg=339.8  line/avg=0.734  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:00
+     L5  365, 304, 389, 324, 317
+236. Conner Weigman (HOU vs UTAH)  Pass Completions  O15.5  L5avg=21.0  line/avg=0.738  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  24, 19, 18, 17, 27
+237. Devon Dampier (UTAH vs HOU)  Pass Completions  O15.5  L5avg=21.0  line/avg=0.738  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 22:15
+     L5  24, 23, 18, 22, 18
+238. Gavin Freeman (BAY vs KU)  Receptions  O5.5  L5avg=7.4  line/avg=0.743  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 13:00
+     L5  7, 7, 6, 7, 10
+239. Trinidad Chambliss (MISS vs TEX)  Pass Yards  O199.5  L5avg=268.0  line/avg=0.744  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  241, 213, 298, 363, 225
+240. Devon Dampier (UTAH vs HOU)  Pass+Rush Yds  O209.5  L5avg=280.6  line/avg=0.747  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 22:15
+     L5  270, 309, 227, 287, 310
+241. John Mateer (OU vs MSST)  Rush Attempts  O9.5  L5avg=12.6  line/avg=0.754  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  13, 12, 15, 10, 13
+242. Mike Matthews (TENN vs SC)  Receptions  O3.5  L5avg=4.6  line/avg=0.761  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  7, 4, 4, 4, 4
+243. Alberto Mendoza (GT vs BC)  Pass Yards  O199.5  L5avg=258.2  line/avg=0.773  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  335, 218, 268, 249, 221
+244. Arch Manning (TEX vs MISS)  Pass+Rush Yds  O169.5  L5avg=218.4  line/avg=0.776  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 19:30
+     L5  179, 280, 200, 214, 219
+245. Josh Hoover (IND vs MICH)  Pass Yards  O199.5  L5avg=256.8  line/avg=0.777  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  296, 263, 251, 201, 273
+246. Maddux Madsen (BSU vs WSU)  Pass Yards  O174.5  L5avg=223.0  line/avg=0.783  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 18:00
+     L5  238, 244, 204, 208, 221
+247. Arch Manning (TEX vs MISS)  Pass Yards  O159.5  L5avg=198.0  line/avg=0.806  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:30
+     L5  173, 260, 201, 161, 195
+248. Devon Dampier (UTAH vs HOU)  Pass Yards  O199.5  L5avg=247.2  line/avg=0.807  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 22:15
+     L5  278, 238, 206, 253, 261
+249. Conner Weigman (HOU vs UTAH)  Pass+Rush Yds  O249.5  L5avg=307.8  line/avg=0.811  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:15
+     L5  395, 263, 289, 253, 339
+250. Conner Weigman (HOU vs UTAH)  Pass Yards  O219.5  L5avg=269.2  line/avg=0.815  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  343, 242, 239, 239, 283
+251. Devon Dampier (UTAH vs HOU)  Pass Completions  O17.5  L5avg=21.0  line/avg=0.833  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 22:15
+     L5  24, 23, 18, 22, 18
+252. Jayden Maiava (USC vs WIS)  Pass Completions  O17.5  L5avg=20.8  line/avg=0.841  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  21, 21, 23, 20, 19
+253. Drew Mestemaker (OKST vs COLO)  Pass Yards  O288.5  L5avg=339.8  line/avg=0.849  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:00
+     L5  365, 304, 389, 324, 317
+254. Maddux Madsen (BSU vs WSU)  Pass Yards  O199.5  L5avg=223.0  line/avg=0.895  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 18:00
+     L5  238, 244, 204, 208, 221
+
+===== Demon OVER (n=2) =====
+  1. TJ Thomas Jr. (MINN vs IOWA)  Receptions  O1.5  L5avg=3.0  line/avg=0.500  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:30
+     L5  4, 2, 2, 3, 4
+  2. Conner Weigman (HOU vs UTAH)  Pass Yards  O237.5  L5avg=269.2  line/avg=0.882  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  343, 242, 239, 239, 283
+
+===== Standard OVER (n=19) =====
+  1. Antonio Chadha (PITT vs MIA)  Kicking Points  O4  L5avg=8.4  line/avg=0.476  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  13, 5, 5, 10, 9
+  2. DeKalon Taylor (COLO vs OKST)  Receiving Yards  O8.5  L5avg=17.8  line/avg=0.478  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  21, 17, 12, 15, 24
+  3. Dylan Edwards (KU vs BAY)  Longest Reception  O10.5  L5avg=21.6  line/avg=0.486  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 13:00
+     L5  17, 24, 30, 19, 18
+  4. Zacharyus Williams (USC vs WIS)  Longest Reception  O15.5  L5avg=30.8  line/avg=0.503  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  22, 40, 21, 27, 44
+  5. Keelon Russell (ALA vs TAMU)  Longest Rush  O14.5  L5avg=26.2  line/avg=0.553  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 15:30
+     L5  19, 22, 17, 16, 57
+  6. Conner Weigman (HOU vs UTAH)  Fantasy Score  O20.5  L5avg=33.4  line/avg=0.613  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 22:15
+     L5  38.92, 27.78, 32.56, 38.96, 28.92
+  7. Devon Dampier (UTAH vs HOU)  Pass TDs  O1.5  L5avg=2.4  line/avg=0.625  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  3, 3, 2, 2, 2
+  8. Dylan Edwards (KU vs BAY)  Receiving Yards  O15.5  L5avg=24.2  line/avg=0.640  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 13:00
+     L5  28, 29, 30, 16, 18
+  9. Ayo Adeyi (OKST vs COLO)  Longest Rush  O10.5  L5avg=15.8  line/avg=0.665  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:00
+     L5  13, 16, 14, 25, 11
+ 10. Nick Marsh (IND vs MICH)  Fantasy Score  O14.5  L5avg=21.5  line/avg=0.673  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  14.7, 36.7, 25, 16.2, 15.1
+ 11. Byrum Brown (AUB vs LSU)  Fantasy Score  O20.5  L5avg=28.9  line/avg=0.709  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 12:00
+     L5  27.5, 27.06, 21.3, 35.34, 33.34
+ 12. King Miller (USC vs WIS)  Rush Yards  O69.5  L5avg=97.4  line/avg=0.714  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 19:30
+     L5  102, 81, 74, 102, 128
+ 13. King Miller (USC vs WIS)  Rush+Rec Yds  O77.5  L5avg=101.8  line/avg=0.761  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 19:30
+     L5  102, 93, 84, 102, 128
+ 14. JV Gibson (CIN vs TTU)  Receiving Yards  O52.5  L5avg=68.4  line/avg=0.768  flag=PRIOR_SEASON_FILL  D=Weak  tip=2026-10-24 12:00
+     L5  75, 66, 68, 79, 54
+ 15. Darian Mensah (MIA vs PITT)  Fantasy Score  O21  L5avg=25.3  line/avg=0.830  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 12:00
+     L5  25.64, 21.78, 33.62, 21.3, 24.18
+ 16. Conner Weigman (HOU vs UTAH)  Pass Yards  O227.5  L5avg=269.2  line/avg=0.845  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  343, 242, 239, 239, 283
+ 17. Drew Mestemaker (OKST vs COLO)  Pass Yards  O289.5  L5avg=339.8  line/avg=0.852  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 19:00
+     L5  365, 304, 389, 324, 317
+ 18. Conner Weigman (HOU vs UTAH)  Longest Completion  O41.5  L5avg=46.2  line/avg=0.898  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 22:15
+     L5  51, 44, 43, 47, 46
+ 19. Maddux Madsen (BSU vs WSU)  Pass Yards  O202.5  L5avg=223.0  line/avg=0.908  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 18:00
+     L5  238, 244, 204, 208, 221
+
+===== Standard UNDER (n=13) =====
+  1. Jeremy Hecklinski (IOWA vs MINN)  Pass Attempts  U25.5  L5avg=10.4  line/avg=2.452  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  19, 5, 11, 16, 1
+  2. Jeremy Hecklinski (IOWA vs MINN)  Pass Completions  U16  L5avg=6.6  line/avg=2.424  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  14, 5, 6, 7, 1
+  3. Preston Rex (BYU vs UCF)  Rush Attempts  U13.5  L5avg=5.8  line/avg=2.328  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  10, 6, 8, 4, 1
+  4. Jeremy Hecklinski (IOWA vs MINN)  Longest Completion  U34.5  L5avg=19.6  line/avg=1.760  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  33, 18, 17, 24, 6
+  5. Jojo Phillips (BYU vs UCF)  Longest Reception  U15.5  L5avg=9.6  line/avg=1.615  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 15:30
+     L5  11, 14, 6, 12, 5
+  6. Lloyd Avant (OU vs MSST)  Rush Attempts  U13.5  L5avg=9.0  line/avg=1.500  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  8, 10, 10, 8, 9
+  7. Dierre Hill Jr. (ORE vs ILL)  Longest Rush  U18.5  L5avg=12.6  line/avg=1.468  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:00
+     L5  12, 16, 14, 7, 14
+  8. DJ Lagway (BAY vs KU)  Longest Completion  U43.5  L5avg=29.8  line/avg=1.460  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 13:00
+     L5  21, 32, 34, 28, 34
+  9. Alberto Mendoza (GT vs BC)  Longest Completion  U37.5  L5avg=26.6  line/avg=1.410  flag=PRIOR_SEASON_FILL  D=Elite  tip=2026-10-24 15:30
+     L5  33, 21, 31, 26, 22
+ 10. Rico Scott (ALA vs TAMU)  Longest Reception  U26.5  L5avg=20.0  line/avg=1.325  flag=PRIOR_SEASON_FILL  D=Above Avg  tip=2026-10-24 15:30
+     L5  20, 23, 25, 13, 19
+ 11. Kedrick Reescano (ARIZ vs ISU)  Longest Rush  U14.5  L5avg=11.0  line/avg=1.318  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 19:30
+     L5  9, 10, 14, 14, 8
+ 12. Aidan Chiles (NW vs RUTG)  Longest Completion  U42.5  L5avg=33.2  line/avg=1.280  flag=PRIOR_SEASON_FILL  D=Avg  tip=2026-10-24 12:00
+     L5  23, 39, 31, 41, 32
+ 13. Isaiah Marshall (KU vs BAY)  Longest Completion  U42.5  L5avg=34.2  line/avg=1.243  flag=PRIOR_SEASON_FILL  D=Below Avg  tip=2026-10-24 13:00
+     L5  22, 41, 34, 42, 32
+

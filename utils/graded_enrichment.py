@@ -58,6 +58,9 @@ _STEP8_RENAME: dict[str, str] = {
     "Line": "line",
     "Direction": "direction",
     "Def Tier": "def_tier",
+    "Stat Def Tier": "stat_def_tier",
+    "Stat Def Rank": "stat_def_rank",
+    "Stat Def Category": "stat_def_category",
     "Opp": "opp_team",
     "L5 Over": "l5_over",
     "L5 Under": "l5_under",
@@ -172,6 +175,7 @@ def _get_step8_lookup(sport: str, date: str, repo: Path) -> dict[str, dict[str, 
                 "l10_under",
                 "l10_games_played",
                 "strat_n",
+                "stat_def_rank",
                 "top3_weak_overperformer",
                 "top3_elite_fader",
                 "top3_def_context",
@@ -333,6 +337,8 @@ def _step8_paths(sport: str, date: str, repo: Path) -> list[Path]:
 
 _SIGNAL_STRING_COLS = frozenset({
     "def_tier",
+    "stat_def_tier",
+    "stat_def_category",
     "consistency_grade",
     "l10_streak",
     "usage_tier",
@@ -344,6 +350,7 @@ _SIGNAL_INT_COLS = frozenset({
     "l10_under",
     "l10_games_played",
     "strat_n",
+    "stat_def_rank",
     "top3_weak_overperformer",
     "top3_elite_fader",
     "top3_def_context",
@@ -398,8 +405,10 @@ def _assign_signal_value(df: pd.DataFrame, idx: object, field: str, val: object)
 
 
 def _field_empty(col: str, val: object) -> bool:
-    if col == "def_tier":
-        return is_empty_def_tier(val)
+    if col in {"def_tier", "stat_def_tier", "stat_def_category"}:
+        return is_empty_def_tier(val) if col == "def_tier" else is_empty_value(val)
+    if col == "stat_def_rank":
+        return is_empty_numeric(val)
     if col in {
         "l5_over", "l5_under", "l10_over", "l10_under", "l10_games_played",
         "hit_rate", "hit_rate_l5", "hit_rate_l10",
@@ -446,6 +455,50 @@ def backfill_from_step8(df: pd.DataFrame, *, repo: Path | None = None) -> pd.Dat
                 if not _field_empty(field, out.at[idx, field]):
                     continue
                 _assign_signal_value(out, idx, field, val)
+    return out
+
+
+def _prop_key(row: pd.Series) -> str:
+    for c in ("prop", "prop_type", "prop_type_norm", "Prop"):
+        if c in row.index and str(row.get(c, "")).strip():
+            return str(row.get(c, "")).strip()
+    return ""
+
+
+def backfill_stat_def_tier_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """Fill missing stat_def_* from the basketball by-stat CSV. Never writes def_tier."""
+    if df is None or df.empty:
+        return df
+    from utils.stat_def_stamp import lookup_stat_def_for_row
+
+    out = df.copy()
+    for col, empty in (
+        ("stat_def_tier", ""),
+        ("stat_def_category", ""),
+        ("stat_def_rank", np.nan),
+    ):
+        if col not in out.columns:
+            out[col] = empty
+        elif col in {"stat_def_tier", "stat_def_category"}:
+            if pd.api.types.is_numeric_dtype(out[col]) or pd.api.types.is_string_dtype(out[col]):
+                out[col] = out[col].astype(object)
+    sport_series = out.apply(_sport_key, axis=1)
+    opp_series = out.apply(_opp_key, axis=1)
+    prop_series = out.apply(_prop_key, axis=1)
+    for idx in out.index:
+        if not is_empty_value(out.at[idx, "stat_def_tier"]):
+            continue
+        info = lookup_stat_def_for_row(
+            sport_series.at[idx], opp_series.at[idx], prop_series.at[idx]
+        )
+        tier = str(info.get("stat_def_tier") or "")
+        if not tier:
+            continue
+        out.at[idx, "stat_def_tier"] = tier
+        if is_empty_value(out.at[idx, "stat_def_category"]):
+            out.at[idx, "stat_def_category"] = str(info.get("stat_def_category") or "")
+        if is_empty_numeric(out.at[idx, "stat_def_rank"]) and info.get("stat_def_rank") is not None:
+            out.at[idx, "stat_def_rank"] = int(info["stat_def_rank"])
     return out
 
 
@@ -606,6 +659,7 @@ def enrich_graded_for_analysis(
     out = attach_direction_hit_rate(out)
     out = backfill_def_tier_dataframe(out, repo=repo)
     out = backfill_from_step8(out, repo=repo)
+    out = backfill_stat_def_tier_dataframe(out)
     out = _attach_l10_streak(out)
     if "sport" not in out.columns and "_sport" in out.columns:
         out["sport"] = out["_sport"]

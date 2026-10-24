@@ -3,8 +3,8 @@
 step2_attach_picktypes_soccer.py  (Soccer Pipeline)
 
 Changes:
-- LEAGUE_SLUGS_FOR_ROSTER includes eng.3, esp.2, fra.2, usa.nwsl, aus.1, etc.
-  (Saudi sau.1 removed: ESPN boxscore/scoreboard unreliable for grading.)
+- LEAGUE_SLUGS_FOR_ROSTER includes eng.3, esp.2, fra.2, usa.nwsl, aus.1,
+  ksa.1 (Saudi Pro League — ESPN slug is ksa.1, not sau.1), col.1, ecu.1.
 - Roster cache auto-rebuilds after ROSTER_CACHE_MAX_AGE_DAYS (default 7).
   Pass --refresh-roster to force an immediate rebuild.
 - opp_team derived from pp_home_team/pp_away_team first; falls back to
@@ -48,10 +48,10 @@ from utils.soccer_pick_line_offsets import estimate_goblin_standard_line
 COMBO_SEP = "|"
 MANUAL_PP_MAP_PATH = "outputs/pp_to_espn_id_map_soccer.csv"
 
+# Full Chrome UA 403s ESPN soccer site.api; keep this in sync with soccer_defense_report.py.
 ESPN_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    "Accept": "application/json, text/plain, */*",
-    "Accept-Language": "en-US,en;q=0.9",
+    "User-Agent": "PropOracle/1.0 (+https://github.com/proporacle)",
+    "Accept": "application/json",
 }
 
 # Roster-based ID resolution — pulls all athletes from each league's teams
@@ -62,8 +62,9 @@ LEAGUE_SLUGS_FOR_ROSTER = [
     "eng.2", "eng.3", "esp.2", "fra.2", "por.1", "ned.1", "tur.1", "sco.1",
     # Americas
     "usa.1", "usa.nwsl", "arg.1", "arg.2", "bra.1", "mex.1",
-    # Other
-    "aus.1",
+    "col.1", "ecu.1",
+    # Asia / other (ksa.1 = Saudi Pro League; sau.1 is not a valid ESPN slug)
+    "aus.1", "ksa.1",
 ]
 
 ESPN_TEAMS_URL  = "https://site.api.espn.com/apis/site/v2/sports/soccer/{league}/teams?limit=100"
@@ -175,6 +176,7 @@ def _fetch_team_ids(league: str) -> List[Tuple[str, str]]:
     url  = ESPN_TEAMS_URL.format(league=league)
     data = _safe_get_json(url)
     if not data:
+        print(f"    {league}: 0 teams (ESPN teams payload empty / blocked)")
         return []
     teams = []
     for t in (data.get("sports") or [{}])[0].get("leagues", [{}])[0].get("teams", []):
@@ -225,6 +227,24 @@ def _fetch_roster(league: str, team_id: str, team_name: str = "") -> Dict[str, T
 ROSTER_CACHE_MAX_AGE_DAYS = 7  # Auto-rebuild roster cache if older than this
 
 
+def _roster_cache_leagues_path(roster_cache_path: str) -> Path:
+    p = Path(roster_cache_path)
+    return p.with_name(p.name + ".leagues")
+
+
+def _cached_roster_leagues(roster_cache_path: str) -> set[str]:
+    meta = _roster_cache_leagues_path(roster_cache_path)
+    if not meta.is_file():
+        return set()
+    return {ln.strip() for ln in meta.read_text(encoding="utf-8").splitlines() if ln.strip()}
+
+
+def _save_roster_leagues(roster_cache_path: str, leagues: List[str]) -> None:
+    _roster_cache_leagues_path(roster_cache_path).write_text(
+        "\n".join(leagues) + "\n", encoding="utf-8"
+    )
+
+
 def _is_single_name_key(key: str) -> bool:
     """True when normalized player name is a single token (e.g. 'wesley', 'hulk')."""
     parts = str(key or "").strip().split()
@@ -255,8 +275,16 @@ def build_roster_id_map(
     if roster_cache_path and os.path.exists(roster_cache_path) and not force_refresh:
         try:
             cache_age_days = (time.time() - os.path.getmtime(roster_cache_path)) / 86400
+            cached_leagues = _cached_roster_leagues(roster_cache_path)
+            wanted_leagues = {str(x).strip() for x in leagues if str(x).strip()}
+            missing_leagues = sorted(wanted_leagues - cached_leagues)
             if cache_age_days > ROSTER_CACHE_MAX_AGE_DAYS:
                 print(f"  ⚠️  Roster cache is {cache_age_days:.1f}d old (>{ROSTER_CACHE_MAX_AGE_DAYS}d) — rebuilding for freshness...")
+            elif missing_leagues:
+                print(
+                    f"  ⚠️  Roster cache missing leagues {missing_leagues} — rebuilding "
+                    f"(cache had {len(cached_leagues)} slugs)"
+                )
             else:
                 cdf = pd.read_csv(roster_cache_path, dtype=str).fillna("")
                 if not cdf.empty and "player_norm" in cdf.columns and "espn_athlete_id" in cdf.columns:
@@ -332,6 +360,7 @@ def build_roster_id_map(
             rows.append({"player_norm": k, "espn_athlete_id": v, "team_norm": tnorm})
         pd.DataFrame(rows) \
           .to_csv(roster_cache_path, index=False, encoding="utf-8-sig")
+        _save_roster_leagues(roster_cache_path, leagues)
         print(f"  Saved roster cache → {roster_cache_path}")
 
     return combined, by_last_team, single_bucket
@@ -432,8 +461,11 @@ def build_espn_id_cache_concurrent(
     force_refresh: bool = False,
 ) -> Dict[str, str]:
     cache = dict(existing_cache)
-    need  = [n for n in dict.fromkeys(n for n in names if n and n.strip())
-             if norm_name(n) not in cache]
+    unique_names = list(dict.fromkeys(n for n in names if n and n.strip()))
+    need = [n for n in unique_names if norm_name(n) not in cache]
+
+    if not unique_names:
+        return cache
 
     if not need and not force_refresh:
         print(f"  All {len(existing_cache)} players already in cache — skipping lookups.")
@@ -447,8 +479,8 @@ def build_espn_id_cache_concurrent(
         force_refresh=force_refresh,
     )
 
-    resolved = failed = 0
-    for name in need:
+    resolved = failed = overwritten = 0
+    for name in unique_names:
         key = norm_name(name)
         if not key:
             continue
@@ -456,14 +488,20 @@ def build_espn_id_cache_concurrent(
         aid = resolve_soccer_player_espn_id(
             name, team_raw, roster_map, roster_last_team, manual_map, single_bucket
         )
-
-        cache[key] = aid
         if aid:
+            prev = str(cache.get(key) or "").strip()
+            if prev and prev != aid:
+                overwritten += 1
+            cache[key] = aid
             resolved += 1
-        else:
+        elif key not in cache:
+            cache[key] = ""
             failed += 1
 
-    print(f"  Resolved {resolved}/{len(need)} players ({failed} not found in rosters)")
+    print(
+        f"  Resolved {resolved}/{len(unique_names)} slate names "
+        f"({failed} not found in rosters, {overwritten} cache IDs updated)"
+    )
     return cache
 
 

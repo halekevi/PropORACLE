@@ -118,11 +118,11 @@ def test_strong_max_legs_hard_capped_at_three():
     assert cst.STRONG_MAX_LEGS == 3
 
 
-def test_mlb_goblin_hits_banned_on_main():
-    """Jul-18 miss engine: Hits/TB Goblin OVER no longer eligible for MAIN."""
+def test_mlb_goblin_hits_need_counting_gate_on_main():
+    """Ungated Hits/TB Goblin stay off MAIN; BA>=.275+L5=5+D can ticket."""
     row = {
         "sport": "MLB",
-        "pick_type": "goblin",
+        "pick_type": "Goblin",
         "tier": "A",
         "direction": "OVER",
         "prop_type": "Hits",
@@ -132,32 +132,32 @@ def test_mlb_goblin_hits_banned_on_main():
         "l5_over": 5,
         "l5_under": 0,
     }
-    assert cst._main_leg_prop_banned(row)
-    assert not cst._row_win_rate_eligible(
-        row, min_leg_prob=0.62, min_composite_hr=0.55
-    )
+    assert cst._leg_mlb_construction_banned(row)
+    gated = {
+        **row,
+        "batting_avg": 0.280,
+        "def": "Weak",
+    }
+    assert not cst._leg_mlb_construction_banned(gated)
     row["prop_type"] = "Total Bases"
-    assert not cst._row_win_rate_eligible(
-        row, min_leg_prob=0.62, min_composite_hr=0.55
-    )
-    # Pitcher K Goblin OVER still allowed above MLB stress floor (strikeouts is stressed).
-    row["prop_type"] = "Strikeouts"
-    row["composite_hit_rate"] = 0.73
-    row["hit_rate"] = 0.73
-    row["ml_prob"] = 0.73
-    assert not cst._main_leg_prop_banned(row)
-    assert cst._row_win_rate_eligible(
-        row, min_leg_prob=0.62, min_composite_hr=0.55
-    )
-    # Pitching Outs allowed at base MLB Goblin floor 0.68.
-    row["prop_type"] = "Pitching Outs"
-    row["composite_hit_rate"] = 0.69
-    row["hit_rate"] = 0.69
-    row["ml_prob"] = 0.69
-    assert not cst._main_leg_prop_banned(row)
-    assert cst._row_win_rate_eligible(
-        row, min_leg_prob=0.62, min_composite_hr=0.55
-    )
+    assert cst._leg_mlb_construction_banned(row)
+    assert not cst._leg_mlb_construction_banned({**gated, "prop_type": "Total Bases"})
+    ks_ok = {
+        **row,
+        "prop_type": "Strikeouts",
+        "l5_over": 5,
+        "l10_over": 8,
+        "own_def_tier": "Elite",
+    }
+    assert not cst._leg_mlb_construction_banned(ks_ok)
+    outs_ok = {
+        **row,
+        "prop_type": "Pitching Outs",
+        "l5_over": 5,
+        "own_def_tier": "Elite",
+    }
+    assert not cst._leg_mlb_construction_banned(outs_ok)
+    assert cst._leg_mlb_construction_banned({**outs_ok, "own_def_tier": "Weak"})
 
 
 def test_mlb_standard_over_banned_on_main():
@@ -205,10 +205,37 @@ def test_mlb_construction_ban_shared_across_builders():
         "pick_type": "Goblin",
         "direction": "OVER",
         "prop_type": "Pitching Outs",
+        "l5_over": 5,
+        "own_def_tier": "Elite",
+    }
+    hits_ok = {
+        **hits_gob,
+        "l5_over": 5,
+        "batting_avg": 0.280,
+        "def": "Weak",
     }
     assert cst._leg_mlb_construction_banned(hits_gob)
+    assert not cst._leg_mlb_construction_banned(hits_ok)
     assert cst._leg_mlb_construction_banned(std_over)
     assert not cst._leg_mlb_construction_banned(pitcher)
+    era = {
+        "sport": "MLB",
+        "pick_type": "Goblin",
+        "direction": "OVER",
+        "prop_type": "Earned Runs Allowed",
+        "line": 1.5,
+        "l5_over": 5,
+    }
+    assert cst._leg_mlb_construction_banned(era)
+    era_half = {
+        **era,
+        "line": 0.5,
+        "def": "Avg",
+        "l10_over": 8,
+        "cover": 0.1,
+    }
+    assert not cst._leg_mlb_construction_banned(era_half)
+    assert cst._leg_mlb_construction_banned({**era_half, "l10_over": 6})
     assert cst._mlb_leg_sizes_capped([2, 3, 4, 5, 6]) == [2, 3]
 
 
@@ -241,12 +268,17 @@ def test_filter_payload_mlb_construction_hygiene():
                                 "pick_type": "Goblin",
                                 "direction": "OVER",
                                 "prop_type": "Strikeouts",
+                                "l5_over": 5,
+                                "l10_over": 8,
+                                "own_def_tier": "Elite",
                             },
                             {
                                 "sport": "MLB",
                                 "pick_type": "Goblin",
                                 "direction": "OVER",
                                 "prop_type": "Pitching Outs",
+                                "l5_over": 5,
+                                "own_def_tier": "Elite",
                             },
                         ]
                     },
@@ -291,9 +323,10 @@ def test_mlb_same_game_hitter_stack_is_audit_only():
     assert not cst._winrate_ticket_construction_reject(ticket)
 
 
-def test_strong_builder_excludes_mlb_hits_prop():
-    assert not cst._strong_builder_prop_allowed("Hits", "MLB")
-    assert not cst._strong_builder_prop_allowed("Total Bases", "MLB")
+def test_strong_builder_allows_gated_mlb_hits_tb():
+    assert cst._strong_builder_prop_allowed("Hits", "MLB")
+    assert cst._strong_builder_prop_allowed("Total Bases", "MLB")
+    assert cst._strong_builder_prop_allowed("Earned Runs Allowed", "MLB")
     assert cst._strong_builder_prop_allowed("Pitching Outs", "MLB")
 
 

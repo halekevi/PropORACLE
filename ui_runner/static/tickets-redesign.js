@@ -279,9 +279,7 @@
         if (all && all.nextSibling) bar.insertBefore(pill, all.nextSibling);
         else bar.insertBefore(pill, bar.firstChild);
       }
-      if (typeof window.__ticketsSetFilter === 'function') {
-        window.__ticketsSetFilter('mine');
-      }
+      /* Do not auto-switch to MY GROUPS — remaining groups would vanish. */
     }
     fetch('/api/account/me?slate=' + encodeURIComponent(slateDate()), { credentials: 'same-origin', cache: 'no-store' })
       .then(function (res) { return res.ok ? res.json() : null; })

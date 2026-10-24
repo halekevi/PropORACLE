@@ -1,0 +1,213 @@
+{
+  "unique": 5292,
+  "chips": [
+    {
+      "label": "Rush Yards",
+      "book": "Goblin OVER",
+      "rule": "L5=5 + D+cover (cover floor 8.0)",
+      "ungated": {
+        "h": 244,
+        "n": 385,
+        "hr": 63.4
+      },
+      "l5eq5": {
+        "h": 44,
+        "n": 53,
+        "hr": 83.0
+      },
+      "live": {
+        "h": 13,
+        "n": 17,
+        "hr": 76.5
+      },
+      "live_plus_l10": {
+        "h": 8,
+        "n": 10,
+        "hr": 80.0
+      },
+      "live_fail_l10": {
+        "h": 5,
+        "n": 7,
+        "hr": 71.4
+      },
+      "lift_pp": 3.5,
+      "cover_filled_on_l5": 53,
+      "l5_d": {
+        "h": 13,
+        "n": 17,
+        "hr": 76.5
+      },
+      "l5_d_removed": {
+        "h": 31,
+        "n": 36,
+        "hr": 86.1
+      },
+      "l5_cover": {
+        "h": 44,
+        "n": 53,
+        "hr": 83.0
+      },
+      "l5_cover_removed": {
+        "h": 0,
+        "n": 0,
+        "hr": null
+      },
+      "live_removed": {
+        "h": 31,
+        "n": 36,
+        "hr": 86.1
+      }
+    },
+    {
+      "label": "Pass Yards",
+      "book": "Goblin OVER",
+      "rule": "L5=5 + cover, no D (cover floor 15.0)",
+      "ungated": {
+        "h": 138,
+        "n": 188,
+        "hr": 73.4
+      },
+      "l5eq5": {
+        "h": 23,
+        "n": 28,
+        "hr": 82.1
+      },
+      "live": {
+        "h": 23,
+        "n": 28,
+        "hr": 82.1
+      },
+      "live_plus_l10": {
+        "h": 18,
+        "n": 22,
+        "hr": 81.8
+      },
+      "live_fail_l10": {
+        "h": 5,
+        "n": 6,
+        "hr": 83.3
+      },
+      "lift_pp": -0.3,
+      "cover_filled_on_l5": 28,
+      "live_removed": {
+        "h": 0,
+        "n": 0,
+        "hr": null
+      }
+    },
+    {
+      "label": "Rush Yards",
+      "book": "Standard UNDER",
+      "rule": "L5=5 + D+cover (cover floor 8.0)",
+      "ungated": {
+        "h": 155,
+        "n": 249,
+        "hr": 62.2
+      },
+      "l5eq5": {
+        "h": 21,
+        "n": 32,
+        "hr": 65.6
+      },
+      "live": {
+        "h": 9,
+        "n": 10,
+        "hr": 90.0
+      },
+      "live_plus_l10": {
+        "h": 6,
+        "n": 7,
+        "hr": 85.7
+      },
+      "live_fail_l10": {
+        "h": 3,
+        "n": 3,
+        "hr": 100.0
+      },
+      "lift_pp": -4.3,
+      "cover_filled_on_l5": 31,
+      "live_removed": {
+        "h": 12,
+        "n": 22,
+        "hr": 54.5
+      },
+      "l5_d": {
+        "h": 9,
+        "n": 10,
+        "hr": 90.0
+      },
+      "l5_d_removed": {
+        "h": 12,
+        "n": 22,
+        "hr": 54.5
+      },
+      "l5_cover": {
+        "h": 20,
+        "n": 31,
+        "hr": 64.5
+      },
+      "l5_cover_removed": {
+        "h": 1,
+        "n": 1,
+        "hr": 100.0
+      }
+    },
+    {
+      "label": "Rec Yards",
+      "book": "Goblin OVER",
+      "rule": "L5=5 + D+cover (cover floor 8.0)",
+      "ungated": {
+        "h": 417,
+        "n": 612,
+        "hr": 68.1
+      },
+      "l5eq5": {
+        "h": 53,
+        "n": 71,
+        "hr": 74.6
+      },
+      "live": {
+        "h": 15,
+        "n": 22,
+        "hr": 68.2
+      },
+      "live_plus_l10": {
+        "h": 8,
+        "n": 10,
+        "hr": 80.0
+      },
+      "live_fail_l10": {
+        "h": 7,
+        "n": 12,
+        "hr": 58.3
+      },
+      "lift_pp": 11.8,
+      "cover_filled_on_l5": 71,
+      "l5_d": {
+        "h": 15,
+        "n": 22,
+        "hr": 68.2
+      },
+      "l5_d_removed": {
+        "h": 38,
+        "n": 49,
+        "hr": 77.6
+      },
+      "l5_cover": {
+        "h": 53,
+        "n": 71,
+        "hr": 74.6
+      },
+      "l5_cover_removed": {
+        "h": 0,
+        "n": 0,
+        "hr": null
+      },
+      "live_removed": {
+        "h": 38,
+        "n": 49,
+        "hr": 77.6
+      }
+    }
+  ]
+}

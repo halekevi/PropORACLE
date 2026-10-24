@@ -1,0 +1,816 @@
+{
+  "slate": "2026-10-21",
+  "board_players": 310,
+  "opener": "2026-10-20",
+  "prior_cutoff": "2026-10-19",
+  "vs_latest_box": {
+    "matched": 157,
+    "no_box_history": 153,
+    "mismatch_n": 0,
+    "mismatch_rate": 0.0,
+    "mismatches": []
+  },
+  "vs_prior_season_box": {
+    "matched": 110,
+    "no_box_history": 164,
+    "mismatch_n": 36,
+    "mismatch_rate": 0.1161,
+    "mismatches": [
+      {
+        "player": "Aaron Wiggins",
+        "board_team": "ATL",
+        "board_opp": "ORL",
+        "last_box_team": "OKC"
+      },
+      {
+        "player": "Luguentz Dort",
+        "board_team": "ATL",
+        "board_opp": "ORL",
+        "last_box_team": "OKC"
+      },
+      {
+        "player": "Julius Randle",
+        "board_team": "BKN",
+        "board_opp": "CHA",
+        "last_box_team": "MIN"
+      },
+      {
+        "player": "Keon Ellis",
+        "board_team": "BKN",
+        "board_opp": "CHA",
+        "last_box_team": "CLE"
+      },
+      {
+        "player": "Moritz Wagner",
+        "board_team": "BKN",
+        "board_opp": "CHA",
+        "last_box_team": "ORL"
+      },
+      {
+        "player": "Dennis Schröder",
+        "board_team": "CHA",
+        "board_opp": "BKN",
+        "last_box_team": "CLE"
+      },
+      {
+        "player": "Grayson Allen",
+        "board_team": "CHA",
+        "board_opp": "BKN",
+        "last_box_team": "PHX"
+      },
+      {
+        "player": "Naz Reid",
+        "board_team": "CHA",
+        "board_opp": "BKN",
+        "last_box_team": "MIN"
+      },
+      {
+        "player": "Royce O'Neale",
+        "board_team": "CHA",
+        "board_opp": "BKN",
+        "last_box_team": "PHX"
+      },
+      {
+        "player": "Norman Powell",
+        "board_team": "CHI",
+        "board_opp": "TOR",
+        "last_box_team": "MIA"
+      },
+      {
+        "player": "Zaccharie Risacher",
+        "board_team": "DAL",
+        "board_opp": "HOU",
+        "last_box_team": "ATL"
+      },
+      {
+        "player": "Brandon Williams",
+        "board_team": "GSW",
+        "board_opp": "LAL",
+        "last_box_team": "DAL"
+      },
+      {
+        "player": "Marcus Smart",
+        "board_team": "HOU",
+        "board_opp": "DAL",
+        "last_box_team": "LAL"
+      },
+      {
+        "player": "Rui Hachimura",
+        "board_team": "LAC",
+        "board_opp": "SAC",
+        "last_box_team": "LAL"
+      },
+      {
+        "player": "Matisse Thybulle",
+        "board_team": "LAL",
+        "board_opp": "GSW",
+        "last_box_team": "POR"
+      },
+      {
+        "player": "Quentin Grimes",
+        "board_team": "LAL",
+        "board_opp": "GSW",
+        "last_box_team": "PHI"
+      },
+      {
+        "player": "Sandro Mamukelashvili",
+        "board_team": "LAL",
+        "board_opp": "GSW",
+        "last_box_team": "TOR"
+      },
+      {
+        "player": "Walker Kessler",
+        "board_team": "LAL",
+        "board_opp": "GSW",
+        "last_box_team": "UTA"
+      },
+      {
+        "player": "Ziaire Williams",
+        "board_team": "LAL",
+        "board_opp": "GSW",
+        "last_box_team": "BKN"
+      },
+      {
+        "player": "Jerami Grant",
+        "board_team": "MEM",
+        "board_opp": "UTA",
+        "last_box_team": "POR"
+      },
+      {
+        "player": "Bobby Portis",
+        "board_team": "MIA",
+        "board_opp": "MIN",
+        "last_box_team": "MIL"
+      },
+      {
+        "player": "Giannis Antetokounmpo",
+        "board_team": "MIA",
+        "board_opp": "MIN",
+        "last_box_team": "MIL"
+      },
+      {
+        "player": "Klay Thompson",
+        "board_team": "MIA",
+        "board_opp": "MIN",
+        "last_box_team": "DAL"
+      },
+      {
+        "player": "Jaime Jaquez Jr.",
+        "board_team": "MIL",
+        "board_opp": "WAS",
+        "last_box_team": "MIA"
+      },
+      {
+        "player": "Kel'el Ware",
+        "board_team": "MIL",
+        "board_opp": "WAS",
+        "last_box_team": "MIA"
+      },
+      {
+        "player": "Tyler Herro",
+        "board_team": "MIL",
+        "board_opp": "WAS",
+        "last_box_team": "MIA"
+      },
+      {
+        "player": "Jonathan Kuminga",
+        "board_team": "MIN",
+        "board_opp": "MIA",
+        "last_box_team": "ATL"
+      },
+      {
+        "player": "LaMelo Ball",
+        "board_team": "MIN",
+        "board_opp": "MIA",
+        "last_box_team": "CHA"
+      },
+      {
+        "player": "Bennedict Mathurin",
+        "board_team": "NOP",
+        "board_opp": "IND",
+        "last_box_team": "LAC"
+      },
+      {
+        "player": "Nikola Vučević",
+        "board_team": "ORL",
+        "board_opp": "ATL",
+        "last_box_team": "BOS"
+      },
+      {
+        "player": "Miles Bridges",
+        "board_team": "PHX",
+        "board_opp": "POR",
+        "last_box_team": "CHA"
+      },
+      {
+        "player": "Ja Morant",
+        "board_team": "POR",
+        "board_opp": "PHX",
+        "last_box_team": "MEM"
+      },
+      {
+        "player": "Kawhi Leonard",
+        "board_team": "TOR",
+        "board_opp": "CHI",
+        "last_box_team": "LAC"
+      },
+      {
+        "player": "Jaxson Hayes",
+        "board_team": "UTA",
+        "board_opp": "MEM",
+        "last_box_team": "LAL"
+      },
+      {
+        "player": "Anthony Davis",
+        "board_team": "WAS",
+        "board_opp": "MIL",
+        "last_box_team": "DAL"
+      },
+      {
+        "player": "Deandre Ayton",
+        "board_team": "WAS",
+        "board_opp": "MIL",
+        "last_box_team": "LAL"
+      }
+    ]
+  },
+  "matched": 110,
+  "no_box_history": 164,
+  "mismatch_n": 36,
+  "mismatch_rate": 0.1161,
+  "mismatches": [
+    {
+      "player": "Aaron Wiggins",
+      "board_team": "ATL",
+      "board_opp": "ORL",
+      "last_box_team": "OKC"
+    },
+    {
+      "player": "Luguentz Dort",
+      "board_team": "ATL",
+      "board_opp": "ORL",
+      "last_box_team": "OKC"
+    },
+    {
+      "player": "Julius Randle",
+      "board_team": "BKN",
+      "board_opp": "CHA",
+      "last_box_team": "MIN"
+    },
+    {
+      "player": "Keon Ellis",
+      "board_team": "BKN",
+      "board_opp": "CHA",
+      "last_box_team": "CLE"
+    },
+    {
+      "player": "Moritz Wagner",
+      "board_team": "BKN",
+      "board_opp": "CHA",
+      "last_box_team": "ORL"
+    },
+    {
+      "player": "Dennis Schröder",
+      "board_team": "CHA",
+      "board_opp": "BKN",
+      "last_box_team": "CLE"
+    },
+    {
+      "player": "Grayson Allen",
+      "board_team": "CHA",
+      "board_opp": "BKN",
+      "last_box_team": "PHX"
+    },
+    {
+      "player": "Naz Reid",
+      "board_team": "CHA",
+      "board_opp": "BKN",
+      "last_box_team": "MIN"
+    },
+    {
+      "player": "Royce O'Neale",
+      "board_team": "CHA",
+      "board_opp": "BKN",
+      "last_box_team": "PHX"
+    },
+    {
+      "player": "Norman Powell",
+      "board_team": "CHI",
+      "board_opp": "TOR",
+      "last_box_team": "MIA"
+    },
+    {
+      "player": "Zaccharie Risacher",
+      "board_team": "DAL",
+      "board_opp": "HOU",
+      "last_box_team": "ATL"
+    },
+    {
+      "player": "Brandon Williams",
+      "board_team": "GSW",
+      "board_opp": "LAL",
+      "last_box_team": "DAL"
+    },
+    {
+      "player": "Marcus Smart",
+      "board_team": "HOU",
+      "board_opp": "DAL",
+      "last_box_team": "LAL"
+    },
+    {
+      "player": "Rui Hachimura",
+      "board_team": "LAC",
+      "board_opp": "SAC",
+      "last_box_team": "LAL"
+    },
+    {
+      "player": "Matisse Thybulle",
+      "board_team": "LAL",
+      "board_opp": "GSW",
+      "last_box_team": "POR"
+    },
+    {
+      "player": "Quentin Grimes",
+      "board_team": "LAL",
+      "board_opp": "GSW",
+      "last_box_team": "PHI"
+    },
+    {
+      "player": "Sandro Mamukelashvili",
+      "board_team": "LAL",
+      "board_opp": "GSW",
+      "last_box_team": "TOR"
+    },
+    {
+      "player": "Walker Kessler",
+      "board_team": "LAL",
+      "board_opp": "GSW",
+      "last_box_team": "UTA"
+    },
+    {
+      "player": "Ziaire Williams",
+      "board_team": "LAL",
+      "board_opp": "GSW",
+      "last_box_team": "BKN"
+    },
+    {
+      "player": "Jerami Grant",
+      "board_team": "MEM",
+      "board_opp": "UTA",
+      "last_box_team": "POR"
+    },
+    {
+      "player": "Bobby Portis",
+      "board_team": "MIA",
+      "board_opp": "MIN",
+      "last_box_team": "MIL"
+    },
+    {
+      "player": "Giannis Antetokounmpo",
+      "board_team": "MIA",
+      "board_opp": "MIN",
+      "last_box_team": "MIL"
+    },
+    {
+      "player": "Klay Thompson",
+      "board_team": "MIA",
+      "board_opp": "MIN",
+      "last_box_team": "DAL"
+    },
+    {
+      "player": "Jaime Jaquez Jr.",
+      "board_team": "MIL",
+      "board_opp": "WAS",
+      "last_box_team": "MIA"
+    },
+    {
+      "player": "Kel'el Ware",
+      "board_team": "MIL",
+      "board_opp": "WAS",
+      "last_box_team": "MIA"
+    },
+    {
+      "player": "Tyler Herro",
+      "board_team": "MIL",
+      "board_opp": "WAS",
+      "last_box_team": "MIA"
+    },
+    {
+      "player": "Jonathan Kuminga",
+      "board_team": "MIN",
+      "board_opp": "MIA",
+      "last_box_team": "ATL"
+    },
+    {
+      "player": "LaMelo Ball",
+      "board_team": "MIN",
+      "board_opp": "MIA",
+      "last_box_team": "CHA"
+    },
+    {
+      "player": "Bennedict Mathurin",
+      "board_team": "NOP",
+      "board_opp": "IND",
+      "last_box_team": "LAC"
+    },
+    {
+      "player": "Nikola Vučević",
+      "board_team": "ORL",
+      "board_opp": "ATL",
+      "last_box_team": "BOS"
+    },
+    {
+      "player": "Miles Bridges",
+      "board_team": "PHX",
+      "board_opp": "POR",
+      "last_box_team": "CHA"
+    },
+    {
+      "player": "Ja Morant",
+      "board_team": "POR",
+      "board_opp": "PHX",
+      "last_box_team": "MEM"
+    },
+    {
+      "player": "Kawhi Leonard",
+      "board_team": "TOR",
+      "board_opp": "CHI",
+      "last_box_team": "LAC"
+    },
+    {
+      "player": "Jaxson Hayes",
+      "board_team": "UTA",
+      "board_opp": "MEM",
+      "last_box_team": "LAL"
+    },
+    {
+      "player": "Anthony Davis",
+      "board_team": "WAS",
+      "board_opp": "MIL",
+      "last_box_team": "DAL"
+    },
+    {
+      "player": "Deandre Ayton",
+      "board_team": "WAS",
+      "board_opp": "MIL",
+      "last_box_team": "LAL"
+    }
+  ],
+  "team_changed": {
+    "team_changed_n": 36,
+    "power_l5_blocked_n": 35,
+    "min_new_team_games": 5,
+    "power_l5_blocked": [
+      {
+        "player": "Aaron Wiggins",
+        "board_team": "ATL",
+        "prior_team": "OKC",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:OKC->ATL; new_team_games=3<5"
+      },
+      {
+        "player": "Marcus Smart",
+        "board_team": "HOU",
+        "prior_team": "LAL",
+        "team_changed": 1,
+        "games_with_new_team": 1,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:LAL->HOU; new_team_games=1<5"
+      },
+      {
+        "player": "Deandre Ayton",
+        "board_team": "WAS",
+        "prior_team": "LAL",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:LAL->WAS; new_team_games=3<5"
+      },
+      {
+        "player": "Bobby Portis",
+        "board_team": "MIA",
+        "prior_team": "MIL",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:MIL->MIA; new_team_games=3<5"
+      },
+      {
+        "player": "Ziaire Williams",
+        "board_team": "LAL",
+        "prior_team": "BKN",
+        "team_changed": 1,
+        "games_with_new_team": 1,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:BKN->LAL; new_team_games=1<5"
+      },
+      {
+        "player": "Moritz Wagner",
+        "board_team": "BKN",
+        "prior_team": "ORL",
+        "team_changed": 1,
+        "games_with_new_team": 4,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:ORL->BKN; new_team_games=4<5"
+      },
+      {
+        "player": "Quentin Grimes",
+        "board_team": "LAL",
+        "prior_team": "PHI",
+        "team_changed": 1,
+        "games_with_new_team": 4,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:PHI->LAL; new_team_games=4<5"
+      },
+      {
+        "player": "Norman Powell",
+        "board_team": "CHI",
+        "prior_team": "MIA",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:MIA->CHI; new_team_games=3<5"
+      },
+      {
+        "player": "Kawhi Leonard",
+        "board_team": "TOR",
+        "prior_team": "LAC",
+        "team_changed": 1,
+        "games_with_new_team": 1,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:LAC->TOR; new_team_games=1<5"
+      },
+      {
+        "player": "Jaime Jaquez Jr.",
+        "board_team": "MIL",
+        "prior_team": "MIA",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:MIA->MIL; new_team_games=3<5"
+      },
+      {
+        "player": "Kel'el Ware",
+        "board_team": "MIL",
+        "prior_team": "MIA",
+        "team_changed": 1,
+        "games_with_new_team": 4,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:MIA->MIL; new_team_games=4<5"
+      },
+      {
+        "player": "Jerami Grant",
+        "board_team": "MEM",
+        "prior_team": "POR",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:POR->MEM; new_team_games=3<5"
+      },
+      {
+        "player": "Royce O'Neale",
+        "board_team": "CHA",
+        "prior_team": "PHX",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:PHX->CHA; new_team_games=3<5"
+      },
+      {
+        "player": "Tyler Herro",
+        "board_team": "MIL",
+        "prior_team": "MIA",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:MIA->MIL; new_team_games=3<5"
+      },
+      {
+        "player": "LaMelo Ball",
+        "board_team": "MIN",
+        "prior_team": "CHA",
+        "team_changed": 1,
+        "games_with_new_team": 4,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:CHA->MIN; new_team_games=4<5"
+      },
+      {
+        "player": "Matisse Thybulle",
+        "board_team": "LAL",
+        "prior_team": "POR",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:POR->LAL; new_team_games=3<5"
+      },
+      {
+        "player": "Jaxson Hayes",
+        "board_team": "UTA",
+        "prior_team": "LAL",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:LAL->UTA; new_team_games=3<5"
+      },
+      {
+        "player": "Grayson Allen",
+        "board_team": "CHA",
+        "prior_team": "PHX",
+        "team_changed": 1,
+        "games_with_new_team": 1,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:PHX->CHA; new_team_games=1<5"
+      },
+      {
+        "player": "Miles Bridges",
+        "board_team": "PHX",
+        "prior_team": "CHA",
+        "team_changed": 1,
+        "games_with_new_team": 2,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:CHA->PHX; new_team_games=2<5"
+      },
+      {
+        "player": "Bennedict Mathurin",
+        "board_team": "NOP",
+        "prior_team": "LAC",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:LAC->NOP; new_team_games=3<5"
+      },
+      {
+        "player": "Jonathan Kuminga",
+        "board_team": "MIN",
+        "prior_team": "ATL",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:ATL->MIN; new_team_games=3<5"
+      },
+      {
+        "player": "Ja Morant",
+        "board_team": "POR",
+        "prior_team": "MEM",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:MEM->POR; new_team_games=3<5"
+      },
+      {
+        "player": "Rui Hachimura",
+        "board_team": "LAC",
+        "prior_team": "LAL",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:LAL->LAC; new_team_games=3<5"
+      },
+      {
+        "player": "Klay Thompson",
+        "board_team": "MIA",
+        "prior_team": "DAL",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:DAL->MIA; new_team_games=3<5"
+      },
+      {
+        "player": "Nikola Vučević",
+        "board_team": "ORL",
+        "prior_team": "BOS",
+        "team_changed": 1,
+        "games_with_new_team": 2,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:BOS->ORL; new_team_games=2<5"
+      },
+      {
+        "player": "Anthony Davis",
+        "board_team": "WAS",
+        "prior_team": "DAL",
+        "team_changed": 1,
+        "games_with_new_team": 2,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:DAL->WAS; new_team_games=2<5"
+      },
+      {
+        "player": "Naz Reid",
+        "board_team": "CHA",
+        "prior_team": "MIN",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:MIN->CHA; new_team_games=3<5"
+      },
+      {
+        "player": "Luguentz Dort",
+        "board_team": "ATL",
+        "prior_team": "OKC",
+        "team_changed": 1,
+        "games_with_new_team": 1,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:OKC->ATL; new_team_games=1<5"
+      },
+      {
+        "player": "Zaccharie Risacher",
+        "board_team": "DAL",
+        "prior_team": "ATL",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:ATL->DAL; new_team_games=3<5"
+      },
+      {
+        "player": "Giannis Antetokounmpo",
+        "board_team": "MIA",
+        "prior_team": "MIL",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:MIL->MIA; new_team_games=3<5"
+      },
+      {
+        "player": "Julius Randle",
+        "board_team": "BKN",
+        "prior_team": "MIN",
+        "team_changed": 1,
+        "games_with_new_team": 4,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:MIN->BKN; new_team_games=4<5"
+      },
+      {
+        "player": "Keon Ellis",
+        "board_team": "BKN",
+        "prior_team": "CLE",
+        "team_changed": 1,
+        "games_with_new_team": 4,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:CLE->BKN; new_team_games=4<5"
+      },
+      {
+        "player": "Dennis Schröder",
+        "board_team": "CHA",
+        "prior_team": "CLE",
+        "team_changed": 1,
+        "games_with_new_team": 3,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:CLE->CHA; new_team_games=3<5"
+      },
+      {
+        "player": "Sandro Mamukelashvili",
+        "board_team": "LAL",
+        "prior_team": "TOR",
+        "team_changed": 1,
+        "games_with_new_team": 4,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:TOR->LAL; new_team_games=4<5"
+      },
+      {
+        "player": "Walker Kessler",
+        "board_team": "LAL",
+        "prior_team": "UTA",
+        "team_changed": 1,
+        "games_with_new_team": 1,
+        "min_new_team_games": 5,
+        "power_l5_blocked": true,
+        "block_reason": "team_changed:UTA->LAL; new_team_games=1<5"
+      }
+    ]
+  }
+}

@@ -1,0 +1,491 @@
+{
+  "generated_at": "2026-08-25T01:40:02.230512+00:00",
+  "cutoff_buffer_min": 30,
+  "n_games": 72,
+  "games": [
+    {
+      "game_id": "182014",
+      "start_time": "2026-08-24T22:40:00-04:00"
+    },
+    {
+      "game_id": "182133",
+      "start_time": "2026-08-25T10:00:00-04:00"
+    },
+    {
+      "game_id": "182134",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182137",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182138",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182139",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182140",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182259",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182141",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182143",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182144",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182145",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182146",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182147",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182148",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182149",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182151",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182152",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182153",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182155",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182158",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182160",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182162",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182167",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182170",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182171",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182258",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182173",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182174",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182175",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182179",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182263",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182264",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182181",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182183",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182185",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182189",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182260",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182199",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182200",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182261",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182201",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182202",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182207",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182208",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182213",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182216",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182217",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182262",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182220",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182222",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182226",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182229",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182280",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182232",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182234",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182235",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182237",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182240",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182243",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182245",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182249",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182272",
+      "start_time": "2026-08-25T11:00:00-04:00"
+    },
+    {
+      "game_id": "182298",
+      "start_time": "2026-08-25T12:00:00-04:00"
+    },
+    {
+      "game_id": "182299",
+      "start_time": "2026-08-25T12:00:00-04:00"
+    },
+    {
+      "game_id": "182300",
+      "start_time": "2026-08-25T12:00:00-04:00"
+    },
+    {
+      "game_id": "182301",
+      "start_time": "2026-08-25T12:00:00-04:00"
+    },
+    {
+      "game_id": "182334",
+      "start_time": "2026-08-25T12:00:00-04:00"
+    },
+    {
+      "game_id": "182281",
+      "start_time": "2026-08-25T14:00:00-04:00"
+    },
+    {
+      "game_id": "182293",
+      "start_time": "2026-08-25T14:00:00-04:00"
+    },
+    {
+      "game_id": "182282",
+      "start_time": "2026-08-25T14:00:00-04:00"
+    },
+    {
+      "game_id": "182253",
+      "start_time": "2026-08-25T14:00:00-04:00"
+    }
+  ],
+  "pools": {
+    "standard": 102,
+    "goblin": 146,
+    "demon": 352
+  },
+  "delta_bins": {
+    "1": 32,
+    "1.5": 1,
+    "2": 33,
+    "3": 2,
+    "4": 1,
+    "11.5": 1
+  },
+  "n_planned": 16,
+  "n_unbuildable": 0,
+  "tickets": [
+    {
+      "composition": "3S+2G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Total Games Goblin 19.5 Δ=2.0",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None",
+        "Botic Van de Zandschulp Break Points Won Standard 2.5 Δ=None",
+        "Miomir Kecmanovic Break Points Won Standard 2.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+6G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Total Games Goblin 18.5 Δ=3.0",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Jodie Burrage Total Games Goblin 19.5 Δ=1.0",
+        "Priscilla Hon Total Games Goblin 19.5 Δ=1.0",
+        "Yunchaokete Bu Total Games Goblin 18.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+5G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Total Games Goblin 17.5 Δ=4.0",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Jodie Burrage Total Games Goblin 19.5 Δ=1.0",
+        "Priscilla Hon Total Games Goblin 19.5 Δ=1.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "2S+4G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Total Games Won Goblin 11.5 Δ=1.0",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Jodie Burrage Total Games Goblin 19.5 Δ=1.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None",
+        "Botic Van de Zandschulp Break Points Won Standard 2.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "3S+3G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Total Games Won Goblin 10.5 Δ=2.0",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None",
+        "Botic Van de Zandschulp Break Points Won Standard 2.5 Δ=None",
+        "Miomir Kecmanovic Break Points Won Standard 2.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "4S+2G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Total Games Won Goblin 9.5 Δ=3.0",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None",
+        "Botic Van de Zandschulp Break Points Won Standard 2.5 Δ=None",
+        "Miomir Kecmanovic Break Points Won Standard 2.5 Δ=None",
+        "Katie Volynets Total Games Standard 19.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "5S+1G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Total Games Won Goblin 9.5 Δ=3.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None",
+        "Botic Van de Zandschulp Break Points Won Standard 2.5 Δ=None",
+        "Miomir Kecmanovic Break Points Won Standard 2.5 Δ=None",
+        "Mia Pohankova Total Games Won Standard 7.5 Δ=None",
+        "Aliaksandra Sasnovich Total Games Standard 21.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+5G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Fantasy Score Goblin 3.5 Δ=11.5",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Jodie Burrage Total Games Goblin 19.5 Δ=1.0",
+        "Priscilla Hon Total Games Goblin 19.5 Δ=1.0"
+      ]
+    },
+    {
+      "composition": "1S+4G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Fantasy Score Goblin 3.5 Δ=11.5",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Jodie Burrage Total Games Goblin 19.5 Δ=1.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "2S+3G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Fantasy Score Goblin 3.5 Δ=11.5",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None",
+        "Botic Van de Zandschulp Break Points Won Standard 2.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "4S+1G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Fantasy Score Goblin 3.5 Δ=11.5",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None",
+        "Botic Van de Zandschulp Break Points Won Standard 2.5 Δ=None",
+        "Miomir Kecmanovic Break Points Won Standard 2.5 Δ=None",
+        "Guiomar Maristany Zuleta de Reales Total Games Won Standard 9.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+4G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Fantasy Score Goblin 3.5 Δ=11.5",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Jodie Burrage Total Games Goblin 19.5 Δ=1.0"
+      ]
+    },
+    {
+      "composition": "1S+3G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Fantasy Score Goblin 3.5 Δ=11.5",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "2S+2G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Fantasy Score Goblin 3.5 Δ=11.5",
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None",
+        "Botic Van de Zandschulp Break Points Won Standard 2.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "3S+1G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Donna Vekic Fantasy Score Goblin 3.5 Δ=11.5",
+        "Raphael Collignon Break Points Won Standard 2.5 Δ=None",
+        "Botic Van de Zandschulp Break Points Won Standard 2.5 Δ=None",
+        "Miomir Kecmanovic Break Points Won Standard 2.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+3G+0D",
+      "goblin_delta_sig": "",
+      "legs": [
+        "Diane Parry Double Faults Goblin 2.5 Δ=1.0",
+        "Aliaksandra Sasnovich Total Games Goblin 20.5 Δ=1.0",
+        "Jodie Burrage Total Games Goblin 19.5 Δ=1.0"
+      ]
+    }
+  ],
+  "step1_csv": "H:\\PropORACLE\\data\\reports\\payout_pre_tip_step1_2026-08-24.csv",
+  "tickets_path": "H:\\PropORACLE\\ui_runner\\data\\payout_ladder_validation_tickets.json",
+  "next": "Capture N-correct from unstarted games (does not place bets): py -3.14 scripts/collect_payout_data.py --tickets ui_runner/data/payout_ladder_validation_tickets.json --gentle --allow-line-fallback --max-cases 16 --date 2026-08-24"
+}

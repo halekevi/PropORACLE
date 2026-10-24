@@ -11,9 +11,9 @@ The Android app is **remote Railway** (`capacitor.config.js` `server.url`). Do n
 
 **Always both sets.** `/tickets` is Goblin-70 groups first, then the graded-main mixer under them. Never publish Goblin-70-only or mixer-only after combined.
 
-**Payout rates:** scrape PrizePicks N-correct via CDP **after** the dual card exists (post Goblin-70 `--write-web`). First Force scrape of slate **D** runs on **D-1 at 9PM** (`run_daily_day_ahead.ps1`), not calendar-morning of D. Later windows (1AM / 5AM / 8AM+) re-scrape missing `live_cdp` and tickets whose lines/types moved. Default capture `-Date` follows `tickets_latest.json` (tomorrow after day-ahead). Do not leave fallback floors on `/tickets` when CDP is up.
+**Payout rates:** scrape PrizePicks N-correct via CDP **after** the dual card exists (post Goblin-70 `--write-web`). First Force scrape of slate **D** runs on **D-1 at 9PM** for sports that are posted (`run_daily_day_ahead.ps1`). MLB often posts later — **MLB Fill 11PM / 12AM** discover that board; 1AM+ continue filling. Later windows (1AM / 5AM / 8AM+) re-scrape missing `live_cdp` and tickets whose lines/types moved. Default capture `-Date` follows `tickets_latest.json` (tomorrow after day-ahead). Do not leave fallback floors on `/tickets` when CDP is up.
 
-Order on every **live** slate (9PM day-ahead / 1AM / 5AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30):
+Order on every **live** slate (9PM day-ahead / 11PM MLB / 12AM MLB / 1AM / 5AM / 8AM / 9AM / 10:30 / 1PM / 4:30):
 
 1. Combined writes the mixer
 2. `scripts/build_goblin70_tickets.py --write-web` rebuilds Goblin-70, patches mixer **lines** from this fetch, then merges the **full** graded-main grade pool underneath. Do not drop mixer groups because a game already started or a prop left the live board.

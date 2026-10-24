@@ -7,16 +7,14 @@
   width: 100% !important;
 }
 
-/* Scroll perf: keep ticket surfaces in stable compositing lanes. */
+/* Do not put ticket groups on compositor layers. Chromium skip-paints
+   remaining slips below the fold (empty/half-height cards). */
 .tickets-built,
-#app.page-tickets {
-  will-change: scroll-position;
-}
-
+#app.page-tickets,
 .ticket-bucket,
 .ticket-group-section {
-  will-change: transform;
-  transform: translateZ(0);
+  will-change: auto;
+  transform: none;
 }
 
 @media (min-width: 769px) {
@@ -462,15 +460,16 @@
   border: 1px solid rgba(196, 166, 107, 0.22);
   border-radius: 14px;
   margin-bottom: 24px;
-  overflow: hidden;
+  overflow: visible;
   transition: transform 0.2s, box-shadow 0.2s;
   backdrop-filter: blur(10px);
 }
 .ticket-card,
-.tickets-built .ticket {
-  /* layout only — avoid content-visibility:auto on phones: WebKit/Chromium WebViews
-     often skip-paint slips they wrongly treat as off-screen, so /tickets looks empty. */
-  contain: layout;
+.tickets-built .ticket,
+.tickets-built .ticket-body,
+.tickets-built .ticket-legs-table-wrapper {
+  contain: none;
+  content-visibility: visible;
 }
 .tickets-built .ticket:hover {
   transform: translateY(-2px);

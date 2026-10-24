@@ -1,0 +1,133 @@
+{
+  "audited": "2026-09-18",
+  "question": "Do other Combo props share MLB strikeouts_combo NO_ACTUAL + A+B failure?",
+  "verdict": "Yes for several sports \u2014 not unique to pitcher Ks. Every Combo row is a two-name 'A + B' string. WNBA Combos mostly WORK (VOID ~8%); MLB/NHL and many Soccer Combos fail the same way (VOID 90-100%, null actual). slate_grader already has _split_combo_players + multi-player sum for some paths; MLB/NHL/Soccer combo legs are not getting actuals filled.",
+  "same_shape_as_ks_combo": [
+    {
+      "sport": "MLB",
+      "prop": "Pitcher Strikeouts (Combo)",
+      "n": 1011,
+      "void_pct": 100.0,
+      "void_reason": "NO_ACTUAL"
+    },
+    {
+      "sport": "NHL",
+      "prop": "Shots On Goal (Combo)",
+      "n": 53,
+      "void_pct": 100.0,
+      "void_reason": "NO_ACTUAL"
+    },
+    {
+      "sport": "NHL",
+      "prop": "shots_on_goal_(combo)",
+      "n": 49,
+      "void_pct": 100.0
+    },
+    {
+      "sport": "NHL",
+      "prop": "Goals (Combo) / goals_(combo)",
+      "n": 3,
+      "void_pct": 100.0
+    },
+    {
+      "sport": "Soccer",
+      "prop": "Passes Attempted (Combo)",
+      "n": 1302,
+      "void_pct": 97.9,
+      "void_reason": "NO_DATA/NO_ACTUAL"
+    },
+    {
+      "sport": "Soccer",
+      "prop": "Clearances (Combo)",
+      "n": 178,
+      "void_pct": 97.8
+    },
+    {
+      "sport": "Soccer",
+      "prop": "Goals (Combo)",
+      "n": 102,
+      "void_pct": 91.2
+    },
+    {
+      "sport": "CBB",
+      "prop": "points (combo)",
+      "n": 78,
+      "void_pct": 93.6
+    }
+  ],
+  "mostly_working": [
+    {
+      "sport": "WNBA",
+      "prop": "Points (Combo)",
+      "n": 1735,
+      "void_pct": 8.3,
+      "note": "proof combo assembly CAN work"
+    },
+    {
+      "sport": "WNBA",
+      "prop": "Rebounds (Combo)",
+      "n": 641,
+      "void_pct": 7.8
+    },
+    {
+      "sport": "WNBA",
+      "prop": "Assists (Combo)",
+      "n": 435,
+      "void_pct": 7.4
+    },
+    {
+      "sport": "WNBA",
+      "prop": "3-PT Made (Combo)",
+      "n": 302,
+      "void_pct": 7.9
+    },
+    {
+      "sport": "NFL",
+      "prop": "player_touchdowns_combo",
+      "n": 28,
+      "void_pct": 28.6
+    },
+    {
+      "sport": "CFB",
+      "prop": "Rush Yards (Combo)",
+      "n": 18,
+      "void_pct": 0.0
+    }
+  ],
+  "partial_nba": [
+    {
+      "sport": "NBA",
+      "prop": "Points (Combo)",
+      "n": 2430,
+      "void_pct": 39.5,
+      "note": "split logic exists; still high NO_PROJECTION_OR_LINE / NO_ACTUAL"
+    },
+    {
+      "sport": "NBA",
+      "prop": "Rebounds (Combo)",
+      "n": 926,
+      "void_pct": 38.3
+    },
+    {
+      "sport": "NBA",
+      "prop": "Assists (Combo)",
+      "n": 897,
+      "void_pct": 36.2
+    },
+    {
+      "sport": "NBA",
+      "prop": "3-PT Made (Combo)",
+      "n": 381,
+      "void_pct": 45.9
+    }
+  ],
+  "fix_hint": "scripts/grading/slate_grader.py already has _split_combo_players and multi-player sum (~L1210). MLB/NHL/Soccer combo grading paths need to hit that resolver with per-leg actuals lookups. WNBA is the working reference.",
+  "fix_status": "2026-09-18: wired utils/combo_actuals.py into graders. Reality check (combo_fix_reality_final.json): MLB VOID 40→6 on Jul 25/26/29 (n=79) — confirmed. WNBA 2026-07-22 arm-sum 75/79 matches hist 4 VOID — no regression. Soccer Passes Attempted still dark (Passes missing from actuals); Shots/SOT/Saves OK when arms present. NHL unconfirmed (no combo sample in checkout). NBA partial leak still separate.",
+  "fix_targets": {
+    "confirmed_lift": ["MLB"],
+    "no_regression": ["WNBA"],
+    "wire_only_unconfirmed_or_blocked": ["Soccer (Passes actuals gap)", "NHL (no sample)", "CBB"],
+    "partial_leak_separate": ["NBA"],
+    "working_reference": ["WNBA"]
+  }
+}

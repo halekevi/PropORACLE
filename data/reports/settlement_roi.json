@@ -1,0 +1,18 @@
+{
+  "scraped_payout_slips": 80,
+  "overlap_with_127": 0,
+  "stamped_needed_for_roi_30": 30,
+  "legs_compared": 0,
+  "conflicts": 0,
+  "power_win_with_miss": 0,
+  "fields_filled": {
+    "espn_event_id": 0,
+    "stored_start_time": 0,
+    "standard_line_source": 0,
+    "fill_status": 0,
+    "gate_branch": 0,
+    "board_opponent": 0
+  },
+  "fail": false,
+  "conflict_rows": []
+}

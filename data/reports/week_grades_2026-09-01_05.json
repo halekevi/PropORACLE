@@ -1,0 +1,3142 @@
+{
+  "window": "2026-09-01 through 2026-09-05",
+  "source": "PropORACLE_main_cp graded_props + step8 recs (badges / L5 avg / L10 avg)",
+  "join": {
+    "grades": 61973,
+    "joined": 60720,
+    "badge": 6626,
+    "avg_l5": 55673,
+    "live": 13463
+  },
+  "headline": {
+    "n": 13463,
+    "h": 7104,
+    "hr": 52.8
+  },
+  "by_day": [
+    {
+      "key": "2026-09-05",
+      "n": 3677,
+      "h": 1803,
+      "hr": 49.0
+    },
+    {
+      "key": "2026-09-01",
+      "n": 2861,
+      "h": 1569,
+      "hr": 54.8
+    },
+    {
+      "key": "2026-09-04",
+      "n": 2767,
+      "h": 1501,
+      "hr": 54.2
+    },
+    {
+      "key": "2026-09-02",
+      "n": 2657,
+      "h": 1444,
+      "hr": 54.3
+    },
+    {
+      "key": "2026-09-03",
+      "n": 1501,
+      "h": 787,
+      "hr": 52.4
+    }
+  ],
+  "by_sport": [
+    {
+      "key": "MLB",
+      "n": 8787,
+      "h": 5311,
+      "hr": 60.4
+    },
+    {
+      "key": "Soccer",
+      "n": 2689,
+      "h": 964,
+      "hr": 35.8
+    },
+    {
+      "key": "Tennis",
+      "n": 1987,
+      "h": 829,
+      "hr": 41.7
+    }
+  ],
+  "by_book": [
+    {
+      "key": "Goblin OVER",
+      "n": 10684,
+      "h": 5698,
+      "hr": 53.3
+    },
+    {
+      "key": "Standard OVER",
+      "n": 1412,
+      "h": 703,
+      "hr": 49.8
+    },
+    {
+      "key": "Standard UNDER",
+      "n": 1367,
+      "h": 703,
+      "hr": 51.4
+    }
+  ],
+  "by_sport_book": [
+    {
+      "key": "MLB | Goblin OVER",
+      "n": 6607,
+      "h": 4199,
+      "hr": 63.6
+    },
+    {
+      "key": "Soccer | Goblin OVER",
+      "n": 2526,
+      "h": 868,
+      "hr": 34.4
+    },
+    {
+      "key": "Tennis | Goblin OVER",
+      "n": 1551,
+      "h": 631,
+      "hr": 40.7
+    },
+    {
+      "key": "MLB | Standard OVER",
+      "n": 1096,
+      "h": 570,
+      "hr": 52.0
+    },
+    {
+      "key": "MLB | Standard UNDER",
+      "n": 1084,
+      "h": 542,
+      "hr": 50.0
+    },
+    {
+      "key": "Tennis | Standard OVER",
+      "n": 288,
+      "h": 118,
+      "hr": 41.0
+    },
+    {
+      "key": "Tennis | Standard UNDER",
+      "n": 148,
+      "h": 80,
+      "hr": 54.1
+    },
+    {
+      "key": "Soccer | Standard UNDER",
+      "n": 135,
+      "h": 81,
+      "hr": 60.0
+    },
+    {
+      "key": "Soccer | Standard OVER",
+      "n": 28,
+      "h": 15,
+      "hr": 53.6
+    }
+  ],
+  "day_sport": [
+    {
+      "key": "2026-09-04 | MLB",
+      "n": 2017,
+      "h": 1206,
+      "hr": 59.8
+    },
+    {
+      "key": "2026-09-05 | MLB",
+      "n": 1989,
+      "h": 1211,
+      "hr": 60.9
+    },
+    {
+      "key": "2026-09-02 | MLB",
+      "n": 1865,
+      "h": 1121,
+      "hr": 60.1
+    },
+    {
+      "key": "2026-09-01 | MLB",
+      "n": 1791,
+      "h": 1108,
+      "hr": 61.9
+    },
+    {
+      "key": "2026-09-05 | Soccer",
+      "n": 1524,
+      "h": 533,
+      "hr": 35.0
+    },
+    {
+      "key": "2026-09-03 | MLB",
+      "n": 1125,
+      "h": 665,
+      "hr": 59.1
+    },
+    {
+      "key": "2026-09-01 | Tennis",
+      "n": 723,
+      "h": 330,
+      "hr": 45.6
+    },
+    {
+      "key": "2026-09-02 | Tennis",
+      "n": 509,
+      "h": 226,
+      "hr": 44.4
+    },
+    {
+      "key": "2026-09-04 | Soccer",
+      "n": 450,
+      "h": 168,
+      "hr": 37.3
+    },
+    {
+      "key": "2026-09-01 | Soccer",
+      "n": 347,
+      "h": 131,
+      "hr": 37.8
+    },
+    {
+      "key": "2026-09-04 | Tennis",
+      "n": 300,
+      "h": 127,
+      "hr": 42.3
+    },
+    {
+      "key": "2026-09-03 | Tennis",
+      "n": 291,
+      "h": 87,
+      "hr": 29.9
+    },
+    {
+      "key": "2026-09-02 | Soccer",
+      "n": 283,
+      "h": 97,
+      "hr": 34.3
+    },
+    {
+      "key": "2026-09-05 | Tennis",
+      "n": 164,
+      "h": 59,
+      "hr": 36.0
+    },
+    {
+      "key": "2026-09-03 | Soccer",
+      "n": 85,
+      "h": 35,
+      "hr": 41.2
+    }
+  ],
+  "by_badge": [
+    {
+      "key": "no badge",
+      "n": 8331,
+      "h": 3917,
+      "hr": 47.0
+    },
+    {
+      "key": "Bronze",
+      "n": 2939,
+      "h": 1814,
+      "hr": 61.7
+    },
+    {
+      "key": "Silver",
+      "n": 1185,
+      "h": 704,
+      "hr": 59.4
+    },
+    {
+      "key": "Gold",
+      "n": 511,
+      "h": 308,
+      "hr": 60.3
+    },
+    {
+      "key": "Platinum",
+      "n": 497,
+      "h": 361,
+      "hr": 72.6
+    }
+  ],
+  "by_tier": [
+    {
+      "key": "A",
+      "n": 4476,
+      "h": 2219,
+      "hr": 49.6
+    },
+    {
+      "key": "C",
+      "n": 3673,
+      "h": 2186,
+      "hr": 59.5
+    },
+    {
+      "key": "D",
+      "n": 2252,
+      "h": 1139,
+      "hr": 50.6
+    },
+    {
+      "key": "B",
+      "n": 1313,
+      "h": 894,
+      "hr": 68.1
+    },
+    {
+      "key": "W",
+      "n": 1182,
+      "h": 238,
+      "hr": 20.1
+    },
+    {
+      "key": "S",
+      "n": 567,
+      "h": 428,
+      "hr": 75.5
+    }
+  ],
+  "tier_x_badge": [
+    {
+      "key": "A | no badge",
+      "n": 2941,
+      "h": 1241,
+      "hr": 42.2
+    },
+    {
+      "key": "C | no badge",
+      "n": 2039,
+      "h": 1176,
+      "hr": 57.7
+    },
+    {
+      "key": "D | no badge",
+      "n": 1341,
+      "h": 664,
+      "hr": 49.5
+    },
+    {
+      "key": "C | Bronze",
+      "n": 962,
+      "h": 591,
+      "hr": 61.4
+    },
+    {
+      "key": "W | no badge",
+      "n": 960,
+      "h": 137,
+      "hr": 14.3
+    },
+    {
+      "key": "B | no badge",
+      "n": 816,
+      "h": 535,
+      "hr": 65.6
+    },
+    {
+      "key": "A | Bronze",
+      "n": 748,
+      "h": 468,
+      "hr": 62.6
+    },
+    {
+      "key": "D | Bronze",
+      "n": 572,
+      "h": 303,
+      "hr": 53.0
+    },
+    {
+      "key": "A | Silver",
+      "n": 382,
+      "h": 232,
+      "hr": 60.7
+    },
+    {
+      "key": "B | Bronze",
+      "n": 368,
+      "h": 263,
+      "hr": 71.5
+    },
+    {
+      "key": "C | Silver",
+      "n": 361,
+      "h": 221,
+      "hr": 61.2
+    },
+    {
+      "key": "S | no badge",
+      "n": 234,
+      "h": 164,
+      "hr": 70.1
+    },
+    {
+      "key": "A | Platinum",
+      "n": 216,
+      "h": 155,
+      "hr": 71.8
+    },
+    {
+      "key": "D | Silver",
+      "n": 214,
+      "h": 105,
+      "hr": 49.1
+    },
+    {
+      "key": "A | Gold",
+      "n": 189,
+      "h": 123,
+      "hr": 65.1
+    },
+    {
+      "key": "C | Gold",
+      "n": 174,
+      "h": 102,
+      "hr": 58.6
+    },
+    {
+      "key": "S | Bronze",
+      "n": 164,
+      "h": 127,
+      "hr": 77.4
+    },
+    {
+      "key": "C | Platinum",
+      "n": 137,
+      "h": 96,
+      "hr": 70.1
+    },
+    {
+      "key": "W | Bronze",
+      "n": 125,
+      "h": 62,
+      "hr": 49.6
+    },
+    {
+      "key": "D | Gold",
+      "n": 95,
+      "h": 50,
+      "hr": 52.6
+    },
+    {
+      "key": "S | Silver",
+      "n": 85,
+      "h": 68,
+      "hr": 80.0
+    },
+    {
+      "key": "B | Silver",
+      "n": 83,
+      "h": 58,
+      "hr": 69.9
+    },
+    {
+      "key": "S | Platinum",
+      "n": 65,
+      "h": 56,
+      "hr": 86.2
+    },
+    {
+      "key": "W | Silver",
+      "n": 60,
+      "h": 20,
+      "hr": 33.3
+    },
+    {
+      "key": "B | Platinum",
+      "n": 31,
+      "h": 28,
+      "hr": 90.3
+    },
+    {
+      "key": "D | Platinum",
+      "n": 30,
+      "h": 17,
+      "hr": 56.7
+    },
+    {
+      "key": "S | Gold",
+      "n": 19,
+      "h": 13,
+      "hr": 68.4
+    },
+    {
+      "key": "W | Gold",
+      "n": 19,
+      "h": 10,
+      "hr": 52.6
+    },
+    {
+      "key": "W | Platinum",
+      "n": 18,
+      "h": 9,
+      "hr": 50.0
+    },
+    {
+      "key": "B | Gold",
+      "n": 15,
+      "h": 10,
+      "hr": 66.7
+    }
+  ],
+  "by_l5": [
+    {
+      "key": "L5\u22642",
+      "n": 4923,
+      "h": 2387,
+      "hr": 48.5
+    },
+    {
+      "key": "L5=3",
+      "n": 3280,
+      "h": 1955,
+      "hr": 59.6
+    },
+    {
+      "key": "L5=4",
+      "n": 2660,
+      "h": 1730,
+      "hr": 65.0
+    },
+    {
+      "key": "missing",
+      "n": 1654,
+      "h": 388,
+      "hr": 23.5
+    },
+    {
+      "key": "L5=5",
+      "n": 946,
+      "h": 644,
+      "hr": 68.1
+    }
+  ],
+  "by_l10": [
+    {
+      "key": "L10\u22645",
+      "n": 6439,
+      "h": 3246,
+      "hr": 50.4
+    },
+    {
+      "key": "L10=6\u20137",
+      "n": 3784,
+      "h": 2337,
+      "hr": 61.8
+    },
+    {
+      "key": "L10=8\u20139",
+      "n": 1808,
+      "h": 1221,
+      "hr": 67.5
+    },
+    {
+      "key": "missing",
+      "n": 1212,
+      "h": 121,
+      "hr": 10.0
+    },
+    {
+      "key": "L10=10",
+      "n": 220,
+      "h": 179,
+      "hr": 81.4
+    }
+  ],
+  "by_def": [
+    {
+      "key": "Avg",
+      "n": 2884,
+      "h": 1500,
+      "hr": 52.0
+    },
+    {
+      "key": "Above Avg",
+      "n": 2585,
+      "h": 1416,
+      "hr": 54.8
+    },
+    {
+      "key": "Below Avg",
+      "n": 2493,
+      "h": 1298,
+      "hr": 52.1
+    },
+    {
+      "key": "Weak",
+      "n": 2256,
+      "h": 1220,
+      "hr": 54.1
+    },
+    {
+      "key": "Elite",
+      "n": 2183,
+      "h": 1162,
+      "hr": 53.2
+    },
+    {
+      "key": "unknown",
+      "n": 1062,
+      "h": 508,
+      "hr": 47.8
+    }
+  ],
+  "by_dpass": [
+    {
+      "key": "D fail / Avg / unknown",
+      "n": 8682,
+      "h": 4609,
+      "hr": 53.1
+    },
+    {
+      "key": "D pass",
+      "n": 4781,
+      "h": 2495,
+      "hr": 52.2
+    }
+  ],
+  "l5_l10": [
+    {
+      "key": "L5\u22642 | L10\u22645",
+      "n": 4384,
+      "h": 2074,
+      "hr": 47.3
+    },
+    {
+      "key": "L5=3 | L10=6\u20137",
+      "n": 1631,
+      "h": 1008,
+      "hr": 61.8
+    },
+    {
+      "key": "L5=3 | L10\u22645",
+      "n": 1399,
+      "h": 777,
+      "hr": 55.5
+    },
+    {
+      "key": "L5=4 | L10=6\u20137",
+      "n": 1247,
+      "h": 798,
+      "hr": 64.0
+    },
+    {
+      "key": "missing | missing",
+      "n": 1212,
+      "h": 121,
+      "hr": 10.0
+    },
+    {
+      "key": "L5=4 | L10=8\u20139",
+      "n": 1017,
+      "h": 688,
+      "hr": 67.6
+    },
+    {
+      "key": "L5\u22642 | L10=6\u20137",
+      "n": 539,
+      "h": 313,
+      "hr": 58.1
+    },
+    {
+      "key": "L5=5 | L10=8\u20139",
+      "n": 486,
+      "h": 326,
+      "hr": 67.1
+    },
+    {
+      "key": "L5=4 | L10\u22645",
+      "n": 396,
+      "h": 244,
+      "hr": 61.6
+    },
+    {
+      "key": "L5=3 | L10=8\u20139",
+      "n": 250,
+      "h": 170,
+      "hr": 68.0
+    },
+    {
+      "key": "missing | L10\u22645",
+      "n": 214,
+      "h": 128,
+      "hr": 59.8
+    },
+    {
+      "key": "L5=5 | L10=10",
+      "n": 213,
+      "h": 173,
+      "hr": 81.2
+    },
+    {
+      "key": "L5=5 | L10=6\u20137",
+      "n": 201,
+      "h": 122,
+      "hr": 60.7
+    },
+    {
+      "key": "missing | L10=6\u20137",
+      "n": 166,
+      "h": 96,
+      "hr": 57.8
+    },
+    {
+      "key": "missing | L10=8\u20139",
+      "n": 55,
+      "h": 37,
+      "hr": 67.3
+    },
+    {
+      "key": "L5=5 | L10\u22645",
+      "n": 46,
+      "h": 23,
+      "hr": 50.0
+    }
+  ],
+  "l5_d": [
+    {
+      "key": "L5\u22642 | D-",
+      "n": 3058,
+      "h": 1486,
+      "hr": 48.6
+    },
+    {
+      "key": "L5=3 | D-",
+      "n": 2078,
+      "h": 1279,
+      "hr": 61.5
+    },
+    {
+      "key": "L5\u22642 | D+",
+      "n": 1865,
+      "h": 901,
+      "hr": 48.3
+    },
+    {
+      "key": "L5=4 | D-",
+      "n": 1595,
+      "h": 1066,
+      "hr": 66.8
+    },
+    {
+      "key": "missing | D-",
+      "n": 1350,
+      "h": 377,
+      "hr": 27.9
+    },
+    {
+      "key": "L5=3 | D+",
+      "n": 1202,
+      "h": 676,
+      "hr": 56.2
+    },
+    {
+      "key": "L5=4 | D+",
+      "n": 1065,
+      "h": 664,
+      "hr": 62.3
+    },
+    {
+      "key": "L5=5 | D-",
+      "n": 601,
+      "h": 401,
+      "hr": 66.7
+    },
+    {
+      "key": "L5=5 | D+",
+      "n": 345,
+      "h": 243,
+      "hr": 70.4
+    },
+    {
+      "key": "missing | D+",
+      "n": 304,
+      "h": 11,
+      "hr": 3.6
+    }
+  ],
+  "l10_d": [
+    {
+      "key": "L10\u22645 | D-",
+      "n": 4078,
+      "h": 2062,
+      "hr": 50.6
+    },
+    {
+      "key": "L10=6\u20137 | D-",
+      "n": 2388,
+      "h": 1540,
+      "hr": 64.5
+    },
+    {
+      "key": "L10\u22645 | D+",
+      "n": 2361,
+      "h": 1184,
+      "hr": 50.1
+    },
+    {
+      "key": "L10=6\u20137 | D+",
+      "n": 1396,
+      "h": 797,
+      "hr": 57.1
+    },
+    {
+      "key": "L10=8\u20139 | D-",
+      "n": 1150,
+      "h": 772,
+      "hr": 67.1
+    },
+    {
+      "key": "missing | D-",
+      "n": 908,
+      "h": 110,
+      "hr": 12.1
+    },
+    {
+      "key": "L10=8\u20139 | D+",
+      "n": 658,
+      "h": 449,
+      "hr": 68.2
+    },
+    {
+      "key": "missing | D+",
+      "n": 304,
+      "h": 11,
+      "hr": 3.6
+    },
+    {
+      "key": "L10=10 | D-",
+      "n": 158,
+      "h": 125,
+      "hr": 79.1
+    },
+    {
+      "key": "L10=10 | D+",
+      "n": 62,
+      "h": 54,
+      "hr": 87.1
+    }
+  ],
+  "badge_d": [
+    {
+      "key": "no badge | D-",
+      "n": 6625,
+      "h": 3247,
+      "hr": 49.0
+    },
+    {
+      "key": "Bronze | D-",
+      "n": 1771,
+      "h": 1167,
+      "hr": 65.9
+    },
+    {
+      "key": "no badge | D+",
+      "n": 1706,
+      "h": 670,
+      "hr": 39.3
+    },
+    {
+      "key": "Bronze | D+",
+      "n": 1168,
+      "h": 647,
+      "hr": 55.4
+    },
+    {
+      "key": "Silver | D+",
+      "n": 899,
+      "h": 509,
+      "hr": 56.6
+    },
+    {
+      "key": "Gold | D+",
+      "n": 511,
+      "h": 308,
+      "hr": 60.3
+    },
+    {
+      "key": "Platinum | D+",
+      "n": 497,
+      "h": 361,
+      "hr": 72.6
+    },
+    {
+      "key": "Silver | D-",
+      "n": 286,
+      "h": 195,
+      "hr": 68.2
+    }
+  ],
+  "badge_l5": [
+    {
+      "key": "no badge | L5\u22642",
+      "n": 4076,
+      "h": 1935,
+      "hr": 47.5
+    },
+    {
+      "key": "no badge | L5=3",
+      "n": 2110,
+      "h": 1279,
+      "hr": 60.6
+    },
+    {
+      "key": "no badge | missing",
+      "n": 1654,
+      "h": 388,
+      "hr": 23.5
+    },
+    {
+      "key": "Bronze | L5=4",
+      "n": 1047,
+      "h": 696,
+      "hr": 66.5
+    },
+    {
+      "key": "Bronze | L5=3",
+      "n": 785,
+      "h": 450,
+      "hr": 57.3
+    },
+    {
+      "key": "Bronze | L5\u22642",
+      "n": 644,
+      "h": 355,
+      "hr": 55.1
+    },
+    {
+      "key": "Silver | L5=4",
+      "n": 490,
+      "h": 312,
+      "hr": 63.7
+    },
+    {
+      "key": "Bronze | L5=5",
+      "n": 463,
+      "h": 313,
+      "hr": 67.6
+    },
+    {
+      "key": "no badge | L5=4",
+      "n": 437,
+      "h": 280,
+      "hr": 64.1
+    },
+    {
+      "key": "Gold | L5=4",
+      "n": 428,
+      "h": 257,
+      "hr": 60.0
+    },
+    {
+      "key": "Silver | L5=3",
+      "n": 385,
+      "h": 226,
+      "hr": 58.7
+    },
+    {
+      "key": "Platinum | L5=4",
+      "n": 258,
+      "h": 185,
+      "hr": 71.7
+    },
+    {
+      "key": "Platinum | L5=5",
+      "n": 239,
+      "h": 176,
+      "hr": 73.6
+    },
+    {
+      "key": "Silver | L5\u22642",
+      "n": 203,
+      "h": 97,
+      "hr": 47.8
+    },
+    {
+      "key": "Silver | L5=5",
+      "n": 107,
+      "h": 69,
+      "hr": 64.5
+    },
+    {
+      "key": "Gold | L5=5",
+      "n": 83,
+      "h": 51,
+      "hr": 61.4
+    },
+    {
+      "key": "no badge | L5=5",
+      "n": 54,
+      "h": 35,
+      "hr": 64.8
+    }
+  ],
+  "book_badge": [
+    {
+      "key": "Goblin OVER | no badge",
+      "n": 6660,
+      "h": 3074,
+      "hr": 46.2
+    },
+    {
+      "key": "Goblin OVER | Bronze",
+      "n": 2260,
+      "h": 1458,
+      "hr": 64.5
+    },
+    {
+      "key": "Goblin OVER | Silver",
+      "n": 914,
+      "h": 584,
+      "hr": 63.9
+    },
+    {
+      "key": "Standard UNDER | no badge",
+      "n": 888,
+      "h": 464,
+      "hr": 52.3
+    },
+    {
+      "key": "Standard OVER | no badge",
+      "n": 783,
+      "h": 379,
+      "hr": 48.4
+    },
+    {
+      "key": "Goblin OVER | Platinum",
+      "n": 451,
+      "h": 336,
+      "hr": 74.5
+    },
+    {
+      "key": "Goblin OVER | Gold",
+      "n": 399,
+      "h": 246,
+      "hr": 61.7
+    },
+    {
+      "key": "Standard OVER | Bronze",
+      "n": 388,
+      "h": 203,
+      "hr": 52.3
+    },
+    {
+      "key": "Standard UNDER | Bronze",
+      "n": 291,
+      "h": 153,
+      "hr": 52.6
+    },
+    {
+      "key": "Standard OVER | Silver",
+      "n": 148,
+      "h": 71,
+      "hr": 48.0
+    },
+    {
+      "key": "Standard UNDER | Silver",
+      "n": 123,
+      "h": 49,
+      "hr": 39.8
+    },
+    {
+      "key": "Standard OVER | Gold",
+      "n": 77,
+      "h": 42,
+      "hr": 54.5
+    },
+    {
+      "key": "Standard UNDER | Gold",
+      "n": 35,
+      "h": 20,
+      "hr": 57.1
+    },
+    {
+      "key": "Standard UNDER | Platinum",
+      "n": 30,
+      "h": 17,
+      "hr": 56.7
+    },
+    {
+      "key": "Standard OVER | Platinum",
+      "n": 16,
+      "h": 8,
+      "hr": 50.0
+    }
+  ],
+  "sport_badge": [
+    {
+      "key": "MLB | no badge",
+      "n": 4725,
+      "h": 2771,
+      "hr": 58.6
+    },
+    {
+      "key": "MLB | Bronze",
+      "n": 2280,
+      "h": 1405,
+      "hr": 61.6
+    },
+    {
+      "key": "Soccer | no badge",
+      "n": 2111,
+      "h": 650,
+      "hr": 30.8
+    },
+    {
+      "key": "Tennis | no badge",
+      "n": 1495,
+      "h": 496,
+      "hr": 33.2
+    },
+    {
+      "key": "MLB | Silver",
+      "n": 919,
+      "h": 563,
+      "hr": 61.3
+    },
+    {
+      "key": "MLB | Gold",
+      "n": 434,
+      "h": 252,
+      "hr": 58.1
+    },
+    {
+      "key": "MLB | Platinum",
+      "n": 429,
+      "h": 320,
+      "hr": 74.6
+    },
+    {
+      "key": "Soccer | Bronze",
+      "n": 373,
+      "h": 199,
+      "hr": 53.4
+    },
+    {
+      "key": "Tennis | Bronze",
+      "n": 286,
+      "h": 210,
+      "hr": 73.4
+    },
+    {
+      "key": "Soccer | Silver",
+      "n": 161,
+      "h": 86,
+      "hr": 53.4
+    },
+    {
+      "key": "Tennis | Silver",
+      "n": 105,
+      "h": 55,
+      "hr": 52.4
+    },
+    {
+      "key": "Tennis | Platinum",
+      "n": 55,
+      "h": 33,
+      "hr": 60.0
+    },
+    {
+      "key": "Tennis | Gold",
+      "n": 46,
+      "h": 35,
+      "hr": 76.1
+    },
+    {
+      "key": "Soccer | Gold",
+      "n": 31,
+      "h": 21,
+      "hr": 67.7
+    },
+    {
+      "key": "Soccer | Platinum",
+      "n": 13,
+      "h": 8,
+      "hr": 61.5
+    }
+  ],
+  "sport_l5": [
+    {
+      "key": "MLB | L5=3",
+      "n": 2803,
+      "h": 1667,
+      "hr": 59.5
+    },
+    {
+      "key": "MLB | L5\u22642",
+      "n": 2527,
+      "h": 1422,
+      "hr": 56.3
+    },
+    {
+      "key": "MLB | L5=4",
+      "n": 2288,
+      "h": 1478,
+      "hr": 64.6
+    },
+    {
+      "key": "Soccer | L5\u22642",
+      "n": 1880,
+      "h": 631,
+      "hr": 33.6
+    },
+    {
+      "key": "Tennis | missing",
+      "n": 855,
+      "h": 24,
+      "hr": 2.8
+    },
+    {
+      "key": "MLB | L5=5",
+      "n": 719,
+      "h": 473,
+      "hr": 65.8
+    },
+    {
+      "key": "Tennis | L5\u22642",
+      "n": 516,
+      "h": 334,
+      "hr": 64.7
+    },
+    {
+      "key": "MLB | missing",
+      "n": 450,
+      "h": 271,
+      "hr": 60.2
+    },
+    {
+      "key": "Soccer | missing",
+      "n": 349,
+      "h": 93,
+      "hr": 26.6
+    },
+    {
+      "key": "Soccer | L5=3",
+      "n": 254,
+      "h": 123,
+      "hr": 48.4
+    },
+    {
+      "key": "Tennis | L5=4",
+      "n": 234,
+      "h": 178,
+      "hr": 76.1
+    },
+    {
+      "key": "Tennis | L5=3",
+      "n": 223,
+      "h": 165,
+      "hr": 74.0
+    },
+    {
+      "key": "Tennis | L5=5",
+      "n": 159,
+      "h": 128,
+      "hr": 80.5
+    },
+    {
+      "key": "Soccer | L5=4",
+      "n": 138,
+      "h": 74,
+      "hr": 53.6
+    },
+    {
+      "key": "Soccer | L5=5",
+      "n": 68,
+      "h": 43,
+      "hr": 63.2
+    }
+  ],
+  "combos": [
+    {
+      "key": "L5=5 \u00b7 L10=10 \u00b7 D+",
+      "n": 62,
+      "h": 54,
+      "hr": 87.1
+    },
+    {
+      "key": "L5=5 \u00b7 L10\u22645 \u00b7 D+",
+      "n": 15,
+      "h": 13,
+      "hr": 86.7
+    },
+    {
+      "key": "L5=5 \u00b7 L10=10 \u00b7 D-",
+      "n": 151,
+      "h": 119,
+      "hr": 78.8
+    },
+    {
+      "key": "L5=3 \u00b7 L10=8\u20139 \u00b7 D-",
+      "n": 171,
+      "h": 121,
+      "hr": 70.8
+    },
+    {
+      "key": "L5=4 \u00b7 L10=8\u20139 \u00b7 D+",
+      "n": 388,
+      "h": 269,
+      "hr": 69.3
+    },
+    {
+      "key": "L5=5 \u00b7 L10=8\u20139 \u00b7 D+",
+      "n": 191,
+      "h": 131,
+      "hr": 68.6
+    },
+    {
+      "key": "L5=4 \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 733,
+      "h": 502,
+      "hr": 68.5
+    },
+    {
+      "key": "missing \u00b7 L10=8\u20139 \u00b7 D-",
+      "n": 55,
+      "h": 37,
+      "hr": 67.3
+    },
+    {
+      "key": "L5=4 \u00b7 L10=8\u20139 \u00b7 D-",
+      "n": 629,
+      "h": 419,
+      "hr": 66.6
+    },
+    {
+      "key": "L5=5 \u00b7 L10=8\u20139 \u00b7 D-",
+      "n": 295,
+      "h": 195,
+      "hr": 66.1
+    },
+    {
+      "key": "L5=3 \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 1012,
+      "h": 656,
+      "hr": 64.8
+    },
+    {
+      "key": "L5=4 \u00b7 L10\u22645 \u00b7 D-",
+      "n": 233,
+      "h": 145,
+      "hr": 62.2
+    },
+    {
+      "key": "L5=5 \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 124,
+      "h": 77,
+      "hr": 62.1
+    },
+    {
+      "key": "L5=3 \u00b7 L10=8\u20139 \u00b7 D+",
+      "n": 79,
+      "h": 49,
+      "hr": 62.0
+    },
+    {
+      "key": "L5=4 \u00b7 L10\u22645 \u00b7 D+",
+      "n": 163,
+      "h": 99,
+      "hr": 60.7
+    },
+    {
+      "key": "missing \u00b7 L10\u22645 \u00b7 D-",
+      "n": 214,
+      "h": 128,
+      "hr": 59.8
+    },
+    {
+      "key": "L5\u22642 \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 353,
+      "h": 209,
+      "hr": 59.2
+    },
+    {
+      "key": "L5=5 \u00b7 L10=6\u20137 \u00b7 D+",
+      "n": 77,
+      "h": 45,
+      "hr": 58.4
+    },
+    {
+      "key": "missing \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 166,
+      "h": 96,
+      "hr": 57.8
+    },
+    {
+      "key": "L5=4 \u00b7 L10=6\u20137 \u00b7 D+",
+      "n": 514,
+      "h": 296,
+      "hr": 57.6
+    },
+    {
+      "key": "L5=3 \u00b7 L10=6\u20137 \u00b7 D+",
+      "n": 619,
+      "h": 352,
+      "hr": 56.9
+    },
+    {
+      "key": "L5=3 \u00b7 L10\u22645 \u00b7 D-",
+      "n": 895,
+      "h": 502,
+      "hr": 56.1
+    },
+    {
+      "key": "L5\u22642 \u00b7 L10=6\u20137 \u00b7 D+",
+      "n": 186,
+      "h": 104,
+      "hr": 55.9
+    },
+    {
+      "key": "L5=3 \u00b7 L10\u22645 \u00b7 D+",
+      "n": 504,
+      "h": 275,
+      "hr": 54.6
+    },
+    {
+      "key": "L5\u22642 \u00b7 L10\u22645 \u00b7 D+",
+      "n": 1679,
+      "h": 797,
+      "hr": 47.5
+    },
+    {
+      "key": "L5\u22642 \u00b7 L10\u22645 \u00b7 D-",
+      "n": 2705,
+      "h": 1277,
+      "hr": 47.2
+    },
+    {
+      "key": "L5=5 \u00b7 L10\u22645 \u00b7 D-",
+      "n": 31,
+      "h": 10,
+      "hr": 32.3
+    },
+    {
+      "key": "missing \u00b7 missing \u00b7 D-",
+      "n": 908,
+      "h": 110,
+      "hr": 12.1
+    },
+    {
+      "key": "missing \u00b7 missing \u00b7 D+",
+      "n": 304,
+      "h": 11,
+      "hr": 3.6
+    }
+  ],
+  "combos_vol": [
+    {
+      "key": "L5\u22642 \u00b7 L10\u22645 \u00b7 D-",
+      "n": 2705,
+      "h": 1277,
+      "hr": 47.2
+    },
+    {
+      "key": "L5\u22642 \u00b7 L10\u22645 \u00b7 D+",
+      "n": 1679,
+      "h": 797,
+      "hr": 47.5
+    },
+    {
+      "key": "L5=3 \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 1012,
+      "h": 656,
+      "hr": 64.8
+    },
+    {
+      "key": "missing \u00b7 missing \u00b7 D-",
+      "n": 908,
+      "h": 110,
+      "hr": 12.1
+    },
+    {
+      "key": "L5=3 \u00b7 L10\u22645 \u00b7 D-",
+      "n": 895,
+      "h": 502,
+      "hr": 56.1
+    },
+    {
+      "key": "L5=4 \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 733,
+      "h": 502,
+      "hr": 68.5
+    },
+    {
+      "key": "L5=4 \u00b7 L10=8\u20139 \u00b7 D-",
+      "n": 629,
+      "h": 419,
+      "hr": 66.6
+    },
+    {
+      "key": "L5=3 \u00b7 L10=6\u20137 \u00b7 D+",
+      "n": 619,
+      "h": 352,
+      "hr": 56.9
+    },
+    {
+      "key": "L5=4 \u00b7 L10=6\u20137 \u00b7 D+",
+      "n": 514,
+      "h": 296,
+      "hr": 57.6
+    },
+    {
+      "key": "L5=3 \u00b7 L10\u22645 \u00b7 D+",
+      "n": 504,
+      "h": 275,
+      "hr": 54.6
+    },
+    {
+      "key": "L5=4 \u00b7 L10=8\u20139 \u00b7 D+",
+      "n": 388,
+      "h": 269,
+      "hr": 69.3
+    },
+    {
+      "key": "L5\u22642 \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 353,
+      "h": 209,
+      "hr": 59.2
+    },
+    {
+      "key": "missing \u00b7 missing \u00b7 D+",
+      "n": 304,
+      "h": 11,
+      "hr": 3.6
+    },
+    {
+      "key": "L5=5 \u00b7 L10=8\u20139 \u00b7 D-",
+      "n": 295,
+      "h": 195,
+      "hr": 66.1
+    },
+    {
+      "key": "L5=4 \u00b7 L10\u22645 \u00b7 D-",
+      "n": 233,
+      "h": 145,
+      "hr": 62.2
+    },
+    {
+      "key": "missing \u00b7 L10\u22645 \u00b7 D-",
+      "n": 214,
+      "h": 128,
+      "hr": 59.8
+    },
+    {
+      "key": "L5=5 \u00b7 L10=8\u20139 \u00b7 D+",
+      "n": 191,
+      "h": 131,
+      "hr": 68.6
+    },
+    {
+      "key": "L5\u22642 \u00b7 L10=6\u20137 \u00b7 D+",
+      "n": 186,
+      "h": 104,
+      "hr": 55.9
+    },
+    {
+      "key": "L5=3 \u00b7 L10=8\u20139 \u00b7 D-",
+      "n": 171,
+      "h": 121,
+      "hr": 70.8
+    },
+    {
+      "key": "missing \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 166,
+      "h": 96,
+      "hr": 57.8
+    },
+    {
+      "key": "L5=4 \u00b7 L10\u22645 \u00b7 D+",
+      "n": 163,
+      "h": 99,
+      "hr": 60.7
+    },
+    {
+      "key": "L5=5 \u00b7 L10=10 \u00b7 D-",
+      "n": 151,
+      "h": 119,
+      "hr": 78.8
+    },
+    {
+      "key": "L5=5 \u00b7 L10=6\u20137 \u00b7 D-",
+      "n": 124,
+      "h": 77,
+      "hr": 62.1
+    },
+    {
+      "key": "L5=3 \u00b7 L10=8\u20139 \u00b7 D+",
+      "n": 79,
+      "h": 49,
+      "hr": 62.0
+    },
+    {
+      "key": "L5=5 \u00b7 L10=6\u20137 \u00b7 D+",
+      "n": 77,
+      "h": 45,
+      "hr": 58.4
+    },
+    {
+      "key": "L5=5 \u00b7 L10=10 \u00b7 D+",
+      "n": 62,
+      "h": 54,
+      "hr": 87.1
+    },
+    {
+      "key": "missing \u00b7 L10=8\u20139 \u00b7 D-",
+      "n": 55,
+      "h": 37,
+      "hr": 67.3
+    },
+    {
+      "key": "L5=5 \u00b7 L10\u22645 \u00b7 D-",
+      "n": 31,
+      "h": 10,
+      "hr": 32.3
+    }
+  ],
+  "l5_gap": [
+    {
+      "key": "0\u20131",
+      "n": 5559,
+      "h": 3164,
+      "hr": 56.9
+    },
+    {
+      "key": "below line",
+      "n": 2823,
+      "h": 1271,
+      "hr": 45.0
+    },
+    {
+      "key": "1\u20132",
+      "n": 1962,
+      "h": 1273,
+      "hr": 64.9
+    },
+    {
+      "key": "missing",
+      "n": 1654,
+      "h": 388,
+      "hr": 23.5
+    },
+    {
+      "key": "2\u20134",
+      "n": 969,
+      "h": 676,
+      "hr": 69.8
+    },
+    {
+      "key": "4+",
+      "n": 496,
+      "h": 332,
+      "hr": 66.9
+    }
+  ],
+  "l10_gap": [
+    {
+      "key": "0\u20131",
+      "n": 5785,
+      "h": 3272,
+      "hr": 56.6
+    },
+    {
+      "key": "below line",
+      "n": 2574,
+      "h": 1106,
+      "hr": 43.0
+    },
+    {
+      "key": "1\u20132",
+      "n": 2146,
+      "h": 1423,
+      "hr": 66.3
+    },
+    {
+      "key": "missing",
+      "n": 1654,
+      "h": 388,
+      "hr": 23.5
+    },
+    {
+      "key": "2\u20134",
+      "n": 806,
+      "h": 590,
+      "hr": 73.2
+    },
+    {
+      "key": "4+",
+      "n": 498,
+      "h": 325,
+      "hr": 65.3
+    }
+  ],
+  "by_prop": [
+    {
+      "key": "Tennis | Goblin OVER | games_won",
+      "n": 491,
+      "h": 428,
+      "hr": 87.2
+    },
+    {
+      "key": "Tennis | Standard UNDER | match_total_games",
+      "n": 48,
+      "h": 39,
+      "hr": 81.2
+    },
+    {
+      "key": "MLB | Goblin OVER | walks_allowed",
+      "n": 139,
+      "h": 112,
+      "hr": 80.6
+    },
+    {
+      "key": "MLB | Goblin OVER | hits_allowed",
+      "n": 247,
+      "h": 186,
+      "hr": 75.3
+    },
+    {
+      "key": "MLB | Goblin OVER | pitcher_ks",
+      "n": 308,
+      "h": 231,
+      "hr": 75.0
+    },
+    {
+      "key": "MLB | Goblin OVER | earned_runs",
+      "n": 256,
+      "h": 184,
+      "hr": 71.9
+    },
+    {
+      "key": "MLB | Goblin OVER | pitching_outs",
+      "n": 212,
+      "h": 152,
+      "hr": 71.7
+    },
+    {
+      "key": "MLB | Goblin OVER | pitches_thrown",
+      "n": 98,
+      "h": 69,
+      "hr": 70.4
+    },
+    {
+      "key": "Tennis | Standard OVER | games_won",
+      "n": 107,
+      "h": 73,
+      "hr": 68.2
+    },
+    {
+      "key": "MLB | Goblin OVER | hits+runs+rbis",
+      "n": 1555,
+      "h": 1007,
+      "hr": 64.8
+    },
+    {
+      "key": "MLB | Goblin OVER | hitter_ks",
+      "n": 1067,
+      "h": 661,
+      "hr": 61.9
+    },
+    {
+      "key": "MLB | Standard OVER | pitcher_ks",
+      "n": 60,
+      "h": 37,
+      "hr": 61.7
+    },
+    {
+      "key": "Soccer | Standard UNDER | saves",
+      "n": 60,
+      "h": 37,
+      "hr": 61.7
+    },
+    {
+      "key": "Soccer | Standard UNDER | shots",
+      "n": 50,
+      "h": 30,
+      "hr": 60.0
+    },
+    {
+      "key": "MLB | Goblin OVER | hits",
+      "n": 1170,
+      "h": 698,
+      "hr": 59.7
+    },
+    {
+      "key": "MLB | Goblin OVER | total_bases",
+      "n": 1157,
+      "h": 690,
+      "hr": 59.6
+    },
+    {
+      "key": "Tennis | Goblin OVER | match_total_games",
+      "n": 341,
+      "h": 203,
+      "hr": 59.5
+    },
+    {
+      "key": "MLB | Standard OVER | pitching_outs",
+      "n": 22,
+      "h": 13,
+      "hr": 59.1
+    },
+    {
+      "key": "Soccer | Standard UNDER | saves_combo",
+      "n": 12,
+      "h": 7,
+      "hr": 58.3
+    },
+    {
+      "key": "MLB | Goblin OVER | plate_appearances",
+      "n": 161,
+      "h": 92,
+      "hr": 57.1
+    },
+    {
+      "key": "MLB | Standard OVER | walks",
+      "n": 23,
+      "h": 13,
+      "hr": 56.5
+    },
+    {
+      "key": "MLB | Standard OVER | hits+runs+rbis",
+      "n": 296,
+      "h": 166,
+      "hr": 56.1
+    },
+    {
+      "key": "MLB | Standard OVER | hits",
+      "n": 75,
+      "h": 42,
+      "hr": 56.0
+    },
+    {
+      "key": "MLB | Standard OVER | earned_runs",
+      "n": 34,
+      "h": 19,
+      "hr": 55.9
+    },
+    {
+      "key": "MLB | Standard UNDER | hits+runs+rbis",
+      "n": 207,
+      "h": 115,
+      "hr": 55.6
+    },
+    {
+      "key": "MLB | Standard OVER | pitches_thrown",
+      "n": 29,
+      "h": 16,
+      "hr": 55.2
+    },
+    {
+      "key": "MLB | Standard UNDER | pitcher_ks",
+      "n": 88,
+      "h": 48,
+      "hr": 54.5
+    },
+    {
+      "key": "MLB | Standard UNDER | singles",
+      "n": 143,
+      "h": 77,
+      "hr": 53.8
+    },
+    {
+      "key": "Soccer | Standard UNDER | sog",
+      "n": 13,
+      "h": 7,
+      "hr": 53.8
+    },
+    {
+      "key": "MLB | Standard UNDER | plate_appearances",
+      "n": 55,
+      "h": 29,
+      "hr": 52.7
+    },
+    {
+      "key": "MLB | Standard OVER | hits_allowed",
+      "n": 29,
+      "h": 15,
+      "hr": 51.7
+    },
+    {
+      "key": "MLB | Standard OVER | total_bases",
+      "n": 140,
+      "h": 72,
+      "hr": 51.4
+    },
+    {
+      "key": "MLB | Goblin OVER | singles",
+      "n": 183,
+      "h": 92,
+      "hr": 50.3
+    },
+    {
+      "key": "MLB | Standard UNDER | total_bases",
+      "n": 154,
+      "h": 77,
+      "hr": 50.0
+    },
+    {
+      "key": "MLB | Standard UNDER | walks",
+      "n": 14,
+      "h": 7,
+      "hr": 50.0
+    },
+    {
+      "key": "Soccer | Standard OVER | shots",
+      "n": 12,
+      "h": 6,
+      "hr": 50.0
+    },
+    {
+      "key": "MLB | Standard UNDER | pitching_outs",
+      "n": 63,
+      "h": 31,
+      "hr": 49.2
+    },
+    {
+      "key": "Tennis | Standard OVER | match_total_games",
+      "n": 92,
+      "h": 45,
+      "hr": 48.9
+    },
+    {
+      "key": "MLB | Goblin OVER | runs",
+      "n": 45,
+      "h": 22,
+      "hr": 48.9
+    },
+    {
+      "key": "MLB | Standard OVER | walks_allowed",
+      "n": 25,
+      "h": 12,
+      "hr": 48.0
+    },
+    {
+      "key": "MLB | Standard UNDER | runs",
+      "n": 73,
+      "h": 35,
+      "hr": 47.9
+    },
+    {
+      "key": "MLB | Standard UNDER | hits",
+      "n": 131,
+      "h": 61,
+      "hr": 46.6
+    },
+    {
+      "key": "MLB | Standard OVER | singles",
+      "n": 235,
+      "h": 107,
+      "hr": 45.5
+    },
+    {
+      "key": "MLB | Standard OVER | runs",
+      "n": 101,
+      "h": 46,
+      "hr": 45.5
+    },
+    {
+      "key": "MLB | Standard UNDER | hits_allowed",
+      "n": 31,
+      "h": 14,
+      "hr": 45.2
+    },
+    {
+      "key": "Soccer | Goblin OVER | saves",
+      "n": 225,
+      "h": 99,
+      "hr": 44.0
+    },
+    {
+      "key": "MLB | Standard UNDER | walks_allowed",
+      "n": 16,
+      "h": 7,
+      "hr": 43.8
+    },
+    {
+      "key": "Tennis | Standard UNDER | games_won",
+      "n": 100,
+      "h": 41,
+      "hr": 41.0
+    },
+    {
+      "key": "MLB | Standard UNDER | pitches_thrown",
+      "n": 70,
+      "h": 27,
+      "hr": 38.6
+    },
+    {
+      "key": "MLB | Standard OVER | plate_appearances",
+      "n": 17,
+      "h": 6,
+      "hr": 35.3
+    },
+    {
+      "key": "Soccer | Goblin OVER | sog",
+      "n": 510,
+      "h": 174,
+      "hr": 34.1
+    },
+    {
+      "key": "Soccer | Goblin OVER | shots",
+      "n": 1717,
+      "h": 572,
+      "hr": 33.3
+    },
+    {
+      "key": "MLB | Standard UNDER | earned_runs",
+      "n": 27,
+      "h": 9,
+      "hr": 33.3
+    },
+    {
+      "key": "Soccer | Goblin OVER | goal_assist",
+      "n": 67,
+      "h": 21,
+      "hr": 31.3
+    },
+    {
+      "key": "Tennis | Goblin OVER | aces",
+      "n": 380,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "Tennis | Goblin OVER | double_faults",
+      "n": 326,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "Tennis | Standard OVER | aces",
+      "n": 47,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "Tennis | Standard OVER | double_faults",
+      "n": 40,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "Tennis | Goblin OVER | aces_set1",
+      "n": 13,
+      "h": 0,
+      "hr": 0.0
+    }
+  ],
+  "by_prop_vol": [
+    {
+      "key": "Soccer | Goblin OVER | shots",
+      "n": 1717,
+      "h": 572,
+      "hr": 33.3
+    },
+    {
+      "key": "MLB | Goblin OVER | hits+runs+rbis",
+      "n": 1555,
+      "h": 1007,
+      "hr": 64.8
+    },
+    {
+      "key": "MLB | Goblin OVER | hits",
+      "n": 1170,
+      "h": 698,
+      "hr": 59.7
+    },
+    {
+      "key": "MLB | Goblin OVER | total_bases",
+      "n": 1157,
+      "h": 690,
+      "hr": 59.6
+    },
+    {
+      "key": "MLB | Goblin OVER | hitter_ks",
+      "n": 1067,
+      "h": 661,
+      "hr": 61.9
+    },
+    {
+      "key": "Soccer | Goblin OVER | sog",
+      "n": 510,
+      "h": 174,
+      "hr": 34.1
+    },
+    {
+      "key": "Tennis | Goblin OVER | games_won",
+      "n": 491,
+      "h": 428,
+      "hr": 87.2
+    },
+    {
+      "key": "Tennis | Goblin OVER | aces",
+      "n": 380,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "Tennis | Goblin OVER | match_total_games",
+      "n": 341,
+      "h": 203,
+      "hr": 59.5
+    },
+    {
+      "key": "Tennis | Goblin OVER | double_faults",
+      "n": 326,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "MLB | Goblin OVER | pitcher_ks",
+      "n": 308,
+      "h": 231,
+      "hr": 75.0
+    },
+    {
+      "key": "MLB | Standard OVER | hits+runs+rbis",
+      "n": 296,
+      "h": 166,
+      "hr": 56.1
+    },
+    {
+      "key": "MLB | Goblin OVER | earned_runs",
+      "n": 256,
+      "h": 184,
+      "hr": 71.9
+    },
+    {
+      "key": "MLB | Goblin OVER | hits_allowed",
+      "n": 247,
+      "h": 186,
+      "hr": 75.3
+    },
+    {
+      "key": "MLB | Standard OVER | singles",
+      "n": 235,
+      "h": 107,
+      "hr": 45.5
+    },
+    {
+      "key": "Soccer | Goblin OVER | saves",
+      "n": 225,
+      "h": 99,
+      "hr": 44.0
+    },
+    {
+      "key": "MLB | Goblin OVER | pitching_outs",
+      "n": 212,
+      "h": 152,
+      "hr": 71.7
+    },
+    {
+      "key": "MLB | Standard UNDER | hits+runs+rbis",
+      "n": 207,
+      "h": 115,
+      "hr": 55.6
+    },
+    {
+      "key": "MLB | Goblin OVER | singles",
+      "n": 183,
+      "h": 92,
+      "hr": 50.3
+    },
+    {
+      "key": "MLB | Goblin OVER | plate_appearances",
+      "n": 161,
+      "h": 92,
+      "hr": 57.1
+    },
+    {
+      "key": "MLB | Standard UNDER | total_bases",
+      "n": 154,
+      "h": 77,
+      "hr": 50.0
+    },
+    {
+      "key": "MLB | Standard UNDER | singles",
+      "n": 143,
+      "h": 77,
+      "hr": 53.8
+    },
+    {
+      "key": "MLB | Standard OVER | total_bases",
+      "n": 140,
+      "h": 72,
+      "hr": 51.4
+    },
+    {
+      "key": "MLB | Goblin OVER | walks_allowed",
+      "n": 139,
+      "h": 112,
+      "hr": 80.6
+    },
+    {
+      "key": "MLB | Standard UNDER | hits",
+      "n": 131,
+      "h": 61,
+      "hr": 46.6
+    },
+    {
+      "key": "Tennis | Standard OVER | games_won",
+      "n": 107,
+      "h": 73,
+      "hr": 68.2
+    },
+    {
+      "key": "MLB | Standard OVER | runs",
+      "n": 101,
+      "h": 46,
+      "hr": 45.5
+    },
+    {
+      "key": "Tennis | Standard UNDER | games_won",
+      "n": 100,
+      "h": 41,
+      "hr": 41.0
+    },
+    {
+      "key": "MLB | Goblin OVER | pitches_thrown",
+      "n": 98,
+      "h": 69,
+      "hr": 70.4
+    },
+    {
+      "key": "Tennis | Standard OVER | match_total_games",
+      "n": 92,
+      "h": 45,
+      "hr": 48.9
+    },
+    {
+      "key": "MLB | Standard UNDER | pitcher_ks",
+      "n": 88,
+      "h": 48,
+      "hr": 54.5
+    },
+    {
+      "key": "MLB | Standard OVER | hits",
+      "n": 75,
+      "h": 42,
+      "hr": 56.0
+    },
+    {
+      "key": "MLB | Standard UNDER | runs",
+      "n": 73,
+      "h": 35,
+      "hr": 47.9
+    },
+    {
+      "key": "MLB | Standard UNDER | pitches_thrown",
+      "n": 70,
+      "h": 27,
+      "hr": 38.6
+    },
+    {
+      "key": "Soccer | Goblin OVER | goal_assist",
+      "n": 67,
+      "h": 21,
+      "hr": 31.3
+    },
+    {
+      "key": "MLB | Standard UNDER | pitching_outs",
+      "n": 63,
+      "h": 31,
+      "hr": 49.2
+    },
+    {
+      "key": "MLB | Standard OVER | pitcher_ks",
+      "n": 60,
+      "h": 37,
+      "hr": 61.7
+    },
+    {
+      "key": "Soccer | Standard UNDER | saves",
+      "n": 60,
+      "h": 37,
+      "hr": 61.7
+    },
+    {
+      "key": "MLB | Standard UNDER | plate_appearances",
+      "n": 55,
+      "h": 29,
+      "hr": 52.7
+    },
+    {
+      "key": "Soccer | Standard UNDER | shots",
+      "n": 50,
+      "h": 30,
+      "hr": 60.0
+    },
+    {
+      "key": "Tennis | Standard UNDER | match_total_games",
+      "n": 48,
+      "h": 39,
+      "hr": 81.2
+    },
+    {
+      "key": "Tennis | Standard OVER | aces",
+      "n": 47,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "MLB | Goblin OVER | runs",
+      "n": 45,
+      "h": 22,
+      "hr": 48.9
+    },
+    {
+      "key": "Tennis | Standard OVER | double_faults",
+      "n": 40,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "MLB | Standard OVER | earned_runs",
+      "n": 34,
+      "h": 19,
+      "hr": 55.9
+    },
+    {
+      "key": "MLB | Standard UNDER | hits_allowed",
+      "n": 31,
+      "h": 14,
+      "hr": 45.2
+    },
+    {
+      "key": "MLB | Standard OVER | hits_allowed",
+      "n": 29,
+      "h": 15,
+      "hr": 51.7
+    },
+    {
+      "key": "MLB | Standard OVER | pitches_thrown",
+      "n": 29,
+      "h": 16,
+      "hr": 55.2
+    },
+    {
+      "key": "MLB | Standard UNDER | earned_runs",
+      "n": 27,
+      "h": 9,
+      "hr": 33.3
+    },
+    {
+      "key": "MLB | Standard OVER | walks_allowed",
+      "n": 25,
+      "h": 12,
+      "hr": 48.0
+    },
+    {
+      "key": "MLB | Standard OVER | walks",
+      "n": 23,
+      "h": 13,
+      "hr": 56.5
+    },
+    {
+      "key": "MLB | Standard OVER | pitching_outs",
+      "n": 22,
+      "h": 13,
+      "hr": 59.1
+    }
+  ],
+  "prop_l5": [
+    {
+      "key": "Soccer | shots | L5\u22642",
+      "n": 1272,
+      "h": 407,
+      "hr": 32.0
+    },
+    {
+      "key": "MLB | hits+runs+rbis | L5=3",
+      "n": 676,
+      "h": 419,
+      "hr": 62.0
+    },
+    {
+      "key": "MLB | hits+runs+rbis | L5=4",
+      "n": 606,
+      "h": 397,
+      "hr": 65.5
+    },
+    {
+      "key": "MLB | hits+runs+rbis | L5\u22642",
+      "n": 551,
+      "h": 323,
+      "hr": 58.6
+    },
+    {
+      "key": "MLB | total_bases | L5\u22642",
+      "n": 483,
+      "h": 253,
+      "hr": 52.4
+    },
+    {
+      "key": "MLB | total_bases | L5=3",
+      "n": 464,
+      "h": 283,
+      "hr": 61.0
+    },
+    {
+      "key": "MLB | hits | L5=3",
+      "n": 449,
+      "h": 266,
+      "hr": 59.2
+    },
+    {
+      "key": "MLB | hits | L5\u22642",
+      "n": 443,
+      "h": 235,
+      "hr": 53.0
+    },
+    {
+      "key": "Tennis | aces | missing",
+      "n": 427,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "MLB | hitter_ks | L5\u22642",
+      "n": 394,
+      "h": 237,
+      "hr": 60.2
+    },
+    {
+      "key": "MLB | total_bases | L5=4",
+      "n": 370,
+      "h": 236,
+      "hr": 63.8
+    },
+    {
+      "key": "Tennis | double_faults | missing",
+      "n": 366,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "Soccer | sog | L5\u22642",
+      "n": 364,
+      "h": 125,
+      "hr": 34.3
+    },
+    {
+      "key": "MLB | hits | L5=4",
+      "n": 357,
+      "h": 235,
+      "hr": 65.8
+    },
+    {
+      "key": "MLB | hitter_ks | L5=3",
+      "n": 327,
+      "h": 204,
+      "hr": 62.4
+    },
+    {
+      "key": "Tennis | games_won | L5\u22642",
+      "n": 304,
+      "h": 234,
+      "hr": 77.0
+    },
+    {
+      "key": "MLB | singles | L5=3",
+      "n": 238,
+      "h": 113,
+      "hr": 47.5
+    },
+    {
+      "key": "Soccer | shots | missing",
+      "n": 235,
+      "h": 66,
+      "hr": 28.1
+    },
+    {
+      "key": "MLB | hitter_ks | L5=4",
+      "n": 232,
+      "h": 148,
+      "hr": 63.8
+    },
+    {
+      "key": "Tennis | match_total_games | L5\u22642",
+      "n": 212,
+      "h": 100,
+      "hr": 47.2
+    },
+    {
+      "key": "Soccer | saves | L5\u22642",
+      "n": 183,
+      "h": 72,
+      "hr": 39.3
+    },
+    {
+      "key": "MLB | hits+runs+rbis | L5=5",
+      "n": 171,
+      "h": 113,
+      "hr": 66.1
+    },
+    {
+      "key": "MLB | singles | L5=4",
+      "n": 156,
+      "h": 77,
+      "hr": 49.4
+    },
+    {
+      "key": "Soccer | shots | L5=3",
+      "n": 154,
+      "h": 66,
+      "hr": 42.9
+    },
+    {
+      "key": "Tennis | games_won | L5=4",
+      "n": 132,
+      "h": 106,
+      "hr": 80.3
+    },
+    {
+      "key": "MLB | pitcher_ks | L5=4",
+      "n": 127,
+      "h": 98,
+      "hr": 77.2
+    },
+    {
+      "key": "Tennis | games_won | L5=5",
+      "n": 124,
+      "h": 101,
+      "hr": 81.5
+    },
+    {
+      "key": "MLB | singles | L5\u22642",
+      "n": 118,
+      "h": 65,
+      "hr": 55.1
+    },
+    {
+      "key": "MLB | pitcher_ks | L5\u22642",
+      "n": 116,
+      "h": 72,
+      "hr": 62.1
+    },
+    {
+      "key": "MLB | pitcher_ks | L5=3",
+      "n": 115,
+      "h": 74,
+      "hr": 64.3
+    },
+    {
+      "key": "Tennis | games_won | L5=3",
+      "n": 114,
+      "h": 88,
+      "hr": 77.2
+    },
+    {
+      "key": "Tennis | match_total_games | L5=3",
+      "n": 109,
+      "h": 77,
+      "hr": 70.6
+    },
+    {
+      "key": "Tennis | match_total_games | L5=4",
+      "n": 102,
+      "h": 72,
+      "hr": 70.6
+    },
+    {
+      "key": "MLB | earned_runs | L5=3",
+      "n": 95,
+      "h": 64,
+      "hr": 67.4
+    },
+    {
+      "key": "MLB | hits_allowed | L5=3",
+      "n": 90,
+      "h": 61,
+      "hr": 67.8
+    },
+    {
+      "key": "MLB | runs | L5=3",
+      "n": 89,
+      "h": 36,
+      "hr": 40.4
+    },
+    {
+      "key": "MLB | plate_appearances | L5\u22642",
+      "n": 87,
+      "h": 39,
+      "hr": 44.8
+    },
+    {
+      "key": "MLB | total_bases | L5=5",
+      "n": 87,
+      "h": 41,
+      "hr": 47.1
+    },
+    {
+      "key": "MLB | earned_runs | L5=4",
+      "n": 85,
+      "h": 61,
+      "hr": 71.8
+    },
+    {
+      "key": "MLB | hits | L5=5",
+      "n": 83,
+      "h": 40,
+      "hr": 48.2
+    }
+  ],
+  "players_hot": [
+    {
+      "key": "Tennis | Coco Gauff | Goblin OVER | match_total_games",
+      "n": 9,
+      "h": 9,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Naomi Osaka | Goblin OVER | match_total_games",
+      "n": 9,
+      "h": 9,
+      "hr": 100.0
+    },
+    {
+      "key": "MLB | TJ Rumfield | Goblin OVER | hits+runs+rbis",
+      "n": 8,
+      "h": 8,
+      "hr": 100.0
+    },
+    {
+      "key": "MLB | Vlad Guerrero Jr. | Goblin OVER | hits+runs+rbis",
+      "n": 8,
+      "h": 8,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Jakub Mensik | Goblin OVER | games_won",
+      "n": 8,
+      "h": 8,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Karen Khachanov | Goblin OVER | games_won",
+      "n": 8,
+      "h": 8,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Luciano Darderi | Goblin OVER | match_total_games",
+      "n": 8,
+      "h": 8,
+      "hr": 100.0
+    },
+    {
+      "key": "MLB | Nathan Church | Goblin OVER | hits+runs+rbis",
+      "n": 7,
+      "h": 7,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Cristina Bucsa | Goblin OVER | games_won",
+      "n": 7,
+      "h": 7,
+      "hr": 100.0
+    },
+    {
+      "key": "MLB | Dominic Canzone | Goblin OVER | hits+runs+rbis",
+      "n": 6,
+      "h": 6,
+      "hr": 100.0
+    },
+    {
+      "key": "MLB | Leo Bernal | Goblin OVER | hits+runs+rbis",
+      "n": 6,
+      "h": 6,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Alexandra Eala | Goblin OVER | games_won",
+      "n": 6,
+      "h": 6,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Alexei Popyrin | Goblin OVER | games_won",
+      "n": 6,
+      "h": 6,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Ann Li | Goblin OVER | games_won",
+      "n": 6,
+      "h": 6,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Arthur Gea | Goblin OVER | games_won",
+      "n": 6,
+      "h": 6,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Arthur Rinderknech | Goblin OVER | games_won",
+      "n": 6,
+      "h": 6,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Cristina Bucsa | Goblin OVER | match_total_games",
+      "n": 6,
+      "h": 6,
+      "hr": 100.0
+    },
+    {
+      "key": "Tennis | Dalibor Svrcina | Goblin OVER | games_won",
+      "n": 6,
+      "h": 6,
+      "hr": 100.0
+    }
+  ],
+  "players_cold": [
+    {
+      "key": "MLB | Steven Kwan | Goblin OVER | hits+runs+rbis",
+      "n": 9,
+      "h": 2,
+      "hr": 22.2
+    },
+    {
+      "key": "Tennis | Daniil Medvedev | Goblin OVER | match_total_games",
+      "n": 9,
+      "h": 3,
+      "hr": 33.3
+    },
+    {
+      "key": "Tennis | Learner Tien | Goblin OVER | match_total_games",
+      "n": 9,
+      "h": 3,
+      "hr": 33.3
+    },
+    {
+      "key": "Tennis | Valentin Vacherot | Goblin OVER | aces",
+      "n": 9,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "MLB | Alec Burleson | Goblin OVER | total_bases",
+      "n": 7,
+      "h": 2,
+      "hr": 28.6
+    },
+    {
+      "key": "MLB | Jake Bauers | Goblin OVER | hits+runs+rbis",
+      "n": 7,
+      "h": 2,
+      "hr": 28.6
+    },
+    {
+      "key": "Tennis | Amanda Anisimova | Goblin OVER | match_total_games",
+      "n": 7,
+      "h": 2,
+      "hr": 28.6
+    },
+    {
+      "key": "Tennis | Ben Shelton | Goblin OVER | aces",
+      "n": 7,
+      "h": 0,
+      "hr": 0.0
+    },
+    {
+      "key": "MLB | Corbin Carroll | Goblin OVER | hits+runs+rbis",
+      "n": 6,
+      "h": 1,
+      "hr": 16.7
+    },
+    {
+      "key": "MLB | Jackson Merrill | Goblin OVER | hits+runs+rbis",
+      "n": 6,
+      "h": 2,
+      "hr": 33.3
+    },
+    {
+      "key": "MLB | Leody Taveras | Goblin OVER | hits+runs+rbis",
+      "n": 6,
+      "h": 1,
+      "hr": 16.7
+    },
+    {
+      "key": "MLB | Matt Olson | Goblin OVER | hits+runs+rbis",
+      "n": 6,
+      "h": 2,
+      "hr": 33.3
+    },
+    {
+      "key": "MLB | Mickey Moniak | Goblin OVER | hits+runs+rbis",
+      "n": 6,
+      "h": 2,
+      "hr": 33.3
+    },
+    {
+      "key": "MLB | Samuel Basallo | Goblin OVER | hits+runs+rbis",
+      "n": 6,
+      "h": 2,
+      "hr": 33.3
+    },
+    {
+      "key": "MLB | Seiya Suzuki | Goblin OVER | hits+runs+rbis",
+      "n": 6,
+      "h": 2,
+      "hr": 33.3
+    },
+    {
+      "key": "MLB | Steven Kwan | Goblin OVER | hits",
+      "n": 6,
+      "h": 2,
+      "hr": 33.3
+    },
+    {
+      "key": "MLB | Steven Kwan | Goblin OVER | total_bases",
+      "n": 6,
+      "h": 2,
+      "hr": 33.3
+    },
+    {
+      "key": "Tennis | Alejandro Tabilo | Goblin OVER | aces",
+      "n": 6,
+      "h": 0,
+      "hr": 0.0
+    }
+  ],
+  "players_vol": [
+    {
+      "key": "Tennis | Alexander Zverev | Goblin OVER | match_total_games",
+      "n": 16,
+      "h": 13,
+      "hr": 81.2
+    },
+    {
+      "key": "Tennis | Alejandro Tabilo | Goblin OVER | games_won",
+      "n": 12,
+      "h": 10,
+      "hr": 83.3
+    },
+    {
+      "key": "MLB | Jos\u00e9 Ram\u00edrez | Goblin OVER | hits+runs+rbis",
+      "n": 11,
+      "h": 4,
+      "hr": 36.4
+    },
+    {
+      "key": "MLB | Bobby Witt Jr. | Goblin OVER | hits+runs+rbis",
+      "n": 10,
+      "h": 8,
+      "hr": 80.0
+    },
+    {
+      "key": "MLB | Jackson Chourio | Goblin OVER | hits+runs+rbis",
+      "n": 10,
+      "h": 8,
+      "hr": 80.0
+    },
+    {
+      "key": "MLB | Mookie Betts | Goblin OVER | hits+runs+rbis",
+      "n": 10,
+      "h": 9,
+      "hr": 90.0
+    },
+    {
+      "key": "MLB | Nick Gonzales | Goblin OVER | hits+runs+rbis",
+      "n": 10,
+      "h": 6,
+      "hr": 60.0
+    },
+    {
+      "key": "MLB | William Contreras | Goblin OVER | hits+runs+rbis",
+      "n": 10,
+      "h": 8,
+      "hr": 80.0
+    },
+    {
+      "key": "MLB | Yordan Alvarez | Goblin OVER | hits+runs+rbis",
+      "n": 10,
+      "h": 5,
+      "hr": 50.0
+    },
+    {
+      "key": "Tennis | Aryna Sabalenka | Goblin OVER | match_total_games",
+      "n": 10,
+      "h": 5,
+      "hr": 50.0
+    },
+    {
+      "key": "Tennis | Gael Monfils | Goblin OVER | games_won",
+      "n": 10,
+      "h": 7,
+      "hr": 70.0
+    },
+    {
+      "key": "MLB | Carter Jensen | Goblin OVER | hits+runs+rbis",
+      "n": 9,
+      "h": 7,
+      "hr": 77.8
+    },
+    {
+      "key": "MLB | Chase DeLauter | Goblin OVER | hits+runs+rbis",
+      "n": 9,
+      "h": 6,
+      "hr": 66.7
+    },
+    {
+      "key": "MLB | Jac Caglianone | Goblin OVER | hits+runs+rbis",
+      "n": 9,
+      "h": 5,
+      "hr": 55.6
+    },
+    {
+      "key": "MLB | Jeremy Pe\u00f1a | Goblin OVER | hits+runs+rbis",
+      "n": 9,
+      "h": 4,
+      "hr": 44.4
+    },
+    {
+      "key": "MLB | Junior Caminero | Goblin OVER | hits+runs+rbis",
+      "n": 9,
+      "h": 5,
+      "hr": 55.6
+    },
+    {
+      "key": "MLB | Roman Anthony | Goblin OVER | hits+runs+rbis",
+      "n": 9,
+      "h": 5,
+      "hr": 55.6
+    },
+    {
+      "key": "MLB | Steven Kwan | Goblin OVER | hits+runs+rbis",
+      "n": 9,
+      "h": 2,
+      "hr": 22.2
+    }
+  ],
+  "listed": [
+    {
+      "key": "pool L5\u22654",
+      "n": 3606,
+      "h": 2374,
+      "hr": 65.8
+    },
+    {
+      "key": "L5\u22654 Goblin OVER",
+      "n": 2708,
+      "h": 1882,
+      "hr": 69.5
+    },
+    {
+      "key": "L5\u22654 Bronze",
+      "n": 1510,
+      "h": 1009,
+      "hr": 66.8
+    },
+    {
+      "key": "L5\u22654 Silver",
+      "n": 597,
+      "h": 381,
+      "hr": 63.8
+    },
+    {
+      "key": "L5\u22654 Standard UNDER",
+      "n": 559,
+      "h": 297,
+      "hr": 53.1
+    },
+    {
+      "key": "L5\u22654 Gold",
+      "n": 511,
+      "h": 308,
+      "hr": 60.3
+    },
+    {
+      "key": "L5\u22654 Platinum",
+      "n": 497,
+      "h": 361,
+      "hr": 72.6
+    },
+    {
+      "key": "L5\u22654 no badge",
+      "n": 491,
+      "h": 315,
+      "hr": 64.2
+    },
+    {
+      "key": "L5\u22654 Standard OVER",
+      "n": 339,
+      "h": 195,
+      "hr": 57.5
+    }
+  ],
+  "goblin70": [
+    {
+      "key": "L5=5 + L10\u22658 + D",
+      "n": 253,
+      "h": 185,
+      "hr": 73.1
+    },
+    {
+      "key": "Platinum",
+      "n": 239,
+      "h": 176,
+      "hr": 73.6
+    },
+    {
+      "key": "MLB Goblin OVER",
+      "n": 200,
+      "h": 157,
+      "hr": 78.5
+    },
+    {
+      "key": "Tennis Goblin OVER",
+      "n": 23,
+      "h": 17,
+      "hr": 73.9
+    },
+    {
+      "key": "Silver",
+      "n": 12,
+      "h": 8,
+      "hr": 66.7
+    },
+    {
+      "key": "MLB Standard UNDER",
+      "n": 10,
+      "h": 4,
+      "hr": 40.0
+    },
+    {
+      "key": "Tennis Standard UNDER",
+      "n": 10,
+      "h": 5,
+      "hr": 50.0
+    },
+    {
+      "key": "MLB Standard OVER",
+      "n": 6,
+      "h": 1,
+      "hr": 16.7
+    }
+  ],
+  "demons": [
+    {
+      "key": "ALL | Demon OVER",
+      "n": 48510,
+      "h": 7214,
+      "hr": 14.9
+    },
+    {
+      "key": "MLB | Demon OVER",
+      "n": 29282,
+      "h": 5521,
+      "hr": 18.9
+    },
+    {
+      "key": "Soccer | Demon OVER",
+      "n": 16662,
+      "h": 1367,
+      "hr": 8.2
+    },
+    {
+      "key": "2026-09-05 | Soccer",
+      "n": 9493,
+      "h": 830,
+      "hr": 8.7
+    },
+    {
+      "key": "2026-09-04 | MLB",
+      "n": 6712,
+      "h": 1160,
+      "hr": 17.3
+    },
+    {
+      "key": "2026-09-05 | MLB",
+      "n": 6493,
+      "h": 1221,
+      "hr": 18.8
+    },
+    {
+      "key": "2026-09-02 | MLB",
+      "n": 6284,
+      "h": 1269,
+      "hr": 20.2
+    },
+    {
+      "key": "2026-09-01 | MLB",
+      "n": 6037,
+      "h": 1259,
+      "hr": 20.9
+    },
+    {
+      "key": "2026-09-03 | MLB",
+      "n": 3756,
+      "h": 612,
+      "hr": 16.3
+    },
+    {
+      "key": "2026-09-04 | Soccer",
+      "n": 2708,
+      "h": 199,
+      "hr": 7.3
+    },
+    {
+      "key": "Tennis | Demon OVER",
+      "n": 2566,
+      "h": 326,
+      "hr": 12.7
+    },
+    {
+      "key": "2026-09-01 | Soccer",
+      "n": 2215,
+      "h": 179,
+      "hr": 8.1
+    },
+    {
+      "key": "2026-09-02 | Soccer",
+      "n": 1639,
+      "h": 120,
+      "hr": 7.3
+    },
+    {
+      "key": "2026-09-01 | Tennis",
+      "n": 958,
+      "h": 127,
+      "hr": 13.3
+    },
+    {
+      "key": "2026-09-02 | Tennis",
+      "n": 654,
+      "h": 90,
+      "hr": 13.8
+    },
+    {
+      "key": "2026-09-03 | Soccer",
+      "n": 607,
+      "h": 39,
+      "hr": 6.4
+    },
+    {
+      "key": "2026-09-03 | Tennis",
+      "n": 398,
+      "h": 18,
+      "hr": 4.5
+    },
+    {
+      "key": "2026-09-04 | Tennis",
+      "n": 353,
+      "h": 56,
+      "hr": 15.9
+    },
+    {
+      "key": "2026-09-05 | Tennis",
+      "n": 203,
+      "h": 35,
+      "hr": 17.2
+    }
+  ]
+}

@@ -1079,8 +1079,27 @@ def _attach_top3_def_context(out: pd.DataFrame, repo_root: Path) -> pd.DataFrame
         .drop_duplicates(subset=["PLAYER_NORM", "category"], keep="first")
         .rename(columns={"rank_on_team": "team_bottom3_rank"})
     )
+    # Map board prop_norm (pts/3ptmade/…) onto leader-file categories (pts/fg3m/…).
+    _prop_to_cat = {
+        "pts": "pts",
+        "points": "pts",
+        "ast": "ast",
+        "assists": "ast",
+        "reb": "reb",
+        "rebounds": "reb",
+        "pra": "pra",
+        "stl": "stl",
+        "steals": "stl",
+        "blk": "blk",
+        "blocks": "blk",
+        "stocks": "stocks",
+        "fg3m": "fg3m",
+        "3ptmade": "fg3m",
+        "3pm": "fg3m",
+    }
     out["_player_norm"] = out.get("player", pd.Series([""] * len(out))).map(_norm_player_name_top3)
-    out["_prop_norm"] = out.get("prop_norm", pd.Series([""] * len(out))).astype(str).str.lower().str.strip()
+    raw_prop = out.get("prop_norm", pd.Series([""] * len(out))).astype(str).str.lower().str.strip()
+    out["_prop_norm"] = raw_prop.map(lambda p: _prop_to_cat.get(p, p))
     merged = out.merge(
         top_sub[["PLAYER_NORM", "category", "team_top3_rank", "def_boost", "overperform_vs_weak", "fades_vs_elite"]],
         left_on=["_player_norm", "_prop_norm"],

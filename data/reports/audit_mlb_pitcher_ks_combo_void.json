@@ -1,0 +1,19 @@
+{
+  "audited": "2026-09-18",
+  "question": "Are Pitcher Ks and Pitcher Ks (Combo) the same market? Is VOID real?",
+  "verdict": {
+    "same_market": false,
+    "plain_canon": "pitcher_ks",
+    "combo_canon": "strikeouts_combo",
+    "plain_raw": "Pitcher Strikeouts",
+    "combo_raw": "Pitcher Strikeouts (Combo)",
+    "combo_void_rate": "100% (1011/1011)",
+    "combo_void_reason": "NO_ACTUAL",
+    "combo_actuals": "all null/blank",
+    "combo_player_shape": "Pitcher A + Pitcher B (two-leg sum never filled)",
+    "classification": "computation_cascade_failure",
+    "not": "intentional_fantasy_drop_or_display_alias",
+    "plain_void_pct": "19.4% (5000/25746) with mostly nonzero actuals \u2014 different phenomenon",
+    "site_display_note": "Plain market may show as Ks or Pitcher Strikeouts; both map to pitcher_ks. Combo stays strikeouts_combo."
+  }
+}

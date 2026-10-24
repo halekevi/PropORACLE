@@ -1,0 +1,360 @@
+{
+  "wnba_regression": {
+    "error": "no pair"
+  },
+  "regrades": [
+    {
+      "sport": "MLB",
+      "graded": "graded_mlb_2026-07-29.xlsx",
+      "actuals": "actuals_mlb_2026-07-29.csv",
+      "sheet": "Box Raw",
+      "combo_n": 28,
+      "before": {
+        "MISS": 11,
+        "HIT": 5,
+        "VOID": 12
+      },
+      "after": {
+        "MISS": 17,
+        "HIT": 8,
+        "VOID": 3
+      },
+      "before_void": 12,
+      "after_void": 3,
+      "before_void_pct": 42.9,
+      "after_void_pct": 10.7,
+      "resolved_from_void_logic": 25,
+      "examples_fixed": [
+        {
+          "player": "Trey Yesavage + Zack Littell",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "TOR/WSH",
+          "line": 9.5,
+          "actual_sum": 6.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        },
+        {
+          "player": "Trevor Rogers + Tarik Skubal",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "BAL/DET",
+          "line": 14.5,
+          "actual_sum": 12.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        },
+        {
+          "player": "Joey Cantillo + Brady Singer",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "CLE/CIN",
+          "line": 11.5,
+          "actual_sum": 11.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        },
+        {
+          "player": "Cam Schlittler + Davis Martin",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "NYY/CWS",
+          "line": 13.5,
+          "actual_sum": 14.0,
+          "new_result": "HIT",
+          "was": "VOID"
+        },
+        {
+          "player": "Randy Dobnak + Joe Ryan",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "KC/MIN",
+          "line": 9.5,
+          "actual_sum": 8.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        }
+      ],
+      "examples_still_void": [
+        {
+          "player": "Shane Drohan + Logan Webb",
+          "prop": "1st Inning Runs Allowed",
+          "team": "MIL/SF"
+        },
+        {
+          "player": "Shane Drohan + Logan Webb",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "MIL/SF"
+        },
+        {
+          "player": "Shane Drohan + Logan Webb",
+          "prop": "1st Inning Walks Allowed",
+          "team": "MIL/SF"
+        }
+      ]
+    },
+    {
+      "sport": "MLB",
+      "graded": "graded_mlb_2026-07-26.xlsx",
+      "actuals": "actuals_mlb_2026-07-26.csv",
+      "sheet": "Box Raw",
+      "combo_n": 22,
+      "before": {
+        "MISS": 4,
+        "HIT": 4,
+        "VOID": 14
+      },
+      "after": {
+        "MISS": 12,
+        "HIT": 10
+      },
+      "before_void": 14,
+      "after_void": 0,
+      "before_void_pct": 63.6,
+      "after_void_pct": 0.0,
+      "resolved_from_void_logic": 22,
+      "examples_fixed": [
+        {
+          "player": "Emmet Sheehan + Freddy Peralta",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "LAD/NYM",
+          "line": 10.5,
+          "actual_sum": 8.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        },
+        {
+          "player": "Walker Buehler + Janson Junk",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "SD/MIA",
+          "line": 7.5,
+          "actual_sum": 13.0,
+          "new_result": "HIT",
+          "was": "VOID"
+        },
+        {
+          "player": "Parker Messick + Drew Rasmussen",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "CLE/TB",
+          "line": 10.5,
+          "actual_sum": 15.0,
+          "new_result": "HIT",
+          "was": "VOID"
+        },
+        {
+          "player": "Reynaldo L\u00f3pez + Shane Baz",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "ATL/BAL",
+          "line": 10.5,
+          "actual_sum": 8.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        },
+        {
+          "player": "Kevin Gausman + Ranger Suarez",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "TOR/BOS",
+          "line": 10.5,
+          "actual_sum": 12.0,
+          "new_result": "HIT",
+          "was": "VOID"
+        }
+      ],
+      "examples_still_void": []
+    },
+    {
+      "sport": "MLB",
+      "graded": "graded_mlb_2026-07-25.xlsx",
+      "actuals": "actuals_mlb_2026-07-25.csv",
+      "sheet": "Box Raw",
+      "combo_n": 29,
+      "before": {
+        "HIT": 6,
+        "MISS": 9,
+        "VOID": 14
+      },
+      "after": {
+        "HIT": 11,
+        "MISS": 15,
+        "VOID": 3
+      },
+      "before_void": 14,
+      "after_void": 3,
+      "before_void_pct": 48.3,
+      "after_void_pct": 10.3,
+      "resolved_from_void_logic": 26,
+      "examples_fixed": [
+        {
+          "player": "Michael Wacha + Casey Mize",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "KC/DET",
+          "line": 11.5,
+          "actual_sum": 6.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        },
+        {
+          "player": "Mitch Bratt + Foster Griffin",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "AZ/WSH",
+          "line": 8.5,
+          "actual_sum": 5.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        },
+        {
+          "player": "Ryan Johnson + Robbie Ray",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "LAA/SF",
+          "line": 10.5,
+          "actual_sum": 9.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        },
+        {
+          "player": "JP Sears + Eury P\u00e9rez",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "SD/MIA",
+          "line": 10.5,
+          "actual_sum": 5.0,
+          "new_result": "MISS",
+          "was": "VOID"
+        },
+        {
+          "player": "Dylan Cease + Sonny Gray",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "TOR/BOS",
+          "line": 12.5,
+          "actual_sum": 15.0,
+          "new_result": "HIT",
+          "was": "VOID"
+        }
+      ],
+      "examples_still_void": [
+        {
+          "player": "JP Sears + Eury P\u00e9rez",
+          "prop": "1st Inning Walks Allowed",
+          "team": "SD/MIA"
+        },
+        {
+          "player": "JP Sears + Eury P\u00e9rez",
+          "prop": "1st Inning Runs Allowed",
+          "team": "SD/MIA"
+        },
+        {
+          "player": "Yoshinobu Yamamoto + Nolan McLean",
+          "prop": "Pitcher Strikeouts (Combo)",
+          "team": "LAD/NYM"
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "graded": "graded_soccer_2026-07-26.xlsx",
+      "actuals": "actuals_soccer_2026-07-26.csv",
+      "sheet": "Box Raw",
+      "combo_n": 10,
+      "before": {
+        "PENDING": 10
+      },
+      "after": {
+        "VOID": 10
+      },
+      "before_void": 0,
+      "after_void": 10,
+      "before_void_pct": 0.0,
+      "after_void_pct": 100.0,
+      "resolved_from_void_logic": 0,
+      "examples_fixed": [],
+      "examples_still_void": [
+        {
+          "player": "Juan Pablo Freytes + Cristian Pav\u00f3n",
+          "prop": "Passes Attempted (Combo)",
+          "team": ""
+        },
+        {
+          "player": "Juan Pablo Freytes + Cristian Pav\u00f3n",
+          "prop": "Passes Attempted (Combo)",
+          "team": ""
+        },
+        {
+          "player": "Gabriel Paulista + David Duarte",
+          "prop": "Passes Attempted (Combo)",
+          "team": ""
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "graded": "graded_soccer_2026-07-22.xlsx",
+      "actuals": "actuals_soccer_2026-07-22.csv",
+      "sheet": "Box Raw",
+      "combo_n": 5,
+      "before": {
+        "PENDING": 5
+      },
+      "after": {
+        "VOID": 5
+      },
+      "before_void": 0,
+      "after_void": 5,
+      "before_void_pct": 0.0,
+      "after_void_pct": 100.0,
+      "resolved_from_void_logic": 0,
+      "examples_fixed": [],
+      "examples_still_void": [
+        {
+          "player": "Yannick Bright + Anton Sal\u00e9tros",
+          "prop": "Passes Attempted (Combo)",
+          "team": ""
+        },
+        {
+          "player": "Steven Moreira + Thiago Martins",
+          "prop": "Passes Attempted (Combo)",
+          "team": ""
+        },
+        {
+          "player": "Tayvon Gray + Malte Amundsen",
+          "prop": "Passes Attempted (Combo)",
+          "team": ""
+        }
+      ]
+    },
+    {
+      "sport": "Soccer",
+      "graded": "graded_soccer_2026-07-14.xlsx",
+      "actuals": "actuals_soccer_2026-07-14.csv",
+      "sheet": "Box Raw",
+      "combo_n": 37,
+      "before": {
+        "MISS": 8,
+        "VOID": 19,
+        "HIT": 10
+      },
+      "after": {
+        "MISS": 7,
+        "VOID": 21,
+        "HIT": 9
+      },
+      "before_void": 19,
+      "after_void": 21,
+      "before_void_pct": 51.4,
+      "after_void_pct": 56.8,
+      "resolved_from_void_logic": 16,
+      "examples_fixed": [],
+      "examples_still_void": [
+        {
+          "player": "Mike Maignan + Unai Sim\u00f3n",
+          "prop": "Goalie Saves (Combo)",
+          "team": ""
+        },
+        {
+          "player": "Mike Maignan + Unai Sim\u00f3n",
+          "prop": "Goals Allowed (Combo)",
+          "team": ""
+        },
+        {
+          "player": "Mike Maignan + Unai Sim\u00f3n",
+          "prop": "Goals Allowed (Combo)",
+          "team": ""
+        }
+      ]
+    }
+  ]
+}

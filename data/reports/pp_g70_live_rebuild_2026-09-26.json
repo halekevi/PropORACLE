@@ -1,0 +1,193 @@
+{
+  "live": [
+    {
+      "sport": "CFB",
+      "player": "Cam Edwards",
+      "prop": "Rush Yards",
+      "line": 39.5,
+      "alt": false
+    },
+    {
+      "sport": "MLB",
+      "player": "Bailey Ober",
+      "prop": "Walks Allowed",
+      "line": 0.5,
+      "alt": false
+    },
+    {
+      "sport": "MLB",
+      "player": "Davis Martin",
+      "prop": "Walks Allowed",
+      "line": 0.5,
+      "alt": false
+    },
+    {
+      "sport": "MLB",
+      "player": "Griffin Jax",
+      "prop": "Hits Allowed",
+      "line": 1.5,
+      "alt": false
+    },
+    {
+      "sport": "MLB",
+      "player": "Hayden Wesneski",
+      "prop": "Walks Allowed",
+      "line": 0.5,
+      "alt": false
+    },
+    {
+      "sport": "MLB",
+      "player": "Jose Quintana",
+      "prop": "Walks Allowed",
+      "line": 0.5,
+      "alt": false
+    },
+    {
+      "sport": "MLB",
+      "player": "Rhett Lowder",
+      "prop": "Walks Allowed",
+      "line": 0.5,
+      "alt": false
+    },
+    {
+      "sport": "MLB",
+      "player": "Tanner Bibee",
+      "prop": "Earned Runs Allowed",
+      "line": 0.5,
+      "alt": false
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Luka Sucic",
+      "prop": "Shots",
+      "line": 1.5,
+      "alt": true
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Luk\u00e1s Horn\u00edcek",
+      "prop": "Goalie Saves",
+      "line": 1.5,
+      "alt": false
+    }
+  ],
+  "tickets": [
+    {
+      "id": "P3-1",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "CFB",
+          "player": "Cam Edwards",
+          "prop": "Rush Yards",
+          "line": 39.5
+        },
+        {
+          "sport": "MLB",
+          "player": "Bailey Ober",
+          "prop": "Walks Allowed",
+          "line": 0.5
+        },
+        {
+          "sport": "MLB",
+          "player": "Davis Martin",
+          "prop": "Walks Allowed",
+          "line": 0.5
+        }
+      ]
+    },
+    {
+      "id": "P3-2",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Griffin Jax",
+          "prop": "Hits Allowed",
+          "line": 1.5
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Luka Sucic",
+          "prop": "Shots",
+          "line": 1.5
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Luk\u00e1s Horn\u00edcek",
+          "prop": "Goalie Saves",
+          "line": 1.5
+        }
+      ]
+    },
+    {
+      "id": "P3-3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Hayden Wesneski",
+          "prop": "Walks Allowed",
+          "line": 0.5
+        },
+        {
+          "sport": "MLB",
+          "player": "Jose Quintana",
+          "prop": "Walks Allowed",
+          "line": 0.5
+        },
+        {
+          "sport": "MLB",
+          "player": "Rhett Lowder",
+          "prop": "Walks Allowed",
+          "line": 0.5
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "P3-1",
+      "ready": false,
+      "fails": [
+        "Cam Edwards"
+      ],
+      "n": 0
+    },
+    {
+      "id": "P3-2",
+      "ready": false,
+      "fails": [
+        "Luka Sucic"
+      ],
+      "n": 0
+    },
+    {
+      "id": "P3-3",
+      "ready": true,
+      "n": 3,
+      "px": 1.7,
+      "fails": [],
+      "legs": [
+        [
+          "Hayden Wesneski",
+          "Walks Allowed",
+          0.5,
+          "MLB"
+        ],
+        [
+          "Jose Quintana",
+          "Walks Allowed",
+          0.5,
+          "MLB"
+        ],
+        [
+          "Rhett Lowder",
+          "Walks Allowed",
+          0.5,
+          "MLB"
+        ]
+      ]
+    }
+  ]
+}

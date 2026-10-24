@@ -1,0 +1,25 @@
+{
+  "cells_excluding_unresolved_and_walkover": {
+    "match_total_games": {
+      "hits": 3523,
+      "n": 7709,
+      "unresolved_in_hitmiss": 0,
+      "walkover_in_hitmiss": 0,
+      "hr": 0.457,
+      "wilson_low": 0.4459
+    },
+    "games_won": {
+      "hits": 4601,
+      "n": 9269,
+      "unresolved_in_hitmiss": 0,
+      "walkover_in_hitmiss": 0,
+      "hr": 0.4964,
+      "wilson_low": 0.4862
+    }
+  },
+  "walkover_rows_previously_hit_or_miss": 48,
+  "walkover_corrections_logged": 48,
+  "priced_games_won_cap": 0.62,
+  "priced_total_games": 0.702,
+  "same_copy": false
+}

@@ -1,0 +1,402 @@
+{
+  "date": "2026-08-23",
+  "method": "diamond_2x_v1",
+  "pool_n": 138,
+  "promo_counts": {
+    "Diamond": 35,
+    "Platinum": 33,
+    "Gold": 35,
+    "Silver": 35
+  },
+  "tickets": [
+    {
+      "id": "F4-1",
+      "n": 4,
+      "product": "Flex",
+      "mean_leg_p": 0.726,
+      "leg_p": 0.726,
+      "cash_pct": 69.7,
+      "ev": 2.296,
+      "clears_2x": true,
+      "sweep_pct": 27.8,
+      "payouts": {
+        "4": 6.0,
+        "3": 1.5
+      },
+      "sports": [
+        "MLB",
+        "TENNIS",
+        "WNBA"
+      ],
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Gabriel Moreno",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 10,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 80.0,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "AZ vs CIN"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Chelsea Gray",
+          "prop": "Rebounds",
+          "side": "OVER",
+          "line": 1.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 90.3,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "LVA vs TOR"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Pablo Carreno Busta",
+          "prop": "Total Games Won",
+          "side": "OVER",
+          "line": 10.5,
+          "l5": 4,
+          "l10": 10,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 100.0,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "PABLO CARRENO BUSTA vs ADOLFO DANIEL VALLEJO (ATP / HARD)"
+        },
+        {
+          "sport": "MLB",
+          "player": "Jake Cronenworth",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 4,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 76.9,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "SD vs MIN"
+        }
+      ]
+    },
+    {
+      "id": "F4-2",
+      "n": 4,
+      "product": "Flex",
+      "mean_leg_p": 0.708,
+      "leg_p": 0.708,
+      "cash_pct": 66.6,
+      "ev": 2.129,
+      "clears_2x": true,
+      "sweep_pct": 25.1,
+      "payouts": {
+        "4": 6.0,
+        "3": 1.5
+      },
+      "sports": [
+        "MLB",
+        "SOCCER",
+        "WNBA"
+      ],
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Kyle Leahy",
+          "prop": "Pitching Outs",
+          "side": "OVER",
+          "line": 8.5,
+          "l5": 5,
+          "l10": 10,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 88.2,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "STL vs PHI"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Sonia Citron",
+          "prop": "3-PT Made",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 71.4,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "WAS vs PDX"
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Lucas Hoyos",
+          "prop": "Goalie Saves",
+          "side": "OVER",
+          "line": 1.5,
+          "l5": 5,
+          "l10": 6,
+          "badge": "Gold",
+          "promo": "Gold",
+          "season_hr": 40.0,
+          "p": 0.69,
+          "hit": null,
+          "matchup": "ATLANTA UNITED vs SPORTING KC (SOCCER)"
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Tristan Muyumba",
+          "prop": "Shots",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 6,
+          "badge": "Gold",
+          "promo": "Gold",
+          "season_hr": 100.0,
+          "p": 0.69,
+          "hit": null,
+          "matchup": "ATLANTA UNITED vs SPORTING KC (SOCCER)"
+        }
+      ]
+    },
+    {
+      "id": "F5-1",
+      "n": 5,
+      "product": "Flex",
+      "mean_leg_p": 0.726,
+      "leg_p": 0.726,
+      "cash_pct": 58.2,
+      "ev": 2.778,
+      "clears_2x": true,
+      "sweep_pct": 20.2,
+      "payouts": {
+        "5": 10.0,
+        "4": 2.0
+      },
+      "sports": [
+        "MLB"
+      ],
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Alec Burleson",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 72.5,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "STL vs PHI"
+        },
+        {
+          "sport": "MLB",
+          "player": "Bo Bichette",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 72.2,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "NYM vs CWS"
+        },
+        {
+          "sport": "MLB",
+          "player": "Bryce Harper",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 75.9,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "PHI vs STL"
+        },
+        {
+          "sport": "MLB",
+          "player": "Cristopher S\u00e1nchez",
+          "prop": "Pitcher Strikeouts",
+          "side": "OVER",
+          "line": 4.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 84.5,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "PHI vs STL"
+        },
+        {
+          "sport": "MLB",
+          "player": "Luis Arraez",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 71.2,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "PHI vs STL"
+        }
+      ]
+    },
+    {
+      "id": "P3-1",
+      "n": 3,
+      "product": "Power",
+      "mean_leg_p": 0.726,
+      "leg_p": 0.726,
+      "cash_pct": 38.3,
+      "ev": 2.296,
+      "clears_2x": true,
+      "sweep_pct": 38.3,
+      "payouts": {
+        "3": 6.0
+      },
+      "sports": [
+        "MLB",
+        "WNBA"
+      ],
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Nolan McLean",
+          "prop": "Walks Allowed",
+          "side": "OVER",
+          "line": 1.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 78.9,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "NYM vs CWS"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Natasha Cloud",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 7.5,
+          "l5": 4,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 72.7,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "CHI vs IND"
+        },
+        {
+          "sport": "MLB",
+          "player": "Nick Martinez",
+          "prop": "Pitching Outs",
+          "side": "OVER",
+          "line": 14.5,
+          "l5": 4,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 70.6,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "TB vs BAL"
+        }
+      ]
+    },
+    {
+      "id": "P3-2",
+      "n": 3,
+      "product": "Power",
+      "mean_leg_p": 0.726,
+      "leg_p": 0.726,
+      "cash_pct": 38.3,
+      "ev": 2.296,
+      "clears_2x": true,
+      "sweep_pct": 38.3,
+      "payouts": {
+        "3": 6.0
+      },
+      "sports": [
+        "MLB",
+        "WNBA"
+      ],
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Sal Stewart",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 5,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 71.2,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "CIN vs AZ"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Sydney Taylor",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 9.5,
+          "l5": 4,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 79.3,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "CHI vs IND"
+        },
+        {
+          "sport": "MLB",
+          "player": "Yandy D\u00edaz",
+          "prop": "Total Bases",
+          "side": "OVER",
+          "line": 0.5,
+          "l5": 4,
+          "l10": 9,
+          "badge": "Gold",
+          "promo": "Diamond",
+          "season_hr": 71.2,
+          "p": 0.726,
+          "hit": null,
+          "matchup": "TB vs BAL"
+        }
+      ]
+    }
+  ]
+}

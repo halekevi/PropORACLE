@@ -1,21 +1,29 @@
 @startuml PropORACLE_Fetch_Pipeline
-' Fetch apps and process — PrizePicks slate ingest
+' Fetch — PrizePicks slate ingest → step1–8
 ' Render: PlantUML extension or https://www.plantuml.com/plantuml
 
-title PropORACLE — Fetch pipeline (step1)
+title PropORACLE — Fetch pipeline (step1 → step8)
 
 actor Operator
 actor "Task\nScheduler" as Sched
 participant "run_daily.ps1\n/ refresh / late_fetch" as Orch
+participant "refresh.lock\n(data/cache, 4h TTL)" as Lock
 participant "Sport step1" as Step1
 participant "prizepicks_cdp.py\n:9222" as CDP
 participant "prizepicks_http.py\ncurl_cffi" as HTTP
 participant "PrizePicks" as PP
-participant "Stats APIs\nESPN / boxes" as Stats
+participant "Stats + context\nESPN · boxes · CFBD ·\nnflverse · Open-Meteo ·\nOdds API · Pinnacle" as Stats
 participant "step2–8\nenrich + rank" as Enrich
 
 Sched -> Orch : 9PM day-ahead / 1AM / 5AM\n8AM / 9 / 9:45 / 10:30 / 1PM / 4:30
 Operator -> Orch : manual catchup
+Orch -> Lock : acquire
+alt lock held by another run
+  Lock --> Orch : busy → skip / wait
+else free (or stale > 4h)
+  Lock --> Orch : acquired
+end
+
 Orch -> Step1 : per sport (WNBA, MLB, Soccer,\nTennis, NFL, CFB, NBA…)
 
 alt Chrome debug :9222 warm
@@ -25,13 +33,33 @@ alt Chrome debug :9222 warm
 else HTTP fallback
   Step1 -> HTTP : curl_cffi (low retry budget)
   HTTP -> PP : projections
-  PP --> HTTP : JSON (DataDome may hang)
+  PP --> HTTP : JSON (DataDome may 403 / hang)
+else both fail
+  Step1 --> Orch : fail-fast → sport skipped
+  note right
+    Downstream steps must **not** run on a
+    missing step1 (MLB DataDome 403 →
+    FileNotFoundError cascade; the 4-day
+    STEP D outage class).
+    MLB recovery: run_mlb_step1_chrome_debug.ps1
+  end note
 end
 
-Step1 -> Stats : player / game / defense
-Stats --> Step1 : boxes, ranks, match logs
+Step1 -> Step1 : validate board
+note right
+  NFL: pick_type from odds_type; exits
+  non-zero if n>=100 and 100% Standard
+  (--allow-standard-only escape hatch).
+  Empty display_name rows restored
+  (PrizePicks nameless-player fix).
+  Fantasy props filtered at intake.
+end note
+
+Step1 -> Stats : player / game / defense / lines
+Stats --> Step1 : boxes, ranks, match logs, weather, lines
 Step1 -> Enrich : step2 normalize … step7 ML … step8 direction
-Enrich --> Orch : step8_*_direction_clean.xlsx\n(+ D2 copy to outputs/<date>/)
+Enrich --> Orch : step8_*_direction_clean.xlsx\n(+ dated copy to outputs/<date>/)
+Orch -> Lock : release
 
 note right of CDP
   Soccer / Tennis / WNBA / MLB:

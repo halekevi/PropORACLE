@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-08",
+  "generated_at": "2026-09-08T14:11:36.439336Z",
+  "tickets_path": "H:\\PropORACLE\\ui_runner\\templates\\tickets_latest.json",
+  "by_ticket_id": {
+    "2026-09-08|MLB 2-Leg Goblin OVER|1": {
+      "power_min_x": 1.5,
+      "power_first_x": 3.0,
+      "display_min_x": 1.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-08|MLB 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "slip_type": "main",
+      "captured_at": "2026-09-07T22:58:56-04:00"
+    },
+    "2026-09-08|MLB Core Power 2 #1|1": {
+      "power_min_x": 1.5,
+      "power_first_x": 3.0,
+      "display_min_x": 1.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-08|MLB Core Power 2 #1|1",
+      "n_legs": 2,
+      "captured_at": "2026-09-07T22:58:56-04:00"
+    },
+    "2026-09-08|X-Sport Goblin-70 Flex 4|2": {
+      "power_min_x": 2.0,
+      "power_first_x": 10.0,
+      "display_min_x": 2.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-08|X-Sport Goblin-70 Flex 4|2",
+      "n_legs": 4,
+      "slip_type": "main",
+      "captured_at": "2026-09-08T08:52:55-04:00"
+    }
+  },
+  "by_leg_sig": {
+    "david peterson|pitcher strikeouts|over|2.500||mike trout|hits+runs+rbis|over|0.500": {
+      "power_min_x": 1.5,
+      "power_first_x": 3.0,
+      "display_min_x": 1.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-08|MLB 2-Leg Goblin OVER|1",
+      "n_legs": 2,
+      "slip_type": "main",
+      "captured_at": "2026-09-07T22:58:56-04:00"
+    },
+    "mookie betts|hits+runs+rbis|over|0.500||tanner bibee|walks allowed|over|0.500": {
+      "power_min_x": 1.5,
+      "power_first_x": 3.0,
+      "display_min_x": 1.5,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-08|MLB Core Power 2 #1|1",
+      "n_legs": 2,
+      "captured_at": "2026-09-07T22:58:56-04:00"
+    },
+    "brandon young|earned runs allowed|over|0.500||dean kremer|earned runs allowed|over|0.500||sean manaea|earned runs allowed|over|0.500||tristan peters|hits+runs+rbis|over|0.500": {
+      "power_min_x": 2.0,
+      "power_first_x": 10.0,
+      "display_min_x": 2.0,
+      "payout_source": "live_cdp",
+      "ticket_id": "2026-09-08|X-Sport Goblin-70 Flex 4|2",
+      "n_legs": 4,
+      "slip_type": "main",
+      "captured_at": "2026-09-08T08:52:55-04:00"
+    }
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "used_prior": [
+    "Darnell Washington",
+    "Emanuel Wilson",
+    "Isaiah Likely",
+    "Jadarian Price",
+    "Kayshon Boutte",
+    "Keaton Mitchell",
+    "Kenneth Walker III",
+    "Mack Hollins",
+    "Michael Pittman Jr.",
+    "Mike Gesicki",
+    "Patrick Mahomes",
+    "Romeo Doubs",
+    "Tee Higgins"
+  ],
+  "pool": [
+    {
+      "player": "Cooper Kupp",
+      "team": "SEA",
+      "prop": "Receptions",
+      "prop_type": "Receptions",
+      "line": 1.5,
+      "l5": 5.0,
+      "l10": 9.0,
+      "d": "Weak",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "sport": "NFL",
+      "search": "Cooper Kupp",
+      "need": 0.5
+    },
+    {
+      "player": "Samaje Perine",
+      "team": "CIN",
+      "prop": "Rec Yards",
+      "prop_type": "Rec Yards",
+      "line": 4.5,
+      "l5": 5.0,
+      "l10": 8.0,
+      "d": "Weak",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "sport": "NFL",
+      "search": "Samaje Perine",
+      "need": 8
+    },
+    {
+      "player": "Erick All Jr.",
+      "team": "CIN",
+      "prop": "Receptions",
+      "prop_type": "Receptions",
+      "line": 0.5,
+      "l5": NaN,
+      "l10": NaN,
+      "d": "Weak",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "sport": "NFL",
+      "search": "Erick All Jr.",
+      "need": 0.5
+    },
+    {
+      "player": "Malachi Fields",
+      "team": "NYG",
+      "prop": "Rec Yards",
+      "prop_type": "Rec Yards",
+      "line": 4.5,
+      "l5": NaN,
+      "l10": NaN,
+      "d": "Below Avg",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "sport": "NFL",
+      "search": "Malachi Fields",
+      "need": 8
+    },
+    {
+      "player": "Darnell Mooney",
+      "team": "NYG",
+      "prop": "Rec Yards",
+      "prop_type": "Rec Yards",
+      "line": 4.5,
+      "l5": NaN,
+      "l10": NaN,
+      "d": "Below Avg",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "sport": "NFL",
+      "search": "Darnell Mooney",
+      "need": 8
+    },
+    {
+      "player": "David Montgomery",
+      "team": "HOU",
+      "prop": "Rec Yards",
+      "prop_type": "Rec Yards",
+      "line": 4.5,
+      "l5": NaN,
+      "l10": NaN,
+      "d": "Weak",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "sport": "NFL",
+      "search": "David Montgomery",
+      "need": 8
+    },
+    {
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "prop": "Receptions",
+      "prop_type": "Receptions",
+      "line": 0.5,
+      "l5": NaN,
+      "l10": NaN,
+      "d": "Weak",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "sport": "NFL",
+      "search": "Foster Moreau",
+      "need": 0.5
+    },
+    {
+      "player": "Kyle Williams",
+      "team": "NE",
+      "prop": "Receptions",
+      "prop_type": "Receptions",
+      "line": 0.5,
+      "l5": 5.0,
+      "l10": 9.0,
+      "d": "Below Avg",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "sport": "NFL",
+      "search": "Kyle Williams",
+      "need": 0.5
+    },
+    {
+      "player": "Kyler Murray",
+      "team": "MIN",
+      "prop": "Pass Yards",
+      "prop_type": "Pass Yards",
+      "line": 149.5,
+      "l5": NaN,
+      "l10": NaN,
+      "d": "Weak",
+      "pick_type": "goblin",
+      "direction": "OVER",
+      "side": "OVER",
+      "sport": "NFL",
+      "search": "Kyler Murray",
+      "need": 15
+    }
+  ],
+  "tickets": [
+    {
+      "id": "P3-C1",
+      "mode": "power",
+      "legs": [
+        {
+          "player": "Samaje Perine",
+          "team": "CIN",
+          "prop": "Rec Yards",
+          "prop_type": "Rec Yards",
+          "line": 4.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Samaje Perine",
+          "l5": 5.0,
+          "l10": 8.0,
+          "d": "Weak"
+        },
+        {
+          "player": "Kyle Williams",
+          "team": "NE",
+          "prop": "Recs",
+          "prop_type": "Recs",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Kyle Williams",
+          "l5": 5.0,
+          "l10": 9.0,
+          "d": "Below Avg"
+        },
+        {
+          "player": "Cooper Kupp",
+          "team": "SEA",
+          "prop": "Recs",
+          "prop_type": "Recs",
+          "line": 1.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Cooper Kupp",
+          "l5": 5.0,
+          "l10": 9.0,
+          "d": "Weak"
+        }
+      ]
+    },
+    {
+      "id": "P3-C2",
+      "mode": "power",
+      "legs": [
+        {
+          "player": "Malachi Fields",
+          "team": "NYG",
+          "prop": "Rec Yards",
+          "prop_type": "Rec Yards",
+          "line": 4.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Malachi Fields",
+          "l5": NaN,
+          "l10": NaN,
+          "d": "Below Avg"
+        },
+        {
+          "player": "David Montgomery",
+          "team": "HOU",
+          "prop": "Rec Yards",
+          "prop_type": "Rec Yards",
+          "line": 4.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "David Montgomery",
+          "l5": NaN,
+          "l10": NaN,
+          "d": "Weak"
+        },
+        {
+          "player": "Kyler Murray",
+          "team": "MIN",
+          "prop": "Pass Yards",
+          "prop_type": "Pass Yards",
+          "line": 149.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Kyler Murray",
+          "l5": NaN,
+          "l10": NaN,
+          "d": "Weak"
+        }
+      ]
+    },
+    {
+      "id": "P3-C3",
+      "mode": "power",
+      "legs": [
+        {
+          "player": "Darnell Mooney",
+          "team": "NYG",
+          "prop": "Rec Yards",
+          "prop_type": "Rec Yards",
+          "line": 4.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Darnell Mooney",
+          "l5": NaN,
+          "l10": NaN,
+          "d": "Below Avg"
+        },
+        {
+          "player": "Erick All Jr.",
+          "team": "CIN",
+          "prop": "Recs",
+          "prop_type": "Recs",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Erick All Jr.",
+          "l5": NaN,
+          "l10": NaN,
+          "d": "Weak"
+        },
+        {
+          "player": "Foster Moreau",
+          "team": "HOU",
+          "prop": "Recs",
+          "prop_type": "Recs",
+          "line": 0.5,
+          "pick_type": "goblin",
+          "direction": "OVER",
+          "side": "OVER",
+          "sport": "NFL",
+          "search": "Foster Moreau",
+          "l5": NaN,
+          "l10": NaN,
+          "d": "Weak"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "P3-C1",
+      "ready": true,
+      "n": 3,
+      "px": 3.0,
+      "fails": [],
+      "legs": [
+        [
+          "Samaje Perine",
+          "Rec Yards",
+          4.5,
+          "CIN"
+        ],
+        [
+          "Kyle Williams",
+          "Recs",
+          0.5,
+          "NE"
+        ],
+        [
+          "Cooper Kupp",
+          "Recs",
+          1.5,
+          "SEA"
+        ]
+      ],
+      "note": "NFL Goblin engine off \u2014 slip built, not READY-labeled"
+    },
+    {
+      "id": "P3-C2",
+      "ready": false,
+      "fails": [
+        "Malachi Fields"
+      ],
+      "n": 0,
+      "legs": null
+    },
+    {
+      "id": "P3-C3",
+      "ready": true,
+      "n": 3,
+      "px": 2.9,
+      "fails": [],
+      "legs": [
+        [
+          "Darnell Mooney",
+          "Rec Yards",
+          4.5,
+          "NYG"
+        ],
+        [
+          "Erick All Jr.",
+          "Recs",
+          0.5,
+          "CIN"
+        ],
+        [
+          "Foster Moreau",
+          "Recs",
+          0.5,
+          "HOU"
+        ]
+      ],
+      "note": "NFL Goblin engine off \u2014 slip built, not READY-labeled"
+    }
+  ]
+}

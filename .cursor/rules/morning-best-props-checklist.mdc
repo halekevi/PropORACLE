@@ -1,0 +1,34 @@
+---
+description: Morning best-props coverage — ranker MLB/NHL, stalled pipelines, NBA date check
+alwaysApply: true
+---
+
+# Morning best-props checklist
+
+When building or reviewing the morning / day-of best-props list:
+
+## Ranker
+
+- MLB: `scripts/rank_best_props_today.py` must read the clean **xlsx** when the folder CSV is missing (`outputs/<date>/step8_mlb_direction_clean_<date>.xlsx` or Sports/MLB).
+- NHL: always **print** the NHL section when step8 exists (do not hold out). Warn that SOG/Blocks may need a card re-check; L5 alignment is not auto-verified.
+
+## Pipeline coverage (five sports that often miss the ranker)
+
+| Sport | What to check | Fix |
+|---|---|---|
+| CFB | Empty `outputs/<date>/cfb` while prior day has Thursday tips | Find failing step; ranker also tries date-1 step8 filtered to slate ET tips |
+| WNBA | Stopped at step1 | If step1 is 0 rows → real no_slate; if rows exist without step8 → resume from failing step |
+| NBA1Q / NBA1H | Stopped at step3 / empty folders | Resume `_run_nba_period_refresh.ps1` after full-game step4+ works |
+| MLB | Board/xlsx exists but ranker only saw CSV | Ranker xlsx fallback (above) |
+| NHL | Board exists but ranker omitted print | Print NHL (above) |
+
+## NBA OKC@SAS / same-matchup stale board
+
+Before trusting any NBA list row (especially OKC@SAS with Wallace / Dort / Hartenstein / Castle / Fox):
+
+1. Confirm `game_date` / `Game Date` is the **slate date** (e.g. 2026-10-22), not last season’s playoff tip (e.g. 2026-05-28).
+2. Confirm step1 `fetched_at` is **today** (same slate date).
+3. Confirm tonight’s **opponent** matches the live board (2026-10-22 OKC tips vs **DEN**, not SAS — SAS was the May Finals stale Sports copy).
+4. Confirm L5 is the **card window** (`utils.nba_early_l5.l5_card_window` + step4 `card_window`): 5 newest **RS + playoffs**, **no preseason**. Playoff boxes belong when the PP card shows them (Allen). Preseason is a separate column / `pre_*` flag only. Stale May Finals `Game Date` on an October board is still a board bug — not a reason to strip playoffs from L5.
+
+If dated `outputs/<date>/step8_nba_direction_clean_<date>.xlsx` was copied from Sports/NBA with a wrong Game Date, treat it as stale: rebuild via `scripts/_run_nba_full_slate.ps1 -Date <slate>` from today’s step1. Do not let STEP D2b stamp a May Finals board onto October outputs. Keep `scripts/playoff_config.NBA_PLAYOFF_TEAMS` empty in regular season so `is_playoff_game` is not true for every Oct tip.

@@ -1,0 +1,126 @@
+{
+  "observe_only": true,
+  "slate_date": "2026-09-04",
+  "source": "espn",
+  "refreshed_from": "H:\\PropORACLE\\outputs\\2026-09-04\\cfb\\step8_cfb_direction_clean.parquet",
+  "rows_total": 1842,
+  "rows_with_line": 1815,
+  "pass_yards_goblin_d_veto": {
+    "n": 106,
+    "d_pass": 35,
+    "by_threshold": {
+      "14": {
+        "n_veto": 9,
+        "d_pass": 35,
+        "rate_of_d_pass": 0.257,
+        "rate_of_goblin_over": 0.085
+      },
+      "17": {
+        "n_veto": 9,
+        "d_pass": 35,
+        "rate_of_d_pass": 0.257,
+        "rate_of_goblin_over": 0.085,
+        "identity": {
+          "unique_players": [
+            "Conner Weigman",
+            "Michael Hawkins Jr.",
+            "Rocco Becht"
+          ],
+          "unique_player_n": 3,
+          "unique_game_ids": [],
+          "unique_game_n": 0,
+          "kickoff_dates": [
+            "2026-09-05"
+          ]
+        }
+      },
+      "21": {
+        "n_veto": 9,
+        "d_pass": 35,
+        "rate_of_d_pass": 0.257,
+        "rate_of_goblin_over": 0.085
+      }
+    },
+    "unique_players": [
+      "Aidan Armenta",
+      "Anthony Colandrea",
+      "Arch Manning",
+      "Ashton Daniels",
+      "Baylor Hayes",
+      "Braden Atkinson",
+      "Bryce Underwood",
+      "Byrum Brown",
+      "CJ Carr",
+      "Caden Pinnick",
+      "Colton Joseph",
+      "Conner Weigman",
+      "Dante Moore",
+      "Darian Mensah",
+      "David McComb",
+      "Davis Warren",
+      "Demond Williams Jr.",
+      "Drew Mestemaker",
+      "Gunner Stockton",
+      "JC French IV",
+      "Jaron-Keawe Sagapolutele",
+      "Jayden Maiava",
+      "Jayden Mandal",
+      "John Mateer",
+      "Josh Hoover",
+      "Julian Sayin",
+      "Keelon Russell",
+      "Kevin Jennings",
+      "LaNorris Sellers",
+      "Lincoln Kienholz",
+      "Luke Weaver",
+      "Maddux Madsen",
+      "Marcel Reed",
+      "Mason Heintschel",
+      "Mason McKenzie",
+      "Michael Hawkins Jr.",
+      "Mitch Griffis",
+      "Nico Iamaleava",
+      "Noah Kim",
+      "Rocco Becht",
+      "Sam Leavitt",
+      "Trinidad Chambliss",
+      "Walker Eget"
+    ],
+    "unique_player_n": 43,
+    "unique_game_ids": [],
+    "unique_game_n": 0,
+    "kickoff_dates": [
+      "2026-09-05",
+      "2026-09-04",
+      "2026-09-07",
+      "2026-09-06"
+    ]
+  },
+  "usage_share": {
+    "rush_share_rush_over": {
+      "n": 0,
+      "p25": null,
+      "p50": null,
+      "p75": null
+    },
+    "tgt_share_rec_over": {
+      "n": 0,
+      "p25": null,
+      "p50": null,
+      "p75": null
+    },
+    "pass_share_pass_over": {
+      "n": 0,
+      "p25": null,
+      "p50": null,
+      "p75": null
+    },
+    "proposed_floors_not_applied": {
+      "rush": 0.4,
+      "pass": 0.7,
+      "rec": 0.18,
+      "status": "provisional_unvalidated",
+      "note": "Asserted before share distributions existed. Do not live-gate until hit rate by bucket is derived."
+    }
+  }
+}

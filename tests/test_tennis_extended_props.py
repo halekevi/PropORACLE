@@ -60,6 +60,20 @@ def test_sackmann_index_break_points_and_match_markets():
                 "w_bpFaced": 4,
                 "l_bpSaved": 1,
                 "l_bpFaced": 5,
+                "w_svpt": 50,
+                "w_1stIn": 30,
+                "w_1stWon": 21,
+                "w_2ndWon": 10,
+                "l_svpt": 60,
+                "l_1stIn": 36,
+                "l_1stWon": 18,
+                "l_2ndWon": 8,
+                "surface": "Hard",
+                "winner_hand": "R",
+                "loser_hand": "L",
+                "winner_rank": 12,
+                "loser_rank": 40,
+                "best_of": 3,
             }
         ]
     )
@@ -74,7 +88,48 @@ def test_sackmann_index_break_points_and_match_markets():
     assert ada["break_points_won"] == 4.0
     # Loser break points won = winner faced - saved = 4 - 2
     assert bea["break_points_won"] == 2.0
+    assert ada["first_in_pct"] == 60.0
+    assert ada["first_won_pct"] == 70.0
+    assert ada["second_won_pct"] == 50.0
+    assert ada["bp_saved_pct"] == 50.0
+    assert ada["surface"] == "Hard"
+    assert ada["opp_hand"] == "L"
+    assert ada["opp_rank"] == 40.0
+    assert bea["opp_hand"] == "R"
 
     assert build_sackmann_player_log(df, "ada player", "break_points_won", last_n=5) == [4.0]
     assert build_sackmann_player_log(df, "ada player", "total_tie_breaks", last_n=5) == [1.0]
     assert build_sackmann_player_log(df, "ada player", "total_sets", last_n=5) == [2.0]
+
+
+def test_sackmann_orders_same_week_by_match_num():
+    df = pd.DataFrame(
+        [
+            {
+                "winner_name": "Ada Player",
+                "loser_name": "Bea Rival",
+                "tourney_date": "20260810",
+                "match_num": 1,
+                "round": "R32",
+                "score": "6-4 6-2",
+                "w_ace": 1,
+                "l_ace": 0,
+                "w_df": 8,
+                "l_df": 1,
+            },
+            {
+                "winner_name": "Ada Player",
+                "loser_name": "Cara Rival",
+                "tourney_date": "20260810",
+                "match_num": 9,
+                "round": "F",
+                "score": "6-3 6-3",
+                "w_ace": 2,
+                "l_ace": 0,
+                "w_df": 1,
+                "l_df": 1,
+            },
+        ]
+    )
+    assert build_sackmann_player_log(df, "ada player", "double_faults", last_n=2) == [1.0, 8.0]
+    assert build_sackmann_player_log(df, "ada player", "aces", last_n=2) == [2.0, 1.0]

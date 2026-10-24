@@ -1,0 +1,32 @@
+{
+  "slate": "2026-10-20",
+  "n_blocked": 1,
+  "by_sport": {
+    "NBA1Q": {
+      "n": 1,
+      "reasons": {
+        "team_not_on_scoreboard": 1
+      },
+      "rows": [
+        {
+          "ticket_id": "phantom",
+          "group": "NBA1Q Power 3",
+          "sport": "NBA1Q",
+          "player": "Jalen Williams",
+          "team": "OKC",
+          "opp": "SAS",
+          "reason": "team_not_on_scoreboard:OKC",
+          "slate": "2026-10-20"
+        }
+      ]
+    }
+  },
+  "espn_games": {
+    "NBA": [
+      "BOS@DET"
+    ],
+    "NBA1Q": [
+      "BOS@DET"
+    ]
+  }
+}

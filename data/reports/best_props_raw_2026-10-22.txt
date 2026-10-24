@@ -1,0 +1,1004 @@
+Best props 2026-10-22  step8=H:\PropORACLE_main_cp  same-day step1=6/7  newest_fetch=2026-10-22 01:21
+
+===== WNBA =====
+  WARN: WNBA step1 exists but step8_wnba_direction.csv is missing ù pipeline did not finish; do not treat as an empty slate.
+
+===== MLB =====
+  WARN: MLB step1 exists but step8_mlb_direction.csv is missing ù pipeline did not finish; do not treat as an empty slate.
+
+===== SOCCER =====  S 0  A 12  B 0  C 0  D 2  W 4  |  Diamond 0  Platinum 1  Gold 2  Silver 10  Bronze 4
+Standard OVER  (n=0)
+  (none that clear L5 4+)
+Standard UNDER (n=6)
+  D/Gold       Viljami Sinisalo         Goalie Saves             U3.0  L5 0/4  L5avg  0.60  L10avg  1.00  szn  1.00  cov -2.00  Elite#1       CELTIC vs CELTA (SOCCER)
+  D/Silver     Mike Maignan             Goalie Saves             U3.0  L5 0/4  L5avg  1.60  L10avg  2.20  szn  2.20  cov -0.80  no-D          miss D  MILAN vs BOURNEMOUTH (SOCCER)
+  W/Silver     Luka Sucic               Shots On Target          U0.5  L5 0/5  L5avg  0.00  L10avg  0.20  szn  0.20  cov -0.30  no-D          miss D  REAL SOCIEDAD vs LILLESTR╪M (SOCCER)
+  W/Silver     Mikel Oyarzabal          Shots On Target          U1.5  L5 1/4  L5avg  1.00  L10avg  0.70  szn  0.70  cov -0.80  no-D          miss D  REAL SOCIEDAD vs LILLESTR╪M (SOCCER)
+  W/Silver     Julien Duranville        Shots On Target          U0.5  L5 1/4  L5avg  0.20  L10avg  0.11  szn  0.11  cov -0.39  Above Avg#7   miss Delta  LYON vs HOFFENHEIM (SOCCER)
+  W/Silver     Boulaye Dia              Shots On Target          U0.5  L5 1/4  L5avg  0.40  L10avg  0.22  szn  0.22  cov -0.28  Elite#1       miss Delta  RENNES vs JUVENTUS (SOCCER)
+Goblin OVER    (n=12)
+  A/Platinum   Roger Martφnez           Shots On Target          O0.5  L5 5/0  L5avg  1.80  L10avg  1.60  szn  1.60  cov +1.10  Weak#17       SHABAB vs FATEH (SOCCER)
+  A/Silver     Equi Fernßndez           Shots                    O0.5  L5 5/0  L5avg  2.00  L10avg  1.70  szn  1.70  cov +1.20  no-D          miss D  BAYER 04 vs OFI (SOCCER)
+  A/Silver     Gonτalo Ramos            Shots On Target          O0.5  L5 5/0  L5avg  2.00  L10avg  1.20  szn  1.20  cov +0.70  no-D          miss D  MILAN vs BOURNEMOUTH (SOCCER)
+  A/Silver     Samuel Lino              Shots On Target          O0.5  L5 4/1  L5avg  1.40  L10avg  1.30  szn  1.30  cov +0.80  Above Avg#9   miss D  FLAMENGO vs ESTUDIANTES (SOCCER)
+  A/Silver     Lucas Paquetß            Shots On Target          O0.5  L5 4/1  L5avg  1.40  L10avg  1.12  szn  1.12  cov +0.62  Above Avg#9   miss D  FLAMENGO vs ESTUDIANTES (SOCCER)
+  A/Silver     Randal Kolo Muani        Shots On Target          O0.5  L5 4/1  L5avg  0.80  L10avg  0.67  szn  0.67  cov +0.17  Below Avg#14  miss Delta  JUVENTUS vs RENNES (SOCCER)
+  A/Bronze     Evanilson                Shots On Target          O0.5  L5 5/0  L5avg  1.60  L10avg  0.89  szn  0.89  cov +0.39  Elite#3       miss D, Rank  BOURNEMOUTH vs MILAN (SOCCER)
+  A/Bronze     Brice Samba              Goalie Saves             O2.5  L5 4/1  L5avg  3.40  L10avg  3.38  szn  3.38  cov +0.88  Elite#4       miss D, Rank  RENNES vs JUVENTUS (SOCCER)
+  A/Bronze     EstΘban Lepaul           Shots On Target          O0.5  L5 4/1  L5avg  1.60  L10avg  1.30  szn  1.30  cov +0.80  Elite#1       miss D, Rank  RENNES vs JUVENTUS (SOCCER)
+  A/Bronze     Amine Harit              Shots On Target          O0.5  L5 4/1  L5avg  0.80  L10avg  0.67  szn  0.67  cov +0.17  no-D          miss Delta, D  MARSEILLE vs STURM (SOCCER)
+  A/ù          Pavel Sulc               Shots On Target          O0.5  L5 4/1  L5avg  0.80  L10avg  0.50  szn  0.50  cov +0.00  Above Avg#7   miss Cover, Delta, D, Rank  LYON vs HOFFENHEIM (SOCCER)
+  A/ù          Brice Samba              Goalie Saves             O3.5  L5 4/1  L5avg  3.40  L10avg  3.38  szn  3.38  cov -0.12  Elite#4       miss Cover, Delta, Dir, D, Rank  RENNES vs JUVENTUS (SOCCER)
+  [Tennis] hydrated opponent ranks: +2 (searched 0)
+
+===== TENNIS =====  S 0  A 4  B 0  C 0  D 0  W 0  |  Diamond 0  Platinum 3  Gold 3  Silver 1  Bronze 0
+Standard OVER  (n=0)
+  (none that clear L5 4+)
+Standard UNDER (n=0)
+  (none that clear L5 4+)
+Goblin OVER    (n=4)
+  A/Platinum   Brandon Nakashima        Total Games              O20.5  L5 4/1  L5avg 28.00  L10avg 27.80  szn 27.80  cov +7.30  Below Avg#85  BRANDON NAKASHIMA vs KYRIAN JACQUET (ATP / HARD)
+  A/Platinum   Elena Rybakina           Total Games              O17.5  L5 4/1  L5avg 26.00  L10avg 23.00  szn 23.00  cov +5.50  Weak#105      ELENA RYBAKINA vs POLINA KUDERMETOVA (WTA / HARD)
+  A/Platinum   Daniil Medvedev          Total Games              O17.5  L5 4/1  L5avg 22.40  L10avg 21.30  szn 21.30  cov +3.80  Weak#109      DANIIL MEDVEDEV vs SHO SHIMABUKURO (ATP / HARD)
+  A/Silver     Daniil Medvedev          Total Games              O18.5  L5 4/1  L5avg 22.40  L10avg 21.30  szn 21.30  cov +2.80  Weak#109      miss Delta  DANIIL MEDVEDEV vs SHO SHIMABUKURO (ATP / HARD)
+
+===== NFL =====  S 0  A 0  B 0  C 343  D 359  W 0  |  Diamond 0  Platinum 109  Gold 190  Silver 61  Bronze 414
+Standard OVER  (n=91)
+  D/Platinum   Derrick Henry            rush_yards_per_carry     O4.7  L5 5/0  L5avg   n/a  L10avg   n/a  szn 63.60  cov +58.90  Below Avg#23  BAL vs CIN (NFL)
+  D/Platinum   Kyren Williams           rush_yards_per_carry     O4.4  L5 5/0  L5avg   n/a  L10avg   n/a  szn 62.00  cov +57.60  Weak#28       LAR vs LV (NFL)
+  D/Platinum   Ashton Jeanty            rush_yards_per_carry     O3.4  L5 5/0  L5avg   n/a  L10avg   n/a  szn 58.20  cov +54.80  Below Avg#26  LV vs LAR (NFL)
+  D/Platinum   Ollie Gordon II          rush_yards_per_carry     O3.6  L5 5/0  L5avg   n/a  L10avg   n/a  szn 48.80  cov +45.20  Below Avg#23  MIA vs NYJ (NFL)
+  D/Platinum   Ashton Jeanty            rush_yards_in_first_5_attempts O17.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 58.20  cov +40.70  Below Avg#26  LV vs LAR (NFL)
+  D/Platinum   Derrick Henry            rush_yards_in_first_5_attempts O23.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 63.60  cov +40.10  Below Avg#23  BAL vs CIN (NFL)
+  D/Platinum   Jaylen Warren            rush_yards_per_carry     O4.4  L5 4/1  L5avg   n/a  L10avg   n/a  szn 73.20  cov +68.80  Weak#30       PIT vs NO (NFL)
+  D/Platinum   Bucky Irving             rush_yards_per_carry     O4.2  L5 4/1  L5avg   n/a  L10avg   n/a  szn 72.40  cov +68.20  Weak#27       TB vs CAR (NFL)
+  D/Platinum   Jaylen Warren            rush_yards_in_first_5_attempts O21.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 73.20  cov +51.70  Weak#30       PIT vs NO (NFL)
+  D/Platinum   Kyren Williams           rush_yards_in_first_5_attempts O21.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 62.00  cov +40.50  Weak#28       LAR vs LV (NFL)
+  D/Platinum   Cam Skattebo             receiving_yards          O5.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 15.80  cov +10.30  Weak#27       NYG vs HOU (NFL)
+  D/Platinum   Evan McPherson           kicking_points           O6.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.80  cov +2.30  Below Avg#21  CIN vs BAL (NFL)
+  D/Gold       Bucky Irving             rush_yards_in_first_5_attempts O21.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 72.40  cov +50.90  Weak#27       TB vs CAR (NFL)
+  D/Gold       Jaylen Warren            receiving_yards          O26.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 40.60  cov +14.10  Below Avg#26  PIT vs NO (NFL)
+  D/Gold       RJ Harvey                receiving_yards          O24.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 37.60  cov +13.10  Below Avg#23  DEN vs ARI (NFL)
+  D/Gold       Brock Purdy              fantasy_score            O18.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 23.97  cov +5.47  Weak#29       SF vs ATL (NFL)
+  D/Gold       Kyren Williams           fantasy_score            O16.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 19.58  cov +3.08  Below Avg#24  LAR vs LV (NFL)
+  D/Silver     Jahmyr Gibbs             rush_yards_per_carry     O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 71.60  cov +67.10  Avg#18        miss D  DET vs GB (NFL)
+  D/Silver     Tony Pollard             rush_yards_per_carry     O4.2  L5 5/0  L5avg   n/a  L10avg   n/a  szn 50.60  cov +46.40  Avg#17        miss D  TEN vs CLE (NFL)
+  D/Silver     Braelon Allen            rush_yards_per_carry     O3.8  L5 5/0  L5avg   n/a  L10avg   n/a  szn 43.20  cov +39.40  Avg#16        miss D  NYJ vs MIA (NFL)
+  D/Silver     J.K. Dobbins             rush_yards_per_carry     O3.8  L5 5/0  L5avg   n/a  L10avg   n/a  szn 34.20  cov +30.40  Avg#20        miss D  DEN vs ARI (NFL)
+  D/Silver     Jahmyr Gibbs             rush_yards_in_first_5_attempts O22.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 71.60  cov +49.10  Avg#18        miss D  DET vs GB (NFL)
+  D/Silver     Tony Pollard             rush_yards_in_first_5_attempts O20.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 50.60  cov +30.10  Avg#17        miss D  TEN vs CLE (NFL)
+  D/Silver     J.K. Dobbins             rush_yards_in_first_5_attempts O18.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 34.20  cov +15.70  Avg#20        miss D  DEN vs ARI (NFL)
+  D/Silver     Matthew Stafford         passing_yards            O270.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 285.20  cov +14.70  Below Avg#24  miss Delta  LAR vs LV (NFL)
+  D/Silver     Denzel Boston            fantasy_score            O10.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 13.40  cov +2.90  Avg#17        miss D  CLE vs TEN (NFL)
+  D/Silver     George Kittle            fantasy_score            O15.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 16.46  cov +1.46  Weak#29       miss Delta  SF vs ATL (NFL)
+  D/Silver     Jake Ferguson            receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.60  cov +0.10  Below Avg#25  miss Delta  DAL vs PHI (NFL)
+  D/Bronze     Drake Maye               halves_with_100_pass_yards O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 245.60  cov +244.10  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Caleb Williams           halves_with_100_pass_yards O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 144.00  cov +142.50  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Kenneth Walker III       rush_yards_per_carry     O4.6  L5 5/0  L5avg   n/a  L10avg   n/a  szn 110.40  cov +105.80  Above Avg#10  miss D, Rank  KC vs SEA (NFL)
+  D/Bronze     Bijan Robinson           rush_yards_per_carry     O4.8  L5 5/0  L5avg   n/a  L10avg   n/a  szn 104.40  cov +99.60  Elite#7       miss D, Rank  ATL vs SF (NFL)
+  D/Bronze     Bijan Robinson           rush_yards_in_first_5_attempts O23.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 104.40  cov +80.90  Elite#7       miss D, Rank  ATL vs SF (NFL)
+  D/Bronze     Jonathan Taylor          rush_yards_per_carry     O3.9  L5 5/0  L5avg   n/a  L10avg   n/a  szn 79.60  cov +75.70  Elite#5       miss D, Rank  IND vs MIN (NFL)
+  D/Bronze     Jonathan Taylor          rush_yards_in_first_5_attempts O19.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 79.60  cov +60.10  Elite#5       miss D, Rank  IND vs MIN (NFL)
+  D/Bronze     Chuba Hubbard            rush_yards_per_carry     O4.0  L5 5/0  L5avg   n/a  L10avg   n/a  szn 63.40  cov +59.40  Elite#2       miss D, Rank  CAR vs TB (NFL)
+  D/Bronze     Chase Brown              rush_yards_per_carry     O3.6  L5 5/0  L5avg   n/a  L10avg   n/a  szn 49.20  cov +45.60  Above Avg#11  miss D, Rank  CIN vs BAL (NFL)
+  D/Bronze     Rhamondre Stevenson      rush_yards_per_carry     O4.0  L5 5/0  L5avg   n/a  L10avg   n/a  szn 45.40  cov +41.40  Above Avg#8   miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Christian McCaffrey      rush_yards_per_carry     O4.1  L5 5/0  L5avg   n/a  L10avg   n/a  szn 44.40  cov +40.30  Elite#4       miss D, Rank  SF vs ATL (NFL)
+  D/Bronze     Rhamondre Stevenson      rush_yards_in_first_5_attempts O20.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 45.40  cov +24.90  Above Avg#8   miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Kayshon Boutte           receiving_yards          O12.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 30.60  cov +18.10  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  D/Bronze     Malik Washington         receiving_yards          O40.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 52.40  cov +11.90  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  D/Bronze     Brock Purdy              rushing_yards            O18.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 30.00  cov +11.50  Elite#4       miss D, Rank  SF vs ATL (NFL)
+  D/Bronze     Kenneth Walker III       rush_yards_in_first_5_attempts O22.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 110.40  cov +87.90  Above Avg#10  miss D, Rank  KC vs SEA (NFL)
+  D/Bronze     Josh Jacobs              rush_yards_per_carry     O3.4  L5 4/1  L5avg   n/a  L10avg   n/a  szn 50.60  cov +47.20  Avg#15        miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Chuba Hubbard            rush_yards_in_first_5_attempts O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 63.40  cov +43.90  Elite#2       miss D, Rank  CAR vs TB (NFL)
+  D/Bronze     D'Andre Swift            rush_yards_per_carry     O4.2  L5 4/1  L5avg   n/a  L10avg   n/a  szn 46.80  cov +42.60  Above Avg#9   miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Kyle Williams            receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 52.80  cov +33.30  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Josh Jacobs              rush_yards_in_first_5_attempts O17.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 50.60  cov +33.10  Avg#15        miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Chase Brown              rush_yards_in_first_5_attempts O17.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 49.20  cov +31.70  Above Avg#11  miss D, Rank  CIN vs BAL (NFL)
+  D/Bronze     Chris Olave              receiving_yards          O76.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 107.40  cov +30.90  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Jaxon Smith-Njigba       receiving_yards          O92.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 123.00  cov +30.50  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  D/Bronze     Xavier Hutchinson        receiving_yards          O10.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 40.80  cov +30.30  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  D/Bronze     Tyler Shough             passing_yards            O232.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 259.80  cov +27.30  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     D'Andre Swift            rush_yards_in_first_5_attempts O20.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 46.80  cov +26.30  Above Avg#9   miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Christian McCaffrey      rush_yards_in_first_5_attempts O20.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 44.40  cov +23.90  Elite#4       miss D, Rank  SF vs ATL (NFL)
+  D/Bronze     Cam Skattebo             rushing_yards            O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 52.20  cov +22.70  Elite#3       miss D, Rank  NYG vs HOU (NFL)
+  D/Bronze     Jaylin Noel              receiving_yards          O23.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 45.40  cov +21.90  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  D/Bronze     Tory Horton              receiving_yards          O11.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 30.80  cov +19.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  D/Bronze     Ashton Jeanty            receiving_yards          O25.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 43.00  cov +17.50  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  D/Bronze     Juwan Johnson            receiving_yards          O33.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 49.60  cov +16.10  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Tre Tucker               receiving_yards          O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 54.80  cov +15.30  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  D/Bronze     Kendre Miller            rush_yards_per_carry     O3.3  L5 4/1  L5avg   n/a  L10avg   n/a  szn 17.00  cov +13.70  Avg#14        miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Brian Robinson Jr.       rushing_yards            O26.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 39.80  cov +13.30  Elite#7       miss D, Rank  ATL vs SF (NFL)
+  D/Bronze     Emmett Johnson           receiving_yards          O5.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 17.80  cov +12.30  Elite#1       miss D, Rank  KC vs SEA (NFL)
+  D/Bronze     Emmett Johnson           rushing_yards            O8.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 19.00  cov +10.50  Above Avg#10  miss D, Rank  KC vs SEA (NFL)
+  D/Bronze     Jaxon Smith-Njigba       fantasy_score            O18.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 28.41  cov +9.91  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  D/Bronze     Sam Roush                receiving_yards          O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 10.40  cov +9.90  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Tory Horton              fantasy_score            O3.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 10.28  cov +7.28  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  D/Bronze     Spencer Shrader          kicking_points           O5.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 11.60  cov +6.10  Above Avg#11  miss D, Rank  IND vs MIN (NFL)
+  D/Bronze     Kenneth Walker III       fantasy_score            O17.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 22.32  cov +5.32  Elite#1       miss D, Rank  KC vs SEA (NFL)
+  D/Bronze     Juwan Johnson            fantasy_score            O8.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 13.56  cov +5.06  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Tyler Shough             fantasy_score            O15.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 20.23  cov +4.73  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Kirk Cousins             fantasy_score            O15.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 19.71  cov +4.71  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  D/Bronze     Chris Olave              fantasy_score            O15.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 19.74  cov +4.24  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Xavier Hutchinson        fantasy_score            O3.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn  6.96  cov +3.96  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  D/Bronze     Jaylin Noel              fantasy_score            O5.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.86  cov +3.86  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  D/Bronze     Patrick Mahomes          fantasy_score            O15.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 17.88  cov +2.88  Elite#1       miss D, Rank  KC vs SEA (NFL)
+  D/Bronze     Kalif Raymond            receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.80  cov +2.30  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Chuba Hubbard            fantasy_score            O14.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 16.02  cov +2.02  Avg#19        miss Delta, D  CAR vs TB (NFL)
+  D/Bronze     Kayshon Boutte           fantasy_score            O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  5.46  cov +1.96  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  D/Bronze     Chris Olave              receptions               O6.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.80  cov +1.80  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Deshaun Watson           fantasy_score            O15.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 17.02  cov +1.52  Avg#17        miss Delta, D  CLE vs TEN (NFL)
+  D/Bronze     Juwan Johnson            receptions               O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  5.00  cov +1.50  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Bryce Young              passing_yards            O255.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 256.60  cov +1.10  Avg#19        miss Delta, D  CAR vs TB (NFL)
+  D/Bronze     Amon-Ra St. Brown        receptions               O7.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.40  cov +0.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  D/Bronze     Drake Maye               int                      O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  1.40  cov +0.90  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/ù          Kirk Cousins             passing_yards            O239.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 253.80  cov +14.30  Elite#2       miss Delta, D, Rank  LV vs LAR (NFL)
+  D/ù          Rhamondre Stevenson      rushing_yards            O42.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 45.40  cov +2.90  Above Avg#8   miss Delta, D, Rank  NE vs CHI (NFL)
+  D/ù          Rhamondre Stevenson      receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  3.00  cov +0.50  Avg#15        miss Delta, D, Rank  NE vs CHI (NFL)
+  D/ù          Daniel Jones             int                      O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  0.80  cov +0.30  Elite#3       miss Delta, D, Rank  IND vs MIN (NFL)
+Standard UNDER (n=268)
+  D/Platinum   Joe Burrow               completion_percentage    U69.9  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -69.90  Above Avg#10  CIN vs BAL (NFL)
+  D/Platinum   Jared Goff               completion_percentage    U67.1  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -67.10  Elite#6       DET vs GB (NFL)
+  D/Platinum   Tyler Shough             completion_percentage    U66.2  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -66.20  Above Avg#8   NO vs PIT (NFL)
+  D/Platinum   Patrick Mahomes          completion_percentage    U65.1  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -65.10  Elite#1       KC vs SEA (NFL)
+  D/Platinum   C.J. Stroud              completion_percentage    U64.2  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -64.20  Elite#4       HOU vs NYG (NFL)
+  D/Platinum   Sam Darnold              completion_percentage    U63.9  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -63.90  Above Avg#9   SEA vs KC (NFL)
+  D/Platinum   Daniel Jones             completion_percentage    U61.9  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -61.90  Elite#3       IND vs MIN (NFL)
+  D/Platinum   Michael Penix Jr.        completion_percentage    U61.9  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -61.90  Above Avg#10  ATL vs SF (NFL)
+  D/Platinum   C.J. Stroud              longest_completion       U39.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -39.50  Elite#4       HOU vs NYG (NFL)
+  D/Platinum   Joe Burrow               longest_completion       U39.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -39.50  Above Avg#10  CIN vs BAL (NFL)
+  D/Platinum   Jared Goff               longest_completion       U36.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -36.50  Elite#6       DET vs GB (NFL)
+  D/Platinum   Sam Darnold              longest_completion       U35.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -35.50  Above Avg#9   SEA vs KC (NFL)
+  D/Platinum   Michael Penix Jr.        longest_completion       U34.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -34.50  Above Avg#10  ATL vs SF (NFL)
+  D/Platinum   Tyler Shough             longest_completion       U34.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -34.50  Above Avg#8   NO vs PIT (NFL)
+  D/Platinum   Patrick Mahomes          longest_completion       U33.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -33.50  Elite#1       KC vs SEA (NFL)
+  D/Platinum   Daniel Jones             longest_completion       U31.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -31.50  Elite#3       IND vs MIN (NFL)
+  D/Platinum   Jared Goff               pass_completions         U24.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -24.50  Elite#6       DET vs GB (NFL)
+  D/Platinum   Joe Burrow               pass_completions         U24.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -24.50  Above Avg#10  CIN vs BAL (NFL)
+  D/Platinum   Tyler Shough             pass_completions         U23.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -23.50  Above Avg#8   NO vs PIT (NFL)
+  D/Platinum   C.J. Stroud              pass_completions         U21.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -21.50  Elite#4       HOU vs NYG (NFL)
+  D/Platinum   Patrick Mahomes          pass_completions         U20.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -20.00  Elite#1       KC vs SEA (NFL)
+  D/Platinum   Sam Darnold              pass_completions         U20.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -20.00  Above Avg#9   SEA vs KC (NFL)
+  D/Platinum   Nico Collins             longest_reception        U24.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.60  cov -19.90  Elite#4       HOU vs NYG (NFL)
+  D/Platinum   Daniel Jones             pass_completions         U19.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -19.50  Elite#3       IND vs MIN (NFL)
+  D/Platinum   Michael Penix Jr.        pass_completions         U19.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -19.50  Above Avg#10  ATL vs SF (NFL)
+  D/Platinum   Ja'Marr Chase            longest_reception        U24.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.40  cov -19.10  Above Avg#10  CIN vs BAL (NFL)
+  D/Platinum   Drake London             longest_reception        U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.20  cov -18.30  Above Avg#10  ATL vs SF (NFL)
+  D/Platinum   Jameson Williams         longest_reception        U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.40  cov -18.10  Elite#6       DET vs GB (NFL)
+  D/Platinum   Tee Higgins              longest_reception        U23.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.40  cov -18.10  Above Avg#10  CIN vs BAL (NFL)
+  D/Platinum   Jaxon Smith-Njigba       longest_reception        U26.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  8.80  cov -17.70  Above Avg#9   SEA vs KC (NFL)
+  D/Platinum   Garrett Wilson           longest_reception        U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.20  cov -17.30  Above Avg#12  NYJ vs MIA (NFL)
+  D/Platinum   Chris Olave              longest_reception        U23.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  7.80  cov -15.70  Above Avg#8   NO vs PIT (NFL)
+  D/Platinum   Brock Bowers             longest_reception        U21.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  6.00  cov -15.50  Elite#2       LV vs LAR (NFL)
+  D/Platinum   Isaac TeSlaa             longest_reception        U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.00  cov -14.50  Elite#6       DET vs GB (NFL)
+  D/Platinum   Kyle Pitts Sr.           longest_reception        U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.00  cov -14.50  Above Avg#10  ATL vs SF (NFL)
+  D/Platinum   Amon-Ra St. Brown        longest_reception        U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  8.40  cov -14.10  Elite#6       DET vs GB (NFL)
+  D/Platinum   Travis Kelce             longest_reception        U17.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.40  cov -14.10  Elite#1       KC vs SEA (NFL)
+  D/Platinum   Malik Washington         longest_reception        U18.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.60  cov -13.90  Elite#5       MIA vs NYJ (NFL)
+  D/Platinum   Tre Tucker               longest_reception        U17.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.80  cov -13.70  Elite#2       LV vs LAR (NFL)
+  D/Platinum   Devaughn Vele            longest_reception        U18.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.00  cov -13.50  Above Avg#8   NO vs PIT (NFL)
+  D/Platinum   Rashid Shaheed           longest_reception        U15.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.40  cov -13.10  Above Avg#9   SEA vs KC (NFL)
+  D/Platinum   Sam LaPorta              longest_reception        U18.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.40  cov -13.10  Elite#6       DET vs GB (NFL)
+  D/Platinum   Jaylin Noel              longest_reception        U15.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.60  cov -12.90  Elite#4       HOU vs NYG (NFL)
+  D/Platinum   Josh Downs               longest_reception        U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.00  cov -12.50  Elite#3       IND vs MIN (NFL)
+  D/Platinum   Cooper Kupp              longest_reception        U13.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.80  cov -10.70  Above Avg#9   SEA vs KC (NFL)
+  D/Platinum   Braelon Allen            receiving_yards          U14.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.80  cov -10.70  Above Avg#12  NYJ vs MIA (NFL)
+  D/Platinum   Juwan Johnson            longest_reception        U15.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.00  cov -10.50  Above Avg#8   NO vs PIT (NFL)
+  D/Platinum   Tyler Warren             longest_reception        U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  6.00  cov -10.50  Elite#3       IND vs MIN (NFL)
+  D/Platinum   Greg Dulcich             longest_reception        U13.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.20  cov -10.30  Elite#5       MIA vs NYJ (NFL)
+  D/Platinum   Michael Mayer            longest_reception        U14.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.20  cov -10.30  Elite#2       LV vs LAR (NFL)
+  D/Platinum   AJ Barner                longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.40  cov -10.10  Above Avg#9   SEA vs KC (NFL)
+  D/Platinum   Jahmyr Gibbs             longest_reception        U14.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.40  cov -10.10  Elite#6       DET vs GB (NFL)
+  D/Platinum   Mike Gesicki             longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.80  cov -9.70  Above Avg#10  CIN vs BAL (NFL)
+  D/Platinum   Bijan Robinson           longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.00  cov -9.50  Above Avg#10  ATL vs SF (NFL)
+  D/Platinum   Mason Taylor             longest_reception        U11.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.00  cov -9.50  Above Avg#12  NYJ vs MIA (NFL)
+  D/Platinum   Dalton Schultz           longest_reception        U13.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.20  cov -9.30  Elite#4       HOU vs NYG (NFL)
+  D/Platinum   Ashton Jeanty            longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.40  cov -8.10  Elite#2       LV vs LAR (NFL)
+  D/Platinum   Braelon Allen            longest_reception        U9.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.40  cov -8.10  Above Avg#12  NYJ vs MIA (NFL)
+  D/Platinum   Tory Horton              longest_reception        U9.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.40  cov -7.10  Above Avg#9   SEA vs KC (NFL)
+  D/Platinum   Jonathan Taylor          longest_reception        U9.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.60  cov -6.90  Elite#3       IND vs MIN (NFL)
+  D/Platinum   Chase Brown              longest_reception        U11.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.80  cov -6.70  Above Avg#10  CIN vs BAL (NFL)
+  D/Platinum   Alvin Kamara             longest_reception        U7.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.00  cov -4.50  Above Avg#8   NO vs PIT (NFL)
+  D/Platinum   Drew Sample              longest_reception        U5.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.80  cov -3.70  Above Avg#10  CIN vs BAL (NFL)
+  D/Platinum   Ollie Gordon II          longest_reception        U4.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.20  cov -3.30  Elite#5       MIA vs NYJ (NFL)
+  D/Platinum   Kendre Miller            longest_reception        U3.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.80  cov -2.70  Above Avg#8   NO vs PIT (NFL)
+  D/Platinum   Sheldon Rankins          sacks                    U0.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -0.50  Elite#4       HOU vs NYG (NFL)
+  D/Platinum   C.J. Stroud              int                      U0.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -0.50  Elite#4       HOU vs NYG (NFL)
+  D/Platinum   Braelon Allen            receptions               U2.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  1.40  cov -1.10  Above Avg#12  NYJ vs MIA (NFL)
+  D/Gold       Geno Smith               completion_percentage    U69.2  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -69.20  Above Avg#12  NYJ vs MIA (NFL)
+  D/Gold       Kirk Cousins             completion_percentage    U63.4  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -63.40  Elite#2       LV vs LAR (NFL)
+  D/Gold       Malik Willis             completion_percentage    U60.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -60.00  Elite#5       MIA vs NYJ (NFL)
+  D/Gold       Geno Smith               longest_completion       U34.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -34.50  Above Avg#12  NYJ vs MIA (NFL)
+  D/Gold       Malik Willis             longest_completion       U34.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -34.50  Elite#5       MIA vs NYJ (NFL)
+  D/Gold       Kirk Cousins             longest_completion       U32.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -32.50  Elite#2       LV vs LAR (NFL)
+  D/Gold       Geno Smith               pass_completions         U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -22.50  Above Avg#12  NYJ vs MIA (NFL)
+  D/Gold       Kirk Cousins             pass_completions         U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -22.50  Elite#2       LV vs LAR (NFL)
+  D/Gold       Tyrone Tracy Jr.         rushing_yards            U23.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.40  cov -19.10  Elite#3       NYG vs HOU (NFL)
+  D/Gold       Malik Willis             pass_completions         U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -16.50  Elite#5       MIA vs NYJ (NFL)
+  D/Gold       Jahan Dotson             longest_reception        U17.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.40  cov -16.10  Above Avg#10  ATL vs SF (NFL)
+  D/Gold       Keenan Allen             longest_reception        U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.80  cov -12.70  Elite#3       IND vs MIN (NFL)
+  D/Gold       Kenneth Walker III       longest_reception        U10.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.40  cov -8.10  Elite#1       KC vs SEA (NFL)
+  D/Gold       Emmett Johnson           longest_reception        U5.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.40  cov -4.10  Elite#1       KC vs SEA (NFL)
+  D/Gold       Michael Penix Jr.        fantasy_score            U14.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn 10.69  cov -3.81  Above Avg#10  ATL vs SF (NFL)
+  D/Gold       Michael Penix Jr.        passing_yards            U228.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 182.80  cov -45.70  Above Avg#10  ATL vs SF (NFL)
+  D/Gold       Ja'Marr Chase            receiving_yards          U79.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 57.80  cov -21.70  Above Avg#10  CIN vs BAL (NFL)
+  D/Gold       D'Andre Swift            rushing_yards            U60.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 46.80  cov -13.70  Above Avg#9   CHI vs NE (NFL)
+  D/Gold       Drake London             fantasy_score            U16.0  L5 1/4  L5avg   n/a  L10avg   n/a  szn 12.18  cov -3.82  Above Avg#10  ATL vs SF (NFL)
+  D/Gold       Trey Smack               kicking_points           U7.0  L5 1/4  L5avg   n/a  L10avg   n/a  szn  4.20  cov -2.80  Elite#2       GB vs DET (NFL)
+  D/Gold       Eddy Pineiro             kicking_points           U7.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  6.20  cov -1.30  Above Avg#9   SF vs ATL (NFL)
+  D/Gold       Jahan Dotson             fantasy_score            U6.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  5.22  cov -1.28  Above Avg#10  ATL vs SF (NFL)
+  D/Silver     Cam Ward                 completion_percentage    U56.9  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -56.90  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Cam Ward                 longest_completion       U31.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -31.50  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Cam Ward                 pass_completions         U18.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -18.50  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Carnell Tate             longest_reception        U18.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.60  cov -13.90  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Wan'Dale Robinson        longest_reception        U15.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.40  cov -11.10  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Calvin Ridley            longest_reception        U10.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.40  cov -9.10  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Elic Ayomanor            longest_reception        U9.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.20  cov -8.30  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Gunnar Helm              longest_reception        U9.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.80  cov -7.70  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Tony Pollard             longest_reception        U7.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.40  cov -6.10  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Cam Ward                 passing_yards            U186.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 152.60  cov -33.90  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Mason Taylor             receiving_yards          U20.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 13.60  cov -6.90  Above Avg#12  miss Delta  NYJ vs MIA (NFL)
+  D/Silver     Tyjae Spears             longest_reception        U8.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  2.60  cov -5.90  Above Avg#13  miss Rank  TEN vs CLE (NFL)
+  D/Silver     Bryce Young              rushing_yards            U9.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  3.80  cov -5.70  Elite#2       miss Delta  CAR vs TB (NFL)
+  D/Silver     Kenneth Walker III       receiving_yards          U20.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 16.80  cov -3.70  Elite#1       miss Delta  KC vs SEA (NFL)
+  D/Silver     Alvin Kamara             receiving_yards          U12.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  9.00  cov -3.50  Above Avg#8   miss Delta  NO vs PIT (NFL)
+  D/Silver     AJ Barner                receiving_yards          U24.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 23.60  cov -0.90  Above Avg#9   miss Delta  SEA vs KC (NFL)
+  D/Silver     Mason Taylor             receptions               U2.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  2.00  cov -0.50  Above Avg#12  miss Delta  NYJ vs MIA (NFL)
+  D/Silver     Jake Bates               kicking_points           U7.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  7.20  cov -0.30  Elite#1       miss Delta  DET vs GB (NFL)
+  D/Bronze     Kyler Murray             completion_percentage    U71.9  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -71.90  Below Avg#21  miss D, Rank  MIN vs IND (NFL)
+  D/Bronze     Bo Nix                   completion_percentage    U66.2  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -66.20  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Matthew Stafford         completion_percentage    U65.2  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -65.20  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     Drake Maye               completion_percentage    U65.1  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -65.10  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Aaron Rodgers            completion_percentage    U64.2  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -64.20  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Brock Purdy              completion_percentage    U63.9  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -63.90  Weak#29       miss D, Rank  SF vs ATL (NFL)
+  D/Bronze     Bryce Young              completion_percentage    U62.3  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -62.30  Avg#19        miss D, Rank  CAR vs TB (NFL)
+  D/Bronze     Jacoby Brissett          completion_percentage    U61.6  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -61.60  Avg#16        miss D, Rank  ARI vs DEN (NFL)
+  D/Bronze     Jordan Love              completion_percentage    U61.6  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -61.60  Weak#32       miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Baker Mayfield           completion_percentage    U61.2  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -61.20  Avg#18        miss D, Rank  TB vs CAR (NFL)
+  D/Bronze     Caleb Williams           completion_percentage    U61.2  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -61.20  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Deshaun Watson           completion_percentage    U60.7  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -60.70  Avg#17        miss D, Rank  CLE vs TEN (NFL)
+  D/Bronze     Jordan Love              longest_completion       U42.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -42.50  Weak#32       miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Bryce Young              longest_completion       U40.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -40.50  Avg#19        miss D, Rank  CAR vs TB (NFL)
+  D/Bronze     Drake Maye               longest_completion       U40.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -40.50  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Brock Purdy              longest_completion       U38.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -38.50  Weak#29       miss D, Rank  SF vs ATL (NFL)
+  D/Bronze     Caleb Williams           longest_completion       U36.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -36.50  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Dak Prescott             longest_completion       U36.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -36.50  Below Avg#25  miss D, Rank  DAL vs PHI (NFL)
+  D/Bronze     Lamar Jackson            longest_completion       U36.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -36.50  Below Avg#22  miss D, Rank  BAL vs CIN (NFL)
+  D/Bronze     Aaron Rodgers            longest_completion       U35.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -35.50  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Matthew Stafford         longest_completion       U35.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -35.50  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     Jacoby Brissett          longest_completion       U34.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -34.50  Avg#16        miss D, Rank  ARI vs DEN (NFL)
+  D/Bronze     Kyler Murray             longest_completion       U34.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -34.50  Below Avg#21  miss D, Rank  MIN vs IND (NFL)
+  D/Bronze     Bo Nix                   longest_completion       U32.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -32.50  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Tanner McKee             longest_completion       U32.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -32.50  Avg#20        miss D, Rank  PHI vs DAL (NFL)
+  D/Bronze     Deshaun Watson           longest_completion       U32.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -32.50  Avg#17        miss D, Rank  CLE vs TEN (NFL)
+  D/Bronze     Christian Watson         longest_reception        U29.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.20  cov -25.30  Weak#32       miss D, Rank  GB vs DET (NFL)
+  D/Bronze     J.K. Dobbins             rushing_yards            U58.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn 34.20  cov -24.30  Avg#20        miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Dak Prescott             pass_completions         U24.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -24.00  Below Avg#25  miss D, Rank  DAL vs PHI (NFL)
+  D/Bronze     Kendre Miller            rushing_yards            U40.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn 17.00  cov -23.50  Avg#14        miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Jacoby Brissett          pass_completions         U23.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -23.00  Avg#16        miss D, Rank  ARI vs DEN (NFL)
+  D/Bronze     Jordan Love              pass_completions         U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -22.50  Weak#32       miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Matthew Stafford         pass_completions         U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -22.50  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     Aaron Rodgers            pass_completions         U21.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -21.50  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Bo Nix                   pass_completions         U21.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -21.50  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Bryce Young              pass_completions         U21.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -21.50  Avg#19        miss D, Rank  CAR vs TB (NFL)
+  D/Bronze     Matthew Golden           longest_reception        U25.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.00  cov -21.50  Weak#32       miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Caleb Williams           pass_completions         U21.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -21.00  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Baker Mayfield           pass_completions         U20.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -20.50  Avg#18        miss D, Rank  TB vs CAR (NFL)
+  D/Bronze     Brock Purdy              pass_completions         U20.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -20.50  Weak#29       miss D, Rank  SF vs ATL (NFL)
+  D/Bronze     Drake Maye               pass_completions         U20.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -20.50  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Tanner McKee             pass_completions         U20.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -20.50  Avg#20        miss D, Rank  PHI vs DAL (NFL)
+  D/Bronze     Kyler Murray             pass_completions         U20.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -20.50  Below Avg#21  miss D, Rank  MIN vs IND (NFL)
+  D/Bronze     Denzel Boston            longest_reception        U23.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.20  cov -20.30  Avg#17        miss D, Rank  CLE vs TEN (NFL)
+  D/Bronze     Tetairoa McMillan        longest_reception        U25.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.40  cov -20.10  Avg#19        miss D, Rank  CAR vs TB (NFL)
+  D/Bronze     Lamar Jackson            pass_completions         U19.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -19.50  Below Avg#22  miss D, Rank  BAL vs CIN (NFL)
+  D/Bronze     Justin Jefferson         longest_reception        U24.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.40  cov -19.10  Below Avg#21  miss D, Rank  MIN vs IND (NFL)
+  D/Bronze     DK Metcalf               longest_reception        U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.80  cov -18.70  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Deshaun Watson           pass_completions         U18.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -18.50  Avg#17        miss D, Rank  CLE vs TEN (NFL)
+  D/Bronze     George Kittle            longest_reception        U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.20  cov -18.30  Weak#29       miss D, Rank  SF vs ATL (NFL)
+  D/Bronze     Malik Nabers             longest_reception        U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.20  cov -18.30  Weak#27       miss D, Rank  NYG vs HOU (NFL)
+  D/Bronze     Rome Odunze              longest_reception        U21.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.40  cov -18.10  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Jalen Coker              longest_reception        U23.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.60  cov -17.90  Avg#19        miss D, Rank  CAR vs TB (NFL)
+  D/Bronze     Luther Burden III        longest_reception        U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.60  cov -17.90  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Puka Nacua               longest_reception        U26.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  9.00  cov -17.50  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     Jaylen Waddle            longest_reception        U21.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.00  cov -17.50  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     CeeDee Lamb              longest_reception        U24.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  7.20  cov -17.30  Below Avg#25  miss D, Rank  DAL vs PHI (NFL)
+  D/Bronze     George Pickens           longest_reception        U22.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.40  cov -17.10  Below Avg#25  miss D, Rank  DAL vs PHI (NFL)
+  D/Bronze     Germie Bernard           longest_reception        U19.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.80  cov -16.70  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Michael Wilson           longest_reception        U21.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.40  cov -16.10  Avg#16        miss D, Rank  ARI vs DEN (NFL)
+  D/Bronze     DeMario Douglas          longest_reception        U18.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.60  cov -15.90  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Jordan Addison           longest_reception        U18.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.60  cov -15.90  Below Avg#21  miss D, Rank  MIN vs IND (NFL)
+  D/Bronze     Kyle Williams            longest_reception        U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.80  cov -14.70  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Colston Loveland         longest_reception        U17.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.00  cov -14.50  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Courtland Sutton         longest_reception        U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.20  cov -14.30  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Trey McBride             longest_reception        U19.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.40  cov -14.10  Avg#16        miss D, Rank  ARI vs DEN (NFL)
+  D/Bronze     Hunter Henry             longest_reception        U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.00  cov -13.50  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Tucker Kraft             longest_reception        U17.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.00  cov -13.50  Weak#32       miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Konata Mumpfield         longest_reception        U14.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.80  cov -12.70  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     Christian McCaffrey      longest_reception        U16.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.00  cov -12.50  Weak#29       miss D, Rank  SF vs ATL (NFL)
+  D/Bronze     Ryan Flournoy            longest_reception        U15.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.20  cov -12.30  Below Avg#25  miss D, Rank  DAL vs PHI (NFL)
+  D/Bronze     Savion Williams          longest_reception        U13.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.60  cov -11.90  Weak#32       miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Troy Franklin            longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.80  cov -11.70  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Dallas Goedert           longest_reception        U14.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.20  cov -11.30  Avg#20        miss D, Rank  PHI vs DAL (NFL)
+  D/Bronze     Tyler Higbee             longest_reception        U15.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.20  cov -11.30  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     Colby Parkinson          longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.60  cov -10.90  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     T.J. Hockenson           longest_reception        U15.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.60  cov -10.90  Below Avg#21  miss D, Rank  MIN vs IND (NFL)
+  D/Bronze     Isaiah Likely            longest_reception        U17.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  6.60  cov -10.90  Weak#27       miss D, Rank  NYG vs HOU (NFL)
+  D/Bronze     Evan Engram              longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.80  cov -10.70  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Elijah Higgins           longest_reception        U11.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.60  cov -9.90  Avg#16        miss D, Rank  ARI vs DEN (NFL)
+  D/Bronze     Harold Fannin Jr.        longest_reception        U13.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.60  cov -9.90  Avg#17        miss D, Rank  CLE vs TEN (NFL)
+  D/Bronze     Jake Ferguson            longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.60  cov -9.90  Below Avg#25  miss D, Rank  DAL vs PHI (NFL)
+  D/Bronze     Efton Chism III          longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.60  cov -9.90  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Jaylen Warren            longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.80  cov -9.70  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Eli Raridon              longest_reception        U11.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.80  cov -9.70  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Kalif Raymond            longest_reception        U14.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.80  cov -9.70  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Jalen Brooks             longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.00  cov -9.50  Avg#16        miss D, Rank  ARI vs DEN (NFL)
+  D/Bronze     Malachi Fields           longest_reception        U11.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.00  cov -9.50  Weak#27       miss D, Rank  NYG vs HOU (NFL)
+  D/Bronze     Tommy Tremble            longest_reception        U11.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.60  cov -8.90  Avg#19        miss D, Rank  CAR vs TB (NFL)
+  D/Bronze     Tyrone Tracy Jr.         longest_reception        U8.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.40  cov -8.10  Weak#27       miss D, Rank  NYG vs HOU (NFL)
+  D/Bronze     Jaylen Wright            rushing_yards            U15.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  7.40  cov -8.10  Below Avg#23  miss D, Rank  MIA vs NYJ (NFL)
+  D/Bronze     D'Andre Swift            longest_reception        U10.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.80  cov -7.70  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Chuba Hubbard            longest_reception        U9.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.00  cov -7.50  Avg#19        miss D, Rank  CAR vs TB (NFL)
+  D/Bronze     RJ Harvey                longest_reception        U12.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.00  cov -7.50  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Rhamondre Stevenson      longest_reception        U10.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.00  cov -7.50  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Javonte Williams         longest_reception        U9.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.60  cov -6.90  Below Avg#25  miss D, Rank  DAL vs PHI (NFL)
+  D/Bronze     Kyren Williams           longest_reception        U11.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.00  cov -6.50  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     Marvin Mims Jr.          longest_reception        U9.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.20  cov -6.30  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Drake Maye               consecutive_pass_completions U6.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -6.00  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Cole Kmet                longest_reception        U7.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.60  cov -5.90  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Josh Jacobs              longest_reception        U7.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.60  cov -5.90  Weak#32       miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Caleb Williams           consecutive_pass_completions U5.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -5.50  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Derrick Henry            longest_reception        U6.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.20  cov -5.30  Below Avg#22  miss D, Rank  BAL vs CIN (NFL)
+  D/Bronze     Tyrone Tracy Jr.         fantasy_score            U6.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.34  cov -4.66  Weak#27       miss D, Rank  NYG vs HOU (NFL)
+  D/Bronze     Courtland Sutton         fantasy_score            U8.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  4.30  cov -4.20  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Blake Corum              longest_reception        U5.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.40  cov -4.10  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     J.K. Dobbins             longest_reception        U5.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.40  cov -4.10  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     TreVeyon Henderson       longest_reception        U4.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.00  cov -3.50  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Savion Williams          fantasy_score            U6.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  3.28  cov -2.72  Weak#32       miss D, Rank  GB vs DET (NFL)
+  D/Bronze     Drake Maye               sacks_taken              U2.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -2.50  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  D/Bronze     Cam Skattebo             longest_reception        U4.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  2.00  cov -2.50  Weak#27       miss D, Rank  NYG vs HOU (NFL)
+  D/Bronze     Troy Franklin            fantasy_score            U4.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  1.98  cov -2.02  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Caleb Williams           sacks_taken              U2.0  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.00  cov -2.00  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Jacoby Brissett          passing_yards            U235.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 120.80  cov -114.70  Avg#16        miss D, Rank  ARI vs DEN (NFL)
+  D/Bronze     Tanner McKee             passing_yards            U213.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 103.00  cov -110.50  Avg#20        miss D, Rank  PHI vs DAL (NFL)
+  D/Bronze     Bo Nix                   passing_yards            U220.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 170.80  cov -49.70  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Braelon Allen            rushing_yards            U71.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 43.20  cov -28.30  Avg#16        miss D, Rank  NYJ vs MIA (NFL)
+  D/Bronze     Trey McBride             receiving_yards          U66.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 39.60  cov -26.90  Avg#16        miss D, Rank  ARI vs DEN (NFL)
+  D/Bronze     Germie Bernard           receiving_yards          U54.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 30.60  cov -23.90  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Derrick Henry            rushing_yards            U86.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 63.60  cov -22.90  Below Avg#23  miss D, Rank  BAL vs CIN (NFL)
+  D/Bronze     Javonte Williams         rushing_yards            U66.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 49.00  cov -17.50  Avg#19        miss D, Rank  DAL vs PHI (NFL)
+  D/Bronze     Tony Pollard             rushing_yards            U67.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 50.60  cov -16.90  Avg#17        miss D, Rank  TEN vs CLE (NFL)
+  D/Bronze     Colston Loveland         receiving_yards          U41.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 26.40  cov -15.10  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Courtland Sutton         receiving_yards          U35.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 21.00  cov -14.50  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Dallas Goedert           receiving_yards          U41.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 27.80  cov -13.70  Avg#20        miss D, Rank  PHI vs DAL (NFL)
+  D/Bronze     DK Metcalf               receiving_yards          U58.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 45.00  cov -13.50  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Blake Corum              rushing_yards            U38.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 28.40  cov -10.10  Weak#28       miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     Jaylen Waddle            receiving_yards          U52.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 43.20  cov -9.30  Below Avg#23  miss D, Rank  DEN vs ARI (NFL)
+  D/Bronze     Tanner McKee             fantasy_score            U14.0  L5 1/4  L5avg   n/a  L10avg   n/a  szn  6.58  cov -7.42  Avg#20        miss D, Rank  PHI vs DAL (NFL)
+  D/Bronze     Kyler Murray             fantasy_score            U16.0  L5 1/4  L5avg   n/a  L10avg   n/a  szn  8.84  cov -7.16  Below Avg#21  miss D, Rank  MIN vs IND (NFL)
+  D/Bronze     Colston Loveland         fantasy_score            U10.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  5.64  cov -4.86  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Germie Bernard           fantasy_score            U12.0  L5 1/4  L5avg   n/a  L10avg   n/a  szn  7.14  cov -4.86  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Tony Pollard             receiving_yards          U9.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  5.00  cov -4.50  Above Avg#13  miss Delta, Rank  TEN vs CLE (NFL)
+  D/Bronze     D'Andre Swift            fantasy_score            U15.0  L5 1/4  L5avg   n/a  L10avg   n/a  szn 10.88  cov -4.12  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  D/Bronze     Gunnar Helm              receiving_yards          U15.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 12.00  cov -3.50  Above Avg#13  miss Delta, Rank  TEN vs CLE (NFL)
+  D/Bronze     DK Metcalf               fantasy_score            U12.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  9.72  cov -2.78  Below Avg#26  miss D, Rank  PIT vs NO (NFL)
+  D/Bronze     Jake Elliott             kicking_points           U6.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  4.40  cov -2.10  Avg#16        miss D, Rank  PHI vs DAL (NFL)
+  D/Bronze     Colby Parkinson          fantasy_score            U5.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  3.44  cov -2.06  Below Avg#24  miss D, Rank  LAR vs LV (NFL)
+  D/Bronze     George Kittle            receptions               U5.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  4.20  cov -1.30  Weak#29       miss D, Rank  SF vs ATL (NFL)
+  D/Bronze     Daniel Carlson           kicking_points           U6.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  5.20  cov -1.30  Weak#32       miss D, Rank  NO vs PIT (NFL)
+  D/Bronze     Tyrone Tracy Jr.         receptions               U1.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  0.40  cov -1.10  Weak#27       miss D, Rank  NYG vs HOU (NFL)
+  D/Bronze     Elic Ayomanor            receptions               U1.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  1.20  cov -0.30  Above Avg#13  miss Delta, Rank  TEN vs CLE (NFL)
+  D/ù          Jordan Love              rushing_yards            U7.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn -0.40  cov -7.90  Avg#15        miss Delta, D, Rank  GB vs DET (NFL)
+  D/ù          Bo Nix                   rushing_yards            U11.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  5.00  cov -6.50  Avg#20        miss Delta, D, Rank  DEN vs ARI (NFL)
+  D/ù          Tanner McKee             rushing_yards            U5.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.60  cov -4.90  Weak#32       miss Delta, D, Rank  PHI vs DAL (NFL)
+  D/ù          Jason Myers              kicking_points           U7.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  6.60  cov -0.90  Below Avg#26  miss Delta, D, Rank  SEA vs KC (NFL)
+  D/ù          Troy Franklin            receptions               U1.5  L5 0/5  L5avg   n/a  L10avg   n/a  szn  0.80  cov -0.70  Below Avg#23  miss Delta, D, Rank  DEN vs ARI (NFL)
+  D/ù          Tyrone Tracy Jr.         receiving_yards          U9.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  5.00  cov -4.50  Weak#27       miss Delta, D, Rank  NYG vs HOU (NFL)
+  D/ù          Cam Ward                 rushing_yards            U11.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  7.60  cov -3.90  Avg#17        miss Delta, D, Rank  TEN vs CLE (NFL)
+  D/ù          Derrick Henry            receiving_yards          U6.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  5.00  cov -1.50  Below Avg#22  miss Delta, D, Rank  BAL vs CIN (NFL)
+  D/ù          Ryan Flournoy            fantasy_score            U8.0  L5 1/4  L5avg   n/a  L10avg   n/a  szn  6.82  cov -1.18  Below Avg#25  miss Delta, D, Rank  DAL vs PHI (NFL)
+  D/ù          Rome Odunze              fantasy_score            U10.0  L5 1/4  L5avg   n/a  L10avg   n/a  szn  8.86  cov -1.14  Avg#14        miss Delta, D, Rank  CHI vs NE (NFL)
+  D/ù          Colby Parkinson          receiving_yards          U19.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 18.40  cov -1.10  Below Avg#24  miss Delta, D, Rank  LAR vs LV (NFL)
+  D/ù          Luther Burden III        fantasy_score            U12.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 11.56  cov -0.94  Avg#14        miss Delta, D, Rank  CHI vs NE (NFL)
+  D/ù          Tyjae Spears             rushing_yards            U11.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn 10.60  cov -0.90  Avg#17        miss Delta, D, Rank  TEN vs CLE (NFL)
+  D/ù          Evan Engram              fantasy_score            U6.0  L5 1/4  L5avg   n/a  L10avg   n/a  szn  5.26  cov -0.74  Below Avg#23  miss Delta, D, Rank  DEN vs ARI (NFL)
+  D/ù          Evan Engram              receptions               U2.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  1.80  cov -0.70  Below Avg#23  miss Delta, D, Rank  DEN vs ARI (NFL)
+  D/ù          J.K. Dobbins             receiving_yards          U5.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  4.80  cov -0.70  Below Avg#23  miss Delta, D, Rank  DEN vs ARI (NFL)
+  D/ù          DeMario Douglas          fantasy_score            U8.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  7.94  cov -0.56  Avg#15        miss Delta, D, Rank  NE vs CHI (NFL)
+  D/ù          Brock Purdy              int                      U0.5  L5 1/4  L5avg   n/a  L10avg   n/a  szn  0.20  cov -0.30  Weak#29       miss Delta, D, Rank  SF vs ATL (NFL)
+Goblin OVER    (n=343)
+  C/Platinum   Aaron Rodgers            passing_yards            O174.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 246.80  cov +72.30  Below Avg#26  PIT vs NO (NFL)
+  C/Platinum   Konata Mumpfield         receiving_yards          O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 26.80  cov +22.30  Below Avg#24  LAR vs LV (NFL)
+  C/Platinum   RJ Harvey                receiving_yards          O19.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 37.60  cov +18.10  Below Avg#23  DEN vs ARI (NFL)
+  C/Platinum   Ryan Fitzgerald          kicking_points           O3.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  9.40  cov +5.90  Weak#31       CAR vs TB (NFL)
+  C/Platinum   Evan McPherson           kicking_points           O3.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  8.80  cov +5.30  Below Avg#21  CIN vs BAL (NFL)
+  C/Platinum   Will Reichard            kicking_points           O6.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 10.60  cov +4.10  Weak#28       MIN vs IND (NFL)
+  C/Platinum   Ryan Fitzgerald          kicking_points           O6.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  9.40  cov +2.90  Weak#31       CAR vs TB (NFL)
+  C/Platinum   Marvin Mims Jr.          receptions               O0.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  3.20  cov +2.70  Below Avg#23  DEN vs ARI (NFL)
+  C/Platinum   Matthew Stafford         passing_yards            O209.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 285.20  cov +75.70  Below Avg#24  LAR vs LV (NFL)
+  C/Platinum   Matthew Stafford         passing_yards            O224.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 285.20  cov +60.70  Below Avg#24  LAR vs LV (NFL)
+  C/Platinum   Puka Nacua               receiving_yards          O59.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 111.60  cov +52.10  Below Avg#24  LAR vs LV (NFL)
+  C/Platinum   Puka Nacua               receiving_yards          O69.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 111.60  cov +42.10  Below Avg#24  LAR vs LV (NFL)
+  C/Platinum   George Pickens           receiving_yards          O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 71.00  cov +41.50  Below Avg#25  DAL vs PHI (NFL)
+  C/Platinum   Matthew Stafford         passing_yards            O249.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 285.20  cov +35.70  Below Avg#24  LAR vs LV (NFL)
+  C/Platinum   Jaylen Warren            rushing_yards            O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 73.20  cov +33.70  Weak#30       PIT vs NO (NFL)
+  C/Platinum   Marvin Mims Jr.          receiving_yards          O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 35.80  cov +31.30  Below Avg#23  DEN vs ARI (NFL)
+  C/Platinum   Ashton Jeanty            rushing_yards            O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 58.20  cov +28.70  Below Avg#26  LV vs LAR (NFL)
+  C/Platinum   Kyren Williams           rushing_yards            O34.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 62.00  cov +27.50  Weak#28       LAR vs LV (NFL)
+  C/Platinum   Kyren Williams           receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 35.80  cov +26.30  Below Avg#24  LAR vs LV (NFL)
+  C/Platinum   Marvin Mims Jr.          receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 35.80  cov +26.30  Below Avg#23  DEN vs ARI (NFL)
+  C/Platinum   Kyren Williams           rushing_yards            O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 62.00  cov +22.50  Weak#28       LAR vs LV (NFL)
+  C/Platinum   Ryan Flournoy            receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 36.20  cov +21.70  Below Avg#25  DAL vs PHI (NFL)
+  C/Platinum   Tucker Kraft             receiving_yards          O24.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 42.40  cov +17.90  Weak#32       GB vs DET (NFL)
+  C/Platinum   Ryan Flournoy            receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 36.20  cov +16.70  Below Avg#25  DAL vs PHI (NFL)
+  C/Platinum   Derrick Henry            rushing_yards            O49.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 63.60  cov +14.10  Below Avg#23  BAL vs CIN (NFL)
+  C/Platinum   Evan Engram              receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 22.60  cov +13.10  Below Avg#23  DEN vs ARI (NFL)
+  C/Platinum   Kyren Williams           fantasy_score            O13.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 19.58  cov +6.58  Below Avg#24  LAR vs LV (NFL)
+  C/Platinum   Marvin Mims Jr.          fantasy_score            O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.98  cov +6.48  Below Avg#23  DEN vs ARI (NFL)
+  C/Platinum   Andre Szmyt              kicking_points           O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.20  cov +3.70  Weak#28       CLE vs TEN (NFL)
+  C/Gold       Brock Purdy              passing_yards            O179.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 254.20  cov +74.70  Weak#29       SF vs ATL (NFL)
+  C/Gold       Brock Purdy              passing_yards            O199.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 254.20  cov +54.70  Weak#29       SF vs ATL (NFL)
+  C/Gold       Malachi Fields           receiving_yards          O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 29.20  cov +19.70  Weak#27       NYG vs HOU (NFL)
+  C/Gold       Malachi Fields           receiving_yards          O14.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 29.20  cov +14.70  Weak#27       NYG vs HOU (NFL)
+  C/Gold       Deshaun Watson           rushing_yards            O19.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 33.40  cov +13.90  Below Avg#21  CLE vs TEN (NFL)
+  C/Gold       Brock Purdy              fantasy_score            O14.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 23.97  cov +9.47  Weak#29       SF vs ATL (NFL)
+  C/Gold       Dominic Zvada            kicking_points           O3.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  8.20  cov +4.70  Below Avg#21  NYG vs HOU (NFL)
+  C/Gold       Malachi Fields           fantasy_score            O2.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  6.12  cov +3.62  Weak#27       NYG vs HOU (NFL)
+  C/Gold       Aaron Rodgers            passing_yards            O199.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 246.80  cov +47.30  Below Avg#26  PIT vs NO (NFL)
+  C/Gold       Brock Purdy              passing_yards            O209.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 254.20  cov +44.70  Weak#29       SF vs ATL (NFL)
+  C/Gold       Aaron Rodgers            passing_yards            O202.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 246.80  cov +44.30  Below Avg#26  PIT vs NO (NFL)
+  C/Gold       Lamar Jackson            passing_yards            O199.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 241.00  cov +41.50  Below Avg#22  BAL vs CIN (NFL)
+  C/Gold       Dak Prescott             passing_yards            O209.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 249.60  cov +40.10  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       Bucky Irving             rushing_yards            O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 72.40  cov +32.90  Weak#27       TB vs CAR (NFL)
+  C/Gold       Justin Jefferson         receiving_yards          O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 71.80  cov +32.30  Below Avg#21  MIN vs IND (NFL)
+  C/Gold       Isaiah Likely            receiving_yards          O24.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 56.80  cov +32.30  Weak#27       NYG vs HOU (NFL)
+  C/Gold       George Pickens           receiving_yards          O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 71.00  cov +31.50  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       Christian Watson         receiving_yards          O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 70.80  cov +31.30  Weak#32       GB vs DET (NFL)
+  C/Gold       Jaylen Warren            receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 40.60  cov +31.10  Below Avg#26  PIT vs NO (NFL)
+  C/Gold       Matthew Golden           receiving_yards          O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 69.60  cov +30.10  Weak#32       GB vs DET (NFL)
+  C/Gold       Isaiah Likely            receiving_yards          O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 56.80  cov +27.30  Weak#27       NYG vs HOU (NFL)
+  C/Gold       Dak Prescott             passing_yards            O224.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 249.60  cov +25.10  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       George Kittle            receiving_yards          O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 62.60  cov +23.10  Weak#29       SF vs ATL (NFL)
+  C/Gold       Justin Jefferson         receiving_yards          O49.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 71.80  cov +22.30  Below Avg#21  MIN vs IND (NFL)
+  C/Gold       Jaylen Warren            receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 40.60  cov +21.10  Below Avg#26  PIT vs NO (NFL)
+  C/Gold       Ashton Jeanty            rushing_yards            O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 58.20  cov +18.70  Below Avg#26  LV vs LAR (NFL)
+  C/Gold       Konata Mumpfield         receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 26.80  cov +17.30  Below Avg#24  LAR vs LV (NFL)
+  C/Gold       Jaylen Warren            receiving_yards          O24.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 40.60  cov +16.10  Below Avg#26  PIT vs NO (NFL)
+  C/Gold       Matthew Stafford         passing_yards            O269.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 285.20  cov +15.70  Below Avg#24  LAR vs LV (NFL)
+  C/Gold       Ashton Jeanty            rushing_yards            O44.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 58.20  cov +13.70  Below Avg#26  LV vs LAR (NFL)
+  C/Gold       George Kittle            receiving_yards          O49.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 62.60  cov +13.10  Weak#29       SF vs ATL (NFL)
+  C/Gold       Jake Ferguson            receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 19.20  cov +9.70  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       Malachi Fields           receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 29.20  cov +9.70  Weak#27       NYG vs HOU (NFL)
+  C/Gold       Javonte Williams         receiving_yards          O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 12.60  cov +8.10  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       Aaron Rodgers            fantasy_score            O12.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 18.23  cov +6.23  Below Avg#26  PIT vs NO (NFL)
+  C/Gold       George Kittle            fantasy_score            O11.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 16.46  cov +5.46  Weak#29       SF vs ATL (NFL)
+  C/Gold       George Pickens           fantasy_score            O9.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 13.70  cov +4.70  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       Jake Ferguson            fantasy_score            O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.12  cov +4.62  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       Matthew Golden           fantasy_score            O10.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 14.68  cov +4.18  Weak#32       GB vs DET (NFL)
+  C/Gold       Konata Mumpfield         fantasy_score            O2.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn  5.68  cov +3.68  Below Avg#24  LAR vs LV (NFL)
+  C/Gold       Matt Gay                 kicking_points           O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.00  cov +3.50  Weak#28       LV vs LAR (NFL)
+  C/Gold       Will Reichard            kicking_points           O7.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 10.60  cov +3.10  Weak#28       MIN vs IND (NFL)
+  C/Gold       Isaiah Likely            receptions               O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  6.60  cov +3.10  Weak#27       NYG vs HOU (NFL)
+  C/Gold       Dak Prescott             fantasy_score            O14.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 16.62  cov +2.62  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       Isaiah Likely            receptions               O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  6.60  cov +2.10  Weak#27       NYG vs HOU (NFL)
+  C/Gold       Christian Watson         receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.20  cov +1.70  Weak#32       GB vs DET (NFL)
+  C/Gold       Aaron Rodgers            passing_tds              O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.00  cov +1.50  Below Avg#26  PIT vs NO (NFL)
+  C/Gold       Tucker Kraft             receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.00  cov +1.50  Weak#32       GB vs DET (NFL)
+  C/Gold       Keisean Nixon            tackles_ast              O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  5.80  cov +1.30  Weak#32       GB vs DET (NFL)
+  C/Gold       Jaylen Warren            receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.80  cov +1.30  Below Avg#26  PIT vs NO (NFL)
+  C/Gold       Jake Ferguson            receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.60  cov +1.10  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       Javonte Williams         receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.60  cov +1.10  Below Avg#25  DAL vs PHI (NFL)
+  C/Gold       Blake Corum              receptions               O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  1.40  cov +0.90  Below Avg#24  LAR vs LV (NFL)
+  C/Gold       Brock Purdy              passing_tds              O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.40  cov +0.90  Weak#29       SF vs ATL (NFL)
+  C/Silver     Denzel Boston            receiving_yards          O19.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 66.00  cov +46.50  Avg#17        miss D  CLE vs TEN (NFL)
+  C/Silver     Denzel Boston            receiving_yards          O39.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 66.00  cov +26.50  Avg#17        miss D  CLE vs TEN (NFL)
+  C/Silver     Denzel Boston            receiving_yards          O40.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 66.00  cov +25.50  Avg#17        miss D  CLE vs TEN (NFL)
+  C/Silver     Deshaun Watson           fantasy_score            O12.0  L5 5/0  L5avg   n/a  L10avg   n/a  szn 17.02  cov +5.02  Avg#17        miss D  CLE vs TEN (NFL)
+  C/Silver     Deshaun Watson           passing_tds              O0.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  1.40  cov +0.90  Avg#17        miss D  CLE vs TEN (NFL)
+  C/Silver     Malachi Fields           receptions               O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  2.00  cov +0.50  Weak#27       miss Delta  NYG vs HOU (NFL)
+  C/Silver     Bryce Young              passing_yards            O199.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 256.60  cov +57.10  Avg#19        miss D  CAR vs TB (NFL)
+  C/Silver     Deshaun Watson           passing_yards            O149.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 202.00  cov +52.50  Avg#17        miss D  CLE vs TEN (NFL)
+  C/Silver     Jalen Brooks             receiving_yards          O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 44.40  cov +39.90  Avg#16        miss D  ARI vs DEN (NFL)
+  C/Silver     Jalen Brooks             receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 44.40  cov +34.90  Avg#16        miss D  ARI vs DEN (NFL)
+  C/Silver     Bryce Young              passing_yards            O224.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 256.60  cov +32.10  Avg#19        miss D  CAR vs TB (NFL)
+  C/Silver     Harold Fannin Jr.        receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 31.40  cov +16.90  Avg#17        miss D  CLE vs TEN (NFL)
+  C/Silver     Tommy Tremble            receiving_yards          O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 20.40  cov +15.90  Avg#19        miss D  CAR vs TB (NFL)
+  C/Silver     Chuba Hubbard            receiving_yards          O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 16.80  cov +12.30  Avg#19        miss D  CAR vs TB (NFL)
+  C/Silver     Harold Fannin Jr.        receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 31.40  cov +11.90  Avg#17        miss D  CLE vs TEN (NFL)
+  C/Silver     Tony Pollard             rushing_yards            O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 50.60  cov +11.10  Avg#17        miss D  TEN vs CLE (NFL)
+  C/Silver     Tommy Tremble            receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 20.40  cov +10.90  Avg#19        miss D  CAR vs TB (NFL)
+  C/Silver     Denzel Boston            fantasy_score            O6.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 13.40  cov +6.90  Avg#17        miss D  CLE vs TEN (NFL)
+  C/Silver     C.J. Stroud              rushing_yards            O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 11.20  cov +6.70  Weak#29       miss Delta  HOU vs NYG (NFL)
+  C/Silver     Jalen Brooks             fantasy_score            O2.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.64  cov +6.64  Avg#16        miss D  ARI vs DEN (NFL)
+  C/Silver     Chuba Hubbard            fantasy_score            O10.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 16.02  cov +6.02  Avg#19        miss D  CAR vs TB (NFL)
+  C/Silver     Bryce Young              fantasy_score            O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 19.04  cov +4.54  Avg#19        miss D  CAR vs TB (NFL)
+  C/Silver     George Kittle            receiving_yards          O59.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 62.60  cov +3.10  Weak#29       miss Delta  SF vs ATL (NFL)
+  C/Silver     Jaylen Wright            rushing_yards            O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.40  cov +2.90  Below Avg#23  miss Delta  MIA vs NYJ (NFL)
+  C/Silver     Jalen Brooks             receptions               O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  3.00  cov +2.50  Avg#16        miss D  ARI vs DEN (NFL)
+  C/Silver     Tommy Tremble            fantasy_score            O3.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.64  cov +1.64  Avg#19        miss D  CAR vs TB (NFL)
+  C/Silver     Jalen Brooks             receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  3.00  cov +1.50  Avg#16        miss D  ARI vs DEN (NFL)
+  C/Silver     Tommy Tremble            receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.60  cov +1.10  Avg#19        miss D  CAR vs TB (NFL)
+  C/Silver     George Kittle            receptions               O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.20  cov +0.70  Weak#29       miss Delta  SF vs ATL (NFL)
+  C/Silver     Troy Franklin            receptions               O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  0.80  cov +0.30  Below Avg#23  miss Delta  DEN vs ARI (NFL)
+  C/Silver     Jordan Love              passing_tds              O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  1.80  cov +0.30  Weak#32       miss Delta  GB vs DET (NFL)
+  C/Silver     Dak Prescott             passing_yards            O249.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 249.60  cov +0.10  Below Avg#25  miss Delta  DAL vs PHI (NFL)
+  C/Bronze     Drake Maye               quarters_with_25_pass_yards O3.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 245.60  cov +242.10  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Chris Olave              receiving_yards          O39.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 107.40  cov +67.90  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Jaxon Smith-Njigba       receiving_yards          O59.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 123.00  cov +63.50  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Jaxon Smith-Njigba       receiving_yards          O69.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 123.00  cov +53.50  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Kyle Williams            receiving_yards          O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 52.80  cov +48.30  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Kyle Williams            receiving_yards          O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 52.80  cov +43.30  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Cam Skattebo             rushing_yards            O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 52.20  cov +42.70  Elite#3       miss D, Rank  NYG vs HOU (NFL)
+  C/Bronze     Jaylin Noel              receiving_yards          O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 45.40  cov +40.90  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Xavier Hutchinson        receiving_yards          O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 40.80  cov +36.30  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Jameson Williams         receiving_yards          O24.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 60.60  cov +36.10  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Jaylin Noel              receiving_yards          O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 45.40  cov +35.90  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Tre Tucker               receiving_yards          O19.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 54.80  cov +35.30  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Juwan Johnson            receiving_yards          O14.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 49.60  cov +35.10  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Jonathan Taylor          rushing_yards            O44.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 79.60  cov +35.10  Elite#5       miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     Rome Odunze              receiving_yards          O19.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 54.60  cov +35.10  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Ashton Jeanty            receiving_yards          O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 43.00  cov +33.50  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Malik Washington         receiving_yards          O19.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 52.40  cov +32.90  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  C/Bronze     Cam Skattebo             rushing_yards            O19.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 52.20  cov +32.70  Elite#3       miss D, Rank  NYG vs HOU (NFL)
+  C/Bronze     Sam LaPorta              receiving_yards          O24.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 56.20  cov +31.70  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Jameson Williams         receiving_yards          O29.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 60.60  cov +31.10  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Devaughn Vele            receiving_yards          O19.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 50.40  cov +30.90  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Luther Burden III        receiving_yards          O24.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 53.20  cov +28.70  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Ashton Jeanty            receiving_yards          O14.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 43.00  cov +28.50  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Malik Washington         receiving_yards          O24.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 52.40  cov +27.90  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  C/Bronze     Cam Skattebo             rushing_yards            O24.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 52.20  cov +27.70  Elite#3       miss D, Rank  NYG vs HOU (NFL)
+  C/Bronze     TreVeyon Henderson       rushing_yards            O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 36.40  cov +26.90  Above Avg#8   miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Sam LaPorta              receiving_yards          O29.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 56.20  cov +26.70  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Tory Horton              receiving_yards          O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 30.80  cov +26.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Kayshon Boutte           receiving_yards          O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 30.60  cov +26.10  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Rome Odunze              receiving_yards          O29.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 54.60  cov +25.10  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Luther Burden III        receiving_yards          O29.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 53.20  cov +23.70  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Cooper Kupp              receiving_yards          O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 32.80  cov +23.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Malik Washington         receiving_yards          O29.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 52.40  cov +22.90  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  C/Bronze     Greg Dulcich             receiving_yards          O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 31.60  cov +22.10  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  C/Bronze     TreVeyon Henderson       rushing_yards            O14.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 36.40  cov +21.90  Above Avg#8   miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Kayshon Boutte           receiving_yards          O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 30.60  cov +21.10  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Brock Purdy              rushing_yards            O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 30.00  cov +20.50  Elite#4       miss D, Rank  SF vs ATL (NFL)
+  C/Bronze     Drake Maye               rushing_yards            O14.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 32.20  cov +17.70  Above Avg#8   miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Greg Dulcich             receiving_yards          O14.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 31.60  cov +17.10  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  C/Bronze     Jahan Dotson             receiving_yards          O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 26.20  cov +16.70  Above Avg#10  miss D, Rank  ATL vs SF (NFL)
+  C/Bronze     Brock Purdy              rushing_yards            O14.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 30.00  cov +15.50  Elite#4       miss D, Rank  SF vs ATL (NFL)
+  C/Bronze     Rome Odunze              receiving_yards          O39.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 54.60  cov +15.10  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Sam LaPorta              receiving_yards          O41.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 56.20  cov +14.70  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Alvin Kamara             rushing_yards            O9.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 19.40  cov +9.90  Avg#14        miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Tory Horton              fantasy_score            O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 10.28  cov +8.78  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Kirk Cousins             fantasy_score            O11.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 19.71  cov +8.21  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Spencer Shrader          kicking_points           O3.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 11.60  cov +8.10  Above Avg#11  miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     Joe Burrow               fantasy_score            O15.0  L5 5/0  L5avg   n/a  L10avg   n/a  szn 21.85  cov +6.85  Above Avg#10  miss D, Rank  CIN vs BAL (NFL)
+  C/Bronze     Jaylin Noel              fantasy_score            O2.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  8.86  cov +6.36  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Devaughn Vele            fantasy_score            O6.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn 12.44  cov +5.94  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Jared Goff               fantasy_score            O15.0  L5 5/0  L5avg   n/a  L10avg   n/a  szn 20.66  cov +5.66  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Jaxon Smith-Njigba       receptions               O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  8.80  cov +4.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Kayshon Boutte           fantasy_score            O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  5.46  cov +3.96  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     TreVeyon Henderson       fantasy_score            O3.0  L5 5/0  L5avg   n/a  L10avg   n/a  szn  6.80  cov +3.80  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Eli Raridon              fantasy_score            O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  5.18  cov +3.68  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Emmett Johnson           fantasy_score            O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  5.08  cov +3.58  Elite#1       miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Kalif Raymond            receptions               O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  4.80  cov +3.30  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Dillon Thieneman         tackles_ast              O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  7.40  cov +2.90  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Jason Sanders            kicking_points           O3.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  6.20  cov +2.70  Avg#15        miss D, Rank  NYJ vs MIA (NFL)
+  C/Bronze     Juwan Johnson            receptions               O2.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  5.00  cov +2.50  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Devaughn Vele            receptions               O2.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  5.00  cov +2.50  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Rome Odunze              fantasy_score            O6.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  8.86  cov +2.36  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Xavier Hutchinson        receptions               O0.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  2.80  cov +2.30  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Robert Spillane          tackles_ast              O4.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  6.80  cov +2.30  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Malik Washington         receptions               O2.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  4.60  cov +2.10  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  C/Bronze     Rome Odunze              receptions               O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  3.40  cov +1.90  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Tory Horton              receptions               O0.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  2.40  cov +1.90  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Ashton Jeanty            receptions               O2.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  4.40  cov +1.90  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Kirk Cousins             passing_tds              O0.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  2.40  cov +1.90  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Kayshon Boutte           receptions               O0.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  2.40  cov +1.90  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Greg Dulcich             receptions               O1.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  3.20  cov +1.70  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  C/Bronze     Kyle Williams            receptions               O0.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  1.80  cov +1.30  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Eli Raridon              receptions               O0.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  1.80  cov +1.30  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Foster Moreau            receptions               O0.5  L5 5/0  L5avg   n/a  L10avg   n/a  szn  1.60  cov +1.10  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Tyler Shough             passing_yards            O169.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 259.80  cov +90.30  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Jared Goff               passing_yards            O219.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 309.00  cov +89.50  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Tyler Shough             passing_yards            O174.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 259.80  cov +85.30  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Jared Goff               passing_yards            O224.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 309.00  cov +84.50  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Kirk Cousins             passing_yards            O174.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 253.80  cov +79.30  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Joe Burrow               passing_yards            O199.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 272.20  cov +72.70  Above Avg#10  miss D, Rank  CIN vs BAL (NFL)
+  C/Bronze     Tyler Shough             passing_yards            O199.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 259.80  cov +60.30  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Jared Goff               passing_yards            O249.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 309.00  cov +59.50  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Chris Olave              receiving_yards          O49.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 107.40  cov +57.90  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Drake Maye               passing_yards            O189.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 245.60  cov +56.10  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Tee Higgins              receiving_yards          O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 84.60  cov +55.10  Above Avg#10  miss D, Rank  CIN vs BAL (NFL)
+  C/Bronze     Bijan Robinson           rushing_yards            O49.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 104.40  cov +54.90  Elite#7       miss D, Rank  ATL vs SF (NFL)
+  C/Bronze     Daniel Jones             passing_yards            O149.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 204.20  cov +54.70  Elite#3       miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     Kirk Cousins             passing_yards            O199.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 253.80  cov +54.30  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Kenneth Walker III       rushing_yards            O59.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 110.40  cov +50.90  Above Avg#10  miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Patrick Mahomes          passing_yards            O169.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 216.60  cov +47.10  Elite#1       miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Malik Willis             passing_yards            O124.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 169.80  cov +45.30  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  C/Bronze     Tee Higgins              receiving_yards          O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 84.60  cov +45.10  Above Avg#10  miss D, Rank  CIN vs BAL (NFL)
+  C/Bronze     Bijan Robinson           rushing_yards            O59.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 104.40  cov +44.90  Elite#7       miss D, Rank  ATL vs SF (NFL)
+  C/Bronze     Patrick Mahomes          passing_yards            O174.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 216.60  cov +42.10  Elite#1       miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Jaxon Smith-Njigba       receiving_yards          O81.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 123.00  cov +41.50  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Kenneth Walker III       rushing_yards            O69.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 110.40  cov +40.90  Above Avg#10  miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Amon-Ra St. Brown        receiving_yards          O49.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 88.40  cov +38.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Kyle Williams            receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 52.80  cov +38.30  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Chris Olave              receiving_yards          O70.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 107.40  cov +36.90  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Isaac TeSlaa             receiving_yards          O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 41.00  cov +36.50  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Tyler Shough             passing_yards            O225.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 259.80  cov +34.30  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Tee Higgins              receiving_yards          O52.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 84.60  cov +32.10  Above Avg#10  miss D, Rank  CIN vs BAL (NFL)
+  C/Bronze     Isaac TeSlaa             receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 41.00  cov +31.50  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Josh Downs               receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 49.80  cov +30.30  Elite#3       miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     Carnell Tate             receiving_yards          O24.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 54.80  cov +30.30  Above Avg#13  miss D, Rank  TEN vs CLE (NFL)
+  C/Bronze     Juwan Johnson            receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 49.60  cov +30.10  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Jonathan Taylor          rushing_yards            O49.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 79.60  cov +30.10  Elite#5       miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     Kirk Cousins             passing_yards            O224.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 253.80  cov +29.30  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Josh Jacobs              rushing_yards            O21.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 50.60  cov +29.10  Avg#15        miss D, Rank  GB vs DET (NFL)
+  C/Bronze     Amon-Ra St. Brown        receiving_yards          O59.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 88.40  cov +28.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Jaylin Noel              receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 45.40  cov +25.90  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Tre Tucker               receiving_yards          O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 54.80  cov +25.30  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Brian Robinson Jr.       rushing_yards            O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 39.80  cov +25.30  Elite#7       miss D, Rank  ATL vs SF (NFL)
+  C/Bronze     Tre Tucker               receiving_yards          O30.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 54.80  cov +24.30  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Kirk Cousins             passing_yards            O229.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 253.80  cov +24.30  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Chuba Hubbard            rushing_yards            O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 63.40  cov +23.90  Elite#2       miss D, Rank  CAR vs TB (NFL)
+  C/Bronze     Ashton Jeanty            receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 43.00  cov +23.50  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Nico Collins             receiving_yards          O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 62.40  cov +22.90  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Rhamondre Stevenson      rushing_yards            O22.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 45.40  cov +22.90  Above Avg#8   miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Tory Horton              receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 30.80  cov +21.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Josh Jacobs              rushing_yards            O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 50.60  cov +21.10  Avg#15        miss D, Rank  GB vs DET (NFL)
+  C/Bronze     Devaughn Vele            receiving_yards          O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 50.40  cov +20.90  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Hunter Henry             receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 35.40  cov +20.90  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Wan'Dale Robinson        receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 35.20  cov +20.70  Above Avg#13  miss D, Rank  TEN vs CLE (NFL)
+  C/Bronze     Josh Downs               receiving_yards          O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 49.80  cov +20.30  Elite#3       miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     Brian Robinson Jr.       rushing_yards            O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 39.80  cov +20.30  Elite#7       miss D, Rank  ATL vs SF (NFL)
+  C/Bronze     Juwan Johnson            receiving_yards          O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 49.60  cov +20.10  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Chase Brown              rushing_yards            O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 49.20  cov +19.70  Above Avg#11  miss D, Rank  CIN vs BAL (NFL)
+  C/Bronze     Michael Mayer            receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 34.20  cov +19.70  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Devaughn Vele            receiving_yards          O31.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 50.40  cov +18.90  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Cooper Kupp              receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 32.80  cov +18.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Rashid Shaheed           receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 27.80  cov +18.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Jonathan Taylor          rushing_yards            O61.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 79.60  cov +18.10  Elite#5       miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     Jahmyr Gibbs             receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 37.40  cov +17.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     D'Andre Swift            receiving_yards          O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 22.00  cov +17.50  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Eli Raridon              receiving_yards          O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 21.80  cov +17.30  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     TreVeyon Henderson       rushing_yards            O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 36.40  cov +16.90  Above Avg#8   miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Kaelon Black             rushing_yards            O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 30.80  cov +16.30  Elite#4       miss D, Rank  SF vs ATL (NFL)
+  C/Bronze     Rhamondre Stevenson      rushing_yards            O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 45.40  cov +15.90  Above Avg#8   miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Hunter Henry             receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 35.40  cov +15.90  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Brian Robinson Jr.       rushing_yards            O24.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 39.80  cov +15.30  Elite#7       miss D, Rank  ATL vs SF (NFL)
+  C/Bronze     DeMario Douglas          receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 29.40  cov +14.90  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Michael Mayer            receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 34.20  cov +14.70  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Emmett Johnson           rushing_yards            O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 19.00  cov +14.50  Above Avg#10  miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Jaxon Smith-Njigba       fantasy_score            O14.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 28.41  cov +14.41  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Kyle Pitts Sr.           receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 28.80  cov +14.30  Above Avg#10  miss D, Rank  ATL vs SF (NFL)
+  C/Bronze     Keenan Allen             receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 33.80  cov +14.30  Elite#3       miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     AJ Barner                receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 23.60  cov +14.10  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Cooper Kupp              receiving_yards          O19.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 32.80  cov +13.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Cole Kmet                receiving_yards          O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 17.40  cov +12.90  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Jahmyr Gibbs             receiving_yards          O24.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 37.40  cov +12.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Rhamondre Stevenson      receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 22.20  cov +12.70  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     D'Andre Swift            rushing_yards            O34.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 46.80  cov +12.30  Above Avg#9   miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Bryce Young              passing_yards            O245.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 256.60  cov +11.10  Avg#19        miss Delta, D  CAR vs TB (NFL)
+  C/Bronze     Tyler Shough             rushing_yards            O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 14.40  cov +9.90  Avg#14        miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Kenneth Walker III       fantasy_score            O12.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 22.32  cov +9.82  Elite#1       miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Amon-Ra St. Brown        fantasy_score            O14.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 23.24  cov +9.24  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Chris Olave              fantasy_score            O11.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 19.74  cov +8.24  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Tyler Shough             fantasy_score            O12.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 20.23  cov +8.23  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Juwan Johnson            fantasy_score            O6.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 13.56  cov +7.56  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Ashton Jeanty            fantasy_score            O10.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 16.92  cov +6.42  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Patrick Mahomes          fantasy_score            O11.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 17.88  cov +6.38  Elite#1       miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Baker Mayfield           passing_yards            O159.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 165.60  cov +6.10  Avg#18        miss Delta, D  TB vs CAR (NFL)
+  C/Bronze     Brock Bowers             fantasy_score            O12.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 17.82  cov +5.82  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Xavier Hutchinson        fantasy_score            O1.5  L5 4/0  L5avg   n/a  L10avg   n/a  szn  6.96  cov +5.46  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Sam LaPorta              fantasy_score            O8.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 13.42  cov +4.92  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Chase McLaughlin         kicking_points           O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.00  cov +4.50  Above Avg#11  miss D, Rank  TB vs CAR (NFL)
+  C/Bronze     Tre Tucker               fantasy_score            O6.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 10.36  cov +4.36  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Wan'Dale Robinson        fantasy_score            O6.0  L5 4/1  L5avg   n/a  L10avg   n/a  szn 10.34  cov +4.34  Above Avg#13  miss D, Rank  TEN vs CLE (NFL)
+  C/Bronze     Michael Mayer            fantasy_score            O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.82  cov +4.32  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Cole Kmet                fantasy_score            O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  5.76  cov +4.26  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Harrison Butker          kicking_points           O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.40  cov +3.90  Elite#6       miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Cooper Kupp              fantasy_score            O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.28  cov +3.78  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Foster Moreau            fantasy_score            O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  5.12  cov +3.62  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Isaac TeSlaa             fantasy_score            O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  6.10  cov +3.60  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Chris Olave              receptions               O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.80  cov +3.30  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Jaxon Smith-Njigba       receptions               O5.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.80  cov +3.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Sam Darnold              fantasy_score            O11.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 14.62  cov +3.12  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Jameson Williams         fantasy_score            O7.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 10.46  cov +2.96  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Amon-Ra St. Brown        receptions               O5.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.40  cov +2.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Andy Borregales          kicking_points           O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  6.00  cov +2.50  Elite#4       miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Chris Olave              receptions               O5.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.80  cov +2.30  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Jaxon Smith-Njigba       receptions               O6.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.80  cov +2.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Hunter Henry             fantasy_score            O5.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.74  cov +2.24  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Carnell Tate             receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.60  cov +2.10  Above Avg#13  miss D, Rank  TEN vs CLE (NFL)
+  C/Bronze     Jameson Williams         receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.40  cov +1.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Amon-Ra St. Brown        receptions               O6.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  8.40  cov +1.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Sam LaPorta              receptions               O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  5.40  cov +1.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Wan'Dale Robinson        receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.40  cov +1.90  Above Avg#13  miss D, Rank  TEN vs CLE (NFL)
+  C/Bronze     Kamari Lassiter          tackles_ast              O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  6.20  cov +1.70  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Michael Mayer            receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.20  cov +1.70  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Alvin Kamara             receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  3.00  cov +1.50  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Rhamondre Stevenson      receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  3.00  cov +1.50  Avg#15        miss D, Rank  NE vs CHI (NFL)
+  C/Bronze     Brock Bowers             receptions               O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  6.00  cov +1.50  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     Devaughn Vele            receptions               O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  5.00  cov +1.50  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Tyler Warren             receptions               O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  6.00  cov +1.50  Elite#3       miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     Cooper Kupp              receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.80  cov +1.30  Above Avg#9   miss D, Rank  SEA vs KC (NFL)
+  C/Bronze     Mike Gesicki             receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.80  cov +1.30  Above Avg#10  miss D, Rank  CIN vs BAL (NFL)
+  C/Bronze     Tyler Shough             passing_tds              O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  1.80  cov +1.30  Above Avg#8   miss D, Rank  NO vs PIT (NFL)
+  C/Bronze     Tre Tucker               receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  3.80  cov +1.30  Elite#2       miss D, Rank  LV vs LAR (NFL)
+  C/Bronze     D'Andre Swift            receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.80  cov +1.30  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Patrick Mahomes          passing_tds              O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  1.80  cov +1.30  Elite#1       miss D, Rank  KC vs SEA (NFL)
+  C/Bronze     Cole Kmet                receptions               O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  1.60  cov +1.10  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Jonathan Taylor          receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.60  cov +1.10  Elite#3       miss D, Rank  IND vs MIN (NFL)
+  C/Bronze     Jaylin Noel              receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.60  cov +1.10  Elite#4       miss D, Rank  HOU vs NYG (NFL)
+  C/Bronze     Luther Burden III        receptions               O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.60  cov +1.10  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Malik Washington         receptions               O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.60  cov +1.10  Elite#5       miss D, Rank  MIA vs NYJ (NFL)
+  C/Bronze     Jameson Williams         receptions               O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.40  cov +0.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Jahmyr Gibbs             receptions               O3.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  4.40  cov +0.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Sam LaPorta              receptions               O4.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  5.40  cov +0.90  Elite#6       miss D, Rank  DET vs GB (NFL)
+  C/Bronze     Rome Odunze              receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  3.40  cov +0.90  Avg#14        miss D, Rank  CHI vs NE (NFL)
+  C/Bronze     Geno Smith               passing_tds              O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  1.20  cov +0.70  Above Avg#12  miss D, Rank  NYJ vs MIA (NFL)
+  C/Bronze     Dak Prescott             passing_yards            O259.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 249.60  cov -9.90  Below Avg#25  miss Cover, Delta  DAL vs PHI (NFL)
+  C/ù          Michael Penix Jr.        passing_yards            O169.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 182.80  cov +13.30  Above Avg#10  miss Delta, D, Rank  ATL vs SF (NFL)
+  C/ù          Michael Penix Jr.        passing_yards            O174.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 182.80  cov +8.30  Above Avg#10  miss Delta, D, Rank  ATL vs SF (NFL)
+  C/ù          Jahmyr Gibbs             receiving_yards          O29.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 37.40  cov +7.90  Elite#6       miss Delta, D, Rank  DET vs GB (NFL)
+  C/ù          Rhamondre Stevenson      receiving_yards          O14.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 22.20  cov +7.70  Avg#15        miss Delta, D, Rank  NE vs CHI (NFL)
+  C/ù          D'Andre Swift            rushing_yards            O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 46.80  cov +7.30  Above Avg#9   miss Delta, D, Rank  CHI vs NE (NFL)
+  C/ù          Rhamondre Stevenson      rushing_yards            O39.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 45.40  cov +5.90  Above Avg#8   miss Delta, D, Rank  NE vs CHI (NFL)
+  C/ù          Mason Taylor             receiving_yards          O9.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 13.60  cov +4.10  Above Avg#12  miss Delta, D, Rank  NYJ vs MIA (NFL)
+  C/ù          Cam Ward                 passing_yards            O149.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 152.60  cov +3.10  Above Avg#13  miss Delta, D, Rank  TEN vs CLE (NFL)
+  C/ù          Jake Bates               kicking_points           O6.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  7.20  cov +0.70  Elite#1       miss Delta, D, Rank  DET vs GB (NFL)
+  C/ù          Mason Taylor             receptions               O1.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  2.00  cov +0.50  Above Avg#12  miss Delta, D, Rank  NYJ vs MIA (NFL)
+  C/ù          Hunter Henry             receptions               O2.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  3.00  cov +0.50  Avg#15        miss Delta, D, Rank  NE vs CHI (NFL)
+  C/ù          Michael Penix Jr.        passing_tds              O0.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn  0.80  cov +0.30  Above Avg#10  miss Delta, D, Rank  ATL vs SF (NFL)
+  C/ù          J.K. Dobbins             rushing_yards            O34.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 34.20  cov -0.30  Avg#20        miss Cover, Delta, D  DEN vs ARI (NFL)
+  C/ù          Cam Ward                 passing_yards            O159.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 152.60  cov -6.90  Above Avg#13  miss Cover, Delta, D, Rank  TEN vs CLE (NFL)
+  C/ù          Baker Mayfield           passing_yards            O174.5  L5 4/1  L5avg   n/a  L10avg   n/a  szn 165.60  cov -8.90  Avg#18        miss Cover, Delta, D  TB vs CAR (NFL)
+
+===== CFB =====
+  (no step8 file)
+
+===== CFB1H =====
+  (no step8 file)
+
+===== GOLF =====  S 0  A 0  B 0  C 0  D 0  W 0  |  Diamond 0  Platinum 0  Gold 0  Silver 0  Bronze 0
+Standard OVER  (n=0)
+  (none that clear L5 4+)
+Standard UNDER (n=0)
+  (none that clear L5 4+)
+Goblin OVER    (n=0)
+  (none that clear L5 4+)
+
+===== NBA =====  S 0  A 149  B 21  C 32  D 30  W 0  |  Diamond 0  Platinum 0  Gold 1  Silver 94  Bronze 122
+Standard OVER  (n=20)
+  D/Silver     Jalen Williams           Pts+Rebs+Asts            O21.0  L5 4/1  L5avg 26.00  L10avg 25.10  szn 25.10  cov +4.10  Above Avg#10  miss D  OKC vs SAS
+  D/Silver     Jalen Williams           Pts+Asts                 O17.5  L5 4/1  L5avg 21.60  L10avg 20.80  szn 20.80  cov +3.30  Above Avg#10  miss D  OKC vs SAS
+  D/Silver     Jalen Williams           Pts+Rebs                 O17.5  L5 4/1  L5avg 22.20  L10avg 20.40  szn 20.40  cov +2.90  Above Avg#10  miss D  OKC vs SAS
+  D/Silver     Alex Caruso              Points                   O9.5  L5 4/1  L5avg 17.00  L10avg 12.40  szn 12.40  cov +2.90  Above Avg#10  miss D  OKC vs SAS
+  D/Silver     Alex Caruso              Pts+Rebs                 O12.5  L5 4/1  L5avg 19.40  L10avg 15.20  szn 15.20  cov +2.70  Above Avg#10  miss D  OKC vs SAS
+  D/Silver     Ajay Mitchell            Rebs+Asts                O5.5  L5 4/1  L5avg  7.60  L10avg  8.10  szn  8.10  cov +2.60  Above Avg#10  miss D  OKC vs SAS
+  D/Silver     Jalen Williams           Points                   O13.5  L5 4/1  L5avg 17.80  L10avg 16.10  szn 16.10  cov +2.60  Above Avg#10  miss D  OKC vs SAS
+  D/Silver     Alex Caruso              Pts+Asts                 O12.5  L5 4/1  L5avg 19.80  L10avg 14.80  szn 14.80  cov +2.30  Above Avg#10  miss D  OKC vs SAS
+  D/Silver     Alex Caruso              Pts+Rebs+Asts            O15.5  L5 4/1  L5avg 22.20  L10avg 17.60  szn 17.60  cov +2.10  Above Avg#10  miss D  OKC vs SAS
+  D/Silver     Shai Gilgeous-Alexander  Assists                  O8.0  L5 4/1  L5avg  9.80  L10avg  8.20  szn  8.20  cov +0.20  Above Avg#10  miss D  OKC vs SAS
+  D/Bronze     Stephon Castle + Jalen Williams Points (Combo)           O31.0  L5 4/1  L5avg 36.40  L10avg 35.70  szn 35.70  cov +4.70  Elite#4       miss D, Rank  SAS/OKC vs OKC
+  D/Bronze     Devin Vassell + Jalen Williams Points (Combo)           O27.5  L5 4/1  L5avg 32.60  L10avg 29.50  szn 29.50  cov +2.00  Elite#4       miss D, Rank  SAS/OKC vs OKC
+  D/Bronze     Julian Champagnie        3-PT Attempted           O6.5  L5 4/1  L5avg  7.80  L10avg  7.30  szn  7.30  cov +0.80  Elite#4       miss D, Rank  SAS vs OKC
+  D/Bronze     De'Aaron Fox             Rebs+Asts                O9.5  L5 4/1  L5avg 12.40  L10avg 10.00  szn 10.00  cov +0.50  Elite#4       miss D, Rank  SAS vs OKC
+  D/ù          De'Aaron Fox             Pts+Rebs                 O18.5  L5 4/1  L5avg 20.80  L10avg 20.50  szn 20.50  cov +2.00  Elite#4       miss Delta, D, Rank  SAS vs OKC
+  D/ù          De'Aaron Fox             Pts+Rebs+Asts            O24.5  L5 4/1  L5avg 27.40  L10avg 26.30  szn 26.30  cov +1.80  Elite#4       miss Delta, D, Rank  SAS vs OKC
+  D/ù          Victor Wembanyama + Jalen Williams Assists (Combo)          O6.5  L5 4/1  L5avg  7.40  L10avg  7.60  szn  7.60  cov +1.10  Elite#4       miss Delta, D, Rank  SAS/OKC vs OKC
+  D/ù          De'Aaron Fox + Shai Gilgeous-Alexander Assists (Combo)          O14.0  L5 4/1  L5avg 16.40  L10avg 14.00  szn 14.00  cov +0.00  Elite#4       miss Cover, D, Rank  SAS/OKC vs OKC
+  D/ù          Stephon Castle           3-PT Attempted           O4.5  L5 4/1  L5avg  5.00  L10avg  4.30  szn  4.30  cov -0.20  Elite#4       miss Cover, Delta, D, Rank  SAS vs OKC
+  D/ù          Devin Vassell            Pts+Rebs                 O18.5  L5 4/1  L5avg 20.20  L10avg 18.10  szn 18.10  cov -0.40  Elite#4       miss Cover, Delta, D, Rank  SAS vs OKC
+Standard UNDER (n=10)
+  D/Gold       Devin Vassell            Two Pointers Attempted   U4.5  L5 1/4  L5avg  3.20  L10avg  3.80  szn  3.80  cov -0.70  Elite#4       SAS vs OKC
+  D/Silver     Victor Wembanyama + Shai Gilgeous-Alexander Points (Combo)           U56.5  L5 1/4  L5avg 54.40  L10avg 50.90  szn 50.90  cov -5.60  Elite#4       miss Delta  SAS/OKC vs OKC
+  D/Silver     Shai Gilgeous-Alexander  Points                   U30.5  L5 1/4  L5avg 26.20  L10avg 26.00  szn 26.00  cov -4.50  Above Avg#10  miss Rank  OKC vs SAS
+  D/Silver     Shai Gilgeous-Alexander  Two Pointers Attempted   U17.5  L5 1/4  L5avg 16.00  L10avg 14.80  szn 14.80  cov -2.70  Above Avg#10  miss Rank  OKC vs SAS
+  D/Silver     Cason Wallace            Two Pointers Attempted   U3.5  L5 1/4  L5avg  2.00  L10avg  2.60  szn  2.60  cov -0.90  Above Avg#10  miss Rank  OKC vs SAS
+  D/Silver     Victor Wembanyama        Blocked Shots            U3.5  L5 1/4  L5avg  3.00  L10avg  2.80  szn  2.80  cov -0.70  Elite#4       miss Delta  SAS vs OKC
+  D/Silver     Cason Wallace            Personal Fouls           U2.5  L5 1/4  L5avg  1.60  L10avg  2.00  szn  2.00  cov -0.50  Above Avg#10  miss Rank  OKC vs SAS
+  D/Silver     De'Aaron Fox             Free Throws Made         U2.5  L5 1/4  L5avg  1.80  L10avg  2.50  szn  2.50  cov +0.00  Elite#4       miss Cover  SAS vs OKC
+  D/Bronze     Luguentz Dort            Steals                   U0.5  L5 1/4  L5avg  0.40  L10avg  0.40  szn  0.40  cov -0.10  Above Avg#10  miss Delta, Rank  OKC vs SAS
+  D/Bronze     Keldon Johnson           Blks+Stls                U0.5  L5 1/4  L5avg  0.20  L10avg  0.70  szn  0.70  cov +0.20  Elite#4       miss Cover, Delta  SAS vs OKC
+Goblin OVER    (n=202)
+  A/Silver     Cason Wallace            Pts+Rebs                 O7.5  L5 5/0  L5avg 13.20  L10avg 12.50  szn 12.50  cov +5.00  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Cason Wallace            Points                   O4.5  L5 5/0  L5avg  8.60  L10avg  8.90  szn  8.90  cov +4.40  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Cason Wallace            Pts+Rebs                 O8.5  L5 5/0  L5avg 13.20  L10avg 12.50  szn 12.50  cov +4.00  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Luguentz Dort            Pts+Rebs                 O4.5  L5 5/0  L5avg  8.20  L10avg  7.70  szn  7.70  cov +3.20  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Shai Gilgeous-Alexander  Assists                  O5.5  L5 5/0  L5avg  9.80  L10avg  8.20  szn  8.20  cov +2.70  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Shai Gilgeous-Alexander  Assists                  O6.5  L5 5/0  L5avg  9.80  L10avg  8.20  szn  8.20  cov +1.70  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Isaiah Hartenstein       Assists                  O1.5  L5 5/0  L5avg  3.20  L10avg  3.10  szn  3.10  cov +1.60  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Cason Wallace            3-PT Made                O0.5  L5 5/0  L5avg  2.00  L10avg  2.00  szn  2.00  cov +1.50  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Steals                   O0.5  L5 5/0  L5avg  1.40  L10avg  1.10  szn  1.10  cov +0.60  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Cason Wallace            Steals                   O1.5  L5 5/0  L5avg  2.60  L10avg  2.00  szn  2.00  cov +0.50  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Pts+Rebs+Asts            O16.5  L5 4/1  L5avg 26.00  L10avg 25.10  szn 25.10  cov +8.60  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Pts+Rebs                 O12.5  L5 4/1  L5avg 22.20  L10avg 20.40  szn 20.40  cov +7.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Points                   O8.5  L5 4/1  L5avg 17.80  L10avg 16.10  szn 16.10  cov +7.60  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Pts+Rebs+Asts            O17.5  L5 4/1  L5avg 26.00  L10avg 25.10  szn 25.10  cov +7.60  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Isaiah Hartenstein       Pts+Rebs+Asts            O14.5  L5 4/1  L5avg 20.40  L10avg 21.90  szn 21.90  cov +7.40  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Isaiah Hartenstein       Pts+Rebs                 O11.5  L5 4/1  L5avg 17.20  L10avg 18.80  szn 18.80  cov +7.30  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Pts+Asts                 O13.5  L5 4/1  L5avg 21.60  L10avg 20.80  szn 20.80  cov +7.30  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Pts+Rebs                 O13.5  L5 4/1  L5avg 22.20  L10avg 20.40  szn 20.40  cov +6.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Points                   O5.5  L5 4/1  L5avg 17.00  L10avg 12.40  szn 12.40  cov +6.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Pts+Rebs                 O8.5  L5 4/1  L5avg 19.40  L10avg 15.20  szn 15.20  cov +6.70  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Points                   O9.5  L5 4/1  L5avg 17.80  L10avg 16.10  szn 16.10  cov +6.60  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Isaiah Hartenstein       Pts+Rebs                 O12.5  L5 4/1  L5avg 17.20  L10avg 18.80  szn 18.80  cov +6.30  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Pts+Asts                 O14.5  L5 4/1  L5avg 21.60  L10avg 20.80  szn 20.80  cov +6.30  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Pts+Asts                 O8.5  L5 4/1  L5avg 19.80  L10avg 14.80  szn 14.80  cov +6.30  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Isaiah Hartenstein       Points                   O3.5  L5 4/1  L5avg  8.20  L10avg  9.40  szn  9.40  cov +5.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Pts+Rebs                 O14.5  L5 4/1  L5avg 22.20  L10avg 20.40  szn 20.40  cov +5.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Points                   O6.5  L5 4/1  L5avg 17.00  L10avg 12.40  szn 12.40  cov +5.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Pts+Rebs                 O9.5  L5 4/1  L5avg 19.40  L10avg 15.20  szn 15.20  cov +5.70  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Pts+Rebs+Asts            O19.5  L5 4/1  L5avg 26.00  L10avg 25.10  szn 25.10  cov +5.60  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Points                   O10.5  L5 4/1  L5avg 17.80  L10avg 16.10  szn 16.10  cov +5.60  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Isaiah Hartenstein       Pts+Rebs+Asts            O16.5  L5 4/1  L5avg 20.40  L10avg 21.90  szn 21.90  cov +5.40  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Pts+Asts                 O9.5  L5 4/1  L5avg 19.80  L10avg 14.80  szn 14.80  cov +5.30  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Pts+Rebs+Asts            O12.5  L5 4/1  L5avg 22.20  L10avg 17.60  szn 17.60  cov +5.10  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Isaiah Hartenstein       Pts+Asts                 O7.5  L5 4/1  L5avg 11.40  L10avg 12.50  szn 12.50  cov +5.00  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Isaiah Hartenstein       Points                   O4.5  L5 4/1  L5avg  8.20  L10avg  9.40  szn  9.40  cov +4.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Points                   O7.5  L5 4/1  L5avg 17.00  L10avg 12.40  szn 12.40  cov +4.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Pts+Rebs                 O10.5  L5 4/1  L5avg 19.40  L10avg 15.20  szn 15.20  cov +4.70  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Points                   O11.5  L5 4/1  L5avg 17.80  L10avg 16.10  szn 16.10  cov +4.60  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Pts+Asts                 O10.5  L5 4/1  L5avg 19.80  L10avg 14.80  szn 14.80  cov +4.30  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Pts+Rebs+Asts            O13.5  L5 4/1  L5avg 22.20  L10avg 17.60  szn 17.60  cov +4.10  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Cason Wallace            Pts+Asts                 O7.5  L5 4/1  L5avg 11.40  L10avg 11.40  szn 11.40  cov +3.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Points                   O8.5  L5 4/1  L5avg 17.00  L10avg 12.40  szn 12.40  cov +3.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Cason Wallace            Pts+Rebs+Asts            O11.5  L5 4/1  L5avg 16.00  L10avg 15.00  szn 15.00  cov +3.50  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Cason Wallace            Points                   O5.5  L5 4/1  L5avg  8.60  L10avg  8.90  szn  8.90  cov +3.40  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Ajay Mitchell            Assists                  O1.5  L5 4/1  L5avg  4.40  L10avg  4.50  szn  4.50  cov +3.00  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Cason Wallace            Pts+Rebs                 O9.5  L5 4/1  L5avg 13.20  L10avg 12.50  szn 12.50  cov +3.00  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Shai Gilgeous-Alexander  Pts+Rebs+Asts            O34.5  L5 4/1  L5avg 39.00  L10avg 36.80  szn 36.80  cov +2.30  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              3-PT Made                O0.5  L5 4/1  L5avg  3.60  L10avg  2.70  szn  2.70  cov +2.20  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jalen Williams           Assists                  O2.5  L5 4/1  L5avg  3.80  L10avg  4.70  szn  4.70  cov +2.20  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              3-PT Made                O1.5  L5 4/1  L5avg  3.60  L10avg  2.70  szn  2.70  cov +1.20  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Alex Caruso              Steals                   O0.5  L5 4/1  L5avg  1.60  L10avg  1.60  szn  1.60  cov +1.10  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Ajay Mitchell            Steals                   O0.5  L5 4/1  L5avg  2.60  L10avg  1.50  szn  1.50  cov +1.00  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Jaylin Williams          3-PT Made                O0.5  L5 4/1  L5avg  1.80  L10avg  1.40  szn  1.40  cov +0.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Shai Gilgeous-Alexander  Steals                   O0.5  L5 4/1  L5avg  2.00  L10avg  1.40  szn  1.40  cov +0.90  Above Avg#10  miss D  OKC vs SAS
+  A/Silver     Shai Gilgeous-Alexander  Assists                  O7.5  L5 4/1  L5avg  9.80  L10avg  8.20  szn  8.20  cov +0.70  Above Avg#10  miss D  OKC vs SAS
+  A/Bronze     Dylan Harper             Pts+Rebs                 O8.5  L5 5/0  L5avg 16.20  L10avg 18.40  szn 18.40  cov +9.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Points                   O11.5  L5 5/0  L5avg 18.60  L10avg 19.60  szn 19.60  cov +8.10  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Dylan Harper             Points                   O4.5  L5 5/0  L5avg 10.80  L10avg 12.40  szn 12.40  cov +7.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Dylan Harper             Pts+Asts                 O7.5  L5 5/0  L5avg 14.00  L10avg 15.10  szn 15.10  cov +7.60  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Points                   O12.5  L5 5/0  L5avg 18.60  L10avg 19.60  szn 19.60  cov +7.10  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Pts+Rebs+Asts            O19.5  L5 5/0  L5avg 27.40  L10avg 26.30  szn 26.30  cov +6.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Keldon Johnson           Points                   O3.5  L5 5/0  L5avg  9.80  L10avg  9.40  szn  9.40  cov +5.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Keldon Johnson           Pts+Asts                 O4.5  L5 5/0  L5avg 10.40  L10avg 10.20  szn 10.20  cov +5.70  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Pts+Asts                 O16.5  L5 5/0  L5avg 21.60  L10avg 22.10  szn 22.10  cov +5.60  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Keldon Johnson           Points                   O4.5  L5 5/0  L5avg  9.80  L10avg  9.40  szn  9.40  cov +4.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Assists                  O4.5  L5 5/0  L5avg  7.60  L10avg  7.00  szn  7.00  cov +2.50  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Assists                  O5.5  L5 5/0  L5avg  7.60  L10avg  7.00  szn  7.00  cov +1.50  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Julian Champagnie        Assists                  O0.5  L5 5/0  L5avg  1.60  L10avg  1.80  szn  1.80  cov +1.30  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Assists                  O4.5  L5 5/0  L5avg  6.60  L10avg  5.80  szn  5.80  cov +1.30  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Dylan Harper             Assists                  O1.5  L5 5/0  L5avg  3.20  L10avg  2.70  szn  2.70  cov +1.20  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Devin Vassell            3-PT Made                O1.5  L5 5/0  L5avg  3.20  L10avg  2.60  szn  2.60  cov +1.10  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           3-PT Made                O0.5  L5 5/0  L5avg  1.40  L10avg  1.50  szn  1.50  cov +1.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Steals                   O0.5  L5 5/0  L5avg  1.40  L10avg  1.20  szn  1.20  cov +0.70  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Victor Wembanyama        Steals                   O0.5  L5 5/0  L5avg  1.40  L10avg  0.90  szn  0.90  cov +0.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Dylan Harper             Pts+Rebs+Asts            O11.5  L5 4/1  L5avg 19.40  L10avg 21.10  szn 21.10  cov +9.60  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Dylan Harper             Pts+Rebs                 O9.5  L5 4/1  L5avg 16.20  L10avg 18.40  szn 18.40  cov +8.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Dylan Harper             Pts+Rebs+Asts            O12.5  L5 4/1  L5avg 19.40  L10avg 21.10  szn 21.10  cov +8.60  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Dylan Harper             Pts+Rebs                 O10.5  L5 4/1  L5avg 16.20  L10avg 18.40  szn 18.40  cov +7.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Dylan Harper             Pts+Rebs+Asts            O13.5  L5 4/1  L5avg 19.40  L10avg 21.10  szn 21.10  cov +7.60  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Pts+Rebs+Asts            O24.5  L5 4/1  L5avg 31.00  L10avg 31.90  szn 31.90  cov +7.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Pts+Rebs                 O17.5  L5 4/1  L5avg 23.40  L10avg 24.90  szn 24.90  cov +7.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Pts+Asts                 O19.5  L5 4/1  L5avg 26.20  L10avg 26.60  szn 26.60  cov +7.10  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Chet Holmgren            Points                   O9.5  L5 4/1  L5avg 12.20  L10avg 16.50  szn 16.50  cov +7.00  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     De'Aaron Fox             Pts+Rebs                 O13.5  L5 4/1  L5avg 20.80  L10avg 20.50  szn 20.50  cov +7.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Dylan Harper             Points                   O5.5  L5 4/1  L5avg 10.80  L10avg 12.40  szn 12.40  cov +6.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Points                   O9.5  L5 4/1  L5avg 15.00  L10avg 16.30  szn 16.30  cov +6.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Chet Holmgren            Pts+Asts                 O11.5  L5 4/1  L5avg 13.40  L10avg 17.90  szn 17.90  cov +6.40  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Stephon Castle           Pts+Rebs+Asts            O25.5  L5 4/1  L5avg 31.00  L10avg 31.90  szn 31.90  cov +6.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Pts+Rebs                 O18.5  L5 4/1  L5avg 23.40  L10avg 24.90  szn 24.90  cov +6.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Pts+Asts                 O20.5  L5 4/1  L5avg 26.20  L10avg 26.60  szn 26.60  cov +6.10  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Stephon Castle           Points                   O13.5  L5 4/1  L5avg 18.60  L10avg 19.60  szn 19.60  cov +6.10  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Pts+Rebs                 O14.5  L5 4/1  L5avg 20.80  L10avg 20.50  szn 20.50  cov +6.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Points                   O10.5  L5 4/1  L5avg 15.00  L10avg 16.30  szn 16.30  cov +5.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Keldon Johnson           Pts+Rebs+Asts            O7.5  L5 4/1  L5avg 13.20  L10avg 13.30  szn 13.30  cov +5.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Julian Champagnie        Points                   O5.5  L5 4/1  L5avg 10.60  L10avg 10.50  szn 10.50  cov +5.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Julian Champagnie        Pts+Rebs                 O11.5  L5 4/1  L5avg 16.80  L10avg 16.50  szn 16.50  cov +5.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Pts+Rebs                 O15.5  L5 4/1  L5avg 20.80  L10avg 20.50  szn 20.50  cov +5.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Keldon Johnson           Pts+Rebs                 O7.5  L5 4/1  L5avg 12.60  L10avg 12.50  szn 12.50  cov +5.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Julian Champagnie        Pts+Asts                 O7.5  L5 4/1  L5avg 12.20  L10avg 12.30  szn 12.30  cov +4.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Points                   O11.5  L5 4/1  L5avg 15.00  L10avg 16.30  szn 16.30  cov +4.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Pts+Rebs+Asts            O21.5  L5 4/1  L5avg 27.40  L10avg 26.30  szn 26.30  cov +4.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Keldon Johnson           Pts+Rebs+Asts            O8.5  L5 4/1  L5avg 13.20  L10avg 13.30  szn 13.30  cov +4.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Devin Vassell            Pts+Rebs                 O13.5  L5 4/1  L5avg 20.20  L10avg 18.10  szn 18.10  cov +4.60  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Victor Wembanyama        Points                   O20.5  L5 4/1  L5avg 28.20  L10avg 24.90  szn 24.90  cov +4.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Victor Wembanyama        Pts+Asts                 O23.5  L5 4/1  L5avg 31.80  L10avg 27.80  szn 27.80  cov +4.30  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Isaiah Hartenstein       Pts+Asts                 O8.5  L5 4/1  L5avg 11.40  L10avg 12.50  szn 12.50  cov +4.00  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Julian Champagnie        Points                   O6.5  L5 4/1  L5avg 10.60  L10avg 10.50  szn 10.50  cov +4.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Julian Champagnie        Pts+Rebs                 O12.5  L5 4/1  L5avg 16.80  L10avg 16.50  szn 16.50  cov +4.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Keldon Johnson           Pts+Rebs                 O8.5  L5 4/1  L5avg 12.60  L10avg 12.50  szn 12.50  cov +4.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Devin Vassell            Points                   O9.5  L5 4/1  L5avg 14.80  L10avg 13.40  szn 13.40  cov +3.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Keldon Johnson           Points                   O5.5  L5 4/1  L5avg  9.80  L10avg  9.40  szn  9.40  cov +3.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Julian Champagnie        Pts+Asts                 O8.5  L5 4/1  L5avg 12.20  L10avg 12.30  szn 12.30  cov +3.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Julian Champagnie        Pts+Rebs+Asts            O14.5  L5 4/1  L5avg 18.40  L10avg 18.30  szn 18.30  cov +3.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             Pts+Rebs+Asts            O22.5  L5 4/1  L5avg 27.40  L10avg 26.30  szn 26.30  cov +3.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Devin Vassell            Pts+Asts                 O12.5  L5 4/1  L5avg 17.20  L10avg 16.20  szn 16.20  cov +3.70  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Devin Vassell            Pts+Rebs                 O14.5  L5 4/1  L5avg 20.20  L10avg 18.10  szn 18.10  cov +3.60  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Devin Vassell            Pts+Rebs+Asts            O17.5  L5 4/1  L5avg 22.60  L10avg 20.90  szn 20.90  cov +3.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Victor Wembanyama        Pts+Asts                 O24.5  L5 4/1  L5avg 31.80  L10avg 27.80  szn 27.80  cov +3.30  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Julian Champagnie        Points                   O7.5  L5 4/1  L5avg 10.60  L10avg 10.50  szn 10.50  cov +3.00  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Devin Vassell            Points                   O10.5  L5 4/1  L5avg 14.80  L10avg 13.40  szn 13.40  cov +2.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Devin Vassell            Pts+Asts                 O13.5  L5 4/1  L5avg 17.20  L10avg 16.20  szn 16.20  cov +2.70  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Devin Vassell            Pts+Rebs                 O15.5  L5 4/1  L5avg 20.20  L10avg 18.10  szn 18.10  cov +2.60  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Cason Wallace            Pts+Rebs+Asts            O12.5  L5 4/1  L5avg 16.00  L10avg 15.00  szn 15.00  cov +2.50  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Luguentz Dort            Pts+Rebs+Asts            O6.5  L5 4/1  L5avg  9.60  L10avg  9.00  szn  9.00  cov +2.50  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Shai Gilgeous-Alexander  Points                   O23.5  L5 4/1  L5avg 26.20  L10avg 26.00  szn 26.00  cov +2.50  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Cason Wallace            Points                   O6.5  L5 4/1  L5avg  8.60  L10avg  8.90  szn  8.90  cov +2.40  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Devin Vassell            Pts+Rebs+Asts            O18.5  L5 4/1  L5avg 22.60  L10avg 20.90  szn 20.90  cov +2.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Victor Wembanyama        Pts+Asts                 O25.5  L5 4/1  L5avg 31.80  L10avg 27.80  szn 27.80  cov +2.30  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Luguentz Dort            Pts+Rebs                 O5.5  L5 4/1  L5avg  8.20  L10avg  7.70  szn  7.70  cov +2.20  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Devin Vassell            Points                   O11.5  L5 4/1  L5avg 14.80  L10avg 13.40  szn 13.40  cov +1.90  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Shai Gilgeous-Alexander  Pts+Asts                 O32.5  L5 4/1  L5avg 36.00  L10avg 34.20  szn 34.20  cov +1.70  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Cason Wallace            Pts+Rebs+Asts            O13.5  L5 4/1  L5avg 16.00  L10avg 15.00  szn 15.00  cov +1.50  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Luguentz Dort            Pts+Rebs+Asts            O7.5  L5 4/1  L5avg  9.60  L10avg  9.00  szn  9.00  cov +1.50  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Victor Wembanyama        Assists                  O1.5  L5 4/1  L5avg  3.60  L10avg  2.90  szn  2.90  cov +1.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Julian Champagnie        Steals                   O0.5  L5 4/1  L5avg  1.20  L10avg  1.60  szn  1.60  cov +1.10  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Chet Holmgren            Assists                  O0.5  L5 4/1  L5avg  1.20  L10avg  1.40  szn  1.40  cov +0.90  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Devin Vassell            Steals                   O0.5  L5 4/1  L5avg  1.80  L10avg  1.30  szn  1.30  cov +0.80  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     De'Aaron Fox             3-PT Made                O0.5  L5 4/1  L5avg  1.20  L10avg  1.20  szn  1.20  cov +0.70  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Shai Gilgeous-Alexander  Pts+Asts                 O33.5  L5 4/1  L5avg 36.00  L10avg 34.20  szn 34.20  cov +0.70  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Isaiah Hartenstein       Assists                  O2.5  L5 4/1  L5avg  3.20  L10avg  3.10  szn  3.10  cov +0.60  Above Avg#10  miss Delta, D  OKC vs SAS
+  A/Bronze     Keldon Johnson           3-PT Made                O0.5  L5 4/1  L5avg  1.40  L10avg  1.00  szn  1.00  cov +0.50  Elite#4       miss D, Rank  SAS vs OKC
+  A/Bronze     Victor Wembanyama        Assists                  O2.5  L5 4/1  L5avg  3.60  L10avg  2.90  szn  2.90  cov +0.40  Elite#4       miss D, Rank  SAS vs OKC
+  A/ù          Luke Kornet              Pts+Rebs                 O2.5  L5 4/1  L5avg  5.80  L10avg  6.60  szn  6.60  cov +4.10  Elite#4       miss Delta, D, Rank  SAS vs OKC
+  A/ù          Julian Champagnie        Pts+Asts                 O9.5  L5 4/1  L5avg 12.20  L10avg 12.30  szn 12.30  cov +2.80  Elite#4       miss Delta, D, Rank  SAS vs OKC
+  A/ù          Devin Vassell            Pts+Asts                 O14.5  L5 4/1  L5avg 17.20  L10avg 16.20  szn 16.20  cov +1.70  Elite#4       miss Delta, D, Rank  SAS vs OKC
+  A/ù          Devin Vassell            Pts+Rebs+Asts            O19.5  L5 4/1  L5avg 22.60  L10avg 20.90  szn 20.90  cov +1.40  Elite#4       miss Delta, D, Rank  SAS vs OKC
+  A/ù          Devin Vassell            Assists                  O1.5  L5 4/1  L5avg  2.40  L10avg  2.80  szn  2.80  cov +1.30  Elite#4       miss Delta, D, Rank  SAS vs OKC
+  A/ù          Devin Vassell            Points                   O12.5  L5 4/1  L5avg 14.80  L10avg 13.40  szn 13.40  cov +0.90  Elite#4       miss Delta, D, Rank  SAS vs OKC
+  A/ù          Shai Gilgeous-Alexander  Pts+Asts                 O34.5  L5 4/1  L5avg 36.00  L10avg 34.20  szn 34.20  cov -0.30  Above Avg#10  miss Cover, Delta, D  OKC vs SAS
+  B/Silver     Cason Wallace            Rebounds                 O1.5  L5 5/0  L5avg  4.60  L10avg  3.60  szn  3.60  cov +2.10  Above Avg#10  miss D  OKC vs SAS
+  B/Silver     Luguentz Dort            Rebounds                 O1.5  L5 5/0  L5avg  3.80  L10avg  2.90  szn  2.90  cov +1.40  Above Avg#10  miss D  OKC vs SAS
+  B/Silver     Cason Wallace            Rebounds                 O2.5  L5 5/0  L5avg  4.60  L10avg  3.60  szn  3.60  cov +1.10  Above Avg#10  miss D  OKC vs SAS
+  B/Silver     Jared McCain             Rebounds                 O1.5  L5 5/0  L5avg  3.40  L10avg  2.10  szn  2.10  cov +0.60  Above Avg#10  miss D  OKC vs SAS
+  B/Silver     Luguentz Dort            Rebounds                 O2.5  L5 5/0  L5avg  3.80  L10avg  2.90  szn  2.90  cov +0.40  Above Avg#10  miss D  OKC vs SAS
+  B/Silver     Isaiah Hartenstein       Rebounds                 O5.5  L5 4/1  L5avg  9.00  L10avg  9.40  szn  9.40  cov +3.90  Above Avg#10  miss D  OKC vs SAS
+  B/Silver     Isaiah Hartenstein       Rebounds                 O6.5  L5 4/1  L5avg  9.00  L10avg  9.40  szn  9.40  cov +2.90  Above Avg#10  miss D  OKC vs SAS
+  B/Bronze     Dylan Harper             Rebounds                 O1.5  L5 5/0  L5avg  5.40  L10avg  6.00  szn  6.00  cov +4.50  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     Julian Champagnie        Rebounds                 O3.5  L5 5/0  L5avg  6.20  L10avg  6.00  szn  6.00  cov +2.50  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     Devin Vassell            Rebounds                 O2.5  L5 5/0  L5avg  5.40  L10avg  4.70  szn  4.70  cov +2.20  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     De'Aaron Fox             Rebounds                 O2.5  L5 5/0  L5avg  5.80  L10avg  4.20  szn  4.20  cov +1.70  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     Alex Caruso              Rebounds                 O1.5  L5 5/0  L5avg  2.40  L10avg  2.80  szn  2.80  cov +1.30  Above Avg#10  miss Delta, D  OKC vs SAS
+  B/Bronze     Devin Vassell            Rebounds                 O3.5  L5 5/0  L5avg  5.40  L10avg  4.70  szn  4.70  cov +1.20  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     De'Aaron Fox             Rebounds                 O3.5  L5 5/0  L5avg  5.80  L10avg  4.20  szn  4.20  cov +0.70  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     Dylan Harper             Rebounds                 O2.5  L5 4/1  L5avg  5.40  L10avg  6.00  szn  6.00  cov +3.50  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     Stephon Castle           Rebounds                 O3.5  L5 4/1  L5avg  4.80  L10avg  5.30  szn  5.30  cov +1.80  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     Luke Kornet              Rebounds                 O1.5  L5 4/1  L5avg  3.00  L10avg  3.30  szn  3.30  cov +1.80  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     Keldon Johnson           Rebounds                 O1.5  L5 4/1  L5avg  2.80  L10avg  3.10  szn  3.10  cov +1.60  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     Julian Champagnie        Rebounds                 O4.5  L5 4/1  L5avg  6.20  L10avg  6.00  szn  6.00  cov +1.50  Elite#4       miss D, Rank  SAS vs OKC
+  B/Bronze     Ajay Mitchell            Rebounds                 O2.5  L5 4/1  L5avg  3.20  L10avg  3.60  szn  3.60  cov +1.10  Above Avg#10  miss Delta, D  OKC vs SAS
+  B/ù          Stephon Castle           Rebounds                 O4.5  L5 4/1  L5avg  4.80  L10avg  5.30  szn  5.30  cov +0.80  Elite#4       miss Delta, D, Rank  SAS vs OKC
+  C/Silver     Cason Wallace            Rebs+Asts                O3.5  L5 5/0  L5avg  7.40  L10avg  6.10  szn  6.10  cov +2.60  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Luguentz Dort            Rebs+Asts                O2.5  L5 5/0  L5avg  5.20  L10avg  4.20  szn  4.20  cov +1.70  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Cason Wallace            Rebs+Asts                O4.5  L5 5/0  L5avg  7.40  L10avg  6.10  szn  6.10  cov +1.60  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Shai Gilgeous-Alexander  Rebs+Asts                O9.5  L5 5/0  L5avg 12.80  L10avg 10.80  szn 10.80  cov +1.30  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Cason Wallace            Blks+Stls                O1.5  L5 5/0  L5avg  3.00  L10avg  2.50  szn  2.50  cov +1.00  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Shai Gilgeous-Alexander  Rebs+Asts                O10.5  L5 5/0  L5avg 12.80  L10avg 10.80  szn 10.80  cov +0.30  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Isaiah Hartenstein       Rebs+Asts                O7.5  L5 4/1  L5avg 12.20  L10avg 12.50  szn 12.50  cov +5.00  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Isaiah Hartenstein       Rebs+Asts                O8.5  L5 4/1  L5avg 12.20  L10avg 12.50  szn 12.50  cov +4.00  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Ajay Mitchell            Rebs+Asts                O4.5  L5 4/1  L5avg  7.60  L10avg  8.10  szn  8.10  cov +3.60  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Isaiah Hartenstein       Rebs+Asts                O9.5  L5 4/1  L5avg 12.20  L10avg 12.50  szn 12.50  cov +3.00  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Shai Gilgeous-Alexander  Blks+Stls                O1.5  L5 4/1  L5avg  3.00  L10avg  2.40  szn  2.40  cov +0.90  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Alex Caruso              Blks+Stls                O1.5  L5 4/1  L5avg  2.60  L10avg  2.10  szn  2.10  cov +0.60  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Cason Wallace            Rebs+Asts                O5.5  L5 4/1  L5avg  7.40  L10avg  6.10  szn  6.10  cov +0.60  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Alex Caruso              Free Throws Attempted    O1.5  L5 4/1  L5avg  4.20  L10avg  2.10  szn  2.10  cov +0.60  Above Avg#10  miss D  OKC vs SAS
+  C/Silver     Shai Gilgeous-Alexander  Blocked Shots            O0.5  L5 4/1  L5avg  1.00  L10avg  1.00  szn  1.00  cov +0.50  Above Avg#10  miss D  OKC vs SAS
+  C/Bronze     Dylan Harper             Rebs+Asts                O3.5  L5 5/0  L5avg  8.60  L10avg  8.70  szn  8.70  cov +5.20  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Dylan Harper             Rebs+Asts                O4.5  L5 5/0  L5avg  8.60  L10avg  8.70  szn  8.70  cov +4.20  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Devin Vassell            Rebs+Asts                O4.5  L5 5/0  L5avg  7.80  L10avg  7.50  szn  7.50  cov +3.00  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     De'Aaron Fox             Rebs+Asts                O7.5  L5 5/0  L5avg 12.40  L10avg 10.00  szn 10.00  cov +2.50  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Julian Champagnie        Rebs+Asts                O5.5  L5 5/0  L5avg  7.80  L10avg  7.80  szn  7.80  cov +2.30  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Dylan Harper             Free Throws Attempted    O1.5  L5 5/0  L5avg  3.80  L10avg  3.60  szn  3.60  cov +2.10  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     De'Aaron Fox             Two Pointers Made        O3.5  L5 5/0  L5avg  4.80  L10avg  5.10  szn  5.10  cov +1.60  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     De'Aaron Fox             Rebs+Asts                O8.5  L5 5/0  L5avg 12.40  L10avg 10.00  szn 10.00  cov +1.50  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Julian Champagnie        Two Pointers Made        O0.5  L5 5/0  L5avg  1.80  L10avg  1.30  szn  1.30  cov +0.80  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Stephon Castle           Rebs+Asts                O9.5  L5 4/1  L5avg 12.40  L10avg 12.30  szn 12.30  cov +2.80  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Devin Vassell            Rebs+Asts                O5.5  L5 4/1  L5avg  7.80  L10avg  7.50  szn  7.50  cov +2.00  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Stephon Castle           Rebs+Asts                O10.5  L5 4/1  L5avg 12.40  L10avg 12.30  szn 12.30  cov +1.80  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Julian Champagnie        Rebs+Asts                O6.5  L5 4/1  L5avg  7.80  L10avg  7.80  szn  7.80  cov +1.30  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Victor Wembanyama        Blocked Shots            O2.5  L5 4/1  L5avg  3.00  L10avg  2.80  szn  2.80  cov +0.30  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Victor Wembanyama        Blks+Stls                O3.5  L5 4/1  L5avg  4.40  L10avg  3.70  szn  3.70  cov +0.20  Elite#4       miss D, Rank  SAS vs OKC
+  C/Bronze     Shai Gilgeous-Alexander  Personal Fouls           O2.5  L5 4/1  L5avg  3.20  L10avg  2.50  szn  2.50  cov +0.00  Above Avg#10  miss Cover, D  OKC vs SAS
+  C/ù          Jared McCain             Free Throws Attempted    O1.5  L5 4/1  L5avg  2.20  L10avg  1.10  szn  1.10  cov -0.40  Above Avg#10  miss Cover, Delta, D  OKC vs SAS
+[table_io] excel -> best_props_2026-10-22.xlsx engine=xlsxwriter sheets=['S+A hot', 'Play list (Gold+Silver)', 'All L5 4+', 'WNBA', 'MLB', 'SOCCER', 'TENNIS', 'NFL', 'CFB', 'CFB1H', 'GOLF', 'NBA']
+
+Excel -> H:\PropORACLE_main_cp\outputs\2026-10-22\best_props_2026-10-22.xlsx

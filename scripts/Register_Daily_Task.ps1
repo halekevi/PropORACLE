@@ -8,9 +8,9 @@
 #   - 3:00 AM  grader + A1 historical actuals (yesterday) — unchanged
 #   - 5:00 AM  juice-window update + line snapshot + live payout CDP (NO grader when 3AM done)
 #   - 8:00 AM  morning line update (not the first scrape)
-#   - 9:00 AM  first morning refetch — waits for 8AM (fetch+payout); skips stacked fetch if it waited 20+ min
-#   - 9:45 AM  follow-up refetch after a long 8AM (9AM may have stamped without fetching)
-#   - 10:30 AM PrizePicks morning move window (rebuild + patch tickets)
+#   - 9:00 AM  morning refetch — waits for 8AM (fetch+payout); skips stacked fetch if it waited 20+ min
+#   - 10:30 AM PrizePicks morning move window (rebuild + patch tickets; follows a long 8AM/9AM)
+#   Retired: Refresh 945AM (collided with 9AM; runs were not finishing fast enough for a mid-gap slot)
 #   - 1:00 PM  afternoon line-move
 #   - 4:30 PM  evening lock for 7pm WNBA/MLB boards
 #   Retired: Tennis Early 3AM, Grader 1AM (grader moved to 3AM).
@@ -51,8 +51,9 @@ $ScriptGrader = Join-Path $PipelineRoot "scripts\run_grader_evening.ps1"
 $Script5 = Join-Path $PipelineRoot "scripts\run_daily_5am.ps1"
 $Script8 = Join-Path $PipelineRoot "scripts\run_daily_8am.ps1"
 $ScriptRefresh = Join-Path $PipelineRoot "scripts\run_refresh_with_log.ps1"
+$ScriptG70Scrub = Join-Path $PipelineRoot "scripts\run_g70_keep_scrub.ps1"
 
-foreach ($s in @($ScriptDayAhead, $ScriptMlbFill, $Script1, $ScriptGrader, $Script5, $Script8, $ScriptRefresh, (Join-Path $PipelineRoot "scripts\Publish-LiveSite.ps1"))) {
+foreach ($s in @($ScriptDayAhead, $ScriptMlbFill, $Script1, $ScriptGrader, $Script5, $Script8, $ScriptRefresh, $ScriptG70Scrub, (Join-Path $PipelineRoot "scripts\Publish-LiveSite.ps1"))) {
     if (-not (Test-Path $s)) {
         Write-Error "Required script missing: $s"
         exit 1
@@ -94,7 +95,10 @@ function Register-PropTask {
         [string]$Description,
         [string]$ScriptPath,
         [string]$At,
-        [string]$ExtraArgs = ""
+        [string]$ExtraArgs = "",
+        [TimeSpan]$RepetitionInterval = [TimeSpan]::Zero,
+        [TimeSpan]$RepetitionDuration = [TimeSpan]::Zero,
+        [TimeSpan]$ExecutionTimeLimit = [TimeSpan]::Zero
     )
 
     # One console only: Task Scheduler runs pwsh.exe with Interactive logon.
@@ -108,9 +112,28 @@ function Register-PropTask {
         -Argument $psArgs `
         -WorkingDirectory $PipelineRoot
 
-    $trigger = New-ScheduledTaskTrigger -Daily -At $At
+    if ($RepetitionInterval -gt [TimeSpan]::Zero) {
+        # Interval tasks (G70 keep scrub): Once-at-start + repetition for the day window.
+        $dur = if ($RepetitionDuration -gt [TimeSpan]::Zero) {
+            $RepetitionDuration
+        } else {
+            (New-TimeSpan -Hours 18)
+        }
+        $trigger = New-ScheduledTaskTrigger `
+            -Once `
+            -At $At `
+            -RepetitionInterval $RepetitionInterval `
+            -RepetitionDuration $dur
+    } else {
+        $trigger = New-ScheduledTaskTrigger -Daily -At $At
+    }
+    $limit = if ($ExecutionTimeLimit -gt [TimeSpan]::Zero) {
+        $ExecutionTimeLimit
+    } else {
+        (New-TimeSpan -Hours 4)
+    }
     $settings = New-ScheduledTaskSettingsSet `
-        -ExecutionTimeLimit (New-TimeSpan -Hours 4) `
+        -ExecutionTimeLimit $limit `
         -RestartCount 2 `
         -RestartInterval (New-TimeSpan -Minutes 15) `
         -StartWhenAvailable `
@@ -190,21 +213,17 @@ Register-PropTask `
 
 Register-PropTask `
     -TaskName "PropOracle - Refresh 9AM" `
-    -Description "Morning refetch. Waits for 8AM refresh.lock through payout CDP. Skips stacked fetch if it queued 20+ min (9:45 follows up)." `
+    -Description "Morning refetch. Waits for 8AM refresh.lock through payout CDP. Skips stacked fetch if it queued 20+ min (10:30 follows up)." `
     -ScriptPath $ScriptRefresh `
     -At "09:00" `
     -ExtraArgs "-RunLabel 9AM"
 
-Register-PropTask `
-    -TaskName "PropOracle - Refresh 945AM" `
-    -Description "Follow-up refetch after a long 8AM. Waits for refresh.lock through payout; fetch/refresh + live site publish." `
-    -ScriptPath $ScriptRefresh `
-    -At "09:45" `
-    -ExtraArgs "-RunLabel 945AM"
+# Drop retired 945AM so a re-register does not leave a colliding task on the machine.
+Unregister-ScheduledTask -TaskName "PropOracle - Refresh 945AM" -Confirm:$false -ErrorAction SilentlyContinue
 
 Register-PropTask `
     -TaskName "PropOracle - Refresh 1030AM" `
-    -Description "PP morning move window (~10:30-11). Fetch/refresh + Force CDP + live site publish." `
+    -Description "PP morning move window (~10:30-11). Fetch/refresh + Force CDP + live site publish. Follow-up after a long 8AM/9AM." `
     -ScriptPath $ScriptRefresh `
     -At "10:30" `
     -ExtraArgs "-RunLabel 1030AM"
@@ -223,6 +242,17 @@ Register-PropTask `
     -At "16:30" `
     -ExtraArgs "-RunLabel 430PM"
 
+# Lightweight board-backed G70 keep revalidation (not a full rebuild). Every 30m
+# from 8AM for 16h covers the live card day; asserts rebuild stamp age <= 6h.
+Register-PropTask `
+    -TaskName "PropOracle - G70 Keep Scrub" `
+    -Description "Every 30m: re-check published Goblin-70 legs against current keep gates; alert if LAST_G70_REBUILD older than 6h. Opens visible PowerShell." `
+    -ScriptPath $ScriptG70Scrub `
+    -At "08:00" `
+    -RepetitionInterval (New-TimeSpan -Minutes 30) `
+    -RepetitionDuration (New-TimeSpan -Hours 16) `
+    -ExecutionTimeLimit (New-TimeSpan -Minutes 20)
+
 Write-Host ""
 Write-Host "Scheduler tasks registered (visible PowerShell windows)." -ForegroundColor Green
 Write-Host "  - PropOracle - DayAhead 9PM (soccer/tennis/etc. tomorrow card)"
@@ -233,22 +263,24 @@ Write-Host "  - PropOracle - Grader 3AM (A1 + yesterday grades; unchanged)"
 Write-Host "  - PropOracle - Daily 5AM (juice-window update + live payout CDP + publish)"
 Write-Host "  - PropOracle - Daily 8AM (morning update + publish)"
 Write-Host "  - PropOracle - Refresh 9AM (morning refetch + ticket patch + publish)"
-Write-Host "  - PropOracle - Refresh 945AM (follow-up lock + publish)"
 Write-Host "  - PropOracle - Refresh 1030AM (PP morning move + ticket patch + publish)"
 Write-Host "  - PropOracle - Refresh 1PM (afternoon + publish)"
 Write-Host "  - PropOracle - Refresh 430PM (evening 7pm slate + publish)"
+Write-Host "  - PropOracle - G70 Keep Scrub (every 30m from 8AM; keep recheck + rebuild-age alert)"
 Write-Host ""
 Write-Host "CDP payout scrape: MLB fill (when posted) + 1AM + 5AM + each refresh (no standalone 11AM/3PM tasks)." -ForegroundColor Yellow
-Write-Host "Removed: Tennis Early 3AM, Grader 1AM (now Grader 3AM), Payout CDP 11AM/3PM, extra graders 7PM–12AM" -ForegroundColor Yellow
+Write-Host "Removed: Refresh 945AM, Tennis Early 3AM, Grader 1AM (now Grader 3AM), Payout CDP 11AM/3PM, extra graders 7PM–12AM" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "Quick checks:"
 Write-Host "  Get-ScheduledTask | Where-Object TaskName -like 'PropOracle -*' | Select-Object TaskName, State"
 Write-Host "  Get-ScheduledTaskInfo -TaskName 'PropOracle - Daily 1AM' | Select LastRunTime, LastTaskResult, NextRunTime"
 Write-Host "  Get-ScheduledTaskInfo -TaskName 'PropOracle - MLB Fill 11PM' | Select LastRunTime, LastTaskResult, NextRunTime"
 Write-Host "  Get-ScheduledTaskInfo -TaskName 'PropOracle - Grader 3AM' | Select LastRunTime, LastTaskResult, NextRunTime"
+Write-Host "  Get-ScheduledTaskInfo -TaskName 'PropOracle - G70 Keep Scrub' | Select LastRunTime, LastTaskResult, NextRunTime"
 Write-Host ""
 Write-Host "Manual catchup (visible window):  pwsh -File scripts\Launch_Daily_1AM_Visible.ps1" -ForegroundColor Cyan
 Write-Host "Manual day-ahead (visible window): pwsh -File scripts\Launch_DayAhead_Visible.ps1" -ForegroundColor Cyan
 Write-Host "Manual MLB fill (visible window):  pwsh -File scripts\Launch_MlbDayAheadFill_Visible.ps1 -Window 11PM" -ForegroundColor Cyan
+Write-Host "Manual G70 keep scrub:             pwsh -File scripts\run_g70_keep_scrub.ps1" -ForegroundColor Cyan
 Write-Host "Manual payout CDP (after a fetch): pwsh -File scripts\run_payout_cdp.ps1" -ForegroundColor Cyan
 Write-Host "Manual FillMissing only:          pwsh -File scripts\run_payout_cdp_update.ps1" -ForegroundColor Cyan

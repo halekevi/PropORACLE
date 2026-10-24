@@ -6,7 +6,7 @@ import re
 from html import unescape
 from pathlib import Path
 
-ROOT = Path(r"H:/halek/ProfileFromC/Desktop/PropORACLE_main_cp")
+ROOT = Path(r"H:/PropORACLE_main_cp")
 TEMPLATES = ROOT / "ui_runner" / "templates"
 DATA = ROOT / "ui_runner" / "data"
 

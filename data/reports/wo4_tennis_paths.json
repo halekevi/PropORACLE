@@ -1,0 +1,63 @@
+{
+  "paths": {
+    "37/47": {
+      "attach": "catalog file, uncorrected",
+      "cell": {
+        "hits": 37,
+        "n": 47,
+        "hr": 0.7872,
+        "band": [
+          0.6702,
+          0.9042
+        ]
+      }
+    },
+    "44/58": {
+      "attach": "on-row graded L5>=4+L10>=8, stored result, no board-opponent check",
+      "cell": {
+        "hits": 44,
+        "n": 58,
+        "hr": 0.7586,
+        "band": [
+          0.6485,
+          0.8688
+        ]
+      }
+    },
+    "146/208": {
+      "attach": "corrected board-opponent, non-retired, Goblin OVER Total Games, L5>=4+L10>=8",
+      "cell": {
+        "hits": 106,
+        "n": 147,
+        "hr": 0.7211,
+        "band": [
+          0.6486,
+          0.7936
+        ]
+      },
+      "on_file": "146/208 (70.2%)"
+    }
+  },
+  "corrected_ungated_total_games": {
+    "hits": 678,
+    "n": 1057,
+    "hr": 0.6414,
+    "band": [
+      0.6125,
+      0.6704
+    ]
+  },
+  "corrected_ungated_games_won": {
+    "hits": 828,
+    "n": 1227,
+    "hr": 0.6748,
+    "band": [
+      0.6486,
+      0.701
+    ]
+  },
+  "games_won_vs_819_1224": {
+    "on_file": "819/1224 (66.9%)",
+    "shift": 0.0057
+  }
+}

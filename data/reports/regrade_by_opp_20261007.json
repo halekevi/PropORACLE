@@ -1,0 +1,247 @@
+{
+  "checked": 2596,
+  "agree": 1997,
+  "actual_flips": 470,
+  "no_opp_match": 129,
+  "no_board": 1946,
+  "grade_seen": 3241,
+  "grade_same": 3062,
+  "grade_flip": 179,
+  "logged": 179,
+  "filled_correct": "10/18",
+  "same_day_correct": "12/20",
+  "flip_samples": [
+    {
+      "day": "2026-08-23",
+      "player": "Dhakshineswar Suresh",
+      "stored": 12.0,
+      "correct": 13.0,
+      "board_opp": "MARCOS GIRON",
+      "espn_opp": "Marcos Giron",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Abdullah Shelbayh",
+      "stored": 15.0,
+      "correct": 10.0,
+      "board_opp": "MARTIN DAMM JR",
+      "espn_opp": "Martin Damm",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Sebastian Gorzny",
+      "stored": 13.0,
+      "correct": 16.0,
+      "board_opp": "CRUZ HEWITT",
+      "espn_opp": "Cruz Hewitt",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Felix Balshaw",
+      "stored": 16.0,
+      "correct": 10.0,
+      "board_opp": "ALEKSANDAR KOVACEVIC",
+      "espn_opp": "Aleksandar Kovacevic",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Mees Rottgering",
+      "stored": 12.0,
+      "correct": 15.0,
+      "board_opp": "JAN CHOINSKI",
+      "espn_opp": "Jan Choinski",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Quinn Vandecasteele",
+      "stored": 17.0,
+      "correct": 3.0,
+      "board_opp": "JAMES DUCKWORTH",
+      "espn_opp": "James Duckworth",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Jenson Brooksby",
+      "stored": 12.0,
+      "correct": 10.0,
+      "board_opp": "STEFANOS TSITSIPAS",
+      "espn_opp": "Stefanos Tsitsipas",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Francisco Comesana",
+      "stored": 12.0,
+      "correct": 7.0,
+      "board_opp": "DANIEL ALTMAIER",
+      "espn_opp": "Daniel Altmaier",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Ariana Arseneault",
+      "stored": 13.0,
+      "correct": 7.0,
+      "board_opp": "TEREZA VALENTOVA",
+      "espn_opp": "Tereza Valentova",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Jaeda Daniel",
+      "stored": 12.0,
+      "correct": 2.0,
+      "board_opp": "KYLIE COLLINS",
+      "espn_opp": "Kylie Collins",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Ekaterina Ovcharenko",
+      "stored": 12.0,
+      "correct": 13.0,
+      "board_opp": "KAITLIN QUEVEDO",
+      "espn_opp": "Kaitlin Quevedo",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Capucine Jauffret",
+      "stored": 8.0,
+      "correct": 6.0,
+      "board_opp": "LOIS BOISSON",
+      "espn_opp": "Lois Boisson",
+      "status": "STATUS_RETIRED"
+    },
+    {
+      "day": "2026-08-23",
+      "player": "Ella Seidel",
+      "stored": 13.0,
+      "correct": 6.0,
+      "board_opp": "JESSICA BOUZAS MANEIRO",
+      "espn_opp": "Jessica Bouzas Maneiro",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-24",
+      "player": "Rinky Hijikata",
+      "stored": 13.0,
+      "correct": 17.0,
+      "board_opp": "RAPHAEL COLLIGNON",
+      "espn_opp": "Raphael Collignon",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-24",
+      "player": "Hugo Grenier",
+      "stored": 17.0,
+      "correct": 11.0,
+      "board_opp": "SEBASTIAN BAEZ",
+      "espn_opp": "Sebastian Baez",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-24",
+      "player": "Maya Joint",
+      "stored": 12.0,
+      "correct": 7.0,
+      "board_opp": "PANNA UDVARDY",
+      "espn_opp": "Panna Udvardy",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-24",
+      "player": "Oleksandra Oliynykova",
+      "stored": 12.0,
+      "correct": 10.0,
+      "board_opp": "DIANE PARRY",
+      "espn_opp": "Diane Parry",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-25",
+      "player": "Benjamin Bonzi",
+      "stored": 15.0,
+      "correct": 13.0,
+      "board_opp": "KAMIL MAJCHRZAK",
+      "espn_opp": "Kamil Majchrzak",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-25",
+      "player": "Ignacio Buse",
+      "stored": 17.0,
+      "correct": 14.0,
+      "board_opp": "DANIEL ALTMAIER",
+      "espn_opp": "Daniel Altmaier",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-25",
+      "player": "Luciano Darderi",
+      "stored": 14.0,
+      "correct": 1.0,
+      "board_opp": "BOTIC VAN DE ZANDSCHULP",
+      "espn_opp": "Botic Van De Zandschulp",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-25",
+      "player": "Dhakshineswar Suresh",
+      "stored": 9.0,
+      "correct": 13.0,
+      "board_opp": "MARCOS GIRON",
+      "espn_opp": "Marcos Giron",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-25",
+      "player": "Juan Manuel Cerundolo",
+      "stored": 13.0,
+      "correct": 10.0,
+      "board_opp": "SEBASTIAN BAEZ",
+      "espn_opp": "Sebastian Baez",
+      "status": "STATUS_RETIRED"
+    },
+    {
+      "day": "2026-08-25",
+      "player": "Michael Antonius",
+      "stored": 12.0,
+      "correct": 8.0,
+      "board_opp": "KEI NISHIKORI",
+      "espn_opp": "Kei Nishikori",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-25",
+      "player": "Braden Shick",
+      "stored": 13.0,
+      "correct": 5.0,
+      "board_opp": "SHINTARO MOCHIZUKI",
+      "espn_opp": "Shintaro Mochizuki",
+      "status": "STATUS_FINAL"
+    },
+    {
+      "day": "2026-08-25",
+      "player": "Shintaro Mochizuki",
+      "stored": 13.0,
+      "correct": 12.0,
+      "board_opp": "BRADEN SHICK",
+      "espn_opp": "Braden Shick",
+      "status": "STATUS_FINAL"
+    }
+  ],
+  "slip_note": {
+    "manifest_resolved_wins": 71,
+    "manifest_resolved": 127,
+    "grade_flips_logged": 179,
+    "actual_flips_on_checkable": 470,
+    "checkable": 2596
+  }
+}

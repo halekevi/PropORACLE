@@ -1,0 +1,2749 @@
+{
+  "n_rows": 70041,
+  "dates": [
+    "2026-03-30",
+    "2026-03-31",
+    "2026-04-01",
+    "2026-04-02",
+    "2026-04-03",
+    "2026-04-04",
+    "2026-04-05",
+    "2026-04-06",
+    "2026-04-07",
+    "2026-04-08",
+    "2026-04-09",
+    "2026-04-10",
+    "2026-04-11",
+    "2026-04-12",
+    "2026-04-13",
+    "2026-04-14",
+    "2026-04-15",
+    "2026-04-16",
+    "2026-04-17",
+    "2026-04-18",
+    "2026-04-19",
+    "2026-04-20",
+    "2026-04-21",
+    "2026-04-22",
+    "2026-04-23",
+    "2026-04-24",
+    "2026-04-25",
+    "2026-04-26",
+    "2026-04-27",
+    "2026-04-28",
+    "2026-04-29",
+    "2026-04-30",
+    "2026-05-01",
+    "2026-05-02",
+    "2026-05-03",
+    "2026-05-04",
+    "2026-05-05",
+    "2026-05-06",
+    "2026-05-07",
+    "2026-05-08",
+    "2026-05-09",
+    "2026-05-10",
+    "2026-05-11",
+    "2026-05-12",
+    "2026-05-13",
+    "2026-05-14",
+    "2026-05-15",
+    "2026-05-16",
+    "2026-05-17",
+    "2026-05-18",
+    "2026-05-19",
+    "2026-05-20",
+    "2026-05-21",
+    "2026-05-22",
+    "2026-05-23",
+    "2026-05-24",
+    "2026-05-25",
+    "2026-05-26",
+    "2026-05-27",
+    "2026-05-28",
+    "2026-05-29",
+    "2026-05-30",
+    "2026-05-31",
+    "2026-06-01",
+    "2026-06-02",
+    "2026-06-03",
+    "2026-06-04",
+    "2026-06-05",
+    "2026-06-06",
+    "2026-06-07",
+    "2026-06-08",
+    "2026-06-09",
+    "2026-06-10",
+    "2026-06-11",
+    "2026-06-12",
+    "2026-06-13",
+    "2026-06-14",
+    "2026-06-15",
+    "2026-06-16",
+    "2026-06-17",
+    "2026-06-18",
+    "2026-06-19",
+    "2026-06-20",
+    "2026-06-21",
+    "2026-06-22",
+    "2026-06-23",
+    "2026-06-24",
+    "2026-06-25",
+    "2026-06-26",
+    "2026-06-27",
+    "2026-06-28",
+    "2026-06-29",
+    "2026-06-30",
+    "2026-07-01",
+    "2026-07-02",
+    "2026-07-03",
+    "2026-07-04",
+    "2026-07-05",
+    "2026-07-06",
+    "2026-07-07",
+    "2026-07-08",
+    "2026-07-09",
+    "2026-07-10",
+    "2026-07-11",
+    "2026-07-12",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20",
+    "2026-07-21",
+    "2026-07-22",
+    "2026-07-23",
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26",
+    "2026-07-27",
+    "2026-07-28",
+    "2026-07-29",
+    "2026-07-30",
+    "2026-07-31",
+    "2026-08-01",
+    "2026-08-02",
+    "2026-08-04",
+    "2026-08-05",
+    "2026-08-06",
+    "2026-08-07",
+    "2026-08-08",
+    "2026-08-09",
+    "2026-08-10",
+    "2026-08-11",
+    "2026-08-12",
+    "2026-08-13",
+    "2026-08-14",
+    "2026-08-15",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-22",
+    "2026-08-23",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28",
+    "2026-08-29",
+    "2026-08-30",
+    "2026-08-31",
+    "2026-09-01"
+  ],
+  "ticket_bar": {
+    "hr": 0.7,
+    "n": 40
+  },
+  "coverage": {
+    "Goblin OVER|total_bases": {
+      "n": 29122,
+      "l5": 17670,
+      "l10": 14707,
+      "d": 17669,
+      "cover": 5198
+    },
+    "Goblin OVER|hits": {
+      "n": 29347,
+      "l5": 17981,
+      "l10": 14729,
+      "d": 18023,
+      "cover": 5351
+    },
+    "Standard OVER|total_bases": {
+      "n": 2988,
+      "l5": 1799,
+      "l10": 1490,
+      "d": 1751,
+      "cover": 505
+    },
+    "Standard UNDER|total_bases": {
+      "n": 2058,
+      "l5": 1089,
+      "l10": 1171,
+      "d": 1159,
+      "cover": 443
+    },
+    "Standard UNDER|hits": {
+      "n": 1744,
+      "l5": 904,
+      "l10": 1013,
+      "d": 968,
+      "cover": 402
+    },
+    "Standard OVER|hits": {
+      "n": 1460,
+      "l5": 791,
+      "l10": 802,
+      "d": 768,
+      "cover": 255
+    },
+    "Goblin OVER|earned_runs": {
+      "n": 2720,
+      "l5": 1103,
+      "l10": 2541,
+      "d": 1107,
+      "cover": 1109
+    },
+    "Standard UNDER|earned_runs": {
+      "n": 309,
+      "l5": 112,
+      "l10": 287,
+      "d": 112,
+      "cover": 112
+    },
+    "Standard OVER|earned_runs": {
+      "n": 293,
+      "l5": 116,
+      "l10": 269,
+      "d": 115,
+      "cover": 116
+    }
+  },
+  "cells": [
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gates": [
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "all",
+          "hits": 1901,
+          "n": 2720,
+          "hr": 0.6989
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "line 0.5",
+          "hits": 956,
+          "n": 1154,
+          "hr": 0.8284
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "line 1.5",
+          "hits": 826,
+          "n": 1330,
+          "hr": 0.6211
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "line 2.5+",
+          "hits": 119,
+          "n": 236,
+          "hr": 0.5042
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5>=4",
+          "hits": 400,
+          "n": 522,
+          "hr": 0.7663
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5",
+          "hits": 181,
+          "n": 215,
+          "hr": 0.8419
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8",
+          "hits": 616,
+          "n": 770,
+          "hr": 0.8
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=9",
+          "hits": 321,
+          "n": 387,
+          "hr": 0.8295
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L10=10",
+          "hits": 123,
+          "n": 142,
+          "hr": 0.8662
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "D",
+          "hits": 303,
+          "n": 439,
+          "hr": 0.6902
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "cover>=0.5",
+          "hits": 580,
+          "n": 761,
+          "hr": 0.7622
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "cover>=1",
+          "hits": 484,
+          "n": 608,
+          "hr": 0.7961
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "cover>=1.5",
+          "hits": 384,
+          "n": 466,
+          "hr": 0.824
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "season HR>70%",
+          "hits": 5,
+          "n": 7,
+          "hr": 0.7143
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8",
+          "hits": 147,
+          "n": 169,
+          "hr": 0.8698
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5>=4 + L10>=8",
+          "hits": 263,
+          "n": 322,
+          "hr": 0.8168
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + D",
+          "hits": 73,
+          "n": 87,
+          "hr": 0.8391
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + D",
+          "hits": 111,
+          "n": 139,
+          "hr": 0.7986
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8 + D",
+          "hits": 56,
+          "n": 66,
+          "hr": 0.8485
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5>=4 + L10>=8 + D",
+          "hits": 102,
+          "n": 127,
+          "hr": 0.8031
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8 + D + cover>=1",
+          "hits": 56,
+          "n": 66,
+          "hr": 0.8485
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + cover>=1",
+          "hits": 261,
+          "n": 317,
+          "hr": 0.8233
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + D + cover>=1",
+          "hits": 101,
+          "n": 127,
+          "hr": 0.7953
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L10=10 + D",
+          "hits": 26,
+          "n": 31,
+          "hr": 0.8387
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8 + D + season>70%",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + line 0.5",
+          "hits": 504,
+          "n": 599,
+          "hr": 0.8414
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + line 1.5",
+          "hits": 111,
+          "n": 167,
+          "hr": 0.6647
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + line 0.5",
+          "hits": 143,
+          "n": 164,
+          "hr": 0.872
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "D + line 0.5",
+          "hits": 162,
+          "n": 194,
+          "hr": 0.8351
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "earned_runs",
+          "gate": "D + cover>=1 + line 0.5",
+          "hits": 153,
+          "n": 184,
+          "hr": 0.8315
+        }
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "gates": [
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "all",
+          "hits": 17448,
+          "n": 29347,
+          "hr": 0.5945
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "line 0.5",
+          "hits": 17440,
+          "n": 29331,
+          "hr": 0.5946
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "line 1.5",
+          "hits": 8,
+          "n": 16,
+          "hr": 0.5
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "line 2.5+",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5>=4",
+          "hits": 3551,
+          "n": 5666,
+          "hr": 0.6267
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5=5",
+          "hits": 873,
+          "n": 1395,
+          "hr": 0.6258
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L10>=8",
+          "hits": 1635,
+          "n": 2597,
+          "hr": 0.6296
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L10>=9",
+          "hits": 487,
+          "n": 755,
+          "hr": 0.645
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L10=10",
+          "hits": 65,
+          "n": 95,
+          "hr": 0.6842
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "D",
+          "hits": 4631,
+          "n": 7681,
+          "hr": 0.6029
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "cover>=0.5",
+          "hits": 2042,
+          "n": 3322,
+          "hr": 0.6147
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "cover>=1",
+          "hits": 1475,
+          "n": 2385,
+          "hr": 0.6184
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "cover>=1.5",
+          "hits": 477,
+          "n": 752,
+          "hr": 0.6343
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "season HR>70%",
+          "hits": 522,
+          "n": 805,
+          "hr": 0.6484
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8",
+          "hits": 208,
+          "n": 344,
+          "hr": 0.6047
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5>=4 + L10>=8",
+          "hits": 684,
+          "n": 1062,
+          "hr": 0.6441
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5=5 + D",
+          "hits": 355,
+          "n": 543,
+          "hr": 0.6538
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + D",
+          "hits": 372,
+          "n": 555,
+          "hr": 0.6703
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8 + D",
+          "hits": 103,
+          "n": 160,
+          "hr": 0.6438
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5>=4 + L10>=8 + D",
+          "hits": 295,
+          "n": 441,
+          "hr": 0.6689
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8 + D + cover>=1",
+          "hits": 82,
+          "n": 126,
+          "hr": 0.6508
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + cover>=1",
+          "hits": 489,
+          "n": 744,
+          "hr": 0.6573
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + D + cover>=1",
+          "hits": 236,
+          "n": 337,
+          "hr": 0.7003
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L10=10 + D",
+          "hits": 20,
+          "n": 24,
+          "hr": 0.8333
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8 + D + season>70%",
+          "hits": 18,
+          "n": 27,
+          "hr": 0.6667
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + line 0.5",
+          "hits": 1635,
+          "n": 2597,
+          "hr": 0.6296
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + line 1.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "L5=5 + line 0.5",
+          "hits": 873,
+          "n": 1395,
+          "hr": 0.6258
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "D + line 0.5",
+          "hits": 4630,
+          "n": 7680,
+          "hr": 0.6029
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "hits",
+          "gate": "D + cover>=1 + line 0.5",
+          "hits": 615,
+          "n": 983,
+          "hr": 0.6256
+        }
+      ]
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "gates": [
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "all",
+          "hits": 17299,
+          "n": 29122,
+          "hr": 0.594
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "line 0.5",
+          "hits": 17179,
+          "n": 28872,
+          "hr": 0.595
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "line 1.5",
+          "hits": 117,
+          "n": 244,
+          "hr": 0.4795
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "line 2.5+",
+          "hits": 3,
+          "n": 6,
+          "hr": 0.5
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5>=4",
+          "hits": 3487,
+          "n": 5579,
+          "hr": 0.625
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5=5",
+          "hits": 853,
+          "n": 1360,
+          "hr": 0.6272
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8",
+          "hits": 1608,
+          "n": 2571,
+          "hr": 0.6254
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L10>=9",
+          "hits": 481,
+          "n": 750,
+          "hr": 0.6413
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L10=10",
+          "hits": 65,
+          "n": 94,
+          "hr": 0.6915
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "D",
+          "hits": 4556,
+          "n": 7581,
+          "hr": 0.601
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "cover>=0.5",
+          "hits": 2424,
+          "n": 4021,
+          "hr": 0.6028
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "cover>=1",
+          "hits": 2171,
+          "n": 3543,
+          "hr": 0.6128
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "cover>=1.5",
+          "hits": 1557,
+          "n": 2529,
+          "hr": 0.6157
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "season HR>70%",
+          "hits": 483,
+          "n": 749,
+          "hr": 0.6449
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8",
+          "hits": 205,
+          "n": 341,
+          "hr": 0.6012
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5>=4 + L10>=8",
+          "hits": 663,
+          "n": 1037,
+          "hr": 0.6393
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + D",
+          "hits": 349,
+          "n": 532,
+          "hr": 0.656
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + D",
+          "hits": 359,
+          "n": 538,
+          "hr": 0.6673
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8 + D",
+          "hits": 101,
+          "n": 157,
+          "hr": 0.6433
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5>=4 + L10>=8 + D",
+          "hits": 287,
+          "n": 429,
+          "hr": 0.669
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8 + D + cover>=1",
+          "hits": 81,
+          "n": 124,
+          "hr": 0.6532
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + cover>=1",
+          "hits": 561,
+          "n": 867,
+          "hr": 0.6471
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + D + cover>=1",
+          "hits": 260,
+          "n": 374,
+          "hr": 0.6952
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L10=10 + D",
+          "hits": 20,
+          "n": 23,
+          "hr": 0.8696
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8 + D + season>70%",
+          "hits": 17,
+          "n": 26,
+          "hr": 0.6538
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + line 0.5",
+          "hits": 1607,
+          "n": 2567,
+          "hr": 0.626
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + line 1.5",
+          "hits": 1,
+          "n": 4,
+          "hr": 0.25
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + line 0.5",
+          "hits": 853,
+          "n": 1360,
+          "hr": 0.6272
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "D + line 0.5",
+          "hits": 4513,
+          "n": 7482,
+          "hr": 0.6032
+        },
+        {
+          "book": "Goblin OVER",
+          "prop": "total_bases",
+          "gate": "D + cover>=1 + line 0.5",
+          "hits": 870,
+          "n": 1411,
+          "hr": 0.6166
+        }
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "earned_runs",
+      "gates": [
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "all",
+          "hits": 134,
+          "n": 293,
+          "hr": 0.4573
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "line 0.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "line 1.5",
+          "hits": 22,
+          "n": 53,
+          "hr": 0.4151
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "line 2.5+",
+          "hits": 112,
+          "n": 240,
+          "hr": 0.4667
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5>=4",
+          "hits": 14,
+          "n": 25,
+          "hr": 0.56
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5",
+          "hits": 3,
+          "n": 4,
+          "hr": 0.75
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8",
+          "hits": 5,
+          "n": 11,
+          "hr": 0.4545
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=9",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L10=10",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "D",
+          "hits": 26,
+          "n": 47,
+          "hr": 0.5532
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "cover>=0.5",
+          "hits": 17,
+          "n": 31,
+          "hr": 0.5484
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "cover>=1",
+          "hits": 2,
+          "n": 4,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "cover>=1.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "season HR>70%",
+          "hits": 1,
+          "n": 1,
+          "hr": 1.0
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5>=4 + L10>=8",
+          "hits": 1,
+          "n": 4,
+          "hr": 0.25
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + D",
+          "hits": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + D",
+          "hits": 1,
+          "n": 2,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8 + D",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5>=4 + L10>=8 + D",
+          "hits": 1,
+          "n": 2,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8 + D + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + D + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L10=10 + D",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8 + D + season>70%",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + line 0.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + line 1.5",
+          "hits": 5,
+          "n": 8,
+          "hr": 0.625
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + line 0.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "D + line 0.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "earned_runs",
+          "gate": "D + cover>=1 + line 0.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        }
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "hits",
+      "gates": [
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "all",
+          "hits": 693,
+          "n": 1460,
+          "hr": 0.4747
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "line 0.5",
+          "hits": 690,
+          "n": 1454,
+          "hr": 0.4746
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "line 1.5",
+          "hits": 3,
+          "n": 6,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "line 2.5+",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5>=4",
+          "hits": 60,
+          "n": 114,
+          "hr": 0.5263
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5=5",
+          "hits": 11,
+          "n": 20,
+          "hr": 0.55
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L10>=8",
+          "hits": 26,
+          "n": 50,
+          "hr": 0.52
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L10>=9",
+          "hits": 6,
+          "n": 10,
+          "hr": 0.6
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L10=10",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "D",
+          "hits": 126,
+          "n": 277,
+          "hr": 0.4549
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "cover>=0.5",
+          "hits": 87,
+          "n": 158,
+          "hr": 0.5506
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "cover>=1",
+          "hits": 57,
+          "n": 100,
+          "hr": 0.57
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "cover>=1.5",
+          "hits": 8,
+          "n": 12,
+          "hr": 0.6667
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "season HR>70%",
+          "hits": 2,
+          "n": 3,
+          "hr": 0.6667
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8",
+          "hits": 3,
+          "n": 6,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5>=4 + L10>=8",
+          "hits": 5,
+          "n": 12,
+          "hr": 0.4167
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5=5 + D",
+          "hits": 2,
+          "n": 6,
+          "hr": 0.3333
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + D",
+          "hits": 1,
+          "n": 3,
+          "hr": 0.3333
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8 + D",
+          "hits": 0,
+          "n": 2,
+          "hr": 0.0
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5>=4 + L10>=8 + D",
+          "hits": 1,
+          "n": 3,
+          "hr": 0.3333
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8 + D + cover>=1",
+          "hits": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + cover>=1",
+          "hits": 4,
+          "n": 9,
+          "hr": 0.4444
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + D + cover>=1",
+          "hits": 1,
+          "n": 2,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L10=10 + D",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8 + D + season>70%",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + line 0.5",
+          "hits": 26,
+          "n": 50,
+          "hr": 0.52
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L10>=8 + line 1.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "L5=5 + line 0.5",
+          "hits": 11,
+          "n": 20,
+          "hr": 0.55
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "D + line 0.5",
+          "hits": 125,
+          "n": 276,
+          "hr": 0.4529
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "hits",
+          "gate": "D + cover>=1 + line 0.5",
+          "hits": 19,
+          "n": 34,
+          "hr": 0.5588
+        }
+      ]
+    },
+    {
+      "book": "Standard OVER",
+      "prop": "total_bases",
+      "gates": [
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "all",
+          "hits": 1338,
+          "n": 2988,
+          "hr": 0.4478
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "line 0.5",
+          "hits": 918,
+          "n": 2010,
+          "hr": 0.4567
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "line 1.5",
+          "hits": 420,
+          "n": 978,
+          "hr": 0.4294
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "line 2.5+",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5>=4",
+          "hits": 117,
+          "n": 230,
+          "hr": 0.5087
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5=5",
+          "hits": 11,
+          "n": 24,
+          "hr": 0.4583
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8",
+          "hits": 30,
+          "n": 66,
+          "hr": 0.4545
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L10>=9",
+          "hits": 9,
+          "n": 16,
+          "hr": 0.5625
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L10=10",
+          "hits": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "D",
+          "hits": 352,
+          "n": 788,
+          "hr": 0.4467
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "cover>=0.5",
+          "hits": 183,
+          "n": 378,
+          "hr": 0.4841
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "cover>=1",
+          "hits": 137,
+          "n": 284,
+          "hr": 0.4824
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "cover>=1.5",
+          "hits": 79,
+          "n": 158,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "season HR>70%",
+          "hits": 18,
+          "n": 37,
+          "hr": 0.4865
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8",
+          "hits": 2,
+          "n": 7,
+          "hr": 0.2857
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5>=4 + L10>=8",
+          "hits": 5,
+          "n": 20,
+          "hr": 0.25
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + D",
+          "hits": 4,
+          "n": 11,
+          "hr": 0.3636
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + D",
+          "hits": 1,
+          "n": 10,
+          "hr": 0.1
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8 + D",
+          "hits": 0,
+          "n": 3,
+          "hr": 0.0
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5>=4 + L10>=8 + D",
+          "hits": 1,
+          "n": 10,
+          "hr": 0.1
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8 + D + cover>=1",
+          "hits": 0,
+          "n": 2,
+          "hr": 0.0
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + cover>=1",
+          "hits": 4,
+          "n": 17,
+          "hr": 0.2353
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + D + cover>=1",
+          "hits": 1,
+          "n": 7,
+          "hr": 0.1429
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L10=10 + D",
+          "hits": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8 + D + season>70%",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + line 0.5",
+          "hits": 24,
+          "n": 48,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + line 1.5",
+          "hits": 6,
+          "n": 18,
+          "hr": 0.3333
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "L5=5 + line 0.5",
+          "hits": 10,
+          "n": 22,
+          "hr": 0.4545
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "D + line 0.5",
+          "hits": 200,
+          "n": 434,
+          "hr": 0.4608
+        },
+        {
+          "book": "Standard OVER",
+          "prop": "total_bases",
+          "gate": "D + cover>=1 + line 0.5",
+          "hits": 42,
+          "n": 87,
+          "hr": 0.4828
+        }
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "earned_runs",
+      "gates": [
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "all",
+          "hits": 184,
+          "n": 309,
+          "hr": 0.5955
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "line 0.5",
+          "hits": 2,
+          "n": 2,
+          "hr": 1.0
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "line 1.5",
+          "hits": 16,
+          "n": 27,
+          "hr": 0.5926
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "line 2.5+",
+          "hits": 166,
+          "n": 280,
+          "hr": 0.5929
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5>=4",
+          "hits": 29,
+          "n": 54,
+          "hr": 0.537
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5=5",
+          "hits": 9,
+          "n": 12,
+          "hr": 0.75
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L10>=8",
+          "hits": 44,
+          "n": 68,
+          "hr": 0.6471
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L10>=9",
+          "hits": 15,
+          "n": 27,
+          "hr": 0.5556
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L10=10",
+          "hits": 5,
+          "n": 8,
+          "hr": 0.625
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "D",
+          "hits": 22,
+          "n": 43,
+          "hr": 0.5116
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "cover>=0.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "cover>=1.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "season HR>70%",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8",
+          "hits": 6,
+          "n": 7,
+          "hr": 0.8571
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5>=4 + L10>=8",
+          "hits": 14,
+          "n": 22,
+          "hr": 0.6364
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + D",
+          "hits": 1,
+          "n": 3,
+          "hr": 0.3333
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + D",
+          "hits": 6,
+          "n": 11,
+          "hr": 0.5455
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8 + D",
+          "hits": 0,
+          "n": 1,
+          "hr": 0.0
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5>=4 + L10>=8 + D",
+          "hits": 4,
+          "n": 8,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8 + D + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + D + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L10=10 + D",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + L10>=8 + D + season>70%",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + line 0.5",
+          "hits": 2,
+          "n": 2,
+          "hr": 1.0
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L10>=8 + line 1.5",
+          "hits": 2,
+          "n": 4,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "L5=5 + line 0.5",
+          "hits": 1,
+          "n": 1,
+          "hr": 1.0
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "D + line 0.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "earned_runs",
+          "gate": "D + cover>=1 + line 0.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        }
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "hits",
+      "gates": [
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "all",
+          "hits": 967,
+          "n": 1744,
+          "hr": 0.5545
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "line 0.5",
+          "hits": 963,
+          "n": 1739,
+          "hr": 0.5538
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "line 1.5",
+          "hits": 4,
+          "n": 5,
+          "hr": 0.8
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "line 2.5+",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5>=4",
+          "hits": 278,
+          "n": 507,
+          "hr": 0.5483
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5=5",
+          "hits": 36,
+          "n": 74,
+          "hr": 0.4865
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L10>=8",
+          "hits": 103,
+          "n": 190,
+          "hr": 0.5421
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L10>=9",
+          "hits": 28,
+          "n": 53,
+          "hr": 0.5283
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L10=10",
+          "hits": 5,
+          "n": 9,
+          "hr": 0.5556
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "D",
+          "hits": 257,
+          "n": 464,
+          "hr": 0.5539
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "cover>=0.5",
+          "hits": 30,
+          "n": 56,
+          "hr": 0.5357
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "cover>=1",
+          "hits": 18,
+          "n": 31,
+          "hr": 0.5806
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "cover>=1.5",
+          "hits": 1,
+          "n": 2,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "season HR>70%",
+          "hits": 3,
+          "n": 4,
+          "hr": 0.75
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8",
+          "hits": 12,
+          "n": 34,
+          "hr": 0.3529
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5>=4 + L10>=8",
+          "hits": 39,
+          "n": 82,
+          "hr": 0.4756
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5=5 + D",
+          "hits": 11,
+          "n": 21,
+          "hr": 0.5238
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L10>=8 + D",
+          "hits": 17,
+          "n": 33,
+          "hr": 0.5152
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8 + D",
+          "hits": 3,
+          "n": 7,
+          "hr": 0.4286
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5>=4 + L10>=8 + D",
+          "hits": 12,
+          "n": 27,
+          "hr": 0.4444
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8 + D + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L10>=8 + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L10>=8 + D + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L10=10 + D",
+          "hits": 1,
+          "n": 1,
+          "hr": 1.0
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5=5 + L10>=8 + D + season>70%",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L10>=8 + line 0.5",
+          "hits": 103,
+          "n": 190,
+          "hr": 0.5421
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L10>=8 + line 1.5",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "L5=5 + line 0.5",
+          "hits": 36,
+          "n": 73,
+          "hr": 0.4932
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "D + line 0.5",
+          "hits": 257,
+          "n": 463,
+          "hr": 0.5551
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "hits",
+          "gate": "D + cover>=1 + line 0.5",
+          "hits": 18,
+          "n": 31,
+          "hr": 0.5806
+        }
+      ]
+    },
+    {
+      "book": "Standard UNDER",
+      "prop": "total_bases",
+      "gates": [
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "all",
+          "hits": 1092,
+          "n": 2058,
+          "hr": 0.5306
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "line 0.5",
+          "hits": 752,
+          "n": 1413,
+          "hr": 0.5322
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "line 1.5",
+          "hits": 339,
+          "n": 643,
+          "hr": 0.5272
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "line 2.5+",
+          "hits": 1,
+          "n": 2,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5>=4",
+          "hits": 367,
+          "n": 694,
+          "hr": 0.5288
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5=5",
+          "hits": 75,
+          "n": 134,
+          "hr": 0.5597
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L10>=8",
+          "hits": 144,
+          "n": 266,
+          "hr": 0.5414
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L10>=9",
+          "hits": 40,
+          "n": 78,
+          "hr": 0.5128
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L10=10",
+          "hits": 5,
+          "n": 12,
+          "hr": 0.4167
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "D",
+          "hits": 271,
+          "n": 502,
+          "hr": 0.5398
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "cover>=0.5",
+          "hits": 47,
+          "n": 97,
+          "hr": 0.4845
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "cover>=1",
+          "hits": 36,
+          "n": 80,
+          "hr": 0.45
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "cover>=1.5",
+          "hits": 18,
+          "n": 43,
+          "hr": 0.4186
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "season HR>70%",
+          "hits": 15,
+          "n": 27,
+          "hr": 0.5556
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8",
+          "hits": 19,
+          "n": 42,
+          "hr": 0.4524
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5>=4 + L10>=8",
+          "hits": 56,
+          "n": 109,
+          "hr": 0.5138
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5=5 + D",
+          "hits": 24,
+          "n": 41,
+          "hr": 0.5854
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + D",
+          "hits": 15,
+          "n": 35,
+          "hr": 0.4286
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8 + D",
+          "hits": 4,
+          "n": 8,
+          "hr": 0.5
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5>=4 + L10>=8 + D",
+          "hits": 14,
+          "n": 32,
+          "hr": 0.4375
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8 + D + cover>=1",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + cover>=1",
+          "hits": 1,
+          "n": 3,
+          "hr": 0.3333
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + D + cover>=1",
+          "hits": 1,
+          "n": 3,
+          "hr": 0.3333
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L10=10 + D",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5=5 + L10>=8 + D + season>70%",
+          "hits": 0,
+          "n": 0,
+          "hr": null
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + line 0.5",
+          "hits": 97,
+          "n": 176,
+          "hr": 0.5511
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L10>=8 + line 1.5",
+          "hits": 47,
+          "n": 90,
+          "hr": 0.5222
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "L5=5 + line 0.5",
+          "hits": 49,
+          "n": 90,
+          "hr": 0.5444
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "D + line 0.5",
+          "hits": 236,
+          "n": 430,
+          "hr": 0.5488
+        },
+        {
+          "book": "Standard UNDER",
+          "prop": "total_bases",
+          "gate": "D + cover>=1 + line 0.5",
+          "hits": 35,
+          "n": 79,
+          "hr": 0.443
+        }
+      ]
+    }
+  ],
+  "clears_ticket": [
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "line 0.5",
+      "hits": 956,
+      "n": 1154,
+      "hr": 0.8284
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L5>=4",
+      "hits": 400,
+      "n": 522,
+      "hr": 0.7663
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L5=5",
+      "hits": 181,
+      "n": 215,
+      "hr": 0.8419
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L10>=8",
+      "hits": 616,
+      "n": 770,
+      "hr": 0.8
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L10>=9",
+      "hits": 321,
+      "n": 387,
+      "hr": 0.8295
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L10=10",
+      "hits": 123,
+      "n": 142,
+      "hr": 0.8662
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "cover>=0.5",
+      "hits": 580,
+      "n": 761,
+      "hr": 0.7622
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "cover>=1",
+      "hits": 484,
+      "n": 608,
+      "hr": 0.7961
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "cover>=1.5",
+      "hits": 384,
+      "n": 466,
+      "hr": 0.824
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L5=5 + L10>=8",
+      "hits": 147,
+      "n": 169,
+      "hr": 0.8698
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L5>=4 + L10>=8",
+      "hits": 263,
+      "n": 322,
+      "hr": 0.8168
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L5=5 + D",
+      "hits": 73,
+      "n": 87,
+      "hr": 0.8391
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L10>=8 + D",
+      "hits": 111,
+      "n": 139,
+      "hr": 0.7986
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L5=5 + L10>=8 + D",
+      "hits": 56,
+      "n": 66,
+      "hr": 0.8485
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L5>=4 + L10>=8 + D",
+      "hits": 102,
+      "n": 127,
+      "hr": 0.8031
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L5=5 + L10>=8 + D + cover>=1",
+      "hits": 56,
+      "n": 66,
+      "hr": 0.8485
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L10>=8 + cover>=1",
+      "hits": 261,
+      "n": 317,
+      "hr": 0.8233
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L10>=8 + D + cover>=1",
+      "hits": 101,
+      "n": 127,
+      "hr": 0.7953
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L10>=8 + line 0.5",
+      "hits": 504,
+      "n": 599,
+      "hr": 0.8414
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L5=5 + line 0.5",
+      "hits": 143,
+      "n": 164,
+      "hr": 0.872
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "D + line 0.5",
+      "hits": 162,
+      "n": 194,
+      "hr": 0.8351
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "D + cover>=1 + line 0.5",
+      "hits": 153,
+      "n": 184,
+      "hr": 0.8315
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "gate": "L10>=8 + D + cover>=1",
+      "hits": 236,
+      "n": 337,
+      "hr": 0.7003
+    }
+  ],
+  "best_short_of_ticket": [
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "all",
+      "hits": 1901,
+      "n": 2720,
+      "hr": 0.6989
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "gate": "L10>=8 + D + cover>=1",
+      "hits": 260,
+      "n": 374,
+      "hr": 0.6952
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "gate": "L10=10",
+      "hits": 65,
+      "n": 94,
+      "hr": 0.6915
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "D",
+      "hits": 303,
+      "n": 439,
+      "hr": 0.6902
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "gate": "L10=10",
+      "hits": 65,
+      "n": 95,
+      "hr": 0.6842
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "gate": "L10>=8 + D",
+      "hits": 372,
+      "n": 555,
+      "hr": 0.6703
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "gate": "L5>=4 + L10>=8 + D",
+      "hits": 287,
+      "n": 429,
+      "hr": 0.669
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "gate": "L5>=4 + L10>=8 + D",
+      "hits": 295,
+      "n": 441,
+      "hr": 0.6689
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "gate": "L10>=8 + D",
+      "hits": 359,
+      "n": 538,
+      "hr": 0.6673
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L10>=8 + line 1.5",
+      "hits": 111,
+      "n": 167,
+      "hr": 0.6647
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "gate": "L10>=8 + cover>=1",
+      "hits": 489,
+      "n": 744,
+      "hr": 0.6573
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "gate": "L5=5 + D",
+      "hits": 349,
+      "n": 532,
+      "hr": 0.656
+    }
+  ],
+  "thin_70": [
+    {
+      "book": "Goblin OVER",
+      "prop": "earned_runs",
+      "gate": "L10=10 + D",
+      "hits": 26,
+      "n": 31,
+      "hr": 0.8387
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "gate": "L10=10 + D",
+      "hits": 20,
+      "n": 24,
+      "hr": 0.8333
+    },
+    {
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "gate": "L10=10 + D",
+      "hits": 20,
+      "n": 23,
+      "hr": 0.8696
+    }
+  ]
+}

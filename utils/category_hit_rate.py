@@ -8,13 +8,13 @@ from __future__ import annotations
 
 import json
 import os
-import re
 from functools import lru_cache
 
 import numpy as np
 import pandas as pd
 
 from utils.fantasy_prop_filter import is_fantasy_prop_label
+from utils.prop_norm import canon_prop, fold, preferred_hr
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DEFAULT_CATEGORY_HR_PATH = os.path.join(
@@ -31,8 +31,8 @@ CATEGORY_HR_HARD_FILTER = os.getenv(
 ).strip().lower() not in ("0", "false", "no", "off")
 
 
-def _norm_prop(text: object) -> str:
-    return re.sub(r"[^a-z0-9]+", "", str(text or "").strip().lower())
+def _norm_prop(text: object, sport: object = "") -> str:
+    return fold(canon_prop(sport, text))
 
 
 def _norm_sport(text: object) -> str:
@@ -82,7 +82,7 @@ def load_category_hr_index(
             label = str(prop_block.get("prop") or "")
             if is_fantasy_prop_label(label):
                 continue
-            pn = _norm_prop(prop_block.get("prop_norm") or label)
+            pn = _norm_prop(prop_block.get("prop_norm") or label, sp)
             if not pn or "fantasy" in pn:
                 continue
             for cell in prop_block.get("cells") or []:
@@ -122,7 +122,7 @@ def lookup_category_hr(
     if is_fantasy_prop_label(prop):
         return None
     sp = _norm_sport(sport)
-    pn = _norm_prop(prop)
+    pn = _norm_prop(prop, sp)
     pick = _norm_pick(pick_type)
     direction_u = _norm_dir(direction)
     if not (sp and pn and pick and direction_u):

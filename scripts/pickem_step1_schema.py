@@ -27,6 +27,7 @@ PROVIDER_EXTRA_COLUMNS = [
     "ud_sport_id",
     "ud_line_id",
     "ud_stat_key",
+    "ud_line_type",
 ]
 
 OUTPUT_COLUMNS = STEP1_PICKEM_COLUMNS + PROVIDER_EXTRA_COLUMNS
@@ -44,3 +45,18 @@ DRAFTKINGS_EXTRA_COLUMNS = [
 ]
 
 DK_OUTPUT_COLUMNS = STEP1_PICKEM_COLUMNS + DRAFTKINGS_EXTRA_COLUMNS
+
+# Vegas / sharp consensus player props from The Odds API (Pinnacle → Circa → DK).
+VEGAS_EXTRA_COLUMNS = [
+    "source_book",
+    "board_sport",
+    "odds_market",
+    "vegas_bookmaker",
+]
+
+VEGAS_OUTPUT_COLUMNS = [
+    "player",
+    "prop_type",
+    "line",
+    "pick_type",
+] + VEGAS_EXTRA_COLUMNS

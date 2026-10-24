@@ -71,7 +71,8 @@ def find_latest_pp_csv() -> Path | None:
     candidates: list[Path] = []
     for pattern in PP_GLOB_PATTERNS:
         candidates.extend(pattern.parent.glob(pattern.name))
-    candidates = [p for p in candidates if p.is_file()]
+    candidates.extend((REPO_ROOT / "outputs").glob("*/nfl/step1_pp_props_today.csv"))
+    candidates = [p for p in candidates if p.is_file() and p.stat().st_size > 200]
     if not candidates:
         return None
     return max(candidates, key=lambda p: p.stat().st_mtime)
@@ -158,6 +159,8 @@ def match_pp_to_master(pp_df: pd.DataFrame, master: pd.DataFrame) -> pd.DataFram
             continue
 
         if not n or not raw_team:
+            if not n:
+                continue
             rows.append(
                 {
                     "pp_player_id": pp_id,
@@ -255,6 +258,8 @@ def main() -> int:
     print(f"[NFL id-map] PP step1: {pp_path}")
     pp_df = pd.read_csv(pp_path, dtype=str).fillna("")
     pp_map, counts = match_pp_to_master(pp_df, master)
+    if "pp_player_id" in pp_map.columns:
+        pp_map = pp_map.drop_duplicates(subset=["pp_player_id"], keep="first")
     map_path = Path(args.pp_map)
     map_path.parent.mkdir(parents=True, exist_ok=True)
     pp_map.to_csv(map_path, index=False, encoding="utf-8")

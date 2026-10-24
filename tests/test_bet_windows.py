@@ -126,3 +126,103 @@ def test_append_scrape_log_and_rebuild(tmp_path: Path, monkeypatch):
     assert row["window"] == "4:30"
     assert row["median_power_x"] == 2.0
     assert "16:32" in str(row["last_captured_at"])
+
+
+def test_scrape_log_records_time_and_shared_game(tmp_path: Path, monkeypatch):
+    import json
+
+    import utils.bet_windows as bw
+
+    monkeypatch.setattr(bw, "REPORTS", tmp_path)
+    captured = [
+        {
+            "status": "ok",
+            "ticket_id": "t-share",
+            "n_legs": 2,
+            "power_min_x": 1.5,
+            "captured_at": "2026-08-27T16:32:00-04:00",
+            "legs": [
+                {
+                    "player": "A",
+                    "sport": "MLB",
+                    "team": "MIL",
+                    "opp": "SD",
+                    "game_id": "g1",
+                    "prop_type": "Pitcher Strikeouts",
+                    "line": 1.5,
+                    "pick_type": "Goblin",
+                },
+                {
+                    "player": "B",
+                    "sport": "MLB",
+                    "team": "SD",
+                    "opp": "MIL",
+                    "game_id": "g1",
+                    "prop_type": "Hits",
+                    "line": 0.5,
+                    "pick_type": "Goblin",
+                },
+            ],
+        }
+    ]
+    assert bw.append_payout_scrape_log("2026-08-27", captured) == 1
+    line = (tmp_path / "payout_scrape_log_2026-08-27.jsonl").read_text(encoding="utf-8")
+    row = json.loads(line)
+    assert row["captured_time_et"] == "16:32"
+    assert row["shared_game"] is True
+    assert row["shared_team"] is False
+
+
+def test_scrape_log_keeps_sibling_gap_and_drops_offset_estimate(tmp_path: Path, monkeypatch):
+    import json
+
+    import utils.bet_windows as bw
+
+    monkeypatch.setattr(bw, "REPORTS", tmp_path)
+    captured = [
+        {
+            "status": "ok",
+            "ticket_id": "t-gap",
+            "n_legs": 2,
+            "power_min_x": 1.8,
+            "captured_at": "2026-10-08T16:00:00-04:00",
+            "legs": [
+                {
+                    "player": "Novak Djokovic",
+                    "sport": "TENNIS",
+                    "prop_type": "Total Games",
+                    "line": 19.5,
+                    "pick_type": "Goblin",
+                    "standard_line": 24.5,
+                    "standard_line_source": "sibling",
+                    "gap": 5.0,
+                },
+                {
+                    "player": "Orphan",
+                    "sport": "TENNIS",
+                    "prop_type": "Aces",
+                    "line": 4.5,
+                    "pick_type": "Goblin",
+                    "standard_line": 6.0,
+                    "standard_line_source": "offset_estimate",
+                },
+                {
+                    "player": "Unlabeled",
+                    "sport": "TENNIS",
+                    "prop_type": "Total Games",
+                    "line": 20.5,
+                    "pick_type": "Goblin",
+                    "standard_line": 22.5,
+                },
+            ],
+        }
+    ]
+    assert bw.append_payout_scrape_log("2026-10-08", captured) == 1
+    row = json.loads((tmp_path / "payout_scrape_log_2026-10-08.jsonl").read_text(encoding="utf-8"))
+    by_player = {leg["player"]: leg for leg in row["lines"]}
+    assert by_player["Novak Djokovic"]["gap"] == 5.0
+    assert by_player["Novak Djokovic"]["standard_line"] == 24.5
+    assert by_player["Orphan"]["gap"] is None
+    assert by_player["Orphan"]["standard_line"] is None
+    assert by_player["Unlabeled"]["gap"] is None
+    assert by_player["Unlabeled"]["standard_line"] is None

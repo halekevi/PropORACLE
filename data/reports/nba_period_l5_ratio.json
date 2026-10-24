@@ -1,0 +1,21 @@
+{
+  "nba1q": {
+    "dates": 45,
+    "n": 6660,
+    "median_l5_avg_ratio": 0.26666666666666666,
+    "median_l10_avg_ratio": 0.2930725971370143,
+    "l5_hit_count_n": 5715,
+    "l5_hit_count_median_ratio": 1.0
+  },
+  "nba1h": {
+    "dates": 45,
+    "n": 1440,
+    "median_l5_avg_ratio": 0.49593141528625395,
+    "median_l10_avg_ratio": 0.49292929292929294,
+    "l5_hit_count_n": 1305,
+    "l5_hit_count_median_ratio": 1.0
+  },
+  "block": false,
+  "sane": true,
+  "scale": "Last 5 Avg and Last 10 Avg versus the same player's full-game average. L5 Over is a 0-5 hit count."
+}

@@ -1,0 +1,242 @@
+{
+  "live": [
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Jaylen Raynor",
+      "team": "ISU",
+      "prop": "Pass Yards",
+      "line": 99.5,
+      "l10": 10.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Katin Houser",
+      "team": "ILL",
+      "prop": "Pass Yards",
+      "line": 124.5,
+      "l10": 10.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Cam Edwards",
+      "team": "MSU",
+      "prop": "Rush Yards",
+      "line": 39.5,
+      "l10": 10.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Emmett Mosley V",
+      "team": "TEX",
+      "prop": "Rec Yards",
+      "line": 14.5,
+      "l10": 10.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Da'Shawn Martin",
+      "team": "UVA",
+      "prop": "Rec Yards",
+      "line": 4.5,
+      "l10": 10.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Terrance Carter Jr.",
+      "team": "TTU",
+      "prop": "Rec Yards",
+      "line": 14.5,
+      "l10": 10.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Jayden Maiava",
+      "team": "USC",
+      "prop": "Pass Yards",
+      "line": 189.5,
+      "l10": 9.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Rodney Fields Jr.",
+      "team": "KSU",
+      "prop": "Rush Yards",
+      "line": 34.5,
+      "l10": 9.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Arch Manning",
+      "team": "TEX",
+      "prop": "Pass Yards",
+      "line": 174.5,
+      "l10": 8.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Junior Sherrill",
+      "team": "VAN",
+      "prop": "Rec Yards",
+      "line": 39.5,
+      "l10": 8.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "J'Koby Williams",
+      "team": "TTU",
+      "prop": "Rush Yards",
+      "line": 49.5,
+      "l10": 8.0
+    },
+    {
+      "pick": "Goblin",
+      "side": "OVER",
+      "player": "Caden Knighten",
+      "team": "BAY",
+      "prop": "Rush Yards",
+      "line": 19.5,
+      "l10": 8.0
+    }
+  ],
+  "tickets": [
+    {
+      "id": "F4-1",
+      "mode": "flex",
+      "legs": [
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Jaylen Raynor",
+          "prop": "Pass Yards",
+          "line": 99.5
+        },
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Katin Houser",
+          "prop": "Pass Yards",
+          "line": 124.5
+        },
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Cam Edwards",
+          "prop": "Rush Yards",
+          "line": 39.5
+        },
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Emmett Mosley V",
+          "prop": "Rec Yards",
+          "line": 14.5
+        }
+      ]
+    },
+    {
+      "id": "F4-2",
+      "mode": "flex",
+      "legs": [
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Da'Shawn Martin",
+          "prop": "Rec Yards",
+          "line": 4.5
+        },
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Terrance Carter Jr.",
+          "prop": "Rec Yards",
+          "line": 14.5
+        },
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Jayden Maiava",
+          "prop": "Pass Yards",
+          "line": 189.5
+        },
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Rodney Fields Jr.",
+          "prop": "Rush Yards",
+          "line": 34.5
+        }
+      ]
+    },
+    {
+      "id": "F4-3",
+      "mode": "flex",
+      "legs": [
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Arch Manning",
+          "prop": "Pass Yards",
+          "line": 174.5
+        },
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Junior Sherrill",
+          "prop": "Rec Yards",
+          "line": 39.5
+        },
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "J'Koby Williams",
+          "prop": "Rush Yards",
+          "line": 49.5
+        },
+        {
+          "pick": "Goblin",
+          "side": "OVER",
+          "player": "Caden Knighten",
+          "prop": "Rush Yards",
+          "line": 19.5
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "F4-1",
+      "ready": false,
+      "n": 0,
+      "fails": [
+        "Jaylen Raynor"
+      ]
+    },
+    {
+      "id": "F4-2",
+      "ready": false,
+      "n": 0,
+      "fails": [
+        "Rodney Fields Jr."
+      ]
+    },
+    {
+      "id": "F4-3",
+      "ready": false,
+      "n": 0,
+      "fails": [
+        "J'Koby Williams"
+      ]
+    }
+  ]
+}

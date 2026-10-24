@@ -30,12 +30,34 @@ class SportMatchupConfig:
     team_normalize: Callable[[str], str] | None = None
 
 
+def _basketball_shooting_categories(*, nba: bool) -> tuple[dict, ...]:
+    """PrizePicks FG/FT/2PT markets — tracked historically; keep on Matchup Edge."""
+    if nba:
+        return (
+            {"id": "fgm", "label": "FG made", "threshold": 7.0},
+            {"id": "fga", "label": "FG attempted", "threshold": 14.0},
+            {"id": "fg2m", "label": "Two pointers made", "threshold": 5.0},
+            {"id": "fg2a", "label": "Two pointers attempted", "threshold": 10.0},
+            {"id": "ftm", "label": "Free throws made", "threshold": 4.0},
+            {"id": "fta", "label": "Free throws attempted", "threshold": 5.0},
+        )
+    return (
+        {"id": "fgm", "label": "FG made", "threshold": 5.5},
+        {"id": "fga", "label": "FG attempted", "threshold": 12.0},
+        {"id": "fg2m", "label": "Two pointers made", "threshold": 4.0},
+        {"id": "fg2a", "label": "Two pointers attempted", "threshold": 8.0},
+        {"id": "ftm", "label": "Free throws made", "threshold": 3.0},
+        {"id": "fta", "label": "Free throws attempted", "threshold": 4.0},
+    )
+
+
 def _basketball_categories() -> tuple[dict, ...]:
     return (
         {"id": "pts", "label": "Points", "threshold": 18.0},
         {"id": "reb", "label": "Rebounds", "threshold": 6.0},
         {"id": "ast", "label": "Assists", "threshold": 4.0},
         {"id": "fg3m", "label": "3-Pointers made", "threshold": 1.5},
+        *_basketball_shooting_categories(nba=True),
         {"id": "stl", "label": "Steals", "threshold": 1.0},
         {"id": "blk", "label": "Blocks", "threshold": 1.0},
         {"id": "pra", "label": "Pts+Reb+Ast", "threshold": 28.0},
@@ -142,6 +164,7 @@ SPORT_CONFIGS: dict[str, SportMatchupConfig] = {
             {"id": "reb", "label": "Rebounds", "threshold": 6.0},
             {"id": "ast", "label": "Assists", "threshold": 4.0},
             {"id": "fg3m", "label": "3-Pointers made", "threshold": 1.5},
+            *_basketball_shooting_categories(nba=False),
             {"id": "stl", "label": "Steals", "threshold": 1.0},
             {"id": "blk", "label": "Blocks", "threshold": 1.0},
             {"id": "pra", "label": "Pts+Reb+Ast", "threshold": 25.0},
@@ -276,7 +299,13 @@ SPORT_CONFIGS: dict[str, SportMatchupConfig] = {
             {"id": "pass_yds", "label": "Pass yards", "threshold": 200.0},
             {"id": "rush_yds", "label": "Rush yards", "threshold": 60.0},
             {"id": "rec_yds", "label": "Receiving yards", "threshold": 50.0},
+            {"id": "receptions", "label": "Receptions", "threshold": 4.0},
+            {"id": "pass_td", "label": "Pass TDs", "threshold": 1.5},
+            {"id": "rush_td", "label": "Rush TDs", "threshold": 0.5},
+            {"id": "rec_td", "label": "Receiving TDs", "threshold": 0.4},
+            {"id": "kick_pts", "label": "Kicking points", "threshold": 7.0},
         ),
+        cache_path=_REPO / "Sports/NFL/data/cache/nfl_boxscore_cache.csv",
         opp_metric_label="Opp pass def rank",
         enabled=True,
     ),

@@ -1,0 +1,35 @@
+{
+  "cutoff": "2026-05-25",
+  "n_train": 131323,
+  "n_test": 316959,
+  "n_test_games": 698,
+  "base": {
+    "features": [
+      "ml_prob"
+    ],
+    "logloss": 0.6013332886228796,
+    "brier": 0.20553448855146428
+  },
+  "with_total": {
+    "features": [
+      "ml_prob",
+      "game_total_z"
+    ],
+    "logloss": 0.6025280397973359,
+    "brier": 0.20609604949656
+  },
+  "delta_logloss": {
+    "delta_logloss": 0.0010386022066418313,
+    "se": 0.00023401141933997781,
+    "ci95": [
+      0.0005772722944130588,
+      0.001487390951874187
+    ],
+    "excludes_zero": true,
+    "n_games": 698,
+    "improves": false
+  },
+  "delta_brier": 0.0005615609450957126,
+  "decision": "exclude from model \u2014 held-out log-loss improvement does not clear a game-clustered 95% interval",
+  "generated_at": "2026-09-25T01:40:22.421469+00:00"
+}

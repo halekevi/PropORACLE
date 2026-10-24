@@ -2,7 +2,9 @@
 """
 Backfill stack signal columns on graded_props_*.json archives and graded xlsx Box Raw.
 
-Fills def_tier, L5/L10 counts, hit_rate, strat rates, and top-3 context from defense CSVs,
+Fills def_tier, per-stat stat_def_tier/rank/category (logging only; does not
+change ticket eligibility), L5/L10 counts, hit_rate, strat rates, and top-3
+context from defense CSVs,
 dated step8 slates, and strat lookup when missing on archive rows.
 
 Usage:
@@ -51,6 +53,7 @@ _NUMERIC_COLS = frozenset({
     "confidence_score",
     "team_top3_rank", "team_bottom3_rank", "def_boost_hist",
     "usage_pct", "usage_vacuum",
+    "stat_def_rank",
 })
 _CONFIDENCE_COLS: tuple[str, ...] = (
     "sport_signal_maturity",
@@ -61,7 +64,15 @@ _CONFIDENCE_COLS: tuple[str, ...] = (
 
 
 def _apply_patch_value(entry: dict, col: str, val: object) -> None:
-    if col in {"def_tier", "l10_streak", "sport_signal_maturity", "confidence_tier", "confidence_note"}:
+    if col in {
+        "def_tier",
+        "stat_def_tier",
+        "stat_def_category",
+        "l10_streak",
+        "sport_signal_maturity",
+        "confidence_tier",
+        "confidence_note",
+    }:
         entry[col] = str(val)
     elif col in _TOP3_INT_COLS:
         entry[col] = int(np.nan_to_num(pd.to_numeric(val, errors="coerce"), nan=0.0))

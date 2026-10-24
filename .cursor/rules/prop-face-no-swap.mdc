@@ -1,0 +1,21 @@
+---
+description: Re-gate or skip when the offered PrizePicks face differs from the model prop
+alwaysApply: true
+---
+
+# Prop face — no silent swaps
+
+If the board does not offer the prop the model cleared, **re-run the gate on the offered face**, or **skip that player**. Do not ticket a different prop/line and keep the old edge.
+
+Face swaps change the bet:
+
+- Pts+Rebs → PRA (adds assists variance; gap shrinks)
+- Pts+Asts → Points (strips assists cushion)
+- Any combo ↔ single-stat without a fresh L5=5 (and sport keep) on the posted face
+
+Use `utils.prop_face_gate.resolve_offered_face` (or equivalent) so the slip records both:
+
+- `model_prop` / `model_line` / `model_side` — what cleared the list
+- `play_prop` / `play_line` / `play_side` — what was ticketed
+
+`action=skip` when the offered face is missing or fails the re-gate.

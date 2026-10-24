@@ -14,8 +14,8 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$Desktop = "H:\halek\ProfileFromC\Desktop"
-$Repo = Join-Path $Desktop "PropORACLE"
+$Desktop = "H:\"
+$Repo = "H:\PropORACLE"
 $Stamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $ManifestDir = Join-Path $Desktop "_Archive"
 $Manifest = Join-Path $ManifestDir ("organize_manifest_{0}.txt" -f $Stamp)
@@ -226,8 +226,8 @@ $readme = Join-Path $ManifestDir "README.txt"
 Desktop / PropORACLE organize ($Stamp)
 
 LEFT IN PLACE (required for site/app):
-  Desktop\PropORACLE              feature worktree (Cursor)
-  Desktop\PropORACLE_main_cp      main / Railway publish worktree
+  H:\PropORACLE                 feature worktree (Cursor)
+  H:\PropORACLE_main_cp         main / Railway publish worktree
 
 ARCHIVED HERE:
   PropORACLE_old_clones\   unused clones (main_fix, publish_jul24, etc.)

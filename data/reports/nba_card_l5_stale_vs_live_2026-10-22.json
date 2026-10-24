@@ -1,0 +1,424 @@
+{
+  "slate": "2026-10-22",
+  "stale_cut": "2026-06-13",
+  "live_max": "2026-10-21",
+  "n_gained": 4,
+  "n_lost": 15,
+  "n_flag_flip": 30,
+  "gained": [
+    {
+      "player": "Chet Holmgren",
+      "prop": "Blocked Shots",
+      "side": "OVER",
+      "line": 0.5,
+      "before_vals": [
+        2.0,
+        2.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "after_vals": [
+        4.0,
+        2.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "after_dates": [
+        "2026-10-20",
+        "2026-05-30",
+        "2026-05-28",
+        "2026-05-26",
+        "2026-05-24"
+      ],
+      "pre_flag": "pre_thin"
+    },
+    {
+      "player": "Kentavious Caldwell-Pope",
+      "prop": "3-PT Made",
+      "side": "OVER",
+      "line": 0.5,
+      "before_vals": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "after_vals": [
+        2.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "after_dates": [
+        "2026-10-20",
+        "2026-02-11",
+        "2026-02-09",
+        "2026-02-07",
+        "2026-02-04"
+      ],
+      "pre_flag": "pre_conflicts"
+    },
+    {
+      "player": "Kentavious Caldwell-Pope",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 4.5,
+      "before_vals": [
+        5.0,
+        15.0,
+        11.0,
+        15.0,
+        4.0
+      ],
+      "after_vals": [
+        10.0,
+        5.0,
+        15.0,
+        11.0,
+        15.0
+      ],
+      "after_dates": [
+        "2026-10-20",
+        "2026-02-11",
+        "2026-02-09",
+        "2026-02-07",
+        "2026-02-04"
+      ],
+      "pre_flag": "pre_conflicts"
+    },
+    {
+      "player": "Tyrese Maxey",
+      "prop": "Turnovers",
+      "side": "OVER",
+      "line": 1.5,
+      "before_vals": [
+        2.0,
+        2.0,
+        6.0,
+        4.0,
+        1.0
+      ],
+      "after_vals": [
+        2.0,
+        2.0,
+        2.0,
+        6.0,
+        4.0
+      ],
+      "after_dates": [
+        "2026-10-20",
+        "2026-05-10",
+        "2026-05-08",
+        "2026-05-06",
+        "2026-05-04"
+      ],
+      "pre_flag": "pre_conflicts"
+    }
+  ],
+  "lost": [
+    {
+      "player": "Cason Wallace",
+      "prop": "3-PT Made",
+      "side": "OVER",
+      "line": 0.5,
+      "before_vals": [
+        5.0,
+        3.0,
+        1.0,
+        1.0,
+        2.0
+      ],
+      "after_vals": [
+        0.0,
+        5.0,
+        3.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "player": "Isaiah Hartenstein",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 4.5,
+      "before_vals": [
+        7.0,
+        10.0,
+        12.0,
+        12.0,
+        5.0
+      ],
+      "after_vals": [
+        4.0,
+        7.0,
+        10.0,
+        12.0,
+        12.0
+      ]
+    },
+    {
+      "player": "Isaiah Hartenstein",
+      "prop": "Pts+Rebs",
+      "side": "OVER",
+      "line": 11.5,
+      "before_vals": [
+        12.0,
+        15.0,
+        27.0,
+        19.0,
+        13.0
+      ],
+      "after_vals": [
+        7.0,
+        12.0,
+        15.0,
+        27.0,
+        19.0
+      ]
+    },
+    {
+      "player": "Jaylen Brown",
+      "prop": "Turnovers",
+      "side": "OVER",
+      "line": 2.5,
+      "before_vals": [
+        3.0,
+        5.0,
+        3.0,
+        3.0,
+        6.0
+      ],
+      "after_vals": [
+        2.0,
+        3.0,
+        5.0,
+        3.0,
+        3.0
+      ]
+    },
+    {
+      "player": "LeBron James",
+      "prop": "3-PT Made",
+      "side": "OVER",
+      "line": 0.5,
+      "before_vals": [
+        2.0,
+        2.0,
+        1.0,
+        3.0,
+        2.0
+      ],
+      "after_vals": [
+        0.0,
+        2.0,
+        2.0,
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "player": "LeBron James",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 15.5,
+      "before_vals": [
+        24.0,
+        19.0,
+        23.0,
+        27.0,
+        28.0
+      ],
+      "after_vals": [
+        14.0,
+        24.0,
+        19.0,
+        23.0,
+        27.0
+      ]
+    },
+    {
+      "player": "LeBron James",
+      "prop": "Pts+Asts",
+      "side": "OVER",
+      "line": 21.5,
+      "before_vals": [
+        27.0,
+        27.0,
+        29.0,
+        33.0,
+        36.0
+      ],
+      "after_vals": [
+        21.0,
+        27.0,
+        27.0,
+        29.0,
+        33.0
+      ]
+    },
+    {
+      "player": "LeBron James",
+      "prop": "Pts+Asts",
+      "side": "OVER",
+      "line": 23.0,
+      "before_vals": [
+        27.0,
+        27.0,
+        29.0,
+        33.0,
+        36.0
+      ],
+      "after_vals": [
+        21.0,
+        27.0,
+        27.0,
+        29.0,
+        33.0
+      ]
+    },
+    {
+      "player": "LeBron James",
+      "prop": "Pts+Rebs+Asts",
+      "side": "OVER",
+      "line": 30.5,
+      "before_vals": [
+        39.0,
+        33.0,
+        31.0,
+        37.0,
+        43.0
+      ],
+      "after_vals": [
+        30.0,
+        39.0,
+        33.0,
+        31.0,
+        37.0
+      ]
+    },
+    {
+      "player": "Tyrese Maxey",
+      "prop": "Blocked Shots",
+      "side": "UNDER",
+      "line": 0.5,
+      "before_vals": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "after_vals": [
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "player": "Tyrese Maxey",
+      "prop": "Steals",
+      "side": "UNDER",
+      "line": 1.5,
+      "before_vals": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "after_vals": [
+        3.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "player": "VJ Edgecombe",
+      "prop": "Assists",
+      "side": "OVER",
+      "line": 1.5,
+      "before_vals": [
+        7.0,
+        4.0,
+        3.0,
+        2.0,
+        4.0
+      ],
+      "after_vals": [
+        1.0,
+        7.0,
+        4.0,
+        3.0,
+        2.0
+      ]
+    },
+    {
+      "player": "VJ Edgecombe",
+      "prop": "Pts+Asts",
+      "side": "OVER",
+      "line": 12.5,
+      "before_vals": [
+        15.0,
+        15.0,
+        20.0,
+        14.0,
+        27.0
+      ],
+      "after_vals": [
+        10.0,
+        15.0,
+        15.0,
+        20.0,
+        14.0
+      ]
+    },
+    {
+      "player": "VJ Edgecombe",
+      "prop": "Pts+Asts",
+      "side": "OVER",
+      "line": 13.5,
+      "before_vals": [
+        15.0,
+        15.0,
+        20.0,
+        14.0,
+        27.0
+      ],
+      "after_vals": [
+        10.0,
+        15.0,
+        15.0,
+        20.0,
+        14.0
+      ]
+    },
+    {
+      "player": "VJ Edgecombe",
+      "prop": "Pts+Rebs+Asts",
+      "side": "OVER",
+      "line": 14.5,
+      "before_vals": [
+        21.0,
+        22.0,
+        25.0,
+        15.0,
+        33.0
+      ],
+      "after_vals": [
+        14.0,
+        21.0,
+        22.0,
+        25.0,
+        15.0
+      ]
+    }
+  ]
+}

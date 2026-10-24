@@ -12,13 +12,16 @@ last N games through a chosen end date (e.g. finals) via:
 Example (full 2025 regular season + playoffs into cache):
   python scripts/backfill_wnba_espn_range.py --from 2025-05-01 --to 2025-10-31 --season 2025
 
+Example (2026 playoffs / finals into cache + DB):
+  py -3.14 scripts/backfill_wnba_espn_range.py --preset late-2026 --season 2026
+
 ESPN is queried by calendar date, not “N games per player”. To approximate “last games of 2025”
 (playoffs / finals) use a late window, e.g. --preset late-2025 or finals-2025.
 
-Presets (pair with --season 2025):
-  full-2025     May–Oct 2025 (full calendar span we use for cache)
-  late-2025     Sep 1 – Oct 31 2025 (postseason-heavy; good with early 2026 L5)
-  finals-2025   Oct 1 – Oct 31 2025 (minimal tail — smallest useful chunk before 2026 season)
+Presets (pair with matching --season):
+  full-2025 / full-2026     May–Oct (full calendar span we use for cache)
+  late-2025 / late-2026     Sep 1 – Oct 31 (postseason-heavy)
+  finals-2025 / finals-2026 Oct 1 – Oct 31 (minimal finals tail)
 """
 
 from __future__ import annotations
@@ -40,6 +43,9 @@ PRESETS: dict[str, Tuple[str, str]] = {
     "full-2025": ("2025-05-01", "2025-10-31"),
     "late-2025": ("2025-09-01", "2025-10-31"),
     "finals-2025": ("2025-10-01", "2025-10-31"),
+    "full-2026": ("2026-05-01", "2026-10-31"),
+    "late-2026": ("2026-09-01", "2026-10-31"),
+    "finals-2026": ("2026-10-01", "2026-10-31"),
 }
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
@@ -162,6 +168,37 @@ def main() -> None:
 
                 rows_db = []
                 for r in df_box.to_dict("records"):
+
+                    def _f(key: str):
+                        v = r.get(key)
+                        if v in (None, "") or (isinstance(v, float) and np.isnan(v)):
+                            return None
+                        try:
+                            return float(v)
+                        except (TypeError, ValueError):
+                            return None
+
+                    pts, reb, ast = _f("PTS"), _f("REB"), _f("AST")
+                    stl, blk, tov = _f("STL"), _f("BLK"), _f("TO")
+                    pra = (
+                        (pts or 0) + (reb or 0) + (ast or 0)
+                        if pts is not None or reb is not None or ast is not None
+                        else None
+                    )
+                    pr = (pts or 0) + (reb or 0) if pts is not None or reb is not None else None
+                    pa = (pts or 0) + (ast or 0) if pts is not None or ast is not None else None
+                    ra = (reb or 0) + (ast or 0) if reb is not None or ast is not None else None
+                    bs = (blk or 0) + (stl or 0) if blk is not None or stl is not None else None
+                    fantasy = None
+                    if pts is not None:
+                        fantasy = (
+                            (pts or 0)
+                            + 1.2 * (reb or 0)
+                            + 1.5 * (ast or 0)
+                            + 3.0 * (stl or 0)
+                            + 3.0 * (blk or 0)
+                            - (tov or 0)
+                        )
                     rows_db.append(
                         {
                             "game_date": str(r.get("game_date", ""))[:10],
@@ -176,71 +213,30 @@ def main() -> None:
                             "minutes": mod._parse_minutes(r.get("MIN"))
                             if isinstance(r.get("MIN"), str)
                             else (r.get("MIN") if r.get("MIN") is not None else None),
-                            "pts": float(r["PTS"])
-                            if r.get("PTS") not in (None, "")
-                            and not (isinstance(r.get("PTS"), float) and np.isnan(r.get("PTS")))
-                            else None,
-                            "reb": float(r["REB"])
-                            if r.get("REB") not in (None, "")
-                            and not (isinstance(r.get("REB"), float) and np.isnan(r.get("REB")))
-                            else None,
-                            "ast": float(r["AST"])
-                            if r.get("AST") not in (None, "")
-                            and not (isinstance(r.get("AST"), float) and np.isnan(r.get("AST")))
-                            else None,
-                            "stl": float(r["STL"])
-                            if r.get("STL") not in (None, "")
-                            and not (isinstance(r.get("STL"), float) and np.isnan(r.get("STL")))
-                            else None,
-                            "blk": float(r["BLK"])
-                            if r.get("BLK") not in (None, "")
-                            and not (isinstance(r.get("BLK"), float) and np.isnan(r.get("BLK")))
-                            else None,
-                            "tov": float(r["TO"])
-                            if r.get("TO") not in (None, "")
-                            and not (isinstance(r.get("TO"), float) and np.isnan(r.get("TO")))
-                            else None,
-                            "fgm": float(r["FGM"])
-                            if r.get("FGM") not in (None, "")
-                            and not (isinstance(r.get("FGM"), float) and np.isnan(r.get("FGM")))
-                            else None,
-                            "fga": float(r["FGA"])
-                            if r.get("FGA") not in (None, "")
-                            and not (isinstance(r.get("FGA"), float) and np.isnan(r.get("FGA")))
-                            else None,
-                            "fg3m": float(r["FG3M"])
-                            if r.get("FG3M") not in (None, "")
-                            and not (isinstance(r.get("FG3M"), float) and np.isnan(r.get("FG3M")))
-                            else None,
-                            "fg3a": float(r["FG3A"])
-                            if r.get("FG3A") not in (None, "")
-                            and not (isinstance(r.get("FG3A"), float) and np.isnan(r.get("FG3A")))
-                            else None,
-                            "fg2m": float(r["FG2M"])
-                            if r.get("FG2M") not in (None, "")
-                            and not (isinstance(r.get("FG2M"), float) and np.isnan(r.get("FG2M")))
-                            else None,
-                            "fg2a": float(r["FG2A"])
-                            if r.get("FG2A") not in (None, "")
-                            and not (isinstance(r.get("FG2A"), float) and np.isnan(r.get("FG2A")))
-                            else None,
-                            "ftm": float(r["FTM"])
-                            if r.get("FTM") not in (None, "")
-                            and not (isinstance(r.get("FTM"), float) and np.isnan(r.get("FTM")))
-                            else None,
-                            "fta": float(r["FTA"])
-                            if r.get("FTA") not in (None, "")
-                            and not (isinstance(r.get("FTA"), float) and np.isnan(r.get("FTA")))
-                            else None,
+                            "pts": pts,
+                            "reb": reb,
+                            "ast": ast,
+                            "stl": stl,
+                            "blk": blk,
+                            "tov": tov,
+                            "fgm": _f("FGM"),
+                            "fga": _f("FGA"),
+                            "fg3m": _f("FG3M"),
+                            "fg3a": _f("FG3A"),
+                            "fg2m": _f("FG2M"),
+                            "fg2a": _f("FG2A"),
+                            "ftm": _f("FTM"),
+                            "fta": _f("FTA"),
                             "oreb": None,
                             "dreb": None,
                             "pf": None,
-                            "pra": None,
-                            "pr": None,
-                            "pa": None,
-                            "ra": None,
-                            "bs": None,
-                            "fantasy_score": None,
+                            "pra": pra,
+                            "pr": pr,
+                            "pa": pa,
+                            "ra": ra,
+                            "bs": bs,
+                            "fantasy_score": fantasy,
+                            "season": str(args.season),
                         }
                     )
                 upsert_rows(con, "wnba", rows_db)

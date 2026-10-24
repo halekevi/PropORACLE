@@ -312,7 +312,7 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
     l5_under = from_g_under.combine_first(l5_under)
     mismatch = df2.apply(tennis_bo5_graded_on_bo3_tape, axis=1)
     if mismatch.any():
-        # PrizePicks last-5 is BO3 tape; do not restore 5/0 unders vs a BO5 line.
+        # BO5 line on BO3 last-5: keep real G1–G5 hits, do not Gold the row.
         l5_over = l5_over.where(~mismatch, from_g_over)
         l5_under = l5_under.where(~mismatch, from_g_under)
     gcols = [c for c in (f"stat_g{i}" for i in range(1, 6)) if c in df2.columns]
@@ -373,9 +373,11 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "surface_struggle",
         "n_matches_on_surface",
         "h2h_win_rate_on_surface",
-        "player", "pos", "position_group", "team", "opp_team", "league", "game_time",
+        "player", "pos", "position_group", "team", "opp_team", "league", "league_id",
+        "pp_projection_id", "projection_id",
+        "game_time",
         "espn_player_id",
-        "prop_type", "pick_type", "line", "standard_line", "deviation_level",
+        "prop_type", "pick_type", "line", "standard_line", "standard_line_source", "gap", "deviation_level",
         "final_bet_direction",
         "edge", "abs_edge", "projection",
         "ml_prob",
@@ -394,6 +396,7 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "minutes_tier", "shot_role", "usage_role",
         "last_match_minutes", "days_rest", "last_match_games", "last_match_sets",
         "last_match_date",
+        "opponent_hand", "opp_lefty", "l5_second_won_pct",
         "cv_pct",
         "void_reason",
         # ── Game log ─────────────────────────────────────────────────────────
@@ -431,6 +434,8 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
             clean[col] = pd.to_numeric(clean[col], errors="coerce").astype("Int64")
     if "standard_line" in clean.columns:
         clean["standard_line"] = pd.to_numeric(clean["standard_line"], errors="coerce").round(2)
+    if "gap" in clean.columns:
+        clean["gap"] = pd.to_numeric(clean["gap"], errors="coerce").round(2)
     if "deviation_level" in clean.columns:
         clean["deviation_level"] = pd.to_numeric(clean["deviation_level"], errors="coerce").fillna(0).astype(int)
     if "distribution_n" in clean.columns:
@@ -450,7 +455,10 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "team": "Team", "opp_team": "Opp", "league": "League", "game_time": "Game Time",
         "espn_player_id": "ESPN ID",
         "prop_type": "Prop", "pick_type": "Pick Type", "line": "Line",
-        "standard_line": "Standard Line", "deviation_level": "Deviation Level",
+        "standard_line": "Standard Line",
+        "standard_line_source": "Standard Line Source",
+        "gap": "Gap",
+        "deviation_level": "Deviation Level",
         "final_bet_direction": "Direction",
         "edge": "Edge", "abs_edge": "Abs Edge", "projection": "Projection",
         "ml_prob": "ML Prob",
@@ -468,6 +476,9 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "last_match_games": "Last Match Games",
         "last_match_sets": "Last Match Sets",
         "last_match_date": "Last Match Date",
+        "opponent_hand": "Opp Hand",
+        "opp_lefty": "Opp Lefty",
+        "l5_second_won_pct": "L5 2nd Won %",
         "cv_pct": "CV%",
         "void_reason": "Void Reason",
         # Game log

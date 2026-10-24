@@ -1,0 +1,155 @@
+{
+  "n_raw": 1837782,
+  "n_with_vegas": 7524,
+  "note": "Signed cover: OVER vegas\u2212PP (positive = cheaper over); UNDER PP\u2212vegas (positive = cheaper under). Joins line_vegas on the grade or rebuilt step8 snapshots in data/cache/vegas_props/.",
+  "books": {
+    "Demon OVER": {
+      "n": 5247,
+      "hits": 1172,
+      "hit_pct": 22.3
+    },
+    "Goblin OVER": {
+      "n": 1727,
+      "hits": 1138,
+      "hit_pct": 65.9
+    },
+    "Standard OVER": {
+      "n": 314,
+      "hits": 153,
+      "hit_pct": 48.7
+    },
+    "Standard UNDER": {
+      "n": 236,
+      "hits": 109,
+      "hit_pct": 46.2
+    }
+  },
+  "rows": [
+    {
+      "book": "Demon OVER",
+      "gap_bucket": "against 0-2",
+      "n": 2818,
+      "hits": 530,
+      "hit_pct": 18.8
+    },
+    {
+      "book": "Demon OVER",
+      "gap_bucket": "against 2+",
+      "n": 816,
+      "hits": 57,
+      "hit_pct": 7.0
+    },
+    {
+      "book": "Demon OVER",
+      "gap_bucket": "on 0-1",
+      "n": 1470,
+      "hits": 551,
+      "hit_pct": 37.5
+    },
+    {
+      "book": "Demon OVER",
+      "gap_bucket": "on 1-2",
+      "n": 85,
+      "hits": 27,
+      "hit_pct": 31.8
+    },
+    {
+      "book": "Demon OVER",
+      "gap_bucket": "on 2+",
+      "n": 58,
+      "hits": 7,
+      "hit_pct": 12.1
+    },
+    {
+      "book": "Goblin OVER",
+      "gap_bucket": "against 0-2",
+      "n": 13,
+      "hits": 3,
+      "hit_pct": 23.1
+    },
+    {
+      "book": "Goblin OVER",
+      "gap_bucket": "on 0-1",
+      "n": 712,
+      "hits": 445,
+      "hit_pct": 62.5
+    },
+    {
+      "book": "Goblin OVER",
+      "gap_bucket": "on 1-2",
+      "n": 623,
+      "hits": 405,
+      "hit_pct": 65.0
+    },
+    {
+      "book": "Goblin OVER",
+      "gap_bucket": "on 2+",
+      "n": 379,
+      "hits": 285,
+      "hit_pct": 75.2
+    },
+    {
+      "book": "Standard OVER",
+      "gap_bucket": "against 0-2",
+      "n": 28,
+      "hits": 17,
+      "hit_pct": 60.7
+    },
+    {
+      "book": "Standard OVER",
+      "gap_bucket": "against 2+",
+      "n": 2,
+      "hits": 0,
+      "hit_pct": 0.0
+    },
+    {
+      "book": "Standard OVER",
+      "gap_bucket": "on 0-1",
+      "n": 226,
+      "hits": 110,
+      "hit_pct": 48.7
+    },
+    {
+      "book": "Standard OVER",
+      "gap_bucket": "on 1-2",
+      "n": 49,
+      "hits": 20,
+      "hit_pct": 40.8
+    },
+    {
+      "book": "Standard OVER",
+      "gap_bucket": "on 2+",
+      "n": 9,
+      "hits": 6,
+      "hit_pct": 66.7
+    },
+    {
+      "book": "Standard UNDER",
+      "gap_bucket": "against 0-2",
+      "n": 27,
+      "hits": 10,
+      "hit_pct": 37.0
+    },
+    {
+      "book": "Standard UNDER",
+      "gap_bucket": "on 0-1",
+      "n": 194,
+      "hits": 90,
+      "hit_pct": 46.4
+    },
+    {
+      "book": "Standard UNDER",
+      "gap_bucket": "on 1-2",
+      "n": 10,
+      "hits": 7,
+      "hit_pct": 70.0
+    },
+    {
+      "book": "Standard UNDER",
+      "gap_bucket": "on 2+",
+      "n": 5,
+      "hits": 2,
+      "hit_pct": 40.0
+    }
+  ]
+}

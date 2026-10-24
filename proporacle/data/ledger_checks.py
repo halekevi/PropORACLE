@@ -150,6 +150,57 @@ def run_ledger_checks(
                         ds,
                     )
                 )
+    # Face labels: a sport-date with zero Goblin/Demon, or with Standard rows
+    # laddered across 2+ lines of one player-prop, is default-labeled. This is
+    # how the NFL Week 1-6 pick_type hole would have surfaced on day one.
+    try:
+        from proporacle.data.leg_ledger import current_legs
+        from utils.face_ladder import face_status_by_sport_date
+
+        legs = current_legs(root)
+        if not legs.empty:
+            legs = legs[legs["slate_date"].astype(str).str[:10] >= since]
+        status = face_status_by_sport_date(legs) if not legs.empty else pd.DataFrame()
+        for row in (status.itertuples(index=False) if not status.empty else []):
+            st = str(row.status)
+            ds = str(row.slate_date)
+            sport = str(row.sport)
+            garbage = int(getattr(row, "garbage_prop", 0) or 0)
+            if garbage and row.n and garbage / row.n >= 0.10:
+                report.warnings.append(
+                    LedgerWarning(
+                        "garbage_prop",
+                        f"{sport} {garbage}/{row.n} graded rows carry a blank / dash prop name on {ds}; "
+                        "those legs cannot be keyed and are excluded from the face ladder",
+                        ds,
+                        sport,
+                    )
+                )
+            if st == "verified":
+                continue
+            if st in {"default_labels", "blank_labels"}:
+                report.warnings.append(
+                    LedgerWarning(
+                        "pick_type_default",
+                        f"{sport} {row.n} graded rows, 0 Goblin/Demon ({st}) on {ds}; "
+                        "pick_type was defaulted, faces unverified",
+                        ds,
+                        sport,
+                    )
+                )
+            else:
+                report.warnings.append(
+                    LedgerWarning(
+                        "standard_ladder",
+                        f"{sport} {row.standard_ladder}/{row.standard} Standard rows "
+                        f"({row.ladder_share:.0%}) sit on a player-prop with 2+ Standard lines on {ds}; "
+                        "mislabeled faces (rungs graded as Standard)",
+                        ds,
+                        sport,
+                    )
+                )
+    except Exception as exc:  # pragma: no cover - warn-only path
+        report.notes.append(f"[face_ladder] check skipped: {exc}")
     try:
         from ticket_leg_index import dates_with_tickets_missing_runs
     except ImportError:

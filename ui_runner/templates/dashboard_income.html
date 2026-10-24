@@ -375,7 +375,12 @@
     </div>
     <section class="hero">
       <h1>P&L Log</h1>
-      <p>$10 flat stake. Ticket days from graded history; sport tables from graded props. Duplicate dates = separate tracks (MAIN / Long / Goblin).</p>
+      <p>$10 flat on the <strong>playable card</strong> (MAIN / Goblin-70). Shadows, long parlays, and YOLO are off this headline. Sport table is every listed board prop — not ticket P&amp;L.</p>
+      <p class="panel-note" id="income-range-note" style="margin-top:8px">
+        {% if summary.date_min and summary.date_max %}
+        Log {{ summary.date_min }} → {{ summary.date_max }}
+        {% endif %}
+      </p>
     </section>
 
     <section class="summary-grid" id="income-summary">
@@ -407,7 +412,12 @@
       <div class="panel-head">
         <div>
           <h2>Cumulative P&amp;L</h2>
-          <p class="panel-note" id="chart-scope-note">Day rollup · all tracks</p>
+          <p class="panel-note" id="chart-scope-note">Playable card · day rollup</p>
+        </div>
+        <div class="toolbar" role="group" aria-label="Track scope">
+          <button type="button" class="chip active" data-scope="card">Card</button>
+          <button type="button" class="chip" data-scope="g70">G70 era</button>
+          <button type="button" class="chip" data-scope="all">All tracks</button>
         </div>
         <div class="toolbar" role="group" aria-label="Date range">
           <button type="button" class="chip" data-range="7">7d</button>
@@ -426,7 +436,7 @@
         <div class="panel-head">
           <div>
             <h2>Daily P&amp;L</h2>
-            <p class="panel-note">Tracks rolled into one row per date. Expand mode for MAIN / Long / Goblin.</p>
+            <p class="panel-note">Card tracks rolled into one row per date. Use All tracks to see shadows.</p>
           </div>
           <div class="toolbar" role="group" aria-label="Daily view mode">
             <button type="button" class="chip active" data-daily-mode="rollup">By day</button>
@@ -462,8 +472,8 @@
       <section class="panel">
         <div class="panel-head">
           <div>
-            <h2>Sport Breakdown</h2>
-            <p class="panel-note">Pick-level totals · $10 flat · zero-activity hidden</p>
+            <h2>Board props</h2>
+            <p class="panel-note">Every graded listing at $10 as a single — not the ticket card. Ignore Net vs headline P&amp;L.</p>
           </div>
         </div>
         <div class="tbl-scroll tall">
@@ -525,20 +535,31 @@
 
       const TRACK_LABEL = {
         graded_main: 'MAIN',
-        long_parlay: 'Long',
+        goblin70: 'G70',
         goblin_only_3leg: 'Goblin',
+        long_parlay: 'Long',
+        strong_recombo_shadow: 'Shadow',
+        strong_standard_shadow: 'Shadow',
+        strong_mix_shadow: 'Shadow',
+        winrate_goblin_opt3_shadow: 'WR shadow',
+        goblin70_yolo: 'YOLO',
         legacy: 'Legacy',
       };
       const TRACK_CLASS = {
         graded_main: 'main',
-        long_parlay: 'long',
+        goblin70: 'goblin',
         goblin_only_3leg: 'goblin',
+        long_parlay: 'long',
+        goblin70_yolo: 'long',
         legacy: 'legacy',
       };
+      const CARD_TRACKS = new Set(['', 'legacy', 'unknown', 'graded_main', 'goblin70', 'goblin_only_3leg']);
+      const G70_START = '2026-08-26';
 
       const PAGE = 40;
       let dailyMode = 'rollup';
       let rangeDays = 'all';
+      let trackScope = 'card';
       let dailyShown = PAGE;
       let chartSeries = [];
 
@@ -558,6 +579,29 @@
       }
       function trackClass(t) {
         return TRACK_CLASS[t] || 'legacy';
+      }
+
+      function isCardTrack(t) {
+        const s = String(t || '').trim().toLowerCase();
+        if (s.includes('yolo')) return false;
+        if (s === 'long_parlay' || s === 'high_prob_std_gob' || s === 'goblin70_yolo') return false;
+        if (s.startsWith('strong_') || s.startsWith('winrate_')) return false;
+        return CARD_TRACKS.has(s);
+      }
+
+      function scopedRaw() {
+        let rows = dailyRaw;
+        if (trackScope === 'card' || trackScope === 'g70') {
+          rows = rows.filter((r) => isCardTrack(r.track));
+        }
+        if (trackScope === 'g70') {
+          rows = rows.filter((r) => String(r.date || '') >= G70_START);
+        }
+        return rows;
+      }
+
+      function activeRows() {
+        return filterByRange(scopedRaw());
       }
 
       function rollupDays(rows) {
@@ -632,9 +676,8 @@
         if (resetPage) dailyShown = PAGE;
 
         let rows = dailyMode === 'rollup'
-          ? rollupDays(dailyRaw)
-          : [...dailyRaw].sort((a, b) => String(b.date).localeCompare(String(a.date)) || String(a.track).localeCompare(String(b.track)));
-        rows = filterByRange(rows);
+          ? rollupDays(activeRows())
+          : [...activeRows()].sort((a, b) => String(b.date).localeCompare(String(a.date)) || String(a.track).localeCompare(String(b.track)));
 
         const showG = rows.some((r) => (Number(r.guarantees) || 0) > 0);
         if (tbl) tbl.classList.toggle('hide-guarantees', !showG);
@@ -667,7 +710,7 @@
         const tip = document.getElementById('chart-tip');
         if (!host) return;
 
-        const rolled = filterByRange(rollupDays(dailyRaw)).slice().reverse();
+        const rolled = filterByRange(rollupDays(scopedRaw())).slice().reverse();
         let cum = 0;
         chartSeries = rolled.map((p) => {
           cum += Number(p.net_dollars) || 0;
@@ -676,9 +719,12 @@
 
         const note = document.getElementById('chart-scope-note');
         if (note) {
+          const scopeLabel = trackScope === 'g70'
+            ? 'G70 era (Aug 26+)'
+            : (trackScope === 'all' ? 'all tracks' : 'playable card');
           note.textContent = rangeDays === 'all'
-            ? 'Day rollup · all tracks'
-            : `Last ${rangeDays} days · all tracks`;
+            ? `Day rollup · ${scopeLabel}`
+            : `Last ${rangeDays} days · ${scopeLabel}`;
         }
 
         if (!chartSeries.length) {
@@ -858,12 +904,18 @@
           renderDaily(true);
         });
       });
+      document.querySelectorAll('[data-scope]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          trackScope = btn.getAttribute('data-scope') || 'card';
+          document.querySelectorAll('[data-scope]').forEach((b) => b.classList.toggle('active', b === btn));
+          refreshView();
+        });
+      });
       document.querySelectorAll('[data-range]').forEach((btn) => {
         btn.addEventListener('click', () => {
           rangeDays = btn.getAttribute('data-range') || 'all';
           document.querySelectorAll('[data-range]').forEach((b) => b.classList.toggle('active', b === btn));
-          renderDaily(true);
-          drawChart();
+          refreshView();
         });
       });
       const moreBtn = document.getElementById('daily-more');
@@ -917,19 +969,32 @@
         set('roi', pct(roi), numCls(roi).replace('num-', 'sum-'));
         set('streak', streak);
         const netSub = document.querySelector('.sum-card.featured .sum-sub');
-        if (netSub) netSub.textContent = 'ROI ' + pct(roi) + ' · ' + tickets + ' tickets';
+        if (netSub) {
+          const scopeLabel = trackScope === 'g70'
+            ? 'G70 era'
+            : (trackScope === 'all' ? 'all tracks' : 'playable card');
+          netSub.textContent = 'ROI ' + pct(roi) + ' · ' + tickets + ' tickets · ' + scopeLabel;
+        }
+      }
+
+      function refreshView() {
+        const rows = activeRows().slice().sort((a, b) => String(a.date).localeCompare(String(b.date)));
+        applySummaryFromDaily(rows);
+        renderDaily(true);
+        drawChart();
+        const note = document.getElementById('income-range-note');
+        if (note && rows.length) {
+          const dates = rows.map((r) => String(r.date || '')).filter(Boolean).sort();
+          note.textContent = 'Log ' + dates[0] + ' → ' + dates[dates.length - 1];
+        }
       }
 
       function boot(daily, monthly) {
         if (Array.isArray(daily)) dailyRaw = daily;
         if (Array.isArray(monthly)) monthlyRaw = monthly;
-        applySummaryFromDaily(
-          [...dailyRaw].sort((a, b) => String(a.date).localeCompare(String(b.date)))
-        );
         paintSportBars();
-        renderDaily(true);
         renderMonthly();
-        drawChart();
+        refreshView();
       }
 
       window.__proporacleIncomeBoot = boot;

@@ -1,0 +1,387 @@
+{
+  "window": {
+    "first": "2026-07-13",
+    "last": "2026-08-24",
+    "n_joined": 31033,
+    "n_files": 82
+  },
+  "fill_rates_for_skip_data": {
+    "soccer_avg_min": {
+      "n": 2989,
+      "filled": 1853,
+      "pct": 62.0
+    },
+    "soccer_starter_tier": {
+      "n": 2989,
+      "filled": 2989,
+      "pct": 100.0
+    },
+    "tennis_def_rank": {
+      "n": 2608,
+      "filled": 0,
+      "pct": 0.0
+    },
+    "l10_distinct_from_season": {
+      "n": 30228,
+      "filled": 139,
+      "pct": 0.5
+    },
+    "mlb_bat_order": {
+      "n": 18231,
+      "filled": 18231,
+      "pct": 100.0
+    },
+    "tennis_aces_l5": {
+      "n": 507,
+      "filled": 392,
+      "pct": 77.3
+    },
+    "dist_std": {
+      "n": 31033,
+      "filled": 27368,
+      "pct": 88.2
+    }
+  },
+  "baseline_live_list": {
+    "hits": 7010,
+    "n": 10686,
+    "rate": 65.6
+  },
+  "new_list": {
+    "hits": 4385,
+    "n": 6535,
+    "rate": 67.1
+  },
+  "new_list_tight_unders": {
+    "hits": 4363,
+    "n": 6485,
+    "rate": 67.3
+  },
+  "lift_pp": 1.5,
+  "by_book": {
+    "Goblin OVER": {
+      "baseline_l5": {
+        "hits": 5858,
+        "n": 8558,
+        "rate": 68.5
+      },
+      "new_cover_floor": {
+        "hits": 3236,
+        "n": 4412,
+        "rate": 73.3
+      },
+      "dropped": {
+        "hits": 2622,
+        "n": 4146,
+        "rate": 63.2
+      }
+    },
+    "Standard OVER": {
+      "baseline_l5": {
+        "hits": 513,
+        "n": 955,
+        "rate": 53.7
+      },
+      "by_sport": {
+        "WNBA": {
+          "hits": 231,
+          "n": 410,
+          "rate": 56.3
+        },
+        "MLB": {
+          "hits": 228,
+          "n": 446,
+          "rate": 51.1
+        },
+        "Soccer": {
+          "hits": 2,
+          "n": 4,
+          "rate": 50.0
+        },
+        "Tennis": {
+          "hits": 52,
+          "n": 95,
+          "rate": 54.7
+        }
+      }
+    },
+    "Standard UNDER": {
+      "baseline_l5_including_soccer": {
+        "hits": 639,
+        "n": 1173,
+        "rate": 54.5
+      },
+      "classified_keep_including_soccer": {
+        "hits": 636,
+        "n": 1168,
+        "rate": 54.5
+      },
+      "tight_fade_far_mlb_tennis": {
+        "hits": 614,
+        "n": 1118,
+        "rate": 54.9
+      },
+      "by_sport_listed": {
+        "WNBA": {
+          "hits": 152,
+          "n": 274,
+          "rate": 55.5
+        },
+        "MLB": {
+          "hits": 414,
+          "n": 786,
+          "rate": 52.7
+        },
+        "Soccer": {
+          "hits": 12,
+          "n": 23,
+          "rate": 52.2
+        },
+        "Tennis": {
+          "hits": 61,
+          "n": 90,
+          "rate": 67.8
+        }
+      },
+      "by_sport_keep": {
+        "WNBA": {
+          "hits": 152,
+          "n": 274,
+          "rate": 55.5
+        },
+        "MLB": {
+          "hits": 414,
+          "n": 786,
+          "rate": 52.7
+        },
+        "Soccer": {
+          "hits": 9,
+          "n": 18,
+          "rate": 50.0
+        },
+        "Tennis": {
+          "hits": 61,
+          "n": 90,
+          "rate": 67.8
+        }
+      }
+    }
+  },
+  "soccer_standard_under": {
+    "all_decided": {
+      "hits": 22,
+      "n": 50,
+      "rate": 44.0
+    },
+    "listed_l5": {
+      "hits": 12,
+      "n": 23,
+      "rate": 52.2
+    },
+    "keep": {
+      "hits": 9,
+      "n": 18,
+      "rate": 50.0
+    },
+    "drop": {
+      "hits": 3,
+      "n": 5,
+      "rate": 60.0
+    },
+    "by_family": {
+      "shots": {
+        "hits": 10,
+        "n": 26,
+        "rate": 38.5
+      },
+      "goalie_saves": {
+        "hits": 12,
+        "n": 24,
+        "rate": 50.0
+      }
+    },
+    "by_minutes": {
+      "low_minutes": {
+        "hits": 14,
+        "n": 36,
+        "rate": 38.9
+      },
+      "starter": {
+        "hits": 5,
+        "n": 9,
+        "rate": 55.6
+      },
+      "rotation": {
+        "hits": 3,
+        "n": 5,
+        "rate": 60.0
+      }
+    },
+    "by_cover": {
+      "thin": {
+        "hits": 6,
+        "n": 17,
+        "rate": 35.3
+      },
+      "covered_0.5": {
+        "hits": 7,
+        "n": 14,
+        "rate": 50.0
+      },
+      "covered_1+": {
+        "hits": 8,
+        "n": 12,
+        "rate": 66.7
+      },
+      "against": {
+        "hits": 1,
+        "n": 6,
+        "rate": 16.7
+      },
+      "no_avg": {
+        "hits": 0,
+        "n": 1,
+        "rate": 0.0
+      }
+    },
+    "by_class_listed": {
+      "goalie_saves|low_minutes|covered_1+": {
+        "hits": 5,
+        "n": 7,
+        "rate": 71.4
+      },
+      "shots|low_minutes|covered_0.5": {
+        "hits": 1,
+        "n": 4,
+        "rate": 25.0
+      },
+      "shots|low_minutes|against": {
+        "hits": 1,
+        "n": 3,
+        "rate": 33.3
+      },
+      "shots|low_minutes|thin": {
+        "hits": 0,
+        "n": 2,
+        "rate": 0.0
+      },
+      "goalie_saves|low_minutes|covered_0.5": {
+        "hits": 0,
+        "n": 1,
+        "rate": 0.0
+      },
+      "goalie_saves|rotation|covered_1+": {
+        "hits": 1,
+        "n": 1,
+        "rate": 100.0
+      },
+      "goalie_saves|starter|covered_0.5": {
+        "hits": 1,
+        "n": 1,
+        "rate": 100.0
+      },
+      "shots|rotation|covered_1+": {
+        "hits": 1,
+        "n": 1,
+        "rate": 100.0
+      },
+      "shots|starter|covered_0.5": {
+        "hits": 0,
+        "n": 1,
+        "rate": 0.0
+      },
+      "shots|starter|covered_1+": {
+        "hits": 1,
+        "n": 1,
+        "rate": 100.0
+      },
+      "shots|starter|thin": {
+        "hits": 1,
+        "n": 1,
+        "rate": 100.0
+      }
+    },
+    "by_minutes_listed": {
+      "low_minutes": {
+        "hits": 7,
+        "n": 17,
+        "rate": 41.2
+      },
+      "starter": {
+        "hits": 3,
+        "n": 4,
+        "rate": 75.0
+      },
+      "rotation": {
+        "hits": 2,
+        "n": 2,
+        "rate": 100.0
+      }
+    },
+    "by_family_listed": {
+      "shots": {
+        "hits": 5,
+        "n": 13,
+        "rate": 38.5
+      },
+      "goalie_saves": {
+        "hits": 7,
+        "n": 10,
+        "rate": 70.0
+      }
+    },
+    "d_under_ok_listed": {
+      "pass": {
+        "hits": 1,
+        "n": 6,
+        "rate": 16.7
+      },
+      "fail": {
+        "hits": 11,
+        "n": 17,
+        "rate": 64.7
+      }
+    }
+  },
+  "tennis_under_listed_by_cover": {
+    "covered_1+": {
+      "hits": 27,
+      "n": 40,
+      "rate": 67.5
+    },
+    "covered_0.5": {
+      "hits": 17,
+      "n": 23,
+      "rate": 73.9
+    },
+    "against": {
+      "hits": 6,
+      "n": 14,
+      "rate": 42.9
+    },
+    "thin": {
+      "hits": 11,
+      "n": 13,
+      "rate": 84.6
+    }
+  },
+  "mlb_under_listed_far_ge2": {
+    "far": {
+      "hits": 12,
+      "n": 31,
+      "rate": 38.7
+    },
+    "not_far": {
+      "hits": 402,
+      "n": 755,
+      "rate": 53.2
+    }
+  },
+  "goblin_floor": {
+    "WNBA": 2.0,
+    "MLB": 1.0,
+    "Tennis": 2.0,
+    "Soccer": 1.0
+  },
+  "soccer_under_keep_rule": "L5>=4 and not against the line and (low/rotation minutes OR cover>=1 OR (cover>=0.5 and D Elite/Above))"
+}

@@ -1,0 +1,1539 @@
+{
+  "slate": "2026-08-27 to 2026-08-29",
+  "defense_season": 2025,
+  "n_teams": 32,
+  "rules": {
+    "over_d": "Weak | Below Avg (rank 21-32)",
+    "under_d": "Elite | Above Avg (rank 1-13)",
+    "avg": "14-20 never passes D",
+    "over_rank": "rank >= 16",
+    "under_rank": "rank <= 12",
+    "l5_note": "Do not trust regular-season L5 in preseason finale week. D is a veto."
+  },
+  "games": [
+    {
+      "day": "Thu 8/27",
+      "time": "7:00 PM",
+      "net": "NFLN",
+      "away": "PIT",
+      "home": "BUF",
+      "arec": "1-1",
+      "hrec": "2-0",
+      "home_d": {
+        "pass": {
+          "rk": 1,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 28,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 5,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 5,
+          "tier": "Elite",
+          "lean": "UNDER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 29,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 13,
+          "tier": "Above Avg",
+          "lean": "UNDER-D"
+        },
+        "fg": {
+          "rk": 20,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 19,
+          "tier": "Avg",
+          "lean": "NO-D"
+        }
+      },
+      "home_pa": 21.5,
+      "away_pa": 22.8,
+      "home_pass_ypg": 156.9,
+      "away_pass_ypg": 243.9,
+      "home_rush_ypg": 136.2,
+      "away_rush_ypg": 113.1
+    },
+    {
+      "day": "Thu 8/27",
+      "time": "8:00 PM",
+      "net": "PRIME",
+      "away": "NE",
+      "home": "CLE",
+      "arec": "1-0-1",
+      "hrec": "0-2",
+      "home_d": {
+        "pass": {
+          "rk": 3,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 16,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "fg": {
+          "rk": 11,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 13,
+          "tier": "Above Avg",
+          "lean": "UNDER-D"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 9,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 6,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 2,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 2,
+          "tier": "Elite",
+          "lean": "UNDER"
+        }
+      },
+      "home_pa": 22.3,
+      "away_pa": 18.8,
+      "home_pass_ypg": 167.2,
+      "away_pass_ypg": 193.5,
+      "home_rush_ypg": 116.4,
+      "away_rush_ypg": 101.7
+    },
+    {
+      "day": "Thu 8/27",
+      "time": "8:00 PM",
+      "net": "LOCAL",
+      "away": "SF",
+      "home": "LV",
+      "arec": "1-1",
+      "hrec": "1-1",
+      "home_d": {
+        "pass": {
+          "rk": 14,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "rush": {
+          "rk": 17,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "fg": {
+          "rk": 18,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 21,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 25,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 11,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 4,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 5,
+          "tier": "Elite",
+          "lean": "UNDER"
+        }
+      },
+      "home_pa": 25.4,
+      "away_pa": 21.8,
+      "home_pass_ypg": 201.0,
+      "away_pass_ypg": 232.4,
+      "home_rush_ypg": 116.8,
+      "away_rush_ypg": 107.8
+    },
+    {
+      "day": "Thu 8/27",
+      "time": "10:00 PM",
+      "net": "NFLN",
+      "away": "LAR",
+      "home": "LAC",
+      "arec": "2-0",
+      "hrec": "1-1",
+      "home_d": {
+        "pass": {
+          "rk": 5,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 8,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 20,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 17,
+          "tier": "Avg",
+          "lean": "NO-D"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 19,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "rush": {
+          "rk": 12,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 11,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 7,
+          "tier": "Elite",
+          "lean": "UNDER"
+        }
+      },
+      "home_pa": 20.0,
+      "away_pa": 20.4,
+      "home_pass_ypg": 179.9,
+      "away_pass_ypg": 216.7,
+      "home_rush_ypg": 105.4,
+      "away_rush_ypg": 110.8
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "6:00 PM",
+      "net": "NFLN",
+      "away": "WSH",
+      "home": "BAL",
+      "arec": "1-1",
+      "hrec": "2-0",
+      "home_d": {
+        "pass": {
+          "rk": 30,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 10,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 27,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "kick": {
+          "rk": 27,
+          "tier": "Weak",
+          "lean": "OVER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 28,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 30,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 14,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 20,
+          "tier": "Avg",
+          "lean": "NO-D"
+        }
+      },
+      "home_pa": 23.4,
+      "away_pa": 26.5,
+      "home_pass_ypg": 247.9,
+      "away_pass_ypg": 242.5,
+      "home_rush_ypg": 106.6,
+      "away_rush_ypg": 141.8
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "7:00 PM",
+      "net": "LOCAL",
+      "away": "HOU",
+      "home": "CAR",
+      "arec": "0-2",
+      "hrec": "2-1",
+      "home_d": {
+        "pass": {
+          "rk": 15,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "rush": {
+          "rk": 20,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "fg": {
+          "rk": 14,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 18,
+          "tier": "Avg",
+          "lean": "NO-D"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 6,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 4,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 1,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 1,
+          "tier": "Elite",
+          "lean": "UNDER"
+        }
+      },
+      "home_pa": 22.4,
+      "away_pa": 17.4,
+      "home_pass_ypg": 203.9,
+      "away_pass_ypg": 183.5,
+      "home_rush_ypg": 123.3,
+      "away_rush_ypg": 93.7
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "7:00 PM",
+      "net": "LOCAL",
+      "away": "ATL",
+      "home": "MIA",
+      "arec": "1-1",
+      "hrec": "0-2",
+      "home_d": {
+        "pass": {
+          "rk": 18,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "rush": {
+          "rk": 26,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 9,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 11,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 13,
+          "tier": "Above Avg",
+          "lean": "UNDER-D"
+        },
+        "rush": {
+          "rk": 24,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 25,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "kick": {
+          "rk": 23,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        }
+      },
+      "home_pa": 24.9,
+      "away_pa": 23.6,
+      "home_pass_ypg": 216.4,
+      "away_pass_ypg": 200.4,
+      "home_rush_ypg": 132.4,
+      "away_rush_ypg": 126.2
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "7:30 PM",
+      "net": "LOCAL",
+      "away": "TB",
+      "home": "JAX",
+      "arec": "2-0",
+      "hrec": "1-1",
+      "home_d": {
+        "pass": {
+          "rk": 21,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 1,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 3,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 3,
+          "tier": "Elite",
+          "lean": "UNDER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 27,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 5,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 7,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 10,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        }
+      },
+      "home_pa": 19.8,
+      "away_pa": 24.2,
+      "home_pass_ypg": 218.1,
+      "away_pass_ypg": 238.2,
+      "home_rush_ypg": 85.6,
+      "away_rush_ypg": 99.1
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "7:30 PM",
+      "net": "LOCAL",
+      "away": "NYG",
+      "home": "NYJ",
+      "arec": "1-1",
+      "hrec": "1-1",
+      "home_d": {
+        "pass": {
+          "rk": 17,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "rush": {
+          "rk": 29,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 26,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "kick": {
+          "rk": 32,
+          "tier": "Weak",
+          "lean": "OVER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 16,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "rush": {
+          "rk": 31,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 20,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 23,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        }
+      },
+      "home_pa": 29.6,
+      "away_pa": 25.8,
+      "home_pass_ypg": 216.1,
+      "away_pass_ypg": 214.2,
+      "home_rush_ypg": 139.5,
+      "away_rush_ypg": 145.3
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "8:00 PM",
+      "net": "LOCAL",
+      "away": "NO",
+      "home": "DAL",
+      "arec": "0-2",
+      "hrec": "2-0",
+      "home_d": {
+        "pass": {
+          "rk": 32,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 23,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 20,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 29,
+          "tier": "Weak",
+          "lean": "OVER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 4,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 19,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "fg": {
+          "rk": 27,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "kick": {
+          "rk": 26,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        }
+      },
+      "home_pa": 30.1,
+      "away_pa": 22.5,
+      "home_pass_ypg": 251.5,
+      "away_pass_ypg": 179.2,
+      "home_rush_ypg": 125.5,
+      "away_rush_ypg": 120.6
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "8:00 PM",
+      "net": "LOCAL",
+      "away": "SEA",
+      "home": "KC",
+      "arec": "0-2",
+      "hrec": "0-2",
+      "home_d": {
+        "pass": {
+          "rk": 12,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 9,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 19,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 15,
+          "tier": "Avg",
+          "lean": "NO-D"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 10,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 3,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 9,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 4,
+          "tier": "Elite",
+          "lean": "UNDER"
+        }
+      },
+      "home_pa": 19.3,
+      "away_pa": 17.2,
+      "home_pass_ypg": 195.8,
+      "away_pass_ypg": 193.9,
+      "home_rush_ypg": 105.7,
+      "away_rush_ypg": 91.9
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "8:00 PM",
+      "net": "CBS",
+      "away": "CIN",
+      "home": "PHI",
+      "arec": "2-0",
+      "hrec": "0-2",
+      "home_d": {
+        "pass": {
+          "rk": 8,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 22,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 14,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 8,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 26,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 32,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 5,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 15,
+          "tier": "Avg",
+          "lean": "NO-D"
+        }
+      },
+      "home_pa": 19.1,
+      "away_pa": 28.9,
+      "home_pass_ypg": 189.8,
+      "away_pass_ypg": 233.8,
+      "home_rush_ypg": 124.4,
+      "away_rush_ypg": 147.1
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "8:00 PM",
+      "net": "LOCAL",
+      "away": "ARI",
+      "home": "GB",
+      "arec": "1-2",
+      "hrec": "1-1",
+      "home_d": {
+        "pass": {
+          "rk": 11,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 18,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "fg": {
+          "rk": 14,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 11,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 24,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 25,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 30,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "kick": {
+          "rk": 31,
+          "tier": "Weak",
+          "lean": "OVER"
+        }
+      },
+      "home_pa": 21.2,
+      "away_pa": 28.7,
+      "home_pass_ypg": 194.1,
+      "away_pass_ypg": 230.8,
+      "home_rush_ypg": 117.7,
+      "away_rush_ypg": 126.9
+    },
+    {
+      "day": "Fri 8/28",
+      "time": "9:00 PM",
+      "net": "NFLN",
+      "away": "MIN",
+      "home": "DEN",
+      "arec": "1-1",
+      "hrec": "1-1",
+      "home_d": {
+        "pass": {
+          "rk": 7,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 2,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 30,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "kick": {
+          "rk": 22,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 2,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "rush": {
+          "rk": 21,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 27,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "kick": {
+          "rk": 25,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        }
+      },
+      "home_pa": 18.3,
+      "away_pa": 19.6,
+      "home_pass_ypg": 187.2,
+      "away_pass_ypg": 158.5,
+      "home_rush_ypg": 91.1,
+      "away_rush_ypg": 124.1
+    },
+    {
+      "day": "Sat 8/29",
+      "time": "1:00 PM",
+      "net": "NFLN",
+      "away": "DET",
+      "home": "IND",
+      "arec": "1-1",
+      "hrec": "0-1-1",
+      "home_d": {
+        "pass": {
+          "rk": 30,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 7,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "fg": {
+          "rk": 32,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "kick": {
+          "rk": 30,
+          "tier": "Weak",
+          "lean": "OVER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 20,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "rush": {
+          "rk": 14,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "fg": {
+          "rk": 13,
+          "tier": "Above Avg",
+          "lean": "UNDER-D"
+        },
+        "kick": {
+          "rk": 14,
+          "tier": "Avg",
+          "lean": "NO-D"
+        }
+      },
+      "home_pa": 24.2,
+      "away_pa": 24.3,
+      "home_pass_ypg": 247.9,
+      "away_pass_ypg": 217.4,
+      "home_rush_ypg": 101.9,
+      "away_rush_ypg": 114.5
+    },
+    {
+      "day": "Sat 8/29",
+      "time": "6:00 PM",
+      "net": "NFLN",
+      "away": "CHI",
+      "home": "TEN",
+      "arec": "1-1",
+      "hrec": "2-0",
+      "home_d": {
+        "pass": {
+          "rk": 23,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 15,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "fg": {
+          "rk": 20,
+          "tier": "Avg",
+          "lean": "NO-D"
+        },
+        "kick": {
+          "rk": 28,
+          "tier": "Weak",
+          "lean": "OVER"
+        }
+      },
+      "away_d": {
+        "pass": {
+          "rk": 22,
+          "tier": "Below Avg",
+          "lean": "OVER"
+        },
+        "rush": {
+          "rk": 27,
+          "tier": "Weak",
+          "lean": "OVER"
+        },
+        "fg": {
+          "rk": 7,
+          "tier": "Elite",
+          "lean": "UNDER"
+        },
+        "kick": {
+          "rk": 8,
+          "tier": "Above Avg",
+          "lean": "UNDER"
+        }
+      },
+      "home_pa": 28.1,
+      "away_pa": 24.4,
+      "home_pass_ypg": 230.5,
+      "away_pass_ypg": 227.2,
+      "home_rush_ypg": 114.6,
+      "away_rush_ypg": 134.5
+    }
+  ],
+  "over_axes": [
+    {
+      "day": "Thu 8/27",
+      "who": "BUF Passing / rec",
+      "vs": "vs PIT Weak #29",
+      "lean": "OVER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "PIT Rushing",
+      "vs": "vs BUF Weak #28",
+      "lean": "OVER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "LV Passing / rec",
+      "vs": "vs SF Below Avg #25",
+      "lean": "OVER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "SF PAT / kick pts",
+      "vs": "vs LV Below Avg #21",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "WSH Passing / rec",
+      "vs": "vs BAL Weak #30",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "BAL Passing / rec",
+      "vs": "vs WSH Weak #28",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "BAL Rushing",
+      "vs": "vs WSH Weak #30",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "WSH FG",
+      "vs": "vs BAL Weak #27",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "WSH PAT / kick pts",
+      "vs": "vs BAL Weak #27",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "ATL Rushing",
+      "vs": "vs MIA Below Avg #26",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "MIA Rushing",
+      "vs": "vs ATL Below Avg #24",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "MIA FG",
+      "vs": "vs ATL Below Avg #25",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "MIA PAT / kick pts",
+      "vs": "vs ATL Below Avg #23",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "TB Passing / rec",
+      "vs": "vs JAX Below Avg #21",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "JAX Passing / rec",
+      "vs": "vs TB Weak #27",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "NYG Rushing",
+      "vs": "vs NYJ Weak #29",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "NYJ Rushing",
+      "vs": "vs NYG Weak #31",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "NYG FG",
+      "vs": "vs NYJ Below Avg #26",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "NYG PAT / kick pts",
+      "vs": "vs NYJ Weak #32",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "NYJ PAT / kick pts",
+      "vs": "vs NYG Below Avg #23",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "NO Passing / rec",
+      "vs": "vs DAL Weak #32",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "NO Rushing",
+      "vs": "vs DAL Below Avg #23",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "DAL FG",
+      "vs": "vs NO Weak #27",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "NO PAT / kick pts",
+      "vs": "vs DAL Weak #29",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "DAL PAT / kick pts",
+      "vs": "vs NO Below Avg #26",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "PHI Passing / rec",
+      "vs": "vs CIN Below Avg #26",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "CIN Rushing",
+      "vs": "vs PHI Below Avg #22",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "PHI Rushing",
+      "vs": "vs CIN Weak #32",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "GB Passing / rec",
+      "vs": "vs ARI Below Avg #24",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "GB Rushing",
+      "vs": "vs ARI Below Avg #25",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "GB FG",
+      "vs": "vs ARI Weak #30",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "GB PAT / kick pts",
+      "vs": "vs ARI Weak #31",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "DEN Rushing",
+      "vs": "vs MIN Below Avg #21",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "MIN FG",
+      "vs": "vs DEN Weak #30",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "DEN FG",
+      "vs": "vs MIN Weak #27",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "MIN PAT / kick pts",
+      "vs": "vs DEN Below Avg #22",
+      "lean": "OVER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "DEN PAT / kick pts",
+      "vs": "vs MIN Below Avg #25",
+      "lean": "OVER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "DET Passing / rec",
+      "vs": "vs IND Weak #30",
+      "lean": "OVER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "DET FG",
+      "vs": "vs IND Weak #32",
+      "lean": "OVER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "DET PAT / kick pts",
+      "vs": "vs IND Weak #30",
+      "lean": "OVER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "CHI Passing / rec",
+      "vs": "vs TEN Below Avg #23",
+      "lean": "OVER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "TEN Passing / rec",
+      "vs": "vs CHI Below Avg #22",
+      "lean": "OVER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "TEN Rushing",
+      "vs": "vs CHI Weak #27",
+      "lean": "OVER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "CHI PAT / kick pts",
+      "vs": "vs TEN Weak #28",
+      "lean": "OVER"
+    }
+  ],
+  "under_axes": [
+    {
+      "day": "Thu 8/27",
+      "who": "PIT Passing / rec",
+      "vs": "vs BUF Elite #1",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "BUF Rushing",
+      "vs": "vs PIT Above Avg #13",
+      "lean": "UNDER-D"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "PIT FG",
+      "vs": "vs BUF Elite #5",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "PIT PAT / kick pts",
+      "vs": "vs BUF Elite #5",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "NE Passing / rec",
+      "vs": "vs CLE Elite #3",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "CLE Passing / rec",
+      "vs": "vs NE Above Avg #9",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "CLE Rushing",
+      "vs": "vs NE Elite #6",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "NE FG",
+      "vs": "vs CLE Above Avg #11",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "CLE FG",
+      "vs": "vs NE Elite #2",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "NE PAT / kick pts",
+      "vs": "vs CLE Above Avg #13",
+      "lean": "UNDER-D"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "CLE PAT / kick pts",
+      "vs": "vs NE Elite #2",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "LV Rushing",
+      "vs": "vs SF Above Avg #11",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "LV FG",
+      "vs": "vs SF Elite #4",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "LV PAT / kick pts",
+      "vs": "vs SF Elite #5",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "LAR Passing / rec",
+      "vs": "vs LAC Elite #5",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "LAR Rushing",
+      "vs": "vs LAC Above Avg #8",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "LAC Rushing",
+      "vs": "vs LAR Above Avg #12",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "LAC FG",
+      "vs": "vs LAR Above Avg #11",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Thu 8/27",
+      "who": "LAC PAT / kick pts",
+      "vs": "vs LAR Elite #7",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "WSH Rushing",
+      "vs": "vs BAL Above Avg #10",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "CAR Passing / rec",
+      "vs": "vs HOU Elite #6",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "CAR Rushing",
+      "vs": "vs HOU Elite #4",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "CAR FG",
+      "vs": "vs HOU Elite #1",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "CAR PAT / kick pts",
+      "vs": "vs HOU Elite #1",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "MIA Passing / rec",
+      "vs": "vs ATL Above Avg #13",
+      "lean": "UNDER-D"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "ATL FG",
+      "vs": "vs MIA Above Avg #9",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "ATL PAT / kick pts",
+      "vs": "vs MIA Above Avg #11",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "TB Rushing",
+      "vs": "vs JAX Elite #1",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "JAX Rushing",
+      "vs": "vs TB Elite #5",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "TB FG",
+      "vs": "vs JAX Elite #3",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "JAX FG",
+      "vs": "vs TB Elite #7",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "TB PAT / kick pts",
+      "vs": "vs JAX Elite #3",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "JAX PAT / kick pts",
+      "vs": "vs TB Above Avg #10",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "DAL Passing / rec",
+      "vs": "vs NO Elite #4",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "SEA Passing / rec",
+      "vs": "vs KC Above Avg #12",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "KC Passing / rec",
+      "vs": "vs SEA Above Avg #10",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "SEA Rushing",
+      "vs": "vs KC Above Avg #9",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "KC Rushing",
+      "vs": "vs SEA Elite #3",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "KC FG",
+      "vs": "vs SEA Above Avg #9",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "KC PAT / kick pts",
+      "vs": "vs SEA Elite #4",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "CIN Passing / rec",
+      "vs": "vs PHI Above Avg #8",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "PHI FG",
+      "vs": "vs CIN Elite #5",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "CIN PAT / kick pts",
+      "vs": "vs PHI Above Avg #8",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "ARI Passing / rec",
+      "vs": "vs GB Above Avg #11",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "ARI PAT / kick pts",
+      "vs": "vs GB Above Avg #11",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "MIN Passing / rec",
+      "vs": "vs DEN Elite #7",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "DEN Passing / rec",
+      "vs": "vs MIN Elite #2",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Fri 8/28",
+      "who": "MIN Rushing",
+      "vs": "vs DEN Elite #2",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "DET Rushing",
+      "vs": "vs IND Elite #7",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "IND FG",
+      "vs": "vs DET Above Avg #13",
+      "lean": "UNDER-D"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "TEN FG",
+      "vs": "vs CHI Elite #7",
+      "lean": "UNDER"
+    },
+    {
+      "day": "Sat 8/29",
+      "who": "TEN PAT / kick pts",
+      "vs": "vs CHI Above Avg #8",
+      "lean": "UNDER"
+    }
+  ]
+}

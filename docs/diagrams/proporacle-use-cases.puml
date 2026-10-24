@@ -1,5 +1,5 @@
 @startuml PropORACLE_Use_Case_Diagram
-' UML use case diagram — PropORACLE user-facing system
+' UML use case diagram — PropORACLE
 ' Render: PlantUML extension, https://www.plantuml.com/plantuml, or: plantuml docs/diagrams/proporacle-use-cases.puml
 
 left to right direction
@@ -16,7 +16,7 @@ skinparam rectangle {
   FontColor #e8e8f0
 }
 
-title PropORACLE — UML Use Case Diagram (User Interactions)
+title PropORACLE — UML Use Case Diagram
 
 actor "Bettor /\nAnalyst" as Bettor
 actor Operator as Operator
@@ -36,7 +36,7 @@ rectangle "PropORACLE" as System {
   package "Tickets" as P_Tickets {
     usecase "View built tickets\n(Goblin-70 + mixer)" as UC_TixLatest
     usecase "Browse tickets by date" as UC_TixDate
-    usecase "View ticket EV &\nwin-rate summaries" as UC_TixEV
+    usecase "View ticket EV &\nwin-rate summaries\n(MAIN only; YOLO excluded)" as UC_TixEV
     usecase "View ticket backtest" as UC_TixBacktest
   }
 
@@ -48,7 +48,7 @@ rectangle "PropORACLE" as System {
   }
 
   package "Income & tracking" as P_Income {
-    usecase "View income / P&L\ndashboard" as UC_Income
+    usecase "View income / P&L\ndashboard (/income)" as UC_Income
     usecase "View grade history\n& sport breakdown" as UC_GradeHist
   }
 
@@ -61,32 +61,35 @@ rectangle "PropORACLE" as System {
   }
 
   package "Mobile app" as P_Mobile {
-    usecase "Use bundled offline UI" as UC_MobBundle
-    usecase "Use remote web UI\nin app shell" as UC_MobRemote
-    usecase "Check & apply OTA\nbundle update" as UC_MobOTA
+    usecase "Use live site\nin app shell (server.url)" as UC_MobRemote
+    usecase "Use bundled offline UI\n(fallback only)" as UC_MobBundle
+  }
+
+  package "Account & UI" as P_UI {
+    usecase "Manage account" as UC_Account
+    usecase "Toggle theme\n(light/dark)" as UC_Theme
   }
 
   package "Pipeline & operations" as P_Ops {
-    usecase "Run pipeline step\nfrom Home UI" as UC_RunUI
-    usecase "Monitor pipeline job" as UC_MonitorJob
     usecase "Check pipeline status" as UC_PipeStatus
-    usecase "Run daily pipeline\n(scheduled)" as UC_DailyRun
+    usecase "Run pipeline step\nfrom Home UI\n(local Flask only — verify)" as UC_RunUI
+    usecase "Monitor pipeline job" as UC_MonitorJob
+    usecase "Run daily pipeline" as UC_DailyRun
+    usecase "Refresh / late fetch" as UC_Refresh
     usecase "Run sport pipeline\n(PowerShell)" as UC_SportRun
-    usecase "Grade completed slate" as UC_Grade
-    usecase "Publish UI artifacts" as UC_Publish
-    usecase "Fetch PrizePicks slate" as UC_FetchPP
-    usecase "Enrich & rank props" as UC_Enrich
-    usecase "Build combined tickets" as UC_Combine
+    usecase "Fetch PrizePicks slate\n(CDP-first, HTTP fallback)" as UC_FetchPP
+    usecase "Enrich & rank props\n(steps 2–8)" as UC_Enrich
+    usecase "Build combined tickets\n(mixer)" as UC_Combine
     usecase "Build Goblin-70 card\n(--write-web)" as UC_G70
-  }
-
-  package "General UI" as P_UI {
-    usecase "Toggle theme\n(light/dark)" as UC_Theme
+    usecase "Capture live payouts\n(N-correct via CDP)" as UC_Payout
+    usecase "Scrub published G70 legs\n(keep revalidation)" as UC_Scrub
+    usecase "Grade completed slate" as UC_Grade
+    usecase "Publish to origin/main" as UC_Publish
     usecase "Verify deploy / health" as UC_Health
   }
 }
 
-' --- Bettor (primary consumer) ---
+' --- Bettor ---
 Bettor --> UC_Home
 Bettor --> UC_SportSlate
 Bettor --> UC_Consistency
@@ -107,56 +110,61 @@ Bettor --> UC_PayRates
 Bettor --> UC_PayLog
 Bettor --> UC_PayLadder
 Bettor --> UC_PayExport
-Bettor --> UC_MobBundle
 Bettor --> UC_MobRemote
-Bettor --> UC_MobOTA
+Bettor --> UC_Account
 Bettor --> UC_Theme
-Bettor --> UC_Health
 Bettor --> PPExt : Places entries\n(outside system)
 
 ' --- Operator ---
-Operator --> UC_RunUI
-Operator --> UC_MonitorJob
 Operator --> UC_PipeStatus
+Operator --> UC_RunUI
 Operator --> UC_DailyRun
+Operator --> UC_Refresh
 Operator --> UC_SportRun
+Operator --> UC_Payout
 Operator --> UC_Grade
 Operator --> UC_Publish
-Operator --> UC_Home
+Operator --> UC_Health
 Operator --> UC_TixLatest
 Operator --> UC_GradesHub
 Operator --> UC_Income
 
-' --- Scheduler (automated operator) ---
+' --- Scheduler ---
 Scheduler --> UC_DailyRun
+Scheduler --> UC_Refresh
+Scheduler --> UC_Payout
+Scheduler --> UC_Scrub
 Scheduler --> UC_Grade
 
-' --- Include / extend (pipeline dependencies) ---
+' --- Include / extend ---
 UC_DailyRun ..> UC_SportRun : <<include>>
+UC_Refresh ..> UC_SportRun : <<include>>
 UC_SportRun ..> UC_FetchPP : <<include>>
 UC_SportRun ..> UC_Enrich : <<include>>
-UC_SportRun ..> UC_Combine : <<include>>
 UC_DailyRun ..> UC_Combine : <<include>>
+UC_Refresh ..> UC_Combine : <<include>>
 UC_Combine ..> UC_G70 : <<include>>
 UC_G70 ..> UC_Publish : <<include>>
-UC_DailyRun ..> UC_Publish : <<include>>
-UC_Grade ..> UC_Publish : <<include>>
+UC_Payout ..> UC_Publish : <<include>>
+UC_Scrub ..> UC_Payout : <<extend>>\n(leg dropped → re-price)
+UC_Grade ..> UC_Publish : <<include>>\n(git commit)
 UC_RunUI ..> UC_MonitorJob : <<include>>
-UC_MobOTA ..> UC_Health : <<extend>>
+UC_MobBundle ..> UC_MobRemote : <<extend>>\n(offline)
 
 note right of PPExt
-  Real-money entries happen
-  on PrizePicks; PropORACLE
-  only supports research &
-  ticket building.
+  Real-money entries happen on PrizePicks;
+  PropORACLE only supports research
+  and ticket building.
 end note
 
 note bottom of System
-  Web: Flask ui_runner (/, /tickets, /grades, /income, /payout)
-  /tickets: Goblin-70 groups first, graded-main mixer under
+  Web: Flask ui_runner — /, /tickets, /grades, /income, /payout, /account
+  (/dashboard/income and /income.html → 302 /income)
+  /tickets renders prebuilt JSON (Goblin-70 first, mixer under) — no rebuild
   Live JSON: origin/main ui_runner/templates/tickets_latest.json
-  Mobile: Capacitor — bundled www/ or remote Railway URL
-  Batch: run_pipeline.ps1, run_daily.ps1, run_grader.ps1, Publish-LiveSite.ps1
+  Mobile: Capacitor server.url = live site; bundled www/ fallback only; OTA off
+  Batch: run_daily.ps1, refresh / late_fetch, run_grader.ps1,
+         run_live_payout_capture.ps1, run_g70_keep_scrub.ps1, Publish-LiveSite.ps1
 end note
 
 @enduml

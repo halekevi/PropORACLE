@@ -18,6 +18,9 @@ STACK_CONTEXT_COLS: tuple[str, ...] = (
 # Persisted on graded JSON / Box Raw for stack backtests and tickets.
 GRADED_SIGNAL_COLS: tuple[str, ...] = (
     "def_tier",
+    "stat_def_tier",
+    "stat_def_rank",
+    "stat_def_category",
     "l5_over",
     "l5_under",
     "l10_over",

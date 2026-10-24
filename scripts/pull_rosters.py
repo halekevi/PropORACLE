@@ -94,7 +94,16 @@ def get_json(session: requests.Session, url: str) -> dict[str, Any]:
                 time.sleep(1.0)
                 continue
             if resp.status_code == 403:
-                resp.raise_for_status()
+                try:
+                    from curl_cffi.requests import Session as CurlSession
+
+                    cs = CurlSession(impersonate="chrome131")
+                    cr = cs.get(url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"}, timeout=60)
+                    cr.raise_for_status()
+                    return cr.json()
+                except Exception as cexc:
+                    last_err = cexc
+                    resp.raise_for_status()
             resp.raise_for_status()
             return resp.json()
         except requests.RequestException as exc:

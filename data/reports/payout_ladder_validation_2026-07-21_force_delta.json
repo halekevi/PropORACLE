@@ -3,8 +3,8 @@
   "mode": "force_delta",
   "generated_at": "2026-07-22T02:33:57.534157+00:00",
   "cdp_url": "http://127.0.0.1:9222",
-  "live_board_tickets_path": "H:\\halek\\ProfileFromC\\Desktop\\PropORACLE\\ui_runner\\data\\payout_ladder_validation_tickets.json",
-  "capture_path": "H:\\halek\\ProfileFromC\\Desktop\\PropORACLE\\data\\reports\\payout_ladder_validation_capture_2026-07-21_force_delta.json",
+  "live_board_tickets_path": "H:\\Desktop\\PropORACLE\\ui_runner\\data\\payout_ladder_validation_tickets.json",
+  "capture_path": "H:\\Desktop\\PropORACLE\\data\\reports\\payout_ladder_validation_capture_2026-07-21_force_delta.json",
   "capture_exit": 0,
   "summary": {
     "capture_failed": 11,

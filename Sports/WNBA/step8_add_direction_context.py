@@ -280,6 +280,8 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str):
         'player', 'pos', 'team', 'opp_team', 'days_rest', 'is_back_to_back', 'opp_days_rest', 'opp_b2b',
         'h2h_avg', 'h2h_over_pct', 'h2h_games', 'h2h_last',
         'game_total', 'spread', 'game_date', 'game_time',
+        'league', 'league_id',
+        'pp_projection_id', 'projection_id',
         'board_date', 'line_asof',
         'prop_type', 'pick_type', 'line',
         'final_bet_direction',

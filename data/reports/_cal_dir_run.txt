@@ -1,0 +1,25 @@
+[load] dropped 200263 rows missing game_id/stat_type/direction/hit/model_prob
+[load] 692872 graded props across 5696 games
+[load] --skip-matrix: correlation cells not built
+[calibration-deciles] wrote data\reports\standard_by_direction.csv rows=20 pick_type=standard group_by=direction
+direction  decile    n  mean_pred  mean_hit       gap pick_type
+     OVER       1 6293   0.030299  0.061815  0.031516  standard
+     OVER       2 6976   0.062290  0.083429  0.021139  standard
+     OVER       3 6827   0.149906  0.142083 -0.007823  standard
+     OVER       4 3810   0.227022  0.253543  0.026521  standard
+     OVER       5 5923   0.335619  0.345771  0.010152  standard
+     OVER       6 5952   0.456287  0.443212 -0.013075  standard
+     OVER       7 5961   0.520068  0.477101 -0.042967  standard
+     OVER       8 5980   0.564793  0.465217 -0.099576  standard
+     OVER       9 5941   0.741800  0.357011 -0.384790  standard
+     OVER      10 5963   0.988350  0.348985 -0.639365  standard
+    UNDER       1 1711   0.079481  0.556984  0.477503  standard
+    UNDER       2 1696   0.334297  0.528302  0.194005  standard
+    UNDER       3 1779   0.397302  0.566610  0.169308  standard
+    UNDER       4 1653   0.438915  0.525711  0.086796  standard
+    UNDER       5 1678   0.480785  0.523838  0.043052  standard
+    UNDER       6 2981   0.520419  0.530694  0.010276  standard
+    UNDER       7  762   0.527698  0.515748 -0.011950  standard
+    UNDER       8 1369   0.556135  0.558072  0.001936  standard
+    UNDER       9 1700   0.669522  0.554118 -0.115405  standard
+    UNDER      10 1702   0.893948  0.527615 -0.366334  standard

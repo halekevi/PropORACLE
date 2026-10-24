@@ -1,0 +1,70 @@
+{
+  "nfl_step5_path": "Sports\\NFL\\data\\outputs\\step5_nfl_with_stats.csv",
+  "before_l5_nonnull": 0,
+  "before_n": 2,
+  "after_resolved": 2,
+  "after_miss": 0,
+  "fg_made_combo_strip": {
+    "fg_made_combo": "fg_made",
+    "prop_value_on_kick_row": 2.0
+  },
+  "examples_ok": [
+    {
+      "player": "Andre Szmyt + Andy Borregales",
+      "prop": "fg_made_combo",
+      "line": 3.5,
+      "was_l5": NaN,
+      "arms": [
+        "Andre Szmyt",
+        "Andy Borregales"
+      ],
+      "base_prop": "fg_made",
+      "l5_avg": 2.6,
+      "n_games": 16
+    },
+    {
+      "player": "Harrison Mevis + Cameron Dicker",
+      "prop": "fg_made_combo",
+      "line": 3.5,
+      "was_l5": NaN,
+      "arms": [
+        "Harrison Mevis",
+        "Cameron Dicker"
+      ],
+      "base_prop": "fg_made",
+      "l5_avg": 3.6,
+      "n_games": 12
+    }
+  ],
+  "examples_miss": [],
+  "fg_combo_detail": [
+    {
+      "player": "Andre Szmyt + Andy Borregales",
+      "prop": "fg_made_combo",
+      "line": 3.5,
+      "was_l5": NaN,
+      "arms": [
+        "Andre Szmyt",
+        "Andy Borregales"
+      ],
+      "base_prop": "fg_made",
+      "l5_avg": 2.6,
+      "n_games": 16,
+      "status": "resolved"
+    },
+    {
+      "player": "Harrison Mevis + Cameron Dicker",
+      "prop": "fg_made_combo",
+      "line": 3.5,
+      "was_l5": NaN,
+      "arms": [
+        "Harrison Mevis",
+        "Cameron Dicker"
+      ],
+      "base_prop": "fg_made",
+      "l5_avg": 3.6,
+      "n_games": 12,
+      "status": "resolved"
+    }
+  ]
+}

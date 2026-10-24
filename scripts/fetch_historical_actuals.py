@@ -67,6 +67,9 @@ SOCCER_NAME_ALIASES = {
 
 _SOCCER_PARTICLES = {"da", "de", "del", "della", "di", "dos", "du", "la", "le", "van", "von"}
 
+SOCCER_ESPN_ID_CACHE_PATH = REPO_ROOT / "Sports" / "Soccer" / "soccer_espn_id_cache.csv"
+_SLATE_DATE_IN_PATH_RE = re.compile(r"(?<![0-9])(\d{4}-\d{2}-\d{2})(?![0-9])")
+
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -175,13 +178,89 @@ def expand_combo_player_names(name: str) -> list[str]:
     return [p.strip() for p in s.split("+") if p.strip()]
 
 
-def load_players_from_graded_workbooks() -> list[tuple[str, str]]:
+def _slate_date_from_path(path: Path) -> datetime | None:
+    """Best-effort slate date from outputs/YYYY-MM-DD/… or graded_*_YYYY-MM-DD.xlsx."""
+    for part in path.parts:
+        if _SLATE_DATE_IN_PATH_RE.fullmatch(part):
+            try:
+                return datetime.strptime(part, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+            except ValueError:
+                pass
+    m = _SLATE_DATE_IN_PATH_RE.search(path.name)
+    if m:
+        try:
+            return datetime.strptime(m.group(1), "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        except ValueError:
+            pass
+    return None
+
+
+def _path_within_active_slate_days(path: Path, active_slate_days: int, ref: datetime | None = None) -> bool:
+    if active_slate_days <= 0:
+        return True
+    ref = ref or datetime.now(timezone.utc)
+    slate_dt = _slate_date_from_path(path)
+    if slate_dt is not None:
+        return (ref.date() - slate_dt.date()).days <= active_slate_days
+    try:
+        mtime = datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc)
+        return (ref.date() - mtime.date()).days <= active_slate_days
+    except OSError:
+        return True
+
+
+def load_soccer_espn_id_cache() -> dict[str, tuple[str, str]]:
+    """player_norm -> (espn_athlete_id, display_name)."""
+    out: dict[str, tuple[str, str]] = {}
+    path = SOCCER_ESPN_ID_CACHE_PATH
+    if not path.is_file():
+        return out
+    try:
+        df = pd.read_csv(path, dtype=str)
+    except Exception as ex:
+        _log_error(f"soccer espn id cache read: {ex}")
+        return out
+    if df.empty or "player_norm" not in df.columns or "espn_athlete_id" not in df.columns:
+        return out
+    for _, row in df.iterrows():
+        norm = str(row.get("player_norm") or "").strip()
+        eid = str(row.get("espn_athlete_id") or "").strip()
+        if not norm or not eid:
+            continue
+        out[norm] = (eid, norm)
+    return out
+
+
+def load_db_espn_id_map(conn: sqlite3.Connection) -> dict[tuple[str, str], tuple[str, str]]:
+    """(player_name, sport) -> (espn_id, player_name) from prior fetches."""
+    out: dict[tuple[str, str], tuple[str, str]] = {}
+    try:
+        cur = conn.execute(
+            """
+            SELECT player_name, sport, player_id
+            FROM player_game_logs
+            WHERE player_id IS NOT NULL AND TRIM(player_id) != ''
+            GROUP BY player_name, sport
+            """
+        )
+        for name, sport, pid in cur.fetchall():
+            key = (str(name).strip(), str(sport).strip())
+            if key[0] and key[1] and pid:
+                out[key] = (str(pid).strip(), key[0])
+    except sqlite3.Error as ex:
+        _log_error(f"db espn id map: {ex}")
+    return out
+
+
+def load_players_from_graded_workbooks(active_slate_days: int = 0) -> list[tuple[str, str]]:
     out: list[tuple[str, str]] = []
     root = REPO_ROOT / "outputs"
     if not root.is_dir():
         return out
     for path in root.rglob("graded_*.xlsx"):
         if not path.is_file():
+            continue
+        if not _path_within_active_slate_days(path, active_slate_days):
             continue
         sport = None
         low = path.name.lower()
@@ -210,7 +289,7 @@ def load_players_from_graded_workbooks() -> list[tuple[str, str]]:
     return out
 
 
-def load_players_from_step8_slates() -> list[tuple[str, str]]:
+def load_players_from_step8_slates(active_slate_days: int = 0) -> list[tuple[str, str]]:
     out: list[tuple[str, str]] = []
     patterns: list[tuple[Path, str]] = [
         (REPO_ROOT / "Sports" / "NBA" / "data" / "outputs", "NBA"),
@@ -226,11 +305,15 @@ def load_players_from_step8_slates() -> list[tuple[str, str]]:
             for path in base.rglob(g):
                 if not path.is_file():
                     continue
+                if not _path_within_active_slate_days(path, active_slate_days):
+                    continue
                 _append_players_from_slate(path, sport, out)
     out_dir = REPO_ROOT / "outputs"
     if out_dir.is_dir():
         for path in out_dir.rglob("step8_*direction_clean*.xlsx"):
             if path.is_file():
+                if not _path_within_active_slate_days(path, active_slate_days):
+                    continue
                 low = str(path).lower()
                 # Do not default to NBA: MLB/WNBA/tennis/etc. step8 files would pollute the NBA
                 # player list and spam "Could not find ESPN ID" (basketball search on baseball names).
@@ -247,6 +330,58 @@ def load_players_from_step8_slates() -> list[tuple[str, str]]:
                 else:
                     continue
                 _append_players_from_slate(path, sp, out)
+    return out
+
+
+_SPORT_ROOT_STEP8: list[tuple[Path, str]] = [
+    (REPO_ROOT / "Sports" / "NBA" / "step8_all_direction_clean.xlsx", "NBA"),
+    (REPO_ROOT / "Sports" / "Soccer" / "step8_soccer_direction_clean.xlsx", "Soccer"),
+    (REPO_ROOT / "Sports" / "NHL" / "step8_nhl_direction_clean.xlsx", "NHL"),
+]
+
+
+def load_players_from_step8_slate_roots() -> list[tuple[str, str]]:
+    """Latest per-sport step8 workbook at sport root (current slate snapshot)."""
+    out: list[tuple[str, str]] = []
+    for path, sport in _SPORT_ROOT_STEP8:
+        if path.is_file():
+            _append_players_from_slate(path, sport, out)
+    cbb_glob = list((REPO_ROOT / "Sports" / "CBB").glob("step8*direction_clean*.xlsx"))
+    for path in cbb_glob:
+        if path.is_file():
+            _append_players_from_slate(path, "CBB", out)
+    return out
+
+
+def load_players_from_step1_props(active_slate_days: int = 0) -> list[tuple[str, str]]:
+    """PrizePicks step1 CSV snapshots under outputs/YYYY-MM-DD/ (fast daily player list)."""
+    out: list[tuple[str, str]] = []
+    if active_slate_days <= 0:
+        return out
+    root = REPO_ROOT / "outputs"
+    if not root.is_dir():
+        return out
+    for path in root.rglob("step1_*props*.csv"):
+        if not path.is_file():
+            continue
+        if not _path_within_active_slate_days(path, active_slate_days):
+            continue
+        try:
+            df = pd.read_csv(path, dtype=str)
+        except Exception:
+            continue
+        cols = {str(c).strip().lower(): c for c in df.columns}
+        pc = cols.get("player") or cols.get("player_name")
+        lc = cols.get("league") or cols.get("sport")
+        if not pc:
+            continue
+        for _, row in df.iterrows():
+            name = str(row.get(pc) or "").strip()
+            if not name:
+                continue
+            sp = league_to_sport(str(row.get(lc) or "")) if lc else None
+            if sp:
+                out.append((name, sp))
     return out
 
 
@@ -287,14 +422,15 @@ def _append_players_from_slate(path: Path, default_sport: str, out: list[tuple[s
 
 
 def merge_player_list(
-    a: list[tuple[str, str]], b: list[tuple[str, str]], c: list[tuple[str, str]]
+    *sources: list[tuple[str, str]],
 ) -> dict[str, set[str]]:
     by_sport: dict[str, set[str]] = {"NBA": set(), "CBB": set(), "NHL": set(), "Soccer": set()}
-    for name, sp in a + b + c:
-        if sp not in by_sport or not name:
-            continue
-        for token in expand_combo_player_names(name):
-            by_sport[sp].add(token)
+    for src in sources:
+        for name, sp in src:
+            if sp not in by_sport or not name:
+                continue
+            for token in expand_combo_player_names(name):
+                by_sport[sp].add(token)
     return by_sport
 
 
@@ -1095,6 +1231,70 @@ def season_rows_exist(conn: sqlite3.Connection, player: str, sport: str, season_
     return cur.fetchone() is not None
 
 
+def max_game_date_for_season(
+    conn: sqlite3.Connection, player: str, sport: str, season_label: str
+) -> str | None:
+    row = conn.execute(
+        """
+        SELECT MAX(game_date) FROM player_game_logs
+        WHERE player_name = ? AND sport = ? AND season = ?
+        """,
+        (player, sport, season_label),
+    ).fetchone()
+    return str(row[0]) if row and row[0] else None
+
+
+def player_needs_fetch(
+    conn: sqlite3.Connection,
+    player: str,
+    sport: str,
+    seasons: tuple[int, ...],
+    current: int,
+    full_history_refresh: bool,
+    inactive_skip_days: int = 14,
+) -> bool:
+    if full_history_refresh:
+        return True
+    current_label = season_code_to_label(current)
+    for sc in seasons:
+        if sc != current and not season_rows_exist(conn, player, sport, season_code_to_label(sc)):
+            return True
+    if not season_rows_exist(conn, player, sport, current_label):
+        return True
+    max_d = max_game_date_for_season(conn, player, sport, current_label)
+    if not max_d:
+        return True
+    today = datetime.now(timezone.utc).date()
+    try:
+        max_dt = datetime.strptime(max_d[:10], "%Y-%m-%d").date()
+    except ValueError:
+        return True
+    if max_dt >= today - timedelta(days=1):
+        return False
+    if inactive_skip_days > 0 and (today - max_dt).days >= inactive_skip_days:
+        return False
+    return True
+
+
+def resolve_soccer_espn_id_cached(
+    player_name: str,
+    soccer_cache: dict[str, tuple[str, str]],
+    db_ids: dict[tuple[str, str], tuple[str, str]],
+) -> tuple[str | None, str | None, bool]:
+    """Returns (espn_id, display_name, from_cache)."""
+    norm = normalize_player_key(player_name)
+    canon = _soccer_canonical_name(player_name)
+    for key in (norm, canon):
+        if key in soccer_cache:
+            eid, name = soccer_cache[key]
+            return eid, name, True
+    db_hit = db_ids.get((player_name, "Soccer"))
+    if db_hit:
+        return db_hit[0], db_hit[1], True
+    eid, matched = search_soccer_espn_id(player_name)
+    return eid, matched, False
+
+
 def upsert_game_log(conn: sqlite3.Connection, row: dict[str, Any]) -> None:
     sp = row.get("sport")
     if sp is not None:
@@ -1151,15 +1351,23 @@ def fetch_player_sport(
     seasons: tuple[int, ...],
     full_history_refresh: bool,
     since_date: str | None,
+    *,
+    soccer_id_cache: dict[str, tuple[str, str]] | None = None,
+    db_espn_ids: dict[tuple[str, str], tuple[str, str]] | None = None,
+    inactive_skip_days: int = 14,
 ) -> tuple[int, str]:
     """Returns (games_stored, status_line).
 
     Past seasons: skipped when rows already exist in DB (one-time backfill), unless
     ``full_history_refresh`` is True (slow: re-downloads all seasons for every player).
 
-    Current season: always fetched so new games are upserted.
+    Current season: fetched when stale; skipped when max game_date is through yesterday.
     """
     current = current_season_code()
+    if not player_needs_fetch(
+        conn, player, sport, seasons, current, full_history_refresh, inactive_skip_days
+    ):
+        return 0, f"{player}: cached (fresh)"
     total = 0
     parts: list[str] = []
     if sport in ("NBA", "CBB"):
@@ -1167,7 +1375,7 @@ def fetch_player_sport(
         if not eid:
             _log_error(f"No ESPN id for {sport} player={player!r}")
             return 0, f"WARNING: Could not find ESPN ID for {player}"
-        time.sleep(0.5)
+        time.sleep(0.35)
         for sc in seasons:
             label = season_code_to_label(sc)
             if (
@@ -1176,7 +1384,7 @@ def fetch_player_sport(
                 and season_rows_exist(conn, player, sport, label)
             ):
                 continue
-            time.sleep(0.2)
+            time.sleep(0.1)
             rows = fetch_basketball_season(eid, sport, sc, matched or player)
             if since_date:
                 rows = [r for r in rows if r["game_date"] >= since_date]
@@ -1191,7 +1399,7 @@ def fetch_player_sport(
         if not pid:
             _log_error(f"No NHL id for player={player!r}")
             return 0, f"WARNING: Could not find NHL player ID for {player}"
-        time.sleep(0.5)
+        time.sleep(0.35)
         for sc in seasons:
             label = season_code_to_label(sc)
             if (
@@ -1200,7 +1408,7 @@ def fetch_player_sport(
                 and season_rows_exist(conn, player, sport, label)
             ):
                 continue
-            time.sleep(0.2)
+            time.sleep(0.1)
             rows = fetch_nhl_season(pid, sc, matched or player)
             if since_date:
                 rows = [r for r in rows if r["game_date"] >= since_date]
@@ -1211,11 +1419,14 @@ def fetch_player_sport(
         conn.commit()
         return total, f"{matched or player}: " + ", ".join(parts)
     if sport == "Soccer":
-        eid, matched = search_soccer_espn_id(player)
+        eid, matched, id_cached = resolve_soccer_espn_id_cached(
+            player, soccer_id_cache or {}, db_espn_ids or {}
+        )
         if not eid:
             _log_error(f"No ESPN soccer id for player={player!r}")
             return 0, f"WARNING: Could not find ESPN soccer ID for {player}"
-        time.sleep(0.5)
+        if not id_cached:
+            time.sleep(0.35)
         for sc in seasons:
             label = season_code_to_label(sc)
             if (
@@ -1224,7 +1435,7 @@ def fetch_player_sport(
                 and season_rows_exist(conn, player, sport, label)
             ):
                 continue
-            time.sleep(0.2)
+            time.sleep(0.1)
             rows = fetch_soccer_season(eid, sc, matched or player)
             if since_date:
                 rows = [r for r in rows if r["game_date"] >= since_date]
@@ -1322,6 +1533,18 @@ def main() -> None:
         default=12,
         help="Parallel fetch workers (default: 12; max: 20). Higher = faster but more ESPN load.",
     )
+    ap.add_argument(
+        "--active-slate-days",
+        type=int,
+        default=0,
+        help="Only load players from graded/step8 slates within N days (0 = all history). Daily runs use ~21.",
+    )
+    ap.add_argument(
+        "--inactive-skip-days",
+        type=int,
+        default=14,
+        help="Skip current-season refresh when last game is older than N days (0 = always refresh stale).",
+    )
     args = ap.parse_args()
 
     full_history_refresh = bool(
@@ -1344,10 +1567,20 @@ def main() -> None:
     conn = sqlite3.connect(str(DB_PATH))
     try:
         create_db(conn)
+        active_days = max(0, int(getattr(args, "active_slate_days", 0) or 0))
+        inactive_skip = max(0, int(getattr(args, "inactive_skip_days", 14) or 0))
         src1 = load_players_from_entry_legs()
-        src2 = load_players_from_graded_workbooks()
-        src3 = load_players_from_step8_slates()
-        by_sport = merge_player_list(src1, src2, src3)
+        if active_days > 0:
+            # Daily fast path: step1 dated snapshots only (skip graded + step8 archive boards).
+            src2 = []
+            src3 = load_players_from_step1_props(active_days)
+            by_sport = merge_player_list(src1, src2, src3)
+        else:
+            src2 = load_players_from_graded_workbooks(0)
+            src3 = load_players_from_step8_slates(0)
+            by_sport = merge_player_list(src1, src2, src3)
+        soccer_id_cache = load_soccer_espn_id_cache()
+        db_espn_ids = load_db_espn_id_map(conn)
         if args.players:
             raw_names = {n.strip() for n in args.players.split(",") if n.strip()}
             names: set[str] = set()
@@ -1362,6 +1595,8 @@ def main() -> None:
         _reset_actuals_guard_counters()
 
         print("Unique players by sport (sources merged):")
+        if active_days > 0:
+            print(f"  (daily fast path: step1 props last {active_days} day(s); graded/step8 archives skipped)")
         for sp in ("NBA", "CBB", "NHL", "Soccer"):
             print(f"  {sp}: {len(by_sport.get(sp, set()))}")
 
@@ -1386,7 +1621,10 @@ def main() -> None:
                 try:
                     n, line = fetch_player_sport(
                         wconn, player, sp, seasons,
-                        full_history_refresh, args.since
+                        full_history_refresh, args.since,
+                        soccer_id_cache=soccer_id_cache,
+                        db_espn_ids=db_espn_ids,
+                        inactive_skip_days=inactive_skip,
                     )
                     return n, line
                 finally:

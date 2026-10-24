@@ -113,6 +113,17 @@ def test_mlb_soccer_tennis_aliases():
     assert canon_prop("NHL", "Time On Ice") == "toi"
     assert canon_prop("CBB", "3-PT Made") == "threes"
     assert canon_prop("NFL", "rec_tds") == "receiving_tds"
+    assert canon_prop("NFL", "int") == "interceptions"
+    assert canon_prop("NFL", "interceptions") == "interceptions"
+    assert canon_prop("CFB", "int") == "int"
+
+
+def test_canon_prop_missing_label_is_empty():
+    import pandas as pd
+
+    assert canon_prop("CFB", None) == ""
+    assert canon_prop("CFB", float("nan")) == ""
+    assert canon_prop("CFB", pd.NA) == ""
 
 
 def test_display_and_hr_window():
@@ -122,6 +133,18 @@ def test_display_and_hr_window():
     assert display_prop("fg2a") == "Two Pointers Attempted"
     assert display_prop("saves_combo") == "Goalie Saves (Combo)"
     assert display_prop("points_combo") == "Points (Combo)"
+    # Shared canon sog: soccer keeps Target; NHL must say Goal (raw PP label).
+    assert display_prop("sog") == "Shots On Target"
+    assert display_prop("sog", sport="Soccer") == "Shots On Target"
+    assert display_prop("sog", sport="NHL") == "Shots On Goal"
+    assert display_prop("toi", sport="NHL") == "Time On Ice"
+    assert display_prop("pp_points", sport="NHL") == "Power Play Points"
+    use = preferred_hr(n=100, hits=50, listed_n=50, listed_hits=35)
+    assert use["window"] == "listed"
+    assert use["hr"] == 0.7
+    use_all = preferred_hr(n=100, hits=50, listed_n=10, listed_hits=8)
+    assert use_all["window"] == "all"
+    assert use_all["hr"] == 0.5
     use = preferred_hr(n=100, hits=50, listed_n=50, listed_hits=35)
     assert use["window"] == "listed"
     assert use["hr"] == 0.7
@@ -137,7 +160,7 @@ def test_mlb_s_tier_on_canon_and_board_labels():
     hits_allowed = assign_tier(
         sport="MLB", pick_type="Goblin", side="OVER", prop="Hits Allowed"
     )
-    assert hits_allowed["prop_tier"] == "B"
+    assert hits_allowed["prop_tier"] == "S"
     era = assign_tier(
         sport="MLB", pick_type="Goblin", side="OVER", prop="Earned Runs Allowed"
     )

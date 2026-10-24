@@ -26,6 +26,7 @@ TEAMS_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams?li
 STANDINGS_URL = "https://site.api.espn.com/apis/v2/sports/football/nfl/standings"
 TEAM_STATS_URL = (
     "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team_id}/statistics"
+    "?season={season}&seasontype=2"
 )
 
 REQUEST_DELAY_S = 0.25
@@ -54,6 +55,14 @@ OUTPUT_COLS = [
     "sacks_rank",
     "turnovers_forced",
     "to_rank",
+    "opp_fg_made",
+    "opp_fg_att",
+    "opp_fg_pct",
+    "opp_fg_made_pg",
+    "fg_def_rank",
+    "opp_xp_made",
+    "opp_kick_pts_pg",
+    "kick_pts_def_rank",
     "updated_at",
 ]
 
@@ -175,6 +184,12 @@ def parse_team_defense_stats(payload: dict[str, Any]) -> dict[str, Any]:
     opp_rush_ypg = _stat_value(opp, "rushing", "rushingYardsPerGame")
     turnovers = _stat_value(opp, "miscellaneous", "totalTakeaways")
     sacks = _stat_value(own, "defensive", "sacks")
+    opp_fg_made = _stat_value(opp, "kicking", "fieldGoalsMade")
+    opp_fg_att = _stat_value(opp, "kicking", "fieldGoalAttempts")
+    opp_fg_pct = _stat_value(opp, "kicking", "fieldGoalPct")
+    opp_xp_made = _stat_value(opp, "kicking", "extraPointsMade")
+    opp_kick_pts = _stat_value(opp, "kicking", "totalKickingPoints")
+    gp = _stat_value(opp, "kicking", "teamGamesPlayed")
 
     return {
         "season": season,
@@ -182,6 +197,12 @@ def parse_team_defense_stats(payload: dict[str, Any]) -> dict[str, Any]:
         "opp_rush_ypg": opp_rush_ypg,
         "sacks": sacks,
         "turnovers_forced": turnovers,
+        "opp_fg_made": opp_fg_made,
+        "opp_fg_att": opp_fg_att,
+        "opp_fg_pct": opp_fg_pct,
+        "opp_xp_made": opp_xp_made,
+        "opp_kick_pts": opp_kick_pts,
+        "games": gp,
     }
 
 
@@ -215,15 +236,22 @@ def main() -> int:
         abbr = str(team["team_abbr"]).upper()
         name = team["team_name"]
         print(f"Fetching defense: {name}...")
-        url = TEAM_STATS_URL.format(team_id=tid)
+        url = TEAM_STATS_URL.format(team_id=tid, season=season)
         payload = get_json(session, url)
         time.sleep(REQUEST_DELAY_S)
 
         parsed = parse_team_defense_stats(payload)
         row_season = int(args.season) if args.season else season
-        g = pa_map.get(abbr, {}).get("games", 17.0)
+        gp = parsed.get("games") or pa_map.get(abbr, {}).get("games", 17.0)
         pa_total = pa_map.get(abbr, {}).get("points_against", float("nan"))
-        pa_pg = float(pa_total) / float(g) if g and pa_total == pa_total else float("nan")
+        pa_pg = float(pa_total) / float(gp) if gp and pa_total == pa_total else float("nan")
+        fg_made = parsed.get("opp_fg_made")
+        xp_made = parsed.get("opp_xp_made")
+        kick_pts = parsed.get("opp_kick_pts")
+        if kick_pts is None and fg_made is not None and xp_made is not None:
+            kick_pts = 3.0 * float(fg_made) + float(xp_made)
+        fg_pg = (float(fg_made) / float(gp)) if gp and fg_made is not None else None
+        kick_pg = (float(kick_pts) / float(gp)) if gp and kick_pts is not None else None
 
         rows.append(
             {
@@ -236,6 +264,12 @@ def main() -> int:
                 "opp_rush_ypg": parsed["opp_rush_ypg"],
                 "sacks": parsed["sacks"],
                 "turnovers_forced": parsed["turnovers_forced"],
+                "opp_fg_made": fg_made,
+                "opp_fg_att": parsed.get("opp_fg_att"),
+                "opp_fg_pct": parsed.get("opp_fg_pct"),
+                "opp_fg_made_pg": fg_pg,
+                "opp_xp_made": xp_made,
+                "opp_kick_pts_pg": kick_pg,
             }
         )
 
@@ -245,6 +279,8 @@ def main() -> int:
     df["rush_def_rank"] = _rank_series(df["opp_rush_ypg"], ascending=True)
     df["sacks_rank"] = _rank_series(df["sacks"], ascending=False)
     df["to_rank"] = _rank_series(df["turnovers_forced"], ascending=False)
+    df["fg_def_rank"] = _rank_series(df["opp_fg_made_pg"], ascending=True)
+    df["kick_pts_def_rank"] = _rank_series(df["opp_kick_pts_pg"], ascending=True)
     df["updated_at"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     out = Path(args.output)

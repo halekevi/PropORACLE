@@ -22,6 +22,8 @@ from utils.ticket_70_pool import (  # noqa: E402
     standard_ticket_eligible,
     ticket_excluded_from_winrate,
     ticket_gate_passes,
+    wnba_pra_off_observe_eligible,
+    wnba_threes_vol_observe_eligible,
 )
 
 
@@ -29,13 +31,13 @@ def _gob(**kwargs) -> dict:
     row = {
         "sport": "WNBA",
         "player": "Ezi Magbegor",
-        "prop": "Rebounds",
+        "prop": "Points",
         "side": "OVER",
-        "line": 5.5,
+        "line": 10.5,
         "pick_type": "Goblin",
         "l5_over": 5,
         "l10_over": 8,
-        "cover": 2.4,
+        "cover": 4.3,
         "def": "Weak",
         "prop_tier": "A",
     }
@@ -74,13 +76,24 @@ def test_cover_floor_blocks_wnba_under_2():
         )
     )
     # Catalog PRA is B — Off alone is not enough when tier is stamped B.
-    assert not goblin_70_eligible(
+    b_off = _gob(
+        prop="Pts+Rebs+Asts",
+        cover=4.0,
+        l5_over=5,
+        l10_over=8,
+        usage_tier="high",
+        prop_tier="B",
+    )
+    assert not goblin_70_eligible(b_off)
+    assert wnba_pra_off_observe_eligible(b_off)
+    assert not wnba_pra_off_observe_eligible(
         _gob(
             prop="Pts+Rebs+Asts",
             cover=4.0,
             l5_over=5,
             l10_over=8,
-            usage_tier="high",
+            usage_tier="medium",
+            minutes_tier="MEDIUM",
             prop_tier="B",
         )
     )
@@ -95,7 +108,282 @@ def test_cover_floor_blocks_wnba_under_2():
         )
     )
     assert not goblin_70_eligible(_gob(cover=4.3, l5_over=5, l10_over=8, **{"def": "Avg"}))
-    # Hits/TB: BA>=.275 + L5=5 + leaky opp pitch (no L10, no cover).
+    # Rebounds Goblin 3.5+ skips D (keep L5=5+L10>=8+cover). <=2.5 still needs D.
+    assert goblin_70_eligible(
+        _gob(prop="Rebounds", line=3.5, cover=2.0, l5_over=5, l10_over=8, **{"def": "Elite"})
+    )
+    assert goblin_70_eligible(
+        _gob(
+            prop="Rebounds",
+            line=3.5,
+            cover=2.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=6.0,
+            **{"def": "Elite"},
+        )
+    )
+    assert not goblin_70_eligible(
+        _gob(
+            prop="Rebounds",
+            line=3.5,
+            cover=2.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=4.0,
+            **{"def": "Elite"},
+        )
+    )
+    assert not goblin_70_eligible(
+        _gob(prop="Rebounds", line=3.5, cover=0.4, l5_over=5, l10_over=8, **{"def": "Elite"})
+    )
+    assert goblin_70_eligible(
+        _gob(
+            prop="Rebounds",
+            line=5.5,
+            cover=2.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=8.0,
+            **{"def": "Elite"},
+        )
+    )
+    assert not goblin_70_eligible(
+        _gob(
+            prop="Rebounds",
+            line=5.5,
+            cover=0.4,
+            l5_over=5,
+            l10_over=8,
+            avg_season=8.0,
+            **{"def": "Elite"},
+        )
+    )
+    assert not goblin_70_eligible(
+        _gob(
+            prop="Rebounds",
+            line=2.5,
+            cover=2.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=5.0,
+            **{"def": "Elite"},
+        )
+    )
+    assert goblin_70_eligible(
+        _gob(
+            prop="Rebounds",
+            line=2.5,
+            cover=2.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=5.0,
+            **{"def": "Weak"},
+        )
+    )
+    # Assists Goblin 2.5 is off tickets; 1.5 stays.
+    assert not goblin_70_eligible(
+        _gob(prop="Assists", line=2.5, cover=2.0, l5_over=5, l10_over=8, **{"def": "Weak"})
+    )
+    assert goblin_70_eligible(
+        _gob(prop="Assists", line=1.5, cover=2.0, l5_over=5, l10_over=8, **{"def": "Weak"})
+    )
+    # Assists Goblin poss/g >= 18 is off tickets. Missing poss fails open.
+    assert not goblin_70_eligible(
+        _gob(
+            prop="Assists",
+            line=1.5,
+            cover=2.0,
+            l5_over=5,
+            l10_over=8,
+            poss_g=18.0,
+            **{"def": "Weak"},
+        )
+    )
+    assert goblin_70_eligible(
+        _gob(
+            prop="Assists",
+            line=1.5,
+            cover=2.0,
+            l5_over=5,
+            l10_over=8,
+            poss_g=17.9,
+            **{"def": "Weak"},
+        )
+    )
+    assert goblin_70_eligible(
+        _gob(prop="Points", cover=4.3, l5_over=5, l10_over=8, poss_g=22.0)
+    )
+    # Fantasy is off tickets for every sport (list SKIP was sport-agnostic;
+    # ticket fade was WNBA-only — WNBA1Q/1H and NBA still cleared the stack).
+    assert not goblin_70_eligible(
+        _gob(prop="Fantasy Score", cover=8.0, l5_over=5, l10_over=8, line=20.5)
+    )
+    assert not goblin_70_eligible(
+        _gob(
+            sport="WNBA1Q",
+            prop="fantasy_score",
+            cover=8.0,
+            l5_over=5,
+            l10_over=8,
+            line=6.5,
+        )
+    )
+    assert not goblin_70_eligible(
+        _gob(sport="NBA", prop="Fantasy Score", cover=8.0, l5_over=5, l10_over=8, line=20.5)
+    )
+    assert not standard_ticket_eligible(
+        _gob(
+            sport="WNBA1H",
+            prop="Fantasy Score",
+            pick_type="Standard",
+            side="UNDER",
+            cover=-8.0,
+            l5_under=5,
+            l10_under=8,
+            line=24.5,
+            **{"def": "Elite"},
+        )
+    )
+    # Assists 2.5 / Rebounds skip-D stay full-game WNBA only. Do not copy
+    # onto 1Q/1H without their own pass (1Q board is points-only today).
+    assert goblin_70_eligible(
+        _gob(sport="WNBA1Q", prop="Assists", line=2.5, cover=2.0, l5_over=5, l10_over=8)
+    )
+    assert not goblin_70_eligible(
+        _gob(
+            sport="WNBA1Q",
+            prop="Rebounds",
+            line=3.5,
+            cover=2.0,
+            avg_season=8.0,
+            l5_over=5,
+            l10_over=8,
+            **{"def": "Elite"},
+        )
+    )
+    assert not ticket_gate_passes(_gob(pick_type="Demon", cover=4.0))
+    # Season avg >= line+cover_unit on Points/Rebounds/Pts+Reb/Pts+Ast only.
+    # Missing avg fails open. Assists/3PM/Reb+Ast/PRA/FGA stay on plain G70.
+    assert goblin_70_eligible(
+        _gob(prop="Points", cover=4.3, l5_over=5, l10_over=8, avg_season=18.0, line=10.5)
+    )
+    assert not goblin_70_eligible(
+        _gob(prop="Points", cover=4.3, l5_over=5, l10_over=8, avg_season=12.0, line=10.5)
+    )
+    assert goblin_70_eligible(
+        _gob(prop="Rebounds", line=5.5, cover=2.0, l5_over=5, l10_over=8, avg_season=8.0)
+    )
+    assert not goblin_70_eligible(
+        _gob(prop="Rebounds", line=5.5, cover=2.0, l5_over=5, l10_over=8, avg_season=6.0)
+    )
+    assert goblin_70_eligible(
+        _gob(
+            prop="Pts+Rebs",
+            line=12.5,
+            cover=4.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=18.0,
+        )
+    )
+    assert not goblin_70_eligible(
+        _gob(
+            prop="Pts+Rebs",
+            line=12.5,
+            cover=4.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=15.0,
+        )
+    )
+    assert goblin_70_eligible(
+        _gob(
+            prop="Pts+Asts",
+            line=12.5,
+            cover=4.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=18.0,
+        )
+    )
+    assert not goblin_70_eligible(
+        _gob(
+            prop="Pts+Asts",
+            line=12.5,
+            cover=4.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=15.0,
+        )
+    )
+    assert goblin_70_eligible(
+        _gob(
+            prop="Assists",
+            line=1.5,
+            cover=2.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=1.0,
+            **{"def": "Weak"},
+        )
+    )
+    assert goblin_70_eligible(
+        _gob(prop="3-PT Made", cover=0.8, l5_over=5, l10_over=8, avg_season=1.0, line=1.5)
+    )
+    assert goblin_70_eligible(
+        _gob(
+            prop="Rebs+Asts",
+            line=4.5,
+            cover=2.0,
+            l5_over=5,
+            l10_over=8,
+            avg_season=4.0,
+        )
+    )
+    assert goblin_70_eligible(
+        _gob(
+            prop="Pts+Rebs+Asts",
+            cover=4.0,
+            l5_over=5,
+            l10_over=8,
+            usage_tier="high",
+            avg_season=20.0,
+            line=25.5,
+        )
+    )
+    assert goblin_70_eligible(
+        _gob(prop="FG Attempted", cover=1.2, l5_over=5, l10_over=8, avg_season=8.0, line=8.5)
+    )
+    # 3PM vol-replace is observe-only. L5=5+vol without L10+D does not ticket.
+    vol_only = _gob(
+        prop="3-PT Made",
+        line=1.5,
+        cover=0.8,
+        l5_over=5,
+        l10_over=6,
+        l10_3pa_g=6.0,
+        season_3pp=0.36,
+        season_3pa=80,
+        **{"def": "Avg"},
+    )
+    assert not goblin_70_eligible(vol_only)
+    assert wnba_threes_vol_observe_eligible(vol_only)
+    from utils.wnba_std_under_watch import wnba_std_under_watch_eligible
+
+    std_u = _gob(
+        pick_type="Standard",
+        side="UNDER",
+        prop="Points",
+        cover=-4.3,
+        l5_under=5,
+        l10_under=8,
+        line=18.5,
+        **{"def": "Elite"},
+    )
+    assert standard_ticket_eligible(std_u)
+    assert wnba_std_under_watch_eligible(std_u)
+    assert not wnba_std_under_watch_eligible(_gob())
     assert goblin_70_eligible(
         _gob(
             sport="MLB",
@@ -168,6 +456,155 @@ def test_cover_floor_blocks_wnba_under_2():
     )
     hrrbi_no_d["def"] = "Avg"
     assert not goblin_70_eligible(hrrbi_no_d)
+
+
+def test_pra_off_observe_log_does_not_ticket(tmp_path, monkeypatch):
+    from utils import wnba_pra_off_observe as O
+
+    monkeypatch.setattr(O, "LEDGER", tmp_path / "obs.jsonl")
+    monkeypatch.setattr(O, "LATEST", tmp_path / "latest.json")
+    row = _gob(
+        prop="Pts+Rebs+Asts",
+        cover=4.0,
+        l5_over=5,
+        l10_over=8,
+        usage_tier="high",
+        prop_tier="B",
+    )
+    payload = O.log_board("2026-09-15", [row])
+    assert payload["n"] == 1
+    assert payload["n_proposed"] == 1
+    assert payload["n_already_live"] == 0
+    assert payload["rows"][0]["live_eligible"] is False
+    assert not goblin_70_eligible(row)
+
+
+def test_pra_off_observe_join_and_preserve(tmp_path, monkeypatch):
+    from utils import wnba_pra_off_observe as O
+
+    monkeypatch.setattr(O, "LEDGER", tmp_path / "obs.jsonl")
+    monkeypatch.setattr(O, "LATEST", tmp_path / "latest.json")
+    monkeypatch.setattr(O, "SUMMARY", tmp_path / "summary.json")
+    board_row = _gob(
+        player="Aaliyah Edwards",
+        prop="Pts+Rebs+Asts",
+        cover=4.0,
+        l5_over=5,
+        l10_over=8,
+        usage_tier="high",
+        prop_tier="B",
+        line=18.5,
+    )
+    O.log_board("2026-08-30", [board_row])
+    graded = [
+        {
+            "sport": "WNBA",
+            "player": "Aaliyah Edwards",
+            "prop": "pra",
+            "line": 18.5,
+            "direction": "OVER",
+            "pick_type": "Goblin",
+            "result": "HIT",
+            "actual_value": 24,
+        }
+    ]
+    rows = O._read_jsonl()
+    updated, stats = O.apply_grades(rows, graded, "2026-08-30")
+    assert stats["matched"] == 1
+    assert stats["hit"] == 1
+    assert updated[0]["result"] == "HIT"
+    assert not goblin_70_eligible(board_row)
+
+    O._write_jsonl(updated)
+    O.log_board("2026-08-30", [board_row])
+    kept = O._read_jsonl()
+    assert kept[0]["result"] == "HIT"
+
+    gp = tmp_path / "graded_props_2026-08-30.json"
+    gp.write_text(
+        '{"props":[{"sport":"WNBA","player":"Aaliyah Edwards","prop":"pra",'
+        '"line":18.5,"direction":"OVER","pick_type":"Goblin","result":"HIT","actual_value":24}]}',
+        encoding="utf-8",
+    )
+    summary = O.join_grades("2026-08-30", graded_file=gp)
+    assert summary["hit"] == 1
+    assert summary["decided"] == 1
+    assert summary["hr"] == 100.0
+    assert summary["go_live"]["verdict"] == "FAIL"
+    assert summary["proposed_decided"] == 1
+    assert not goblin_70_eligible(board_row)
+
+
+def test_pra_off_observe_go_live_rule_and_cluster():
+    from utils.wnba_pra_off_observe import summarize, wilson_ci
+
+    hr, lo, hi = wilson_ci(39, 50)
+    assert hr == 78.0
+    assert lo is not None and lo < 65.0
+    assert hi is not None and hi > 78.0
+
+    def _rows(n_hit: int, n_miss: int, *, player: str = "P", live: bool = False):
+        out = []
+        for i in range(n_hit):
+            out.append(
+                {
+                    "slate_date": f"2026-09-{(i % 28) + 1:02d}",
+                    "player": f"{player}{i}",
+                    "result": "HIT",
+                    "live_eligible": live,
+                }
+            )
+        for i in range(n_miss):
+            out.append(
+                {
+                    "slate_date": f"2026-09-{((n_hit + i) % 28) + 1:02d}",
+                    "player": f"{player}{n_hit + i}",
+                    "result": "MISS",
+                    "live_eligible": live,
+                }
+            )
+        return out
+
+    fail_n = summarize(_rows(39, 11))
+    assert fail_n["proposed_decided"] == 50
+    assert fail_n["proposed_hr"] == 78.0
+    assert fail_n["go_live"]["pass"] is False
+    assert fail_n["proposed_wilson_lo"] < 65.0
+    assert fail_n["cluster"]["distinct_player_games"] == 50
+
+    # Same n=50: 78% fails Wilson LB; 80% (40/50) clears 65%.
+    pass_rows = _rows(40, 10)
+    ok = summarize(pass_rows)
+    assert ok["proposed_decided"] == 50
+    assert ok["proposed_wilson_lo"] is not None
+    assert ok["go_live"]["pass"] is True
+    assert ok["go_live"]["verdict"] == "PASS"
+
+    clustered = []
+    for i in range(40):
+        clustered.append(
+            {
+                "slate_date": "2026-09-01",
+                "player": "Star One",
+                "result": "HIT",
+                "live_eligible": False,
+            }
+        )
+    for i in range(10):
+        clustered.append(
+            {
+                "slate_date": f"2026-09-{i + 2:02d}",
+                "player": f"Other {i}",
+                "result": "HIT",
+                "live_eligible": False,
+            }
+        )
+    cl = summarize(clustered)
+    assert cl["cluster"]["distinct_player_games"] == 11
+    assert cl["cluster"]["top_player_share"] == 0.8
+    assert cl["cluster"]["repeat_heavy"] is True
+    # Clustering is logged, not a gate — 50/50 hits still clears Wilson+n.
+    assert cl["go_live"]["pass"] is True
 
 
 def test_nflp_ticket_gate():
@@ -307,7 +744,9 @@ def test_tennis_keep_gates_skip_d():
         **{"def": "Weak"},
     )
     assert goblin_70_eligible(cfb)
-    assert not goblin_70_eligible({**cfb, "def": "Avg"})
+    assert goblin_70_eligible({**cfb, "def": "Avg"})
+    # CFB L10 is not a gate. Face L5=5 still clears when L10 is short.
+    assert goblin_70_eligible({**cfb, "l10_over": 7, "def": "Avg"})
     nfl = _gob(
         sport="NFL",
         prop="Receiving Yards",
@@ -764,6 +1203,40 @@ def test_merge_keeps_goblin70_and_graded_main():
     assert merged["tracks"] == ["goblin70", "graded_main"]
 
 
+def test_mark_dup_players_tags_mixer_repeat_and_keeps_the_group():
+    from build_goblin70_tickets import mark_dup_players
+
+    payload = {
+        "groups": [
+            {
+                "group_name": "Goblin-70",
+                "tickets": [
+                    {
+                        "ticket_id": "g1",
+                        "legs": [{"player": "Jeremiah Freeman"}],
+                    }
+                ],
+            },
+            {
+                "group_name": "STRONG 3-Leg",
+                "tickets": [
+                    {
+                        "ticket_id": "m1",
+                        "legs": [{"player": "Jeremiah Freeman"}, {"player": "Other"}],
+                    }
+                ],
+            },
+        ]
+    }
+    out = mark_dup_players(payload)
+    assert out["dup_player_tickets"] == 1
+    assert len(out["groups"]) == 2
+    mixer_leg = out["groups"][1]["tickets"][0]["legs"][0]
+    assert mixer_leg["dup_player"] == "DUP_PLAYER"
+    assert out["groups"][1]["tickets"][0]["dup_player"] == "DUP_PLAYER"
+    assert out["groups"][0]["tickets"][0]["legs"][0].get("dup_player") is None
+
+
 def test_union_mixer_keeps_live_core_and_pool_tennis():
     from build_goblin70_tickets import union_mixer_groups
 
@@ -1037,6 +1510,13 @@ def test_goblin_sort_key_platinum_before_s_bronze():
     assert goblin_sort_key(plat) < goblin_sort_key(bronze)
 
 
+def test_cushion_is_a_tiebreak_not_a_filter():
+    wide = _gob(player="Wide", cushion_z=1.4)
+    thin = _gob(player="Thin", cushion_z=0.1)
+    assert goblin_sort_key(wide) < goblin_sort_key(thin)
+    assert goblin_sort_key(thin) < goblin_sort_key(_gob(player="Missing"))
+
+
 def test_ticket_excluded_from_winrate_helper():
     assert ticket_excluded_from_winrate({"exclude_from_winrate": True})
     assert ticket_excluded_from_winrate({}, "YOLO Goblin-70 Power 6")
@@ -1046,3 +1526,78 @@ def test_ticket_excluded_from_winrate_helper():
     assert not ticket_excluded_from_winrate(
         {"id": "P3-1", "product": "Power", "n_legs": 3}
     )
+
+
+def test_standard_yolo_web_track():
+    from utils.ticket_70_pool import yolo_ticket_track
+
+    payload = {
+        "date": "2026-09-21",
+        "tickets": [
+            {
+                "id": "YS3-1",
+                "family": "standard",
+                "product": "Power",
+                "n_legs": 3,
+                "exclude_from_winrate": True,
+                "web_group": "YOLO Standard Power 3",
+                "mean_leg_p": 0.70,
+                "sweep_pct": 34.0,
+                "cash_pct": 34.0,
+                "ev_n_correct": 1.2,
+                "n_correct": {3: 5.0},
+                "legs": [
+                    {
+                        "sport": "Soccer",
+                        "player": f"Keep {i}",
+                        "prop": "Goalie Saves",
+                        "side": "OVER",
+                        "line": 2.5,
+                        "pick_type": "Standard",
+                        "p": 0.70,
+                    }
+                    for i in range(3)
+                ],
+            }
+        ],
+    }
+    web = to_web_payload(payload)
+    assert web["groups"][0]["group_name"] == "YOLO Standard Power 3"
+    slip = web["groups"][0]["tickets"][0]
+    assert slip["ticket_track"] == "standard_yolo"
+    assert slip["core_recipe"] == "standard_yolo"
+    assert slip["exclude_from_winrate"] is True
+    assert yolo_ticket_track(slip, "YOLO Standard Power 3") == "standard_yolo"
+    assert ticket_excluded_from_winrate(slip, "YOLO Standard Power 3")
+
+
+def test_drain_power3_follows_hit_rate_and_has_no_preset_count():
+    from build_goblin70_tickets import drain_power3, order_by_gate_hr
+
+    rates = [0.61, 0.90, 0.70, 0.55, 0.80, 0.40, 0.75]
+    rows = []
+    for i, hr in enumerate(rates):
+        rows.append(
+            {
+                "sport": "MLB" if i % 2 == 0 else "NBA",
+                "player": f"Player {i}",
+                "prop": "Points",
+                "side": "OVER",
+                "pick_type": "Goblin",
+                "matchup": f"A{i} vs B{i}",
+                "gate_hr": hr,
+                "gate_hr_n": 80,
+                "prop_tier": "C",
+                "promo": "Silver",
+                "l5_over": 5,
+                "cover": 1,
+            }
+        )
+    ordered = order_by_gate_hr(rows, lambda r: (str(r["player"]),))
+    assert [r["player"] for r in ordered[:3]] == ["Player 1", "Player 4", "Player 6"]
+    combos = drain_power3(ordered)
+    assert len(combos) == 2
+    assert [r["player"] for r in combos[0]] == ["Player 1", "Player 4", "Player 6"]
+    assert [r["player"] for r in combos[1]] == ["Player 2", "Player 0", "Player 3"]
+    assert drain_power3(ordered[:2]) == []
+

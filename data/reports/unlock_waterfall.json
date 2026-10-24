@@ -1,0 +1,295 @@
+{
+  "date": "2026-10-08",
+  "postseason_priced_legs": 0,
+  "postseason_shortlist": 0,
+  "postseason_placed": 0,
+  "sports": {
+    "MLB": {
+      "board": {
+        "Goblin": 82,
+        "Standard": 444
+      },
+      "regular_season": {
+        "Goblin": 0,
+        "Standard": 0
+      },
+      "l5_eq5": {
+        "Goblin": 7,
+        "Standard": 3
+      },
+      "has_cell": {
+        "Goblin": 7,
+        "Standard": 3
+      },
+      "keep_gate": {
+        "Goblin": 2,
+        "Standard": 0
+      },
+      "ticket_gate": {
+        "Goblin": 0,
+        "Standard": 0
+      },
+      "sample_column": 0,
+      "sample_derived": 483,
+      "sample_missing": 43,
+      "sample_joined": 483,
+      "unjoined_players": [
+        "Hagen Smith",
+        "Kyle Teel",
+        "Parker Messick + Hagen Smith"
+      ],
+      "season": {
+        "regular": 0,
+        "postseason": 526,
+        "preseason": 0,
+        "unknown": 0
+      },
+      "current_n_ge5": 483,
+      "nfl_standard_under_allowlist": 0,
+      "postseason_legs": {
+        "Goblin": 82,
+        "Standard": 444
+      }
+    },
+    "Soccer": {
+      "board": {
+        "Goblin": 122,
+        "Standard": 907
+      },
+      "regular_season": {
+        "Goblin": 122,
+        "Standard": 907
+      },
+      "l5_eq5": {
+        "Goblin": 2,
+        "Standard": 1
+      },
+      "has_cell": {
+        "Goblin": 2,
+        "Standard": 1
+      },
+      "keep_gate": {
+        "Goblin": 0,
+        "Standard": 0
+      },
+      "ticket_gate": {
+        "Goblin": 0,
+        "Standard": 0
+      },
+      "sample_column": 0,
+      "sample_derived": 906,
+      "sample_missing": 123,
+      "sample_joined": 906,
+      "unjoined_players": [
+        "Dudu Kogitzki",
+        "Josu\u00e9",
+        "Mateo Cassierra",
+        "Renan Peixoto",
+        "Lautaro L\u00f3pez",
+        "Breno Lopes",
+        "Luis Pacheco",
+        "Pedro Morisco",
+        "Alejandro Garc\u00eda",
+        "Hendel \u00cdndio",
+        "Jo\u00e3o Teixeira",
+        "Juan Pablo Freytes",
+        "Lucho Acosta",
+        "Rodrigo Gelado",
+        "Steven Mendoza",
+        "Tiago C\u00f3ser",
+        "L\u00e9o Jance",
+        "Benedetti",
+        "Miguel Bilong"
+      ],
+      "season": {
+        "regular": 0,
+        "postseason": 0,
+        "preseason": 0,
+        "unknown": 1029
+      },
+      "current_n_ge5": 873,
+      "nfl_standard_under_allowlist": 0
+    },
+    "Tennis": {
+      "board": {
+        "Goblin": 157,
+        "Standard": 252
+      },
+      "regular_season": {
+        "Goblin": 157,
+        "Standard": 252
+      },
+      "l5_eq5": {
+        "Goblin": 7,
+        "Standard": 3
+      },
+      "has_cell": {
+        "Goblin": 7,
+        "Standard": 3
+      },
+      "keep_gate": {
+        "Goblin": 2,
+        "Standard": 0
+      },
+      "ticket_gate": {
+        "Goblin": 2,
+        "Standard": 0
+      },
+      "sample_column": 0,
+      "sample_derived": 0,
+      "sample_missing": 409,
+      "sample_joined": 0,
+      "unjoined_players": [
+        "Novak Djokovic",
+        "Rei Sakamoto",
+        "Qinwen Zheng",
+        "Quentin Halys",
+        "Jenson Brooksby",
+        "Frances Tiafoe",
+        "Andrey Rublev",
+        "Kyoka Okamura",
+        "Alexander Zverev",
+        "Elise Mertens",
+        "Lorenzo Musetti",
+        "Iga Swiatek",
+        "Arthur Fery",
+        "Miomir Kecmanovic",
+        "Matteo Berrettini",
+        "Alejandro Davidovich Fokina",
+        "Karen Khachanov",
+        "Hubert Hurkacz",
+        "Francisco Cerundolo",
+        "Elina Svitolina",
+        "Alex de Minaur",
+        "Daniel Altmaier",
+        "Yannick Hanfmann",
+        "Alexander Blockx",
+        "Zhuoxuan Bai",
+        "Flavio Cobolli",
+        "Lucrezia Stefanini",
+        "Ben Shelton",
+        "Jakub Mensik",
+        "Alexander Bublik"
+      ],
+      "season": {
+        "regular": 0,
+        "postseason": 0,
+        "preseason": 0,
+        "unknown": 409
+      },
+      "current_n_ge5": 0,
+      "nfl_standard_under_allowlist": 0
+    },
+    "NFL": {
+      "board": {
+        "Goblin": 0,
+        "Standard": 470
+      },
+      "regular_season": {
+        "Goblin": 0,
+        "Standard": 470
+      },
+      "l5_eq5": {
+        "Goblin": 0,
+        "Standard": 147
+      },
+      "has_cell": {
+        "Goblin": 0,
+        "Standard": 147
+      },
+      "keep_gate": {
+        "Goblin": 0,
+        "Standard": 91
+      },
+      "ticket_gate": {
+        "Goblin": 0,
+        "Standard": 0
+      },
+      "sample_column": 0,
+      "sample_derived": 451,
+      "sample_missing": 19,
+      "sample_joined": 451,
+      "unjoined_players": [
+        "Dak Prescott + Jalon Daniels",
+        "Brandon Aubrey + Chase McLaughlin",
+        "Javonte Williams + Bucky Irving",
+        "CeeDee Lamb + Emeka Egbuka",
+        "George Pickens + Cade Otton",
+        "Riley Dixon",
+        "Bryan Anger",
+        "Riley Dixon + Bryan Anger",
+        "James Houston IV",
+        "Jake Ferguson + Bucky Irving"
+      ],
+      "season": {
+        "regular": 470,
+        "postseason": 0,
+        "preseason": 0,
+        "unknown": 0
+      },
+      "current_n_ge5": 0,
+      "nfl_standard_under_allowlist": 90
+    },
+    "Golf": {
+      "board": {
+        "Goblin": 0,
+        "Standard": 8
+      },
+      "regular_season": {
+        "Goblin": 0,
+        "Standard": 8
+      },
+      "l5_eq5": {
+        "Goblin": 0,
+        "Standard": 2
+      },
+      "has_cell": {
+        "Goblin": 0,
+        "Standard": 2
+      },
+      "keep_gate": {
+        "Goblin": 0,
+        "Standard": 0
+      },
+      "ticket_gate": {
+        "Goblin": 0,
+        "Standard": 0
+      },
+      "sample_column": 0,
+      "sample_derived": 0,
+      "sample_missing": 8,
+      "sample_joined": 0,
+      "unjoined_players": [
+        "Kevin Streelman",
+        "Austin Smotherman",
+        "Kevin Roy",
+        "Joel Dahmen"
+      ],
+      "season": {
+        "regular": 0,
+        "postseason": 0,
+        "preseason": 0,
+        "unknown": 8
+      },
+      "current_n_ge5": 0,
+      "nfl_standard_under_allowlist": 0
+    }
+  },
+  "sample_unrecoverable": [
+    "Tennis",
+    "Golf"
+  ],
+  "nfl_fifth_game": {
+    "players": 1325,
+    "players_with_5": 2,
+    "median_fifth_game": "2026-10-04",
+    "week": 4
+  },
+  "cfb_fifth_game": {
+    "players": 10956,
+    "players_with_5": 1868,
+    "median_fifth_game": "2026-10-03",
+    "week": 6
+  },
+  "written_at": "2026-10-08T16:06:10"
+}

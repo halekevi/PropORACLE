@@ -1,21 +1,45 @@
 """Tennis keep props and per-prop gates.
 
+**FACE AUDIT 2026-10-24 (``TENNIS_KEEP_GATE_FACES_VERIFIED = True`` for the
+Goblin cells, ``False`` for Standard).** Tennis graded rows carry default
+labels on 14 dates 2026-04-11..07-08 (1,526 decided legs). The Goblin OVER
+Games Won / Total Games cells (72/99, 819/1224, 146/208, 665/1050) were
+measured on the 07-13..09-14 discount window and later, entirely after the
+default-label span, from Goblin-labeled rows — unaffected. On face-verified
+dates the leg ledger shows Goblin OVER Games Won 3676/5200 = 70.7% ungated,
+L5=5+L10>=8 39/53; Total Games 2839/4589 = 61.9%, L5=5+L10>=8 35/62 = 56.5%
+(below the 70.2% price — re-check that cell on a step8 join). The Standard
+OVER Games Won keeps (12/16, 30/40) and the retired Standard UNDER Aces/DF
+cells are label-era: May–June Standard is already marked unverifiable
+(``TENNIS_STANDARD_UNVERIFIABLE_WINDOW``); treat the April and early-July
+rows the same way. Report: ``data/reports/face_contamination_2026-10-24.md``,
+``data/reports/keep_gate_face_split.json``.
+
 Graded catalog + Standard-Line join (Games Won Goblin discount window
-2026-07-13 to 2026-09-14) and Sackmann factor join (restated 2026-09-15):
+2026-07-13 to 2026-09-14) and Sackmann factor join (restated 2026-09-15),
+plus rank-gap stack (2026-09-25):
 
 - Goblin OVER Games Won keep if ANY of:
-  - Standard Line − Goblin line >= 4 (4–6 band 82.6% 246/298; 6–8 band
-    87.9% 29/33; combined 83.1% 275/331). No L5/L10/D.
-  - L10 >= 8 and (vs lefty OR L5 2nd-serve points won % >= 45.7)
-    (lefty 86.3% 88/102; 2nd-won 83.6% 371/444; union 82.6% 414/501).
-  Cover floor skipped — mean L5 gap in the juiced bands is under the
-  3.3 games_won unit.
+  - Standard Line − Goblin line >= 4. On corrected board-opponent attaches
+    this cell is 72/99 (72.7%, band 64%–82%). Ungated corrected is
+    819/1224 (66.9%). The old 83.1% (275/331) and 76.3% catalog were
+    wrong-match inflated. The discount cell does not separate from 67%
+    or 76%. Price cap stays 0.62 until a new graded week moves the band.
+  - L10 >= 8 and (vs lefty OR L5 2nd-serve points won % >= 45.7).
+    Those inputs were blank on the live legs, so this branch is not a
+    measured cell.
+  Then **fade** when player is ranked 50+ spots better than opponent
+  (opp_rank − player_rank >= 50). Unknown ranks do not fade.
 - Goblin OVER Total Games keep if ANY of:
-  - L5>=4 and L10>=8 (78.7% 48/61)
-  - L10>=8 and vs lefty (80.0% 68/85; union with L5 path 79.3% 107/135)
-  No D.
-- Standard UNDER Aces: ungated 90.6% (87/96).
-- Standard UNDER Double Faults: ungated 90.0% (45/50).
+  - L5>=4 and L10>=8. On corrected attaches this cell is 146/208
+    (70.2%, band 64%–76%). Ungated corrected is 665/1050 (63.3%).
+    The old 78.7% (48/61) was wrong-match inflated. Price at 70.2%.
+  - L10>=8 and vs lefty. Lefty was blank on the live legs.
+  No D. Rank-gap fade is Games Won only.
+- Standard UNDER Aces / Double Faults: **faded after serve-actual backfill**.
+  Pre-backfill ~90% was inflated by missing→0 actuals (UNDER vs 2.5+ with
+  actual 0 always HITs — mirror of the OVER contamination). Post-backfill
+  sourced rates: Aces 57.4% n=54; DF 28.6% n=28. Not keep.
 - Standard OVER Games Won keep if ANY of:
   - L10>=8 and L5 avg−line >=5 (75.0% 12/16, thin)
   - L10>=8 and L5 2nd-won% >=45.7 (75.0% 30/40)
@@ -26,12 +50,19 @@ Same gates for the printed list and Goblin-70 / Standard Flex.
 Row fields for the new cuts (filled in tennis step6):
   opp_lefty / vs_lefty / opponent_hand
   l5_second_won_pct / second_won_l5
+  player_atp_rank / player_rank + opponent_rank (for Games Won gap fade)
 """
 from __future__ import annotations
 
 from typing import Any
 
 from utils.prop_norm import canon_prop as _canon
+
+# Goblin keep cells were measured after the default-label span (see docstring);
+# Standard cells were not. Read-only markers; they do not change ticket output.
+TENNIS_KEEP_GATE_FACES_VERIFIED = True
+TENNIS_STANDARD_FACES_VERIFIED = False
+TENNIS_UNVERIFIED_FACE_WINDOW = ("2026-04-11", "2026-07-08")
 
 KEEP_PROPS = frozenset({"games_won", "match_total_games"})
 SERVE_UNDER_PROPS = frozenset({"aces", "double_faults"})
@@ -45,6 +76,15 @@ GAMES_WON_STD_OVER_L5_GAP_MIN = 5.0
 # L5 mean 2nd-serve points won % (Sackmann). Median split on Goblin GW L10>=8.
 GAMES_WON_L5_SECOND_WON_MIN = 45.7
 GAMES_WON_FACTOR_L10_MIN = 8.0
+# Goblin GW keep fade: player ranked this many spots (or more) better than opp.
+# opp_rank − player_rank >= this → sit (52% n=25 on keep union).
+GAMES_WON_PLAYER_BETTER_FADE_GAP = 50.0
+# May–June 2026 tennis Standard is unverifiable: no dated step8 on the live
+# tree, and the Sports/Tennis workbook fallback was retired so today's board
+# is not treated as May. Stop waiting on a re-grade of that window. Forward
+# Oct+ graded data is the evidence set.
+# See data/reports/tennis_standard_may_june_2026_unverifiable.json
+TENNIS_STANDARD_UNVERIFIABLE_WINDOW = ("2026-05-01", "2026-06-30")
 
 
 def _num(v: object) -> float | None:
@@ -166,6 +206,49 @@ def tennis_l5_second_won_pct(r: dict[str, Any]) -> float | None:
     return None
 
 
+def tennis_player_rank(r: dict[str, Any]) -> float | None:
+    for k in ("player_atp_rank", "Player Rank", "player_rank"):
+        v = _num(r.get(k))
+        if v is not None and v > 0:
+            return v
+    return None
+
+
+def tennis_opp_rank(r: dict[str, Any]) -> float | None:
+    for k in ("opponent_rank", "Opponent Rank", "opp_rank", "opp_atp_rank", "opponent_def_rank"):
+        v = _num(r.get(k))
+        if v is not None and v > 0:
+            return v
+    return None
+
+
+def tennis_rank_gap(r: dict[str, Any]) -> float | None:
+    """opp_rank − player_rank. Positive = player higher-ranked (better). None if either blank."""
+    # Prefer explicit gap fields when present (same sign as opp − player).
+    for k in ("rank_gap", "Rank Gap"):
+        v = _num(r.get(k))
+        if v is not None:
+            return v
+    # step6 ranking_diff is player − opp (opposite sign).
+    rd = _num(r.get("ranking_diff"))
+    if rd is not None:
+        return -rd
+    pr = tennis_player_rank(r)
+    ork = tennis_opp_rank(r)
+    if pr is None or ork is None:
+        return None
+    return ork - pr
+
+
+def tennis_games_won_big_favorite_fade(r: dict[str, Any]) -> bool:
+    """True when Goblin GW should sit: player ranked 50+ spots better than opp.
+
+    Unknown ranks → False (do not fade). Keep∩gap≥50 was 52% n=25.
+    """
+    gap = tennis_rank_gap(r)
+    return gap is not None and gap >= GAMES_WON_PLAYER_BETTER_FADE_GAP
+
+
 def tennis_games_won_factor_keep(r: dict[str, Any]) -> bool:
     """L10>=8 and (vs lefty OR L5 2nd-won% >= 45.7)."""
     l10 = _l10(r)
@@ -194,6 +277,8 @@ def tennis_goblin_keep_eligible(r: dict[str, Any]) -> bool:
     if prop not in KEEP_PROPS:
         return False
     if prop == GAMES_WON:
+        if tennis_games_won_big_favorite_fade(r):
+            return False
         disc = tennis_std_discount(r)
         if disc is not None and disc >= GAMES_WON_STD_DISCOUNT_MIN:
             return True
@@ -208,15 +293,12 @@ def tennis_goblin_keep_eligible(r: dict[str, Any]) -> bool:
 
 
 def tennis_standard_under_serve_eligible(r: dict[str, Any]) -> bool:
-    """Standard UNDER Aces / Double Faults. Ungated 90%+ at n>=40."""
-    if _pick(r) != "Standard":
-        return False
-    if _side(r) != "UNDER":
-        return False
-    sport = str(r.get("sport") or "").strip().upper()
-    if sport not in {"TENNIS", "Tennis", ""}:
-        return False
-    return _prop(r) in SERVE_UNDER_PROPS
+    """Standard UNDER Aces / DF — faded after serve-actual backfill.
+
+    Historical ~90% was missing→0 coercion (UNDER auto-HIT). Post-backfill
+    sourced rates sit ~57% / ~29%. Always False until a clean keep is re-proven.
+    """
+    return False
 
 
 def tennis_standard_games_won_over_eligible(r: dict[str, Any]) -> bool:
@@ -241,11 +323,7 @@ def tennis_standard_games_won_over_eligible(r: dict[str, Any]) -> bool:
 
 
 def tennis_list_eligible(r: dict[str, Any]) -> bool:
-    return (
-        tennis_goblin_keep_eligible(r)
-        or tennis_standard_under_serve_eligible(r)
-        or tennis_standard_games_won_over_eligible(r)
-    )
+    return tennis_goblin_keep_eligible(r) or tennis_standard_games_won_over_eligible(r)
 
 
 def tennis_ticket_gate_passes(r: dict[str, Any]) -> bool:

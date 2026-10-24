@@ -1,0 +1,698 @@
+{
+  "window": "CFB 2026-09-03 through 2026-09-05 (Sep 1-2: no FBS games)",
+  "headline": {
+    "n": 1191,
+    "h": 720,
+    "hr": 60.5,
+    "joined": 1191
+  },
+  "by_day": [
+    {
+      "key": "2026-09-05",
+      "n": 846,
+      "h": 525,
+      "hr": 62.1
+    },
+    {
+      "key": "2026-09-04",
+      "n": 206,
+      "h": 119,
+      "hr": 57.8
+    },
+    {
+      "key": "2026-09-03",
+      "n": 139,
+      "h": 76,
+      "hr": 54.7
+    }
+  ],
+  "by_book": [
+    {
+      "key": "Goblin OVER",
+      "n": 699,
+      "h": 470,
+      "hr": 67.2
+    },
+    {
+      "key": "Standard UNDER",
+      "n": 394,
+      "h": 198,
+      "hr": 50.3
+    },
+    {
+      "key": "Standard OVER",
+      "n": 98,
+      "h": 52,
+      "hr": 53.1
+    }
+  ],
+  "by_badge": [
+    {
+      "key": "no badge",
+      "n": 817,
+      "h": 481,
+      "hr": 58.9
+    },
+    {
+      "key": "Bronze",
+      "n": 203,
+      "h": 123,
+      "hr": 60.6
+    },
+    {
+      "key": "Silver",
+      "n": 106,
+      "h": 71,
+      "hr": 67.0
+    },
+    {
+      "key": "Diamond",
+      "n": 32,
+      "h": 22,
+      "hr": 68.8
+    },
+    {
+      "key": "Gold",
+      "n": 18,
+      "h": 14,
+      "hr": 77.8
+    },
+    {
+      "key": "Platinum",
+      "n": 15,
+      "h": 9,
+      "hr": 60.0
+    }
+  ],
+  "by_l5": [
+    {
+      "key": "missing",
+      "n": 625,
+      "h": 369,
+      "hr": 59.0
+    },
+    {
+      "key": "L5=4",
+      "n": 192,
+      "h": 120,
+      "hr": 62.5
+    },
+    {
+      "key": "L5=3",
+      "n": 187,
+      "h": 114,
+      "hr": 61.0
+    },
+    {
+      "key": "L5<=2",
+      "n": 94,
+      "h": 53,
+      "hr": 56.4
+    },
+    {
+      "key": "L5=5",
+      "n": 93,
+      "h": 64,
+      "hr": 68.8
+    }
+  ],
+  "by_l10": [
+    {
+      "key": "missing",
+      "n": 625,
+      "h": 369,
+      "hr": 59.0
+    },
+    {
+      "key": "L10=6-7",
+      "n": 264,
+      "h": 169,
+      "hr": 64.0
+    },
+    {
+      "key": "L10<=5",
+      "n": 166,
+      "h": 90,
+      "hr": 54.2
+    },
+    {
+      "key": "L10=8-9",
+      "n": 123,
+      "h": 82,
+      "hr": 66.7
+    },
+    {
+      "key": "L10=10",
+      "n": 13,
+      "h": 10,
+      "hr": 76.9
+    }
+  ],
+  "by_def": [
+    {
+      "key": "Weak",
+      "n": 249,
+      "h": 153,
+      "hr": 61.4
+    },
+    {
+      "key": "Below Avg",
+      "n": 238,
+      "h": 139,
+      "hr": 58.4
+    },
+    {
+      "key": "Elite",
+      "n": 213,
+      "h": 131,
+      "hr": 61.5
+    },
+    {
+      "key": "Above Avg",
+      "n": 205,
+      "h": 121,
+      "hr": 59.0
+    },
+    {
+      "key": "Avg",
+      "n": 188,
+      "h": 110,
+      "hr": 58.5
+    },
+    {
+      "key": "unknown",
+      "n": 98,
+      "h": 66,
+      "hr": 67.3
+    }
+  ],
+  "by_dpass": [
+    {
+      "key": "D fail / Avg / unknown",
+      "n": 749,
+      "h": 457,
+      "hr": 61.0
+    },
+    {
+      "key": "D pass",
+      "n": 442,
+      "h": 263,
+      "hr": 59.5
+    }
+  ],
+  "l5_gap": [
+    {
+      "key": "missing",
+      "n": 625,
+      "h": 369,
+      "hr": 59.0
+    },
+    {
+      "key": "20+",
+      "n": 230,
+      "h": 149,
+      "hr": 64.8
+    },
+    {
+      "key": "8-20",
+      "n": 122,
+      "h": 77,
+      "hr": 63.1
+    },
+    {
+      "key": "1-8",
+      "n": 118,
+      "h": 69,
+      "hr": 58.5
+    },
+    {
+      "key": "0-1",
+      "n": 68,
+      "h": 39,
+      "hr": 57.4
+    },
+    {
+      "key": "below line",
+      "n": 28,
+      "h": 17,
+      "hr": 60.7
+    }
+  ],
+  "l10_gap": [
+    {
+      "key": "missing",
+      "n": 1191,
+      "h": 720,
+      "hr": 60.5
+    }
+  ],
+  "combos": [
+    {
+      "key": "L5=4 \u00b7 L10<=5 \u00b7 D+",
+      "n": 9,
+      "h": 9,
+      "hr": 100.0
+    },
+    {
+      "key": "L5=3 \u00b7 L10=8-9 \u00b7 D-",
+      "n": 12,
+      "h": 11,
+      "hr": 91.7
+    },
+    {
+      "key": "L5<=2 \u00b7 L10=6-7 \u00b7 D-",
+      "n": 11,
+      "h": 9,
+      "hr": 81.8
+    },
+    {
+      "key": "L5=5 \u00b7 L10=8-9 \u00b7 D-",
+      "n": 36,
+      "h": 26,
+      "hr": 72.2
+    },
+    {
+      "key": "L5=5 \u00b7 L10=8-9 \u00b7 D+",
+      "n": 14,
+      "h": 10,
+      "hr": 71.4
+    },
+    {
+      "key": "L5=3 \u00b7 L10=6-7 \u00b7 D-",
+      "n": 74,
+      "h": 52,
+      "hr": 70.3
+    },
+    {
+      "key": "L5=4 \u00b7 L10=6-7 \u00b7 D+",
+      "n": 33,
+      "h": 23,
+      "hr": 69.7
+    },
+    {
+      "key": "L5=3 \u00b7 L10<=5 \u00b7 D+",
+      "n": 26,
+      "h": 18,
+      "hr": 69.2
+    },
+    {
+      "key": "L5=5 \u00b7 L10=10 \u00b7 D-",
+      "n": 9,
+      "h": 6,
+      "hr": 66.7
+    },
+    {
+      "key": "L5=4 \u00b7 L10=6-7 \u00b7 D-",
+      "n": 74,
+      "h": 45,
+      "hr": 60.8
+    },
+    {
+      "key": "missing \u00b7 missing \u00b7 D-",
+      "n": 374,
+      "h": 225,
+      "hr": 60.2
+    },
+    {
+      "key": "L5=4 \u00b7 L10=8-9 \u00b7 D-",
+      "n": 35,
+      "h": 21,
+      "hr": 60.0
+    },
+    {
+      "key": "L5=5 \u00b7 L10=6-7 \u00b7 D-",
+      "n": 22,
+      "h": 13,
+      "hr": 59.1
+    },
+    {
+      "key": "missing \u00b7 missing \u00b7 D+",
+      "n": 251,
+      "h": 144,
+      "hr": 57.4
+    },
+    {
+      "key": "L5<=2 \u00b7 L10<=5 \u00b7 D-",
+      "n": 49,
+      "h": 27,
+      "hr": 55.1
+    },
+    {
+      "key": "L5=3 \u00b7 L10=6-7 \u00b7 D+",
+      "n": 40,
+      "h": 22,
+      "hr": 55.0
+    },
+    {
+      "key": "L5=4 \u00b7 L10=8-9 \u00b7 D+",
+      "n": 22,
+      "h": 12,
+      "hr": 54.5
+    },
+    {
+      "key": "L5=4 \u00b7 L10<=5 \u00b7 D-",
+      "n": 19,
+      "h": 10,
+      "hr": 52.6
+    },
+    {
+      "key": "L5<=2 \u00b7 L10<=5 \u00b7 D+",
+      "n": 29,
+      "h": 14,
+      "hr": 48.3
+    },
+    {
+      "key": "L5=3 \u00b7 L10<=5 \u00b7 D-",
+      "n": 31,
+      "h": 9,
+      "hr": 29.0
+    }
+  ],
+  "by_prop": [
+    {
+      "key": "Standard OVER | rec",
+      "n": 12,
+      "h": 9,
+      "hr": 75.0
+    },
+    {
+      "key": "Goblin OVER | rec",
+      "n": 62,
+      "h": 46,
+      "hr": 74.2
+    },
+    {
+      "key": "Goblin OVER | rec_yds",
+      "n": 243,
+      "h": 179,
+      "hr": 73.7
+    },
+    {
+      "key": "Goblin OVER | pass_yds",
+      "n": 91,
+      "h": 67,
+      "hr": 73.6
+    },
+    {
+      "key": "Standard UNDER | rush_yds_combo",
+      "n": 18,
+      "h": 13,
+      "hr": 72.2
+    },
+    {
+      "key": "Standard UNDER | rush_yds",
+      "n": 69,
+      "h": 44,
+      "hr": 63.8
+    },
+    {
+      "key": "Goblin OVER | rush_yds",
+      "n": 193,
+      "h": 118,
+      "hr": 61.1
+    },
+    {
+      "key": "Standard UNDER | rush_att",
+      "n": 50,
+      "h": 30,
+      "hr": 60.0
+    },
+    {
+      "key": "Goblin OVER | pass_td",
+      "n": 25,
+      "h": 15,
+      "hr": 60.0
+    },
+    {
+      "key": "Goblin OVER | fg_made",
+      "n": 15,
+      "h": 9,
+      "hr": 60.0
+    },
+    {
+      "key": "Goblin OVER | player_td",
+      "n": 50,
+      "h": 28,
+      "hr": 56.0
+    },
+    {
+      "key": "Standard UNDER | rec_yds_combo",
+      "n": 9,
+      "h": 5,
+      "hr": 55.6
+    },
+    {
+      "key": "Standard OVER | rush_yds",
+      "n": 28,
+      "h": 15,
+      "hr": 53.6
+    },
+    {
+      "key": "Standard UNDER | kick_pts",
+      "n": 20,
+      "h": 10,
+      "hr": 50.0
+    },
+    {
+      "key": "Standard OVER | rec_yds",
+      "n": 49,
+      "h": 24,
+      "hr": 49.0
+    },
+    {
+      "key": "Standard UNDER | pass_yds",
+      "n": 44,
+      "h": 20,
+      "hr": 45.5
+    },
+    {
+      "key": "Standard UNDER | rec_yds",
+      "n": 103,
+      "h": 42,
+      "hr": 40.8
+    },
+    {
+      "key": "Standard UNDER | passcompletions",
+      "n": 28,
+      "h": 11,
+      "hr": 39.3
+    },
+    {
+      "key": "Standard UNDER | rec",
+      "n": 30,
+      "h": 11,
+      "hr": 36.7
+    },
+    {
+      "key": "Goblin OVER | rush_att",
+      "n": 9,
+      "h": 3,
+      "hr": 33.3
+    }
+  ],
+  "listed": [
+    {
+      "key": "L5>=4",
+      "n": 285,
+      "h": 184,
+      "hr": 64.6
+    },
+    {
+      "key": "L5>=4 Goblin OVER",
+      "n": 175,
+      "h": 127,
+      "hr": 72.6
+    },
+    {
+      "key": "L5>=4 Bronze",
+      "n": 134,
+      "h": 82,
+      "hr": 61.2
+    },
+    {
+      "key": "L5>=4 Standard UNDER",
+      "n": 79,
+      "h": 41,
+      "hr": 51.9
+    },
+    {
+      "key": "L5>=4 Silver",
+      "n": 61,
+      "h": 44,
+      "hr": 72.1
+    },
+    {
+      "key": "L5>=4 Diamond",
+      "n": 32,
+      "h": 22,
+      "hr": 68.8
+    },
+    {
+      "key": "L5>=4 Standard OVER",
+      "n": 31,
+      "h": 16,
+      "hr": 51.6
+    },
+    {
+      "key": "L5>=4 no badge",
+      "n": 25,
+      "h": 13,
+      "hr": 52.0
+    },
+    {
+      "key": "L5>=4 Gold",
+      "n": 18,
+      "h": 14,
+      "hr": 77.8
+    },
+    {
+      "key": "L5>=4 Platinum",
+      "n": 15,
+      "h": 9,
+      "hr": 60.0
+    }
+  ],
+  "goblin70": [
+    {
+      "key": "L5=5 + L10>=8 + D",
+      "n": 18,
+      "h": 14,
+      "hr": 77.8
+    },
+    {
+      "key": "Goblin OVER",
+      "n": 13,
+      "h": 11,
+      "hr": 84.6
+    },
+    {
+      "key": "Standard UNDER",
+      "n": 5,
+      "h": 3,
+      "hr": 60.0
+    }
+  ],
+  "demons": [],
+  "players": [
+    {
+      "key": "Trequan Jones | Goblin OVER | rush_yds",
+      "n": 4,
+      "h": 4,
+      "hr": 100.0
+    },
+    {
+      "key": "Amare Thomas | Goblin OVER | rec_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Amareon Blue | Goblin OVER | rush_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Anthony Colandrea | Goblin OVER | pass_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Anthony Evans III | Goblin OVER | rec_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Bo Jackson | Goblin OVER | rush_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Braden Atkinson | Goblin OVER | pass_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Braden Pegan | Goblin OVER | rec_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Broc Lowry | Goblin OVER | rush_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Bryce Underwood | Goblin OVER | pass_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Bryce Underwood | Goblin OVER | rush_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Byrum Brown | Goblin OVER | pass_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Cam Coleman | Goblin OVER | rec_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Cam Cook | Goblin OVER | rush_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Cam Edwards | Goblin OVER | rush_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Cayden Lee | Goblin OVER | rec_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Chas Nimrod | Goblin OVER | rec_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Conner Weigman | Goblin OVER | pass_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Cooper Barkate | Goblin OVER | rec_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    },
+    {
+      "key": "Corey Simms | Goblin OVER | rec_yds",
+      "n": 3,
+      "h": 3,
+      "hr": 100.0
+    }
+  ]
+}

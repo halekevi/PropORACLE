@@ -291,7 +291,7 @@ def main() -> None:
 
     df, n_fantasy = drop_fantasy_props(df)
     if n_fantasy:
-        print(f"  Dropped {n_fantasy} fantasy prop row(s)")
+        print(f"  Flagged {n_fantasy} fantasy prop row(s) ticketable=false (kept on board)")
     df, n_allstar = drop_allstar_props(df, sport="NBA")
     if n_allstar:
         print(f"  Dropped {n_allstar} All-Star prop row(s)")

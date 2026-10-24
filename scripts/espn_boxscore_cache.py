@@ -26,7 +26,12 @@ CREATE TABLE IF NOT EXISTS espn_boxscore_rows (
 """
 
 
-def sport_key_from_espn_league(league: str) -> str:
+def sport_key_from_espn_league(league: str, segment: str = "") -> str:
+    if str(segment or "").strip().upper() in ("1H", "1ST", "FIRST"):
+        s = str(league or "").strip().lower()
+        if s == "nfl":
+            return "nfl1h"
+        return "cfb1h"
     s = str(league or "").strip().lower()
     if s == "nfl":
         return "nfl"
@@ -154,7 +159,7 @@ def save_boxscore_cache(
     con = open_db()
     n = upsert_rows(con, sport, all_rows)
     if n:
-        print(f"  [CACHE] Upserted {n} rows → espn_boxscore_rows sport={sport}")
+        print(f"  [CACHE] Upserted {n} rows -> espn_boxscore_rows sport={sport}")
     if source == "db":
         return
     if cache_path and all_rows:

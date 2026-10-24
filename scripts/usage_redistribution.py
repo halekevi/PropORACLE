@@ -42,6 +42,7 @@ SPORT_ROLE_FIELD = {
     "SOCCER": "usage_role",
     "CBB": None,
     "WCBB": None,
+    "CFB": None,
     "NHL": "player_role",
     "MLB": "player_type_norm",
     "WNBA": "usage_role",
@@ -101,7 +102,7 @@ def _norm_prop_label(v: object) -> str:
 
 def _canon_sport(sport: str) -> str:
     s = str(sport or "").strip().upper()
-    if s in {"SOCCER", "NHL", "MLB", "NBA", "CBB", "WCBB", "WNBA", "NBA1Q", "NBA1H"}:
+    if s in {"SOCCER", "NHL", "MLB", "NBA", "CBB", "WCBB", "WNBA", "NBA1Q", "NBA1H", "CFB"}:
         return s
     return s
 

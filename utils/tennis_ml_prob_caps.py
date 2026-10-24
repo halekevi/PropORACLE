@@ -1,4 +1,8 @@
-"""Tennis prop-family ml_prob caps — serve stats grade ~2-4%; totals Goblin ~71%."""
+"""Tennis prop-family ml_prob caps.
+
+Goblin OVER / Standard OVER Ace/DF stay capped (Jul-22/23 Goblin OVER 0%).
+Standard UNDER Ace/DF is ungated 90%+ keep — do not cap those.
+"""
 from __future__ import annotations
 
 import numpy as np
@@ -72,6 +76,15 @@ def apply_tennis_ml_prob_caps(
     out = df if in_place else df.copy()
     mp = pd.to_numeric(out[ml_prob_col], errors="coerce")
     junk = tennis_serve_junk_mask(out)
+    pick = out.get("pick_type")
+    direction = out.get(
+        "direction", out.get("over_under", out.get("side", out.get("bet_direction", "")))
+    )
+    if pick is not None and hasattr(pick, "astype") and direction is not None and hasattr(direction, "astype"):
+        std_under = pick.astype(str).str.strip().str.lower().eq("standard") & direction.astype(
+            str
+        ).str.upper().str.strip().eq("UNDER")
+        junk = junk & ~std_under
     if junk.any():
         mp = mp.where(~junk, mp.clip(upper=SERVE_JUNK_ML_CAP))
     totals = tennis_totals_mask(out)

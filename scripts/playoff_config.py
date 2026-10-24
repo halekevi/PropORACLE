@@ -4,32 +4,11 @@
 from __future__ import annotations
 
 
-# 2026 NBA postseason field (kept explicit for stable, auditable behavior).
-NBA_PLAYOFF_TEAMS = {
-    "ATL",
-    "BOS",
-    "BRK",
-    "CHI",
-    "CLE",
-    "DEN",
-    "GSW",
-    "HOU",
-    "IND",
-    "LAC",
-    "LAL",
-    "MEM",
-    "MIA",
-    "MIL",
-    "MIN",
-    "NOP",
-    "NYK",
-    "OKC",
-    "ORL",
-    "PHI",
-    "PHX",
-    "SAC",
-    "DAL",
-}
+# Empty during the 2026-27 regular season. Populating this with last spring's
+# field made every Oct tip between two "playoff teams" (e.g. OKC@DEN) flag
+# is_playoff_game=True and pollute rest/L5 context. Re-fill when the 2027
+# postseason field is set.
+NBA_PLAYOFF_TEAMS: set[str] = set()
 
 
 def norm_team_abbr(team: object) -> str:

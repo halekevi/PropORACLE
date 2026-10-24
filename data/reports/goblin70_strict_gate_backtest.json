@@ -1,0 +1,1350 @@
+{
+  "note": "Active-sport Goblin OVER, cover floor, no shadow. old = prior ticket gate (L5>=4+cover). l5eq5_l10 = L5=5+L10>=8+cover (current code). sa = that plus S/A (promotions included). sa_or_fga keeps WNBA FGA (B, historically the top WNBA cell). Ticket sweep = every leg HIT. Cash = Power all-hit or Flex n-1.",
+  "grades": {
+    "overall": {
+      "old_l5ge4_cover": {
+        "n": 17879,
+        "hits": 12218,
+        "hr": 0.6834
+      },
+      "l5eq5_l10ge8_cover": {
+        "n": 2941,
+        "hits": 2178,
+        "hr": 0.7406
+      },
+      "l5eq5_l10ge8_sa": {
+        "n": 2752,
+        "hits": 2046,
+        "hr": 0.7435
+      },
+      "l5eq5_l10ge8_sa_or_fga": {
+        "n": 2810,
+        "hits": 2094,
+        "hr": 0.7452
+      }
+    },
+    "by_sport": {
+      "MLB": {
+        "old_l5ge4_cover": {
+          "n": 8595,
+          "hits": 5669,
+          "hr": 0.6596
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 219,
+          "hits": 149,
+          "hr": 0.6804
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 95,
+          "hits": 69,
+          "hr": 0.7263
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 95,
+          "hits": 69,
+          "hr": 0.7263
+        }
+      },
+      "Soccer": {
+        "old_l5ge4_cover": {
+          "n": 90,
+          "hits": 65,
+          "hr": 0.7222
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        }
+      },
+      "Tennis": {
+        "old_l5ge4_cover": {
+          "n": 212,
+          "hits": 151,
+          "hr": 0.7123
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 83,
+          "hits": 62,
+          "hr": 0.747
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 83,
+          "hits": 62,
+          "hr": 0.747
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 83,
+          "hits": 62,
+          "hr": 0.747
+        }
+      },
+      "WNBA": {
+        "old_l5ge4_cover": {
+          "n": 8982,
+          "hits": 6333,
+          "hr": 0.7051
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 2639,
+          "hits": 1967,
+          "hr": 0.7454
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 2574,
+          "hits": 1915,
+          "hr": 0.744
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 2632,
+          "hits": 1963,
+          "hr": 0.7458
+        }
+      }
+    },
+    "by_prop": [
+      {
+        "sport": "MLB",
+        "prop": "total_bases",
+        "old_l5ge4_cover": {
+          "n": 3202,
+          "hits": 2003,
+          "hr": 0.6255
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 75,
+          "hits": 46,
+          "hr": 0.6133
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 22,
+          "hits": 15,
+          "hr": 0.6818
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 22,
+          "hits": 15,
+          "hr": 0.6818
+        },
+        "removed_l5l10_n": 3127,
+        "removed_sa_n": 3180
+      },
+      {
+        "sport": "MLB",
+        "prop": "hitter_ks",
+        "old_l5ge4_cover": {
+          "n": 2394,
+          "hits": 1578,
+          "hr": 0.6591
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 48,
+          "hits": 29,
+          "hr": 0.6042
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 23,
+          "hits": 12,
+          "hr": 0.5217
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 23,
+          "hits": 12,
+          "hr": 0.5217
+        },
+        "removed_l5l10_n": 2346,
+        "removed_sa_n": 2371
+      },
+      {
+        "sport": "WNBA",
+        "prop": "points",
+        "old_l5ge4_cover": {
+          "n": 2124,
+          "hits": 1528,
+          "hr": 0.7194
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 686,
+          "hits": 517,
+          "hr": 0.7536
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 686,
+          "hits": 517,
+          "hr": 0.7536
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 686,
+          "hits": 517,
+          "hr": 0.7536
+        },
+        "removed_l5l10_n": 1438,
+        "removed_sa_n": 1438
+      },
+      {
+        "sport": "WNBA",
+        "prop": "rebounds",
+        "old_l5ge4_cover": {
+          "n": 1453,
+          "hits": 1047,
+          "hr": 0.7206
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 442,
+          "hits": 326,
+          "hr": 0.7376
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 442,
+          "hits": 326,
+          "hr": 0.7376
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 442,
+          "hits": 326,
+          "hr": 0.7376
+        },
+        "removed_l5l10_n": 1011,
+        "removed_sa_n": 1011
+      },
+      {
+        "sport": "MLB",
+        "prop": "hits+runs+rbis",
+        "old_l5ge4_cover": {
+          "n": 1015,
+          "hits": 721,
+          "hr": 0.7103
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 41,
+          "hits": 30,
+          "hr": 0.7317
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 15,
+          "hits": 12,
+          "hr": 0.8
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 15,
+          "hits": 12,
+          "hr": 0.8
+        },
+        "removed_l5l10_n": 974,
+        "removed_sa_n": 1000
+      },
+      {
+        "sport": "WNBA",
+        "prop": "pra",
+        "old_l5ge4_cover": {
+          "n": 1205,
+          "hits": 808,
+          "hr": 0.6705
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 310,
+          "hits": 214,
+          "hr": 0.6903
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 310,
+          "hits": 214,
+          "hr": 0.6903
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 310,
+          "hits": 214,
+          "hr": 0.6903
+        },
+        "removed_l5l10_n": 895,
+        "removed_sa_n": 895
+      },
+      {
+        "sport": "MLB",
+        "prop": "hits",
+        "old_l5ge4_cover": {
+          "n": 758,
+          "hits": 518,
+          "hr": 0.6834
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 20,
+          "hits": 14,
+          "hr": 0.7
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "removed_l5l10_n": 738,
+        "removed_sa_n": 758
+      },
+      {
+        "sport": "WNBA",
+        "prop": "pts+reb",
+        "old_l5ge4_cover": {
+          "n": 960,
+          "hits": 676,
+          "hr": 0.7042
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 273,
+          "hits": 199,
+          "hr": 0.7289
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 273,
+          "hits": 199,
+          "hr": 0.7289
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 273,
+          "hits": 199,
+          "hr": 0.7289
+        },
+        "removed_l5l10_n": 687,
+        "removed_sa_n": 687
+      },
+      {
+        "sport": "WNBA",
+        "prop": "pts+ast",
+        "old_l5ge4_cover": {
+          "n": 776,
+          "hits": 542,
+          "hr": 0.6985
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 220,
+          "hits": 165,
+          "hr": 0.75
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 220,
+          "hits": 165,
+          "hr": 0.75
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 220,
+          "hits": 165,
+          "hr": 0.75
+        },
+        "removed_l5l10_n": 556,
+        "removed_sa_n": 556
+      },
+      {
+        "sport": "WNBA",
+        "prop": "reb+ast",
+        "old_l5ge4_cover": {
+          "n": 708,
+          "hits": 474,
+          "hr": 0.6695
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 173,
+          "hits": 135,
+          "hr": 0.7803
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 167,
+          "hits": 132,
+          "hr": 0.7904
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 167,
+          "hits": 132,
+          "hr": 0.7904
+        },
+        "removed_l5l10_n": 535,
+        "removed_sa_n": 541
+      },
+      {
+        "sport": "WNBA",
+        "prop": "assists",
+        "old_l5ge4_cover": {
+          "n": 796,
+          "hits": 578,
+          "hr": 0.7261
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 265,
+          "hits": 196,
+          "hr": 0.7396
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 265,
+          "hits": 196,
+          "hr": 0.7396
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 265,
+          "hits": 196,
+          "hr": 0.7396
+        },
+        "removed_l5l10_n": 531,
+        "removed_sa_n": 531
+      },
+      {
+        "sport": "MLB",
+        "prop": "pitcher_ks",
+        "old_l5ge4_cover": {
+          "n": 459,
+          "hits": 318,
+          "hr": 0.6928
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 11,
+          "hits": 8,
+          "hr": 0.7273
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 11,
+          "hits": 8,
+          "hr": 0.7273
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 11,
+          "hits": 8,
+          "hr": 0.7273
+        },
+        "removed_l5l10_n": 448,
+        "removed_sa_n": 448
+      },
+      {
+        "sport": "WNBA",
+        "prop": "threes",
+        "old_l5ge4_cover": {
+          "n": 622,
+          "hits": 438,
+          "hr": 0.7042
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 184,
+          "hits": 144,
+          "hr": 0.7826
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 184,
+          "hits": 144,
+          "hr": 0.7826
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 184,
+          "hits": 144,
+          "hr": 0.7826
+        },
+        "removed_l5l10_n": 438,
+        "removed_sa_n": 438
+      },
+      {
+        "sport": "MLB",
+        "prop": "hits_allowed",
+        "old_l5ge4_cover": {
+          "n": 374,
+          "hits": 252,
+          "hr": 0.6738
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 11,
+          "hits": 11,
+          "hr": 1.0
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 11,
+          "hits": 11,
+          "hr": 1.0
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 11,
+          "hits": 11,
+          "hr": 1.0
+        },
+        "removed_l5l10_n": 363,
+        "removed_sa_n": 363
+      },
+      {
+        "sport": "MLB",
+        "prop": "walks_allowed",
+        "old_l5ge4_cover": {
+          "n": 176,
+          "hits": 127,
+          "hr": 0.7216
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 7,
+          "hits": 5,
+          "hr": 0.7143
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 7,
+          "hits": 5,
+          "hr": 0.7143
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 7,
+          "hits": 5,
+          "hr": 0.7143
+        },
+        "removed_l5l10_n": 169,
+        "removed_sa_n": 169
+      },
+      {
+        "sport": "MLB",
+        "prop": "pitches_thrown",
+        "old_l5ge4_cover": {
+          "n": 170,
+          "hits": 123,
+          "hr": 0.7235
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 5,
+          "hits": 5,
+          "hr": 1.0
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 5,
+          "hits": 5,
+          "hr": 1.0
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 5,
+          "hits": 5,
+          "hr": 1.0
+        },
+        "removed_l5l10_n": 165,
+        "removed_sa_n": 165
+      },
+      {
+        "sport": "WNBA",
+        "prop": "fga",
+        "old_l5ge4_cover": {
+          "n": 187,
+          "hits": 143,
+          "hr": 0.7647
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 58,
+          "hits": 48,
+          "hr": 0.8276
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 58,
+          "hits": 48,
+          "hr": 0.8276
+        },
+        "removed_l5l10_n": 129,
+        "removed_sa_n": 187
+      },
+      {
+        "sport": "WNBA",
+        "prop": "threes_att",
+        "old_l5ge4_cover": {
+          "n": 121,
+          "hits": 82,
+          "hr": 0.6777
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 27,
+          "hits": 22,
+          "hr": 0.8148
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 27,
+          "hits": 22,
+          "hr": 0.8148
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 27,
+          "hits": 22,
+          "hr": 0.8148
+        },
+        "removed_l5l10_n": 94,
+        "removed_sa_n": 94
+      },
+      {
+        "sport": "Soccer",
+        "prop": "shots",
+        "old_l5ge4_cover": {
+          "n": 75,
+          "hits": 55,
+          "hr": 0.7333
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 0,
+          "hits": 0,
+          "hr": null
+        },
+        "removed_l5l10_n": 75,
+        "removed_sa_n": 75
+      },
+      {
+        "sport": "Tennis",
+        "prop": "games_won",
+        "old_l5ge4_cover": {
+          "n": 112,
+          "hits": 80,
+          "hr": 0.7143
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 38,
+          "hits": 27,
+          "hr": 0.7105
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 38,
+          "hits": 27,
+          "hr": 0.7105
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 38,
+          "hits": 27,
+          "hr": 0.7105
+        },
+        "removed_l5l10_n": 74,
+        "removed_sa_n": 74
+      },
+      {
+        "sport": "Tennis",
+        "prop": "match_total_games",
+        "old_l5ge4_cover": {
+          "n": 100,
+          "hits": 71,
+          "hr": 0.71
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 45,
+          "hits": 35,
+          "hr": 0.7778
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 45,
+          "hits": 35,
+          "hr": 0.7778
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 45,
+          "hits": 35,
+          "hr": 0.7778
+        },
+        "removed_l5l10_n": 55,
+        "removed_sa_n": 55
+      },
+      {
+        "sport": "MLB",
+        "prop": "pitching_outs",
+        "old_l5ge4_cover": {
+          "n": 47,
+          "hits": 29,
+          "hr": 0.617
+        },
+        "l5eq5_l10ge8_cover": {
+          "n": 1,
+          "hits": 1,
+          "hr": 1.0
+        },
+        "l5eq5_l10ge8_sa": {
+          "n": 1,
+          "hits": 1,
+          "hr": 1.0
+        },
+        "l5eq5_l10ge8_sa_or_fga": {
+          "n": 1,
+          "hits": 1,
+          "hr": 1.0
+        },
+        "removed_l5l10_n": 46,
+        "removed_sa_n": 46
+      }
+    ],
+    "dropped_old_not_l5l10": [
+      [
+        "MLB|total_bases",
+        3127
+      ],
+      [
+        "MLB|hitter_ks",
+        2346
+      ],
+      [
+        "WNBA|points",
+        1438
+      ],
+      [
+        "WNBA|rebounds",
+        1011
+      ],
+      [
+        "MLB|hits+runs+rbis",
+        974
+      ],
+      [
+        "WNBA|pra",
+        895
+      ],
+      [
+        "MLB|hits",
+        738
+      ],
+      [
+        "WNBA|pts+reb",
+        687
+      ],
+      [
+        "WNBA|pts+ast",
+        556
+      ],
+      [
+        "WNBA|reb+ast",
+        535
+      ],
+      [
+        "WNBA|assists",
+        531
+      ],
+      [
+        "MLB|pitcher_ks",
+        448
+      ],
+      [
+        "WNBA|threes",
+        438
+      ],
+      [
+        "MLB|hits_allowed",
+        363
+      ],
+      [
+        "MLB|walks_allowed",
+        169
+      ],
+      [
+        "MLB|pitches_thrown",
+        165
+      ],
+      [
+        "WNBA|fga",
+        129
+      ],
+      [
+        "WNBA|threes_att",
+        94
+      ],
+      [
+        "Soccer|shots",
+        75
+      ],
+      [
+        "Tennis|games_won",
+        74
+      ],
+      [
+        "Tennis|match_total_games",
+        55
+      ],
+      [
+        "MLB|pitching_outs",
+        46
+      ],
+      [
+        "WNBA|ftm",
+        17
+      ],
+      [
+        "Soccer|saves",
+        12
+      ],
+      [
+        "WNBA|fta",
+        6
+      ],
+      [
+        "WNBA|fg2m",
+        4
+      ],
+      [
+        "Soccer|fouls",
+        2
+      ],
+      [
+        "WNBA|fgm",
+        2
+      ],
+      [
+        "Soccer|goal_assist",
+        1
+      ]
+    ],
+    "dropped_l5l10_not_sa": [
+      [
+        "WNBA|fga",
+        58
+      ],
+      [
+        "MLB|total_bases",
+        53
+      ],
+      [
+        "MLB|hits+runs+rbis",
+        26
+      ],
+      [
+        "MLB|hitter_ks",
+        25
+      ],
+      [
+        "MLB|hits",
+        20
+      ],
+      [
+        "WNBA|reb+ast",
+        6
+      ],
+      [
+        "WNBA|fg2m",
+        1
+      ]
+    ]
+  },
+  "tickets": {
+    "files": [
+      {
+        "date": "2026-08-26",
+        "path": "H:\\PropORACLE\\data\\reports\\goblin70_tickets_2026-08-26.json",
+        "tickets": 9,
+        "pool": 178
+      },
+      {
+        "date": "2026-08-27",
+        "path": "H:\\PropORACLE_main_cp\\data\\reports\\goblin70_tickets_2026-08-27.json",
+        "tickets": 15,
+        "pool": 90
+      },
+      {
+        "date": "2026-08-28",
+        "path": "H:\\PropORACLE_main_cp\\data\\reports\\goblin70_tickets_2026-08-28.json",
+        "tickets": 15,
+        "pool": 165
+      },
+      {
+        "date": "2026-08-29",
+        "path": "H:\\PropORACLE_main_cp\\data\\reports\\goblin70_tickets_2026-08-29.json",
+        "tickets": 14,
+        "pool": 240
+      },
+      {
+        "date": "2026-08-30",
+        "path": "H:\\PropORACLE_main_cp\\data\\reports\\goblin70_tickets_2026-08-30.json",
+        "tickets": 15,
+        "pool": 196
+      },
+      {
+        "date": "2026-08-31",
+        "path": "H:\\PropORACLE_main_cp\\data\\reports\\goblin70_tickets_2026-08-31.json",
+        "tickets": 10,
+        "pool": 71
+      }
+    ],
+    "tickets_seen": 78,
+    "pool_seen": 940,
+    "pool_graded": 701,
+    "pool_by_gate": {
+      "old_l5ge4_cover": {
+        "n": 655,
+        "hits": 483,
+        "hr": 0.7374
+      },
+      "l5eq5_l10ge8_cover": {
+        "n": 221,
+        "hits": 169,
+        "hr": 0.7647
+      },
+      "l5eq5_l10ge8_sa": {
+        "n": 157,
+        "hits": 131,
+        "hr": 0.8344
+      },
+      "l5eq5_l10ge8_sa_or_fga": {
+        "n": 158,
+        "hits": 132,
+        "hr": 0.8354
+      }
+    },
+    "tickets_by_gate": {
+      "old_l5ge4_cover": {
+        "tickets": 78,
+        "fully_graded": 45,
+        "sweep_hits": 25,
+        "flex_cash_hits": 28,
+        "kept": 67,
+        "kept_graded": 39,
+        "kept_sweep": 22,
+        "kept_flex_cash": 25,
+        "all_sweep_hr": 0.5556,
+        "all_cash_hr": 0.6222,
+        "kept_share": 0.859,
+        "kept_sweep_hr": 0.5641,
+        "kept_cash_hr": 0.641
+      },
+      "l5eq5_l10ge8_cover": {
+        "tickets": 78,
+        "fully_graded": 45,
+        "sweep_hits": 25,
+        "flex_cash_hits": 28,
+        "kept": 10,
+        "kept_graded": 10,
+        "kept_sweep": 5,
+        "kept_flex_cash": 5,
+        "all_sweep_hr": 0.5556,
+        "all_cash_hr": 0.6222,
+        "kept_share": 0.1282,
+        "kept_sweep_hr": 0.5,
+        "kept_cash_hr": 0.5
+      },
+      "l5eq5_l10ge8_sa": {
+        "tickets": 78,
+        "fully_graded": 45,
+        "sweep_hits": 25,
+        "flex_cash_hits": 28,
+        "kept": 10,
+        "kept_graded": 10,
+        "kept_sweep": 5,
+        "kept_flex_cash": 5,
+        "all_sweep_hr": 0.5556,
+        "all_cash_hr": 0.6222,
+        "kept_share": 0.1282,
+        "kept_sweep_hr": 0.5,
+        "kept_cash_hr": 0.5
+      },
+      "l5eq5_l10ge8_sa_or_fga": {
+        "tickets": 78,
+        "fully_graded": 45,
+        "sweep_hits": 25,
+        "flex_cash_hits": 28,
+        "kept": 10,
+        "kept_graded": 10,
+        "kept_sweep": 5,
+        "kept_flex_cash": 5,
+        "all_sweep_hr": 0.5556,
+        "all_cash_hr": 0.6222,
+        "kept_share": 0.1282,
+        "kept_sweep_hr": 0.5,
+        "kept_cash_hr": 0.5
+      }
+    },
+    "dropped_ticket_legs": [
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "Tennis",
+        "prop": "match_total_games",
+        "n": 42
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "Tennis",
+        "prop": "match_total_games",
+        "n": 42
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "Tennis",
+        "prop": "match_total_games",
+        "n": 42
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "WNBA",
+        "prop": "points",
+        "n": 18
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "WNBA",
+        "prop": "points",
+        "n": 18
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "WNBA",
+        "prop": "points",
+        "n": 18
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "WNBA",
+        "prop": "pra",
+        "n": 17
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "WNBA",
+        "prop": "pra",
+        "n": 17
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "WNBA",
+        "prop": "pra",
+        "n": 17
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "WNBA",
+        "prop": "pts+reb",
+        "n": 14
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "WNBA",
+        "prop": "pts+reb",
+        "n": 14
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "WNBA",
+        "prop": "pts+reb",
+        "n": 14
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "Tennis",
+        "prop": "games_won",
+        "n": 13
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "Tennis",
+        "prop": "games_won",
+        "n": 13
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "Tennis",
+        "prop": "games_won",
+        "n": 13
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "MLB",
+        "prop": "hits+runs+rbis",
+        "n": 11
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "MLB",
+        "prop": "hits+runs+rbis",
+        "n": 11
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "WNBA",
+        "prop": "rebounds",
+        "n": 8
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "WNBA",
+        "prop": "rebounds",
+        "n": 8
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "WNBA",
+        "prop": "rebounds",
+        "n": 8
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "MLB",
+        "prop": "hits+runs+rbis",
+        "n": 8
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "MLB",
+        "prop": "total_bases",
+        "n": 5
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "MLB",
+        "prop": "total_bases",
+        "n": 5
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "MLB",
+        "prop": "total_bases",
+        "n": 5
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "WNBA",
+        "prop": "assists",
+        "n": 4
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "WNBA",
+        "prop": "assists",
+        "n": 4
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "WNBA",
+        "prop": "assists",
+        "n": 4
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "WNBA",
+        "prop": "reb+ast",
+        "n": 4
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "WNBA",
+        "prop": "reb+ast",
+        "n": 4
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "WNBA",
+        "prop": "reb+ast",
+        "n": 4
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "MLB",
+        "prop": "hitter_ks",
+        "n": 3
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "MLB",
+        "prop": "hitter_ks",
+        "n": 3
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "MLB",
+        "prop": "hitter_ks",
+        "n": 3
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "WNBA",
+        "prop": "pts+ast",
+        "n": 3
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "WNBA",
+        "prop": "pts+ast",
+        "n": 3
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "WNBA",
+        "prop": "pts+ast",
+        "n": 3
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "WNBA",
+        "prop": "threes",
+        "n": 2
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "WNBA",
+        "prop": "threes",
+        "n": 2
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "WNBA",
+        "prop": "threes",
+        "n": 2
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "MLB",
+        "prop": "walks_allowed",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "MLB",
+        "prop": "walks_allowed",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "MLB",
+        "prop": "walks_allowed",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "MLB",
+        "prop": "hits_allowed",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "MLB",
+        "prop": "hits_allowed",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "MLB",
+        "prop": "hits_allowed",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "MLB",
+        "prop": "pitching_outs",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "MLB",
+        "prop": "pitching_outs",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa_or_fga",
+        "sport": "MLB",
+        "prop": "pitching_outs",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_cover",
+        "sport": "WNBA",
+        "prop": "threes_att",
+        "n": 1
+      },
+      {
+        "gate": "l5eq5_l10ge8_sa",
+        "sport": "WNBA",
+        "prop": "threes_att",
+        "n": 1
+      }
+    ],
+    "dropped_pool_old_not_l5l10": [
+      [
+        "MLB|hits+runs+rbis",
+        278
+      ],
+      [
+        "MLB|hitter_ks",
+        28
+      ],
+      [
+        "MLB|pitcher_ks",
+        20
+      ],
+      [
+        "WNBA|points",
+        18
+      ],
+      [
+        "MLB|total_bases",
+        16
+      ],
+      [
+        "Tennis|games_won",
+        14
+      ],
+      [
+        "Tennis|match_total_games",
+        13
+      ],
+      [
+        "WNBA|pts+reb",
+        8
+      ],
+      [
+        "MLB|pitching_outs",
+        8
+      ],
+      [
+        "WNBA|pra",
+        7
+      ],
+      [
+        "WNBA|rebounds",
+        5
+      ],
+      [
+        "MLB|hits_allowed",
+        4
+      ],
+      [
+        "WNBA|pts+ast",
+        4
+      ],
+      [
+        "WNBA|reb+ast",
+        3
+      ],
+      [
+        "WNBA|assists",
+        2
+      ],
+      [
+        "MLB|earned_runs",
+        2
+      ],
+      [
+        "WNBA|fga",
+        1
+      ],
+      [
+        "WNBA|threes",
+        1
+      ],
+      [
+        "WNBA|threes_att",
+        1
+      ],
+      [
+        "MLB|pitches_thrown",
+        1
+      ]
+    ]
+  }
+}

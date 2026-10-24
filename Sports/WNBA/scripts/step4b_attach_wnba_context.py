@@ -202,7 +202,6 @@ def main() -> None:
         urec = usage_players.get(f"{pname}|{team}") or usage_players.get(f"{pname}|")
         if not urec:
             urec = usage_norm_map.get(pnorm)
-                    break
         if urec:
             usg = _scale_usage(urec.get("usage_pct"))
             if usg is not None:
@@ -245,7 +244,6 @@ def main() -> None:
         frec = foul_players.get(f"{pname}|{team}")
         if not frec:
             frec = foul_norm_map.get(pnorm)
-                    break
         if frec and frec.get("pf") is not None and frec.get("min"):
             pf, mn = float(frec["pf"]), float(frec["min"])
             if mn > 0:
@@ -272,9 +270,9 @@ def main() -> None:
         df.at[idx, "wnba_b2b_weight"] = 1.5 if b2b else 1.0
         df.at[idx, "b2b_rest_context"] = "b2b_second" if b2b else "normal_rest"
 
-        # Fill min_per_game from step4 if still empty
+        # Fill min_per_game from real minutes only (never prop-stat averages)
         if pd.isna(df.at[idx, "min_per_game"]) or df.at[idx, "min_per_game"] == "":
-            for mc in ("min_player_avg", "avg_minutes", "stat_last5_avg"):
+            for mc in ("min_last5_avg", "min_season_avg", "avg_minutes"):
                 if mc in df.columns:
                     v = pd.to_numeric(row.get(mc), errors="coerce")
                     if pd.notna(v):

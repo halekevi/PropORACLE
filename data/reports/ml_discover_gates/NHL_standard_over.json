@@ -1,0 +1,783 @@
+{
+  "sport": "NHL",
+  "book": "Standard OVER",
+  "n": 8961,
+  "dates": [
+    "2026-02-25",
+    "2026-03-06",
+    "2026-03-07",
+    "2026-03-08",
+    "2026-03-09",
+    "2026-03-10",
+    "2026-03-11",
+    "2026-03-12",
+    "2026-03-13",
+    "2026-03-14",
+    "2026-03-15",
+    "2026-03-16",
+    "2026-03-17",
+    "2026-03-18",
+    "2026-03-19",
+    "2026-03-20",
+    "2026-03-21",
+    "2026-03-22",
+    "2026-03-23",
+    "2026-03-24",
+    "2026-03-25",
+    "2026-03-26",
+    "2026-03-27",
+    "2026-03-29",
+    "2026-03-30",
+    "2026-03-31",
+    "2026-04-01",
+    "2026-04-02",
+    "2026-04-03",
+    "2026-04-04",
+    "2026-04-05",
+    "2026-04-06",
+    "2026-04-07",
+    "2026-04-08",
+    "2026-04-09",
+    "2026-04-10",
+    "2026-04-11",
+    "2026-04-13",
+    "2026-04-14",
+    "2026-04-15",
+    "2026-04-16",
+    "2026-04-18",
+    "2026-04-19",
+    "2026-04-20",
+    "2026-04-21",
+    "2026-04-22",
+    "2026-04-23",
+    "2026-04-24",
+    "2026-04-25",
+    "2026-04-26",
+    "2026-04-27",
+    "2026-04-28",
+    "2026-04-29",
+    "2026-04-30",
+    "2026-05-01",
+    "2026-05-02",
+    "2026-05-04",
+    "2026-05-05",
+    "2026-05-07",
+    "2026-05-08",
+    "2026-05-09",
+    "2026-05-10",
+    "2026-05-11",
+    "2026-05-12",
+    "2026-05-13",
+    "2026-05-14",
+    "2026-05-15",
+    "2026-05-16",
+    "2026-05-17",
+    "2026-05-18",
+    "2026-05-19",
+    "2026-05-20",
+    "2026-05-23",
+    "2026-05-24",
+    "2026-05-25",
+    "2026-05-26",
+    "2026-05-27",
+    "2026-05-28",
+    "2026-05-29",
+    "2026-05-30",
+    "2026-06-01",
+    "2026-06-02",
+    "2026-06-03",
+    "2026-06-04",
+    "2026-06-05",
+    "2026-06-06",
+    "2026-06-07",
+    "2026-06-08",
+    "2026-06-09",
+    "2026-06-10",
+    "2026-06-11",
+    "2026-06-12",
+    "2026-06-13",
+    "2026-06-14",
+    "2026-06-15",
+    "2026-09-30",
+    "2026-10-20",
+    "2026-10-21",
+    "2026-10-22",
+    "2026-10-23"
+  ],
+  "train_dates_n": 70,
+  "oos_dates_n": 30,
+  "oos_dates": [
+    "2026-05-19",
+    "2026-05-20",
+    "2026-05-23",
+    "2026-05-24",
+    "2026-05-25",
+    "2026-05-26",
+    "2026-05-27",
+    "2026-05-28",
+    "\u2026"
+  ],
+  "ungated": {
+    "hr": 0.3214,
+    "n": 8961,
+    "hits": 2880,
+    "wilson_low": 0.3118,
+    "train_hr": 0.3047,
+    "train_n": 6965,
+    "oos_hr": 0.3798,
+    "oos_n": 1996,
+    "quotes": {
+      "power2_3.00x": {
+        "n_legs": 2,
+        "payout_x": 3.0,
+        "breakeven": 0.5774,
+        "ev": -0.6901,
+        "oos_ev": -0.5673,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_6.00x": {
+        "n_legs": 3,
+        "payout_x": 6.0,
+        "breakeven": 0.5503,
+        "ev": -0.8008,
+        "oos_ev": -0.6713,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      }
+    },
+    "split_flag": false,
+    "train_share": 0.7773,
+    "gate": "all"
+  },
+  "generic_stack": {
+    "hr": 0.75,
+    "n": 4,
+    "hits": 3,
+    "wilson_low": 0.3006,
+    "train_hr": 0.6667,
+    "train_n": 3,
+    "oos_hr": 1.0,
+    "oos_n": 1,
+    "quotes": {
+      "power2_3.00x": {
+        "n_legs": 2,
+        "payout_x": 3.0,
+        "breakeven": 0.5774,
+        "ev": 0.6875,
+        "oos_ev": 2.0,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_6.00x": {
+        "n_legs": 3,
+        "payout_x": 6.0,
+        "breakeven": 0.5503,
+        "ev": 1.5312,
+        "oos_ev": 5.0,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      }
+    },
+    "split_flag": false,
+    "train_share": 0.75,
+    "gate": "L5=5 + L10>=8 + D_ok"
+  },
+  "l5_l10": {
+    "hr": 0.65,
+    "n": 20,
+    "hits": 13,
+    "wilson_low": 0.4329,
+    "train_hr": 0.8889,
+    "train_n": 9,
+    "oos_hr": 0.4545,
+    "oos_n": 11,
+    "quotes": {
+      "power2_3.00x": {
+        "n_legs": 2,
+        "payout_x": 3.0,
+        "breakeven": 0.5774,
+        "ev": 0.2675,
+        "oos_ev": -0.3803,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      },
+      "power3_6.00x": {
+        "n_legs": 3,
+        "payout_x": 6.0,
+        "breakeven": 0.5503,
+        "ev": 0.6478,
+        "oos_ev": -0.4367,
+        "clears": false,
+        "oos_clears": false,
+        "wilson_clears": false
+      }
+    },
+    "split_flag": false,
+    "train_share": 0.45,
+    "gate": "L5=5 + L10>=8"
+  },
+  "n_catalog": 17,
+  "clears_wilson_primary": [],
+  "clears_wilson_observe": [],
+  "bh_keep_gates": [],
+  "top": [
+    {
+      "hr": 0.5789,
+      "n": 190,
+      "hits": 110,
+      "wilson_low": 0.5079,
+      "train_hr": 0.5849,
+      "train_n": 106,
+      "oos_hr": 0.5714,
+      "oos_n": 84,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": 0.0054,
+          "oos_ev": -0.0205,
+          "clears": true,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": 0.164,
+          "oos_ev": 0.1194,
+          "clears": true,
+          "oos_clears": true,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.5579,
+      "gate": "L5>=4 + D_elite",
+      "p_vs_quote": 0.5130214101873831,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.6897,
+      "n": 29,
+      "hits": 20,
+      "wilson_low": 0.5077,
+      "train_hr": 0.7895,
+      "train_n": 19,
+      "oos_hr": 0.5,
+      "oos_n": 10,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": 0.4271,
+          "oos_ev": -0.25,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": 0.9685,
+          "oos_ev": -0.25,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.6552,
+      "gate": "L5=5 + D_elite",
+      "p_vs_quote": 0.1498113453442842,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.6304,
+      "n": 46,
+      "hits": 29,
+      "wilson_low": 0.486,
+      "train_hr": 0.7778,
+      "train_n": 27,
+      "oos_hr": 0.4211,
+      "oos_n": 19,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": 0.1922,
+          "oos_ev": -0.468,
+          "clears": true,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": 0.5031,
+          "oos_ev": -0.552,
+          "clears": true,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.587,
+      "gate": "L5=5",
+      "p_vs_quote": 0.28309359882720647,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.6452,
+      "n": 31,
+      "hits": 20,
+      "wilson_low": 0.4695,
+      "train_hr": 0.7273,
+      "train_n": 22,
+      "oos_hr": 0.4444,
+      "oos_n": 9,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": 0.2488,
+          "oos_ev": -0.4075,
+          "clears": true,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": 0.6115,
+          "oos_ev": -0.4734,
+          "clears": true,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.7097,
+      "gate": "L5=5 + line_0.5",
+      "p_vs_quote": 0.2826285331768332,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.514,
+      "n": 358,
+      "hits": 184,
+      "wilson_low": 0.4623,
+      "train_hr": 0.507,
+      "train_n": 213,
+      "oos_hr": 0.5241,
+      "oos_n": 145,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": -0.2074,
+          "oos_ev": -0.176,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": -0.1852,
+          "oos_ev": -0.1362,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.595,
+      "gate": "L5>=4",
+      "p_vs_quote": 0.9932477990173639,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.5897,
+      "n": 39,
+      "hits": 23,
+      "wilson_low": 0.4342,
+      "train_hr": 0.7143,
+      "train_n": 21,
+      "oos_hr": 0.4444,
+      "oos_n": 18,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": 0.0432,
+          "oos_ev": -0.4075,
+          "clears": true,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": 0.2304,
+          "oos_ev": -0.4734,
+          "clears": true,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.5385,
+      "gate": "L10>=8 + D_elite",
+      "p_vs_quote": 0.5055224405332581,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.5574,
+      "n": 61,
+      "hits": 34,
+      "wilson_low": 0.433,
+      "train_hr": 0.625,
+      "train_n": 32,
+      "oos_hr": 0.4828,
+      "oos_n": 29,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": -0.0679,
+          "oos_ev": -0.3007,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": 0.0391,
+          "oos_ev": -0.3248,
+          "clears": true,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.5246,
+      "gate": "L10>=8",
+      "p_vs_quote": 0.6737486011557471,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.65,
+      "n": 20,
+      "hits": 13,
+      "wilson_low": 0.4329,
+      "train_hr": 0.8889,
+      "train_n": 9,
+      "oos_hr": 0.4545,
+      "oos_n": 11,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": 0.2675,
+          "oos_ev": -0.3803,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": 0.6478,
+          "oos_ev": -0.4367,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.45,
+      "gate": "L5=5 + L10>=8",
+      "p_vs_quote": 0.3372566490298562,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.54,
+      "n": 50,
+      "hits": 27,
+      "wilson_low": 0.404,
+      "train_hr": 0.5833,
+      "train_n": 24,
+      "oos_hr": 0.5,
+      "oos_n": 26,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": -0.1252,
+          "oos_ev": -0.25,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": -0.0552,
+          "oos_ev": -0.25,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.48,
+      "gate": "L5>=4 + L10>=8",
+      "p_vs_quote": 0.7521318018129923,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.4783,
+      "n": 69,
+      "hits": 33,
+      "wilson_low": 0.3647,
+      "train_hr": 0.5897,
+      "train_n": 39,
+      "oos_hr": 0.3333,
+      "oos_n": 30,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": -0.3137,
+          "oos_ev": -0.6667,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": -0.3435,
+          "oos_ev": -0.7778,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.5652,
+      "gate": "L5>=4 + D_ok",
+      "p_vs_quote": 0.9623982937209936,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.4783,
+      "n": 69,
+      "hits": 33,
+      "wilson_low": 0.3647,
+      "train_hr": 0.5897,
+      "train_n": 39,
+      "oos_hr": 0.3333,
+      "oos_n": 30,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": -0.3137,
+          "oos_ev": -0.6667,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": -0.3435,
+          "oos_ev": -0.7778,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.5652,
+      "gate": "L5>=4 + D_weak",
+      "p_vs_quote": 0.9623982937209936,
+      "bh_keep": false
+    },
+    {
+      "hr": 0.3647,
+      "n": 1264,
+      "hits": 461,
+      "wilson_low": 0.3386,
+      "train_hr": 0.3585,
+      "train_n": 1141,
+      "oos_hr": 0.4228,
+      "oos_n": 123,
+      "quotes": {
+        "power2_3.00x": {
+          "n_legs": 2,
+          "payout_x": 3.0,
+          "breakeven": 0.5774,
+          "ev": -0.601,
+          "oos_ev": -0.4637,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "n_legs": 3,
+          "payout_x": 6.0,
+          "breakeven": 0.5503,
+          "ev": -0.709,
+          "oos_ev": -0.5465,
+          "clears": false,
+          "oos_clears": false,
+          "wilson_clears": false
+        }
+      },
+      "split_flag": false,
+      "train_share": 0.9027,
+      "gate": "D_ok",
+      "p_vs_quote": 1.0,
+      "bh_keep": false
+    }
+  ],
+  "line_0_5": null,
+  "optional": {
+    "pysubgroup": {
+      "status": "skipped",
+      "rules": []
+    },
+    "figs": {
+      "status": "ok",
+      "version": "present",
+      "rules": [
+        "FIGSClassifier",
+        "FIGS: a sum of small trees.",
+        "2 trees, added together  \u00b7  8 leaves  \u00b7  6,965 training samples  \u00b7  classes: 0, 1",
+        "Each tree adds the value of the leaf a sample reaches; P(1) = sigmoid(sum).",
+        "Tree 1 of 2",
+        "L5=5 \u2264 0.5 ?                    6,965 samples",
+        "\u251c\u2500 yes D_ok \u2264 0.5 ?             6,938",
+        "\u2502  \u251c\u2500 yes L10>=8 \u2264 0.5 ?        5,801",
+        "\u2502  \u2502  \u251c\u2500 yes line_0.5 \u2264 0.5 ?   5,780",
+        "\u2502  \u2502  \u2502  \u251c\u2500 yes \u2192 -0.4458       2,049",
+        "\u2502  \u2502  \u2502  \u2514\u2500 no  \u2192 -0.4021       3,731",
+        "\u2502  \u2502  \u2514\u2500 no  \u2192 +0.1429             21",
+        "\u2502  \u2514\u2500 no  line_0.5 \u2264 0.5 ?      1,137",
+        "\u2502     \u251c\u2500 yes \u2192 -0.4355            496",
+        "\u2502     \u2514\u2500 no  \u2192 -0.17              641",
+        "\u2514\u2500 no  \u2192 +0.5556                   27",
+        "Tree 2 of 2 (+)",
+        "season_HR>70% \u2264 0.5 ?   6,965 samples",
+        "\u251c\u2500 yes \u2192 -0.001022      6,957",
+        "\u2514\u2500 no  \u2192 +0.8889            8"
+      ],
+      "raw": "FIGSClassifier\n  FIGS: a sum of small trees.\n  2 trees, added together  \u00b7  8 leaves  \u00b7  6,965 training samples  \u00b7  classes: 0, 1\n  Each tree adds the value of the leaf a sample reaches; P(1) = sigmoid(sum).\n\n  Tree 1 of 2\n    L5=5 \u2264 0.5 ?                    6,965 samples\n    \u251c\u2500 yes D_ok \u2264 0.5 ?             6,938\n    \u2502  \u251c\u2500 yes L10>=8 \u2264 0.5 ?        5,801\n    \u2502  \u2502  \u251c\u2500 yes line_0.5 \u2264 0.5 ?   5,780\n    \u2502  \u2502  \u2502  \u251c\u2500 yes \u2192 -0.4458       2,049\n    \u2502  \u2502  \u2502  \u2514\u2500 no  \u2192 -0.4021       3,731\n    \u2502  \u2502  \u2514\u2500 no  \u2192 +0.1429             21\n    \u2502  \u2514\u2500 no  line_0.5 \u2264 0.5 ?      1,137\n    \u2502     \u251c\u2500 yes \u2192 -0.4355            496\n    \u2502     \u2514\u2500 no  \u2192 -0.17              641\n    \u2514\u2500 no  \u2192 +0.5556                   27\n\n  Tree 2 of 2 (+)\n    season_HR>70% \u2264 0.5 ?   6,965 samples\n    \u251c\u2500 yes \u2192 -0.001022      6,957\n    \u2514\u2500 no  \u2192 +0.8889            8"
+    },
+    "optbinning_line": {
+      "status": "ok",
+      "version": "1.0.0",
+      "name": "line",
+      "bins": [
+        {
+          "bin": "(-inf, 1.00)",
+          "n": 4406,
+          "event_rate": 0.31820245120290513
+        },
+        {
+          "bin": "[1.00, 3.25)",
+          "n": 2155,
+          "event_rate": 0.29559164733178656
+        },
+        {
+          "bin": "[3.25, inf)",
+          "n": 404,
+          "event_rate": 0.20544554455445543
+        },
+        {
+          "bin": "Special",
+          "n": 0,
+          "event_rate": 0.0
+        },
+        {
+          "bin": "Missing",
+          "n": 0,
+          "event_rate": 0.0
+        },
+        {
+          "bin": "",
+          "n": 6965,
+          "event_rate": 0.3046661880832735
+        }
+      ]
+    },
+    "sklearn_tree": {
+      "status": "ok",
+      "version": "1.8.0",
+      "rules": [
+        {
+          "rule": "L5=5>0.5",
+          "hr": 0.7778,
+          "n": 27,
+          "hits": 21
+        },
+        {
+          "rule": "L5=5<=0.5 AND D_ok>0.5 AND line_0.5>0.5",
+          "hr": 0.415,
+          "n": 641,
+          "hits": 266
+        },
+        {
+          "rule": "L5=5<=0.5 AND D_ok<=0.5 AND line_0.5>0.5",
+          "hr": 0.2992,
+          "n": 3743,
+          "hits": 1120
+        },
+        {
+          "rule": "L5=5<=0.5 AND D_ok>0.5 AND line_0.5<=0.5",
+          "hr": 0.2823,
+          "n": 496,
+          "hits": 140
+        },
+        {
+          "rule": "L5=5<=0.5 AND D_ok<=0.5 AND line_0.5<=0.5",
+          "hr": 0.2794,
+          "n": 2058,
+          "hits": 575
+        }
+      ]
+    }
+  },
+  "note": "Wilson must clear the quote. A point-estimate lift is not enough. split_flag / train_n<15 means do not wire."
+}

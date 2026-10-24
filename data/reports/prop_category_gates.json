@@ -1,0 +1,2360 @@
+{
+  "window": {
+    "first": "2026-07-13",
+    "last": "2026-08-24",
+    "n": 31033
+  },
+  "min_n_listed": 20,
+  "by_sport": {
+    "WNBA": {
+      "Goblin OVER": [
+        {
+          "prop": "points",
+          "all": {
+            "hits": 738,
+            "n": 1043,
+            "rate": 70.8
+          },
+          "listed": {
+            "hits": 418,
+            "n": 562,
+            "rate": 74.4
+          },
+          "cover_floor": {
+            "hits": 364,
+            "n": 468,
+            "rate": 77.8
+          },
+          "listed_against": {
+            "hits": 3,
+            "n": 6,
+            "rate": 50.0
+          },
+          "mean_line": 10.39,
+          "mean_l5_gap": 3.75
+        },
+        {
+          "prop": "rebounds",
+          "all": {
+            "hits": 485,
+            "n": 707,
+            "rate": 68.6
+          },
+          "listed": {
+            "hits": 298,
+            "n": 405,
+            "rate": 73.6
+          },
+          "cover_floor": {
+            "hits": 112,
+            "n": 140,
+            "rate": 80.0
+          },
+          "listed_against": {
+            "hits": 2,
+            "n": 6,
+            "rate": 33.3
+          },
+          "mean_line": 4.29,
+          "mean_l5_gap": 1.63
+        },
+        {
+          "prop": "pra",
+          "all": {
+            "hits": 367,
+            "n": 550,
+            "rate": 66.7
+          },
+          "listed": {
+            "hits": 200,
+            "n": 279,
+            "rate": 71.7
+          },
+          "cover_floor": {
+            "hits": 171,
+            "n": 236,
+            "rate": 72.5
+          },
+          "listed_against": {
+            "hits": 3,
+            "n": 6,
+            "rate": 50.0
+          },
+          "mean_line": 21.04,
+          "mean_l5_gap": 4.0
+        },
+        {
+          "prop": "assists",
+          "all": {
+            "hits": 319,
+            "n": 454,
+            "rate": 70.3
+          },
+          "listed": {
+            "hits": 190,
+            "n": 256,
+            "rate": 74.2
+          },
+          "cover_floor": {
+            "hits": 27,
+            "n": 35,
+            "rate": 77.1
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 3.12,
+          "mean_l5_gap": 1.23
+        },
+        {
+          "prop": "pts+reb",
+          "all": {
+            "hits": 277,
+            "n": 398,
+            "rate": 69.6
+          },
+          "listed": {
+            "hits": 170,
+            "n": 228,
+            "rate": 74.6
+          },
+          "cover_floor": {
+            "hits": 148,
+            "n": 195,
+            "rate": 75.9
+          },
+          "listed_against": {
+            "hits": 3,
+            "n": 4,
+            "rate": 75.0
+          },
+          "mean_line": 16.33,
+          "mean_l5_gap": 4.35
+        },
+        {
+          "prop": "reb+ast",
+          "all": {
+            "hits": 252,
+            "n": 390,
+            "rate": 64.6
+          },
+          "listed": {
+            "hits": 137,
+            "n": 202,
+            "rate": 67.8
+          },
+          "cover_floor": {
+            "hits": 76,
+            "n": 99,
+            "rate": 76.8
+          },
+          "listed_against": {
+            "hits": 1,
+            "n": 2,
+            "rate": 50.0
+          },
+          "mean_line": 8.25,
+          "mean_l5_gap": 1.75
+        },
+        {
+          "prop": "pts+ast",
+          "all": {
+            "hits": 229,
+            "n": 328,
+            "rate": 69.8
+          },
+          "listed": {
+            "hits": 135,
+            "n": 191,
+            "rate": 70.7
+          },
+          "cover_floor": {
+            "hits": 110,
+            "n": 153,
+            "rate": 71.9
+          },
+          "listed_against": {
+            "hits": 3,
+            "n": 4,
+            "rate": 75.0
+          },
+          "mean_line": 16.05,
+          "mean_l5_gap": 4.26
+        },
+        {
+          "prop": "threes",
+          "all": {
+            "hits": 216,
+            "n": 309,
+            "rate": 69.9
+          },
+          "listed": {
+            "hits": 127,
+            "n": 175,
+            "rate": 72.6
+          },
+          "cover_floor": {
+            "hits": 9,
+            "n": 10,
+            "rate": 90.0
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.9,
+          "mean_l5_gap": 0.97
+        },
+        {
+          "prop": "blks+stls",
+          "all": {
+            "hits": 31,
+            "n": 45,
+            "rate": 68.9
+          },
+          "listed": {
+            "hits": 10,
+            "n": 15,
+            "rate": 66.7
+          },
+          "cover_floor": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 1.37,
+          "mean_l5_gap": 0.45
+        }
+      ],
+      "Standard OVER": [
+        {
+          "prop": "points",
+          "all": {
+            "hits": 123,
+            "n": 239,
+            "rate": 51.5
+          },
+          "listed": {
+            "hits": 30,
+            "n": 64,
+            "rate": 46.9
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 4,
+            "n": 11,
+            "rate": 36.4
+          },
+          "mean_line": 13.31,
+          "mean_l5_gap": 1.91
+        },
+        {
+          "prop": "pts+reb",
+          "all": {
+            "hits": 145,
+            "n": 271,
+            "rate": 53.5
+          },
+          "listed": {
+            "hits": 33,
+            "n": 59,
+            "rate": 55.9
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 6,
+            "n": 14,
+            "rate": 42.9
+          },
+          "mean_line": 19.33,
+          "mean_l5_gap": 1.6
+        },
+        {
+          "prop": "pra",
+          "all": {
+            "hits": 146,
+            "n": 269,
+            "rate": 54.3
+          },
+          "listed": {
+            "hits": 37,
+            "n": 56,
+            "rate": 66.1
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 6,
+            "n": 7,
+            "rate": 85.7
+          },
+          "mean_line": 23.33,
+          "mean_l5_gap": 1.4
+        },
+        {
+          "prop": "points (combo)",
+          "all": {
+            "hits": 64,
+            "n": 110,
+            "rate": 58.2
+          },
+          "listed": {
+            "hits": 29,
+            "n": 43,
+            "rate": 67.4
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 1,
+            "n": 3,
+            "rate": 33.3
+          },
+          "mean_line": 32.28,
+          "mean_l5_gap": 3.9
+        },
+        {
+          "prop": "pts+ast",
+          "all": {
+            "hits": 120,
+            "n": 227,
+            "rate": 52.9
+          },
+          "listed": {
+            "hits": 26,
+            "n": 41,
+            "rate": 63.4
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 5,
+            "n": 8,
+            "rate": 62.5
+          },
+          "mean_line": 18.78,
+          "mean_l5_gap": 1.31
+        },
+        {
+          "prop": "reb+ast",
+          "all": {
+            "hits": 86,
+            "n": 168,
+            "rate": 51.2
+          },
+          "listed": {
+            "hits": 15,
+            "n": 26,
+            "rate": 57.7
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 3,
+            "n": 4,
+            "rate": 75.0
+          },
+          "mean_line": 9.31,
+          "mean_l5_gap": 0.55
+        },
+        {
+          "prop": "rebounds",
+          "all": {
+            "hits": 60,
+            "n": 124,
+            "rate": 48.4
+          },
+          "listed": {
+            "hits": 12,
+            "n": 24,
+            "rate": 50.0
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 3,
+            "rate": 0.0
+          },
+          "mean_line": 6.05,
+          "mean_l5_gap": 0.8
+        },
+        {
+          "prop": "assists",
+          "all": {
+            "hits": 39,
+            "n": 76,
+            "rate": 51.3
+          },
+          "listed": {
+            "hits": 4,
+            "n": 12,
+            "rate": 33.3
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 2,
+            "rate": 0.0
+          },
+          "mean_line": 4.79,
+          "mean_l5_gap": 0.61
+        },
+        {
+          "prop": "fg attempted",
+          "all": {
+            "hits": 26,
+            "n": 45,
+            "rate": 57.8
+          },
+          "listed": {
+            "hits": 8,
+            "n": 12,
+            "rate": 66.7
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 12.07,
+          "mean_l5_gap": 1.14
+        },
+        {
+          "prop": "fgm",
+          "all": {
+            "hits": 26,
+            "n": 44,
+            "rate": 59.1
+          },
+          "listed": {
+            "hits": 5,
+            "n": 9,
+            "rate": 55.6
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 5.56,
+          "mean_l5_gap": 0.78
+        }
+      ],
+      "Standard UNDER": [
+        {
+          "prop": "points",
+          "all": {
+            "hits": 75,
+            "n": 155,
+            "rate": 48.4
+          },
+          "listed": {
+            "hits": 21,
+            "n": 43,
+            "rate": 48.8
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 5,
+            "n": 10,
+            "rate": 50.0
+          },
+          "mean_line": 12.77,
+          "mean_l5_gap": 1.73
+        },
+        {
+          "prop": "pts+reb",
+          "all": {
+            "hits": 53,
+            "n": 92,
+            "rate": 57.6
+          },
+          "listed": {
+            "hits": 20,
+            "n": 37,
+            "rate": 54.1
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 4,
+            "n": 5,
+            "rate": 80.0
+          },
+          "mean_line": 17.98,
+          "mean_l5_gap": 3.26
+        },
+        {
+          "prop": "pra",
+          "all": {
+            "hits": 35,
+            "n": 75,
+            "rate": 46.7
+          },
+          "listed": {
+            "hits": 17,
+            "n": 32,
+            "rate": 53.1
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 2,
+            "n": 4,
+            "rate": 50.0
+          },
+          "mean_line": 21.08,
+          "mean_l5_gap": 3.7
+        },
+        {
+          "prop": "pts+ast",
+          "all": {
+            "hits": 31,
+            "n": 68,
+            "rate": 45.6
+          },
+          "listed": {
+            "hits": 17,
+            "n": 31,
+            "rate": 54.8
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 1,
+            "n": 2,
+            "rate": 50.0
+          },
+          "mean_line": 16.71,
+          "mean_l5_gap": 2.66
+        },
+        {
+          "prop": "points (combo)",
+          "all": {
+            "hits": 31,
+            "n": 69,
+            "rate": 44.9
+          },
+          "listed": {
+            "hits": 11,
+            "n": 23,
+            "rate": 47.8
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 3,
+            "n": 6,
+            "rate": 50.0
+          },
+          "mean_line": 31.02,
+          "mean_l5_gap": 2.43
+        },
+        {
+          "prop": "reb+ast",
+          "all": {
+            "hits": 24,
+            "n": 41,
+            "rate": 58.5
+          },
+          "listed": {
+            "hits": 9,
+            "n": 16,
+            "rate": 56.2
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 9.24,
+          "mean_l5_gap": 1.52
+        },
+        {
+          "prop": "rebounds",
+          "all": {
+            "hits": 55,
+            "n": 79,
+            "rate": 69.6
+          },
+          "listed": {
+            "hits": 10,
+            "n": 13,
+            "rate": 76.9
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 1,
+            "n": 1,
+            "rate": 100.0
+          },
+          "mean_line": 6.2,
+          "mean_l5_gap": 0.83
+        },
+        {
+          "prop": "assists",
+          "all": {
+            "hits": 26,
+            "n": 43,
+            "rate": 60.5
+          },
+          "listed": {
+            "hits": 6,
+            "n": 10,
+            "rate": 60.0
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 2,
+            "n": 3,
+            "rate": 66.7
+          },
+          "mean_line": 4.73,
+          "mean_l5_gap": 0.63
+        },
+        {
+          "prop": "defensive rebounds",
+          "all": {
+            "hits": 24,
+            "n": 42,
+            "rate": 57.1
+          },
+          "listed": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 5.92,
+          "mean_l5_gap": 2.79
+        },
+        {
+          "prop": "offensive rebounds",
+          "all": {
+            "hits": 25,
+            "n": 49,
+            "rate": 51.0
+          },
+          "listed": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 1.23,
+          "mean_l5_gap": 0.83
+        }
+      ]
+    },
+    "MLB": {
+      "Goblin OVER": [
+        {
+          "prop": "hits+runs+rbis",
+          "all": {
+            "hits": 2233,
+            "n": 3544,
+            "rate": 63.0
+          },
+          "listed": {
+            "hits": 886,
+            "n": 1326,
+            "rate": 66.8
+          },
+          "cover_floor": {
+            "hits": 635,
+            "n": 928,
+            "rate": 68.4
+          },
+          "listed_against": {
+            "hits": 5,
+            "n": 11,
+            "rate": 45.5
+          },
+          "mean_line": 0.66,
+          "mean_l5_gap": 1.04
+        },
+        {
+          "prop": "hits",
+          "all": {
+            "hits": 1578,
+            "n": 2673,
+            "rate": 59.0
+          },
+          "listed": {
+            "hits": 565,
+            "n": 903,
+            "rate": 62.6
+          },
+          "cover_floor": {
+            "hits": 23,
+            "n": 34,
+            "rate": 67.6
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.35
+        },
+        {
+          "prop": "total_bases",
+          "all": {
+            "hits": 1575,
+            "n": 2673,
+            "rate": 58.9
+          },
+          "listed": {
+            "hits": 547,
+            "n": 873,
+            "rate": 62.7
+          },
+          "cover_floor": {
+            "hits": 311,
+            "n": 486,
+            "rate": 64.0
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.51,
+          "mean_l5_gap": 0.88
+        },
+        {
+          "prop": "hitter_ks",
+          "all": {
+            "hits": 1413,
+            "n": 2269,
+            "rate": 62.3
+          },
+          "listed": {
+            "hits": 439,
+            "n": 698,
+            "rate": 62.9
+          },
+          "cover_floor": {
+            "hits": 37,
+            "n": 47,
+            "rate": 78.7
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 1,
+            "rate": 0.0
+          },
+          "mean_line": 0.51,
+          "mean_l5_gap": 0.34
+        },
+        {
+          "prop": "pitcher_ks",
+          "all": {
+            "hits": 486,
+            "n": 679,
+            "rate": 71.6
+          },
+          "listed": {
+            "hits": 271,
+            "n": 341,
+            "rate": 79.5
+          },
+          "cover_floor": {
+            "hits": 221,
+            "n": 269,
+            "rate": 82.2
+          },
+          "listed_against": {
+            "hits": 2,
+            "n": 2,
+            "rate": 100.0
+          },
+          "mean_line": 3.72,
+          "mean_l5_gap": 1.31
+        },
+        {
+          "prop": "hits allowed",
+          "all": {
+            "hits": 520,
+            "n": 687,
+            "rate": 75.7
+          },
+          "listed": {
+            "hits": 255,
+            "n": 319,
+            "rate": 79.9
+          },
+          "cover_floor": {
+            "hits": 196,
+            "n": 236,
+            "rate": 83.1
+          },
+          "listed_against": {
+            "hits": 9,
+            "n": 13,
+            "rate": 69.2
+          },
+          "mean_line": 3.6,
+          "mean_l5_gap": 1.16
+        },
+        {
+          "prop": "earned runs allowed",
+          "all": {
+            "hits": 419,
+            "n": 570,
+            "rate": 73.5
+          },
+          "listed": {
+            "hits": 203,
+            "n": 259,
+            "rate": 78.4
+          },
+          "cover_floor": {
+            "hits": 159,
+            "n": 197,
+            "rate": 80.7
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 1.13,
+          "mean_l5_gap": 1.2
+        },
+        {
+          "prop": "walks allowed",
+          "all": {
+            "hits": 271,
+            "n": 351,
+            "rate": 77.2
+          },
+          "listed": {
+            "hits": 152,
+            "n": 185,
+            "rate": 82.2
+          },
+          "cover_floor": {
+            "hits": 82,
+            "n": 100,
+            "rate": 82.0
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.85,
+          "mean_l5_gap": 0.87
+        },
+        {
+          "prop": "pitching outs",
+          "all": {
+            "hits": 223,
+            "n": 302,
+            "rate": 73.8
+          },
+          "listed": {
+            "hits": 124,
+            "n": 166,
+            "rate": 74.7
+          },
+          "cover_floor": {
+            "hits": 90,
+            "n": 121,
+            "rate": 74.4
+          },
+          "listed_against": {
+            "hits": 17,
+            "n": 25,
+            "rate": 68.0
+          },
+          "mean_line": 14.44,
+          "mean_l5_gap": 1.39
+        },
+        {
+          "prop": "singles",
+          "all": {
+            "hits": 198,
+            "n": 363,
+            "rate": 54.5
+          },
+          "listed": {
+            "hits": 47,
+            "n": 95,
+            "rate": 49.5
+          },
+          "cover_floor": {
+            "hits": 1,
+            "n": 1,
+            "rate": 100.0
+          },
+          "listed_against": {
+            "hits": 1,
+            "n": 2,
+            "rate": 50.0
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.26
+        },
+        {
+          "prop": "pitches thrown",
+          "all": {
+            "hits": 114,
+            "n": 151,
+            "rate": 75.5
+          },
+          "listed": {
+            "hits": 68,
+            "n": 88,
+            "rate": 77.3
+          },
+          "cover_floor": {
+            "hits": 55,
+            "n": 70,
+            "rate": 78.6
+          },
+          "listed_against": {
+            "hits": 11,
+            "n": 13,
+            "rate": 84.6
+          },
+          "mean_line": 84.92,
+          "mean_l5_gap": 3.02
+        },
+        {
+          "prop": "plate appearances",
+          "all": {
+            "hits": 108,
+            "n": 198,
+            "rate": 54.5
+          },
+          "listed": {
+            "hits": 7,
+            "n": 17,
+            "rate": 41.2
+          },
+          "cover_floor": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 4.42,
+          "mean_l5_gap": -0.41
+        },
+        {
+          "prop": "runs",
+          "all": {
+            "hits": 50,
+            "n": 98,
+            "rate": 51.0
+          },
+          "listed": {
+            "hits": 9,
+            "n": 17,
+            "rate": 52.9
+          },
+          "cover_floor": {
+            "hits": 5,
+            "n": 8,
+            "rate": 62.5
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.17
+        }
+      ],
+      "Standard OVER": [
+        {
+          "prop": "hits+runs+rbis",
+          "all": {
+            "hits": 288,
+            "n": 599,
+            "rate": 48.1
+          },
+          "listed": {
+            "hits": 58,
+            "n": 122,
+            "rate": 47.5
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 1,
+            "n": 5,
+            "rate": 20.0
+          },
+          "mean_line": 1.44,
+          "mean_l5_gap": 0.79
+        },
+        {
+          "prop": "singles",
+          "all": {
+            "hits": 213,
+            "n": 468,
+            "rate": 45.5
+          },
+          "listed": {
+            "hits": 43,
+            "n": 88,
+            "rate": 48.9
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 3,
+            "rate": 0.0
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.28
+        },
+        {
+          "prop": "runs",
+          "all": {
+            "hits": 93,
+            "n": 198,
+            "rate": 47.0
+          },
+          "listed": {
+            "hits": 21,
+            "n": 43,
+            "rate": 48.8
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.27
+        },
+        {
+          "prop": "total_bases",
+          "all": {
+            "hits": 122,
+            "n": 264,
+            "rate": 46.2
+          },
+          "listed": {
+            "hits": 22,
+            "n": 41,
+            "rate": 53.7
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.83,
+          "mean_l5_gap": 0.81
+        },
+        {
+          "prop": "pitcher_ks",
+          "all": {
+            "hits": 71,
+            "n": 135,
+            "rate": 52.6
+          },
+          "listed": {
+            "hits": 15,
+            "n": 28,
+            "rate": 53.6
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 2,
+            "n": 6,
+            "rate": 33.3
+          },
+          "mean_line": 4.83,
+          "mean_l5_gap": 0.72
+        },
+        {
+          "prop": "hits",
+          "all": {
+            "hits": 66,
+            "n": 132,
+            "rate": 50.0
+          },
+          "listed": {
+            "hits": 15,
+            "n": 26,
+            "rate": 57.7
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.3
+        },
+        {
+          "prop": "pitches thrown",
+          "all": {
+            "hits": 35,
+            "n": 57,
+            "rate": 61.4
+          },
+          "listed": {
+            "hits": 13,
+            "n": 24,
+            "rate": 54.2
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 5,
+            "n": 9,
+            "rate": 55.6
+          },
+          "mean_line": 90.46,
+          "mean_l5_gap": 2.77
+        },
+        {
+          "prop": "walks allowed",
+          "all": {
+            "hits": 22,
+            "n": 44,
+            "rate": 50.0
+          },
+          "listed": {
+            "hits": 11,
+            "n": 18,
+            "rate": 61.1
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 1,
+            "rate": 0.0
+          },
+          "mean_line": 1.64,
+          "mean_l5_gap": 0.52
+        },
+        {
+          "prop": "hits allowed",
+          "all": {
+            "hits": 25,
+            "n": 51,
+            "rate": 49.0
+          },
+          "listed": {
+            "hits": 11,
+            "n": 17,
+            "rate": 64.7
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 2,
+            "n": 3,
+            "rate": 66.7
+          },
+          "mean_line": 4.81,
+          "mean_l5_gap": 0.68
+        },
+        {
+          "prop": "earned runs allowed",
+          "all": {
+            "hits": 27,
+            "n": 55,
+            "rate": 49.1
+          },
+          "listed": {
+            "hits": 6,
+            "n": 10,
+            "rate": 60.0
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 1,
+            "n": 1,
+            "rate": 100.0
+          },
+          "mean_line": 2.32,
+          "mean_l5_gap": 0.85
+        }
+      ],
+      "Standard UNDER": [
+        {
+          "prop": "hits+runs+rbis",
+          "all": {
+            "hits": 194,
+            "n": 339,
+            "rate": 57.2
+          },
+          "listed": {
+            "hits": 97,
+            "n": 179,
+            "rate": 54.2
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 32,
+            "n": 62,
+            "rate": 51.6
+          },
+          "mean_line": 1.51,
+          "mean_l5_gap": 0.51
+        },
+        {
+          "prop": "singles",
+          "all": {
+            "hits": 137,
+            "n": 248,
+            "rate": 55.2
+          },
+          "listed": {
+            "hits": 96,
+            "n": 170,
+            "rate": 56.5
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 10,
+            "n": 24,
+            "rate": 41.7
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.25
+        },
+        {
+          "prop": "total_bases",
+          "all": {
+            "hits": 79,
+            "n": 173,
+            "rate": 45.7
+          },
+          "listed": {
+            "hits": 43,
+            "n": 90,
+            "rate": 47.8
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 15,
+            "n": 32,
+            "rate": 46.9
+          },
+          "mean_line": 0.86,
+          "mean_l5_gap": 0.08
+        },
+        {
+          "prop": "runs",
+          "all": {
+            "hits": 76,
+            "n": 148,
+            "rate": 51.4
+          },
+          "listed": {
+            "hits": 50,
+            "n": 89,
+            "rate": 56.2
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 13,
+            "n": 21,
+            "rate": 61.9
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.22
+        },
+        {
+          "prop": "hits",
+          "all": {
+            "hits": 79,
+            "n": 158,
+            "rate": 50.0
+          },
+          "listed": {
+            "hits": 37,
+            "n": 72,
+            "rate": 51.4
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 5,
+            "n": 8,
+            "rate": 62.5
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.09
+        },
+        {
+          "prop": "hits allowed",
+          "all": {
+            "hits": 38,
+            "n": 70,
+            "rate": 54.3
+          },
+          "listed": {
+            "hits": 18,
+            "n": 34,
+            "rate": 52.9
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 3,
+            "n": 3,
+            "rate": 100.0
+          },
+          "mean_line": 4.92,
+          "mean_l5_gap": 1.03
+        },
+        {
+          "prop": "pitches thrown",
+          "all": {
+            "hits": 50,
+            "n": 93,
+            "rate": 53.8
+          },
+          "listed": {
+            "hits": 16,
+            "n": 33,
+            "rate": 48.5
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 90.81,
+          "mean_l5_gap": 6.19
+        },
+        {
+          "prop": "pitcher_ks",
+          "all": {
+            "hits": 53,
+            "n": 101,
+            "rate": 52.5
+          },
+          "listed": {
+            "hits": 16,
+            "n": 32,
+            "rate": 50.0
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 4,
+            "n": 4,
+            "rate": 100.0
+          },
+          "mean_line": 5.02,
+          "mean_l5_gap": 0.87
+        },
+        {
+          "prop": "earned runs allowed",
+          "all": {
+            "hits": 27,
+            "n": 50,
+            "rate": 54.0
+          },
+          "listed": {
+            "hits": 16,
+            "n": 29,
+            "rate": 55.2
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 2,
+            "n": 3,
+            "rate": 66.7
+          },
+          "mean_line": 2.46,
+          "mean_l5_gap": 0.83
+        },
+        {
+          "prop": "plate appearances",
+          "all": {
+            "hits": 32,
+            "n": 71,
+            "rate": 45.1
+          },
+          "listed": {
+            "hits": 13,
+            "n": 28,
+            "rate": 46.4
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 4.43,
+          "mean_l5_gap": 0.49
+        },
+        {
+          "prop": "pitching outs",
+          "all": {
+            "hits": 29,
+            "n": 58,
+            "rate": 50.0
+          },
+          "listed": {
+            "hits": 3,
+            "n": 9,
+            "rate": 33.3
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 16.68,
+          "mean_l5_gap": 1.54
+        }
+      ]
+    },
+    "Soccer": {
+      "Goblin OVER": [
+        {
+          "prop": "shots",
+          "all": {
+            "hits": 675,
+            "n": 1805,
+            "rate": 37.4
+          },
+          "listed": {
+            "hits": 71,
+            "n": 138,
+            "rate": 51.4
+          },
+          "cover_floor": {
+            "hits": 20,
+            "n": 39,
+            "rate": 51.3
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 1,
+            "rate": 0.0
+          },
+          "mean_line": 1.1,
+          "mean_l5_gap": -0.16
+        },
+        {
+          "prop": "shots on target",
+          "all": {
+            "hits": 198,
+            "n": 557,
+            "rate": 35.5
+          },
+          "listed": {
+            "hits": 19,
+            "n": 44,
+            "rate": 43.2
+          },
+          "cover_floor": {
+            "hits": 4,
+            "n": 7,
+            "rate": 57.1
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 1,
+            "rate": 0.0
+          },
+          "mean_line": 0.52,
+          "mean_l5_gap": 0.05
+        },
+        {
+          "prop": "saves",
+          "all": {
+            "hits": 90,
+            "n": 197,
+            "rate": 45.7
+          },
+          "listed": {
+            "hits": 23,
+            "n": 34,
+            "rate": 67.6
+          },
+          "cover_floor": {
+            "hits": 13,
+            "n": 20,
+            "rate": 65.0
+          },
+          "listed_against": {
+            "hits": 2,
+            "n": 2,
+            "rate": 100.0
+          },
+          "mean_line": 2.1,
+          "mean_l5_gap": -0.09
+        },
+        {
+          "prop": "goal + assist",
+          "all": {
+            "hits": 13,
+            "n": 41,
+            "rate": 31.7
+          },
+          "listed": {
+            "hits": 3,
+            "n": 9,
+            "rate": 33.3
+          },
+          "cover_floor": {
+            "hits": 2,
+            "n": 4,
+            "rate": 50.0
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.5,
+          "mean_l5_gap": 0.16
+        },
+        {
+          "prop": "fouls",
+          "all": {
+            "hits": 30,
+            "n": 67,
+            "rate": 44.8
+          },
+          "listed": {
+            "hits": 2,
+            "n": 5,
+            "rate": 40.0
+          },
+          "cover_floor": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.81,
+          "mean_l5_gap": -0.14
+        },
+        {
+          "prop": "fouls drawn",
+          "all": {
+            "hits": 93,
+            "n": 220,
+            "rate": 42.3
+          },
+          "listed": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "cover_floor": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 0.67,
+          "mean_l5_gap": null
+        }
+      ],
+      "Standard OVER": [],
+      "Standard UNDER": []
+    },
+    "Tennis": {
+      "Goblin OVER": [
+        {
+          "prop": "games_won",
+          "all": {
+            "hits": 547,
+            "n": 744,
+            "rate": 73.5
+          },
+          "listed": {
+            "hits": 240,
+            "n": 326,
+            "rate": 73.6
+          },
+          "cover_floor": {
+            "hits": 168,
+            "n": 239,
+            "rate": 70.3
+          },
+          "listed_against": {
+            "hits": 14,
+            "n": 17,
+            "rate": 82.4
+          },
+          "mean_line": 9.01,
+          "mean_l5_gap": 2.19
+        },
+        {
+          "prop": "total games",
+          "all": {
+            "hits": 353,
+            "n": 497,
+            "rate": 71.0
+          },
+          "listed": {
+            "hits": 202,
+            "n": 272,
+            "rate": 74.3
+          },
+          "cover_floor": {
+            "hits": 191,
+            "n": 255,
+            "rate": 74.9
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 18.95,
+          "mean_l5_gap": 5.23
+        },
+        {
+          "prop": "double_faults",
+          "all": {
+            "hits": 0,
+            "n": 440,
+            "rate": 0.0
+          },
+          "listed": {
+            "hits": 0,
+            "n": 40,
+            "rate": 0.0
+          },
+          "cover_floor": {
+            "hits": 0,
+            "n": 4,
+            "rate": 0.0
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 0,
+            "rate": null
+          },
+          "mean_line": 3.39,
+          "mean_l5_gap": -0.29
+        },
+        {
+          "prop": "aces",
+          "all": {
+            "hits": 0,
+            "n": 454,
+            "rate": 0.0
+          },
+          "listed": {
+            "hits": 0,
+            "n": 31,
+            "rate": 0.0
+          },
+          "cover_floor": {
+            "hits": 0,
+            "n": 5,
+            "rate": 0.0
+          },
+          "listed_against": {
+            "hits": 0,
+            "n": 2,
+            "rate": 0.0
+          },
+          "mean_line": 4.04,
+          "mean_l5_gap": -0.7
+        }
+      ],
+      "Standard OVER": [
+        {
+          "prop": "total games",
+          "all": {
+            "hits": 93,
+            "n": 151,
+            "rate": 61.6
+          },
+          "listed": {
+            "hits": 33,
+            "n": 55,
+            "rate": 60.0
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 1,
+            "n": 2,
+            "rate": 50.0
+          },
+          "mean_line": 21.17,
+          "mean_l5_gap": 4.4
+        },
+        {
+          "prop": "games_won",
+          "all": {
+            "hits": 50,
+            "n": 108,
+            "rate": 46.3
+          },
+          "listed": {
+            "hits": 19,
+            "n": 39,
+            "rate": 48.7
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 1,
+            "rate": 0.0
+          },
+          "mean_line": 9.9,
+          "mean_l5_gap": 2.44
+        }
+      ],
+      "Standard UNDER": [
+        {
+          "prop": "total games",
+          "all": {
+            "hits": 37,
+            "n": 65,
+            "rate": 56.9
+          },
+          "listed": {
+            "hits": 21,
+            "n": 38,
+            "rate": 55.3
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 5,
+            "n": 11,
+            "rate": 45.5
+          },
+          "mean_line": 21.83,
+          "mean_l5_gap": 2.35
+        },
+        {
+          "prop": "aces",
+          "all": {
+            "hits": 32,
+            "n": 32,
+            "rate": 100.0
+          },
+          "listed": {
+            "hits": 24,
+            "n": 24,
+            "rate": 100.0
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 1,
+            "n": 1,
+            "rate": 100.0
+          },
+          "mean_line": 5.89,
+          "mean_l5_gap": 2.13
+        },
+        {
+          "prop": "games_won",
+          "all": {
+            "hits": 34,
+            "n": 67,
+            "rate": 50.7
+          },
+          "listed": {
+            "hits": 8,
+            "n": 20,
+            "rate": 40.0
+          },
+          "cover_floor": null,
+          "listed_against": {
+            "hits": 0,
+            "n": 2,
+            "rate": 0.0
+          },
+          "mean_line": 11.49,
+          "mean_l5_gap": 2.25
+        }
+      ]
+    }
+  },
+  "findings": [
+    {
+      "kind": "cover_lifts",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "listed": {
+        "hits": 565,
+        "n": 903,
+        "rate": 62.6
+      },
+      "cover_floor": {
+        "hits": 23,
+        "n": 34,
+        "rate": 67.6
+      }
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hitter_ks",
+      "all": {
+        "hits": 1413,
+        "n": 2269,
+        "rate": 62.3
+      },
+      "listed": {
+        "hits": 439,
+        "n": 698,
+        "rate": 62.9
+      }
+    },
+    {
+      "kind": "cover_lifts",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hitter_ks",
+      "listed": {
+        "hits": 439,
+        "n": 698,
+        "rate": 62.9
+      },
+      "cover_floor": {
+        "hits": 37,
+        "n": 47,
+        "rate": 78.7
+      }
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "pitcher_ks",
+      "listed": {
+        "hits": 271,
+        "n": 341,
+        "rate": 79.5
+      },
+      "note": null
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hits allowed",
+      "listed": {
+        "hits": 255,
+        "n": 319,
+        "rate": 79.9
+      },
+      "note": "cover floor lifts 79.9 -> 83.1 (n=236)"
+    },
+    {
+      "kind": "cover_lifts",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hits allowed",
+      "listed": {
+        "hits": 255,
+        "n": 319,
+        "rate": 79.9
+      },
+      "cover_floor": {
+        "hits": 196,
+        "n": 236,
+        "rate": 83.1
+      }
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "earned runs allowed",
+      "listed": {
+        "hits": 203,
+        "n": 259,
+        "rate": 78.4
+      },
+      "note": null
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "walks allowed",
+      "listed": {
+        "hits": 152,
+        "n": 185,
+        "rate": 82.2
+      },
+      "note": null
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "pitching outs",
+      "listed": {
+        "hits": 124,
+        "n": 166,
+        "rate": 74.7
+      },
+      "note": null
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "pitching outs",
+      "all": {
+        "hits": 223,
+        "n": 302,
+        "rate": 73.8
+      },
+      "listed": {
+        "hits": 124,
+        "n": 166,
+        "rate": 74.7
+      }
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "singles",
+      "all": {
+        "hits": 198,
+        "n": 363,
+        "rate": 54.5
+      },
+      "listed": {
+        "hits": 47,
+        "n": 95,
+        "rate": 49.5
+      }
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "pitches thrown",
+      "listed": {
+        "hits": 68,
+        "n": 88,
+        "rate": 77.3
+      },
+      "note": null
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "prop": "hits+runs+rbis",
+      "all": {
+        "hits": 288,
+        "n": 599,
+        "rate": 48.1
+      },
+      "listed": {
+        "hits": 58,
+        "n": 122,
+        "rate": 47.5
+      }
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "hits+runs+rbis",
+      "all": {
+        "hits": 194,
+        "n": 339,
+        "rate": 57.2
+      },
+      "listed": {
+        "hits": 97,
+        "n": 179,
+        "rate": 54.2
+      }
+    },
+    {
+      "kind": "under_against",
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "hits+runs+rbis",
+      "against": {
+        "hits": 32,
+        "n": 62,
+        "rate": 51.6
+      },
+      "listed": {
+        "hits": 97,
+        "n": 179,
+        "rate": 54.2
+      }
+    },
+    {
+      "kind": "under_against",
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "singles",
+      "against": {
+        "hits": 10,
+        "n": 24,
+        "rate": 41.7
+      },
+      "listed": {
+        "hits": 96,
+        "n": 170,
+        "rate": 56.5
+      }
+    },
+    {
+      "kind": "under_against",
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "total_bases",
+      "against": {
+        "hits": 15,
+        "n": 32,
+        "rate": 46.9
+      },
+      "listed": {
+        "hits": 43,
+        "n": 90,
+        "rate": 47.8
+      }
+    },
+    {
+      "kind": "under_against",
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "runs",
+      "against": {
+        "hits": 13,
+        "n": 21,
+        "rate": 61.9
+      },
+      "listed": {
+        "hits": 50,
+        "n": 89,
+        "rate": 56.2
+      }
+    },
+    {
+      "kind": "fade_prop",
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "prop": "shots on target",
+      "listed": {
+        "hits": 19,
+        "n": 44,
+        "rate": 43.2
+      },
+      "note": "listed HR <=45%"
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "Tennis",
+      "book": "Goblin OVER",
+      "prop": "games_won",
+      "listed": {
+        "hits": 240,
+        "n": 326,
+        "rate": 73.6
+      },
+      "note": "cover floor HURTS 73.6 -> 70.3"
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "Tennis",
+      "book": "Goblin OVER",
+      "prop": "games_won",
+      "all": {
+        "hits": 547,
+        "n": 744,
+        "rate": 73.5
+      },
+      "listed": {
+        "hits": 240,
+        "n": 326,
+        "rate": 73.6
+      }
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "Tennis",
+      "book": "Goblin OVER",
+      "prop": "total games",
+      "listed": {
+        "hits": 202,
+        "n": 272,
+        "rate": 74.3
+      },
+      "note": null
+    },
+    {
+      "kind": "fade_prop",
+      "sport": "Tennis",
+      "book": "Goblin OVER",
+      "prop": "double_faults",
+      "listed": {
+        "hits": 0,
+        "n": 40,
+        "rate": 0.0
+      },
+      "note": "listed HR <=45%"
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "Tennis",
+      "book": "Goblin OVER",
+      "prop": "double_faults",
+      "all": {
+        "hits": 0,
+        "n": 440,
+        "rate": 0.0
+      },
+      "listed": {
+        "hits": 0,
+        "n": 40,
+        "rate": 0.0
+      }
+    },
+    {
+      "kind": "fade_prop",
+      "sport": "Tennis",
+      "book": "Goblin OVER",
+      "prop": "aces",
+      "listed": {
+        "hits": 0,
+        "n": 31,
+        "rate": 0.0
+      },
+      "note": "listed HR <=45%"
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "Tennis",
+      "book": "Standard OVER",
+      "prop": "total games",
+      "all": {
+        "hits": 93,
+        "n": 151,
+        "rate": 61.6
+      },
+      "listed": {
+        "hits": 33,
+        "n": 55,
+        "rate": 60.0
+      }
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "points",
+      "listed": {
+        "hits": 418,
+        "n": 562,
+        "rate": 74.4
+      },
+      "note": "cover floor lifts 74.4 -> 77.8 (n=468)"
+    },
+    {
+      "kind": "cover_lifts",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "points",
+      "listed": {
+        "hits": 418,
+        "n": 562,
+        "rate": 74.4
+      },
+      "cover_floor": {
+        "hits": 364,
+        "n": 468,
+        "rate": 77.8
+      }
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "rebounds",
+      "listed": {
+        "hits": 298,
+        "n": 405,
+        "rate": 73.6
+      },
+      "note": "cover floor lifts 73.6 -> 80.0 (n=140)"
+    },
+    {
+      "kind": "cover_lifts",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "rebounds",
+      "listed": {
+        "hits": 298,
+        "n": 405,
+        "rate": 73.6
+      },
+      "cover_floor": {
+        "hits": 112,
+        "n": 140,
+        "rate": 80.0
+      }
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "pra",
+      "listed": {
+        "hits": 200,
+        "n": 279,
+        "rate": 71.7
+      },
+      "note": null
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "assists",
+      "listed": {
+        "hits": 190,
+        "n": 256,
+        "rate": 74.2
+      },
+      "note": null
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "pts+reb",
+      "listed": {
+        "hits": 170,
+        "n": 228,
+        "rate": 74.6
+      },
+      "note": null
+    },
+    {
+      "kind": "cover_lifts",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "reb+ast",
+      "listed": {
+        "hits": 137,
+        "n": 202,
+        "rate": 67.8
+      },
+      "cover_floor": {
+        "hits": 76,
+        "n": 99,
+        "rate": 76.8
+      }
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "pts+ast",
+      "listed": {
+        "hits": 135,
+        "n": 191,
+        "rate": 70.7
+      },
+      "note": null
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "pts+ast",
+      "all": {
+        "hits": 229,
+        "n": 328,
+        "rate": 69.8
+      },
+      "listed": {
+        "hits": 135,
+        "n": 191,
+        "rate": 70.7
+      }
+    },
+    {
+      "kind": "keep_hot",
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "threes",
+      "listed": {
+        "hits": 127,
+        "n": 175,
+        "rate": 72.6
+      },
+      "note": null
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "prop": "points",
+      "all": {
+        "hits": 123,
+        "n": 239,
+        "rate": 51.5
+      },
+      "listed": {
+        "hits": 30,
+        "n": 64,
+        "rate": 46.9
+      }
+    },
+    {
+      "kind": "l5_no_lift",
+      "sport": "WNBA",
+      "book": "Standard UNDER",
+      "prop": "points",
+      "all": {
+        "hits": 75,
+        "n": 155,
+        "rate": 48.4
+      },
+      "listed": {
+        "hits": 21,
+        "n": 43,
+        "rate": 48.8
+      }
+    }
+  ]
+}

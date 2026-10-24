@@ -23,7 +23,7 @@ import json
 import math
 import sys
 from typing import Dict, Optional
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import joblib
@@ -132,27 +132,76 @@ def _attach_h2h(
         print(f"  [H2H] Cache missing player ({p_col}) or opp ({o_col}) column — skipping")
         return df
 
-    # Stat column map matching prop_value() logic
-    stat_cols = {c: c for c in ["pts","reb","ast","stl","blk","to","3pm"] if c in cache.columns}
+    # Stat column map matching prop_value() logic (basketball or CFB cache)
+    hoop_cols = [c for c in ["pts", "reb", "ast", "stl", "blk", "to", "3pm"] if c in cache.columns]
+    cfb_cols = [
+        c for c in [
+            "pass_yds", "rush_yds", "rec_yds", "rec", "pass_td", "rush_td", "rec_td",
+            "kick_pts", "pass_int", "pass_cmp", "sack", "tack_tot",
+        ]
+        if c in cache.columns
+    ]
+    stat_cols = {c: c for c in (hoop_cols or cfb_cols)}
     if not stat_cols:
         print(f"  [H2H] Cache has no stat columns — skipping")
         return df
+    is_cfb_cache = bool(cfb_cols) and not hoop_cols
 
     def _norm(x):
         return str(x).strip().lower() if x and str(x).strip() else ""
 
+    def _num(row, *keys):
+        for k in keys:
+            v = row.get(k)
+            if v in (None, "", "nan", "None"):
+                continue
+            try:
+                return float(v)
+            except (TypeError, ValueError):
+                continue
+        return 0.0
+
     def _cache_prop_value(row, prop_norm: str):
         """Compute the stat value for a prop type from a cache row."""
         p = str(prop_norm).lower().strip()
-        pts = float(row.get("pts") or 0)
-        reb = float(row.get("reb") or 0)
-        ast = float(row.get("ast") or 0)
-        stl = float(row.get("stl") or 0)
-        blk = float(row.get("blk") or 0)
-        tov = float(row.get("to") or 0)
+        if is_cfb_cache:
+            py = _num(row, "pass_yds")
+            ry = _num(row, "rush_yds")
+            rcy = _num(row, "rec_yds")
+            rec = _num(row, "rec")
+            ptd = _num(row, "pass_td")
+            rtd = _num(row, "rush_td")
+            rctd = _num(row, "rec_td")
+            cmp_v = _num(row, "pass_cmp", "PASS_CMP")
+            if cmp_v == 0 and py > 0:
+                cmp_v = None
+            m = {
+                "pass_yds": py, "passing_yards": py,
+                "rush_yds": ry, "rushing_yards": ry,
+                "rec_yds": rcy, "receiving_yards": rcy,
+                "rec": rec, "receptions": rec,
+                "pass_td": ptd, "pass_tds": ptd,
+                "rush_td": rtd, "rush_tds": rtd,
+                "rec_td": rctd, "rec_tds": rctd,
+                "kick_pts": _num(row, "kick_pts"),
+                "kicking_points": _num(row, "kick_pts"),
+                "int": _num(row, "pass_int", "def_int"),
+                "pass_cmp": cmp_v,
+                "pass_completions": cmp_v,
+                "completions": cmp_v,
+                "pass_rush_yds": py + ry,
+                "rush_rec_yds": ry + rcy,
+                "player_td": ptd + rtd + rctd,
+            }
+            return m.get(p)
+        pts = _num(row, "pts")
+        reb = _num(row, "reb")
+        ast = _num(row, "ast")
+        stl = _num(row, "stl")
+        blk = _num(row, "blk")
+        tov = _num(row, "to")
         tpm = row.get("3pm")
         tpm = float(tpm) if tpm not in (None, "", "nan") else None
-
         m = {"pts": pts, "reb": reb, "ast": ast, "stl": stl, "blk": blk,
              "tov": tov, "to": tov, "3pm": tpm, "fg3m": tpm,
              "stocks": stl + blk,
@@ -210,7 +259,7 @@ def _attach_h2h(
 
         vals = [v for e in entries_sorted
                 if (v := _cache_prop_value(e, prop)) is not None
-                and float(e.get("min") or e.get("MIN") or 0) > 0]
+                and (is_cfb_cache or float(e.get("min") or e.get("MIN") or 0) > 0)]
 
         if not vals:
             continue
@@ -275,7 +324,7 @@ def _normalize_prop_type(raw: str) -> str:
     m = _bpc_pc_cbb()
     if not m:
         return str(raw or "").strip()
-    return m._normalize_prop_type(str(raw), "CBB")
+    return m._normalize_prop_type(str(raw), "CFB")
 
 
 def _get_line_bucket(prop_type: str, line: float, sport: str) -> str:
@@ -452,11 +501,11 @@ def _infer_cbb_n_teams(out: pd.DataFrame) -> float:
         None,
     )
     if not col:
-        return 362.0
+        return 130.0
     mx = _to_num(out[col]).max()
     if pd.isna(mx):
-        return 362.0
-    return 362.0 if float(mx) > 40 else 30.0
+        return 130.0
+    return max(float(mx), 130.0)
 
 
 def _edge_transform(edge: float, cap=3.0, power=0.85) -> float:
@@ -491,7 +540,7 @@ if _sd_ml_cbb not in sys.path:
 try:
     from ml_blend_weight import load_ml_blend_weight  # noqa: E402
 
-    ML_BLEND_WEIGHT = float(load_ml_blend_weight(_repo_root_ml_cbb(), "cbb"))
+    ML_BLEND_WEIGHT = float(load_ml_blend_weight(_repo_root_ml_cbb(), "cfb"))
 except Exception:
     ML_BLEND_WEIGHT = 0.30
 try:
@@ -579,14 +628,11 @@ def _apply_ml_blend(out: pd.DataFrame, existing_score: pd.Series, source_hint: s
             return pd.Series(np.nan, index=out.index), pd.Series(np.nan, index=out.index), existing_score.copy()
     except Exception:
         pass
-    source_key = str(source_hint).lower()
-    model_keys = ["cbb"]
-    if "wcbb" in source_key:
-        model_keys = ["wcbb", "cbb"]
+    model_keys = ["cfb"]
 
     model_path = None
     feat_path = None
-    model_key_used = "cbb"
+    model_key_used = "cfb"
     for mk in model_keys:
         mp = root / "models" / f"prop_model_{mk}.pkl"
         fp = root / "models" / f"prop_model_{mk}_features.json"
@@ -597,14 +643,14 @@ def _apply_ml_blend(out: pd.DataFrame, existing_score: pd.Series, source_hint: s
             break
 
     if model_path is None or feat_path is None:
-        print(f"⚠️  CBB/WCBB ML model missing for keys {model_keys} — skipping ML blend")
+        print(f"⚠️  CFB ML model missing for keys {model_keys} — skipping ML blend")
         return pd.Series(np.nan, index=out.index), pd.Series(np.nan, index=out.index), existing_score.copy()
 
     try:
         model = joblib.load(model_path)
         model_features = json.loads(feat_path.read_text(encoding="utf-8"))
     except Exception as e:
-        print(f"⚠️  Failed loading CBB ML model: {e} — skipping ML blend")
+        print(f"⚠️  Failed loading CFB ML model: {e} — skipping ML blend")
         return pd.Series(np.nan, index=out.index), pd.Series(np.nan, index=out.index), existing_score.copy()
 
     calibrator = None
@@ -662,21 +708,41 @@ def _apply_ml_blend(out: pd.DataFrame, existing_score: pd.Series, source_hint: s
         else:
             ml_prob = raw_prob
     except Exception as e:
-        print(f"⚠️  CBB ML inference failed: {e} — skipping ML blend")
+        print(f"⚠️  CFB ML inference failed: {e} — skipping ML blend")
         return pd.Series(np.nan, index=out.index), pd.Series(np.nan, index=out.index), existing_score.copy()
 
     ml_prob = _cbb_meta_adjust_ml_prob(out, ml_prob, model_key_used, root)
     ml_prob = pd.to_numeric(ml_prob, errors="coerce").clip(lower=0.001, upper=CFB_ML_PROB_MAX)
     ml_edge = ml_prob - 0.5
     final_score = (1.0 - blend_w) * existing_score + blend_w * ml_edge
-    print(f"✅ CBB ML blend applied (model={model_key_used}, weight={blend_w:.2f})")
+    print(f"✅ CFB ML blend applied (model={model_key_used}, weight={blend_w:.2f})")
     return ml_prob, ml_edge, final_score
 
 
 def _pick_cfb_boxscore_cache(explicit: str, input_csv: str) -> str:
-    """Prefer the largest on-disk CFB boxscore CSV so H2H sees full history."""
+    """Prefer the largest on-disk CFB boxscore CSV so H2H sees full history.
+
+    CFB1H must stay on the first-half PBP cache — never swap in full-game yards.
+    """
     import os
     from pathlib import Path
+
+    hint = f"{explicit} {input_csv}".lower().replace("\\", "/")
+    if "cfb1h" in hint or "cfb_1h" in hint:
+        if explicit and str(explicit).strip():
+            ep = Path(explicit)
+            if not ep.is_absolute():
+                cwd_p = Path.cwd() / ep
+                if cwd_p.is_file():
+                    return str(cwd_p)
+                root = Path(__file__).resolve().parents[4]
+                repo_p = root / ep
+                if repo_p.is_file():
+                    return str(repo_p)
+                ep = Path(input_csv).resolve().parent / ep
+            return str(ep)
+        root = Path(__file__).resolve().parents[4]
+        return str(root / "data" / "cache" / "cfb1h_boxscore_cache.csv")
 
     root = Path(input_csv).resolve().parent
     cands: list[Path] = []
@@ -721,15 +787,21 @@ def main():
     ap.add_argument("--input",      required=True)
     ap.add_argument("--output",     default="step6_ranked_cfb.xlsx")
     ap.add_argument("--output_csv", default="")
-    ap.add_argument("--cache", default="cbb_boxscore_cache.csv", help="Path to CBB boxscore cache CSV")
-    ap.add_argument("--date", default="", help="Filter to YYYY-MM-DD using start_time")
+    ap.add_argument("--cache", default="cfb_boxscore_cache.csv", help="Path to CFB boxscore cache CSV")
+    ap.add_argument("--date", default="", help="Filter start_time to this date (and --date-window-days after)")
+    ap.add_argument(
+        "--date-window-days",
+        type=int,
+        default=3,
+        help="Keep games on --date through --date+N (CFB Thu–Sun board). 0 = exact day only.",
+    )
     ap.add_argument(
         "--injuries-csv",
         default="",
-        help="injuries_cbb_*.csv (optional). If empty and --date set, tries outputs/<date>/injuries_cbb_<date>.csv",
+        help="injuries_cfb_*.csv (optional). If empty and --date set, tries outputs/<date>/injuries_cfb_<date>.csv",
     )
     args = ap.parse_args()
-    print("[PropORACLE-step6_rank_props_cbb] Starting...")
+    print("[PropORACLE-step6_rank_props_cfb] Starting...")
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
 
     df = pd.read_csv(args.input, dtype=str).fillna("")
@@ -740,13 +812,16 @@ def main():
         sys.path.insert(0, _sd_usage)
     try:
         from usage_redistribution import apply_usage_redistribution  # noqa: E402
-        _sport_usage = "WCBB" if "wcbb" in str(args.input).lower() else "CBB"
+        _sport_usage = "CFB"
         _run_date = str(args.date or datetime.now().strftime("%Y-%m-%d"))[:10]
         df = apply_usage_redistribution(df, sport=_sport_usage, date=_run_date, repo_root=str(_repo_usage))
     except Exception as e:
         print(f"⚠️ usage redistribution skipped: {e}")
 
     slate_game_date = (args.date or datetime.now().strftime("%Y-%m-%d")).strip()
+    # Known-dead CBB leftover: CFB/CFB1H input paths never contain "wcbb", so
+    # is_wcbb_slate is always False on the live run_pipeline CFB path. Leave the
+    # branches in place — a CBB grep hit here is not a third sport-string bug.
     is_wcbb_slate = "wcbb" in str(args.input).lower()
 
     # Full-slate ESPN team_id -> PP abbr (needed to backfill opp_team_abbr in boxscore cache for H2H).
@@ -763,7 +838,16 @@ def main():
         total = len(df)
         start_dt = pd.to_datetime(df["start_time"], errors="coerce")
         start_dates = start_dt.dt.strftime("%Y-%m-%d")
-        keep_mask = start_dates.eq(target_date)
+        window_days = max(0, int(getattr(args, "date_window_days", 0) or 0))
+        try:
+            window_start = datetime.strptime(str(target_date)[:10], "%Y-%m-%d").date()
+            allowed = {
+                (window_start + timedelta(days=i)).strftime("%Y-%m-%d")
+                for i in range(window_days + 1)
+            }
+        except ValueError:
+            allowed = {str(target_date)[:10]}
+        keep_mask = start_dates.isin(allowed) if window_days > 0 else start_dates.eq(target_date)
         kept = int(keep_mask.sum())
         if kept == 0:
             counts = start_dates.value_counts(dropna=True)
@@ -786,15 +870,16 @@ def main():
                 keep_mask = start_dates.eq(fallback_date)
                 kept = int(keep_mask.sum())
                 print(
-                    f"[DateFilter] No rows for {target_date}; "
+                    f"[DateFilter] No rows for {target_date}..+{window_days}; "
                     f"falling back to largest available slate date {fallback_date} "
                     f"({kept} rows)."
                 )
         df = df.loc[keep_mask].copy()
-        picked_date = target_date if kept and target_date in set(start_dates[keep_mask].dropna()) else (
-            start_dates[keep_mask].dropna().iloc[0] if kept else target_date
+        kept_days = sorted({str(d) for d in start_dates[keep_mask].dropna().unique() if str(d)})
+        window_label = (
+            f"{kept_days[0]}..{kept_days[-1]}" if len(kept_days) > 1 else (kept_days[0] if kept_days else target_date)
         )
-        print(f"[DateFilter] Kept {kept}/{total} rows for {picked_date} (dropped {total - kept} rows)")
+        print(f"[DateFilter] Kept {kept}/{total} rows for {window_label} (dropped {total - kept} rows)")
         if df.empty:
             print("⚠️ Date filter returned no rows; writing empty outputs.")
             # Graceful no-slate day: produce empty artifacts and exit 0 so
@@ -863,8 +948,8 @@ def main():
     eligible.loc[miss]   = False
     void_reason.loc[miss] = "NO_PROJECTION_OR_LINE"
 
-    # Drop Demon entirely + neg-edge Goblin to audit sheet (not eligible)
-    # WCBB can have much thinner markets; keep these rows in active sheets.
+    # Mark Demon + neg-edge Goblin ticket-ineligible, but keep them on ALL so the
+    # grader can record Demon OVER hit rates (data collection). WCBB keeps all rows.
     is_demon     = pick_type.apply(lambda x: _norm_pick_type(x) == "Demon")
     goblin_neg   = pick_type.apply(lambda x: _norm_pick_type(x) == "Goblin") & (out.get("edge", pd.Series(0.0, index=out.index)).pipe(lambda s: pd.to_numeric(s, errors="coerce")).fillna(0) < 0)
     drop_mask    = pd.Series(False, index=out.index) if is_wcbb_slate else (is_demon | goblin_neg)
@@ -893,7 +978,7 @@ def main():
         else:
             max_rank = def_rank_num.max()
             # FBS ~130 teams; CBB D1 ~362 when mis-routed
-            n_teams = 130.0 if max_rank <= 140 else (362.0 if max_rank > 40 else 30.0)
+            n_teams = 130.0
         mid_rank = (n_teams + 1.0) / 2.0
         nt = int(n_teams) if not pd.isna(n_teams) else 130
         prior_tier = out.get("def_tier", pd.Series("", index=out.index)).astype(str).str.strip()
@@ -907,8 +992,8 @@ def main():
         )
     else:
         def_rank_num = pd.Series([np.nan] * len(out), index=out.index)
-        n_teams  = 362.0
-        mid_rank = 181.5
+        n_teams  = 130.0
+        mid_rank = 65.5
 
     def _def_adj(row_idx):
         rank = def_rank_num.iloc[row_idx]
@@ -1028,7 +1113,10 @@ def main():
 
     _inj_cbb_path = str(args.injuries_csv or "").strip()
     if not _inj_cbb_path and slate_game_date:
-        _cand_c = auto_injuries_csv_from_outputs(_repo_cbb, slate_game_date, "CBB")
+        # Same class as game_script_risk sport=CBB: do not auto-load basketball
+        # injury CSVs. Shared college abbrs (MICH, USC) would join once hoops
+        # files exist. Missing football injury files is a clean no-op.
+        _cand_c = auto_injuries_csv_from_outputs(_repo_cbb, slate_game_date, "CFB")
         _inj_cbb_path = str(_cand_c) if _cand_c else ""
     _player_inj = next((c for c in ("player", "player_name", "pp_player") if c in out.columns), "player")
     _team_inj = next((c for c in ("team", "team_abbr", "pp_team") if c in out.columns), "team")
@@ -1155,7 +1243,11 @@ def main():
         _gd = str(_gd_series.iloc[_i])
         _tm = str(_r.get(_team_col, "") or "").strip()
         _pt = str(_r.get(_prop_gs, "") or "").strip()
-        _gm, _gn = get_game_script_multiplier(_tm, "CBB", _pt, _gd)
+        # CFB is not in game_lines.db, so this stays the 0.97 "no spread" no-op.
+        # Passing sport=CBB was a copy-paste: basketball total/prop branches
+        # would fire on any CFB/CBB abbr collision once CBB tips off. Do not
+        # add CFB to fetch_game_lines without football-specific bands.
+        _gm, _gn = get_game_script_multiplier(_tm, "CFB", _pt, _gd)
         _gmults.append(round(float(_gm), 3))
         _gnotes.append(_gn)
     out["game_script_mult"] = _gmults
@@ -1191,6 +1283,41 @@ def main():
     out["bet_direction"] = final_dir
     out["recommended_side"] = final_dir
 
+    from utils.cfb_clock_script import clock_script_multiplier, rush_rate, top_minutes
+
+    _clock_m: list[float] = []
+    _clock_n: list[str] = []
+    _dir_s = out["final_bet_direction"].astype(str)
+    for _i in range(len(out)):
+        _r = out.iloc[_i]
+        _pt = str(_r.get(_prop_gs, "") or "").strip()
+        _tr = rush_rate(_r.get("team_rush_off_att_pg"), _r.get("team_pass_off_att_pg"))
+        if _tr is None:
+            _tr = pd.to_numeric(_r.get("team_rush_rate"), errors="coerce")
+            _tr = None if pd.isna(_tr) else float(_tr)
+        _or = rush_rate(_r.get("opp_rush_off_att_pg"), _r.get("opp_pass_off_att_pg"))
+        if _or is None:
+            _or = pd.to_numeric(_r.get("opp_rush_rate"), errors="coerce")
+            _or = None if pd.isna(_or) else float(_or)
+        _cm, _cn = clock_script_multiplier(
+            _pt,
+            str(_dir_s.iloc[_i]),
+            team_rush_rate=_tr,
+            opp_rush_rate=_or,
+            team_plays_pg=_r.get("team_plays_off_pg"),
+            opp_plays_pg=_r.get("opp_plays_off_pg"),
+            team_top_min=top_minutes(_r.get("team_top_sec_pg")),
+            opp_top_min=top_minutes(_r.get("opp_top_sec_pg")),
+        )
+        _clock_m.append(float(_cm))
+        _clock_n.append(_cn)
+    out["clock_script_mult"] = _clock_m
+    out["clock_script_note"] = _clock_n
+    out["final_score"] = pd.to_numeric(out["final_score"], errors="coerce").astype(float) * pd.Series(
+        _clock_m, dtype=float
+    ).values
+    out["rank_score"] = out["final_score"]
+
     # Shared Standard/Goblin/Demon tiering (play-side ml_prob for Standard OVER/UNDER).
     out["tier"] = assign_tier_column(out, sport="cfb")
     report_goblin_demon_standard_line_fill(out, "[CFB step6]")
@@ -1215,10 +1342,11 @@ def main():
     out.drop(columns=drop_cols, inplace=True)
 
     # ── Sort ──────────────────────────────────────────────────────────────────
+    # Demons / neg-edge Goblins stay on ALL (grader data collection) and also on
+    # DROPPED as an audit mirror. ELIGIBLE still excludes them via eligible=0.
     drop_mask_final = out["void_reason"].isin(["DROPPED_DEMON_AUDIT", "DROPPED_NEG_EDGE_GOBDEM"])
     dropped_df  = out[drop_mask_final].copy()
-    out_active  = out[~drop_mask_final].copy()
-    out_sorted  = out_active.sort_values("final_score", ascending=False, na_position="last")
+    out_sorted  = out.sort_values("final_score", ascending=False, na_position="last")
     elig_sorted = elig_mask.reindex(out_sorted.index).fillna(False)
 
     # ── Head-to-Head stats ───────────────────────────────────────────────────
@@ -1231,7 +1359,7 @@ def main():
         out = _attach_h2h(
             out,
             cache_for_h2h,
-            "cbb",
+            "cfb",
             player_col,
             opp_col,
             prop_col,
@@ -1256,8 +1384,8 @@ def main():
     write_excel_sheets(args.output, sheets)
     write_parquet_sidecar(out_sorted, args.output)
     print(f"✅ Saved → {args.output}")
-    print(f"ALL rows (active) : {len(out_sorted)}")
-    print(f"DROPPED rows      : {len(dropped_df)}  (Demon + neg-edge Goblin, audit only)")
+    print(f"ALL rows (incl. Demon observe) : {len(out_sorted)}")
+    print(f"DROPPED audit mirror : {len(dropped_df)}  (Demon + neg-edge Goblin; still on ALL)")
     print("Tier breakdown:")
     print(out_sorted["tier"].value_counts().to_string())
     print("\nVoid reasons (active):")

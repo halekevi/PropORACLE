@@ -1,0 +1,159 @@
+L5=5 props  tip/slate=2026-10-22  ranked by gap (L5avg vs line, play-side)
+gap OVER = L5avg-line | gap UNDER = line-L5avg
+sources: nba:outputs\2026-10-22\step8_nba_direction_clean_2026-10-22.xlsx n=107 | cfb:outputs\2026-10-21\cfb\step8_cfb_direction_clean.parquet n=24 | soccer:step8_soccer_direction_clean.parquet (0 L5=5) | tennis:step8_tennis_direction_clean.parquet (0 L5=5) | nhl:step8_nhl_direction_clean.parquet (0 L5=5) | nfl:outputs\2026-10-21\nfl\step8_nfl_direction_clean.parquet n=4 | wnba:step8_wnba_direction_clean.parquet (0 L5=5) | mlb:step8_mlb_direction_clean.xlsx (0 L5=5) | golf:outputs\2026-10-21\golf\step8_golf_direction_clean.parquet n=14
+
+===== Goblin OVER (n=130) =====
+  1. [CFB   ] Marcus Stokes            Pass Yards             O159.5    L5avg 286.00  gap +126.50  MEM vs ECU  2026-10-22 19:30
+  2. [CFB   ] Marcus Stokes            Pass+Rush Yds          O189.5    L5avg 314.20  gap +124.70  MEM vs ECU  2026-10-22 19:30
+  3. [CFB   ] Camden Coleman           Pass Yards             O99.5     L5avg 221.60  gap +122.10  JMU vs APP  2026-10-22 19:00
+  4. [CFB   ] George Pettaway          Rush Yards             O59.5     L5avg 133.60  gap +74.10  JMU vs APP  2026-10-22 19:00
+  5. [CFB   ] George Pettaway          Rush Yards             O69.5     L5avg 133.60  gap +64.10  JMU vs APP  2026-10-22 19:00
+  6. [CFB   ] Makai Jackson            Receiving Yards        O29.5     L5avg  88.40  gap +58.90  LIB vs KENN  2026-10-22 19:00
+  7. [CFB   ] Jaylin Carter            Rush Yards             O49.5     L5avg 100.00  gap +50.50  MEM vs ECU  2026-10-22 19:30
+  8. [CFB   ] Makai Jackson            Receiving Yards        O39.5     L5avg  88.40  gap +48.90  LIB vs KENN  2026-10-22 19:00
+  9. [CFB   ] Corey Scott              Receiving Yards        O19.5     L5avg  62.40  gap +42.90  JMU vs APP  2026-10-22 19:00
+ 10. [CFB   ] Cole Keller              Receiving Yards        O9.5      L5avg  51.60  gap +42.10  JMU vs APP  2026-10-22 19:00
+ 11. [CFB   ] Corey Scott              Receiving Yards        O24.5     L5avg  62.40  gap +37.90  JMU vs APP  2026-10-22 19:00
+ 12. [CFB   ] Peyton Jones             Rush Yards             O14.5     L5avg  46.80  gap +32.30  LIB vs KENN  2026-10-22 19:00
+ 13. [CFB   ] Cole Keller              Receiving Yards        O19.5     L5avg  51.60  gap +32.10  JMU vs APP  2026-10-22 19:00
+ 14. [CFB   ] Javon Rogers             Receiving Yards        O19.5     L5avg  50.60  gap +31.10  KENN vs LIB  2026-10-22 19:00
+ 15. [CFB   ] Jaquari Lewis            Rush Yards             O24.5     L5avg  55.40  gap +30.90  APP vs JMU  2026-10-22 19:00
+ 16. [CFB   ] Peyton Jones             Rush Yards             O19.5     L5avg  46.80  gap +27.30  LIB vs KENN  2026-10-22 19:00
+ 17. [CFB   ] Darrin Fugitt            Receiving Yards        O14.5     L5avg  40.60  gap +26.10  APP vs JMU  2026-10-22 19:00
+ 18. [CFB   ] Jaquari Lewis            Rush Yards             O29.5     L5avg  55.40  gap +25.90  APP vs JMU  2026-10-22 19:00
+ 19. [CFB   ] Corey Scott              Receiving Yards        O39.5     L5avg  62.40  gap +22.90  JMU vs APP  2026-10-22 19:00
+ 20. [NBA   ] Jaylen Brown             Points                 O11.5     L5avg  30.60  gap +19.10  PHI vs CLE  2026-10-22 19:00
+ 21. [NBA   ] Jaylen Brown             Pts+Asts               O16.5     L5avg  34.20  gap +17.70  PHI vs CLE  2026-10-22 19:00
+ 22. [NBA   ] Jaylen Brown             Pts+Rebs               O18.5     L5avg  35.40  gap +16.90  PHI vs CLE  2026-10-22 19:00
+ 23. [NBA   ] Jaylen Brown             Pts+Rebs+Asts          O22.5     L5avg  39.00  gap +16.50  PHI vs CLE  2026-10-22 19:00
+ 24. [NBA   ] Jaylen Brown             Points                 O14.5     L5avg  30.60  gap +16.10  PHI vs CLE  2026-10-22 19:00
+ 25. [NBA   ] Jaylen Brown             Pts+Rebs               O19.5     L5avg  35.40  gap +15.90  PHI vs CLE  2026-10-22 19:00
+ 26. [NBA   ] VJ Edgecombe             Pts+Rebs+Asts          O12.5     L5avg  28.40  gap +15.90  PHI vs CLE  2026-10-22 19:00
+ 27. [NBA   ] Joel Embiid              Pts+Rebs               O22.5     L5avg  37.40  gap +14.90  PHI vs CLE  2026-10-22 19:00
+ 28. [NBA   ] Joel Embiid              Pts+Rebs+Asts          O26.5     L5avg  41.40  gap +14.90  PHI vs CLE  2026-10-22 19:00
+ 29. [NBA   ] Jaylen Brown             Pts+Asts               O19.5     L5avg  34.20  gap +14.70  PHI vs CLE  2026-10-22 19:00
+ 30. [NBA   ] Jaylen Brown             Pts+Rebs+Asts          O24.5     L5avg  39.00  gap +14.50  PHI vs CLE  2026-10-22 19:00
+ 31. [NBA   ] Joel Embiid              Pts+Asts               O18.5     L5avg  32.60  gap +14.10  PHI vs CLE  2026-10-22 19:00
+ 32. [NBA   ] LeBron James             Pts+Rebs               O15.5     L5avg  29.60  gap +14.10  PHI vs CLE  2026-10-22 19:00
+ 33. [NBA   ] VJ Edgecombe             Pts+Rebs+Asts          O14.5     L5avg  28.40  gap +13.90  PHI vs CLE  2026-10-22 19:00
+ 34. [NBA   ] DeMar DeRozan            Points                 O7.5      L5avg  21.20  gap +13.70  DEN vs OKC  2026-10-22 21:30
+ 35. [NBA   ] LeBron James             Points                 O9.5      L5avg  23.00  gap +13.50  PHI vs CLE  2026-10-22 19:00
+ 36. [NBA   ] VJ Edgecombe             Pts+Rebs               O9.5      L5avg  22.80  gap +13.30  PHI vs CLE  2026-10-22 19:00
+ 37. [NBA   ] Joel Embiid              Points                 O15.5     L5avg  28.60  gap +13.10  PHI vs CLE  2026-10-22 19:00
+ 38. [NBA   ] Joel Embiid              Pts+Asts               O19.5     L5avg  32.60  gap +13.10  PHI vs CLE  2026-10-22 19:00
+ 39. [NBA   ] Joel Embiid              Pts+Rebs               O24.5     L5avg  37.40  gap +12.90  PHI vs CLE  2026-10-22 19:00
+ 40. [NBA   ] VJ Edgecombe             Pts+Asts               O8.5      L5avg  21.20  gap +12.70  PHI vs CLE  2026-10-22 19:00
+ 41. [NBA   ] Jaylen Brown             Points                 O18.5     L5avg  30.60  gap +12.10  PHI vs CLE  2026-10-22 19:00
+ 42. [NBA   ] Joel Embiid              Pts+Rebs+Asts          O29.5     L5avg  41.40  gap +11.90  PHI vs CLE  2026-10-22 19:00
+ 43. [NBA   ] VJ Edgecombe             Pts+Rebs+Asts          O16.5     L5avg  28.40  gap +11.90  PHI vs CLE  2026-10-22 19:00
+ 44. [NBA   ] Jaylen Brown             Pts+Asts               O22.5     L5avg  34.20  gap +11.70  PHI vs CLE  2026-10-22 19:00
+ 45. [NBA   ] VJ Edgecombe             Pts+Asts               O9.5      L5avg  21.20  gap +11.70  PHI vs CLE  2026-10-22 19:00
+ 46. [NBA   ] LeBron James             Points                 O11.5     L5avg  23.00  gap +11.50  PHI vs CLE  2026-10-22 19:00
+ 47. [NBA   ] VJ Edgecombe             Pts+Rebs               O11.5     L5avg  22.80  gap +11.30  PHI vs CLE  2026-10-22 19:00
+ 48. [NBA   ] Christian Braun          Pts+Rebs               O8.5      L5avg  19.60  gap +11.10  DEN vs OKC  2026-10-22 21:30
+ 49. [NBA   ] Christian Braun          Pts+Rebs+Asts          O10.5     L5avg  21.60  gap +11.10  DEN vs OKC  2026-10-22 21:30
+ 50. [NBA   ] Jaylen Brown             Pts+Rebs               O24.5     L5avg  35.40  gap +10.90  PHI vs CLE  2026-10-22 19:00
+ 51. [NBA   ] Jarrett Allen            Pts+Rebs               O14.5     L5avg  25.00  gap +10.50  CLE vs PHI  2026-10-22 19:00
+ 52. [NBA   ] Anfernee Simons          Points                 O3.5      L5avg  13.80  gap +10.30  PHI vs CLE  2026-10-22 19:00
+ 53. [NBA   ] Christian Braun          Pts+Rebs               O9.5      L5avg  19.60  gap +10.10  DEN vs OKC  2026-10-22 21:30
+ 54. [NBA   ] VJ Edgecombe             Points                 O5.5      L5avg  15.60  gap +10.10  PHI vs CLE  2026-10-22 19:00
+ 55. [NBA   ] Jamal Murray             Pts+Rebs               O18.5     L5avg  28.20  gap  +9.70  DEN vs OKC  2026-10-22 21:30
+ 56. [NBA   ] Jamal Murray             Pts+Rebs+Asts          O25.5     L5avg  35.00  gap  +9.50  DEN vs OKC  2026-10-22 21:30
+ 57. [NBA   ] James Harden             Points                 O11.5     L5avg  21.00  gap  +9.50  CLE vs PHI  2026-10-22 19:00
+ 58. [NBA   ] Christian Braun          Pts+Asts               O7.5      L5avg  16.60  gap  +9.10  DEN vs OKC  2026-10-22 21:30
+ 59. [NBA   ] Christian Braun          Points                 O5.5      L5avg  14.60  gap  +9.10  DEN vs OKC  2026-10-22 21:30
+ 60. [NBA   ] Jamal Murray             Pts+Asts               O21.5     L5avg  30.40  gap  +8.90  DEN vs OKC  2026-10-22 21:30
+ 61. [NBA   ] Jarrett Allen            Points                 O7.5      L5avg  16.20  gap  +8.70  CLE vs PHI  2026-10-22 19:00
+ 62. [NBA   ] VJ Edgecombe             Pts+Asts               O12.5     L5avg  21.20  gap  +8.70  PHI vs CLE  2026-10-22 19:00
+ 63. [NBA   ] Nikola Jokić             Pts+Rebs               O29.5     L5avg  38.00  gap  +8.50  DEN vs OKC  2026-10-22 21:30
+ 64. [NBA   ] VJ Edgecombe             Pts+Rebs               O14.5     L5avg  22.80  gap  +8.30  PHI vs CLE  2026-10-22 19:00
+ 65. [NBA   ] VJ Edgecombe             Rebs+Asts              O4.5      L5avg  12.80  gap  +8.30  PHI vs CLE  2026-10-22 19:00
+ 66. [NBA   ] Joel Embiid              Pts+Asts               O24.5     L5avg  32.60  gap  +8.10  PHI vs CLE  2026-10-22 19:00
+ 67. [NBA   ] VJ Edgecombe             Points                 O7.5      L5avg  15.60  gap  +8.10  PHI vs CLE  2026-10-22 19:00
+ 68. [NBA   ] Joel Embiid              Pts+Rebs               O29.5     L5avg  37.40  gap  +7.90  PHI vs CLE  2026-10-22 19:00
+ 69. [NBA   ] Joel Embiid              Pts+Rebs+Asts          O33.5     L5avg  41.40  gap  +7.90  PHI vs CLE  2026-10-22 19:00
+ 70. [NBA   ] James Harden             Pts+Rebs               O15.5     L5avg  23.20  gap  +7.70  CLE vs PHI  2026-10-22 19:00
+ 71. [NBA   ] Kentavious Caldwell-Pope Points                 O2.5      L5avg  10.00  gap  +7.50  PHI vs CLE  2026-10-22 19:00
+ 72. [NBA   ] James Harden             Pts+Asts               O18.5     L5avg  25.80  gap  +7.30  CLE vs PHI  2026-10-22 19:00
+ 73. [NBA   ] VJ Edgecombe             Rebs+Asts              O5.5      L5avg  12.80  gap  +7.30  PHI vs CLE  2026-10-22 19:00
+ 74. [NBA   ] Christian Braun          Pts+Rebs               O12.5     L5avg  19.60  gap  +7.10  DEN vs OKC  2026-10-22 21:30
+ 75. [NBA   ] Christian Braun          Pts+Rebs+Asts          O14.5     L5avg  21.60  gap  +7.10  DEN vs OKC  2026-10-22 21:30
+ 76. [NBA   ] Christian Braun          Points                 O7.5      L5avg  14.60  gap  +7.10  DEN vs OKC  2026-10-22 21:30
+ 77. [NBA   ] VJ Edgecombe             Points                 O8.5      L5avg  15.60  gap  +7.10  PHI vs CLE  2026-10-22 19:00
+ 78. [NBA   ] Tyrese Maxey             Pts+Rebs+Asts          O23.5     L5avg  30.40  gap  +6.90  PHI vs CLE  2026-10-22 19:00
+ 79. [NBA   ] Jarrett Allen            Points                 O9.5      L5avg  16.20  gap  +6.70  CLE vs PHI  2026-10-22 19:00
+ 80. [NBA   ] James Harden             Points                 O14.5     L5avg  21.00  gap  +6.50  CLE vs PHI  2026-10-22 19:00
+ 81. [NBA   ] Tyrese Maxey             Pts+Asts               O20.5     L5avg  27.00  gap  +6.50  PHI vs CLE  2026-10-22 19:00
+ 82. [NBA   ] Jalen Williams           Pts+Asts               O16.5     L5avg  22.80  gap  +6.30  OKC vs DEN  2026-10-22 21:30
+ 83. [NBA   ] James Harden             Pts+Asts               O19.5     L5avg  25.80  gap  +6.30  CLE vs PHI  2026-10-22 19:00
+ 84. [NBA   ] VJ Edgecombe             Rebs+Asts              O6.5      L5avg  12.80  gap  +6.30  PHI vs CLE  2026-10-22 19:00
+ 85. [NBA   ] Christian Braun          Pts+Rebs               O13.5     L5avg  19.60  gap  +6.10  DEN vs OKC  2026-10-22 21:30
+ 86. [NBA   ] Jalen Williams           Pts+Rebs+Asts          O21.5     L5avg  27.60  gap  +6.10  OKC vs DEN  2026-10-22 21:30
+ 87. [NBA   ] Jarrett Allen            Pts+Rebs+Asts          O19.5     L5avg  25.60  gap  +6.10  CLE vs PHI  2026-10-22 19:00
+ 88. [NBA   ] Kentavious Caldwell-Pope Pts+Rebs+Asts          O8.5      L5avg  14.40  gap  +5.90  PHI vs CLE  2026-10-22 19:00
+ 89. [NBA   ] Jamal Murray             Pts+Asts               O24.5     L5avg  30.40  gap  +5.90  DEN vs OKC  2026-10-22 21:30
+ 90. [NBA   ] Cameron Johnson          Rebs+Asts              O3.5      L5avg   9.00  gap  +5.50  DEN vs OKC  2026-10-22 21:30
+ 91. [NBA   ] Jarrett Allen            Pts+Rebs               O19.5     L5avg  25.00  gap  +5.50  CLE vs PHI  2026-10-22 19:00
+ 92. [NBA   ] Jalen Williams           Pts+Rebs               O16.5     L5avg  21.40  gap  +4.90  OKC vs DEN  2026-10-22 21:30
+ 93. [NBA   ] VJ Edgecombe             Rebounds               O2.5      L5avg   7.20  gap  +4.70  PHI vs CLE  2026-10-22 19:00
+ 94. [NBA   ] James Harden             Points                 O16.5     L5avg  21.00  gap  +4.50  CLE vs PHI  2026-10-22 19:00
+ 95. [NBA   ] Jarrett Allen            Pts+Rebs               O20.5     L5avg  25.00  gap  +4.50  CLE vs PHI  2026-10-22 19:00
+ 96. [NBA   ] Ajay Mitchell            Pts+Asts               O8.5      L5avg  12.80  gap  +4.30  OKC vs DEN  2026-10-22 21:30
+ 97. [NBA   ] Jarrett Allen            Pts+Rebs+Asts          O21.5     L5avg  25.60  gap  +4.10  CLE vs PHI  2026-10-22 19:00
+ 98. [NBA   ] Jamal Murray             Rebs+Asts              O7.5      L5avg  11.40  gap  +3.90  DEN vs OKC  2026-10-22 21:30
+ 99. [NBA   ] VJ Edgecombe             Rebounds               O3.5      L5avg   7.20  gap  +3.70  PHI vs CLE  2026-10-22 19:00
+100. [NBA   ] Jarrett Allen            Points                 O12.5     L5avg  16.20  gap  +3.70  CLE vs PHI  2026-10-22 19:00
+101. [NBA   ] Ajay Mitchell            Pts+Asts               O9.5      L5avg  12.80  gap  +3.30  OKC vs DEN  2026-10-22 21:30
+102. [NBA   ] Joel Embiid              Rebounds               O5.5      L5avg   8.80  gap  +3.30  PHI vs CLE  2026-10-22 19:00
+103. [NBA   ] Shai Gilgeous-Alexander  Rebs+Asts              O7.5      L5avg  10.80  gap  +3.30  OKC vs DEN  2026-10-22 21:30
+104. [NBA   ] Jarrett Allen            Pts+Rebs+Asts          O22.5     L5avg  25.60  gap  +3.10  CLE vs PHI  2026-10-22 19:00
+105. [NBA   ] Donovan Mitchell         Rebs+Asts              O6.5      L5avg   9.60  gap  +3.10  CLE vs PHI  2026-10-22 19:00
+106. [NBA   ] Jamal Murray             3-PT Made              O1.5      L5avg   4.60  gap  +3.10  DEN vs OKC  2026-10-22 21:30
+107. [NBA   ] Sam Merrill              Rebs+Asts              O2.5      L5avg   5.60  gap  +3.10  CLE vs PHI  2026-10-22 19:00
+108. [NBA   ] Ajay Mitchell            Points                 O6.5      L5avg   9.40  gap  +2.90  OKC vs DEN  2026-10-22 21:30
+109. [NBA   ] Sam Merrill              Assists                O0.5      L5avg   3.40  gap  +2.90  CLE vs PHI  2026-10-22 19:00
+110. [CFB   ] Marcus Stokes            Pass TDs               O0.5      L5avg   2.80  gap  +2.30  MEM vs ECU  2026-10-22 19:30
+111. [NBA   ] Jamal Murray             Assists                O4.5      L5avg   6.80  gap  +2.30  DEN vs OKC  2026-10-22 21:30
+112. [NBA   ] Peyton Watson            Rebounds               O2.5      L5avg   4.80  gap  +2.30  CLE vs PHI  2026-10-22 19:00
+113. [NBA   ] Chet Holmgren            Blocked Shots          O0.5      L5avg   2.60  gap  +2.10  OKC vs DEN  2026-10-22 21:30
+114. [NBA   ] Ajay Mitchell            Rebs+Asts              O3.5      L5avg   5.40  gap  +1.90  OKC vs DEN  2026-10-22 21:30
+115. [NBA   ] Kentavious Caldwell-Pope Rebs+Asts              O2.5      L5avg   4.40  gap  +1.90  PHI vs CLE  2026-10-22 19:00
+116. [CFB   ] Camden Coleman           Pass TDs               O0.5      L5avg   2.40  gap  +1.90  JMU vs APP  2026-10-22 19:00
+117. [NBA   ] Jaylen Brown             3-PT Made              O0.5      L5avg   2.40  gap  +1.90  PHI vs CLE  2026-10-22 19:00
+118. [NBA   ] James Harden             3-PT Made              O1.5      L5avg   3.20  gap  +1.70  CLE vs PHI  2026-10-22 19:00
+119. [NBA   ] Joel Embiid              3-PT Made              O0.5      L5avg   2.20  gap  +1.70  PHI vs CLE  2026-10-22 19:00
+120. [NBA   ] Joel Embiid              Blocked Shots          O0.5      L5avg   2.20  gap  +1.70  PHI vs CLE  2026-10-22 19:00
+121. [NBA   ] LeBron James             Steals                 O0.5      L5avg   2.20  gap  +1.70  PHI vs CLE  2026-10-22 19:00
+122. [NFL   ] Robert Spillane          tackles_ast            O4.5      L5avg   6.20  gap  +1.70  NE vs CHI  2026-10-22 20:15
+123. [CFB   ] Cole Keller              Receptions             O1.5      L5avg   3.00  gap  +1.50  JMU vs APP  2026-10-22 19:00
+124. [NBA   ] Chet Holmgren            3-PT Made              O0.5      L5avg   2.00  gap  +1.50  OKC vs DEN  2026-10-22 21:30
+125. [NBA   ] Cason Wallace            3-PT Made              O0.5      L5avg   1.80  gap  +1.30  OKC vs DEN  2026-10-22 21:30
+126. [NBA   ] Chet Holmgren            Turnovers              O0.5      L5avg   1.80  gap  +1.30  OKC vs DEN  2026-10-22 21:30
+127. [NBA   ] Shai Gilgeous-Alexander  3-PT Made              O0.5      L5avg   1.80  gap  +1.30  OKC vs DEN  2026-10-22 21:30
+128. [NBA   ] VJ Edgecombe             Steals                 O0.5      L5avg   1.80  gap  +1.30  PHI vs CLE  2026-10-22 19:00
+129. [NBA   ] Jalen Williams           Offensive Rebounds     O0.5      L5avg   1.60  gap  +1.10  OKC vs DEN  2026-10-22 21:30
+130. [NBA   ] Jared McCain             Turnovers              O0.5      L5avg   1.20  gap  +0.70  OKC vs DEN  2026-10-22 21:30
+
+===== Standard OVER (n=2) =====
+  1. [CFB   ] Corey Scott              Receiving Yards        O41.5     L5avg  62.40  gap +20.90  JMU vs APP  2026-10-22 19:00
+  2. [GOLF  ] Trace Crowe              Birdies Or Better      O4.5      L5avg   6.00  gap  +1.50  PGA vs   2026-10-22 11:27
+
+===== Standard UNDER (n=17) =====
+  1. [CFB   ] Henry Hasselbeck         Pass Yards             U186.5    L5avg  24.00  gap +162.50  APP vs JMU  2026-10-22 19:00
+  2. [NFL   ] Andy Borregales + Cairo Santos field_goal_yards_combo U124.5    L5avg   2.80  gap +121.70  NE/CHI vs   2026-10-22 20:15
+  3. [NFL   ] Andy Borregales + Cairo Santos longest_fg_made_yds_combo U48.5     L5avg   2.80  gap +45.70  NE/CHI vs   2026-10-22 20:15
+  4. [NFL   ] Andy Borregales + Cairo Santos shortest_fg_made_yds_combo U26.5     L5avg   2.80  gap +23.70  NE/CHI vs   2026-10-22 20:15
+  5. [GOLF  ] Kevin Roy                Pars                   U11.0     L5avg   2.40  gap  +8.60  PGA vs   2026-10-22 11:27
+  6. [GOLF  ] Andrew Novak             Pars                   U11.0     L5avg   3.20  gap  +7.80  PGA vs   2026-10-22 11:27
+  7. [GOLF  ] Rico Hoey                Pars                   U11.0     L5avg   4.00  gap  +7.00  PGA vs   2026-10-22 11:27
+  8. [GOLF  ] David Ford               Pars                   U11.0     L5avg   4.40  gap  +6.60  PGA vs   2026-10-22 11:27
+  9. [GOLF  ] Corey Conners            Pars                   U11.0     L5avg   4.80  gap  +6.20  PGA vs   2026-10-22 11:27
+ 10. [GOLF  ] Max Greyserman           Pars                   U11.0     L5avg   4.80  gap  +6.20  PGA vs   2026-10-22 11:27
+ 11. [GOLF  ] Eric Cole                Pars                   U11.0     L5avg   5.00  gap  +6.00  PGA vs   2026-10-22 11:27
+ 12. [GOLF  ] Chris Kirk               Pars                   U11.0     L5avg   5.20  gap  +5.80  PGA vs   2026-10-22 11:27
+ 13. [GOLF  ] Ben Kohles               Pars                   U11.5     L5avg   6.60  gap  +4.90  PGA vs   2026-10-22 11:27
+ 14. [GOLF  ] Seamus Power             Pars                   U11.0     L5avg   6.40  gap  +4.60  PGA vs   2026-10-22 11:27
+ 15. [GOLF  ] Trace Crowe              Strokes                U68.5     L5avg  65.60  gap  +2.90  PGA vs   2026-10-22 11:27
+ 16. [GOLF  ] Seamus Power             Strokes                U68.5     L5avg  65.80  gap  +2.70  PGA vs   2026-10-22 11:27
+ 17. [GOLF  ] Austin Smotherman        Strokes                U68.5     L5avg  66.40  gap  +2.10  PGA vs   2026-10-22 11:27
+

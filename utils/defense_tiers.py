@@ -159,11 +159,15 @@ def tier_sort_key(label: str) -> int:
 
 
 def d_aligned(sport: str, side: str, def_tier: object, prop: str = "") -> bool:
-    """True when opponent D matches the play side.
+    """True when opponent unit matches the play side.
 
     OVER: Weak | Below Avg. UNDER: Elite | Above Avg. Avg and unknown never pass.
     MLB hitter strikeouts invert (OVER Elite|Above; UNDER Weak|Below).
     Pitcher strikeouts keep the production bands.
+
+    NFL tackle props keep default bands, but the *unit* is opp rush offense
+    (see ``nfl_prop_defense.prop_def_axis``): Elite rush OFF → UNDER lean
+    (chunk plays past the LB); Weak rush OFF → OVER lean (short stops).
     """
     tier = normalize_def_tier_label(def_tier)
     if not tier or tier in ("N/A", "Avg"):

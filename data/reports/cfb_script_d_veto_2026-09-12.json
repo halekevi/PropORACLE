@@ -1,0 +1,109 @@
+{
+  "observe_only": true,
+  "slate_date": "2026-09-12",
+  "source": "espn",
+  "refreshed_from": "H:\\PropORACLE\\outputs\\2026-09-12\\cfb\\step8_cfb_direction_clean.parquet",
+  "rows_total": 1920,
+  "rows_with_line": 1902,
+  "pass_yards_goblin_d_veto": {
+    "n": 90,
+    "d_pass": 44,
+    "by_threshold": {
+      "14": {
+        "n_veto": 0,
+        "d_pass": 44,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0
+      },
+      "17": {
+        "n_veto": 0,
+        "d_pass": 44,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0,
+        "identity": {
+          "unique_players": [],
+          "unique_player_n": 0,
+          "unique_game_ids": [],
+          "unique_game_n": 0,
+          "kickoff_dates": []
+        }
+      },
+      "21": {
+        "n_veto": 0,
+        "d_pass": 44,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0
+      }
+    },
+    "unique_players": [
+      "Alessio Milivojevic",
+      "Alonza Barnett III",
+      "Anthony Colandrea",
+      "Arch Manning",
+      "Avery Johnson",
+      "Bear Bachmeier",
+      "Bryce Underwood",
+      "Byrum Brown",
+      "Caden Pinnick",
+      "Cutter Boley",
+      "Dante Moore",
+      "Demond Williams Jr.",
+      "Devon Dampier",
+      "Drew Mestemaker",
+      "Ethan Hampton",
+      "Faizon Brandon",
+      "Gunner Stockton",
+      "Jaron-Keawe Sagapolutele",
+      "Jayden Maiava",
+      "John Mateer",
+      "Julian Sayin",
+      "Katin Houser",
+      "Keelon Russell",
+      "Marcel Reed",
+      "Marcus Stokes",
+      "Mason Heintschel",
+      "Michael Van Buren Jr.",
+      "Nick Minicucci",
+      "Nico Iamaleava",
+      "Noah Fifita",
+      "Noah Kim",
+      "Rocco Becht",
+      "Steve Angeli",
+      "Trinidad Chambliss",
+      "Walker Eget"
+    ],
+    "unique_player_n": 35,
+    "unique_game_ids": [],
+    "unique_game_n": 0,
+    "kickoff_dates": [
+      "2026-09-12"
+    ]
+  },
+  "usage_share": {
+    "rush_share_rush_over": {
+      "n": 74,
+      "p25": 19.0,
+      "p50": 27.1,
+      "p75": 36.1
+    },
+    "tgt_share_rec_over": {
+      "n": 595,
+      "p25": 13.3,
+      "p50": 18.4,
+      "p75": 25.4
+    },
+    "pass_share_pass_over": {
+      "n": 109,
+      "p25": 88.5,
+      "p50": 94.9,
+      "p75": 97.0
+    },
+    "proposed_floors_not_applied": {
+      "rush": 0.4,
+      "pass": 0.7,
+      "rec": 0.18,
+      "status": "provisional_unvalidated",
+      "note": "Asserted before share distributions existed. Do not live-gate until hit rate by bucket is derived."
+    }
+  }
+}

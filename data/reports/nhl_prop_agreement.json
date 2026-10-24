@@ -1,0 +1,277 @@
+{
+  "box_rows": 18256,
+  "files_changed": 53,
+  "faceoffs_regraded": 472,
+  "corrections_logged": 266,
+  "faceoffs_stored_n": 571,
+  "faceoffs_stored_median": 50.0,
+  "faceoffs_matched_for_column_hunt": 476,
+  "faceoffs_column_hits": [
+    [
+      "points",
+      46
+    ],
+    [
+      "blocked_shots",
+      46
+    ],
+    [
+      "goals",
+      29
+    ],
+    [
+      "assists",
+      29
+    ],
+    [
+      "pim",
+      28
+    ],
+    [
+      "hits",
+      24
+    ]
+  ],
+  "faceoffs_column": "ESPN label FO is faceoff win percentage. The writer aliased FO onto faceoffs_won. No box column matches that stored value; box faceoffs_won is the count.",
+  "excluded_props": [
+    "faceoffs_won",
+    "saves",
+    "toi"
+  ],
+  "props": {
+    "assists": {
+      "rows": 12312,
+      "with_actual": 10093,
+      "zeros_before": 6978,
+      "zeros_after": 6978,
+      "zero_share_before": 0.6914,
+      "zero_share_after": 0.6914,
+      "box_matched": 9282,
+      "agree": 9280,
+      "agree_rate": 0.9998,
+      "assigned_column": "assists",
+      "best_column": "assists",
+      "best_column_n": 9280
+    },
+    "blocked_shots": {
+      "rows": 2475,
+      "with_actual": 1937,
+      "zeros_before": 414,
+      "zeros_after": 414,
+      "zero_share_before": 0.2137,
+      "zero_share_after": 0.2137,
+      "box_matched": 1603,
+      "agree": 1599,
+      "agree_rate": 0.9975,
+      "assigned_column": "blocked_shots",
+      "best_column": "blocked_shots",
+      "best_column_n": 1599
+    },
+    "faceoffs_won": {
+      "rows": 743,
+      "with_actual": 571,
+      "zeros_before": 20,
+      "zeros_after": 5,
+      "zero_share_before": 0.035,
+      "zero_share_after": 0.0088,
+      "box_matched": 476,
+      "agree": 4,
+      "agree_rate": 0.0084,
+      "assigned_column": "faceoffs_won",
+      "best_column": "points",
+      "best_column_n": 46
+    },
+    "fantasy": {
+      "rows": 2,
+      "with_actual": 0,
+      "zeros_before": 0,
+      "zeros_after": 0,
+      "zero_share_before": null,
+      "zero_share_after": null,
+      "box_matched": 0,
+      "agree": 0,
+      "agree_rate": null,
+      "assigned_column": null,
+      "best_column": "goals",
+      "best_column_n": 0
+    },
+    "goaliefantasyscore": {
+      "rows": 42,
+      "with_actual": 0,
+      "zeros_before": 0,
+      "zeros_after": 0,
+      "zero_share_before": null,
+      "zero_share_after": null,
+      "box_matched": 0,
+      "agree": 0,
+      "agree_rate": null,
+      "assigned_column": null,
+      "best_column": "goals",
+      "best_column_n": 0
+    },
+    "goals": {
+      "rows": 14660,
+      "with_actual": 10016,
+      "zeros_before": 8051,
+      "zeros_after": 8051,
+      "zero_share_before": 0.8038,
+      "zero_share_after": 0.8038,
+      "box_matched": 8740,
+      "agree": 8740,
+      "agree_rate": 1.0,
+      "assigned_column": "goals",
+      "best_column": "goals",
+      "best_column_n": 8740
+    },
+    "goals_allowed": {
+      "rows": 228,
+      "with_actual": 157,
+      "zeros_before": 12,
+      "zeros_after": 12,
+      "zero_share_before": 0.0764,
+      "zero_share_after": 0.0764,
+      "box_matched": 133,
+      "agree": 133,
+      "agree_rate": 1.0,
+      "assigned_column": "goals_allowed",
+      "best_column": "goals_allowed",
+      "best_column_n": 133
+    },
+    "goals_combo": {
+      "rows": 3,
+      "with_actual": 0,
+      "zeros_before": 0,
+      "zeros_after": 0,
+      "zero_share_before": null,
+      "zero_share_after": null,
+      "box_matched": 0,
+      "agree": 0,
+      "agree_rate": null,
+      "assigned_column": null,
+      "best_column": "goals",
+      "best_column_n": 0
+    },
+    "hits": {
+      "rows": 1740,
+      "with_actual": 1255,
+      "zeros_before": 272,
+      "zeros_after": 272,
+      "zero_share_before": 0.2167,
+      "zero_share_after": 0.2167,
+      "box_matched": 1039,
+      "agree": 1038,
+      "agree_rate": 0.999,
+      "assigned_column": "hits",
+      "best_column": "hits",
+      "best_column_n": 1038
+    },
+    "plus_minus": {
+      "rows": 4617,
+      "with_actual": 3798,
+      "zeros_before": 1357,
+      "zeros_after": 1357,
+      "zero_share_before": 0.3573,
+      "zero_share_after": 0.3573,
+      "box_matched": 3466,
+      "agree": 3466,
+      "agree_rate": 1.0,
+      "assigned_column": "plus_minus",
+      "best_column": "plus_minus",
+      "best_column_n": 3466
+    },
+    "points": {
+      "rows": 15472,
+      "with_actual": 12675,
+      "zeros_before": 6974,
+      "zeros_after": 6974,
+      "zero_share_before": 0.5502,
+      "zero_share_after": 0.5502,
+      "box_matched": 11708,
+      "agree": 11704,
+      "agree_rate": 0.9997,
+      "assigned_column": "points",
+      "best_column": "points",
+      "best_column_n": 11704
+    },
+    "pp_points": {
+      "rows": 5406,
+      "with_actual": 3469,
+      "zeros_before": 2578,
+      "zeros_after": 2578,
+      "zero_share_before": 0.7432,
+      "zero_share_after": 0.7432,
+      "box_matched": 0,
+      "agree": 0,
+      "agree_rate": null,
+      "assigned_column": "pp_points",
+      "best_column": "goals",
+      "best_column_n": 0
+    },
+    "saves": {
+      "rows": 864,
+      "with_actual": 604,
+      "zeros_before": 17,
+      "zeros_after": 17,
+      "zero_share_before": 0.0281,
+      "zero_share_after": 0.0281,
+      "box_matched": 464,
+      "agree": 426,
+      "agree_rate": 0.9181,
+      "assigned_column": "saves",
+      "best_column": "saves",
+      "best_column_n": 426
+    },
+    "sog": {
+      "rows": 18836,
+      "with_actual": 13786,
+      "zeros_before": 2708,
+      "zeros_after": 2708,
+      "zero_share_before": 0.1964,
+      "zero_share_after": 0.1964,
+      "box_matched": 11930,
+      "agree": 11930,
+      "agree_rate": 1.0,
+      "assigned_column": "shots_on_goal",
+      "best_column": "shots_on_goal",
+      "best_column_n": 11930
+    },
+    "sog_combo": {
+      "rows": 102,
+      "with_actual": 0,
+      "zeros_before": 0,
+      "zeros_after": 0,
+      "zero_share_before": null,
+      "zero_share_after": null,
+      "box_matched": 0,
+      "agree": 0,
+      "agree_rate": null,
+      "assigned_column": null,
+      "best_column": "goals",
+      "best_column_n": 0
+    },
+    "toi": {
+      "rows": 1335,
+      "with_actual": 978,
+      "zeros_before": 17,
+      "zeros_after": 17,
+      "zero_share_before": 0.0174,
+      "zero_share_after": 0.0174,
+      "box_matched": 880,
+      "agree": 704,
+      "agree_rate": 0.8,
+      "assigned_column": "toi",
+      "best_column": "toi",
+      "best_column_n": 704
+    }
+  },
+  "robert_thomas_10_5_graded": [],
+  "robert_thomas_account": [
+    {
+      "entry_id": "948504021",
+      "player": "Robert Thomas",
+      "stat": "Faceoffs Won",
+      "line": 10.5,
+      "pp_result": null
+    }
+  ]
+}

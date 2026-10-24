@@ -27,6 +27,9 @@ Run:
 
 from __future__ import annotations
 import argparse
+import sys
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 
@@ -36,17 +39,19 @@ from nba_enrichment_carry import (
     snapshot_enrichment_carry,
 )
 
+_repo_root = Path(__file__).resolve().parents[3]
+if str(_repo_root) not in sys.path:
+    sys.path.insert(0, str(_repo_root))
+from utils.basketball_minutes_tier import resolve_mpg_series, tier_minutes_from_mpg
+
 
 # ----------------------------
 # Tier functions
 # ----------------------------
 
 def tier_minutes(x):
-    """Based on actual avg minutes played."""
-    if pd.isna(x): return "UNKNOWN"
-    if x <= 20: return "LOW"
-    if x <= 30: return "MEDIUM"
-    return "HIGH"
+    """Based on actual avg minutes played (NBA bands; shared util)."""
+    return tier_minutes_from_mpg(x)
 
 def tier_shots(x):
     """Based on actual FGA avg (for shot-volume props)."""
@@ -108,15 +113,15 @@ def main():
         carry_cols, carry_df = snapshot_enrichment_carry(df)
 
     stat_last5 = pd.to_numeric(df.get("stat_last5_avg"), errors="coerce")
-    min_last5  = pd.to_numeric(df.get("min_last5_avg"),  errors="coerce")
+    min_last5  = resolve_mpg_series(df)
     prop_norm  = df.get("prop_norm", pd.Series([""] * len(df), index=df.index)).astype(str).str.lower().str.strip()
 
     if min_last5.isna().all():
-        print("⚠️  min_last5_avg column missing or all NaN — minutes_tier will be UNKNOWN.")
+        print("⚠️  min_last5_avg / min_per_game missing or all NaN — minutes_tier will be UNKNOWN.")
         print("   Re-run step4 to populate min_last5_avg from ESPN cache.")
 
-    # minutes_tier — always from real minutes avg
-    minutes_tier = min_last5.apply(tier_minutes)
+    # Preserve L5 minutes tier before role-mpg overwrite.
+    minutes_tier_l5 = min_last5.apply(tier_minutes)
 
     # shot_role — use actual FGA avg for shot props; minutes proxy for others
     is_shot_prop = prop_norm.isin(_SHOT_VOL_PROPS)
@@ -133,11 +138,21 @@ def main():
     new_cols = pd.DataFrame({
         "min_player_avg": min_last5,
         "pts_player_avg": stat_last5,
-        "minutes_tier":   minutes_tier,
+        "minutes_tier":   minutes_tier_l5,  # overwritten below from role_mpg
+        "minutes_tier_l5": minutes_tier_l5,
         "shot_role":      shot_role,
         "usage_role":     usage_role,
     }, index=df.index)
     df = pd.concat([df, new_cols], axis=1).copy()
+
+    # Fill RS / preseason mpg, l5_minutes_gap, Min Tier from role_mpg (not L5 alone).
+    try:
+        from utils.nba_minutes_role import attach_minutes_role_columns
+
+        df = attach_minutes_role_columns(df)
+        print("→ minutes role attach: min_season_avg / min_preseason_avg / Min Tier from role_mpg")
+    except Exception as exc:
+        print(f"⚠️  minutes role attach skipped: {exc}")
 
     # Optional: Team Roles
     if args.roles_csv:

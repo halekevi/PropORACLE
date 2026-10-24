@@ -80,6 +80,8 @@ def main() -> int:
         p = _OUT / "atp_matches_combined.csv"
         atp.to_csv(p, index=False)
         print(f"Wrote {p} ({len(atp):,} rows)")
+        if "tourney_date" in atp.columns:
+            print(f"  ATP newest tourney_date={int(pd.to_numeric(atp['tourney_date'], errors='coerce').max())}")
     else:
         print("ATP: no data (offline or missing cache)")
 
@@ -87,8 +89,26 @@ def main() -> int:
         p = _OUT / "wta_matches_combined.csv"
         wta.to_csv(p, index=False)
         print(f"Wrote {p} ({len(wta):,} rows)")
+        if "tourney_date" in wta.columns:
+            print(f"  WTA newest tourney_date={int(pd.to_numeric(wta['tourney_date'], errors='coerce').max())}")
     else:
         print("WTA: no data (offline or missing cache)")
+
+    newest = None
+    for frame in (atp, wta):
+        if frame.empty or "tourney_date" not in frame.columns:
+            continue
+        mx = pd.to_numeric(frame["tourney_date"], errors="coerce").max()
+        if pd.notna(mx):
+            newest = int(mx) if newest is None else max(newest, int(mx))
+    if newest:
+        try:
+            cov = datetime.strptime(str(newest), "%Y%m%d").date()
+            age = (datetime.now(timezone.utc).date() - cov).days
+            if age > 14:
+                print(f"[WARN] Sackmann coverage ends {cov.isoformat()} ({age}d old) — tennis Aces/DF L5 is not live")
+        except ValueError:
+            pass
 
     meta = _OUT / "last_fetch.txt"
     meta.write_text(datetime.now(timezone.utc).isoformat(), encoding="utf-8")

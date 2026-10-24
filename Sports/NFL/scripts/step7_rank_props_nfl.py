@@ -95,7 +95,8 @@ def main() -> None:
     hr_adj = np.where(hr_adj > 1.5, hr_adj / 100.0, hr_adj)
     df["hit_rate"] = np.clip(hr_adj, 0.35, 0.92)
 
-    # Prop-aware D: pass→pass_def, rush→rush_def, receiving→pass (coverage).
+    # Prop-aware D: pass→pass_def, rush→rush_def, receiving→pass (coverage),
+    # tackles→opp rush offense (must run after unit-rank attach in step3).
     df = assign_prop_aware_def_tier(df, prop_col=prop_col, n_teams=32)
     opp_rnk = _num(df["opp_def_rank_prop"]) if "opp_def_rank_prop" in df.columns else pd.Series(np.nan, index=df.index)
     df["opp_def_rank_prop"] = opp_rnk
@@ -121,6 +122,41 @@ def main() -> None:
         df.loc[blank, "minutes_tier"] = snap.loc[blank].apply(snap_pct_to_minutes_tier)
 
     df = apply_nflp_playing_time(df)
+
+    from utils.nfl_stat_leaders import attach_nfl_stat_ranks, write_nfl_leader_artifacts
+
+    leaders_csv = _REPO_ROOT / "Sports" / "NFL" / "data" / "nfl_stat_leaders.csv"
+    if not leaders_csv.is_file():
+        try:
+            write_nfl_leader_artifacts(_REPO_ROOT)
+        except Exception as e:
+            print(f"[NFL step7] WARN could not build stat leaders: {e}")
+    df = attach_nfl_stat_ranks(df, _REPO_ROOT)
+    from utils.nfl_scoring_vehicles import attach_nfl_identity_and_share
+
+    df = attach_nfl_identity_and_share(df, _REPO_ROOT)
+
+    inj_pen = (
+        _num(df["injury_rank_penalty"]).fillna(0.0)
+        if "injury_rank_penalty" in df.columns
+        else pd.Series(0.0, index=df.index)
+    )
+    ctx_adj = (
+        _num(df["ctx_adj"]).fillna(0.0)
+        if "ctx_adj" in df.columns
+        else (
+            _num(df["game_context_score"]).fillna(0.0)
+            if "game_context_score" in df.columns
+            else pd.Series(0.0, index=df.index)
+        )
+    )
+    out_flag = df.get("injury_status", pd.Series("", index=df.index)).astype(str).str.upper()
+    # OUT / IR / PUP should not win on L5 from last year.
+    inj_veto = out_flag.str.contains("OUT|IR|PUP|NFI|SUSP", regex=True, na=False)
+    df["rank_score"] = rank_pts + inj_pen + ctx_adj
+    df["prop_score"] = df["rank_score"]
+    df.loc[inj_veto, "rank_score"] = df.loc[inj_veto, "rank_score"] - 2.0
+    df.loc[inj_veto, "prop_score"] = df.loc[inj_veto, "rank_score"]
 
     ts = df.get("start_time", df.get("game_time", ""))
     df["start_time"] = ts
@@ -163,6 +199,14 @@ def main() -> None:
     df["recommended_side"] = sides
     df["bet_direction"] = sides
 
+    # Period/first-N: step2 marks unsupported; step5 must not fabricate L5.
+    # If a stale CSV still has a hit_rate, neutralize before ML/tier.
+    if "unsupported_prop" in df.columns:
+        unsup = pd.to_numeric(df["unsupported_prop"], errors="coerce").fillna(0).astype(int).eq(1)
+        if unsup.any():
+            df.loc[unsup, "hit_rate"] = float("nan")
+            print(f"[NFL step7] cleared hit_rate on {int(unsup.sum())} unsupported_prop row(s)")
+
     df["ml_prob"] = pd.to_numeric(df["hit_rate"], errors="coerce").clip(0.35, 0.92)
     apply_consistency_grade_scores(df, "NFL")
     df["tier"] = assign_tier_column(df, sport="nfl")
@@ -172,12 +216,21 @@ def main() -> None:
     df["stat_type"] = df[prop_col].astype(str)
     df["stat_norm"] = df[prop_col].astype(str)
     df["pick_type"] = df.get("pick_type", "Standard")
+    pt = df["pick_type"].astype(str).str.strip()
+    blank = pt.eq("") | pt.str.lower().isin(["nan", "none"])
+    df.loc[blank, "pick_type"] = "Standard"
+    low = df["pick_type"].astype(str).str.lower()
+    df.loc[low.str.contains("gob", na=False), "pick_type"] = "Goblin"
+    df.loc[low.str.contains("dem", na=False), "pick_type"] = "Demon"
     df["pp_tier"] = df.get("pp_tier", "")
 
     df["composite_hit_rate"] = df["hit_rate"]
     df["line_hit_rate"] = df["hit_rate"]
 
-    elig = df[df["tier"].isin(["A", "B", "C"])].copy()
+    elig_mask = df["tier"].isin(["A", "B", "C"])
+    if "unsupported_prop" in df.columns:
+        elig_mask = elig_mask & pd.to_numeric(df["unsupported_prop"], errors="coerce").fillna(0).astype(int).eq(0)
+    elig = df[elig_mask].copy()
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     write_excel_sheets(out_path, {"ALL": df, "ELIGIBLE": elig})

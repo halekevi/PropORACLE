@@ -1,0 +1,38 @@
+{
+  "date": "2026-08-30",
+  "generated_at": "2026-08-30T22:16:56-04:00",
+  "line_pulls": [
+    {
+      "fetched_at": "2026-08-30T09:51:12-04:00",
+      "window": "9:45",
+      "n_props": 84,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-08-30T10:10:26-04:00",
+      "window": "10:30",
+      "n_props": 1680,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-08-30T10:16:44-04:00",
+      "window": "10:30",
+      "n_props": 152,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-08-30T10:19:08-04:00",
+      "window": "10:30",
+      "n_props": 24,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-08-30T22:16:56-04:00",
+      "window": "22:16",
+      "n_props": 1350,
+      "n_moved": 137
+    }
+  ],
+  "payout_scrapes": [],
+  "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
+}

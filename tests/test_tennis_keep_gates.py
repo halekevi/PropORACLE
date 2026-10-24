@@ -67,6 +67,33 @@ def test_games_won_needs_std_discount_4():
     assert tennis_goblin_keep_eligible(_ten(**{"def": "Elite"}))
 
 
+def test_games_won_fades_player_better_50_plus():
+    """Big favorite (opp_rank − player_rank >= 50) sits even when factor keep clears."""
+    from utils.tennis_keep_gates import tennis_games_won_big_favorite_fade, tennis_rank_gap
+
+    keep = _ten(standard_line=9.5, l5_second_won_pct=46.0, l10_over=9)
+    assert tennis_goblin_keep_eligible(keep)
+    # Player #10 vs opp #70 → gap +60 → fade.
+    big_fav = dict(keep, player_atp_rank=10, opponent_rank=70)
+    assert tennis_rank_gap(big_fav) == 60
+    assert tennis_games_won_big_favorite_fade(big_fav)
+    assert not tennis_goblin_keep_eligible(big_fav)
+    assert not goblin_70_eligible(big_fav)
+    assert not _clears_list_gate(big_fav)
+    # Gap of 49 still keeps; unknown ranks still keep.
+    close = dict(keep, player_atp_rank=10, opponent_rank=59)
+    assert tennis_rank_gap(close) == 49
+    assert tennis_goblin_keep_eligible(close)
+    assert tennis_goblin_keep_eligible(keep)  # no ranks
+    # step6 ranking_diff is player − opp (opposite sign).
+    via_diff = dict(keep, ranking_diff=-55)
+    assert tennis_rank_gap(via_diff) == 55
+    assert not tennis_goblin_keep_eligible(via_diff)
+    # Total Games keep is not subject to the Games Won rank fade.
+    tg = _ten(prop="Total Games", cover=5.0, line=21.5, standard_line=21.5, player_atp_rank=5, opponent_rank=80)
+    assert tennis_goblin_keep_eligible(tg)
+
+
 def test_total_games_needs_l5_4_and_l10_8():
     tg = _ten(prop="Total Games", cover=5.0, line=21.5, standard_line=21.5)
     assert tennis_goblin_keep_eligible(tg)
@@ -91,15 +118,14 @@ def test_fade_aces_df_standard_demon():
     assert not _clears_list_gate(_ten(pick_type="Demon"))
 
 
-def test_standard_under_aces_df_ungated_keep():
+def test_standard_under_aces_df_faded_after_backfill():
+    """Pre-backfill ~90% was missing→0 inflation; post-backfill is not a keep."""
     aces = _ten(prop="Aces", pick_type="Standard", side="UNDER", cover=0.0)
     df = _ten(prop="Double Faults", pick_type="Standard", side="UNDER", cover=0.0)
     for row in (aces, df):
-        assert tennis_standard_under_serve_eligible(row)
-        assert standard_ticket_eligible(row)
-        assert _clears_list_gate(row)
-        assert standard_flex_kind(row) == "tennis_serve_under"
-        assert standard_ticket_p("tennis_serve_under") == 0.90
+        assert not tennis_standard_under_serve_eligible(row)
+        assert not standard_ticket_eligible(row)
+        assert not _clears_list_gate(row)
     over_aces = _ten(prop="Aces", pick_type="Standard", side="OVER")
     assert not tennis_standard_under_serve_eligible(over_aces)
     assert not standard_ticket_eligible(over_aces)

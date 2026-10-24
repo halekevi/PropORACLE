@@ -1,0 +1,77 @@
+{
+  "observe_only": true,
+  "slate_date": "2026-09-03",
+  "source": "espn",
+  "refreshed_from": "H:\\PropORACLE\\outputs\\2026-09-03\\cfb\\step8_cfb_direction_clean.parquet",
+  "rows_total": 301,
+  "rows_with_line": 294,
+  "pass_yards_goblin_d_veto": {
+    "n": 9,
+    "d_pass": 6,
+    "by_threshold": {
+      "14": {
+        "n_veto": 0,
+        "d_pass": 6,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0
+      },
+      "17": {
+        "n_veto": 0,
+        "d_pass": 6,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0,
+        "identity": {
+          "unique_players": [],
+          "unique_player_n": 0,
+          "unique_game_ids": [],
+          "unique_game_n": 0,
+          "kickoff_dates": []
+        }
+      },
+      "21": {
+        "n_veto": 0,
+        "d_pass": 6,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0
+      }
+    },
+    "unique_players": [
+      "Devon Dampier",
+      "Julian Lewis",
+      "Katin Houser"
+    ],
+    "unique_player_n": 3,
+    "unique_game_ids": [],
+    "unique_game_n": 0,
+    "kickoff_dates": [
+      "2026-09-03"
+    ]
+  },
+  "usage_share": {
+    "rush_share_rush_over": {
+      "n": 5,
+      "p25": 17.1,
+      "p50": 21.3,
+      "p75": 46.8
+    },
+    "tgt_share_rec_over": {
+      "n": 69,
+      "p25": 10.3,
+      "p50": 19.3,
+      "p75": 26.8
+    },
+    "pass_share_pass_over": {
+      "n": 11,
+      "p25": 79.8,
+      "p50": 94.9,
+      "p75": 97.0
+    },
+    "proposed_floors_not_applied": {
+      "rush": 0.4,
+      "pass": 0.7,
+      "rec": 0.18,
+      "status": "provisional_unvalidated",
+      "note": "Asserted before share distributions existed. Do not live-gate until hit rate by bucket is derived."
+    }
+  }
+}

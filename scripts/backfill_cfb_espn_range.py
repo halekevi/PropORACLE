@@ -38,7 +38,13 @@ PRESETS: dict[str, Tuple[str, str]] = {
     "bowls-2025": ("2025-12-14", "2026-01-19"),
 }
 
+NFL_PRESETS: dict[str, Tuple[str, str]] = {
+    "full-2025": ("2025-09-04", "2026-02-09"),
+    "regular-2025": ("2025-09-04", "2026-01-05"),
+}
+
 DEFAULT_CACHE = REPO / "Sports" / "CFB" / "data" / "cache" / "cfb_boxscore_cache.csv"
+DEFAULT_NFL_CACHE = REPO / "Sports" / "NFL" / "data" / "cache" / "nfl_boxscore_cache.csv"
 
 
 def _load_cfb_step5b():
@@ -76,21 +82,32 @@ def _attach_opponent(rows: list[dict], t1: str, t2: str) -> None:
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Backfill CFB ESPN games into cfb_boxscore_cache.csv")
-    ap.add_argument("--preset", choices=sorted(PRESETS.keys()), default="")
+    ap = argparse.ArgumentParser(description="Backfill CFB/NFL ESPN games into boxscore cache CSV")
+    ap.add_argument("--league", choices=("cfb", "nfl"), default="cfb")
+    ap.add_argument("--preset", default="")
     ap.add_argument("--from", dest="date_from", default="")
     ap.add_argument("--to", dest="date_to", default="")
     ap.add_argument("--season", required=True, help="SEASON label stored on cache rows (e.g. 2025)")
-    ap.add_argument("--cache", default=str(DEFAULT_CACHE))
+    ap.add_argument("--cache", default="")
     ap.add_argument("--sleep", type=float, default=0.12)
     ap.add_argument("--workers", type=int, default=6, help="Parallel summary fetches for pending events")
+    ap.add_argument(
+        "--refresh-missing",
+        action="store_true",
+        help="Re-fetch cached events that still lack LONG / ATT / FG columns so week-1 L5 can use 2025 tape.",
+    )
     args = ap.parse_args()
 
+    league = str(args.league).strip().lower()
+    tag = f"backfill-{league}"
+    preset_map = NFL_PRESETS if league == "nfl" else PRESETS
     if args.preset:
-        d0s, d1s = PRESETS[args.preset]
+        if args.preset not in preset_map:
+            raise SystemExit(f"Unknown preset {args.preset!r} for {league}. Choose: {', '.join(sorted(preset_map))}")
+        d0s, d1s = preset_map[args.preset]
         d0 = date.fromisoformat(d0s)
         d1 = date.fromisoformat(d1s)
-        print(f"[backfill-cfb] preset {args.preset}: {d0} .. {d1}")
+        print(f"[{tag}] preset {args.preset}: {d0} .. {d1}")
     else:
         if not str(args.date_from).strip() or not str(args.date_to).strip():
             raise SystemExit("Provide --preset or both --from and --to (YYYY-MM-DD).")
@@ -100,23 +117,48 @@ def main() -> None:
         raise SystemExit("--to must be on or after --from")
 
     mod = _load_cfb_step5b()
-    mod.ESPN_LEAGUE = "college-football"
+    mod.ESPN_LEAGUE = "nfl" if league == "nfl" else "college-football"
 
-    cache_path = Path(args.cache)
+    cache_path = Path(args.cache) if str(args.cache).strip() else (
+        DEFAULT_NFL_CACHE if league == "nfl" else DEFAULT_CACHE
+    )
     if cache_path.exists():
         cache = pd.read_csv(cache_path, dtype=str, encoding="utf-8-sig").fillna("")
     else:
         cache = pd.DataFrame()
 
     existing_events: set[str] = set()
+    missing_stat_events: set[str] = set()
+    _NEED_COLS = ("REC_LONG", "RUSH_LONG", "PASS_LONG", "RUSH_ATT", "PASS_ATT", "KICK_FG")
     if not cache.empty and "event_id" in cache.columns:
         existing_events = set(cache["event_id"].astype(str).unique())
+        if args.refresh_missing:
+            have = {c: c in cache.columns for c in _NEED_COLS}
+            for eid, grp in cache.groupby("event_id"):
+                eid_s = str(eid)
+                ok = False
+                for col, present in have.items():
+                    if not present:
+                        continue
+                    vals = grp[col].astype(str).str.strip()
+                    if vals.isin(["", "nan", "None"]).all():
+                        continue
+                    if (pd.to_numeric(vals, errors="coerce").fillna(0) > 0).any():
+                        ok = True
+                        break
+                if not ok:
+                    missing_stat_events.add(eid_s)
+            existing_events -= missing_stat_events
+            print(
+                f"[{tag}] --refresh-missing: {len(missing_stat_events)} cached events "
+                "will be re-fetched for LONG/ATT/FG"
+            )
 
     # Collect pending events across calendar (no slate team filter)
     pending: list[tuple[str, str, str, str]] = []
     seen: set[str] = set()
     dates = _expand_dates(d0, d1)
-    print(f"[backfill-cfb] Scanning {len(dates)} calendar days...")
+    print(f"[{tag}] Scanning {len(dates)} calendar days...")
     for i, d in enumerate(dates):
         yyyymmdd = d.strftime("%Y%m%d")
         sb = mod.pull_scoreboard(yyyymmdd)
@@ -129,7 +171,7 @@ def main() -> None:
         if (i + 1) % 30 == 0:
             print(f"  ... {i + 1}/{len(dates)} days, {len(pending)} events pending")
 
-    print(f"[backfill-cfb] {len(seen)} events in range | {len(existing_events)} already cached | {len(pending)} to fetch")
+    print(f"[{tag}] {len(seen)} events in range | {len(existing_events)} already cached | {len(pending)} to fetch")
 
     new_rows: list[dict] = []
     if pending:
@@ -160,10 +202,12 @@ def main() -> None:
                 if done % 50 == 0:
                     print(f"  ... fetched {done}/{len(pending)} events ({len(new_rows)} player-rows)")
 
-    print(f"[backfill-cfb] Fetched {len(new_rows)} new player-rows from {len(pending)} events")
+    print(f"[{tag}] Fetched {len(new_rows)} new player-rows from {len(pending)} events")
 
     if new_rows:
         new_df = pd.DataFrame(new_rows)
+        if missing_stat_events:
+            cache = cache[~cache["event_id"].astype(str).isin(missing_stat_events)].copy() if not cache.empty else cache
         cache = pd.concat([cache, new_df], ignore_index=True) if not cache.empty else new_df
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         cache.to_csv(cache_path, index=False, encoding="utf-8-sig")

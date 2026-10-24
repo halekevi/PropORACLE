@@ -1,0 +1,2 @@
+sport,id,status,top_bucket,n,wilson_lo,wilson_hi,break_even,wired,detail
+WNBA,cushion_wnba,FAIL,0.75,184,0.6828,0.807,Goblin 0.845 / Standard 0.577,0,"holdout 1676 legs from 2026-08-10 through 2026-10-09, cut 2026-08-10; points Goblin OVER high 138/184 (0.75) top bucket does not beat the shuffle cutoff"

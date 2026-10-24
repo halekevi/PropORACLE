@@ -23,6 +23,10 @@ from scripts.l10_streak_utils import (  # noqa: E402
     finalize_l10_ui_columns,
 )
 from utils.defense_tiers import normalize_def_tier_label  # noqa: E402
+from utils.slate_context_fill import (  # noqa: E402
+    is_hitter_strikeout_row,
+    is_pitcher_strikeout_row,
+)
 from utils.l5_recency_policy import (  # noqa: E402
     L5_COLD_MAX,
     L5_COLD_PENALTY,
@@ -236,10 +240,31 @@ def context_signal_adjustment_series(df: pd.DataFrame) -> pd.Series:
     adj = adj + np.where(mlp.notna(), (mlp.clip(0.35, 0.92) - 0.55) * 0.25, 0.0)
 
     def_tier = out.get("def_tier", pd.Series("", index=out.index)).map(_norm_def_tier_upper)
-    adj = adj + np.where(over_mask & def_tier.eq("WEAK"), 0.04, 0.0)
-    adj = adj + np.where(over_mask & def_tier.isin(["ABOVE AVG", "ELITE"]), -0.03, 0.0)
-    adj = adj + np.where(under_mask & def_tier.isin(["ELITE", "ABOVE AVG"]), 0.04, 0.0)
-    adj = adj + np.where(under_mask & def_tier.eq("WEAK"), -0.03, 0.0)
+    is_goblin = pick_raw.str.contains("goblin", na=False)
+    goblin_over_l5 = (
+        is_goblin
+        & over_mask
+        & (~pd.isna(side_l5))
+        & (side_l5 >= L5_GE4_MIN - 1e-9)
+    )
+    pitcher_k = out.apply(is_pitcher_strikeout_row, axis=1).to_numpy()
+    hitter_k = out.apply(is_hitter_strikeout_row, axis=1).to_numpy()
+    # Production props: Weak helps OVER, Elite helps UNDER. Pitcher Ks blank;
+    # hitter Ks invert (Elite pitching → more batter Ks).
+    prod = ~pitcher_k & ~hitter_k
+    adj = adj + np.where(over_mask & def_tier.eq("WEAK") & prod, 0.04, 0.0)
+    # Goblin OVER with L5>=4: discounted line still clears Elite/Above Avg D.
+    adj = adj + np.where(
+        over_mask & def_tier.isin(["ABOVE AVG", "ELITE"]) & ~goblin_over_l5 & prod,
+        -0.03,
+        0.0,
+    )
+    adj = adj + np.where(under_mask & def_tier.isin(["ELITE", "ABOVE AVG"]) & prod, 0.04, 0.0)
+    adj = adj + np.where(under_mask & def_tier.eq("WEAK") & prod, -0.03, 0.0)
+    adj = adj + np.where(over_mask & def_tier.isin(["ELITE", "ABOVE AVG"]) & hitter_k, 0.04, 0.0)
+    adj = adj + np.where(over_mask & def_tier.eq("WEAK") & hitter_k, -0.03, 0.0)
+    adj = adj + np.where(under_mask & def_tier.eq("WEAK") & hitter_k, 0.04, 0.0)
+    adj = adj + np.where(under_mask & def_tier.isin(["ELITE", "ABOVE AVG"]) & hitter_k, -0.03, 0.0)
 
     min_tier = out.get("minutes_tier", out.get("min_tier", pd.Series("", index=out.index)))
     min_tier = min_tier.astype(str).str.upper().str.strip()

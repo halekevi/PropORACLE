@@ -42,6 +42,30 @@ SHRINK_SHADOW_ENABLED = _env_flag("PROPORACLE_STANDARD_PLAYER_SHRINK_SHADOW", "1
 
 
 
+def shrink_toward_baseline(
+    value: float,
+    prior_n: float,
+    baseline: float,
+    prior_strength: float = DEFAULT_PRIOR_STRENGTH,
+) -> float:
+    """w=n/(n+k); shrunk = w*value + (1-w)*baseline. Unbounded (stat means, not probs)."""
+    try:
+        x = float(value)
+        n = max(0.0, float(prior_n))
+        b = float(baseline)
+        k = max(0.0, float(prior_strength))
+    except (TypeError, ValueError):
+        return float("nan")
+    if not math.isfinite(x):
+        return b if math.isfinite(b) else float("nan")
+    if not math.isfinite(b):
+        return x
+    if k <= 0:
+        return x
+    w = n / (n + k)
+    return w * x + (1.0 - w) * b
+
+
 def shrink_prob_toward_baseline(
     model_prob: float,
     prior_n: float,
@@ -49,19 +73,10 @@ def shrink_prob_toward_baseline(
     prior_strength: float = DEFAULT_PRIOR_STRENGTH,
 ) -> float:
     """w=n/(n+k); shrunk = w*p + (1-w)*baseline. Same form as correlation shrunk_lift."""
-    try:
-        p = float(model_prob)
-        n = max(0.0, float(prior_n))
-        b = float(baseline)
-        k = max(0.0, float(prior_strength))
-    except (TypeError, ValueError):
+    shrunk = shrink_toward_baseline(model_prob, prior_n, baseline, prior_strength)
+    if not math.isfinite(shrunk):
         return 0.0
-    if not math.isfinite(p):
-        return 0.0
-    if k <= 0:
-        return max(0.0, min(1.0, p))
-    w = n / (n + k)
-    return max(0.0, min(1.0, w * p + (1.0 - w) * b))
+    return max(0.0, min(1.0, shrunk))
 
 
 def is_standard_pick(pick_type: object) -> bool:

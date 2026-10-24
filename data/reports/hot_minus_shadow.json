@@ -1,0 +1,424 @@
+{
+  "window": {
+    "first": "2026-07-13",
+    "last": "2026-08-24",
+    "n_joined": 31033
+  },
+  "note": "Shadow cells stay on the board for tracking; minus_shadow is the hot rate if they are held out of the live list only.",
+  "combined_listed": {
+    "listed": {
+      "hits": 7010,
+      "n": 10686,
+      "rate": 65.6
+    },
+    "shadow": {
+      "hits": 176,
+      "n": 421,
+      "rate": 41.8
+    },
+    "minus_shadow": {
+      "hits": 6834,
+      "n": 10265,
+      "rate": 66.6
+    },
+    "minus_shadow_plus_goblin_floor": {
+      "hits": 4345,
+      "n": 6399,
+      "rate": 67.9
+    }
+  },
+  "by_book": {
+    "Goblin OVER": {
+      "listed": {
+        "hits": 5858,
+        "n": 8558,
+        "rate": 68.5
+      },
+      "shadow": {
+        "hits": 66,
+        "n": 210,
+        "rate": 31.4
+      },
+      "minus_shadow": {
+        "hits": 5792,
+        "n": 8348,
+        "rate": 69.4
+      },
+      "minus_shadow_goblin_floor": {
+        "hits": 3303,
+        "n": 4482,
+        "rate": 73.7
+      }
+    },
+    "Standard OVER": {
+      "listed": {
+        "hits": 513,
+        "n": 955,
+        "rate": 53.7
+      },
+      "shadow": {
+        "hits": 30,
+        "n": 64,
+        "rate": 46.9
+      },
+      "minus_shadow": {
+        "hits": 483,
+        "n": 891,
+        "rate": 54.2
+      },
+      "minus_shadow_goblin_floor": {
+        "hits": 483,
+        "n": 891,
+        "rate": 54.2
+      }
+    },
+    "Standard UNDER": {
+      "listed": {
+        "hits": 639,
+        "n": 1173,
+        "rate": 54.5
+      },
+      "shadow": {
+        "hits": 80,
+        "n": 147,
+        "rate": 54.4
+      },
+      "minus_shadow": {
+        "hits": 559,
+        "n": 1026,
+        "rate": 54.5
+      },
+      "minus_shadow_goblin_floor": {
+        "hits": 559,
+        "n": 1026,
+        "rate": 54.5
+      }
+    }
+  },
+  "by_sport_book": {
+    "WNBA": {
+      "Goblin OVER": {
+        "listed": {
+          "hits": 1725,
+          "n": 2372,
+          "rate": 72.7
+        },
+        "shadow": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "minus_shadow": {
+          "hits": 1725,
+          "n": 2372,
+          "rate": 72.7
+        }
+      },
+      "Standard OVER": {
+        "listed": {
+          "hits": 231,
+          "n": 410,
+          "rate": 56.3
+        },
+        "shadow": {
+          "hits": 30,
+          "n": 64,
+          "rate": 46.9
+        },
+        "minus_shadow": {
+          "hits": 201,
+          "n": 346,
+          "rate": 58.1
+        }
+      },
+      "Standard UNDER": {
+        "listed": {
+          "hits": 152,
+          "n": 274,
+          "rate": 55.5
+        },
+        "shadow": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "minus_shadow": {
+          "hits": 152,
+          "n": 274,
+          "rate": 55.5
+        }
+      }
+    },
+    "MLB": {
+      "Goblin OVER": {
+        "listed": {
+          "hits": 3573,
+          "n": 5287,
+          "rate": 67.6
+        },
+        "shadow": {
+          "hits": 47,
+          "n": 95,
+          "rate": 49.5
+        },
+        "minus_shadow": {
+          "hits": 3526,
+          "n": 5192,
+          "rate": 67.9
+        }
+      },
+      "Standard OVER": {
+        "listed": {
+          "hits": 228,
+          "n": 446,
+          "rate": 51.1
+        },
+        "shadow": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "minus_shadow": {
+          "hits": 228,
+          "n": 446,
+          "rate": 51.1
+        }
+      },
+      "Standard UNDER": {
+        "listed": {
+          "hits": 414,
+          "n": 786,
+          "rate": 52.7
+        },
+        "shadow": {
+          "hits": 43,
+          "n": 90,
+          "rate": 47.8
+        },
+        "minus_shadow": {
+          "hits": 371,
+          "n": 696,
+          "rate": 53.3
+        }
+      }
+    },
+    "Soccer": {
+      "Goblin OVER": {
+        "listed": {
+          "hits": 118,
+          "n": 230,
+          "rate": 51.3
+        },
+        "shadow": {
+          "hits": 19,
+          "n": 44,
+          "rate": 43.2
+        },
+        "minus_shadow": {
+          "hits": 99,
+          "n": 186,
+          "rate": 53.2
+        }
+      },
+      "Standard OVER": {
+        "listed": {
+          "hits": 2,
+          "n": 4,
+          "rate": 50.0
+        },
+        "shadow": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "minus_shadow": {
+          "hits": 2,
+          "n": 4,
+          "rate": 50.0
+        }
+      },
+      "Standard UNDER": {
+        "listed": {
+          "hits": 12,
+          "n": 23,
+          "rate": 52.2
+        },
+        "shadow": {
+          "hits": 5,
+          "n": 13,
+          "rate": 38.5
+        },
+        "minus_shadow": {
+          "hits": 7,
+          "n": 10,
+          "rate": 70.0
+        }
+      }
+    },
+    "Tennis": {
+      "Goblin OVER": {
+        "listed": {
+          "hits": 442,
+          "n": 669,
+          "rate": 66.1
+        },
+        "shadow": {
+          "hits": 0,
+          "n": 71,
+          "rate": 0.0
+        },
+        "minus_shadow": {
+          "hits": 442,
+          "n": 598,
+          "rate": 73.9
+        }
+      },
+      "Standard OVER": {
+        "listed": {
+          "hits": 52,
+          "n": 95,
+          "rate": 54.7
+        },
+        "shadow": {
+          "hits": 0,
+          "n": 0,
+          "rate": null
+        },
+        "minus_shadow": {
+          "hits": 52,
+          "n": 95,
+          "rate": 54.7
+        }
+      },
+      "Standard UNDER": {
+        "listed": {
+          "hits": 61,
+          "n": 90,
+          "rate": 67.8
+        },
+        "shadow": {
+          "hits": 32,
+          "n": 44,
+          "rate": 72.7
+        },
+        "minus_shadow": {
+          "hits": 29,
+          "n": 46,
+          "rate": 63.0
+        }
+      }
+    }
+  },
+  "shadow_cells": [
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "singles",
+      "why": "mlb goblin singles",
+      "listed": {
+        "hits": 47,
+        "n": 95,
+        "rate": 49.5
+      }
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "total_bases",
+      "why": "mlb std under total bases",
+      "listed": {
+        "hits": 43,
+        "n": 90,
+        "rate": 47.8
+      }
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "prop": "shots on target",
+      "why": "soccer goblin SOG",
+      "listed": {
+        "hits": 19,
+        "n": 44,
+        "rate": 43.2
+      }
+    },
+    {
+      "sport": "Soccer",
+      "book": "Standard UNDER",
+      "prop": "shots",
+      "why": "soccer std under shots",
+      "listed": {
+        "hits": 5,
+        "n": 11,
+        "rate": 45.5
+      }
+    },
+    {
+      "sport": "Soccer",
+      "book": "Standard UNDER",
+      "prop": "shots on target",
+      "why": "soccer std under SOG",
+      "listed": {
+        "hits": 0,
+        "n": 2,
+        "rate": 0.0
+      }
+    },
+    {
+      "sport": "Tennis",
+      "book": "Goblin OVER",
+      "prop": "aces",
+      "why": "tennis goblin aces (likely 0 actuals)",
+      "listed": {
+        "hits": 0,
+        "n": 31,
+        "rate": 0.0
+      }
+    },
+    {
+      "sport": "Tennis",
+      "book": "Goblin OVER",
+      "prop": "double_faults",
+      "why": "tennis goblin DF (likely 0 actuals)",
+      "listed": {
+        "hits": 0,
+        "n": 40,
+        "rate": 0.0
+      }
+    },
+    {
+      "sport": "Tennis",
+      "book": "Standard UNDER",
+      "prop": "aces",
+      "why": "tennis std under aces (mirror of 0-actual overs)",
+      "listed": {
+        "hits": 24,
+        "n": 24,
+        "rate": 100.0
+      }
+    },
+    {
+      "sport": "Tennis",
+      "book": "Standard UNDER",
+      "prop": "games_won",
+      "why": "tennis std under games won",
+      "listed": {
+        "hits": 8,
+        "n": 20,
+        "rate": 40.0
+      }
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "prop": "points",
+      "why": "wnba std over raw points (not combos)",
+      "listed": {
+        "hits": 30,
+        "n": 64,
+        "rate": 46.9
+      }
+    }
+  ]
+}

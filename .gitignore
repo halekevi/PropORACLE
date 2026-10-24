@@ -259,5 +259,7 @@ data/reports/supplement_sports_slices.csv
 data/reports/winrate_goblin_policy_backtest.json
 data/reports/wnba_pra_off_observe.jsonl
 data/reports/wnba_pra_off_observe_*.json
+data/reports/wnba_threes_vol_observe.jsonl
+data/reports/wnba_threes_vol_observe_*.json
 # Team-share leader sidecars (bulky; lean by_player JSON is enough for UI)
 **/*_team_share_leaders.json

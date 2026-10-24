@@ -1,0 +1,51 @@
+{
+  "season": 2025,
+  "baseline": {
+    "n": 570,
+    "pass_yds": 225.6,
+    "rush_yds": 116.7,
+    "fg": 1.71,
+    "kick_pts": 7.37,
+    "pass_share": 0.659
+  },
+  "by_script": {
+    "leading": {
+      "n": 137,
+      "pass_yds": 230.4,
+      "rush_yds": 144.1,
+      "fg": 1.93,
+      "kick_pts": 9.27,
+      "pass_share": 0.615
+    },
+    "trailing": {
+      "n": 137,
+      "pass_yds": 202.3,
+      "rush_yds": 89.8,
+      "fg": 1.2,
+      "kick_pts": 4.74,
+      "pass_share": 0.693
+    },
+    "close": {
+      "n": 270,
+      "pass_yds": 233.9,
+      "rush_yds": 117.0,
+      "fg": 1.86,
+      "kick_pts": 7.73,
+      "pass_share": 0.667
+    }
+  },
+  "divisional": {
+    "n": 192,
+    "fg": 1.72,
+    "kick_pts": 7.23,
+    "pass_yds": 217.6,
+    "rush_yds": 114.8
+  },
+  "non_divisional": {
+    "n": 378,
+    "fg": 1.71,
+    "kick_pts": 7.44,
+    "pass_yds": 229.7,
+    "rush_yds": 117.6
+  }
+}

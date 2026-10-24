@@ -1,0 +1,146 @@
+source=best_props_raw_2026-10-22.txt  L5=5 only (no Demons; soccer Saves dropped)
+
+===== WNBA =====
+  WARN: WNBA step1 exists but step8_wnba_direction.csv is missing ù pipeline did not finish; do not treat as an empty slate.
+  WARN: MLB step1 exists but step8_mlb_direction.csv is missing ù pipeline did not finish; do not treat as an empty slate.
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=0)
+  (none L5=5)
+
+===== MLB =====
+  WARN: MLB step1 exists but step8_mlb_direction.csv is missing ù pipeline did not finish; do not treat as an empty slate.
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=0)
+  (none L5=5)
+
+===== SOCCER =====
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=4)
+  A/Bronze     Evanilson                Shots On Target            O0.5     Elite#3      SOCCER
+  A/Platinum   Roger Martφnez           Shots On Target            O0.5     Weak#17      SOCCER
+  A/Silver     Equi Fernßndez           Shots                      O0.5     no-D         SOCCER
+  A/Silver     Gonτalo Ramos            Shots On Target            O0.5     no-D         SOCCER
+
+===== TENNIS =====
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=0)
+  (none L5=5)
+
+===== NBA =====
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=56)
+  A/Bronze     De'Aaron Fox             Pts+Rebs+Asts              O19.5    Elite#4      
+  A/Bronze     De'Aaron Fox             Pts+Asts                   O16.5    Elite#4      
+  A/Bronze     De'Aaron Fox             Assists                    O4.5     Elite#4      
+  A/Bronze     Devin Vassell            3-PT Made                  O1.5     Elite#4      
+  A/Bronze     Dylan Harper             Pts+Rebs                   O8.5     Elite#4      
+  A/Bronze     Dylan Harper             Points                     O4.5     Elite#4      
+  A/Bronze     Dylan Harper             Pts+Asts                   O7.5     Elite#4      
+  A/Bronze     Dylan Harper             Assists                    O1.5     Elite#4      
+  A/Bronze     Julian Champagnie        Assists                    O0.5     Elite#4      
+  A/Bronze     Keldon Johnson           Points                     O3.5     Elite#4      
+  A/Bronze     Keldon Johnson           Pts+Asts                   O4.5     Elite#4      
+  A/Bronze     Stephon Castle           Points                     O11.5    Elite#4      
+  A/Bronze     Stephon Castle           Assists                    O4.5     Elite#4      
+  A/Bronze     Stephon Castle           3-PT Made                  O0.5     Elite#4      
+  A/Bronze     Stephon Castle           Steals                     O0.5     Elite#4      
+  ... +28 more unique
+
+===== NBA1Q =====
+  (section not in ranker output — board missing or not loaded)
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=0)
+  (none L5=5)
+
+===== NBA1H =====
+  (section not in ranker output — board missing or not loaded)
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=0)
+  (none L5=5)
+
+===== NHL =====
+  (section not in ranker output — board missing or not loaded)
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=0)
+  (none L5=5)
+
+===== NFL =====
+Standard OVER  (n=18)
+  D/Platinum   Derrick Henry            rush_yards_per_carry       O4.7     Below Avg#23 NFL
+  D/Platinum   Kyren Williams           rush_yards_per_carry       O4.4     Weak#28      NFL
+  D/Platinum   Ashton Jeanty            rush_yards_per_carry       O3.4     Below Avg#26 NFL
+  D/Platinum   Ollie Gordon II          rush_yards_per_carry       O3.6     Below Avg#23 NFL
+  D/Silver     Jahmyr Gibbs             rush_yards_per_carry       O4.5     Avg#18       NFL
+  D/Silver     Tony Pollard             rush_yards_per_carry       O4.2     Avg#17       NFL
+  D/Silver     Braelon Allen            rush_yards_per_carry       O3.8     Avg#16       NFL
+  D/Silver     J.K. Dobbins             rush_yards_per_carry       O3.8     Avg#20       NFL
+  D/Bronze     Kenneth Walker III       rush_yards_per_carry       O4.6     Above Avg#10 NFL
+  D/Bronze     Bijan Robinson           rush_yards_per_carry       O4.8     Elite#7      NFL
+  D/Bronze     Jonathan Taylor          rush_yards_per_carry       O3.9     Elite#5      NFL
+  D/Bronze     Chuba Hubbard            rush_yards_per_carry       O4.0     Elite#2      NFL
+  D/Bronze     Chase Brown              rush_yards_per_carry       O3.6     Above Avg#11 NFL
+  D/Bronze     Rhamondre Stevenson      rush_yards_per_carry       O4.0     Above Avg#8  NFL
+  D/Bronze     Christian McCaffrey      rush_yards_per_carry       O4.1     Elite#4      NFL
+  ... +3 more unique
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=81)
+  C/Bronze     Alvin Kamara             rushing_yards              O9.5     Avg#14       NFL
+  C/Bronze     Ashton Jeanty            receiving_yards            O9.5     Elite#2      NFL
+  C/Bronze     Ashton Jeanty            receptions                 O2.5     Elite#2      NFL
+  C/Bronze     Brock Purdy              rushing_yards              O9.5     Elite#4      NFL
+  C/Bronze     Cam Skattebo             rushing_yards              O9.5     Elite#3      NFL
+  C/Bronze     Chris Olave              receiving_yards            O39.5    Above Avg#8  NFL
+  C/Bronze     Cooper Kupp              receiving_yards            O9.5     Above Avg#9  NFL
+  C/Bronze     Devaughn Vele            receiving_yards            O19.5    Above Avg#8  NFL
+  C/Bronze     Devaughn Vele            receptions                 O2.5     Above Avg#8  NFL
+  C/Bronze     Dillon Thieneman         tackles_ast                O4.5     Avg#14       NFL
+  C/Bronze     Drake Maye               rushing_yards              O14.5    Above Avg#8  NFL
+  C/Bronze     Eli Raridon              receptions                 O0.5     Avg#15       NFL
+  C/Bronze     Foster Moreau            receptions                 O0.5     Elite#4      NFL
+  C/Bronze     Greg Dulcich             receiving_yards            O9.5     Elite#5      NFL
+  C/Bronze     Greg Dulcich             receptions                 O1.5     Elite#5      NFL
+  ... +43 more unique
+
+===== CFB =====
+  (no step8 file)
+  (no step8 file)
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=0)
+  (none L5=5)
+
+===== CFB1H =====
+  (no step8 file)
+Standard OVER  (n=0)
+  (none L5=5)
+Standard UNDER  (n=0)
+  (none L5=5)
+Goblin OVER  (n=0)
+  (none L5=5)

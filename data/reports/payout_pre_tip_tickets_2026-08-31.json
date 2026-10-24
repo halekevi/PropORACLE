@@ -1,0 +1,908 @@
+{
+  "generated_at": "2026-08-31T05:11:30.421880+00:00",
+  "cutoff_buffer_min": 45,
+  "n_games": 90,
+  "games": [
+    {
+      "game_id": "183046",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183124",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183060",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183100",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183774",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183772",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183114",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183077",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183118",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183771",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183068",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "184056",
+      "start_time": "2026-08-31T11:00:00-04:00"
+    },
+    {
+      "game_id": "183125",
+      "start_time": "2026-08-31T11:30:00-04:00"
+    },
+    {
+      "game_id": "183127",
+      "start_time": "2026-08-31T12:10:00-04:00"
+    },
+    {
+      "game_id": "183056",
+      "start_time": "2026-08-31T12:10:00-04:00"
+    },
+    {
+      "game_id": "183061",
+      "start_time": "2026-08-31T12:10:00-04:00"
+    },
+    {
+      "game_id": "183749",
+      "start_time": "2026-08-31T12:10:00-04:00"
+    },
+    {
+      "game_id": "183051",
+      "start_time": "2026-08-31T12:10:00-04:00"
+    },
+    {
+      "game_id": "183050",
+      "start_time": "2026-08-31T12:10:00-04:00"
+    },
+    {
+      "game_id": "183110",
+      "start_time": "2026-08-31T12:10:00-04:00"
+    },
+    {
+      "game_id": "183052",
+      "start_time": "2026-08-31T12:40:00-04:00"
+    },
+    {
+      "game_id": "183768",
+      "start_time": "2026-08-31T12:40:00-04:00"
+    },
+    {
+      "game_id": "183104",
+      "start_time": "2026-08-31T12:40:00-04:00"
+    },
+    {
+      "game_id": "183108",
+      "start_time": "2026-08-31T12:40:00-04:00"
+    },
+    {
+      "game_id": "183041",
+      "start_time": "2026-08-31T13:00:00-04:00"
+    },
+    {
+      "game_id": "183776",
+      "start_time": "2026-08-31T13:00:00-04:00"
+    },
+    {
+      "game_id": "183101",
+      "start_time": "2026-08-31T13:20:00-04:00"
+    },
+    {
+      "game_id": "183744",
+      "start_time": "2026-08-31T13:20:00-04:00"
+    },
+    {
+      "game_id": "183122",
+      "start_time": "2026-08-31T13:20:00-04:00"
+    },
+    {
+      "game_id": "183758",
+      "start_time": "2026-08-31T13:20:00-04:00"
+    },
+    {
+      "game_id": "183090",
+      "start_time": "2026-08-31T13:50:00-04:00"
+    },
+    {
+      "game_id": "183748",
+      "start_time": "2026-08-31T13:50:00-04:00"
+    },
+    {
+      "game_id": "183113",
+      "start_time": "2026-08-31T14:00:00-04:00"
+    },
+    {
+      "game_id": "183080",
+      "start_time": "2026-08-31T14:00:00-04:00"
+    },
+    {
+      "game_id": "183087",
+      "start_time": "2026-08-31T14:30:00-04:00"
+    },
+    {
+      "game_id": "183112",
+      "start_time": "2026-08-31T14:40:00-04:00"
+    },
+    {
+      "game_id": "183133",
+      "start_time": "2026-08-31T15:00:00-04:00"
+    },
+    {
+      "game_id": "183116",
+      "start_time": "2026-08-31T15:00:00-04:00"
+    },
+    {
+      "game_id": "183757",
+      "start_time": "2026-08-31T15:00:00-04:00"
+    },
+    {
+      "game_id": "183745",
+      "start_time": "2026-08-31T15:10:00-04:00"
+    },
+    {
+      "game_id": "183134",
+      "start_time": "2026-08-31T15:30:00-04:00"
+    },
+    {
+      "game_id": "183063",
+      "start_time": "2026-08-31T15:40:00-04:00"
+    },
+    {
+      "game_id": "183115",
+      "start_time": "2026-08-31T16:30:00-04:00"
+    },
+    {
+      "game_id": "183071",
+      "start_time": "2026-08-31T17:00:00-04:00"
+    },
+    {
+      "game_id": "183093",
+      "start_time": "2026-08-31T17:00:00-04:00"
+    },
+    {
+      "game_id": "183135",
+      "start_time": "2026-08-31T19:00:00-04:00"
+    },
+    {
+      "game_id": "183092",
+      "start_time": "2026-08-31T19:00:00-04:00"
+    },
+    {
+      "game_id": "183053",
+      "start_time": "2026-08-31T20:10:00-04:00"
+    },
+    {
+      "game_id": "183055",
+      "start_time": "2026-08-31T20:40:00-04:00"
+    },
+    {
+      "game_id": "183075",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183062",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183770",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183073",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183086",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183094",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183775",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183752",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183755",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183128",
+      "start_time": "2026-09-01T11:00:00-04:00"
+    },
+    {
+      "game_id": "183105",
+      "start_time": "2026-09-01T11:30:00-04:00"
+    },
+    {
+      "game_id": "183069",
+      "start_time": "2026-09-01T12:10:00-04:00"
+    },
+    {
+      "game_id": "183043",
+      "start_time": "2026-09-01T12:10:00-04:00"
+    },
+    {
+      "game_id": "183095",
+      "start_time": "2026-09-01T12:10:00-04:00"
+    },
+    {
+      "game_id": "183097",
+      "start_time": "2026-09-01T12:10:00-04:00"
+    },
+    {
+      "game_id": "183777",
+      "start_time": "2026-09-01T12:10:00-04:00"
+    },
+    {
+      "game_id": "183098",
+      "start_time": "2026-09-01T12:40:00-04:00"
+    },
+    {
+      "game_id": "183048",
+      "start_time": "2026-09-01T12:40:00-04:00"
+    },
+    {
+      "game_id": "183059",
+      "start_time": "2026-09-01T12:40:00-04:00"
+    },
+    {
+      "game_id": "183096",
+      "start_time": "2026-09-01T12:40:00-04:00"
+    },
+    {
+      "game_id": "183753",
+      "start_time": "2026-09-01T12:40:00-04:00"
+    },
+    {
+      "game_id": "183136",
+      "start_time": "2026-09-01T12:40:00-04:00"
+    },
+    {
+      "game_id": "184030",
+      "start_time": "2026-09-01T13:20:00-04:00"
+    },
+    {
+      "game_id": "183072",
+      "start_time": "2026-09-01T13:20:00-04:00"
+    },
+    {
+      "game_id": "183045",
+      "start_time": "2026-09-01T13:50:00-04:00"
+    },
+    {
+      "game_id": "183773",
+      "start_time": "2026-09-01T13:50:00-04:00"
+    },
+    {
+      "game_id": "183119",
+      "start_time": "2026-09-01T13:50:00-04:00"
+    },
+    {
+      "game_id": "183123",
+      "start_time": "2026-09-01T13:50:00-04:00"
+    },
+    {
+      "game_id": "183126",
+      "start_time": "2026-09-01T13:50:00-04:00"
+    },
+    {
+      "game_id": "183132",
+      "start_time": "2026-09-01T13:50:00-04:00"
+    },
+    {
+      "game_id": "183107",
+      "start_time": "2026-09-01T14:20:00-04:00"
+    },
+    {
+      "game_id": "183767",
+      "start_time": "2026-09-01T15:00:00-04:00"
+    },
+    {
+      "game_id": "183129",
+      "start_time": "2026-09-01T15:00:00-04:00"
+    },
+    {
+      "game_id": "183081",
+      "start_time": "2026-09-01T15:30:00-04:00"
+    },
+    {
+      "game_id": "183130",
+      "start_time": "2026-09-01T16:30:00-04:00"
+    },
+    {
+      "game_id": "183751",
+      "start_time": "2026-09-01T17:00:00-04:00"
+    },
+    {
+      "game_id": "183065",
+      "start_time": "2026-09-01T19:00:00-04:00"
+    },
+    {
+      "game_id": "183074",
+      "start_time": "2026-09-01T19:00:00-04:00"
+    },
+    {
+      "game_id": "183121",
+      "start_time": "2026-09-01T20:10:00-04:00"
+    },
+    {
+      "game_id": "183766",
+      "start_time": "2026-09-01T20:40:00-04:00"
+    },
+    {
+      "game_id": "184075",
+      "start_time": "2026-09-02T11:00:00-04:00"
+    }
+  ],
+  "pools": {
+    "standard": 358,
+    "goblin": 1078,
+    "demon": 1624
+  },
+  "delta_bins": {
+    "1": 97,
+    "1.5": 6,
+    "2": 125,
+    "2.5": 6,
+    "3": 103,
+    "3.5": 10,
+    "4": 64,
+    "4.5": 5,
+    "5": 44,
+    "5.5": 2,
+    "6": 29,
+    "6.5": 2,
+    "7": 17,
+    "7.5": 1,
+    "8": 13,
+    "9": 4,
+    "9.5": 1,
+    "10": 2,
+    "11": 1,
+    "11.5": 2,
+    "12": 8,
+    "15": 1
+  },
+  "n_planned": 48,
+  "n_unbuildable": 0,
+  "tickets": [
+    {
+      "composition": "0S+5G+0D",
+      "goblin_delta_sig": "1+1+1+1.5+2",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+4G+0D",
+      "goblin_delta_sig": "1+1+1.5+2",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+3G+0D",
+      "goblin_delta_sig": "1+1.5+2",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "3S+2G+0D",
+      "goblin_delta_sig": "1+1.5",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Elsa Jacquemot Double Faults Standard 4.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "4S+1G+0D",
+      "goblin_delta_sig": "1",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Elsa Jacquemot Double Faults Standard 4.5 Δ=None",
+        "Corentin Moutet Total Games Won Standard 19.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+4G+0D",
+      "goblin_delta_sig": "1+1+1.5+2",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+3G+0D",
+      "goblin_delta_sig": "1+1.5+2",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+2G+0D",
+      "goblin_delta_sig": "1+1.5",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "3S+1G+0D",
+      "goblin_delta_sig": "1",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Elsa Jacquemot Double Faults Standard 4.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+6G+0D",
+      "goblin_delta_sig": "1+1+1+1+1.5+2",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Aleksandar Kovacevic Total Games Won Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+5G+0D",
+      "goblin_delta_sig": "1+1+1+1.5+2",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+4G+0D",
+      "goblin_delta_sig": "1+1+1.5+2",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "3S+3G+0D",
+      "goblin_delta_sig": "1+1.5+2",
+      "legs": [
+        "Mananchaya Sawangkaew Total Games Goblin 20.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Elsa Jacquemot Double Faults Standard 4.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "4S+2G+0D",
+      "goblin_delta_sig": "1+1.5",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Elsa Jacquemot Double Faults Standard 4.5 Δ=None",
+        "Mananchaya Sawangkaew Total Games Standard 21.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "5S+1G+0D",
+      "goblin_delta_sig": "1",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Elsa Jacquemot Double Faults Standard 4.5 Δ=None",
+        "Mananchaya Sawangkaew Total Games Standard 21.5 Δ=None",
+        "Corentin Moutet Total Games Won Standard 19.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+3G+0D",
+      "goblin_delta_sig": "1+1.5+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+2G+0D",
+      "goblin_delta_sig": "1+1.5",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+1G+0D",
+      "goblin_delta_sig": "1",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "0S+2G+0D",
+      "goblin_delta_sig": "1+1.5",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5"
+      ]
+    },
+    {
+      "composition": "1S+1G+0D",
+      "goblin_delta_sig": "1",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "0S+5G+0D",
+      "goblin_delta_sig": "1+1+1.5+1.5+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+4G+0D",
+      "goblin_delta_sig": "1+1.5+1.5+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+3G+0D",
+      "goblin_delta_sig": "1+1+1.5",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "3S+2G+0D",
+      "goblin_delta_sig": "1+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Corentin Moutet Total Games Won Standard 19.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "4S+1G+0D",
+      "goblin_delta_sig": "1.5",
+      "legs": [
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Tamara Korpatsch Total Games Won Standard 8.5 Δ=None",
+        "Anhelina Kalinina Total Games Standard 20.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+4G+0D",
+      "goblin_delta_sig": "1+1.5+1.5+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+3G+0D",
+      "goblin_delta_sig": "1+1+1.5",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+2G+0D",
+      "goblin_delta_sig": "1+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "3S+1G+0D",
+      "goblin_delta_sig": "1.5",
+      "legs": [
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Anhelina Kalinina Total Games Standard 20.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+6G+0D",
+      "goblin_delta_sig": "1+1+1+1.5+1.5+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Aleksandar Kovacevic Total Games Won Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+5G+0D",
+      "goblin_delta_sig": "1+1+1.5+1.5+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+4G+0D",
+      "goblin_delta_sig": "1+1.5+1.5+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "3S+3G+0D",
+      "goblin_delta_sig": "1+1+1.5",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Aleksandar Kovacevic Total Games Won Standard 20.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "4S+2G+0D",
+      "goblin_delta_sig": "1+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Valentin Vacherot Total Games Won Standard 20.5 Δ=None",
+        "Peyton Stearns Total Games Standard 20.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "5S+1G+0D",
+      "goblin_delta_sig": "1.5",
+      "legs": [
+        "Lilli Tagger Total Games Goblin 18.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Valentin Vacherot Total Games Won Standard 20.5 Δ=None",
+        "Peyton Stearns Total Games Standard 20.5 Δ=None",
+        "Harriet Dart Total Games Won Standard 9.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+3G+0D",
+      "goblin_delta_sig": "1+1+1.5",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5"
+      ]
+    },
+    {
+      "composition": "1S+2G+0D",
+      "goblin_delta_sig": "1+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+1G+0D",
+      "goblin_delta_sig": "1.5",
+      "legs": [
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "0S+2G+0D",
+      "goblin_delta_sig": "1+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Tamara Korpatsch Total Games Won Goblin 6.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+1G+0D",
+      "goblin_delta_sig": "1.5",
+      "legs": [
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "0S+5G+0D",
+      "goblin_delta_sig": "1+1+1.5+2+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Himeno Sakatsume Total Games Won Goblin 7.5 Δ=2.0",
+        "Mirra Andreeva Total Games Goblin 17.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+4G+0D",
+      "goblin_delta_sig": "1+1.5+2+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Himeno Sakatsume Total Games Won Goblin 7.5 Δ=2.0",
+        "Mirra Andreeva Total Games Goblin 17.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+3G+0D",
+      "goblin_delta_sig": "1+1+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Himeno Sakatsume Total Games Won Goblin 7.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "3S+2G+0D",
+      "goblin_delta_sig": "1.5+2",
+      "legs": [
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Anhelina Kalinina Total Games Goblin 18.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Karolina Muchova Total Games Standard 18.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "4S+1G+0D",
+      "goblin_delta_sig": "2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 18.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5",
+        "Karolina Muchova Total Games Standard 18.5 Δ=None",
+        "Sara Bejlek Total Games Standard 19.5 Δ=None"
+      ]
+    },
+    {
+      "composition": "0S+4G+0D",
+      "goblin_delta_sig": "1+1.5+2+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Himeno Sakatsume Total Games Won Goblin 7.5 Δ=2.0",
+        "Mirra Andreeva Total Games Goblin 17.5 Δ=2.0"
+      ]
+    },
+    {
+      "composition": "1S+3G+0D",
+      "goblin_delta_sig": "1+1+2",
+      "legs": [
+        "Anhelina Kalinina Total Games Goblin 19.5 Δ=1.0",
+        "Janice Tjen Total Games Won Goblin 6.5 Δ=1.0",
+        "Himeno Sakatsume Total Games Won Goblin 7.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5"
+      ]
+    },
+    {
+      "composition": "2S+2G+0D",
+      "goblin_delta_sig": "1.5+2",
+      "legs": [
+        "Valentin Vacherot Total Games Goblin 39.5 Δ=1.5",
+        "Anhelina Kalinina Total Games Goblin 18.5 Δ=2.0",
+        "Carlos Alcaraz Total Games Won Standard 20.0 Δ=0.5",
+        "Katie Volynets Total Games Won Standard 10.0 Δ=0.5"
+      ]
+    }
+  ],
+  "step1_csv": "H:\\PropORACLE\\data\\reports\\payout_pre_tip_step1_2026-08-31.csv",
+  "tickets_path": "H:\\PropORACLE\\ui_runner\\data\\payout_ladder_validation_tickets.json",
+  "next": "Capture N-correct from unstarted games (does not place bets): py -3.14 scripts/collect_payout_data.py --tickets ui_runner/data/payout_ladder_validation_tickets.json --gentle --allow-line-fallback --max-cases 48 --date 2026-08-31"
+}

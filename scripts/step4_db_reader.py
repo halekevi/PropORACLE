@@ -172,10 +172,9 @@ _NHL_PROP_MAP = {
 }
 
 # ── Soccer prop → DB column ────────────────────────────────────────────────────
-# Passes / tackles / clearances / dribbles: schema + parser exist in
-# build_boxscore_ref.py, but ESPN summaries currently leave those columns NULL
-# (~0% fill over recent soccer rows). Map them anyway so L5 fills automatically
-# if ESPN starts exposing the stats; empty logs still yield NO_DATA / MISSING.
+# Passes / tackles / clearances / dribbles: ESPN summaries leave these NULL.
+# Soccer step4 fills them from Sofascore lineups (event_id sofa_*). Shots/SOT/goals
+# are also filled when ESPN only has the latest league game.
 _SOCCER_PROP_MAP = {
     "shots on target":         "sog",
     "shots_on_target":         "sog",
@@ -200,6 +199,7 @@ _SOCCER_PROP_MAP = {
     "goal+assist":             "g + a",
     "goal_assist":             "g + a",
     "shots assisted":          "kp",
+    "shots_assisted":          "kp",
     "minutes":                 "minutes_played",
     "minutes played":          "minutes_played",
     # Weak / often-null ESPN markets (ticket-banned; L5 when DB fills).
@@ -213,6 +213,7 @@ _SOCCER_PROP_MAP = {
     "attempteddribbles":       "dribble_attempts",
     "attempted_dribbles":      "dribble_attempts",
     "dribbles":                "dribble_attempts",
+    "crosses":                 "crosses",
 }
 
 
@@ -257,31 +258,218 @@ def _allstar_date_exclusion_sql(sport: str, date_col: str = "game_date") -> tupl
 
 def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
                 stat_expr: str, params: tuple, n: int,
-                *, sport: str = "") -> List[float]:
+                *, sport: str = "", min_game_date: str = "",
+                card_window: bool = False,
+                regular_season_only: bool = False) -> List[float]:
     """
     Generic indexed stat query.
     Returns up to n most-recent non-null values, newest first.
+    min_game_date drops older seasons (NBAP last-5 is this preseason only).
+    card_window: keep regular + playoffs, drop preseason (PP card L5).
+    regular_season_only: legacy — prefer card_window (playoffs stay).
     """
     sport_key = sport or table
     exclude_sql, exclude_params = _allstar_team_exclusion_sql(sport_key)
     date_sql, date_params = _allstar_date_exclusion_sql(sport_key)
+    floor = str(min_game_date or "")[:10]
+    floor_sql = " AND game_date >= ?" if floor else ""
+    floor_params = (floor,) if floor else ()
+    filter_windows = card_window or regular_season_only
+    # Pull extra rows when filtering windows so L5 still fills after drops.
+    fetch_n = max(n * 8, n) if filter_windows else n
     sql = f"""
-        SELECT {stat_expr} AS val
+        SELECT game_date, {stat_expr} AS val
         FROM {table}
         WHERE {where_clause}
           AND {stat_expr} IS NOT NULL
           AND ({exclude_sql})
           AND ({date_sql})
+          {floor_sql}
         ORDER BY game_date DESC
-        LIMIT {n}
+        LIMIT {fetch_n}
+    """
+    try:
+        rows = con.execute(
+            sql,
+            tuple(params) + tuple(exclude_params) + tuple(date_params) + tuple(floor_params),
+        ).fetchall()
+    except Exception:
+        return []
+    if not filter_windows:
+        return [float(r[1]) for r in rows if r[1] is not None]
+    try:
+        from datetime import date as _date
+        from utils.nba_minutes_role import classify_game
+    except Exception:
+        return [float(r[1]) for r in rows if r[1] is not None][:n]
+    if card_window:
+        allow = {"regular", "playoffs"}
+    else:
+        allow = {"regular"}
+    out: List[float] = []
+    for gd, val in rows:
+        if val is None:
+            continue
+        try:
+            d = _date.fromisoformat(str(gd)[:10])
+        except ValueError:
+            continue
+        if classify_game(d) not in allow:
+            continue
+        out.append(float(val))
+        if len(out) >= n:
+            break
+    return out
+
+
+# Sofascore omits these keys at 0; PP Last 5 still counts the appearance as 0.
+# Do NOT include `sv` (saves): a missing Sofa save key is unknown, not 0. Coalescing
+# null→0 invented King's Cup "0 save" games and fake L5=5 Unders (Pacheco).
+_SOCCER_OMITTED_ZERO_COLS = frozenset({
+    "tk", "clearances", "crosses", "kp", "pa", "sh", "sog",
+})
+
+
+def _soccer_select_and_filter(stat_expr: str) -> tuple[str, str]:
+    """SELECT alias + WHERE fragment. Sofa appearances with a missing 0-count stay in L5."""
+    col = str(stat_expr or "").strip()
+    if col not in _SOCCER_OMITTED_ZERO_COLS:
+        return f"{stat_expr} AS val", f"{stat_expr} IS NOT NULL"
+    appeared = (
+        "pa IS NOT NULL OR sh IS NOT NULL OR sog IS NOT NULL "
+        "OR fc IS NOT NULL OR tk IS NOT NULL OR sv IS NOT NULL "
+        "OR coalesce(minutes_played, 0) > 0"
+    )
+    select_sql = (
+        f"CASE WHEN coalesce(event_id, '') LIKE 'sofa_%' "
+        f"THEN coalesce({col}, 0) ELSE {col} END AS val"
+    )
+    where_sql = (
+        f"({col} IS NOT NULL OR "
+        f"(coalesce(event_id, '') LIKE 'sofa_%' AND ({appeared})))"
+    )
+    return select_sql, where_sql
+
+
+def _soccer_club_key(team: str) -> str:
+    import re
+    raw = re.sub(r"[^A-Z0-9]", "", str(team or "").upper())
+    aliases = {
+        "WESTHAM": "WHU", "WESTHAMUNITED": "WHU", "WHU": "WHU",
+        "WOLVES": "WOL", "WOLVERHAMPTON": "WOL", "WOLVERHAMPTONWANDERERS": "WOL",
+        "WOL": "WOL",
+        "NORWICH": "NOR", "NORWICHCITY": "NOR", "NOR": "NOR",
+        "PORTSMOUTH": "PORTSMOUTH", "POMPEY": "PORTSMOUTH",
+        "AUSTRALIA": "AUS", "AUS": "AUS",
+        "IVORYCOAST": "CIV", "CIV": "CIV",
+        "EGYPT": "EGY", "EGY": "EGY",
+        # PrizePicks board abbr ↔ ESPN soccer box codes (Saudi / big-five).
+        # Without this, team=FAISALY drops ESPN ALF rows and L5 falls onto
+        # old Sofascore FAISALY logs (Pacheco false L5=5 Under).
+        "FAISALY": "ALF", "ALFAISALY": "ALF", "ALF": "ALF",
+        "HILAL": "HIL", "ALHILAL": "HIL", "HIL": "HIL",
+        "NASSR": "NAS", "ALNASSR": "NAS", "NAS": "NAS",
+        "QADSIAH": "QAD", "ALQADSIAH": "QAD", "QAD": "QAD",
+        "ITTIHAD": "ITT", "ALITTIHAD": "ITT", "ITT": "ITT",
+        "SHABAB": "SHA", "ALSHABAB": "SHA", "SHA": "SHA",
+        "AHLI": "AHL", "ALAHLI": "AHL", "AHL": "AHL",
+        "ETTIFAQ": "ETT", "ALETTIFAQ": "ETT", "ETT": "ETT",
+        "KHOLOOD": "KHO", "ALKHOLOOD": "KHO",
+        "HAZEM": "HAZ", "ALHAZEM": "HAZ", "HAZ": "HAZ",
+        "NICE": "NICE", "OGCNICE": "NICE",
+        "BREST": "BRE", "STBREST": "BRE", "BRE": "BRE",
+    }
+    return aliases.get(raw, raw)
+
+
+def _soccer_club_match(hint: str, db_team: str) -> bool:
+    """True when slate club and DB club are the same side (not AUS vs Norwich)."""
+    if not str(hint or "").strip():
+        return True
+    h = _soccer_club_key(hint)
+    d = _soccer_club_key(db_team)
+    if not h or not d:
+        return True
+    if h == d:
+        return True
+    if len(h) >= 3 and len(d) >= 3 and (h in d or d in h):
+        return True
+    return False
+
+
+def _query_soccer_vals(
+    con: sqlite3.Connection,
+    where_clause: str,
+    stat_expr: str,
+    params: tuple,
+    n: int,
+    team_hint: str = "",
+) -> List[float]:
+    """Newest soccer L5, one row per game_date (ESPN beats sofa_*).
+
+    Walk appearances newest-first. A missing prop on a recent box is a **gap** —
+    stop there instead of skipping to older Sofa 0s (Summerville Crosses false
+    L5=5 Under). Sofa omitted-zero coalesce still applies only inside a date.
+    """
+    exclude_sql, exclude_params = _allstar_team_exclusion_sql("soccer")
+    date_sql, date_params = _allstar_date_exclusion_sql("soccer")
+    select_sql, _val_filter = _soccer_select_and_filter(stat_expr)
+    # Appearance = any box row for the player (not prop-filtered).
+    appeared = (
+        "pa IS NOT NULL OR sh IS NOT NULL OR sog IS NOT NULL "
+        "OR fc IS NOT NULL OR tk IS NOT NULL OR sv IS NOT NULL "
+        "OR crosses IS NOT NULL OR clearances IS NOT NULL "
+        "OR dribble_attempts IS NOT NULL "
+        "OR coalesce(minutes_played, 0) > 0"
+    )
+    sql = f"""
+        SELECT game_date, event_id, {select_sql}, team
+        FROM soccer
+        WHERE {where_clause}
+          AND ({appeared})
+          AND ({exclude_sql})
+          AND ({date_sql})
+        ORDER BY game_date DESC,
+                 CASE WHEN coalesce(event_id, '') LIKE 'sofa_%' THEN 1 ELSE 0 END
     """
     try:
         rows = con.execute(
             sql, tuple(params) + tuple(exclude_params) + tuple(date_params)
         ).fetchall()
-        return [float(r[0]) for r in rows if r[0] is not None]
     except Exception:
         return []
+
+    def _window(*, prefer_hint: bool) -> List[float]:
+        seen: set[str] = set()
+        out: List[float] = []
+        hint = str(team_hint or "").strip()
+        for gd, _eid, val, db_team in rows:
+            key = str(gd or "")[:10]
+            if not key or key in seen:
+                continue
+            if prefer_hint and hint and not _soccer_club_match(hint, str(db_team or "")):
+                continue
+            seen.add(key)
+            # Gap: played this date but prop missing — do not skip to older games.
+            if val is None:
+                break
+            out.append(float(val))
+            if len(out) >= n:
+                break
+        return out
+
+    hint = str(team_hint or "").strip()
+    matched = _window(prefer_hint=True) if hint else []
+    vals = _window(prefer_hint=False)
+    if hint and len(matched) >= n:
+        return matched[:n]
+    if hint and matched and len(matched) >= len(vals):
+        return matched[:n]
+    if vals:
+        return vals[:n]
+    if hint and matched:
+        return matched[:n]
+    return []
 
 
 def _nfkd_norm(s: str) -> str:
@@ -291,19 +479,42 @@ def _nfkd_norm(s: str) -> str:
     return "".join(c for c in n if not _ud.combining(c))
 
 
+# Last April is not tonight's preseason minutes. NBAP last-5 starts here.
+NBAP_L5_FLOOR = "2026-10-01"
+
+
+def nbap_l5_floor(league: str = "", league_id: str = "") -> str:
+    """Date floor for NBAP rows. Empty string means the normal NBA window."""
+    lg = str(league or "").strip().upper()
+    lid = str(league_id or "").strip()
+    if lg in {"NBAP", "NBA PRESEASON", "NBA-PRESEASON"} or lid == "237":
+        return NBAP_L5_FLOOR
+    return ""
+
+
 def get_vals_nba(con: sqlite3.Connection, espn_id: str,
-                  prop_norm: str, n: int = 10, player_name: str = "") -> List[float]:
+                  prop_norm: str, n: int = 10, player_name: str = "",
+                  min_game_date: str = "",
+                  card_window: bool = False,
+                  regular_season_only: bool = False) -> List[float]:
     expr = _resolve_prop(prop_norm, "nba")
     if not expr:
         return []
+    floor = str(min_game_date or "")[:10]
     # Primary: ESPN athlete ID (exact, unambiguous)
     vals = _query_vals(con, "nba",
-                       "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n)
+                       "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n,
+                       min_game_date=floor,
+                       card_window=card_window,
+                       regular_season_only=regular_season_only)
     if not vals and player_name:
         # Fallback 1: exact lowercase match (covers DB storing accented names)
         norm = player_name.strip().lower()
         vals = _query_vals(con, "nba",
-                           "lower(player) = ?", expr, (norm,), n)
+                           "lower(player) = ?", expr, (norm,), n,
+                           min_game_date=floor,
+                           card_window=card_window,
+                           regular_season_only=regular_season_only)
         # Fallback 2: NFKD-normalized match (covers DB storing ASCII names vs
         #             PrizePicks sending accented names, or vice versa)
         if not vals:
@@ -315,6 +526,8 @@ def get_vals_nba(con: sqlite3.Connection, espn_id: str,
                     first, last = parts[0], parts[-1]
                     try:
                         exclude_sql, exclude_params = _allstar_team_exclusion_sql("NBA")
+                        floor_sql = " AND game_date >= ?" if floor else ""
+                        floor_params = (floor,) if floor else ()
                         sql = f"""
                             SELECT player, {expr} AS val
                             FROM nba
@@ -322,11 +535,13 @@ def get_vals_nba(con: sqlite3.Connection, espn_id: str,
                               AND lower(player) LIKE ?
                               AND {expr} IS NOT NULL
                               AND ({exclude_sql})
+                              {floor_sql}
                             ORDER BY game_date DESC
                             LIMIT {n * 5}
                         """
                         rows = con.execute(
-                            sql, (f"{first}%", f"%{last}") + tuple(exclude_params)
+                            sql,
+                            (f"{first}%", f"%{last}") + tuple(exclude_params) + tuple(floor_params),
                         ).fetchall()
                         vals = [
                             float(r[1]) for r in rows
@@ -403,7 +618,7 @@ def get_vals_nhl(con: sqlite3.Connection, player: str,
 
 def get_vals_soccer(con: sqlite3.Connection, espn_player_id: str,
                      prop_norm: str, n: int = 10,
-                     player_name: str = "") -> List[float]:
+                     player_name: str = "", team: str = "") -> List[float]:
     expr = _resolve_prop(prop_norm, "soccer")
     if not expr:
         return []
@@ -411,49 +626,97 @@ def get_vals_soccer(con: sqlite3.Connection, espn_player_id: str,
     eid = str(espn_player_id or "").strip()
     if eid.endswith(".0") and eid[:-2].isdigit():
         eid = eid[:-2]
+    team_hint = str(team or "").strip()
 
-    # Primary: lookup by ESPN player ID
-    vals = _query_vals(con, "soccer",
-                       "espn_player_id = ?", expr, (eid,), n)
+    if not eid:
+        vals = []
+    elif player_name:
+        # Wrong/shared ESPN IDs were copying one keeper/shooter log onto the whole slate.
+        vals = _query_soccer_vals(
+            con,
+            "espn_player_id = ? AND lower(player) = ?",
+            expr,
+            (eid, player_name.strip().lower()),
+            n,
+            team_hint=team_hint,
+        )
+    else:
+        vals = _query_soccer_vals(
+            con, "espn_player_id = ?", expr, (eid,), n, team_hint=team_hint
+        )
 
     # Fallback 1: exact name match (DB often uses a different ID space than PrizePicks cache)
-    if not vals and player_name:
+    if len(vals) < 5 and player_name:
         norm = player_name.strip().lower()
-        vals = _query_vals(con, "soccer",
-                           "lower(player) = ?", expr, (norm,), n)
+        named = _query_soccer_vals(
+            con, "lower(player) = ?", expr, (norm,), n, team_hint=team_hint
+        )
+        if len(named) > len(vals):
+            vals = named
 
     # Fallback 2: legacy FBref rows (subset of name match; kept for explicitness)
-    if not vals and player_name:
+    if len(vals) < 5 and player_name:
         norm = player_name.strip().lower()
-        vals = _query_vals(con, "soccer",
-                           "lower(player) = ? AND espn_player_id LIKE 'fbref_%'",
-                           expr, (norm,), n)
+        named = _query_soccer_vals(
+            con,
+            "lower(player) = ? AND espn_player_id LIKE 'fbref_%'",
+            expr,
+            (norm,),
+            n,
+            team_hint=team_hint,
+        )
+        if len(named) > len(vals):
+            vals = named
 
-    # Fallback 3: NFKD accent-normalized name (DB ASCII vs slate accented)
-    if not vals and player_name:
+    # Fallback 3: NFKD accent-normalized name via the same appearance-gap walker.
+    # Do not re-query "non-null prop only" — that skips recent ESPN gaps and
+    # resurrects old Sofa 0s (Summerville Crosses false L5=5 Under).
+    # If we already keyed by ESPN id and hit a recent prop gap, stop (no pad).
+    if len(vals) < 5 and player_name and not eid:
         norm_ascii = _nfkd_norm(player_name)
-        norm_lower = player_name.strip().lower()
-        if norm_ascii and norm_ascii != norm_lower:
+        parts = [p for p in norm_ascii.split() if p]
+        last = parts[-1] if parts else ""
+        needle = last[:4] if len(last) >= 4 else last
+        if needle:
             try:
-                parts = norm_ascii.split()
-                if len(parts) >= 2:
-                    first, last = parts[0], parts[-1]
-                    sql = f"""
-                        SELECT player, {expr} AS val
-                        FROM soccer
-                        WHERE lower(player) LIKE ?
-                          AND lower(player) LIKE ?
-                          AND {expr} IS NOT NULL
-                        ORDER BY game_date DESC
-                        LIMIT ?
-                    """
-                    rows = con.execute(sql, (f"{first}%", f"%{last}", n * 8)).fetchall()
-                    vals = [
-                        float(r[1]) for r in rows
-                        if r[1] is not None and _nfkd_norm(str(r[0])) == norm_ascii
-                    ][:n]
+                select_sql, _vf = _soccer_select_and_filter(expr)
+                appeared = (
+                    "pa IS NOT NULL OR sh IS NOT NULL OR sog IS NOT NULL "
+                    "OR fc IS NOT NULL OR tk IS NOT NULL OR sv IS NOT NULL "
+                    "OR crosses IS NOT NULL OR clearances IS NOT NULL "
+                    "OR dribble_attempts IS NOT NULL "
+                    "OR coalesce(minutes_played, 0) > 0"
+                )
+                sql = f"""
+                    SELECT player, game_date, team, {select_sql}
+                    FROM soccer
+                    WHERE ({appeared})
+                      AND player LIKE ?
+                    ORDER BY game_date DESC,
+                             CASE WHEN coalesce(event_id, '') LIKE 'sofa_%' THEN 1 ELSE 0 END
+                    LIMIT ?
+                """
+                rows = con.execute(sql, (f"%{needle}%", n * 40)).fetchall()
+                seen_dates: set[str] = set()
+                named: List[float] = []
+                for player, gd, db_team, val in rows:
+                    if _nfkd_norm(str(player)) != norm_ascii:
+                        continue
+                    if team_hint and not _soccer_club_match(team_hint, str(db_team or "")):
+                        continue
+                    key = str(gd or "")[:10]
+                    if not key or key in seen_dates:
+                        continue
+                    seen_dates.add(key)
+                    if val is None:
+                        break
+                    named.append(float(val))
+                    if len(named) >= n:
+                        break
+                if len(named) > len(vals):
+                    vals = named
             except Exception:
-                vals = []
+                pass
 
     return vals
 
@@ -537,6 +800,7 @@ def attach_stats(
     line_col: str = "line",
     n: int = 10,
     combo_sep: str = "|",
+    slate_date: str = "",
 ) -> pd.DataFrame:
     """
     Attach stat columns to slate DataFrame from the SQLite reference DB.
@@ -545,6 +809,9 @@ def attach_stats(
               for NHL: player name column (no ESPN ID in NHL pipeline)
     """
     sport = sport.lower()
+    # Period boards share the full-game box table / L5 attach path.
+    if sport in ("nba1q", "nba1h", "nbap"):
+        sport = "nba"
 
     # Determine which get_fn to use
     _get_fns = {
@@ -596,10 +863,24 @@ def attach_stats(
             continue
 
         # Parse IDs — support combo players (pipe-separated)
+        player_name = str(row.get("player", "")).strip()
         if not raw_id or raw_id in ("nan", ""):
-            slate.at[idx, "stat_status"] = "NO_ID"
-            status_counts["NO_ID"] += 1
-            continue
+            is_combo_flag = (
+                str(row.get("is_combo_player", "")).strip().lower() in ("1", "true", "yes")
+                or "+" in player_name
+            )
+            if is_combo_flag:
+                slate.at[idx, "stat_status"] = "NO_ID"
+                status_counts["NO_ID"] += 1
+                continue
+            # Soccer Popular markets can attach by player name after Sofascore fill
+            # even when step2 ESPN IDs are still blank (Saudi roster lag).
+            if sport == "soccer" and player_name:
+                raw_id = ""
+            else:
+                slate.at[idx, "stat_status"] = "NO_ID"
+                status_counts["NO_ID"] += 1
+                continue
 
         is_combo = (combo_sep in raw_id) or (
             str(row.get("is_combo_player", "")).strip().lower() in ("1", "true", "yes")
@@ -610,10 +891,24 @@ def attach_stats(
             vals = get_vals_combo(get_fn, con, ids, prop, n)
         else:
             player_name = str(row.get("player", "")).strip()
-            if sport in ("nba", "cbb") and player_name:
+            if sport == "nba" and player_name:
+                floor = nbap_l5_floor(
+                    str(row.get("league") or ""),
+                    str(row.get("league_id") or ""),
+                )
+                # PP card L5 = RS + playoffs, never preseason.
+                vals = get_fn(
+                    con, raw_id, prop, n,
+                    player_name=player_name, min_game_date=floor,
+                    card_window=True,
+                )
+            elif sport == "cbb" and player_name:
                 vals = get_fn(con, raw_id, prop, n, player_name=player_name)
             elif sport == "soccer" and player_name:
-                vals = get_fn(con, raw_id, prop, n, player_name=player_name)
+                team = str(row.get("team") or row.get("pp_home_team") or "").strip()
+                vals = get_fn(
+                    con, raw_id, prop, n, player_name=player_name, team=team
+                )
             else:
                 vals = get_fn(con, raw_id, prop, n)
 
@@ -699,7 +994,16 @@ def _attach_role_stability(
         mins: List[float] = []
         if sport in ("nba", "cbb", "nba1h", "nba1q"):
             table = "nba" if sport.startswith("nba") else sport
-            mins = _query_vals(con, table, "ESPN_ATHLETE_ID = ?", "minutes", (raw_id,), 10)
+            floor = ""
+            if sport == "nba":
+                floor = nbap_l5_floor(
+                    str(row.get("league") or ""),
+                    str(row.get("league_id") or ""),
+                )
+            mins = _query_vals(
+                con, table, "ESPN_ATHLETE_ID = ?", "minutes", (raw_id,), 10,
+                min_game_date=floor,
+            )
         elif sport == "nhl":
             pname = str(row.get("player_name", row.get("player", ""))).strip()
             mins = get_vals_nhl(con, pname, "time on ice", 10)

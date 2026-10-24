@@ -39,8 +39,52 @@ def _load_checklist() -> tuple[dict[str, Any], dict[str, Any]]:
     return _PICK_RULES, _SPORT_SPECS
 
 
+def _cell_str(v: Any) -> str:
+    """str() without ``x or ""`` (pd.NA bool is ambiguous)."""
+    if v is None:
+        return ""
+    try:
+        if pd.isna(v):
+            return ""
+    except (TypeError, ValueError):
+        pass
+    try:
+        s = str(v).strip()
+    except Exception:
+        return ""
+    if s.lower() in {"nan", "<na>", "none", "<nat>"}:
+        return ""
+    return s
+
+
+def _coalesce(*vals: Any) -> Any:
+    """First non-NA, non-empty value (pd.NA is not falsy-safe)."""
+    for v in vals:
+        if v is None:
+            continue
+        try:
+            if pd.isna(v):
+                continue
+        except (TypeError, ValueError):
+            pass
+        if isinstance(v, str) and not v.strip():
+            continue
+        return v
+    return None
+
+
+def _fillna_text_cols(df: pd.DataFrame) -> pd.DataFrame:
+    """Replace pd.NA in object/string columns so ``x or ""`` never sees NA."""
+    out = df
+    for c in out.columns:
+        dt = out[c].dtype
+        if dt == object or str(dt) in {"str", "string"} or str(dt).startswith("string") or pd.api.types.is_string_dtype(dt):
+            out[c] = out[c].where(out[c].notna(), "")
+    return out
+
+
 def norm_pick_type(raw: Any) -> str:
-    s = str(raw or "").strip().lower()
+    s = _cell_str(raw).lower()
     if "goblin" in s:
         return "goblin"
     if "demon" in s:
@@ -49,21 +93,28 @@ def norm_pick_type(raw: Any) -> str:
 
 
 def norm_direction(raw: Any) -> str:
-    d = str(raw or "").strip().upper()
+    d = _cell_str(raw).upper()
     if d in ("UNDER", "LOWER"):
         return "UNDER"
     return "OVER"
 
 
 def norm_sport(raw: Any) -> str:
-    s = str(raw or "").strip().upper()
+    s = _cell_str(raw).upper()
     if s in ("SOC", "FOOTBALL"):
         return "SOCCER"
     return s or "UNKNOWN"
 
 
 def _to_prob_0_1(v: Any) -> float | None:
-    if v is None or (isinstance(v, str) and not str(v).strip()):
+    if v is None:
+        return None
+    try:
+        if pd.isna(v):
+            return None
+    except (TypeError, ValueError):
+        pass
+    if isinstance(v, str) and not str(v).strip():
         return None
     try:
         x = float(v)
@@ -117,6 +168,8 @@ _SLATE_HEADER_RENAME: dict[str, str] = {
     "Line (UD)": "line_underdog",
     "Line DK": "line_draftkings",
     "Line (DK)": "line_draftkings",
+    "Line LV": "line_vegas",
+    "Line (LV)": "line_vegas",
     "Best Line": "best_cross_line",
     "Best Book": "best_cross_book",
     "Edge vs PP": "cross_edge_vs_pp",
@@ -460,7 +513,7 @@ def _resolve_hit_prob_over_under(row: pd.Series) -> tuple[float | None, float | 
     if p_under is not None:
         under_src = "under_hit_rate"
 
-    lhr = _to_prob_0_1(row.get("line_hit_rate") or row.get("line_hit_rate_over_ou_5"))
+    lhr = _to_prob_0_1(_coalesce(row.get("line_hit_rate"), row.get("line_hit_rate_over_ou_5")))
     if p_over is None and lhr is not None:
         p_over = lhr
         over_src = "line_hit_rate"
@@ -474,7 +527,7 @@ def _resolve_hit_prob_over_under(row: pd.Series) -> tuple[float | None, float | 
         if p_under is not None:
             under_src = "l5_under"
 
-    hr = _to_prob_0_1(row.get("hit_rate") or row.get("effective_hit_rate"))
+    hr = _to_prob_0_1(_coalesce(row.get("hit_rate"), row.get("effective_hit_rate")))
     if hr is not None:
         if p_over is None:
             p_over = hr
@@ -518,8 +571,8 @@ def _resolve_hit_prob_over_under(row: pd.Series) -> tuple[float | None, float | 
 def _prop_lookup_key(player: Any, prop: Any, sport: Any = "") -> tuple[str, str, str]:
     return (
         norm_sport(sport),
-        str(player or "").strip().lower(),
-        str(prop or "").strip().lower(),
+        _cell_str(player).lower(),
+        _cell_str(prop).lower(),
     )
 
 
@@ -560,7 +613,7 @@ def _fill_goblin_demon_implied_prob(out: pd.DataFrame) -> pd.DataFrame:
         po = _standard_line_implied_over(r)
         if po is None:
             continue
-        key = _prop_lookup_key(r.get(player_col), r.get(prop_col), r.get("sport_norm") or r.get("sport"))
+        key = _prop_lookup_key(r.get(player_col), r.get(prop_col), _coalesce(r.get("sport_norm"), r.get("sport")))
         std_lookup[key] = po
 
     if "implied_prob" in out.columns:
@@ -569,7 +622,7 @@ def _fill_goblin_demon_implied_prob(out: pd.DataFrame) -> pd.DataFrame:
         imp = pd.Series(np.nan, index=out.index, dtype=float)
 
     for idx, r in out.iterrows():
-        pt = norm_pick_type(r.get("pick_type") or r.get("pick_type_norm"))
+        pt = norm_pick_type(_coalesce(r.get("pick_type"), r.get("pick_type_norm")))
         if pt not in ("goblin", "demon"):
             continue
         if pd.notna(imp.at[idx]):
@@ -589,13 +642,13 @@ def _fill_goblin_demon_implied_prob(out: pd.DataFrame) -> pd.DataFrame:
             key = _prop_lookup_key(
                 r.get(player_col),
                 r.get(prop_col),
-                r.get("sport_norm") or r.get("sport"),
+                _coalesce(r.get("sport_norm"), r.get("sport")),
             )
             std_imp = std_lookup.get(key)
         if std_imp is None:
             continue
 
-        pick_raw = str(r.get("pick_type") or r.get("pick_type_norm") or pt)
+        pick_raw = _cell_str(_coalesce(r.get("pick_type"), r.get("pick_type_norm"), pt))
         adjusted = _adjust_over_prob_for_played_line(std_imp, line_f, std_f, pick_raw)
         if adjusted is None:
             continue
@@ -655,12 +708,12 @@ def _resolve_goblin_demon_over_at_line(
     L5/line_hit_rate are already at the played line; hit_rate/ml_prob/rank_score are adjusted
     when standard_line is available.
     """
-    pt = norm_pick_type(row.get("pick_type") or row.get("pick_type_norm"))
+    pt = norm_pick_type(_coalesce(row.get("pick_type"), row.get("pick_type_norm")))
     if pt not in ("goblin", "demon"):
         return p_over, None, over_src
 
     p_std_proxy: float | None = None
-    src = over_src or ""
+    src = _cell_str(over_src)
     if src in _AT_LINE_OVER_SOURCES or src.endswith("_at_line"):
         tag = "l5_over_at_line" if src == "l5_over" else (src or "at_line")
         return p_over, None, tag
@@ -682,7 +735,7 @@ def _resolve_goblin_demon_over_at_line(
 
 def _def_matchup_signal(direction: str, def_tier: str) -> float:
     """Simple directional defense alignment in [-1, 1]."""
-    dt = str(def_tier or "").strip().lower()
+    dt = _cell_str(def_tier).lower()
     weak = any(x in dt for x in ("weak", "below", "poor", "bottom"))
     elite = any(x in dt for x in ("elite", "strong", "top", "above"))
     if direction == "OVER":
@@ -714,11 +767,11 @@ def _min_hit_prob_actionable_for_row(
     pick_rules: dict[str, Any],
     sport_specs: dict[str, Any],
 ) -> float | None:
-    pt = norm_pick_type(row.get("pick_type") or row.get("pick_type_norm"))
+    pt = norm_pick_type(_coalesce(row.get("pick_type"), row.get("pick_type_norm")))
     if pt not in ("goblin", "demon"):
         return None
     rules = pick_rules.get(pt) or {}
-    sport = norm_sport(row.get("sport_norm") or row.get("sport"))
+    sport = norm_sport(_coalesce(row.get("sport_norm"), row.get("sport")))
     spec = _sport_spec_for(sport, sport_specs)
     overrides = (spec or {}).get("pick_type_overrides") or {}
     pt_over = overrides.get(pt) if isinstance(overrides, dict) else {}
@@ -742,8 +795,8 @@ def _pick_type_eligible(
     elig = pd.to_numeric(row.get("eligible"), errors="coerce")
     if pd.notna(elig) and int(elig) == 0:
         return False
-    void_reason = str(row.get("void_reason") or "").strip()
-    sport_u = norm_sport(row.get("sport_norm") or row.get("sport"))
+    void_reason = _cell_str(row.get("void_reason"))
+    sport_u = norm_sport(_coalesce(row.get("sport_norm"), row.get("sport")))
     # Basketball soft voids must not wipe Soccer/NHL/Tennis/MLB pick eligibility —
     # those sports use their own ticket gates (e.g. soccer_allowed_leg).
     _bball = {"NBA", "WNBA", "NBA1H", "NBA1Q", "CBB", "WCBB", "BASKETBALL_WNBA"}
@@ -763,8 +816,8 @@ def _pick_type_eligible(
         else:
             return False
 
-    pt = norm_pick_type(row.get("pick_type") or row.get("pick_type_norm"))
-    direction = norm_direction(row.get("direction") or row.get("direction_norm"))
+    pt = norm_pick_type(_coalesce(row.get("pick_type"), row.get("pick_type_norm")))
+    direction = norm_direction(_coalesce(row.get("direction"), row.get("direction_norm")))
     rules = pick_rules.get(pt) or pick_rules.get("standard") or {}
     allowed = [str(x).upper() for x in (rules.get("allowed_directions") or ["OVER", "UNDER"])]
     if direction not in allowed:
@@ -782,12 +835,12 @@ def _pick_type_eligible(
             return False
 
     if pt == "demon":
-        tier = str(row.get("tier") or "").strip().upper()
+        tier = _cell_str(row.get("tier")).upper()
         allowed_tiers = {str(t).upper() for t in (rules.get("allowed_tiers") or ["A", "B"])}
         if tier and tier not in allowed_tiers:
             return False
         try:
-            blend = float(row.get("blended_score") or row.get("rank_score") or 0)
+            blend = float(_coalesce(row.get("blended_score"), row.get("rank_score"), 0) or 0)
         except (TypeError, ValueError):
             blend = 0.0
         min_blend = float(rules.get("min_blend_score", 0.7))
@@ -854,6 +907,7 @@ def enrich_read_fields_dataframe(df: pd.DataFrame | None) -> pd.DataFrame:
     pick_rules, sport_specs = _load_checklist()
     out = normalize_slate_column_names(_alias_sport_fields(df)).copy()
     out = out.loc[:, ~out.columns.duplicated()].copy()
+    out = _fillna_text_cols(out)
     if "opponent_def_tier" in out.columns:
         if "def_tier" not in out.columns:
             out["def_tier"] = out["opponent_def_tier"]
@@ -1020,7 +1074,7 @@ def enrich_read_fields_dataframe(df: pd.DataFrame | None) -> pd.DataFrame:
     eligible: list[bool] = []
     completeness: list[float] = []
     for _, r in out.iterrows():
-        sport = norm_sport(r.get("sport_norm") or r.get("sport"))
+        sport = norm_sport(_coalesce(r.get("sport_norm"), r.get("sport")))
         miss_pre = _missing_fields(r, sport, sport_specs)
         core_n = 10
         comp = 1.0 - (len(miss_pre) / core_n)
@@ -1040,7 +1094,7 @@ def enrich_read_fields_dataframe(df: pd.DataFrame | None) -> pd.DataFrame:
     # Audit missing list after derived fields (confidence_score, calibration_bucket) exist.
     missing_json: list[str] = []
     for _, r in out.iterrows():
-        sport = norm_sport(r.get("sport_norm") or r.get("sport"))
+        sport = norm_sport(_coalesce(r.get("sport_norm"), r.get("sport")))
         missing_json.append(json.dumps(_missing_fields(r, sport, sport_specs)))
     out["read_fields_missing"] = missing_json
 

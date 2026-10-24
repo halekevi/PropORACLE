@@ -3,8 +3,8 @@
   "mode": "discover",
   "generated_at": "2026-07-13T13:47:44.034257+00:00",
   "cdp_url": "http://127.0.0.1:9222",
-  "live_board_tickets_path": "H:\\halek\\ProfileFromC\\Desktop\\PropORACLE\\ui_runner\\data\\payout_ladder_validation_tickets.json",
-  "capture_path": "H:\\halek\\ProfileFromC\\Desktop\\PropORACLE\\data\\reports\\payout_ladder_validation_capture_2026-07-13_discover.json",
+  "live_board_tickets_path": "H:\\Desktop\\PropORACLE\\ui_runner\\data\\payout_ladder_validation_tickets.json",
+  "capture_path": "H:\\Desktop\\PropORACLE\\data\\reports\\payout_ladder_validation_capture_2026-07-13_discover.json",
   "capture_exit": 0,
   "summary": {
     "captured": 26,

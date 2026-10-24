@@ -1,0 +1,19 @@
+{
+  "built_at": "2026-09-22T17:19:51.251096+00:00",
+  "seasons": [
+    2025,
+    2026
+  ],
+  "min_dropbacks": 30,
+  "n_qb": 64,
+  "tier_counts": {
+    "Mixed": 31,
+    "Pocket": 17,
+    "Mobile": 16
+  },
+  "sources": {
+    "2025": "play_by_play_2025",
+    "2026": "play_by_play_2026"
+  },
+  "note": "Soft context only. Do not ticket-gate until unique-game soft-attach validates."
+}

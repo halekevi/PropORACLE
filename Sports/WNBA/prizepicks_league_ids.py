@@ -16,7 +16,7 @@ WNBA = "3"
 WNBA1H = "193"
 WNBA1Q = "308"
 
-# Also present on /leagues (not wired in MVP refresh yet)
+# Also present on /leagues (not wired — full WNBA pipeline runs 1H+1Q only)
 WNBA2H = "194"
 WNBA4Q = "195"
 

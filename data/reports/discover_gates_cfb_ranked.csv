@@ -1,0 +1,322 @@
+book,prop,gate,hr,n,hits,wilson_low,lift_vs_base,base_hr,train_hr,train_n,oos_hr,oos_n,ticket_clear,oos_ticket_clear,oos_ticket_clear_raw,oos_split_reliable,oos_split_oos_share,uses_cover_or_cush
+Goblin OVER,pass_td,line_0.5,1.0,33,33,0.8957,0.125,0.875,1.0,8,1.0,25,True,True,True,True,0.6944,False
+Goblin OVER,pass_td,D_ok,0.8333,30,25,0.6644,-0.0417,0.875,0.8462,13,0.8235,17,True,True,True,True,0.6944,False
+Goblin OVER,pass_td,D_weak,0.8333,30,25,0.6644,-0.0417,0.875,0.8462,13,0.8235,17,True,True,True,True,0.6944,False
+Goblin OVER,pass_td,line_1.5,0.7632,38,29,0.6079,-0.1118,0.875,0.7692,13,0.76,25,True,True,True,True,0.6944,False
+Goblin OVER,rush_yds,L5>=4,0.7143,63,45,0.593,0.1333,0.581,0.5625,16,0.766,47,True,True,True,True,0.6571,False
+Goblin OVER,rush_yds,L5>=4 + cover>=1,0.7143,63,45,0.593,0.1333,0.581,0.5625,16,0.766,47,True,True,True,True,0.6571,True
+Goblin OVER,rush_yds,L5>=4 + cover>=2,0.7143,63,45,0.593,0.1333,0.581,0.5625,16,0.766,47,True,True,True,True,0.6571,True
+Goblin OVER,rush_yds,L5>=4 + cover>=8,0.7167,60,43,0.5923,0.1357,0.581,0.6,15,0.7556,45,True,True,True,True,0.6571,True
+Goblin OVER,pass_yds,cover>=1,0.7,60,42,0.5749,-0.003,0.703,0.6667,15,0.7111,45,True,True,True,True,0.6238,True
+Goblin OVER,pass_yds,cover>=2,0.7,60,42,0.5749,-0.003,0.703,0.6667,15,0.7111,45,True,True,True,True,0.6238,True
+Goblin OVER,rush_yds,L10>=8,0.72,25,18,0.5242,0.139,0.581,0.3333,3,0.7727,22,True,True,True,True,0.6571,False
+Goblin OVER,rush_yds,L10>=8 + cover>=1,0.72,25,18,0.5242,0.139,0.581,0.3333,3,0.7727,22,True,True,True,True,0.6571,True
+Goblin OVER,rush_yds,L10>=8 + cover>=2,0.72,25,18,0.5242,0.139,0.581,0.3333,3,0.7727,22,True,True,True,True,0.6571,True
+Goblin OVER,player_td,line_0.5,1.0,75,75,0.9513,0.0,1.0,1.0,13,1.0,62,True,False,True,False,0.8267,False
+Goblin OVER,player_td,D_ok,1.0,32,32,0.8928,0.0,1.0,1.0,7,1.0,25,True,False,True,False,0.8267,False
+Goblin OVER,player_td,D_weak,1.0,32,32,0.8928,0.0,1.0,1.0,7,1.0,25,True,False,True,False,0.8267,False
+Goblin OVER,rec,line_1.5,0.7714,70,54,0.6605,0.0975,0.6739,0.8182,22,0.75,48,True,False,True,False,0.7011,False
+Goblin OVER,pass_yds,line_ge10,0.703,101,71,0.6077,0.0,0.703,0.7368,38,0.6825,63,True,False,False,True,0.6238,False
+Goblin OVER,pass_yds,line_ge20,0.703,101,71,0.6077,0.0,0.703,0.7368,38,0.6825,63,True,False,False,True,0.6238,False
+Goblin OVER,pass_yds,line_ge40,0.703,101,71,0.6077,0.0,0.703,0.7368,38,0.6825,63,True,False,False,True,0.6238,False
+Standard UNDER,longestreception,line_ge20,0.7368,38,28,0.5799,0.1368,0.6,0.75,4,0.7353,34,True,False,True,False,0.8353,False
+Standard UNDER,rush_rec_yds,line_ge40,0.7037,27,19,0.5152,0.014,0.6897,1.0,2,0.68,25,True,False,False,False,0.931,False
+Goblin OVER,pass_td,D_elite,0.9,20,18,0.699,0.025,0.875,1.0,2,0.8889,18,False,True,True,True,0.6944,False
+Goblin OVER,rush_yds,L5=5,0.8947,19,17,0.6861,0.3137,0.581,0.0,1,0.9444,18,False,True,True,True,0.6571,False
+Goblin OVER,rush_yds,L5=5 + cover>=1,0.8947,19,17,0.6861,0.3137,0.581,0.0,1,0.9444,18,False,True,True,True,0.6571,True
+Goblin OVER,rush_yds,L5=5 + cover>=2,0.8947,19,17,0.6861,0.3137,0.581,0.0,1,0.9444,18,False,True,True,True,0.6571,True
+Goblin OVER,rush_yds,L5=5 + cover>=8,0.8947,19,17,0.6861,0.3137,0.581,0.0,1,0.9444,18,False,True,True,True,0.6571,True
+Goblin OVER,pass_td,L5>=4,0.8889,18,16,0.672,0.0139,0.875,1.0,3,0.8667,15,False,True,True,True,0.6944,False
+Goblin OVER,pass_yds,L10>=8 + cover>=8,0.85,20,17,0.6396,0.147,0.703,1.0,5,0.8,15,False,True,True,True,0.6238,True
+Goblin OVER,pass_yds,L10>=8,0.8261,23,19,0.6286,0.1231,0.703,1.0,5,0.7778,18,False,True,True,True,0.6238,False
+Goblin OVER,pass_yds,L10>=8 + cover>=1,0.8261,23,19,0.6286,0.1231,0.703,1.0,5,0.7778,18,False,True,True,True,0.6238,True
+Goblin OVER,pass_yds,L10>=8 + cover>=2,0.8261,23,19,0.6286,0.1231,0.703,1.0,5,0.7778,18,False,True,True,True,0.6238,True
+Standard UNDER,rush_yds,L5=5,0.7826,23,18,0.581,0.1397,0.6429,0.5,6,0.8824,17,False,True,True,True,0.6758,False
+Standard UNDER,rush_yds,L5=5 + cover>=1,0.7826,23,18,0.581,0.1397,0.6429,0.5,6,0.8824,17,False,True,True,True,0.6758,True
+Standard UNDER,rush_yds,L5=5 + cover>=2,0.7826,23,18,0.581,0.1397,0.6429,0.5,6,0.8824,17,False,True,True,True,0.6758,True
+Standard UNDER,rush_yds,L5=5 + cover>=8,0.7826,23,18,0.581,0.1397,0.6429,0.5,6,0.8824,17,False,True,True,True,0.6758,True
+Standard UNDER,rush_yds,cover>=2,0.6727,110,74,0.5805,0.0298,0.6429,0.5556,27,0.7108,83,False,True,True,True,0.6758,True
+Goblin OVER,rush_yds,cover>=8,0.6535,101,66,0.5566,0.0725,0.581,0.4688,32,0.7391,69,False,True,True,True,0.6571,True
+Standard UNDER,rush_yds,cover>=8,0.6667,78,52,0.5564,0.0238,0.6429,0.5,20,0.7241,58,False,True,True,True,0.6758,True
+Goblin OVER,rush_yds,L10>=8 + cover>=8,0.75,24,18,0.551,0.169,0.581,0.3333,3,0.8095,21,False,True,True,True,0.6571,True
+Standard UNDER,pass_yds,L5>=4 + L10>=8,0.8,15,12,0.5481,0.313,0.487,1.0,2,0.7692,13,False,True,True,True,0.6435,False
+Goblin OVER,pass_yds,L5>=4 + L10>=8,0.8,15,12,0.5481,0.097,0.703,1.0,3,0.75,12,False,True,True,True,0.6238,False
+Goblin OVER,rush_yds,L5>=4 + D_ok,0.7778,18,14,0.5478,0.1968,0.581,0.75,4,0.7857,14,False,True,True,True,0.6571,False
+Goblin OVER,rush_yds,L5>=4 + D_weak,0.7778,18,14,0.5478,0.1968,0.581,0.75,4,0.7857,14,False,True,True,True,0.6571,False
+Standard UNDER,kick_pts,D_weak,0.7778,18,14,0.5478,0.2178,0.56,0.75,8,0.8,10,False,True,True,True,0.66,False
+Goblin OVER,rush_yds,L5>=4 + L10>=8,0.7391,23,17,0.5353,0.1581,0.581,0.3333,3,0.8,20,False,True,True,True,0.6571,False
+Standard UNDER,pass_yds,L10>=8,0.7647,17,13,0.5274,0.2777,0.487,1.0,2,0.7333,15,False,True,True,True,0.6435,False
+Standard UNDER,pass_yds,L10>=8 + cover>=1,0.7647,17,13,0.5274,0.2777,0.487,1.0,2,0.7333,15,False,True,True,True,0.6435,True
+Standard UNDER,pass_yds,L5>=4 + D_weak,0.75,16,12,0.505,0.263,0.487,0.6667,3,0.7692,13,False,True,True,True,0.6435,False
+Standard UNDER,pass_yds,L10>=8 + cover>=2,0.75,16,12,0.505,0.263,0.487,1.0,2,0.7143,14,False,True,True,True,0.6435,True
+Standard UNDER,pass_yds,L10>=8 + cover>=8,0.75,16,12,0.505,0.263,0.487,1.0,2,0.7143,14,False,True,True,True,0.6435,True
+Goblin OVER,rec_yds,L5>=4 + D_elite,0.6667,36,24,0.5033,0.0366,0.6301,0.1667,6,0.7667,30,False,True,True,True,0.6897,False
+Goblin OVER,pass_yds,D_elite,0.6667,36,24,0.5033,-0.0363,0.703,0.5833,12,0.7083,24,False,True,True,True,0.6238,False
+Standard UNDER,rush_yds,L5>=4 + cover>=8,0.6296,54,34,0.4963,-0.0133,0.6429,0.375,16,0.7368,38,False,True,True,True,0.6758,True
+Goblin OVER,rec_yds,L5=5 + L10>=8,0.7333,15,11,0.4805,0.1032,0.6301,0.0,2,0.8462,13,False,True,True,True,0.6897,False
+Standard UNDER,rush_yds,L5=5 + L10>=8,0.7333,15,11,0.4805,0.0904,0.6429,0.5,6,0.8889,9,False,True,True,True,0.6758,False
+Goblin OVER,rec_yds,L5=5,0.6552,29,19,0.4734,0.0251,0.6301,0.0,4,0.76,25,False,True,True,True,0.6897,False
+Goblin OVER,rec_yds,L5=5 + cover>=1,0.6552,29,19,0.4734,0.0251,0.6301,0.0,4,0.76,25,False,True,True,True,0.6897,True
+Goblin OVER,rec_yds,L5=5 + cover>=2,0.6552,29,19,0.4734,0.0251,0.6301,0.0,4,0.76,25,False,True,True,True,0.6897,True
+Goblin OVER,rec_yds,L5=5 + cover>=8,0.6552,29,19,0.4734,0.0251,0.6301,0.0,4,0.76,25,False,True,True,True,0.6897,True
+Standard UNDER,rush_yds,L10>=8 + cover>=8,0.6429,28,18,0.4583,0.0,0.6429,0.375,8,0.75,20,False,True,True,True,0.6758,True
+Goblin OVER,rec_yds,L5>=4 + L10>=8,0.6176,34,21,0.4504,-0.0125,0.6301,0.2857,7,0.7037,27,False,True,True,True,0.6897,False
+Goblin OVER,rush_yds,L10>=8 + D_elite,0.6875,16,11,0.444,0.1065,0.581,0.0,2,0.7857,14,False,True,True,True,0.6571,False
+Standard UNDER,rush_yds,L10>=8 + cover>=2,0.6129,31,19,0.4382,-0.03,0.6429,0.3333,9,0.7273,22,False,True,True,True,0.6758,True
+Standard UNDER,rush_yds,L5>=4 + L10>=8,0.6154,26,16,0.4253,-0.0275,0.6429,0.375,8,0.7222,18,False,True,True,True,0.6758,False
+Standard UNDER,rush_yds,L10>=8,0.5938,32,19,0.4226,-0.0491,0.6429,0.3,10,0.7273,22,False,True,True,True,0.6758,False
+Standard UNDER,rush_yds,L10>=8 + cover>=1,0.5938,32,19,0.4226,-0.0491,0.6429,0.3,10,0.7273,22,False,True,True,True,0.6758,True
+Standard UNDER,rec,L5>=4 + D_weak,0.6667,15,10,0.4171,0.1667,0.5,0.3333,6,0.8889,9,False,True,True,True,0.6923,False
+Standard UNDER,rec,cover>=1,0.625,16,10,0.3864,0.125,0.5,0.4,5,0.7273,11,False,True,True,True,0.6923,True
+Goblin OVER,rec_yds,L10>=9,0.6,15,9,0.3575,-0.0301,0.6301,0.0,3,0.75,12,False,True,True,True,0.6897,False
+Goblin OVER,rec_yds,L10>=9 + cover>=1,0.6,15,9,0.3575,-0.0301,0.6301,0.0,3,0.75,12,False,True,True,True,0.6897,True
+Goblin OVER,rec_yds,L10>=9 + cover>=2,0.6,15,9,0.3575,-0.0301,0.6301,0.0,3,0.75,12,False,True,True,True,0.6897,True
+Goblin OVER,rec_yds,L10>=9 + cover>=8,0.6,15,9,0.3575,-0.0301,0.6301,0.0,3,0.75,12,False,True,True,True,0.6897,True
+Standard UNDER,rush_yds,L10>=9,0.5333,15,8,0.3012,-0.1096,0.6429,0.1667,6,0.7778,9,False,True,True,True,0.6758,False
+Standard UNDER,rush_yds,L10>=9 + cover>=1,0.5333,15,8,0.3012,-0.1096,0.6429,0.1667,6,0.7778,9,False,True,True,True,0.6758,True
+Standard UNDER,rush_yds,L10>=9 + cover>=2,0.5333,15,8,0.3012,-0.1096,0.6429,0.1667,6,0.7778,9,False,True,True,True,0.6758,True
+Standard UNDER,rush_yds,L10>=9 + cover>=8,0.5333,15,8,0.3012,-0.1096,0.6429,0.1667,6,0.7778,9,False,True,True,True,0.6758,True
+Goblin OVER,fg_made,line_0.5,1.0,24,24,0.862,0.0,1.0,1.0,6,1.0,18,False,False,True,False,0.75,False
+Goblin OVER,rush_td,line_0.5,1.0,20,20,0.8389,0.0,1.0,1.0,2,1.0,18,False,False,True,False,0.9,False
+Goblin OVER,player_td,D_elite,1.0,17,17,0.8157,0.0,1.0,1.0,2,1.0,15,False,False,True,False,0.8267,False
+Standard UNDER,rush_yds,cover>=1,0.6581,117,77,0.5684,0.0152,0.6429,0.5625,32,0.6941,85,False,False,False,True,0.6758,True
+Goblin OVER,rec,D_ok,0.68,75,51,0.5679,0.0061,0.6739,0.6667,27,0.6875,48,False,False,False,False,0.7011,False
+Goblin OVER,rec,D_weak,0.68,75,51,0.5679,0.0061,0.6739,0.6667,27,0.6875,48,False,False,False,False,0.7011,False
+Goblin OVER,rec_yds,line_ge10,0.6221,307,191,0.5667,-0.008,0.6301,0.5435,92,0.6558,215,False,False,False,True,0.6897,False
+Standard UNDER,rush_yds,line_ge10,0.6374,171,109,0.5631,-0.0055,0.6429,0.5926,54,0.6581,117,False,False,False,True,0.6758,False
+Goblin OVER,rec,D_elite,0.6667,78,52,0.5564,-0.0072,0.6739,0.6364,22,0.6786,56,False,False,False,False,0.7011,False
+Standard UNDER,rush_yds,line_ge40,0.6509,106,69,0.5564,0.008,0.6429,0.6071,28,0.6667,78,False,False,False,True,0.6758,False
+Standard UNDER,rush_yds,line_ge20,0.6329,158,100,0.5554,-0.01,0.6429,0.5714,49,0.6606,109,False,False,False,True,0.6758,False
+Goblin OVER,rec_yds,D_ok,0.635,137,87,0.5518,0.0049,0.6301,0.5918,49,0.6591,88,False,False,False,True,0.6897,False
+Goblin OVER,rec_yds,D_weak,0.635,137,87,0.5518,0.0049,0.6301,0.5918,49,0.6591,88,False,False,False,True,0.6897,False
+Goblin OVER,pass_yds,D_ok,0.6977,43,30,0.5489,-0.0053,0.703,0.8235,17,0.6154,26,False,False,False,True,0.6238,False
+Goblin OVER,pass_yds,D_weak,0.6977,43,30,0.5489,-0.0053,0.703,0.8235,17,0.6154,26,False,False,False,True,0.6238,False
+Goblin OVER,pass_yds,cover>=8,0.6792,53,36,0.5452,-0.0238,0.703,0.6429,14,0.6923,39,False,False,False,True,0.6238,True
+Goblin OVER,rec_yds,cover>=1,0.603,199,120,0.5337,-0.0271,0.6301,0.4821,56,0.6503,143,False,False,False,True,0.6897,True
+Goblin OVER,rec_yds,cover>=8,0.6159,138,85,0.5327,-0.0142,0.6301,0.4839,31,0.6542,107,False,False,False,True,0.6897,True
+Goblin OVER,rec_yds,cover>=2,0.6011,188,113,0.5297,-0.029,0.6301,0.4583,48,0.65,140,False,False,False,True,0.6897,True
+Standard UNDER,pass_rush_yds,line_ge10,0.697,33,23,0.5266,0.0,0.697,0.6,5,0.7143,28,False,False,True,False,0.8485,False
+Standard UNDER,pass_rush_yds,line_ge20,0.697,33,23,0.5266,0.0,0.697,0.6,5,0.7143,28,False,False,True,False,0.8485,False
+Standard UNDER,pass_rush_yds,line_ge40,0.697,33,23,0.5266,0.0,0.697,0.6,5,0.7143,28,False,False,True,False,0.8485,False
+Goblin OVER,rec_yds,D_elite,0.6174,115,71,0.5261,-0.0127,0.6301,0.4839,31,0.6667,84,False,False,False,True,0.6897,False
+Standard UNDER,rush_yds,D_weak,0.6429,70,45,0.5259,0.0,0.6429,0.6522,23,0.6383,47,False,False,False,True,0.6758,False
+Goblin OVER,rush_yds,line_ge10,0.595,200,119,0.5258,0.014,0.581,0.5303,66,0.6269,134,False,False,False,True,0.6571,False
+Standard UNDER,pass_yds,L5>=4 + cover>=1,0.6842,38,26,0.5254,0.1972,0.487,0.6667,6,0.6875,32,False,False,False,True,0.6435,True
+Goblin OVER,rush_yds,cover>=2,0.6043,139,84,0.5213,0.0233,0.581,0.4545,44,0.6737,95,False,False,False,True,0.6571,True
+Goblin OVER,rush_yds,cover>=1,0.6014,148,89,0.5209,0.0204,0.581,0.4681,47,0.6634,101,False,False,False,True,0.6571,True
+Goblin OVER,rec_yds,L5>=4,0.6235,85,53,0.5173,-0.0066,0.6301,0.375,16,0.6812,69,False,False,False,True,0.6897,False
+Goblin OVER,rec_yds,L5>=4 + cover>=1,0.6235,85,53,0.5173,-0.0066,0.6301,0.375,16,0.6812,69,False,False,False,True,0.6897,True
+Goblin OVER,rec_yds,L5>=4 + cover>=2,0.6235,85,53,0.5173,-0.0066,0.6301,0.375,16,0.6812,69,False,False,False,True,0.6897,True
+Goblin OVER,rec_yds,line_ge20,0.5873,189,111,0.5161,-0.0428,0.6301,0.5098,51,0.6159,138,False,False,False,True,0.6897,False
+Standard UNDER,pass_yds,L5>=4 + cover>=2,0.6757,37,25,0.5146,0.1887,0.487,0.6667,6,0.6774,31,False,False,False,True,0.6435,True
+Standard UNDER,pass_yds,L5>=4 + cover>=8,0.6757,37,25,0.5146,0.1887,0.487,0.6667,6,0.6774,31,False,False,False,True,0.6435,True
+Standard UNDER,longestreception,D_weak,0.6591,44,29,0.5114,0.0591,0.6,0.6667,9,0.6571,35,False,False,False,False,0.8353,False
+Standard UNDER,pass_yds,L5>=4,0.6667,39,26,0.5098,0.1797,0.487,0.6667,6,0.6667,33,False,False,False,True,0.6435,False
+Standard UNDER,rush_rec_yds,line_ge10,0.6897,29,20,0.5077,0.0,0.6897,1.0,2,0.6667,27,False,False,False,False,0.931,False
+Standard UNDER,rush_rec_yds,line_ge20,0.6897,29,20,0.5077,0.0,0.6897,1.0,2,0.6667,27,False,False,False,False,0.931,False
+Standard UNDER,rush_yds,L5>=4,0.6216,74,46,0.5077,-0.0213,0.6429,0.4737,19,0.6727,55,False,False,False,True,0.6758,False
+Standard UNDER,rush_yds,D_ok,0.629,62,39,0.5046,-0.0139,0.6429,0.6957,23,0.5897,39,False,False,False,True,0.6758,False
+Standard UNDER,rush_yds,D_elite,0.629,62,39,0.5046,-0.0139,0.6429,0.6957,23,0.5897,39,False,False,False,True,0.6758,False
+Standard UNDER,rush_yds,L5>=4 + cover>=1,0.6197,71,44,0.5034,-0.0232,0.6429,0.4444,18,0.6792,53,False,False,False,True,0.6758,True
+Standard UNDER,rush_yds,L5>=4 + cover>=2,0.6197,71,44,0.5034,-0.0232,0.6429,0.4444,18,0.6792,53,False,False,False,True,0.6758,True
+Standard UNDER,pass_rush_yds,cover>=1,0.6786,28,19,0.4934,-0.0184,0.697,0.6667,3,0.68,25,False,False,False,False,0.8485,True
+Standard UNDER,pass_rush_yds,cover>=2,0.6786,28,19,0.4934,-0.0184,0.697,0.6667,3,0.68,25,False,False,False,False,0.8485,True
+Standard UNDER,longestreception,line_ge10,0.6026,78,47,0.4916,0.0026,0.6,0.6923,13,0.5846,65,False,False,False,False,0.8353,False
+Goblin OVER,rush_yds,L5>=4 + D_elite,0.6571,35,23,0.4915,0.0761,0.581,0.5556,9,0.6923,26,False,False,False,True,0.6571,False
+Standard UNDER,rush_rec_yds,cover>=2,0.6957,23,16,0.4913,0.006,0.6897,1.0,2,0.6667,21,False,False,False,False,0.931,True
+Standard UNDER,rec_yds,L5>=4 + cover>=1,0.6,75,45,0.4869,0.1117,0.4883,0.5833,24,0.6078,51,False,False,False,True,0.6758,True
+Goblin OVER,rec_yds,L5>=4 + cover>=8,0.5974,77,46,0.4858,-0.0327,0.6301,0.2857,14,0.6667,63,False,False,False,True,0.6897,True
+Goblin OVER,pass_yds,L5>=4,0.6562,32,21,0.4831,-0.0468,0.703,0.6667,9,0.6522,23,False,False,False,True,0.6238,False
+Goblin OVER,pass_yds,L5>=4 + cover>=1,0.6562,32,21,0.4831,-0.0468,0.703,0.6667,9,0.6522,23,False,False,False,True,0.6238,True
+Goblin OVER,pass_yds,L5>=4 + cover>=2,0.6562,32,21,0.4831,-0.0468,0.703,0.6667,9,0.6522,23,False,False,False,True,0.6238,True
+Standard UNDER,rec_yds,cover>=8,0.5972,72,43,0.4818,0.1089,0.4883,0.56,25,0.617,47,False,False,False,True,0.6758,True
+Goblin OVER,rush_yds,D_elite,0.5862,87,51,0.4812,0.0052,0.581,0.4828,29,0.6379,58,False,False,False,True,0.6571,False
+Goblin OVER,rush_yds,line_ge20,0.557,158,88,0.4791,-0.024,0.581,0.451,51,0.6075,107,False,False,False,True,0.6571,False
+Standard UNDER,rec_yds,L5>=4 + cover>=2,0.589,73,43,0.4745,0.1007,0.4883,0.5652,23,0.6,50,False,False,False,True,0.6758,True
+Standard UNDER,rec_yds,line_ge40,0.5729,96,55,0.473,0.0846,0.4883,0.6667,27,0.5362,69,False,False,False,True,0.6758,False
+Goblin OVER,pass_yds,L5>=4 + cover>=8,0.6452,31,20,0.4695,-0.0578,0.703,0.6667,9,0.6364,22,False,False,False,True,0.6238,True
+Goblin OVER,pass_yds,L5>=4 + D_ok,0.7059,17,12,0.4687,0.0029,0.703,0.8,5,0.6667,12,False,False,False,True,0.6238,False
+Goblin OVER,pass_yds,L5>=4 + D_weak,0.7059,17,12,0.4687,0.0029,0.703,0.8,5,0.6667,12,False,False,False,True,0.6238,False
+Standard UNDER,pass_rush_yds,cover>=8,0.6667,24,16,0.4671,-0.0303,0.697,0.5,2,0.6818,22,False,False,False,False,0.8485,True
+Standard UNDER,rush_rec_yds,cover>=1,0.6667,24,16,0.4671,-0.023,0.6897,1.0,2,0.6364,22,False,False,False,False,0.931,True
+Standard UNDER,rec_yds,cover>=1,0.5575,113,63,0.4656,0.0692,0.4883,0.6,35,0.5385,78,False,False,False,True,0.6758,True
+Standard UNDER,pass_yds,cover>=8,0.5902,61,36,0.465,0.1032,0.487,0.5833,12,0.5918,49,False,False,False,True,0.6435,True
+Standard UNDER,pass_yds,cover>=1,0.5821,67,39,0.4627,0.0951,0.487,0.5333,15,0.5962,52,False,False,False,True,0.6435,True
+Goblin OVER,rush_yds,line_ge40,0.5797,69,40,0.4621,-0.0013,0.581,0.4783,23,0.6304,46,False,False,False,True,0.6571,False
+Standard UNDER,rec_yds,cover>=2,0.5577,104,58,0.4619,0.0694,0.4883,0.5882,34,0.5429,70,False,False,False,True,0.6758,True
+Goblin OVER,rush_yds,D_ok,0.5775,71,41,0.4615,-0.0035,0.581,0.4583,24,0.6383,47,False,False,False,True,0.6571,False
+Goblin OVER,rush_yds,D_weak,0.5775,71,41,0.4615,-0.0035,0.581,0.4583,24,0.6383,47,False,False,False,True,0.6571,False
+Standard UNDER,rec_yds,D_weak,0.5484,124,68,0.4607,0.0601,0.4883,0.6596,47,0.4805,77,False,False,False,True,0.6758,False
+Standard UNDER,rush_rec_yds,cover>=8,0.6842,19,13,0.4601,-0.0055,0.6897,1.0,2,0.6471,17,False,False,False,False,0.931,True
+Standard UNDER,rec_yds,L5>=4,0.5696,79,45,0.4597,0.0813,0.4883,0.56,25,0.5741,54,False,False,False,True,0.6758,False
+Standard UNDER,rush_att,D_weak,0.6154,39,24,0.459,0.037,0.5784,0.75,12,0.5556,27,False,False,False,True,0.6863,False
+Standard UNDER,rec_yds,L5>=4 + cover>=8,0.5893,56,33,0.4588,0.101,0.4883,0.4737,19,0.6486,37,False,False,False,True,0.6758,True
+Standard UNDER,pass_yds,cover>=2,0.5758,66,38,0.4556,0.0888,0.487,0.5333,15,0.5882,51,False,False,False,True,0.6435,True
+Standard OVER,rec_yds,L5>=4 + D_ok,0.6667,21,14,0.4537,0.173,0.4937,1.0,4,0.5882,17,False,False,False,False,0.7532,False
+Standard OVER,rec_yds,L5>=4 + D_weak,0.6667,21,14,0.4537,0.173,0.4937,1.0,4,0.5882,17,False,False,False,False,0.7532,False
+Goblin OVER,rec,L5>=4,0.5957,47,28,0.4534,-0.0782,0.6739,0.5,10,0.6216,37,False,False,False,False,0.7011,False
+Goblin OVER,rec_yds,L10>=8,0.6,40,24,0.446,-0.0301,0.6301,0.375,8,0.6562,32,False,False,False,True,0.6897,False
+Goblin OVER,rec_yds,L10>=8 + cover>=1,0.6,40,24,0.446,-0.0301,0.6301,0.375,8,0.6562,32,False,False,False,True,0.6897,True
+Goblin OVER,rec_yds,L10>=8 + cover>=2,0.6,40,24,0.446,-0.0301,0.6301,0.375,8,0.6562,32,False,False,False,True,0.6897,True
+Goblin OVER,rec_yds,L10>=8 + cover>=8,0.6,40,24,0.446,-0.0301,0.6301,0.375,8,0.6562,32,False,False,False,True,0.6897,True
+Goblin OVER,rec,cover>=1,0.5833,48,28,0.4428,-0.0906,0.6739,0.6,10,0.5789,38,False,False,False,False,0.7011,True
+Standard UNDER,rec_yds,line_ge20,0.5046,218,110,0.4387,0.0163,0.4883,0.5493,71,0.483,147,False,False,False,True,0.6758,False
+Goblin OVER,rec_yds,line_ge40,0.6061,33,20,0.4368,-0.024,0.6301,0.5714,7,0.6154,26,False,False,False,True,0.6897,False
+Standard OVER,rec_yds,L5>=4,0.5714,49,28,0.4327,0.0777,0.4937,0.5556,9,0.575,40,False,False,False,False,0.7532,False
+Standard OVER,rec_yds,L5>=4 + cover>=1,0.5714,49,28,0.4327,0.0777,0.4937,0.5556,9,0.575,40,False,False,False,False,0.7532,True
+Standard OVER,rec_yds,L5>=4 + cover>=2,0.5714,49,28,0.4327,0.0777,0.4937,0.5556,9,0.575,40,False,False,False,False,0.7532,True
+Standard UNDER,rec_yds,line_ge10,0.4938,241,119,0.4312,0.0055,0.4883,0.5443,79,0.4691,162,False,False,False,True,0.6758,False
+Standard UNDER,rec_yds,L5>=4 + D_ok,0.6,30,18,0.4232,0.1117,0.4883,0.6667,9,0.5714,21,False,False,False,True,0.6758,False
+Standard UNDER,rec_yds,L5>=4 + D_elite,0.6,30,18,0.4232,0.1117,0.4883,0.6667,9,0.5714,21,False,False,False,True,0.6758,False
+Standard OVER,longestrush,D_elite,0.6,30,18,0.4232,0.1179,0.4821,,0,0.6,30,False,False,False,False,1.0,False
+Standard OVER,rec_yds,cover>=1,0.5034,145,73,0.423,0.0097,0.4937,0.3824,34,0.5405,111,False,False,False,False,0.7532,True
+Standard UNDER,longestrush,line_ge10,0.5625,48,27,0.4227,0.024,0.5385,0.6,15,0.5455,33,False,False,False,False,0.7115,False
+Standard UNDER,rec_yds,L5>=4 + D_weak,0.5714,42,24,0.4221,0.0831,0.4883,0.4667,15,0.6296,27,False,False,False,True,0.6758,False
+Goblin OVER,passcompletions,cover>=1,0.6667,15,10,0.4171,0.1067,0.56,,0,0.6667,15,False,False,False,False,0.92,True
+Standard UNDER,longestrush,L5>=4 + cover>=1,0.6471,17,11,0.413,0.1086,0.5385,,0,0.6471,17,False,False,False,False,0.7115,True
+Goblin OVER,pass_att,cover>=1,0.6471,17,11,0.413,0.1286,0.5185,,0,0.6471,17,False,False,False,False,1.0,True
+Standard UNDER,rec_yds_combo,line_ge10,0.6471,17,11,0.413,0.0,0.6471,0.4545,11,1.0,6,False,False,False,True,0.3529,False
+Standard UNDER,rec_yds_combo,line_ge20,0.6471,17,11,0.413,0.0,0.6471,0.4545,11,1.0,6,False,False,False,True,0.3529,False
+Standard UNDER,rec_yds_combo,line_ge40,0.6471,17,11,0.413,0.0,0.6471,0.4545,11,1.0,6,False,False,False,True,0.3529,False
+Standard UNDER,pass_yds,D_weak,0.5532,47,26,0.4125,0.0662,0.487,0.5,18,0.5862,29,False,False,False,True,0.6435,False
+Standard UNDER,longestcompletion,line_ge10,0.5581,43,24,0.4111,0.0,0.5581,0.5,10,0.5758,33,False,False,False,False,0.7674,False
+Standard UNDER,longestcompletion,line_ge20,0.5581,43,24,0.4111,0.0,0.5581,0.5,10,0.5758,33,False,False,False,False,0.7674,False
+Standard UNDER,rec_yds,L10>=8 + D_weak,0.6316,19,12,0.4104,0.1433,0.4883,0.75,8,0.5455,11,False,False,False,True,0.6758,False
+Standard UNDER,longestrush,L5>=4,0.6316,19,12,0.4104,0.0931,0.5385,,0,0.6316,19,False,False,False,False,0.7115,False
+Standard UNDER,rush_att,D_ok,0.561,41,23,0.4104,-0.0174,0.5784,0.5333,15,0.5769,26,False,False,False,True,0.6863,False
+Standard UNDER,rush_att,D_elite,0.561,41,23,0.4104,-0.0174,0.5784,0.5333,15,0.5769,26,False,False,False,True,0.6863,False
+Standard OVER,rec_yds,L5>=4 + cover>=8,0.5641,39,22,0.4098,0.0704,0.4937,0.5556,9,0.5667,30,False,False,False,False,0.7532,True
+Standard OVER,rec_yds,cover>=2,0.4925,134,66,0.4093,-0.0012,0.4937,0.3333,30,0.5385,104,False,False,False,False,0.7532,True
+Standard OVER,longestreception,D_ok,0.5676,37,21,0.4091,0.0914,0.4762,,0,0.5676,37,False,False,False,False,1.0,False
+Standard OVER,longestreception,D_weak,0.5676,37,21,0.4091,0.0914,0.4762,,0,0.5676,37,False,False,False,False,1.0,False
+Standard UNDER,rush_yds_combo,line_ge10,0.6087,23,14,0.4079,0.0,0.6087,0.7059,17,0.3333,6,False,False,False,True,0.2609,False
+Standard UNDER,rush_yds_combo,line_ge20,0.6087,23,14,0.4079,0.0,0.6087,0.7059,17,0.3333,6,False,False,False,True,0.2609,False
+Standard UNDER,rush_yds_combo,line_ge40,0.6087,23,14,0.4079,0.0,0.6087,0.7059,17,0.3333,6,False,False,False,True,0.2609,False
+Goblin OVER,rec,L10>=8 + cover>=1,0.6,25,15,0.4074,-0.0739,0.6739,0.5,6,0.6316,19,False,False,False,False,0.7011,True
+Standard UNDER,rush_att,line_ge10,0.5231,65,34,0.4038,-0.0553,0.5784,0.5,20,0.5333,45,False,False,False,True,0.6863,False
+Standard OVER,rush_yds,D_elite,0.5417,48,26,0.4029,0.0758,0.4659,0.4,10,0.5789,38,False,False,False,False,0.7273,False
+Standard OVER,rec_yds,cover>=8,0.506,83,42,0.4006,0.0123,0.4937,0.35,20,0.5556,63,False,False,False,False,0.7532,True
+Standard UNDER,pass_yds,line_ge10,0.487,115,56,0.3975,0.0,0.487,0.3659,41,0.5541,74,False,False,False,True,0.6435,False
+Standard UNDER,pass_yds,line_ge20,0.487,115,56,0.3975,0.0,0.487,0.3659,41,0.5541,74,False,False,False,True,0.6435,False
+Standard UNDER,pass_yds,line_ge40,0.487,115,56,0.3975,0.0,0.487,0.3659,41,0.5541,74,False,False,False,True,0.6435,False
+Standard UNDER,longestreception,cover>=1,0.5556,36,20,0.3958,-0.0444,0.6,,0,0.5556,36,False,False,False,False,0.8353,True
+Standard OVER,rec_yds,D_elite,0.5156,64,33,0.3958,0.0219,0.4937,0.3077,13,0.5686,51,False,False,False,False,0.7532,False
+Standard UNDER,longestreception,cover>=2,0.5667,30,17,0.392,-0.0333,0.6,,0,0.5667,30,False,False,False,False,0.8353,True
+Standard UNDER,rec,L5>=4,0.5714,28,16,0.3907,0.0714,0.5,0.4444,9,0.6316,19,False,False,False,True,0.6923,False
+Standard OVER,rec_yds,line_ge10,0.471,138,65,0.3896,-0.0227,0.4937,0.3529,34,0.5096,104,False,False,False,False,0.7532,False
+Standard UNDER,rush_yds,L5>=4 + D_ok,0.5833,24,14,0.3883,-0.0596,0.6429,0.5,6,0.6111,18,False,False,False,True,0.6758,False
+Standard UNDER,rush_yds,L5>=4 + D_elite,0.5833,24,14,0.3883,-0.0596,0.6429,0.5,6,0.6111,18,False,False,False,True,0.6758,False
+Standard UNDER,longestreception,L5>=4,0.5909,22,13,0.3873,-0.0091,0.6,,0,0.5909,22,False,False,False,False,0.8353,False
+Goblin OVER,rec,L5>=4 + D_elite,0.6,20,12,0.3866,-0.0739,0.6739,0.25,4,0.6875,16,False,False,False,False,0.7011,False
+Standard UNDER,longestreception,L5>=4 + cover>=2,0.6111,18,11,0.3862,0.0111,0.6,,0,0.6111,18,False,False,False,False,0.8353,True
+Standard UNDER,longestcompletion,D_weak,0.6111,18,11,0.3862,0.053,0.5581,0.6,5,0.6154,13,False,False,False,False,0.7674,False
+Standard UNDER,longestreception,D_ok,0.5484,31,17,0.3777,-0.0516,0.6,1.0,3,0.5,28,False,False,False,False,0.8353,False
+Standard UNDER,longestreception,D_elite,0.5484,31,17,0.3777,-0.0516,0.6,1.0,3,0.5,28,False,False,False,False,0.8353,False
+Standard UNDER,rec,D_ok,0.5484,31,17,0.3777,0.0484,0.5,0.5714,7,0.5417,24,False,False,False,True,0.6923,False
+Standard UNDER,rec,D_elite,0.5484,31,17,0.3777,0.0484,0.5,0.5714,7,0.5417,24,False,False,False,True,0.6923,False
+Standard OVER,longestrush,cover>=1,0.5098,51,26,0.3768,0.0277,0.4821,,0,0.5098,51,False,False,False,False,1.0,True
+Goblin OVER,rec_yds,L5>=4 + D_ok,0.5517,29,16,0.3755,-0.0784,0.6301,0.6667,6,0.5217,23,False,False,False,True,0.6897,False
+Goblin OVER,rec_yds,L5>=4 + D_weak,0.5517,29,16,0.3755,-0.0784,0.6301,0.6667,6,0.5217,23,False,False,False,True,0.6897,False
+Standard OVER,rush_yds,cover>=1,0.4767,86,41,0.3745,0.0108,0.4659,0.2174,23,0.5714,63,False,False,False,False,0.7273,True
+Goblin OVER,passcompletions,line_ge10,0.56,25,14,0.3707,0.0,0.56,1.0,2,0.5217,23,False,False,False,False,0.92,False
+Goblin OVER,rec,L5>=4 + cover>=1,0.5278,36,19,0.3701,-0.1461,0.6739,0.4286,7,0.5517,29,False,False,False,False,0.7011,True
+Standard OVER,longestrush,cover>=2,0.5116,43,22,0.3675,0.0295,0.4821,,0,0.5116,43,False,False,False,False,1.0,True
+Goblin OVER,rec,L5>=4 + L10>=8,0.5714,21,12,0.3655,-0.1025,0.6739,0.4,5,0.625,16,False,False,False,False,0.7011,False
+Standard UNDER,passcompletions,D_weak,0.5312,32,17,0.3645,0.0984,0.4328,0.4167,12,0.6,20,False,False,False,True,0.6269,False
+Standard OVER,rush_yds,cover>=2,0.4691,81,38,0.3643,0.0032,0.4659,0.2273,22,0.5593,59,False,False,False,False,0.7273,True
+Standard OVER,longestrush,line_ge10,0.5,48,24,0.3639,0.0179,0.4821,,0,0.5,48,False,False,False,False,1.0,False
+Goblin OVER,rec_yds,L10>=8 + D_elite,0.5789,19,11,0.3628,-0.0512,0.6301,0.0,3,0.6875,16,False,False,False,True,0.6897,False
+Standard OVER,rec_yds,D_ok,0.4833,60,29,0.3617,-0.0104,0.4937,0.5,16,0.4773,44,False,False,False,False,0.7532,False
+Standard OVER,rec_yds,D_weak,0.4833,60,29,0.3617,-0.0104,0.4937,0.5,16,0.4773,44,False,False,False,False,0.7532,False
+Standard OVER,rush_yds,line_ge10,0.4643,84,39,0.3615,-0.0016,0.4659,0.2083,24,0.5667,60,False,False,False,False,0.7273,False
+Standard OVER,longestreception,cover>=1,0.4675,77,36,0.3603,-0.0087,0.4762,,0,0.4675,77,False,False,False,False,1.0,True
+Standard UNDER,longestrush,D_weak,0.5882,17,10,0.3601,0.0497,0.5385,0.75,4,0.5385,13,False,False,False,False,0.7115,False
+Standard UNDER,rec,D_weak,0.5135,37,19,0.3589,0.0135,0.5,0.3077,13,0.625,24,False,False,False,True,0.6923,False
+Goblin OVER,rec,L10>=8,0.5357,28,15,0.3581,-0.1382,0.6739,0.5,6,0.5455,22,False,False,False,False,0.7011,False
+Standard UNDER,pass_rush_yds,D_weak,0.6,15,9,0.3575,-0.097,0.697,0.5,2,0.6154,13,False,False,False,False,0.8485,False
+Standard UNDER,pass_yds,D_ok,0.5,42,21,0.3553,0.013,0.487,0.3333,15,0.5926,27,False,False,False,True,0.6435,False
+Standard UNDER,pass_yds,D_elite,0.5,42,21,0.3553,0.013,0.487,0.3333,15,0.5926,27,False,False,False,True,0.6435,False
+Standard UNDER,rush_yds,L5>=4 + D_weak,0.5385,26,14,0.3546,-0.1044,0.6429,0.4,10,0.625,16,False,False,False,True,0.6758,False
+Standard UNDER,rush_att,cover>=1,0.5385,26,14,0.3546,-0.0399,0.5784,0.6,10,0.5,16,False,False,False,True,0.6863,True
+Standard OVER,rec_yds,line_ge20,0.4444,108,48,0.3542,-0.0493,0.4937,0.32,25,0.4819,83,False,False,False,False,0.7532,False
+Standard OVER,longestreception,cover>=2,0.4688,64,30,0.3518,-0.0074,0.4762,,0,0.4688,64,False,False,False,False,1.0,True
+Standard UNDER,rec_yds,L10>=8 + cover>=8,0.5417,24,13,0.3507,0.0534,0.4883,0.5,10,0.5714,14,False,False,False,True,0.6758,True
+Standard OVER,pass_yds,cover>=8,0.5417,24,13,0.3507,0.0774,0.4643,1.0,3,0.4762,21,False,False,False,False,0.8214,True
+Standard UNDER,rec_yds,L5=5,0.5455,22,12,0.3466,0.0572,0.4883,0.4444,9,0.6154,13,False,False,False,True,0.6758,False
+Standard UNDER,rec_yds,L5=5 + cover>=1,0.5455,22,12,0.3466,0.0572,0.4883,0.4444,9,0.6154,13,False,False,False,True,0.6758,True
+Standard UNDER,rec_yds,L5=5 + cover>=2,0.5455,22,12,0.3466,0.0572,0.4883,0.4444,9,0.6154,13,False,False,False,True,0.6758,True
+Standard UNDER,rec_yds,L10>=8 + cover>=2,0.5172,29,15,0.3443,0.0289,0.4883,0.5455,11,0.5,18,False,False,False,True,0.6758,True
+Standard OVER,rec_yds,line_ge40,0.4655,58,27,0.3433,-0.0282,0.4937,0.5,16,0.4524,42,False,False,False,False,0.7532,False
+Standard UNDER,longestreception,L5>=4 + cover>=1,0.55,20,11,0.3421,-0.05,0.6,,0,0.55,20,False,False,False,False,0.8353,True
+Standard UNDER,rec_yds,D_ok,0.4396,91,40,0.3421,-0.0487,0.4883,0.48,25,0.4242,66,False,False,False,True,0.6758,False
+Standard UNDER,rec_yds,D_elite,0.4396,91,40,0.3421,-0.0487,0.4883,0.48,25,0.4242,66,False,False,False,True,0.6758,False
+Standard OVER,rush_yds,line_ge20,0.4474,76,34,0.3408,-0.0185,0.4659,0.1364,22,0.5741,54,False,False,False,False,0.7273,False
+Standard OVER,rush_yds,line_ge40,0.4706,51,24,0.3405,0.0047,0.4659,0.0588,17,0.6765,34,False,False,False,False,0.7273,False
+Goblin OVER,pass_att,line_ge10,0.5185,27,14,0.3399,0.0,0.5185,,0,0.5185,27,False,False,False,False,1.0,False
+Goblin OVER,pass_att,line_ge20,0.5185,27,14,0.3399,0.0,0.5185,,0,0.5185,27,False,False,False,False,1.0,False
+Goblin OVER,rec,L5>=4 + D_ok,0.5625,16,9,0.3318,-0.1114,0.6739,0.8,5,0.4545,11,False,False,False,False,0.7011,False
+Goblin OVER,rec,L5>=4 + D_weak,0.5625,16,9,0.3318,-0.1114,0.6739,0.8,5,0.4545,11,False,False,False,False,0.7011,False
+Standard OVER,rec,D_ok,0.5625,16,9,0.3318,0.0196,0.5429,0.6667,3,0.5385,13,False,False,False,False,0.9143,False
+Standard OVER,rec,D_weak,0.5625,16,9,0.3318,0.0196,0.5429,0.6667,3,0.5385,13,False,False,False,False,0.9143,False
+Standard UNDER,rec_yds,L10>=8 + cover>=1,0.5,30,15,0.3315,0.0117,0.4883,0.5455,11,0.4737,19,False,False,False,True,0.6758,True
+Standard OVER,rush_yds,cover>=8,0.4545,55,25,0.3303,-0.0114,0.4659,0.1429,14,0.561,41,False,False,False,False,0.7273,True
+Standard UNDER,longestrush,cover>=1,0.5238,21,11,0.3237,-0.0147,0.5385,,0,0.5238,21,False,False,False,False,0.7115,True
+Standard UNDER,longestcompletion,cover>=1,0.5238,21,11,0.3237,-0.0343,0.5581,,0,0.5238,21,False,False,False,False,0.7674,True
+Standard UNDER,longestcompletion,cover>=2,0.5238,21,11,0.3237,-0.0343,0.5581,,0,0.5238,21,False,False,False,False,0.7674,True
+Goblin OVER,rush_att,D_elite,0.5238,21,11,0.3237,0.0373,0.4865,0.75,4,0.4706,17,False,False,False,False,0.7568,False
+Standard OVER,longestreception,line_ge10,0.4328,67,29,0.321,-0.0434,0.4762,,0,0.4328,67,False,False,False,False,1.0,False
+Standard UNDER,passcompletions,line_ge10,0.4328,67,29,0.321,0.0,0.4328,0.28,25,0.5238,42,False,False,False,True,0.6269,False
+Standard UNDER,rec_yds,L10>=8,0.4839,31,15,0.3197,-0.0044,0.4883,0.5455,11,0.45,20,False,False,False,True,0.6758,False
+Standard OVER,rush_yds,L5>=4 + cover>=8,0.4839,31,15,0.3197,0.018,0.4659,0.1111,9,0.6364,22,False,False,False,False,0.7273,True
+Standard UNDER,longestcompletion,D_ok,0.5263,19,10,0.3171,-0.0318,0.5581,0.5,4,0.5333,15,False,False,False,False,0.7674,False
+Standard UNDER,longestcompletion,D_elite,0.5263,19,10,0.3171,-0.0318,0.5581,0.5,4,0.5333,15,False,False,False,False,0.7674,False
+Goblin OVER,pass_rush_yds,line_ge10,0.5263,19,10,0.3171,0.0,0.5263,0.4,5,0.5714,14,False,False,False,False,0.7368,False
+Goblin OVER,pass_rush_yds,line_ge20,0.5263,19,10,0.3171,0.0,0.5263,0.4,5,0.5714,14,False,False,False,False,0.7368,False
+Goblin OVER,pass_rush_yds,line_ge40,0.5263,19,10,0.3171,0.0,0.5263,0.4,5,0.5714,14,False,False,False,False,0.7368,False
+Standard OVER,longestreception,L5>=4,0.4815,27,13,0.3074,0.0053,0.4762,,0,0.4815,27,False,False,False,False,1.0,False
+Standard OVER,longestreception,L5>=4 + cover>=1,0.4815,27,13,0.3074,0.0053,0.4762,,0,0.4815,27,False,False,False,False,1.0,True
+Standard OVER,pass_yds,cover>=2,0.4815,27,13,0.3074,0.0172,0.4643,0.6,5,0.4545,22,False,False,False,False,0.8214,True
+Standard UNDER,rec_yds,L5>=4 + L10>=8,0.5,22,11,0.3072,0.0117,0.4883,0.4286,7,0.5333,15,False,False,False,True,0.6758,False
+Standard OVER,longestreception,D_elite,0.4474,38,17,0.3015,-0.0288,0.4762,,0,0.4474,38,False,False,False,False,1.0,False
+Standard OVER,pass_yds,cover>=1,0.4643,28,13,0.2953,0.0,0.4643,0.6,5,0.4348,23,False,False,False,False,0.8214,True
+Standard OVER,pass_yds,line_ge10,0.4643,28,13,0.2953,0.0,0.4643,0.6,5,0.4348,23,False,False,False,False,0.8214,False
+Standard OVER,pass_yds,line_ge20,0.4643,28,13,0.2953,0.0,0.4643,0.6,5,0.4348,23,False,False,False,False,0.8214,False
+Standard OVER,pass_yds,line_ge40,0.4643,28,13,0.2953,0.0,0.4643,0.6,5,0.4348,23,False,False,False,False,0.8214,False
+Standard UNDER,rec_yds,L5=5 + cover>=8,0.5,18,9,0.2903,0.0117,0.4883,0.375,8,0.6,10,False,False,False,True,0.6758,True
+Standard UNDER,kick_pts,D_ok,0.5,18,9,0.2903,-0.06,0.56,0.75,4,0.4286,14,False,False,False,True,0.66,False
+Standard UNDER,kick_pts,D_elite,0.5,18,9,0.2903,-0.06,0.56,0.75,4,0.4286,14,False,False,False,True,0.66,False
+Standard OVER,longestreception,L5>=4 + cover>=2,0.4615,26,12,0.2876,-0.0147,0.4762,,0,0.4615,26,False,False,False,False,1.0,True
+Standard OVER,rush_yds,L5>=4,0.4324,37,16,0.2867,-0.0335,0.4659,0.0833,12,0.6,25,False,False,False,False,0.7273,False
+Standard OVER,rush_yds,L5>=4 + cover>=1,0.4324,37,16,0.2867,-0.0335,0.4659,0.0833,12,0.6,25,False,False,False,False,0.7273,True
+Standard OVER,rush_yds,L5>=4 + cover>=2,0.4324,37,16,0.2867,-0.0335,0.4659,0.0833,12,0.6,25,False,False,False,False,0.7273,True
+Standard UNDER,kick_pts,cover>=1,0.5,16,8,0.28,-0.06,0.56,1.0,1,0.4667,15,False,False,False,True,0.66,True
+Standard OVER,rush_rec_yds,cover>=1,0.5,16,8,0.28,0.0294,0.4706,0.25,4,0.5833,12,False,False,False,False,0.7647,True
+Standard OVER,rush_rec_yds,line_ge40,0.5,16,8,0.28,0.0294,0.4706,0.25,4,0.5833,12,False,False,False,False,0.7647,False
+Standard OVER,rec_yds,L5>=4 + D_elite,0.4737,19,9,0.2733,-0.02,0.4937,0.3333,3,0.5,16,False,False,False,False,0.7532,False
+Standard UNDER,rush_att,cover>=2,0.4737,19,9,0.2733,-0.1047,0.5784,0.4286,7,0.5,12,False,False,False,True,0.6863,True
+Standard UNDER,rush_att,L5>=4 + cover>=1,0.4737,19,9,0.2733,-0.1047,0.5784,0.4,5,0.5,14,False,False,False,True,0.6863,True
+Standard UNDER,longestrush,D_ok,0.44,25,11,0.2667,-0.0985,0.5385,0.5556,9,0.375,16,False,False,False,False,0.7115,False
+Standard UNDER,longestrush,D_elite,0.44,25,11,0.2667,-0.0985,0.5385,0.5556,9,0.375,16,False,False,False,False,0.7115,False
+Standard OVER,longestreception,line_ge20,0.4194,31,13,0.2642,-0.0568,0.4762,,0,0.4194,31,False,False,False,False,1.0,False
+Standard UNDER,rush_att,L5>=4 + cover>=2,0.4706,17,8,0.2616,-0.1078,0.5784,0.4,5,0.5,12,False,False,False,True,0.6863,True
+Standard OVER,rush_rec_yds,line_ge10,0.4706,17,8,0.2616,0.0,0.4706,0.25,4,0.5385,13,False,False,False,False,0.7647,False
+Standard OVER,rush_rec_yds,line_ge20,0.4706,17,8,0.2616,0.0,0.4706,0.25,4,0.5385,13,False,False,False,False,0.7647,False
+Standard UNDER,rush_att,L5>=4,0.45,20,9,0.2582,-0.1284,0.5784,0.4,5,0.4667,15,False,False,False,True,0.6863,False
+Standard OVER,longestreception,cover>=8,0.4348,23,10,0.2563,-0.0414,0.4762,,0,0.4348,23,False,False,False,False,1.0,True
+Standard OVER,rush_yds,D_ok,0.4231,26,11,0.2554,-0.0428,0.4659,0.125,8,0.5556,18,False,False,False,False,0.7273,False
+Standard OVER,rush_yds,D_weak,0.4231,26,11,0.2554,-0.0428,0.4659,0.125,8,0.5556,18,False,False,False,False,0.7273,False
+Standard OVER,rush_rec_yds,cover>=2,0.4667,15,7,0.2481,-0.0039,0.4706,0.25,4,0.5455,11,False,False,False,False,0.7647,True
+Standard UNDER,pass_att,line_ge10,0.4167,24,10,0.2447,0.0,0.4167,0.3333,9,0.4667,15,False,False,False,True,0.625,False
+Standard UNDER,pass_att,line_ge20,0.4167,24,10,0.2447,0.0,0.4167,0.3333,9,0.4667,15,False,False,False,True,0.625,False
+Standard UNDER,rush_att,L10>=8 + cover>=1,0.4375,16,7,0.231,-0.1409,0.5784,0.5714,7,0.3333,9,False,False,False,True,0.6863,True
+Standard OVER,longestreception,L5>=4 + D_ok,0.4375,16,7,0.231,-0.0387,0.4762,,0,0.4375,16,False,False,False,False,1.0,False
+Standard OVER,longestreception,L5>=4 + D_weak,0.4375,16,7,0.231,-0.0387,0.4762,,0,0.4375,16,False,False,False,False,1.0,False
+Standard UNDER,rush_att,L10>=8,0.4118,17,7,0.2161,-0.1666,0.5784,0.5714,7,0.3,10,False,False,False,True,0.6863,False
+Standard UNDER,passcompletions,cover>=1,0.4118,17,7,0.2161,-0.021,0.4328,0.5,2,0.4,15,False,False,False,True,0.6269,True
+Standard OVER,longestrush,cover>=8,0.381,21,8,0.2075,-0.1011,0.4821,,0,0.381,21,False,False,False,False,1.0,True
+Standard OVER,rush_yds,L5>=4 + D_elite,0.3889,18,7,0.203,-0.077,0.4659,0.0,4,0.5,14,False,False,False,False,0.7273,False
+Standard UNDER,passcompletions,D_ok,0.3478,23,8,0.1881,-0.085,0.4328,0.1111,9,0.5,14,False,False,False,True,0.6269,False
+Standard UNDER,passcompletions,D_elite,0.3478,23,8,0.1881,-0.085,0.4328,0.1111,9,0.5,14,False,False,False,True,0.6269,False
+Standard OVER,longestrush,D_ok,0.3158,19,6,0.1536,-0.1663,0.4821,,0,0.3158,19,False,False,False,False,1.0,False
+Standard OVER,longestrush,D_weak,0.3158,19,6,0.1536,-0.1663,0.4821,,0,0.3158,19,False,False,False,False,1.0,False
+Standard UNDER,passcompletions,line_ge20,0.3333,15,5,0.1518,-0.0995,0.4328,0.0,1,0.3571,14,False,False,False,True,0.6269,False

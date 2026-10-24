@@ -297,6 +297,7 @@ def process_and_save(
                 "entry_type": attrs.get("entry_type") or attrs.get("pick_type"),
                 "created_at": attrs.get("created_at") or attrs.get("created") or attrs.get("placed_at"),
                 "raw_json": json.dumps(item, ensure_ascii=False),
+                "scraped_n_correct_x": scraped_n_correct_multiplier(attrs),
             }
         )
 
@@ -342,9 +343,11 @@ def process_and_save(
                     new_player_name = np_attrs.get("name") or np_attrs.get("display_name")
                     new_player_league = np_attrs.get("league")
             proj_id = get_nested(leg, "relationships", "projection", "data", "id")
+            pr_attrs: dict[str, Any] = {}
             if proj_id and str(proj_id) in included_by_id:
-                pr_attrs = get_nested(included_by_id[str(proj_id)], "attributes") or {}
-                if isinstance(pr_attrs, dict):
+                raw_pr = get_nested(included_by_id[str(proj_id)], "attributes") or {}
+                if isinstance(raw_pr, dict):
+                    pr_attrs = raw_pr
                     proj_stat_type = pr_attrs.get("stat_display_name") or pr_attrs.get("stat_type")
                     proj_league = pr_attrs.get("league")
             leg_rows.append(
@@ -380,6 +383,7 @@ def process_and_save(
                         or attrs.get("league")
                         or attrs.get("league_name")
                     ),
+                    "board_opponent": board_opponent_from(leg_attrs, pr_attrs, leg),
                 }
             )
 
@@ -422,6 +426,8 @@ def process_and_save(
             )
             """
         )
+        _ensure_entry_leg_pp_result(conn)
+        _ensure_scraped_payout(conn)
         conn.execute(
             "CREATE INDEX IF NOT EXISTS idx_entry_legs_entry ON entry_legs (entry_id)"
         )
@@ -433,9 +439,11 @@ def process_and_save(
         if not entries_df.empty:
             cur = conn.executemany(
                 """
-                INSERT OR IGNORE INTO user_entries
-                (entry_id, payout, amount_staked, status, league, entry_type, created_at, raw_json)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO user_entries
+                (entry_id, payout, amount_staked, status, league, entry_type, created_at, raw_json, scraped_n_correct_x)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(entry_id) DO UPDATE SET
+                    scraped_n_correct_x = COALESCE(excluded.scraped_n_correct_x, user_entries.scraped_n_correct_x)
                 """,
                 [
                     (
@@ -447,6 +455,7 @@ def process_and_save(
                         r.get("entry_type"),
                         r.get("created_at"),
                         r.get("raw_json"),
+                        r.get("scraped_n_correct_x"),
                     )
                     for _, r in entries_df.iterrows()
                 ],
@@ -456,9 +465,12 @@ def process_and_save(
         if not legs_df.empty:
             conn.executemany(
                 """
-                INSERT OR IGNORE INTO entry_legs
-                (entry_id, leg_index, player_name, stat_type, line, description, league)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO entry_legs
+                (entry_id, leg_index, player_name, stat_type, line, description, league, board_opponent)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(entry_id, leg_index, player_name, stat_type, line, description)
+                DO UPDATE SET
+                    board_opponent = COALESCE(excluded.board_opponent, entry_legs.board_opponent)
                 """,
                 [
                     (
@@ -469,6 +481,7 @@ def process_and_save(
                         r.get("line"),
                         r.get("description"),
                         r.get("league"),
+                        r.get("board_opponent"),
                     )
                     for _, r in legs_df.iterrows()
                 ],
@@ -2111,6 +2124,165 @@ def _entry_prediction_map_from_db(db_path: Path) -> dict[str, list[str]]:
     return mapping
 
 
+def scraped_n_correct_multiplier(attrs: dict[str, Any]) -> float | None:
+    """All-correct N-correct multiplier on a slip. Never a 1st-place figure."""
+    if not isinstance(attrs, dict):
+        return None
+    payouts = attrs.get("payouts")
+    if not isinstance(payouts, dict):
+        return None
+    try:
+        n = int(float(attrs.get("parlay_count")))
+    except (TypeError, ValueError):
+        return None
+    if n < 2:
+        return None
+    cell = payouts.get(str(n))
+    if cell is None:
+        cell = payouts.get(n)
+    if not isinstance(cell, dict):
+        return None
+    label = str(cell.get("label") or cell.get("name") or "").lower()
+    if "1st" in label or "place" in label:
+        return None
+    try:
+        mult = float(cell.get("multiplier"))
+    except (TypeError, ValueError):
+        return None
+    if mult <= 0:
+        return None
+    return mult
+
+
+def board_opponent_from(*sources: Any) -> str | None:
+    """Board opponent on a leg, when PrizePicks sent one."""
+    keys = (
+        "opponent",
+        "opponent_name",
+        "opposing_team",
+        "opposing_player",
+        "opp_team",
+        "board_opponent",
+    )
+    for src in sources:
+        if not isinstance(src, dict):
+            continue
+        for key in keys:
+            val = src.get(key)
+            if isinstance(val, dict):
+                val = val.get("name") or val.get("display_name") or val.get("abbreviation")
+            text = str(val or "").strip()
+            if text and text.lower() not in {"none", "null"}:
+                return text
+    return None
+
+
+def _prediction_settlement(attrs: dict[str, Any]) -> str | None:
+    """PrizePicks per-leg result, when the prediction payload has one.
+
+    Slip-level entry JSON only carries prediction ids. The settlement string
+    lives on the prediction attributes (result / grade / outcome). Pending
+    statuses are not a grade.
+    """
+    if not isinstance(attrs, dict):
+        return None
+    for key in ("result", "grade", "outcome", "scored_result", "prediction_result"):
+        val = attrs.get(key)
+        if isinstance(val, dict):
+            val = val.get("name") or val.get("status") or val.get("result")
+        text = str(val or "").strip()
+        if text and text.lower() not in {"none", "null", "pending", "pre_game", "open"}:
+            return text
+    return None
+
+
+def _ensure_entry_leg_pp_result(conn: sqlite3.Connection) -> None:
+    cols = {row[1] for row in conn.execute("PRAGMA table_info(entry_legs)").fetchall()}
+    if "pp_result" not in cols:
+        conn.execute("ALTER TABLE entry_legs ADD COLUMN pp_result TEXT")
+    if "board_opponent" not in cols:
+        conn.execute("ALTER TABLE entry_legs ADD COLUMN board_opponent TEXT")
+
+
+def _ensure_scraped_payout(conn: sqlite3.Connection) -> None:
+    names = {
+        row[0]
+        for row in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"
+        ).fetchall()
+    }
+    if "user_entries" not in names:
+        return
+    cols = {row[1] for row in conn.execute("PRAGMA table_info(user_entries)").fetchall()}
+    if "scraped_n_correct_x" not in cols:
+        conn.execute("ALTER TABLE user_entries ADD COLUMN scraped_n_correct_x REAL")
+
+
+def backfill_settlement_store(db_path: Path = DB_PATH) -> dict[str, int]:
+    """Fill scraped N-correct payout and board opponent from JSON already on disk."""
+    stats = {"slips": 0, "payouts": 0, "legs": 0, "opponents": 0}
+    if not db_path.is_file():
+        return stats
+    with sqlite3.connect(db_path) as conn:
+        _ensure_scraped_payout(conn)
+        _ensure_entry_leg_pp_result(conn)
+        rows = conn.execute(
+            "SELECT entry_id, raw_json FROM user_entries WHERE raw_json IS NOT NULL"
+        ).fetchall()
+        for entry_id, raw in rows:
+            stats["slips"] += 1
+            try:
+                item = json.loads(raw)
+            except json.JSONDecodeError:
+                continue
+            attrs = item.get("attributes", {}) if isinstance(item, dict) else {}
+            if not isinstance(attrs, dict):
+                attrs = {}
+            mult = scraped_n_correct_multiplier(attrs)
+            if mult is not None:
+                conn.execute(
+                    "UPDATE user_entries SET scraped_n_correct_x = ? WHERE entry_id = ?",
+                    (mult, str(entry_id)),
+                )
+                stats["payouts"] += 1
+            included = item.get("included") if isinstance(item, dict) else None
+            included_by_id: dict[str, dict[str, Any]] = {}
+            if isinstance(included, list):
+                for obj in included:
+                    if isinstance(obj, dict) and obj.get("id") is not None:
+                        included_by_id[str(obj["id"])] = obj
+            legs = attrs.get("predictions") or attrs.get("selections") or []
+            if not isinstance(legs, list):
+                rel = get_nested(item, "relationships", "predictions", "data")
+                legs = rel if isinstance(rel, list) else []
+            for idx, leg in enumerate(legs):
+                if not isinstance(leg, dict):
+                    continue
+                stats["legs"] += 1
+                leg_attrs = leg.get("attributes", {}) if isinstance(leg.get("attributes"), dict) else {}
+                proj_attrs: dict[str, Any] = {}
+                proj_id = get_nested(leg, "relationships", "projection", "data", "id")
+                if proj_id and str(proj_id) in included_by_id:
+                    raw_pr = get_nested(included_by_id[str(proj_id)], "attributes") or {}
+                    if isinstance(raw_pr, dict):
+                        proj_attrs = raw_pr
+                opp = board_opponent_from(leg_attrs, proj_attrs, leg)
+                if not opp:
+                    continue
+                stats["opponents"] += 1
+                conn.execute(
+                    """
+                    UPDATE entry_legs
+                    SET board_opponent = ?
+                    WHERE entry_id = ? AND leg_index = ?
+                      AND (board_opponent IS NULL OR board_opponent = '')
+                    """,
+                    (opp, str(entry_id), idx),
+                )
+        conn.commit()
+    return stats
+
+
 def _parse_prediction_payload(payload: Any) -> dict[str, Any]:
     if not isinstance(payload, dict):
         return {}
@@ -2138,6 +2310,13 @@ def _parse_prediction_payload(payload: Any) -> dict[str, Any]:
         if np_id and str(np_id) in included_by_id:
             player_name = get_nested(included_by_id[str(np_id)], "attributes", "name")
 
+    proj_attrs: dict[str, Any] = {}
+    proj_id = get_nested(data, "relationships", "projection", "data", "id")
+    if proj_id and str(proj_id) in included_by_id:
+        raw_proj = get_nested(included_by_id[str(proj_id)], "attributes") or {}
+        if isinstance(raw_proj, dict):
+            proj_attrs = raw_proj
+
     return {
         "prediction_id": str(data.get("id") or "").strip(),
         "player_name": player_name,
@@ -2145,6 +2324,8 @@ def _parse_prediction_payload(payload: Any) -> dict[str, Any]:
         "line": attrs.get("line_score") or attrs.get("line"),
         "description": attrs.get("description") or attrs.get("prediction_type") or attrs.get("pick"),
         "league": attrs.get("league") or attrs.get("sport"),
+        "pp_result": _prediction_settlement(attrs),
+        "board_opponent": board_opponent_from(attrs, proj_attrs),
     }
 
 
@@ -2198,6 +2379,8 @@ def fetch_predictions_and_save_legs(page: Page, db_path: Path = DB_PATH) -> int:
                     pred.get("line"),
                     pred.get("description"),
                     pred.get("league"),
+                    pred.get("pp_result"),
+                    pred.get("board_opponent"),
                 )
             )
     if not leg_rows:
@@ -2205,11 +2388,16 @@ def fetch_predictions_and_save_legs(page: Page, db_path: Path = DB_PATH) -> int:
         return 0
 
     with sqlite3.connect(db_path) as conn:
+        _ensure_entry_leg_pp_result(conn)
         conn.executemany(
             """
-            INSERT OR IGNORE INTO entry_legs
-            (entry_id, leg_index, player_name, stat_type, line, description, league)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO entry_legs
+            (entry_id, leg_index, player_name, stat_type, line, description, league, pp_result, board_opponent)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(entry_id, leg_index, player_name, stat_type, line, description)
+            DO UPDATE SET
+                pp_result = COALESCE(excluded.pp_result, entry_legs.pp_result),
+                board_opponent = COALESCE(excluded.board_opponent, entry_legs.board_opponent)
             """,
             leg_rows,
         )

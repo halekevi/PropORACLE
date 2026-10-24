@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Tennis step4 — Sackmann match history (stat_g1..10) + ESPN scoreboard fallback.
+Tennis step4 — ESPN games/sets, Tennis Abstract aces/DF/BP, Sackmann fallback.
 """
 
 from __future__ import annotations
@@ -26,12 +26,23 @@ from tennis_shared import (
     ensure_sackmann_matches,
     fetch_athlete_statistics,
     history_value_key,
+    is_doubles_pair,
     load_match_games_cache,
+    load_or_refresh_rankings,
     norm_key,
+    normalize_espn_athlete_id,
     parse_tennis_season_stats,
     refresh_match_games_cache,
+    resolve_athlete_id,
     sackmann_coverage_end,
     sackmann_player_fresh,
+    split_pair,
+)
+from tennis_ta_matchlog import (  # noqa: E402
+    TA_FILL_KEYS,
+    build_ta_player_index,
+    ta_history,
+    ta_player_fresh,
 )
 
 
@@ -52,16 +63,76 @@ def _row_line(row: pd.Series) -> object:
     return None
 
 
-def _espn_vals_from_cache(cache: dict, aid: str, hk: str, *, line: object = None, last_n: int = 10) -> list[float]:
+def _espn_vals_from_cache(
+    cache: dict,
+    aid: str,
+    hk: str,
+    *,
+    line: object = None,
+    last_n: int = 10,
+    player_name: str = "",
+) -> list[float]:
     # ESPN tennis scoreboards have linescores (games/sets) but almost never
     # per-match aces / double faults. Do not treat missing stats as 0.
     # Skip slam / BO5 matches when the posted line is a BO3 market.
+    # Skip qualifying — PrizePicks last-5 is main-draw.
     if hk not in _ESPN_MATCH_KEYS:
         return []
-    hist = cache.get(aid) or []
+    hist = cache.get(normalize_espn_athlete_id(aid)) or cache.get(str(aid).strip()) or []
+    pk = norm_key(player_name)
+    if pk and isinstance(hist, list) and hist:
+        own = [
+            m
+            for m in hist
+            if isinstance(m, dict)
+            and (
+                str(m.get("player_key") or "") == pk
+                or norm_key(str(m.get("player") or "")) == pk
+            )
+        ]
+        if own:
+            hist = own
+        elif cache.get(f"pk:{pk}"):
+            hist = cache.get(f"pk:{pk}") or []
+    if not hist:
+        if pk:
+            hist = cache.get(f"pk:{pk}") or []
     if not isinstance(hist, list):
         return []
     return collect_history_values(hist, hk, last_n, line=line)
+
+
+def _espn_vals_for_doubles_pair(
+    cache: dict,
+    player_name: str,
+    hk: str,
+    rankings: list,
+    *,
+    line: object = None,
+    last_n: int = 10,
+) -> list[float]:
+    """Proxy L5 for combined doubles props using individual players' singles match logs."""
+    if hk not in _ESPN_MATCH_KEYS or not is_doubles_pair(player_name):
+        return []
+    merged: list[list[float]] = []
+    for part in split_pair(player_name):
+        eid, _ = resolve_athlete_id(part, rankings)
+        if not eid:
+            continue
+        vals = _espn_vals_from_cache(cache, eid, hk, line=line, last_n=last_n, player_name=part)
+        if vals:
+            merged.append(vals)
+    if not merged:
+        return []
+    out_len = max(len(v) for v in merged)
+    combined: list[float] = []
+    combine_sum = hk == "break_points_won"
+    for i in range(out_len):
+        nums = [v[i] for v in merged if i < len(v)]
+        if not nums:
+            continue
+        combined.append(sum(nums) if combine_sum else sum(nums) / len(nums))
+    return combined
 
 
 def main() -> None:
@@ -74,6 +145,7 @@ def main() -> None:
     ap.add_argument("--output", default="")
     ap.add_argument("--match-cache", default="cache/tennis_match_games.json")
     ap.add_argument("--stats-cache", default="data/tennis_stats_cache.csv")
+    ap.add_argument("--rankings-cache", default="cache/tennis_rankings.json")
     ap.add_argument("--refresh-cache", action="store_true")
     ap.add_argument("--fetch-espn-stats", action="store_true", help="Fetch /statistics per player (slow)")
     ap.add_argument(
@@ -149,7 +221,18 @@ def main() -> None:
     cache_age_h = None
     if mpath.is_file():
         cache_age_h = (time.time() - mpath.stat().st_mtime) / 3600.0
-    if args.refresh_cache or not mpath.is_file() or (
+    existing_cache = load_match_games_cache(mpath) if mpath.is_file() else {}
+    cache_lacks_qual = True
+    for rows in existing_cache.values():
+        if not isinstance(rows, list):
+            continue
+        for m in rows:
+            if isinstance(m, dict) and "is_qualifying" in m:
+                cache_lacks_qual = False
+                break
+        if not cache_lacks_qual:
+            break
+    if args.refresh_cache or not mpath.is_file() or cache_lacks_qual or (
         use_espn and (cache_age_h is None or cache_age_h > 12)
     ):
         days_back = 80 if use_espn else 2
@@ -157,7 +240,12 @@ def main() -> None:
         cache = refresh_match_games_cache(mpath, days_back=days_back)
     else:
         print(f"[Tennis step4] Using ESPN match cache ({cache_age_h:.1f}h old)")
-        cache = load_match_games_cache(mpath)
+        cache = existing_cache
+
+    rpath = Path(args.rankings_cache)
+    if not rpath.is_absolute():
+        rpath = root / rpath
+    rankings = load_or_refresh_rankings(rpath)
 
     stat_cache: dict[tuple[str, str], dict[str, float | None]] = {}
 
@@ -176,7 +264,7 @@ def main() -> None:
         try:
             sc = pd.read_csv(stat_path, dtype=str, encoding="utf-8-sig").fillna("")
             for _, r in sc.iterrows():
-                aid = str(r.get("espn_athlete_id", "")).strip()
+                aid = normalize_espn_athlete_id(r.get("espn_athlete_id", ""))
                 tour = str(r.get("tour", "ATP")).strip().upper() or "ATP"
                 if not aid:
                     continue
@@ -212,7 +300,7 @@ def main() -> None:
     if args.fetch_espn_stats:
         seen: set[tuple[str, str]] = set()
         for _, r in df.iterrows():
-            aid = str(r.get("espn_athlete_id", "")).strip()
+            aid = normalize_espn_athlete_id(r.get("espn_athlete_id", ""))
             tour = str(r.get("tour", "ATP")).strip().upper() or "ATP"
             if not aid or (aid, tour) in seen:
                 continue
@@ -254,14 +342,31 @@ def main() -> None:
 
     sack_fill = 0
     espn_fill = 0
+    ta_fill = 0
     min_sack = max(1, int(args.sackmann_min))
     last_n = max(1, int(args.history_n))
 
     player_col = "player" if "player" in df.columns else "Player"
+    ta_index: dict[str, list] = {}
+    ta_names: list[tuple[str, str]] = []
+    seen_ta: set[tuple[str, str]] = set()
+    for pos in range(len(df)):
+        nm = str(df.iloc[pos].get(player_col) or df.iloc[pos].get("player") or "")
+        tour_nm = str(df.iloc[pos].get("tour", "ATP")).strip().upper() or "ATP"
+        pk_nm = norm_key(nm)
+        if not nm or is_doubles_pair(nm) or (pk_nm, tour_nm) in seen_ta:
+            continue
+        if hkeys[pos] not in TA_FILL_KEYS:
+            continue
+        seen_ta.add((pk_nm, tour_nm))
+        ta_names.append((nm, tour_nm))
+    if ta_names:
+        print("[Tennis step4] Loading Tennis Abstract match logs...")
+        ta_index = build_ta_player_index(ta_names, slate=slate_date)
 
     for pos in range(len(df)):
         r = df.iloc[pos]
-        aid = str(r.get("espn_athlete_id", "")).strip()
+        aid = normalize_espn_athlete_id(r.get("espn_athlete_id", ""))
         tour = str(r.get("tour", "ATP")).strip().upper() or "ATP"
         hk = hkeys[pos]
         unsup = int(float(r.get("unsupported_prop", 0) or 0))
@@ -274,12 +379,37 @@ def main() -> None:
         line = _row_line(r)
         filled = False
         espn_ok = bool(use_espn and hk in _ESPN_MATCH_KEYS and aid)
+        dbl = is_doubles_pair(player_name)
 
-        # Live ESPN linescores beat Sackmann for games/sets. Sackmann ATP/WTA
-        # files stop at RG (~May), so using them here inflated Tiafoe Games Won
-        # L5 to 24/31/29 (BO5) vs PrizePicks 12/17/13/27/23.
-        if espn_ok:
-            vals = _espn_vals_from_cache(cache, aid, hk, line=line, last_n=10)
+        if dbl and use_espn and hk in _ESPN_MATCH_KEYS:
+            vals = _espn_vals_for_doubles_pair(cache, player_name, hk, rankings, line=line, last_n=10)
+            if len(vals) >= 3:
+                for j, v in enumerate(vals[:10]):
+                    df.iat[pos, df.columns.get_loc(f"stat_g{j + 1}")] = v
+                df.iat[pos, df.columns.get_loc("stat_status")] = "OK_DOUBLES_PROXY"
+                espn_fill += 1
+                filled = True
+
+        # Tennis Abstract first when fresh: it has Challenger + tour, which
+        # PrizePicks last-5 uses (Fearnley Total Games 3/5 after Quebec CH).
+        # ESPN ATP/WTA scoreboards omit those CH matches and inflated L5 to 5/5.
+        if (not filled) and hk in TA_FILL_KEYS and ta_index and pk:
+            if ta_player_fresh(ta_index, player_name, slate_date, tour=tour):
+                ta_vals = ta_history(
+                    ta_index, player_name, hk, last_n=last_n, line=line, tour=tour
+                )
+                if len(ta_vals) >= min_sack:
+                    for j, v in enumerate(ta_vals[:10]):
+                        df.iat[pos, df.columns.get_loc(f"stat_g{j + 1}")] = v
+                    df.iat[pos, df.columns.get_loc("stat_status")] = "OK"
+                    ta_fill += 1
+                    filled = True
+
+        # ESPN linescores if TA missed. Sackmann ATP/WTA files stop at RG (~May),
+        # so using them here inflated Tiafoe Games Won L5 to 24/31/29 (BO5)
+        # vs PrizePicks 12/17/13/27/23.
+        if (not filled) and espn_ok:
+            vals = _espn_vals_from_cache(cache, aid, hk, line=line, last_n=10, player_name=player_name)
             if len(vals) >= 3:
                 for j, v in enumerate(vals[:10]):
                     df.iat[pos, df.columns.get_loc(f"stat_g{j + 1}")] = v
@@ -306,10 +436,20 @@ def main() -> None:
                 filled = True
 
         if not filled and use_espn:
-            if not aid:
+            if dbl:
+                vals = _espn_vals_for_doubles_pair(cache, player_name, hk, rankings, line=line, last_n=10)
+                if vals:
+                    for j, v in enumerate(vals[:10]):
+                        df.iat[pos, df.columns.get_loc(f"stat_g{j + 1}")] = v
+                    df.iat[pos, df.columns.get_loc("stat_status")] = "OK_DOUBLES_PROXY"
+                    espn_fill += 1
+                    filled = True
+                elif not aid:
+                    df.iat[pos, df.columns.get_loc("stat_status")] = "NO_ID"
+            elif not aid:
                 df.iat[pos, df.columns.get_loc("stat_status")] = "NO_ID"
             else:
-                vals = _espn_vals_from_cache(cache, aid, hk, line=line, last_n=10)
+                vals = _espn_vals_from_cache(cache, aid, hk, line=line, last_n=10, player_name=player_name)
                 if not vals:
                     df.iat[pos, df.columns.get_loc("stat_status")] = "STALE_HISTORY" if use_sackmann else "NO_DATA"
                 else:
@@ -341,6 +481,7 @@ def main() -> None:
     df.to_csv(out, index=False, encoding="utf-8-sig")
     ok_n = int((df["stat_status"] == "OK").sum())
     print(f"[Tennis step4] Sackmann fill: {sack_fill}/{len(df)} rows got stat_g from Sackmann")
+    print(f"[Tennis step4] Tennis Abstract fill: {ta_fill} rows")
     print(f"[Tennis step4] ESPN fallback: {espn_fill} rows used scoreboard cache")
     print(f"OK [Tennis step4] -> {out}  rows={len(df)}  stat_OK={ok_n}")
 

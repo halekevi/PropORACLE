@@ -127,6 +127,7 @@ def main() -> None:
     drk = pd.to_numeric(col("OVERALL_DEF_RANK", "opp_def_rank_prop", "def_rank"), errors="coerce")
     opp_pass_rk = pd.to_numeric(col("opp_pass_def_rank"), errors="coerce")
     opp_rush_rk = pd.to_numeric(col("opp_rush_def_rank"), errors="coerce")
+    opp_rush_off_rk = pd.to_numeric(col("opp_rush_off_rank"), errors="coerce")
     opp_fg_rk = pd.to_numeric(col("opp_fg_def_rank"), errors="coerce")
     axis = prop.map(prop_def_axis)
     tm_l5_rec = col("team_last5_record")
@@ -182,6 +183,7 @@ def main() -> None:
             "Def Axis": axis,
             "Opp Pass Def Rank": opp_pass_rk,
             "Opp Rush Def Rank": opp_rush_rk,
+            "Opp Rush Off Rank": opp_rush_off_rk,
             "Opp FG Def Rank": opp_fg_rk,
             "Division": col("team_division"),
             "Opp Division": col("opp_division"),
@@ -227,8 +229,16 @@ def main() -> None:
             "Leader Slice": col("leader_slice"),
             "Top3 Rank": pd.to_numeric(col("team_top3_rank"), errors="coerce"),
             "Bottom3 Rank": pd.to_numeric(col("team_bottom3_rank"), errors="coerce"),
+            "Season L5 Flag": col("season_l5_flag", "stat_status"),
+            "L5 Sample N": pd.to_numeric(col("l5_sample_n"), errors="coerce"),
+            "L5 Window N": pd.to_numeric(col("l5_window_n"), errors="coerce"),
+            "L5 Source Counts": col("l5_source_counts"),
+            "Games Used": pd.to_numeric(col("games_used", "l5_sample_n"), errors="coerce"),
         }
     )
+    for i in range(1, 11):
+        clean[f"Stat G{i}"] = pd.to_numeric(col(f"stat_g{i}"), errors="coerce")
+        clean[f"Current G{i}"] = pd.to_numeric(col(f"current_stat_g{i}"), errors="coerce")
 
     pt_low = clean["Pick Type"].astype(str).str.strip().str.lower()
     forced_rows = pt_low.isin(("goblin", "demon"))

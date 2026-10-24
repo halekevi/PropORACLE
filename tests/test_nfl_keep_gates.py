@@ -282,6 +282,20 @@ def test_rec_and_receptions_under_skip_l5_eq5():
 
     assert ticket_gate_passes(_row(side="UNDER", prop="longest_reception", l5_under=2)) is False
 
+    prior_fill = _row(
+        side="UNDER",
+        prop="receiving_yards",
+        l5_under=2,
+        l10_under=9,
+        def_tier="Elite",
+        cover=-10,
+        dist_l5=-10,
+        l5_sample_n=0,
+        season_l5_flag="PRIOR_SEASON_FILL",
+    )
+    assert nfl_std_under_skips_l5_eq5(prior_fill) is True
+    assert ticket_gate_passes(prior_fill) is False
+
 
 def test_rec_under_keep_over_fade():
     assert nfl_standard_ticket_eligible(_row(side="UNDER", prop="receiving_yards")) is True
@@ -336,7 +350,7 @@ def test_nfl_goblin_wave1_skips_d():
     pass_later = _row(
         pick_type="Goblin",
         side="OVER",
-        prop="passing_yards",
+        prop="pass_attempts",
         def_tier="Avg",
         cover=20,
         dist_l5=20,

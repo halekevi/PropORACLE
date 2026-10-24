@@ -1,0 +1,597 @@
+{
+  "source": "ui_runner/templates/graded_props_*.json on PropORACLE_main_cp",
+  "ranks": "Sports/MLB/mlb_defense_summary.csv season-to-date as of 2026-09-03 (not as-of-game)",
+  "date_min": "2026-07-01",
+  "date_max": "2026-09-02",
+  "n_days": 51,
+  "n_decided": 52204,
+  "n_goblin_over": 42481,
+  "gates": {
+    "all_goblin_over": {
+      "label": "Goblin OVER (no L5 gate)",
+      "n": 42481,
+      "buckets": {
+        "both": {
+          "n": 7110,
+          "hits": 4563,
+          "hr": 0.6418,
+          "pct": 64.2
+        },
+        "pitch_only": {
+          "n": 10595,
+          "hits": 6711,
+          "hr": 0.6334,
+          "pct": 63.3
+        },
+        "hit_only": {
+          "n": 10319,
+          "hits": 6515,
+          "hr": 0.6314,
+          "pct": 63.1
+        },
+        "neither": {
+          "n": 14457,
+          "hits": 8890,
+          "hr": 0.6149,
+          "pct": 61.5
+        }
+      },
+      "all": {
+        "n": 42481,
+        "hits": 26679,
+        "hr": 0.628,
+        "pct": 62.8
+      }
+    },
+    "list_l5ge4": {
+      "label": "List gate L5\u22654",
+      "n": 10091,
+      "buckets": {
+        "both": {
+          "n": 1616,
+          "hits": 1090,
+          "hr": 0.6745,
+          "pct": 67.5
+        },
+        "pitch_only": {
+          "n": 2422,
+          "hits": 1588,
+          "hr": 0.6557,
+          "pct": 65.6
+        },
+        "hit_only": {
+          "n": 2371,
+          "hits": 1534,
+          "hr": 0.647,
+          "pct": 64.7
+        },
+        "neither": {
+          "n": 3682,
+          "hits": 2378,
+          "hr": 0.6458,
+          "pct": 64.6
+        }
+      },
+      "all": {
+        "n": 10091,
+        "hits": 6590,
+        "hr": 0.6531,
+        "pct": 65.3
+      }
+    },
+    "l5eq5": {
+      "label": "L5=5",
+      "n": 2437,
+      "buckets": {
+        "both": {
+          "n": 355,
+          "hits": 237,
+          "hr": 0.6676,
+          "pct": 66.8
+        },
+        "pitch_only": {
+          "n": 549,
+          "hits": 367,
+          "hr": 0.6685,
+          "pct": 66.8
+        },
+        "hit_only": {
+          "n": 574,
+          "hits": 385,
+          "hr": 0.6707,
+          "pct": 67.1
+        },
+        "neither": {
+          "n": 959,
+          "hits": 622,
+          "hr": 0.6486,
+          "pct": 64.9
+        }
+      },
+      "all": {
+        "n": 2437,
+        "hits": 1611,
+        "hr": 0.6611,
+        "pct": 66.1
+      }
+    },
+    "ticket70": {
+      "label": "70 gate L5=5 + L10\u22658",
+      "n": 1715,
+      "buckets": {
+        "both": {
+          "n": 226,
+          "hits": 158,
+          "hr": 0.6991,
+          "pct": 69.9
+        },
+        "pitch_only": {
+          "n": 413,
+          "hits": 276,
+          "hr": 0.6683,
+          "pct": 66.8
+        },
+        "hit_only": {
+          "n": 369,
+          "hits": 256,
+          "hr": 0.6938,
+          "pct": 69.4
+        },
+        "neither": {
+          "n": 707,
+          "hits": 455,
+          "hr": 0.6436,
+          "pct": 64.4
+        }
+      },
+      "all": {
+        "n": 1715,
+        "hits": 1145,
+        "hr": 0.6676,
+        "pct": 66.8
+      }
+    }
+  },
+  "by_prop_list": [
+    {
+      "prop": "H+R+RBI",
+      "canon": "hits+runs+rbis",
+      "all": {
+        "n": 3946,
+        "hits": 2665,
+        "hr": 0.6754,
+        "pct": 67.5
+      },
+      "buckets": {
+        "both": {
+          "n": 646,
+          "hits": 450,
+          "hr": 0.6966,
+          "pct": 69.7
+        },
+        "pitch_only": {
+          "n": 977,
+          "hits": 680,
+          "hr": 0.696,
+          "pct": 69.6
+        },
+        "hit_only": {
+          "n": 914,
+          "hits": 587,
+          "hr": 0.6422,
+          "pct": 64.2
+        },
+        "neither": {
+          "n": 1409,
+          "hits": 948,
+          "hr": 0.6728,
+          "pct": 67.3
+        }
+      },
+      "lift_pp": 2.4
+    },
+    {
+      "prop": "Hits",
+      "canon": "hits",
+      "all": {
+        "n": 2841,
+        "hits": 1791,
+        "hr": 0.6304,
+        "pct": 63.0
+      },
+      "buckets": {
+        "both": {
+          "n": 451,
+          "hits": 291,
+          "hr": 0.6452,
+          "pct": 64.5
+        },
+        "pitch_only": {
+          "n": 663,
+          "hits": 411,
+          "hr": 0.6199,
+          "pct": 62.0
+        },
+        "hit_only": {
+          "n": 686,
+          "hits": 441,
+          "hr": 0.6429,
+          "pct": 64.3
+        },
+        "neither": {
+          "n": 1041,
+          "hits": 648,
+          "hr": 0.6225,
+          "pct": 62.2
+        }
+      },
+      "lift_pp": 2.3
+    },
+    {
+      "prop": "Total Bases",
+      "canon": "total_bases",
+      "all": {
+        "n": 2829,
+        "hits": 1786,
+        "hr": 0.6313,
+        "pct": 63.1
+      },
+      "buckets": {
+        "both": {
+          "n": 451,
+          "hits": 295,
+          "hr": 0.6541,
+          "pct": 65.4
+        },
+        "pitch_only": {
+          "n": 663,
+          "hits": 412,
+          "hr": 0.6214,
+          "pct": 62.1
+        },
+        "hit_only": {
+          "n": 685,
+          "hits": 439,
+          "hr": 0.6409,
+          "pct": 64.1
+        },
+        "neither": {
+          "n": 1030,
+          "hits": 640,
+          "hr": 0.6214,
+          "pct": 62.1
+        }
+      },
+      "lift_pp": 3.3
+    },
+    {
+      "prop": "Pitcher Ks",
+      "canon": "pitcher_ks",
+      "all": {
+        "n": 277,
+        "hits": 188,
+        "hr": 0.6787,
+        "pct": 67.9
+      },
+      "buckets": {
+        "both": {
+          "n": 42,
+          "hits": 35,
+          "hr": 0.8333,
+          "pct": 83.3
+        },
+        "pitch_only": {
+          "n": 68,
+          "hits": 46,
+          "hr": 0.6765,
+          "pct": 67.6
+        },
+        "hit_only": {
+          "n": 41,
+          "hits": 27,
+          "hr": 0.6585,
+          "pct": 65.9
+        },
+        "neither": {
+          "n": 126,
+          "hits": 80,
+          "hr": 0.6349,
+          "pct": 63.5
+        }
+      },
+      "lift_pp": 19.8
+    },
+    {
+      "prop": "Hits Allowed",
+      "canon": "hits_allowed",
+      "all": {
+        "n": 198,
+        "hits": 160,
+        "hr": 0.8081,
+        "pct": 80.8
+      },
+      "buckets": {
+        "both": {
+          "n": 26,
+          "hits": 19,
+          "hr": 0.7308,
+          "pct": 73.1
+        },
+        "pitch_only": {
+          "n": 51,
+          "hits": 39,
+          "hr": 0.7647,
+          "pct": 76.5
+        },
+        "hit_only": {
+          "n": 45,
+          "hits": 40,
+          "hr": 0.8889,
+          "pct": 88.9
+        },
+        "neither": {
+          "n": 76,
+          "hits": 62,
+          "hr": 0.8158,
+          "pct": 81.6
+        }
+      },
+      "lift_pp": -8.5
+    }
+  ],
+  "by_prop_70": [
+    {
+      "prop": "H+R+RBI",
+      "canon": "hits+runs+rbis",
+      "all": {
+        "n": 867,
+        "hits": 611,
+        "hr": 0.7047,
+        "pct": 70.5
+      },
+      "buckets": {
+        "both": {
+          "n": 133,
+          "hits": 99,
+          "hr": 0.7444,
+          "pct": 74.4
+        },
+        "pitch_only": {
+          "n": 195,
+          "hits": 140,
+          "hr": 0.7179,
+          "pct": 71.8
+        },
+        "hit_only": {
+          "n": 176,
+          "hits": 118,
+          "hr": 0.6705,
+          "pct": 67.0
+        },
+        "neither": {
+          "n": 363,
+          "hits": 254,
+          "hr": 0.6997,
+          "pct": 70.0
+        }
+      },
+      "lift_pp": 4.4
+    },
+    {
+      "prop": "Hits",
+      "canon": "hits",
+      "all": {
+        "n": 369,
+        "hits": 230,
+        "hr": 0.6233,
+        "pct": 62.3
+      },
+      "buckets": {
+        "both": {
+          "n": 41,
+          "hits": 25,
+          "hr": 0.6098,
+          "pct": 61.0
+        },
+        "pitch_only": {
+          "n": 95,
+          "hits": 57,
+          "hr": 0.6,
+          "pct": 60.0
+        },
+        "hit_only": {
+          "n": 83,
+          "hits": 60,
+          "hr": 0.7229,
+          "pct": 72.3
+        },
+        "neither": {
+          "n": 150,
+          "hits": 88,
+          "hr": 0.5867,
+          "pct": 58.7
+        }
+      },
+      "lift_pp": 2.3
+    },
+    {
+      "prop": "Total Bases",
+      "canon": "total_bases",
+      "all": {
+        "n": 367,
+        "hits": 228,
+        "hr": 0.6213,
+        "pct": 62.1
+      },
+      "buckets": {
+        "both": {
+          "n": 41,
+          "hits": 25,
+          "hr": 0.6098,
+          "pct": 61.0
+        },
+        "pitch_only": {
+          "n": 95,
+          "hits": 57,
+          "hr": 0.6,
+          "pct": 60.0
+        },
+        "hit_only": {
+          "n": 82,
+          "hits": 59,
+          "hr": 0.7195,
+          "pct": 72.0
+        },
+        "neither": {
+          "n": 149,
+          "hits": 87,
+          "hr": 0.5839,
+          "pct": 58.4
+        }
+      },
+      "lift_pp": 2.6
+    },
+    {
+      "prop": "Pitcher Ks",
+      "canon": "pitcher_ks",
+      "all": {
+        "n": 70,
+        "hits": 41,
+        "hr": 0.5857,
+        "pct": 58.6
+      },
+      "buckets": {
+        "both": {
+          "n": 5,
+          "hits": 5,
+          "hr": 1.0,
+          "pct": 100.0
+        },
+        "pitch_only": {
+          "n": 14,
+          "hits": 11,
+          "hr": 0.7857,
+          "pct": 78.6
+        },
+        "hit_only": {
+          "n": 22,
+          "hits": 13,
+          "hr": 0.5909,
+          "pct": 59.1
+        },
+        "neither": {
+          "n": 29,
+          "hits": 12,
+          "hr": 0.4138,
+          "pct": 41.4
+        }
+      },
+      "lift_pp": 58.6
+    },
+    {
+      "prop": "Hits Allowed",
+      "canon": "hits_allowed",
+      "all": {
+        "n": 42,
+        "hits": 35,
+        "hr": 0.8333,
+        "pct": 83.3
+      },
+      "buckets": {
+        "both": {
+          "n": 6,
+          "hits": 4,
+          "hr": 0.6667,
+          "pct": 66.7
+        },
+        "pitch_only": {
+          "n": 14,
+          "hits": 11,
+          "hr": 0.7857,
+          "pct": 78.6
+        },
+        "hit_only": {
+          "n": 6,
+          "hits": 6,
+          "hr": 1.0,
+          "pct": 100.0
+        },
+        "neither": {
+          "n": 16,
+          "hits": 14,
+          "hr": 0.875,
+          "pct": 87.5
+        }
+      },
+      "lift_pp": -20.8
+    }
+  ],
+  "era05_list": {
+    "all": {
+      "n": 0,
+      "hits": 0,
+      "hr": null,
+      "pct": null
+    },
+    "buckets": {
+      "both": {
+        "n": 0,
+        "hits": 0,
+        "hr": null,
+        "pct": null
+      },
+      "pitch_only": {
+        "n": 0,
+        "hits": 0,
+        "hr": null,
+        "pct": null
+      },
+      "hit_only": {
+        "n": 0,
+        "hits": 0,
+        "hr": null,
+        "pct": null
+      },
+      "neither": {
+        "n": 0,
+        "hits": 0,
+        "hr": null,
+        "pct": null
+      }
+    }
+  },
+  "standard_over_l5ge4": {
+    "all": {
+      "n": 526,
+      "hits": 257,
+      "hr": 0.4886,
+      "pct": 48.9
+    },
+    "buckets": {
+      "both": {
+        "n": 73,
+        "hits": 42,
+        "hr": 0.5753,
+        "pct": 57.5
+      },
+      "pitch_only": {
+        "n": 103,
+        "hits": 53,
+        "hr": 0.5146,
+        "pct": 51.5
+      },
+      "hit_only": {
+        "n": 129,
+        "hits": 57,
+        "hr": 0.4419,
+        "pct": 44.2
+      },
+      "neither": {
+        "n": 221,
+        "hits": 105,
+        "hr": 0.4751,
+        "pct": 47.5
+      }
+    }
+  }
+}

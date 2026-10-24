@@ -13,6 +13,7 @@ import pandas as pd
 
 from utils.matchup_edge.slate_io import load_slate_rows, norm_prop, build_slate_pp_lookup, lookup_pp_edge
 from utils.matchup_edge.sports_config import SportMatchupConfig
+from utils.ticket_tier_defense_gates import tennis_tight_match_note
 
 _REPO = Path(__file__).resolve().parents[2]
 _TENNIS_SCRIPTS = _REPO / "Sports" / "Tennis" / "scripts"
@@ -299,6 +300,7 @@ def _classify_tennis_edge(
     pp_edge: float | None = None,
     elite_rank_cut: int = 25,
     weak_rank_cut: int = 100,
+    opp_name: str = "",
 ) -> tuple[str, str]:
     """Tennis ATP rank: lower # = stronger opponent (inverse of team def rank)."""
     rank = float(opp_rank) if opp_rank is not None and not (isinstance(opp_rank, float) and np.isnan(opp_rank)) else np.nan
@@ -306,8 +308,9 @@ def _classify_tennis_edge(
     rank_lbl = f"#{int(rank)}" if not np.isnan(rank) else "?"
     elite_cut = 10 if cat_id == "games_won" else elite_rank_cut
 
-    if cat_id in ("match_total_games", "total_games") and not np.isnan(rank) and 11 <= rank <= 25:
-        return "AVOID", f"Tight-match opponent ({rank_lbl}) — Total Games OVER fades (11–25)."
+    tight_note = tennis_tight_match_note(cat_id, rank, direction="OVER", opp_name=opp_name)
+    if tight_note:
+        return "AVOID", tight_note
 
     if cat_id == "games_won" and not np.isnan(rank) and 51 <= rank <= 100:
         if pp_edge is not None and not (isinstance(pp_edge, float) and np.isnan(pp_edge)) and float(pp_edge) >= 0.5:
@@ -473,6 +476,7 @@ def build_tennis_matchup_payload(
                 pp_edge=pp.get("pp_edge"),
                 elite_rank_cut=cfg.elite_rank_cut,
                 weak_rank_cut=weak_rank_cut,
+                opp_name=str(mu.get("opponent_name") or ""),
             )
             pp_edge_val = pp.get("pp_edge")
             enriched.append(
@@ -531,6 +535,6 @@ def build_tennis_matchup_payload(
             "TOP_EDGE": "PP edge +1.0+ or strong avg vs weak opponent (ATP rank 100+).",
             "OK_EDGE": "Positive PP edge or solid vs average opponent (rank 26–99).",
             "NEUTRAL": "No clear edge, or elite opponent with only modest PP edge.",
-            "AVOID": "Negative PP edge or elite opponent (rank ≤25) with weak production.",
+            "AVOID": "Negative PP edge, elite opponent (rank ≤25) with weak production, or tight-match Total Games OVER fade (opp #11–25).",
         },
     }

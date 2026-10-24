@@ -2,9 +2,13 @@
 """
 step4_attach_player_stats_mlb.py  (MLB Pipeline)
 
-Pulls last-N game stats from the official MLB Stats API:
-  https://statsapi.mlb.com/api/v1/people/{id}/stats?stats=gameLog&group=hitting&season={year}
-  https://statsapi.mlb.com/api/v1/people/{id}/stats?stats=gameLog&group=pitching&season={year}
+Pulls last-N game stats from the official MLB Stats API.
+Playoff games count in L5. Regular season (gameType=R) is merged with
+postseason (gameType=P: Wild Card, Division Series, LCS, World Series).
+Each attach also writes completed games dated on or after the newest stored
+game, so a finished playoff game lands on the next refresh.
+  https://statsapi.mlb.com/api/v1/people/{id}/stats?stats=gameLog&group=hitting&season={year}&gameType=R
+  https://statsapi.mlb.com/api/v1/people/{id}/stats?stats=gameLog&group=hitting&season={year}&gameType=P
 
 Handles:
   - Hitter props: hits, total_bases, home_runs, rbi, runs, walks,
@@ -36,7 +40,7 @@ import argparse
 import random
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 from functools import lru_cache
@@ -74,9 +78,12 @@ MLB_HEADERS = {
     "Connection": "keep-alive",
 }
 
+# Playoff games count in L5, same as PrizePicks. R is the regular season.
+# P is Wild Card (F), Division Series (D), LCS (L), and World Series (W).
+MLB_L5_GAME_TYPES = ("R", "P")
 GAMELOG_URL = (
     "https://statsapi.mlb.com/api/v1/people/{player_id}/stats"
-    "?stats=gameLog&group={group}&season={season}&language=en"
+    "?stats=gameLog&group={group}&season={season}&gameType={game_type}&language=en"
 )
 LIVE_FEED_URL = "https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live"
 
@@ -862,17 +869,37 @@ def _maybe_save_cache(cache: pd.DataFrame, path: Path, *, force: bool = False) -
     _CACHE_SAVE_PENDING = 0
 
 
-def fetch_game_log(player_id: str, group: str, season: str) -> List[dict]:
-    """Fetch raw game log entries from MLB Stats API."""
-    url  = GAMELOG_URL.format(player_id=player_id, group=group, season=season)
-    data = _get(url)
-    if not data:
-        return []
-    for stat_block in (data.get("stats") or []):
-        splits = stat_block.get("splits") or []
-        if splits:
-            return splits
-    return []
+def fetch_game_log(
+    player_id: str,
+    group: str,
+    season: str,
+    game_types: tuple[str, ...] = MLB_L5_GAME_TYPES,
+) -> List[dict]:
+    """Game log splits, oldest first.
+
+    Regular season and postseason are both included. A later game type wins
+    when the same gamePk appears twice.
+    """
+    merged: Dict[str, dict] = {}
+    for game_type in game_types:
+        url = GAMELOG_URL.format(
+            player_id=player_id,
+            group=group,
+            season=season,
+            game_type=game_type,
+        )
+        data = _get(url)
+        if not data:
+            continue
+        for stat_block in (data.get("stats") or []):
+            for split in (stat_block.get("splits") or []):
+                gid = str((split.get("game") or {}).get("gamePk") or "").strip()
+                if not gid:
+                    continue
+                merged[gid] = split
+            if stat_block.get("splits"):
+                break
+    return sorted(merged.values(), key=lambda sp: str(sp.get("date") or ""))
 
 
 @lru_cache(maxsize=1)
@@ -911,6 +938,53 @@ def _resolve_team_id(team_value: str) -> str:
     return _mlb_team_lookup().get(key, "")
 
 
+_SCHEDULE_URL = (
+    "https://statsapi.mlb.com/api/v1/schedule"
+    "?sportId=1&startDate={start}&endDate={end}&gameType=R,F,D,L,W"
+)
+_OPEN_GAME_PKS: Optional[set[str]] = None
+
+
+def _schedule_games(start: str, end: str) -> List[dict]:
+    data = _get(_SCHEDULE_URL.format(start=start, end=end)) or {}
+    games: List[dict] = []
+    for day in (data.get("dates") or []):
+        games.extend(day.get("games") or [])
+    return games
+
+
+def open_game_pks() -> set[str]:
+    """In-progress game pks near today. Cached for this process.
+
+    A live line is partial. Storing it would freeze L5, because a later
+    refresh skips a game id that is already in the cache. The next attach
+    writes the game once it is Final.
+    """
+    global _OPEN_GAME_PKS
+    if _OPEN_GAME_PKS is not None:
+        return _OPEN_GAME_PKS
+    today = datetime.now().date()
+    start = (today - timedelta(days=2)).isoformat()
+    end = (today + timedelta(days=1)).isoformat()
+    pks: set[str] = set()
+    for game in _schedule_games(start, end):
+        state = str((game.get("status") or {}).get("abstractGameState") or "")
+        if state == "Final":
+            continue
+        pk = str(game.get("gamePk") or "").strip()
+        if pk:
+            pks.add(pk)
+    _OPEN_GAME_PKS = pks
+    return pks
+
+
+def _game_day(date_str: str) -> Optional[pd.Timestamp]:
+    dt = pd.to_datetime(str(date_str or "")[:10], errors="coerce")
+    if pd.isna(dt):
+        return None
+    return pd.Timestamp(dt).normalize()
+
+
 def _infer_opp_team_for_row(slate: pd.DataFrame, idx: int) -> str:
     """
     Infer opp team code for rows where opp_team is missing using pp_game_id.
@@ -939,6 +1013,7 @@ def update_cache(
     player_type: str,
     season: str,
     n_games: int,
+    game_types: tuple[str, ...] = MLB_L5_GAME_TYPES,
 ) -> Tuple[pd.DataFrame, int]:
     """Fetch game log and add new rows to cache."""
     group = "pitching" if player_type == "pitcher" else "hitting"
@@ -951,7 +1026,7 @@ def update_cache(
         ].astype(str).tolist()
     )
 
-    splits  = fetch_game_log(player_id, group, season)
+    splits  = fetch_game_log(player_id, group, season, game_types=game_types)
     if player_type == "pitcher":
         key = (str(player_id), str(season))
         _wins_available = any("wins" in (sp.get("stat") or {}) for sp in splits)
@@ -986,14 +1061,25 @@ def update_cache(
         for gid, grp in sub.groupby(sub["GAME_ID"].astype(str)):
             cached_props_by_game[str(gid)] = set(grp["PROP_NORM"].astype(str).tolist())
 
+    last_dt = player_cache_max_date(cache, player_id, season)
+    if last_dt is not None:
+        last_dt = pd.Timestamp(last_dt).normalize()
+    live_pks = open_game_pks()
+
     for split in splits:
         game_id  = str(split.get("game", {}).get("gamePk", "")).strip()
         date_str = str(split.get("date", "")).strip()
-        if not game_id:
+        if not game_id or game_id in live_pks:
             continue
+        game_day = _game_day(date_str)
+        # Every completed game after the last stored date is written. The
+        # n_games cap only limits how far back an empty cache is filled.
+        after_stored = last_dt is not None and game_day is not None and game_day > last_dt
         cached_props = cached_props_by_game.get(game_id, set())
         props_to_write = [p for p in prop_list if p not in cached_props]
         if not props_to_write:
+            if last_dt is not None and game_day is not None and game_day < last_dt:
+                break
             continue
 
         for prop_norm in props_to_write:
@@ -1052,7 +1138,7 @@ def update_cache(
         if game_id not in existing_game_ids:
             existing_game_ids.add(game_id)
             added += 1
-            if added >= n_games:
+            if not after_stored and added >= n_games:
                 break
 
     if new_rows:
@@ -1547,6 +1633,167 @@ def _process_slate_row_for_stats(
     return cache, cache_updates
 
 
+def _boxscore_player_roles(game_pk: str) -> List[Tuple[str, str]]:
+    box = _get(f"https://statsapi.mlb.com/api/v1/game/{game_pk}/boxscore") or {}
+    found: set[Tuple[str, str]] = set()
+    teams = box.get("teams") or {}
+    for side in ("home", "away"):
+        players = (teams.get(side) or {}).get("players") or {}
+        for entry in players.values():
+            pid = str((entry.get("person") or {}).get("id") or "").strip()
+            if not pid:
+                continue
+            stats = entry.get("stats") or {}
+            batting = stats.get("batting") or {}
+            pitching = stats.get("pitching") or {}
+            if batting.get("atBats") not in (None, ""):
+                found.add((pid, "hitter"))
+            if pitching.get("inningsPitched") not in (None, ""):
+                found.add((pid, "pitcher"))
+    return sorted(found)
+
+
+def sync_completed_games_after_last_stored(
+    cache: pd.DataFrame,
+    con,
+    season: str,
+    n_games: int,
+) -> Tuple[pd.DataFrame, int]:
+    """Write completed games on or after the newest stored date.
+
+    The normal attach calls this. A finished playoff game is stored on the
+    next refresh. In-progress games stay out until they are Final.
+    """
+    row = con.execute(
+        "SELECT MAX(game_date) FROM mlb_gamelog WHERE season = ?",
+        (str(season),),
+    ).fetchone()
+    last = str((row[0] if row else "") or "").strip()[:10]
+    if not last:
+        return cache, 0
+    end = (datetime.now().date() + timedelta(days=1)).isoformat()
+    stored = {
+        str(r[0])
+        for r in con.execute(
+            """
+            SELECT DISTINCT game_id FROM mlb_gamelog
+            WHERE season = ? AND game_date >= ?
+            """,
+            (str(season), last),
+        )
+        if r and r[0]
+    }
+    roles: List[Tuple[str, str]] = []
+    seen: set[Tuple[str, str]] = set()
+    new_final = 0
+    for game in _schedule_games(last, end):
+        state = str((game.get("status") or {}).get("abstractGameState") or "")
+        pk = str(game.get("gamePk") or "").strip()
+        if state != "Final" or not pk or pk in stored:
+            continue
+        new_final += 1
+        for role in _boxscore_player_roles(pk):
+            if role not in seen:
+                seen.add(role)
+                roles.append(role)
+    print(
+        f"  Incremental MLB games on/after {last}: "
+        f"{new_final} final not yet stored, {len(roles)} player-roles"
+    )
+    if not roles:
+        return cache, 0
+    have = set(cache["MLB_PLAYER_ID"].astype(str)) if len(cache) else set()
+    missing = sorted({pid for pid, _ptype in roles if pid not in have})
+    if missing:
+        extra = _load_cache_db(con, player_ids=missing, seasons=[str(season)])
+        if extra is not None and not extra.empty:
+            cache = pd.concat([cache, extra], ignore_index=True)
+            if _CACHE_INDEX is not None:
+                for pid in missing:
+                    _CACHE_INDEX.refresh_player(cache, pid, season)
+    added = 0
+    window = max(int(n_games), 10)
+    for pid, ptype in roles:
+        cache, n = update_cache(cache, pid, ptype, season, n_games=window)
+        if n:
+            _db_mirror_player_cache_rows(cache, con, pid, season)
+            added += n
+    return cache, added
+
+
+def postseason_player_types(season: str, end_date: str) -> tuple[List[Tuple[str, str]], set[str]]:
+    """Completed postseason (player id, role) pairs, plus those final game pks.
+
+    The schedule does not accept gameType=P. F, D, L, and W are Wild Card,
+    Division Series, LCS, and World Series. Playoff games count in L5.
+    In-progress games are left for the next fetch.
+    """
+    start = f"{season}-09-28"
+    url = (
+        "https://statsapi.mlb.com/api/v1/schedule"
+        f"?sportId=1&startDate={start}&endDate={end_date}&gameType=F,D,L,W"
+    )
+    data = _get(url) or {}
+    game_pks: List[str] = []
+    for day in (data.get("dates") or []):
+        for game in (day.get("games") or []):
+            state = str((game.get("status") or {}).get("abstractGameState") or "")
+            if state != "Final":
+                continue
+            pk = str(game.get("gamePk") or "").strip()
+            if pk:
+                game_pks.append(pk)
+    final_pks = set(game_pks)
+    found: set[Tuple[str, str]] = set()
+    for pk in game_pks:
+        box = _get(f"https://statsapi.mlb.com/api/v1/game/{pk}/boxscore") or {}
+        teams = box.get("teams") or {}
+        for side in ("home", "away"):
+            players = (teams.get(side) or {}).get("players") or {}
+            for entry in players.values():
+                pid = str((entry.get("person") or {}).get("id") or "").strip()
+                if not pid:
+                    continue
+                stats = entry.get("stats") or {}
+                batting = stats.get("batting") or {}
+                pitching = stats.get("pitching") or {}
+                if batting.get("atBats") not in (None, ""):
+                    found.add((pid, "hitter"))
+                if pitching.get("inningsPitched") not in (None, ""):
+                    found.add((pid, "pitcher"))
+    return sorted(found), final_pks
+
+
+def backfill_postseason_gamelog(connections, season: str = "2026", end_date: str = "") -> int:
+    """Write completed postseason games into each mlb_gamelog. Returns new game count."""
+    if not isinstance(connections, (list, tuple)):
+        connections = [connections]
+    if not end_date:
+        end_date = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+    appearances, final_pks = postseason_player_types(season, end_date)
+    print(
+        f"  Postseason appearances: {len(appearances)} player-roles, "
+        f"{len(final_pks)} final games, through {end_date}"
+    )
+    if not appearances:
+        return 0
+    cache = pd.DataFrame(columns=CACHE_COLS)
+    added = 0
+    for i, (pid, ptype) in enumerate(appearances, start=1):
+        cache, n = update_cache(
+            cache, pid, ptype, season, n_games=40, game_types=("P",)
+        )
+        if n:
+            drop = (cache["MLB_PLAYER_ID"].astype(str) == str(pid)) & ~cache["GAME_ID"].astype(str).isin(final_pks)
+            cache = cache.loc[~drop]
+            for con in connections:
+                _db_mirror_player_cache_rows(cache, con, pid, season)
+            added += n
+        if i % 25 == 0:
+            print(f"  backfill {i}/{len(appearances)} new_games={added}")
+    return added
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -1555,10 +1802,32 @@ def main() -> None:
     ap.add_argument("--cache",        default="mlb_stats_cache.csv")
     ap.add_argument("--output",       default="step4_mlb_with_stats.csv")
     ap.add_argument("--db",           default="", help="Override DB path (default: data/cache/proporacle_ref.db)")
-    ap.add_argument("--n",            type=int,   default=10, help="Games per player")
+    ap.add_argument(
+        "--backfill-postseason",
+        action="store_true",
+        help="Write completed postseason games into mlb_gamelog and exit. Playoff games count in L5.",
+    )
     ap.add_argument("--season",       default="2026")
+    ap.add_argument("--n",            type=int,   default=10, help="Games per player")
     ap.add_argument("--debug_misses", default="")
     args = ap.parse_args()
+
+    db_path = Path(args.db) if args.db else None
+    if args.backfill_postseason:
+        con = open_db(db_path)
+        ensure_mlb_schema(con)
+        cons = [con]
+        this_path = Path(con.execute("PRAGMA database_list").fetchone()[2]).resolve()
+        other = Path(r"H:\PropORACLE_main_cp\data\cache\proporacle_ref.db")
+        if other.exists() and other.resolve() != this_path:
+            print(f"→ Also writing {other}")
+            other_con = open_db(other)
+            ensure_mlb_schema(other_con)
+            cons.append(other_con)
+        print(f"→ Backfill postseason gamelog season={args.season} db={this_path}")
+        added = backfill_postseason_gamelog(cons, season=str(args.season))
+        print(f"→ Postseason games added: {added}")
+        return
 
     print(f"→ Loading Step3: {args.input}")
     slate = pd.read_csv(args.input, low_memory=False, encoding="utf-8-sig").fillna("")
@@ -1612,6 +1881,10 @@ def main() -> None:
     max_refresh_attempts = 2
 
     print(f"\n→ Attaching stats | rows={len(slate)}")
+    cache, synced = sync_completed_games_after_last_stored(
+        cache, con, str(args.season), N
+    )
+    cache_updates += synced
 
     for idx, _row in slate.iterrows():
         cache, du = _process_slate_row_for_stats(

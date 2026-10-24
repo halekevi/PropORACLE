@@ -15,6 +15,8 @@ import sys
 import time
 from pathlib import Path
 
+import pandas as pd
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 MAX_AGE_DAYS = 7
 
@@ -71,7 +73,28 @@ def refresh_nfl(*, force: bool = False, max_age_days: float = MAX_AGE_DAYS) -> i
     if not NFL_PULL_SCRIPT.is_file():
         print(f"[{label}] ERROR: script not found: {NFL_PULL_SCRIPT}", file=sys.stderr)
         return 1
-    return _run_subprocess([sys.executable, str(NFL_PULL_SCRIPT)], label)
+    rc = _run_subprocess([sys.executable, str(NFL_PULL_SCRIPT)], label)
+    if rc == 0 and path.is_file():
+        return 0
+    # site.api team stats often 403; ESPN byteam table from step4 is the live source.
+    if str(REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(REPO_ROOT))
+    from utils.nfl_prop_defense import last_completed_nfl_season, sync_nfl_reference_defense
+
+    legacy = REPO_ROOT / "Sports" / "NFL" / "data" / "defense_rankings.csv"
+    if not legacy.is_file():
+        print(f"[{label}] WARN: pull failed and no {legacy} to sync", file=sys.stderr)
+        return rc
+    df = pd.read_csv(legacy, encoding="utf-8-sig")
+    season = last_completed_nfl_season()
+    if "season" in df.columns and len(df):
+        try:
+            season = int(pd.to_numeric(df["season"], errors="coerce").dropna().iloc[0])
+        except Exception:
+            pass
+    sync_nfl_reference_defense(df, season=season, reference_path=path)
+    print(f"[{label}] synced reference from {legacy}")
+    return 0
 
 
 def refresh_cfb(

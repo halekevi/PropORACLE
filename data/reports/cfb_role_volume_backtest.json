@@ -1,0 +1,461 @@
+{
+  "meta": {
+    "tape": [
+      "2026-08-28",
+      "2026-08-29",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-12",
+      "2026-09-26",
+      "2026-10-10",
+      "2026-09-19",
+      "2026-09-20",
+      "2026-10-03",
+      "2026-10-04",
+      "2026-10-11",
+      "2026-10-17",
+      "2026-10-18"
+    ],
+    "note": "Carries from ESPN gamelog rushingAttempts; committee uses same-team athletes in cache id map."
+  },
+  "chips": {
+    "Goblin OVER L5=5": {
+      "unique_n": 201,
+      "stamp_dropped": 10,
+      "base": {
+        "h": 149,
+        "n": 201,
+        "rate": 0.741
+      },
+      "filled": {
+        "h": 103,
+        "n": 150,
+        "rate": 0.687
+      },
+      "median_carry_buckets": {
+        "10-14": {
+          "h": 46,
+          "n": 65,
+          "rate": 0.708
+        },
+        "15+": {
+          "h": 23,
+          "n": 40,
+          "rate": 0.575
+        },
+        "5-9": {
+          "h": 34,
+          "n": 45,
+          "rate": 0.756
+        }
+      },
+      "role_pass": {
+        "h": 103,
+        "n": 149,
+        "rate": 0.691
+      },
+      "role_fail": {
+        "h": 0,
+        "n": 1,
+        "rate": 0.0
+      },
+      "committee_yes": {
+        "h": 47,
+        "n": 69,
+        "rate": 0.681
+      },
+      "committee_no": {
+        "h": 43,
+        "n": 66,
+        "rate": 0.652
+      },
+      "committee_unk": {
+        "h": 13,
+        "n": 15,
+        "rate": 0.867
+      },
+      "role_pass_not_committee": {
+        "h": 43,
+        "n": 66,
+        "rate": 0.652
+      },
+      "role_fail_examples": [
+        {
+          "date": "2026-10-10",
+          "player": "John Mateer",
+          "book": "Goblin OVER",
+          "line": 4.5,
+          "hit": 0,
+          "carries": [
+            15.0,
+            10.0,
+            13.0,
+            3.0
+          ],
+          "yards": [
+            7.0,
+            17.0,
+            45.0,
+            7.0
+          ],
+          "max_yards": 45.0
+        }
+      ]
+    },
+    "Goblin OVER L5=5+D": {
+      "unique_n": 61,
+      "stamp_dropped": 1,
+      "base": {
+        "h": 45,
+        "n": 61,
+        "rate": 0.738
+      },
+      "filled": {
+        "h": 30,
+        "n": 44,
+        "rate": 0.682
+      },
+      "median_carry_buckets": {
+        "10-14": {
+          "h": 14,
+          "n": 20,
+          "rate": 0.7
+        },
+        "15+": {
+          "h": 7,
+          "n": 12,
+          "rate": 0.583
+        },
+        "5-9": {
+          "h": 9,
+          "n": 12,
+          "rate": 0.75
+        }
+      },
+      "role_pass": {
+        "h": 30,
+        "n": 44,
+        "rate": 0.682
+      },
+      "role_fail": {
+        "h": 0,
+        "n": 0,
+        "rate": null
+      },
+      "committee_yes": {
+        "h": 12,
+        "n": 16,
+        "rate": 0.75
+      },
+      "committee_no": {
+        "h": 13,
+        "n": 22,
+        "rate": 0.591
+      },
+      "committee_unk": {
+        "h": 5,
+        "n": 6,
+        "rate": 0.833
+      },
+      "role_pass_not_committee": {
+        "h": 13,
+        "n": 22,
+        "rate": 0.591
+      },
+      "role_fail_examples": []
+    },
+    "Std UNDER L5=5": {
+      "unique_n": 37,
+      "stamp_dropped": 2,
+      "base": {
+        "h": 24,
+        "n": 37,
+        "rate": 0.649
+      },
+      "filled": {
+        "h": 7,
+        "n": 16,
+        "rate": 0.438
+      },
+      "median_carry_buckets": {
+        "10-14": {
+          "h": 2,
+          "n": 7,
+          "rate": 0.286
+        },
+        "15+": {
+          "h": 2,
+          "n": 3,
+          "rate": 0.667
+        },
+        "5-9": {
+          "h": 2,
+          "n": 4,
+          "rate": 0.5
+        },
+        "<5": {
+          "h": 1,
+          "n": 2,
+          "rate": 0.5
+        }
+      },
+      "role_pass": {
+        "h": 4,
+        "n": 8,
+        "rate": 0.5
+      },
+      "role_fail": {
+        "h": 3,
+        "n": 8,
+        "rate": 0.375
+      },
+      "committee_yes": {
+        "h": 1,
+        "n": 3,
+        "rate": 0.333
+      },
+      "committee_no": {
+        "h": 3,
+        "n": 9,
+        "rate": 0.333
+      },
+      "committee_unk": {
+        "h": 3,
+        "n": 4,
+        "rate": 0.75
+      },
+      "role_pass_not_committee": {
+        "h": 1,
+        "n": 4,
+        "rate": 0.25
+      },
+      "role_fail_examples": [
+        {
+          "date": "2026-09-26",
+          "player": "Dante Moore",
+          "book": "Standard UNDER",
+          "line": 4.5,
+          "hit": 0,
+          "carries": [
+            1.0,
+            6.0,
+            2.0
+          ],
+          "yards": [
+            -3.0,
+            -9.0,
+            -5.0
+          ],
+          "max_yards": -3.0
+        },
+        {
+          "date": "2026-09-26",
+          "player": "Kendrick Raphael",
+          "book": "Standard UNDER",
+          "line": 96.5,
+          "hit": 0,
+          "carries": [
+            24.0,
+            3.0,
+            12.0
+          ],
+          "yards": [
+            197.0,
+            3.0,
+            75.0
+          ],
+          "max_yards": 197.0
+        },
+        {
+          "date": "2026-09-26",
+          "player": "Nolan James Jr.",
+          "book": "Standard UNDER",
+          "line": 75.5,
+          "hit": 1,
+          "carries": [
+            26.0,
+            6.0,
+            7.0
+          ],
+          "yards": [
+            121.0,
+            29.0,
+            19.0
+          ],
+          "max_yards": 121.0
+        },
+        {
+          "date": "2026-10-10",
+          "player": "Jaziun Patterson",
+          "book": "Standard UNDER",
+          "line": 74.5,
+          "hit": 0,
+          "carries": [
+            18.0,
+            16.0,
+            3.0,
+            7.0
+          ],
+          "yards": [
+            62.0,
+            54.0,
+            23.0,
+            23.0
+          ],
+          "max_yards": 62.0
+        },
+        {
+          "date": "2026-10-10",
+          "player": "Jekail Middlebrook",
+          "book": "Standard UNDER",
+          "line": 80.5,
+          "hit": 0,
+          "carries": [
+            10.0,
+            5.0,
+            17.0,
+            3.0,
+            15.0
+          ],
+          "yards": [
+            65.0,
+            23.0,
+            75.0,
+            15.0,
+            64.0
+          ],
+          "max_yards": 75.0
+        },
+        {
+          "date": "2026-10-17",
+          "player": "AJ Newberry",
+          "book": "Standard UNDER",
+          "line": 52.5,
+          "hit": 0,
+          "carries": [
+            9.0,
+            15.0,
+            11.0,
+            7.0,
+            5.0
+          ],
+          "yards": [
+            55.0,
+            90.0,
+            111.0,
+            45.0,
+            8.0
+          ],
+          "max_yards": 111.0
+        },
+        {
+          "date": "2026-10-17",
+          "player": "Jaziun Patterson",
+          "book": "Standard UNDER",
+          "line": 82.5,
+          "hit": 1,
+          "carries": [
+            17.0,
+            18.0,
+            16.0,
+            3.0,
+            7.0
+          ],
+          "yards": [
+            93.0,
+            62.0,
+            54.0,
+            23.0,
+            23.0
+          ],
+          "max_yards": 93.0
+        },
+        {
+          "date": "2026-10-17",
+          "player": "Quinten Joyner",
+          "book": "Standard UNDER",
+          "line": 55.5,
+          "hit": 1,
+          "carries": [
+            10.0,
+            8.0,
+            2.0,
+            5.0,
+            10.0
+          ],
+          "yards": [
+            62.0,
+            12.0,
+            11.0,
+            23.0,
+            43.0
+          ],
+          "max_yards": 62.0
+        }
+      ]
+    },
+    "Std UNDER L5=5+D+cover8": {
+      "unique_n": 10,
+      "stamp_dropped": 1,
+      "base": {
+        "h": 9,
+        "n": 10,
+        "rate": 0.9
+      },
+      "filled": {
+        "h": 2,
+        "n": 3,
+        "rate": 0.667
+      },
+      "median_carry_buckets": {
+        "10-14": {
+          "h": 1,
+          "n": 1,
+          "rate": 1.0
+        },
+        "15+": {
+          "h": 0,
+          "n": 1,
+          "rate": 0.0
+        },
+        "<5": {
+          "h": 1,
+          "n": 1,
+          "rate": 1.0
+        }
+      },
+      "role_pass": {
+        "h": 2,
+        "n": 3,
+        "rate": 0.667
+      },
+      "role_fail": {
+        "h": 0,
+        "n": 0,
+        "rate": null
+      },
+      "committee_yes": {
+        "h": 0,
+        "n": 0,
+        "rate": null
+      },
+      "committee_no": {
+        "h": 1,
+        "n": 2,
+        "rate": 0.5
+      },
+      "committee_unk": {
+        "h": 1,
+        "n": 1,
+        "rate": 1.0
+      },
+      "role_pass_not_committee": {
+        "h": 1,
+        "n": 2,
+        "rate": 0.5
+      },
+      "role_fail_examples": []
+    }
+  }
+}

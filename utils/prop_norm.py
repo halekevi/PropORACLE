@@ -120,6 +120,8 @@ GLOBAL_FOLD: dict[str, str] = {
     "defensiverebound": "dreb",
     "pf": "pf",
     "personalfouls": "pf",
+    "dunks": "dunks",
+    "dunk": "dunks",
     "minutes": "minutes",
     "min": "minutes",
     "doubledouble": "double_double",
@@ -363,6 +365,7 @@ CFB_FOLD: dict[str, str] = {
     "fgmade": "fg_made",
     "patmade": "pat_made",
     "playertouchdowns": "player_td",
+    "anytimetd": "player_td",
     "sacks": "sacks",
     "tackles": "tackles",
     "tacklesforloss": "tfl",
@@ -380,6 +383,7 @@ SPORT_FOLD: dict[str, dict[str, str]] = {
     "NFL": NFL_FOLD,
     "NFLP": NFL_FOLD,
     "CFB": CFB_FOLD,
+    "CFB1H": CFB_FOLD,
     "GOLF": GOLF_FOLD,
     "PGA": GOLF_FOLD,
 }
@@ -413,9 +417,16 @@ DISPLAY: dict[str, str] = {
     "fta": "Free Throws Attempted",
     "oreb": "Offensive Rebounds",
     "dreb": "Defensive Rebounds",
+    "pf": "Personal Fouls",
+    "dunks": "Dunks",
+    "fantasy": "Fantasy Score",
+    "double_double": "Double-Double",
+    "triple_double": "Triple-Double",
     "quarters_3plus": "Quarters with 3+ Points",
     "quarters_4plus": "Quarters with 4+ Points",
     "quarters_5plus": "Quarters with 5+ Points",
+    # Default = soccer PP wording. NHL uses sport-aware override in display_prop
+    # ("Shots On Goal") — collapsing both onto "Shots On Target" hid a grading bug.
     "sog": "Shots On Target",
     "saves": "Goalie Saves",
     "saves_combo": "Goalie Saves (Combo)",
@@ -487,10 +498,24 @@ _KNOWN_CANON = _known_canon_keys()
 
 def canon_prop(sport: object, prop: object) -> str:
     """One key per market. Combo and 1st-set stay distinct from the full-game single."""
-    raw = _SPACE_RE.sub(" ", str(prop or "").strip())
+    # pd.NA / NaN must not go through ``prop or ""`` (bool(NA) raises).
+    if prop is None:
+        raw = ""
+    else:
+        try:
+            raw = str(prop).strip()
+        except Exception:
+            raw = ""
+    if raw.lower() in ("nan", "<na>", "none", "<nat>"):
+        raw = ""
+    raw = _SPACE_RE.sub(" ", raw)
     if not raw:
         return ""
-    if raw in _KNOWN_CANON:
+    # A label can be another sport's canon and this sport's alias.
+    # NFL "int" is the CFB canon and must still fold to interceptions.
+    sport_k = _sport_key(sport)
+    sport_hit = _lookup(sport_k, fold(raw))
+    if raw in _KNOWN_CANON and (sport_hit is None or sport_hit == raw):
         return raw
     # Already-canon combo keys (points_combo) must not re-fold to pointscombo.
     if raw.endswith("_combo"):
@@ -523,11 +548,23 @@ def canon_prop(sport: object, prop: object) -> str:
     return hit
 
 
-def display_prop(canon: object) -> str:
+def display_prop(canon: object, sport: object = None) -> str:
+    """Human label for a canon prop.
+
+    Optional ``sport`` picks sport-specific wording when one canon key is shared
+    across leagues (NHL ``sog`` → "Shots On Goal"; soccer keeps "Shots On Target").
+    """
     c = str(canon or "").strip()
+    sp = _sport_key(sport) if sport is not None else ""
     if c.endswith("_combo"):
-        inner = display_prop(c[: -len("_combo")])
+        inner = display_prop(c[: -len("_combo")], sport=sport)
         return f"{inner} (Combo)"
+    if c == "sog" and sp == "NHL":
+        return "Shots On Goal"
+    if c == "toi" and sp == "NHL":
+        return "Time On Ice"
+    if c == "pp_points" and sp == "NHL":
+        return "Power Play Points"
     return DISPLAY.get(c, c.replace("_", " ").title())
 
 
@@ -565,7 +602,11 @@ def hr_lookup_key(sport: object, prop: object) -> str:
 
 def apply_canon_row(sport: object, prop: object, extra: Mapping[str, Any] | None = None) -> dict[str, Any]:
     c = canon_prop(sport, prop)
-    out = {"prop_canon": c, "prop_display": display_prop(c), "prop_fold": fold(c)}
+    out = {
+        "prop_canon": c,
+        "prop_display": display_prop(c, sport=sport),
+        "prop_fold": fold(c),
+    }
     if extra:
         out.update(dict(extra))
     return out

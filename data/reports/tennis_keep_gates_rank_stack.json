@@ -1,0 +1,2877 @@
+{
+  "generated_at": "2026-09-25T01:02:11.934806+00:00",
+  "legs": 18171,
+  "sw_thr": 45.7,
+  "rank_map": {
+    "Elite": "1-10",
+    "Above Avg": "11-25",
+    "Avg": "26-50",
+    "Below Avg": "51-100",
+    "Weak": "101+",
+    "rank_gap": "opp_rank - player_rank (>0 = player higher-ranked / better)"
+  },
+  "notes": [
+    "Ranks: graded row fields \u2192 TA same-match (rank/orank within \u00b13d of slate) \u2192 Sackmann lookup_entering_ranks (match window or last-known, max 180d).",
+    "Graded tennis often blanks opp_team; TA orank is the summer opp-rank source.",
+    "Tiers match tennis_shared.atp_wta_def_tier / D mapping.",
+    "Stacks are exploratory \u2014 not wired into tennis_keep_gates.py yet."
+  ],
+  "gates": [
+    {
+      "gate": "Goblin OVER Games Won \u00b7 KEEP union",
+      "base": {
+        "label": "Goblin OVER Games Won \u00b7 KEEP union",
+        "n": 525,
+        "hits": 429,
+        "hit_pct": 81.7,
+        "ci95": [
+          78.2,
+          84.8
+        ]
+      },
+      "rank_coverage": {
+        "player_rank_n": 516,
+        "opp_rank_n": 219,
+        "both_n": 219,
+        "pct_both": 41.7
+      },
+      "by_player_tier": [
+        {
+          "label": "Elite",
+          "n": 70,
+          "hits": 58,
+          "hit_pct": 82.9,
+          "ci95": [
+            72.4,
+            89.9
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 122,
+          "hits": 100,
+          "hit_pct": 82.0,
+          "ci95": [
+            74.2,
+            87.8
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 75,
+          "hits": 53,
+          "hit_pct": 70.7,
+          "ci95": [
+            59.6,
+            79.8
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 178,
+          "hits": 149,
+          "hit_pct": 83.7,
+          "ci95": [
+            77.6,
+            88.4
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 71,
+          "hits": 64,
+          "hit_pct": 90.1,
+          "ci95": [
+            81.0,
+            95.1
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 9,
+          "hits": 5,
+          "hit_pct": 55.6,
+          "ci95": [
+            26.7,
+            81.1
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_opp_tier": [
+        {
+          "label": "Elite",
+          "n": 57,
+          "hits": 40,
+          "hit_pct": 70.2,
+          "ci95": [
+            57.3,
+            80.5
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 38,
+          "hits": 33,
+          "hit_pct": 86.8,
+          "ci95": [
+            72.7,
+            94.2
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 31,
+          "hits": 23,
+          "hit_pct": 74.2,
+          "ci95": [
+            56.8,
+            86.3
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 76,
+          "hits": 61,
+          "hit_pct": 80.3,
+          "ci95": [
+            70.0,
+            87.7
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 17,
+          "hits": 11,
+          "hit_pct": 64.7,
+          "ci95": [
+            41.3,
+            82.7
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 306,
+          "hits": 261,
+          "hit_pct": 85.3,
+          "ci95": [
+            80.9,
+            88.8
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_rank_gap": [
+        {
+          "label": "player_better_50plus",
+          "n": 25,
+          "hits": 13,
+          "hit_pct": 52.0,
+          "ci95": [
+            33.5,
+            70.0
+          ],
+          "bucket": "player_better_50plus"
+        },
+        {
+          "label": "player_better_1_49",
+          "n": 49,
+          "hits": 39,
+          "hit_pct": 79.6,
+          "ci95": [
+            66.4,
+            88.5
+          ],
+          "bucket": "player_better_1_49"
+        },
+        {
+          "label": "near_even_pm20",
+          "n": 78,
+          "hits": 65,
+          "hit_pct": 83.3,
+          "ci95": [
+            73.5,
+            90.0
+          ],
+          "bucket": "near_even_pm20"
+        },
+        {
+          "label": "opp_better_1_49",
+          "n": 92,
+          "hits": 75,
+          "hit_pct": 81.5,
+          "ci95": [
+            72.4,
+            88.1
+          ],
+          "bucket": "opp_better_1_49"
+        },
+        {
+          "label": "opp_better_50plus",
+          "n": 53,
+          "hits": 41,
+          "hit_pct": 77.4,
+          "ci95": [
+            64.5,
+            86.5
+          ],
+          "bucket": "opp_better_50plus"
+        },
+        {
+          "label": "unknown_gap",
+          "n": 306,
+          "hits": 261,
+          "hit_pct": 85.3,
+          "ci95": [
+            80.9,
+            88.8
+          ],
+          "bucket": "unknown_gap"
+        }
+      ],
+      "stacks": [
+        {
+          "label": "Goblin OVER Games Won \u00b7 KEEP union + player Elite|Above",
+          "n": 192,
+          "hits": 158,
+          "hit_pct": 82.3,
+          "ci95": [
+            76.3,
+            87.0
+          ],
+          "stack": "+ player Elite|Above",
+          "lift_pp": 0.6
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 KEEP union + player Below|Weak",
+          "n": 249,
+          "hits": 213,
+          "hit_pct": 85.5,
+          "ci95": [
+            80.6,
+            89.4
+          ],
+          "stack": "+ player Below|Weak",
+          "lift_pp": 3.8
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 KEEP union + opp Weak|Below (D-style OVER)",
+          "n": 93,
+          "hits": 72,
+          "hit_pct": 77.4,
+          "ci95": [
+            67.9,
+            84.7
+          ],
+          "stack": "+ opp Weak|Below (D-style OVER)",
+          "lift_pp": -4.3
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 KEEP union + opp Elite|Above (hard D)",
+          "n": 95,
+          "hits": 73,
+          "hit_pct": 76.8,
+          "ci95": [
+            67.4,
+            84.2
+          ],
+          "stack": "+ opp Elite|Above (hard D)",
+          "lift_pp": -4.9
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 KEEP union + player better (gap\u22651)",
+          "n": 74,
+          "hits": 52,
+          "hit_pct": 70.3,
+          "ci95": [
+            59.1,
+            79.5
+          ],
+          "stack": "+ player better (gap\u22651)",
+          "lift_pp": -11.4
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 KEEP union + player better 50+",
+          "n": 25,
+          "hits": 13,
+          "hit_pct": 52.0,
+          "ci95": [
+            33.5,
+            70.0
+          ],
+          "stack": "+ player better 50+",
+          "lift_pp": -29.7
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 KEEP union + opp better (gap\u2264-1)",
+          "n": 145,
+          "hits": 116,
+          "hit_pct": 80.0,
+          "ci95": [
+            72.8,
+            85.7
+          ],
+          "stack": "+ opp better (gap\u2264-1)",
+          "lift_pp": -1.7
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 KEEP union + both ranks known",
+          "n": 219,
+          "hits": 168,
+          "hit_pct": 76.7,
+          "ci95": [
+            70.7,
+            81.8
+          ],
+          "stack": "+ both ranks known",
+          "lift_pp": -5.0
+        }
+      ]
+    },
+    {
+      "gate": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won)",
+      "base": {
+        "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won)",
+        "n": 525,
+        "hits": 429,
+        "hit_pct": 81.7,
+        "ci95": [
+          78.2,
+          84.8
+        ]
+      },
+      "rank_coverage": {
+        "player_rank_n": 516,
+        "opp_rank_n": 219,
+        "both_n": 219,
+        "pct_both": 41.7
+      },
+      "by_player_tier": [
+        {
+          "label": "Elite",
+          "n": 70,
+          "hits": 58,
+          "hit_pct": 82.9,
+          "ci95": [
+            72.4,
+            89.9
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 122,
+          "hits": 100,
+          "hit_pct": 82.0,
+          "ci95": [
+            74.2,
+            87.8
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 75,
+          "hits": 53,
+          "hit_pct": 70.7,
+          "ci95": [
+            59.6,
+            79.8
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 178,
+          "hits": 149,
+          "hit_pct": 83.7,
+          "ci95": [
+            77.6,
+            88.4
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 71,
+          "hits": 64,
+          "hit_pct": 90.1,
+          "ci95": [
+            81.0,
+            95.1
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 9,
+          "hits": 5,
+          "hit_pct": 55.6,
+          "ci95": [
+            26.7,
+            81.1
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_opp_tier": [
+        {
+          "label": "Elite",
+          "n": 57,
+          "hits": 40,
+          "hit_pct": 70.2,
+          "ci95": [
+            57.3,
+            80.5
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 38,
+          "hits": 33,
+          "hit_pct": 86.8,
+          "ci95": [
+            72.7,
+            94.2
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 31,
+          "hits": 23,
+          "hit_pct": 74.2,
+          "ci95": [
+            56.8,
+            86.3
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 76,
+          "hits": 61,
+          "hit_pct": 80.3,
+          "ci95": [
+            70.0,
+            87.7
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 17,
+          "hits": 11,
+          "hit_pct": 64.7,
+          "ci95": [
+            41.3,
+            82.7
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 306,
+          "hits": 261,
+          "hit_pct": 85.3,
+          "ci95": [
+            80.9,
+            88.8
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_rank_gap": [
+        {
+          "label": "player_better_50plus",
+          "n": 25,
+          "hits": 13,
+          "hit_pct": 52.0,
+          "ci95": [
+            33.5,
+            70.0
+          ],
+          "bucket": "player_better_50plus"
+        },
+        {
+          "label": "player_better_1_49",
+          "n": 49,
+          "hits": 39,
+          "hit_pct": 79.6,
+          "ci95": [
+            66.4,
+            88.5
+          ],
+          "bucket": "player_better_1_49"
+        },
+        {
+          "label": "near_even_pm20",
+          "n": 78,
+          "hits": 65,
+          "hit_pct": 83.3,
+          "ci95": [
+            73.5,
+            90.0
+          ],
+          "bucket": "near_even_pm20"
+        },
+        {
+          "label": "opp_better_1_49",
+          "n": 92,
+          "hits": 75,
+          "hit_pct": 81.5,
+          "ci95": [
+            72.4,
+            88.1
+          ],
+          "bucket": "opp_better_1_49"
+        },
+        {
+          "label": "opp_better_50plus",
+          "n": 53,
+          "hits": 41,
+          "hit_pct": 77.4,
+          "ci95": [
+            64.5,
+            86.5
+          ],
+          "bucket": "opp_better_50plus"
+        },
+        {
+          "label": "unknown_gap",
+          "n": 306,
+          "hits": 261,
+          "hit_pct": 85.3,
+          "ci95": [
+            80.9,
+            88.8
+          ],
+          "bucket": "unknown_gap"
+        }
+      ],
+      "stacks": [
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won) + player Elite|Above",
+          "n": 192,
+          "hits": 158,
+          "hit_pct": 82.3,
+          "ci95": [
+            76.3,
+            87.0
+          ],
+          "stack": "+ player Elite|Above",
+          "lift_pp": 0.6
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won) + player Below|Weak",
+          "n": 249,
+          "hits": 213,
+          "hit_pct": 85.5,
+          "ci95": [
+            80.6,
+            89.4
+          ],
+          "stack": "+ player Below|Weak",
+          "lift_pp": 3.8
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won) + opp Weak|Below (D-style OVER)",
+          "n": 93,
+          "hits": 72,
+          "hit_pct": 77.4,
+          "ci95": [
+            67.9,
+            84.7
+          ],
+          "stack": "+ opp Weak|Below (D-style OVER)",
+          "lift_pp": -4.3
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won) + opp Elite|Above (hard D)",
+          "n": 95,
+          "hits": 73,
+          "hit_pct": 76.8,
+          "ci95": [
+            67.4,
+            84.2
+          ],
+          "stack": "+ opp Elite|Above (hard D)",
+          "lift_pp": -4.9
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won) + player better (gap\u22651)",
+          "n": 74,
+          "hits": 52,
+          "hit_pct": 70.3,
+          "ci95": [
+            59.1,
+            79.5
+          ],
+          "stack": "+ player better (gap\u22651)",
+          "lift_pp": -11.4
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won) + player better 50+",
+          "n": 25,
+          "hits": 13,
+          "hit_pct": 52.0,
+          "ci95": [
+            33.5,
+            70.0
+          ],
+          "stack": "+ player better 50+",
+          "lift_pp": -29.7
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won) + opp better (gap\u2264-1)",
+          "n": 145,
+          "hits": 116,
+          "hit_pct": 80.0,
+          "ci95": [
+            72.8,
+            85.7
+          ],
+          "stack": "+ opp better (gap\u2264-1)",
+          "lift_pp": -1.7
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + (lefty|2nd-won) + both ranks known",
+          "n": 219,
+          "hits": 168,
+          "hit_pct": 76.7,
+          "ci95": [
+            70.7,
+            81.8
+          ],
+          "stack": "+ both ranks known",
+          "lift_pp": -5.0
+        }
+      ]
+    },
+    {
+      "gate": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won",
+      "base": {
+        "label": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won",
+        "n": 468,
+        "hits": 386,
+        "hit_pct": 82.5,
+        "ci95": [
+          78.8,
+          85.7
+        ]
+      },
+      "rank_coverage": {
+        "player_rank_n": 459,
+        "opp_rank_n": 211,
+        "both_n": 211,
+        "pct_both": 45.1
+      },
+      "by_player_tier": [
+        {
+          "label": "Elite",
+          "n": 57,
+          "hits": 45,
+          "hit_pct": 78.9,
+          "ci95": [
+            66.7,
+            87.5
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 94,
+          "hits": 82,
+          "hit_pct": 87.2,
+          "ci95": [
+            79.0,
+            92.5
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 72,
+          "hits": 51,
+          "hit_pct": 70.8,
+          "ci95": [
+            59.5,
+            80.1
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 165,
+          "hits": 139,
+          "hit_pct": 84.2,
+          "ci95": [
+            77.9,
+            89.0
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 71,
+          "hits": 64,
+          "hit_pct": 90.1,
+          "ci95": [
+            81.0,
+            95.1
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 9,
+          "hits": 5,
+          "hit_pct": 55.6,
+          "ci95": [
+            26.7,
+            81.1
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_opp_tier": [
+        {
+          "label": "Elite",
+          "n": 51,
+          "hits": 40,
+          "hit_pct": 78.4,
+          "ci95": [
+            65.4,
+            87.5
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 38,
+          "hits": 33,
+          "hit_pct": 86.8,
+          "ci95": [
+            72.7,
+            94.2
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 31,
+          "hits": 23,
+          "hit_pct": 74.2,
+          "ci95": [
+            56.8,
+            86.3
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 74,
+          "hits": 59,
+          "hit_pct": 79.7,
+          "ci95": [
+            69.2,
+            87.3
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 17,
+          "hits": 11,
+          "hit_pct": 64.7,
+          "ci95": [
+            41.3,
+            82.7
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 257,
+          "hits": 220,
+          "hit_pct": 85.6,
+          "ci95": [
+            80.8,
+            89.4
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_rank_gap": [
+        {
+          "label": "player_better_50plus",
+          "n": 25,
+          "hits": 13,
+          "hit_pct": 52.0,
+          "ci95": [
+            33.5,
+            70.0
+          ],
+          "bucket": "player_better_50plus"
+        },
+        {
+          "label": "player_better_1_49",
+          "n": 47,
+          "hits": 37,
+          "hit_pct": 78.7,
+          "ci95": [
+            65.1,
+            88.0
+          ],
+          "bucket": "player_better_1_49"
+        },
+        {
+          "label": "near_even_pm20",
+          "n": 76,
+          "hits": 63,
+          "hit_pct": 82.9,
+          "ci95": [
+            72.9,
+            89.7
+          ],
+          "bucket": "near_even_pm20"
+        },
+        {
+          "label": "opp_better_1_49",
+          "n": 89,
+          "hits": 75,
+          "hit_pct": 84.3,
+          "ci95": [
+            75.3,
+            90.4
+          ],
+          "bucket": "opp_better_1_49"
+        },
+        {
+          "label": "opp_better_50plus",
+          "n": 50,
+          "hits": 41,
+          "hit_pct": 82.0,
+          "ci95": [
+            69.2,
+            90.2
+          ],
+          "bucket": "opp_better_50plus"
+        },
+        {
+          "label": "unknown_gap",
+          "n": 257,
+          "hits": 220,
+          "hit_pct": 85.6,
+          "ci95": [
+            80.8,
+            89.4
+          ],
+          "bucket": "unknown_gap"
+        }
+      ],
+      "stacks": [
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won + player Elite|Above",
+          "n": 151,
+          "hits": 127,
+          "hit_pct": 84.1,
+          "ci95": [
+            77.4,
+            89.1
+          ],
+          "stack": "+ player Elite|Above",
+          "lift_pp": 1.6
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won + player Below|Weak",
+          "n": 236,
+          "hits": 203,
+          "hit_pct": 86.0,
+          "ci95": [
+            81.0,
+            89.9
+          ],
+          "stack": "+ player Below|Weak",
+          "lift_pp": 3.5
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won + opp Weak|Below (D-style OVER)",
+          "n": 91,
+          "hits": 70,
+          "hit_pct": 76.9,
+          "ci95": [
+            67.3,
+            84.4
+          ],
+          "stack": "+ opp Weak|Below (D-style OVER)",
+          "lift_pp": -5.6
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won + opp Elite|Above (hard D)",
+          "n": 89,
+          "hits": 73,
+          "hit_pct": 82.0,
+          "ci95": [
+            72.8,
+            88.6
+          ],
+          "stack": "+ opp Elite|Above (hard D)",
+          "lift_pp": -0.5
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won + player better (gap\u22651)",
+          "n": 72,
+          "hits": 50,
+          "hit_pct": 69.4,
+          "ci95": [
+            58.0,
+            78.9
+          ],
+          "stack": "+ player better (gap\u22651)",
+          "lift_pp": -13.1
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won + player better 50+",
+          "n": 25,
+          "hits": 13,
+          "hit_pct": 52.0,
+          "ci95": [
+            33.5,
+            70.0
+          ],
+          "stack": "+ player better 50+",
+          "lift_pp": -30.5
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won + opp better (gap\u2264-1)",
+          "n": 139,
+          "hits": 116,
+          "hit_pct": 83.5,
+          "ci95": [
+            76.4,
+            88.7
+          ],
+          "stack": "+ opp better (gap\u2264-1)",
+          "lift_pp": 1.0
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + 2nd-won + both ranks known",
+          "n": 211,
+          "hits": 166,
+          "hit_pct": 78.7,
+          "ci95": [
+            72.7,
+            83.7
+          ],
+          "stack": "+ both ranks known",
+          "lift_pp": -3.8
+        }
+      ]
+    },
+    {
+      "gate": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty",
+      "base": {
+        "label": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty",
+        "n": 119,
+        "hits": 96,
+        "hit_pct": 80.7,
+        "ci95": [
+          72.7,
+          86.8
+        ]
+      },
+      "rank_coverage": {
+        "player_rank_n": 119,
+        "opp_rank_n": 30,
+        "both_n": 30,
+        "pct_both": 25.2
+      },
+      "by_player_tier": [
+        {
+          "label": "Elite",
+          "n": 13,
+          "hits": 13,
+          "hit_pct": 100.0,
+          "ci95": [
+            77.2,
+            100.0
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 35,
+          "hits": 25,
+          "hit_pct": 71.4,
+          "ci95": [
+            54.9,
+            83.7
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 18,
+          "hits": 14,
+          "hit_pct": 77.8,
+          "ci95": [
+            54.8,
+            91.0
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 40,
+          "hits": 31,
+          "hit_pct": 77.5,
+          "ci95": [
+            62.5,
+            87.7
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 13,
+          "hits": 13,
+          "hit_pct": 100.0,
+          "ci95": [
+            77.2,
+            100.0
+          ],
+          "bucket": "Weak"
+        }
+      ],
+      "by_opp_tier": [
+        {
+          "label": "Elite",
+          "n": 13,
+          "hits": 7,
+          "hit_pct": 53.8,
+          "ci95": [
+            29.1,
+            76.8
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 6,
+          "hits": 6,
+          "hit_pct": 100.0,
+          "ci95": [
+            61.0,
+            100.0
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 1,
+          "hits": 1,
+          "hit_pct": 100.0,
+          "ci95": [
+            20.7,
+            100.0
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 10,
+          "hits": 10,
+          "hit_pct": 100.0,
+          "ci95": [
+            72.2,
+            100.0
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Unknown",
+          "n": 89,
+          "hits": 72,
+          "hit_pct": 80.9,
+          "ci95": [
+            71.5,
+            87.7
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_rank_gap": [
+        {
+          "label": "player_better_50plus",
+          "n": 0,
+          "hits": 0,
+          "hit_pct": null,
+          "ci95": [
+            null,
+            null
+          ],
+          "bucket": "player_better_50plus"
+        },
+        {
+          "label": "player_better_1_49",
+          "n": 6,
+          "hits": 6,
+          "hit_pct": 100.0,
+          "ci95": [
+            61.0,
+            100.0
+          ],
+          "bucket": "player_better_1_49"
+        },
+        {
+          "label": "near_even_pm20",
+          "n": 11,
+          "hits": 11,
+          "hit_pct": 100.0,
+          "ci95": [
+            74.1,
+            100.0
+          ],
+          "bucket": "near_even_pm20"
+        },
+        {
+          "label": "opp_better_1_49",
+          "n": 16,
+          "hits": 13,
+          "hit_pct": 81.2,
+          "ci95": [
+            57.0,
+            93.4
+          ],
+          "bucket": "opp_better_1_49"
+        },
+        {
+          "label": "opp_better_50plus",
+          "n": 8,
+          "hits": 5,
+          "hit_pct": 62.5,
+          "ci95": [
+            30.6,
+            86.3
+          ],
+          "bucket": "opp_better_50plus"
+        },
+        {
+          "label": "unknown_gap",
+          "n": 89,
+          "hits": 72,
+          "hit_pct": 80.9,
+          "ci95": [
+            71.5,
+            87.7
+          ],
+          "bucket": "unknown_gap"
+        }
+      ],
+      "stacks": [
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty + player Elite|Above",
+          "n": 48,
+          "hits": 38,
+          "hit_pct": 79.2,
+          "ci95": [
+            65.7,
+            88.3
+          ],
+          "stack": "+ player Elite|Above",
+          "lift_pp": -1.5
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty + player Below|Weak",
+          "n": 53,
+          "hits": 44,
+          "hit_pct": 83.0,
+          "ci95": [
+            70.8,
+            90.8
+          ],
+          "stack": "+ player Below|Weak",
+          "lift_pp": 2.3
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty + opp Weak|Below (D-style OVER)",
+          "n": 10,
+          "hits": 10,
+          "hit_pct": 100.0,
+          "ci95": [
+            72.2,
+            100.0
+          ],
+          "stack": "+ opp Weak|Below (D-style OVER)",
+          "lift_pp": 19.3
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty + opp Elite|Above (hard D)",
+          "n": 19,
+          "hits": 13,
+          "hit_pct": 68.4,
+          "ci95": [
+            46.0,
+            84.6
+          ],
+          "stack": "+ opp Elite|Above (hard D)",
+          "lift_pp": -12.3
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty + player better (gap\u22651)",
+          "n": 6,
+          "hits": 6,
+          "hit_pct": 100.0,
+          "ci95": [
+            61.0,
+            100.0
+          ],
+          "stack": "+ player better (gap\u22651)",
+          "lift_pp": 19.3
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty + player better 50+",
+          "n": 0,
+          "hits": 0,
+          "hit_pct": null,
+          "ci95": [
+            null,
+            null
+          ],
+          "stack": "+ player better 50+",
+          "lift_pp": null
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty + opp better (gap\u2264-1)",
+          "n": 24,
+          "hits": 18,
+          "hit_pct": 75.0,
+          "ci95": [
+            55.1,
+            88.0
+          ],
+          "stack": "+ opp better (gap\u2264-1)",
+          "lift_pp": -5.7
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 L10\u22658 + lefty + both ranks known",
+          "n": 30,
+          "hits": 24,
+          "hit_pct": 80.0,
+          "ci95": [
+            62.7,
+            90.5
+          ],
+          "stack": "+ both ranks known",
+          "lift_pp": -0.7
+        }
+      ]
+    },
+    {
+      "gate": "Goblin OVER Total Games \u00b7 KEEP union",
+      "base": {
+        "label": "Goblin OVER Total Games \u00b7 KEEP union",
+        "n": 150,
+        "hits": 120,
+        "hit_pct": 80.0,
+        "ci95": [
+          72.9,
+          85.6
+        ]
+      },
+      "rank_coverage": {
+        "player_rank_n": 149,
+        "opp_rank_n": 72,
+        "both_n": 72,
+        "pct_both": 48.0
+      },
+      "by_player_tier": [
+        {
+          "label": "Elite",
+          "n": 34,
+          "hits": 22,
+          "hit_pct": 64.7,
+          "ci95": [
+            47.9,
+            78.5
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 42,
+          "hits": 35,
+          "hit_pct": 83.3,
+          "ci95": [
+            69.4,
+            91.7
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 34,
+          "hits": 28,
+          "hit_pct": 82.4,
+          "ci95": [
+            66.5,
+            91.7
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 33,
+          "hits": 28,
+          "hit_pct": 84.8,
+          "ci95": [
+            69.1,
+            93.3
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 6,
+          "hits": 6,
+          "hit_pct": 100.0,
+          "ci95": [
+            61.0,
+            100.0
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 1,
+          "hits": 1,
+          "hit_pct": 100.0,
+          "ci95": [
+            20.7,
+            100.0
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_opp_tier": [
+        {
+          "label": "Elite",
+          "n": 24,
+          "hits": 17,
+          "hit_pct": 70.8,
+          "ci95": [
+            50.8,
+            85.1
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 8,
+          "hits": 6,
+          "hit_pct": 75.0,
+          "ci95": [
+            40.9,
+            92.9
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 11,
+          "hits": 9,
+          "hit_pct": 81.8,
+          "ci95": [
+            52.3,
+            94.9
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 20,
+          "hits": 16,
+          "hit_pct": 80.0,
+          "ci95": [
+            58.4,
+            91.9
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 9,
+          "hits": 8,
+          "hit_pct": 88.9,
+          "ci95": [
+            56.5,
+            98.0
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 78,
+          "hits": 64,
+          "hit_pct": 82.1,
+          "ci95": [
+            72.1,
+            89.0
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_rank_gap": [
+        {
+          "label": "player_better_50plus",
+          "n": 18,
+          "hits": 14,
+          "hit_pct": 77.8,
+          "ci95": [
+            54.8,
+            91.0
+          ],
+          "bucket": "player_better_50plus"
+        },
+        {
+          "label": "player_better_1_49",
+          "n": 33,
+          "hits": 26,
+          "hit_pct": 78.8,
+          "ci95": [
+            62.2,
+            89.3
+          ],
+          "bucket": "player_better_1_49"
+        },
+        {
+          "label": "near_even_pm20",
+          "n": 35,
+          "hits": 25,
+          "hit_pct": 71.4,
+          "ci95": [
+            54.9,
+            83.7
+          ],
+          "bucket": "near_even_pm20"
+        },
+        {
+          "label": "opp_better_1_49",
+          "n": 18,
+          "hits": 15,
+          "hit_pct": 83.3,
+          "ci95": [
+            60.8,
+            94.2
+          ],
+          "bucket": "opp_better_1_49"
+        },
+        {
+          "label": "opp_better_50plus",
+          "n": 3,
+          "hits": 1,
+          "hit_pct": 33.3,
+          "ci95": [
+            6.1,
+            79.2
+          ],
+          "bucket": "opp_better_50plus"
+        },
+        {
+          "label": "unknown_gap",
+          "n": 78,
+          "hits": 64,
+          "hit_pct": 82.1,
+          "ci95": [
+            72.1,
+            89.0
+          ],
+          "bucket": "unknown_gap"
+        }
+      ],
+      "stacks": [
+        {
+          "label": "Goblin OVER Total Games \u00b7 KEEP union + player Elite|Above",
+          "n": 76,
+          "hits": 57,
+          "hit_pct": 75.0,
+          "ci95": [
+            64.2,
+            83.4
+          ],
+          "stack": "+ player Elite|Above",
+          "lift_pp": -5.0
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 KEEP union + player Below|Weak",
+          "n": 39,
+          "hits": 34,
+          "hit_pct": 87.2,
+          "ci95": [
+            73.3,
+            94.4
+          ],
+          "stack": "+ player Below|Weak",
+          "lift_pp": 7.2
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 KEEP union + opp Weak|Below (D-style OVER)",
+          "n": 29,
+          "hits": 24,
+          "hit_pct": 82.8,
+          "ci95": [
+            65.5,
+            92.4
+          ],
+          "stack": "+ opp Weak|Below (D-style OVER)",
+          "lift_pp": 2.8
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 KEEP union + opp Elite|Above (hard D)",
+          "n": 32,
+          "hits": 23,
+          "hit_pct": 71.9,
+          "ci95": [
+            54.6,
+            84.4
+          ],
+          "stack": "+ opp Elite|Above (hard D)",
+          "lift_pp": -8.1
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 KEEP union + player better (gap\u22651)",
+          "n": 51,
+          "hits": 40,
+          "hit_pct": 78.4,
+          "ci95": [
+            65.4,
+            87.5
+          ],
+          "stack": "+ player better (gap\u22651)",
+          "lift_pp": -1.6
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 KEEP union + player better 50+",
+          "n": 18,
+          "hits": 14,
+          "hit_pct": 77.8,
+          "ci95": [
+            54.8,
+            91.0
+          ],
+          "stack": "+ player better 50+",
+          "lift_pp": -2.2
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 KEEP union + opp better (gap\u2264-1)",
+          "n": 21,
+          "hits": 16,
+          "hit_pct": 76.2,
+          "ci95": [
+            54.9,
+            89.4
+          ],
+          "stack": "+ opp better (gap\u2264-1)",
+          "lift_pp": -3.8
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 KEEP union + both ranks known",
+          "n": 72,
+          "hits": 56,
+          "hit_pct": 77.8,
+          "ci95": [
+            66.9,
+            85.8
+          ],
+          "stack": "+ both ranks known",
+          "lift_pp": -2.2
+        }
+      ]
+    },
+    {
+      "gate": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658",
+      "base": {
+        "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658",
+        "n": 61,
+        "hits": 48,
+        "hit_pct": 78.7,
+        "ci95": [
+          66.9,
+          87.1
+        ]
+      },
+      "rank_coverage": {
+        "player_rank_n": 60,
+        "opp_rank_n": 40,
+        "both_n": 40,
+        "pct_both": 65.6
+      },
+      "by_player_tier": [
+        {
+          "label": "Elite",
+          "n": 14,
+          "hits": 11,
+          "hit_pct": 78.6,
+          "ci95": [
+            52.4,
+            92.4
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 22,
+          "hits": 19,
+          "hit_pct": 86.4,
+          "ci95": [
+            66.7,
+            95.3
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 16,
+          "hits": 11,
+          "hit_pct": 68.8,
+          "ci95": [
+            44.4,
+            85.8
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 8,
+          "hits": 6,
+          "hit_pct": 75.0,
+          "ci95": [
+            40.9,
+            92.9
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Unknown",
+          "n": 1,
+          "hits": 1,
+          "hit_pct": 100.0,
+          "ci95": [
+            20.7,
+            100.0
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_opp_tier": [
+        {
+          "label": "Elite",
+          "n": 6,
+          "hits": 3,
+          "hit_pct": 50.0,
+          "ci95": [
+            18.8,
+            81.2
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 5,
+          "hits": 3,
+          "hit_pct": 60.0,
+          "ci95": [
+            23.1,
+            88.2
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 11,
+          "hits": 9,
+          "hit_pct": 81.8,
+          "ci95": [
+            52.3,
+            94.9
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 12,
+          "hits": 11,
+          "hit_pct": 91.7,
+          "ci95": [
+            64.6,
+            98.5
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 6,
+          "hits": 5,
+          "hit_pct": 83.3,
+          "ci95": [
+            43.6,
+            97.0
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 21,
+          "hits": 17,
+          "hit_pct": 81.0,
+          "ci95": [
+            60.0,
+            92.3
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_rank_gap": [
+        {
+          "label": "player_better_50plus",
+          "n": 8,
+          "hits": 7,
+          "hit_pct": 87.5,
+          "ci95": [
+            52.9,
+            97.8
+          ],
+          "bucket": "player_better_50plus"
+        },
+        {
+          "label": "player_better_1_49",
+          "n": 22,
+          "hits": 19,
+          "hit_pct": 86.4,
+          "ci95": [
+            66.7,
+            95.3
+          ],
+          "bucket": "player_better_1_49"
+        },
+        {
+          "label": "near_even_pm20",
+          "n": 21,
+          "hits": 15,
+          "hit_pct": 71.4,
+          "ci95": [
+            50.0,
+            86.2
+          ],
+          "bucket": "near_even_pm20"
+        },
+        {
+          "label": "opp_better_1_49",
+          "n": 7,
+          "hits": 4,
+          "hit_pct": 57.1,
+          "ci95": [
+            25.0,
+            84.2
+          ],
+          "bucket": "opp_better_1_49"
+        },
+        {
+          "label": "opp_better_50plus",
+          "n": 3,
+          "hits": 1,
+          "hit_pct": 33.3,
+          "ci95": [
+            6.1,
+            79.2
+          ],
+          "bucket": "opp_better_50plus"
+        },
+        {
+          "label": "unknown_gap",
+          "n": 21,
+          "hits": 17,
+          "hit_pct": 81.0,
+          "ci95": [
+            60.0,
+            92.3
+          ],
+          "bucket": "unknown_gap"
+        }
+      ],
+      "stacks": [
+        {
+          "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658 + player Elite|Above",
+          "n": 36,
+          "hits": 30,
+          "hit_pct": 83.3,
+          "ci95": [
+            68.1,
+            92.1
+          ],
+          "stack": "+ player Elite|Above",
+          "lift_pp": 4.6
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658 + player Below|Weak",
+          "n": 8,
+          "hits": 6,
+          "hit_pct": 75.0,
+          "ci95": [
+            40.9,
+            92.9
+          ],
+          "stack": "+ player Below|Weak",
+          "lift_pp": -3.7
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658 + opp Weak|Below (D-style OVER)",
+          "n": 18,
+          "hits": 16,
+          "hit_pct": 88.9,
+          "ci95": [
+            67.2,
+            96.9
+          ],
+          "stack": "+ opp Weak|Below (D-style OVER)",
+          "lift_pp": 10.2
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658 + opp Elite|Above (hard D)",
+          "n": 11,
+          "hits": 6,
+          "hit_pct": 54.5,
+          "ci95": [
+            28.0,
+            78.7
+          ],
+          "stack": "+ opp Elite|Above (hard D)",
+          "lift_pp": -24.2
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658 + player better (gap\u22651)",
+          "n": 30,
+          "hits": 26,
+          "hit_pct": 86.7,
+          "ci95": [
+            70.3,
+            94.7
+          ],
+          "stack": "+ player better (gap\u22651)",
+          "lift_pp": 8.0
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658 + player better 50+",
+          "n": 8,
+          "hits": 7,
+          "hit_pct": 87.5,
+          "ci95": [
+            52.9,
+            97.8
+          ],
+          "stack": "+ player better 50+",
+          "lift_pp": 8.8
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658 + opp better (gap\u2264-1)",
+          "n": 10,
+          "hits": 5,
+          "hit_pct": 50.0,
+          "ci95": [
+            23.7,
+            76.3
+          ],
+          "stack": "+ opp better (gap\u2264-1)",
+          "lift_pp": -28.7
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 L5\u22654 + L10\u22658 + both ranks known",
+          "n": 40,
+          "hits": 31,
+          "hit_pct": 77.5,
+          "ci95": [
+            62.5,
+            87.7
+          ],
+          "stack": "+ both ranks known",
+          "lift_pp": -1.2
+        }
+      ]
+    },
+    {
+      "gate": "Standard OVER Games Won \u00b7 KEEP",
+      "base": {
+        "label": "Standard OVER Games Won \u00b7 KEEP",
+        "n": 42,
+        "hits": 31,
+        "hit_pct": 73.8,
+        "ci95": [
+          58.9,
+          84.7
+        ]
+      },
+      "rank_coverage": {
+        "player_rank_n": 40,
+        "opp_rank_n": 13,
+        "both_n": 13,
+        "pct_both": 31.0
+      },
+      "by_player_tier": [
+        {
+          "label": "Elite",
+          "n": 1,
+          "hits": 1,
+          "hit_pct": 100.0,
+          "ci95": [
+            20.7,
+            100.0
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 12,
+          "hits": 8,
+          "hit_pct": 66.7,
+          "ci95": [
+            39.1,
+            86.2
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 8,
+          "hits": 6,
+          "hit_pct": 75.0,
+          "ci95": [
+            40.9,
+            92.9
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 11,
+          "hits": 8,
+          "hit_pct": 72.7,
+          "ci95": [
+            43.4,
+            90.3
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 8,
+          "hits": 7,
+          "hit_pct": 87.5,
+          "ci95": [
+            52.9,
+            97.8
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 2,
+          "hits": 1,
+          "hit_pct": 50.0,
+          "ci95": [
+            9.5,
+            90.5
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_opp_tier": [
+        {
+          "label": "Elite",
+          "n": 2,
+          "hits": 1,
+          "hit_pct": 50.0,
+          "ci95": [
+            9.5,
+            90.5
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 2,
+          "hits": 2,
+          "hit_pct": 100.0,
+          "ci95": [
+            34.2,
+            100.0
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 1,
+          "hits": 0,
+          "hit_pct": 0.0,
+          "ci95": [
+            0.0,
+            79.3
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 7,
+          "hits": 4,
+          "hit_pct": 57.1,
+          "ci95": [
+            25.0,
+            84.2
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 1,
+          "hits": 1,
+          "hit_pct": 100.0,
+          "ci95": [
+            20.7,
+            100.0
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 29,
+          "hits": 23,
+          "hit_pct": 79.3,
+          "ci95": [
+            61.6,
+            90.2
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_rank_gap": [
+        {
+          "label": "player_better_50plus",
+          "n": 3,
+          "hits": 0,
+          "hit_pct": 0.0,
+          "ci95": [
+            0.0,
+            56.2
+          ],
+          "bucket": "player_better_50plus"
+        },
+        {
+          "label": "player_better_1_49",
+          "n": 2,
+          "hits": 2,
+          "hit_pct": 100.0,
+          "ci95": [
+            34.2,
+            100.0
+          ],
+          "bucket": "player_better_1_49"
+        },
+        {
+          "label": "near_even_pm20",
+          "n": 2,
+          "hits": 2,
+          "hit_pct": 100.0,
+          "ci95": [
+            34.2,
+            100.0
+          ],
+          "bucket": "near_even_pm20"
+        },
+        {
+          "label": "opp_better_1_49",
+          "n": 4,
+          "hits": 3,
+          "hit_pct": 75.0,
+          "ci95": [
+            30.1,
+            95.4
+          ],
+          "bucket": "opp_better_1_49"
+        },
+        {
+          "label": "opp_better_50plus",
+          "n": 4,
+          "hits": 3,
+          "hit_pct": 75.0,
+          "ci95": [
+            30.1,
+            95.4
+          ],
+          "bucket": "opp_better_50plus"
+        },
+        {
+          "label": "unknown_gap",
+          "n": 29,
+          "hits": 23,
+          "hit_pct": 79.3,
+          "ci95": [
+            61.6,
+            90.2
+          ],
+          "bucket": "unknown_gap"
+        }
+      ],
+      "stacks": [
+        {
+          "label": "Standard OVER Games Won \u00b7 KEEP + player Elite|Above",
+          "n": 13,
+          "hits": 9,
+          "hit_pct": 69.2,
+          "ci95": [
+            42.4,
+            87.3
+          ],
+          "stack": "+ player Elite|Above",
+          "lift_pp": -4.6
+        },
+        {
+          "label": "Standard OVER Games Won \u00b7 KEEP + player Below|Weak",
+          "n": 19,
+          "hits": 15,
+          "hit_pct": 78.9,
+          "ci95": [
+            56.7,
+            91.5
+          ],
+          "stack": "+ player Below|Weak",
+          "lift_pp": 5.1
+        },
+        {
+          "label": "Standard OVER Games Won \u00b7 KEEP + opp Weak|Below (D-style OVER)",
+          "n": 8,
+          "hits": 5,
+          "hit_pct": 62.5,
+          "ci95": [
+            30.6,
+            86.3
+          ],
+          "stack": "+ opp Weak|Below (D-style OVER)",
+          "lift_pp": -11.3
+        },
+        {
+          "label": "Standard OVER Games Won \u00b7 KEEP + opp Elite|Above (hard D)",
+          "n": 4,
+          "hits": 3,
+          "hit_pct": 75.0,
+          "ci95": [
+            30.1,
+            95.4
+          ],
+          "stack": "+ opp Elite|Above (hard D)",
+          "lift_pp": 1.2
+        },
+        {
+          "label": "Standard OVER Games Won \u00b7 KEEP + player better (gap\u22651)",
+          "n": 5,
+          "hits": 2,
+          "hit_pct": 40.0,
+          "ci95": [
+            11.8,
+            76.9
+          ],
+          "stack": "+ player better (gap\u22651)",
+          "lift_pp": -33.8
+        },
+        {
+          "label": "Standard OVER Games Won \u00b7 KEEP + player better 50+",
+          "n": 3,
+          "hits": 0,
+          "hit_pct": 0.0,
+          "ci95": [
+            0.0,
+            56.2
+          ],
+          "stack": "+ player better 50+",
+          "lift_pp": -73.8
+        },
+        {
+          "label": "Standard OVER Games Won \u00b7 KEEP + opp better (gap\u2264-1)",
+          "n": 8,
+          "hits": 6,
+          "hit_pct": 75.0,
+          "ci95": [
+            40.9,
+            92.9
+          ],
+          "stack": "+ opp better (gap\u2264-1)",
+          "lift_pp": 1.2
+        },
+        {
+          "label": "Standard OVER Games Won \u00b7 KEEP + both ranks known",
+          "n": 13,
+          "hits": 8,
+          "hit_pct": 61.5,
+          "ci95": [
+            35.5,
+            82.3
+          ],
+          "stack": "+ both ranks known",
+          "lift_pp": -12.3
+        }
+      ]
+    },
+    {
+      "gate": "Goblin OVER Games Won \u00b7 ungated",
+      "base": {
+        "label": "Goblin OVER Games Won \u00b7 ungated",
+        "n": 4856,
+        "hits": 3599,
+        "hit_pct": 74.1,
+        "ci95": [
+          72.9,
+          75.3
+        ]
+      },
+      "rank_coverage": {
+        "player_rank_n": 4289,
+        "opp_rank_n": 2608,
+        "both_n": 2487,
+        "pct_both": 51.2
+      },
+      "by_player_tier": [
+        {
+          "label": "Elite",
+          "n": 266,
+          "hits": 218,
+          "hit_pct": 82.0,
+          "ci95": [
+            76.9,
+            86.1
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 618,
+          "hits": 483,
+          "hit_pct": 78.2,
+          "ci95": [
+            74.7,
+            81.2
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 781,
+          "hits": 562,
+          "hit_pct": 72.0,
+          "ci95": [
+            68.7,
+            75.0
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 1455,
+          "hits": 1074,
+          "hit_pct": 73.8,
+          "ci95": [
+            71.5,
+            76.0
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 1169,
+          "hits": 861,
+          "hit_pct": 73.7,
+          "ci95": [
+            71.1,
+            76.1
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 567,
+          "hits": 401,
+          "hit_pct": 70.7,
+          "ci95": [
+            66.8,
+            74.3
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_opp_tier": [
+        {
+          "label": "Elite",
+          "n": 295,
+          "hits": 251,
+          "hit_pct": 85.1,
+          "ci95": [
+            80.6,
+            88.7
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 427,
+          "hits": 348,
+          "hit_pct": 81.5,
+          "ci95": [
+            77.5,
+            84.9
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 585,
+          "hits": 430,
+          "hit_pct": 73.5,
+          "ci95": [
+            69.8,
+            76.9
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 804,
+          "hits": 534,
+          "hit_pct": 66.4,
+          "ci95": [
+            63.1,
+            69.6
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 497,
+          "hits": 327,
+          "hit_pct": 65.8,
+          "ci95": [
+            61.5,
+            69.8
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 2248,
+          "hits": 1709,
+          "hit_pct": 76.0,
+          "ci95": [
+            74.2,
+            77.7
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_rank_gap": [
+        {
+          "label": "player_better_50plus",
+          "n": 409,
+          "hits": 279,
+          "hit_pct": 68.2,
+          "ci95": [
+            63.6,
+            72.5
+          ],
+          "bucket": "player_better_50plus"
+        },
+        {
+          "label": "player_better_1_49",
+          "n": 574,
+          "hits": 398,
+          "hit_pct": 69.3,
+          "ci95": [
+            65.4,
+            73.0
+          ],
+          "bucket": "player_better_1_49"
+        },
+        {
+          "label": "near_even_pm20",
+          "n": 599,
+          "hits": 407,
+          "hit_pct": 67.9,
+          "ci95": [
+            64.1,
+            71.6
+          ],
+          "bucket": "near_even_pm20"
+        },
+        {
+          "label": "opp_better_1_49",
+          "n": 785,
+          "hits": 574,
+          "hit_pct": 73.1,
+          "ci95": [
+            69.9,
+            76.1
+          ],
+          "bucket": "opp_better_1_49"
+        },
+        {
+          "label": "opp_better_50plus",
+          "n": 719,
+          "hits": 563,
+          "hit_pct": 78.3,
+          "ci95": [
+            75.1,
+            81.2
+          ],
+          "bucket": "opp_better_50plus"
+        },
+        {
+          "label": "unknown_gap",
+          "n": 2369,
+          "hits": 1785,
+          "hit_pct": 75.3,
+          "ci95": [
+            73.6,
+            77.0
+          ],
+          "bucket": "unknown_gap"
+        }
+      ],
+      "stacks": [
+        {
+          "label": "Goblin OVER Games Won \u00b7 ungated + player Elite|Above",
+          "n": 884,
+          "hits": 701,
+          "hit_pct": 79.3,
+          "ci95": [
+            76.5,
+            81.8
+          ],
+          "stack": "+ player Elite|Above",
+          "lift_pp": 5.2
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 ungated + player Below|Weak",
+          "n": 2624,
+          "hits": 1935,
+          "hit_pct": 73.7,
+          "ci95": [
+            72.0,
+            75.4
+          ],
+          "stack": "+ player Below|Weak",
+          "lift_pp": -0.4
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 ungated + opp Weak|Below (D-style OVER)",
+          "n": 1301,
+          "hits": 861,
+          "hit_pct": 66.2,
+          "ci95": [
+            63.6,
+            68.7
+          ],
+          "stack": "+ opp Weak|Below (D-style OVER)",
+          "lift_pp": -7.9
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 ungated + opp Elite|Above (hard D)",
+          "n": 722,
+          "hits": 599,
+          "hit_pct": 83.0,
+          "ci95": [
+            80.0,
+            85.5
+          ],
+          "stack": "+ opp Elite|Above (hard D)",
+          "lift_pp": 8.9
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 ungated + player better (gap\u22651)",
+          "n": 983,
+          "hits": 677,
+          "hit_pct": 68.9,
+          "ci95": [
+            65.9,
+            71.7
+          ],
+          "stack": "+ player better (gap\u22651)",
+          "lift_pp": -5.2
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 ungated + player better 50+",
+          "n": 409,
+          "hits": 279,
+          "hit_pct": 68.2,
+          "ci95": [
+            63.6,
+            72.5
+          ],
+          "stack": "+ player better 50+",
+          "lift_pp": -5.9
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 ungated + opp better (gap\u2264-1)",
+          "n": 1504,
+          "hits": 1137,
+          "hit_pct": 75.6,
+          "ci95": [
+            73.4,
+            77.7
+          ],
+          "stack": "+ opp better (gap\u2264-1)",
+          "lift_pp": 1.5
+        },
+        {
+          "label": "Goblin OVER Games Won \u00b7 ungated + both ranks known",
+          "n": 2487,
+          "hits": 1814,
+          "hit_pct": 72.9,
+          "ci95": [
+            71.2,
+            74.6
+          ],
+          "stack": "+ both ranks known",
+          "lift_pp": -1.2
+        }
+      ]
+    },
+    {
+      "gate": "Goblin OVER Total Games \u00b7 ungated",
+      "base": {
+        "label": "Goblin OVER Total Games \u00b7 ungated",
+        "n": 3936,
+        "hits": 2606,
+        "hit_pct": 66.2,
+        "ci95": [
+          64.7,
+          67.7
+        ]
+      },
+      "rank_coverage": {
+        "player_rank_n": 3576,
+        "opp_rank_n": 2118,
+        "both_n": 2058,
+        "pct_both": 52.3
+      },
+      "by_player_tier": [
+        {
+          "label": "Elite",
+          "n": 564,
+          "hits": 381,
+          "hit_pct": 67.6,
+          "ci95": [
+            63.6,
+            71.3
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 684,
+          "hits": 491,
+          "hit_pct": 71.8,
+          "ci95": [
+            68.3,
+            75.0
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 658,
+          "hits": 400,
+          "hit_pct": 60.8,
+          "ci95": [
+            57.0,
+            64.4
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 780,
+          "hits": 522,
+          "hit_pct": 66.9,
+          "ci95": [
+            63.5,
+            70.1
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 890,
+          "hits": 587,
+          "hit_pct": 66.0,
+          "ci95": [
+            62.8,
+            69.0
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 360,
+          "hits": 225,
+          "hit_pct": 62.5,
+          "ci95": [
+            57.4,
+            67.3
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_opp_tier": [
+        {
+          "label": "Elite",
+          "n": 200,
+          "hits": 136,
+          "hit_pct": 68.0,
+          "ci95": [
+            61.2,
+            74.1
+          ],
+          "bucket": "Elite"
+        },
+        {
+          "label": "Above Avg",
+          "n": 292,
+          "hits": 198,
+          "hit_pct": 67.8,
+          "ci95": [
+            62.2,
+            72.9
+          ],
+          "bucket": "Above Avg"
+        },
+        {
+          "label": "Avg",
+          "n": 364,
+          "hits": 246,
+          "hit_pct": 67.6,
+          "ci95": [
+            62.6,
+            72.2
+          ],
+          "bucket": "Avg"
+        },
+        {
+          "label": "Below Avg",
+          "n": 783,
+          "hits": 536,
+          "hit_pct": 68.5,
+          "ci95": [
+            65.1,
+            71.6
+          ],
+          "bucket": "Below Avg"
+        },
+        {
+          "label": "Weak",
+          "n": 479,
+          "hits": 310,
+          "hit_pct": 64.7,
+          "ci95": [
+            60.3,
+            68.9
+          ],
+          "bucket": "Weak"
+        },
+        {
+          "label": "Unknown",
+          "n": 1818,
+          "hits": 1180,
+          "hit_pct": 64.9,
+          "ci95": [
+            62.7,
+            67.1
+          ],
+          "bucket": "Unknown"
+        }
+      ],
+      "by_rank_gap": [
+        {
+          "label": "player_better_50plus",
+          "n": 575,
+          "hits": 393,
+          "hit_pct": 68.3,
+          "ci95": [
+            64.4,
+            72.0
+          ],
+          "bucket": "player_better_50plus"
+        },
+        {
+          "label": "player_better_1_49",
+          "n": 608,
+          "hits": 441,
+          "hit_pct": 72.5,
+          "ci95": [
+            68.9,
+            75.9
+          ],
+          "bucket": "player_better_1_49"
+        },
+        {
+          "label": "near_even_pm20",
+          "n": 542,
+          "hits": 356,
+          "hit_pct": 65.7,
+          "ci95": [
+            61.6,
+            69.6
+          ],
+          "bucket": "near_even_pm20"
+        },
+        {
+          "label": "opp_better_1_49",
+          "n": 503,
+          "hits": 305,
+          "hit_pct": 60.6,
+          "ci95": [
+            56.3,
+            64.8
+          ],
+          "bucket": "opp_better_1_49"
+        },
+        {
+          "label": "opp_better_50plus",
+          "n": 372,
+          "hits": 245,
+          "hit_pct": 65.9,
+          "ci95": [
+            60.9,
+            70.5
+          ],
+          "bucket": "opp_better_50plus"
+        },
+        {
+          "label": "unknown_gap",
+          "n": 1878,
+          "hits": 1222,
+          "hit_pct": 65.1,
+          "ci95": [
+            62.9,
+            67.2
+          ],
+          "bucket": "unknown_gap"
+        }
+      ],
+      "stacks": [
+        {
+          "label": "Goblin OVER Total Games \u00b7 ungated + player Elite|Above",
+          "n": 1248,
+          "hits": 872,
+          "hit_pct": 69.9,
+          "ci95": [
+            67.3,
+            72.4
+          ],
+          "stack": "+ player Elite|Above",
+          "lift_pp": 3.7
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 ungated + player Below|Weak",
+          "n": 1670,
+          "hits": 1109,
+          "hit_pct": 66.4,
+          "ci95": [
+            64.1,
+            68.6
+          ],
+          "stack": "+ player Below|Weak",
+          "lift_pp": 0.2
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 ungated + opp Weak|Below (D-style OVER)",
+          "n": 1262,
+          "hits": 846,
+          "hit_pct": 67.0,
+          "ci95": [
+            64.4,
+            69.6
+          ],
+          "stack": "+ opp Weak|Below (D-style OVER)",
+          "lift_pp": 0.8
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 ungated + opp Elite|Above (hard D)",
+          "n": 492,
+          "hits": 334,
+          "hit_pct": 67.9,
+          "ci95": [
+            63.6,
+            71.9
+          ],
+          "stack": "+ opp Elite|Above (hard D)",
+          "lift_pp": 1.7
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 ungated + player better (gap\u22651)",
+          "n": 1183,
+          "hits": 834,
+          "hit_pct": 70.5,
+          "ci95": [
+            67.8,
+            73.0
+          ],
+          "stack": "+ player better (gap\u22651)",
+          "lift_pp": 4.3
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 ungated + player better 50+",
+          "n": 575,
+          "hits": 393,
+          "hit_pct": 68.3,
+          "ci95": [
+            64.4,
+            72.0
+          ],
+          "stack": "+ player better 50+",
+          "lift_pp": 2.1
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 ungated + opp better (gap\u2264-1)",
+          "n": 875,
+          "hits": 550,
+          "hit_pct": 62.9,
+          "ci95": [
+            59.6,
+            66.0
+          ],
+          "stack": "+ opp better (gap\u2264-1)",
+          "lift_pp": -3.3
+        },
+        {
+          "label": "Goblin OVER Total Games \u00b7 ungated + both ranks known",
+          "n": 2058,
+          "hits": 1384,
+          "hit_pct": 67.2,
+          "ci95": [
+            65.2,
+            69.2
+          ],
+          "stack": "+ both ranks known",
+          "lift_pp": 1.0
+        }
+      ]
+    }
+  ]
+}

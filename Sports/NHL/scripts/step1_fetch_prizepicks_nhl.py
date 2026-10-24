@@ -28,6 +28,8 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from utils.prizepicks_http import fetch_pp_projections
+from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
+from scripts.line_history_archive import try_archive_lines
 from utils.step1_slate_date_filter import (
     apply_game_date_filter,
     no_props_log_line,
@@ -78,6 +80,7 @@ NHL_CSV_FIELDNAMES = [
     "game_start",
     "game_id",
     "fetched_at",
+    "pp_updated_at",
 ]
 
 
@@ -224,7 +227,8 @@ def parse_rows(data: list, included: list) -> list:
                 "home_team": game_info.get("home_team", ""),
                 "game_start": game_info.get("game_start", ""),
                 "game_id": game_id,
-                "fetched_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "fetched_at": now_et_iso(),
+                "pp_updated_at": extract_pp_updated_at(attrs),
             })
     return rows
 
@@ -268,6 +272,7 @@ def fetch_via_direct_api(
     max_pages: int = MAX_PAGES,
     retries: int = 5,
     first_page_waves: int = 3,
+    fail_fast: bool = False,
 ) -> list:
     """curl_cffi HTTP fetch (league_id=8) — same stack as WNBA/MLB."""
     print(
@@ -275,13 +280,21 @@ def fetch_via_direct_api(
         f"per_page={per_page} max_pages={max_pages} retries={retries} waves={first_page_waves}"
     )
     try:
-        data, included = fetch_pp_projections(
-            str(NHL_LEAGUE_ID),
+        kw = dict(
             per_page=per_page,
             max_pages=max_pages,
             retries=retries,
             first_page_waves=first_page_waves,
         )
+        if fail_fast:
+            kw.update(
+                fail_fast=True,
+                forbid_max_cooldown_windows=0,
+                session_jitter=(0.2, 0.8),
+                inter_page_delay=(0.4, 1.0),
+                wave_gap_seconds=(0.5, 1.0),
+            )
+        data, included = fetch_pp_projections(str(NHL_LEAGUE_ID), **kw)
     except Exception as e:
         print(f"  ✗ HTTP fetch failed: {type(e).__name__}: {e}")
         return []
@@ -464,14 +477,10 @@ def _write_empty_nhl(path: Path) -> None:
 
 
 def _archive_nhl_lines(df: pd.DataFrame) -> None:
-    try:
-        root = Path(__file__).resolve().parents[3]
-        if str(root) not in sys.path:
-            sys.path.insert(0, str(root))
-        from scripts.line_history_archive import archive_lines
-        archive_lines(df, sport="NHL")
-    except Exception as exc:
-        print(f"  [WARN] line_history archive skipped: {exc}")
+    if df is None or df.empty:
+        return
+    stamped = stamp_fetched_at(df, overwrite=False)
+    try_archive_lines(stamped, sport="NHL")
 
 
 def _write_nhl_output(rows: list, out_path: Path, append: bool) -> None:
@@ -511,7 +520,7 @@ def _write_nhl_output(rows: list, out_path: Path, append: bool) -> None:
                 f"{len(combined)} after dedup (subset={dedup_cols})"
             )
             print(f"✅ Saved {len(combined)} rows -> {out_path}")
-            _archive_nhl_lines(combined)
+            _archive_nhl_lines(new_df)
         except Exception as e:
             print(f"  [WARN] --append merge failed ({e}); writing this fetch only")
             write_csv(rows, str(out_path))
@@ -519,6 +528,9 @@ def _write_nhl_output(rows: list, out_path: Path, append: bool) -> None:
     else:
         write_csv(rows, str(out_path))
         _archive_nhl_lines(new_df)
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(out_path, sport="NHL")
 
 
 def main():
@@ -549,37 +561,73 @@ def main():
         default=3,
         help="HTTP: fresh session waves after page-1 failure (default 3).",
     )
+    parser.add_argument("--fail-fast", action="store_true", help="Short HTTP path; skip internal Playwright.")
+    parser.add_argument("--cdp", default="", help="Chrome DevTools URL for in-page fetch.")
+    parser.add_argument("--playwright", action="store_true", help="Launch Chromium for in-page fetch.")
     args = parser.parse_args()
     out_path = Path(args.output)
 
-    print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (HTTP first)")
+    cdp_url = str(args.cdp or "").strip()
+    if cdp_url:
+        print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (CDP {cdp_url})")
+    elif args.playwright:
+        print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (playwright)")
+    else:
+        print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (HTTP first)")
 
-    rows = fetch_via_direct_api(
-        per_page=int(args.per_page),
-        max_pages=int(args.max_pages),
-        retries=int(args.api_retries),
-        first_page_waves=int(args.api_session_waves),
-    )
+    rows: list = []
+    if cdp_url or args.playwright:
+        from utils.prizepicks_cdp import session_fetch_projections
 
-    # Legacy requests fallback (prizepools + pickem merge)
-    if not rows:
-        print("  [NHL] HTTP empty — trying plain requests (prizepools + pickem)...")
-        rows_pp = fetch_via_requests("prizepools")
-        rows_pk = fetch_via_requests("pickem")
-        rows = _merge_projection_boards(rows_pp or [], rows_pk or [])
+        data, included, _st = session_fetch_projections(
+            str(NHL_LEAGUE_ID),
+            cdp_url=cdp_url,
+            playwright=bool(args.playwright) and not cdp_url,
+            per_page=int(args.per_page),
+            max_pages=int(args.max_pages),
+        )
+        rows = parse_rows(data, included) if data else []
+    else:
+        waves = 1 if args.fail_fast else int(args.api_session_waves)
+        rows = fetch_via_direct_api(
+            per_page=int(args.per_page),
+            max_pages=min(4, int(args.max_pages)) if args.fail_fast else int(args.max_pages),
+            retries=min(2, int(args.api_retries)) if args.fail_fast else int(args.api_retries),
+            first_page_waves=waves,
+            fail_fast=bool(args.fail_fast),
+        )
 
-    # Finally Playwright
-    if not rows:
-        try:
-            rows = fetch_via_playwright()
-        except ImportError:
-            print("\n❌ Playwright not installed:")
-            print("   pip install playwright --break-system-packages")
-            print("   playwright install chromium")
-            sys.exit(1)
+        if not rows and not args.fail_fast:
+            print("  [NHL] HTTP empty — trying plain requests (prizepools + pickem)...")
+            rows_pp = fetch_via_requests("prizepools")
+            rows_pk = fetch_via_requests("pickem")
+            rows = _merge_projection_boards(rows_pp or [], rows_pk or [])
+
+        if not rows and not args.fail_fast:
+            try:
+                rows = fetch_via_playwright()
+            except ImportError:
+                print("\n❌ Playwright not installed:")
+                print("   pip install playwright --break-system-packages")
+                print("   playwright install chromium")
+                sys.exit(1)
 
     if not rows:
         print("⚠️  No NHL props found. NHL may not be active on PrizePicks today.")
+        try:
+            from utils.step1_board_reconcile import run_step1_reconcile
+
+            # Zero projections after a completed fetch → no_slate (off-day).
+            # Raise fetch_failed only when callers pass an explicit error flag later.
+            run_step1_reconcile(
+                sport="NHL",
+                df=pd.DataFrame(),
+                out_dir=out_path.parent,
+                fetched_n=0,
+                fetch_failed=False,
+            )
+        except Exception as _rec_exc:
+            print(f"  [WARN] category reconcile skipped: {_rec_exc}")
         if should_preserve_append_output(out_path, args.append):
             print("   (--append: left existing output file unchanged)")
             sys.exit(0)
@@ -603,6 +651,18 @@ def main():
         print("[NHL step1] allow-nearest-future: skipping date filter")
     if len(filtered) == 0:
         print(no_props_log_line("NHL", fetch_date))
+        try:
+            from utils.step1_board_reconcile import run_step1_reconcile
+
+            run_step1_reconcile(
+                sport="NHL",
+                df=pd.DataFrame(),
+                out_dir=out_path.parent,
+                fetched_n=int(n_before_date),
+                fetch_failed=False,
+            )
+        except Exception as _rec_exc:
+            print(f"  [WARN] category reconcile skipped: {_rec_exc}")
         if should_preserve_append_output(out_path, args.append):
             print("   (--append: left existing output file unchanged)")
             sys.exit(0)
@@ -624,7 +684,33 @@ def main():
     for st, cnt in sorted(stat_counts.items(), key=lambda x: -x[1]):
         print(f"  {st}: {cnt}")
 
+    cov_err: Exception | None = None
+    try:
+        from utils.step1_board_reconcile import run_step1_reconcile
+
+        nhl_df = pd.DataFrame(rows)
+        # Reconcile uses prop_type; NHL CSV column is stat_type.
+        if "prop_type" not in nhl_df.columns and "stat_type" in nhl_df.columns:
+            nhl_df = nhl_df.copy()
+            nhl_df["prop_type"] = nhl_df["stat_type"]
+        nhl_df, _ = run_step1_reconcile(
+            sport="NHL",
+            df=nhl_df,
+            out_dir=out_path.parent,
+            fetched_n=int(n_before_date),
+        )
+        if "ticketable" in nhl_df.columns:
+            rows = nhl_df.to_dict("records")
+    except RuntimeError as _cov_exc:
+        cov_err = _cov_exc
+        print(f"❌ {_cov_exc}")
+    except Exception as _rec_exc:
+        print(f"  [WARN] category reconcile skipped: {_rec_exc}")
+
+    # Persist fetch first, then fail-loud so incomplete tabs never go silent.
     _write_nhl_output(rows, out_path, args.append)
+    if cov_err is not None:
+        raise SystemExit(2) from cov_err
 
 
 if __name__ == "__main__":

@@ -148,7 +148,8 @@ L5=5 on Rec Yards UNDER (40%) is why that chip skips L5=5 on tickets. Receptions
 ## Goblin (staged — tickets still off)
 
 `NFL_GOBLIN_TICKETS_ENABLED = True` — wave-1 Goblin OVER live (fg_made /
-receiving_yards / longest_reception / rushing_yards). Pass-side still staged.
+receiving_yards / longest_reception / rushing_yards) plus passing_yards and
+rush_attempts. Remaining pass-side still staged.
 
 ### Flag flip trigger (locked — not a judgment call)
 
@@ -169,20 +170,22 @@ Constants: `NFL_GOBLIN_WAVE1_FLIP_MIN_HR = 0.75`, `NFL_GOBLIN_WAVE1_FLIP_MIN_N =
 | 2 | receiving_yards | 17/23=74% (largest n) | 104/156=67% |
 | 3 | longest_reception | 9/12=75% | 68/107=64% |
 | 4 | rushing_yards | 10/14=71% | 47/80=59% |
+| 5 | passing_yards | W1–W4 graded 5/7=71% (was W1–W2 3/5=60%) | 25/32=78% |
+| 6 | rush_attempts | same L5=5+L10>=8 stack; Goblin cell was blank while step1 dropped pick_type | — |
 
 ### Wave-2 later (do **not** enable on flip) — `NFL_GOBLIN_OVER_KEEP_PASS_LATER`
 
-Pass-side L5=5 degrades vs ungated — separate validation after Week 3+:
+Pass-side L5=5 degrades vs ungated — separate validation after Week 3+.
+passing_yards left this list after the W1–W4 graded cell stopped showing the W1–W2 degradation.
 
 | Prop | L5=5 | Ungated |
 |------|------|---------|
-| passing_yards | 3/5=60% | 22/30=73% |
 | pass_completions | 2/4=50% | 17/28=61% |
 | pass_attempts | 1/3=33% | 15/30=50% |
 | longest_completion | — | 19/30=63% |
 | passing_tds | 4/6=67% | 18/27=67% |
 
-Watch (not keep): `receptions`, `rush_attempts`.
+Watch (not keep): `receptions`. Rush attempts Goblin OVER is on the live list.
 Fantasy / Player TDs / Sacks OVER stay off.
 
 ---

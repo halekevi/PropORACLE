@@ -5,6 +5,10 @@ Standard, and Demons. Same gate for the printed Goblin list and Goblin-70.
 
 Pitcher-side volume props use **L10≥8-primary** (L5 dropped): catalog shows
 L10 alone at real n beats L5=5+L10≥8 at near-zero joint n, and L5 often hurts.
+Expected live HR on the looser production gates (not the ~90% L5-gated
+backtest slices): Ks ~80%, HA ~83%, Walks ~81%, Outs L10-primary; ERA still
+~88% (L5 remains); H+R+RBI/Hits/TB ~65–70% (L5 remains). See
+``data/reports/mlb_pitcher_l10_primary_gates.md``.
 
   1 Walks Allowed:     L10>=8 + Own pitch Weak|Below (leaky staff)
   2 Pitches Thrown:    L10>=8 + Own pitch Weak|Below
@@ -32,6 +36,32 @@ from utils.prop_norm import canon_prop as _canon
 PROD = frozenset({"Weak", "Below Avg"})
 STINGY = frozenset({"Elite", "Above Avg"})
 STRONG_BAT = frozenset({"Strong", "Above Avg"})
+
+# Parent L10>=8 Goblin OVER cells. The category file's child cell is the
+# L5 slice (outs 58/96 = 60.4%, ks 46/64 = 71.9%, hits allowed 32/57).
+# Pitcher prices use these parents. Postseason then subtracts 3 points.
+MLB_PITCHER_L10_PARENT: dict[str, tuple[int, int]] = {
+    "pitching_outs": (399, 498),
+    "pitcher_ks": (743, 975),
+    "hits_allowed": (633, 823),
+}
+
+
+def pitcher_l10_parent_cell(row_or_prop: object) -> dict[str, float] | None:
+    """L10 parent hit rate for a pitcher volume prop. None for every other prop."""
+    if isinstance(row_or_prop, dict):
+        sport = str(row_or_prop.get("sport") or "").strip().upper()
+        if sport != "MLB":
+            return None
+        prop = _canon(sport, row_or_prop.get("prop") or row_or_prop.get("prop_type"))
+    else:
+        prop = _canon("MLB", row_or_prop)
+    pair = MLB_PITCHER_L10_PARENT.get(prop)
+    if not pair:
+        return None
+    hits, n = pair
+    return {"hr": hits / n, "n": float(n), "hit": float(hits), "prop": prop}
+
 
 KEEP_PROPS = frozenset(
     {
@@ -176,7 +206,7 @@ def _id_by_name() -> dict[str, str]:
     if not p.is_file():
         return {}
     out: dict[str, str] = {}
-    with p.open(encoding="utf-8", newline="") as f:
+    with p.open(encoding="utf-8-sig", newline="") as f:
         for row in csv.DictReader(f):
             nm = _norm_name(row.get("player_norm") or row.get("player"))
             pid = str(row.get("mlb_player_id") or "").strip()

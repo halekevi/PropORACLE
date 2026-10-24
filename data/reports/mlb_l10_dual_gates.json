@@ -1,0 +1,3181 @@
+{
+  "source": "graded_props Goblin OVER + mlb_defense_summary.csv as of 2026-09-03",
+  "n_decided": 134854,
+  "miss_team": 1372,
+  "n_dates": 192,
+  "own_axis": "pitcher props: own pitching; hitter counting: own OFF_HITS; hitter Ks: own OFF_SO",
+  "opp_axis": "pitcher HA/walks/pitches: opp OFF_HITS; ERA: opp OFF_RUNS; pitcher Ks: opp OFF_SO; hitters: opp pitching",
+  "align_over": "PROD Weak|Below except hitter Ks opp pitching Elite|Above and pitcher Ks/outs own pitching Elite|Above",
+  "catalog": {
+    "hits": {
+      "ungated": {
+        "n": 28728,
+        "hr": 59.4
+      },
+      "l5ge4": {
+        "n": 3886,
+        "hr": 62.5
+      },
+      "l5eq5": {
+        "n": 1003,
+        "hr": 62.5
+      },
+      "l10ge8": {
+        "n": 2484,
+        "hr": 63.0
+      },
+      "l5ge4_l10ge8": {
+        "n": 309,
+        "hr": 63.7
+      },
+      "l5eq5_l10ge8": {
+        "n": 97,
+        "hr": 56.7
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 106,
+        "hr": 61.3
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 34,
+        "hr": 61.8
+      }
+    },
+    "total_bases": {
+      "ungated": {
+        "n": 28530,
+        "hr": 59.4
+      },
+      "l5ge4": {
+        "n": 3851,
+        "hr": 62.2
+      },
+      "l5eq5": {
+        "n": 978,
+        "hr": 62.4
+      },
+      "l10ge8": {
+        "n": 2459,
+        "hr": 62.5
+      },
+      "l5ge4_l10ge8": {
+        "n": 304,
+        "hr": 63.2
+      },
+      "l5eq5_l10ge8": {
+        "n": 96,
+        "hr": 56.2
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 104,
+        "hr": 61.5
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 33,
+        "hr": 60.6
+      }
+    },
+    "hitter_ks": {
+      "ungated": {
+        "n": 22281,
+        "hr": 62.2
+      },
+      "l5ge4": {
+        "n": 2785,
+        "hr": 65.9
+      },
+      "l5eq5": {
+        "n": 787,
+        "hr": 65.8
+      },
+      "l10ge8": {
+        "n": 2691,
+        "hr": 67.0
+      },
+      "l5ge4_l10ge8": {
+        "n": 257,
+        "hr": 70.4
+      },
+      "l5eq5_l10ge8": {
+        "n": 71,
+        "hr": 67.6
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 112,
+        "hr": 68.8
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 27,
+        "hr": 63.0
+      }
+    },
+    "hits+runs+rbis": {
+      "ungated": {
+        "n": 24197,
+        "hr": 63.1
+      },
+      "l5ge4": {
+        "n": 1235,
+        "hr": 70.0
+      },
+      "l5eq5": {
+        "n": 265,
+        "hr": 69.8
+      },
+      "l10ge8": {
+        "n": 3771,
+        "hr": 68.6
+      },
+      "l5ge4_l10ge8": {
+        "n": 115,
+        "hr": 77.4
+      },
+      "l5eq5_l10ge8": {
+        "n": 44,
+        "hr": 72.7
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 41,
+        "hr": 73.2
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 18,
+        "hr": 77.8
+      }
+    },
+    "pitcher_ks": {
+      "ungated": {
+        "n": 5008,
+        "hr": 69.3
+      },
+      "l5ge4": {
+        "n": 585,
+        "hr": 68.2
+      },
+      "l5eq5": {
+        "n": 171,
+        "hr": 70.2
+      },
+      "l10ge8": {
+        "n": 975,
+        "hr": 76.2
+      },
+      "l5ge4_l10ge8": {
+        "n": 28,
+        "hr": 57.1
+      },
+      "l5eq5_l10ge8": {
+        "n": 11,
+        "hr": 72.7
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 11,
+        "hr": 54.5
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 5,
+        "hr": 60.0
+      }
+    },
+    "hits_allowed": {
+      "ungated": {
+        "n": 4736,
+        "hr": 68.6
+      },
+      "l5ge4": {
+        "n": 470,
+        "hr": 69.2
+      },
+      "l5eq5": {
+        "n": 134,
+        "hr": 65.7
+      },
+      "l10ge8": {
+        "n": 823,
+        "hr": 76.9
+      },
+      "l5ge4_l10ge8": {
+        "n": 18,
+        "hr": 88.9
+      },
+      "l5eq5_l10ge8": {
+        "n": 11,
+        "hr": 100.0
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 4,
+        "hr": 75.0
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 2,
+        "hr": 100.0
+      }
+    },
+    "walks_allowed": {
+      "ungated": {
+        "n": 2444,
+        "hr": 73.3
+      },
+      "l5ge4": {
+        "n": 248,
+        "hr": 72.2
+      },
+      "l5eq5": {
+        "n": 97,
+        "hr": 71.1
+      },
+      "l10ge8": {
+        "n": 596,
+        "hr": 80.0
+      },
+      "l5ge4_l10ge8": {
+        "n": 20,
+        "hr": 70.0
+      },
+      "l5eq5_l10ge8": {
+        "n": 9,
+        "hr": 77.8
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 10,
+        "hr": 80.0
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 4,
+        "hr": 75.0
+      }
+    },
+    "pitches_thrown": {
+      "ungated": {
+        "n": 1395,
+        "hr": 71.2
+      },
+      "l5ge4": {
+        "n": 178,
+        "hr": 73.6
+      },
+      "l5eq5": {
+        "n": 64,
+        "hr": 75.0
+      },
+      "l10ge8": {
+        "n": 261,
+        "hr": 78.2
+      },
+      "l5ge4_l10ge8": {
+        "n": 9,
+        "hr": 88.9
+      },
+      "l5eq5_l10ge8": {
+        "n": 5,
+        "hr": 100.0
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 5,
+        "hr": 100.0
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 2,
+        "hr": 100.0
+      }
+    },
+    "runs": {
+      "ungated": {
+        "n": 1016,
+        "hr": 52.9
+      },
+      "l5ge4": {
+        "n": 114,
+        "hr": 57.0
+      },
+      "l5eq5": {
+        "n": 21,
+        "hr": 71.4
+      },
+      "l10ge8": {
+        "n": 27,
+        "hr": 51.8
+      },
+      "l5ge4_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      }
+    },
+    "pitching_outs": {
+      "ungated": {
+        "n": 1892,
+        "hr": 69.5
+      },
+      "l5ge4": {
+        "n": 96,
+        "hr": 60.4
+      },
+      "l5eq5": {
+        "n": 18,
+        "hr": 61.1
+      },
+      "l10ge8": {
+        "n": 498,
+        "hr": 80.1
+      },
+      "l5ge4_l10ge8": {
+        "n": 3,
+        "hr": 100.0
+      },
+      "l5eq5_l10ge8": {
+        "n": 1,
+        "hr": 100.0
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 2,
+        "hr": 100.0
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      }
+    },
+    "singles": {
+      "ungated": {
+        "n": 2582,
+        "hr": 53.9
+      },
+      "l5ge4": {
+        "n": 70,
+        "hr": 42.9
+      },
+      "l5eq5": {
+        "n": 6,
+        "hr": 83.3
+      },
+      "l10ge8": {
+        "n": 158,
+        "hr": 60.1
+      },
+      "l5ge4_l10ge8": {
+        "n": 3,
+        "hr": 66.7
+      },
+      "l5eq5_l10ge8": {
+        "n": 3,
+        "hr": 66.7
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 2,
+        "hr": 50.0
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 2,
+        "hr": 50.0
+      }
+    },
+    "walks": {
+      "ungated": {
+        "n": 257,
+        "hr": 50.2
+      },
+      "l5ge4": {
+        "n": 2,
+        "hr": 50.0
+      },
+      "l5eq5": {
+        "n": 0,
+        "hr": null
+      },
+      "l10ge8": {
+        "n": 13,
+        "hr": 38.5
+      },
+      "l5ge4_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      }
+    },
+    "plate_appearances": {
+      "ungated": {
+        "n": 1495,
+        "hr": 50.7
+      },
+      "l5ge4": {
+        "n": 1,
+        "hr": 100.0
+      },
+      "l5eq5": {
+        "n": 0,
+        "hr": null
+      },
+      "l10ge8": {
+        "n": 41,
+        "hr": 53.7
+      },
+      "l5ge4_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      }
+    },
+    "earned_runs": {
+      "ungated": {
+        "n": 2573,
+        "hr": 70.4
+      },
+      "l5ge4": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5": {
+        "n": 0,
+        "hr": null
+      },
+      "l10ge8": {
+        "n": 723,
+        "hr": 80.4
+      },
+      "l5ge4_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      }
+    },
+    "first_inning_walks": {
+      "ungated": {
+        "n": 15,
+        "hr": 66.7
+      },
+      "l5ge4": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5": {
+        "n": 0,
+        "hr": null
+      },
+      "l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5ge4_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      }
+    },
+    "rbis": {
+      "ungated": {
+        "n": 4,
+        "hr": 50.0
+      },
+      "l5ge4": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5": {
+        "n": 0,
+        "hr": null
+      },
+      "l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5ge4_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8": {
+        "n": 0,
+        "hr": null
+      },
+      "l5ge4_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      },
+      "l5eq5_l10ge8_d": {
+        "n": 0,
+        "hr": null
+      }
+    }
+  },
+  "era_0p5": {
+    "all": {
+      "all": {
+        "n": 1159,
+        "hits": 961,
+        "hr": 82.9
+      },
+      "both": {
+        "n": 141,
+        "hits": 116,
+        "hr": 82.3
+      },
+      "opp_only": {
+        "n": 287,
+        "hits": 234,
+        "hr": 81.5
+      },
+      "own_only": {
+        "n": 263,
+        "hits": 221,
+        "hr": 84.0
+      },
+      "neither": {
+        "n": 468,
+        "hits": 390,
+        "hr": 83.3
+      }
+    },
+    "l10ge8": {
+      "all": {
+        "n": 604,
+        "hits": 510,
+        "hr": 84.4
+      },
+      "both": {
+        "n": 72,
+        "hits": 60,
+        "hr": 83.3
+      },
+      "own_only": {
+        "n": 132,
+        "hits": 111,
+        "hr": 84.1
+      },
+      "neither": {
+        "n": 258,
+        "hits": 219,
+        "hr": 84.9
+      },
+      "opp_only": {
+        "n": 142,
+        "hits": 120,
+        "hr": 84.5
+      }
+    },
+    "l5ge4": {
+      "all": {
+        "n": 350,
+        "hits": 292,
+        "hr": 83.4
+      },
+      "opp_only": {
+        "n": 82,
+        "hits": 68,
+        "hr": 82.9
+      },
+      "own_only": {
+        "n": 79,
+        "hits": 65,
+        "hr": 82.3
+      },
+      "both": {
+        "n": 44,
+        "hits": 36,
+        "hr": 81.8
+      },
+      "neither": {
+        "n": 145,
+        "hits": 123,
+        "hr": 84.8
+      }
+    },
+    "l5ge4_l10ge8": {
+      "all": {
+        "n": 270,
+        "hits": 228,
+        "hr": 84.4
+      },
+      "opp_only": {
+        "n": 66,
+        "hits": 56,
+        "hr": 84.8
+      },
+      "own_only": {
+        "n": 57,
+        "hits": 46,
+        "hr": 80.7
+      },
+      "both": {
+        "n": 30,
+        "hits": 26,
+        "hr": 86.7
+      },
+      "neither": {
+        "n": 117,
+        "hits": 100,
+        "hr": 85.5
+      }
+    },
+    "l5eq5": {
+      "all": {
+        "n": 172,
+        "hits": 150,
+        "hr": 87.2
+      },
+      "opp_only": {
+        "n": 34,
+        "hits": 30,
+        "hr": 88.2
+      },
+      "own_only": {
+        "n": 51,
+        "hits": 42,
+        "hr": 82.4
+      },
+      "both": {
+        "n": 26,
+        "hits": 22,
+        "hr": 84.6
+      },
+      "neither": {
+        "n": 61,
+        "hits": 56,
+        "hr": 91.8
+      }
+    },
+    "l5eq5_l10ge8": {
+      "all": {
+        "n": 149,
+        "hits": 131,
+        "hr": 87.9
+      },
+      "opp_only": {
+        "n": 33,
+        "hits": 29,
+        "hr": 87.9
+      },
+      "own_only": {
+        "n": 41,
+        "hits": 33,
+        "hr": 80.5
+      },
+      "both": {
+        "n": 17,
+        "hits": 16,
+        "hr": 94.1
+      },
+      "neither": {
+        "n": 58,
+        "hits": 53,
+        "hr": 91.4
+      }
+    }
+  },
+  "props": [
+    {
+      "prop": "walks_allowed",
+      "display": "Walks Allowed",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 2481,
+            "hits": 1821,
+            "hr": 73.4
+          },
+          "opp_only": {
+            "n": 611,
+            "hits": 453,
+            "hr": 74.1
+          },
+          "own_only": {
+            "n": 576,
+            "hits": 424,
+            "hr": 73.6
+          },
+          "neither": {
+            "n": 935,
+            "hits": 691,
+            "hr": 73.9
+          },
+          "both": {
+            "n": 359,
+            "hits": 253,
+            "hr": 70.5
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 605,
+            "hits": 485,
+            "hr": 80.2
+          },
+          "opp_only": {
+            "n": 141,
+            "hits": 110,
+            "hr": 78.0
+          },
+          "neither": {
+            "n": 239,
+            "hits": 188,
+            "hr": 78.7
+          },
+          "both": {
+            "n": 97,
+            "hits": 77,
+            "hr": 79.4
+          },
+          "own_only": {
+            "n": 128,
+            "hits": 110,
+            "hr": 85.9
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 561,
+            "hits": 434,
+            "hr": 77.4
+          },
+          "neither": {
+            "n": 210,
+            "hits": 158,
+            "hr": 75.2
+          },
+          "own_only": {
+            "n": 125,
+            "hits": 105,
+            "hr": 84.0
+          },
+          "both": {
+            "n": 79,
+            "hits": 59,
+            "hr": 74.7
+          },
+          "opp_only": {
+            "n": 147,
+            "hits": 112,
+            "hr": 76.2
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 219,
+            "hits": 178,
+            "hr": 81.3
+          },
+          "neither": {
+            "n": 85,
+            "hits": 70,
+            "hr": 82.4
+          },
+          "own_only": {
+            "n": 44,
+            "hits": 40,
+            "hr": 90.9
+          },
+          "both": {
+            "n": 32,
+            "hits": 26,
+            "hr": 81.2
+          },
+          "opp_only": {
+            "n": 58,
+            "hits": 42,
+            "hr": 72.4
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 220,
+            "hits": 170,
+            "hr": 77.3
+          },
+          "neither": {
+            "n": 78,
+            "hits": 57,
+            "hr": 73.1
+          },
+          "opp_only": {
+            "n": 61,
+            "hits": 45,
+            "hr": 73.8
+          },
+          "own_only": {
+            "n": 49,
+            "hits": 43,
+            "hr": 87.8
+          },
+          "both": {
+            "n": 32,
+            "hits": 25,
+            "hr": 78.1
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 109,
+            "hits": 88,
+            "hr": 80.7
+          },
+          "neither": {
+            "n": 43,
+            "hits": 36,
+            "hr": 83.7
+          },
+          "own_only": {
+            "n": 26,
+            "hits": 24,
+            "hr": 92.3
+          },
+          "both": {
+            "n": 17,
+            "hits": 13,
+            "hr": 76.5
+          },
+          "opp_only": {
+            "n": 23,
+            "hits": 15,
+            "hr": 65.2
+          }
+        }
+      }
+    },
+    {
+      "prop": "pitches_thrown",
+      "display": "Pitches Thrown",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 1457,
+            "hits": 1036,
+            "hr": 71.1
+          },
+          "own_only": {
+            "n": 345,
+            "hits": 255,
+            "hr": 73.9
+          },
+          "neither": {
+            "n": 521,
+            "hits": 366,
+            "hr": 70.2
+          },
+          "both": {
+            "n": 236,
+            "hits": 166,
+            "hr": 70.3
+          },
+          "opp_only": {
+            "n": 355,
+            "hits": 249,
+            "hr": 70.1
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 288,
+            "hits": 225,
+            "hr": 78.1
+          },
+          "own_only": {
+            "n": 74,
+            "hits": 59,
+            "hr": 79.7
+          },
+          "neither": {
+            "n": 96,
+            "hits": 76,
+            "hr": 79.2
+          },
+          "both": {
+            "n": 48,
+            "hits": 38,
+            "hr": 79.2
+          },
+          "opp_only": {
+            "n": 70,
+            "hits": 52,
+            "hr": 74.3
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 372,
+            "hits": 278,
+            "hr": 74.7
+          },
+          "own_only": {
+            "n": 98,
+            "hits": 75,
+            "hr": 76.5
+          },
+          "opp_only": {
+            "n": 89,
+            "hits": 65,
+            "hr": 73.0
+          },
+          "neither": {
+            "n": 127,
+            "hits": 93,
+            "hr": 73.2
+          },
+          "both": {
+            "n": 58,
+            "hits": 45,
+            "hr": 77.6
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 115,
+            "hits": 89,
+            "hr": 77.4
+          },
+          "own_only": {
+            "n": 33,
+            "hits": 27,
+            "hr": 81.8
+          },
+          "opp_only": {
+            "n": 27,
+            "hits": 18,
+            "hr": 66.7
+          },
+          "neither": {
+            "n": 35,
+            "hits": 27,
+            "hr": 77.1
+          },
+          "both": {
+            "n": 20,
+            "hits": 17,
+            "hr": 85.0
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 130,
+            "hits": 98,
+            "hr": 75.4
+          },
+          "own_only": {
+            "n": 34,
+            "hits": 27,
+            "hr": 79.4
+          },
+          "opp_only": {
+            "n": 35,
+            "hits": 25,
+            "hr": 71.4
+          },
+          "neither": {
+            "n": 39,
+            "hits": 27,
+            "hr": 69.2
+          },
+          "both": {
+            "n": 22,
+            "hits": 19,
+            "hr": 86.4
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 55,
+            "hits": 43,
+            "hr": 78.2
+          },
+          "own_only": {
+            "n": 16,
+            "hits": 15,
+            "hr": 93.8
+          },
+          "opp_only": {
+            "n": 17,
+            "hits": 10,
+            "hr": 58.8
+          },
+          "neither": {
+            "n": 11,
+            "hits": 8,
+            "hr": 72.7
+          },
+          "both": {
+            "n": 11,
+            "hits": 10,
+            "hr": 90.9
+          }
+        }
+      }
+    },
+    {
+      "prop": "earned_runs",
+      "display": "Earned Runs Allowed",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 2719,
+            "hits": 1908,
+            "hr": 70.2
+          },
+          "both": {
+            "n": 421,
+            "hits": 297,
+            "hr": 70.5
+          },
+          "opp_only": {
+            "n": 670,
+            "hits": 457,
+            "hr": 68.2
+          },
+          "own_only": {
+            "n": 661,
+            "hits": 467,
+            "hr": 70.7
+          },
+          "neither": {
+            "n": 967,
+            "hits": 687,
+            "hr": 71.0
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 776,
+            "hits": 623,
+            "hr": 80.3
+          },
+          "both": {
+            "n": 107,
+            "hits": 87,
+            "hr": 81.3
+          },
+          "own_only": {
+            "n": 176,
+            "hits": 140,
+            "hr": 79.5
+          },
+          "neither": {
+            "n": 313,
+            "hits": 251,
+            "hr": 80.2
+          },
+          "opp_only": {
+            "n": 180,
+            "hits": 145,
+            "hr": 80.6
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 548,
+            "hits": 420,
+            "hr": 76.6
+          },
+          "opp_only": {
+            "n": 126,
+            "hits": 97,
+            "hr": 77.0
+          },
+          "own_only": {
+            "n": 133,
+            "hits": 98,
+            "hr": 73.7
+          },
+          "both": {
+            "n": 92,
+            "hits": 71,
+            "hr": 77.2
+          },
+          "neither": {
+            "n": 197,
+            "hits": 154,
+            "hr": 78.2
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 339,
+            "hits": 277,
+            "hr": 81.7
+          },
+          "opp_only": {
+            "n": 83,
+            "hits": 70,
+            "hr": 84.3
+          },
+          "own_only": {
+            "n": 67,
+            "hits": 53,
+            "hr": 79.1
+          },
+          "both": {
+            "n": 47,
+            "hits": 39,
+            "hr": 83.0
+          },
+          "neither": {
+            "n": 142,
+            "hits": 115,
+            "hr": 81.0
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 226,
+            "hits": 191,
+            "hr": 84.5
+          },
+          "opp_only": {
+            "n": 45,
+            "hits": 38,
+            "hr": 84.4
+          },
+          "own_only": {
+            "n": 63,
+            "hits": 51,
+            "hr": 81.0
+          },
+          "both": {
+            "n": 46,
+            "hits": 38,
+            "hr": 82.6
+          },
+          "neither": {
+            "n": 72,
+            "hits": 64,
+            "hr": 88.9
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 177,
+            "hits": 154,
+            "hr": 87.0
+          },
+          "opp_only": {
+            "n": 40,
+            "hits": 35,
+            "hr": 87.5
+          },
+          "own_only": {
+            "n": 47,
+            "hits": 39,
+            "hr": 83.0
+          },
+          "both": {
+            "n": 26,
+            "hits": 23,
+            "hr": 88.5
+          },
+          "neither": {
+            "n": 64,
+            "hits": 57,
+            "hr": 89.1
+          }
+        }
+      }
+    },
+    {
+      "prop": "pitcher_ks",
+      "display": "Pitcher Strikeouts",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 5187,
+            "hits": 3601,
+            "hr": 69.4
+          },
+          "own_only": {
+            "n": 1214,
+            "hits": 879,
+            "hr": 72.4
+          },
+          "neither": {
+            "n": 1867,
+            "hits": 1243,
+            "hr": 66.6
+          },
+          "both": {
+            "n": 960,
+            "hits": 671,
+            "hr": 69.9
+          },
+          "opp_only": {
+            "n": 1146,
+            "hits": 808,
+            "hr": 70.5
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 1049,
+            "hits": 803,
+            "hr": 76.5
+          },
+          "own_only": {
+            "n": 308,
+            "hits": 243,
+            "hr": 78.9
+          },
+          "neither": {
+            "n": 410,
+            "hits": 297,
+            "hr": 72.4
+          },
+          "both": {
+            "n": 161,
+            "hits": 132,
+            "hr": 82.0
+          },
+          "opp_only": {
+            "n": 170,
+            "hits": 131,
+            "hr": 77.1
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 1300,
+            "hits": 975,
+            "hr": 75.0
+          },
+          "opp_only": {
+            "n": 260,
+            "hits": 198,
+            "hr": 76.2
+          },
+          "own_only": {
+            "n": 352,
+            "hits": 279,
+            "hr": 79.3
+          },
+          "neither": {
+            "n": 494,
+            "hits": 356,
+            "hr": 72.1
+          },
+          "both": {
+            "n": 194,
+            "hits": 142,
+            "hr": 73.2
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 476,
+            "hits": 382,
+            "hr": 80.3
+          },
+          "opp_only": {
+            "n": 76,
+            "hits": 64,
+            "hr": 84.2
+          },
+          "own_only": {
+            "n": 135,
+            "hits": 114,
+            "hr": 84.4
+          },
+          "neither": {
+            "n": 192,
+            "hits": 151,
+            "hr": 78.6
+          },
+          "both": {
+            "n": 73,
+            "hits": 53,
+            "hr": 72.6
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 456,
+            "hits": 362,
+            "hr": 79.4
+          },
+          "own_only": {
+            "n": 132,
+            "hits": 109,
+            "hr": 82.6
+          },
+          "both": {
+            "n": 74,
+            "hits": 62,
+            "hr": 83.8
+          },
+          "neither": {
+            "n": 169,
+            "hits": 127,
+            "hr": 75.1
+          },
+          "opp_only": {
+            "n": 81,
+            "hits": 64,
+            "hr": 79.0
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 243,
+            "hits": 207,
+            "hr": 85.2
+          },
+          "own_only": {
+            "n": 68,
+            "hits": 60,
+            "hr": 88.2
+          },
+          "neither": {
+            "n": 95,
+            "hits": 78,
+            "hr": 82.1
+          },
+          "opp_only": {
+            "n": 38,
+            "hits": 35,
+            "hr": 92.1
+          },
+          "both": {
+            "n": 42,
+            "hits": 34,
+            "hr": 81.0
+          }
+        }
+      }
+    },
+    {
+      "prop": "hits_allowed",
+      "display": "Hits Allowed",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 4805,
+            "hits": 3305,
+            "hr": 68.8
+          },
+          "neither": {
+            "n": 1780,
+            "hits": 1201,
+            "hr": 67.5
+          },
+          "own_only": {
+            "n": 1110,
+            "hits": 740,
+            "hr": 66.7
+          },
+          "both": {
+            "n": 751,
+            "hits": 509,
+            "hr": 67.8
+          },
+          "opp_only": {
+            "n": 1164,
+            "hits": 855,
+            "hr": 73.5
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 841,
+            "hits": 650,
+            "hr": 77.3
+          },
+          "neither": {
+            "n": 354,
+            "hits": 263,
+            "hr": 74.3
+          },
+          "both": {
+            "n": 112,
+            "hits": 80,
+            "hr": 71.4
+          },
+          "own_only": {
+            "n": 183,
+            "hits": 147,
+            "hr": 80.3
+          },
+          "opp_only": {
+            "n": 192,
+            "hits": 160,
+            "hr": 83.3
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 958,
+            "hits": 698,
+            "hr": 72.9
+          },
+          "neither": {
+            "n": 401,
+            "hits": 289,
+            "hr": 72.1
+          },
+          "own_only": {
+            "n": 185,
+            "hits": 128,
+            "hr": 69.2
+          },
+          "opp_only": {
+            "n": 245,
+            "hits": 192,
+            "hr": 78.4
+          },
+          "both": {
+            "n": 127,
+            "hits": 89,
+            "hr": 70.1
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 277,
+            "hits": 227,
+            "hr": 81.9
+          },
+          "neither": {
+            "n": 127,
+            "hits": 102,
+            "hr": 80.3
+          },
+          "own_only": {
+            "n": 52,
+            "hits": 43,
+            "hr": 82.7
+          },
+          "opp_only": {
+            "n": 66,
+            "hits": 58,
+            "hr": 87.9
+          },
+          "both": {
+            "n": 32,
+            "hits": 24,
+            "hr": 75.0
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 317,
+            "hits": 235,
+            "hr": 74.1
+          },
+          "neither": {
+            "n": 134,
+            "hits": 96,
+            "hr": 71.6
+          },
+          "own_only": {
+            "n": 59,
+            "hits": 45,
+            "hr": 76.3
+          },
+          "both": {
+            "n": 49,
+            "hits": 33,
+            "hr": 67.3
+          },
+          "opp_only": {
+            "n": 75,
+            "hits": 61,
+            "hr": 81.3
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 138,
+            "hits": 113,
+            "hr": 81.9
+          },
+          "neither": {
+            "n": 61,
+            "hits": 49,
+            "hr": 80.3
+          },
+          "both": {
+            "n": 20,
+            "hits": 14,
+            "hr": 70.0
+          },
+          "opp_only": {
+            "n": 30,
+            "hits": 26,
+            "hr": 86.7
+          },
+          "own_only": {
+            "n": 27,
+            "hits": 24,
+            "hr": 88.9
+          }
+        }
+      }
+    },
+    {
+      "prop": "pitching_outs",
+      "display": "Pitching Outs",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 2017,
+            "hits": 1392,
+            "hr": 69.0
+          },
+          "opp_only": {
+            "n": 486,
+            "hits": 340,
+            "hr": 70.0
+          },
+          "neither": {
+            "n": 691,
+            "hits": 471,
+            "hr": 68.2
+          },
+          "own_only": {
+            "n": 518,
+            "hits": 358,
+            "hr": 69.1
+          },
+          "both": {
+            "n": 322,
+            "hits": 223,
+            "hr": 69.3
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 544,
+            "hits": 432,
+            "hr": 79.4
+          },
+          "neither": {
+            "n": 186,
+            "hits": 153,
+            "hr": 82.3
+          },
+          "own_only": {
+            "n": 126,
+            "hits": 101,
+            "hr": 80.2
+          },
+          "opp_only": {
+            "n": 151,
+            "hits": 116,
+            "hr": 76.8
+          },
+          "both": {
+            "n": 81,
+            "hits": 62,
+            "hr": 76.5
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 456,
+            "hits": 341,
+            "hr": 74.8
+          },
+          "neither": {
+            "n": 161,
+            "hits": 117,
+            "hr": 72.7
+          },
+          "own_only": {
+            "n": 116,
+            "hits": 93,
+            "hr": 80.2
+          },
+          "both": {
+            "n": 73,
+            "hits": 49,
+            "hr": 67.1
+          },
+          "opp_only": {
+            "n": 106,
+            "hits": 82,
+            "hr": 77.4
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 176,
+            "hits": 137,
+            "hr": 77.8
+          },
+          "neither": {
+            "n": 69,
+            "hits": 55,
+            "hr": 79.7
+          },
+          "both": {
+            "n": 28,
+            "hits": 20,
+            "hr": 71.4
+          },
+          "own_only": {
+            "n": 45,
+            "hits": 37,
+            "hr": 82.2
+          },
+          "opp_only": {
+            "n": 34,
+            "hits": 25,
+            "hr": 73.5
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 214,
+            "hits": 171,
+            "hr": 79.9
+          },
+          "neither": {
+            "n": 70,
+            "hits": 59,
+            "hr": 84.3
+          },
+          "own_only": {
+            "n": 47,
+            "hits": 38,
+            "hr": 80.9
+          },
+          "both": {
+            "n": 33,
+            "hits": 24,
+            "hr": 72.7
+          },
+          "opp_only": {
+            "n": 64,
+            "hits": 50,
+            "hr": 78.1
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 113,
+            "hits": 90,
+            "hr": 79.6
+          },
+          "neither": {
+            "n": 36,
+            "hits": 31,
+            "hr": 86.1
+          },
+          "both": {
+            "n": 19,
+            "hits": 13,
+            "hr": 68.4
+          },
+          "own_only": {
+            "n": 30,
+            "hits": 24,
+            "hr": 80.0
+          },
+          "opp_only": {
+            "n": 28,
+            "hits": 22,
+            "hr": 78.6
+          }
+        }
+      }
+    },
+    {
+      "prop": "hits+runs+rbis",
+      "display": "Hits+Runs+RBIs",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 25136,
+            "hits": 15904,
+            "hr": 63.3
+          },
+          "both": {
+            "n": 4636,
+            "hits": 3047,
+            "hr": 65.7
+          },
+          "own_only": {
+            "n": 5974,
+            "hits": 3807,
+            "hr": 63.7
+          },
+          "neither": {
+            "n": 8385,
+            "hits": 5160,
+            "hr": 61.5
+          },
+          "opp_only": {
+            "n": 6141,
+            "hits": 3890,
+            "hr": 63.3
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 3988,
+            "hits": 2738,
+            "hr": 68.7
+          },
+          "both": {
+            "n": 758,
+            "hits": 537,
+            "hr": 70.8
+          },
+          "own_only": {
+            "n": 1081,
+            "hits": 741,
+            "hr": 68.5
+          },
+          "neither": {
+            "n": 1243,
+            "hits": 815,
+            "hr": 65.6
+          },
+          "opp_only": {
+            "n": 906,
+            "hits": 645,
+            "hr": 71.2
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 4024,
+            "hits": 2732,
+            "hr": 67.9
+          },
+          "opp_only": {
+            "n": 973,
+            "hits": 664,
+            "hr": 68.2
+          },
+          "both": {
+            "n": 713,
+            "hits": 512,
+            "hr": 71.8
+          },
+          "neither": {
+            "n": 1271,
+            "hits": 834,
+            "hr": 65.6
+          },
+          "own_only": {
+            "n": 1067,
+            "hits": 722,
+            "hr": 67.7
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 1546,
+            "hits": 1064,
+            "hr": 68.8
+          },
+          "opp_only": {
+            "n": 397,
+            "hits": 282,
+            "hr": 71.0
+          },
+          "both": {
+            "n": 255,
+            "hits": 188,
+            "hr": 73.7
+          },
+          "neither": {
+            "n": 493,
+            "hits": 315,
+            "hr": 63.9
+          },
+          "own_only": {
+            "n": 401,
+            "hits": 279,
+            "hr": 69.6
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 1027,
+            "hits": 704,
+            "hr": 68.5
+          },
+          "opp_only": {
+            "n": 260,
+            "hits": 178,
+            "hr": 68.5
+          },
+          "both": {
+            "n": 166,
+            "hits": 125,
+            "hr": 75.3
+          },
+          "neither": {
+            "n": 365,
+            "hits": 235,
+            "hr": 64.4
+          },
+          "own_only": {
+            "n": 236,
+            "hits": 166,
+            "hr": 70.3
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 617,
+            "hits": 418,
+            "hr": 67.7
+          },
+          "opp_only": {
+            "n": 180,
+            "hits": 129,
+            "hr": 71.7
+          },
+          "both": {
+            "n": 85,
+            "hits": 61,
+            "hr": 71.8
+          },
+          "neither": {
+            "n": 210,
+            "hits": 131,
+            "hr": 62.4
+          },
+          "own_only": {
+            "n": 142,
+            "hits": 97,
+            "hr": 68.3
+          }
+        }
+      }
+    },
+    {
+      "prop": "hitter_ks",
+      "display": "Hitter Strikeouts",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 22923,
+            "hits": 14249,
+            "hr": 62.2
+          },
+          "both": {
+            "n": 4253,
+            "hits": 2750,
+            "hr": 64.7
+          },
+          "neither": {
+            "n": 7746,
+            "hits": 4644,
+            "hr": 60.0
+          },
+          "own_only": {
+            "n": 5626,
+            "hits": 3543,
+            "hr": 63.0
+          },
+          "opp_only": {
+            "n": 5298,
+            "hits": 3312,
+            "hr": 62.5
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 2817,
+            "hits": 1891,
+            "hr": 67.1
+          },
+          "both": {
+            "n": 560,
+            "hits": 390,
+            "hr": 69.6
+          },
+          "neither": {
+            "n": 961,
+            "hits": 635,
+            "hr": 66.1
+          },
+          "own_only": {
+            "n": 777,
+            "hits": 519,
+            "hr": 66.8
+          },
+          "opp_only": {
+            "n": 519,
+            "hits": 347,
+            "hr": 66.9
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 4366,
+            "hits": 2863,
+            "hr": 65.6
+          },
+          "own_only": {
+            "n": 1258,
+            "hits": 819,
+            "hr": 65.1
+          },
+          "both": {
+            "n": 800,
+            "hits": 527,
+            "hr": 65.9
+          },
+          "neither": {
+            "n": 1335,
+            "hits": 862,
+            "hr": 64.6
+          },
+          "opp_only": {
+            "n": 973,
+            "hits": 655,
+            "hr": 67.3
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 1079,
+            "hits": 745,
+            "hr": 69.0
+          },
+          "own_only": {
+            "n": 314,
+            "hits": 212,
+            "hr": 67.5
+          },
+          "both": {
+            "n": 204,
+            "hits": 138,
+            "hr": 67.6
+          },
+          "neither": {
+            "n": 341,
+            "hits": 231,
+            "hr": 67.7
+          },
+          "opp_only": {
+            "n": 220,
+            "hits": 164,
+            "hr": 74.5
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 1211,
+            "hits": 800,
+            "hr": 66.1
+          },
+          "both": {
+            "n": 208,
+            "hits": 135,
+            "hr": 64.9
+          },
+          "own_only": {
+            "n": 432,
+            "hits": 288,
+            "hr": 66.7
+          },
+          "opp_only": {
+            "n": 246,
+            "hits": 167,
+            "hr": 67.9
+          },
+          "neither": {
+            "n": 325,
+            "hits": 210,
+            "hr": 64.6
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 390,
+            "hits": 272,
+            "hr": 69.7
+          },
+          "both": {
+            "n": 67,
+            "hits": 45,
+            "hr": 67.2
+          },
+          "own_only": {
+            "n": 133,
+            "hits": 93,
+            "hr": 69.9
+          },
+          "opp_only": {
+            "n": 82,
+            "hits": 65,
+            "hr": 79.3
+          },
+          "neither": {
+            "n": 108,
+            "hits": 69,
+            "hr": 63.9
+          }
+        }
+      }
+    },
+    {
+      "prop": "hits",
+      "display": "Hits",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 29429,
+            "hits": 17510,
+            "hr": 59.5
+          },
+          "own_only": {
+            "n": 7004,
+            "hits": 4229,
+            "hr": 60.4
+          },
+          "both": {
+            "n": 4824,
+            "hits": 2975,
+            "hr": 61.7
+          },
+          "neither": {
+            "n": 10363,
+            "hits": 5977,
+            "hr": 57.7
+          },
+          "opp_only": {
+            "n": 7238,
+            "hits": 4329,
+            "hr": 59.8
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 2606,
+            "hits": 1647,
+            "hr": 63.2
+          },
+          "own_only": {
+            "n": 765,
+            "hits": 498,
+            "hr": 65.1
+          },
+          "both": {
+            "n": 516,
+            "hits": 322,
+            "hr": 62.4
+          },
+          "neither": {
+            "n": 776,
+            "hits": 468,
+            "hr": 60.3
+          },
+          "opp_only": {
+            "n": 549,
+            "hits": 359,
+            "hr": 65.4
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 5760,
+            "hits": 3614,
+            "hr": 62.7
+          },
+          "both": {
+            "n": 1053,
+            "hits": 687,
+            "hr": 65.2
+          },
+          "opp_only": {
+            "n": 1346,
+            "hits": 846,
+            "hr": 62.9
+          },
+          "neither": {
+            "n": 1846,
+            "hits": 1136,
+            "hr": 61.5
+          },
+          "own_only": {
+            "n": 1515,
+            "hits": 945,
+            "hr": 62.4
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 1415,
+            "hits": 883,
+            "hr": 62.4
+          },
+          "both": {
+            "n": 264,
+            "hits": 182,
+            "hr": 68.9
+          },
+          "opp_only": {
+            "n": 317,
+            "hits": 196,
+            "hr": 61.8
+          },
+          "neither": {
+            "n": 504,
+            "hits": 301,
+            "hr": 59.7
+          },
+          "own_only": {
+            "n": 330,
+            "hits": 204,
+            "hr": 61.8
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 1106,
+            "hits": 713,
+            "hr": 64.5
+          },
+          "opp_only": {
+            "n": 243,
+            "hits": 155,
+            "hr": 63.8
+          },
+          "both": {
+            "n": 208,
+            "hits": 134,
+            "hr": 64.4
+          },
+          "neither": {
+            "n": 316,
+            "hits": 195,
+            "hr": 61.7
+          },
+          "own_only": {
+            "n": 339,
+            "hits": 229,
+            "hr": 67.6
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 359,
+            "hits": 218,
+            "hr": 60.7
+          },
+          "opp_only": {
+            "n": 107,
+            "hits": 70,
+            "hr": 65.4
+          },
+          "both": {
+            "n": 56,
+            "hits": 34,
+            "hr": 60.7
+          },
+          "neither": {
+            "n": 114,
+            "hits": 62,
+            "hr": 54.4
+          },
+          "own_only": {
+            "n": 82,
+            "hits": 52,
+            "hr": 63.4
+          }
+        }
+      }
+    },
+    {
+      "prop": "total_bases",
+      "display": "Total Bases",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 29228,
+            "hits": 17368,
+            "hr": 59.4
+          },
+          "own_only": {
+            "n": 6911,
+            "hits": 4161,
+            "hr": 60.2
+          },
+          "both": {
+            "n": 4858,
+            "hits": 2988,
+            "hr": 61.5
+          },
+          "opp_only": {
+            "n": 7247,
+            "hits": 4323,
+            "hr": 59.7
+          },
+          "neither": {
+            "n": 10212,
+            "hits": 5896,
+            "hr": 57.7
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 2582,
+            "hits": 1620,
+            "hr": 62.7
+          },
+          "own_only": {
+            "n": 755,
+            "hits": 486,
+            "hr": 64.4
+          },
+          "both": {
+            "n": 518,
+            "hits": 323,
+            "hr": 62.4
+          },
+          "opp_only": {
+            "n": 544,
+            "hits": 357,
+            "hr": 65.6
+          },
+          "neither": {
+            "n": 765,
+            "hits": 454,
+            "hr": 59.3
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 5672,
+            "hits": 3549,
+            "hr": 62.6
+          },
+          "both": {
+            "n": 1047,
+            "hits": 684,
+            "hr": 65.3
+          },
+          "opp_only": {
+            "n": 1332,
+            "hits": 829,
+            "hr": 62.2
+          },
+          "neither": {
+            "n": 1818,
+            "hits": 1125,
+            "hr": 61.9
+          },
+          "own_only": {
+            "n": 1475,
+            "hits": 911,
+            "hr": 61.8
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 1379,
+            "hits": 863,
+            "hr": 62.6
+          },
+          "both": {
+            "n": 265,
+            "hits": 183,
+            "hr": 69.1
+          },
+          "opp_only": {
+            "n": 307,
+            "hits": 189,
+            "hr": 61.6
+          },
+          "own_only": {
+            "n": 311,
+            "hits": 193,
+            "hr": 62.1
+          },
+          "neither": {
+            "n": 496,
+            "hits": 298,
+            "hr": 60.1
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 1082,
+            "hits": 692,
+            "hr": 64.0
+          },
+          "opp_only": {
+            "n": 240,
+            "hits": 152,
+            "hr": 63.3
+          },
+          "both": {
+            "n": 209,
+            "hits": 135,
+            "hr": 64.6
+          },
+          "neither": {
+            "n": 314,
+            "hits": 193,
+            "hr": 61.5
+          },
+          "own_only": {
+            "n": 319,
+            "hits": 212,
+            "hr": 66.5
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 356,
+            "hits": 215,
+            "hr": 60.4
+          },
+          "opp_only": {
+            "n": 106,
+            "hits": 69,
+            "hr": 65.1
+          },
+          "both": {
+            "n": 58,
+            "hits": 35,
+            "hr": 60.3
+          },
+          "neither": {
+            "n": 112,
+            "hits": 60,
+            "hr": 53.6
+          },
+          "own_only": {
+            "n": 80,
+            "hits": 51,
+            "hr": 63.8
+          }
+        }
+      }
+    },
+    {
+      "prop": "runs",
+      "display": "Runs",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 1045,
+            "hits": 552,
+            "hr": 52.8
+          },
+          "both": {
+            "n": 399,
+            "hits": 218,
+            "hr": 54.6
+          },
+          "opp_only": {
+            "n": 275,
+            "hits": 141,
+            "hr": 51.3
+          },
+          "own_only": {
+            "n": 241,
+            "hits": 120,
+            "hr": 49.8
+          },
+          "neither": {
+            "n": 130,
+            "hits": 73,
+            "hr": 56.2
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 27,
+            "hits": 14,
+            "hr": 51.9
+          },
+          "both": {
+            "n": 13,
+            "hits": 7,
+            "hr": 53.8
+          },
+          "own_only": {
+            "n": 14,
+            "hits": 7,
+            "hr": 50.0
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 142,
+            "hits": 78,
+            "hr": 54.9
+          },
+          "both": {
+            "n": 31,
+            "hits": 12,
+            "hr": 38.7
+          },
+          "opp_only": {
+            "n": 43,
+            "hits": 24,
+            "hr": 55.8
+          },
+          "own_only": {
+            "n": 35,
+            "hits": 20,
+            "hr": 57.1
+          },
+          "neither": {
+            "n": 33,
+            "hits": 22,
+            "hr": 66.7
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 11,
+            "hits": 6,
+            "hr": 54.5
+          },
+          "both": {
+            "n": 6,
+            "hits": 3,
+            "hr": 50.0
+          },
+          "own_only": {
+            "n": 5,
+            "hits": 3,
+            "hr": 60.0
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 32,
+            "hits": 21,
+            "hr": 65.6
+          },
+          "both": {
+            "n": 6,
+            "hits": 3,
+            "hr": 50.0
+          },
+          "own_only": {
+            "n": 5,
+            "hits": 3,
+            "hr": 60.0
+          },
+          "neither": {
+            "n": 12,
+            "hits": 9,
+            "hr": 75.0
+          },
+          "opp_only": {
+            "n": 9,
+            "hits": 6,
+            "hr": 66.7
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 11,
+            "hits": 6,
+            "hr": 54.5
+          },
+          "both": {
+            "n": 6,
+            "hits": 3,
+            "hr": 50.0
+          },
+          "own_only": {
+            "n": 5,
+            "hits": 3,
+            "hr": 60.0
+          }
+        }
+      }
+    },
+    {
+      "prop": "singles",
+      "display": "Singles",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 2688,
+            "hits": 1449,
+            "hr": 53.9
+          },
+          "own_only": {
+            "n": 662,
+            "hits": 369,
+            "hr": 55.7
+          },
+          "both": {
+            "n": 686,
+            "hits": 370,
+            "hr": 53.9
+          },
+          "opp_only": {
+            "n": 690,
+            "hits": 349,
+            "hr": 50.6
+          },
+          "neither": {
+            "n": 650,
+            "hits": 361,
+            "hr": 55.5
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 169,
+            "hits": 103,
+            "hr": 60.9
+          },
+          "own_only": {
+            "n": 57,
+            "hits": 35,
+            "hr": 61.4
+          },
+          "neither": {
+            "n": 52,
+            "hits": 36,
+            "hr": 69.2
+          },
+          "both": {
+            "n": 18,
+            "hits": 11,
+            "hr": 61.1
+          },
+          "opp_only": {
+            "n": 42,
+            "hits": 21,
+            "hr": 50.0
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 281,
+            "hits": 139,
+            "hr": 49.5
+          },
+          "both": {
+            "n": 58,
+            "hits": 22,
+            "hr": 37.9
+          },
+          "opp_only": {
+            "n": 80,
+            "hits": 37,
+            "hr": 46.2
+          },
+          "neither": {
+            "n": 59,
+            "hits": 41,
+            "hr": 69.5
+          },
+          "own_only": {
+            "n": 84,
+            "hits": 39,
+            "hr": 46.4
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 78,
+            "hits": 45,
+            "hr": 57.7
+          },
+          "both": {
+            "n": 12,
+            "hits": 5,
+            "hr": 41.7
+          },
+          "opp_only": {
+            "n": 23,
+            "hits": 12,
+            "hr": 52.2
+          },
+          "neither": {
+            "n": 25,
+            "hits": 18,
+            "hr": 72.0
+          },
+          "own_only": {
+            "n": 18,
+            "hits": 10,
+            "hr": 55.6
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 63,
+            "hits": 38,
+            "hr": 60.3
+          },
+          "opp_only": {
+            "n": 26,
+            "hits": 14,
+            "hr": 53.8
+          },
+          "neither": {
+            "n": 15,
+            "hits": 12,
+            "hr": 80.0
+          },
+          "both": {
+            "n": 5,
+            "hits": 3,
+            "hr": 60.0
+          },
+          "own_only": {
+            "n": 17,
+            "hits": 9,
+            "hr": 52.9
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 29,
+            "hits": 19,
+            "hr": 65.5
+          },
+          "opp_only": {
+            "n": 12,
+            "hits": 7,
+            "hr": 58.3
+          },
+          "neither": {
+            "n": 10,
+            "hits": 8,
+            "hr": 80.0
+          },
+          "both": {
+            "n": 2,
+            "hits": 1,
+            "hr": 50.0
+          },
+          "own_only": {
+            "n": 5,
+            "hits": 3,
+            "hr": 60.0
+          }
+        }
+      }
+    },
+    {
+      "prop": "walks",
+      "display": "Walks (batter)",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 262,
+            "hits": 131,
+            "hr": 50.0
+          },
+          "own_only": {
+            "n": 44,
+            "hits": 21,
+            "hr": 47.7
+          },
+          "both": {
+            "n": 57,
+            "hits": 29,
+            "hr": 50.9
+          },
+          "neither": {
+            "n": 86,
+            "hits": 43,
+            "hr": 50.0
+          },
+          "opp_only": {
+            "n": 75,
+            "hits": 38,
+            "hr": 50.7
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 13,
+            "hits": 5,
+            "hr": 38.5
+          },
+          "own_only": {
+            "n": 5,
+            "hits": 2,
+            "hr": 40.0
+          },
+          "opp_only": {
+            "n": 2,
+            "hits": 2,
+            "hr": 100.0
+          },
+          "neither": {
+            "n": 3,
+            "hits": 1,
+            "hr": 33.3
+          },
+          "both": {
+            "n": 3,
+            "hits": 0,
+            "hr": 0.0
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 4,
+            "hits": 3,
+            "hr": 75.0
+          },
+          "opp_only": {
+            "n": 2,
+            "hits": 2,
+            "hr": 100.0
+          },
+          "neither": {
+            "n": 2,
+            "hits": 1,
+            "hr": 50.0
+          }
+        }
+      }
+    },
+    {
+      "prop": "plate_appearances",
+      "display": "Plate Appearances",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 1600,
+            "hits": 807,
+            "hr": 50.4
+          },
+          "both": {
+            "n": 331,
+            "hits": 174,
+            "hr": 52.6
+          },
+          "neither": {
+            "n": 462,
+            "hits": 213,
+            "hr": 46.1
+          },
+          "own_only": {
+            "n": 364,
+            "hits": 190,
+            "hr": 52.2
+          },
+          "opp_only": {
+            "n": 443,
+            "hits": 230,
+            "hr": 51.9
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 41,
+            "hits": 22,
+            "hr": 53.7
+          },
+          "both": {
+            "n": 10,
+            "hits": 7,
+            "hr": 70.0
+          },
+          "own_only": {
+            "n": 15,
+            "hits": 8,
+            "hr": 53.3
+          },
+          "neither": {
+            "n": 10,
+            "hits": 3,
+            "hr": 30.0
+          },
+          "opp_only": {
+            "n": 6,
+            "hits": 4,
+            "hr": 66.7
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 47,
+            "hits": 23,
+            "hr": 48.9
+          },
+          "neither": {
+            "n": 14,
+            "hits": 4,
+            "hr": 28.6
+          },
+          "own_only": {
+            "n": 20,
+            "hits": 10,
+            "hr": 50.0
+          },
+          "opp_only": {
+            "n": 6,
+            "hits": 4,
+            "hr": 66.7
+          },
+          "both": {
+            "n": 7,
+            "hits": 5,
+            "hr": 71.4
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 5,
+            "hits": 2,
+            "hr": 40.0
+          },
+          "neither": {
+            "n": 3,
+            "hits": 1,
+            "hr": 33.3
+          },
+          "opp_only": {
+            "n": 1,
+            "hits": 1,
+            "hr": 100.0
+          },
+          "own_only": {
+            "n": 1,
+            "hits": 0,
+            "hr": 0.0
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 10,
+            "hits": 5,
+            "hr": 50.0
+          },
+          "own_only": {
+            "n": 5,
+            "hits": 3,
+            "hr": 60.0
+          },
+          "both": {
+            "n": 2,
+            "hits": 1,
+            "hr": 50.0
+          },
+          "neither": {
+            "n": 3,
+            "hits": 1,
+            "hr": 33.3
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 2,
+            "hits": 1,
+            "hr": 50.0
+          },
+          "neither": {
+            "n": 2,
+            "hits": 1,
+            "hr": 50.0
+          }
+        }
+      }
+    },
+    {
+      "prop": "rbis",
+      "display": "RBIs",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 4,
+            "hits": 2,
+            "hr": 50.0
+          },
+          "both": {
+            "n": 4,
+            "hits": 2,
+            "hr": 50.0
+          }
+        }
+      }
+    },
+    {
+      "prop": "first_inning_walks",
+      "display": "1st Inning Walks Allowed",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 15,
+            "hits": 10,
+            "hr": 66.7
+          },
+          "neither": {
+            "n": 15,
+            "hits": 10,
+            "hr": 66.7
+          }
+        }
+      }
+    },
+    {
+      "prop": "hitterfantasyscore",
+      "display": "hitterfantasyscore",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 3041,
+            "hits": 2026,
+            "hr": 66.6
+          },
+          "both": {
+            "n": 603,
+            "hits": 428,
+            "hr": 71.0
+          },
+          "own_only": {
+            "n": 621,
+            "hits": 412,
+            "hr": 66.3
+          },
+          "opp_only": {
+            "n": 604,
+            "hits": 408,
+            "hr": 67.5
+          },
+          "neither": {
+            "n": 1213,
+            "hits": 778,
+            "hr": 64.1
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 604,
+            "hits": 407,
+            "hr": 67.4
+          },
+          "both": {
+            "n": 139,
+            "hits": 91,
+            "hr": 65.5
+          },
+          "own_only": {
+            "n": 146,
+            "hits": 106,
+            "hr": 72.6
+          },
+          "opp_only": {
+            "n": 118,
+            "hits": 80,
+            "hr": 67.8
+          },
+          "neither": {
+            "n": 201,
+            "hits": 130,
+            "hr": 64.7
+          }
+        }
+      }
+    },
+    {
+      "prop": "pitcherfantasyscore",
+      "display": "pitcherfantasyscore",
+      "gates": {
+        "all": {
+          "all": {
+            "n": 817,
+            "hits": 552,
+            "hr": 67.6
+          },
+          "own_only": {
+            "n": 181,
+            "hits": 116,
+            "hr": 64.1
+          },
+          "neither": {
+            "n": 315,
+            "hits": 219,
+            "hr": 69.5
+          },
+          "both": {
+            "n": 156,
+            "hits": 111,
+            "hr": 71.2
+          },
+          "opp_only": {
+            "n": 165,
+            "hits": 106,
+            "hr": 64.2
+          }
+        },
+        "l10ge8": {
+          "all": {
+            "n": 76,
+            "hits": 51,
+            "hr": 67.1
+          },
+          "both": {
+            "n": 20,
+            "hits": 14,
+            "hr": 70.0
+          },
+          "own_only": {
+            "n": 20,
+            "hits": 13,
+            "hr": 65.0
+          },
+          "neither": {
+            "n": 28,
+            "hits": 20,
+            "hr": 71.4
+          },
+          "opp_only": {
+            "n": 8,
+            "hits": 4,
+            "hr": 50.0
+          }
+        },
+        "l5ge4": {
+          "all": {
+            "n": 145,
+            "hits": 99,
+            "hr": 68.3
+          },
+          "opp_only": {
+            "n": 30,
+            "hits": 23,
+            "hr": 76.7
+          },
+          "both": {
+            "n": 26,
+            "hits": 18,
+            "hr": 69.2
+          },
+          "neither": {
+            "n": 45,
+            "hits": 30,
+            "hr": 66.7
+          },
+          "own_only": {
+            "n": 44,
+            "hits": 28,
+            "hr": 63.6
+          }
+        },
+        "l5eq5": {
+          "all": {
+            "n": 55,
+            "hits": 40,
+            "hr": 72.7
+          },
+          "neither": {
+            "n": 21,
+            "hits": 16,
+            "hr": 76.2
+          },
+          "opp_only": {
+            "n": 14,
+            "hits": 11,
+            "hr": 78.6
+          },
+          "own_only": {
+            "n": 13,
+            "hits": 7,
+            "hr": 53.8
+          },
+          "both": {
+            "n": 7,
+            "hits": 6,
+            "hr": 85.7
+          }
+        },
+        "l5ge4_l10ge8": {
+          "all": {
+            "n": 15,
+            "hits": 11,
+            "hr": 73.3
+          },
+          "own_only": {
+            "n": 6,
+            "hits": 3,
+            "hr": 50.0
+          },
+          "neither": {
+            "n": 7,
+            "hits": 6,
+            "hr": 85.7
+          },
+          "both": {
+            "n": 2,
+            "hits": 2,
+            "hr": 100.0
+          }
+        },
+        "l5eq5_l10ge8": {
+          "all": {
+            "n": 9,
+            "hits": 7,
+            "hr": 77.8
+          },
+          "own_only": {
+            "n": 3,
+            "hits": 2,
+            "hr": 66.7
+          },
+          "neither": {
+            "n": 5,
+            "hits": 4,
+            "hr": 80.0
+          },
+          "both": {
+            "n": 1,
+            "hits": 1,
+            "hr": 100.0
+          }
+        }
+      }
+    }
+  ]
+}

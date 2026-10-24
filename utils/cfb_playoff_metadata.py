@@ -12,7 +12,8 @@ from __future__ import annotations
 
 from typing import Optional, Tuple
 
-# PrizePicks / slate abbr → canonical key in CFB_CFP_2026
+# PrizePicks / ESPN / rankings abbr → one canonical key.
+# Rankings CSV still stores ESPN abbr (IU, TA&M, SC, CCU). Lookup indexes every alias.
 CFB_TEAM_ALIASES: dict[str, str] = {
     "IU": "IND",
     "INDIANA": "IND",
@@ -47,6 +48,42 @@ CFB_TEAM_ALIASES: dict[str, str] = {
     "TULANE": "TUL",
     "JMU": "JMU",
     "JAMES MADISON": "JMU",
+    "SCAR": "SC",
+    "SOCAR": "SC",
+    "S CAR": "SC",
+    "SOUTH CAROLINA": "SC",
+    "NCST": "NCSU",
+    "NC STATE": "NCSU",
+    "CCAR": "CCU",
+    "COASTAL": "CCU",
+    "COASTAL CAROLINA": "CCU",
+    "ULM": "ULM",
+    "UL-MONROE": "ULM",
+    "UL MONROE": "ULM",
+    "ULL": "UL",
+    "ULLA": "UL",
+    "LA-LAF": "UL",
+    "LOUISIANA": "UL",
+    "APPST": "APP",
+    "APP STATE": "APP",
+    "ARST": "ARST",
+    "ARK ST": "ARST",
+    "GASO": "GASO",
+    "GA SOUTHERN": "GASO",
+    "GAST": "GAST",
+    "GA STATE": "GAST",
+    "MRSH": "MRSH",
+    "MARSHALL": "MRSH",
+    "ODU": "ODU",
+    "OLD DOMINION": "ODU",
+    "USA": "USA",
+    "SOUTH ALABAMA": "USA",
+    "USM": "USM",
+    "SOUTHERN MISS": "USM",
+    "TXST": "TXST",
+    "TEXAS ST": "TXST",
+    "TROY": "TROY",
+    "GTECH": "GT",
 }
 
 # 2025–26 College Football Playoff (12-team field; Jan 2026 championship)
@@ -98,6 +135,21 @@ def norm_cfb_team_abbr(team: object) -> str:
         return ""
     raw = raw.split("/")[0].strip()
     return CFB_TEAM_ALIASES.get(raw, raw)
+
+
+def cfb_abbr_lookup_keys(team: object) -> set[str]:
+    """All keys that should hit the same rankings row as ``team``."""
+    raw = str(team or "").strip().upper()
+    if not raw:
+        return set()
+    canon = norm_cfb_team_abbr(raw)
+    keys = {raw, canon}
+    for alias, dest in CFB_TEAM_ALIASES.items():
+        if dest == canon or dest == raw or alias == raw or alias == canon:
+            keys.add(alias)
+            keys.add(norm_cfb_team_abbr(alias))
+            keys.add(dest)
+    return {k for k in keys if k}
 
 
 def cfb_playoff_info(team: object) -> Tuple[int | str, str]:

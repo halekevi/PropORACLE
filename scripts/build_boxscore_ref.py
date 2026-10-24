@@ -72,6 +72,12 @@ HEADERS = {
     "Referer": "https://www.espn.com/",
 }
 
+# Chrome UA 403s ESPN soccer site.api for some leagues (ksa.1). Simple UA works.
+SOC_ESPN_HEADERS = {
+    "User-Agent": "PropOracle/1.0 (+https://github.com/proporacle)",
+    "Accept": "application/json",
+}
+
 # requests.Session is not documented as thread-safe; use one session per worker thread.
 _thread_local = threading.local()
 
@@ -127,9 +133,13 @@ SOC_SUMMARY     = "https://site.api.espn.com/apis/site/v2/sports/soccer/{league}
 # fifa.world = World Cup finals/knockouts — required for June–July L5 history.
 SOCCER_LEAGUES = [
     ("eng.1",          "EPL"),
+    ("eng.2",          "Championship"),
+    ("eng.league_cup", "EFL Cup"),
     ("esp.1",          "La Liga"),
     ("ger.1",          "Bundesliga"),
     ("ita.1",          "Serie A"),
+    ("ita.2",          "Serie B"),
+    ("ita.coppa_italia", "Coppa Italia"),
     ("fra.1",          "Ligue 1"),
     ("usa.1",          "MLS"),
     ("usa.nwsl",       "NWSL"),
@@ -144,7 +154,26 @@ SOCCER_LEAGUES = [
     ("arg.1",          "Argentina"),
     ("bra.1",          "Brasileirao"),
     ("mex.1",          "Liga MX"),
+    ("ksa.1",          "Saudi Pro League"),
+    ("col.1",          "Colombia"),
+    ("ecu.1",          "Ecuador"),
 ]
+
+# Optional subset of SOCCER_LEAGUES slugs (set from --soccer-leagues).
+SOCCER_LEAGUE_FILTER: list[str] | None = None
+
+
+def _soccer_leagues_for_fetch() -> list[tuple[str, str]]:
+    wanted = [str(s).strip() for s in (SOCCER_LEAGUE_FILTER or []) if str(s).strip()]
+    if not wanted:
+        return list(SOCCER_LEAGUES)
+    wanted_set = set(wanted)
+    out = [pair for pair in SOCCER_LEAGUES if pair[0] in wanted_set]
+    have = {p[0] for p in out}
+    for slug in wanted:
+        if slug not in have:
+            out.append((slug, slug))
+    return out
 
 # CBB conference group IDs (same as fetch_actuals.py)
 CBB_CONF_GROUPS = [
@@ -226,6 +255,7 @@ CREATE TABLE IF NOT EXISTS soccer (
     minutes_played  REAL,
     clearances      REAL,
     dribble_attempts REAL,
+    crosses         REAL,
     PRIMARY KEY (event_id, player, team)
 );
 """
@@ -491,10 +521,10 @@ def _str_or_none(v):
 
 
 # ── HTTP helpers ───────────────────────────────────────────────────────────────
-def _get(url: str, retries: int = 3) -> Optional[dict]:
+def _get(url: str, retries: int = 3, extra_headers: Optional[dict] = None) -> Optional[dict]:
     for attempt in range(1, retries + 1):
         try:
-            r = _http_session().get(url, timeout=20)
+            r = _http_session().get(url, timeout=20, headers=extra_headers)
             if r.status_code in (429, 403):
                 wait = 20 * attempt
                 print(f"    ⚠️  {r.status_code} — sleeping {wait}s then retry ({attempt}/{retries})")
@@ -1176,8 +1206,8 @@ def fetch_soccer(date_str: str, con: sqlite3.Connection) -> int:
     date_espn = date_str.replace("-", "")
     seen = set()
     all_rows = []
-    for league_id, league_name in SOCCER_LEAGUES:
-        data = _get(SOC_SCOREBOARD.format(league=league_id, date=date_espn))
+    for league_id, league_name in _soccer_leagues_for_fetch():
+        data = _get(SOC_SCOREBOARD.format(league=league_id, date=date_espn), extra_headers=SOC_ESPN_HEADERS)
         if not data:
             continue
         events = data.get("events", [])
@@ -1195,7 +1225,7 @@ def fetch_soccer(date_str: str, con: sqlite3.Connection) -> int:
 
         def _soc_one(item: tuple[str, str, str, str]) -> list[dict]:
             eid, home, away, lid = item
-            box = _get(SOC_SUMMARY.format(league=lid, event_id=eid))
+            box = _get(SOC_SUMMARY.format(league=lid, event_id=eid), extra_headers=SOC_ESPN_HEADERS)
             if not box:
                 return []
             rows = _parse_soccer_boxscore(box, eid, date_str, home, away, lid)
@@ -1219,6 +1249,55 @@ def fetch_soccer(date_str: str, con: sqlite3.Connection) -> int:
 
     print(f"  Soccer total: {len(seen)} games, {len(all_rows)} rows")
     return _upsert(con, "soccer", all_rows)
+
+
+def backfill_recent_soccer(
+    con: sqlite3.Connection,
+    *,
+    days: int = 16,
+    end_date: str = "",
+    leagues: Optional[list[str]] = None,
+) -> int:
+    """Fetch ESPN boxscores for recent PP leagues missing from the soccer table.
+
+    Championship L5 was 1 cup game because weekday Championship dates were never
+    crawled. Step4 calls this so Last 5 can match PrizePicks without a sofa id.
+    """
+    global SOCCER_LEAGUE_FILTER
+    slugs = [
+        str(s).strip()
+        for s in (
+            leagues
+            or [
+                "eng.1",
+                "eng.2",
+                "eng.league_cup",
+                "esp.1",
+                "fra.1",
+                "ger.1",
+                "ita.1",
+                "usa.1",
+                "bra.1",
+                "mex.1",
+                # PrizePicks Saudi boards (Pacheco / Summerville card windows).
+                "ksa.1",
+            ]
+        )
+        if str(s).strip()
+    ]
+    end = date.fromisoformat(end_date) if end_date else date.today()
+    orig = SOCCER_LEAGUE_FILTER
+    total = 0
+    try:
+        SOCCER_LEAGUE_FILTER = slugs
+        for i in range(int(days)):
+            d = (end - timedelta(days=i)).strftime("%Y-%m-%d")
+            print(f"[soccer-backfill] {d}")
+            total += fetch_soccer(d, con)
+    finally:
+        SOCCER_LEAGUE_FILTER = orig
+    print(f"[soccer-backfill] upserted {total} rows")
+    return total
 
 
 # ── Upsert ────────────────────────────────────────────────────────────────────
@@ -1336,6 +1415,12 @@ def main():
                     help="Backfill mode: fetch --days days ending at --date")
     ap.add_argument("--days",     type=int, default=30,
                     help="Days to backfill (default: 30)")
+    ap.add_argument(
+        "--soccer-leagues",
+        nargs="+",
+        default=[],
+        help="Limit soccer fetch to these ESPN slugs (e.g. ksa.1 col.1). Default: all SOCCER_LEAGUES.",
+    )
     ap.add_argument("--summary",  action="store_true",
                     help="Print DB summary and exit")
     ap.add_argument("--seed-ids", default="",
@@ -1391,6 +1476,11 @@ def main():
 
     if not args.date:
         args.date = (date.today() - timedelta(days=1)).strftime("%Y-%m-%d")
+
+    global SOCCER_LEAGUE_FILTER
+    SOCCER_LEAGUE_FILTER = list(args.soccer_leagues or []) or None
+    if SOCCER_LEAGUE_FILTER:
+        print(f"  Soccer league filter: {', '.join(SOCCER_LEAGUE_FILTER)}")
 
     if args.backfill:
         end_date   = date.fromisoformat(args.date)

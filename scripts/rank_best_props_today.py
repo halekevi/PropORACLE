@@ -740,6 +740,7 @@ def filter_step8_to_slate_date(df: pd.DataFrame, date: str, sport: str = "") -> 
 
     Tennis keeps today + 2 ET days so Saturday ranking still includes
     Monday slam first-round matches (US Open Total Games, etc.).
+    MLB keeps today + 1 (postseason / day-ahead boards often tip tomorrow).
     """
     if df is None or getattr(df, "empty", True):
         return df
@@ -749,22 +750,33 @@ def filter_step8_to_slate_date(df: pd.DataFrame, date: str, sport: str = "") -> 
         if st.notna().any():
             et = st.dt.tz_convert("America/New_York").dt.strftime("%Y-%m-%d")
             return df.loc[et.isin(keep)].copy()
-    if "game_date" in df.columns and str(sport).upper() != "TENNIS":
-        gd = df["game_date"].astype(str).str[:10]
-        return df.loc[gd.eq(date) | gd.eq("") | gd.eq("nan")].copy()
+    for col in ("game_date", "Game Date"):
+        if col not in df.columns:
+            continue
+        gd = df[col].astype(str).str[:10]
+        blank = gd.eq("") | gd.eq("nan") | gd.eq("None")
+        # Period / NBA leftovers often have a blank Game Date with a May
+        # matchup still in Team/Opp. Blank is not "today".
+        sport_u = str(sport or "").upper()
+        if sport_u in {"NBA", "NBA1Q", "NBA1H", "CBB", "WCBB", "WNBA", "WNBA1H", "WNBA1Q"}:
+            return df.loc[gd.isin(keep)].copy()
+        return df.loc[gd.isin(keep) | blank].copy()
     return df
 
 
 def _slate_keep_dates(date: str, sport: str = "") -> set[str]:
     day = str(date or "")[:10]
     keep = {day} if day else set()
-    if str(sport or "").upper() != "TENNIS":
-        return keep
+    sport_u = str(sport or "").upper()
     try:
         d0 = datetime.strptime(day, "%Y-%m-%d").date()
     except ValueError:
         return keep
-    return {(d0 + timedelta(days=i)).isoformat() for i in range(3)}
+    if sport_u == "TENNIS":
+        return {(d0 + timedelta(days=i)).isoformat() for i in range(3)}
+    if sport_u == "MLB":
+        keep.add((d0 + timedelta(days=1)).isoformat())
+    return keep
 
 
 def step8_empty_reason(
@@ -784,6 +796,11 @@ def step8_empty_reason(
     }.get(folder)
     if table_exists(step8_path):
         return f"  (step8 present but 0 rows in list window for {date})"
+    # MLB often lands as root xlsx without the folder CSV the SPORTS tuple names.
+    if folder == "mlb":
+        mlb_xlsx = root / "outputs" / date / f"step8_mlb_direction_clean_{date}.xlsx"
+        if table_exists(mlb_xlsx):
+            return f"  (step8 xlsx present but 0 rows in list window for {date})"
     if step1_name:
         step1_path = root / "outputs" / date / folder / step1_name
         if step1_path.is_file():
@@ -793,6 +810,8 @@ def step8_empty_reason(
                     f"  WARN: {sport} step8 missing — board exists ({n} rows) "
                     "but L5 not attached"
                 )
+            if n == 0:
+                return f"  (step1 empty — no_slate for {date})"
     return "  (no step8 file)"
 
 
@@ -807,6 +826,8 @@ def _step1_row_count(path: Path) -> int:
 
 
 def load_sport(root: Path, date: str, sport: str, folder: str, fname: str) -> pd.DataFrame:
+    if sport == "MLB":
+        return load_mlb(root, date)
     path = root / "outputs" / date / folder / fname
     if not table_exists(path):
         return pd.DataFrame()
@@ -815,6 +836,24 @@ def load_sport(root: Path, date: str, sport: str, folder: str, fname: str) -> pd
     if sport == "TENNIS":
         df = fill_tennis_opp_rank_from_slate(df)
     return filter_step8_to_slate_date(df, date, sport)
+
+
+def load_mlb(root: Path, date: str) -> pd.DataFrame:
+    """MLB step8: prefer dated folder CSV, then clean xlsx (root or Sports)."""
+    candidates = [
+        root / "outputs" / date / "mlb" / "step8_mlb_direction.csv",
+        root / "outputs" / date / "mlb" / "step8_mlb_direction_clean.xlsx",
+        root / "outputs" / date / "mlb" / f"step8_mlb_direction_clean_{date}.xlsx",
+        root / "outputs" / date / f"step8_mlb_direction_clean_{date}.xlsx",
+        root / "Sports" / "MLB" / "outputs" / "step8_mlb_direction_clean.xlsx",
+        root / "Sports" / "MLB" / "step8_mlb_direction_clean.xlsx",
+    ]
+    path = next((p for p in candidates if table_exists(p)), None)
+    if path is None:
+        return pd.DataFrame()
+    df = read_table(path, sheet_order=("ALL",))
+    df["sport"] = "MLB"
+    return filter_step8_to_slate_date(df, date, "MLB")
 
 
 def _attach_nfl_box_logs(df: pd.DataFrame, root: Path) -> pd.DataFrame:
@@ -914,22 +953,36 @@ def load_nhl(root: Path, date: str) -> pd.DataFrame:
         return pd.DataFrame()
     df = read_table(path)
     df["sport"] = "NHL"
-    return df
+    return filter_step8_to_slate_date(df, date, "NHL")
+
+
+def _prior_slate_date(date: str) -> str:
+    try:
+        return (datetime.strptime(str(date)[:10], "%Y-%m-%d").date() - timedelta(days=1)).isoformat()
+    except ValueError:
+        return ""
 
 
 def load_cfb(root: Path, date: str) -> pd.DataFrame:
-    """CFB Week 1+ step8 workbook (122-team FBS D table)."""
+    """CFB Week 1+ step8 workbook (122-team FBS D table).
+
+    Thursday tips often live on the Wednesday dated board when today's
+    ``outputs/<date>/cfb`` folder was marked no_slate — also try date-1.
+    """
+    prior = _prior_slate_date(date)
     candidates = [
         root / "outputs" / date / "cfb" / "step8_cfb_direction_clean.xlsx",
         root / "outputs" / date / "cfb" / f"step8_cfb_direction_clean_{date}.xlsx",
+        root / "outputs" / prior / "cfb" / "step8_cfb_direction_clean.xlsx" if prior else None,
+        root / "outputs" / prior / "cfb" / f"step8_cfb_direction_clean_{prior}.xlsx" if prior else None,
         root / "Sports" / "CFB" / "outputs" / "step8_cfb_direction_clean.xlsx",
     ]
-    path = next((p for p in candidates if table_exists(p)), None)
+    path = next((p for p in candidates if p is not None and table_exists(p)), None)
     if path is None:
         return pd.DataFrame()
     df = read_table(path, sheet_order=("ALL",))
     df["sport"] = "CFB"
-    return df
+    return filter_step8_to_slate_date(df, date, "CFB")
 
 
 def load_cfb1h(root: Path, date: str) -> pd.DataFrame:
@@ -974,16 +1027,28 @@ def _cbb_season_active(date: str) -> bool:
 def _load_cbb_family(root: Path, date: str, sport: str, folder: str) -> pd.DataFrame:
     """CBB/WCBB step8 when present (combined still uses step6 until step8 is wired)."""
     key = folder.lower()
-    candidates = [
+    dated = [
         root / "outputs" / date / folder / f"step8_{key}_direction_clean.xlsx",
         root / "outputs" / date / folder / f"step8_{key}_direction_clean_{date}.xlsx",
-        root / "Sports" / "CBB" / "outputs" / f"step8_{key}_direction_clean.xlsx",
     ]
-    path = next((p for p in candidates if table_exists(p)), None)
+    leftover = root / "Sports" / "CBB" / "outputs" / f"step8_{key}_direction_clean.xlsx"
+    keep = _slate_keep_dates(date, sport)
+    path = next((p for p in dated if table_exists(p)), None)
+    if path is None and table_exists(leftover):
+        trial = read_table(leftover, sheet_order=("ALL",))
+        dates = _nba_game_dates(trial) if trial is not None else set()
+        if trial is None or trial.empty or not dates or not (dates & keep):
+            print(
+                f"  [WARN] {sport} skip stale leftover {leftover.name} "
+                f"game_dates={sorted(dates)[:3] if dates else 'none'} (want {sorted(keep)})"
+            )
+            return pd.DataFrame()
+        path = leftover
     if path is None:
         return pd.DataFrame()
     df = read_table(path, sheet_order=("ALL",))
     df["sport"] = sport
+    df = filter_step8_to_slate_date(df, date, sport)
     return df
 
 
@@ -1021,40 +1086,92 @@ def _load_folder_step8(
     folder: str,
     sports_rel: tuple[str, ...],
 ) -> pd.DataFrame:
-    """Period / NBA step8: outputs/<date>/<folder>/ then Sports/<rel>/ static copy."""
+    """Period step8: dated outputs/<date>/<folder>/ first.
+
+    Sports/<rel>/ static copies are leftovers (May NBA1Q Finals, May WNBA).
+    Use one only when its Game Date intersects the slate window.
+    """
     if _skip_inactive_slate(root, date, folder):
         return pd.DataFrame()
     stem = f"step8_{folder}_direction_clean"
-    candidates = [
+    dated = [
         root / "outputs" / date / folder / f"{stem}.xlsx",
         root / "outputs" / date / folder / f"{stem}_{date}.xlsx",
         root / "outputs" / date / f"{stem}_{date}.xlsx",
-        root.joinpath(*sports_rel) / f"{stem}.xlsx",
     ]
-    path = next((p for p in candidates if table_exists(p)), None)
+    leftover = root.joinpath(*sports_rel) / f"{stem}.xlsx"
+    keep = _slate_keep_dates(date, sport)
+    path = next((p for p in dated if table_exists(p)), None)
+    if path is None and table_exists(leftover):
+        trial = read_table(leftover, sheet_order=("ALL",))
+        dates = _nba_game_dates(trial) if trial is not None else set()
+        if trial is None or trial.empty or not dates or not (dates & keep):
+            print(
+                f"  [WARN] {sport} skip stale leftover {leftover.name} "
+                f"game_dates={sorted(dates)[:3] if dates else 'none'} (want {sorted(keep)})"
+            )
+            return pd.DataFrame()
+        path = leftover
     if path is None:
         return pd.DataFrame()
     df = read_table(path, sheet_order=("ALL",))
     df["sport"] = sport
+    df = filter_step8_to_slate_date(df, date, sport)
     return df
 
 
+def _nba_game_dates(df: pd.DataFrame) -> set[str]:
+    for col in ("game_date", "Game Date"):
+        if col in df.columns:
+            return {str(v)[:10] for v in df[col].dropna().tolist() if str(v)[:10] not in ("", "nan")}
+    return set()
+
+
 def load_nba(root: Path, date: str) -> pd.DataFrame:
-    df = _load_folder_step8(root, date, "NBA", "nba", ("Sports", "NBA"))
-    if df is None or df.empty:
-        # Fallback: full-game step8 is often named step8_all_direction_clean*
-        if _skip_inactive_slate(root, date, "nba"):
-            return pd.DataFrame()
-        candidates = [
-            root / "outputs" / date / "nba" / "step8_all_direction_clean.xlsx",
-            root / "outputs" / date / "nba" / "step8_all_direction.csv",
-            root / "outputs" / date / "step8_nba_direction_clean.xlsx",
-        ]
-        path = next((p for p in candidates if table_exists(p)), None)
-        if path is None:
-            return pd.DataFrame()
-        df = read_table(path, sheet_order=("ALL",))
-        df["sport"] = "NBA"
+    """Load NBA step8; reject stale Sports/May boards whose Game Date ≠ slate."""
+    if _skip_inactive_slate(root, date, "nba"):
+        return pd.DataFrame()
+    keep = _slate_keep_dates(date, "NBA")
+    candidates = [
+        root / "outputs" / date / "nba" / "step8_all_direction_clean.xlsx",
+        root / "outputs" / date / "nba" / "step8_nba_direction_clean.xlsx",
+        root / "outputs" / date / "nba" / f"step8_nba_direction_clean_{date}.xlsx",
+        root / "outputs" / date / "nba" / "step8_all_direction.csv",
+        root / "outputs" / date / f"step8_nba_direction_clean_{date}.xlsx",
+        root / "outputs" / date / "step8_nba_direction_clean.xlsx",
+        root / "Sports" / "NBA" / "data" / "outputs" / "step8_all_direction_clean.xlsx",
+        root / "Sports" / "NBA" / "step8_all_direction_clean.xlsx",
+        root / "Sports" / "NBA" / "step8_nba_direction_clean.xlsx",
+    ]
+    df = pd.DataFrame()
+    chosen: Path | None = None
+    for path in candidates:
+        if not table_exists(path):
+            continue
+        trial = read_table(path, sheet_order=("ALL",))
+        if trial is None or trial.empty:
+            continue
+        dates = _nba_game_dates(trial)
+        if dates and not (dates & keep):
+            print(
+                f"  [WARN] NBA skip stale board {path.name} "
+                f"game_dates={sorted(dates)[:3]} (want {sorted(keep)})"
+            )
+            continue
+        df = trial
+        chosen = path
+        break
+    if df.empty:
+        return pd.DataFrame()
+    df = df.copy()
+    df["sport"] = "NBA"
+    df = filter_step8_to_slate_date(df, date, "NBA")
+    if df.empty:
+        print(
+            f"  [WARN] NBA board {chosen.name if chosen else '?'} had no rows "
+            f"in slate window {sorted(keep)}"
+        )
+        return df
     try:
         from utils.roster_change import attach_roster_change_columns
 
@@ -1779,12 +1896,15 @@ def main() -> int:
         )
         by_sport["NHL"] = []
     else:
+        # Shots-log vs card mismatch is a known caution — still print the list.
         print(
-            "\n===== NHL =====\n"
-            "Held out. The shots log does not match the PrizePicks card, "
-            "so no NHL 5-of-5 enters a list or a pool until each row is re-checked."
+            "  [WARN] NHL: re-check SOG/Blocks lines vs PrizePicks card "
+            "(shots log historically drifted); L5 alignment not auto-verified."
         )
-        by_sport["NHL"] = []
+        all_rows.extend(recs(df_nhl))
+        so, su, gob = bucket(all_rows, "NHL")
+        print_sport("NHL", so, su, gob)
+        by_sport["NHL"] = sport_rows_for_xlsx("NHL", so, su, gob, all_rows)
     df_cfb = load_cfb(root, date)
     if df_cfb.empty:
         print(

@@ -1,0 +1,1934 @@
+{
+  "source_catalog": "H:\\PropORACLE\\data\\reports\\all_ranked_prop_hit_rates.json",
+  "catalog_window": {
+    "from": "2026-02-19",
+    "to": "2026-09-16"
+  },
+  "filters": [
+    "strict_dnp_zero_void (positive evidence only)",
+    "pick_type twin vs Goblin lines on same graded file",
+    "grading_suspect rows dropped",
+    "NBA1Q: drop when actual equals full-game box pts/reb/ast",
+    "NHL: leakage L5 recompute must be 5; TOI==0 void"
+  ],
+  "regrade": {
+    "NBA1Q|Goblin OVER|points|l5eq5": {
+      "sport": "NBA1Q",
+      "book": "Goblin OVER",
+      "prop": "points",
+      "gate": "l5eq5",
+      "catalog_before": {
+        "hits": 738,
+        "n": 872,
+        "hit_rate": 0.8463,
+        "wilson_low": 0.8209,
+        "wilson_high": 0.8687
+      },
+      "catalog_ungated": {
+        "hits": 2342,
+        "n": 3077,
+        "hit_rate": 0.7611,
+        "wilson_low": 0.7457,
+        "wilson_high": 0.7759
+      },
+      "raw_n": 4088,
+      "drop_reasons": {
+        "l5_not_5": 2205,
+        "already_void": 1011,
+        "nba1q_actual_equals_full_game": 17
+      },
+      "nba1q_fg_match": 17,
+      "nba1q_fg_mismatch": 512,
+      "nba1q_fg_unchecked": 343,
+      "nba1q_suspect_flag": 0,
+      "nba1q_actual_gt_fg": 0,
+      "samples_dropped": [
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Luguentz Dort",
+          "date": "2026-04-02",
+          "actual": 14.0,
+          "fg": 14.0,
+          "line": "1.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Sam Merrill",
+          "date": "2026-04-02",
+          "actual": 3.0,
+          "fg": 3.0,
+          "line": "1.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Tobias Harris",
+          "date": "2026-04-02",
+          "actual": 2.0,
+          "fg": 2.0,
+          "line": "2.5",
+          "hit_was": 0
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Max Strus",
+          "date": "2026-04-05",
+          "actual": 4.0,
+          "fg": 4.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Max Strus",
+          "date": "2026-04-05",
+          "actual": 4.0,
+          "fg": 4.0,
+          "line": "1.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Max Strus",
+          "date": "2026-04-05",
+          "actual": 4.0,
+          "fg": 4.0,
+          "line": "2.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Herbert Jones",
+          "date": "2026-04-05",
+          "actual": 5.0,
+          "fg": 5.0,
+          "line": "1.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Donte DiVincenzo",
+          "date": "2026-04-05",
+          "actual": 6.0,
+          "fg": 6.0,
+          "line": "2.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Davion Mitchell",
+          "date": "2026-04-07",
+          "actual": 9.0,
+          "fg": 9.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Davion Mitchell",
+          "date": "2026-04-07",
+          "actual": 9.0,
+          "fg": 9.0,
+          "line": "1.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Mark Williams",
+          "date": "2026-04-14",
+          "actual": 4.0,
+          "fg": 4.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Mark Williams",
+          "date": "2026-04-14",
+          "actual": 4.0,
+          "fg": 4.0,
+          "line": "1.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Bam Adebayo",
+          "date": "2026-04-14",
+          "actual": 6.0,
+          "fg": 6.0,
+          "line": "2.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Bam Adebayo",
+          "date": "2026-04-14",
+          "actual": 6.0,
+          "fg": 6.0,
+          "line": "3.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Adem Bona",
+          "date": "2026-04-15",
+          "actual": 2.0,
+          "fg": 2.0,
+          "line": "1.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Dyson Daniels",
+          "date": "2026-04-18",
+          "actual": 4.0,
+          "fg": 4.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Dyson Daniels",
+          "date": "2026-04-18",
+          "actual": 4.0,
+          "fg": 4.0,
+          "line": "1.5",
+          "hit_was": 1
+        }
+      ],
+      "samples_kept_miss": [
+        {
+          "player": "Amen Thompson",
+          "date": "2026-03-25",
+          "line": "3.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Amen Thompson",
+          "date": "2026-03-25",
+          "line": "2.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Jabari Smith",
+          "date": "2026-03-25",
+          "line": "2.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Kevin Durant",
+          "date": "2026-03-25",
+          "line": "6.5",
+          "actual": 6.0
+        },
+        {
+          "player": "Jalen Johnson",
+          "date": "2026-03-25",
+          "line": "4.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Jalen Johnson",
+          "date": "2026-03-25",
+          "line": "3.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Shai Gilgeous-Alexander",
+          "date": "2026-03-25",
+          "line": "7.5",
+          "actual": 7.0
+        },
+        {
+          "player": "Kristaps Porzi\u0146\u0123is",
+          "date": "2026-03-25",
+          "line": "2.5",
+          "actual": 2.0
+        }
+      ],
+      "after": {
+        "hits": 722,
+        "n": 855,
+        "hit_rate": 0.8444,
+        "wilson_low": 0.8186,
+        "wilson_high": 0.8672
+      },
+      "delta_hit_rate": -0.0019
+    },
+    "NBA1Q|Goblin OVER|rebounds|l5eq5": {
+      "sport": "NBA1Q",
+      "book": "Goblin OVER",
+      "prop": "rebounds",
+      "gate": "l5eq5",
+      "catalog_before": {
+        "hits": 399,
+        "n": 428,
+        "hit_rate": 0.9322,
+        "wilson_low": 0.9044,
+        "wilson_high": 0.9524
+      },
+      "catalog_ungated": {
+        "hits": 970,
+        "n": 1195,
+        "hit_rate": 0.8117,
+        "wilson_low": 0.7886,
+        "wilson_high": 0.8329
+      },
+      "raw_n": 1698,
+      "drop_reasons": {
+        "l5_not_5": 767,
+        "already_void": 503,
+        "nba1q_actual_equals_full_game": 6
+      },
+      "nba1q_fg_match": 6,
+      "nba1q_fg_mismatch": 235,
+      "nba1q_fg_unchecked": 187,
+      "nba1q_suspect_flag": 0,
+      "nba1q_actual_gt_fg": 0,
+      "samples_dropped": [
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Mikal Bridges",
+          "date": "2026-04-23",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Christian Braun",
+          "date": "2026-04-23",
+          "actual": 2.0,
+          "fg": 2.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Sam Hauser",
+          "date": "2026-04-24",
+          "actual": 3.0,
+          "fg": 3.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Toumani Camara",
+          "date": "2026-04-24",
+          "actual": 3.0,
+          "fg": 3.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Keldon Johnson",
+          "date": "2026-04-26",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Christian Braun",
+          "date": "2026-04-27",
+          "actual": 2.0,
+          "fg": 2.0,
+          "line": "0.5",
+          "hit_was": 1
+        }
+      ],
+      "samples_kept_miss": [
+        {
+          "player": "Deni Avdija",
+          "date": "2026-03-25",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Victor Wembanyama",
+          "date": "2026-03-25",
+          "line": "3.5",
+          "actual": 1.0
+        },
+        {
+          "player": "John Collins",
+          "date": "2026-03-25",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Josh Hart",
+          "date": "2026-03-31",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Kawhi Leonard",
+          "date": "2026-04-07",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Paolo Banchero",
+          "date": "2026-04-17",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Victor Wembanyama",
+          "date": "2026-04-19",
+          "line": "2.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Evan Mobley",
+          "date": "2026-04-23",
+          "line": "1.5",
+          "actual": 1.0
+        }
+      ],
+      "after": {
+        "hits": 393,
+        "n": 422,
+        "hit_rate": 0.9313,
+        "wilson_low": 0.903,
+        "wilson_high": 0.9517
+      },
+      "delta_hit_rate": -0.0009
+    },
+    "NBA1Q|Goblin OVER|assists|l5eq5": {
+      "sport": "NBA1Q",
+      "book": "Goblin OVER",
+      "prop": "assists",
+      "gate": "l5eq5",
+      "catalog_before": {
+        "hits": 198,
+        "n": 217,
+        "hit_rate": 0.9124,
+        "wilson_low": 0.8673,
+        "wilson_high": 0.9432
+      },
+      "catalog_ungated": {
+        "hits": 499,
+        "n": 614,
+        "hit_rate": 0.8127,
+        "wilson_low": 0.7799,
+        "wilson_high": 0.8416
+      },
+      "raw_n": 905,
+      "drop_reasons": {
+        "l5_not_5": 397,
+        "already_void": 291,
+        "nba1q_actual_equals_full_game": 19
+      },
+      "nba1q_fg_match": 19,
+      "nba1q_fg_mismatch": 119,
+      "nba1q_fg_unchecked": 79,
+      "nba1q_suspect_flag": 0,
+      "nba1q_actual_gt_fg": 0,
+      "samples_dropped": [
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Trendon Watford",
+          "date": "2026-03-25",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Ace Bailey",
+          "date": "2026-04-05",
+          "actual": 2.0,
+          "fg": 2.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Jalen Green",
+          "date": "2026-04-07",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Reed Sheppard",
+          "date": "2026-04-07",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Brandon Miller",
+          "date": "2026-04-07",
+          "actual": 2.0,
+          "fg": 2.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "AJ Green",
+          "date": "2026-04-07",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Christian Braun",
+          "date": "2026-04-08",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Devin Vassell",
+          "date": "2026-04-08",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Bam Adebayo",
+          "date": "2026-04-14",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Kawhi Leonard",
+          "date": "2026-04-15",
+          "actual": 3.0,
+          "fg": 3.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Victor Wembanyama",
+          "date": "2026-04-19",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Victor Wembanyama",
+          "date": "2026-04-21",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "CJ McCollum",
+          "date": "2026-04-23",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Anthony Edwards",
+          "date": "2026-04-23",
+          "actual": 3.0,
+          "fg": 3.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Scoot Henderson",
+          "date": "2026-04-24",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Donte DiVincenzo",
+          "date": "2026-04-25",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Paul George",
+          "date": "2026-04-26",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Bones Hyland",
+          "date": "2026-04-27",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        },
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Desmond Bane",
+          "date": "2026-04-27",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        }
+      ],
+      "samples_kept_miss": [
+        {
+          "player": "Scottie Barnes",
+          "date": "2026-03-31",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Daniss Jenkins",
+          "date": "2026-04-06",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Devin Booker",
+          "date": "2026-04-19",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Shai Gilgeous-Alexander",
+          "date": "2026-04-22",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Jalen Brunson",
+          "date": "2026-04-23",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Jalen Brunson",
+          "date": "2026-04-25",
+          "line": "1.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Ausar Thompson",
+          "date": "2026-05-07",
+          "line": "0.5",
+          "actual": 0.0
+        },
+        {
+          "player": "Donovan Mitchell",
+          "date": "2026-05-07",
+          "line": "0.5",
+          "actual": 0.0
+        }
+      ],
+      "after": {
+        "hits": 179,
+        "n": 198,
+        "hit_rate": 0.904,
+        "wilson_low": 0.855,
+        "wilson_high": 0.9377
+      },
+      "delta_hit_rate": -0.0084
+    },
+    "NBA1Q|Standard OVER|assists|l5eq5": {
+      "sport": "NBA1Q",
+      "book": "Standard OVER",
+      "prop": "assists",
+      "gate": "l5eq5",
+      "catalog_before": {
+        "hits": 42,
+        "n": 47,
+        "hit_rate": 0.8936,
+        "wilson_low": 0.7741,
+        "wilson_high": 0.9537
+      },
+      "catalog_ungated": {
+        "hits": 156,
+        "n": 230,
+        "hit_rate": 0.6783,
+        "wilson_low": 0.6154,
+        "wilson_high": 0.7353
+      },
+      "raw_n": 385,
+      "drop_reasons": {
+        "l5_not_5": 183,
+        "already_void": 155,
+        "pick_twin:std_over_below_goblin": 44,
+        "nba1q_actual_equals_full_game": 1
+      },
+      "nba1q_fg_match": 1,
+      "nba1q_fg_mismatch": 1,
+      "nba1q_fg_unchecked": 1,
+      "nba1q_suspect_flag": 0,
+      "nba1q_actual_gt_fg": 0,
+      "samples_dropped": [
+        {
+          "reason": "nba1q_actual_equals_full_game",
+          "player": "Ausar Thompson",
+          "date": "2026-04-19",
+          "actual": 1.0,
+          "fg": 1.0,
+          "line": "0.5",
+          "hit_was": 1
+        }
+      ],
+      "samples_kept_miss": [],
+      "after": {
+        "hits": 2,
+        "n": 2,
+        "hit_rate": 1.0,
+        "wilson_low": 0.3424,
+        "wilson_high": 1.0
+      },
+      "delta_hit_rate": 0.1064
+    },
+    "NHL|Standard UNDER|points|l5eq5_l10ge8": {
+      "sport": "NHL",
+      "book": "Standard UNDER",
+      "prop": "points",
+      "gate": "l5eq5_l10ge8",
+      "catalog_before": {
+        "hits": 135,
+        "n": 168,
+        "hit_rate": 0.8036,
+        "wilson_low": 0.737,
+        "wilson_high": 0.8566
+      },
+      "catalog_ungated": {
+        "hits": 484,
+        "n": 790,
+        "hit_rate": 0.6127,
+        "wilson_low": 0.5782,
+        "wilson_high": 0.646
+      },
+      "raw_n": 1472,
+      "drop_reasons": {
+        "l5_not_5": 902,
+        "already_void": 385,
+        "leakage_unchecked": 53,
+        "under_zero_unknown_pt_kept": 95,
+        "leakage_pass": 44,
+        "leakage_fail": 71,
+        "l10_lt_8": 17
+      },
+      "nba1q_fg_match": 0,
+      "nba1q_fg_mismatch": 0,
+      "nba1q_fg_unchecked": 0,
+      "nba1q_suspect_flag": 0,
+      "nba1q_actual_gt_fg": 0,
+      "samples_dropped": [
+        {
+          "reason": "leakage_fail",
+          "player": "Jake Guentzel",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 2.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Mark Scheifele",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 2.5,
+          "hit_was": 0
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Filip Hronek",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Christian Dvorak",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Bryan Rust",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Mason Marchment",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 0
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Erik Karlsson",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Mikael Backlund",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Alex Tuch",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Jordan Eberle",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 0
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Connor Brown",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 0
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Matvei Michkov",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Connor Zary",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Sebastian Aho",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 0
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Nikita Kucherov",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 2.5,
+          "hit_was": 0
+        }
+      ],
+      "samples_kept_miss": [
+        {
+          "player": "Lane Hutson",
+          "date": "2026-03-06",
+          "line": "1.5",
+          "actual": 3.0
+        },
+        {
+          "player": "Drew O'Connor",
+          "date": "2026-03-06",
+          "line": "0.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Sebastian Aho",
+          "date": "2026-03-07",
+          "line": "2.5",
+          "actual": 3.0
+        },
+        {
+          "player": "Josh Morrissey",
+          "date": "2026-03-07",
+          "line": "1.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Joel Farabee",
+          "date": "2026-03-07",
+          "line": "1.5",
+          "actual": 3.0
+        },
+        {
+          "player": "Morgan Frost",
+          "date": "2026-03-07",
+          "line": "1.5",
+          "actual": 3.0
+        },
+        {
+          "player": "Jacob Melanson",
+          "date": "2026-03-07",
+          "line": "0.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Anthony Cirelli",
+          "date": "2026-03-07",
+          "line": "1.5",
+          "actual": 2.0
+        }
+      ],
+      "after": {
+        "hits": 81,
+        "n": 97,
+        "hit_rate": 0.8351,
+        "wilson_low": 0.7487,
+        "wilson_high": 0.8958
+      },
+      "delta_hit_rate": 0.0315
+    },
+    "NHL|Standard UNDER|assists|l5eq5_l10ge8": {
+      "sport": "NHL",
+      "book": "Standard UNDER",
+      "prop": "assists",
+      "gate": "l5eq5_l10ge8",
+      "catalog_before": {
+        "hits": 135,
+        "n": 165,
+        "hit_rate": 0.8182,
+        "wilson_low": 0.7523,
+        "wilson_high": 0.8696
+      },
+      "catalog_ungated": {
+        "hits": 370,
+        "n": 539,
+        "hit_rate": 0.6865,
+        "wilson_low": 0.6461,
+        "wilson_high": 0.7242
+      },
+      "raw_n": 949,
+      "drop_reasons": {
+        "l5_not_5": 465,
+        "already_void": 302,
+        "leakage_unchecked": 67,
+        "under_zero_unknown_pt_kept": 119,
+        "l10_lt_8": 17,
+        "leakage_pass": 52,
+        "leakage_fail": 46
+      },
+      "nba1q_fg_match": 0,
+      "nba1q_fg_mismatch": 0,
+      "nba1q_fg_unchecked": 0,
+      "nba1q_suspect_flag": 0,
+      "nba1q_actual_gt_fg": 0,
+      "samples_dropped": [
+        {
+          "reason": "leakage_fail",
+          "player": "Nick Schmaltz",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Seth Jarvis",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 0
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Artemi Panarin",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Jake Guentzel",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Nico Hischier",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Andrei Svechnikov",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Erik Karlsson",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Mathew Barzal",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 1.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Joel Edmundson",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 0.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Yegor Sharangovich",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 0.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Zack Ostapchuk",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 0.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Justin Brazeau",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 0.5,
+          "hit_was": 0
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Drew O'Connor",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 0.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Yan Kuznetsov",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 0.5,
+          "hit_was": 1
+        },
+        {
+          "reason": "leakage_fail",
+          "player": "Zach Metsa",
+          "date": "2026-03-07",
+          "stored_l5": 5.0,
+          "recomputed_l5": 4,
+          "line": 0.5,
+          "hit_was": 1
+        }
+      ],
+      "samples_kept_miss": [
+        {
+          "player": "Lane Hutson",
+          "date": "2026-03-06",
+          "line": "1.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Logan Stankoven",
+          "date": "2026-03-06",
+          "line": "0.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Marcus Pettersson",
+          "date": "2026-03-06",
+          "line": "0.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Noah Dobson",
+          "date": "2026-03-06",
+          "line": "0.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Jake DeBrusk",
+          "date": "2026-03-06",
+          "line": "0.5",
+          "actual": 1.0
+        },
+        {
+          "player": "Kirill Marchenko",
+          "date": "2026-03-07",
+          "line": "1.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Brayden Point",
+          "date": "2026-03-07",
+          "line": "1.5",
+          "actual": 2.0
+        },
+        {
+          "player": "Sebastian Aho",
+          "date": "2026-03-07",
+          "line": "1.5",
+          "actual": 3.0
+        }
+      ],
+      "after": {
+        "hits": 96,
+        "n": 119,
+        "hit_rate": 0.8067,
+        "wilson_low": 0.7266,
+        "wilson_high": 0.8676
+      },
+      "delta_hit_rate": -0.0115
+    }
+  },
+  "explain": {
+    "nfl": {
+      "diagnosis": "When l5_under/l10_under are missing on graded rows, every gate column in all_ranked_prop_hit_rates falls back to the same decided pool (ungated == listed == L5=5 == L10>=8). Identical counts across columns mean the gate fields were null, not that every row truly cleared L5=5. Separately, UNDER hits with actual=0 without positive DNP evidence inflate rates (strict void would remove only evidenced DNPs).",
+      "by_prop": {
+        "receiving yards": {
+          "n": 865,
+          "l5_present": 865,
+          "l5_5": 285,
+          "l10_present": 865,
+          "under_hit_actual0": 48,
+          "actual0": 48,
+          "l5_4": 317,
+          "l5_3": 213,
+          "l5_2": 41,
+          "l5_1": 9
+        },
+        "rushing yards": {
+          "n": 422,
+          "l5_present": 422,
+          "l5_4": 147,
+          "l10_present": 422,
+          "l5_5": 147,
+          "under_hit_actual0": 25,
+          "actual0": 25,
+          "l5_3": 101,
+          "l5_2": 24,
+          "l5_1": 3
+        },
+        "longest reception": {
+          "n": 962,
+          "l5_present": 962,
+          "l5_5": 886,
+          "l10_present": 962,
+          "under_hit_actual0": 16,
+          "actual0": 16,
+          "l5_3": 27,
+          "l5_4": 37,
+          "l5_2": 5,
+          "l5_1": 7
+        },
+        "receptions": {
+          "n": 719,
+          "l5_present": 719,
+          "l5_5": 287,
+          "l10_present": 719,
+          "l5_4": 254,
+          "under_hit_actual0": 39,
+          "actual0": 39,
+          "l5_3": 149,
+          "l5_2": 27,
+          "l5_1": 2
+        },
+        "sacks": {
+          "n": 725,
+          "l5_present": 725,
+          "l5_5": 723,
+          "l10_present": 725,
+          "under_hit_actual0": 265,
+          "actual0": 265,
+          "l5_4": 2
+        },
+        "pass completions": {
+          "n": 158,
+          "l5_present": 158,
+          "l5_5": 147,
+          "l10_present": 158,
+          "l5_3": 5,
+          "l5_2": 1,
+          "l5_1": 1,
+          "l5_4": 4
+        }
+      },
+      "examples": [
+        {
+          "date": "2026-09-09",
+          "player": "Rashid Shaheed",
+          "line": "109.5",
+          "actual": 4.0,
+          "result": "HIT",
+          "l5_under": "5.0",
+          "l10_under": "10.0",
+          "l5_over": "0.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "DeMario Douglas",
+          "line": "109.5",
+          "actual": 20.0,
+          "result": "HIT",
+          "l5_under": "5.0",
+          "l10_under": "10.0",
+          "l5_over": "0.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "Hunter Henry",
+          "line": "103.5",
+          "actual": 26.0,
+          "result": "HIT",
+          "l5_under": "5.0",
+          "l10_under": "9.0",
+          "l5_over": "0.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "Rhamondre Stevenson",
+          "line": "84.5",
+          "actual": 44.0,
+          "result": "HIT",
+          "l5_under": "5.0",
+          "l10_under": "10.0",
+          "l5_over": "0.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "AJ Barner",
+          "line": "76.5",
+          "actual": 13.0,
+          "result": "HIT",
+          "l5_under": "5.0",
+          "l10_under": "10.0",
+          "l5_over": "0.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "George Holani",
+          "line": "71.5",
+          "actual": 0.0,
+          "result": "HIT",
+          "l5_under": "5.0",
+          "l10_under": "10.0",
+          "l5_over": "0.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "Mack Hollins",
+          "line": "70.5",
+          "actual": 51.0,
+          "result": "HIT",
+          "l5_under": "4.0",
+          "l10_under": "8.0",
+          "l5_over": "1.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "Elijah Arroyo",
+          "line": "68.5",
+          "actual": null,
+          "result": "VOID",
+          "l5_under": "5.0",
+          "l10_under": "10.0",
+          "l5_over": "0.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "Rashid Shaheed",
+          "line": "39.5",
+          "actual": 4.0,
+          "result": "HIT",
+          "l5_under": "4.0",
+          "l10_under": "7.0",
+          "l5_over": "1.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "Hunter Henry",
+          "line": "39.5",
+          "actual": 26.0,
+          "result": "HIT",
+          "l5_under": "3.0",
+          "l10_under": "5.0",
+          "l5_over": "2.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "Elijah Arroyo",
+          "line": "39.5",
+          "actual": null,
+          "result": "VOID",
+          "l5_under": "4.0",
+          "l10_under": "7.0",
+          "l5_over": "1.0",
+          "minutes_or_snaps": null
+        },
+        {
+          "date": "2026-09-09",
+          "player": "Hunter Henry",
+          "line": "38.5",
+          "actual": 26.0,
+          "result": "HIT",
+          "l5_under": "3.0",
+          "l10_under": "5.0",
+          "l5_over": "2.0",
+          "minutes_or_snaps": null
+        }
+      ],
+      "catalog": {
+        "receiving yards": {
+          "ungated": "87/100",
+          "listed": "58/66",
+          "l5eq5": "27/27",
+          "l10ge8": "46/47",
+          "both": "27/27",
+          "identical_gates": false
+        },
+        "receptions": {
+          "ungated": "80/96",
+          "listed": "68/76",
+          "l5eq5": "44/45",
+          "l10ge8": "59/62",
+          "both": "43/44",
+          "identical_gates": false
+        },
+        "rushing yards": {
+          "ungated": "37/56",
+          "listed": "29/31",
+          "l5eq5": "15/15",
+          "l10ge8": "24/26",
+          "both": "15/15",
+          "identical_gates": false
+        },
+        "sacks": {
+          "ungated": "73/77",
+          "listed": "73/77",
+          "l5eq5": "73/77",
+          "l10ge8": "68/72",
+          "both": "68/72",
+          "identical_gates": false
+        }
+      }
+    },
+    "nhl_fow": {
+      "diagnosis": "98.4% on Faceoffs Won OVER is a stat/line mismatch or missing-actual path that still marks HIT. Inspect actual distribution \u2014 if actuals cluster at null/0 while lines are fractional, grading is wrong.",
+      "catalog": {
+        "hits": 125,
+        "n": 127,
+        "hit_rate": 0.9843,
+        "wilson_low": 0.9444,
+        "wilson_high": 0.9957
+      },
+      "actual_value_counts_top": [
+        [
+          "None",
+          21
+        ],
+        [
+          "10.0",
+          12
+        ],
+        [
+          "6.0",
+          11
+        ],
+        [
+          "4.0",
+          9
+        ],
+        [
+          "50.0",
+          8
+        ],
+        [
+          "9.0",
+          8
+        ],
+        [
+          "5.0",
+          8
+        ],
+        [
+          "33.3",
+          7
+        ],
+        [
+          "8.0",
+          6
+        ],
+        [
+          "60.0",
+          5
+        ],
+        [
+          "70.0",
+          4
+        ],
+        [
+          "7.0",
+          4
+        ],
+        [
+          "2.0",
+          4
+        ],
+        [
+          "11.0",
+          4
+        ],
+        [
+          "66.7",
+          4
+        ]
+      ],
+      "examples": [
+        {
+          "date": "2026-10-15",
+          "player": "Tage Thompson",
+          "line": 5.5,
+          "actual": 44.4,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-15",
+          "player": "J.T. Miller",
+          "line": 10.5,
+          "actual": 61.1,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-15",
+          "player": "Adam Lowry",
+          "line": 6.5,
+          "actual": 60.0,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-15",
+          "player": "Robert Thomas",
+          "line": 10.5,
+          "actual": 56.0,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-16",
+          "player": "Pavel Zacha",
+          "line": 8.5,
+          "actual": 64.3,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Elias Lindholm",
+          "line": 9.5,
+          "actual": 50.0,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Nick Suzuki",
+          "line": 10.0,
+          "actual": 60.0,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Nick Suzuki",
+          "line": 9.5,
+          "actual": 60.0,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Macklin Celebrini",
+          "line": 8.0,
+          "actual": 34.8,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Robert Thomas",
+          "line": 10.0,
+          "actual": 52.2,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Chandler Stephenson",
+          "line": 10.5,
+          "actual": 45.8,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Nathan MacKinnon",
+          "line": 7.5,
+          "actual": 29.4,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Charlie Coyle",
+          "line": 8.0,
+          "actual": 50.0,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Adam Lowry",
+          "line": 8.5,
+          "actual": 56.3,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Elias Lindholm",
+          "line": 10.5,
+          "actual": 50.0,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Dylan Larkin",
+          "line": 11.5,
+          "actual": 37.0,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Anthony Cirelli",
+          "line": 9.5,
+          "actual": 61.5,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Anthony Cirelli",
+          "line": 9.0,
+          "actual": 61.5,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Roope Hintz",
+          "line": 7.5,
+          "actual": 25.0,
+          "result": "HIT",
+          "hit": 1
+        },
+        {
+          "date": "2026-10-20",
+          "player": "Nick Suzuki",
+          "line": 10.5,
+          "actual": 60.0,
+          "result": "HIT",
+          "hit": 1
+        }
+      ],
+      "n_graded_rows_seen": 182
+    },
+    "soccer": {
+      "diagnosis": "0% / ~3% on Passes Attempted / Clearances OVER means the grader almost never finds a matching box column \u2014 actual stays missing/0 while the line is large, so OVER always misses. Not a real skill cell.",
+      "actual_counts": {
+        "passes attempted|None": 2473,
+        "clearances|None": 454,
+        "passes attempted|1.0": 31,
+        "passes attempted|0.0": 22,
+        "passes attempted|2.0": 19,
+        "passes attempted|3.0": 17,
+        "clearances|1.0": 14,
+        "clearances|0.0": 13,
+        "passes attempted|4.0": 9,
+        "passes attempted|6.0": 7,
+        "passes attempted|5.0": 5,
+        "clearances|2.0": 4,
+        "passes attempted|7.0": 1,
+        "clearances|6.0": 1,
+        "passes attempted|10.0": 1,
+        "clearances|3.0": 1
+      },
+      "hit_counts": {
+        "passes attempted|None": 2473,
+        "clearances|None": 454,
+        "passes attempted|0": 112,
+        "clearances|0": 32,
+        "clearances|1": 1
+      },
+      "examples": [
+        {
+          "date": "2026-08-21",
+          "prop": "passes attempted",
+          "player": "Ga\u00ebtan Laborde",
+          "line": "23.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-08-21",
+          "prop": "passes attempted",
+          "player": "Amine Gouiri",
+          "line": "21.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-08-31",
+          "prop": "passes attempted",
+          "player": "Gianluca Scamacca",
+          "line": "17.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "Lewis Travis",
+          "line": "43.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "Eric Bocat",
+          "line": "33.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "Bobby Clark",
+          "line": "21.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "Valentin Atangana",
+          "line": "25.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "L\u00e9o Scienza",
+          "line": "24.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "Sam Tickle",
+          "line": "33.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "L\u00e9o Scienza",
+          "line": "24.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "Josh Tymon",
+          "line": "40.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "Sergej Milinkovic-Savic",
+          "line": "46.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "clearances",
+          "player": "Rob Dickie",
+          "line": "8.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "passes attempted",
+          "player": "Ivan Toney",
+          "line": "12.5",
+          "actual": null,
+          "result": "PENDING"
+        },
+        {
+          "date": "2026-09-01",
+          "prop": "clearances",
+          "player": "Japhet Tanganga",
+          "line": "6.5",
+          "actual": null,
+          "result": "PENDING"
+        }
+      ],
+      "catalog": {
+        "passes attempted": {
+          "sport": "Soccer",
+          "book": "Standard OVER",
+          "prop": "passes",
+          "prop_display": "Passes Attempted",
+          "n": 112,
+          "hits": 0,
+          "hr": 0.0,
+          "listed_n": 0,
+          "listed_hits": 0,
+          "listed_hr": null,
+          "l5eq5_n": 0,
+          "l5eq5_hits": 0,
+          "l5eq5_hr": null,
+          "l5_known": 0,
+          "l10_known": 0,
+          "l10ge8_n": 0,
+          "l10ge8_hits": 0,
+          "l10ge8_hr": null,
+          "l10eq10_n": 0,
+          "l10eq10_hits": 0,
+          "l10eq10_hr": null,
+          "l5ge4_l10ge8_n": 0,
+          "l5ge4_l10ge8_hits": 0,
+          "l5ge4_l10ge8_hr": null,
+          "l5eq5_l10ge8_n": 0,
+          "l5eq5_l10ge8_hits": 0,
+          "l5eq5_l10ge8_hr": null,
+          "l5ge4_l10eq10_n": 0,
+          "l5ge4_l10eq10_hits": 0,
+          "l5ge4_l10eq10_hr": null,
+          "l5eq5_l10eq10_n": 0,
+          "l5eq5_l10eq10_hits": 0,
+          "l5eq5_l10eq10_hr": null,
+          "d_known": 30,
+          "d_n": 5,
+          "d_hits": 0,
+          "d_hr": 0.0,
+          "l5ge4_d_n": 0,
+          "l5ge4_d_hits": 0,
+          "l5ge4_d_hr": null,
+          "l5eq5_d_n": 0,
+          "l5eq5_d_hits": 0,
+          "l5eq5_d_hr": null,
+          "l5ge4_l10ge8_d_n": 0,
+          "l5ge4_l10ge8_d_hits": 0,
+          "l5ge4_l10ge8_d_hr": null,
+          "l5eq5_l10ge8_d_n": 0,
+          "l5eq5_l10ge8_d_hits": 0,
+          "l5eq5_l10ge8_d_hr": null,
+          "l5ge4_l10eq10_d_n": 0,
+          "l5ge4_l10eq10_d_hits": 0,
+          "l5ge4_l10eq10_d_hr": null,
+          "l5eq5_l10eq10_d_n": 0,
+          "l5eq5_l10eq10_d_hits": 0,
+          "l5eq5_l10eq10_d_hr": null,
+          "hr_window": "all",
+          "hr_use": 0.0,
+          "hr_use_n": 112,
+          "prop_tier": "D",
+          "shadow": false,
+          "live_book": true
+        },
+        "clearances": {
+          "sport": "Soccer",
+          "book": "Standard OVER",
+          "prop": "clearances",
+          "prop_display": "Clearances",
+          "n": 33,
+          "hits": 1,
+          "hr": 0.0303,
+          "listed_n": 0,
+          "listed_hits": 0,
+          "listed_hr": null,
+          "l5eq5_n": 0,
+          "l5eq5_hits": 0,
+          "l5eq5_hr": null,
+          "l5_known": 0,
+          "l10_known": 0,
+          "l10ge8_n": 0,
+          "l10ge8_hits": 0,
+          "l10ge8_hr": null,
+          "l10eq10_n": 0,
+          "l10eq10_hits": 0,
+          "l10eq10_hr": null,
+          "l5ge4_l10ge8_n": 0,
+          "l5ge4_l10ge8_hits": 0,
+          "l5ge4_l10ge8_hr": null,
+          "l5eq5_l10ge8_n": 0,
+          "l5eq5_l10ge8_hits": 0,
+          "l5eq5_l10ge8_hr": null,
+          "l5ge4_l10eq10_n": 0,
+          "l5ge4_l10eq10_hits": 0,
+          "l5ge4_l10eq10_hr": null,
+          "l5eq5_l10eq10_n": 0,
+          "l5eq5_l10eq10_hits": 0,
+          "l5eq5_l10eq10_hr": null,
+          "d_known": 15,
+          "d_n": 1,
+          "d_hits": 0,
+          "d_hr": 0.0,
+          "l5ge4_d_n": 0,
+          "l5ge4_d_hits": 0,
+          "l5ge4_d_hr": null,
+          "l5eq5_d_n": 0,
+          "l5eq5_d_hits": 0,
+          "l5eq5_d_hr": null,
+          "l5ge4_l10ge8_d_n": 0,
+          "l5ge4_l10ge8_d_hits": 0,
+          "l5ge4_l10ge8_d_hr": null,
+          "l5eq5_l10ge8_d_n": 0,
+          "l5eq5_l10ge8_d_hits": 0,
+          "l5eq5_l10ge8_d_hr": null,
+          "l5ge4_l10eq10_d_n": 0,
+          "l5ge4_l10eq10_d_hits": 0,
+          "l5ge4_l10eq10_d_hr": null,
+          "l5eq5_l10eq10_d_n": 0,
+          "l5eq5_l10eq10_d_hits": 0,
+          "l5eq5_l10eq10_d_hr": null,
+          "hr_window": "all_thin",
+          "hr_use": 0.0303,
+          "hr_use_n": 33,
+          "prop_tier": "D",
+          "shadow": false,
+          "live_book": true
+        }
+      }
+    }
+  }
+}

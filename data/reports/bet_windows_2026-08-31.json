@@ -1,0 +1,17 @@
+{
+  "date": "2026-08-31",
+  "generated_at": "2026-08-31T01:30:21-04:00",
+  "line_pulls": [],
+  "payout_scrapes": [
+    {
+      "window": "1AM",
+      "n_scrapes": 3,
+      "median_power_x": 1.4,
+      "min_power_x": 1.3,
+      "max_power_x": 1.5,
+      "first_captured_at": "2026-08-31T01:13:24-04:00",
+      "last_captured_at": "2026-08-31T01:15:49-04:00"
+    }
+  ],
+  "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
+}

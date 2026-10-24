@@ -1,0 +1,9 @@
+# Optional extras for ml.discover_gates. Not installed on Railway.
+#   py -3.14 -m pip install -r ml/requirements.txt
+# pysubgroup pins numpy<2; on Python 3.14 install it with --no-deps.
+pysubgroup>=0.7
+imodels>=1.4
+optbinning>=0.19
+shap>=0.46
+lightgbm>=4.0
+statsmodels>=0.14

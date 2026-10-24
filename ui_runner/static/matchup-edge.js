@@ -39,6 +39,25 @@
     return d.innerHTML;
   }
 
+  function notesCellHtml(p) {
+    const notes = String(p?.notes || "");
+    if (!notes) return "—";
+    const avoid =
+      String(p?.edge || "").toUpperCase() === "AVOID" || /tight-match/i.test(notes);
+    if (avoid) {
+      return '<span class="me-note-avoid">' + esc(notes) + "</span>";
+    }
+    return esc(notes);
+  }
+
+  function tightBannerHtml(players) {
+    const notes = (players || [])
+      .map((p) => String(p?.notes || ""))
+      .filter((n) => /tight-match/i.test(n));
+    if (!notes.length) return "";
+    return '<div class="me-tight-banner">' + esc(notes[0]) + "</div>";
+  }
+
   function pid(sport, part) {
     const legacy = document.getElementById("wnba-me-team");
     if (sport === "wnba" && legacy) return "wnba-me-" + part;
@@ -310,6 +329,9 @@
       '<div class="me-cards" id="' +
       pid(sport, "cards") +
       '"></div>' +
+      '<div class="me-tight-banner" id="' +
+      pid(sport, "tight-banner") +
+      '" hidden></div>' +
       '<div class="me-table-wrap"><table class="me-table"><thead><tr>' +
       "<th>Player</th><th>Pos</th><th id='" +
       pid(sport, "avg-h") +
@@ -804,6 +826,13 @@
       esc(mu.team_def_rank != null ? mu.team_def_rank : "—") +
       "</div></div>";
 
+    const tightEl = document.getElementById(pid(sport, "tight-banner"));
+    if (tightEl) {
+      const banner = tightBannerHtml(displayed);
+      tightEl.innerHTML = banner;
+      tightEl.hidden = !banner;
+    }
+
     if (avgH) avgH.textContent = (catLabel || "Stat").split(" ")[0] + " avg";
 
     updateSliceButtons(sport);
@@ -845,7 +874,7 @@
           '">' +
           edgeLabel(p.edge) +
           "</span></td><td>" +
-          esc(p.notes) +
+          notesCellHtml(p) +
           "</td></tr>"
           );
         }

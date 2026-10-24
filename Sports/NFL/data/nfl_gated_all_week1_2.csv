@@ -1,0 +1,88 @@
+﻿pick,side,prop,base_hits,base_n,base_hr,hits,n,hr,gate,gated
+Goblin,OVER,anytime_tds,4,10,40.0,4,10,40.0,base (no soft gate),False
+Goblin,OVER,fg_made,23,30,76.7,23,30,76.7,base (no soft gate),False
+Goblin,OVER,int,4,7,57.1,4,7,57.1,base (no soft gate),False
+Goblin,OVER,kicking_points,19,30,63.3,8,11,72.7,Weak Rush D,True
+Goblin,OVER,longest_completion,19,30,63.3,19,30,63.3,base (no soft gate),False
+Goblin,OVER,longest_reception,68,107,63.6,9,12,75.0,L5=5,True
+Goblin,OVER,longest_rush,21,42,50.0,6,7,85.7,Weak Rush D + NOT Elite Rush Off,True
+Goblin,OVER,pass_attempts,15,30,50.0,5,6,83.3,Weak Pass D + NOT Elite Pass Off,True
+Goblin,OVER,pass_completions,17,28,60.7,4,5,80.0,Weak Pass D + NOT Elite Pass Off,True
+Goblin,OVER,pass_rush_yds,18,28,64.3,5,6,83.3,Weak opp DL pass + NOT Elite Pass Off,True
+Goblin,OVER,passing_tds,18,27,66.7,18,27,66.7,base (no soft gate),False
+Goblin,OVER,passing_yards,22,30,73.3,7,8,87.5,Weak opp DL pass + NOT Elite Pass Off,True
+Goblin,OVER,player_touchdowns_combo,20,32,62.5,20,32,62.5,base (no soft gate),False
+Goblin,OVER,receiving_yards,104,156,66.7,17,23,73.9,L5=5,True
+Goblin,OVER,receptions,106,162,65.4,7,8,87.5,Weak Pass D + Elite OL,True
+Goblin,OVER,rush_attempts,35,58,60.3,9,12,75.0,Weak Rush D + NOT Elite Rush Off,True
+Goblin,OVER,rush_rec_yds,17,34,50.0,17,34,50.0,base (no soft gate),False
+Goblin,OVER,rushing_yards,47,80,58.8,10,14,71.4,L5=5,True
+Goblin,OVER,sacks_taken,2,5,40.0,2,5,40.0,base (no soft gate),False
+Goblin,OVER,tackles_ast,41,65,63.1,4,5,80.0,Elite OL + Weak Sec,True
+Goblin,OVER,yards_on_first_rush_attempt,2,5,40.0,2,5,40.0,base (no soft gate),False
+Standard,OVER,anytime_tds,1,5,20.0,1,5,20.0,base (no soft gate),False
+Standard,OVER,fg_made,3,12,25.0,3,12,25.0,base (no soft gate),False
+Standard,OVER,fg_made_combo,4,8,50.0,4,8,50.0,base (no soft gate),False
+Standard,OVER,halves_with_25_receiving_yards,1,6,16.7,1,6,16.7,base (no soft gate),False
+Standard,OVER,halves_with_25_rush_yards,0,6,0.0,0,6,0.0,base (no soft gate),False
+Standard,OVER,int,6,11,54.5,6,11,54.5,base (no soft gate),False
+Standard,OVER,kicking_points,13,22,59.1,3,5,60.0,Weak Pass D,True
+Standard,OVER,longest_completion,15,28,53.6,15,28,53.6,base (no soft gate),False
+Standard,OVER,longest_reception,51,127,40.2,8,10,80.0,Weak Pass D + Weak Sec + NOT Elite Pass Off,True
+Standard,OVER,longest_rush,22,65,33.8,6,10,60.0,Weak Rush D + NOT Elite Rush Off,True
+Standard,OVER,pass_attempts,6,24,25.0,6,24,25.0,base (no soft gate),False
+Standard,OVER,pass_completions,5,13,38.5,5,13,38.5,base (no soft gate),False
+Standard,OVER,pass_rush_yds,9,24,37.5,9,24,37.5,base (no soft gate),False
+Standard,OVER,pass_yards_combo,5,10,50.0,5,10,50.0,base (no soft gate),False
+Standard,OVER,passing_tds,8,12,66.7,8,12,66.7,base (no soft gate),False
+Standard,OVER,passing_yards,9,20,45.0,4,5,80.0,Weak Pass D + NOT Elite Pass Off,True
+Standard,OVER,player_touchdowns,16,116,13.8,16,116,13.8,base (no soft gate),False
+Standard,OVER,player_touchdowns_combo,23,55,41.8,23,55,41.8,base (no soft gate),False
+Standard,OVER,punts,13,28,46.4,13,28,46.4,base (no soft gate),False
+Standard,OVER,punts_inside_20,17,24,70.8,17,24,70.8,base (no soft gate),False
+Standard,OVER,quarters_with_1_reception,0,5,0.0,0,5,0.0,base (no soft gate),False
+Standard,OVER,quarters_with_5_receiving_yards,0,5,0.0,0,5,0.0,base (no soft gate),False
+Standard,OVER,quarters_with_5_rush_yards,1,6,16.7,1,6,16.7,base (no soft gate),False
+Standard,OVER,rec_targets,41,109,37.6,5,11,45.5,Weak Pass D + Weak Sec + Elite Pass Off,True
+Standard,OVER,receiving_yards,72,174,41.4,8,12,66.7,Weak Pass D + Weak opp DL pass,True
+Standard,OVER,receiving_yards_combo,7,15,46.7,7,15,46.7,base (no soft gate),False
+Standard,OVER,receptions,41,97,42.3,6,7,85.7,Weak Pass D + Weak opp DL pass,True
+Standard,OVER,rush_attempts,29,57,50.9,4,7,57.1,Weak Rush D + NOT Elite Rush Off,True
+Standard,OVER,rush_rec_yds,17,41,41.5,17,41,41.5,base (no soft gate),False
+Standard,OVER,rush_tds,6,17,35.3,6,17,35.3,base (no soft gate),False
+Standard,OVER,rush_yards_combo,3,11,27.3,3,11,27.3,base (no soft gate),False
+Standard,OVER,rush_yards_in_first_5_attempts,15,35,42.9,15,35,42.9,base (no soft gate),False
+Standard,OVER,rush_yards_per_carry,15,35,42.9,15,35,42.9,base (no soft gate),False
+Standard,OVER,rushing_yards,34,84,40.5,4,9,44.4,Weak DL run + Elite OL,True
+Standard,OVER,sacks,4,28,14.3,4,28,14.3,base (no soft gate),False
+Standard,OVER,tackles_ast,18,40,45.0,18,40,45.0,base (no soft gate),False
+Standard,OVER,yards_on_first_reception,37,83,44.6,3,5,60.0,L5=5,True
+Standard,OVER,yards_on_first_rush_attempt,15,30,50.0,5,7,71.4,L5=5,True
+Standard,UNDER,completion_percentage,14,31,45.2,5,7,71.4,Elite Pass D + Elite opp DL pass,True
+Standard,UNDER,fg_made_combo,4,6,66.7,4,6,66.7,base (no soft gate),False
+Standard,UNDER,field_goal_yards_combo,7,13,53.8,7,13,53.8,base (no soft gate),False
+Standard,UNDER,int,7,8,87.5,7,8,87.5,base (no soft gate),False
+Standard,UNDER,kicking_points,12,15,80.0,12,15,80.0,base (no soft gate),False
+Standard,UNDER,longest_completion,3,6,50.0,3,6,50.0,base (no soft gate),False
+Standard,UNDER,longest_fg_made_yds_combo,0,10,0.0,0,10,0.0,base (no soft gate),False
+Standard,UNDER,longest_reception,65,98,66.3,32,43,74.4,L5=5,True
+Standard,UNDER,longest_rush,18,29,62.1,5,5,100.0,Elite Rush D + NOT Elite Rush Off + Weak OL,True
+Standard,UNDER,pass_attempts,9,13,69.2,9,13,69.2,base (no soft gate),False
+Standard,UNDER,pass_completions,8,17,47.1,6,8,75.0,Elite Pass D,True
+Standard,UNDER,pass_rush_yds,6,12,50.0,6,12,50.0,base (no soft gate),False
+Standard,UNDER,pass_yards_combo,5,8,62.5,5,8,62.5,base (no soft gate),False
+Standard,UNDER,passing_tds,6,9,66.7,6,9,66.7,base (no soft gate),False
+Standard,UNDER,passing_yards,10,20,50.0,7,8,87.5,Elite Pass D + NOT Elite Pass Off,True
+Standard,UNDER,player_touchdowns_combo,4,9,44.4,4,9,44.4,base (no soft gate),False
+Standard,UNDER,rec_targets,24,51,47.1,12,14,85.7,Elite Pass D + NOT Elite Pass Off,True
+Standard,UNDER,receiving_yards,75,120,62.5,8,9,88.9,NOT Elite Pass Off + Elite opp DL pass + Weak OL,True
+Standard,UNDER,receiving_yards_combo,2,5,40.0,2,5,40.0,base (no soft gate),False
+Standard,UNDER,receptions,66,88,75.0,66,88,75.0,base (no soft gate),False
+Standard,UNDER,rush_attempts,16,20,80.0,16,20,80.0,base (no soft gate),False
+Standard,UNDER,rush_rec_yds,11,18,61.1,11,18,61.1,base (no soft gate),False
+Standard,UNDER,rush_yards_combo,6,7,85.7,6,7,85.7,base (no soft gate),False
+Standard,UNDER,rushing_yards,35,52,67.3,5,6,83.3,L5=5,True
+Standard,UNDER,sacks,49,52,94.2,49,52,94.2,base (no soft gate),False
+Standard,UNDER,sacks_taken,10,19,52.6,4,5,80.0,Weak opp DL pass,True
+Standard,UNDER,shortest_fg_made_yds_combo,0,10,0.0,0,10,0.0,base (no soft gate),False
+Standard,UNDER,tackles_ast,19,27,70.4,7,9,77.8,Weak OL,True

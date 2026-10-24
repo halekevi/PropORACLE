@@ -2038,3 +2038,60 @@ nav.snav .mobile-menu a {
     font-size: 16px !important;
   }
 }
+
+/* Top Edges: half-screen / split-view (≤1600px) keeps 4-col 340px cards.
+   Full website view (>1600px) is 5-across. Loads after index.html inline CSS. */
+.edge-grid {
+  gap: clamp(8px, 1.5vw, 14px);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+}
+@media (min-width: 1601px) {
+  .edge-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .edge-card-top {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+  .edge-num {
+    font-size: 20px;
+  }
+}
+
+/* ── Fix: ticket filter chips scroll at 390px (v20261008filterscroll) ──
+   The 768px rule forces wrap + overflow visible on .tickets-built .ticket-filter-bar,
+   which beats the older generic nowrap rule and clips POWER / GOBLIN / INTOP. */
+@media (max-width: 480px) {
+  .ticket-filter-bar,
+  .tickets-built .ticket-filter-bar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding-bottom: 6px;
+  }
+
+  .ticket-filter-bar::-webkit-scrollbar,
+  .tickets-built .ticket-filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ticket-filter-pill,
+  .ticket-filter-btn,
+  .tickets-built .ticket-filter-pill,
+  [class*="filter-pill"],
+  [class*="filter-btn"] {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    min-width: unset !important;
+  }
+
+  .ticket-filter-bar-action,
+  .tickets-built .ticket-filter-bar-action {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+}

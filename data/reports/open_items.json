@@ -1,0 +1,17 @@
+{
+  "updated": "2026-10-23",
+  "items": [
+    {
+      "id": "allow-cross-date-fallback",
+      "priority": 1,
+      "status": "fixing",
+      "note": "Live combined always passed --allow-cross-date-fallback. That flag loaded March CBB and May WNBA leftovers today, and is the suspect for the May 2026-05-30 NBA1Q board reaching October tickets (OKC@SAS Finals pairing, 0 decided because those games never happened). Cap is now 3 calendar days; NBA/WNBA/CBB never keep-all on missing game_time; NBA1Q/1H dated outputs only (no Sports leftover). Above Underdog orphans."
+    },
+    {
+      "id": "underdog_orphans",
+      "priority": 2,
+      "status": "open",
+      "note": "Underdog orphan rows. Parked below the cross-date leftover-board leak."
+    }
+  ]
+}

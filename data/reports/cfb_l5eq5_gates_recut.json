@@ -1,0 +1,3359 @@
+{
+  "meta": {
+    "dates": [
+      {
+        "date": "2026-08-28",
+        "graded": "H:\\PropORACLE\\ui_runner\\templates\\graded_props_2026-08-28.json",
+        "cfb_decided": 356,
+        "step8": "H:\\PropORACLE\\outputs\\2026-08-28\\cfb\\step8_cfb_direction_clean_2026-08-28.xlsx"
+      },
+      {
+        "date": "2026-08-29",
+        "graded": "H:\\PropORACLE\\ui_runner\\templates\\graded_props_2026-08-29.json",
+        "cfb_decided": 335,
+        "step8": "H:\\PropORACLE\\outputs\\2026-08-29\\cfb\\step8_cfb_direction_clean_2026-08-29.xlsx"
+      },
+      {
+        "date": "2026-09-03",
+        "graded": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\graded_props_2026-09-03.json",
+        "cfb_decided": 217,
+        "step8": "H:\\PropORACLE\\outputs\\2026-09-03\\cfb\\step8_cfb_direction_clean_2026-09-03.xlsx"
+      },
+      {
+        "date": "2026-09-04",
+        "graded": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\graded_props_2026-09-04.json",
+        "cfb_decided": 215,
+        "step8": "H:\\PropORACLE\\outputs\\2026-09-04\\cfb\\step8_cfb_direction_clean_2026-09-04.xlsx"
+      },
+      {
+        "date": "2026-09-05",
+        "graded": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\graded_props_2026-09-05.json",
+        "cfb_decided": 910,
+        "step8": "H:\\PropORACLE\\outputs\\2026-09-05\\cfb\\step8_cfb_direction_clean_2026-09-05.xlsx"
+      },
+      {
+        "date": "2026-09-12",
+        "graded": "H:\\PropORACLE\\ui_runner\\templates\\graded_props_2026-09-12.json",
+        "cfb_decided": 1822,
+        "step8": "H:\\PropORACLE\\outputs\\2026-09-12\\cfb\\step8_cfb_direction_clean_2026-09-12.xlsx"
+      }
+    ],
+    "variants": 3855,
+    "unique": 3120,
+    "joined": 3769,
+    "has_l5": 3800,
+    "has_l10": 3800,
+    "join_pct": 97.8,
+    "l5_pct": 98.6
+  },
+  "variants": [
+    {
+      "prop": "pass_yds",
+      "label": "Pass Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 174,
+        "n": 250
+      },
+      "l5eq5": {
+        "h": 22,
+        "n": 31
+      },
+      "l5_l10": {
+        "h": 21,
+        "n": 28
+      },
+      "l5_d": {
+        "h": 12,
+        "n": 20
+      },
+      "stack": {
+        "h": 12,
+        "n": 18
+      },
+      "live": {
+        "h": 21,
+        "n": 28
+      }
+    },
+    {
+      "prop": "pass_yds",
+      "label": "Pass Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 13,
+        "n": 29
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 3
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_yds",
+      "label": "Pass Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 57,
+        "n": 118
+      },
+      "l5eq5": {
+        "h": 11,
+        "n": 15
+      },
+      "l5_l10": {
+        "h": 7,
+        "n": 8
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 2
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "passcompletions",
+      "label": "Pass Completions",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 16,
+        "n": 28
+      },
+      "l5eq5": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "passcompletions",
+      "label": "Pass Completions",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 9,
+        "n": 12
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "passcompletions",
+      "label": "Pass Completions",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 29,
+        "n": 67
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_att",
+      "label": "Pass Attempts",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 19,
+        "n": 36
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_att",
+      "label": "Pass Attempts",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 7,
+        "n": 14
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_att",
+      "label": "Pass Attempts",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 10,
+        "n": 24
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_td",
+      "label": "Pass TDs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 63,
+        "n": 91
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 6
+      },
+      "l5_l10": {
+        "h": 5,
+        "n": 6
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 2
+      },
+      "stack": {
+        "h": 2,
+        "n": 2
+      },
+      "live": {
+        "h": 2,
+        "n": 2
+      }
+    },
+    {
+      "prop": "pass_td",
+      "label": "Pass TDs",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 4,
+        "n": 8
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 1
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "pass_td",
+      "label": "Pass TDs",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 8,
+        "n": 15
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_rush_yds",
+      "label": "Pass+Rush Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 20,
+        "n": 36
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 5
+      },
+      "l5_l10": {
+        "h": 4,
+        "n": 5
+      },
+      "l5_d": {
+        "h": 4,
+        "n": 4
+      },
+      "stack": {
+        "h": 4,
+        "n": 4
+      },
+      "live": {
+        "h": 4,
+        "n": 4
+      }
+    },
+    {
+      "prop": "pass_rush_yds",
+      "label": "Pass+Rush Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 7,
+        "n": 11
+      },
+      "l5eq5": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 2
+      },
+      "stack": {
+        "h": 2,
+        "n": 2
+      },
+      "live": {
+        "h": 2,
+        "n": 2
+      }
+    },
+    {
+      "prop": "pass_rush_yds",
+      "label": "Pass+Rush Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 23,
+        "n": 33
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 5
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_yds_combo",
+      "label": "Pass Yards combo",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 4,
+        "n": 5
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_yds",
+      "label": "Rush Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 279,
+        "n": 453
+      },
+      "l5eq5": {
+        "h": 47,
+        "n": 52
+      },
+      "l5_l10": {
+        "h": 33,
+        "n": 36
+      },
+      "l5_d": {
+        "h": 16,
+        "n": 18
+      },
+      "stack": {
+        "h": 10,
+        "n": 10
+      },
+      "live": {
+        "h": 10,
+        "n": 10
+      }
+    },
+    {
+      "prop": "rush_yds",
+      "label": "Rush Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 41,
+        "n": 89
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 7
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 3
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "rush_yds",
+      "label": "Rush Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 118,
+        "n": 183
+      },
+      "l5eq5": {
+        "h": 18,
+        "n": 23
+      },
+      "l5_l10": {
+        "h": 11,
+        "n": 15
+      },
+      "l5_d": {
+        "h": 8,
+        "n": 8
+      },
+      "stack": {
+        "h": 5,
+        "n": 5
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_att",
+      "label": "Rush Attempts",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 18,
+        "n": 37
+      },
+      "l5eq5": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_att",
+      "label": "Rush Attempts",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 8,
+        "n": 16
+      },
+      "l5eq5": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 1,
+        "n": 2
+      }
+    },
+    {
+      "prop": "rush_att",
+      "label": "Rush Attempts",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 59,
+        "n": 102
+      },
+      "l5eq5": {
+        "h": 3,
+        "n": 7
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 5
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 3
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_rec_yds",
+      "label": "Rush+Rec Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 6,
+        "n": 8
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_rec_yds",
+      "label": "Rush+Rec Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 8,
+        "n": 17
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_rec_yds",
+      "label": "Rush+Rec Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 20,
+        "n": 29
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 5
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 0,
+        "n": 1
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_yds_combo",
+      "label": "Rush Yards combo",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 15,
+        "n": 24
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec_yds",
+      "label": "Rec Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 388,
+        "n": 611
+      },
+      "l5eq5": {
+        "h": 49,
+        "n": 73
+      },
+      "l5_l10": {
+        "h": 32,
+        "n": 45
+      },
+      "l5_d": {
+        "h": 20,
+        "n": 29
+      },
+      "stack": {
+        "h": 12,
+        "n": 16
+      },
+      "live": {
+        "h": 12,
+        "n": 16
+      }
+    },
+    {
+      "prop": "rec_yds",
+      "label": "Rec Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 78,
+        "n": 168
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 8
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 3,
+        "n": 6
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 1,
+        "n": 2
+      }
+    },
+    {
+      "prop": "rec_yds",
+      "label": "Rec Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 131,
+        "n": 262
+      },
+      "l5eq5": {
+        "h": 12,
+        "n": 22
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 5
+      },
+      "l5_d": {
+        "h": 10,
+        "n": 12
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec",
+      "label": "Receptions",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 136,
+        "n": 205
+      },
+      "l5eq5": {
+        "h": 11,
+        "n": 16
+      },
+      "l5_l10": {
+        "h": 9,
+        "n": 11
+      },
+      "l5_d": {
+        "h": 5,
+        "n": 6
+      },
+      "stack": {
+        "h": 3,
+        "n": 3
+      },
+      "live": {
+        "h": 3,
+        "n": 3
+      }
+    },
+    {
+      "prop": "rec",
+      "label": "Receptions",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 19,
+        "n": 38
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec",
+      "label": "Receptions",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 39,
+        "n": 78
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 7
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 1
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec_yds_combo",
+      "label": "Rec Yards combo",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 11,
+        "n": 17
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec_td",
+      "label": "Rec TDs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 2,
+        "n": 3
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "player_td",
+      "label": "Player TDs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 75,
+        "n": 151
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 8
+      },
+      "l5_l10": {
+        "h": 5,
+        "n": 8
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 4
+      },
+      "stack": {
+        "h": 2,
+        "n": 4
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "player_td",
+      "label": "Player TDs",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 2,
+        "n": 3
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "player_td",
+      "label": "Player TDs",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 2,
+        "n": 6
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_td",
+      "label": "Rush TDs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 20,
+        "n": 41
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 1
+      },
+      "live": {
+        "h": 0,
+        "n": 1
+      }
+    },
+    {
+      "prop": "rush_td",
+      "label": "Rush TDs",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 1,
+        "n": 2
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pat_made",
+      "label": "PAT Made",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 4,
+        "n": 7
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pat_made",
+      "label": "PAT Made",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 1,
+        "n": 3
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pat_made",
+      "label": "PAT Made",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 9,
+        "n": 15
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "kick_pts",
+      "label": "Kicking Points",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 10,
+        "n": 17
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "kick_pts",
+      "label": "Kicking Points",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 9,
+        "n": 16
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 1
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "kick_pts",
+      "label": "Kicking Points",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 28,
+        "n": 51
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 3
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "fg_made",
+      "label": "FG Made",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 24,
+        "n": 44
+      },
+      "l5eq5": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 3,
+        "n": 4
+      },
+      "stack": {
+        "h": 2,
+        "n": 3
+      },
+      "live": {
+        "h": 2,
+        "n": 3
+      }
+    },
+    {
+      "prop": "fg_made",
+      "label": "FG Made",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 0,
+        "n": 3
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "int",
+      "label": "INTs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 10,
+        "n": 24
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "int",
+      "label": "INTs",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 4,
+        "n": 8
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "int",
+      "label": "INTs",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 5,
+        "n": 8
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestcompletion",
+      "label": "Longestcompletion",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 6,
+        "n": 13
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestcompletion",
+      "label": "Longestcompletion",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 24,
+        "n": 43
+      },
+      "l5eq5": {
+        "h": 2,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestreception",
+      "label": "Longestreception",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 40,
+        "n": 85
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 7
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 6
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 3
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 1,
+        "n": 2
+      }
+    },
+    {
+      "prop": "longestreception",
+      "label": "Longestreception",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 52,
+        "n": 86
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 9
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 4
+      },
+      "l5_d": {
+        "h": 3,
+        "n": 6
+      },
+      "stack": {
+        "h": 1,
+        "n": 3
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestrush",
+      "label": "Longestrush",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 0,
+        "n": 1
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestrush",
+      "label": "Longestrush",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 27,
+        "n": 57
+      },
+      "l5eq5": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "longestrush",
+      "label": "Longestrush",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 30,
+        "n": 54
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 6
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 4
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    }
+  ],
+  "unique": [
+    {
+      "prop": "pass_yds",
+      "label": "Pass Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 71,
+        "n": 101
+      },
+      "l5eq5": {
+        "h": 9,
+        "n": 11
+      },
+      "l5_l10": {
+        "h": 8,
+        "n": 10
+      },
+      "l5_d": {
+        "h": 5,
+        "n": 7
+      },
+      "stack": {
+        "h": 5,
+        "n": 7
+      },
+      "live": {
+        "h": 8,
+        "n": 10
+      }
+    },
+    {
+      "prop": "pass_yds",
+      "label": "Pass Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 13,
+        "n": 28
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 3
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_yds",
+      "label": "Pass Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 56,
+        "n": 115
+      },
+      "l5eq5": {
+        "h": 11,
+        "n": 15
+      },
+      "l5_l10": {
+        "h": 7,
+        "n": 8
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 2
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "passcompletions",
+      "label": "Pass Completions",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 14,
+        "n": 25
+      },
+      "l5eq5": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "passcompletions",
+      "label": "Pass Completions",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 9,
+        "n": 12
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "passcompletions",
+      "label": "Pass Completions",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 29,
+        "n": 67
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_att",
+      "label": "Pass Attempts",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 14,
+        "n": 27
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_att",
+      "label": "Pass Attempts",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 7,
+        "n": 14
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_att",
+      "label": "Pass Attempts",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 10,
+        "n": 24
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_td",
+      "label": "Pass TDs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 63,
+        "n": 91
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 6
+      },
+      "l5_l10": {
+        "h": 5,
+        "n": 6
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 2
+      },
+      "stack": {
+        "h": 2,
+        "n": 2
+      },
+      "live": {
+        "h": 2,
+        "n": 2
+      }
+    },
+    {
+      "prop": "pass_td",
+      "label": "Pass TDs",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 4,
+        "n": 8
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 1
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "pass_td",
+      "label": "Pass TDs",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 8,
+        "n": 15
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_rush_yds",
+      "label": "Pass+Rush Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 10,
+        "n": 19
+      },
+      "l5eq5": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 2
+      },
+      "stack": {
+        "h": 2,
+        "n": 2
+      },
+      "live": {
+        "h": 2,
+        "n": 2
+      }
+    },
+    {
+      "prop": "pass_rush_yds",
+      "label": "Pass+Rush Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 7,
+        "n": 11
+      },
+      "l5eq5": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 2
+      },
+      "stack": {
+        "h": 2,
+        "n": 2
+      },
+      "live": {
+        "h": 2,
+        "n": 2
+      }
+    },
+    {
+      "prop": "pass_rush_yds",
+      "label": "Pass+Rush Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 23,
+        "n": 33
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 5
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pass_yds_combo",
+      "label": "Pass Yards combo",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 4,
+        "n": 5
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_yds",
+      "label": "Rush Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 122,
+        "n": 211
+      },
+      "l5eq5": {
+        "h": 17,
+        "n": 19
+      },
+      "l5_l10": {
+        "h": 11,
+        "n": 12
+      },
+      "l5_d": {
+        "h": 6,
+        "n": 7
+      },
+      "stack": {
+        "h": 3,
+        "n": 3
+      },
+      "live": {
+        "h": 3,
+        "n": 3
+      }
+    },
+    {
+      "prop": "rush_yds",
+      "label": "Rush Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 41,
+        "n": 89
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 7
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 3
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "rush_yds",
+      "label": "Rush Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 118,
+        "n": 183
+      },
+      "l5eq5": {
+        "h": 18,
+        "n": 23
+      },
+      "l5_l10": {
+        "h": 11,
+        "n": 15
+      },
+      "l5_d": {
+        "h": 8,
+        "n": 8
+      },
+      "stack": {
+        "h": 5,
+        "n": 5
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_att",
+      "label": "Rush Attempts",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 18,
+        "n": 37
+      },
+      "l5eq5": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_att",
+      "label": "Rush Attempts",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 8,
+        "n": 16
+      },
+      "l5eq5": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 1,
+        "n": 2
+      }
+    },
+    {
+      "prop": "rush_att",
+      "label": "Rush Attempts",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 59,
+        "n": 102
+      },
+      "l5eq5": {
+        "h": 3,
+        "n": 7
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 5
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 3
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_rec_yds",
+      "label": "Rush+Rec Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 3,
+        "n": 4
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_rec_yds",
+      "label": "Rush+Rec Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 8,
+        "n": 17
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_rec_yds",
+      "label": "Rush+Rec Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 20,
+        "n": 29
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 5
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 0,
+        "n": 1
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_yds_combo",
+      "label": "Rush Yards combo",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 15,
+        "n": 24
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec_yds",
+      "label": "Rec Yards",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 201,
+        "n": 321
+      },
+      "l5eq5": {
+        "h": 19,
+        "n": 29
+      },
+      "l5_l10": {
+        "h": 11,
+        "n": 15
+      },
+      "l5_d": {
+        "h": 7,
+        "n": 12
+      },
+      "stack": {
+        "h": 3,
+        "n": 5
+      },
+      "live": {
+        "h": 3,
+        "n": 5
+      }
+    },
+    {
+      "prop": "rec_yds",
+      "label": "Rec Yards",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 78,
+        "n": 168
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 8
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 3,
+        "n": 6
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 1,
+        "n": 2
+      }
+    },
+    {
+      "prop": "rec_yds",
+      "label": "Rec Yards",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 131,
+        "n": 262
+      },
+      "l5eq5": {
+        "h": 12,
+        "n": 22
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 5
+      },
+      "l5_d": {
+        "h": 10,
+        "n": 12
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec",
+      "label": "Receptions",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 124,
+        "n": 190
+      },
+      "l5eq5": {
+        "h": 9,
+        "n": 13
+      },
+      "l5_l10": {
+        "h": 7,
+        "n": 8
+      },
+      "l5_d": {
+        "h": 4,
+        "n": 5
+      },
+      "stack": {
+        "h": 2,
+        "n": 2
+      },
+      "live": {
+        "h": 2,
+        "n": 2
+      }
+    },
+    {
+      "prop": "rec",
+      "label": "Receptions",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 19,
+        "n": 38
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec",
+      "label": "Receptions",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 39,
+        "n": 78
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 7
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 1
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec_yds_combo",
+      "label": "Rec Yards combo",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 11,
+        "n": 17
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rec_td",
+      "label": "Rec TDs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 2,
+        "n": 3
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "player_td",
+      "label": "Player TDs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 75,
+        "n": 151
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 8
+      },
+      "l5_l10": {
+        "h": 5,
+        "n": 8
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 4
+      },
+      "stack": {
+        "h": 2,
+        "n": 4
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "player_td",
+      "label": "Player TDs",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 2,
+        "n": 3
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "player_td",
+      "label": "Player TDs",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 2,
+        "n": 6
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "rush_td",
+      "label": "Rush TDs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 20,
+        "n": 41
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 2
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 1
+      },
+      "stack": {
+        "h": 0,
+        "n": 1
+      },
+      "live": {
+        "h": 0,
+        "n": 1
+      }
+    },
+    {
+      "prop": "rush_td",
+      "label": "Rush TDs",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 1,
+        "n": 2
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pat_made",
+      "label": "PAT Made",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 4,
+        "n": 7
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pat_made",
+      "label": "PAT Made",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 1,
+        "n": 3
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "pat_made",
+      "label": "PAT Made",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 9,
+        "n": 15
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "kick_pts",
+      "label": "Kicking Points",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 9,
+        "n": 16
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "kick_pts",
+      "label": "Kicking Points",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 9,
+        "n": 16
+      },
+      "l5eq5": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 1
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "kick_pts",
+      "label": "Kicking Points",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 28,
+        "n": 50
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 3
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "fg_made",
+      "label": "FG Made",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 24,
+        "n": 44
+      },
+      "l5eq5": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 3
+      },
+      "l5_d": {
+        "h": 3,
+        "n": 4
+      },
+      "stack": {
+        "h": 2,
+        "n": 3
+      },
+      "live": {
+        "h": 2,
+        "n": 3
+      }
+    },
+    {
+      "prop": "fg_made",
+      "label": "FG Made",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 0,
+        "n": 3
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "int",
+      "label": "INTs",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 10,
+        "n": 24
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "int",
+      "label": "INTs",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 4,
+        "n": 8
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "int",
+      "label": "INTs",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 5,
+        "n": 8
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestcompletion",
+      "label": "Longestcompletion",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 6,
+        "n": 13
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestcompletion",
+      "label": "Longestcompletion",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 24,
+        "n": 43
+      },
+      "l5eq5": {
+        "h": 2,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 1,
+        "n": 1
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestreception",
+      "label": "Longestreception",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 40,
+        "n": 85
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 7
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 6
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 3
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 1,
+        "n": 2
+      }
+    },
+    {
+      "prop": "longestreception",
+      "label": "Longestreception",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 52,
+        "n": 86
+      },
+      "l5eq5": {
+        "h": 5,
+        "n": 9
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 4
+      },
+      "l5_d": {
+        "h": 3,
+        "n": 6
+      },
+      "stack": {
+        "h": 1,
+        "n": 3
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestrush",
+      "label": "Longestrush",
+      "book": "Goblin OVER",
+      "ungated": {
+        "h": 0,
+        "n": 1
+      },
+      "l5eq5": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_l10": {
+        "h": 0,
+        "n": 0
+      },
+      "l5_d": {
+        "h": 0,
+        "n": 0
+      },
+      "stack": {
+        "h": 0,
+        "n": 0
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    },
+    {
+      "prop": "longestrush",
+      "label": "Longestrush",
+      "book": "Standard OVER",
+      "ungated": {
+        "h": 27,
+        "n": 57
+      },
+      "l5eq5": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_l10": {
+        "h": 2,
+        "n": 2
+      },
+      "l5_d": {
+        "h": 1,
+        "n": 2
+      },
+      "stack": {
+        "h": 1,
+        "n": 1
+      },
+      "live": {
+        "h": 1,
+        "n": 1
+      }
+    },
+    {
+      "prop": "longestrush",
+      "label": "Longestrush",
+      "book": "Standard UNDER",
+      "ungated": {
+        "h": 30,
+        "n": 54
+      },
+      "l5eq5": {
+        "h": 4,
+        "n": 6
+      },
+      "l5_l10": {
+        "h": 3,
+        "n": 4
+      },
+      "l5_d": {
+        "h": 2,
+        "n": 4
+      },
+      "stack": {
+        "h": 1,
+        "n": 2
+      },
+      "live": {
+        "h": 0,
+        "n": 0
+      }
+    }
+  ]
+}

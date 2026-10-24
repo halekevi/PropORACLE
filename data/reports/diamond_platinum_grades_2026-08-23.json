@@ -1,0 +1,2746 @@
+{
+  "date": "2026-08-23",
+  "definition": {
+    "Diamond": "Gold + directional L10>=8 AND season HR>70% (min 10 prior games vs today's line)",
+    "Platinum": "Gold + exactly one of those two extra gates",
+    "Gold remain": "Gold with neither extra gate"
+  },
+  "summary": {
+    "list_all": {
+      "Diamond": {
+        "listed": 11,
+        "n": 7,
+        "hits": 5,
+        "misses": 2,
+        "hr": 0.7143,
+        "pending": 4,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 38,
+        "n": 36,
+        "hits": 28,
+        "misses": 8,
+        "hr": 0.7778,
+        "pending": 1,
+        "push": 1
+      },
+      "Platinum L10-only": {
+        "listed": 36,
+        "n": 34,
+        "hits": 28,
+        "misses": 6,
+        "hr": 0.8235,
+        "pending": 1,
+        "push": 1
+      },
+      "Platinum season-only": {
+        "listed": 2,
+        "n": 2,
+        "hits": 0,
+        "misses": 2,
+        "hr": 0.0,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold remain": {
+        "listed": 45,
+        "n": 37,
+        "hits": 20,
+        "misses": 17,
+        "hr": 0.5405,
+        "pending": 8,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 129,
+        "n": 100,
+        "hits": 57,
+        "misses": 43,
+        "hr": 0.57,
+        "pending": 28,
+        "push": 1
+      },
+      "Gold all": {
+        "listed": 94,
+        "n": 80,
+        "hits": 53,
+        "misses": 27,
+        "hr": 0.6625,
+        "pending": 13,
+        "push": 1
+      }
+    },
+    "list_goblin": {
+      "Diamond": {
+        "listed": 11,
+        "n": 7,
+        "hits": 5,
+        "misses": 2,
+        "hr": 0.7143,
+        "pending": 4,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 35,
+        "n": 34,
+        "hits": 27,
+        "misses": 7,
+        "hr": 0.7941,
+        "pending": 1,
+        "push": 0
+      },
+      "Platinum L10-only": {
+        "listed": 33,
+        "n": 32,
+        "hits": 27,
+        "misses": 5,
+        "hr": 0.8438,
+        "pending": 1,
+        "push": 0
+      },
+      "Platinum season-only": {
+        "listed": 2,
+        "n": 2,
+        "hits": 0,
+        "misses": 2,
+        "hr": 0.0,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold remain": {
+        "listed": 41,
+        "n": 34,
+        "hits": 18,
+        "misses": 16,
+        "hr": 0.5294,
+        "pending": 7,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 99,
+        "n": 74,
+        "hits": 39,
+        "misses": 35,
+        "hr": 0.527,
+        "pending": 25,
+        "push": 0
+      },
+      "Gold all": {
+        "listed": 87,
+        "n": 75,
+        "hits": 50,
+        "misses": 25,
+        "hr": 0.6667,
+        "pending": 12,
+        "push": 0
+      }
+    },
+    "list_std_over": {
+      "Diamond": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Platinum L10-only": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Platinum season-only": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold remain": {
+        "listed": 3,
+        "n": 2,
+        "hits": 1,
+        "misses": 1,
+        "hr": 0.5,
+        "pending": 1,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 11,
+        "n": 9,
+        "hits": 6,
+        "misses": 3,
+        "hr": 0.6667,
+        "pending": 1,
+        "push": 1
+      },
+      "Gold all": {
+        "listed": 3,
+        "n": 2,
+        "hits": 1,
+        "misses": 1,
+        "hr": 0.5,
+        "pending": 1,
+        "push": 0
+      }
+    },
+    "list_std_under": {
+      "Diamond": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 3,
+        "n": 2,
+        "hits": 1,
+        "misses": 1,
+        "hr": 0.5,
+        "pending": 0,
+        "push": 1
+      },
+      "Platinum L10-only": {
+        "listed": 3,
+        "n": 2,
+        "hits": 1,
+        "misses": 1,
+        "hr": 0.5,
+        "pending": 0,
+        "push": 1
+      },
+      "Platinum season-only": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold remain": {
+        "listed": 1,
+        "n": 1,
+        "hits": 1,
+        "misses": 0,
+        "hr": 1.0,
+        "pending": 0,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 19,
+        "n": 17,
+        "hits": 12,
+        "misses": 5,
+        "hr": 0.7059,
+        "pending": 2,
+        "push": 0
+      },
+      "Gold all": {
+        "listed": 4,
+        "n": 3,
+        "hits": 2,
+        "misses": 1,
+        "hr": 0.6667,
+        "pending": 0,
+        "push": 1
+      }
+    },
+    "ticket_pool": {
+      "Diamond": {
+        "listed": 8,
+        "n": 5,
+        "hits": 3,
+        "misses": 2,
+        "hr": 0.6,
+        "pending": 3,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 9,
+        "n": 8,
+        "hits": 6,
+        "misses": 2,
+        "hr": 0.75,
+        "pending": 1,
+        "push": 0
+      },
+      "Platinum L10-only": {
+        "listed": 9,
+        "n": 8,
+        "hits": 6,
+        "misses": 2,
+        "hr": 0.75,
+        "pending": 1,
+        "push": 0
+      },
+      "Platinum season-only": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold remain": {
+        "listed": 15,
+        "n": 11,
+        "hits": 5,
+        "misses": 6,
+        "hr": 0.4545,
+        "pending": 4,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 32,
+        "n": 18,
+        "hits": 10,
+        "misses": 8,
+        "hr": 0.5556,
+        "pending": 14,
+        "push": 0
+      },
+      "Gold all": {
+        "listed": 32,
+        "n": 24,
+        "hits": 14,
+        "misses": 10,
+        "hr": 0.5833,
+        "pending": 8,
+        "push": 0
+      }
+    }
+  },
+  "by_sport": {
+    "WNBA": {
+      "Diamond": {
+        "listed": 3,
+        "n": 3,
+        "hits": 1,
+        "misses": 2,
+        "hr": 0.3333,
+        "pending": 0,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 25,
+        "n": 24,
+        "hits": 19,
+        "misses": 5,
+        "hr": 0.7917,
+        "pending": 1,
+        "push": 0
+      },
+      "Gold remain": {
+        "listed": 14,
+        "n": 13,
+        "hits": 7,
+        "misses": 6,
+        "hr": 0.5385,
+        "pending": 1,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 65,
+        "n": 64,
+        "hits": 38,
+        "misses": 26,
+        "hr": 0.5938,
+        "pending": 0,
+        "push": 1
+      },
+      "Gold all": {
+        "listed": 42,
+        "n": 40,
+        "hits": 27,
+        "misses": 13,
+        "hr": 0.675,
+        "pending": 2,
+        "push": 0
+      }
+    },
+    "MLB": {
+      "Diamond": {
+        "listed": 3,
+        "n": 1,
+        "hits": 1,
+        "misses": 0,
+        "hr": 1.0,
+        "pending": 2,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 10,
+        "n": 10,
+        "hits": 8,
+        "misses": 2,
+        "hr": 0.8,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold remain": {
+        "listed": 10,
+        "n": 7,
+        "hits": 4,
+        "misses": 3,
+        "hr": 0.5714,
+        "pending": 3,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 39,
+        "n": 12,
+        "hits": 4,
+        "misses": 8,
+        "hr": 0.3333,
+        "pending": 27,
+        "push": 0
+      },
+      "Gold all": {
+        "listed": 23,
+        "n": 18,
+        "hits": 13,
+        "misses": 5,
+        "hr": 0.7222,
+        "pending": 5,
+        "push": 0
+      }
+    },
+    "SOCCER": {
+      "Diamond": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 3,
+        "n": 2,
+        "hits": 1,
+        "misses": 1,
+        "hr": 0.5,
+        "pending": 0,
+        "push": 1
+      },
+      "Gold remain": {
+        "listed": 1,
+        "n": 1,
+        "hits": 1,
+        "misses": 0,
+        "hr": 1.0,
+        "pending": 0,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 21,
+        "n": 20,
+        "hits": 14,
+        "misses": 6,
+        "hr": 0.7,
+        "pending": 1,
+        "push": 0
+      },
+      "Gold all": {
+        "listed": 4,
+        "n": 3,
+        "hits": 2,
+        "misses": 1,
+        "hr": 0.6667,
+        "pending": 0,
+        "push": 1
+      }
+    },
+    "TENNIS": {
+      "Diamond": {
+        "listed": 5,
+        "n": 3,
+        "hits": 3,
+        "misses": 0,
+        "hr": 1.0,
+        "pending": 2,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold remain": {
+        "listed": 20,
+        "n": 16,
+        "hits": 8,
+        "misses": 8,
+        "hr": 0.5,
+        "pending": 4,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 1,
+        "n": 1,
+        "hits": 1,
+        "misses": 0,
+        "hr": 1.0,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold all": {
+        "listed": 25,
+        "n": 19,
+        "hits": 11,
+        "misses": 8,
+        "hr": 0.5789,
+        "pending": 6,
+        "push": 0
+      }
+    },
+    "NFL": {
+      "Diamond": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Platinum": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold remain": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      },
+      "Silver": {
+        "listed": 3,
+        "n": 3,
+        "hits": 0,
+        "misses": 3,
+        "hr": 0.0,
+        "pending": 0,
+        "push": 0
+      },
+      "Gold all": {
+        "listed": 0,
+        "n": 0,
+        "hits": 0,
+        "misses": 0,
+        "hr": null,
+        "pending": 0,
+        "push": 0
+      }
+    }
+  },
+  "by_book_sport": {
+    "Goblin OVER": {
+      "WNBA": {
+        "Diamond": {
+          "listed": 3,
+          "n": 3,
+          "hits": 1,
+          "misses": 2,
+          "hr": 0.3333,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 25,
+          "n": 24,
+          "hits": 19,
+          "misses": 5,
+          "hr": 0.7917,
+          "pending": 1,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 24,
+          "n": 23,
+          "hits": 19,
+          "misses": 4,
+          "hr": 0.8261,
+          "pending": 1,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 1,
+          "n": 1,
+          "hits": 0,
+          "misses": 1,
+          "hr": 0.0,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 14,
+          "n": 13,
+          "hits": 7,
+          "misses": 6,
+          "hr": 0.5385,
+          "pending": 1,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 56,
+          "n": 56,
+          "hits": 32,
+          "misses": 24,
+          "hr": 0.5714,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 42,
+          "n": 40,
+          "hits": 27,
+          "misses": 13,
+          "hr": 0.675,
+          "pending": 2,
+          "push": 0
+        }
+      },
+      "MLB": {
+        "Diamond": {
+          "listed": 3,
+          "n": 1,
+          "hits": 1,
+          "misses": 0,
+          "hr": 1.0,
+          "pending": 2,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 10,
+          "n": 10,
+          "hits": 8,
+          "misses": 2,
+          "hr": 0.8,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 9,
+          "n": 9,
+          "hits": 8,
+          "misses": 1,
+          "hr": 0.8889,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 1,
+          "n": 1,
+          "hits": 0,
+          "misses": 1,
+          "hr": 0.0,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 10,
+          "n": 7,
+          "hits": 4,
+          "misses": 3,
+          "hr": 0.5714,
+          "pending": 3,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 36,
+          "n": 12,
+          "hits": 4,
+          "misses": 8,
+          "hr": 0.3333,
+          "pending": 24,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 23,
+          "n": 18,
+          "hits": 13,
+          "misses": 5,
+          "hr": 0.7222,
+          "pending": 5,
+          "push": 0
+        }
+      },
+      "SOCCER": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 6,
+          "n": 5,
+          "hits": 2,
+          "misses": 3,
+          "hr": 0.4,
+          "pending": 1,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      },
+      "TENNIS": {
+        "Diamond": {
+          "listed": 5,
+          "n": 3,
+          "hits": 3,
+          "misses": 0,
+          "hr": 1.0,
+          "pending": 2,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 17,
+          "n": 14,
+          "hits": 7,
+          "misses": 7,
+          "hr": 0.5,
+          "pending": 3,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 1,
+          "n": 1,
+          "hits": 1,
+          "misses": 0,
+          "hr": 1.0,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 22,
+          "n": 17,
+          "hits": 10,
+          "misses": 7,
+          "hr": 0.5882,
+          "pending": 5,
+          "push": 0
+        }
+      },
+      "NFL": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      }
+    },
+    "Standard OVER": {
+      "WNBA": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 7,
+          "n": 6,
+          "hits": 5,
+          "misses": 1,
+          "hr": 0.8333,
+          "pending": 0,
+          "push": 1
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      },
+      "MLB": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 1,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 1,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      },
+      "SOCCER": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 1,
+          "n": 1,
+          "hits": 1,
+          "misses": 0,
+          "hr": 1.0,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      },
+      "TENNIS": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 3,
+          "n": 2,
+          "hits": 1,
+          "misses": 1,
+          "hr": 0.5,
+          "pending": 1,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 3,
+          "n": 2,
+          "hits": 1,
+          "misses": 1,
+          "hr": 0.5,
+          "pending": 1,
+          "push": 0
+        }
+      },
+      "NFL": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 2,
+          "n": 2,
+          "hits": 0,
+          "misses": 2,
+          "hr": 0.0,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      }
+    },
+    "Standard UNDER": {
+      "WNBA": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 2,
+          "n": 2,
+          "hits": 1,
+          "misses": 1,
+          "hr": 0.5,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      },
+      "MLB": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 2,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 2,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      },
+      "SOCCER": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 3,
+          "n": 2,
+          "hits": 1,
+          "misses": 1,
+          "hr": 0.5,
+          "pending": 0,
+          "push": 1
+        },
+        "Platinum L10-only": {
+          "listed": 3,
+          "n": 2,
+          "hits": 1,
+          "misses": 1,
+          "hr": 0.5,
+          "pending": 0,
+          "push": 1
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 1,
+          "n": 1,
+          "hits": 1,
+          "misses": 0,
+          "hr": 1.0,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 14,
+          "n": 14,
+          "hits": 11,
+          "misses": 3,
+          "hr": 0.7857,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 4,
+          "n": 3,
+          "hits": 2,
+          "misses": 1,
+          "hr": 0.6667,
+          "pending": 0,
+          "push": 1
+        }
+      },
+      "TENNIS": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      },
+      "NFL": {
+        "Diamond": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum L10-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Platinum season-only": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold remain": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        },
+        "Silver": {
+          "listed": 1,
+          "n": 1,
+          "hits": 0,
+          "misses": 1,
+          "hr": 0.0,
+          "pending": 0,
+          "push": 0
+        },
+        "Gold all": {
+          "listed": 0,
+          "n": 0,
+          "hits": 0,
+          "misses": 0,
+          "hr": null,
+          "pending": 0,
+          "push": 0
+        }
+      }
+    }
+  },
+  "ticket_legs": {
+    "Diamond": {
+      "listed": 17,
+      "n": 10,
+      "hits": 6,
+      "misses": 4,
+      "hr": 0.6,
+      "pending": 7,
+      "push": 0
+    },
+    "Platinum": {
+      "listed": 0,
+      "n": 0,
+      "hits": 0,
+      "misses": 0,
+      "hr": null,
+      "pending": 0,
+      "push": 0
+    },
+    "Gold": {
+      "listed": 2,
+      "n": 2,
+      "hits": 0,
+      "misses": 2,
+      "hr": 0.0,
+      "pending": 0,
+      "push": 0
+    },
+    "Silver": {
+      "listed": 0,
+      "n": 0,
+      "hits": 0,
+      "misses": 0,
+      "hr": null,
+      "pending": 0,
+      "push": 0
+    }
+  },
+  "diamond_misses": [
+    {
+      "sport": "WNBA",
+      "player": "Sonia Citron",
+      "prop": "3-PT Made",
+      "side": "OVER",
+      "line": 0.5,
+      "pick_type": "Goblin",
+      "promo": "Diamond",
+      "kind": "",
+      "l10": 9,
+      "season_hr": 71.4,
+      "actual": 0.0,
+      "badge": "Gold"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Shakira Austin",
+      "prop": "Assists",
+      "side": "OVER",
+      "line": 1.5,
+      "pick_type": "Goblin",
+      "promo": "Diamond",
+      "kind": "",
+      "l10": 8,
+      "season_hr": 73.2,
+      "actual": 0.0,
+      "badge": "Gold"
+    }
+  ],
+  "platinum_misses": [
+    {
+      "sport": "WNBA",
+      "player": "Dominique Malonga",
+      "prop": "Rebs+Asts",
+      "side": "OVER",
+      "line": 9.5,
+      "pick_type": "Goblin",
+      "promo": "Platinum",
+      "kind": "L10-only",
+      "l10": 9,
+      "season_hr": 50.0,
+      "actual": 6.0,
+      "badge": "Gold"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Dominique Malonga",
+      "prop": "Pts+Rebs+Asts",
+      "side": "OVER",
+      "line": 24.5,
+      "pick_type": "Goblin",
+      "promo": "Platinum",
+      "kind": "L10-only",
+      "l10": 8,
+      "season_hr": 27.3,
+      "actual": 18.0,
+      "badge": "Gold"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Dominique Malonga",
+      "prop": "Pts+Asts",
+      "side": "OVER",
+      "line": 14.5,
+      "pick_type": "Goblin",
+      "promo": "Platinum",
+      "kind": "L10-only",
+      "l10": 9,
+      "season_hr": 38.2,
+      "actual": 13.0,
+      "badge": "Gold"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Dominique Malonga",
+      "prop": "Points",
+      "side": "OVER",
+      "line": 14.5,
+      "pick_type": "Goblin",
+      "promo": "Platinum",
+      "kind": "L10-only",
+      "l10": 8,
+      "season_hr": 50.6,
+      "actual": 12.0,
+      "badge": "Gold"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Dominique Malonga",
+      "prop": "Assists",
+      "side": "OVER",
+      "line": 1.5,
+      "pick_type": "Goblin",
+      "promo": "Platinum",
+      "kind": "season-only",
+      "l10": 6,
+      "season_hr": 71.4,
+      "actual": 1.0,
+      "badge": "Gold"
+    },
+    {
+      "sport": "MLB",
+      "player": "Angel Genao",
+      "prop": "Hits+Runs+RBIs",
+      "side": "OVER",
+      "line": 0.5,
+      "pick_type": "Goblin",
+      "promo": "Platinum",
+      "kind": "L10-only",
+      "l10": 8,
+      "season_hr": 64.7,
+      "actual": 0.0,
+      "badge": "Gold"
+    },
+    {
+      "sport": "MLB",
+      "player": "Ty France",
+      "prop": "Hits+Runs+RBIs",
+      "side": "OVER",
+      "line": 0.5,
+      "pick_type": "Goblin",
+      "promo": "Platinum",
+      "kind": "season-only",
+      "l10": 7,
+      "season_hr": 77.2,
+      "actual": 0.0,
+      "badge": "Gold"
+    },
+    {
+      "sport": "SOCCER",
+      "player": "Arijanet Muric",
+      "prop": "Goalie Saves",
+      "side": "UNDER",
+      "line": 3.5,
+      "pick_type": "Standard",
+      "promo": "Platinum",
+      "kind": "L10-only",
+      "l10": 9,
+      "season_hr": 0.0,
+      "actual": 5.0,
+      "badge": "Gold"
+    }
+  ],
+  "misses_by_book": {
+    "Goblin OVER": {
+      "Diamond": [
+        {
+          "sport": "WNBA",
+          "player": "Sonia Citron",
+          "prop": "3-PT Made",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Diamond",
+          "kind": "",
+          "l10": 9,
+          "season_hr": 71.4,
+          "actual": 0.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Shakira Austin",
+          "prop": "Assists",
+          "side": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "promo": "Diamond",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 73.2,
+          "actual": 0.0,
+          "badge": "Gold"
+        }
+      ],
+      "Platinum": [
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Rebs+Asts",
+          "side": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "promo": "Platinum",
+          "kind": "L10-only",
+          "l10": 9,
+          "season_hr": 50.0,
+          "actual": 6.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Pts+Rebs+Asts",
+          "side": "OVER",
+          "line": 24.5,
+          "pick_type": "Goblin",
+          "promo": "Platinum",
+          "kind": "L10-only",
+          "l10": 8,
+          "season_hr": 27.3,
+          "actual": 18.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Pts+Asts",
+          "side": "OVER",
+          "line": 14.5,
+          "pick_type": "Goblin",
+          "promo": "Platinum",
+          "kind": "L10-only",
+          "l10": 9,
+          "season_hr": 38.2,
+          "actual": 13.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 14.5,
+          "pick_type": "Goblin",
+          "promo": "Platinum",
+          "kind": "L10-only",
+          "l10": 8,
+          "season_hr": 50.6,
+          "actual": 12.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Assists",
+          "side": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "promo": "Platinum",
+          "kind": "season-only",
+          "l10": 6,
+          "season_hr": 71.4,
+          "actual": 1.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "MLB",
+          "player": "Angel Genao",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Platinum",
+          "kind": "L10-only",
+          "l10": 8,
+          "season_hr": 64.7,
+          "actual": 0.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "MLB",
+          "player": "Ty France",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Platinum",
+          "kind": "season-only",
+          "l10": 7,
+          "season_hr": 77.2,
+          "actual": 0.0,
+          "badge": "Gold"
+        }
+      ],
+      "Gold remain": [
+        {
+          "sport": "WNBA",
+          "player": "Ezi Magbegor",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 42.9,
+          "actual": 2.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Pts+Rebs",
+          "side": "OVER",
+          "line": 24.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 35.3,
+          "actual": 17.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Flau'jae Johnson",
+          "prop": "Assists",
+          "side": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 66.7,
+          "actual": 2.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 17.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 50.6,
+          "actual": 12.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Ezi Magbegor",
+          "prop": "Pts+Rebs",
+          "side": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 22.2,
+          "actual": 6.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Ezi Magbegor",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 5.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": 5,
+          "season_hr": 42.9,
+          "actual": 2.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "MLB",
+          "player": "Angel Genao",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 69.2,
+          "actual": 0.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "MLB",
+          "player": "Travis Bazzana",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 46.8,
+          "actual": 0.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "MLB",
+          "player": "Ty France",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 57.5,
+          "actual": 0.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Yibing Wu",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": null,
+          "season_hr": 0.0,
+          "actual": 19.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Giovanni Mpetshi Perricard",
+          "prop": "Total Games Won",
+          "side": "OVER",
+          "line": 10.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": null,
+          "season_hr": 88.9,
+          "actual": 5.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Giovanni Mpetshi Perricard",
+          "prop": "Total Games Won",
+          "side": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": null,
+          "season_hr": 88.9,
+          "actual": 5.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Yibing Wu",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 22.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": null,
+          "season_hr": 0.0,
+          "actual": 19.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Yibing Wu",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 21.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": null,
+          "season_hr": 0.0,
+          "actual": 19.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Miomir Kecmanovic",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 20.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": null,
+          "season_hr": 100.0,
+          "actual": 19.0,
+          "badge": "Gold"
+        },
+        {
+          "sport": "TENNIS",
+          "player": "Miomir Kecmanovic",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "promo": "Gold",
+          "kind": "",
+          "l10": null,
+          "season_hr": 100.0,
+          "actual": 19.0,
+          "badge": "Gold"
+        }
+      ],
+      "Silver": [
+        {
+          "sport": "WNBA",
+          "player": "Kamilla Cardoso",
+          "prop": "Pts+Rebs",
+          "side": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 10,
+          "season_hr": 57.4,
+          "actual": 17.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Jackie Young",
+          "prop": "3-PT Made",
+          "side": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 10,
+          "season_hr": 65.7,
+          "actual": 1.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Rebounds",
+          "side": "OVER",
+          "line": 8.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 9,
+          "season_hr": 68.0,
+          "actual": 5.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Rebounds",
+          "side": "OVER",
+          "line": 7.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 9,
+          "season_hr": 68.0,
+          "actual": 5.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Kamilla Cardoso",
+          "prop": "Pts+Rebs+Asts",
+          "side": "OVER",
+          "line": 24.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 9,
+          "season_hr": 58.4,
+          "actual": 18.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Kamilla Cardoso",
+          "prop": "Pts+Asts",
+          "side": "OVER",
+          "line": 14.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 9,
+          "season_hr": 41.7,
+          "actual": 12.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Kamilla Cardoso",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 9,
+          "season_hr": 64.5,
+          "actual": 11.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Sydney Taylor",
+          "prop": "Rebounds",
+          "side": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 66.7,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Sydney Taylor",
+          "prop": "Pts+Rebs",
+          "side": "OVER",
+          "line": 14.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 9,
+          "season_hr": 36.4,
+          "actual": 4.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Sydney Taylor",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 11.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 9,
+          "season_hr": 79.3,
+          "actual": 4.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Sydney Taylor",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 9,
+          "season_hr": 79.3,
+          "actual": 4.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Kamilla Cardoso",
+          "prop": "Rebs+Asts",
+          "side": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 64.9,
+          "actual": 7.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Kamilla Cardoso",
+          "prop": "Rebounds",
+          "side": "OVER",
+          "line": 6.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 61.0,
+          "actual": 6.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Sydney Taylor",
+          "prop": "3-PT Made",
+          "side": "OVER",
+          "line": 1.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 75.0,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Jackie Young",
+          "prop": "Pts+Rebs+Asts",
+          "side": "OVER",
+          "line": 29.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 68.8,
+          "actual": 29.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Jackie Young",
+          "prop": "Rebs+Asts",
+          "side": "OVER",
+          "line": 9.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 73.5,
+          "actual": 8.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Pts+Rebs+Asts",
+          "side": "OVER",
+          "line": 29.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 27.3,
+          "actual": 18.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Alanna Smith",
+          "prop": "Rebounds",
+          "side": "OVER",
+          "line": 4.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 66.7,
+          "actual": 4.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Kamilla Cardoso",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 14.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 64.5,
+          "actual": 11.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Kamilla Cardoso",
+          "prop": "Rebounds",
+          "side": "OVER",
+          "line": 8.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 61.0,
+          "actual": 6.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Kamilla Cardoso",
+          "prop": "Rebounds",
+          "side": "OVER",
+          "line": 7.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 61.0,
+          "actual": 6.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Pts+Rebs+Asts",
+          "side": "OVER",
+          "line": 30.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 27.3,
+          "actual": 18.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Pts+Asts",
+          "side": "OVER",
+          "line": 19.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 38.2,
+          "actual": 13.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "WNBA",
+          "player": "Ezi Magbegor",
+          "prop": "Points",
+          "side": "OVER",
+          "line": 6.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 5,
+          "season_hr": 42.9,
+          "actual": 2.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "MLB",
+          "player": "Kody Clemens",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 60.0,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "MLB",
+          "player": "Kody Clemens",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 66.2,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "MLB",
+          "player": "Otto Lopez",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 70.0,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "MLB",
+          "player": "Travis Bazzana",
+          "prop": "Hits",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 55.0,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "MLB",
+          "player": "Otto Lopez",
+          "prop": "Singles",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 61.8,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "MLB",
+          "player": "Josh Bell",
+          "prop": "Hits+Runs+RBIs",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 73.8,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "MLB",
+          "player": "Angel Genao",
+          "prop": "Singles",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 5,
+          "season_hr": 71.4,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "MLB",
+          "player": "Javier Sanoja",
+          "prop": "Singles",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 5,
+          "season_hr": 37.0,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Lamine Yamal",
+          "prop": "Shots",
+          "side": "OVER",
+          "line": 2.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 50.0,
+          "actual": 2.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Lamine Yamal",
+          "prop": "Shots On Target",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 7,
+          "season_hr": 100.0,
+          "actual": 0.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Carlos Romero",
+          "prop": "Shots",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "Goblin",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 75.0,
+          "actual": 0.0,
+          "badge": "Silver"
+        }
+      ]
+    },
+    "Standard OVER": {
+      "Diamond": [],
+      "Platinum": [],
+      "Gold remain": [
+        {
+          "sport": "TENNIS",
+          "player": "Miomir Kecmanovic",
+          "prop": "Total Games",
+          "side": "OVER",
+          "line": 22.5,
+          "pick_type": "Standard",
+          "promo": "Gold",
+          "kind": "",
+          "l10": null,
+          "season_hr": 100.0,
+          "actual": 19.0,
+          "badge": "Gold"
+        }
+      ],
+      "Silver": [
+        {
+          "sport": "WNBA",
+          "player": "Dominique Malonga",
+          "prop": "Pts+Rebs",
+          "side": "OVER",
+          "line": 29.5,
+          "pick_type": "Standard",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 35.3,
+          "actual": 17.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "NFL",
+          "player": "Jason Myers",
+          "prop": "pat_made",
+          "side": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": null,
+          "actual": 1.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "NFL",
+          "player": "Jason Myers",
+          "prop": "fg_made",
+          "side": "OVER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": null,
+          "actual": 1.0,
+          "badge": "Silver"
+        }
+      ]
+    },
+    "Standard UNDER": {
+      "Diamond": [],
+      "Platinum": [
+        {
+          "sport": "SOCCER",
+          "player": "Arijanet Muric",
+          "prop": "Goalie Saves",
+          "side": "UNDER",
+          "line": 3.5,
+          "pick_type": "Standard",
+          "promo": "Platinum",
+          "kind": "L10-only",
+          "l10": 9,
+          "season_hr": 0.0,
+          "actual": 5.0,
+          "badge": "Gold"
+        }
+      ],
+      "Gold remain": [],
+      "Silver": [
+        {
+          "sport": "WNBA",
+          "player": "Carla Leite",
+          "prop": "Rebs+Asts",
+          "side": "UNDER",
+          "line": 9.5,
+          "pick_type": "Standard",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 6,
+          "season_hr": 54.5,
+          "actual": 13.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Ethan Mbapp\u00e9",
+          "prop": "Shots On Target",
+          "side": "UNDER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 5,
+          "season_hr": null,
+          "actual": 1.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "SOCCER",
+          "player": "D\u00e9sir\u00e9 Dou\u00e9",
+          "prop": "Shots",
+          "side": "UNDER",
+          "line": 3.0,
+          "pick_type": "Standard",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 8,
+          "season_hr": 62.5,
+          "actual": 5.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "SOCCER",
+          "player": "Sergio Canales",
+          "prop": "Shots On Target",
+          "side": "UNDER",
+          "line": 0.5,
+          "pick_type": "Standard",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 4,
+          "season_hr": null,
+          "actual": 1.0,
+          "badge": "Silver"
+        },
+        {
+          "sport": "NFL",
+          "player": "Joey Slye",
+          "prop": "fg_made",
+          "side": "UNDER",
+          "line": 1.5,
+          "pick_type": "Standard",
+          "promo": "Silver",
+          "kind": "",
+          "l10": 7,
+          "season_hr": null,
+          "actual": 4.0,
+          "badge": "Silver"
+        }
+      ]
+    }
+  },
+  "diamond_hits_n": 5
+}

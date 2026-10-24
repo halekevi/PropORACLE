@@ -1,0 +1,1156 @@
+{
+  "window": {
+    "from": "2026-02-19",
+    "to": "2026-09-16",
+    "n_files": 206
+  },
+  "raw_labels": {
+    "passes": [
+      [
+        "Passes Attempted",
+        112
+      ]
+    ],
+    "tackles": [
+      [
+        "Tackles",
+        839
+      ]
+    ],
+    "clearances": [
+      [
+        "Clearances",
+        33
+      ]
+    ],
+    "attempted_dribbles": [
+      [
+        "Attempted Dribbles",
+        31
+      ]
+    ],
+    "crosses": [
+      [
+        "Crosses",
+        12
+      ]
+    ],
+    "shots_assisted": [
+      [
+        "Shots Assisted",
+        30
+      ]
+    ]
+  },
+  "cells": {
+    "Demon OVER::tackles": {
+      "book": "Demon OVER",
+      "canon": "tackles",
+      "display": "Tackles",
+      "n": 810,
+      "hits": 167,
+      "hr": 0.20617283950617285,
+      "actual_known": 810,
+      "actual_blank": 0,
+      "actual_zero": 322,
+      "zero_share": 0.39753086419753086,
+      "mean_actual": 1.1555555555555554,
+      "median_hint": 1.0,
+      "buckets": {
+        "(0,1]": 235,
+        "(1,5]": 243,
+        "0": 322,
+        "(5,20]": 10
+      },
+      "zero_HIT": 0,
+      "zero_MISS": 322,
+      "nonzero_n": 488,
+      "nonzero_hits": 167,
+      "hr_excl_zero": 0.3422131147540984,
+      "top_lines": [
+        [
+          "2.5",
+          495
+        ],
+        [
+          "1.5",
+          254
+        ],
+        [
+          "3.5",
+          23
+        ],
+        [
+          "0.5",
+          19
+        ],
+        [
+          "4.5",
+          15
+        ],
+        [
+          "5.5",
+          2
+        ],
+        [
+          "7.5",
+          1
+        ],
+        [
+          "6.5",
+          1
+        ]
+      ],
+      "sample_zero": [
+        {
+          "date": "2026-03-10",
+          "player": "Cl\u00e9ment Lenglet",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Radu Dragusin",
+          "line": "1.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Davide Zappacosta",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Odilon Kossounou",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Mitchel Bakker",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Rapha\u00ebl Guerreiro",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Eric Garc\u00eda",
+          "line": "4.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Alex Murphy",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        }
+      ],
+      "sample_nonzero": [
+        {
+          "date": "2026-03-10",
+          "player": "Davinson S\u00e1nchez",
+          "line": "3.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Abd\u00fclkerim Bardakci",
+          "line": "2.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Ismail Jakobs",
+          "line": "2.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Jeremie Frimpong",
+          "line": "2.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Joe Gomez",
+          "line": "2.5",
+          "actual": 2.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Milos Kerkez",
+          "line": "2.5",
+          "actual": 2.0,
+          "result": "MISS"
+        }
+      ]
+    },
+    "Goblin OVER::tackles": {
+      "book": "Goblin OVER",
+      "canon": "tackles",
+      "display": "Tackles",
+      "n": 13,
+      "hits": 3,
+      "hr": 0.23076923076923078,
+      "actual_known": 13,
+      "actual_blank": 0,
+      "actual_zero": 3,
+      "zero_share": 0.23076923076923078,
+      "mean_actual": 1.3846153846153846,
+      "median_hint": 1.0,
+      "buckets": {
+        "0": 3,
+        "(0,1]": 6,
+        "(1,5]": 4
+      },
+      "zero_HIT": 0,
+      "zero_MISS": 3,
+      "nonzero_n": 10,
+      "nonzero_hits": 3,
+      "hr_excl_zero": 0.3,
+      "top_lines": [
+        [
+          "2.5",
+          7
+        ],
+        [
+          "1.5",
+          3
+        ],
+        [
+          "0.5",
+          2
+        ],
+        [
+          "4.5",
+          1
+        ]
+      ],
+      "sample_zero": [
+        {
+          "date": "2026-03-10",
+          "player": "Conor Gallagher",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-13",
+          "player": "Nesta Elphege",
+          "line": "0.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-15",
+          "player": "Petar Ratkov",
+          "line": "0.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        }
+      ],
+      "sample_nonzero": [
+        {
+          "date": "2026-03-10",
+          "player": "Jamal Musiala",
+          "line": "1.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Daan Heymans",
+          "line": "2.5",
+          "actual": 3.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Ibrahim Sangar\u00e9",
+          "line": "2.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Emiliano Buend\u00eda",
+          "line": "2.5",
+          "actual": 4.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-13",
+          "player": "Emirhan Ilkhan",
+          "line": "2.5",
+          "actual": 2.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-13",
+          "player": "Santiago Mouri\u00f1o",
+          "line": "4.5",
+          "actual": 1.0,
+          "result": "MISS"
+        }
+      ]
+    },
+    "Standard OVER::attempted_dribbles": {
+      "book": "Standard OVER",
+      "canon": "attempted_dribbles",
+      "display": "Attempted Dribbles",
+      "n": 31,
+      "hits": 10,
+      "hr": 0.3225806451612903,
+      "actual_known": 31,
+      "actual_blank": 0,
+      "actual_zero": 3,
+      "zero_share": 0.0967741935483871,
+      "mean_actual": 2.4838709677419355,
+      "median_hint": 2.0,
+      "buckets": {
+        "(0,1]": 8,
+        "(1,5]": 17,
+        "0": 3,
+        "(5,20]": 3
+      },
+      "zero_HIT": 0,
+      "zero_MISS": 3,
+      "nonzero_n": 28,
+      "nonzero_hits": 10,
+      "hr_excl_zero": 0.35714285714285715,
+      "top_lines": [
+        [
+          "2.5",
+          11
+        ],
+        [
+          "3.5",
+          7
+        ],
+        [
+          "1.5",
+          4
+        ],
+        [
+          "5.5",
+          2
+        ],
+        [
+          "3.0",
+          2
+        ],
+        [
+          "4.5",
+          1
+        ],
+        [
+          "9.5",
+          1
+        ],
+        [
+          "4.0",
+          1
+        ]
+      ],
+      "sample_zero": [
+        {
+          "date": "2026-03-10",
+          "player": "Mohamed Salah",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Attempted Dribbles"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Anthony Gordon",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Attempted Dribbles"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Xavi Simons",
+          "line": "4.0",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Attempted Dribbles"
+        }
+      ],
+      "sample_nonzero": [
+        {
+          "date": "2026-03-10",
+          "player": "Lewis Hall",
+          "line": "1.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Hugo Ekitik\u00e9",
+          "line": "3.5",
+          "actual": 2.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Michael Olise",
+          "line": "5.5",
+          "actual": 5.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Luis D\u00edaz",
+          "line": "4.5",
+          "actual": 4.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Lamine Yamal",
+          "line": "9.5",
+          "actual": 2.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Juli\u00e1n Alvarez",
+          "line": "3.0",
+          "actual": 2.0,
+          "result": "MISS"
+        }
+      ]
+    },
+    "Standard OVER::clearances": {
+      "book": "Standard OVER",
+      "canon": "clearances",
+      "display": "Clearances",
+      "n": 33,
+      "hits": 1,
+      "hr": 0.030303030303030304,
+      "actual_known": 33,
+      "actual_blank": 0,
+      "actual_zero": 13,
+      "zero_share": 0.3939393939393939,
+      "mean_actual": 0.9393939393939394,
+      "median_hint": 1.0,
+      "buckets": {
+        "(0,1]": 14,
+        "(5,20]": 1,
+        "(1,5]": 5,
+        "0": 13
+      },
+      "zero_HIT": 0,
+      "zero_MISS": 13,
+      "nonzero_n": 20,
+      "nonzero_hits": 1,
+      "hr_excl_zero": 0.05,
+      "top_lines": [
+        [
+          "4.5",
+          11
+        ],
+        [
+          "5.5",
+          8
+        ],
+        [
+          "6.5",
+          4
+        ],
+        [
+          "5.0",
+          2
+        ],
+        [
+          "3.5",
+          2
+        ],
+        [
+          "7.5",
+          2
+        ],
+        [
+          "1.5",
+          1
+        ],
+        [
+          "6.0",
+          1
+        ]
+      ],
+      "sample_zero": [
+        {
+          "date": "2026-03-10",
+          "player": "Pau Cubars\u00ed",
+          "line": "4.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Clearances"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Nikola Milenkovic",
+          "line": "5.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Clearances"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Ezri Konsa",
+          "line": "3.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Clearances"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Moussa Niakhat\u00e9",
+          "line": "4.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Clearances"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "A\u00efssa Mandi",
+          "line": "3.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Clearances"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Carl Starfelt",
+          "line": "5.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Clearances"
+        },
+        {
+          "date": "2026-03-13",
+          "player": "Isaac Hughes",
+          "line": "6.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Clearances"
+        },
+        {
+          "date": "2026-03-13",
+          "player": "Nico Elvedi",
+          "line": "6.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Clearances"
+        }
+      ],
+      "sample_nonzero": [
+        {
+          "date": "2026-03-10",
+          "player": "Davinson S\u00e1nchez",
+          "line": "6.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Berat Djimsiti",
+          "line": "5.0",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Jonathan Tah",
+          "line": "4.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Marco Carnesecchi",
+          "line": "1.5",
+          "actual": 6.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Malick Thiaw",
+          "line": "5.5",
+          "actual": 2.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "D\u00e1vid Hancko",
+          "line": "4.5",
+          "actual": 1.0,
+          "result": "MISS"
+        }
+      ]
+    },
+    "Standard OVER::crosses": {
+      "book": "Standard OVER",
+      "canon": "crosses",
+      "display": "Crosses",
+      "n": 12,
+      "hits": 2,
+      "hr": 0.16666666666666666,
+      "actual_known": 12,
+      "actual_blank": 0,
+      "actual_zero": 1,
+      "zero_share": 0.08333333333333333,
+      "mean_actual": 2.0,
+      "median_hint": 2.0,
+      "buckets": {
+        "(0,1]": 5,
+        "(1,5]": 6,
+        "0": 1
+      },
+      "zero_HIT": 0,
+      "zero_MISS": 1,
+      "nonzero_n": 11,
+      "nonzero_hits": 2,
+      "hr_excl_zero": 0.18181818181818182,
+      "top_lines": [
+        [
+          "4.5",
+          3
+        ],
+        [
+          "3.5",
+          2
+        ],
+        [
+          "5.5",
+          2
+        ],
+        [
+          "8.0",
+          1
+        ],
+        [
+          "6.0",
+          1
+        ],
+        [
+          "2.0",
+          1
+        ],
+        [
+          "2.5",
+          1
+        ],
+        [
+          "5.0",
+          1
+        ]
+      ],
+      "sample_zero": [
+        {
+          "date": "2026-03-13",
+          "player": "Valentino Lazaro",
+          "line": "6.0",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Crosses"
+        }
+      ],
+      "sample_nonzero": [
+        {
+          "date": "2026-03-10",
+          "player": "Raoul Bellanova",
+          "line": "3.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Pedro Porro",
+          "line": "5.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Michael Olise",
+          "line": "4.5",
+          "actual": 5.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Lamine Yamal",
+          "line": "4.5",
+          "actual": 2.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Sandro Tonali",
+          "line": "3.5",
+          "actual": 3.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-13",
+          "player": "Emanuele Valeri",
+          "line": "8.0",
+          "actual": 1.0,
+          "result": "MISS"
+        }
+      ]
+    },
+    "Standard OVER::passes": {
+      "book": "Standard OVER",
+      "canon": "passes",
+      "display": "Passes Attempted",
+      "n": 112,
+      "hits": 0,
+      "hr": 0.0,
+      "actual_known": 112,
+      "actual_blank": 0,
+      "actual_zero": 22,
+      "zero_share": 0.19642857142857142,
+      "mean_actual": 2.142857142857143,
+      "median_hint": 2.0,
+      "buckets": {
+        "(0,1]": 31,
+        "(5,20]": 9,
+        "(1,5]": 50,
+        "0": 22
+      },
+      "zero_HIT": 0,
+      "zero_MISS": 22,
+      "nonzero_n": 90,
+      "nonzero_hits": 0,
+      "hr_excl_zero": 0.0,
+      "top_lines": [
+        [
+          "29.5",
+          6
+        ],
+        [
+          "32.5",
+          5
+        ],
+        [
+          "54.5",
+          5
+        ],
+        [
+          "20.5",
+          5
+        ],
+        [
+          "41.5",
+          4
+        ],
+        [
+          "35.5",
+          4
+        ],
+        [
+          "34.5",
+          4
+        ],
+        [
+          "28.5",
+          4
+        ]
+      ],
+      "sample_zero": [
+        {
+          "date": "2026-03-10",
+          "player": "Kieran Trippier",
+          "line": "41.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Passes Attempted"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Mohamed Salah",
+          "line": "32.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Passes Attempted"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Harry Kane",
+          "line": "24.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Passes Attempted"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Jakub Kiwior",
+          "line": "64.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Passes Attempted"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Moussa Niakhat\u00e9",
+          "line": "80.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Passes Attempted"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Javi Rodr\u00edguez",
+          "line": "57.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Passes Attempted"
+        },
+        {
+          "date": "2026-03-13",
+          "player": "Cameron Burgess",
+          "line": "59.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Passes Attempted"
+        },
+        {
+          "date": "2026-03-13",
+          "player": "Luiz J\u00fanior",
+          "line": "25.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Passes Attempted"
+        }
+      ],
+      "sample_nonzero": [
+        {
+          "date": "2026-03-10",
+          "player": "Davinson S\u00e1nchez",
+          "line": "58.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Ugurcan \u00c7akir",
+          "line": "38.5",
+          "actual": 7.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Sead Kolasinac",
+          "line": "41.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Marco Carnesecchi",
+          "line": "35.5",
+          "actual": 6.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Jonas Urbig",
+          "line": "35.5",
+          "actual": 2.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Joan Garc\u00eda",
+          "line": "29.5",
+          "actual": 2.0,
+          "result": "MISS"
+        }
+      ]
+    },
+    "Standard OVER::shots_assisted": {
+      "book": "Standard OVER",
+      "canon": "shots_assisted",
+      "display": "Shots Assisted",
+      "n": 30,
+      "hits": 19,
+      "hr": 0.6333333333333333,
+      "actual_known": 30,
+      "actual_blank": 0,
+      "actual_zero": 5,
+      "zero_share": 0.16666666666666666,
+      "mean_actual": 2.566666666666667,
+      "median_hint": 3.0,
+      "buckets": {
+        "0": 5,
+        "(1,5]": 15,
+        "(5,20]": 4,
+        "(0,1]": 6
+      },
+      "zero_HIT": 0,
+      "zero_MISS": 5,
+      "nonzero_n": 25,
+      "nonzero_hits": 19,
+      "hr_excl_zero": 0.76,
+      "top_lines": [
+        [
+          "1.5",
+          13
+        ],
+        [
+          "0.5",
+          7
+        ],
+        [
+          "2.0",
+          6
+        ],
+        [
+          "2.5",
+          4
+        ]
+      ],
+      "sample_zero": [
+        {
+          "date": "2026-03-10",
+          "player": "Kieran Trippier",
+          "line": "1.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Shots Assisted"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Mohamed Salah",
+          "line": "1.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Shots Assisted"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Harry Kane",
+          "line": "1.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Shots Assisted"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Xavi Simons",
+          "line": "1.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Shots Assisted"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Angelo Stiller",
+          "line": "1.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Shots Assisted"
+        }
+      ],
+      "sample_nonzero": [
+        {
+          "date": "2026-03-10",
+          "player": "Dominik Szoboszlai",
+          "line": "2.5",
+          "actual": 3.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Victor Osimhen",
+          "line": "0.5",
+          "actual": 6.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Michael Olise",
+          "line": "2.5",
+          "actual": 5.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Luis D\u00edaz",
+          "line": "2.5",
+          "actual": 4.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Nicola Zalewski",
+          "line": "0.5",
+          "actual": 1.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Lamine Yamal",
+          "line": "2.5",
+          "actual": 2.0,
+          "result": "MISS"
+        }
+      ]
+    },
+    "Standard OVER::tackles": {
+      "book": "Standard OVER",
+      "canon": "tackles",
+      "display": "Tackles",
+      "n": 16,
+      "hits": 6,
+      "hr": 0.375,
+      "actual_known": 16,
+      "actual_blank": 0,
+      "actual_zero": 3,
+      "zero_share": 0.1875,
+      "mean_actual": 1.4375,
+      "median_hint": 1.0,
+      "buckets": {
+        "(0,1]": 7,
+        "(1,5]": 6,
+        "0": 3
+      },
+      "zero_HIT": 0,
+      "zero_MISS": 3,
+      "nonzero_n": 13,
+      "nonzero_hits": 6,
+      "hr_excl_zero": 0.46153846153846156,
+      "top_lines": [
+        [
+          "1.5",
+          9
+        ],
+        [
+          "2.0",
+          2
+        ],
+        [
+          "2.5",
+          2
+        ],
+        [
+          "3.5",
+          1
+        ],
+        [
+          "4.5",
+          1
+        ],
+        [
+          "3.0",
+          1
+        ]
+      ],
+      "sample_zero": [
+        {
+          "date": "2026-03-12",
+          "player": "Maximilian Mittelst\u00e4dt",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-12",
+          "player": "Neco Williams",
+          "line": "3.0",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        },
+        {
+          "date": "2026-03-13",
+          "player": "Charbel Shamoon",
+          "line": "2.5",
+          "actual": 0.0,
+          "result": "MISS",
+          "prop": "Tackles"
+        }
+      ],
+      "sample_nonzero": [
+        {
+          "date": "2026-03-10",
+          "player": "Sead Kolasinac",
+          "line": "2.0",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Lewis Hall",
+          "line": "3.5",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Pedro Porro",
+          "line": "2.0",
+          "actual": 1.0,
+          "result": "MISS"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Gabriel Sara",
+          "line": "1.5",
+          "actual": 3.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Joshua Kimmich",
+          "line": "1.5",
+          "actual": 3.0,
+          "result": "HIT"
+        },
+        {
+          "date": "2026-03-10",
+          "player": "Nicola Zalewski",
+          "line": "1.5",
+          "actual": 1.0,
+          "result": "MISS"
+        }
+      ]
+    }
+  }
+}

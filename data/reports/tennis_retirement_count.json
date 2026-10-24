@@ -1,0 +1,21 @@
+{
+  "graded_game_rows": 26208,
+  "retired": 1722,
+  "walkover_no_grade": 199,
+  "readings_agree": 1529,
+  "readings_flip_unresolved": 193,
+  "by_prop": {
+    "games_won": 896,
+    "match_total_games": 826,
+    "flip games_won": 135,
+    "walkover games_won": 78,
+    "walkover match_total_games": 121,
+    "flip match_total_games": 58
+  },
+  "book_127_retired_legs": 12,
+  "book_127_flips": 1,
+  "book_by_prop": {
+    "match_total_games": 12
+  },
+  "files_updated": 92
+}

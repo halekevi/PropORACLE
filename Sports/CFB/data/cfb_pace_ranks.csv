@@ -1,0 +1,137 @@
+team,conference,season,games,pace_rank,plays_per_game,clock_tier,tier
+ARMY,American Conference,2026,13.0,77,67.84615384615384,Run-heavy clock,Avg
+CLT,American Conference,2026,12.0,117,64.41666666666667,Balanced,Weak
+ECU,American Conference,2026,13.0,3,78.23076923076923,Run-lean,Elite
+FAU,American Conference,2026,12.0,1,80.0,Pass-heavy,Elite
+MEM,American Conference,2026,13.0,51,70.53846153846153,Balanced,Avg
+NAVY,American Conference,2026,13.0,118,64.3076923076923,Run-heavy clock,Weak
+RICE,American Conference,2026,13.0,67,68.53846153846153,Run-heavy clock,Avg
+TEM,American Conference,2026,12.0,120,64.16666666666667,Balanced,Weak
+TLSA,American Conference,2026,12.0,4,77.0,Run-lean,Elite
+TULN,American Conference,2026,14.0,72,68.0,Run-lean,Avg
+UAB,American Conference,2026,12.0,35,71.91666666666667,Balanced,Above
+UNT,American Conference,2026,14.0,32,72.14285714285714,Balanced,Above
+USF,American Conference,2026,13.0,37,71.6923076923077,Run-lean,Above
+UTSA,American Conference,2026,13.0,55,70.23076923076923,Balanced,Avg
+BC,Atlantic Coast Conference,2026,12.0,30,72.16666666666667,Pass-lean,Above
+CAL,Atlantic Coast Conference,2026,13.0,45,71.0,Pass-lean,Avg
+CLEM,Atlantic Coast Conference,2026,13.0,57,69.6923076923077,Balanced,Avg
+DUKE,Atlantic Coast Conference,2026,14.0,49,70.64285714285714,Balanced,Avg
+FSU,Atlantic Coast Conference,2026,12.0,28,72.33333333333333,Run-heavy clock,Above
+GT,Atlantic Coast Conference,2026,13.0,96,66.61538461538461,Run-lean,Below
+LOU,Atlantic Coast Conference,2026,13.0,97,66.46153846153847,Balanced,Below
+MIA,Atlantic Coast Conference,2026,16.0,83,67.625,Balanced,Avg
+NCSU,Atlantic Coast Conference,2026,13.0,98,66.38461538461539,Balanced,Below
+PITT,Atlantic Coast Conference,2026,13.0,29,72.3076923076923,Balanced,Above
+SMU,Atlantic Coast Conference,2026,13.0,78,67.6923076923077,Balanced,Avg
+STAN,Atlantic Coast Conference,2026,12.0,66,68.66666666666667,Balanced,Avg
+SYR,Atlantic Coast Conference,2026,12.0,14,73.5,Balanced,Elite
+UNC,Atlantic Coast Conference,2026,12.0,133,60.25,Balanced,Weak
+UVA,Atlantic Coast Conference,2026,14.0,8,75.57142857142857,Balanced,Elite
+VT,Atlantic Coast Conference,2026,12.0,105,66.25,Run-heavy clock,Below
+WAKE,Atlantic Coast Conference,2026,13.0,84,67.46153846153847,Balanced,Avg
+ARIZ,Big 12 Conference,2026,13.0,27,72.38461538461539,Balanced,Above
+ASU,Big 12 Conference,2026,13.0,17,73.38461538461539,Balanced,Elite
+BAY,Big 12 Conference,2026,12.0,2,78.58333333333333,Pass-lean,Elite
+BYU,Big 12 Conference,2026,14.0,75,67.85714285714286,Run-lean,Avg
+CIN,Big 12 Conference,2026,13.0,136,59.61538461538461,Balanced,Weak
+COLO,Big 12 Conference,2026,12.0,63,68.83333333333333,Run-lean,Avg
+HOU,Big 12 Conference,2026,13.0,25,72.61538461538461,Run-heavy clock,Above
+ISU,Big 12 Conference,2026,12.0,52,70.5,Run-lean,Avg
+KSU,Big 12 Conference,2026,12.0,128,63.333333333333336,Run-heavy clock,Weak
+KU,Big 12 Conference,2026,12.0,106,66.16666666666667,Run-lean,Below
+OKST,Big 12 Conference,2026,12.0,108,66.08333333333333,Balanced,Below
+TCU,Big 12 Conference,2026,13.0,50,70.61538461538461,Balanced,Avg
+TTU,Big 12 Conference,2026,14.0,5,76.07142857142857,Balanced,Elite
+UCF,Big 12 Conference,2026,12.0,80,67.66666666666667,Balanced,Avg
+UTAH,Big 12 Conference,2026,13.0,12,74.0,Run-heavy clock,Elite
+WVU,Big 12 Conference,2026,12.0,16,73.41666666666667,Run-heavy clock,Elite
+ILL,Big Ten Conference,2026,13.0,103,66.3076923076923,Run-lean,Below
+IOWA,Big Ten Conference,2026,13.0,130,62.15384615384615,Run-heavy clock,Weak
+IND,Big Ten Conference,2026,16.0,70,68.125,Run-heavy clock,Avg
+MD,Big Ten Conference,2026,12.0,87,67.08333333333333,Pass-lean,Avg
+MICH,Big Ten Conference,2026,13.0,98,66.38461538461539,Run-heavy clock,Below
+MINN,Big Ten Conference,2026,13.0,132,61.46153846153846,Balanced,Weak
+MSU,Big Ten Conference,2026,12.0,87,67.08333333333333,Balanced,Avg
+NEB,Big Ten Conference,2026,13.0,103,66.3076923076923,Run-lean,Below
+NU,Big Ten Conference,2026,13.0,114,65.15384615384616,Run-lean,Below
+ORE,Big Ten Conference,2026,15.0,86,67.13333333333334,Run-lean,Avg
+OSU,Big Ten Conference,2026,14.0,119,64.21428571428571,Balanced,Weak
+PSU,Big Ten Conference,2026,13.0,121,64.07692307692308,Run-heavy clock,Weak
+PUR,Big Ten Conference,2026,12.0,95,66.66666666666667,Balanced,Below
+RUTG,Big Ten Conference,2026,12.0,13,73.58333333333333,Run-lean,Elite
+UCLA,Big Ten Conference,2026,12.0,124,63.66666666666666,Balanced,Weak
+USC,Big Ten Conference,2026,13.0,98,66.38461538461539,Balanced,Below
+WASH,Big Ten Conference,2026,13.0,93,66.92307692307692,Run-lean,Below
+WIS,Big Ten Conference,2026,12.0,134,60.16666666666666,Run-heavy clock,Weak
+DEL,Conference USA,2026,13.0,10,75.07692307692308,Pass-lean,Elite
+FIU,Conference USA,2026,13.0,31,72.15384615384616,Balanced,Above
+JVST,Conference USA,2026,14.0,40,71.57142857142857,Run-heavy clock,Above
+KENN,Conference USA,2026,14.0,46,70.92857142857143,Run-lean,Avg
+LIB,Conference USA,2026,12.0,48,70.75,Run-heavy clock,Avg
+LT,Conference USA,2026,13.0,90,67.07692307692308,Run-heavy clock,Below
+MOST,Conference USA,2026,13.0,58,69.53846153846153,Balanced,Avg
+MTSU,Conference USA,2026,12.0,52,70.5,Pass-lean,Avg
+NMSU,Conference USA,2026,12.0,35,71.91666666666667,Pass-lean,Above
+SHSU,Conference USA,2026,12.0,101,66.33333333333333,Balanced,Below
+UTEP,Conference USA,2026,12.0,80,67.66666666666667,Balanced,Avg
+WKU,Conference USA,2026,13.0,37,71.6923076923077,Pass-lean,Above
+CONN,FBS Independents,2026,13.0,85,67.38461538461539,Balanced,Avg
+ND,FBS Independents,2026,12.0,124,63.66666666666666,Run-heavy clock,Weak
+AKR,Mid-American Conference,2026,12.0,21,72.83333333333333,Balanced,Elite
+BALL,Mid-American Conference,2026,12.0,115,64.91666666666667,Run-heavy clock,Below
+BGSU,Mid-American Conference,2026,12.0,112,65.5,Run-heavy clock,Below
+BUFF,Mid-American Conference,2026,12.0,47,70.91666666666667,Balanced,Avg
+CMU,Mid-American Conference,2026,13.0,127,63.38461538461539,Run-heavy clock,Weak
+EMU,Mid-American Conference,2026,12.0,87,67.08333333333333,Balanced,Avg
+KENT,Mid-American Conference,2026,12.0,135,59.91666666666666,Run-heavy clock,Weak
+M-OH,Mid-American Conference,2026,14.0,122,63.85714285714285,Run-heavy clock,Weak
+MASS,Mid-American Conference,2026,12.0,94,66.83333333333333,Pass-lean,Below
+NIU,Mid-American Conference,2026,12.0,124,63.66666666666666,Run-heavy clock,Weak
+OHIO,Mid-American Conference,2026,13.0,64,68.76923076923077,Run-heavy clock,Avg
+TOL,Mid-American Conference,2026,13.0,68,68.38461538461539,Run-lean,Avg
+WMU,Mid-American Conference,2026,14.0,75,67.85714285714286,Run-heavy clock,Avg
+AFA,Mountain West Conference,2026,12.0,59,69.5,Run-heavy clock,Avg
+BOIS,Mountain West Conference,2026,14.0,9,75.21428571428571,Run-lean,Elite
+CSU,Mountain West Conference,2026,12.0,110,65.75,Balanced,Below
+FRES,Mountain West Conference,2026,13.0,78,67.6923076923077,Run-lean,Avg
+HAW,Mountain West Conference,2026,13.0,25,72.61538461538461,Pass-lean,Above
+NEV,Mountain West Conference,2026,12.0,131,61.91666666666666,Run-heavy clock,Weak
+SDSU,Mountain West Conference,2026,13.0,109,66.0,Run-heavy clock,Below
+SJSU,Mountain West Conference,2026,12.0,69,68.33333333333333,Pass-lean,Avg
+UNLV,Mountain West Conference,2026,14.0,82,67.64285714285714,Balanced,Avg
+UNM,Mountain West Conference,2026,13.0,111,65.53846153846153,Run-lean,Below
+USU,Mountain West Conference,2026,13.0,64,68.76923076923077,Balanced,Avg
+WYO,Mountain West Conference,2026,12.0,106,66.16666666666667,Balanced,Below
+ORST,Pac-12 Conference,2026,12.0,33,72.08333333333333,Balanced,Above
+WSU,Pac-12 Conference,2026,13.0,90,67.07692307692308,Balanced,Below
+ALA,Southeastern Conference,2026,15.0,71,68.06666666666666,Balanced,Avg
+ARK,Southeastern Conference,2026,12.0,74,67.91666666666667,Balanced,Avg
+AUB,Southeastern Conference,2026,12.0,41,71.5,Run-lean,Above
+FLA,Southeastern Conference,2026,12.0,115,64.91666666666667,Balanced,Below
+LSU,Southeastern Conference,2026,13.0,113,65.38461538461539,Balanced,Below
+MISS,Southeastern Conference,2026,15.0,11,74.53333333333333,Balanced,Elite
+MIZ,Southeastern Conference,2026,13.0,18,72.92307692307692,Run-heavy clock,Elite
+MSST,Southeastern Conference,2026,13.0,7,75.61538461538461,Run-heavy clock,Elite
+OU,Southeastern Conference,2026,13.0,62,68.84615384615384,Balanced,Avg
+SC,Southeastern Conference,2026,12.0,101,66.33333333333333,Run-lean,Below
+TAMU,Southeastern Conference,2026,13.0,43,71.15384615384616,Run-lean,Avg
+TENN,Southeastern Conference,2026,13.0,15,73.46153846153847,Balanced,Elite
+TEX,Southeastern Conference,2026,13.0,92,67.0,Balanced,Below
+UGA,Southeastern Conference,2026,14.0,24,72.64285714285714,Run-heavy clock,Above
+UK,Southeastern Conference,2026,12.0,60,69.08333333333333,Balanced,Avg
+VAN,Southeastern Conference,2026,13.0,123,63.84615384615385,Balanced,Weak
+APP,Sun Belt Conference,2026,13.0,18,72.92307692307692,Pass-lean,Elite
+ARST,Sun Belt Conference,2026,13.0,6,75.92307692307692,Balanced,Elite
+CCU,Sun Belt Conference,2026,13.0,61,68.92307692307692,Run-lean,Avg
+GASO,Sun Belt Conference,2026,13.0,43,71.15384615384616,Balanced,Avg
+GAST,Sun Belt Conference,2026,12.0,39,71.66666666666667,Pass-lean,Above
+JMU,Sun Belt Conference,2026,14.0,23,72.71428571428571,Run-heavy clock,Above
+MRSH,Sun Belt Conference,2026,12.0,42,71.25,Run-heavy clock,Avg
+ODU,Sun Belt Conference,2026,13.0,56,69.76923076923077,Run-heavy clock,Avg
+TROY,Sun Belt Conference,2026,14.0,54,70.35714285714286,Balanced,Avg
+TXST,Sun Belt Conference,2026,13.0,20,72.84615384615384,Run-heavy clock,Elite
+UL,Sun Belt Conference,2026,13.0,73,67.92307692307692,Run-heavy clock,Avg
+ULM,Sun Belt Conference,2026,12.0,129,62.833333333333336,Run-heavy clock,Weak
+USA,Sun Belt Conference,2026,12.0,34,72.0,Run-heavy clock,Above
+USM,Sun Belt Conference,2026,13.0,22,72.76923076923077,Balanced,Above

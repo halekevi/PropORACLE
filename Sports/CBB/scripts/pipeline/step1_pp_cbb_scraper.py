@@ -2,7 +2,8 @@
 """
 pp_cbb_scraper.py  (optimized)
 
-PrizePicks API scraper for Men's CBB projections (league_id=20 by default).
+PrizePicks API scraper for CBB (NCAABB Mens, default league_id=20) and
+WCBB (NCAABB Women, --board wcbb). IDs resolve from live /leagues names.
 
 OPTIMIZATIONS vs original:
 - Shared TEAM_ALIASES / norm_team consistent with rest of pipeline
@@ -16,8 +17,9 @@ OPTIMIZATIONS vs original:
 
 Usage:
   py -3.14 pp_cbb_scraper.py --out step1_fetch_prizepicks_api_cbb.csv
-  py -3.14 pp_cbb_scraper.py --league_id 20 --out cbb_pp.csv --include_combos
-  py -3.14 pp_cbb_scraper.py --out cbb_pp.csv --max_pages 3
+  py -3.14 pp_cbb_scraper.py --board cbb --out cbb_pp.csv --include_combos
+  py -3.14 pp_cbb_scraper.py --board wcbb --out step1_wcbb.csv
+  py -3.14 pp_cbb_scraper.py --league_id 20 --out cbb_pp.csv --max_pages 3
 """
 
 from __future__ import annotations
@@ -34,10 +36,17 @@ import requests
 
 # Ensure <repo>/PropOracle is on sys.path so we can import PropOracle-level helpers.
 _PROPORACLE_ROOT = Path(__file__).resolve().parents[4]
+_CBB_ROOT = Path(__file__).resolve().parents[2]
 if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
+if str(_CBB_ROOT) not in sys.path:
+    sys.path.insert(0, str(_CBB_ROOT))
 
 from scripts.db_utils import log_pipeline_health
+from scripts.line_history_archive import try_archive_lines
+from utils.pp_basketball_markets import BASKETBALL_IN_GAME_FLAGS, log_shooting_coverage
+from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
+from prizepicks_league_ids import resolve_board_league_id
 
 PP_URL = "https://api.prizepicks.com/projections"
 
@@ -123,6 +132,7 @@ def fetch_cbb_projections(
     game_mode: str,
     sleep_s: float,
     max_pages: Optional[int] = None,
+    in_game: str = "false",
 ) -> pd.DataFrame:
     session = requests.Session()
     session.headers.update(PP_HEADERS)
@@ -131,10 +141,12 @@ def fetch_cbb_projections(
         "league_id": league_id,
         "per_page":  per_page,
         "game_mode": game_mode,
+        "in_game": str(in_game).strip().lower() if str(in_game).strip() else "false",
     }
     if single_stat:
         params["single_stat"] = "true"
 
+    print(f"  [in_game={params['in_game']}] GET {PP_URL}")
     url: Optional[str] = PP_URL
     rows: List[Dict[str, Any]] = []
     seen_proj_ids: set = set()
@@ -299,6 +311,7 @@ def fetch_cbb_projections(
                         "start_time":   start_time,
                         "league_id":    league_id,
                         "duration":     duration,
+                        "pp_updated_at": extract_pp_updated_at(attr),
                     })
                     added += 1
 
@@ -351,7 +364,10 @@ def fetch_cbb_projections(
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--league_id",      type=int,   default=20)
+    ap.add_argument("--league_id",      type=int,   default=0,
+                    help="PrizePicks league id. 0 = resolve from --board (cbb=20, wcbb=176 fallback).")
+    ap.add_argument("--board",          default="cbb", choices=["cbb", "wcbb"],
+                    help="NCAABB Mens (cbb) or NCAABB Women (wcbb). Used when --league_id is 0.")
     ap.add_argument("--per_page",       type=int,   default=250)
     ap.add_argument("--single_stat",    action="store_true")
     ap.add_argument("--include_combos", action="store_true",
@@ -364,23 +380,42 @@ def main():
     args = ap.parse_args()
 
     single_stat = args.single_stat and not args.include_combos
-
-    print(f"📡 Fetching PrizePicks | league_id={args.league_id} | per_page={args.per_page} | single_stat={single_stat}")
-    df = fetch_cbb_projections(
-        league_id=args.league_id,
-        per_page=args.per_page,
-        single_stat=single_stat,
-        game_mode=args.game_mode,
-        sleep_s=args.sleep,
-        max_pages=args.max_pages,
+    league_id = int(args.league_id) if int(args.league_id or 0) > 0 else int(
+        resolve_board_league_id(args.board, "")
     )
+
+    print(
+        f"📡 Fetching PrizePicks | board={args.board} | league_id={league_id} | "
+        f"per_page={args.per_page} | single_stat={single_stat} | in_game=false+true"
+    )
+    frames = []
+    for flag in BASKETBALL_IN_GAME_FLAGS:
+        print(f"  [in_game={flag}]")
+        part = fetch_cbb_projections(
+            league_id=league_id,
+            per_page=args.per_page,
+            single_stat=single_stat,
+            game_mode=args.game_mode,
+            sleep_s=args.sleep,
+            max_pages=args.max_pages,
+            in_game=flag,
+        )
+        print(f"  [in_game={flag}] rows={len(part)}")
+        if part is not None and not part.empty:
+            frames.append(part)
+    df = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
+    if not df.empty and "proj_id" in df.columns:
+        before = len(df)
+        df = df.drop_duplicates(subset=["proj_id"], keep="first").reset_index(drop=True)
+        if before != len(df):
+            print(f"  Deduped in_game merge: {before} → {len(df)}")
 
     if df.empty:
         print("❌ No projections fetched.")
         log_pipeline_health(
             "cbb.step1_pp_cbb_scraper",
             "no_projections",
-            extra={"league_id": args.league_id, "game_mode": args.game_mode},
+            extra={"league_id": league_id, "board": args.board, "game_mode": args.game_mode},
             start=Path(__file__),
         )
         return
@@ -416,7 +451,20 @@ def main():
             start=Path(__file__),
         )
 
+    pull_ts = now_et_iso()
+    df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
+    try:
+        prop_col = "stat_type" if "stat_type" in df.columns else "prop_type"
+        pts = int(df[prop_col].astype(str).str.lower().str.contains("points").sum())
+        sport = "WCBB" if str(args.board).strip().lower() == "wcbb" else "CBB"
+        log_shooting_coverage(df[prop_col], sport=sport, n_points=pts)
+    except Exception as _sc_exc:
+        print(f"  [WARN] shooting coverage log skipped: {_sc_exc}")
     df.to_csv(args.out, index=False, encoding="utf-8")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(args.out, sport="CBB")
+    try_archive_lines(df, sport="CBB", only_fetched_at=pull_ts)
     print(f"✅ Saved CSV → {args.out} | rows={len(df)} | unique proj_id={df['proj_id'].nunique()}")
 
     if "pp_opp_team" in df.columns:

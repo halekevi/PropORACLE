@@ -321,6 +321,34 @@
   color: #ff8a8a;
   border: 1px solid rgba(255, 90, 90, 0.35);
 }
+.me-note-avoid {
+  display: inline-block;
+  background: rgba(255, 90, 90, 0.18);
+  color: #ff9a9a;
+  border: 1px solid rgba(255, 90, 90, 0.5);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.me-tight-banner {
+  margin: 8px 0 10px;
+  padding: 10px 12px;
+  background: rgba(255, 90, 90, 0.16);
+  color: #ffb3b3;
+  border: 1px solid rgba(255, 90, 90, 0.5);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+[data-theme="light"] .me-note-avoid,
+[data-theme="light"] .me-tight-banner {
+  background: rgba(180, 20, 20, 0.12);
+  color: #9a1212;
+  border-color: rgba(180, 20, 20, 0.4);
+}
 .me-edge.TOP_UNDER,
 .wnba-me-edge.TOP_UNDER {
   background: rgba(240, 180, 41, 0.18);

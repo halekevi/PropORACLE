@@ -13,16 +13,19 @@ League presets use the numeric IDs from DraftKings league URLs (e.g. MLB /league
 
 Examples:
   py -3 scripts/fetch_draftkings_player_props.py --league nba -o dk_nba_props.csv
-  py -3 scripts/fetch_draftkings_player_props.py --league cbb -o dk_cbb_props.csv
+  py -3 scripts/fetch_draftkings_player_props.py --league tennis -o dk_tennis_props.csv
+  py -3 scripts/fetch_draftkings_player_props.py --league soccer -o dk_soccer_props.csv
   py -3 scripts/fetch_draftkings_player_props.py --league nfl --categories "Passing Props" "Rush/Rec Props" -o dk_nfl.csv
 
-run_pipeline.ps1 merges NBA+NHL+MLB+CBB into outputs/YYYY-MM-DD/draftkings_props_all.csv; combined_slate
-  also accepts a single-league file draftkings_props_nba.csv.
+run_pipeline.ps1 merges MLB+WNBA+soccer+NBA+NHL+CBB+NFL+CFB+tennis into
+  outputs/YYYY-MM-DD/draftkings_props_all.csv; combined_slate also accepts a single-league file.
   py -3 scripts/fetch_draftkings_player_props.py --list-categories --league nba
 
 Notes:
-  - Some networks/datacenters get HTTP 403 (Akamai). Run from a normal home/residential IP if needed.
-  - Try --site-code US-NJ-SB or US-PA-SB if US-SB fails.
+  - The v5 eventgroups JSON is often HTTP 403 (Akamai). HTML sportsbook pages still load.
+  - On 403 the fetcher falls back to sportsbook-nash sportscontent BFF
+    (region auto-detected from the sportsbook page, e.g. dkuswv).
+  - Try --site-code US-NJ-SB / US-PA-SB / US-WV-SB only for the legacy v5 path.
   - This is not Pick6; it is standard sportsbook markets.
 """
 
@@ -47,6 +50,9 @@ if _SCRIPT_DIR not in sys.path:
 
 from pickem_step1_schema import DK_OUTPUT_COLUMNS
 
+_CURL_BACKEND_LOGGED = False
+_SPORTSCONTENT_HOST = "https://sportsbook-nash.draftkings.com/api/sportscontent"
+
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
@@ -62,18 +68,45 @@ EVENT_GROUP_IDS: Dict[str, str] = {
     "mlb": "84240",
     "epl": "40253",
     "wnba": "94682",
+    # Tennis: live slam boards (US Open as of 2026-08). Swap IDs when the tour moves.
+    "tennis_uso_m": "72778",
+    "tennis_uso_w": "72779",
+    # Soccer clubs with player-shot / player-prop categories (MLS / Liga MX often have none).
+    "laliga": "40031",
+    "seriea": "40030",
+    "ligue1": "40032",
+    "brazil": "38529",
+    "efl": "40817",
 }
+
+# --league aliases that fetch several event groups into one CSV.
+LEAGUE_BUNDLES: Dict[str, List[str]] = {
+    "tennis": ["tennis_uso_m", "tennis_uso_w"],
+    "soccer": ["epl", "laliga", "seriea", "ligue1", "brazil", "efl"],
+}
+
+# Golf majors currently expose Tournament Lines / Futures only (no round-stroke player
+# props). Do not add those IDs to the daily fetch until a weekly PGA board has Player Props.
 
 # Matches combined_slate_tickets.py sport labels for cross-book joins.
 LEAGUE_KEY_TO_BOARD_SPORT: Dict[str, str] = {
     "nba": "NBA",
     "nhl": "NHL",
     "nfl": "NFL",
-    "cfb": "CBB",
+    "cfb": "CFB",
     "cbb": "CBB",
     "mlb": "MLB",
     "epl": "Soccer",
     "wnba": "WNBA",
+    "tennis": "Tennis",
+    "tennis_uso_m": "Tennis",
+    "tennis_uso_w": "Tennis",
+    "soccer": "Soccer",
+    "laliga": "Soccer",
+    "seriea": "Soccer",
+    "ligue1": "Soccer",
+    "brazil": "Soccer",
+    "efl": "Soccer",
 }
 
 # If --auto-categories, keep categories whose names match any of these substrings.
@@ -105,6 +138,9 @@ _PLAYER_CATEGORY_HINTS: Tuple[str, ...] = (
     "shots",
     "saves",
     "yards",
+    "ace",
+    "card",
+    "tackle",
 )
 
 # Exclude these even if they matched a hint (team/game level).
@@ -112,27 +148,71 @@ _CATEGORY_BLOCKLIST_SUBSTR: Tuple[str, ...] = (
     "game lines",
     "futures",
     "team futures",
+    "team prop",
+    "team total",
     "win total",
     "division",
     "award",
     "same game parlay",
     "sgp ",
     "quick pick",
+    "quick hits",
     "specials",
     "boost",
     "live",
+    "point by point",
+    "game by game",
+    "match lines",
+    "match parlays",
+    "spread/total",
+    "tournament lines",
+    "halves",
+    "match props",
+    "game props",
+)
+
+# Skip these subcategories even when the parent category was auto-selected.
+_SUBCATEGORY_SKIP_SUBSTR: Tuple[str, ...] = (
+    "left foot",
+    "right foot",
+    "header",
+    "outside box",
+    "red card",
+    "booking",
+    "asian",
+    "score or assist",
+    "last ace",
+    "breaks of serve",
+    "win every set",
+    "not to lose",
+    "not to face",
+    "total shots",
+    "total team",
 )
 
 
 def _session(site_code: str) -> requests.Session:
-    s = requests.Session()
+    global _CURL_BACKEND_LOGGED
+    s: requests.Session
+    try:
+        from curl_cffi.requests import Session as CurlSession
+
+        s = CurlSession(impersonate="chrome131")
+        if not _CURL_BACKEND_LOGGED:
+            print("[dk] HTTP: curl_cffi impersonate=chrome131")
+            _CURL_BACKEND_LOGGED = True
+    except Exception:
+        s = requests.Session()
+        if not _CURL_BACKEND_LOGGED:
+            print("[dk] HTTP: requests (install curl-cffi if DraftKings returns 403)")
+            _CURL_BACKEND_LOGGED = True
     s.headers.update(
         {
             "User-Agent": random.choice(USER_AGENTS),
             "Accept": "application/json, text/plain, */*",
             "Accept-Language": "en-US,en;q=0.9",
             "Origin": "https://sportsbook.draftkings.com",
-            "Referer": f"https://sportsbook.draftkings.com/",
+            "Referer": "https://sportsbook.draftkings.com/",
         }
     )
     return s
@@ -161,6 +241,8 @@ def _get_json(session: requests.Session, url: str, retries: int = 4) -> dict:
                     f"Expected JSON from {url[:80]}..., got content-type={ct!r} body_prefix={r.text[:120]!r}"
                 )
             return r.json()
+        except RuntimeError:
+            raise
         except Exception as e:
             last = e
             time.sleep(min(20.0, 2**attempt))
@@ -294,9 +376,14 @@ def _participant_name(outcome: dict, market_label: str) -> str:
 
 
 def _american_odds(outcome: dict) -> str:
-    for k in ("americanOdds", "american odds", "oddsAmerican", "displayOdds", "trueOdds"):
-        v = outcome.get(k)
+    dod = outcome.get("displayOdds")
+    if isinstance(dod, dict):
+        v = dod.get("american")
         if v is not None and str(v).strip():
+            return str(v).strip()
+    for k in ("americanOdds", "american odds", "oddsAmerican", "trueOdds"):
+        v = outcome.get(k)
+        if v is not None and str(v).strip() and not isinstance(v, dict):
             return str(v).strip()
     od = outcome.get("odds") or {}
     if isinstance(od, dict):
@@ -433,6 +520,240 @@ def _flatten_offers_for_subcategory(
     return rows
 
 
+def _detect_sportscontent_region(session: requests.Session, override: str = "") -> str:
+    raw = (override or "").strip().lower()
+    if raw:
+        return raw
+    try:
+        r = session.get("https://sportsbook.draftkings.com/leagues/baseball/mlb", timeout=40)
+        text = r.text or ""
+    except Exception as e:
+        print(f"[dk] region detect failed ({e}); defaulting to dkuswv")
+        return "dkuswv"
+    m = re.search(
+        r"sportsContentBff\"\s*:\s*\"https://sportsbook-nash\.draftkings\.com/api/sportscontent/([a-z0-9]+)/",
+        text,
+    )
+    if m:
+        return m.group(1)
+    m = re.search(r'"siteName"\s*:\s*"(dkus[a-z]{2})"', text)
+    if m:
+        return m.group(1)
+    print("[dk] region not in HTML; defaulting to dkuswv")
+    return "dkuswv"
+
+
+def _sportscontent_line(sel: dict) -> float:
+    pts = sel.get("points")
+    try:
+        if pts is not None and str(pts).strip() != "":
+            return float(pts)
+    except (TypeError, ValueError):
+        pass
+    lab = str(sel.get("label") or "").strip()
+    m = re.match(r"^(\d+(?:\.\d+)?)\+\s*$", lab)
+    if m:
+        return float(m.group(1)) - 0.5
+    return float("nan")
+
+
+def _sportscontent_player(sel: dict, market_name: str) -> str:
+    for p in sel.get("participants") or []:
+        if not isinstance(p, dict):
+            continue
+        if str(p.get("type") or "").lower() == "player" and p.get("name"):
+            return str(p.get("name") or "").strip()
+    return _participant_name(sel, market_name)
+
+
+def _sportscontent_prop(market_name: str, player: str, subcategory: str, category: str) -> str:
+    sub = (subcategory or "").strip()
+    if sub and sub.lower() not in ("game lines", "match lines"):
+        return sub
+    ml = (market_name or "").strip()
+    if player and ml.lower().startswith(player.lower()):
+        rest = ml[len(player) :].strip(" \t-–:")
+        if rest:
+            return rest
+    cat = (category or "").strip()
+    if cat.lower().startswith("player "):
+        return cat[7:].strip()
+    return ml or cat
+
+
+def _sportscontent_teams(event: dict, sel: dict) -> Tuple[str, str]:
+    home = away = ""
+    for p in event.get("participants") or []:
+        if not isinstance(p, dict):
+            continue
+        meta = p.get("metadata") if isinstance(p.get("metadata"), dict) else {}
+        abbr = str(meta.get("shortName") or "").strip().upper()
+        if not abbr:
+            abbr = _norm_abbr(str(p.get("name") or ""))
+        role = str(p.get("venueRole") or "").lower()
+        if role == "home":
+            home = abbr
+        elif role == "away":
+            away = abbr
+    team = opp = ""
+    for p in sel.get("participants") or []:
+        if not isinstance(p, dict):
+            continue
+        role = str(p.get("venueRole") or "").lower()
+        if role == "homeplayer":
+            team, opp = home, away
+            break
+        if role == "awayplayer":
+            team, opp = away, home
+            break
+    return team, opp
+
+
+def flatten_sportscontent_payload(
+    payload: dict,
+    *,
+    board_sport: str,
+    category_name: str,
+    subcategory_name: str = "",
+) -> List[dict]:
+    """Turn a sportscontent BFF JSON blob into DK_OUTPUT_COLUMNS rows."""
+    events = {str(e.get("id")): e for e in (payload.get("events") or []) if isinstance(e, dict) and e.get("id")}
+    markets = {str(m.get("id")): m for m in (payload.get("markets") or []) if isinstance(m, dict) and m.get("id")}
+    rows: List[dict] = []
+    for sel in payload.get("selections") or []:
+        if not isinstance(sel, dict):
+            continue
+        market = markets.get(str(sel.get("marketId") or ""))
+        if not market:
+            continue
+        mlabel = str(market.get("name") or "").strip()
+        player = _sportscontent_player(sel, mlabel)
+        if not player:
+            continue
+        line_num = _sportscontent_line(sel)
+        if line_num != line_num:  # NaN
+            continue
+        event = events.get(str(market.get("eventId") or "")) or {}
+        team, opp = _sportscontent_teams(event, sel)
+        sub = subcategory_name or str(market.get("name") or "")
+        prop = _sportscontent_prop(mlabel, player, subcategory_name, category_name)
+        sel_lab = str(sel.get("label") or "").strip()
+        event_id = str(market.get("eventId") or "")
+        start_time = str(event.get("startEventDate") or "").strip()
+        pid_src = "|".join([event_id, category_name, sub, mlabel, player, str(line_num), sel_lab])
+        pid = hashlib.sha256(pid_src.encode("utf-8")).hexdigest()[:20]
+        rows.append(
+            {
+                "projection_id": pid,
+                "pp_projection_id": pid,
+                "player_id": "",
+                "pp_game_id": event_id,
+                "start_time": start_time,
+                "player": player,
+                "pos": "",
+                "team": team,
+                "opp_team": opp,
+                "prop_type": prop,
+                "line": line_num,
+                "pick_type": "Standard",
+                "pp_home_team": "",
+                "pp_away_team": "",
+                "image_url": "",
+                "source_book": "draftkings",
+                "board_sport": board_sport,
+                "dk_event_id": event_id,
+                "dk_category": category_name,
+                "dk_subcategory": subcategory_name,
+                "dk_market_label": mlabel,
+                "dk_selection_label": sel_lab,
+                "dk_american_odds": _american_odds(sel),
+            }
+        )
+    return rows
+
+
+def run_fetch_sportscontent(
+    *,
+    event_group_id: str,
+    session: requests.Session,
+    categories: Optional[List[str]],
+    auto_categories: bool,
+    list_only: bool,
+    board_sport: str,
+    region: str = "",
+) -> Tuple[List[dict], int]:
+    region = _detect_sportscontent_region(session, region)
+    base = f"{_SPORTSCONTENT_HOST}/{region}/v1"
+    league_url = f"{base}/leagues/{event_group_id}"
+    print(f"[dk] sportscontent GET {league_url}")
+    root = _get_json(session, league_url, retries=2)
+    offer_categories = [c for c in (root.get("categories") or []) if isinstance(c, dict)]
+    if list_only:
+        print("[dk] sportscontent categories:")
+        for c in offer_categories:
+            print(f"  {str(c.get('id') or ''):>8}  {c.get('name')}")
+        return [], 0
+
+    if categories:
+        targets = _find_categories_by_name(offer_categories, categories)
+    elif auto_categories:
+        targets = _auto_pick_categories(offer_categories)
+        print(f"[dk] sportscontent auto-selected {len(targets)} categories")
+    else:
+        targets = list(offer_categories)
+        print(f"[dk] sportscontent using all {len(targets)} categories")
+
+    sub_by_cat: Dict[str, List[dict]] = {}
+    for sc in root.get("subcategories") or []:
+        if not isinstance(sc, dict):
+            continue
+        cid = str(sc.get("categoryId") or "")
+        sub_by_cat.setdefault(cid, []).append(sc)
+
+    all_rows: List[dict] = []
+    for cat in targets:
+        cid = str(cat.get("id") or "").strip()
+        cname = str(cat.get("name") or "").strip()
+        if not cid:
+            continue
+        cat_url = f"{base}/leagues/{event_group_id}/categories/{cid}"
+        print(f"[dk] sportscontent category {cname!r} ({cid})")
+        try:
+            cat_json = _get_json(session, cat_url, retries=2)
+        except Exception as e:
+            print(f"[warn] sportscontent category fetch failed: {e}", file=sys.stderr)
+            continue
+        part = flatten_sportscontent_payload(
+            cat_json, board_sport=board_sport, category_name=cname, subcategory_name=""
+        )
+        all_rows.extend(part)
+        print(f"    + category -> {len(part)} selections")
+        for sc in sub_by_cat.get(cid, []):
+            sid = str(sc.get("id") or "").strip()
+            sname = str(sc.get("name") or "").strip()
+            if not sid:
+                continue
+            if "live" in sname.lower():
+                continue
+            sl = sname.lower()
+            if any(b in sl for b in _SUBCATEGORY_SKIP_SUBSTR):
+                continue
+            sub_url = f"{base}/leagues/{event_group_id}/categories/{cid}/subcategories/{sid}"
+            try:
+                sub_json = _get_json(session, sub_url, retries=2)
+            except Exception as e:
+                print(f"[warn] sportscontent subcategory {sname!r}: {e}", file=sys.stderr)
+                continue
+            sub_rows = flatten_sportscontent_payload(
+                sub_json, board_sport=board_sport, category_name=cname, subcategory_name=sname
+            )
+            all_rows.extend(sub_rows)
+            if sub_rows:
+                print(f"    + {sname!r} -> {len(sub_rows)} selections")
+            time.sleep(random.uniform(0.05, 0.18))
+    return all_rows, len(targets)
+
+
 def run_fetch(
     *,
     event_group_id: str,
@@ -442,12 +763,27 @@ def run_fetch(
     list_only: bool,
     retries: int,
     board_sport: str,
+    region: str = "",
 ) -> Tuple[List[dict], int]:
     session = _session(site_code)
     base = _base_url(site_code, event_group_id)
     root_url = f"{base}?format=json"
     print(f"[dk] GET {root_url[:90]}...")
-    root = _get_json(session, root_url, retries=retries)
+    try:
+        root = _get_json(session, root_url, retries=retries)
+    except RuntimeError as e:
+        if "403" in str(e):
+            print("[dk] v5 eventgroups 403 — falling back to sportscontent BFF")
+            return run_fetch_sportscontent(
+                event_group_id=event_group_id,
+                session=session,
+                categories=categories,
+                auto_categories=auto_categories,
+                list_only=list_only,
+                board_sport=board_sport,
+                region=region,
+            )
+        raise
     eg = root.get("eventGroup") or {}
     offer_categories = [c for c in (eg.get("offerCategories") or []) if isinstance(c, dict)]
 
@@ -518,9 +854,28 @@ def run_fetch(
     return all_rows, len(targets)
 
 
+def _resolve_event_groups(league_key: str, eg_override: str) -> List[Tuple[str, str]]:
+    """Return [(label, event_group_id), ...] to fetch for this --league."""
+    ov = (eg_override or "").strip()
+    if ov:
+        return [(league_key, ov)]
+    if league_key in LEAGUE_BUNDLES:
+        out: List[Tuple[str, str]] = []
+        for k in LEAGUE_BUNDLES[league_key]:
+            gid = str(EVENT_GROUP_IDS.get(k) or "").strip()
+            if gid:
+                out.append((k, gid))
+        return out
+    gid = str(EVENT_GROUP_IDS.get(league_key) or "").strip()
+    if gid:
+        return [(league_key, gid)]
+    return []
+
+
 def main() -> None:
+    presets = sorted(set(EVENT_GROUP_IDS) | set(LEAGUE_BUNDLES))
     ap = argparse.ArgumentParser(description="DraftKings sportsbook player props -> PP-shaped CSV")
-    ap.add_argument("--league", default="nba", help=f"Preset: {', '.join(sorted(EVENT_GROUP_IDS))} or use --event-group-id")
+    ap.add_argument("--league", default="nba", help=f"Preset: {', '.join(presets)} or use --event-group-id")
     ap.add_argument("--event-group-id", default="", help="Override numeric event group id (from DK league URL)")
     ap.add_argument("--site-code", default="US-SB", help="DraftKings site fragment, e.g. US-SB, US-NJ-SB")
     ap.add_argument(
@@ -542,14 +897,17 @@ def main() -> None:
     )
     ap.add_argument("--output", "-o", default="step1_draftkings_player_props.csv")
     ap.add_argument("--retries", type=int, default=4)
+    ap.add_argument(
+        "--region",
+        default="",
+        help="sportscontent region slug (e.g. dkuswv). Auto-detected from the sportsbook HTML when omitted.",
+    )
     ap.add_argument("--raw-json", default="", help="Optional path to dump the root eventgroup JSON")
     args = ap.parse_args()
 
     league_key = args.league.strip().lower()
-    eg_id = (args.event_group_id or "").strip()
-    if not eg_id:
-        eg_id = EVENT_GROUP_IDS.get(league_key, "")
-    if not eg_id:
+    groups = _resolve_event_groups(league_key, args.event_group_id)
+    if not groups:
         print(
             f"[err] Unknown league {args.league!r} - set --event-group-id from the DK league URL.",
             file=sys.stderr,
@@ -561,15 +919,18 @@ def main() -> None:
     )
 
     if args.list_categories:
-        run_fetch(
-            event_group_id=eg_id,
-            site_code=args.site_code,
-            categories=None,
-            auto_categories=False,
-            list_only=True,
-            retries=args.retries,
-            board_sport=board_sport,
-        )
+        for label, eg_id in groups:
+            print(f"[dk] league {label} eventGroup={eg_id}")
+            run_fetch(
+                event_group_id=eg_id,
+                site_code=args.site_code,
+                categories=None,
+                auto_categories=False,
+                list_only=True,
+                retries=args.retries,
+                board_sport=board_sport,
+                region=args.region,
+            )
         sys.exit(0)
 
     if args.all_categories:
@@ -585,27 +946,21 @@ def main() -> None:
         auto = True
         all_cats = False
 
+    rows: List[dict] = []
     try:
-        if all_cats:
-            rows, _ncat = run_fetch(
+        for label, eg_id in groups:
+            print(f"[dk] fetching {label} ({eg_id})")
+            part, _ncat = run_fetch(
                 event_group_id=eg_id,
                 site_code=args.site_code,
-                categories=None,
-                auto_categories=False,
+                categories=None if all_cats else cat_mode,
+                auto_categories=False if all_cats else auto,
                 list_only=False,
                 retries=args.retries,
                 board_sport=board_sport,
+                region=args.region,
             )
-        else:
-            rows, _ncat = run_fetch(
-                event_group_id=eg_id,
-                site_code=args.site_code,
-                categories=cat_mode,
-                auto_categories=auto,
-                list_only=False,
-                retries=args.retries,
-                board_sport=board_sport,
-            )
+            rows.extend(part)
     except RuntimeError as e:
         print(f"[err] {e}", file=sys.stderr)
         pd.DataFrame(columns=DK_OUTPUT_COLUMNS).to_csv(args.output, index=False, encoding="utf-8-sig")
@@ -614,7 +969,8 @@ def main() -> None:
     if args.raw_json:
         try:
             session = _session(args.site_code)
-            root = _get_json(session, f"{_base_url(args.site_code, eg_id)}?format=json", retries=args.retries)
+            first_id = groups[0][1]
+            root = _get_json(session, f"{_base_url(args.site_code, first_id)}?format=json", retries=args.retries)
             with open(args.raw_json, "w", encoding="utf-8") as f:
                 json.dump(root, f, ensure_ascii=False)
             print(f"[dk] Wrote root JSON -> {args.raw_json}")
@@ -626,6 +982,13 @@ def main() -> None:
         print("[warn] No prop rows parsed — board may be empty or JSON shape changed.")
         df = pd.DataFrame(columns=DK_OUTPUT_COLUMNS)
     else:
+        subset = [
+            c
+            for c in ("dk_event_id", "player", "line", "dk_selection_label", "dk_market_label")
+            if c in df.columns
+        ]
+        if subset:
+            df = df.drop_duplicates(subset=subset, keep="last")
         df = df.drop_duplicates(subset=["projection_id"], keep="first").reset_index(drop=True)
         df = df[DK_OUTPUT_COLUMNS]
 

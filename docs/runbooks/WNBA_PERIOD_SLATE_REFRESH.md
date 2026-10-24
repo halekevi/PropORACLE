@@ -20,6 +20,15 @@ Re-verify anytime CDP Chrome is up:
 py -3 Sports\WNBA\step1_fetch_prizepicks.py --print-leagues --cdp http://127.0.0.1:9222 --playwright --league_id 3 --output logs\_leagues_dummy.csv
 ```
 
+## Full WNBA pipeline (PrizePicks 1H + 1Q)
+
+`scripts/run_wnba_pipeline.ps1` (and `run_pipeline.ps1 -WNBAOnly` / parallel WNBA) fetches **WNBA1H (193)** and **WNBA1Q (308)** after a successful full-game step8. Empty period boards skip like NBA 1H/1Q and do **not** fail the full WNBA run. Pass `-SkipPeriod` to leave them off.
+
+```powershell
+pwsh -File scripts\run_wnba_pipeline.ps1 -Date 2026-08-30
+pwsh -File scripts\run_wnba_pipeline.ps1 -Date 2026-08-30 -SkipPeriod
+```
+
 ## Period-only pipeline (no full WNBA / no tickets)
 
 ```powershell
@@ -83,7 +92,6 @@ Flags NBA1Q/1H and WNBA1Q/1H rows whose `actual_value` exceeds plausible period 
 
 ## Still TODO
 
-- `combined_slate_tickets.py` ACTIVE_SPORTS + path resolution for WNBA1H/1Q
-- Ticket pools / gates / payout ladders
+- Ticket pools / payout ladders (boards load on the slate; WNBA1H/1Q stay ticket-gated until period-history DB exists)
 - Period-specific hit-rate history (not full-game proxy) for projections
 - Optional WNBA2H / WNBA4Q refresh tags

@@ -1,0 +1,354 @@
+{
+  "window": [
+    "2026-07-09",
+    "2026-09-14"
+  ],
+  "n_days": 25,
+  "eligible_rows": 735,
+  "grade_matched_rows": 249,
+  "unique_player_days": 647,
+  "note": "Walk-forward p from earlier graded HIT/MISS only. Current floors Goblin p up to 0.763 and only scores the top 2 and top 3. Search scores 2- and 3-leg combinations, keeping the best EV slip. Live prices all-Goblin Power at 1.5x (2 legs) and 1.8x (3 legs) from the 2026-09-27 board. A slip with any unmatched leg is counted as ungraded and left out of ROI.",
+  "variants": {
+    "current": {
+      "slips": 209,
+      "graded": 52,
+      "ungraded": 157,
+      "all_hit": 25,
+      "all_hit_rate": 0.481,
+      "profit": 55.0,
+      "roi": 0.106,
+      "mean_pred_ev": 0.063,
+      "families": {
+        "goblin": 183,
+        "standard": 14,
+        "mix": 12
+      },
+      "products": {
+        "Power": 209
+      },
+      "floored_leg_share": 0.927
+    },
+    "search": {
+      "slips": 199,
+      "graded": 46,
+      "ungraded": 153,
+      "all_hit": 24,
+      "all_hit_rate": 0.522,
+      "profit": 92.0,
+      "roi": 0.2,
+      "mean_pred_ev": 0.084,
+      "families": {
+        "mix": 21,
+        "goblin": 172,
+        "standard": 6
+      },
+      "products": {
+        "Power": 199
+      },
+      "floored_leg_share": 0.907
+    },
+    "nofloor": {
+      "slips": 4,
+      "graded": 3,
+      "ungraded": 1,
+      "all_hit": 1,
+      "all_hit_rate": 0.333,
+      "profit": 0.0,
+      "roi": 0.0,
+      "mean_pred_ev": 0.138,
+      "families": {
+        "standard": 4
+      },
+      "products": {
+        "Power": 4
+      },
+      "floored_leg_share": 0.0
+    },
+    "live": {
+      "slips": 4,
+      "graded": 3,
+      "ungraded": 1,
+      "all_hit": 1,
+      "all_hit_rate": 0.333,
+      "profit": 0.0,
+      "roi": 0.0,
+      "mean_pred_ev": 0.138,
+      "families": {
+        "standard": 4
+      },
+      "products": {
+        "Power": 4
+      },
+      "floored_leg_share": 0.0
+    },
+    "live_game": {
+      "slips": 4,
+      "graded": 3,
+      "ungraded": 1,
+      "all_hit": 1,
+      "all_hit_rate": 0.333,
+      "profit": 0.0,
+      "roi": 0.0,
+      "mean_pred_ev": 0.138,
+      "families": {
+        "standard": 4
+      },
+      "products": {
+        "Power": 4
+      },
+      "floored_leg_share": 0.0
+    }
+  },
+  "days": [
+    {
+      "date": "2026-07-09",
+      "eligible": 17,
+      "matched": 0,
+      "current": 5,
+      "search": 4,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-10",
+      "eligible": 8,
+      "matched": 0,
+      "current": 2,
+      "search": 1,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-11",
+      "eligible": 11,
+      "matched": 3,
+      "current": 2,
+      "search": 2,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-12",
+      "eligible": 30,
+      "matched": 22,
+      "current": 8,
+      "search": 8,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-13",
+      "eligible": 29,
+      "matched": 20,
+      "current": 9,
+      "search": 8,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-14",
+      "eligible": 22,
+      "matched": 14,
+      "current": 6,
+      "search": 6,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-16",
+      "eligible": 17,
+      "matched": 0,
+      "current": 5,
+      "search": 4,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-17",
+      "eligible": 31,
+      "matched": 22,
+      "current": 9,
+      "search": 9,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-22",
+      "eligible": 54,
+      "matched": 41,
+      "current": 17,
+      "search": 17,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-23",
+      "eligible": 15,
+      "matched": 6,
+      "current": 4,
+      "search": 3,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-07-25",
+      "eligible": 22,
+      "matched": 15,
+      "current": 7,
+      "search": 7,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-08-03",
+      "eligible": 27,
+      "matched": 0,
+      "current": 7,
+      "search": 7,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-08-16",
+      "eligible": 48,
+      "matched": 22,
+      "current": 14,
+      "search": 14,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-08-17",
+      "eligible": 43,
+      "matched": 11,
+      "current": 13,
+      "search": 13,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-08-24",
+      "eligible": 34,
+      "matched": 14,
+      "current": 10,
+      "search": 10,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-08-28",
+      "eligible": 35,
+      "matched": 4,
+      "current": 11,
+      "search": 10,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-08-29",
+      "eligible": 75,
+      "matched": 9,
+      "current": 20,
+      "search": 20,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-09-03",
+      "eligible": 21,
+      "matched": 2,
+      "current": 5,
+      "search": 5,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-09-04",
+      "eligible": 32,
+      "matched": 3,
+      "current": 9,
+      "search": 9,
+      "nofloor": 1,
+      "live": 1,
+      "live_game": 1
+    },
+    {
+      "date": "2026-09-05",
+      "eligible": 28,
+      "matched": 8,
+      "current": 8,
+      "search": 8,
+      "nofloor": 1,
+      "live": 1,
+      "live_game": 1
+    },
+    {
+      "date": "2026-09-09",
+      "eligible": 17,
+      "matched": 0,
+      "current": 5,
+      "search": 4,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-09-10",
+      "eligible": 17,
+      "matched": 0,
+      "current": 5,
+      "search": 4,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-09-12",
+      "eligible": 68,
+      "matched": 33,
+      "current": 18,
+      "search": 18,
+      "nofloor": 2,
+      "live": 2,
+      "live_game": 2
+    },
+    {
+      "date": "2026-09-13",
+      "eligible": 17,
+      "matched": 0,
+      "current": 5,
+      "search": 4,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    },
+    {
+      "date": "2026-09-14",
+      "eligible": 17,
+      "matched": 0,
+      "current": 5,
+      "search": 4,
+      "nofloor": 0,
+      "live": 0,
+      "live_game": 0
+    }
+  ]
+}

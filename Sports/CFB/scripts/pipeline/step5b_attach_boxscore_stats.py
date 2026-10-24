@@ -23,6 +23,13 @@ import argparse
 import datetime as dt
 import importlib.util
 import random
+import sys
+from pathlib import Path
+
+_REPO = Path(__file__).resolve().parents[4]
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+from utils.cushion_z import current_game_map  # noqa: E402
 import re
 import sys
 import time
@@ -89,7 +96,14 @@ def sum_multiplayer_combo_game_vals(
     n = min(len(s) for s in arm_val_series)
     if n <= 0:
         return None
-    return [float(sum(s[i] for s in arm_val_series)) for i in range(n)]
+    out: list[float | None] = []
+    for i in range(n):
+        parts = [s[i] for s in arm_val_series]
+        if any(p is None for p in parts):
+            out.append(None)
+        else:
+            out.append(float(sum(parts)))
+    return out
 
 
 # PrizePicks often uses the legal first name; ESPN boxscores use the nickname.
@@ -144,7 +158,7 @@ def _cfb_season_start(slate: dt.date) -> dt.date:
 
     Aug–Dec → Aug 1 of slate.year. Jan–Jul (bowls / offseason) → Aug 1 of
     the prior calendar year. Flags / games_used / l5_sample_n stop here.
-    Face L5/L10 may include this player's prior-season boxes only in weeks 0–3.
+    Face L5 and L8 may add this player's prior-season boxes until 8 games.
     """
     if slate.month >= 8:
         return dt.date(slate.year, 8, 1)
@@ -177,15 +191,14 @@ def _cfb_week0_saturday(season_start: dt.date) -> dt.date:
 
 
 def _cfb_allow_prior_season_fallback(slate: dt.date) -> bool:
-    """Weeks 0–3 of the fall season, through Sunday of Week 3.
+    """Last year may complete this player's L5 and L8 all season.
 
-    The Jones-fix fill window was "first ~3 weeks," not Aug 1 + 21 days
-    (that cutoff is ~Aug 22, Week 0 only, and dropped Week 3). Week 0
-    Saturday + 22 days is Sunday of Week 3 (2026-09-20). Week 4 is outside.
+    A 12-game year does not have an 8-game window until late. The length
+    check lives in ``_cfb_face_vals`` (stop once 8 current games exist).
+    ``slate`` is unused; the calendar Week-5 cutoff is retired.
     """
-    start = _cfb_season_start(slate)
-    week3_sunday = _cfb_week0_saturday(start) + dt.timedelta(days=22)
-    return slate <= week3_sunday
+    del slate
+    return True
 
 
 def _cfb_face_games(
@@ -197,11 +210,23 @@ def _cfb_face_games(
     """This player's boxes only: current season first, then prior if filling.
 
     Never a position/team average — callers must pass one athlete's games.
-    After Week 3, current only.
+    Prior games are added until the series can hold an 8-game window.
     """
-    if allow_fill and len(current) < 5 and prior:
+    if allow_fill and len(current) < 8 and prior:
         return list(current) + list(prior)
     return list(current)
+
+
+def _face_window_current_n(current_vals: List[float], window: int) -> int:
+    """How many slots of an n-game face window are current-season games.
+
+    The face series is current games first, then last year, until 8 current
+    games exist. L5, L8, and L10 all slice that same series. A starter with
+    6 current games has an all-current L5 and an L10 that is still 6 current
+    plus last year. ``PRIOR_SEASON_FILL`` stays set in that case, so the L5
+    checklist is ``l5_sample_n < 5``, not the flag string.
+    """
+    return min(max(int(window), 0), len(current_vals))
 
 
 def _cfb_face_vals(
@@ -211,10 +236,12 @@ def _cfb_face_vals(
 ) -> tuple[List[float], str]:
     """Return (face_vals, season_l5_flag) for this player's own series.
 
-    PRIOR_SEASON_FILL — current games exist; last year mixed into L5/L10.
-    PRIOR_SEASON_L5  — no current games; window is last year only (weeks 0–3).
-    NO_CURRENT_SEASON — no current games and fill window closed / no prior.
-    ''               — current-only face (full sample or post-window thin).
+    PRIOR_SEASON_FILL — current games exist; last year is appended because
+    fewer than 8 current games exist. L5/L8/L10 then slice this series.
+    PRIOR_SEASON_L5  — no current games; window is last year only.
+    NO_CURRENT_SEASON — no current games and no prior boxes.
+    ''               — current season already has 8 games, so prior is not
+    appended. L10 is current-only even when it is shorter than 10.
     """
     cur = list(current_vals)
     pri = list(prior_vals)
@@ -223,7 +250,7 @@ def _cfb_face_vals(
         if allow and pri:
             return pri, "PRIOR_SEASON_L5"
         return [], "NO_CURRENT_SEASON"
-    if allow and len(cur) < 5 and pri:
+    if allow and len(cur) < 8 and pri:
         return cur + pri, "PRIOR_SEASON_FILL"
     return cur, ""
 
@@ -279,12 +306,12 @@ def _filter_cfb_current_season(
 
     Returns (games, flag) where flag is:
       ''                 — ≥1 current-season game (may still be thin)
-      'PRIOR_SEASON_L5'  — no current-season games; prior kept in weeks 0–3
-      'NO_CURRENT_SEASON'— no current-season games and fill window closed
+      'PRIOR_SEASON_L5'  — no current-season games; prior kept when asked
+      'NO_CURRENT_SEASON'— no current-season games and fallback is off
 
     Attach uses ``_cfb_face_vals`` so this player's last-year boxes fill
-    L5/L10 in weeks 0–3, tagged PRIOR_SEASON_FILL (mixed) or PRIOR_SEASON_L5
-    (prior-only). games_used / l5_sample_n stay current-season counts.
+    L5 and L8 until 8 games exist, tagged PRIOR_SEASON_FILL (mixed) or
+    PRIOR_SEASON_L5 (prior-only). games_used / l5_sample_n stay current-season.
     """
     current, prior = _split_cfb_by_season(games, slate)
     if current:
@@ -456,6 +483,84 @@ def _nfl_regular_season_games(games: List[dict]) -> List[dict]:
     return out
 
 
+def _nfl_decided_games(games: List[dict], prop: str, slate: dt.date) -> List[dict]:
+    """Played box rows with a numeric value, tagged for cross-season L5."""
+    from utils.nfl_cross_season_l5 import classify_nfl_l5_source, parse_box_date
+
+    out: List[dict] = []
+    seen: set[str] = set()
+    for g in games:
+        day = parse_box_date(g.get("game_date") or g.get("_dt"))
+        if day is None:
+            continue
+        src = classify_nfl_l5_source(day, slate)
+        if src is None:
+            continue
+        if not game_played_for_prop(g, prop):
+            continue
+        val = prop_value(prop, g)
+        if val is None:
+            continue
+        eid = str(g.get("event_id") or "").strip()
+        key = eid or f"{day.isoformat()}-{val}"
+        if key in seen:
+            continue
+        seen.add(key)
+        row = dict(g)
+        row["_dt"] = day
+        row["_val"] = float(val)
+        row["l5_source"] = src
+        out.append(row)
+    return out
+
+
+def _nfl_cross_season_face(
+    games: List[dict],
+    prop: str,
+    slate: dt.date,
+    *,
+    n: int = 10,
+    player: str = "",
+    prop_label: str = "",
+) -> dict:
+    """L5/L10 face window: current RS → current preseason → prior RS → prior preseason."""
+    from utils.nfl_cross_season_l5 import (
+        assemble_nfl_l5_window,
+        debug_l5_sources,
+        format_l5_source_counts,
+        source_counts,
+    )
+
+    tagged = _nfl_decided_games(games, prop, slate)
+    window = assemble_nfl_l5_window(tagged, slate, n=max(n, 5))
+    l5 = window[:5]
+    counts = source_counts(l5)
+    debug_l5_sources(player, prop_label or prop, counts)
+    mixed = any(str(r.get("l5_source") or "") != "current_season" for r in l5)
+    if not l5:
+        flag = "NO_BOX_HISTORY" if not tagged else "NO_CURRENT_SEASON"
+    elif mixed:
+        flag = "CROSS_SEASON_L5"
+    else:
+        flag = ""
+    current_vals = [
+        g["_val"]
+        for g in sorted(
+            (x for x in tagged if x.get("l5_source") == "current_season"),
+            key=lambda r: r.get("_dt") or dt.date.min,
+            reverse=True,
+        )
+    ]
+    return {
+        "vals": [g["_val"] for g in window],
+        "played": window,
+        "current_vals": current_vals,
+        "flag": flag,
+        "l5_window_n": len(l5),
+        "l5_source_counts": format_l5_source_counts(counts),
+    }
+
+
 def request_json(url, params=None, max_tries=5, backoff=1.4, sleep=0.0):
     for i in range(1, max_tries + 1):
         try:
@@ -480,9 +585,17 @@ def request_json(url, params=None, max_tries=5, backoff=1.4, sleep=0.0):
 def date_range(end_date: dt.date, days_back: int) -> List[str]:
     dates = [(end_date - dt.timedelta(days=i)).strftime("%Y%m%d") for i in range(days_back + 1)]
     if ESPN_LEAGUE == "nfl":
-        # NFLP and NFL share the same boxscores. Skip Mar–Aug so L5 cannot
-        # pick up last year's (or this year's) preseason games.
-        dates = [d for d in dates if d[4:6] not in ("03", "04", "05", "06", "07", "08")]
+        # Skip Mar–Jun (dead). Jul–Aug is preseason — include when
+        # ALLOW_CROSS_SEASON_L5 so Weeks 1–4 can bridge L5.
+        skip = {"03", "04", "05", "06"}
+        try:
+            from utils.nfl_cross_season_l5 import allow_cross_season_l5
+
+            if not allow_cross_season_l5():
+                skip |= {"07", "08"}
+        except Exception:
+            skip |= {"07", "08"}
+        dates = [d for d in dates if d[4:6] not in skip]
     return dates
 
 
@@ -558,7 +671,8 @@ _TARGET_FULL_RE = re.compile(
     r"(?i:to|intended for)\s+([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+)+)",
 )
 _OPTIONAL_ABSENT = (
-    "PASS_LONG", "RUSH_LONG", "REC_LONG", "REC_TGT", "RUSH_ATT", "PASS_ATT",
+    "PASS_LONG", "RUSH_LONG", "REC_LONG", "REC_TGT", "RUSH_ATT", "PASS_ATT", "PASS_CMP",
+    "PASS_SACKS",
 )
 
 
@@ -921,6 +1035,12 @@ def parse_players(summary: dict, game_date: str = "", event_id: str = "") -> Lis
                         row["PASS_INT"] = _f(st[int_i])
                     if lng is not None and lng < len(st):
                         row["PASS_LONG"] = _f(st[lng])
+                    # QB sacks taken (passing box) — distinct from defensive SACK.
+                    psack = idx("SACKS")
+                    if psack is None:
+                        psack = idx("SACK")
+                    if psack is not None and psack < len(st):
+                        row["PASS_SACKS"] = _f(st[psack])
                     passing_slots.append((key, team_id, jer))
                 elif cat == "rushing":
                     y = idx("YDS")
@@ -1069,11 +1189,13 @@ def parse_players(summary: dict, game_date: str = "", event_id: str = "") -> Lis
 
     _stat_keys = (
         "PASS_YDS", "RUSH_YDS", "REC_YDS", "REC", "PASS_TD", "RUSH_TD", "REC_TD",
-        "PASS_CMP", "PASS_ATT", "PASS_INT", "SACK", "TACK_TOT", "KICK_PTS", "KICK_FG", "KICK_XP", "DEF_INT",
+        "PASS_CMP", "PASS_ATT", "PASS_INT", "PASS_SACKS", "SACK", "TACK_TOT",
+        "KICK_PTS", "KICK_FG", "KICK_XP", "DEF_INT",
         "PASS_LONG", "RUSH_LONG", "REC_LONG", "REC_TGT", "RUSH_ATT", "TFL",
     )
-    # Do not zero-fill LONG / TGTS / ATT: missing means ESPN did not publish
-    # the stat (or this cache row predates the parser). Zero would fake L5 unders.
+    # Do not zero-fill LONG / TGTS / ATT / completions: missing means ESPN did
+    # not publish the stat. A stored 0 next to real pass yards is still a blank
+    # (see _pass_count). Zero would fake L5 unders.
     _zero_fill = tuple(k for k in _stat_keys if k not in _OPTIONAL_ABSENT)
     rows: List[dict] = []
     for row in by_ath.values():
@@ -1119,6 +1241,51 @@ def fantasy(r: dict) -> float:
     )
 
 
+def _box_float(r: dict, key: str) -> Optional[float]:
+    """Published number, or None when the cache left the column blank."""
+    raw = r.get(key)
+    if raw is None or raw == "":
+        return None
+    try:
+        v = float(raw)
+    except (TypeError, ValueError):
+        return None
+    if v != v:
+        return None
+    return v
+
+
+def _pass_count(r: dict, key: str) -> Optional[float]:
+    """Completions or attempts. A 0 beside real pass yards is a blank, not a game.
+
+    ESPN sometimes omits C/ATT on a full passing line. Zero-filling that blank
+    made Ryan Browne's 329-yard and 317-yard games into fake 0-completion unders.
+    """
+    v = _box_float(r, key)
+    yds = _box_float(r, "PASS_YDS")
+    if v == 0 and yds is not None and yds > 0:
+        return None
+    return v
+
+
+def _rush_yards_per_carry(r: dict) -> Optional[float]:
+    """YPC from RUSH_YDS / RUSH_ATT. Never fall through to raw rush yards."""
+    yds = _box_float(r, "RUSH_YDS")
+    att = _box_float(r, "RUSH_ATT")
+    if yds is None or att is None or att <= 0:
+        return None
+    return round(float(yds) / float(att), 1)
+
+
+def _completion_percentage(r: dict) -> Optional[float]:
+    """Comp% from PASS_CMP / PASS_ATT. Never fall through to completion counts."""
+    cmp_v = _pass_count(r, "PASS_CMP")
+    att = _pass_count(r, "PASS_ATT")
+    if cmp_v is None or att is None or att <= 0:
+        return None
+    return round(100.0 * float(cmp_v) / float(att), 1)
+
+
 def _stat_num(r: dict, key: str) -> float:
     try:
         v = r.get(key)
@@ -1151,16 +1318,19 @@ def prop_value(prop_norm: str, r: dict) -> Optional[float]:
         "rushing_tds": r.get("RUSH_TD"),
         "receiving_tds": r.get("REC_TD"),
         "receptions": r.get("REC"),
-        "pass_completions": r.get("PASS_CMP"),
-        "pass_cmp": r.get("PASS_CMP"),
-        "completions": r.get("PASS_CMP"),
-        "pass_att": r.get("PASS_ATT"),
-        "pass_attempts": r.get("PASS_ATT"),
+        "pass_completions": _pass_count(r, "PASS_CMP"),
+        "pass_cmp": _pass_count(r, "PASS_CMP"),
+        "completions": _pass_count(r, "PASS_CMP"),
+        "pass_att": _pass_count(r, "PASS_ATT"),
+        "pass_attempts": _pass_count(r, "PASS_ATT"),
         "rush_att": r.get("RUSH_ATT"),
         "rush_attempts": r.get("RUSH_ATT"),
         "interceptions_thrown": r.get("PASS_INT"),
         "interceptions": r.get("PASS_INT") or r.get("DEF_INT"),
         "sacks": r.get("SACK"),
+        "sacks_taken": r.get("PASS_SACKS"),
+        "rush_tds": r.get("RUSH_TD"),
+        "rec_tds": r.get("REC_TD"),
         "tackles": r.get("TACK_TOT"),
         "tackles_assists": r.get("TACK_TOT"),
         "tfl": r.get("TFL"),
@@ -1181,6 +1351,14 @@ def prop_value(prop_norm: str, r: dict) -> Optional[float]:
         "rec_long": r.get("REC_LONG"),
         "rec_tgt": r.get("REC_TGT"),
         "fantasy": fantasy(r),
+        # Rates — must be explicit. Fuzzy "rush+yard" / "completion" used to
+        # return raw RUSH_YDS / PASS_CMP and fake L5=5 on YPC / Comp% boards.
+        "rush_yards_per_carry": _rush_yards_per_carry(r),
+        "yards_per_carry": _rush_yards_per_carry(r),
+        "ypc": _rush_yards_per_carry(r),
+        "completion_percentage": _completion_percentage(r),
+        "completion_pct": _completion_percentage(r),
+        "comp_pct": _completion_percentage(r),
     }
     if p in m and m[p] is not None:
         return m[p]
@@ -1197,7 +1375,7 @@ def prop_value(prop_norm: str, r: dict) -> Optional[float]:
     if "rush" in p and ("att" in p or "attempt" in p):
         return r.get("RUSH_ATT")
     if "pass" in p and ("att" in p or "attempt" in p) and "td" not in p:
-        return r.get("PASS_ATT")
+        return _pass_count(r, "PASS_ATT")
     if "pass" in p and "rush" in p and "rec" in p and "td" in p:
         return m["pass_rush_rec_td"]
     if "rush" in p and "rec" in p and "yd" in p:
@@ -1206,15 +1384,30 @@ def prop_value(prop_norm: str, r: dict) -> Optional[float]:
         return m["pass_rush_yds"]
     if "pass" in p and "yard" in p:
         return r.get("PASS_YDS")
-    if "rush" in p and "yard" in p:
+    # Rate props already handled above; do not map YPC → rush yards.
+    if (
+        "rush" in p
+        and "yard" in p
+        and "per" not in p
+        and "avg" not in p
+        and "ypc" not in p
+    ):
         return r.get("RUSH_YDS")
     if ("rec" in p or "receiv" in p) and "yard" in p:
         return r.get("REC_YDS")
     if "reception" in p or p == "rec":
         return r.get("REC")
-    if "completion" in p or p in ("pass_cmp", "cmp"):
-        return r.get("PASS_CMP")
-    if "sack" in p:
+    # Comp% already handled above; do not map percentage boards → completion counts.
+    if (
+        ("completion" in p or p in ("pass_cmp", "cmp"))
+        and "percent" not in p
+        and "pct" not in p
+    ):
+        return _pass_count(r, "PASS_CMP")
+    # QB sacks taken vs defensive sacks — must not fuzzy-collide.
+    if "sack" in p and "taken" in p:
+        return r.get("PASS_SACKS")
+    if p == "sacks" or ("sack" in p and "taken" not in p):
         return r.get("SACK")
     if "kick" in p and "point" in p:
         return r.get("KICK_PTS")
@@ -1233,23 +1426,40 @@ def prop_value(prop_norm: str, r: dict) -> Optional[float]:
     return m.get(p)
 
 
-def _cfb_played_vals(games: List[dict], prop: str) -> tuple[List[dict], List[float]]:
+def _cfb_played_vals(games: List[dict], prop: str) -> tuple[List[dict], List[Optional[float]]]:
+    """Newest-first played games. A missing prop stat keeps its slot.
+
+    Dropping the hole and pulling an older game is how Noah Fifita's pass
+    attempts became 5-for-5: two 2026 games had no attempt total, and last
+    year's 43 and 45 filled those spots. None is not a hit.
+    """
     played = [g for g in games if game_played_for_prop(g, prop)]
-    vals = [float(v) for g in played if (v := prop_value(prop, g)) is not None]
+    vals: List[Optional[float]] = []
+    for g in played:
+        v = prop_value(prop, g)
+        vals.append(None if v is None else float(v))
     return played, vals
 
 
-def hit_rates(vals: List[float], line: float, n: int):
-    """Compute hit rate over/under/push for last n games, excl push."""
-    sub = vals[:n]
-    over = sum(1 for v in sub if v > line)
-    under = sum(1 for v in sub if v < line)
-    push  = sum(1 for v in sub if v == line)
-    denom_ou = len(sub) - push
-    hr_over_ou  = over  / denom_ou if denom_ou > 0 else None
-    hr_under_ou = under / denom_ou if denom_ou > 0 else None
-    hr_over     = over  / len(sub) if sub else None
-    hr_under    = under / len(sub) if sub else None
+def hit_rates(vals: List[Optional[float]], line: float, n: int):
+    """Hit counts on the last n played games. A blank stat is not a hit.
+
+    The window is sliced first. Filtering blanks out before the slice would
+    pull an older game into the last five.
+    """
+    window = list(vals)[:n]
+    known = [v for v in window if v is not None]
+    over = sum(1 for v in known if v > line)
+    under = sum(1 for v in known if v < line)
+    push  = sum(1 for v in known if v == line)
+    # Denominator is the played window, blanks included, so 3 known overs
+    # in five games is 3/5 and not a 100% rate.
+    slots = len(window)
+    decided = slots - push
+    hr_over_ou  = over  / decided if decided > 0 else None
+    hr_under_ou = under / decided if decided > 0 else None
+    hr_over     = over  / slots if slots else None
+    hr_under    = under / slots if slots else None
     return over, under, push, hr_over, hr_under, hr_over_ou, hr_under_ou
 
 
@@ -1370,8 +1580,8 @@ def build_player_histories(
         cache_only = False
     if cache_only:
         print(
-            f"  [CACHE] cache-only — weeks 0–3 fill L5 from this player's last "
-            f"year ({len(cached_rows)} rows, skip ESPN)"
+            f"  [CACHE] cache-only — last year fills this player's L5/L8 "
+            f"({len(cached_rows)} rows, skip ESPN)"
         )
         all_rows = list(cached_rows)
         if tid_to_abbr:
@@ -1672,8 +1882,8 @@ def main():
     ap.add_argument("--input",    required=True)
     ap.add_argument("--output",   default="step5b_with_stats_cfb.csv")
     ap.add_argument("--days",     type=int, default=180,
-                    help="Days of history to scan/cache (fetch window). CFB L5/L10 "
-                         "may include this player's last-year boxes in weeks 0–3 "
+                    help="Days of history to scan/cache (fetch window). CFB L5/L8 "
+                         "may include this player's last-year boxes until 8 games "
                          "(PRIOR_SEASON_FILL); games_used / l5_sample_n stay current-season.")
     ap.add_argument("--date",     default="",
                     help="Anchor date YYYY-MM-DD for scoreboard scan (default: today)")
@@ -1692,9 +1902,9 @@ def main():
     ap.add_argument(
         "--cache-only",
         action="store_true",
-        help="No ESPN fetch. Weeks 0–3: this player's last-year boxes fill "
+        help="No ESPN fetch. Weeks 0–5: this player's last-year boxes fill "
              "L5/L10 as PRIOR_SEASON_FILL (or PRIOR_SEASON_L5 if no 2026 games). "
-             "games_used / l5_sample_n stay current-season. After Week 3, current only.",
+             "games_used / l5_sample_n stay current-season. After Week 5, current only.",
     )
     ap.add_argument(
         "--segment",
@@ -1946,6 +2156,7 @@ def main():
         return found
 
     for _, row in _tqdm(df.iterrows(), total=len(df), desc="Attaching stats", unit="prop"):
+        current_vals: list = []
         tid  = _clean_id(row.get("team_id",       ""))
         pn   = str(row.get("player_norm",   "")).strip()
         aid  = _clean_id(row.get("espn_athlete_id",""))
@@ -1970,21 +2181,37 @@ def main():
         vals: List[float] = []
         played: List[dict] = []
         current_vals: List[float] = []
+        nfl_l5_meta: dict | None = None
 
         if combo_arms:
             base_prop = base_prop_for_combo(prop)
             arm_series: List[List[float]] = []
             arm_cur_series: List[List[float]] = []
             season_flag = ""
+            from utils.nfl_cross_season_l5 import nfl_cross_season_l5_active
+
             for arm_name in combo_arms:
                 arm_pn = norm(arm_name)
                 if ESPN_LEAGUE == "nfl":
                     arm_games = _lookup_nfl_box_games(arm_pn, "", hist_aid, hist_name)
-                    arm_games = _nfl_regular_season_games(arm_games)
-                    arm_cur_g, arm_pri_g = _split_nfl_by_season(arm_games, end_d)
-                    _, arm_cur = _cfb_played_vals(arm_cur_g, base_prop)
-                    _, arm_pri = _cfb_played_vals(arm_pri_g, base_prop)
-                    arm_vals, arm_flag = _nfl_face_vals(arm_cur, arm_pri, end_d)
+                    if nfl_cross_season_l5_active(end_d):
+                        face = _nfl_cross_season_face(
+                            arm_games,
+                            base_prop,
+                            end_d,
+                            n=max(10, int(getattr(args, "n", 10) or 10)),
+                            player=arm_name,
+                            prop_label=base_prop,
+                        )
+                        arm_vals = list(face["vals"])
+                        arm_cur = list(face["current_vals"])
+                        arm_flag = str(face["flag"] or "")
+                    else:
+                        arm_games = _nfl_regular_season_games(arm_games)
+                        arm_cur_g, arm_pri_g = _split_nfl_by_season(arm_games, end_d)
+                        _, arm_cur = _cfb_played_vals(arm_cur_g, base_prop)
+                        _, arm_pri = _cfb_played_vals(arm_pri_g, base_prop)
+                        arm_vals, arm_flag = _nfl_face_vals(arm_cur, arm_pri, end_d)
                     if arm_flag == "PRIOR_SEASON_FILL":
                         season_flag = arm_flag
                     elif arm_flag and not season_flag:
@@ -2027,24 +2254,49 @@ def main():
             # NFL / NFLP: regular-season/playoff boxscores only (drop August),
             # then current-season boundary (Sep 1). Nickname aliases cover
             # Cam/Cameron etc. Mar–Aug NFLP still sees last year's Sep–Feb.
+            # Weeks 1–4: ALLOW_CROSS_SEASON_L5 also pulls preseason then prior RS.
             if ESPN_LEAGUE == "nfl":
                 games = _lookup_nfl_box_games(pn, aid, hist_aid, hist_name)
-                games = _nfl_regular_season_games(games)
-                current, prior = _split_nfl_by_season(games, end_d)
-                cur_played, cur_vals = _cfb_played_vals(current, prop)
-                pri_played, pri_vals = _cfb_played_vals(prior, prop)
-                vals, season_flag = _nfl_face_vals(cur_vals, pri_vals, end_d)
-                if not vals:
-                    stat_status.append(season_flag or "NO_BOX_HISTORY")
-                    out_rows.append({})
-                    continue
-                # Rebuild played rows to match face vals length (current then prior).
-                played = list(cur_played) + list(pri_played)
-                if season_flag == "PRIOR_SEASON_L5":
-                    played = list(pri_played)
-                elif season_flag != "PRIOR_SEASON_FILL":
-                    played = list(cur_played)
-                current_vals = list(cur_vals)
+                from utils.nfl_cross_season_l5 import nfl_cross_season_l5_active
+
+                if nfl_cross_season_l5_active(end_d):
+                    face = _nfl_cross_season_face(
+                        games,
+                        prop,
+                        end_d,
+                        n=max(10, int(getattr(args, "n", 10) or 10)),
+                        player=str(row.get("player") or pn),
+                        prop_label=prop,
+                    )
+                    vals = list(face["vals"])
+                    if not vals:
+                        stat_status.append(face["flag"] or "NO_BOX_HISTORY")
+                        out_rows.append({})
+                        continue
+                    played = list(face["played"])
+                    current_vals = list(face["current_vals"])
+                    season_flag = str(face["flag"] or "")
+                    nfl_l5_meta = {
+                        "l5_window_n": face["l5_window_n"],
+                        "l5_source_counts": face["l5_source_counts"],
+                    }
+                else:
+                    games = _nfl_regular_season_games(games)
+                    current, prior = _split_nfl_by_season(games, end_d)
+                    cur_played, cur_vals = _cfb_played_vals(current, prop)
+                    pri_played, pri_vals = _cfb_played_vals(prior, prop)
+                    vals, season_flag = _nfl_face_vals(cur_vals, pri_vals, end_d)
+                    if not vals:
+                        stat_status.append(season_flag or "NO_BOX_HISTORY")
+                        out_rows.append({})
+                        continue
+                    # Rebuild played rows to match face vals length (current then prior).
+                    played = list(cur_played) + list(pri_played)
+                    if season_flag == "PRIOR_SEASON_L5":
+                        played = list(pri_played)
+                    elif season_flag != "PRIOR_SEASON_FILL":
+                        played = list(cur_played)
+                    current_vals = list(cur_vals)
             else:
                 # This athlete only: espn_athlete_id (all teams — transfers stay
                 # the same person), then same-team name, then exact player_norm.
@@ -2075,9 +2327,9 @@ def main():
                 stat_status.append("UNSUPPORTED_PROP")
             out_rows.append({})
             continue
-        # CFB: weeks 0–3 face window may include this player's last year.
-        # l5_sample_n / games_used stay current-season so a filled n=5 is not
-        # presented as a full 2026 sample.
+        # CFB: face window is this season, then this player's last year, to 8.
+        # l5_sample_n / games_used stay current-season so a filled window is
+        # not presented as a full 2026 sample.
         # CFB + NFL weeks 1–3: face window may include this player's last year.
         # l5_sample_n / games_used stay current-season so a filled n=5 is not
         # presented as a full current sample.
@@ -2103,19 +2355,41 @@ def main():
         game_log    = vals[:args.n]
         last5       = game_log[:5]
         last10      = game_log[:10]
-        l5_n_current = min(5, len(current_vals)) if is_face_fill else len(last5)
+        l5_n_current = (
+            _face_window_current_n(current_vals, 5) if is_face_fill else len(last5)
+        )
+        l10_n_current = (
+            _face_window_current_n(current_vals, 10) if is_face_fill else len(last10)
+        )
 
         o = {
             "games_used": len(season_vals),   # current-season game count (CFB)
-            "l5_sample_n": l5_n_current,       # honest current n, not padded 5
+            "l5_sample_n": l5_n_current,       # honest current n inside L5, not padded 5
+            "l10_current_n": l10_n_current,    # current-season slots inside the L10 face
+            "l5_window_n": (
+                int(nfl_l5_meta["l5_window_n"])
+                if nfl_l5_meta and nfl_l5_meta.get("l5_window_n") is not None
+                else len(last5)
+            ),
+            "l5_source_counts": (
+                str(nfl_l5_meta.get("l5_source_counts") or "")
+                if nfl_l5_meta
+                else ""
+            ),
             "season_l5_flag": "",  # filled after hit-rate thin classify
         }
         for k in range(1, args.n + 1):
-            o[f"stat_g{k}"] = game_log[k-1] if k-1 < len(game_log) else ""
+            raw_g = game_log[k - 1] if k - 1 < len(game_log) else None
+            o[f"stat_g{k}"] = "" if raw_g is None else raw_g
+        # Current-season list only. The face window above may pad last year.
+        o.update(current_game_map(current_vals))
 
-        o["stat_last5_avg"]  = round(sum(last5)       / len(last5),       3) if last5       else ""
-        o["stat_last10_avg"] = round(sum(last10)      / len(last10),      3) if last10      else ""
-        o["stat_season_avg"] = round(sum(season_vals) / len(season_vals), 3) if season_vals else ""
+        known5 = [v for v in last5 if v is not None]
+        known10 = [v for v in last10 if v is not None]
+        known_season = [v for v in season_vals if v is not None]
+        o["stat_last5_avg"]  = round(sum(known5)       / len(known5),       3) if known5       else ""
+        o["stat_last10_avg"] = round(sum(known10)      / len(known10),      3) if known10      else ""
+        o["stat_season_avg"] = round(sum(known_season) / len(known_season), 3) if known_season else ""
 
         # minutes averages (CFB: participation flag only)
         min_vals = [float(g.get("MIN", 1) or 1) for g in played]
@@ -2150,6 +2424,18 @@ def main():
             o["line_hit_rate_over_ou_10"]  = round(hr_ov_ou10, 3) if hr_ov_ou10 is not None else ""
             o["line_hit_rate_under_ou_10"] = round(hr_un_ou10, 3) if hr_un_ou10 is not None else ""
 
+            over8, under8, push8, hr_ov8, hr_un8, hr_ov_ou8, hr_un_ou8 = hit_rates(game_log, ln, 8)
+            o["line_hits_over_8"]          = over8
+            o["line_hits_under_8"]         = under8
+            o["line_hits_push_8"]          = push8
+            o["l8_over"]                   = over8
+            o["l8_under"]                  = under8
+            o["l8_window_n"]               = min(8, len(game_log))
+            o["line_hit_rate_over_8"]      = round(hr_ov8,    3) if hr_ov8    is not None else ""
+            o["line_hit_rate_under_8"]     = round(hr_un8,    3) if hr_un8    is not None else ""
+            o["line_hit_rate_over_ou_8"]   = round(hr_ov_ou8, 3) if hr_ov_ou8 is not None else ""
+            o["line_hit_rate_under_ou_8"]  = round(hr_un_ou8, 3) if hr_un_ou8 is not None else ""
+
             o["model_dir_5"] = "OVER" if over5 >= under5 else "UNDER"
 
         # Season / thin flags — never present a filled L5 as a clean 2026 sample.
@@ -2162,7 +2448,12 @@ def main():
                 thin_overs, thin_unders, thin_pushes, *_ = hit_rates(
                     current_vals, float(line), 5
                 )
-        if season_flag in ("PRIOR_SEASON_FILL", "PRIOR_SEASON_L5", "NO_CURRENT_SEASON"):
+        if season_flag in (
+            "PRIOR_SEASON_FILL",
+            "PRIOR_SEASON_L5",
+            "NO_CURRENT_SEASON",
+            "CROSS_SEASON_L5",
+        ):
             final_flag = season_flag
         elif is_face_fill:
             if len(current_vals) < 5:

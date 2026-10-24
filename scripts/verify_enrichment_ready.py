@@ -34,6 +34,10 @@ ENRICHMENT_CHECK_COLS = [
     "wind_speed_mph",
     "role_stability_score",
     "star_tier",
+    "stat_def_rank",
+    "stat_season_avg",
+    "min_last5_avg",
+    "surface_encoded",
 ]
 
 MIN_KEYS = {

@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-08",
+  "sports": {
+    "Golf": {
+      "rows": 8,
+      "sample_known": 0,
+      "current_n_ge5": 0,
+      "goblin": 0,
+      "standard": 0
+    },
+    "MLB": {
+      "rows": 526,
+      "sample_known": 0,
+      "current_n_ge5": 0,
+      "goblin": 0,
+      "standard": 0
+    },
+    "NFL": {
+      "rows": 450,
+      "sample_known": 0,
+      "current_n_ge5": 0,
+      "goblin": 0,
+      "standard": 0
+    },
+    "Soccer": {
+      "rows": 1029,
+      "sample_known": 0,
+      "current_n_ge5": 0,
+      "goblin": 0,
+      "standard": 0
+    },
+    "Tennis": {
+      "rows": 259,
+      "sample_known": 0,
+      "current_n_ge5": 0,
+      "goblin": 0,
+      "standard": 0
+    }
+  }
+}

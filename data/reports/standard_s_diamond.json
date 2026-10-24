@@ -1,0 +1,175 @@
+{
+  "standard_all": {
+    "hits": 1267,
+    "n": 2359,
+    "rate": 53.7
+  },
+  "goblin_all": {
+    "hits": 6446,
+    "n": 9377,
+    "rate": 68.7
+  },
+  "standard_cross": [
+    {
+      "tier": "B",
+      "promo": "Diamond",
+      "hits": 0,
+      "n": 1,
+      "rate": 0.0
+    },
+    {
+      "tier": "B",
+      "promo": "Platinum",
+      "hits": 2,
+      "n": 4,
+      "rate": 50.0
+    },
+    {
+      "tier": "B",
+      "promo": "Silver",
+      "hits": 18,
+      "n": 25,
+      "rate": 72.0
+    },
+    {
+      "tier": "B",
+      "promo": "Bronze",
+      "hits": 34,
+      "n": 50,
+      "rate": 68.0
+    },
+    {
+      "tier": "B",
+      "promo": "none",
+      "hits": 13,
+      "n": 23,
+      "rate": 56.5
+    },
+    {
+      "tier": "C",
+      "promo": "Diamond",
+      "hits": 0,
+      "n": 2,
+      "rate": 0.0
+    },
+    {
+      "tier": "C",
+      "promo": "Platinum",
+      "hits": 2,
+      "n": 4,
+      "rate": 50.0
+    },
+    {
+      "tier": "C",
+      "promo": "Gold",
+      "hits": 1,
+      "n": 1,
+      "rate": 100.0
+    },
+    {
+      "tier": "C",
+      "promo": "Silver",
+      "hits": 25,
+      "n": 44,
+      "rate": 56.8
+    },
+    {
+      "tier": "C",
+      "promo": "Bronze",
+      "hits": 21,
+      "n": 33,
+      "rate": 63.6
+    },
+    {
+      "tier": "C",
+      "promo": "none",
+      "hits": 13,
+      "n": 21,
+      "rate": 61.9
+    },
+    {
+      "tier": "D",
+      "promo": "Diamond",
+      "hits": 44,
+      "n": 89,
+      "rate": 49.4
+    },
+    {
+      "tier": "D",
+      "promo": "Platinum",
+      "hits": 25,
+      "n": 55,
+      "rate": 45.5
+    },
+    {
+      "tier": "D",
+      "promo": "Gold",
+      "hits": 41,
+      "n": 87,
+      "rate": 47.1
+    },
+    {
+      "tier": "D",
+      "promo": "Silver",
+      "hits": 202,
+      "n": 393,
+      "rate": 51.4
+    },
+    {
+      "tier": "D",
+      "promo": "Bronze",
+      "hits": 325,
+      "n": 572,
+      "rate": 56.8
+    },
+    {
+      "tier": "D",
+      "promo": "none",
+      "hits": 381,
+      "n": 726,
+      "rate": 52.5
+    },
+    {
+      "tier": "W",
+      "promo": "Diamond",
+      "hits": 1,
+      "n": 2,
+      "rate": 50.0
+    },
+    {
+      "tier": "W",
+      "promo": "Platinum",
+      "hits": 3,
+      "n": 9,
+      "rate": 33.3
+    },
+    {
+      "tier": "W",
+      "promo": "Gold",
+      "hits": 1,
+      "n": 3,
+      "rate": 33.3
+    },
+    {
+      "tier": "W",
+      "promo": "Silver",
+      "hits": 37,
+      "n": 59,
+      "rate": 62.7
+    },
+    {
+      "tier": "W",
+      "promo": "Bronze",
+      "hits": 38,
+      "n": 70,
+      "rate": 54.3
+    },
+    {
+      "tier": "W",
+      "promo": "none",
+      "hits": 40,
+      "n": 86,
+      "rate": 46.5
+    }
+  ]
+}

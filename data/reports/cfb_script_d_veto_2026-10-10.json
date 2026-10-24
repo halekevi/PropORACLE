@@ -1,0 +1,151 @@
+{
+  "observe_only": true,
+  "slate_date": "2026-10-10",
+  "dates": [
+    "2026-10-10"
+  ],
+  "games_fetched": 46,
+  "rows_with_line": 2105,
+  "rows_total": 2202,
+  "source": "espn",
+  "default_blowout": 17.0,
+  "run_heavy": 0.58,
+  "pass_yards_goblin_d_veto": {
+    "n": 109,
+    "d_pass": 29,
+    "by_threshold": {
+      "14": {
+        "n_veto": 0,
+        "d_pass": 29,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0
+      },
+      "17": {
+        "n_veto": 0,
+        "d_pass": 29,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0,
+        "identity": {
+          "unique_players": [],
+          "unique_player_n": 0,
+          "unique_game_ids": [],
+          "unique_game_n": 0,
+          "kickoff_dates": []
+        }
+      },
+      "21": {
+        "n_veto": 0,
+        "d_pass": 29,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0
+      }
+    },
+    "unique_players": [
+      "Aaron Philo",
+      "Aidan Chiles",
+      "Alberto Mendoza",
+      "Alessio Milivojevic",
+      "Anthony Colandrea",
+      "Arch Manning",
+      "Austin Simmons",
+      "Avery Johnson",
+      "Beau Pribula",
+      "Billy Edwards Jr.",
+      "CJ Bailey",
+      "CJ Carr",
+      "Conner Weigman",
+      "Cutter Boley",
+      "Davis Warren",
+      "Devon Dampier",
+      "Drake Lindsey",
+      "Drew Mestemaker",
+      "Ethan Grunkemeyer",
+      "Gio Lopez",
+      "Gunner Stockton",
+      "Isaiah Marshall",
+      "Jared Curtis",
+      "Jayden Maiava",
+      "Jayden Mandal",
+      "John Mateer",
+      "Josh Hoover",
+      "Julian Sayin",
+      "KJ Jackson",
+      "Katin Houser",
+      "Keelon Russell",
+      "Kenny Minchey",
+      "LaNorris Sellers",
+      "Maddux Madsen",
+      "Malik Washington",
+      "Marcel Reed",
+      "Micah Alejado",
+      "Michael Hawkins Jr.",
+      "Nico Iamaleava",
+      "Noah Fifita",
+      "Rocco Becht",
+      "Ryan Browne",
+      "Sam Leavitt",
+      "Trinidad Chambliss",
+      "Walker Eget"
+    ],
+    "unique_player_n": 45,
+    "unique_game_ids": [
+      "186374",
+      "186376",
+      "186398",
+      "186668",
+      "190708",
+      "190709",
+      "190710",
+      "190711",
+      "190712",
+      "190714",
+      "190717",
+      "190718",
+      "190719",
+      "190723",
+      "190724",
+      "190725",
+      "190728",
+      "190729",
+      "190731",
+      "190733",
+      "190734",
+      "190736",
+      "190737",
+      "190738",
+      "192368",
+      "192369"
+    ],
+    "unique_game_n": 26,
+    "kickoff_dates": [
+      "2026-10-10"
+    ]
+  },
+  "usage_share": {
+    "rush_share_rush_over": {
+      "n": 96,
+      "p25": 21.8,
+      "p50": 27.5,
+      "p75": 35.6
+    },
+    "tgt_share_rec_over": {
+      "n": 791,
+      "p25": 11.7,
+      "p50": 16.2,
+      "p75": 24.2
+    },
+    "pass_share_pass_over": {
+      "n": 121,
+      "p25": 93.3,
+      "p50": 95.6,
+      "p75": 98.2
+    },
+    "proposed_floors_not_applied": {
+      "rush": 0.4,
+      "pass": 0.7,
+      "rec": 0.18,
+      "status": "provisional_unvalidated",
+      "note": "Asserted before share distributions existed. Do not live-gate until hit rate by bucket is derived."
+    }
+  }
+}

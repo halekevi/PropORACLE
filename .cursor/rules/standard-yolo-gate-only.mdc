@@ -1,0 +1,45 @@
+---
+description: Standard YOLO — gate-cleared Standards only; no per-sport quota; never gap-sort
+globs: "{scripts/build_goblin70_tickets.py,utils/ticket_70_pool.py,utils/*_keep_gates.py}"
+alwaysApply: false
+---
+
+# Standard YOLO (gate-cleared only)
+
+**Rule:** Put the most highly probable *Standards* on YOLO tickets by combining whatever real Standard keeps cleared that day. It may be several sports, one sport, or none — never a quota to fill.
+
+## What “highly probable” means
+
+Binary per leg: cleared its sport’s validated Standard keep gate, or not.
+
+- Not a cross-sport gap-sort / L5-gap leaderboard (that is how forced legs get in).
+- Not “one Standard per sport every day.”
+- Not inventing a sixth leg because a 6-leg shape wants filling.
+
+## Daily pool (expected reality)
+
+| Sport | Standard YOLO |
+|-------|----------------|
+| Soccer | Most days — Saves (L5≥4+D); also Shots / SOT keep when cleared |
+| Tennis | Sometimes — Games Won OVER keep only |
+| NFL / CFB | When keep + current-season gates clear (priority Under list / CFB keep) |
+| WNBA | Almost never — steals UNDER thin exception only; generic Standard off |
+| MLB | Never — Standard off by design |
+
+## Build
+
+1. Collect `standard_yolo_eligible` legs across sports.
+2. If **N ≥ 3**, pack one all-Standard YOLO Power (prefer 6→5→4→3).
+3. If **N < 3**, **no Standard YOLO** that day — fold leftovers into Flex/mixer or sit out.
+4. Goblin-70 YOLO may still mix the same gate-cleared Standards onto Power 4/5/6 (no sport quota); still no forced fill.
+
+Code: `utils/ticket_70_pool.py` (`standard_yolo_eligible` / `standard_yolo_kind`) and `scripts/build_goblin70_tickets.py` (`pack_standard_yolo`).
+
+## Grade history (off card win-rate)
+
+`scripts/build_ticket_eval.py` grades YOLO slips into dedicated tracks:
+
+- `standard_yolo` — all-Standard YOLO Power
+- `goblin70_yolo` — Goblin-70 YOLO Power mix
+
+Both set `exclude_from_winrate: true` and do **not** pollute Income / `graded_main`. Fields: `date`, `n_slips`, `wins`, `losses`, `voids`, `win_rate`, `avg_legs`.

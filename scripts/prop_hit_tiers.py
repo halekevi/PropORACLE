@@ -189,6 +189,8 @@ S_KEYS = frozenset(
         ("MLB", "Goblin OVER", "walks_allowed"),
         ("MLB", "Goblin OVER", "pitcher_ks"),
         ("MLB", "Goblin OVER", "pitches_thrown"),
+        # L10-primary keep (same band as walks/pitches; was B on old L5=5 tape).
+        ("MLB", "Goblin OVER", "hits_allowed"),
         ("NBA1Q", "Goblin OVER", "points"),
         ("NBA1Q", "Goblin OVER", "rebounds"),
         ("NBA1Q", "Goblin OVER", "assists"),
@@ -227,7 +229,6 @@ B_KEYS = frozenset(
         ("WNBA", "Goblin OVER", "pra"),
         ("MLB", "Goblin OVER", "hits+runs+rbis"),
         ("MLB", "Goblin OVER", "h+r+rbi"),
-        ("MLB", "Goblin OVER", "hits_allowed"),
         ("WNBA", "Standard OVER", "points_combo"),
         ("WNBA", "Standard OVER", "pra"),
         ("NBA", "Goblin OVER", "rebounds"),
@@ -406,6 +407,110 @@ def assign_tier(
         "prop_promoted": promoted,
         "prop_promote_reason": reason,
     }
+
+
+def _flt_local(v) -> float | None:
+    try:
+        if v is None:
+            return None
+        s = str(v).strip()
+        if s in ("", "nan", "None", "NaN"):
+            return None
+        return float(s)
+    except (TypeError, ValueError):
+        return None
+
+
+def _slate_cover(row: dict, side: str) -> float | None:
+    """Season/L5 mean minus line (OVER positive when avg > line)."""
+    line = _flt_local(row.get("line"))
+    if line is None:
+        return None
+    avg = (
+        _flt_local(row.get("season_avg"))
+        or _flt_local(row.get("szn_avg"))
+        or _flt_local(row.get("stat_season_avg"))
+        or _flt_local(row.get("l5_avg"))
+        or _flt_local(row.get("projection"))
+    )
+    if avg is None:
+        return None
+    if str(side).upper() in ("U", "UNDER"):
+        return line - avg
+    return avg - line
+
+
+def _slate_d_ok(sport: str, side: str, prop: str, def_tier: str) -> bool:
+    from utils.defense_tiers import normalize_def_tier_label
+    from utils.slate_context_fill import is_hitter_strikeout_prop
+
+    tier = normalize_def_tier_label(def_tier) or str(def_tier or "").strip()
+    sport_n = norm_sport(sport)
+    side_u = str(side or "").strip().upper()
+    if sport_n == "MLB" and is_hitter_strikeout_prop(prop):
+        if side_u in ("U", "UNDER"):
+            return tier in ("Weak", "Below Avg")
+        return tier in ("Elite", "Above Avg")
+    if side_u in ("U", "UNDER"):
+        return tier in ("Elite", "Above Avg")
+    return tier in ("Weak", "Below Avg")
+
+
+def stamp_prop_tier_on_slate_row(row: dict, *, sport_hint: str = "") -> dict:
+    """Stamp best-props market ``prop_tier`` (S–D/W) onto a slate explorer row.
+
+    Preserves pipeline edge tier as ``edge_tier``. Does not overwrite ``tier``
+    (UI prefers ``prop_tier`` when present).
+    """
+    if not isinstance(row, dict):
+        return row
+    existing = str(row.get("prop_tier") or "").strip().upper()
+    if existing in TIER_RANK:
+        if not row.get("edge_tier") and row.get("tier"):
+            row["edge_tier"] = str(row.get("tier") or "").strip().upper() or None
+        return row
+
+    edge = str(row.get("edge_tier") or row.get("tier") or "").strip().upper()
+    if edge and not row.get("edge_tier"):
+        row["edge_tier"] = edge
+
+    sport = (
+        sport_hint
+        or row.get("sport")
+        or row.get("Sport")
+        or row.get("league")
+        or ""
+    )
+    pick_type = str(row.get("pick_type") or row.get("Pick Type") or "")
+    side = str(row.get("dir") or row.get("direction") or row.get("final_bet_direction") or "")
+    prop = str(row.get("prop") or row.get("prop_type") or "")
+    def_tier = str(
+        row.get("def_tier")
+        or row.get("DEF_TIER")
+        or row.get("stat_def_tier")
+        or row.get("Def Tier")
+        or ""
+    )
+    info = assign_tier(
+        sport=str(sport),
+        pick_type=pick_type,
+        side=side,
+        prop=prop,
+        cover=_slate_cover(row, side),
+        d_ok=_slate_d_ok(str(sport), side, prop, def_tier),
+    )
+    pt = str(info.get("prop_tier") or "").strip().upper()
+    if pt:
+        row["prop_tier"] = pt
+        row["prop_tier_base"] = str(info.get("prop_tier_base") or "") or None
+        if info.get("prop_shadow"):
+            row["prop_shadow"] = True
+        if info.get("prop_promoted"):
+            row["prop_promoted"] = True
+            reason = info.get("prop_promote_reason")
+            if reason:
+                row["prop_promote_reason"] = reason
+    return row
 
 
 def sort_key_tier_then_badge(r: dict, *, over: bool) -> tuple:

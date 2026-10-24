@@ -15,7 +15,7 @@ OPTIMIZATIONS vs original:
   already correct — kept as-is)
 
 Usage:
-  py -3.14 pp_cfb_scraper.py --out step1_fetch_prizepicks_api_cbb.csv
+  py -3.14 pp_cfb_scraper.py --out step1_fetch_prizepicks_api_cfb.csv
   py -3.14 pp_cfb_scraper.py --league_id 20 --out cfb_pp.csv --include_combos
   py -3.14 pp_cfb_scraper.py --out cfb_pp.csv --max_pages 3
 """
@@ -30,7 +30,6 @@ from pathlib import Path
 from typing import Dict, Any, Optional, List, Tuple
 
 import pandas as pd
-import requests
 
 # Ensure <repo>/PropOracle is on sys.path so we can import PropOracle-level helpers.
 _PROPORACLE_ROOT = Path(__file__).resolve().parents[4]
@@ -38,6 +37,15 @@ if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
 
 from scripts.db_utils import log_pipeline_health
+from scripts.line_history_archive import try_archive_lines
+from utils.cfb_playoff_metadata import norm_cfb_team_abbr
+from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
+from utils.prizepicks_http import ensure_chrome131, fetch_pp_projections, make_pp_session
+
+_CFB_SPORT_ROOT = Path(__file__).resolve().parents[2]
+if str(_CFB_SPORT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_CFB_SPORT_ROOT))
+from prizepicks_league_ids import resolve_board_league_id
 
 PP_URL = "https://api.prizepicks.com/projections"
 
@@ -60,8 +68,7 @@ TEAM_ALIASES: Dict[str, str] = {
 
 
 def norm_team(s: str) -> str:
-    t = str(s or "").strip().upper()
-    return TEAM_ALIASES.get(t, t)
+    return norm_cfb_team_abbr(s)
 
 
 def _norm_pick_type(odds_type: str) -> str:
@@ -116,6 +123,115 @@ def _backfill_opponents(rows: list, game_teams: dict) -> list:
                 r["pp_opp_team"] = next(iter(others))
     return rows
 
+def rows_from_pp_payload(
+    data: List[Dict[str, Any]],
+    included: List[Dict[str, Any]],
+    league_id: int,
+) -> pd.DataFrame:
+    """Map a full PrizePicks projections payload to the CFB step1 CSV schema."""
+    players: Dict[str, Dict[str, Any]] = {}
+    games: Dict[str, Dict[str, Any]] = {}
+    name_to_abbr: Dict[str, str] = {}
+    durations: Dict[str, str] = {}
+    for obj in included or []:
+        otype = obj.get("type", "")
+        oid = str(obj.get("id", ""))
+        attrs = obj.get("attributes") or {}
+        if otype in ("new_player", "player", "players"):
+            players[oid] = attrs
+        elif otype in ("game", "games", "new_game"):
+            games[oid] = attrs
+        elif otype == "duration":
+            durations[oid] = str(attrs.get("name", "")).strip()
+        elif otype == "team":
+            abbr = norm_team(attrs.get("abbreviation") or "")
+            if abbr:
+                for key in (attrs.get("name", ""), attrs.get("market", ""), attrs.get("abbreviation", "")):
+                    k = str(key).strip().upper()
+                    if k:
+                        name_to_abbr[k] = abbr
+
+    def resolve_team(raw: str) -> str:
+        if not raw:
+            return ""
+        direct = norm_team(raw)
+        if len(direct) <= 5 and direct.isalpha():
+            return direct
+        return name_to_abbr.get(str(raw).strip().upper(), direct)
+
+    game_teams: Dict[str, set] = {}
+    for proj in data or []:
+        rel = proj.get("relationships") or {}
+        pid_data = (rel.get("new_player") or rel.get("player") or {}).get("data") or {}
+        pid = str(pid_data.get("id", ""))
+        p = players.get(pid, {})
+        team = norm_team(p.get("team") or p.get("team_abbreviation") or "")
+        game_rel = (rel.get("game") or rel.get("new_game") or {}).get("data") or {}
+        gid = str(game_rel.get("id", "")) if isinstance(game_rel, dict) else ""
+        if gid and team:
+            game_teams.setdefault(gid, set()).add(team)
+
+    rows: List[Dict[str, Any]] = []
+    seen_proj_ids: set = set()
+    for proj in data or []:
+        proj_id = str(proj.get("id", ""))
+        if not proj_id or proj_id in seen_proj_ids:
+            continue
+        seen_proj_ids.add(proj_id)
+        attr = proj.get("attributes") or {}
+        rel = proj.get("relationships") or {}
+        pid_data = (rel.get("new_player") or rel.get("player") or {}).get("data") or {}
+        pid = str(pid_data.get("id", ""))
+        p = players.get(pid, {})
+        player_name = (
+            p.get("display_name")
+            or p.get("name")
+            or p.get("full_name")
+            or p.get("fullName")
+            or p.get("short_name")
+            or p.get("shortName")
+            or ""
+        )
+        if not player_name:
+            first = str(p.get("first_name") or p.get("firstName") or "").strip()
+            last = str(p.get("last_name") or p.get("lastName") or "").strip()
+            if first or last:
+                player_name = f"{first} {last}".strip()
+        pp_team = resolve_team(p.get("team") or p.get("team_abbreviation") or "")
+        if not str(player_name).strip() or not str(pp_team).strip():
+            continue
+        pp_opp_team = ""
+        game_rel = (rel.get("game") or rel.get("new_game") or {}).get("data") or {}
+        gid = str(game_rel.get("id", "")) if isinstance(game_rel, dict) else ""
+        others = game_teams.get(gid, set()) - {pp_team}
+        if others:
+            pp_opp_team = next(iter(others))
+        if not pp_opp_team:
+            home, away = extract_home_away(games.get(gid, {}))
+            if pp_team and home and away:
+                pp_opp_team = away if pp_team == home else (home if pp_team == away else "")
+        dur_rel = (rel.get("duration") or {}).get("data") or {}
+        dur_id = str(dur_rel.get("id", "")) if isinstance(dur_rel, dict) else ""
+        rows.append({
+            "proj_id": proj_id,
+            "player_id": pid,
+            "player": player_name,
+            "team": p.get("team") or "",
+            "pp_team": pp_team,
+            "pp_opp_team": pp_opp_team,
+            "pp_game_id": gid,
+            "pos": p.get("position") or "",
+            "stat_type": attr.get("stat_type") or attr.get("display_stat_type") or "",
+            "line": attr.get("line_score") if attr.get("line_score") is not None else attr.get("line"),
+            "odds_type": _norm_pick_type(str(attr.get("odds_type") or "standard")),
+            "start_time": attr.get("start_time") or "",
+            "league_id": league_id,
+            "duration": durations.get(dur_id, "Full Game") if dur_id else "Full Game",
+        })
+    _backfill_opponents(rows, game_teams)
+    return pd.DataFrame(rows)
+
+
 def fetch_cfb_projections(
     league_id: int,
     per_page: int,
@@ -124,8 +240,7 @@ def fetch_cfb_projections(
     sleep_s: float,
     max_pages: Optional[int] = None,
 ) -> pd.DataFrame:
-    session = requests.Session()
-    session.headers.update(PP_HEADERS)
+    session = make_pp_session(PP_HEADERS)
 
     params: Optional[Dict[str, Any]] = {
         "league_id": league_id,
@@ -299,6 +414,7 @@ def fetch_cfb_projections(
                         "start_time":   start_time,
                         "league_id":    league_id,
                         "duration":     duration,
+                        "pp_updated_at": extract_pp_updated_at(attr),
                     })
                     added += 1
 
@@ -351,7 +467,14 @@ def fetch_cfb_projections(
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--league_id",      type=int,   default=15)
+    ap.add_argument(
+        "--board",
+        default="cfb",
+        choices=["cfb", "cfb1h"],
+        help="PrizePicks board: full-game CFB (15) or CFB1H (184). Kept in separate output folders.",
+    )
+    ap.add_argument("--league_id",      type=str,   default="",
+                    help="Override PrizePicks league id (default: resolve from --board)")
     ap.add_argument("--per_page",       type=int,   default=250)
     ap.add_argument("--single_stat",    action="store_true")
     ap.add_argument("--include_combos", action="store_true",
@@ -361,28 +484,94 @@ def main():
     ap.add_argument("--max_pages",      type=int,   default=None)
     ap.add_argument("--out",            required=True)
     ap.add_argument("--out_json",       default="")
+    ap.add_argument("--fail-fast", action="store_true")
+    ap.add_argument("--cdp", default="")
+    ap.add_argument("--playwright", action="store_true")
     args = ap.parse_args()
 
     single_stat = args.single_stat and not args.include_combos
+    cdp_url = str(args.cdp or "").strip()
+    use_playwright = bool(args.playwright) and not cdp_url
+    fail_fast = bool(args.fail_fast) or bool(cdp_url)
+    board = str(args.board or "cfb").strip().lower()
+    league_id = resolve_board_league_id(board, str(args.league_id or "").strip())
+    sport_tag = "CFB1H" if board == "cfb1h" else "CFB"
+    ensure_chrome131()
 
-    print(f"📡 Fetching PrizePicks | league_id={args.league_id} | per_page={args.per_page} | single_stat={single_stat}")
-    df = fetch_cfb_projections(
-        league_id=args.league_id,
-        per_page=args.per_page,
-        single_stat=single_stat,
-        game_mode=args.game_mode,
-        sleep_s=args.sleep,
-        max_pages=args.max_pages,
+    print(
+        f"📡 Fetching PrizePicks | board={board} | league_id={league_id} | "
+        f"sport={sport_tag} | per_page={args.per_page} | single_stat={single_stat}"
     )
+    df = pd.DataFrame()
+    fetch_failed = False
+    if cdp_url or use_playwright:
+        try:
+            from utils.prizepicks_cdp import session_fetch_projections
+
+            data, included, _st = session_fetch_projections(
+                str(league_id),
+                cdp_url=cdp_url,
+                playwright=use_playwright,
+                per_page=int(args.per_page),
+                max_pages=int(args.max_pages or 10),
+            )
+            df = rows_from_pp_payload(data, included, int(league_id))
+            print(f"  [{sport_tag}] {'CDP' if cdp_url else 'Playwright'} rows={len(df)}")
+        except Exception as e:
+            fetch_failed = True
+            print(f"  [CFB] CDP/Playwright fetch failed: {e}")
+            if fail_fast:
+                log_pipeline_health(
+                    "cfb.step1_pp_cfb_scraper",
+                    "cdp_failed",
+                    extra={"error": f"{type(e).__name__}: {e}"},
+                    start=Path(__file__),
+                )
+                sys.exit(1)
+
+    if df.empty and not (cdp_url or use_playwright):
+        try:
+            pages = int(args.max_pages or (4 if fail_fast else 10))
+            data, included = fetch_pp_projections(
+                str(league_id),
+                per_page=int(args.per_page),
+                max_pages=pages,
+                retries=2 if fail_fast else 5,
+                fail_fast=fail_fast,
+                first_page_waves=1 if fail_fast else 3,
+            )
+            df = rows_from_pp_payload(data, included, int(league_id))
+            print(f"  [{sport_tag}] HTTP rows={len(df)}")
+        except Exception as e:
+            fetch_failed = True
+            print(f"  [CFB] HTTP fetch failed: {e}")
+            if fail_fast:
+                log_pipeline_health(
+                    "cfb.step1_pp_cfb_scraper",
+                    "http_failed",
+                    extra={"error": f"{type(e).__name__}: {e}"},
+                    start=Path(__file__),
+                )
+                sys.exit(1)
+            df = fetch_cfb_projections(
+                league_id=int(league_id),
+                per_page=args.per_page,
+                single_stat=single_stat,
+                game_mode=args.game_mode,
+                sleep_s=args.sleep,
+                max_pages=args.max_pages,
+            )
 
     if df.empty:
         print("❌ No projections fetched.")
         log_pipeline_health(
             "cfb.step1_pp_cfb_scraper",
             "no_projections",
-            extra={"league_id": args.league_id, "game_mode": args.game_mode},
+            extra={"league_id": league_id, "board": board, "game_mode": args.game_mode, "fetch_failed": fetch_failed},
             start=Path(__file__),
         )
+        if fail_fast and fetch_failed:
+            sys.exit(1)
         return
 
     # ── Bouncer: reject junk rows ─────────────────────────────────────────────
@@ -416,7 +605,17 @@ def main():
             start=Path(__file__),
         )
 
+    pull_ts = now_et_iso()
+    df["sport"] = sport_tag
+    df["league_id"] = str(league_id)
+    if board == "cfb1h":
+        df["duration"] = "1st Half"
+    df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
     df.to_csv(args.out, index=False, encoding="utf-8")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(args.out, sport=sport_tag)
+    try_archive_lines(df, sport=sport_tag, only_fetched_at=pull_ts)
     print(f"✅ Saved CSV → {args.out} | rows={len(df)} | unique proj_id={df['proj_id'].nunique()}")
 
     if "pp_opp_team" in df.columns:
@@ -447,4 +646,4 @@ if __name__ == "__main__":
             extra={"error": f"{type(e).__name__}: {e}"},
             start=Path(__file__),
         )
-        print(f"❌ CBB step1 failed (logged). {type(e).__name__}: {e}")
+        print(f"❌ CFB step1 failed (logged). {type(e).__name__}: {e}")

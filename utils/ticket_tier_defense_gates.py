@@ -9,9 +9,11 @@ Basketball (WNBA, NBA, NBA1H, NBA1Q, WCBB, CBB) — Standard legs only:
   - DROP bottom-3 in prop category + OVER (any defense)
   - DROP top-3 in prop category + OVER vs elite defense (OVERALL_DEF_RANK <= 4)
 
-Tennis — Standard legs only:
-  - DROP Standard OVER: bottom-3 in category OR top-3/category-elite vs elite opponent
-  - DROP Standard UNDER: top producer vs weak opponent (lean OVER, not UNDER)
+Tennis — Standard legs still use tier×ATP gates (elite opp ≤25).
+Tennis OVER markets also use opponent overall rank (Jul–Aug graded HIT/MISS, no L5):
+  - Games Won Goblin: DROP vs opp ≤10 (−14.7 pp); 51–100 is the sweet spot (+12.5)
+  - Games Won Standard OVER: DROP vs opp ≤25
+  - Total Games OVER: DROP Goblin vs opp 11–25 (−27.4); Standard also drops 26–50
 """
 
 from __future__ import annotations
@@ -29,6 +31,13 @@ BASKETBALL_ELITE_DEF_RANK = 4
 
 TENNIS_ELITE_RANK = 25
 TENNIS_WEAK_RANK = 100
+# Graded opp-rank cuts (overall ATP/WTA rank; lower = stronger opponent).
+TENNIS_GAMES_WON_GOBLIN_ELITE_OPP = 10
+TENNIS_TOTAL_GAMES_TIGHT_LO = 11
+TENNIS_TOTAL_GAMES_TIGHT_HI = 25
+TENNIS_TOTAL_GAMES_STD_FADE_HI = 50
+TENNIS_GAMES_WON_SWEET_LO = 51
+TENNIS_GAMES_WON_SWEET_HI = 100
 
 _EXCLUDE_REASON = "tier_defense_gate"
 
@@ -76,6 +85,126 @@ def _pick_type_series(df: pd.DataFrame) -> pd.Series:
     if "pick_type" not in df.columns:
         return pd.Series("STANDARD", index=df.index)
     return df["pick_type"].astype(str).str.upper().str.strip()
+
+
+def tennis_prop_rank_family(prop: object) -> str:
+    """games_won | total_games | serve | other. Check games-won before total-games."""
+    p = str(prop or "").strip().lower()
+    if not p:
+        return "other"
+    compact = "".join(ch for ch in p if ch.isalnum())
+    if "ace" in p or "doublefault" in compact:
+        return "serve"
+    if "games won" in p or compact in {"gameswon", "totalgameswon"}:
+        return "games_won"
+    if (
+        "total games" in p
+        or "games played" in p
+        or compact in {"totalgames", "gamesplayed", "matchtotalgames"}
+    ):
+        return "total_games"
+    return "other"
+
+
+def _tennis_opp_rank_series(df: pd.DataFrame) -> pd.Series:
+    for c in ("opponent_rank", "opponent_def_rank", "OVERALL_DEF_RANK"):
+        if c in df.columns:
+            r = pd.to_numeric(df[c], errors="coerce")
+            if r.notna().any():
+                return r
+    return pd.Series(np.nan, index=df.index, dtype=float)
+
+
+def tennis_over_blocked_by_opp_rank(
+    prop: object,
+    opp_rank: object,
+    *,
+    pick_type: object = "goblin",
+) -> bool:
+    """True = drop this OVER leg from the tennis ticket pool."""
+    rank = pd.to_numeric(pd.Series([opp_rank]), errors="coerce").iloc[0]
+    if pd.isna(rank) or float(rank) <= 0:
+        return False
+    r = float(rank)
+    fam = tennis_prop_rank_family(prop)
+    pt = str(pick_type or "").strip().lower()
+    if fam == "games_won":
+        if "goblin" in pt:
+            return r <= float(TENNIS_GAMES_WON_GOBLIN_ELITE_OPP)
+        return r <= float(TENNIS_ELITE_RANK)
+    if fam == "total_games":
+        lo = float(TENNIS_TOTAL_GAMES_TIGHT_LO)
+        hi = float(TENNIS_TOTAL_GAMES_STD_FADE_HI if "standard" in pt else TENNIS_TOTAL_GAMES_TIGHT_HI)
+        return lo <= r <= hi
+    return False
+
+
+def tennis_tight_match_note(
+    prop: object,
+    opp_rank: object,
+    *,
+    direction: object = "",
+    opp_name: object = "",
+) -> str | None:
+    """Visible caution when Total Games faces an ATP/WTA #11–25 opponent.
+
+    OVER is the graded fade band. UNDER on mid lines is the same tight-match
+    script (3-set risk) — shown as a note, not a hard ticket drop.
+    """
+    if tennis_prop_rank_family(prop) != "total_games":
+        return None
+    rank = pd.to_numeric(pd.Series([opp_rank]), errors="coerce").iloc[0]
+    if pd.isna(rank) or float(rank) <= 0:
+        return None
+    r = float(rank)
+    if not (float(TENNIS_TOTAL_GAMES_TIGHT_LO) <= r <= float(TENNIS_TOTAL_GAMES_TIGHT_HI)):
+        return None
+    rank_lbl = f"#{int(r)}"
+    who = str(opp_name or "").strip()
+    who_bit = f" {who}" if who else ""
+    lo = int(TENNIS_TOTAL_GAMES_TIGHT_LO)
+    hi = int(TENNIS_TOTAL_GAMES_TIGHT_HI)
+    dir_u = str(direction or "").strip().upper()
+    if dir_u in ("UNDER", "LOWER"):
+        return (
+            f"Tight-match opponent{who_bit} ({rank_lbl}) — Total Games OVER fades "
+            f"({lo}–{hi}); UNDER also fades on mid lines (3-set risk)."
+        )
+    return (
+        f"Tight-match opponent{who_bit} ({rank_lbl}) — Total Games OVER fades ({lo}–{hi})."
+    )
+
+
+def tennis_games_won_sweet_spot(prop: object, opp_rank: object) -> bool:
+    rank = pd.to_numeric(pd.Series([opp_rank]), errors="coerce").iloc[0]
+    if pd.isna(rank):
+        return False
+    r = float(rank)
+    return tennis_prop_rank_family(prop) == "games_won" and (
+        float(TENNIS_GAMES_WON_SWEET_LO) <= r <= float(TENNIS_GAMES_WON_SWEET_HI)
+    )
+
+
+def tennis_opp_rank_over_exclusion_mask(df: pd.DataFrame) -> pd.Series:
+    """OVER-only opponent-rank market fades. Missing rank does not exclude."""
+    if df is None or df.empty:
+        return pd.Series(dtype=bool)
+    direction = _direction_series(df)
+    over = direction.eq("OVER")
+    pick = _pick_type_series(df)
+    opp = _tennis_opp_rank_series(df)
+    prop_col = next((c for c in ("prop_type", "prop", "prop_norm") if c in df.columns), None)
+    props = df[prop_col] if prop_col else pd.Series("", index=df.index)
+    blocked = pd.Series(
+        [
+            tennis_over_blocked_by_opp_rank(props.iat[i], opp.iat[i], pick_type=pick.iat[i])
+            if over.iat[i]
+            else False
+            for i in range(len(df))
+        ],
+        index=df.index,
+    )
+    return blocked.fillna(False)
 
 
 def _numeric_col(df: pd.DataFrame, col: str) -> pd.Series:
@@ -167,7 +296,7 @@ def _tennis_exclusion_mask(df: pd.DataFrame) -> pd.Series:
     standard_under = standard & direction.eq("UNDER")
     bad_under = standard_under & is_top & opp_weak
 
-    return bad_over | bad_under
+    return bad_over | bad_under | (standard & tennis_opp_rank_over_exclusion_mask(df))
 
 
 def _basketball_blanket_exclusion_mask(df: pd.DataFrame) -> pd.Series:
@@ -202,7 +331,7 @@ def _tennis_blanket_exclusion_mask(df: pd.DataFrame) -> pd.Series:
     bad_over = goblin_over & (is_bottom | (is_top & opp_elite))
     standard_under = pick.str.contains("STANDARD", na=False) & direction.eq("UNDER")
     bad_under = standard_under & is_top & opp_weak
-    return bad_over | bad_under
+    return bad_over | bad_under | tennis_opp_rank_over_exclusion_mask(df)
 
 
 def blanket_tier_defense_exclusion_mask(df: pd.DataFrame, *, sport: str | None = None) -> pd.Series:
@@ -299,5 +428,8 @@ def leg_passes_tier_defense_gate(row: pd.Series | dict[str, Any], *, sport: str 
     elif "sport" not in one.columns:
         one["sport"] = ""
     if bool(_goblin_over_mask(one).iloc[0]):
+        sp = _norm_sport(sport or one["sport"].iloc[0])
+        if sp == "TENNIS":
+            return not bool(tennis_opp_rank_over_exclusion_mask(one).iloc[0])
         return True
     return not bool(tier_defense_exclusion_mask(one, sport=sport).iloc[0])

@@ -1,0 +1,9 @@
+{
+  "season": 2026,
+  "built_at": "2026-09-21T14:56:09Z",
+  "source": "cfb_player_volume.csv",
+  "n": 24943,
+  "wopr": false,
+  "snap_pct": false,
+  "note": "Shares only. Usage floors inverted on tape \u2014 display, do not gate."
+}

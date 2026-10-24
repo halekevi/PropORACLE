@@ -299,6 +299,11 @@ def build_dl(pfr_def: pd.DataFrame, pfr_rush: pd.DataFrame, team: pd.DataFrame) 
     df["dl_rank"] = (
         (df["pass_rush_rank"].astype(float) + df["run_stop_rank"].astype(float)) / 2.0
     ).rank(method="min").astype("Int64")
+    # Split tiers — combined ``tier`` kept for backward compat / badges.
+    # Soft W1+W2: Elite ``dl_run_tier`` alone did not lift rush UNDER;
+    # prefer defense_rankings rush_def for that axis. Pass props → dl_pass_tier.
+    df["dl_pass_tier"] = df["pass_rush_rank"].map(_tier_from_rank)
+    df["dl_run_tier"] = df["run_stop_rank"].map(_tier_from_rank)
     df["tier"] = df["dl_rank"].map(_tier_from_rank)
     df["season"] = int(team["season"].iloc[0]) if not team.empty and "season" in team.columns else np.nan
     cols = [
@@ -308,6 +313,8 @@ def build_dl(pfr_def: pd.DataFrame, pfr_rush: pd.DataFrame, team: pd.DataFrame) 
         "dl_rank",
         "pass_rush_rank",
         "run_stop_rank",
+        "dl_pass_tier",
+        "dl_run_tier",
         "sacks_pg",
         "qb_hits_pg",
         "tfl_pg",

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Recommend ML_PROB_CALIBRATION_SCALARS from graded props (mobile/www graded_props_*.json).
+Recommend ML_PROB_CALIBRATION_SCALARS from graded props
+(``ui_runner/templates/graded_props_*.json``, falling back to ``mobile/www``).
 
 Scalars map Platt/isotonic ml_prob toward observed hit rates per (sport, pick_type, direction).
 Does not retrain the XGBoost model — use refresh_slice_isotonic.py for isotonic refresh.
@@ -94,6 +95,20 @@ def _parse_hit(result: object) -> int | None:
     return None
 
 
+def _graded_json_paths(root: Path) -> list[Path]:
+    """Templates archive wins on date collision; mobile/www fills gaps."""
+    seen: dict[str, Path] = {}
+    for folder in (root / "mobile" / "www", root / "ui_runner" / "templates"):
+        if not folder.is_dir():
+            continue
+        for path in sorted(folder.glob("graded_props_*.json")):
+            if ".bak_" in path.name:
+                continue
+            date_str = path.stem.replace("graded_props_", "")[:10]
+            seen[date_str] = path
+    return [seen[k] for k in sorted(seen)]
+
+
 def load_graded_json_rows(
     root: Path,
     *,
@@ -103,8 +118,7 @@ def load_graded_json_rows(
     include_suspect: bool = False,
 ) -> pd.DataFrame:
     rows: list[dict] = []
-    paths = sorted((root / "mobile" / "www").glob("graded_props_*.json"))
-    paths = [p for p in paths if ".bak_" not in p.name]
+    paths = _graded_json_paths(root)
     if max_files:
         paths = paths[-int(max_files) :]
     min_d = str(min_date or "").strip()[:10]
@@ -205,13 +219,15 @@ def recommend_scalars(
         key = (str(sp), str(pt), str(dr))
         target = actual_hr if use_actual_target else _SLICE_TARGETS.get(key, 0.50)
         sport_clip_hi = float(CLIP_HI_OVERRIDES.get(str(sp).upper(), clip_hi))
+        cur = ML_PROB_CALIBRATION_SCALARS.get(key)
+        cur_f = float(cur) if cur is not None else 1.0
         if n < min_n or mean_p <= 0.01:
             rec = None
             note = f"n<{min_n}" if n < min_n else "mean_p too low"
         else:
-            rec = float(np.clip(target / mean_p, clip_lo, sport_clip_hi))
+            # Graded ml_prob is already post-scalar. Replacement = current * (target / mean_p).
+            rec = float(np.clip(cur_f * (target / mean_p), clip_lo, sport_clip_hi))
             note = "ok"
-        cur = ML_PROB_CALIBRATION_SCALARS.get(key)
         out_rows.append(
             {
                 "sport": sp,
@@ -319,7 +335,7 @@ def main() -> int:
         print("No graded rows with ml_prob + result found.")
         return 1
 
-    print(f"Loaded {len(df):,} graded rows from mobile/www/graded_props_*.json")
+    print(f"Loaded {len(df):,} graded rows from templates + mobile/www graded_props_*.json")
     if min_date:
         print(f"  min_date >= {min_date}")
     df = exclude_unbookable_demon_over(df, include_demon=bool(args.include_demon))

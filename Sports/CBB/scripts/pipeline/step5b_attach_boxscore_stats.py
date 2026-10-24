@@ -165,7 +165,13 @@ def parse_players(summary: dict, game_date: str = "", event_id: str = "") -> Lis
 
         i = {k: idx(k) for k in ("MIN","PTS","REB","AST","STL","BLK")}
         i["TO"]  = idx("TO") if "TO" in ul else idx("TOV")
-        i["3PM"] = next((idx(lbl) for lbl in ("3PM","FG3M","3PT","3PTM","3FGM","3-PT") if lbl in ul), None)
+        i["FG"] = next((idx(lbl) for lbl in ("FG", "FGM") if lbl in ul), None)
+        i["3PT"] = next((idx(lbl) for lbl in ("3PT", "3PM", "FG3M", "3PTM", "3FGM", "3-PT") if lbl in ul), None)
+        i["FT"] = next((idx(lbl) for lbl in ("FT", "FTM") if lbl in ul), None)
+        i["3PM"] = i["3PT"]
+        i["3PA"] = next((idx(lbl) for lbl in ("3PA", "FG3A") if lbl in ul), None)
+        i["FGA"] = next((idx(lbl) for lbl in ("FGA",) if lbl in ul), None)
+        i["FTA"] = next((idx(lbl) for lbl in ("FTA",) if lbl in ul), None)
 
         for a in athletes:
             ath = a.get("athlete", {}) or {}
@@ -185,7 +191,34 @@ def parse_players(summary: dict, game_date: str = "", event_id: str = "") -> Lis
                     return float(val)
                 except Exception: return 0.0
 
+            def get_pair(key):
+                ii = i.get(key)
+                if ii is None or ii >= len(st):
+                    return 0.0, 0.0
+                val = st[ii]
+                if isinstance(val, str) and "-" in val:
+                    left, right = val.split("-", 1)
+                    try:
+                        return float(left), float(right)
+                    except Exception:
+                        return 0.0, 0.0
+                try:
+                    return float(val), 0.0
+                except Exception:
+                    return 0.0, 0.0
+
             min_val = parse_min(st[i["MIN"]]) if i["MIN"] is not None and i["MIN"] < len(st) else 0.0
+            fgm, fga = get_pair("FG")
+            if fga <= 0 and i.get("FGA") is not None:
+                fga = getf("FGA")
+            fg3m, fg3a = get_pair("3PT")
+            if fg3a <= 0 and i.get("3PA") is not None:
+                fg3a = getf("3PA")
+            ftm, fta = get_pair("FT")
+            if fta <= 0 and i.get("FTA") is not None:
+                fta = getf("FTA")
+            fg2m = max(fgm - fg3m, 0.0)
+            fg2a = max(fga - fg3a, 0.0)
 
             if pn:
                 row_out = {"team_id": team_id, "opp_team_id": opp_team_id,
@@ -197,7 +230,11 @@ def parse_players(summary: dict, game_date: str = "", event_id: str = "") -> Lis
                            "PTS": getf("PTS"), "REB": getf("REB"),
                            "AST": getf("AST"), "STL": getf("STL"),
                            "BLK": getf("BLK"), "TO":  getf("TO"),
-                           "3PM": getf("3PM")}
+                           "3PM": fg3m if fg3m else getf("3PM"),
+                           "3PA": fg3a,
+                           "FGM": fgm, "FGA": fga,
+                           "FTM": ftm, "FTA": fta,
+                           "FG2M": fg2m, "FG2A": fg2a}
 
                 # ── Bouncer: reject impossible/junk player rows ─────────────
                 def _neg(x) -> bool:
@@ -229,6 +266,10 @@ def prop_value(prop_norm: str, r: dict) -> Optional[float]:
     m = {"pts": r.get("PTS"), "reb": r.get("REB"), "ast": r.get("AST"),
          "stl": r.get("STL"), "blk": r.get("BLK"), "tov": r.get("TO"),
          "3pm": three, "fg3m": three,  # fg3m alias matches step6 prop_norm
+         "fg3a": r.get("3PA"),
+         "fgm": r.get("FGM"), "fga": r.get("FGA"),
+         "ftm": r.get("FTM"), "fta": r.get("FTA"),
+         "fg2m": r.get("FG2M"), "fg2a": r.get("FG2A"),
          "stocks": r.get("STL",0)+r.get("BLK",0),
          "pra": r.get("PTS",0)+r.get("REB",0)+r.get("AST",0),
          "pr":  r.get("PTS",0)+r.get("REB",0),
@@ -243,7 +284,22 @@ def prop_value(prop_norm: str, r: dict) -> Optional[float]:
     if "steals"   in p: return r.get("STL")
     if "blocks"   in p: return r.get("BLK")
     if "turnovers" in p or p in ("to","tov"): return r.get("TO")
-    if "3-pt" in p or "3pt" in p or "3pm" in p or "fg3m" in p or "threes" in p: return three
+    if "attempted" in p and ("3-pt" in p or "3pt" in p or "three" in p):
+        return r.get("3PA")
+    if "attempted" in p and ("free throw" in p or p == "fta"):
+        return r.get("FTA")
+    if "attempted" in p and ("two pointer" in p or "2-pt" in p or p == "fg2a"):
+        return r.get("FG2A")
+    if "attempted" in p and ("fg " in p or p == "fga" or "field goal" in p):
+        return r.get("FGA")
+    if "3-pt" in p or "3pt" in p or "3pm" in p or "fg3m" in p or "threes" in p:
+        return three
+    if p in ("fgm", "fg made") or "field goals made" in p:
+        return r.get("FGM")
+    if p in ("ftm",) or "free throws made" in p:
+        return r.get("FTM")
+    if p in ("fg2m",) or "two pointers made" in p or "2-pt made" in p:
+        return r.get("FG2M")
     return m.get(p)
 
 

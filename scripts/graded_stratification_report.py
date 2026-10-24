@@ -3,9 +3,10 @@
 Weekly / post-retrain: walk graded XLSX discovery tree, emit stratified CSV + HTML.
 
 Tier 1: hit rates by (sport, prop, direction, pick_type, line_bucket) plus
-context_known / defense_known / minutes_known. Demon pick types are excluded
-from all hit-rate rating (data collection only). Goblin UNDER rows are also
-dropped — Goblin is OVER-only on PrizePicks (not a valid market side).
+context_known / defense_known / minutes_known. Demon OVER rows stay in the
+stratification / gate diagnostic (data collection) — tickets still never pick
+Demons. Goblin UNDER rows are dropped — Goblin is OVER-only on PrizePicks
+(not a valid market side).
 
 Segment and prop-type tier scores blend every discoverable numeric graded/pipeline
 column (IDs, labels, and outcomes excluded) with min–max normalization within
@@ -85,11 +86,17 @@ def _sport_display(s: str) -> str:
         "soccer": "Soccer",
         "football": "Soccer",
         "cbb": "CBB",
-        "wcbb": "CBB",
+        "wcbb": "CBB",  # WCBB graded files fold into CBB display bucket
         "wnba": "WNBA",
         "tennis": "Tennis",
         "nba1h": "NBA1H",
         "nba1q": "NBA1Q",
+        "nfl": "NFL",
+        "cfb": "CFB",
+        "golf": "Golf",
+        "wnba1h": "WNBA1H",
+        "wnba1q": "WNBA1Q",
+        "cfb1h": "CFB1H",
     }
     return mapping.get(u, str(s or "").strip().upper() or "UNKNOWN")
 
@@ -976,14 +983,16 @@ def run(
         if is_demon_pick_type is not None and "pick_type" in decided.columns
         else 0
     )
-    decided = exclude_non_rating_legs(decided) if exclude_non_rating_legs is not None else _drop_invalid_goblin_under(decided)
+    # Keep Demon OVER in stratification / gate diagnostic. Only strip invalid
+    # Goblin UNDER. Ticket builders still never place Demons.
+    decided = _drop_invalid_goblin_under(decided)
     if decided.empty:
         print("No decided graded rows after filters.")
         return
     if goblin_under_n:
         print(f"Excluded {goblin_under_n:,} Goblin UNDER rows (not a valid market).")
     if demon_n:
-        print(f"Excluded {demon_n:,} Demon rows from hit-rate rating (data collection only).")
+        print(f"Retained {demon_n:,} Demon rows for gate diagnostic (tickets still exclude Demons).")
 
     decided["sport_disp"] = decided["_sport"].map(_sport_display)
     if "pipeline" in decided.columns:
@@ -1117,6 +1126,31 @@ def run(
         threshold_rows.loc[blocked, "lift_vs_base"] = 0.0
     threshold_rows = _apply_tier_gate_recommendations(threshold_rows)
     threshold_rows.to_csv(out_dir / "graded_group_min_thresholds.csv", index=False)
+    # Compact sport×pick_type×direction×prop diagnostic (includes Demon OVER).
+    if not threshold_rows.empty:
+        diag_keys = ["sport", "pick_type", "direction", "prop"]
+        diag = (
+            threshold_rows.groupby(diag_keys, dropna=False)
+            .agg(
+                n_total=("n_total", "sum"),
+                base_hit_rate=("base_hit_rate", "mean"),
+                recommended_min_ml_prob=("recommended_min_ml_prob", "median"),
+                recommended_n=("recommended_n", "sum"),
+                recommended_hit_rate=("recommended_hit_rate", "mean"),
+                lift_vs_base=("lift_vs_base", "mean"),
+            )
+            .reset_index()
+        )
+        diag.to_csv(out_dir / "all_props_diagnostic.csv", index=False)
+        demon_diag = diag[
+            diag["pick_type"].astype(str).str.strip().str.lower().eq("demon")
+            & diag["direction"].astype(str).str.strip().str.upper().eq("OVER")
+        ].copy()
+        demon_diag.to_csv(out_dir / "demon_over_diagnostic.csv", index=False)
+        print(
+            f"Wrote all_props_diagnostic.csv rows={len(diag)}; "
+            f"demon_over_diagnostic.csv rows={len(demon_diag)}"
+        )
     segment_tiers = _segment_tiering_scores(decided, threshold_rows, cal_all)
     segment_tiers.to_csv(out_dir / "graded_segment_tiering_scores.csv", index=False)
     prop_type_tiers = _prop_type_tiers(decided, min_group_n=max(15, min_cell_n))
@@ -1159,7 +1193,7 @@ h1,h2 {{ font-weight: 600; }}
 <body>
 <h1>Graded stratification report</h1>
 <p class="note">Generated {html.escape(gen_at)}. Tier A requires context_known, defense_known, and minutes_known near 1.0 on the slice (unknown-context props excluded).</p>
-<p class="note">Demon pick types excluded from hit-rate rating (data collection only). Goblin UNDER removed (Goblin is OVER-only on PrizePicks). {html.escape(ha_note)}</p>
+<p class="note">Demon OVER retained for gate diagnostic (not ticketed). Goblin UNDER removed (Goblin is OVER-only on PrizePicks). {html.escape(ha_note)}</p>
 
 <h2>Primary stratification (min n = {min_cell_n})</h2>
 {_html_escape_df(hit_tbl)}
@@ -1172,7 +1206,7 @@ h1,h2 {{ font-weight: 600; }}
 {_html_escape_df(threshold_rows)}
 
 <h2>Independent market segment ratings</h2>
-<p class="note">Each sport is scored independently for Goblin, Standard OVER, and Standard UNDER (Demon excluded from rating).</p>
+<p class="note">Each sport is scored independently for Goblin, Demon, Standard OVER, and Standard UNDER.</p>
 {_html_escape_df(segment_tiers)}
 
 <h2>Prop-type tiering by requested metrics</h2>

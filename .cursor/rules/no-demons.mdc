@@ -1,0 +1,23 @@
+---
+description: Never pick Demons, and a Demon is never an Under
+alwaysApply: true
+---
+
+# No Demons
+
+Never pick a Demon on the general best-props / Goblin-70 / mixer paths. Demons stay off those replies, ranked lists, and tickets.
+
+**Exception — NBA attempt / volume edge scan:**
+`FG Attempted`, `Two Pointers Attempted`, `3-PT Attempted`, `Free Throws Attempted` (and related role-volume `FG Made` / `2PM` / `FTM`) may include Demon OVER on the card-window L5=5 list (`scripts/_scan_nba_attempt_props_l5eq5.py`). Demon L5=5 attempt legs are **allowed on that list**. Hit rates stay observe-only until the cell clears n≥100 — no ticket gate, and do not mix these Demons onto Goblin-70 or graded-main until that bar is met.
+
+A Demon is never an Under. PrizePicks Demons are the harder over ladder. A Demon UNDER row is an invalid mislabel. Do not print it, ticket it, grade it as a play, or treat it as a fade.
+
+Goblin and Standard faces are unchanged. Goblins stay Over-only. Standard Over and Standard Under can still be listed when they clear their own gates.
+
+```text
+Demon UNDER receiving yards 97.5  → drop
+Demon OVER passing yards 249.5    → drop (general path — we do not pick Demons)
+Demon OVER Two Pointers Attempted 8.5 → allowed on attempt L5=5 edge list; ticket observe until n≥100
+Goblin OVER receiving yards 19.5  → allowed
+Standard UNDER rush+rec yards 29.5 → allowed
+```

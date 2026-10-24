@@ -1,0 +1,157 @@
+{
+  "fetched_at": "2026-10-22T18:49:58.120335+00:00",
+  "season": 2026,
+  "start_date": "2026-10-23",
+  "end_date": "2026-11-05",
+  "by_team": {
+    "MIL": [
+      {
+        "date": "2026-10-23",
+        "game_pk": 849805,
+        "is_home": true,
+        "opponent": "TB",
+        "starter_id": 694819,
+        "starter_name": "Jacob Misiorowski",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-24",
+        "game_pk": 849802,
+        "is_home": true,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-26",
+        "game_pk": 849804,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-27",
+        "game_pk": 849803,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-28",
+        "game_pk": 849799,
+        "is_home": false,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-30",
+        "game_pk": 849801,
+        "is_home": true,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-31",
+        "game_pk": 849800,
+        "is_home": true,
+        "opponent": "TB",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ],
+    "TB": [
+      {
+        "date": "2026-10-23",
+        "game_pk": 849805,
+        "is_home": false,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-24",
+        "game_pk": 849802,
+        "is_home": false,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-26",
+        "game_pk": 849804,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-27",
+        "game_pk": 849803,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-28",
+        "game_pk": 849799,
+        "is_home": true,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-30",
+        "game_pk": 849801,
+        "is_home": false,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      },
+      {
+        "date": "2026-10-31",
+        "game_pk": 849800,
+        "is_home": false,
+        "opponent": "MIL",
+        "starter_id": null,
+        "starter_name": "",
+        "starter_hand": ""
+      }
+    ]
+  },
+  "by_date": {
+    "2026-10-23": {
+      "MIL": {
+        "date": "2026-10-23",
+        "game_pk": 849805,
+        "is_home": true,
+        "opponent": "TB",
+        "starter_id": 694819,
+        "starter_name": "Jacob Misiorowski",
+        "starter_hand": ""
+      }
+    },
+    "2026-10-24": {},
+    "2026-10-26": {},
+    "2026-10-27": {},
+    "2026-10-28": {},
+    "2026-10-30": {},
+    "2026-10-31": {}
+  }
+}

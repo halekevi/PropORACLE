@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "min_prior_days": 10,
+  "min_prior_props": 8000,
+  "pass_mode": "days_or_props",
+  "_comment": "Thin-history competition gate: block league/competition tags with too little PRIOR history (strictly before slate date). Not a World-Cup allowlist — Olympics / WBC / Nations League get caught the same way. Pass if prior_days>=min_prior_days OR prior_props>=min_prior_props. Props bar is high so a short mega-tournament (e.g. 2 WC days, ~1.6k props) stays thin until it has real calendar depth.",
+  "collapse_prefixes": [
+    "WORLDCUP",
+    "OLYMPIC",
+    "OLYMPICS",
+    "WBC",
+    "WORLDBASEBALL",
+    "NATIONSLEAGUE",
+    "EURO",
+    "COPAAMERICA",
+    "GOLDCUP"
+  ],
+  "gated_sports": [
+    "SOCCER",
+    "SOC",
+    "MLB",
+    "NBA",
+    "WNBA",
+    "NFL",
+    "NHL",
+    "TENNIS",
+    "GOLF",
+    "PGA",
+    "CFB",
+    "CBB"
+  ]
+}

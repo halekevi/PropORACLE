@@ -1,0 +1,2434 @@
+{
+  "window": {
+    "first": "2026-07-13",
+    "last": "2026-08-24",
+    "n_dates": 24,
+    "n_board_files": 82
+  },
+  "universe": "Std+Goblin decided HIT/MISS joined to step8. Badges = live Diamond/Platinum/Gold/Silver/Bronze recipe.",
+  "gap_def": "OVER: avg-line; UNDER: line-avg. Positive = on the pick side. MLB/Soccer use 0.5-pt buckets; WNBA/Tennis use 1-pt buckets.",
+  "combined_badge": {
+    "Diamond": {
+      "hits": 1170,
+      "n": 1606,
+      "rate": 72.9,
+      "mean_l5_gap": 2.41,
+      "mean_l10_gap": 2.33,
+      "mean_szn_gap": 2.33,
+      "mean_min_gap": 2.04,
+      "median_l5_gap": 1.7
+    },
+    "Platinum": {
+      "hits": 390,
+      "n": 563,
+      "rate": 69.3,
+      "mean_l5_gap": 2.68,
+      "mean_l10_gap": 1.93,
+      "mean_szn_gap": 1.93,
+      "mean_min_gap": 1.86,
+      "median_l5_gap": 1.9
+    },
+    "Gold": {
+      "hits": 399,
+      "n": 597,
+      "rate": 66.8,
+      "mean_l5_gap": 1.62,
+      "mean_l10_gap": 1.15,
+      "mean_szn_gap": 1.15,
+      "mean_min_gap": 1.12,
+      "median_l5_gap": 1.3
+    },
+    "Silver": {
+      "hits": 3323,
+      "n": 5263,
+      "rate": 63.1,
+      "mean_l5_gap": 2.15,
+      "mean_l10_gap": 1.99,
+      "mean_szn_gap": 1.99,
+      "mean_min_gap": 1.65,
+      "median_l5_gap": 1.1
+    },
+    "Bronze": {
+      "hits": 4858,
+      "n": 7880,
+      "rate": 61.6,
+      "mean_l5_gap": 1.53,
+      "mean_l10_gap": 1.44,
+      "mean_szn_gap": 1.44,
+      "mean_min_gap": 1.12,
+      "median_l5_gap": 0.9
+    },
+    "none": {
+      "hits": 7690,
+      "n": 15124,
+      "rate": 50.8,
+      "mean_l5_gap": 0.36,
+      "mean_l10_gap": 0.31,
+      "mean_szn_gap": 0.31,
+      "mean_min_gap": 0.04,
+      "median_l5_gap": 0.2
+    }
+  },
+  "by_sport": {
+    "WNBA": {
+      "overall": {
+        "hits": 4500,
+        "n": 7205,
+        "rate": 62.5,
+        "mean_l5_gap": 2.28,
+        "mean_l10_gap": 2.05,
+        "mean_szn_gap": 2.05,
+        "mean_min_gap": 1.48,
+        "median_l5_gap": 1.6
+      },
+      "by_badge": {
+        "Diamond": {
+          "hits": 374,
+          "n": 488,
+          "rate": 76.6,
+          "mean_l5_gap": 4.16,
+          "mean_l10_gap": 4.01,
+          "mean_szn_gap": 4.01,
+          "mean_min_gap": 3.49,
+          "median_l5_gap": 3.3,
+          "min_gap": {
+            "0\u20131": {
+              "hits": 31,
+              "n": 45,
+              "rate": 68.9,
+              "mean_l5_gap": 0.82,
+              "mean_szn_gap": 1.45
+            },
+            "1\u20132": {
+              "hits": 85,
+              "n": 117,
+              "rate": 72.6,
+              "mean_l5_gap": 1.73,
+              "mean_szn_gap": 1.91
+            },
+            "2\u20133": {
+              "hits": 68,
+              "n": 88,
+              "rate": 77.3,
+              "mean_l5_gap": 2.85,
+              "mean_szn_gap": 2.94
+            },
+            "3\u20135": {
+              "hits": 106,
+              "n": 124,
+              "rate": 85.5,
+              "mean_l5_gap": 4.65,
+              "mean_szn_gap": 4.46
+            },
+            "5+": {
+              "hits": 84,
+              "n": 114,
+              "rate": 73.7,
+              "mean_l5_gap": 8.47,
+              "mean_szn_gap": 7.5
+            }
+          },
+          "l5_gap": {
+            "0\u20131": {
+              "hits": 28,
+              "n": 40,
+              "rate": 70.0,
+              "mean_l5_gap": 0.74,
+              "mean_szn_gap": 1.52
+            },
+            "1\u20132": {
+              "hits": 66,
+              "n": 94,
+              "rate": 70.2,
+              "mean_l5_gap": 1.51,
+              "mean_szn_gap": 1.93
+            },
+            "2\u20133": {
+              "hits": 75,
+              "n": 90,
+              "rate": 83.3,
+              "mean_l5_gap": 2.48,
+              "mean_szn_gap": 2.68
+            },
+            "3\u20135": {
+              "hits": 90,
+              "n": 112,
+              "rate": 80.4,
+              "mean_l5_gap": 3.98,
+              "mean_szn_gap": 4.09
+            },
+            "5+": {
+              "hits": 115,
+              "n": 152,
+              "rate": 75.7,
+              "mean_l5_gap": 7.85,
+              "mean_szn_gap": 6.66
+            }
+          }
+        },
+        "Platinum": {
+          "hits": 161,
+          "n": 240,
+          "rate": 67.1,
+          "mean_l5_gap": 4.02,
+          "mean_l10_gap": 2.83,
+          "mean_szn_gap": 2.83,
+          "mean_min_gap": 2.72,
+          "median_l5_gap": 3.1,
+          "min_gap": {
+            "0\u20131": {
+              "hits": 30,
+              "n": 39,
+              "rate": 76.9,
+              "mean_l5_gap": 0.96,
+              "mean_szn_gap": 0.9
+            },
+            "1\u20132": {
+              "hits": 39,
+              "n": 67,
+              "rate": 58.2,
+              "mean_l5_gap": 1.97,
+              "mean_szn_gap": 1.53
+            },
+            "2\u20133": {
+              "hits": 25,
+              "n": 36,
+              "rate": 69.4,
+              "mean_l5_gap": 3.66,
+              "mean_szn_gap": 2.46
+            },
+            "3\u20135": {
+              "hits": 43,
+              "n": 67,
+              "rate": 64.2,
+              "mean_l5_gap": 5.97,
+              "mean_szn_gap": 3.93
+            },
+            "5+": {
+              "hits": 24,
+              "n": 31,
+              "rate": 77.4,
+              "mean_l5_gap": 8.52,
+              "mean_szn_gap": 6.11
+            }
+          },
+          "l5_gap": {
+            "0\u20131": {
+              "hits": 18,
+              "n": 23,
+              "rate": 78.3,
+              "mean_l5_gap": 0.69,
+              "mean_szn_gap": 0.97
+            },
+            "1\u20132": {
+              "hits": 37,
+              "n": 60,
+              "rate": 61.7,
+              "mean_l5_gap": 1.51,
+              "mean_szn_gap": 1.34
+            },
+            "2\u20133": {
+              "hits": 27,
+              "n": 36,
+              "rate": 75.0,
+              "mean_l5_gap": 2.46,
+              "mean_szn_gap": 1.97
+            },
+            "3\u20135": {
+              "hits": 27,
+              "n": 42,
+              "rate": 64.3,
+              "mean_l5_gap": 4.05,
+              "mean_szn_gap": 3.12
+            },
+            "5+": {
+              "hits": 52,
+              "n": 79,
+              "rate": 65.8,
+              "mean_l5_gap": 7.6,
+              "mean_szn_gap": 4.73
+            }
+          }
+        },
+        "Gold": {
+          "hits": 54,
+          "n": 73,
+          "rate": 74.0,
+          "mean_l5_gap": 3.42,
+          "mean_l10_gap": 2.27,
+          "mean_szn_gap": 2.26,
+          "mean_min_gap": 2.23,
+          "median_l5_gap": 2.6,
+          "min_gap": {
+            "0\u20131": {
+              "hits": 14,
+              "n": 19,
+              "rate": 73.7,
+              "mean_l5_gap": 1.25,
+              "mean_szn_gap": 0.74
+            },
+            "1\u20132": {
+              "hits": 14,
+              "n": 21,
+              "rate": 66.7,
+              "mean_l5_gap": 2.38,
+              "mean_szn_gap": 1.46
+            },
+            "2\u20133": {
+              "hits": 12,
+              "n": 14,
+              "rate": 85.7,
+              "mean_l5_gap": 3.4,
+              "mean_szn_gap": 2.38
+            },
+            "3\u20135": {
+              "hits": 9,
+              "n": 13,
+              "rate": 69.2,
+              "mean_l5_gap": 6.54,
+              "mean_szn_gap": 3.74
+            },
+            "5+": {
+              "hits": 5,
+              "n": 6,
+              "rate": 83.3,
+              "mean_l5_gap": 7.17,
+              "mean_szn_gap": 6.45
+            }
+          },
+          "l5_gap": {
+            "0\u20131": {
+              "hits": 3,
+              "n": 4,
+              "rate": 75.0,
+              "mean_l5_gap": 0.8,
+              "mean_szn_gap": 0.95
+            },
+            "1\u20132": {
+              "hits": 20,
+              "n": 25,
+              "rate": 80.0,
+              "mean_l5_gap": 1.47,
+              "mean_szn_gap": 1.0
+            },
+            "2\u20133": {
+              "hits": 8,
+              "n": 12,
+              "rate": 66.7,
+              "mean_l5_gap": 2.47,
+              "mean_szn_gap": 1.78
+            },
+            "3\u20135": {
+              "hits": 12,
+              "n": 16,
+              "rate": 75.0,
+              "mean_l5_gap": 3.72,
+              "mean_szn_gap": 2.48
+            },
+            "5+": {
+              "hits": 11,
+              "n": 16,
+              "rate": 68.8,
+              "mean_l5_gap": 7.51,
+              "mean_szn_gap": 4.73
+            }
+          }
+        },
+        "Silver": {
+          "hits": 825,
+          "n": 1270,
+          "rate": 65.0,
+          "mean_l5_gap": 2.74,
+          "mean_l10_gap": 2.7,
+          "mean_szn_gap": 2.7,
+          "mean_min_gap": 2.05,
+          "median_l5_gap": 2.1,
+          "min_gap": {
+            "against": {
+              "hits": 44,
+              "n": 76,
+              "rate": 57.9,
+              "mean_l5_gap": -0.62,
+              "mean_szn_gap": 1.85
+            },
+            "0\u20131": {
+              "hits": 222,
+              "n": 385,
+              "rate": 57.7,
+              "mean_l5_gap": 1.1,
+              "mean_szn_gap": 1.12
+            },
+            "1\u20132": {
+              "hits": 214,
+              "n": 316,
+              "rate": 67.7,
+              "mean_l5_gap": 2.13,
+              "mean_szn_gap": 1.91
+            },
+            "2\u20133": {
+              "hits": 132,
+              "n": 185,
+              "rate": 71.4,
+              "mean_l5_gap": 3.18,
+              "mean_szn_gap": 3.02
+            },
+            "3\u20135": {
+              "hits": 128,
+              "n": 184,
+              "rate": 69.6,
+              "mean_l5_gap": 4.82,
+              "mean_szn_gap": 4.34
+            },
+            "5+": {
+              "hits": 85,
+              "n": 124,
+              "rate": 68.5,
+              "mean_l5_gap": 7.69,
+              "mean_szn_gap": 7.22
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 44,
+              "n": 76,
+              "rate": 57.9,
+              "mean_l5_gap": -0.62,
+              "mean_szn_gap": 1.85
+            },
+            "0\u20131": {
+              "hits": 157,
+              "n": 268,
+              "rate": 58.6,
+              "mean_l5_gap": 0.58,
+              "mean_szn_gap": 1.35
+            },
+            "1\u20132": {
+              "hits": 182,
+              "n": 273,
+              "rate": 66.7,
+              "mean_l5_gap": 1.5,
+              "mean_szn_gap": 1.78
+            },
+            "2\u20133": {
+              "hits": 144,
+              "n": 207,
+              "rate": 69.6,
+              "mean_l5_gap": 2.46,
+              "mean_szn_gap": 2.37
+            },
+            "3\u20135": {
+              "hits": 143,
+              "n": 228,
+              "rate": 62.7,
+              "mean_l5_gap": 3.95,
+              "mean_szn_gap": 3.28
+            },
+            "5+": {
+              "hits": 155,
+              "n": 218,
+              "rate": 71.1,
+              "mean_l5_gap": 7.12,
+              "mean_szn_gap": 5.5
+            }
+          }
+        },
+        "Bronze": {
+          "hits": 1366,
+          "n": 2119,
+          "rate": 64.5,
+          "mean_l5_gap": 2.69,
+          "mean_l10_gap": 2.5,
+          "mean_szn_gap": 2.5,
+          "mean_min_gap": 1.91,
+          "median_l5_gap": 1.9,
+          "min_gap": {
+            "against": {
+              "hits": 124,
+              "n": 248,
+              "rate": 50.0,
+              "mean_l5_gap": -0.46,
+              "mean_szn_gap": 0.97
+            },
+            "0\u20131": {
+              "hits": 378,
+              "n": 633,
+              "rate": 59.7,
+              "mean_l5_gap": 1.02,
+              "mean_szn_gap": 0.83
+            },
+            "1\u20132": {
+              "hits": 302,
+              "n": 457,
+              "rate": 66.1,
+              "mean_l5_gap": 2.08,
+              "mean_szn_gap": 1.83
+            },
+            "2\u20133": {
+              "hits": 177,
+              "n": 265,
+              "rate": 66.8,
+              "mean_l5_gap": 3.48,
+              "mean_szn_gap": 2.82
+            },
+            "3\u20135": {
+              "hits": 203,
+              "n": 289,
+              "rate": 70.2,
+              "mean_l5_gap": 4.96,
+              "mean_szn_gap": 4.37
+            },
+            "5+": {
+              "hits": 182,
+              "n": 227,
+              "rate": 80.2,
+              "mean_l5_gap": 8.17,
+              "mean_szn_gap": 7.39
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 106,
+              "n": 217,
+              "rate": 48.8,
+              "mean_l5_gap": -0.89,
+              "mean_szn_gap": 1.2
+            },
+            "0\u20131": {
+              "hits": 257,
+              "n": 437,
+              "rate": 58.8,
+              "mean_l5_gap": 0.53,
+              "mean_szn_gap": 0.93
+            },
+            "1\u20132": {
+              "hits": 280,
+              "n": 426,
+              "rate": 65.7,
+              "mean_l5_gap": 1.45,
+              "mean_szn_gap": 1.54
+            },
+            "2\u20133": {
+              "hits": 189,
+              "n": 296,
+              "rate": 63.9,
+              "mean_l5_gap": 2.49,
+              "mean_szn_gap": 2.13
+            },
+            "3\u20135": {
+              "hits": 235,
+              "n": 355,
+              "rate": 66.2,
+              "mean_l5_gap": 3.92,
+              "mean_szn_gap": 3.18
+            },
+            "5+": {
+              "hits": 299,
+              "n": 388,
+              "rate": 77.1,
+              "mean_l5_gap": 7.49,
+              "mean_szn_gap": 5.68
+            }
+          }
+        },
+        "none": {
+          "hits": 1720,
+          "n": 3015,
+          "rate": 57.0,
+          "mean_l5_gap": 1.27,
+          "mean_l10_gap": 1.04,
+          "mean_szn_gap": 1.04,
+          "mean_min_gap": 0.44,
+          "median_l5_gap": 0.9,
+          "min_gap": {
+            "against": {
+              "hits": 522,
+              "n": 997,
+              "rate": 52.4,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.04
+            },
+            "0\u20131": {
+              "hits": 645,
+              "n": 1118,
+              "rate": 57.7,
+              "mean_l5_gap": 1.03,
+              "mean_szn_gap": 0.73
+            },
+            "1\u20132": {
+              "hits": 259,
+              "n": 432,
+              "rate": 60.0,
+              "mean_l5_gap": 2.16,
+              "mean_szn_gap": 2.01
+            },
+            "2\u20133": {
+              "hits": 125,
+              "n": 190,
+              "rate": 65.8,
+              "mean_l5_gap": 3.2,
+              "mean_szn_gap": 3.07
+            },
+            "3\u20135": {
+              "hits": 73,
+              "n": 110,
+              "rate": 66.4,
+              "mean_l5_gap": 4.57,
+              "mean_szn_gap": 4.44
+            },
+            "5+": {
+              "hits": 20,
+              "n": 24,
+              "rate": 83.3,
+              "mean_l5_gap": 6.82,
+              "mean_szn_gap": 7.16
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 272,
+              "n": 491,
+              "rate": 55.4,
+              "mean_l5_gap": -0.84,
+              "mean_szn_gap": 0.78
+            },
+            "0\u20131": {
+              "hits": 561,
+              "n": 1010,
+              "rate": 55.5,
+              "mean_l5_gap": 0.46,
+              "mean_szn_gap": 0.52
+            },
+            "1\u20132": {
+              "hits": 332,
+              "n": 597,
+              "rate": 55.6,
+              "mean_l5_gap": 1.44,
+              "mean_szn_gap": 1.0
+            },
+            "2\u20133": {
+              "hits": 209,
+              "n": 358,
+              "rate": 58.4,
+              "mean_l5_gap": 2.44,
+              "mean_szn_gap": 1.55
+            },
+            "3\u20135": {
+              "hits": 192,
+              "n": 302,
+              "rate": 63.6,
+              "mean_l5_gap": 3.79,
+              "mean_szn_gap": 1.89
+            },
+            "5+": {
+              "hits": 78,
+              "n": 113,
+              "rate": 69.0,
+              "mean_l5_gap": 6.4,
+              "mean_szn_gap": 3.1
+            }
+          }
+        }
+      },
+      "gap_scale": [
+        "against",
+        "0\u20131",
+        "1\u20132",
+        "2\u20133",
+        "3\u20135",
+        "5+"
+      ],
+      "all_min_gap": {
+        "against": {
+          "hits": 690,
+          "n": 1321,
+          "rate": 52.2,
+          "mean_l5_gap": 0.1,
+          "mean_szn_gap": 0.32
+        },
+        "0\u20131": {
+          "hits": 1320,
+          "n": 2239,
+          "rate": 59.0,
+          "mean_l5_gap": 1.03,
+          "mean_szn_gap": 0.84
+        },
+        "1\u20132": {
+          "hits": 913,
+          "n": 1410,
+          "rate": 64.8,
+          "mean_l5_gap": 2.08,
+          "mean_szn_gap": 1.89
+        },
+        "2\u20133": {
+          "hits": 539,
+          "n": 778,
+          "rate": 69.3,
+          "mean_l5_gap": 3.27,
+          "mean_szn_gap": 2.92
+        },
+        "3\u20135": {
+          "hits": 562,
+          "n": 787,
+          "rate": 71.4,
+          "mean_l5_gap": 4.93,
+          "mean_szn_gap": 4.34
+        },
+        "5+": {
+          "hits": 400,
+          "n": 526,
+          "rate": 76.0,
+          "mean_l5_gap": 8.07,
+          "mean_szn_gap": 7.28
+        }
+      },
+      "all_l5_gap": {
+        "against": {
+          "hits": 422,
+          "n": 784,
+          "rate": 53.8,
+          "mean_l5_gap": -0.83,
+          "mean_szn_gap": 1.0
+        },
+        "0\u20131": {
+          "hits": 1024,
+          "n": 1782,
+          "rate": 57.5,
+          "mean_l5_gap": 0.5,
+          "mean_szn_gap": 0.77
+        },
+        "1\u20132": {
+          "hits": 917,
+          "n": 1475,
+          "rate": 62.2,
+          "mean_l5_gap": 1.46,
+          "mean_szn_gap": 1.37
+        },
+        "2\u20133": {
+          "hits": 652,
+          "n": 999,
+          "rate": 65.3,
+          "mean_l5_gap": 2.46,
+          "mean_szn_gap": 2.01
+        },
+        "3\u20135": {
+          "hits": 699,
+          "n": 1055,
+          "rate": 66.3,
+          "mean_l5_gap": 3.9,
+          "mean_szn_gap": 2.92
+        },
+        "5+": {
+          "hits": 710,
+          "n": 966,
+          "rate": 73.5,
+          "mean_l5_gap": 7.34,
+          "mean_szn_gap": 5.4
+        }
+      }
+    },
+    "MLB": {
+      "overall": {
+        "hits": 11020,
+        "n": 18231,
+        "rate": 60.4,
+        "mean_l5_gap": 0.76,
+        "mean_l10_gap": 0.72,
+        "mean_szn_gap": 0.72,
+        "mean_min_gap": 0.53,
+        "median_l5_gap": 0.5
+      },
+      "by_badge": {
+        "Diamond": {
+          "hits": 790,
+          "n": 1107,
+          "rate": 71.4,
+          "mean_l5_gap": 1.65,
+          "mean_l10_gap": 1.6,
+          "mean_szn_gap": 1.6,
+          "mean_min_gap": 1.41,
+          "median_l5_gap": 1.3,
+          "min_gap": {
+            "0\u20130.5": {
+              "hits": 14,
+              "n": 30,
+              "rate": 46.7,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.67
+            },
+            "0.5\u20131": {
+              "hits": 286,
+              "n": 422,
+              "rate": 67.8,
+              "mean_l5_gap": 0.81,
+              "mean_szn_gap": 0.89
+            },
+            "1\u20131.5": {
+              "hits": 189,
+              "n": 243,
+              "rate": 77.8,
+              "mean_l5_gap": 1.4,
+              "mean_szn_gap": 1.39
+            },
+            "1.5\u20132": {
+              "hits": 134,
+              "n": 188,
+              "rate": 71.3,
+              "mean_l5_gap": 1.93,
+              "mean_szn_gap": 1.83
+            },
+            "2+": {
+              "hits": 167,
+              "n": 224,
+              "rate": 74.6,
+              "mean_l5_gap": 3.43,
+              "mean_szn_gap": 3.1
+            }
+          },
+          "l5_gap": {
+            "0\u20130.5": {
+              "hits": 14,
+              "n": 30,
+              "rate": 46.7,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.67
+            },
+            "0.5\u20131": {
+              "hits": 243,
+              "n": 353,
+              "rate": 68.8,
+              "mean_l5_gap": 0.73,
+              "mean_szn_gap": 0.9
+            },
+            "1\u20131.5": {
+              "hits": 159,
+              "n": 224,
+              "rate": 71.0,
+              "mean_l5_gap": 1.2,
+              "mean_szn_gap": 1.28
+            },
+            "1.5\u20132": {
+              "hits": 141,
+              "n": 195,
+              "rate": 72.3,
+              "mean_l5_gap": 1.67,
+              "mean_szn_gap": 1.64
+            },
+            "2+": {
+              "hits": 233,
+              "n": 305,
+              "rate": 76.4,
+              "mean_l5_gap": 3.15,
+              "mean_szn_gap": 2.71
+            }
+          }
+        },
+        "Platinum": {
+          "hits": 215,
+          "n": 302,
+          "rate": 71.2,
+          "mean_l5_gap": 1.7,
+          "mean_l10_gap": 1.29,
+          "mean_szn_gap": 1.29,
+          "mean_min_gap": 1.24,
+          "median_l5_gap": 1.5,
+          "min_gap": {
+            "0\u20130.5": {
+              "hits": 0,
+              "n": 1,
+              "rate": 0.0,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.5
+            },
+            "0.5\u20131": {
+              "hits": 94,
+              "n": 146,
+              "rate": 64.4,
+              "mean_l5_gap": 1.04,
+              "mean_szn_gap": 0.75
+            },
+            "1\u20131.5": {
+              "hits": 51,
+              "n": 64,
+              "rate": 79.7,
+              "mean_l5_gap": 1.66,
+              "mean_szn_gap": 1.21
+            },
+            "1.5\u20132": {
+              "hits": 46,
+              "n": 58,
+              "rate": 79.3,
+              "mean_l5_gap": 2.29,
+              "mean_szn_gap": 1.75
+            },
+            "2+": {
+              "hits": 24,
+              "n": 33,
+              "rate": 72.7,
+              "mean_l5_gap": 3.71,
+              "mean_szn_gap": 3.02
+            }
+          },
+          "l5_gap": {
+            "0\u20130.5": {
+              "hits": 0,
+              "n": 1,
+              "rate": 0.0,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.5
+            },
+            "0.5\u20131": {
+              "hits": 50,
+              "n": 86,
+              "rate": 58.1,
+              "mean_l5_gap": 0.79,
+              "mean_szn_gap": 0.77
+            },
+            "1\u20131.5": {
+              "hits": 40,
+              "n": 53,
+              "rate": 75.5,
+              "mean_l5_gap": 1.19,
+              "mean_szn_gap": 0.92
+            },
+            "1.5\u20132": {
+              "hits": 64,
+              "n": 80,
+              "rate": 80.0,
+              "mean_l5_gap": 1.69,
+              "mean_szn_gap": 1.23
+            },
+            "2+": {
+              "hits": 61,
+              "n": 82,
+              "rate": 74.4,
+              "mean_l5_gap": 3.02,
+              "mean_szn_gap": 2.14
+            }
+          }
+        },
+        "Gold": {
+          "hits": 338,
+          "n": 507,
+          "rate": 66.7,
+          "mean_l5_gap": 1.38,
+          "mean_l10_gap": 0.99,
+          "mean_szn_gap": 0.99,
+          "mean_min_gap": 0.96,
+          "median_l5_gap": 1.3,
+          "min_gap": {
+            "0\u20130.5": {
+              "hits": 0,
+              "n": 1,
+              "rate": 0.0,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.5
+            },
+            "0.5\u20131": {
+              "hits": 192,
+              "n": 299,
+              "rate": 64.2,
+              "mean_l5_gap": 0.99,
+              "mean_szn_gap": 0.69
+            },
+            "1\u20131.5": {
+              "hits": 82,
+              "n": 120,
+              "rate": 68.3,
+              "mean_l5_gap": 1.63,
+              "mean_szn_gap": 1.18
+            },
+            "1.5\u20132": {
+              "hits": 48,
+              "n": 67,
+              "rate": 71.6,
+              "mean_l5_gap": 2.26,
+              "mean_szn_gap": 1.69
+            },
+            "2+": {
+              "hits": 16,
+              "n": 20,
+              "rate": 80.0,
+              "mean_l5_gap": 2.88,
+              "mean_szn_gap": 2.15
+            }
+          },
+          "l5_gap": {
+            "0\u20130.5": {
+              "hits": 0,
+              "n": 1,
+              "rate": 0.0,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.5
+            },
+            "0.5\u20131": {
+              "hits": 105,
+              "n": 176,
+              "rate": 59.7,
+              "mean_l5_gap": 0.72,
+              "mean_szn_gap": 0.68
+            },
+            "1\u20131.5": {
+              "hits": 88,
+              "n": 124,
+              "rate": 71.0,
+              "mean_l5_gap": 1.18,
+              "mean_szn_gap": 0.87
+            },
+            "1.5\u20132": {
+              "hits": 83,
+              "n": 117,
+              "rate": 70.9,
+              "mean_l5_gap": 1.72,
+              "mean_szn_gap": 1.12
+            },
+            "2+": {
+              "hits": 62,
+              "n": 89,
+              "rate": 69.7,
+              "mean_l5_gap": 2.54,
+              "mean_szn_gap": 1.63
+            }
+          }
+        },
+        "Silver": {
+          "hits": 1976,
+          "n": 3172,
+          "rate": 62.3,
+          "mean_l5_gap": 1.07,
+          "mean_l10_gap": 1.09,
+          "mean_szn_gap": 1.09,
+          "mean_min_gap": 0.86,
+          "median_l5_gap": 0.7,
+          "min_gap": {
+            "against": {
+              "hits": 66,
+              "n": 104,
+              "rate": 63.5,
+              "mean_l5_gap": -0.22,
+              "mean_szn_gap": 0.82
+            },
+            "0\u20130.5": {
+              "hits": 532,
+              "n": 916,
+              "rate": 58.1,
+              "mean_l5_gap": 0.38,
+              "mean_szn_gap": 0.5
+            },
+            "0.5\u20131": {
+              "hits": 738,
+              "n": 1189,
+              "rate": 62.1,
+              "mean_l5_gap": 0.82,
+              "mean_szn_gap": 0.89
+            },
+            "1\u20131.5": {
+              "hits": 297,
+              "n": 460,
+              "rate": 64.6,
+              "mean_l5_gap": 1.46,
+              "mean_szn_gap": 1.3
+            },
+            "1.5\u20132": {
+              "hits": 173,
+              "n": 262,
+              "rate": 66.0,
+              "mean_l5_gap": 1.9,
+              "mean_szn_gap": 1.77
+            },
+            "2+": {
+              "hits": 170,
+              "n": 241,
+              "rate": 70.5,
+              "mean_l5_gap": 3.85,
+              "mean_szn_gap": 3.3
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 66,
+              "n": 104,
+              "rate": 63.5,
+              "mean_l5_gap": -0.22,
+              "mean_szn_gap": 0.82
+            },
+            "0\u20130.5": {
+              "hits": 375,
+              "n": 636,
+              "rate": 59.0,
+              "mean_l5_gap": 0.24,
+              "mean_szn_gap": 0.6
+            },
+            "0.5\u20131": {
+              "hits": 726,
+              "n": 1197,
+              "rate": 60.7,
+              "mean_l5_gap": 0.67,
+              "mean_szn_gap": 0.79
+            },
+            "1\u20131.5": {
+              "hits": 281,
+              "n": 445,
+              "rate": 63.1,
+              "mean_l5_gap": 1.18,
+              "mean_szn_gap": 1.09
+            },
+            "1.5\u20132": {
+              "hits": 276,
+              "n": 420,
+              "rate": 65.7,
+              "mean_l5_gap": 1.66,
+              "mean_szn_gap": 1.37
+            },
+            "2+": {
+              "hits": 252,
+              "n": 370,
+              "rate": 68.1,
+              "mean_l5_gap": 3.38,
+              "mean_szn_gap": 2.66
+            }
+          }
+        },
+        "Bronze": {
+          "hits": 3034,
+          "n": 4907,
+          "rate": 61.8,
+          "mean_l5_gap": 0.95,
+          "mean_l10_gap": 0.89,
+          "mean_szn_gap": 0.89,
+          "mean_min_gap": 0.71,
+          "median_l5_gap": 0.7,
+          "min_gap": {
+            "against": {
+              "hits": 321,
+              "n": 535,
+              "rate": 60.0,
+              "mean_l5_gap": -0.05,
+              "mean_szn_gap": 0.09
+            },
+            "0\u20130.5": {
+              "hits": 946,
+              "n": 1628,
+              "rate": 58.1,
+              "mean_l5_gap": 0.33,
+              "mean_szn_gap": 0.32
+            },
+            "0.5\u20131": {
+              "hits": 809,
+              "n": 1328,
+              "rate": 60.9,
+              "mean_l5_gap": 0.87,
+              "mean_szn_gap": 0.84
+            },
+            "1\u20131.5": {
+              "hits": 383,
+              "n": 599,
+              "rate": 63.9,
+              "mean_l5_gap": 1.5,
+              "mean_szn_gap": 1.34
+            },
+            "1.5\u20132": {
+              "hits": 327,
+              "n": 491,
+              "rate": 66.6,
+              "mean_l5_gap": 2.0,
+              "mean_szn_gap": 1.78
+            },
+            "2+": {
+              "hits": 248,
+              "n": 326,
+              "rate": 76.1,
+              "mean_l5_gap": 3.48,
+              "mean_szn_gap": 3.13
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 259,
+              "n": 437,
+              "rate": 59.3,
+              "mean_l5_gap": -0.27,
+              "mean_szn_gap": 0.3
+            },
+            "0\u20130.5": {
+              "hits": 705,
+              "n": 1202,
+              "rate": 58.7,
+              "mean_l5_gap": 0.2,
+              "mean_szn_gap": 0.31
+            },
+            "0.5\u20131": {
+              "hits": 873,
+              "n": 1467,
+              "rate": 59.5,
+              "mean_l5_gap": 0.68,
+              "mean_szn_gap": 0.67
+            },
+            "1\u20131.5": {
+              "hits": 361,
+              "n": 577,
+              "rate": 62.6,
+              "mean_l5_gap": 1.19,
+              "mean_szn_gap": 1.09
+            },
+            "1.5\u20132": {
+              "hits": 403,
+              "n": 608,
+              "rate": 66.3,
+              "mean_l5_gap": 1.69,
+              "mean_szn_gap": 1.43
+            },
+            "2+": {
+              "hits": 433,
+              "n": 616,
+              "rate": 70.3,
+              "mean_l5_gap": 3.0,
+              "mean_szn_gap": 2.28
+            }
+          }
+        },
+        "none": {
+          "hits": 4667,
+          "n": 8236,
+          "rate": 56.7,
+          "mean_l5_gap": 0.33,
+          "mean_l10_gap": 0.31,
+          "mean_szn_gap": 0.31,
+          "mean_min_gap": 0.12,
+          "median_l5_gap": 0.3,
+          "min_gap": {
+            "against": {
+              "hits": 1693,
+              "n": 3016,
+              "rate": 56.1,
+              "mean_l5_gap": -0.26,
+              "mean_szn_gap": -0.27
+            },
+            "0\u20130.5": {
+              "hits": 1857,
+              "n": 3439,
+              "rate": 54.0,
+              "mean_l5_gap": 0.33,
+              "mean_szn_gap": 0.29
+            },
+            "0.5\u20131": {
+              "hits": 676,
+              "n": 1077,
+              "rate": 62.8,
+              "mean_l5_gap": 0.8,
+              "mean_szn_gap": 0.9
+            },
+            "1\u20131.5": {
+              "hits": 207,
+              "n": 352,
+              "rate": 58.8,
+              "mean_l5_gap": 1.44,
+              "mean_szn_gap": 1.32
+            },
+            "1.5\u20132": {
+              "hits": 105,
+              "n": 169,
+              "rate": 62.1,
+              "mean_l5_gap": 1.85,
+              "mean_szn_gap": 1.87
+            },
+            "2+": {
+              "hits": 106,
+              "n": 151,
+              "rate": 70.2,
+              "mean_l5_gap": 4.7,
+              "mean_szn_gap": 4.23
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 1259,
+              "n": 2188,
+              "rate": 57.5,
+              "mean_l5_gap": -0.48,
+              "mean_szn_gap": -0.21
+            },
+            "0\u20130.5": {
+              "hits": 1684,
+              "n": 3134,
+              "rate": 53.7,
+              "mean_l5_gap": 0.19,
+              "mean_szn_gap": 0.18
+            },
+            "0.5\u20131": {
+              "hits": 1108,
+              "n": 1914,
+              "rate": 57.9,
+              "mean_l5_gap": 0.64,
+              "mean_szn_gap": 0.51
+            },
+            "1\u20131.5": {
+              "hits": 254,
+              "n": 419,
+              "rate": 60.6,
+              "mean_l5_gap": 1.17,
+              "mean_szn_gap": 0.97
+            },
+            "1.5\u20132": {
+              "hits": 178,
+              "n": 298,
+              "rate": 59.7,
+              "mean_l5_gap": 1.65,
+              "mean_szn_gap": 1.32
+            },
+            "2+": {
+              "hits": 161,
+              "n": 251,
+              "rate": 64.1,
+              "mean_l5_gap": 3.97,
+              "mean_szn_gap": 2.81
+            }
+          }
+        }
+      },
+      "gap_scale": [
+        "against",
+        "0\u20130.5",
+        "0.5\u20131",
+        "1\u20131.5",
+        "1.5\u20132",
+        "2+"
+      ],
+      "all_min_gap": {
+        "against": {
+          "hits": 2080,
+          "n": 3655,
+          "rate": 56.9,
+          "mean_l5_gap": -0.23,
+          "mean_szn_gap": -0.19
+        },
+        "0\u20130.5": {
+          "hits": 3349,
+          "n": 6015,
+          "rate": 55.7,
+          "mean_l5_gap": 0.34,
+          "mean_szn_gap": 0.33
+        },
+        "0.5\u20131": {
+          "hits": 2795,
+          "n": 4461,
+          "rate": 62.7,
+          "mean_l5_gap": 0.85,
+          "mean_szn_gap": 0.86
+        },
+        "1\u20131.5": {
+          "hits": 1209,
+          "n": 1838,
+          "rate": 65.8,
+          "mean_l5_gap": 1.48,
+          "mean_szn_gap": 1.32
+        },
+        "1.5\u20132": {
+          "hits": 833,
+          "n": 1235,
+          "rate": 67.4,
+          "mean_l5_gap": 1.98,
+          "mean_szn_gap": 1.79
+        },
+        "2+": {
+          "hits": 731,
+          "n": 995,
+          "rate": 73.5,
+          "mean_l5_gap": 3.74,
+          "mean_szn_gap": 3.31
+        }
+      },
+      "all_l5_gap": {
+        "against": {
+          "hits": 1584,
+          "n": 2729,
+          "rate": 58.0,
+          "mean_l5_gap": -0.44,
+          "mean_szn_gap": -0.09
+        },
+        "0\u20130.5": {
+          "hits": 2778,
+          "n": 5004,
+          "rate": 55.5,
+          "mean_l5_gap": 0.2,
+          "mean_szn_gap": 0.27
+        },
+        "0.5\u20131": {
+          "hits": 3105,
+          "n": 5193,
+          "rate": 59.8,
+          "mean_l5_gap": 0.67,
+          "mean_szn_gap": 0.65
+        },
+        "1\u20131.5": {
+          "hits": 1183,
+          "n": 1842,
+          "rate": 64.2,
+          "mean_l5_gap": 1.18,
+          "mean_szn_gap": 1.07
+        },
+        "1.5\u20132": {
+          "hits": 1145,
+          "n": 1718,
+          "rate": 66.6,
+          "mean_l5_gap": 1.67,
+          "mean_szn_gap": 1.39
+        },
+        "2+": {
+          "hits": 1202,
+          "n": 1713,
+          "rate": 70.2,
+          "mean_l5_gap": 3.23,
+          "mean_szn_gap": 2.48
+        }
+      }
+    },
+    "Soccer": {
+      "overall": {
+        "hits": 1150,
+        "n": 2989,
+        "rate": 38.5,
+        "mean_l5_gap": -0.06,
+        "mean_l10_gap": -0.08,
+        "mean_szn_gap": -0.08,
+        "mean_min_gap": -0.18,
+        "median_l5_gap": -0.1
+      },
+      "by_badge": {
+        "Diamond": {
+          "hits": 6,
+          "n": 11,
+          "rate": 54.5,
+          "mean_l5_gap": 1.55,
+          "mean_l10_gap": 1.3,
+          "mean_szn_gap": 1.3,
+          "mean_min_gap": 1.21,
+          "median_l5_gap": 1.4,
+          "min_gap": {
+            "0.5\u20131": {
+              "hits": 2,
+              "n": 3,
+              "rate": 66.7,
+              "mean_l5_gap": 1.1,
+              "mean_szn_gap": 0.7
+            },
+            "1\u20131.5": {
+              "hits": 3,
+              "n": 6,
+              "rate": 50.0,
+              "mean_l5_gap": 1.55,
+              "mean_szn_gap": 1.4
+            },
+            "1.5\u20132": {
+              "hits": 1,
+              "n": 1,
+              "rate": 100.0,
+              "mean_l5_gap": 2.3,
+              "mean_szn_gap": 1.5
+            },
+            "2+": {
+              "hits": 0,
+              "n": 1,
+              "rate": 0.0,
+              "mean_l5_gap": 2.1,
+              "mean_szn_gap": 2.3
+            }
+          },
+          "l5_gap": {
+            "0.5\u20131": {
+              "hits": 0,
+              "n": 1,
+              "rate": 0.0,
+              "mean_l5_gap": 0.9,
+              "mean_szn_gap": 0.7
+            },
+            "1\u20131.5": {
+              "hits": 3,
+              "n": 5,
+              "rate": 60.0,
+              "mean_l5_gap": 1.24,
+              "mean_szn_gap": 1.2
+            },
+            "1.5\u20132": {
+              "hits": 1,
+              "n": 2,
+              "rate": 50.0,
+              "mean_l5_gap": 1.7,
+              "mean_szn_gap": 1.25
+            },
+            "2+": {
+              "hits": 2,
+              "n": 3,
+              "rate": 66.7,
+              "mean_l5_gap": 2.17,
+              "mean_szn_gap": 1.7
+            }
+          }
+        },
+        "Platinum": {
+          "hits": 14,
+          "n": 21,
+          "rate": 66.7,
+          "mean_l5_gap": 1.33,
+          "mean_l10_gap": 0.9,
+          "mean_szn_gap": 0.9,
+          "mean_min_gap": 0.86,
+          "median_l5_gap": 1.1,
+          "min_gap": {
+            "0\u20130.5": {
+              "hits": 1,
+              "n": 1,
+              "rate": 100.0,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.7
+            },
+            "0.5\u20131": {
+              "hits": 9,
+              "n": 14,
+              "rate": 64.3,
+              "mean_l5_gap": 0.97,
+              "mean_szn_gap": 0.65
+            },
+            "1\u20131.5": {
+              "hits": 2,
+              "n": 2,
+              "rate": 100.0,
+              "mean_l5_gap": 2.1,
+              "mean_szn_gap": 1.15
+            },
+            "1.5\u20132": {
+              "hits": 2,
+              "n": 4,
+              "rate": 50.0,
+              "mean_l5_gap": 2.45,
+              "mean_szn_gap": 1.7
+            }
+          },
+          "l5_gap": {
+            "0\u20130.5": {
+              "hits": 1,
+              "n": 1,
+              "rate": 100.0,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.7
+            },
+            "0.5\u20131": {
+              "hits": 4,
+              "n": 8,
+              "rate": 50.0,
+              "mean_l5_gap": 0.67,
+              "mean_szn_gap": 0.62
+            },
+            "1\u20131.5": {
+              "hits": 3,
+              "n": 4,
+              "rate": 75.0,
+              "mean_l5_gap": 1.2,
+              "mean_szn_gap": 0.65
+            },
+            "1.5\u20132": {
+              "hits": 3,
+              "n": 3,
+              "rate": 100.0,
+              "mean_l5_gap": 1.7,
+              "mean_szn_gap": 0.9
+            },
+            "2+": {
+              "hits": 3,
+              "n": 5,
+              "rate": 60.0,
+              "mean_l5_gap": 2.46,
+              "mean_szn_gap": 1.58
+            }
+          }
+        },
+        "Gold": {
+          "hits": 7,
+          "n": 17,
+          "rate": 41.2,
+          "mean_l5_gap": 1.2,
+          "mean_l10_gap": 0.95,
+          "mean_szn_gap": 0.95,
+          "mean_min_gap": 0.95,
+          "median_l5_gap": 1.0,
+          "min_gap": {
+            "0.5\u20131": {
+              "hits": 4,
+              "n": 9,
+              "rate": 44.4,
+              "mean_l5_gap": 0.99,
+              "mean_szn_gap": 0.61
+            },
+            "1\u20131.5": {
+              "hits": 2,
+              "n": 5,
+              "rate": 40.0,
+              "mean_l5_gap": 1.27,
+              "mean_szn_gap": 1.11
+            },
+            "1.5\u20132": {
+              "hits": 0,
+              "n": 2,
+              "rate": 0.0,
+              "mean_l5_gap": 1.5,
+              "mean_szn_gap": 1.5
+            },
+            "2+": {
+              "hits": 1,
+              "n": 1,
+              "rate": 100.0,
+              "mean_l5_gap": 2.1,
+              "mean_szn_gap": 2.1
+            }
+          },
+          "l5_gap": {
+            "0.5\u20131": {
+              "hits": 3,
+              "n": 7,
+              "rate": 42.9,
+              "mean_l5_gap": 0.73,
+              "mean_szn_gap": 0.63
+            },
+            "1\u20131.5": {
+              "hits": 2,
+              "n": 4,
+              "rate": 50.0,
+              "mean_l5_gap": 1.09,
+              "mean_szn_gap": 1.09
+            },
+            "1.5\u20132": {
+              "hits": 1,
+              "n": 4,
+              "rate": 25.0,
+              "mean_l5_gap": 1.7,
+              "mean_szn_gap": 1.02
+            },
+            "2+": {
+              "hits": 1,
+              "n": 2,
+              "rate": 50.0,
+              "mean_l5_gap": 2.05,
+              "mean_szn_gap": 1.65
+            }
+          }
+        },
+        "Silver": {
+          "hits": 70,
+          "n": 114,
+          "rate": 61.4,
+          "mean_l5_gap": 1.07,
+          "mean_l10_gap": 0.98,
+          "mean_szn_gap": 0.98,
+          "mean_min_gap": 0.83,
+          "median_l5_gap": 0.9,
+          "min_gap": {
+            "against": {
+              "hits": 4,
+              "n": 5,
+              "rate": 80.0,
+              "mean_l5_gap": -0.34,
+              "mean_szn_gap": 0.62
+            },
+            "0\u20130.5": {
+              "hits": 12,
+              "n": 21,
+              "rate": 57.1,
+              "mean_l5_gap": 0.49,
+              "mean_szn_gap": 0.42
+            },
+            "0.5\u20131": {
+              "hits": 30,
+              "n": 53,
+              "rate": 56.6,
+              "mean_l5_gap": 0.87,
+              "mean_szn_gap": 0.77
+            },
+            "1\u20131.5": {
+              "hits": 14,
+              "n": 17,
+              "rate": 82.4,
+              "mean_l5_gap": 1.51,
+              "mean_szn_gap": 1.15
+            },
+            "1.5\u20132": {
+              "hits": 3,
+              "n": 11,
+              "rate": 27.3,
+              "mean_l5_gap": 1.88,
+              "mean_szn_gap": 1.71
+            },
+            "2+": {
+              "hits": 7,
+              "n": 7,
+              "rate": 100.0,
+              "mean_l5_gap": 3.0,
+              "mean_szn_gap": 2.84
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 4,
+              "n": 5,
+              "rate": 80.0,
+              "mean_l5_gap": -0.34,
+              "mean_szn_gap": 0.62
+            },
+            "0\u20130.5": {
+              "hits": 9,
+              "n": 14,
+              "rate": 64.3,
+              "mean_l5_gap": 0.26,
+              "mean_szn_gap": 0.51
+            },
+            "0.5\u20131": {
+              "hits": 24,
+              "n": 41,
+              "rate": 58.5,
+              "mean_l5_gap": 0.65,
+              "mean_szn_gap": 0.72
+            },
+            "1\u20131.5": {
+              "hits": 12,
+              "n": 18,
+              "rate": 66.7,
+              "mean_l5_gap": 1.18,
+              "mean_szn_gap": 0.9
+            },
+            "1.5\u20132": {
+              "hits": 11,
+              "n": 22,
+              "rate": 50.0,
+              "mean_l5_gap": 1.6,
+              "mean_szn_gap": 1.2
+            },
+            "2+": {
+              "hits": 10,
+              "n": 14,
+              "rate": 71.4,
+              "mean_l5_gap": 2.65,
+              "mean_szn_gap": 2.08
+            }
+          }
+        },
+        "Bronze": {
+          "hits": 146,
+          "n": 296,
+          "rate": 49.3,
+          "mean_l5_gap": 0.78,
+          "mean_l10_gap": 0.72,
+          "mean_szn_gap": 0.72,
+          "mean_min_gap": 0.61,
+          "median_l5_gap": 0.7,
+          "min_gap": {
+            "against": {
+              "hits": 12,
+              "n": 26,
+              "rate": 46.2,
+              "mean_l5_gap": -0.19,
+              "mean_szn_gap": 0.26
+            },
+            "0\u20130.5": {
+              "hits": 48,
+              "n": 100,
+              "rate": 48.0,
+              "mean_l5_gap": 0.4,
+              "mean_szn_gap": 0.3
+            },
+            "0.5\u20131": {
+              "hits": 52,
+              "n": 102,
+              "rate": 51.0,
+              "mean_l5_gap": 0.82,
+              "mean_szn_gap": 0.71
+            },
+            "1\u20131.5": {
+              "hits": 18,
+              "n": 35,
+              "rate": 51.4,
+              "mean_l5_gap": 1.38,
+              "mean_szn_gap": 1.18
+            },
+            "1.5\u20132": {
+              "hits": 10,
+              "n": 24,
+              "rate": 41.7,
+              "mean_l5_gap": 1.73,
+              "mean_szn_gap": 1.66
+            },
+            "2+": {
+              "hits": 6,
+              "n": 9,
+              "rate": 66.7,
+              "mean_l5_gap": 2.63,
+              "mean_szn_gap": 2.58
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 11,
+              "n": 25,
+              "rate": 44.0,
+              "mean_l5_gap": -0.24,
+              "mean_szn_gap": 0.27
+            },
+            "0\u20130.5": {
+              "hits": 30,
+              "n": 62,
+              "rate": 48.4,
+              "mean_l5_gap": 0.21,
+              "mean_szn_gap": 0.33
+            },
+            "0.5\u20131": {
+              "hits": 54,
+              "n": 111,
+              "rate": 48.6,
+              "mean_l5_gap": 0.66,
+              "mean_szn_gap": 0.56
+            },
+            "1\u20131.5": {
+              "hits": 26,
+              "n": 46,
+              "rate": 56.5,
+              "mean_l5_gap": 1.18,
+              "mean_szn_gap": 0.89
+            },
+            "1.5\u20132": {
+              "hits": 16,
+              "n": 38,
+              "rate": 42.1,
+              "mean_l5_gap": 1.62,
+              "mean_szn_gap": 1.36
+            },
+            "2+": {
+              "hits": 9,
+              "n": 14,
+              "rate": 64.3,
+              "mean_l5_gap": 2.54,
+              "mean_szn_gap": 2.22
+            }
+          }
+        },
+        "none": {
+          "hits": 907,
+          "n": 2530,
+          "rate": 35.8,
+          "mean_l5_gap": -0.29,
+          "mean_l10_gap": -0.3,
+          "mean_szn_gap": -0.3,
+          "mean_min_gap": -0.39,
+          "median_l5_gap": -0.3,
+          "min_gap": {
+            "against": {
+              "hits": 423,
+              "n": 1396,
+              "rate": 30.3,
+              "mean_l5_gap": -0.62,
+              "mean_szn_gap": -0.6
+            },
+            "0\u20130.5": {
+              "hits": 160,
+              "n": 364,
+              "rate": 44.0,
+              "mean_l5_gap": 0.3,
+              "mean_szn_gap": 0.21
+            },
+            "0.5\u20131": {
+              "hits": 56,
+              "n": 117,
+              "rate": 47.9,
+              "mean_l5_gap": 0.68,
+              "mean_szn_gap": 0.63
+            },
+            "1\u20131.5": {
+              "hits": 14,
+              "n": 20,
+              "rate": 70.0,
+              "mean_l5_gap": 1.24,
+              "mean_szn_gap": 1.18
+            },
+            "1.5\u20132": {
+              "hits": 13,
+              "n": 22,
+              "rate": 59.1,
+              "mean_l5_gap": 1.55,
+              "mean_szn_gap": 1.57
+            },
+            "2+": {
+              "hits": 11,
+              "n": 19,
+              "rate": 57.9,
+              "mean_l5_gap": 2.82,
+              "mean_szn_gap": 2.83
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 393,
+              "n": 1308,
+              "rate": 30.0,
+              "mean_l5_gap": -0.69,
+              "mean_szn_gap": -0.62
+            },
+            "0\u20130.5": {
+              "hits": 136,
+              "n": 335,
+              "rate": 40.6,
+              "mean_l5_gap": 0.17,
+              "mean_szn_gap": 0.11
+            },
+            "0.5\u20131": {
+              "hits": 96,
+              "n": 213,
+              "rate": 45.1,
+              "mean_l5_gap": 0.61,
+              "mean_szn_gap": 0.39
+            },
+            "1\u20131.5": {
+              "hits": 21,
+              "n": 30,
+              "rate": 70.0,
+              "mean_l5_gap": 1.13,
+              "mean_szn_gap": 0.8
+            },
+            "1.5\u20132": {
+              "hits": 19,
+              "n": 32,
+              "rate": 59.4,
+              "mean_l5_gap": 1.57,
+              "mean_szn_gap": 1.25
+            },
+            "2+": {
+              "hits": 12,
+              "n": 20,
+              "rate": 60.0,
+              "mean_l5_gap": 2.8,
+              "mean_szn_gap": 2.76
+            }
+          }
+        }
+      },
+      "gap_scale": [
+        "against",
+        "0\u20130.5",
+        "0.5\u20131",
+        "1\u20131.5",
+        "1.5\u20132",
+        "2+"
+      ],
+      "all_min_gap": {
+        "against": {
+          "hits": 439,
+          "n": 1427,
+          "rate": 30.8,
+          "mean_l5_gap": -0.62,
+          "mean_szn_gap": -0.58
+        },
+        "0\u20130.5": {
+          "hits": 221,
+          "n": 486,
+          "rate": 45.5,
+          "mean_l5_gap": 0.33,
+          "mean_szn_gap": 0.24
+        },
+        "0.5\u20131": {
+          "hits": 153,
+          "n": 298,
+          "rate": 51.3,
+          "mean_l5_gap": 0.79,
+          "mean_szn_gap": 0.68
+        },
+        "1\u20131.5": {
+          "hits": 53,
+          "n": 85,
+          "rate": 62.4,
+          "mean_l5_gap": 1.4,
+          "mean_szn_gap": 1.18
+        },
+        "1.5\u20132": {
+          "hits": 29,
+          "n": 64,
+          "rate": 45.3,
+          "mean_l5_gap": 1.74,
+          "mean_szn_gap": 1.63
+        },
+        "2+": {
+          "hits": 25,
+          "n": 37,
+          "rate": 67.6,
+          "mean_l5_gap": 2.77,
+          "mean_szn_gap": 2.74
+        }
+      },
+      "all_l5_gap": {
+        "against": {
+          "hits": 408,
+          "n": 1338,
+          "rate": 30.5,
+          "mean_l5_gap": -0.68,
+          "mean_szn_gap": -0.6
+        },
+        "0\u20130.5": {
+          "hits": 176,
+          "n": 412,
+          "rate": 42.7,
+          "mean_l5_gap": 0.18,
+          "mean_szn_gap": 0.16
+        },
+        "0.5\u20131": {
+          "hits": 181,
+          "n": 381,
+          "rate": 47.5,
+          "mean_l5_gap": 0.63,
+          "mean_szn_gap": 0.48
+        },
+        "1\u20131.5": {
+          "hits": 67,
+          "n": 107,
+          "rate": 62.6,
+          "mean_l5_gap": 1.17,
+          "mean_szn_gap": 0.88
+        },
+        "1.5\u20132": {
+          "hits": 51,
+          "n": 101,
+          "rate": 50.5,
+          "mean_l5_gap": 1.61,
+          "mean_szn_gap": 1.26
+        },
+        "2+": {
+          "hits": 37,
+          "n": 58,
+          "rate": 63.8,
+          "mean_l5_gap": 2.61,
+          "mean_szn_gap": 2.27
+        }
+      }
+    },
+    "Tennis": {
+      "overall": {
+        "hits": 1160,
+        "n": 2608,
+        "rate": 44.5,
+        "mean_l5_gap": 1.98,
+        "mean_l10_gap": 1.71,
+        "mean_szn_gap": 1.71,
+        "mean_min_gap": 1.32,
+        "median_l5_gap": 0.9
+      },
+      "by_badge": {
+        "Diamond": {
+          "hits": 0,
+          "n": 0,
+          "rate": null,
+          "mean_l5_gap": null,
+          "mean_l10_gap": null,
+          "mean_szn_gap": null,
+          "mean_min_gap": null,
+          "median_l5_gap": null,
+          "min_gap": {},
+          "l5_gap": {}
+        },
+        "Platinum": {
+          "hits": 0,
+          "n": 0,
+          "rate": null,
+          "mean_l5_gap": null,
+          "mean_l10_gap": null,
+          "mean_szn_gap": null,
+          "mean_min_gap": null,
+          "median_l5_gap": null,
+          "min_gap": {},
+          "l5_gap": {}
+        },
+        "Gold": {
+          "hits": 0,
+          "n": 0,
+          "rate": null,
+          "mean_l5_gap": null,
+          "mean_l10_gap": null,
+          "mean_szn_gap": null,
+          "mean_min_gap": null,
+          "median_l5_gap": null,
+          "min_gap": {},
+          "l5_gap": {}
+        },
+        "Silver": {
+          "hits": 452,
+          "n": 707,
+          "rate": 63.9,
+          "mean_l5_gap": 6.13,
+          "mean_l10_gap": 4.87,
+          "mean_szn_gap": 4.87,
+          "mean_min_gap": 4.64,
+          "median_l5_gap": 5.3,
+          "min_gap": {
+            "0\u20131": {
+              "hits": 15,
+              "n": 45,
+              "rate": 33.3,
+              "mean_l5_gap": 1.04,
+              "mean_szn_gap": 1.14
+            },
+            "1\u20132": {
+              "hits": 38,
+              "n": 81,
+              "rate": 46.9,
+              "mean_l5_gap": 1.8,
+              "mean_szn_gap": 1.88
+            },
+            "2\u20133": {
+              "hits": 49,
+              "n": 81,
+              "rate": 60.5,
+              "mean_l5_gap": 3.28,
+              "mean_szn_gap": 2.75
+            },
+            "3\u20135": {
+              "hits": 158,
+              "n": 228,
+              "rate": 69.3,
+              "mean_l5_gap": 5.11,
+              "mean_szn_gap": 4.21
+            },
+            "5+": {
+              "hits": 192,
+              "n": 272,
+              "rate": 70.6,
+              "mean_l5_gap": 9.96,
+              "mean_szn_gap": 7.57
+            }
+          },
+          "l5_gap": {
+            "0\u20131": {
+              "hits": 8,
+              "n": 27,
+              "rate": 29.6,
+              "mean_l5_gap": 0.74,
+              "mean_szn_gap": 1.39
+            },
+            "1\u20132": {
+              "hits": 36,
+              "n": 77,
+              "rate": 46.8,
+              "mean_l5_gap": 1.49,
+              "mean_szn_gap": 1.7
+            },
+            "2\u20133": {
+              "hits": 39,
+              "n": 66,
+              "rate": 59.1,
+              "mean_l5_gap": 2.52,
+              "mean_szn_gap": 2.59
+            },
+            "3\u20135": {
+              "hits": 118,
+              "n": 164,
+              "rate": 72.0,
+              "mean_l5_gap": 4.05,
+              "mean_szn_gap": 3.96
+            },
+            "5+": {
+              "hits": 251,
+              "n": 373,
+              "rate": 67.3,
+              "mean_l5_gap": 9.03,
+              "mean_szn_gap": 6.59
+            }
+          }
+        },
+        "Bronze": {
+          "hits": 312,
+          "n": 558,
+          "rate": 55.9,
+          "mean_l5_gap": 2.6,
+          "mean_l10_gap": 2.65,
+          "mean_szn_gap": 2.64,
+          "mean_min_gap": 2.01,
+          "median_l5_gap": 2.1,
+          "min_gap": {
+            "against": {
+              "hits": 17,
+              "n": 39,
+              "rate": 43.6,
+              "mean_l5_gap": -0.48,
+              "mean_szn_gap": 1.45
+            },
+            "0\u20131": {
+              "hits": 78,
+              "n": 157,
+              "rate": 49.7,
+              "mean_l5_gap": 1.04,
+              "mean_szn_gap": 1.12
+            },
+            "1\u20132": {
+              "hits": 78,
+              "n": 126,
+              "rate": 61.9,
+              "mean_l5_gap": 2.04,
+              "mean_szn_gap": 2.17
+            },
+            "2\u20133": {
+              "hits": 64,
+              "n": 105,
+              "rate": 61.0,
+              "mean_l5_gap": 3.14,
+              "mean_szn_gap": 2.89
+            },
+            "3\u20135": {
+              "hits": 59,
+              "n": 98,
+              "rate": 60.2,
+              "mean_l5_gap": 4.42,
+              "mean_szn_gap": 4.28
+            },
+            "5+": {
+              "hits": 16,
+              "n": 33,
+              "rate": 48.5,
+              "mean_l5_gap": 8.75,
+              "mean_szn_gap": 7.49
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 17,
+              "n": 39,
+              "rate": 43.6,
+              "mean_l5_gap": -0.48,
+              "mean_szn_gap": 1.45
+            },
+            "0\u20131": {
+              "hits": 50,
+              "n": 111,
+              "rate": 45.0,
+              "mean_l5_gap": 0.56,
+              "mean_szn_gap": 1.37
+            },
+            "1\u20132": {
+              "hits": 68,
+              "n": 113,
+              "rate": 60.2,
+              "mean_l5_gap": 1.47,
+              "mean_szn_gap": 2.06
+            },
+            "2\u20133": {
+              "hits": 60,
+              "n": 97,
+              "rate": 61.9,
+              "mean_l5_gap": 2.46,
+              "mean_szn_gap": 2.47
+            },
+            "3\u20135": {
+              "hits": 81,
+              "n": 125,
+              "rate": 64.8,
+              "mean_l5_gap": 3.81,
+              "mean_szn_gap": 3.3
+            },
+            "5+": {
+              "hits": 36,
+              "n": 73,
+              "rate": 49.3,
+              "mean_l5_gap": 7.23,
+              "mean_szn_gap": 5.23
+            }
+          }
+        },
+        "none": {
+          "hits": 396,
+          "n": 1343,
+          "rate": 29.5,
+          "mean_l5_gap": -0.53,
+          "mean_l10_gap": -0.4,
+          "mean_szn_gap": -0.4,
+          "mean_min_gap": -0.78,
+          "median_l5_gap": 0.0,
+          "min_gap": {
+            "against": {
+              "hits": 198,
+              "n": 725,
+              "rate": 27.3,
+              "mean_l5_gap": -1.45,
+              "mean_szn_gap": -1.12
+            },
+            "0\u20131": {
+              "hits": 132,
+              "n": 491,
+              "rate": 26.9,
+              "mean_l5_gap": 0.29,
+              "mean_szn_gap": 0.24
+            },
+            "1\u20132": {
+              "hits": 39,
+              "n": 58,
+              "rate": 67.2,
+              "mean_l5_gap": 1.77,
+              "mean_szn_gap": 1.59
+            },
+            "2\u20133": {
+              "hits": 20,
+              "n": 27,
+              "rate": 74.1,
+              "mean_l5_gap": 3.25,
+              "mean_szn_gap": 2.44
+            },
+            "3\u20135": {
+              "hits": 3,
+              "n": 5,
+              "rate": 60.0,
+              "mean_l5_gap": 4.54,
+              "mean_szn_gap": 3.0
+            }
+          },
+          "l5_gap": {
+            "against": {
+              "hits": 153,
+              "n": 628,
+              "rate": 24.4,
+              "mean_l5_gap": -1.81,
+              "mean_szn_gap": -1.19
+            },
+            "0\u20131": {
+              "hits": 129,
+              "n": 509,
+              "rate": 25.3,
+              "mean_l5_gap": 0.18,
+              "mean_szn_gap": 0.11
+            },
+            "1\u20132": {
+              "hits": 61,
+              "n": 97,
+              "rate": 62.9,
+              "mean_l5_gap": 1.44,
+              "mean_szn_gap": 0.72
+            },
+            "2\u20133": {
+              "hits": 31,
+              "n": 43,
+              "rate": 72.1,
+              "mean_l5_gap": 2.37,
+              "mean_szn_gap": 1.14
+            },
+            "3\u20135": {
+              "hits": 17,
+              "n": 27,
+              "rate": 63.0,
+              "mean_l5_gap": 3.71,
+              "mean_szn_gap": 1.85
+            },
+            "5+": {
+              "hits": 1,
+              "n": 2,
+              "rate": 50.0,
+              "mean_l5_gap": 5.8,
+              "mean_szn_gap": 2.85
+            }
+          }
+        }
+      },
+      "gap_scale": [
+        "against",
+        "0\u20131",
+        "1\u20132",
+        "2\u20133",
+        "3\u20135",
+        "5+"
+      ],
+      "all_min_gap": {
+        "against": {
+          "hits": 215,
+          "n": 764,
+          "rate": 28.1,
+          "mean_l5_gap": -1.4,
+          "mean_szn_gap": -0.99
+        },
+        "0\u20131": {
+          "hits": 225,
+          "n": 693,
+          "rate": 32.5,
+          "mean_l5_gap": 0.51,
+          "mean_szn_gap": 0.5
+        },
+        "1\u20132": {
+          "hits": 155,
+          "n": 265,
+          "rate": 58.5,
+          "mean_l5_gap": 1.91,
+          "mean_szn_gap": 1.96
+        },
+        "2\u20133": {
+          "hits": 133,
+          "n": 213,
+          "rate": 62.4,
+          "mean_l5_gap": 3.21,
+          "mean_szn_gap": 2.78
+        },
+        "3\u20135": {
+          "hits": 220,
+          "n": 331,
+          "rate": 66.5,
+          "mean_l5_gap": 4.89,
+          "mean_szn_gap": 4.21
+        },
+        "5+": {
+          "hits": 208,
+          "n": 305,
+          "rate": 68.2,
+          "mean_l5_gap": 9.83,
+          "mean_szn_gap": 7.56
+        }
+      },
+      "all_l5_gap": {
+        "against": {
+          "hits": 170,
+          "n": 667,
+          "rate": 25.5,
+          "mean_l5_gap": -1.73,
+          "mean_szn_gap": -1.04
+        },
+        "0\u20131": {
+          "hits": 187,
+          "n": 647,
+          "rate": 28.9,
+          "mean_l5_gap": 0.27,
+          "mean_szn_gap": 0.38
+        },
+        "1\u20132": {
+          "hits": 165,
+          "n": 287,
+          "rate": 57.5,
+          "mean_l5_gap": 1.47,
+          "mean_szn_gap": 1.51
+        },
+        "2\u20133": {
+          "hits": 130,
+          "n": 206,
+          "rate": 63.1,
+          "mean_l5_gap": 2.46,
+          "mean_szn_gap": 2.23
+        },
+        "3\u20135": {
+          "hits": 216,
+          "n": 316,
+          "rate": 68.4,
+          "mean_l5_gap": 3.93,
+          "mean_szn_gap": 3.52
+        },
+        "5+": {
+          "hits": 288,
+          "n": 448,
+          "rate": 64.3,
+          "mean_l5_gap": 8.72,
+          "mean_szn_gap": 6.35
+        }
+      }
+    }
+  },
+  "badge_counts": {
+    "none": 15124,
+    "Bronze": 7880,
+    "Silver": 5263,
+    "Diamond": 1606,
+    "Gold": 597,
+    "Platinum": 563
+  }
+}

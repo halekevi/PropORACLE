@@ -29,6 +29,8 @@ if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
 
 from utils.prizepicks_http import fetch_pp_projections, make_pp_session, ensure_chrome131
+from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
+from scripts.line_history_archive import try_archive_lines
 from utils.prizepicks_cdp import (
     align_cdp_context_for_datadome,
     cdp_board_ready,
@@ -38,6 +40,7 @@ from utils.prizepicks_cdp import (
 )
 from utils.step1_slate_date_filter import (
     apply_game_date_filter,
+    eastern_today_ymd,
     no_props_log_line,
     should_preserve_append_output,
 )
@@ -158,6 +161,7 @@ def fetch_board(
         }
         if fail_fast:
             kw.update(
+                fail_fast=True,
                 first_page_waves=1,
                 forbid_cooldown_threshold=99,
                 forbid_max_cooldown_windows=0,
@@ -239,11 +243,8 @@ def fetch_boards_via_cdp(
             print("  No warmed PP tab found — opened new page (solve DataDome in Chrome if 403).")
         page.set_default_timeout(max(30_000, int(request_timeout_ms) + 5_000))
         if not cdp_board_ready(page, primary_lid):
-            board_url = f"https://app.prizepicks.com/board?league_id={primary_lid}"
-            page.goto("https://app.prizepicks.com/", wait_until="domcontentloaded", timeout=30_000)
-            page.wait_for_timeout(2000)
-            page.goto(board_url, wait_until="domcontentloaded", timeout=30_000)
-            page.wait_for_timeout(3000)
+            print("  [CDP] No PrizePicks tab ready — not navigating (avoids DataDome). Open /board in Chrome first.")
+            raise RuntimeError("CDP board not ready; skip league hop")
         else:
             try:
                 page.bring_to_front()
@@ -358,6 +359,7 @@ def build_rows(data: list, included: list, league_name: str) -> list:
             "line":             line,
             "standard_line":    standard_line,
             "pick_type":        pick_type,
+            "pp_updated_at":    extract_pp_updated_at(attrs),
         })
 
     return rows
@@ -395,6 +397,16 @@ def main():
         help="Skip same-day date filter (keep full API board; explicit opt-in only).",
     )
     ap.add_argument(
+        "--include-tomorrow",
+        action="store_true",
+        help="Also keep Eastern tomorrow's games (day-ahead Standard unders).",
+    )
+    ap.add_argument(
+        "--board-date",
+        default="",
+        help="Fetch calendar YYYY-MM-DD for board_date/line_asof (default: Eastern today).",
+    )
+    ap.add_argument(
         "--max-retries",
         "--api-retries",
         type=int,
@@ -418,6 +430,7 @@ def main():
         default=30_000,
         help="CDP connect_over_cdp timeout in ms (default 30000; avoids Playwright 180s hang).",
     )
+    ap.add_argument("--playwright", action="store_true", help="Launch Chromium if CDP is not used.")
     args = ap.parse_args()
     out_path = Path(args.output)
     fail_fast = bool(args.fail_fast) or bool(str(args.cdp).strip())
@@ -453,14 +466,26 @@ def main():
 
     all_rows = []
     cdp_url = str(args.cdp or "").strip()
+    use_playwright = bool(args.playwright) and not cdp_url
 
-    if cdp_url:
+    if cdp_url or use_playwright:
         try:
-            cdp_results = fetch_boards_via_cdp(
-                boards_to_fetch,
-                cdp_url=cdp_url,
-                attach_timeout_ms=int(args.cdp_attach_timeout_ms),
-            )
+            if use_playwright:
+                from utils.prizepicks_cdp import session_fetch_projections
+
+                print("  [mode] Playwright Chromium — one launch per soccer board")
+                cdp_results = []
+                for lid, lname in boards_to_fetch:
+                    data, included, _st = session_fetch_projections(
+                        lid, playwright=True, per_page=250
+                    )
+                    cdp_results.append((lid, lname, data, included))
+            else:
+                cdp_results = fetch_boards_via_cdp(
+                    boards_to_fetch,
+                    cdp_url=cdp_url,
+                    attach_timeout_ms=int(args.cdp_attach_timeout_ms),
+                )
             for lid, lname, data, included in cdp_results:
                 if data:
                     rows = build_rows(data, included, lname)
@@ -469,11 +494,14 @@ def main():
                 else:
                     print(f"    ⚠️ No data for {lname} — may not be on the board today")
         except Exception as e:
+            if use_playwright:
+                print(f"❌ Playwright soccer fetch failed ({type(e).__name__}: {e})")
+                sys.exit(1)
             print(f"❌ CDP soccer fetch failed ({type(e).__name__}: {e})")
             print("   Falling back to fail-fast HTTP...")
             cdp_url = ""
 
-    if not cdp_url:
+    if not cdp_url and not use_playwright:
         for lid, lname in boards_to_fetch:
             print(f"\n  → {lname} (league_id={lid})")
             data, included = fetch_board(
@@ -503,6 +531,9 @@ def main():
     _mstd = df["pick_type"].astype(str).str.lower().eq("standard")
     df.loc[_mstd, "standard_line"] = df.loc[_mstd, "standard_line"].fillna(df.loc[_mstd, "line"])
     df = df.drop_duplicates(subset=["projection_id"], keep="first").reset_index(drop=True)
+    pull_ts = now_et_iso()
+    df = stamp_fetched_at(df, when=pull_ts, overwrite=True)
+    try_archive_lines(df, sport="SOCCER", only_fetched_at=pull_ts)
 
     if args.append and out_path.is_file():
         try:
@@ -552,6 +583,8 @@ def main():
         target_date=str(args.date).strip(),
         tz_name=str(args.tz).strip() or DEFAULT_TZ,
         allow_nearest_future=bool(args.allow_nearest_future),
+        include_tomorrow=bool(getattr(args, "include_tomorrow", False)),
+        board_date=str(getattr(args, "board_date", None) or "").strip()[:10] or eastern_today_ymd(),
     )
     print(
         f"[INFO] Soccer step1 fetched={fetched_rows} rows; "
@@ -565,6 +598,18 @@ def main():
 
     if len(df) == 0:
         print(no_props_log_line("Soccer", str(args.date).strip()))
+        try:
+            from utils.step1_board_reconcile import run_step1_reconcile
+
+            run_step1_reconcile(
+                sport="SOCCER",
+                df=pd.DataFrame(),
+                out_dir=out_path.parent,
+                fetched_n=int(fetched_rows),
+                fetch_failed=False,
+            )
+        except Exception as _rec_exc:
+            print(f"  [WARN] category reconcile skipped: {_rec_exc}")
         if should_preserve_append_output(out_path, args.append):
             print("   (--append: left existing output file unchanged)")
             sys.exit(0)
@@ -577,13 +622,25 @@ def main():
         print(f"\n[INFO] Saved empty date-filtered Soccer step1 CSV -> {args.output}")
         sys.exit(0)
 
-    df.to_csv(args.output, index=False, encoding="utf-8-sig")
     try:
-        from scripts.line_history_archive import archive_lines
+        from utils.step1_board_reconcile import run_step1_reconcile
 
-        archive_lines(df, sport="SOCCER")
-    except Exception as _arch_exc:
-        print(f"  [WARN] line_history archive skipped: {_arch_exc}")
+        df, _ = run_step1_reconcile(
+            sport="SOCCER",
+            df=df,
+            out_dir=out_path.parent,
+            fetched_n=int(fetched_rows),
+        )
+    except RuntimeError as _cov_exc:
+        print(f"❌ {_cov_exc}")
+        raise SystemExit(2) from _cov_exc
+    except Exception as _rec_exc:
+        print(f"  [WARN] category reconcile skipped: {_rec_exc}")
+
+    df.to_csv(args.output, index=False, encoding="utf-8-sig")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(args.output, sport="Soccer")
     print(f"\n✅ Saved {len(df)} rows -> {args.output}")
     league_counts = df["league"].value_counts().to_dict()
     print(f"   Leagues: {league_counts}")

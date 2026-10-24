@@ -1,9 +1,9 @@
 {
   "season": 2026,
-  "through_week": 1,
-  "built_at": "2026-09-17T20:09:03.070089+00:00",
-  "players": 384,
-  "game_rows": 384,
+  "through_week": 2,
+  "built_at": "2026-09-22T14:22:01.411563+00:00",
+  "players": 413,
+  "game_rows": 768,
   "path": "Sports\\NFL\\data\\nfl_route_participation.csv",
   "games_path": "Sports\\NFL\\data\\nfl_route_participation_games.csv",
   "pbp_participation": {

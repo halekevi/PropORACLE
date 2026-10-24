@@ -44,11 +44,13 @@ def test_player_prop_capped_at_one():
 
 
 def test_different_props_allowed():
+    """Same player on different props is OK across tickets; not within one ticket."""
     cfg = {
         "enabled": True,
         "max_leg_exposure": 5,
         "max_player_exposure": 5,
         "max_player_prop_exposure": 1,
+        "block_same_player_multistat": True,
         "max_jaccard_overlap": 1.0,
         "void_risk_min_sample": 0,
     }
@@ -60,15 +62,56 @@ def test_different_props_allowed():
     assert len(out) == 2
 
 
+def test_same_player_multistat_blocked_within_ticket():
+    cfg = {
+        "enabled": True,
+        "max_leg_exposure": 5,
+        "max_player_exposure": 5,
+        "max_player_prop_exposure": 1,
+        "block_same_player_multistat": True,
+        "max_jaccard_overlap": 1.0,
+        "void_risk_min_sample": 0,
+    }
+    bad = {
+        "ticket_id": "stack",
+        "n_legs": 2,
+        "base_ev": 2.0,
+        "legs": [
+            {"player": "Sabrina Ionescu", "prop_type": "Rebounds", "line": 8.0, "direction": "OVER", "edge": 0.7},
+            {"player": "Sabrina Ionescu", "prop_type": "Assists", "line": 5.5, "direction": "OVER", "edge": 0.7},
+        ],
+    }
+    ok = _t("ok", "A'ja Wilson", "Points", 22.5, other="Player C")
+    out = apply_diversity_filter([bad, ok], cfg)
+    assert len(out) == 1
+    assert out[0]["ticket_id"] == "ok"
+
+
+def test_same_player_multistat_can_be_disabled():
+    cfg = {
+        "enabled": True,
+        "max_leg_exposure": 5,
+        "max_player_exposure": 5,
+        "max_player_prop_exposure": 1,
+        "block_same_player_multistat": False,
+        "max_jaccard_overlap": 1.0,
+        "void_risk_min_sample": 0,
+    }
+    bad = {
+        "ticket_id": "stack",
+        "n_legs": 2,
+        "base_ev": 2.0,
+        "legs": [
+            {"player": "Sabrina Ionescu", "prop_type": "Rebounds", "line": 8.0, "direction": "OVER", "edge": 0.7},
+            {"player": "Sabrina Ionescu", "prop_type": "Assists", "line": 5.5, "direction": "OVER", "edge": 0.7},
+        ],
+    }
+    out = apply_diversity_filter([bad], cfg)
+    assert len(out) == 1
+
+
 def test_same_prop_allowed_in_separate_sections():
     """Per-section filter: same player+prop OK once in each group."""
-    import importlib.util
-
-    spec = importlib.util.spec_from_file_location(
-        "cst",
-        ROOT / "scripts" / "combined_slate_tickets.py",
-    )
-    # Avoid loading full combined_slate_tickets (heavy). Simulate the wrapper locally.
     cfg = {
         "enabled": True,
         "max_leg_exposure": 5,

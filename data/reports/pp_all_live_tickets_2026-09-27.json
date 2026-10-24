@@ -1,0 +1,508 @@
+{
+  "tickets": [
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|1",
+      "group": "NFL Goblin-70 Power 3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "NFL",
+          "player": "J.K. Dobbins",
+          "search": "J.K. Dobbins",
+          "prop_type": "Rush Yards",
+          "prop": "Rush Yards",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 29.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "NFL",
+          "player": "Tre Tucker",
+          "search": "Tre Tucker",
+          "prop_type": "Rec Yards",
+          "prop": "Rec Yards",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 14.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "NFL",
+          "player": "Chase McLaughlin",
+          "search": "Chase McLaughlin",
+          "prop_type": "FG Made",
+          "prop": "FG Made",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "n_legs": 3
+    },
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|2",
+      "group": "NFL Goblin-70 Power 3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "NFL",
+          "player": "Juwan Johnson",
+          "search": "Juwan Johnson",
+          "prop_type": "Rec Yards",
+          "prop": "Rec Yards",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 14.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "NFL",
+          "player": "Parker Washington",
+          "search": "Parker Washington",
+          "prop_type": "Rec Yards",
+          "prop": "Rec Yards",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 39.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "NFL",
+          "player": "Greg Dulcich",
+          "search": "Greg Dulcich",
+          "prop_type": "Rec Yards",
+          "prop": "Rec Yards",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 9.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "n_legs": 3
+    },
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|3",
+      "group": "NFL Goblin-70 Power 3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "NFL",
+          "player": "Joey Slye",
+          "search": "Joey Slye",
+          "prop_type": "FG Made",
+          "prop": "FG Made",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "NFL",
+          "player": "Andy Borregales",
+          "search": "Andy Borregales",
+          "prop_type": "FG Made",
+          "prop": "FG Made",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "NFL",
+          "player": "Cairo Santos",
+          "search": "Cairo Santos",
+          "prop_type": "FG Made",
+          "prop": "FG Made",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "n_legs": 3
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|1",
+      "group": "X-Sport Goblin-70 Power 3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "Tennis",
+          "player": "James Duckworth",
+          "search": "James Duckworth",
+          "prop_type": "Total Games",
+          "prop": "Total Games",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 17.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Michael Soroka",
+          "search": "Michael Soroka",
+          "prop_type": "Earned Runs Allowed",
+          "prop": "Earned Runs Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Sean Manaea",
+          "search": "Sean Manaea",
+          "prop_type": "Earned Runs Allowed",
+          "prop": "Earned Runs Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "n_legs": 3
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|1",
+      "group": "MLB Goblin-70 Power 3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Yordan Alvarez",
+          "search": "Yordan Alvarez",
+          "prop_type": "Hits+Runs+RBIs",
+          "prop": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "MacKenzie Gore",
+          "search": "MacKenzie Gore",
+          "prop_type": "Walks Allowed",
+          "prop": "Walks Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Jackson Chourio",
+          "search": "Jackson Chourio",
+          "prop_type": "Hits+Runs+RBIs",
+          "prop": "Hits+Runs+RBIs",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "n_legs": 3
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|2",
+      "group": "MLB Goblin-70 Power 3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Andre Pallante",
+          "search": "Andre Pallante",
+          "prop_type": "Earned Runs Allowed",
+          "prop": "Earned Runs Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Shane Baz",
+          "search": "Shane Baz",
+          "prop_type": "Earned Runs Allowed",
+          "prop": "Earned Runs Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Shota Imanaga",
+          "search": "Shota Imanaga",
+          "prop_type": "Earned Runs Allowed",
+          "prop": "Earned Runs Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "n_legs": 3
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|3",
+      "group": "MLB Goblin-70 Power 3",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Daniel Lynch IV",
+          "search": "Daniel Lynch IV",
+          "prop_type": "Walks Allowed",
+          "prop": "Walks Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 0.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Anthony Kay",
+          "search": "Anthony Kay",
+          "prop_type": "Hits Allowed",
+          "prop": "Hits Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 1.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Max Scherzer",
+          "search": "Max Scherzer",
+          "prop_type": "Pitching Outs",
+          "prop": "Pitching Outs",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 8.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "n_legs": 3
+    },
+    {
+      "id": "2026-09-27|YOLO Standard Power 4|1",
+      "group": "YOLO Standard Power 4",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "Soccer",
+          "player": "Anton Stach",
+          "search": "Anton Stach",
+          "prop_type": "Shots On Target",
+          "prop": "Shots On Target",
+          "direction": "UNDER",
+          "side": "UNDER",
+          "line": 0.5,
+          "pick_type": "standard"
+        },
+        {
+          "sport": "Soccer",
+          "player": "Lionel Messi",
+          "search": "Lionel Messi",
+          "prop_type": "Shots On Target",
+          "prop": "Shots On Target",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 2.5,
+          "pick_type": "standard"
+        },
+        {
+          "sport": "Soccer",
+          "player": "Mikkel Damsgaard",
+          "search": "Mikkel Damsgaard",
+          "prop_type": "Shots On Target",
+          "prop": "Shots On Target",
+          "direction": "UNDER",
+          "side": "UNDER",
+          "line": 0.5,
+          "pick_type": "standard"
+        },
+        {
+          "sport": "Soccer",
+          "player": "Patrick Dorgu",
+          "search": "Patrick Dorgu",
+          "prop_type": "Shots On Target",
+          "prop": "Shots On Target",
+          "direction": "UNDER",
+          "side": "UNDER",
+          "line": 0.5,
+          "pick_type": "standard"
+        }
+      ],
+      "n_legs": 4
+    },
+    {
+      "id": "2026-09-27|STRONG 3-Leg|2",
+      "group": "STRONG 3-Leg",
+      "mode": "power",
+      "legs": [
+        {
+          "sport": "MLB",
+          "player": "Parker Messick",
+          "search": "Parker Messick",
+          "prop_type": "Pitching Outs",
+          "prop": "Pitching Outs",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 5.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Logan Gilbert",
+          "search": "Logan Gilbert",
+          "prop_type": "Hits Allowed",
+          "prop": "Hits Allowed",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 2.5,
+          "pick_type": "goblin"
+        },
+        {
+          "sport": "MLB",
+          "player": "Jacob Misiorowski",
+          "search": "Jacob Misiorowski",
+          "prop_type": "Pitching Outs",
+          "prop": "Pitching Outs",
+          "direction": "OVER",
+          "side": "OVER",
+          "line": 11.5,
+          "pick_type": "goblin"
+        }
+      ],
+      "n_legs": 3
+    }
+  ],
+  "results": [
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|1",
+      "ok": false,
+      "fails": [
+        "J.K. Dobbins"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|2",
+      "ok": false,
+      "fails": [
+        "Parker Washington"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|NFL Goblin-70 Power 3|3",
+      "ok": false,
+      "fails": [
+        "Joey Slye"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|X-Sport Goblin-70 Power 3|1",
+      "ok": false,
+      "fails": [
+        "James Duckworth"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|1",
+      "group": "MLB Goblin-70 Power 3",
+      "ok": false,
+      "n": 4,
+      "want_n": 3,
+      "px": 3.75,
+      "fails": [],
+      "legs": [
+        [
+          "MLB",
+          "Yordan Alvarez",
+          "Hits+Runs+RBIs",
+          "OVER",
+          0.5
+        ],
+        [
+          "MLB",
+          "MacKenzie Gore",
+          "Walks Allowed",
+          "OVER",
+          0.5
+        ],
+        [
+          "MLB",
+          "Jackson Chourio",
+          "Hits+Runs+RBIs",
+          "OVER",
+          0.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n4 Players Selected\nClear\nYordan Alvarez\n\nMLBHOU - DH\n\nSun, Sep 27 3:05 PM @ ATH\n0.5Singles\nMore\nLess\nYordan Alvarez\n\nMLBHOU - DH\n\nSun, Sep 27 3:05 PM @ ATH\n0.5Walks\nMore\nMacKenzie Gore\n\nMLBTEX - P\n\nSun, Sep 27 3:10 PM @ MIN\n0.5Walks Allowed\nMore\nJackson Chourio\n\nMLBMIL - OF\n\nSun, Sep 27 3:10 PM vs STL\n0.5Hits+Runs+RBIs\nMore\nFlex Play\n\nYou must hit 1st place, or 3 out of 4 in the lineup.\n\n1st place pays\n6X\nMinimum Guarantee\n4 correct pays\n3X\n3 correct pays\n0.5X\nPower Play\n\nYou must"
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|2",
+      "group": "MLB Goblin-70 Power 3",
+      "ok": false,
+      "n": 2,
+      "want_n": 3,
+      "px": 1.3,
+      "fails": [],
+      "legs": [
+        [
+          "MLB",
+          "Andre Pallante",
+          "Earned Runs Allowed",
+          "OVER",
+          0.5
+        ],
+        [
+          "MLB",
+          "Shane Baz",
+          "Earned Runs Allowed",
+          "OVER",
+          0.5
+        ],
+        [
+          "MLB",
+          "Shota Imanaga",
+          "Earned Runs Allowed",
+          "OVER",
+          0.5
+        ]
+      ],
+      "raw_head": "Current Lineup\n2 Players Selected\nClear\nAndre Pallante\n\nMLBSTL - P\n\nSun, Sep 27 3:10 PM @ MIL\n0.5Earned Runs Allowed\nMore\nShane Baz\n\nMLBBAL - P\n\nBAL @NYY\nLive\n0.5Earned Runs Allowed\nMore\nPower Play\n\nYou must hit 1st place, or 2 out of 2 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n2 correct pays\n1.3X\nIn the event of contest ties, contest payouts are shared. If you qualify for the 1st place prize and the Minimum Guarantee payout, you will receive whichever payout is higher.\nEntry Fee\n$\nTo "
+    },
+    {
+      "id": "2026-09-27|MLB Goblin-70 Power 3|3",
+      "ok": false,
+      "fails": [
+        "Anthony Kay"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|YOLO Standard Power 4|1",
+      "ok": false,
+      "fails": [
+        "Anton Stach"
+      ],
+      "n": 0
+    },
+    {
+      "id": "2026-09-27|STRONG 3-Leg|2",
+      "ok": false,
+      "fails": [
+        "Locator.click: Timeout 2500ms exceeded.\nCall log:\n  - waiting for locator(\"button\").filter(has_text=re.compile(r\"^(\\+\\s*)?More$\", re.IGNORECASE)).nth(1)\n    - locator resolved to <button id=\"test-more\" class=\"border-soFresh-130 heading-xs flex flex-1 place-content-center items-center gap-1.5 border-t p-2.5 hover:bg-soFresh-130 focus:bg-soFresh-130\">\u2026</button>\n  - attempting click action\n    - scrolling into view if needed\n    - done scrolling\n    - forcing action\n    - performing click action\n"
+      ],
+      "n": 0
+    }
+  ]
+}

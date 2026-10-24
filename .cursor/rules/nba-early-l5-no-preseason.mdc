@@ -1,0 +1,49 @@
+---
+description: NBA L5 card window = RS+playoffs (no preseason); pre_ bridge retires at 5 current-season RS games
+alwaysApply: true
+---
+
+# NBA L5 — card window vs preseason
+
+## Card window (what counts as L5)
+
+Take the **5 newest regular-season and playoff** games. **No preseason.**
+
+This is what PrizePicks shows on the player card, so it is the window to verify against the card. Playoff boxes (Apr 15–Jun) stay in the window — dropping them caused the Allen miss (card showed playoffs; RS-only hid them).
+
+`utils.nba_early_l5.l5_card_window` / step4 `card_window=True`.
+
+**Never pad the card window with preseason.** The one-time ESPN preseason DB backfill (`scripts/backfill_nba_preseason_espn_2026.py`) was ingest-only so the `pre_` column had boxes to read — it is not an L5 fill and must not re-enter nightly paths.
+
+## Preseason bridge (early season only)
+
+While a player has **fewer than 5 current-season regular-season** boxes (`current_season_rs_n` / `PRE_BRIDGE_MIN_RS`), pull preseason separately and flag rank. After that, **retire** the bucket: `pre_retired` — do not show it in lists or side-by-side prints.
+
+Typical calendar: each team hits 5 RS games ~Oct 27–30 after a mid-October opener. Until then most players still need the bridge because the card’s last five is mostly May playoffs.
+
+| Flag | Meaning |
+|---|---|
+| `pre_confirms` | Preseason games also clear the line (bridge active) |
+| `pre_conflicts` | Preseason games miss the line (bridge active) |
+| `pre_thin` | Fewer than 2 preseason games — no judgment (bridge active) |
+| `pre_retired` | ≥5 current-season RS games — ignore / hide pre_ |
+
+## Flags, not drops
+
+While the bridge is active, preseason flags change a leg’s **rank**, not whether it is listed. Same shape as the n<100 observe-only rule (`roster_changed`, minutes role, etc.).
+
+## Output
+
+When printing NBA L5 legs with the bridge active, show **card window** and **preseason** side by side: dates, values, and `window_mix` (e.g. `RRPPP` / `OOOOO` / `ROROR` — R=regular, O=playoff, P=preseason only appears in the preseason column). When `pre_retired`, print the card window only.
+
+## Dropped
+
+Do **not** use a regular-season-only L5 gate. Do **not** dual-gate blend+RS. Do **not** pad L5 with preseason. Do **not** keep showing `pre_` after five current-season RS games.
+
+## Freshness (unchanged)
+
+Nightly box ingest (`build_boxscore_ref` via grader) and `assert_nba_box_fresh` stay on — the DB must not go stale again. Keep the grader failure alert so silent nightly deaths surface.
+
+## Team identity (unchanged)
+
+Use the PrizePicks / step8 board team (`utils.nba_board_team`). Players with `team_changed` stay tagged and excluded from L5=5 power plays until 5 games on the new club.

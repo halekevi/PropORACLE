@@ -132,7 +132,7 @@ def _hit_column(df: pd.DataFrame) -> pd.Series | None:
 
 def _norm_sport_folder(name: str) -> str | None:
     m = str(name or "").strip().upper()
-    if m in ("NBA", "CBB", "NHL", "SOCCER", "MLB"):
+    if m in ("NBA", "CBB", "NHL", "SOCCER", "MLB", "WNBA", "TENNIS", "NFL", "CFB", "GOLF", "WCBB"):
         return "SOCCER" if m == "SOCCER" else m
     return None
 
@@ -146,7 +146,21 @@ def _infer_sport_from_graded_filename(path: Path) -> str | None:
         return "MLB"
     if "graded_soccer" in n:
         return "SOCCER"
-    if "graded_wcbb" in n or "graded_cbb" in n:
+    if "graded_wnba" in n:
+        return "WNBA"
+    if "graded_tennis" in n:
+        return "TENNIS"
+    if "graded_nflp" in n or "graded_nfl" in n:
+        return "NFL"
+    if "graded_cfb1h" in n:
+        return "CFB"
+    if "graded_cfb" in n:
+        return "CFB"
+    if "graded_golf" in n:
+        return "GOLF"
+    if "graded_wcbb" in n:
+        return "CBB"
+    if "graded_cbb" in n:
         return "CBB"
     if "graded_nba1h" in n:
         return "NBA1H"
@@ -182,7 +196,7 @@ def _discover_graded_files(
         seen.add(r)
         out.append((sp_key, p))
 
-    sports = ("NBA", "CBB", "NHL", "Soccer", "MLB")
+    sports = ("NBA", "CBB", "NHL", "Soccer", "MLB", "WNBA", "Tennis", "NFL", "CFB", "Golf")
     for sp in sports:
         sp_key = "SOCCER" if sp.lower() == "soccer" else sp.upper()
         dirs = [
@@ -388,17 +402,50 @@ def load_all_graded(
 
 def _normalize_sport_series(s: pd.Series) -> pd.Series:
     m = s.astype(str).str.strip().str.upper()
-    return m.replace({"SOC": "SOCCER", "FOOTBALL": "SOCCER"})
+    return m.replace(
+        {
+            "SOC": "SOCCER",
+            "FOOTBALL": "SOCCER",
+            "WCBB": "CBB",
+            "NFLP": "NFL",
+            "CFB1H": "CFB",
+            "CFB1": "CFB",
+        }
+    )
 
 
-_ALLOWED_TRAINING_SPORTS = frozenset({"NBA", "CBB", "NHL", "SOCCER", "MLB", "NBA1H", "NBA1Q"})
+_ALLOWED_TRAINING_SPORTS = frozenset(
+    {
+        "NBA",
+        "CBB",
+        "NHL",
+        "SOCCER",
+        "MLB",
+        "NBA1H",
+        "NBA1Q",
+        "WNBA",
+        "TENNIS",
+        "NFL",
+        "CFB",
+        "GOLF",
+    }
+)
 
 
 def _sanitize_sport_with_hint(s: pd.Series, hint: str) -> pd.Series:
     """Replace junk numeric sport codes (e.g. Excel 13.0) with filename/path hint."""
     hint_u = str(hint or "NBA").strip().upper()
     out = s.astype(str).str.strip().str.upper()
-    out = out.replace({"SOC": "SOCCER", "FOOTBALL": "SOCCER"})
+    out = out.replace(
+        {
+            "SOC": "SOCCER",
+            "FOOTBALL": "SOCCER",
+            "WCBB": "CBB",
+            "NFLP": "NFL",
+            "CFB1H": "CFB",
+            "CFB1": "CFB",
+        }
+    )
     num_junk = out.str.fullmatch(r"\d+\.?\d*", na=False)
     bad = num_junk | out.isin(["", "NAN", "NONE", "NULL"]) | ~out.isin(_ALLOWED_TRAINING_SPORTS)
     out = out.where(~bad, hint_u)
@@ -466,7 +513,14 @@ def _adapt_retrain_csv_for_feature_pipeline(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def _load_retrain_csv_as_raw(path: Path, sport_filter: str | None, *, source_label: str) -> pd.DataFrame:
+def _load_retrain_csv_as_raw(
+    path: Path,
+    sport_filter: str | None,
+    *,
+    source_label: str,
+    pick_type_filter: str | None = None,
+    direction_filter: str | None = None,
+) -> pd.DataFrame:
     path = Path(path).expanduser().resolve()
     if not path.is_file():
         print(f"[ERROR] --input-csv not found: {path}")
@@ -483,6 +537,34 @@ def _load_retrain_csv_as_raw(path: Path, sport_filter: str | None, *, source_lab
         if not bool(mask.any()):
             print(f"[WARN] No rows with sport=={sf!r} after normalization (loaded {n_loaded:,} rows).")
         df = df.loc[mask].copy()
+    if pick_type_filter:
+        want = str(pick_type_filter).strip().lower()
+        pt = df.get("pick_type", pd.Series("", index=df.index)).astype(str).str.strip().str.lower()
+        aliases = {
+            "goblin": {"goblin"},
+            "demon": {"demon"},
+            "standard": {"standard", "std", "", "nan", "none", "n/a", "—", "–"},
+        }
+        mask_pt = pt.isin(aliases.get(want, {want}))
+        print(f"[filter] pick_type={want!r}: kept {int(mask_pt.sum()):,}/{len(df):,}")
+        df = df.loc[mask_pt].copy()
+        if df.empty:
+            print(f"[ERROR] No rows left after pick_type filter {want!r}.")
+            return df
+    if direction_filter:
+        want_d = str(direction_filter).strip().upper()
+        if want_d in ("O", "OVER"):
+            want_d = "OVER"
+        elif want_d in ("U", "UNDER"):
+            want_d = "UNDER"
+        dcol = df["direction"] if "direction" in df.columns else df.get("bet_direction")
+        d = dcol.astype(str).str.strip().str.upper() if dcol is not None else pd.Series("", index=df.index)
+        mask_d = d.eq(want_d)
+        print(f"[filter] direction={want_d!r}: kept {int(mask_d.sum()):,}/{len(df):,}")
+        df = df.loc[mask_d].copy()
+        if df.empty:
+            print(f"[ERROR] No rows left after direction filter {want_d!r}.")
+            return df
     if "result_binary" not in df.columns:
         print("[ERROR] --input-csv must include a result_binary column.")
         return pd.DataFrame()
@@ -560,8 +642,8 @@ DEFAULT_SLICE_ISOTONIC_MIN_N = 200
 # WNBA uses the same per-sport isotonic path when graded rows >= min_n (default 200).
 WNBA_SLICE_ISOTONIC_MIN_N = 200
 ISO_CALIB_TRAIN_FRAC = 0.15
-# Deactivated in prod: rows may remain in unified training history; do not allocate isotonic calibrators.
-INACTIVE_SPORTS = frozenset({"CBB"})
+# All pipeline sports may fit isotonic calibrators when graded rows >= min_n.
+INACTIVE_SPORTS: frozenset[str] = frozenset()
 
 
 def _hit_class_balance(y: pd.Series) -> tuple[int, int, float]:
@@ -831,10 +913,21 @@ def _stratify_series_for_split(sub: pd.DataFrame) -> pd.Series | None:
 
 
 def _stratify_series_main_split(df: pd.DataFrame) -> pd.Series:
-    strat = df["sport"].astype(str) + "_" + df["direction_encoded"].astype(int).astype(str)
+    pt = df.get("pick_type", pd.Series("", index=df.index)).astype(str).str.strip().str.lower()
+    pt = pt.replace({"nan": "standard", "none": "standard", "—": "standard", "–": "standard", "": "standard"})
+    strat = (
+        df["sport"].astype(str)
+        + "_"
+        + pt.fillna("standard")
+        + "_"
+        + df["direction_encoded"].astype(int).astype(str)
+    )
     vc = strat.value_counts()
     if strat.nunique() < 2 or int(vc.min()) < 2:
-        return df["sport"].astype(str)
+        strat = df["sport"].astype(str) + "_" + df["direction_encoded"].astype(int).astype(str)
+        vc = strat.value_counts()
+        if strat.nunique() < 2 or int(vc.min()) < 2:
+            return df["sport"].astype(str)
     return strat
 
 
@@ -1140,19 +1233,21 @@ def _fit_slice_isotonic_calibrators(
     models_dir: Path,
     *,
     isotonic_min_n: int = DEFAULT_SLICE_ISOTONIC_MIN_N,
+    calibrators_path: Path | None = None,
 ) -> tuple[list[str], list[str]]:
     """
     Fit per-(sport, pick_type, direction) isotonic regressors on Platt probabilities
     using ``ISO_CALIB_TRAIN_FRAC`` of **train-fit** rows (never the Platt calib slice or test set).
     Sports in ``INACTIVE_SPORTS`` are skipped (no calibrator keys at inference).
     """
+    out_path = Path(calibrators_path) if calibrators_path is not None else (models_dir / "edge_slice_calibrators.pkl")
     fitted_keys: list[str] = []
     skipped: list[str] = []
     if len(tr) < 80:
         skipped.append("insufficient_train_rows_for_iso_split")
         joblib.dump(
             {"calibrators": {}, "min_n": isotonic_min_n, "fitted_keys": [], "skipped": skipped, "version": 1},
-            models_dir / "edge_slice_calibrators.pkl",
+            out_path,
             compress=3,
         )
         return fitted_keys, skipped
@@ -1173,7 +1268,7 @@ def _fit_slice_isotonic_calibrators(
         skipped.append("iso_split_too_small")
         joblib.dump(
             {"calibrators": {}, "min_n": isotonic_min_n, "fitted_keys": [], "skipped": skipped, "version": 1},
-            models_dir / "edge_slice_calibrators.pkl",
+            out_path,
             compress=3,
         )
         return fitted_keys, skipped
@@ -1222,7 +1317,7 @@ def _fit_slice_isotonic_calibrators(
         "skipped": skipped,
         "version": 1,
     }
-    joblib.dump(payload, models_dir / "edge_slice_calibrators.pkl", compress=3)
+    joblib.dump(payload, out_path, compress=3)
     print(
         f"\n[Slice isotonic] fitted={len(fitted_keys)} slices "
         f"(train calib frac={ISO_CALIB_TRAIN_FRAC}, min_n={isotonic_min_n}); skipped={len(skipped)}"
@@ -1240,6 +1335,8 @@ def _train_unified_edge_model(
     exclude_player_level_features: bool,
     input_csv: Path | None = None,
     sport_filter: str | None = None,
+    pick_type_filter: str | None = None,
+    direction_filter: str | None = None,
     dry_run: bool = False,
     temporal_date_column: str | None = None,
     isotonic_min_n: int = DEFAULT_SLICE_ISOTONIC_MIN_N,
@@ -1259,13 +1356,19 @@ def _train_unified_edge_model(
     if ablate_features:
         print(f"  [config] ablate_features={list(ablate_features)} (diagnostic — no .pkl write)")
     if input_csv is not None:
-        print(f"  [config] input_csv={input_csv} sport_filter={sport_filter!r} dry_run={dry_run}")
+        print(f"  [config] input_csv={input_csv} sport_filter={sport_filter!r} pick_type={pick_type_filter!r} direction={direction_filter!r} dry_run={dry_run}")
     if output_model is not None:
         print(f"  [config] output_model={output_model} (skips edge_model_unified.pkl overwrite)")
     n_combined_files_omitted = 0
     if input_csv is not None:
         csv_path = Path(input_csv).expanduser().resolve()
-        raw = _load_retrain_csv_as_raw(csv_path, sport_filter, source_label=str(csv_path))
+        raw = _load_retrain_csv_as_raw(
+            csv_path,
+            sport_filter,
+            source_label=str(csv_path),
+            pick_type_filter=pick_type_filter,
+            direction_filter=direction_filter,
+        )
         if dedupe and not raw.empty:
             raw, removed = _dedupe_graded_rows(raw)
             if removed:
@@ -1486,6 +1589,18 @@ def _train_unified_edge_model(
         else:
             print("\n[Training] Excluded player-level feature: player_hr_historical")
 
+    if pick_type_filter:
+        before_pt = list(features_active)
+        features_active = [f for f in features_active if f != "pick_type_encoded"]
+        if len(features_active) < 8:
+            print("[WARN] Dropping pick_type_encoded would leave too few features; keeping it.")
+            features_active = before_pt
+        else:
+            print(
+                f"\n[Training] Dropped pick_type_encoded (book is {pick_type_filter!r} only; "
+                "constant feature would not rank inside the book)."
+            )
+
     if WNBA_FEATURE_COLUMNS and (tr_fit["sport"].astype(str).str.upper() == "WNBA").any():
         features_active, wnba_dropped = drop_wnba_features_below_fill_threshold(features_active, tr_fit)
         if wnba_dropped:
@@ -1539,11 +1654,29 @@ def _train_unified_edge_model(
     platt_lr.fit(p_cal, y_cal)
     calibrated = EdgeCalibratedModel(model, platt_lr)
 
+    model_out = output_model if output_model is not None else (models_dir / "edge_model_unified.pkl")
+    model_out = Path(model_out)
+    is_prod_artifact = output_model is None or model_out.name == "edge_model_unified.pkl"
+    if is_prod_artifact:
+        feat_path = models_dir / "edge_model_features.json"
+        meta_path = models_dir / "edge_model_metadata.json"
+        cal_path = models_dir / "edge_slice_calibrators.pkl"
+    else:
+        feat_path = model_out.with_name(model_out.stem + "_features.json")
+        meta_path = model_out.with_name(model_out.stem + "_metadata.json")
+        cal_path = model_out.with_name(model_out.stem + "_slice_calibrators.pkl")
+
     if ablate_features:
         iso_fitted, iso_skipped = [], ["ablation_run"]
     else:
         iso_fitted, iso_skipped = _fit_slice_isotonic_calibrators(
-            tr_fit, y_train, features_active, calibrated, models_dir, isotonic_min_n=isotonic_min_n
+            tr_fit,
+            y_train,
+            features_active,
+            calibrated,
+            models_dir,
+            isotonic_min_n=isotonic_min_n,
+            calibrators_path=cal_path,
         )
 
     prob_test = calibrated.predict_proba(X_test)[:, 1]
@@ -1586,6 +1719,38 @@ def _train_unified_edge_model(
             print(f"  {sp}: n/a")
             meta_auc[str(sp)] = None
             sport_status[str(sp)] = "auc error"
+
+    print("\nROC-AUC by pick_type (test):")
+    pt_te = te.get("pick_type", pd.Series("", index=te.index)).astype(str).str.strip().str.lower()
+    goblin_corr = None
+    goblin_n = 0
+    goblin_mean_p = None
+    goblin_hr = None
+    pick_auc: dict[str, float | None] = {}
+    for pt in ("goblin", "standard", "demon"):
+        m = pt_te.to_numpy() == pt
+        n_pt = int(np.sum(m))
+        if n_pt < 30:
+            print(f"  {pt}: n={n_pt} (skip)")
+            pick_auc[pt] = None
+            continue
+        y_sub = y_test.values[m]
+        if len(np.unique(y_sub)) < 2:
+            print(f"  {pt}: n={n_pt} single-class")
+            pick_auc[pt] = None
+            continue
+        a = float(roc_auc_score(y_sub, prob_test[m]))
+        pick_auc[pt] = a
+        mean_p = float(np.mean(prob_test[m]))
+        hr = float(np.mean(y_sub))
+        print(f"  {pt}: n={n_pt} AUC={a:.4f} mean_p={mean_p:.3f} HR={hr:.3f} gap={mean_p-hr:+.3f}")
+        if pt == "goblin":
+            goblin_n = n_pt
+            goblin_mean_p = mean_p
+            goblin_hr = hr
+            if np.std(prob_test[m]) > 1e-9:
+                goblin_corr = float(np.corrcoef(prob_test[m], y_sub)[0, 1])
+            print(f"  goblin corr(p, hit)={goblin_corr if goblin_corr is not None else float('nan'):.3f} (target >0.15)")
 
     for sp in ("NHL", "SOCCER"):
         a = meta_auc.get(sp)
@@ -1638,11 +1803,8 @@ def _train_unified_edge_model(
         )
         return
 
-    model_out = output_model if output_model is not None else (models_dir / "edge_model_unified.pkl")
     joblib.dump(calibrated, model_out, compress=3)
-    (models_dir / "edge_model_features.json").write_text(
-        json.dumps(features_active, indent=2), encoding="utf-8"
-    )
+    feat_path.write_text(json.dumps(features_active, indent=2), encoding="utf-8")
     rows_per_sport = {str(k): int(v) for k, v in df.groupby("sport").size().items()}
     meta = {
         "trained_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -1653,6 +1815,11 @@ def _train_unified_edge_model(
         "roc_auc_test": auc_overall,
         "roc_auc_calibrated": auc_overall,
         "roc_auc_eval_set": "test",
+        "roc_auc_by_pick_type": pick_auc,
+        "goblin_test_n": goblin_n,
+        "goblin_test_corr": goblin_corr,
+        "goblin_test_mean_p": goblin_mean_p,
+        "goblin_test_hr": goblin_hr,
         "train_fit_rows": int(len(tr_fit)),
         "platt_calib_rows": int(len(cal)),
         "test_rows": int(len(te)),
@@ -1673,21 +1840,25 @@ def _train_unified_edge_model(
         "temporal_split_used": temporal_split,
         "temporal_date_column": temporal_date_column if temporal_split else None,
         "exclude_player_level_features_used": exclude_player_level_features,
+        "pick_type_filter": pick_type_filter,
+        "direction_filter": direction_filter,
+        "dropped_pick_type_encoded": bool(pick_type_filter) and "pick_type_encoded" not in features_active,
         "combined_graded_file_paths_omitted": int(n_combined_files_omitted),
-        "edge_slice_calibrators_file": "edge_slice_calibrators.pkl",
+        "edge_slice_calibrators_file": cal_path.name,
         "edge_slice_isotonic_min_n": isotonic_min_n,
         "edge_slice_isotonic_train_frac": ISO_CALIB_TRAIN_FRAC,
         "edge_slice_isotonic_inactive_sports": sorted(INACTIVE_SPORTS),
         "edge_slice_isotonic_fitted_count": len(iso_fitted),
         "edge_slice_isotonic_fitted_keys": iso_fitted[:250],
         "edge_slice_isotonic_skipped": iso_skipped[:400],
+        "promotion_gate_auc": 0.7567,
+        "candidate_isolated": not is_prod_artifact,
     }
     if output_model is not None:
         meta["output_model_path"] = str(output_model)
         meta["tennis_excluded"] = "TENNIS" not in {str(k).upper() for k in rows_per_sport}
-    (models_dir / "edge_model_metadata.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
-    saved_pkl = model_out.name if output_model is not None else "edge_model_unified.pkl"
-    print(f"\nSaved: {saved_pkl}, edge_model_features.json, edge_model_metadata.json -> {models_dir if output_model is None else model_out.parent}")
+    meta_path.write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    print(f"\nSaved: {model_out.name}, {feat_path.name}, {meta_path.name}, {cal_path.name} -> {model_out.parent}")
 
     print("\n=== Summary: Sport | Rows | Test Size | ROC-AUC | Status ===")
     print(f"{'Sport':<8} | {'Rows':>6} | {'Test':>6} | {'ROC-AUC':>10} | {'Status':<22}")
@@ -1784,6 +1955,23 @@ def main() -> None:
         help="When using --input-csv, keep only this sport (e.g. NBA). Omit for all sports in the file.",
     )
     ap.add_argument(
+        "--pick-type",
+        type=str,
+        default=None,
+        dest="pick_type",
+        help=(
+            "When using --input-csv, keep only this book (goblin, standard, demon). "
+            "Also drops pick_type_encoded from the tree so it cannot leak book difficulty."
+        ),
+    )
+    ap.add_argument(
+        "--direction",
+        type=str,
+        default=None,
+        dest="direction",
+        help="When using --input-csv, keep only OVER or UNDER.",
+    )
+    ap.add_argument(
         "--dry-run",
         action="store_true",
         help="With --input-csv only: print row counts, class balance, and feature completeness; do not train or write models.",
@@ -1808,8 +1996,9 @@ def main() -> None:
         type=Path,
         default=None,
         help=(
-            "Write calibrated .pkl here instead of models/edge_model_unified.pkl "
-            "(metadata/features/calibrators still update under models/)."
+            "Write calibrated .pkl here instead of models/edge_model_unified.pkl. "
+            "Sidecars go next to it as {stem}_features.json, {stem}_metadata.json, "
+            "and {stem}_slice_calibrators.pkl so a candidate run cannot overwrite production."
         ),
     )
     args = ap.parse_args()
@@ -1835,6 +2024,10 @@ def main() -> None:
             raise SystemExit(1)
     if args.sport and input_csv_resolved is None:
         print("[WARN] --sport is ignored without --input-csv (graded file discovery unchanged).")
+    if args.pick_type and input_csv_resolved is None:
+        print("[WARN] --pick-type is ignored without --input-csv.")
+    if args.direction and input_csv_resolved is None:
+        print("[WARN] --direction is ignored without --input-csv.")
 
     if args.stress_test_nhl_soccer:
         if input_csv_resolved is not None:
@@ -1889,6 +2082,8 @@ def main() -> None:
         exclude_player_level_features=args.exclude_player_level_features,
         input_csv=input_csv_resolved,
         sport_filter=args.sport,
+        pick_type_filter=str(args.pick_type).strip() if args.pick_type else None,
+        direction_filter=str(args.direction).strip() if args.direction else None,
         dry_run=args.dry_run,
         temporal_date_column=str(args.temporal_date_column).strip() if args.temporal_date_column else None,
         isotonic_min_n=int(args.isotonic_min_n),

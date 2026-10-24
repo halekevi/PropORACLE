@@ -1,0 +1,128 @@
+{
+  "counts": {
+    "dnp": 25152,
+    "minutes_unknown": 521843,
+    "played": 77320,
+    "files": 226
+  },
+  "corrections": 24217,
+  "cells": {
+    "tennis_gw_goblin": {
+      "as_is": {
+        "hits": 3676,
+        "n": 5158,
+        "hr": 0.7127,
+        "wilson_low": 0.7002
+      },
+      "ex_zero_minute": {
+        "hits": 3676,
+        "n": 5158,
+        "hr": 0.7127,
+        "wilson_low": 0.7002
+      },
+      "ex_zero_minute_and_unknown": {
+        "hits": 3676,
+        "n": 5158,
+        "hr": 0.7127,
+        "wilson_low": 0.7002
+      },
+      "shift": 0.0,
+      "crosses_break_even_0.769": false,
+      "reprice": false
+    },
+    "tennis_gw_discount": {
+      "as_is": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null
+      },
+      "ex_zero_minute": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null
+      },
+      "ex_zero_minute_and_unknown": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null
+      },
+      "shift": null,
+      "crosses_break_even_0.769": false,
+      "reprice": false
+    },
+    "tennis_tg_l5ge4_l10ge8": {
+      "as_is": {
+        "hits": 44,
+        "n": 58,
+        "hr": 0.7586,
+        "wilson_low": 0.6347
+      },
+      "ex_zero_minute": {
+        "hits": 44,
+        "n": 58,
+        "hr": 0.7586,
+        "wilson_low": 0.6347
+      },
+      "ex_zero_minute_and_unknown": {
+        "hits": 44,
+        "n": 58,
+        "hr": 0.7586,
+        "wilson_low": 0.6347
+      },
+      "shift": 0.0,
+      "crosses_break_even_0.769": false,
+      "reprice": false
+    },
+    "soccer_shots_l5eq5_l10ge8": {
+      "as_is": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null
+      },
+      "ex_zero_minute": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null
+      },
+      "ex_zero_minute_and_unknown": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null
+      },
+      "shift": null,
+      "crosses_break_even_0.769": false,
+      "reprice": false
+    },
+    "soccer_sot_l5ge4": {
+      "as_is": {
+        "hits": 18,
+        "n": 22,
+        "hr": 0.8182,
+        "wilson_low": 0.6148
+      },
+      "ex_zero_minute": {
+        "hits": 18,
+        "n": 22,
+        "hr": 0.8182,
+        "wilson_low": 0.6148
+      },
+      "ex_zero_minute_and_unknown": {
+        "hits": 17,
+        "n": 18,
+        "hr": 0.9444,
+        "wilson_low": 0.7424
+      },
+      "shift": 0.1262,
+      "crosses_break_even_0.769": false,
+      "reprice": false
+    }
+  },
+  "repriced": [],
+  "break_even_3leg_2_2x": 0.7689
+}

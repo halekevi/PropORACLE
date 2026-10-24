@@ -1,4 +1,4 @@
-﻿path = r'H:\halek\ProfileFromC\Desktop\PropORACLE\ui_runner\templates\index.html'
+﻿path = r'H:\PropORACLE\ui_runner\templates\index.html'
 with open(path, encoding='utf-8') as f:
     content = f.read()
 

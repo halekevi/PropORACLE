@@ -1,0 +1,452 @@
+bucket,day,player_raw,prop,kind,line,actual,opp,team,league,start
+ambiguous_30min,2026-09-01,Lorent Tolaj,shots,Goblin,1.5,4.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Bradley Collins,saves,Goblin,1.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Sam Tickle,saves,Standard,3.0,3.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Lorent Tolaj,sog,Goblin,0.5,2.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Jason Knight,shots,Goblin,0.5,1.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Elijah Adebayo,sog,Goblin,0.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Elijah Adebayo,shots,Goblin,1.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Sam Greenwood,sog,Goblin,0.5,2.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Jed Wallace,shots,Goblin,0.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Scott Twine,sog,Goblin,0.5,1.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Sam Greenwood,shots,Goblin,1.5,2.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Scott Twine,shots,Goblin,1.5,1.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Tomi Horvat,shots,Goblin,1.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Sam Bell,shots,Goblin,1.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Yu Hirakawa,shots,Goblin,0.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Adam Randell,shots,Goblin,0.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Joe Williams,shots,Goblin,0.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Rio Cardines,shots,Goblin,0.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Gibson Yah,shots,Goblin,0.5,1.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+ambiguous_30min,2026-09-01,Noah Eile,shots,Goblin,0.5,0.0,PRESTON NORTH END,BRISTOL C,eng.2,2026-09-01T14:45:00.000-04:00
+player_not_in_box,2026-09-05,Raúl Rangel,saves,Goblin,1.5,4.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Roberto Alvarado,sog,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Daniel Aguirre,shots,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Ricardo Marín,shots,Goblin,2.5,2.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Efraín Álvarez,shots,Goblin,1.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Efraín Álvarez,sog,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Ricardo Marín,sog,Goblin,0.5,2.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Santiago Sandoval,sog,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Brian Gutiérrez,sog,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Ángel Sepúlveda,shots,Goblin,2.5,1.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Santiago Sandoval,shots,Goblin,2.5,2.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Jonathan Pérez,shots,Goblin,1.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Kevin Castañeda,shots,Goblin,1.5,1.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Roberto Alvarado,shots,Goblin,1.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Brian Gutiérrez,shots,Goblin,1.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Hugo Camberos,shots,Goblin,1.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Jesús Hernández,shots,Goblin,1.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Richard Ledezma,shots,Goblin,1.5,1.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Jonathan Pérez,sog,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Kevin Castañeda,sog,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Luis Romo,shots,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Luis Gabriel Rey,shots,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Omar Govea,shots,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Ángel Sepúlveda,sog,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Jesús Hernández,sog,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+player_not_in_box,2026-09-05,Ángel Chávez,shots,Goblin,0.5,0.0,ATLÉTICO DE SAN LUIS,CHIVAS,mex.1,2026-09-05T19:00:00.000-04:00
+ambiguous_30min,2026-09-05,Luis Suárez,shots,Standard,3.0,1.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Germán Berterame,shots,Standard,2.5,1.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Lionel Messi,shots,Standard,5.0,6.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Luis Suárez,sog,Standard,1.5,1.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Dayne St. Clair,saves,Goblin,1.5,4.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Casemiro,shots,Goblin,0.5,1.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+player_not_in_box,2026-09-05,Stephen Afrifa,shots,Goblin,0.5,3.0,FC DALLAS,SPORTING KC,usa.1,2026-09-05T20:30:00.000-04:00
+player_not_in_box,2026-09-05,Shapi Suleymanov,shots,Goblin,0.5,2.0,FC DALLAS,SPORTING KC,usa.1,2026-09-05T20:30:00.000-04:00
+player_not_in_box,2026-09-05,Taylor Calheira,shots,Goblin,0.5,6.0,FC DALLAS,SPORTING KC,usa.1,2026-09-05T20:30:00.000-04:00
+ambiguous_30min,2026-09-05,Preston Plambeck,sog,Goblin,0.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Mateo Silvetti,sog,Goblin,0.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Preston Plambeck,shots,Goblin,1.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Germán Berterame,sog,Goblin,0.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+player_not_in_box,2026-09-05,Kwaku Agyabeng,shots,Goblin,0.5,1.0,FC DALLAS,SPORTING KC,usa.1,2026-09-05T20:30:00.000-04:00
+ambiguous_30min,2026-09-05,Lionel Messi,sog,Goblin,1.5,1.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Dániel Pintér,sog,Goblin,0.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Denis Bouanga,shots,Standard,3.5,2.0,REAL SALT LAKE,LAFC,usa.1,2026-09-05T21:30:00.000-04:00
+ambiguous_30min,2026-09-05,Denis Bouanga,sog,Standard,1.5,1.0,REAL SALT LAKE,LAFC,usa.1,2026-09-05T21:30:00.000-04:00
+ambiguous_30min,2026-09-05,Dániel Pintér,shots,Goblin,2.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Telasco Segovia,shots,Goblin,1.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Rocco Ríos Novo,saves,Goblin,1.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Ian Fray,shots,Goblin,0.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Yannick Bright,shots,Goblin,0.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Rodrigo De Paul,shots,Goblin,0.5,1.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,David Ayala,shots,Goblin,0.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Facundo Mura,shots,Goblin,0.5,0.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+ambiguous_30min,2026-09-05,Alexander Shaw,shots,Goblin,0.5,1.0,ATLANTA UNITED,INTER MIAMI,usa.1,2026-09-05T19:30:00.000-04:00
+player_not_in_box,2026-09-05,Stefan Cleveland,saves,Goblin,3.5,5.0,FC DALLAS,SPORTING KC,usa.1,2026-09-05T20:30:00.000-04:00
+player_not_in_box,2026-09-05,John Pulskamp,saves,Goblin,3.5,0.0,FC DALLAS,SPORTING KC,usa.1,2026-09-05T20:30:00.000-04:00
+player_not_in_box,2026-09-05,Lasse Berg Johnsen,shots,Goblin,0.5,0.0,FC DALLAS,SPORTING KC,usa.1,2026-09-05T20:30:00.000-04:00
+player_not_in_box,2026-09-05,Rubén Ramos,shots,Goblin,0.5,0.0,FC DALLAS,SPORTING KC,usa.1,2026-09-05T20:30:00.000-04:00
+ambiguous_30min,2026-09-05,Hugo Lloris,saves,Standard,3.0,7.0,REAL SALT LAKE,LAFC,usa.1,2026-09-05T21:30:00.000-04:00
+ambiguous_30min,2026-09-06,Roger Brugué,shots,Goblin,1.5,1.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Mathew Ryan,saves,Goblin,1.5,3.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Jon Ander Olasagasti,shots,Goblin,0.5,1.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Iván Romero,shots,Standard,2.0,2.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Iván Romero,sog,Goblin,0.5,1.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Hugo Sotelo,shots,Goblin,0.5,0.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Enzo Bardeli,shots,Goblin,0.5,1.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Paco Cortés,shots,Goblin,0.5,0.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Petar Ratkov,shots,Goblin,1.5,0.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Adrián de la Fuente,shots,Goblin,0.5,1.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Dani Requena,shots,Goblin,0.5,0.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Petar Ratkov,sog,Goblin,0.5,0.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+ambiguous_30min,2026-09-06,Víctor García,shots,Goblin,0.5,0.0,MÁLAGA,LEVANTE,esp.1,2026-09-06T12:30:00.000-04:00
+player_not_in_box,2026-09-09,Lucas Hoyos,saves,Standard,3.0,4.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Breel Embolo,shots,Goblin,1.5,3.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Antoine Griezmann,shots,Goblin,1.5,3.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Antoine Griezmann,sog,Goblin,0.5,3.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Breel Embolo,sog,Goblin,0.5,1.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Martín Ojeda,sog,Goblin,0.5,2.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Kelvin Yeboah,sog,Goblin,0.5,1.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+ambiguous_30min,2026-09-09,Roman Bürki,saves,Goblin,1.5,1.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Damion Downs,sog,Goblin,0.5,1.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Maxime Crépeau,saves,Standard,3.5,1.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Justin Ellis,shots,Goblin,1.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Miguel Almirón,shots,Goblin,1.5,1.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Miguel Almirón,sog,Goblin,0.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Tristan Muyumba,shots,Goblin,0.5,1.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Jonathan Sirois,saves,Goblin,2.5,1.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Marcus Caldeira,shots,Goblin,1.5,3.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Marcus Caldeira,sog,Goblin,0.5,1.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Joaquín Valiente,shots,Goblin,0.5,0.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Herman Johansson,shots,Goblin,0.5,0.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+ambiguous_30min,2026-09-09,Adri Mehmeti,shots,Goblin,0.5,0.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Mathieu Choinière,shots,Goblin,0.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Simon Becher,sog,Goblin,0.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Dante Polvara,shots,Goblin,0.5,1.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Drake Callender,saves,Standard,2.5,3.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Maurice Malone,shots,Goblin,1.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Tommy Mihalic,shots,Goblin,1.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Maurice Malone,sog,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Tommy Mihalic,sog,Goblin,0.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Alexandru Matan,sog,Goblin,0.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Carlo Holse,sog,Goblin,0.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Kelvin Yeboah,shots,Standard,2.5,2.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Mauricio Amaro,shots,Goblin,0.5,1.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Clay Holstad,shots,Goblin,0.5,0.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+ambiguous_30min,2026-09-09,Carlo Holse,shots,Goblin,1.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Alexandru Matan,shots,Goblin,1.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Joaquín Pereyra,sog,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+ambiguous_30min,2026-09-09,Julian Hall,shots,Standard,2.0,0.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Daryl Dike,sog,Goblin,0.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Logan Farrington,shots,Goblin,1.5,2.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Bernard Kamungo,shots,Goblin,0.5,2.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Logan Farrington,sog,Goblin,0.5,1.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Santiago Moreno,shots,Goblin,0.5,2.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Kaick,shots,Goblin,0.5,3.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+ambiguous_30min,2026-09-09,Ethan Horvath,saves,Standard,3.5,6.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Tyler Boyd,shots,Goblin,1.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Mohammed Sofo,shots,Goblin,0.5,0.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Julian Hall,sog,Goblin,0.5,0.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Cade Cowell,sog,Goblin,0.5,0.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Tyler Boyd,sog,Goblin,0.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Rafael Navarro,shots,Goblin,2.5,4.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Simon Becher,shots,Goblin,1.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Son Heung-Min,shots,Standard,4.0,8.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Hugo Lloris,saves,Standard,2.5,1.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Jacob Shaffelburg,sog,Goblin,0.5,1.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Zakaria Taifi,shots,Goblin,0.5,1.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Ran Binyamin,shots,Goblin,0.5,1.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+ambiguous_30min,2026-09-09,Jorge Ruvalcaba,shots,Goblin,1.5,0.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Denis Bouanga,sog,Goblin,1.5,1.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Rafael Navarro,sog,Goblin,0.5,2.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Denis Bouanga,shots,Standard,3.5,2.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Will Reilly,shots,Goblin,1.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Daryl Dike,shots,Goblin,2.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Cayman Togashi,shots,Goblin,2.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Martín Ojeda,shots,Goblin,2.5,5.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Fafà Picault,shots,Goblin,2.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Javier Otero,saves,Goblin,2.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Jayden Hibbert,saves,Goblin,2.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Iván Angulo,shots,Goblin,1.5,2.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Sérgio Santos,shots,Goblin,1.5,2.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Luke Brennan,shots,Goblin,1.5,2.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Marco Pasalic,shots,Goblin,1.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Tyrese Spicer,shots,Goblin,1.5,2.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Tiago,shots,Goblin,1.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Cayman Togashi,sog,Goblin,0.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Tyrese Spicer,sog,Goblin,0.5,1.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Justin Ellis,sog,Goblin,0.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Elías Báez,shots,Goblin,0.5,1.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Fafà Picault,sog,Goblin,0.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Adrian Gill,shots,Goblin,0.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Sérgio Santos,sog,Goblin,0.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Eduard Atuesta,shots,Goblin,0.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Marco Pasalic,sog,Goblin,0.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Griffin Dorsey,shots,Goblin,0.5,1.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,David Brekalo,shots,Goblin,0.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Wilder Cartagena,shots,Goblin,0.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Paulo Díaz,shots,Goblin,0.5,1.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Luke Brennan,sog,Goblin,0.5,0.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Tomás Jacob,shots,Goblin,0.5,2.0,ORLANDO,ATLANTA UNITED,usa.1,2026-09-09T19:30:00.000-04:00
+ambiguous_30min,2026-09-09,Tiago,sog,Goblin,0.5,0.0,ATLANTA UNITED,ORLANDO,usa.1,2026-09-09T19:30:00.000-04:00
+player_not_in_box,2026-09-09,Joaquín Pereyra,shots,Standard,2.0,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Tomás Chancalay,shots,Goblin,2.5,1.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Michael Collodi,saves,Goblin,2.5,0.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Anthony Markanich,shots,Goblin,1.5,1.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Mauricio González,shots,Goblin,1.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Aziel Jackson,shots,Goblin,1.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Alec Smir,saves,Goblin,1.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Nectarios Triantis,shots,Goblin,1.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Mauricio González,sog,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Carlos Harvey,shots,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Kieran Chandler,shots,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Tomás Chancalay,sog,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Kyle Duncan,shots,Goblin,0.5,2.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Owen Gene,shots,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Wil Trapp,shots,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Nicolás Romero,shots,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Christian Cappis,shots,Goblin,0.5,0.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Jefferson Díaz,shots,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Ramiro,shots,Goblin,0.5,2.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Patrickson Delgado,shots,Goblin,0.5,0.0,MINNESOTA,DALLAS,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Morris Duggan,shots,Goblin,0.5,0.0,FC DALLAS,MINNESOTA,usa.1,2026-09-09T20:30:00.000-04:00
+player_not_in_box,2026-09-09,Jeremy Ebobisse,shots,Goblin,2.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Armindo Sieb,shots,Goblin,2.5,2.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Jacob Shaffelburg,shots,Goblin,2.5,1.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Cade Cowell,shots,Goblin,1.5,1.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Emil Forsberg,shots,Goblin,1.5,1.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Son Heung-Min,sog,Goblin,1.5,2.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Jude Terry,shots,Goblin,1.5,1.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Nkosi Tafari,shots,Goblin,0.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Emil Forsberg,sog,Goblin,0.5,0.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Ryan Hollingshead,shots,Goblin,0.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Jorge Ruvalcaba,sog,Goblin,0.5,0.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Sergi Palencia,shots,Goblin,0.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Jeremy Ebobisse,sog,Goblin,0.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Ryan Raposo,shots,Goblin,0.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Armindo Sieb,sog,Goblin,0.5,2.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Kenny Nielsen,shots,Goblin,0.5,0.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-09,Aaron Long,shots,Goblin,0.5,1.0,RED BULL NEW YORK,LAFC,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Dylan Nealis,shots,Goblin,0.5,0.0,LAFC,NEW YORK,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Jeong Sang-Bin,shots,Goblin,2.5,2.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Damion Downs,shots,Goblin,1.5,1.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Tomás Ostrák,shots,Goblin,1.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Mykhi Joyner,shots,Goblin,1.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Jeong Sang-Bin,sog,Goblin,0.5,1.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Miguel Perez,shots,Goblin,0.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Rafael Santos,shots,Goblin,0.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Tomas Totland,shots,Goblin,0.5,1.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Fallou Fall,shots,Goblin,0.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+ambiguous_30min,2026-09-09,Lukas MacNaughton,shots,Goblin,0.5,0.0,PORTLAND,ST. LOUIS,usa.1,2026-09-09T22:30:00.000-04:00
+player_not_in_box,2026-09-12,Stefan Cleveland,saves,Standard,3.5,7.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Taylor Calheira,shots,Goblin,1.5,2.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Calvin Harris,shots,Goblin,1.5,3.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Kwaku Agyabeng,shots,Goblin,0.5,0.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Stephen Afrifa,sog,Goblin,0.5,1.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Taylor Calheira,sog,Goblin,0.5,2.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,John Pulskamp,saves,Goblin,2.5,0.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Stephen Afrifa,shots,Goblin,1.5,6.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Seymour Reid,shots,Goblin,1.5,0.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Shapi Suleymanov,shots,Goblin,1.5,0.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Lasse Berg Johnsen,shots,Goblin,0.5,1.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+player_not_in_box,2026-09-12,Justin Reynolds,shots,Goblin,0.5,0.0,LAFC,SPORTING KC,usa.1,2026-09-12T20:30:00.000-04:00
+ambiguous_30min,2026-09-16,Robin Roefs,saves,Standard,2.0,2.0,AZ,SUNDERLAND,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Jari De Busser,saves,Goblin,2.5,4.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Rome-Jayden Owusu-Oduro,saves,Goblin,2.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Mexx Meerdink,shots,Goblin,1.5,3.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Calvin Stengs,shots,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Ro-Zangelo Daal,shots,Goblin,0.5,2.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Ayoub Oufkir,shots,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Mexx Meerdink,sog,Goblin,0.5,1.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Bendegúz Kovács,sog,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Jizz Hornkamp,sog,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Bendegúz Kovács,shots,Goblin,1.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Peer Koopmeiners,shots,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Kees Smit,shots,Goblin,0.5,1.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Dave Kwakman,shots,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Lewis Schouten,shots,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Jordy Clasie,shots,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Valdemar Byskov,shots,Goblin,0.5,3.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Wilson Isidor,shots,Standard,2.5,1.0,AZ,SUNDERLAND,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Jizz Hornkamp,shots,Standard,1.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Trai Hume,shots,Standard,1.5,4.0,AZ,SUNDERLAND,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Mateo Chávez,shots,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Mees de Wit,shots,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Seiya Maikuma,shots,Goblin,0.5,0.0,SUNDERLAND,AZ,uefa.europa,2026-09-16T15:00:00.000-04:00
+ambiguous_30min,2026-09-16,Dayann Méthalie,shots,Standard,0.5,0.0,AZ,SUNDERLAND,uefa.europa,2026-09-16T15:00:00.000-04:00
+player_not_in_box,2026-09-19,Martín Ojeda,sog,Goblin,0.5,2.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+ambiguous_30min,2026-09-19,Myrto Uzuni,sog,Goblin,0.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+player_not_in_box,2026-09-19,Carles Gil,sog,Goblin,0.5,3.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Dor Turgeman,sog,Goblin,0.5,1.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+ambiguous_30min,2026-09-19,Facundo Torres,sog,Goblin,0.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Taylor Calheira,shots,Goblin,1.5,1.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Calvin Harris,shots,Goblin,1.5,1.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Damian Las,saves,Goblin,2.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+player_not_in_box,2026-09-19,Wilson Harris,shots,Goblin,1.5,0.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Wilson Harris,sog,Goblin,0.5,0.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Maxime Crépeau,saves,Standard,3.5,5.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Matt Turner,saves,Goblin,1.5,3.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Carles Gil,shots,Goblin,1.5,4.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Iván Angulo,shots,Goblin,0.5,1.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Judah Siqueira,shots,Goblin,0.5,0.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+ambiguous_30min,2026-09-19,Owen Wolff,shots,Goblin,0.5,0.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Joseph Rosales,shots,Goblin,0.5,2.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Stefan Cleveland,saves,Standard,3.5,5.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Stephen Afrifa,sog,Goblin,0.5,1.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+player_not_in_box,2026-09-19,Zakaria Taifi,shots,Goblin,0.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+ambiguous_30min,2026-09-19,Brad Stuver,saves,Goblin,2.5,4.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Facundo Torres,shots,Goblin,1.5,1.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+player_not_in_box,2026-09-19,Martín Ojeda,shots,Goblin,1.5,3.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+ambiguous_30min,2026-09-19,Kwaku Agyabeng,shots,Goblin,0.5,0.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+player_not_in_box,2026-09-19,Matt Polster,shots,Goblin,0.5,1.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+ambiguous_30min,2026-09-19,Jorge Alastuey,shots,Goblin,0.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Christian Ramirez,sog,Goblin,0.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Stephen Afrifa,shots,Goblin,1.5,1.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Taylor Calheira,sog,Goblin,0.5,0.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+player_not_in_box,2026-09-19,Dor Turgeman,shots,Goblin,2.5,3.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Jackson Yueill,shots,Goblin,0.5,1.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+ambiguous_30min,2026-09-19,Brandon Vázquez,shots,Goblin,1.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+player_not_in_box,2026-09-19,Tiago,shots,Goblin,0.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Tiago,sog,Goblin,0.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Dániel Gazdag,shots,Goblin,2.5,0.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Javier Otero,saves,Goblin,2.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Peyton Miller,shots,Goblin,2.5,6.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Daryl Dike,shots,Goblin,2.5,1.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Harvey Sarajian,shots,Goblin,1.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Tyrese Spicer,shots,Goblin,1.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Diego Fagúndez,shots,Goblin,1.5,0.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Marco Pasalic,shots,Goblin,1.5,2.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Justin Ellis,shots,Goblin,1.5,1.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Tyrese Spicer,sog,Goblin,0.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Marco Pasalic,sog,Goblin,0.5,1.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Dániel Gazdag,sog,Goblin,0.5,0.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Justin Ellis,sog,Goblin,0.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Daryl Dike,sog,Goblin,0.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Peyton Miller,sog,Goblin,0.5,4.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Ilay Feingold,shots,Goblin,0.5,1.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Eduard Atuesta,shots,Goblin,0.5,1.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Wilder Cartagena,shots,Goblin,0.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Brooklyn Raines,shots,Goblin,0.5,1.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Diego Fagúndez,sog,Goblin,0.5,0.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Harvey Sarajian,sog,Goblin,0.5,0.0,NEW ENGLAND,ORLANDO,usa.1,2026-09-19T19:30:00.000-04:00
+player_not_in_box,2026-09-19,Cody Baker,shots,Goblin,0.5,0.0,ORLANDO,NEW ENGLAND,usa.1,2026-09-19T19:30:00.000-04:00
+ambiguous_30min,2026-09-19,Christian Ramirez,shots,Goblin,1.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Brandon Vázquez,sog,Goblin,0.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Besard Sabovic,shots,Goblin,0.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Jon Gallagher,shots,Goblin,0.5,2.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Ervin Torres,shots,Goblin,0.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Micah Burton,shots,Goblin,0.5,0.0,FC DALLAS,AUSTIN,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,John Pulskamp,saves,Goblin,3.5,0.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Seymour Reid,shots,Goblin,1.5,1.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Rubén Ramos,shots,Goblin,0.5,0.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Lasse Berg Johnsen,shots,Goblin,0.5,0.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Seymour Reid,sog,Goblin,0.5,0.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+ambiguous_30min,2026-09-19,Zorhan Bassong,shots,Goblin,0.5,0.0,PHILADELPHIA,SPORTING KC,usa.1,2026-09-19T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Javier Otero,saves,Standard,4.0,0.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Andrew Rick,saves,Standard,2.0,0.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Antoine Griezmann,shots,Goblin,1.5,3.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Martín Ojeda,sog,Goblin,0.5,1.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Antoine Griezmann,sog,Goblin,0.5,0.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Mason Stajduhar,saves,Standard,2.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+ambiguous_30min,2026-09-26,Beau Leroux,shots,Goblin,1.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+player_not_in_box,2026-09-26,Logan Farrington,sog,Goblin,0.5,1.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Carles Gil,sog,Goblin,0.5,0.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+ambiguous_30min,2026-09-26,Eduard Löwen,shots,Goblin,1.5,4.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+player_not_in_box,2026-09-26,Iván Angulo,shots,Goblin,0.5,1.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Logan Farrington,shots,Goblin,1.5,1.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Joaquín Valiente,shots,Goblin,0.5,1.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Herman Johansson,shots,Goblin,0.5,1.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Noel Caliskan,shots,Goblin,0.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Bruno Damiani,shots,Goblin,2.5,1.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Hugo Lloris,saves,Goblin,1.5,3.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+ambiguous_30min,2026-09-26,Timo Werner,sog,Goblin,0.5,1.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+player_not_in_box,2026-09-26,Carles Gil,shots,Goblin,1.5,2.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Quinn Sullivan,shots,Goblin,1.5,3.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Nicholas Simmonds,shots,Goblin,1.5,0.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Quinn Sullivan,sog,Goblin,0.5,2.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Nicholas Simmonds,sog,Goblin,0.5,0.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Daniel Job,sog,Goblin,0.5,0.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Wilson Harris,sog,Goblin,0.5,0.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Taylor Booth,sog,Goblin,0.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Dominik Marczuk,sog,Standard,0.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+ambiguous_30min,2026-09-26,Preston Judd,sog,Goblin,0.5,3.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Eduard Löwen,sog,Goblin,0.5,2.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+player_not_in_box,2026-09-26,Daniel Job,shots,Goblin,1.5,0.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Clay Holstad,shots,Goblin,0.5,0.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Taylor Booth,shots,Goblin,1.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Wilson Harris,shots,Goblin,1.5,0.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Martín Ojeda,shots,Goblin,1.5,4.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Bruno Damiani,sog,Goblin,0.5,0.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Kaick,shots,Goblin,0.5,1.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Matt Polster,shots,Goblin,0.5,1.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Maxime Crépeau,saves,Standard,4.0,5.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Colin Guske,shots,Goblin,0.5,1.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Tiago,shots,Goblin,0.5,0.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Armindo Sieb,sog,Goblin,0.5,1.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Dominik Marczuk,shots,Goblin,1.5,1.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Aiden Hezarkhani,sog,Goblin,0.5,1.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Jackson Yueill,shots,Goblin,0.5,1.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Mark Delgado,shots,Goblin,0.5,1.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Milan Iloski,shots,Goblin,3.5,6.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Milan Iloski,sog,Goblin,1.5,3.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Jeremy Rafanello,shots,Goblin,2.5,0.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Ezekiel Alladoh,shots,Goblin,2.5,3.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,George Marks,saves,Standard,2.0,0.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Daryl Dike,shots,Goblin,1.5,1.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Jesús Bueno,shots,Goblin,1.5,1.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Indiana Vassilev,shots,Goblin,1.5,3.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Jovan Lukic,shots,Goblin,1.5,1.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Ben Bender,shots,Goblin,1.5,0.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Alejandro Bedoya,shots,Goblin,1.5,1.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Kai Wagner,shots,Goblin,0.5,0.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Jeremy Rafanello,sog,Goblin,0.5,0.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Nathan Harriel,shots,Goblin,0.5,1.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Daryl Dike,sog,Goblin,0.5,0.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Indiana Vassilev,sog,Goblin,0.5,2.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Zakaria Taifi,shots,Goblin,0.5,0.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Eduard Atuesta,shots,Goblin,0.5,0.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Ezekiel Alladoh,sog,Goblin,0.5,2.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Harvey Sarajian,shots,Goblin,0.5,0.0,PHILADELPHIA,ORLANDO,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Finn Sundstrom,shots,Goblin,0.5,0.0,ORLANDO,PHILADELPHIA,usa.1,2026-09-26T19:30:00.000-04:00
+player_not_in_box,2026-09-26,Armindo Sieb,shots,Goblin,2.5,2.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Tyler Boyd,shots,Goblin,1.5,2.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Santiago Moreno,shots,Goblin,1.5,2.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Patrickson Delgado,shots,Goblin,1.5,1.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Jeremy Ebobisse,shots,Goblin,1.5,1.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Shaq Moore,shots,Goblin,0.5,2.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Nkosi Tafari,shots,Goblin,0.5,1.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Ryan Hollingshead,shots,Goblin,0.5,0.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Jeremy Ebobisse,sog,Goblin,0.5,1.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Tyler Boyd,sog,Goblin,0.5,0.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Christian Cappis,shots,Goblin,0.5,2.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Santiago Moreno,sog,Goblin,0.5,0.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Ryan Raposo,shots,Goblin,0.5,0.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Eddie Segura,shots,Goblin,0.5,2.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Osaze Urhoghide,shots,Goblin,0.5,1.0,LAFC,FC DALLAS,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Igor Jesus,shots,Goblin,0.5,0.0,FC DALLAS,LAFC,usa.1,2026-09-26T20:30:00.000-04:00
+player_not_in_box,2026-09-26,Matt Turner,saves,Standard,3.0,3.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Morgan Guilavogui,shots,Goblin,2.5,1.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Sergi Solans,shots,Goblin,2.5,5.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Lineker Rodrigues,shots,Goblin,2.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Jason Shokalook,shots,Goblin,2.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Dániel Gazdag,shots,Goblin,1.5,2.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Aiden Hezarkhani,shots,Goblin,1.5,1.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Griffin Yow,shots,Goblin,1.5,1.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Luca Langoni,shots,Goblin,1.5,2.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Diego Fagúndez,shots,Goblin,1.5,0.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Morgan Guilavogui,sog,Goblin,0.5,1.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Jason Shokalook,sog,Goblin,0.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Sergi Solans,sog,Goblin,0.5,4.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Griffin Yow,sog,Goblin,0.5,0.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Dániel Gazdag,sog,Standard,0.5,1.0,REAL SALT LAKE,NEW ENGLAND,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Stijn Spierings,shots,Goblin,0.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Emeka Eneli,shots,Goblin,0.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Lineker Rodrigues,sog,Goblin,0.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+player_not_in_box,2026-09-26,Samuel Junqua,shots,Goblin,0.5,0.0,NEW ENGLAND,REAL SALT LAKE,usa.1,2026-09-26T21:30:00.000-04:00
+ambiguous_30min,2026-09-26,Preston Judd,shots,Goblin,3.5,4.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Timo Werner,shots,Goblin,2.5,2.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Luka Jovanovic,shots,Goblin,2.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Paul Marie,shots,Goblin,1.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Jack Skahan,shots,Goblin,1.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Nick Fernandez,shots,Goblin,1.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Ian Harkes,shots,Goblin,1.5,1.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Daniel Munie,shots,Goblin,0.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Vítor Costa,shots,Goblin,0.5,1.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Reid Roberts,shots,Goblin,0.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Max Floriani,shots,Goblin,0.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Dave Romney,shots,Goblin,0.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Luka Jovanovic,sog,Goblin,0.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Jack Skahan,sog,Goblin,0.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Jamar Ricketts,shots,Goblin,0.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Jack Jasinski,shots,Goblin,0.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00
+ambiguous_30min,2026-09-26,Jonathan González,shots,Goblin,0.5,0.0,PORTLAND,EARTHQUAKES,usa.1,2026-09-26T22:30:00.000-04:00

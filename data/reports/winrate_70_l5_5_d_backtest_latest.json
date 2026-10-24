@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-08-22T04:36:27Z",
+  "goal": "70%+ HR with Goblins AND Standards via L5=5+D hard seed",
+  "window": [
+    "2026-05-01",
+    "2026-08-21"
+  ],
+  "dates_n": 83,
+  "date_range": [
+    "2026-05-01",
+    "2026-08-17"
+  ],
+  "l5_field_coverage_focus": {
+    "present": 350067,
+    "missing": 189237,
+    "pct": 64.9
+  },
+  "pools": {
+    "baseline_focus_decided": {
+      "n": 539304,
+      "hits": 155781,
+      "misses": 383523,
+      "hr": 0.2888556361532642,
+      "hr_pct": 28.9
+    },
+    "winrate_70_L5_5_D": {
+      "n": 676,
+      "hits": 484,
+      "misses": 192,
+      "hr": 0.7159763313609467,
+      "hr_pct": 71.6
+    },
+    "L5_4_D": {
+      "n": 890,
+      "hits": 546,
+      "misses": 344,
+      "hr": 0.6134831460674157,
+      "hr_pct": 61.3
+    },
+    "current_MAIN_eligible": {
+      "n": 6416,
+      "hits": 4489,
+      "misses": 1927,
+      "hr": 0.6996571072319202,
+      "hr_pct": 70.0
+    },
+    "winrate_70_AND_MAIN": {
+      "n": 284,
+      "hits": 203,
+      "misses": 81,
+      "hr": 0.7147887323943662,
+      "hr_pct": 71.5
+    }
+  },
+  "winrate_70_by_sport": {
+    "MLB": {
+      "n": 653,
+      "hits": 469,
+      "misses": 184,
+      "hr": 0.7182235834609495,
+      "hr_pct": 71.8
+    },
+    "SOCCER": {
+      "n": 23,
+      "hits": 15,
+      "misses": 8,
+      "hr": 0.6521739130434783,
+      "hr_pct": 65.2
+    }
+  },
+  "winrate_70_by_pick": {
+    "Goblin": {
+      "n": 603,
+      "hits": 435,
+      "misses": 168,
+      "hr": 0.7213930348258707,
+      "hr_pct": 72.1
+    },
+    "Standard": {
+      "n": 73,
+      "hits": 49,
+      "misses": 24,
+      "hr": 0.6712328767123288,
+      "hr_pct": 67.1
+    }
+  },
+  "main_by_sport": {
+    "MLB": {
+      "n": 2995,
+      "hits": 2072,
+      "misses": 923,
+      "hr": 0.6918196994991653,
+      "hr_pct": 69.2
+    },
+    "SOCCER": {
+      "n": 92,
+      "hits": 59,
+      "misses": 33,
+      "hr": 0.6413043478260869,
+      "hr_pct": 64.1
+    },
+    "TENNIS": {
+      "n": 194,
+      "hits": 142,
+      "misses": 52,
+      "hr": 0.7319587628865979,
+      "hr_pct": 73.2
+    },
+    "WNBA": {
+      "n": 3135,
+      "hits": 2216,
+      "misses": 919,
+      "hr": 0.7068580542264753,
+      "hr_pct": 70.7
+    }
+  },
+  "main_by_pick": {
+    "Goblin": {
+      "n": 6278,
+      "hits": 4409,
+      "misses": 1869,
+      "hr": 0.7022937241159605,
+      "hr_pct": 70.2
+    },
+    "Standard": {
+      "n": 138,
+      "hits": 80,
+      "misses": 58,
+      "hr": 0.5797101449275363,
+      "hr_pct": 58.0
+    }
+  },
+  "verdict": {
+    "winrate_70_clears_70": true,
+    "winrate_70_clears_65": true,
+    "vs_main_pp": 1.6,
+    "recommendation": "USE_WINRATE_70_AS_SEPARATE_TRACK",
+    "summary": "L5=5+D pool HR=71.6% (n=676); MAIN HR=70.0% (n=6416); L5=4+D HR=61.3% (n=890)."
+  }
+}

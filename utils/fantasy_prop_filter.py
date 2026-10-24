@@ -1,4 +1,8 @@
-"""Drop PrizePicks fantasy-score markets from pipeline slates."""
+"""Fantasy-score markets: listed with ticketable=false, never silently dropped.
+
+Tickets and EV still skip fantasy. The full board listing keeps every row and
+stamps ``ticketable=0`` (or False) so reconcile / ranker can show the prop.
+"""
 
 from __future__ import annotations
 
@@ -18,6 +22,8 @@ _PROP_LABEL_COLUMNS: tuple[str, ...] = (
     "stat_type",
     "prop_norm",
 )
+
+TICKETABLE_COL = "ticketable"
 
 
 def _norm_label(text: object) -> str:
@@ -45,29 +51,49 @@ def fantasy_prop_mask(df: pd.DataFrame) -> pd.Series:
     return mask
 
 
-def drop_fantasy_props(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
-    """Return (filtered_df, dropped_count)."""
+def mark_fantasy_ticketable(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
+    """Keep all rows; set ticketable=False on fantasy markets. Returns (df, n_flagged)."""
     if df is None or df.empty:
         return df, 0
-    mask = fantasy_prop_mask(df)
-    dropped = int(mask.sum())
-    if dropped == 0:
-        return df, 0
-    return df.loc[~mask].copy(), dropped
+    out = df.copy()
+    mask = fantasy_prop_mask(out)
+    n = int(mask.sum())
+    if TICKETABLE_COL not in out.columns:
+        out[TICKETABLE_COL] = True
+    else:
+        # Preserve prior False; only force fantasy off.
+        out[TICKETABLE_COL] = out[TICKETABLE_COL].map(
+            lambda v: bool(v) if str(v).strip().lower() not in {"0", "false", "no"} else False
+        )
+    if n:
+        out.loc[mask, TICKETABLE_COL] = False
+    return out, n
+
+
+def drop_fantasy_props(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
+    """Deprecated drop path — now stamps ticketable=false and keeps rows.
+
+    Returns (df_with_flag, n_fantasy_flagged) so callers that printed
+    "Dropped N fantasy" still see a count without losing the props.
+    """
+    return mark_fantasy_ticketable(df)
 
 
 def drop_fantasy_rows(rows: Iterable[dict]) -> tuple[list[dict], int]:
-    """Filter list-of-dict step rows (NHL step2 style)."""
-    kept: list[dict] = []
-    dropped = 0
+    """Keep fantasy rows; stamp ticketable=False. Returns (rows, n_flagged)."""
+    out: list[dict] = []
+    flagged = 0
     for row in rows:
         label = ""
         for key in ("stat_type", "prop_type", "prop", "prop_name"):
             if key in row and str(row.get(key) or "").strip():
                 label = row[key]
                 break
+        rec = dict(row)
         if is_fantasy_prop_label(label):
-            dropped += 1
-            continue
-        kept.append(row)
-    return kept, dropped
+            rec[TICKETABLE_COL] = False
+            flagged += 1
+        else:
+            rec.setdefault(TICKETABLE_COL, True)
+        out.append(rec)
+    return out, flagged

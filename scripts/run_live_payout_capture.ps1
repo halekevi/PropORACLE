@@ -4,7 +4,7 @@
 #
 #  Two-tier model (keyed to slate date, not calendar midnight):
 #    First scrape of slate D = 9PM day-ahead on D-1 (Force) + timestamps.
-#    Later 1AM / 5AM / 8AM / 9 / 9:45 / 10:30 / 1PM / 4:30: re-scrape only slips
+#    Later 1AM / 5AM / 8AM / 9 / 10:30 / 1PM / 4:30: re-scrape only slips
 #    missing live_cdp OR whose legs had a line/type change this fetch.
 #    Default -Date = live tickets_latest.json date (tomorrow after 9PM).
 #    -UpdateOnly is incremental catchup only (manual / CDP-down audit).

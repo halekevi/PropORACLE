@@ -1,0 +1,114 @@
+REBUILT L5=5 usable list  slate=2026-10-22
+NBA = card window (RS+playoffs) + preseason flag
+Rank = line/L5avg (OVER asc = more cushion; UNDER desc)
+One prop per player; single stats preferred over combos
+Five values printed per leg
+
+NOTES / CUTS:
+  - CFB CUT Corey Scott Receiving Yards standard O44.5: L5 vals [44.0, 104.0, 57.0, 55.0, 52.0] no longer 5/5 vs today's line (was ok at older line)
+  - CFB CUT Marcus Stokes: user — Goblin lines unreliable / cut
+  - CFB CUT Henry Hasselbeck: L5avg=24 backup artifact
+  - Golf Pars U11.0 EXCLUDED: scorecard index bug (utils/golf_scorecard.py — index 5 was residual garbage; stat_g shows 0–8 'pars' instead of ~10–14). Do not use until fixed.
+  - NBA deny (card-window miss): Allen, Harden, Braun, Murray, Maxey, Donovan Mitchell
+  - NBA usable short list = verified card survivors only: Edgecombe Pts O5.5, Merrill Pts O3.5, McCain Reb O0.5
+  - NFL FG combo Unders: ignored (broken averages)
+
+===== Goblin OVER (n=5) =====
+ 1. [NBA] Jared McCain  Rebounds  O0.5  L5avg=2.00  line/L5avg=0.250  pre_confirms  mix=ROOOO
+    card  2026-10-20:2 2026-05-30:1 2026-05-28:2 2026-05-26:3 2026-05-24:2
+    pre   2026-10-13:2 2026-10-07:1 2026-10-06:1
+ 2. [CFB] Corey Scott  Receiving Yards  O19.5  L5avg=62.40  line/L5avg=0.312  n/a  mix=CFB
+    card  g1:44 g2:104 g3:57 g4:55 g5:52
+    pre   (n/a)
+    note  same-day step1 line; L5 from 10-21 step8; flag=
+ 3. [NBA] Sam Merrill  Points  O3.5  L5avg=10.00  line/L5avg=0.350  pre_confirms  mix=OOOOO
+    card  2026-05-25:5 2026-05-23:6 2026-05-21:4 2026-05-19:12 2026-05-17:23
+    pre   2026-10-11:5 2026-10-08:8 2025-10-14:10
+ 4. [CFB] Camden Coleman  Pass Yards  O99.5  L5avg=221.60  line/L5avg=0.449  PRIOR_SEASON_FILL  mix=CFB
+    card  g1:185 g2:171 g3:263 g4:243 g5:246
+    pre   (n/a)
+    note  same-day step1 line; L5 from 10-21 step8; flag=PRIOR_SEASON_FILL
+ 5. [NBA] VJ Edgecombe  Points  O5.5  L5avg=11.40  line/L5avg=0.482  pre_confirms  mix=ROOOO
+    card  2026-10-20:9 2026-05-10:8 2026-05-08:11 2026-05-06:17 2026-05-04:12
+    pre   2026-10-10:19 2026-10-08:11 2026-10-05:12 2025-10-17:26
+
+===== Standard OVER (n=0) =====
+  (none)
+
+===== Standard UNDER (n=3) =====
+ 1. [GOLF] Trace Crowe  Strokes  U68.5  L5avg=65.60  line/L5avg=1.044  n/a  mix=GOLF
+    card  r1:66 r2:64 r3:65 r4:67 r5:66
+    pre   (n/a)
+ 2. [GOLF] Seamus Power  Strokes  U68.5  L5avg=65.80  line/L5avg=1.041  n/a  mix=GOLF
+    card  r1:67 r2:64 r3:66 r4:65 r5:67
+    pre   (n/a)
+ 3. [GOLF] Austin Smotherman  Strokes  U68.5  L5avg=66.40  line/L5avg=1.032  n/a  mix=GOLF
+    card  r1:68 r2:63 r3:65 r4:68 r5:68
+    pre   (n/a)
+
+===== NBA card-window Goblin OVER audit (all L5=5 clears after deny; not auto-added to usable list) =====
+  Kentavious Caldwell-Pope Points             O2.5  avg=11.2  ratio=0.223  pre_conflicts  card=[10.0, 5.0, 15.0, 11.0, 15.0]
+  Jaylen Brown           3-PT Made          O0.5  avg=2.2  ratio=0.227  pre_conflicts  card=[2.0, 3.0, 2.0, 1.0, 3.0]
+  Cason Wallace          Steals             O0.5  avg=2.0  ratio=0.250  pre_conflicts  card=[1.0, 2.0, 3.0, 2.0, 2.0]
+  Chet Holmgren          Blocked Shots      O0.5  avg=2.0  ratio=0.250  pre_thin  card=[4.0, 2.0, 2.0, 1.0, 1.0]
+  Jared McCain           Rebounds           O0.5  avg=2.0  ratio=0.250  pre_confirms  card=[2.0, 1.0, 2.0, 3.0, 2.0]
+  Anfernee Simons        Points             O3.5  avg=13.4  ratio=0.261  pre_confirms  card=[13.0, 4.0, 20.0, 7.0, 23.0]
+  Jared McCain           Turnovers          O0.5  avg=1.8  ratio=0.278  pre_conflicts  card=[2.0, 1.0, 2.0, 2.0, 2.0]
+  Sam Merrill            Points             O3.5  avg=10.0  ratio=0.350  pre_confirms  card=[5.0, 6.0, 4.0, 12.0, 23.0]
+  DeMar DeRozan          Points             O7.5  avg=21.2  ratio=0.354  pre_conflicts  card=[9.0, 14.0, 28.0, 22.0, 33.0]
+  Cason Wallace          Rebounds           O1.5  avg=4.2  ratio=0.357  pre_confirms  card=[3.0, 7.0, 3.0, 4.0, 4.0]
+  Evan Mobley            3-PT Made          O0.5  avg=1.4  ratio=0.357  pre_conflicts  card=[1.0, 1.0, 2.0, 2.0, 1.0]
+  Isaiah Hartenstein     Points             O3.5  avg=9.0  ratio=0.389  pre_conflicts  card=[4.0, 7.0, 10.0, 12.0, 12.0]
+  Kentavious Caldwell-Pope Points             O4.5  avg=11.2  ratio=0.402  pre_conflicts  card=[10.0, 5.0, 15.0, 11.0, 15.0]
+  Kentavious Caldwell-Pope 3-PT Made          O0.5  avg=1.2  ratio=0.417  pre_conflicts  card=[2.0, 1.0, 1.0, 1.0, 1.0]
+  LeBron James           Points             O9.5  avg=21.4  ratio=0.444  pre_thin  card=[14.0, 24.0, 19.0, 23.0, 27.0]
+  VJ Edgecombe           Points             O5.5  avg=11.4  ratio=0.482  pre_confirms  card=[9.0, 8.0, 11.0, 17.0, 12.0]
+  Cason Wallace          Points             O4.5  avg=9.2  ratio=0.489  pre_confirms  card=[6.0, 17.0, 11.0, 7.0, 5.0]
+  Jaylen Brown           Points             O11.5  avg=22.4  ratio=0.513  pre_conflicts  card=[19.0, 33.0, 18.0, 22.0, 20.0]
+  Peyton Watson          Rebounds           O2.5  avg=4.8  ratio=0.521  pre_conflicts  card=[3.0, 6.0, 5.0, 4.0, 6.0]
+  LeBron James           Points             O11.5  avg=21.4  ratio=0.537  pre_thin  card=[14.0, 24.0, 19.0, 23.0, 27.0]
+  Cason Wallace          Rebounds           O2.5  avg=4.2  ratio=0.595  pre_conflicts  card=[3.0, 7.0, 3.0, 4.0, 4.0]
+  LeBron James           Points             O13.5  avg=21.4  ratio=0.631  pre_thin  card=[14.0, 24.0, 19.0, 23.0, 27.0]
+  Nikola Jokić           Rebounds           O8.5  avg=13.2  ratio=0.644  pre_conflicts  card=[9.0, 12.0, 15.0, 15.0, 15.0]
+  Evan Mobley            Points             O11.5  avg=17.8  ratio=0.646  pre_conflicts  card=[15.0, 24.0, 14.0, 15.0, 21.0]
+  Jaylen Brown           Points             O14.5  avg=22.4  ratio=0.647  pre_conflicts  card=[19.0, 33.0, 18.0, 22.0, 20.0]
+  VJ Edgecombe           Points             O7.5  avg=11.4  ratio=0.658  pre_confirms  card=[9.0, 8.0, 11.0, 17.0, 12.0]
+  Nikola Jokić           Points             O19.5  avg=26.0  ratio=0.750  pre_conflicts  card=[28.0, 27.0, 24.0, 27.0, 24.0]
+  Nikola Jokić           Points             O22.5  avg=26.0  ratio=0.865  pre_conflicts  card=[28.0, 27.0, 24.0, 27.0, 24.0]
+  Cason Wallace          Rebs+Asts          O3.5  avg=6.8  ratio=0.515  pre_confirms  card=[5.0, 11.0, 4.0, 9.0, 5.0]
+  Kentavious Caldwell-Pope Pts+Rebs+Asts      O8.5  avg=15.4  ratio=0.552  pre_conflicts  card=[15.0, 10.0, 18.0, 15.0, 19.0]
+  LeBron James           Pts+Rebs           O15.5  avg=28.0  ratio=0.554  pre_thin  card=[23.0, 36.0, 25.0, 25.0, 31.0]
+  Cason Wallace          Pts+Rebs           O7.5  avg=13.4  ratio=0.560  pre_confirms  card=[9.0, 24.0, 14.0, 11.0, 9.0]
+  Isaiah Hartenstein     Pts+Asts           O6.5  avg=11.6  ratio=0.560  pre_conflicts  card=[7.0, 7.0, 13.0, 16.0, 15.0]
+  VJ Edgecombe           Pts+Asts           O8.5  avg=14.8  ratio=0.574  pre_confirms  card=[10.0, 15.0, 15.0, 20.0, 14.0]
+  Cason Wallace          Pts+Rebs+Asts      O9.5  avg=16.0  ratio=0.594  pre_confirms  card=[11.0, 28.0, 15.0, 16.0, 10.0]
+  VJ Edgecombe           Pts+Rebs           O9.5  avg=16.0  ratio=0.594  pre_confirms  card=[13.0, 14.0, 18.0, 22.0, 13.0]
+  Kentavious Caldwell-Pope Rebs+Asts          O2.5  avg=4.2  ratio=0.595  pre_conflicts  card=[5.0, 5.0, 3.0, 4.0, 4.0]
+  LeBron James           Pts+Asts           O16.5  avg=27.4  ratio=0.602  pre_thin  card=[21.0, 27.0, 27.0, 29.0, 33.0]
+  Cason Wallace          Pts+Rebs           O8.5  avg=13.4  ratio=0.634  pre_confirms  card=[9.0, 24.0, 14.0, 11.0, 9.0]
+  Jaylen Brown           Pts+Asts           O16.5  avg=26.0  ratio=0.635  pre_conflicts  card=[25.0, 37.0, 20.0, 27.0, 21.0]
+  VJ Edgecombe           Pts+Asts           O9.5  avg=14.8  ratio=0.642  pre_confirms  card=[10.0, 15.0, 15.0, 20.0, 14.0]
+  VJ Edgecombe           Pts+Rebs+Asts      O12.5  avg=19.4  ratio=0.644  pre_confirms  card=[14.0, 21.0, 22.0, 25.0, 15.0]
+  Jaylen Brown           Pts+Rebs           O18.5  avg=28.4  ratio=0.651  pre_conflicts  card=[27.0, 42.0, 19.0, 27.0, 27.0]
+  LeBron James           Pts+Rebs+Asts      O22.5  avg=34.0  ratio=0.662  pre_thin  card=[30.0, 39.0, 33.0, 31.0, 37.0]
+  Evan Mobley            Pts+Asts           O14.5  avg=21.4  ratio=0.678  pre_conflicts  card=[19.0, 26.0, 17.0, 18.0, 27.0]
+  LeBron James           Pts+Rebs           O19.5  avg=28.0  ratio=0.696  pre_thin  card=[23.0, 36.0, 25.0, 25.0, 31.0]
+  LeBron James           Pts+Asts           O19.5  avg=27.4  ratio=0.712  pre_thin  card=[21.0, 27.0, 27.0, 29.0, 33.0]
+  VJ Edgecombe           Pts+Rebs           O11.5  avg=16.0  ratio=0.719  pre_confirms  card=[13.0, 14.0, 18.0, 22.0, 13.0]
+  LeBron James           Pts+Rebs+Asts      O24.5  avg=34.0  ratio=0.721  pre_thin  card=[30.0, 39.0, 33.0, 31.0, 37.0]
+  Evan Mobley            Pts+Asts           O15.5  avg=21.4  ratio=0.724  pre_conflicts  card=[19.0, 26.0, 17.0, 18.0, 27.0]
+  Evan Mobley            Pts+Rebs           O19.5  avg=26.8  ratio=0.728  pre_conflicts  card=[22.0, 30.0, 20.0, 29.0, 33.0]
+  Evan Mobley            Pts+Rebs+Asts      O22.5  avg=30.4  ratio=0.740  pre_conflicts  card=[26.0, 32.0, 23.0, 32.0, 39.0]
+  Jaylen Brown           Pts+Asts           O19.5  avg=26.0  ratio=0.750  pre_conflicts  card=[25.0, 37.0, 20.0, 27.0, 21.0]
+  Nikola Jokić           Pts+Rebs           O29.5  avg=39.2  ratio=0.753  pre_conflicts  card=[37.0, 39.0, 39.0, 42.0, 39.0]
+  LeBron James           Pts+Rebs           O21.5  avg=28.0  ratio=0.768  pre_thin  card=[23.0, 36.0, 25.0, 25.0, 31.0]
+  Nikola Jokić           Rebs+Asts          O17.5  avg=22.4  ratio=0.781  pre_conflicts  card=[19.0, 28.0, 24.0, 18.0, 23.0]
+  Nikola Jokić           Pts+Rebs+Asts      O38.5  avg=48.4  ratio=0.795  pre_conflicts  card=[47.0, 55.0, 48.0, 45.0, 47.0]
+  Nikola Jokić           Pts+Asts           O28.5  avg=35.2  ratio=0.810  pre_conflicts  card=[38.0, 43.0, 33.0, 30.0, 32.0]
+  Nikola Jokić           Pts+Rebs+Asts      O39.5  avg=48.4  ratio=0.816  pre_conflicts  card=[47.0, 55.0, 48.0, 45.0, 47.0]
+  Nikola Jokić           Pts+Asts           O29.5  avg=35.2  ratio=0.838  pre_conflicts  card=[38.0, 43.0, 33.0, 30.0, 32.0]
+  LeBron James           Pts+Rebs+Asts      O28.5  avg=34.0  ratio=0.838  pre_thin  card=[30.0, 39.0, 33.0, 31.0, 37.0]
+  Nikola Jokić           Pts+Rebs           O34.5  avg=39.2  ratio=0.880  pre_conflicts  card=[37.0, 39.0, 39.0, 42.0, 39.0]
+  Nikola Jokić           Pts+Rebs+Asts      O44.5  avg=48.4  ratio=0.919  pre_conflicts  card=[47.0, 55.0, 48.0, 45.0, 47.0]
+  Nikola Jokić           Pts+Rebs           O36.5  avg=39.2  ratio=0.931  pre_conflicts  card=[37.0, 39.0, 39.0, 42.0, 39.0]
+

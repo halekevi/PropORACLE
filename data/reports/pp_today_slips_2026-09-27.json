@@ -1,0 +1,62 @@
+{
+  "results": [
+    {
+      "id": "S1",
+      "ok": false,
+      "fails": [
+        "James Duckworth"
+      ],
+      "reason": "line_moved",
+      "live_line": 19.5,
+      "n": 0
+    },
+    {
+      "id": "S2",
+      "ok": false,
+      "n": 2,
+      "px": 1.6,
+      "fails": [],
+      "raw_head": "Current Lineup\n2 Players Selected\nClear\nShota Imanaga\n\nMLBCHC - P\n\nSun, Sep 27 3:05 PM @ BOS\n0.5Earned Runs Allowed\nMore\nMichael Soroka\n\nMLBAZ - P\n\nSun, Sep 27 3:10 PM @ SD\n0.5Earned Runs Allowed\nMore\nPower Play\n\nYou must hit 1st place, or 2 out of 2 in the lineup.\n\n1st place pays\n3X\nMinimum Guarantee\n2 correct pays\n1.6X\nIn the event of contest ties, contest payouts are shared. If you qualify for the 1st place prize and the Minimum Guarantee payout, you will receive whichever payout is higher.\nE"
+    },
+    {
+      "id": "S3",
+      "ok": false,
+      "fails": [
+        "Jackson Chourio"
+      ],
+      "reason": "no_more",
+      "live_line": null,
+      "n": 0
+    },
+    {
+      "id": "N1",
+      "ok": false,
+      "fails": [
+        "Chase McLaughlin"
+      ],
+      "reason": "line_moved",
+      "live_line": 1.5,
+      "n": 0
+    },
+    {
+      "id": "N2",
+      "ok": false,
+      "fails": [
+        "Ashton Jeanty"
+      ],
+      "reason": "line_moved",
+      "live_line": 3.9,
+      "n": 0
+    },
+    {
+      "id": "N3",
+      "ok": false,
+      "fails": [
+        "Blake Corum"
+      ],
+      "reason": "line_moved",
+      "live_line": 4.2,
+      "n": 0
+    }
+  ]
+}

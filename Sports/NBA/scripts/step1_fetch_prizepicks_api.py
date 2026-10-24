@@ -18,6 +18,11 @@ Strategy:
 
 Outputs: step1_pp_props_today.csv  (same schema as before).
 
+NBA (7) and NBAP preseason (237) are the default game-family fetch, same
+shape as NFL + NFLP. ``--league_id 7`` or ``237`` still pulls both.
+``--no-preseason`` skips NBAP. Other ids stay single-board: WNBA 3,
+NBA1H 84, NBA1Q 192.
+
 WNBA: scripts/run_wnba_pipeline.ps1 invokes this with ``--league_id 3`` and writes
 ``outputs/<date>/wnba/step1_wnba_props.csv``. Browser/CDP fallback stays in
 ``Sports/WNBA/step1_fetch_prizepicks.py``.
@@ -49,10 +54,21 @@ import pandas as pd
 import requests
 
 _PROPORACLE_ROOT = Path(__file__).resolve().parents[3]
+_NBA_ROOT = Path(__file__).resolve().parent.parent
 if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
 
-from utils.fantasy_prop_filter import drop_fantasy_props
+import importlib.util as _importlib_util  # noqa: E402
+
+_ids_spec = _importlib_util.spec_from_file_location(
+    "nba_prizepicks_league_ids",
+    _NBA_ROOT / "prizepicks_league_ids.py",
+)
+_nba_ids = _importlib_util.module_from_spec(_ids_spec)
+assert _ids_spec.loader is not None
+_ids_spec.loader.exec_module(_nba_ids)
+NBA_LEAGUE_ID = _nba_ids.NBA
+resolve_nba_fetch_boards = _nba_ids.resolve_nba_fetch_boards
 from utils.allstar_filter import drop_allstar_props
 from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
 from utils.step1_slate_date_filter import (
@@ -790,9 +806,38 @@ def _included_index(included: List[dict]) -> Dict[Tuple[str, str], dict]:
     return idx
 
 
-def build_rows(data: List[dict], included: List[dict]) -> List[dict]:
+OUTPUT_COLS = [
+    "projection_id", "pp_projection_id", "player_id", "pp_game_id",
+    "start_time", "player", "pos", "team", "opp_team", "prop_type",
+    "line", "standard_line", "pick_type", "pp_home_team", "pp_away_team", "image_url",
+    "league", "league_id",
+    "fetched_at", "pp_updated_at",
+]
+
+
+def _board_size_ok(df: pd.DataFrame, min_rows: int, min_teams: int) -> bool:
+    """Regular NBA still needs min_rows. NBAP-only (or NBA+NBAP) may be thinner."""
+    n = len(df)
+    n_teams = df["team"].astype(str).replace("", pd.NA).dropna().nunique()
+    n_nbap = 0
+    if "league" in df.columns:
+        n_nbap = int(df["league"].astype(str).str.upper().eq("NBAP").sum())
+    if n_nbap >= 5:
+        return n >= 5 and n_teams >= min(int(min_teams), 2)
+    return n >= int(min_rows) and n_teams >= int(min_teams)
+
+
+def build_rows(
+    data: List[dict],
+    included: List[dict],
+    *,
+    league: str = "NBA",
+    league_id: str = NBA_LEAGUE_ID,
+) -> List[dict]:
     inc = _included_index(included)
     rows = []
+    league_name = str(league or "NBA").strip() or "NBA"
+    lid = str(league_id or NBA_LEAGUE_ID).strip() or NBA_LEAGUE_ID
 
     for d in data:
         if not isinstance(d, dict):
@@ -871,6 +916,8 @@ def build_rows(data: List[dict], included: List[dict]) -> List[dict]:
             "pp_home_team":     home,
             "pp_away_team":     away,
             "image_url":        image_url,
+            "league":           league_name,
+            "league_id":        lid,
             "pp_updated_at":    extract_pp_updated_at(attrs),
         })
 
@@ -882,7 +929,17 @@ def build_rows(data: List[dict], included: List[dict]) -> List[dict]:
 def main() -> None:
     ap = argparse.ArgumentParser(description="Fetch PrizePicks props — direct API, no browser")
     ap.add_argument("--output",     default="step1_pp_props_today.csv")
-    ap.add_argument("--league_id",  default="7")
+    ap.add_argument(
+        "--league_id",
+        default="7",
+        help="NBA (7) or NBAP (237) still pulls both game boards. "
+        "Other ids (WNBA 3, NBA1H 84, NBA1Q 192) fetch that board only.",
+    )
+    ap.add_argument(
+        "--no-preseason",
+        action="store_true",
+        help="Skip NBAP preseason board 237 (NBA 7 only).",
+    )
     ap.add_argument("--per_page",   type=int, default=250)
     ap.add_argument("--max_pages",  type=int, default=20)
     ap.add_argument("--retries",    type=int, default=5)
@@ -939,69 +996,90 @@ def main() -> None:
     if args.append and args.replace:
         ap.error("Use either --append or --replace, not both.")
 
-    EMPTY_COLS = [
-        "projection_id", "pp_projection_id", "player_id", "pp_game_id",
-        "start_time", "player", "pos", "team", "opp_team", "prop_type",
-        "line", "standard_line", "pick_type", "pp_home_team", "pp_away_team", "image_url",
-        "fetched_at", "pp_updated_at",
-    ]
-
-    print(f"📡 PrizePicks fetch | league_id={args.league_id} | direct API (no browser)")
+    EMPTY_COLS = list(OUTPUT_COLS)
 
     out_path = Path(args.output)
     cdp_url = str(args.cdp or "").strip()
     use_browser = bool(cdp_url) or bool(args.playwright)
-    try:
-        if use_browser:
-            from utils.prizepicks_cdp import session_fetch_projections
+    boards = resolve_nba_fetch_boards(
+        include_preseason=not bool(args.no_preseason),
+        league_id=str(args.league_id or "").strip(),
+    )
+    if use_browser:
+        via = f"CDP {cdp_url}" if cdp_url else "playwright"
+        print(f"📡 PrizePicks fetch | boards={boards} | in-page ({via})")
+    else:
+        print(f"📡 PrizePicks fetch | boards={boards} | direct API (no browser)")
 
-            data, included, _st = session_fetch_projections(
-                str(args.league_id),
-                cdp_url=cdp_url,
-                playwright=bool(args.playwright) and not cdp_url,
-                per_page=int(args.per_page),
-                max_pages=int(args.max_pages),
-            )
-        else:
-            ff = bool(args.fail_fast)
-            data, included = fetch_projections(
-                league_id=str(args.league_id),
-                per_page=args.per_page,
-                max_pages=min(args.max_pages, 4) if ff else args.max_pages,
-                retries=min(2, args.retries) if ff else args.retries,
-                forbid_cooldown_threshold=99 if ff else max(1, int(args.max_cooldowns)),
-                forbid_cooldown_seconds=12.0 if ff else max(15.0, float(args.cooldown_seconds)),
-                forbid_cooldown_jitter=(2.0, 6.0) if ff else (max(1.0, float(args.jitter_seconds) * 0.8), max(2.0, float(args.jitter_seconds) * 2.2)),
-                forbid_max_cooldown_windows=0 if ff else max(1, int(args.max_cooldowns)),
-                first_page_waves=1 if ff else 3,
-                fail_fast=ff,
-            )
-    except Exception as e:
-        print(f"❌ Fetch failed: {e}")
+    def _write_empty_and_exit() -> None:
         if not (args.append and out_path.is_file()):
             pd.DataFrame(columns=EMPTY_COLS).to_csv(args.output, index=False, encoding="utf-8-sig")
         else:
             print("   (--append: left existing output file unchanged)")
         sys.exit(1)
 
-    if not data:
-        print("❌ No projections returned from API.")
-        if not (args.append and out_path.is_file()):
-            pd.DataFrame(columns=EMPTY_COLS).to_csv(args.output, index=False, encoding="utf-8-sig")
+    all_rows: List[dict] = []
+    raw_dump: Dict[str, Any] = {}
+    any_fetch_ok = False
+    last_err: Exception | None = None
+    for i, (lid, league_name) in enumerate(boards.items()):
+        if i > 0:
+            time.sleep(max(1.0, float(args.sleep or 2.0)))
+        print(f"  --- board {league_name} league_id={lid} ---")
+        try:
+            if use_browser:
+                from utils.prizepicks_cdp import session_fetch_projections
+
+                data, included, _st = session_fetch_projections(
+                    str(lid),
+                    cdp_url=cdp_url,
+                    playwright=bool(args.playwright) and not cdp_url,
+                    per_page=int(args.per_page),
+                    max_pages=int(args.max_pages),
+                )
+            else:
+                ff = bool(args.fail_fast)
+                data, included = fetch_projections(
+                    league_id=str(lid),
+                    per_page=args.per_page,
+                    max_pages=min(args.max_pages, 4) if ff else args.max_pages,
+                    retries=min(2, args.retries) if ff else args.retries,
+                    forbid_cooldown_threshold=99 if ff else max(1, int(args.max_cooldowns)),
+                    forbid_cooldown_seconds=12.0 if ff else max(15.0, float(args.cooldown_seconds)),
+                    forbid_cooldown_jitter=(2.0, 6.0) if ff else (max(1.0, float(args.jitter_seconds) * 0.8), max(2.0, float(args.jitter_seconds) * 2.2)),
+                    forbid_max_cooldown_windows=0 if ff else max(1, int(args.max_cooldowns)),
+                    first_page_waves=1 if ff else 3,
+                    fail_fast=ff,
+                )
+            any_fetch_ok = True
+        except Exception as e:
+            last_err = e
+            print(f"  [WARN] {league_name} fetch failed ({e})")
+            continue
+        print(f"  {league_name}: {len(data)} projections")
+        if args.raw_json:
+            raw_dump[str(lid)] = {"league": league_name, "data": data, "included": included}
+        all_rows.extend(
+            build_rows(data, included, league=league_name, league_id=str(lid))
+        )
+
+    if not all_rows:
+        if last_err is not None and not any_fetch_ok:
+            print(f"❌ Fetch failed: {last_err}")
         else:
-            print("   (--append: left existing output file unchanged)")
-        sys.exit(1)
+            print("❌ No projections returned from API.")
+        _write_empty_and_exit()
 
     # Optional raw JSON dump
     if args.raw_json:
         try:
             with open(args.raw_json, "w", encoding="utf-8") as f:
-                json.dump({"data": data, "included": included}, f, ensure_ascii=False)
+                json.dump(raw_dump, f, ensure_ascii=False)
             print(f"🧾 Raw JSON saved → {args.raw_json}")
         except Exception as e:
             print(f"  [WARN] raw_json write failed: {e}")
 
-    rows = build_rows(data, included)
+    rows = all_rows
     df   = pd.DataFrame(rows).fillna("")
     df["line"] = pd.to_numeric(df["line"], errors="coerce")
     df["standard_line"] = pd.to_numeric(df["standard_line"], errors="coerce")
@@ -1028,8 +1106,10 @@ def main() -> None:
     print(f"\n✅ Fetched {n_rows} props across {n_teams} teams")
     print(f"   Pick types : {df['pick_type'].value_counts().to_dict()}")
     print(f"   Prop types : {df['prop_type'].nunique()} unique")
+    if "league" in df.columns:
+        print(f"   Leagues    : {df['league'].astype(str).str.upper().value_counts().to_dict()}")
 
-    if n_rows < args.min_rows or n_teams < args.min_teams:
+    if not _board_size_ok(df, args.min_rows, args.min_teams):
         print(f"\n⛔ BOARD_TOO_SMALL — got {n_rows} rows / {n_teams} teams")
         print(f"   Required: min_rows={args.min_rows}, min_teams={args.min_teams}")
         if args.append and out_path.is_file():
@@ -1047,7 +1127,7 @@ def main() -> None:
             existing = pd.read_csv(out_path, encoding="utf-8-sig")
             for c in EMPTY_COLS:
                 if c not in existing.columns:
-                    existing[c] = ""
+                    existing[c] = "NBA" if c == "league" else ""
             existing = existing[EMPTY_COLS].copy()
             existing["line"] = pd.to_numeric(existing["line"], errors="coerce")
             existing["standard_line"] = pd.to_numeric(existing["standard_line"], errors="coerce")
@@ -1081,7 +1161,7 @@ def main() -> None:
             old = pd.read_csv(out_path, encoding="utf-8-sig")
             for c in EMPTY_COLS:
                 if c not in old.columns:
-                    old[c] = ""
+                    old[c] = "NBA" if c == "league" else ""
             old = old[EMPTY_COLS].copy()
             old["line"] = pd.to_numeric(old["line"], errors="coerce")
             old["standard_line"] = pd.to_numeric(old["standard_line"], errors="coerce")
@@ -1136,13 +1216,30 @@ def main() -> None:
         print(f"[WARNING] NBA step1 allow-nearest-future: skipping date filter")
 
     df = filtered_df
-
-    df, n_fantasy = drop_fantasy_props(df)
-    if n_fantasy:
-        print(f"  Dropped {n_fantasy} fantasy prop row(s)")
     df, n_allstar = drop_allstar_props(df, sport="NBA")
     if n_allstar:
         print(f"  Dropped {n_allstar} All-Star prop row(s)")
+
+    sport_tag = "NBA"
+    try:
+        from utils.pp_basketball_markets import hoops_sport_for_league, log_shooting_coverage
+        from utils.step1_board_reconcile import run_step1_reconcile
+
+        sport_tag = hoops_sport_for_league(args.league_id, fallback="NBA")
+        df, _recon = run_step1_reconcile(
+            sport=sport_tag,
+            df=df,
+            out_dir=out_path.parent,
+            fetched_n=int(fetched_rows),
+        )
+        if df is not None and not df.empty and "prop_type" in df.columns:
+            pts = int(df["prop_type"].astype(str).str.lower().str.contains("points").sum())
+            log_shooting_coverage(df["prop_type"], sport=sport_tag, n_points=pts)
+    except RuntimeError as _cov_exc:
+        print(f"❌ {_cov_exc}")
+        raise SystemExit(2) from _cov_exc
+    except Exception as _sc_exc:
+        print(f"  [WARN] category reconcile / shooting coverage skipped: {_sc_exc}")
 
     if len(df) == 0:
         print(no_props_log_line("NBA", str(args.date).strip()))
@@ -1151,15 +1248,10 @@ def main() -> None:
         sys.exit(0)
 
     # ── Write output ──────────────────────────────────────────────────────────
-    try:
-        from utils.pp_basketball_markets import hoops_sport_for_league, log_shooting_coverage
-
-        sport = hoops_sport_for_league(args.league_id, fallback="NBA")
-        pts = int(df["prop_type"].astype(str).str.lower().str.contains("points").sum())
-        log_shooting_coverage(df["prop_type"], sport=sport, n_points=pts)
-    except Exception as _sc_exc:
-        print(f"  [WARN] shooting coverage log skipped: {_sc_exc}")
     df.to_csv(args.output, index=False, encoding="utf-8-sig")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(args.output, sport="NBA")
     try:
         _root = Path(__file__).resolve().parents[3]
         if str(_root) not in sys.path:

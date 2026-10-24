@@ -46,17 +46,30 @@ def _dedupe_columns(df: pd.DataFrame) -> pd.DataFrame:
 def _prepare_for_parquet(df: pd.DataFrame) -> pd.DataFrame:
     out = _dedupe_columns(df)
     out.columns = [str(c) for c in out.columns]
-    try:
-        return out.convert_dtypes()
-    except Exception:
-        return out
+    for col in list(out.columns):
+        s = out[col]
+        if s.dtype == object:
+            mapped = s.map(_parquet_cell)
+            types = {type(v) for v in mapped.dropna()}
+            if len(types) > 1:
+                out[col] = mapped.map(lambda v: None if v is None else str(v))
+            else:
+                out[col] = mapped
+            continue
+        try:
+            if s.dropna().map(lambda v: isinstance(v, str)).any():
+                out[col] = s.map(_parquet_cell).map(
+                    lambda v: None if v is None else str(v)
+                )
+        except Exception:
+            out[col] = s.astype(object).map(_parquet_cell)
+    return out
 
 
 def _stringify_objects(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
     for col in out.columns:
-        if out[col].dtype == object:
-            out[col] = out[col].map(_parquet_cell)
+        out[col] = out[col].map(_parquet_cell).map(lambda v: None if v is None else str(v))
     return out
 
 
@@ -126,20 +139,72 @@ def copy_parquet_sidecar(src: str | Path, dest: str | Path) -> Path | None:
     return dest_pq
 
 
+def _drop_arrow_backend(df: pd.DataFrame) -> pd.DataFrame:
+    """Arrow-backed string cols reject numeric assignment (combined L5 truth)."""
+    out = df.copy()
+    for col in out.columns:
+        dtype = out[col].dtype
+        name = str(dtype)
+        if (
+            "pyarrow" in name
+            or name.startswith("string")
+            or type(dtype).__name__ == "ArrowDtype"
+        ):
+            out[col] = out[col].astype(object)
+    return out
+
+
 def _read_parquet(path: Path) -> pd.DataFrame:
-    return _dedupe_columns(pd.read_parquet(path))
+    try:
+        raw = pd.read_parquet(path, dtype_backend="numpy_nullable")
+    except TypeError:
+        raw = pd.read_parquet(path)
+    out = _drop_arrow_backend(_dedupe_columns(raw))
+    # Excel-era callers use `x or ""`; pandas NA is not boolean-falsy.
+    return out.astype(object).mask(out.isna(), None)
 
 
 def _pick_excel_sheet(path: Path, sheet: str | None, sheet_order: tuple[str, ...] | None) -> str | int:
     if sheet:
         return sheet
     xl = pd.ExcelFile(path, engine="openpyxl")
-    names = list(xl.sheet_names)
+    names = [n for n in list(xl.sheet_names) if str(n) != "_META"]
     if sheet_order:
         for name in sheet_order:
             if name in names:
                 return name
     return names[0] if names else 0
+
+
+def excel_data_header_row(path: Path, sheet: str | int) -> int:
+    """Skip the optional slate/build STALE banner written as row 0 on older files."""
+    try:
+        peek = pd.read_excel(path, sheet_name=sheet, header=None, nrows=1, engine="openpyxl")
+    except Exception:
+        return 0
+    if peek is None or peek.empty:
+        return 0
+    cell = str(peek.iloc[0, 0] if peek.shape[1] else "")
+    if cell.startswith("slate_date="):
+        return 1
+    return 0
+
+
+def _excel_data_header_row(path: Path, sheet: str | int) -> int:
+    return excel_data_header_row(path, sheet)
+
+
+def repair_banner_headers(df: pd.DataFrame) -> pd.DataFrame:
+    """If a reader treated ``slate_date=...`` as column names, promote row 0."""
+    if df is None or getattr(df, "empty", True):
+        return df
+    cols = [str(c) for c in df.columns]
+    if not any(c.startswith("slate_date=") for c in cols):
+        return df
+    new_cols = [str(x).strip() for x in df.iloc[0].tolist()]
+    out = df.iloc[1:].copy()
+    out.columns = new_cols
+    return out.reset_index(drop=True)
 
 
 def stringify_cells(df: pd.DataFrame) -> pd.DataFrame:
@@ -193,7 +258,10 @@ def read_table(
         return _dedupe_columns(pd.read_csv(p, **kwargs))
     if suffix in {".xlsx", ".xlsm", ".xls"}:
         chosen = _pick_excel_sheet(p, sheet, sheet_order)
-        return _dedupe_columns(pd.read_excel(p, sheet_name=chosen, engine="openpyxl"))
+        header_row = _excel_data_header_row(p, chosen)
+        return _dedupe_columns(
+            pd.read_excel(p, sheet_name=chosen, engine="openpyxl", header=header_row)
+        )
     if sidecar.is_file() and parquet_available():
         return _read_parquet(sidecar)
     raise FileNotFoundError(f"Unsupported table path: {p}")
@@ -280,7 +348,84 @@ _TIER_FILL = {
 }
 
 
-def _style_xlsxwriter_sheet(writer, sheet_name: str, df: pd.DataFrame, header_color: str, header_font: str) -> None:
+def _et_today_iso() -> str:
+    try:
+        from zoneinfo import ZoneInfo
+
+        from datetime import datetime
+
+        return datetime.now(ZoneInfo("America/New_York")).strftime("%Y-%m-%d")
+    except Exception:
+        from datetime import datetime
+
+        return datetime.now().strftime("%Y-%m-%d")
+
+
+def _now_build_stamp() -> str:
+    try:
+        from zoneinfo import ZoneInfo
+
+        from datetime import datetime
+
+        return datetime.now(ZoneInfo("America/New_York")).strftime("%Y-%m-%d %H:%M ET")
+    except Exception:
+        from datetime import datetime
+
+        return datetime.now().strftime("%Y-%m-%d %H:%M")
+
+
+def infer_slate_date_from_path(path: str | Path) -> str:
+    """Pull YYYY-MM-DD from outputs/<date>/… (or any path segment)."""
+    import re
+
+    parts = Path(path).resolve().parts
+    for part in parts:
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", part or ""):
+            return part
+    return ""
+
+
+def step8_freshness_label(slate_date: str, run_date: str = "") -> str:
+    """STALE when slate_date is strictly older than run_date (default: ET today)."""
+    slate = (slate_date or "").strip()[:10]
+    run = (run_date or "").strip()[:10] or _et_today_iso()
+    if len(slate) < 10 or len(run) < 10:
+        return ""
+    if slate < run:
+        return "STALE"
+    return "OK"
+
+
+def format_step8_meta_banner(
+    *,
+    slate_date: str = "",
+    run_date: str = "",
+    build_time: str = "",
+) -> tuple[str, str]:
+    """Return (banner text, freshness label). freshness is STALE|OK|''."""
+    slate = (slate_date or "").strip()[:10]
+    run = (run_date or "").strip()[:10] or _et_today_iso()
+    built = (build_time or "").strip() or _now_build_stamp()
+    fresh = step8_freshness_label(slate, run)
+    bits = [
+        f"slate_date={slate or 'UNKNOWN'}",
+        f"build_time={built}",
+        f"run_date={run}",
+    ]
+    if fresh:
+        bits.append(fresh)
+    return " | ".join(bits), fresh
+
+
+def _style_xlsxwriter_sheet(
+    writer,
+    sheet_name: str,
+    df: pd.DataFrame,
+    header_color: str,
+    header_font: str,
+    *,
+    header_row: int = 0,
+) -> None:
     wb = writer.book
     ws = writer.sheets[sheet_name]
     hdr = wb.add_format(
@@ -295,15 +440,18 @@ def _style_xlsxwriter_sheet(writer, sheet_name: str, df: pd.DataFrame, header_co
     )
     cols = [str(c) for c in df.columns]
     for i, col in enumerate(cols):
-        ws.write(0, i, col, hdr)
+        ws.write(header_row, i, col, hdr)
         ws.set_column(i, i, min(36, max(10, len(col) + 2)))
-    ws.freeze_panes(1, 0)
+    ws.freeze_panes(header_row + 1, 0)
     nrows = len(df)
     ncols = max(len(cols), 1)
-    ws.autofilter(0, 0, max(nrows, 1), ncols - 1)
+    data_first = header_row + 1
+    data_last = header_row + max(nrows, 1)
+    ws.autofilter(header_row, 0, data_last, ncols - 1)
     if nrows == 0 or not cols:
         return
-    last_r, last_c = nrows, ncols - 1
+    last_r, last_c = header_row + nrows, ncols - 1
+    excel_data_row = data_first + 1  # 1-indexed Excel row of first data cell
     for cand in ("Tier", "tier"):
         if cand not in cols:
             continue
@@ -311,13 +459,13 @@ def _style_xlsxwriter_sheet(writer, sheet_name: str, df: pd.DataFrame, header_co
         for grade, (bg, fg) in _TIER_FILL.items():
             fmt = wb.add_format({"bg_color": bg, "font_color": fg})
             ws.conditional_format(
-                1,
+                data_first,
                 0,
                 last_r,
                 last_c,
                 {
                     "type": "formula",
-                    "criteria": f'=${letter}2="{grade}"',
+                    "criteria": f'=${letter}{excel_data_row}="{grade}"',
                     "format": fmt,
                 },
             )
@@ -330,12 +478,12 @@ def _style_xlsxwriter_sheet(writer, sheet_name: str, df: pd.DataFrame, header_co
         over = wb.add_format({"bg_color": "C8F7C5", "bold": True})
         under = wb.add_format({"bg_color": "F7C5C5", "bold": True})
         ws.conditional_format(
-            1, cidx, last_r, cidx,
-            {"type": "formula", "criteria": f'=${letter}2="OVER"', "format": over},
+            data_first, cidx, last_r, cidx,
+            {"type": "formula", "criteria": f'=${letter}{excel_data_row}="OVER"', "format": over},
         )
         ws.conditional_format(
-            1, cidx, last_r, cidx,
-            {"type": "formula", "criteria": f'=${letter}2="UNDER"', "format": under},
+            data_first, cidx, last_r, cidx,
+            {"type": "formula", "criteria": f'=${letter}{excel_data_row}="UNDER"', "format": under},
         )
         break
 
@@ -347,8 +495,20 @@ def write_excel_sheets(
     header_color: str = "1C1C1C",
     header_font: str = "FFFFFF",
     style: bool = True,
+    slate_date: str = "",
+    run_date: str = "",
+    build_time: str = "",
+    stamp_meta: bool = True,
 ) -> Path:
-    """Bulk-write an .xlsx. Prefers xlsxwriter (~5x vs openpyxl cell loops)."""
+    """Bulk-write an .xlsx. Prefers xlsxwriter (~5x vs openpyxl cell loops).
+
+    When ``stamp_meta`` is true (default):
+    - sheet ``_META`` is written first (slate_date / build_time / run_date / freshness)
+    - data sheets start at row 0 with real column headers (banner is ``_META`` only)
+    - ``read_table`` still skips a leftover row-0 ``slate_date=`` banner on old files
+    """
+    import os
+
     p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
     cleaned: dict[str, pd.DataFrame] = {}
@@ -358,18 +518,53 @@ def write_excel_sheets(
             key = f"{key[:28]}_{len(cleaned)}"
         cleaned[key] = _sanitize_excel_df(df)
 
+    slate = (slate_date or "").strip()[:10] or infer_slate_date_from_path(p)
+    if not slate:
+        slate = (os.environ.get("PROPORACLE_SLATE_DATE") or os.environ.get("PROPORACLE_DATE") or "").strip()[:10]
+    run = (run_date or "").strip()[:10] or (os.environ.get("PROPORACLE_RUN_DATE") or "").strip()[:10] or _et_today_iso()
+    banner, fresh = format_step8_meta_banner(
+        slate_date=slate, run_date=run, build_time=build_time
+    )
+    stale = fresh == "STALE"
+    if stamp_meta and stale:
+        print(f"[table_io] STALE step8 workbook slate_date={slate} run_date={run} -> {p.name}")
+    elif stamp_meta:
+        print(f"[table_io] step8 meta {banner}")
+
     engine = "xlsxwriter" if xlsxwriter_available() else "openpyxl"
     kwargs: dict[str, Any] = {}
     if engine == "xlsxwriter":
         kwargs["engine_kwargs"] = {"options": {"strings_to_urls": False}}
+    built = (build_time or "").strip() or _now_build_stamp()
+    ordered: dict[str, pd.DataFrame] = {}
+    if stamp_meta:
+        ordered["_META"] = pd.DataFrame(
+            [
+                {
+                    "slate_date": slate or "UNKNOWN",
+                    "build_time": built,
+                    "run_date": run,
+                    "freshness": fresh or "",
+                    "banner": banner,
+                }
+            ]
+        )
+    ordered.update(cleaned)
+    startrow = 0
+
     with pd.ExcelWriter(p, engine=engine, **kwargs) as writer:
-        for name, df in cleaned.items():
+        for name, df in ordered.items():
             body = df if not df.empty else pd.DataFrame(columns=df.columns)
-            body.to_excel(writer, sheet_name=name, index=False)
-            if style and engine == "xlsxwriter":
+            is_meta = name == "_META"
+            row0 = 0 if is_meta else startrow
+            body.to_excel(writer, sheet_name=name, index=False, startrow=row0)
+            if style and engine == "xlsxwriter" and not is_meta:
                 try:
-                    _style_xlsxwriter_sheet(writer, name, body, header_color, header_font)
+                    _style_xlsxwriter_sheet(
+                        writer, name, body, header_color, header_font, header_row=row0
+                    )
                 except Exception as exc:
                     print(f"[table_io] WARN xlsx style skipped ({name}): {exc}")
-    print(f"[table_io] excel -> {p.name} engine={engine} sheets={list(cleaned)}")
+    tag = f" meta={fresh or 'n/a'}" if stamp_meta else ""
+    print(f"[table_io] excel -> {p.name} engine={engine} sheets={list(ordered)}{tag}")
     return p

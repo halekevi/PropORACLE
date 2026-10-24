@@ -106,6 +106,8 @@ def attach_nfl_unit_line_ranks(
             "dl_rank": "opp_dl_rank",
             "pass_rush_rank": "opp_pass_rush_rank",
             "run_stop_rank": "opp_dl_run_stop_rank",
+            "dl_pass_tier": "opp_dl_pass_tier",
+            "dl_run_tier": "opp_dl_run_tier",
             "tier": "opp_dl_tier",
             "sacks_pg": "opp_sacks_pg",
             "yards_before_contact_allowed": "opp_dl_ybc_allowed",

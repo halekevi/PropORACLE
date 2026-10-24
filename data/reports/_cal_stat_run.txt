@@ -1,0 +1,25 @@
+[load] dropped 200263 rows missing game_id/stat_type/direction/hit/model_prob
+[load] 692872 graded props across 5696 games
+[load] --skip-matrix: correlation cells not built
+[calibration-deciles] wrote data\reports\standard_by_stat.csv rows=521 pick_type=standard group_by=stat_type
+        stat_type  decile   n  mean_pred  mean_hit       gap pick_type
+   3-PT Attempted     1.0  72   0.183808  0.513889  0.330081  standard
+   3-PT Attempted     2.0  68   0.362349  0.558824  0.196475  standard
+   3-PT Attempted     3.0  68   0.432219  0.441176  0.008957  standard
+   3-PT Attempted     4.0  70   0.467981  0.414286 -0.053695  standard
+   3-PT Attempted     5.0  69   0.481832  0.492754  0.010922  standard
+   3-PT Attempted     6.0  69   0.497903  0.521739  0.023836  standard
+   3-PT Attempted     7.0  70   0.532929  0.442857 -0.090072  standard
+   3-PT Attempted     8.0  76   0.657530  0.592105 -0.065425  standard
+   3-PT Attempted     9.0 132   0.983958  0.583333 -0.400625  standard
+        3-PT Made     1.0  24   0.225263  0.291667  0.066404  standard
+        3-PT Made     2.0  25   0.447965  0.320000 -0.127965  standard
+        3-PT Made     3.0  23   0.493617  0.391304 -0.102313  standard
+        3-PT Made     4.0  24   0.517125  0.416667 -0.100458  standard
+        3-PT Made     5.0  24   0.549854  0.541667 -0.008188  standard
+        3-PT Made     6.0  25   0.594676  0.680000  0.085324  standard
+        3-PT Made     7.0  24   0.753958  0.625000 -0.128958  standard
+        3-PT Made     8.0  22   0.907773  0.409091 -0.498682  standard
+        3-PT Made     9.0  48   0.986558  0.437500 -0.549058  standard
+3-PT Made (Combo)     1.0  15   0.224453  0.400000  0.175547  standard
+3-PT Made (Combo)     2.0  17   0.389112  0.470588  0.081476  standard

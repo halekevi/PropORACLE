@@ -1,0 +1,350 @@
+﻿pick,side,prop,k,label,hits,n,hr,base_hr,lift_pp
+Standard,UNDER,passing_yards,1,Elite Pass D,8,10,80.0,50.0,30.0
+Standard,UNDER,passing_yards,1,Elite Sec,6,10,60.0,50.0,10.0
+Standard,UNDER,passing_yards,1,Elite opp DL pass,2,5,40.0,50.0,-10.0
+Standard,UNDER,passing_yards,1,NOT Elite Pass Off,9,15,60.0,50.0,10.0
+Standard,UNDER,passing_yards,1,Weak OL,1,5,20.0,50.0,-30.0
+Standard,UNDER,passing_yards,1,L5>=4,5,9,55.6,50.0,5.600000000000001
+Standard,UNDER,passing_yards,2,Elite Pass D + Elite Sec,6,8,75.0,50.0,25.0
+Standard,UNDER,passing_yards,2,Elite Pass D + NOT Elite Pass Off,7,8,87.5,50.0,37.5
+Standard,UNDER,passing_yards,2,Elite Pass D + L5>=4,3,4,75.0,50.0,25.0
+Standard,UNDER,passing_yards,2,Elite Sec + NOT Elite Pass Off,5,7,71.4,50.0,21.400000000000006
+Standard,UNDER,passing_yards,2,Elite opp DL pass + NOT Elite Pass Off,2,5,40.0,50.0,-10.0
+Standard,UNDER,passing_yards,2,NOT Elite Pass Off + L5>=4,5,8,62.5,50.0,12.5
+Standard,UNDER,passing_yards,3,Elite Pass D + Elite Sec + NOT Elite Pass Off,5,6,83.3,50.0,33.3
+Standard,UNDER,passing_yards,3,Elite Pass D + NOT Elite Pass Off + L5>=4,3,4,75.0,50.0,25.0
+Standard,OVER,passing_yards,1,Weak Pass D,6,9,66.7,45.0,21.700000000000003
+Standard,OVER,passing_yards,1,Weak Sec,2,7,28.6,45.0,-16.4
+Standard,OVER,passing_yards,1,Weak opp DL pass,4,5,80.0,45.0,35.0
+Standard,OVER,passing_yards,1,Elite Pass Off,4,10,40.0,45.0,-5.0
+Standard,OVER,passing_yards,1,NOT Elite Pass Off,5,10,50.0,45.0,5.0
+Standard,OVER,passing_yards,1,Elite OL,4,5,80.0,45.0,35.0
+Standard,OVER,passing_yards,1,Mobile QB,3,4,75.0,45.0,30.0
+Standard,OVER,passing_yards,1,L5>=4,2,4,50.0,45.0,5.0
+Standard,OVER,passing_yards,2,Weak Pass D + Weak Sec,1,4,25.0,45.0,-20.0
+Standard,OVER,passing_yards,2,Weak Pass D + Elite Pass Off,2,4,50.0,45.0,5.0
+Standard,OVER,passing_yards,2,Weak Pass D + NOT Elite Pass Off,4,5,80.0,45.0,35.0
+Standard,OVER,passing_yards,2,Weak Sec + Elite Pass Off,1,4,25.0,45.0,-20.0
+Standard,OVER,passing_yards,2,Weak opp DL pass + NOT Elite Pass Off,4,5,80.0,45.0,35.0
+Goblin,OVER,passing_yards,1,Weak Pass D,8,10,80.0,73.3,6.700000000000003
+Goblin,OVER,passing_yards,1,Weak Sec,7,11,63.6,73.3,-9.699999999999996
+Goblin,OVER,passing_yards,1,Weak opp DL pass,7,9,77.8,73.3,4.5
+Goblin,OVER,passing_yards,1,Elite Pass Off,8,12,66.7,73.3,-6.599999999999994
+Goblin,OVER,passing_yards,1,NOT Elite Pass Off,14,18,77.8,73.3,4.5
+Goblin,OVER,passing_yards,1,Elite OL,8,10,80.0,73.3,6.700000000000003
+Goblin,OVER,passing_yards,1,Mobile QB,6,8,75.0,73.3,1.7000000000000028
+Goblin,OVER,passing_yards,1,L5=5,3,5,60.0,73.3,-13.299999999999997
+Goblin,OVER,passing_yards,1,L5>=4,9,13,69.2,73.3,-4.099999999999994
+Goblin,OVER,passing_yards,2,Weak Pass D + Weak Sec,3,5,60.0,73.3,-13.299999999999997
+Goblin,OVER,passing_yards,2,Weak Pass D + Elite Pass Off,3,4,75.0,73.3,1.7000000000000028
+Goblin,OVER,passing_yards,2,Weak Pass D + NOT Elite Pass Off,5,6,83.3,73.3,10.0
+Goblin,OVER,passing_yards,2,Weak Pass D + L5>=4,4,5,80.0,73.3,6.700000000000003
+Goblin,OVER,passing_yards,2,Weak Sec + NOT Elite Pass Off,5,8,62.5,73.3,-10.799999999999997
+Goblin,OVER,passing_yards,2,Weak Sec + L5>=4,4,6,66.7,73.3,-6.599999999999994
+Goblin,OVER,passing_yards,2,Weak opp DL pass + NOT Elite Pass Off,7,8,87.5,73.3,14.200000000000003
+Goblin,OVER,passing_yards,2,Weak opp DL pass + Elite OL,2,4,50.0,73.3,-23.299999999999997
+Goblin,OVER,passing_yards,2,Elite Pass Off + Elite OL,3,4,75.0,73.3,1.7000000000000028
+Goblin,OVER,passing_yards,2,Elite Pass Off + L5=5,3,5,60.0,73.3,-13.299999999999997
+Goblin,OVER,passing_yards,2,Elite Pass Off + L5>=4,4,7,57.1,73.3,-16.199999999999996
+Goblin,OVER,passing_yards,2,NOT Elite Pass Off + Elite OL,5,6,83.3,73.3,10.0
+Goblin,OVER,passing_yards,2,NOT Elite Pass Off + Mobile QB,4,5,80.0,73.3,6.700000000000003
+Goblin,OVER,passing_yards,2,NOT Elite Pass Off + L5>=4,5,6,83.3,73.3,10.0
+Goblin,OVER,passing_yards,2,Elite OL + Mobile QB,2,4,50.0,73.3,-23.299999999999997
+Goblin,OVER,passing_yards,2,L5=5 + L5>=4,3,5,60.0,73.3,-13.299999999999997
+Goblin,OVER,passing_yards,3,Weak Sec + NOT Elite Pass Off + L5>=4,3,4,75.0,73.3,1.7000000000000028
+Goblin,OVER,passing_yards,3,Elite Pass Off + L5=5 + L5>=4,3,5,60.0,73.3,-13.299999999999997
+Standard,UNDER,passing_tds,1,Elite Pass D,4,5,80.0,66.7,13.299999999999997
+Standard,UNDER,passing_tds,1,NOT Elite Pass Off,4,7,57.1,66.7,-9.600000000000001
+Standard,UNDER,passing_tds,1,L5>=4,3,4,75.0,66.7,8.299999999999997
+Standard,UNDER,passing_tds,2,Elite Pass D + NOT Elite Pass Off,3,4,75.0,66.7,8.299999999999997
+Standard,OVER,passing_tds,1,Weak Pass D,4,4,100.0,66.7,33.3
+Standard,OVER,passing_tds,1,Weak opp DL pass,5,6,83.3,66.7,16.599999999999994
+Standard,OVER,passing_tds,1,Elite Pass Off,4,6,66.7,66.7,0.0
+Standard,OVER,passing_tds,1,NOT Elite Pass Off,4,6,66.7,66.7,0.0
+Standard,OVER,passing_tds,1,Elite OL,4,5,80.0,66.7,13.299999999999997
+Standard,OVER,passing_tds,1,Mobile QB,1,4,25.0,66.7,-41.7
+Standard,OVER,passing_tds,2,Weak opp DL pass + NOT Elite Pass Off,4,4,100.0,66.7,33.3
+Standard,OVER,passing_tds,2,Weak opp DL pass + Elite OL,3,4,75.0,66.7,8.299999999999997
+Goblin,OVER,passing_tds,1,Weak Pass D,6,9,66.7,66.7,0.0
+Goblin,OVER,passing_tds,1,Weak Sec,5,9,55.6,66.7,-11.100000000000001
+Goblin,OVER,passing_tds,1,Weak opp DL pass,7,9,77.8,66.7,11.099999999999994
+Goblin,OVER,passing_tds,1,Elite Pass Off,5,10,50.0,66.7,-16.700000000000003
+Goblin,OVER,passing_tds,1,NOT Elite Pass Off,13,17,76.5,66.7,9.799999999999997
+Goblin,OVER,passing_tds,1,Elite OL,8,9,88.9,66.7,22.200000000000003
+Goblin,OVER,passing_tds,1,Mobile QB,5,7,71.4,66.7,4.700000000000003
+Goblin,OVER,passing_tds,1,L5=5,4,6,66.7,66.7,0.0
+Goblin,OVER,passing_tds,1,L5>=4,10,16,62.5,66.7,-4.200000000000003
+Goblin,OVER,passing_tds,2,Weak Pass D + Weak Sec,2,4,50.0,66.7,-16.700000000000003
+Goblin,OVER,passing_tds,2,Weak Pass D + NOT Elite Pass Off,5,6,83.3,66.7,16.599999999999994
+Goblin,OVER,passing_tds,2,Weak Pass D + L5>=4,3,6,50.0,66.7,-16.700000000000003
+Goblin,OVER,passing_tds,2,Weak Sec + NOT Elite Pass Off,5,7,71.4,66.7,4.700000000000003
+Goblin,OVER,passing_tds,2,Weak Sec + L5>=4,3,5,60.0,66.7,-6.700000000000003
+Goblin,OVER,passing_tds,2,Weak opp DL pass + NOT Elite Pass Off,7,8,87.5,66.7,20.799999999999997
+Goblin,OVER,passing_tds,2,Weak opp DL pass + Elite OL,3,4,75.0,66.7,8.299999999999997
+Goblin,OVER,passing_tds,2,Weak opp DL pass + L5>=4,3,4,75.0,66.7,8.299999999999997
+Goblin,OVER,passing_tds,2,Elite Pass Off + Elite OL,3,4,75.0,66.7,8.299999999999997
+Goblin,OVER,passing_tds,2,Elite Pass Off + L5=5,2,4,50.0,66.7,-16.700000000000003
+Goblin,OVER,passing_tds,2,Elite Pass Off + L5>=4,4,7,57.1,66.7,-9.600000000000001
+Goblin,OVER,passing_tds,2,NOT Elite Pass Off + Elite OL,5,5,100.0,66.7,33.3
+Goblin,OVER,passing_tds,2,NOT Elite Pass Off + Mobile QB,3,4,75.0,66.7,8.299999999999997
+Goblin,OVER,passing_tds,2,NOT Elite Pass Off + L5>=4,6,9,66.7,66.7,0.0
+Goblin,OVER,passing_tds,2,Elite OL + L5>=4,5,5,100.0,66.7,33.3
+Goblin,OVER,passing_tds,2,L5=5 + L5>=4,4,6,66.7,66.7,0.0
+Goblin,OVER,passing_tds,3,Weak Sec + NOT Elite Pass Off + L5>=4,3,4,75.0,66.7,8.299999999999997
+Goblin,OVER,passing_tds,3,Weak opp DL pass + NOT Elite Pass Off + L5>=4,3,4,75.0,66.7,8.299999999999997
+Goblin,OVER,passing_tds,3,Elite Pass Off + L5=5 + L5>=4,2,4,50.0,66.7,-16.700000000000003
+Standard,UNDER,pass_attempts,1,Elite Pass D,5,6,83.3,69.2,14.099999999999994
+Standard,UNDER,pass_attempts,1,Elite Sec,3,5,60.0,69.2,-9.200000000000003
+Standard,UNDER,pass_attempts,1,NOT Elite Pass Off,6,9,66.7,69.2,-2.5
+Standard,UNDER,pass_attempts,1,Weak OL,3,5,60.0,69.2,-9.200000000000003
+Standard,UNDER,pass_attempts,1,L5>=4,5,7,71.4,69.2,2.200000000000003
+Standard,UNDER,pass_attempts,2,Elite Pass D + Elite Sec,3,4,75.0,69.2,5.799999999999997
+Standard,UNDER,pass_attempts,2,Elite Pass D + NOT Elite Pass Off,3,4,75.0,69.2,5.799999999999997
+Standard,UNDER,pass_attempts,2,Elite Pass D + L5>=4,4,5,80.0,69.2,10.799999999999997
+Standard,UNDER,pass_attempts,2,Elite Sec + L5>=4,3,5,60.0,69.2,-9.200000000000003
+Standard,UNDER,pass_attempts,2,NOT Elite Pass Off + L5>=4,4,5,80.0,69.2,10.799999999999997
+Standard,UNDER,pass_attempts,3,Elite Pass D + Elite Sec + L5>=4,3,4,75.0,69.2,5.799999999999997
+Standard,UNDER,pass_attempts,3,Elite Pass D + NOT Elite Pass Off + L5>=4,3,4,75.0,69.2,5.799999999999997
+Standard,OVER,pass_attempts,1,Weak Pass D,3,8,37.5,25.0,12.5
+Standard,OVER,pass_attempts,1,Weak Sec,4,8,50.0,25.0,25.0
+Standard,OVER,pass_attempts,1,Weak opp DL pass,1,7,14.3,25.0,-10.7
+Standard,OVER,pass_attempts,1,Elite Pass Off,4,10,40.0,25.0,15.0
+Standard,OVER,pass_attempts,1,NOT Elite Pass Off,2,14,14.3,25.0,-10.7
+Standard,OVER,pass_attempts,1,Elite OL,1,10,10.0,25.0,-15.0
+Standard,OVER,pass_attempts,1,Mobile QB,2,8,25.0,25.0,0.0
+Standard,OVER,pass_attempts,1,L5>=4,2,4,50.0,25.0,25.0
+Standard,OVER,pass_attempts,2,Weak Pass D + Weak Sec,1,4,25.0,25.0,0.0
+Standard,OVER,pass_attempts,2,Weak Pass D + NOT Elite Pass Off,1,5,20.0,25.0,-5.0
+Standard,OVER,pass_attempts,2,Weak Sec + NOT Elite Pass Off,2,5,40.0,25.0,15.0
+Standard,OVER,pass_attempts,2,Weak opp DL pass + NOT Elite Pass Off,0,5,0.0,25.0,-25.0
+Standard,OVER,pass_attempts,2,Weak opp DL pass + Elite OL,0,5,0.0,25.0,-25.0
+Standard,OVER,pass_attempts,2,Elite Pass Off + Elite OL,1,4,25.0,25.0,0.0
+Standard,OVER,pass_attempts,2,NOT Elite Pass Off + Elite OL,0,6,0.0,25.0,-25.0
+Standard,OVER,pass_attempts,2,NOT Elite Pass Off + Mobile QB,1,5,20.0,25.0,-5.0
+Standard,OVER,pass_attempts,2,Elite OL + Mobile QB,0,4,0.0,25.0,-25.0
+Standard,OVER,pass_attempts,3,Weak opp DL pass + NOT Elite Pass Off + Elite OL,0,4,0.0,25.0,-25.0
+Goblin,OVER,pass_attempts,1,Weak Pass D,7,10,70.0,50.0,20.0
+Goblin,OVER,pass_attempts,1,Weak Sec,5,11,45.5,50.0,-4.5
+Goblin,OVER,pass_attempts,1,Weak opp DL pass,5,9,55.6,50.0,5.600000000000001
+Goblin,OVER,pass_attempts,1,Elite Pass Off,5,12,41.7,50.0,-8.299999999999997
+Goblin,OVER,pass_attempts,1,NOT Elite Pass Off,10,18,55.6,50.0,5.600000000000001
+Goblin,OVER,pass_attempts,1,Elite OL,5,10,50.0,50.0,0.0
+Goblin,OVER,pass_attempts,1,Mobile QB,3,8,37.5,50.0,-12.5
+Goblin,OVER,pass_attempts,1,L5>=4,8,15,53.3,50.0,3.299999999999997
+Goblin,OVER,pass_attempts,2,Weak Pass D + Weak Sec,2,5,40.0,50.0,-10.0
+Goblin,OVER,pass_attempts,2,Weak Pass D + Elite Pass Off,2,4,50.0,50.0,0.0
+Goblin,OVER,pass_attempts,2,Weak Pass D + NOT Elite Pass Off,5,6,83.3,50.0,33.3
+Goblin,OVER,pass_attempts,2,Weak Pass D + L5>=4,4,7,57.1,50.0,7.100000000000001
+Goblin,OVER,pass_attempts,2,Weak Sec + NOT Elite Pass Off,4,8,50.0,50.0,0.0
+Goblin,OVER,pass_attempts,2,Weak Sec + L5>=4,4,8,50.0,50.0,0.0
+Goblin,OVER,pass_attempts,2,Weak opp DL pass + NOT Elite Pass Off,5,8,62.5,50.0,12.5
+Goblin,OVER,pass_attempts,2,Weak opp DL pass + Elite OL,1,4,25.0,50.0,-25.0
+Goblin,OVER,pass_attempts,2,Elite Pass Off + Elite OL,3,4,75.0,50.0,25.0
+Goblin,OVER,pass_attempts,2,Elite Pass Off + L5>=4,4,7,57.1,50.0,7.100000000000001
+Goblin,OVER,pass_attempts,2,NOT Elite Pass Off + Elite OL,2,6,33.3,50.0,-16.700000000000003
+Goblin,OVER,pass_attempts,2,NOT Elite Pass Off + Mobile QB,2,5,40.0,50.0,-10.0
+Goblin,OVER,pass_attempts,2,NOT Elite Pass Off + L5>=4,4,8,50.0,50.0,0.0
+Goblin,OVER,pass_attempts,2,Elite OL + Mobile QB,1,4,25.0,50.0,-25.0
+Goblin,OVER,pass_attempts,2,Elite OL + L5>=4,3,5,60.0,50.0,10.0
+Goblin,OVER,pass_attempts,3,Weak Pass D + Weak Sec + L5>=4,1,4,25.0,50.0,-25.0
+Goblin,OVER,pass_attempts,3,Weak Pass D + Elite Pass Off + L5>=4,2,4,50.0,50.0,0.0
+Goblin,OVER,pass_attempts,3,Weak Sec + NOT Elite Pass Off + L5>=4,3,5,60.0,50.0,10.0
+Standard,UNDER,pass_completions,1,Elite Pass D,6,8,75.0,47.1,27.9
+Standard,UNDER,pass_completions,1,Elite Sec,5,7,71.4,47.1,24.300000000000004
+Standard,UNDER,pass_completions,1,Elite opp DL pass,2,4,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,1,NOT Elite Pass Off,6,13,46.2,47.1,-0.8999999999999986
+Standard,UNDER,pass_completions,1,Weak OL,3,7,42.9,47.1,-4.200000000000003
+Standard,UNDER,pass_completions,1,L5=5,4,8,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,1,L5>=4,5,11,45.5,47.1,-1.6000000000000014
+Standard,UNDER,pass_completions,2,Elite Pass D + Elite Sec,5,7,71.4,47.1,24.300000000000004
+Standard,UNDER,pass_completions,2,Elite Pass D + NOT Elite Pass Off,4,6,66.7,47.1,19.6
+Standard,UNDER,pass_completions,2,Elite Pass D + L5=5,2,4,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,2,Elite Pass D + L5>=4,3,5,60.0,47.1,12.899999999999999
+Standard,UNDER,pass_completions,2,Elite Sec + NOT Elite Pass Off,3,5,60.0,47.1,12.899999999999999
+Standard,UNDER,pass_completions,2,Elite Sec + L5>=4,2,4,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,2,NOT Elite Pass Off + Weak OL,1,4,25.0,47.1,-22.1
+Standard,UNDER,pass_completions,2,NOT Elite Pass Off + L5=5,4,6,66.7,47.1,19.6
+Standard,UNDER,pass_completions,2,NOT Elite Pass Off + L5>=4,4,8,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,2,L5=5 + L5>=4,4,8,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,3,Elite Pass D + Elite Sec + NOT Elite Pass Off,3,5,60.0,47.1,12.899999999999999
+Standard,UNDER,pass_completions,3,Elite Pass D + Elite Sec + L5>=4,2,4,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,3,Elite Pass D + NOT Elite Pass Off + L5=5,2,4,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,3,Elite Pass D + NOT Elite Pass Off + L5>=4,2,4,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,3,Elite Pass D + L5=5 + L5>=4,2,4,50.0,47.1,2.8999999999999986
+Standard,UNDER,pass_completions,3,NOT Elite Pass Off + L5=5 + L5>=4,4,6,66.7,47.1,19.6
+Standard,OVER,pass_completions,1,Weak Pass D,2,5,40.0,38.5,1.5
+Standard,OVER,pass_completions,1,Weak Sec,3,7,42.9,38.5,4.399999999999999
+Standard,OVER,pass_completions,1,Elite Pass Off,3,8,37.5,38.5,-1.0
+Standard,OVER,pass_completions,1,NOT Elite Pass Off,2,5,40.0,38.5,1.5
+Standard,OVER,pass_completions,1,L5>=4,2,4,50.0,38.5,11.5
+Standard,OVER,pass_completions,2,Weak Pass D + Weak Sec,1,4,25.0,38.5,-13.5
+Standard,OVER,pass_completions,2,Weak Sec + Elite Pass Off,1,4,25.0,38.5,-13.5
+Standard,OVER,pass_completions,2,Elite Pass Off + L5>=4,2,4,50.0,38.5,11.5
+Goblin,OVER,pass_completions,1,Weak Pass D,7,9,77.8,60.7,17.099999999999994
+Goblin,OVER,pass_completions,1,Weak Sec,7,11,63.6,60.7,2.8999999999999986
+Goblin,OVER,pass_completions,1,Weak opp DL pass,5,7,71.4,60.7,10.700000000000003
+Goblin,OVER,pass_completions,1,Elite Pass Off,6,11,54.5,60.7,-6.200000000000003
+Goblin,OVER,pass_completions,1,NOT Elite Pass Off,11,17,64.7,60.7,4.0
+Goblin,OVER,pass_completions,1,Elite OL,7,9,77.8,60.7,17.099999999999994
+Goblin,OVER,pass_completions,1,Mobile QB,3,7,42.9,60.7,-17.800000000000004
+Goblin,OVER,pass_completions,1,L5=5,2,4,50.0,60.7,-10.700000000000003
+Goblin,OVER,pass_completions,1,L5>=4,7,12,58.3,60.7,-2.4000000000000057
+Goblin,OVER,pass_completions,2,Weak Pass D + Weak Sec,3,5,60.0,60.7,-0.7000000000000028
+Goblin,OVER,pass_completions,2,Weak Pass D + Elite Pass Off,3,4,75.0,60.7,14.299999999999997
+Goblin,OVER,pass_completions,2,Weak Pass D + NOT Elite Pass Off,4,5,80.0,60.7,19.299999999999997
+Goblin,OVER,pass_completions,2,Weak Pass D + L5>=4,3,4,75.0,60.7,14.299999999999997
+Goblin,OVER,pass_completions,2,Weak Sec + NOT Elite Pass Off,5,8,62.5,60.7,1.7999999999999972
+Goblin,OVER,pass_completions,2,Weak Sec + L5>=4,3,5,60.0,60.7,-0.7000000000000028
+Goblin,OVER,pass_completions,2,Weak opp DL pass + NOT Elite Pass Off,5,7,71.4,60.7,10.700000000000003
+Goblin,OVER,pass_completions,2,Elite Pass Off + L5=5,2,4,50.0,60.7,-10.700000000000003
+Goblin,OVER,pass_completions,2,Elite Pass Off + L5>=4,4,7,57.1,60.7,-3.6000000000000014
+Goblin,OVER,pass_completions,2,NOT Elite Pass Off + Elite OL,4,6,66.7,60.7,6.0
+Goblin,OVER,pass_completions,2,NOT Elite Pass Off + Mobile QB,2,5,40.0,60.7,-20.700000000000003
+Goblin,OVER,pass_completions,2,NOT Elite Pass Off + L5>=4,3,5,60.0,60.7,-0.7000000000000028
+Goblin,OVER,pass_completions,2,Elite OL + L5>=4,4,5,80.0,60.7,19.299999999999997
+Goblin,OVER,pass_completions,2,L5=5 + L5>=4,2,4,50.0,60.7,-10.700000000000003
+Goblin,OVER,pass_completions,3,Elite Pass Off + L5=5 + L5>=4,2,4,50.0,60.7,-10.700000000000003
+Standard,UNDER,completion_percentage,1,Elite Pass D,9,15,60.0,45.2,14.799999999999997
+Standard,UNDER,completion_percentage,1,Elite Sec,5,14,35.7,45.2,-9.5
+Standard,UNDER,completion_percentage,1,Elite opp DL pass,8,12,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,1,NOT Elite Pass Off,8,19,42.1,45.2,-3.1000000000000014
+Standard,UNDER,completion_percentage,1,Weak OL,6,12,50.0,45.2,4.799999999999997
+Standard,UNDER,completion_percentage,1,Pocket QB,3,5,60.0,45.2,14.799999999999997
+Standard,UNDER,completion_percentage,1,L5=5,14,29,48.3,45.2,3.0999999999999943
+Standard,UNDER,completion_percentage,1,L5>=4,14,30,46.7,45.2,1.5
+Standard,UNDER,completion_percentage,2,Elite Pass D + Elite Sec,5,10,50.0,45.2,4.799999999999997
+Standard,UNDER,completion_percentage,2,Elite Pass D + Elite opp DL pass,5,7,71.4,45.2,26.200000000000003
+Standard,UNDER,completion_percentage,2,Elite Pass D + NOT Elite Pass Off,5,8,62.5,45.2,17.299999999999997
+Standard,UNDER,completion_percentage,2,Elite Pass D + Weak OL,4,6,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,2,Elite Pass D + L5=5,9,15,60.0,45.2,14.799999999999997
+Standard,UNDER,completion_percentage,2,Elite Pass D + L5>=4,9,15,60.0,45.2,14.799999999999997
+Standard,UNDER,completion_percentage,2,Elite Sec + Elite opp DL pass,3,4,75.0,45.2,29.799999999999997
+Standard,UNDER,completion_percentage,2,Elite Sec + NOT Elite Pass Off,3,8,37.5,45.2,-7.700000000000003
+Standard,UNDER,completion_percentage,2,Elite Sec + L5=5,5,14,35.7,45.2,-9.5
+Standard,UNDER,completion_percentage,2,Elite Sec + L5>=4,5,14,35.7,45.2,-9.5
+Standard,UNDER,completion_percentage,2,Elite opp DL pass + NOT Elite Pass Off,4,6,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,2,Elite opp DL pass + Weak OL,4,6,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,2,Elite opp DL pass + L5=5,8,12,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,2,Elite opp DL pass + L5>=4,8,12,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,2,NOT Elite Pass Off + Weak OL,2,6,33.3,45.2,-11.900000000000006
+Standard,UNDER,completion_percentage,2,NOT Elite Pass Off + Pocket QB,2,4,50.0,45.2,4.799999999999997
+Standard,UNDER,completion_percentage,2,NOT Elite Pass Off + L5=5,8,17,47.1,45.2,1.8999999999999986
+Standard,UNDER,completion_percentage,2,NOT Elite Pass Off + L5>=4,8,18,44.4,45.2,-0.8000000000000043
+Standard,UNDER,completion_percentage,2,Weak OL + L5=5,6,11,54.5,45.2,9.299999999999997
+Standard,UNDER,completion_percentage,2,Weak OL + L5>=4,6,11,54.5,45.2,9.299999999999997
+Standard,UNDER,completion_percentage,2,Pocket QB + L5=5,3,4,75.0,45.2,29.799999999999997
+Standard,UNDER,completion_percentage,2,Pocket QB + L5>=4,3,5,60.0,45.2,14.799999999999997
+Standard,UNDER,completion_percentage,2,L5=5 + L5>=4,14,29,48.3,45.2,3.0999999999999943
+Standard,UNDER,completion_percentage,3,Elite Pass D + Elite Sec + Elite opp DL pass,3,4,75.0,45.2,29.799999999999997
+Standard,UNDER,completion_percentage,3,Elite Pass D + Elite Sec + NOT Elite Pass Off,3,6,50.0,45.2,4.799999999999997
+Standard,UNDER,completion_percentage,3,Elite Pass D + Elite Sec + L5=5,5,10,50.0,45.2,4.799999999999997
+Standard,UNDER,completion_percentage,3,Elite Pass D + Elite Sec + L5>=4,5,10,50.0,45.2,4.799999999999997
+Standard,UNDER,completion_percentage,3,Elite Pass D + Elite opp DL pass + L5=5,5,7,71.4,45.2,26.200000000000003
+Standard,UNDER,completion_percentage,3,Elite Pass D + Elite opp DL pass + L5>=4,5,7,71.4,45.2,26.200000000000003
+Standard,UNDER,completion_percentage,3,Elite Pass D + NOT Elite Pass Off + L5=5,5,8,62.5,45.2,17.299999999999997
+Standard,UNDER,completion_percentage,3,Elite Pass D + NOT Elite Pass Off + L5>=4,5,8,62.5,45.2,17.299999999999997
+Standard,UNDER,completion_percentage,3,Elite Pass D + Weak OL + L5=5,4,6,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,3,Elite Pass D + Weak OL + L5>=4,4,6,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,3,Elite Pass D + L5=5 + L5>=4,9,15,60.0,45.2,14.799999999999997
+Standard,UNDER,completion_percentage,3,Elite Sec + Elite opp DL pass + L5=5,3,4,75.0,45.2,29.799999999999997
+Standard,UNDER,completion_percentage,3,Elite Sec + Elite opp DL pass + L5>=4,3,4,75.0,45.2,29.799999999999997
+Standard,UNDER,completion_percentage,3,Elite Sec + NOT Elite Pass Off + L5=5,3,8,37.5,45.2,-7.700000000000003
+Standard,UNDER,completion_percentage,3,Elite Sec + NOT Elite Pass Off + L5>=4,3,8,37.5,45.2,-7.700000000000003
+Standard,UNDER,completion_percentage,3,Elite Sec + L5=5 + L5>=4,5,14,35.7,45.2,-9.5
+Standard,UNDER,completion_percentage,3,Elite opp DL pass + NOT Elite Pass Off + L5=5,4,6,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,3,Elite opp DL pass + NOT Elite Pass Off + L5>=4,4,6,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,3,Elite opp DL pass + Weak OL + L5=5,4,6,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,3,Elite opp DL pass + Weak OL + L5>=4,4,6,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,3,Elite opp DL pass + L5=5 + L5>=4,8,12,66.7,45.2,21.5
+Standard,UNDER,completion_percentage,3,NOT Elite Pass Off + Weak OL + L5=5,2,5,40.0,45.2,-5.200000000000003
+Standard,UNDER,completion_percentage,3,NOT Elite Pass Off + Weak OL + L5>=4,2,5,40.0,45.2,-5.200000000000003
+Standard,UNDER,completion_percentage,3,NOT Elite Pass Off + Pocket QB + L5>=4,2,4,50.0,45.2,4.799999999999997
+Standard,UNDER,completion_percentage,3,NOT Elite Pass Off + L5=5 + L5>=4,8,17,47.1,45.2,1.8999999999999986
+Standard,UNDER,completion_percentage,3,Weak OL + L5=5 + L5>=4,6,11,54.5,45.2,9.299999999999997
+Standard,UNDER,completion_percentage,3,Pocket QB + L5=5 + L5>=4,3,4,75.0,45.2,29.799999999999997
+Standard,OVER,longest_completion,1,Weak Pass D,6,9,66.7,53.6,13.100000000000001
+Standard,OVER,longest_completion,1,Weak Sec,4,11,36.4,53.6,-17.200000000000003
+Standard,OVER,longest_completion,1,Weak opp DL pass,4,7,57.1,53.6,3.5
+Standard,OVER,longest_completion,1,Elite Pass Off,4,11,36.4,53.6,-17.200000000000003
+Standard,OVER,longest_completion,1,NOT Elite Pass Off,11,17,64.7,53.6,11.100000000000001
+Standard,OVER,longest_completion,1,Elite OL,6,9,66.7,53.6,13.100000000000001
+Standard,OVER,longest_completion,1,Mobile QB,6,7,85.7,53.6,32.1
+Standard,OVER,longest_completion,2,Weak Pass D + Weak Sec,2,5,40.0,53.6,-13.600000000000001
+Standard,OVER,longest_completion,2,Weak Pass D + Elite Pass Off,2,4,50.0,53.6,-3.6000000000000014
+Standard,OVER,longest_completion,2,Weak Pass D + NOT Elite Pass Off,4,5,80.0,53.6,26.4
+Standard,OVER,longest_completion,2,Weak Sec + NOT Elite Pass Off,4,8,50.0,53.6,-3.6000000000000014
+Standard,OVER,longest_completion,2,Weak opp DL pass + NOT Elite Pass Off,4,7,57.1,53.6,3.5
+Standard,OVER,longest_completion,2,NOT Elite Pass Off + Elite OL,4,6,66.7,53.6,13.100000000000001
+Standard,OVER,longest_completion,2,NOT Elite Pass Off + Mobile QB,4,5,80.0,53.6,26.4
+Goblin,OVER,longest_completion,1,Weak Pass D,8,10,80.0,63.3,16.700000000000003
+Goblin,OVER,longest_completion,1,Weak Sec,7,11,63.6,63.3,0.30000000000000426
+Goblin,OVER,longest_completion,1,Weak opp DL pass,5,9,55.6,63.3,-7.699999999999996
+Goblin,OVER,longest_completion,1,Elite Pass Off,5,12,41.7,63.3,-21.599999999999994
+Goblin,OVER,longest_completion,1,NOT Elite Pass Off,14,18,77.8,63.3,14.5
+Goblin,OVER,longest_completion,1,Elite OL,7,10,70.0,63.3,6.700000000000003
+Goblin,OVER,longest_completion,1,Mobile QB,6,8,75.0,63.3,11.700000000000003
+Goblin,OVER,longest_completion,2,Weak Pass D + Weak Sec,3,5,60.0,63.3,-3.299999999999997
+Goblin,OVER,longest_completion,2,Weak Pass D + Elite Pass Off,2,4,50.0,63.3,-13.299999999999997
+Goblin,OVER,longest_completion,2,Weak Pass D + NOT Elite Pass Off,6,6,100.0,63.3,36.7
+Goblin,OVER,longest_completion,2,Weak Sec + NOT Elite Pass Off,6,8,75.0,63.3,11.700000000000003
+Goblin,OVER,longest_completion,2,Weak opp DL pass + NOT Elite Pass Off,5,8,62.5,63.3,-0.7999999999999972
+Goblin,OVER,longest_completion,2,Weak opp DL pass + Elite OL,2,4,50.0,63.3,-13.299999999999997
+Goblin,OVER,longest_completion,2,Elite Pass Off + Elite OL,2,4,50.0,63.3,-13.299999999999997
+Goblin,OVER,longest_completion,2,NOT Elite Pass Off + Elite OL,5,6,83.3,63.3,20.0
+Goblin,OVER,longest_completion,2,NOT Elite Pass Off + Mobile QB,4,5,80.0,63.3,16.700000000000003
+Goblin,OVER,longest_completion,2,Elite OL + Mobile QB,2,4,50.0,63.3,-13.299999999999997
+Standard,UNDER,longest_completion,1,Elite Sec,1,4,25.0,50.0,-25.0
+Standard,UNDER,longest_completion,1,NOT Elite Pass Off,1,4,25.0,50.0,-25.0
+Standard,UNDER,longest_completion,1,L5=5,3,6,50.0,50.0,0.0
+Standard,UNDER,longest_completion,1,L5>=4,3,6,50.0,50.0,0.0
+Standard,UNDER,longest_completion,2,Elite Sec + L5=5,1,4,25.0,50.0,-25.0
+Standard,UNDER,longest_completion,2,Elite Sec + L5>=4,1,4,25.0,50.0,-25.0
+Standard,UNDER,longest_completion,2,NOT Elite Pass Off + L5=5,1,4,25.0,50.0,-25.0
+Standard,UNDER,longest_completion,2,NOT Elite Pass Off + L5>=4,1,4,25.0,50.0,-25.0
+Standard,UNDER,longest_completion,2,L5=5 + L5>=4,3,6,50.0,50.0,0.0
+Standard,UNDER,longest_completion,3,Elite Sec + L5=5 + L5>=4,1,4,25.0,50.0,-25.0
+Standard,UNDER,longest_completion,3,NOT Elite Pass Off + L5=5 + L5>=4,1,4,25.0,50.0,-25.0
+Standard,OVER,rush_yards_per_carry,1,Weak Rush D,8,12,66.7,42.9,23.800000000000004
+Standard,OVER,rush_yards_per_carry,1,Weak DL run,5,14,35.7,42.9,-7.199999999999996
+Standard,OVER,rush_yards_per_carry,1,Elite Rush Off,7,17,41.2,42.9,-1.6999999999999957
+Standard,OVER,rush_yards_per_carry,1,NOT Elite Rush Off,8,18,44.4,42.9,1.5
+Standard,OVER,rush_yards_per_carry,1,Elite OL,3,11,27.3,42.9,-15.599999999999998
+Standard,OVER,rush_yards_per_carry,1,L5=5,12,30,40.0,42.9,-2.8999999999999986
+Standard,OVER,rush_yards_per_carry,2,Weak Rush D + Elite Rush Off,3,6,50.0,42.9,7.100000000000001
+Standard,OVER,rush_yards_per_carry,2,Weak Rush D + NOT Elite Rush Off,5,6,83.3,42.9,40.4
+Standard,OVER,rush_yards_per_carry,2,Weak Rush D + L5=5,7,10,70.0,42.9,27.1
+Standard,OVER,rush_yards_per_carry,2,Weak DL run + Elite Rush Off,0,4,0.0,42.9,-42.9
+Standard,OVER,rush_yards_per_carry,2,Weak DL run + NOT Elite Rush Off,5,10,50.0,42.9,7.100000000000001
+Standard,OVER,rush_yards_per_carry,2,Weak DL run + Elite OL,1,4,25.0,42.9,-17.9
+Standard,OVER,rush_yards_per_carry,2,Weak DL run + L5=5,3,11,27.3,42.9,-15.599999999999998
+Standard,OVER,rush_yards_per_carry,2,Elite Rush Off + Elite OL,2,8,25.0,42.9,-17.9
+Standard,OVER,rush_yards_per_carry,2,Elite Rush Off + L5=5,6,16,37.5,42.9,-5.399999999999999
+Standard,OVER,rush_yards_per_carry,2,NOT Elite Rush Off + L5=5,6,14,42.9,42.9,0.0
+Standard,OVER,rush_yards_per_carry,2,Elite OL + L5=5,2,10,20.0,42.9,-22.9
+Standard,OVER,rush_yards_per_carry,3,Weak Rush D + Elite Rush Off + L5=5,2,5,40.0,42.9,-2.8999999999999986
+Standard,OVER,rush_yards_per_carry,3,Weak Rush D + NOT Elite Rush Off + L5=5,5,5,100.0,42.9,57.1
+Standard,OVER,rush_yards_per_carry,3,Weak DL run + Elite Rush Off + L5=5,0,4,0.0,42.9,-42.9
+Standard,OVER,rush_yards_per_carry,3,Weak DL run + NOT Elite Rush Off + L5=5,3,7,42.9,42.9,0.0
+Standard,OVER,rush_yards_per_carry,3,Elite Rush Off + Elite OL + L5=5,2,8,25.0,42.9,-17.9
+Standard,OVER,punts,1,Elite Pass D (opp),7,12,58.3,46.4,11.899999999999999
+Standard,OVER,punts,1,Elite Rush D (opp),10,14,71.4,46.4,25.000000000000007
+Standard,OVER,punts,1,NOT Elite Pass Off,6,18,33.3,46.4,-13.100000000000001
+Standard,OVER,punts,1,NOT Elite Rush Off,7,16,43.8,46.4,-2.6000000000000014
+Standard,OVER,punts,1,Weak OL,5,10,50.0,46.4,3.6000000000000014
+Standard,OVER,punts,2,Elite Pass D (opp) + Elite Rush D (opp),5,7,71.4,46.4,25.000000000000007
+Standard,OVER,punts,2,Elite Pass D (opp) + NOT Elite Pass Off,4,8,50.0,46.4,3.6000000000000014
+Standard,OVER,punts,2,Elite Pass D (opp) + NOT Elite Rush Off,5,9,55.6,46.4,9.200000000000003
+Standard,OVER,punts,2,Elite Pass D (opp) + Weak OL,3,4,75.0,46.4,28.6
+Standard,OVER,punts,2,Elite Rush D (opp) + NOT Elite Pass Off,4,7,57.1,46.4,10.700000000000003
+Standard,OVER,punts,2,Elite Rush D (opp) + NOT Elite Rush Off,5,9,55.6,46.4,9.200000000000003
+Standard,OVER,punts,2,Elite Rush D (opp) + Weak OL,4,6,66.7,46.4,20.300000000000004
+Standard,OVER,punts,2,NOT Elite Pass Off + NOT Elite Rush Off,4,12,33.3,46.4,-13.100000000000001
+Standard,OVER,punts,2,NOT Elite Pass Off + Weak OL,2,7,28.6,46.4,-17.799999999999997
+Standard,OVER,punts,2,NOT Elite Rush Off + Weak OL,4,7,57.1,46.4,10.700000000000003
+Standard,OVER,punts,3,Elite Pass D (opp) + Elite Rush D (opp) + NOT Elite Pass Off,3,4,75.0,46.4,28.6
+Standard,OVER,punts,3,Elite Pass D (opp) + Elite Rush D (opp) + NOT Elite Rush Off,4,6,66.7,46.4,20.300000000000004
+Standard,OVER,punts,3,Elite Pass D (opp) + NOT Elite Pass Off + NOT Elite Rush Off,3,6,50.0,46.4,3.6000000000000014
+Standard,OVER,punts,3,Elite Pass D (opp) + NOT Elite Rush Off + Weak OL,3,4,75.0,46.4,28.6
+Standard,OVER,punts,3,Elite Rush D (opp) + NOT Elite Pass Off + NOT Elite Rush Off,2,5,40.0,46.4,-6.399999999999999
+Standard,OVER,punts,3,Elite Rush D (opp) + NOT Elite Rush Off + Weak OL,3,5,60.0,46.4,13.600000000000001
+Standard,OVER,punts,3,NOT Elite Pass Off + NOT Elite Rush Off + Weak OL,2,5,40.0,46.4,-6.399999999999999

@@ -99,7 +99,35 @@ SPORT_LINE_MOVEMENT_PRESETS: dict[str, dict[str, Any]] = {
     # (e.g. 1Q points ~5 vs full-game ~20 → negative cross_edge noise).
     "Soccer": {
         "sport_key": "soccer_epl",
-        "markets": ["player_shots_on_target", "player_to_score"],
+        "extra_sport_keys": [
+            "soccer_usa_mls",
+            "soccer_uefa_champs_league",
+        ],
+        "markets": ["player_shots_on_target", "player_to_score", "player_assists"],
+    },
+    "NFL": {
+        "sport_key": "americanfootball_nfl",
+        "markets": [
+            "player_pass_yds",
+            "player_rush_yds",
+            "player_reception_yds",
+            "player_receptions",
+            "player_pass_tds",
+            "player_anytime_td",
+            "player_pass_completions",
+            "player_rush_attempts",
+        ],
+    },
+    "CFB": {
+        "sport_key": "americanfootball_ncaaf",
+        "markets": [
+            "player_pass_yds",
+            "player_rush_yds",
+            "player_reception_yds",
+            "player_receptions",
+            "player_pass_tds",
+            "player_anytime_td",
+        ],
     },
 }
 
@@ -153,6 +181,19 @@ PIPELINE_PROP_TO_ODDS_MARKET: dict[str, str] = {
     "goal_assist": "player_assists",
     "anytime_scorer": "player_to_score",
     "to_score": "player_to_score",
+    # NFL / CFB
+    "receiving_yards": "player_reception_yds",
+    "rec_yds": "player_reception_yds",
+    "rushing_yards": "player_rush_yds",
+    "rush_yds": "player_rush_yds",
+    "passing_yards": "player_pass_yds",
+    "pass_yds": "player_pass_yds",
+    "receptions": "player_receptions",
+    "rec": "player_receptions",
+    "passing_tds": "player_pass_tds",
+    "pass_td": "player_pass_tds",
+    "player_tds": "player_anytime_td",
+    "player_td": "player_anytime_td",
 }
 
 # Sport-specific prop_norm overrides (resolve cross-sport name collisions).
@@ -206,7 +247,17 @@ def log_line_movement_market_fetch(
     if dead:
         print(f"[LM] {label} markets empty (no book outcomes): {', '.join(dead)}")
 
-BM_PRIORITY = ("pinnacle", "draftkings", "fanduel", "betmgm", "caesars", "pointsbetus", "bovada")
+BM_PRIORITY = (
+    "pinnacle",
+    "circasports",
+    "circa",
+    "draftkings",
+    "fanduel",
+    "betmgm",
+    "caesars",
+    "pointsbetus",
+    "bovada",
+)
 # Pinnacle is EU-licensed — player-prop fetches use regions=us,eu in _fetch_event_odds().
 _LINE_EPS = 0.05
 
@@ -387,6 +438,10 @@ def _merge_line_snapshot(
             merged = _snapshot_row_defaults(new_row)
             merged["open_line"] = open_line
             merged["current_line"] = current_line
+            try:
+                merged["vegas_line"] = float(new_row.get("vegas_line", current_line))
+            except (TypeError, ValueError):
+                merged["vegas_line"] = current_line
             merged["line_movement"] = movement
             merged["line_direction_shift"] = _line_direction(open_line, current_line)
             if merged.get("over_price") is None and isinstance(old_row, dict):
@@ -543,15 +598,18 @@ def _snapshot_row_defaults(row: dict[str, Any] | None) -> dict[str, Any]:
         return {
             "open_line": None,
             "current_line": None,
+            "vegas_line": None,
             "line_movement": 0.0,
             "line_direction_shift": "stable",
             "over_price": None,
             "under_price": None,
             "implied_prob_book": None,
         }
+    vegas = row.get("vegas_line", row.get("open_line"))
     return {
         "open_line": row.get("open_line"),
         "current_line": row.get("current_line", row.get("open_line")),
+        "vegas_line": vegas,
         "line_movement": row.get("line_movement", 0.0),
         "line_direction_shift": row.get("line_direction_shift", "stable"),
         "over_price": row.get("over_price"),
@@ -837,6 +895,7 @@ def _parse_odds_events(events: list[dict], markets: list[str]) -> dict[tuple[str
         points = [p for _, p in entries]
         open_line = float(points[0])
         current_line = float(points[-1])
+        vegas_line = float(points[0])  # preferred book (Pinnacle / Circa / DK)
         for line in sorted(set(points)):
             movement = round(current_line - open_line, 3)
             pk = (player, mkey, line)
@@ -844,6 +903,7 @@ def _parse_odds_events(events: list[dict], markets: list[str]) -> dict[tuple[str
                 {
                     "open_line": open_line,
                     "current_line": current_line,
+                    "vegas_line": vegas_line,
                     "line_movement": movement,
                     "line_direction_shift": _line_direction(open_line, current_line),
                 }
@@ -863,6 +923,7 @@ def fetch_line_snapshot(
     *,
     force_refresh: bool = False,
     cache_date: str | None = None,
+    allow_stale: bool = True,
 ) -> dict[tuple[str, str, float], dict[str, Any]]:
     """
     Fetch (or load cached) line movement snapshot for events in the next 48h (UTC).
@@ -892,9 +953,10 @@ def fetch_line_snapshot(
             )
 
     if _odds_quota_low():
-        snap = _stale_snapshot_or_empty(sport_key, today)
-        if snap:
-            return snap
+        if allow_stale:
+            snap = _stale_snapshot_or_empty(sport_key, today)
+            if snap:
+                return snap
         if _odds_quota_exhausted():
             cached = _load_cache(sport_key, today)
             _log.warning(
@@ -1000,6 +1062,88 @@ def _pipeline_prop_to_odds_market(prop_type: str, sport_key: str = "") -> str:
     return PIPELINE_PROP_TO_ODDS_MARKET.get(raw.replace(" ", "_"), raw)
 
 
+def odds_market_for_prop(prop_type: str, sport_key: str = "") -> str:
+    """Public wrapper: PrizePicks / pipeline prop label → Odds API market key."""
+    return _pipeline_prop_to_odds_market(prop_type, sport_key)
+
+
+# Display labels for Odds API markets (used by fetch_vegas_player_props CSV).
+ODDS_MARKET_TO_PROP_TYPE: dict[str, str] = {
+    "player_shots_on_goal": "Shots On Goal",
+    "player_goals": "Goals",
+    "player_assists": "Assists",
+    "player_points": "Points",
+    "player_power_play_points": "Power Play Points",
+    "player_goal_scorer_anytime": "Anytime Goal Scorer",
+    "player_blocked_shots": "Blocked Shots",
+    "player_rebounds": "Rebounds",
+    "player_threes": "3-PT Made",
+    "player_points_rebounds_assists": "Pts+Rebs+Asts",
+    "player_points_rebounds": "Pts+Rebs",
+    "player_rebounds_assists": "Rebs+Asts",
+    "player_points_assists": "Pts+Asts",
+    "batter_hits": "Hits",
+    "batter_total_bases": "Total Bases",
+    "batter_rbis": "RBIs",
+    "batter_home_runs": "Home Runs",
+    "batter_doubles": "Doubles",
+    "batter_stolen_bases": "Stolen Bases",
+    "batter_runs_scored": "Runs",
+    "batter_walks": "Walks",
+    "batter_triples": "Triples",
+    "batter_strikeouts": "Hitter Strikeouts",
+    "pitcher_strikeouts": "Strikeouts",
+    "pitcher_hits_allowed": "Hits Allowed",
+    "pitcher_walks": "Walks Allowed",
+    "pitcher_earned_runs": "Earned Runs Allowed",
+    "pitcher_outs": "Pitching Outs",
+    "player_shots_on_target": "Shots On Target",
+    "player_to_score": "Anytime Scorer",
+    "player_pass_yds": "Passing Yards",
+    "player_rush_yds": "Rushing Yards",
+    "player_reception_yds": "Receiving Yards",
+    "player_receptions": "Receptions",
+    "player_pass_tds": "Passing TDs",
+    "player_anytime_td": "Anytime TD",
+    "player_pass_completions": "Completions",
+    "player_rush_attempts": "Rush Attempts",
+}
+
+
+def flatten_vegas_lines(
+    snapshot: dict[tuple[str, str, float], dict[str, Any]],
+    *,
+    board_sport: str,
+) -> list[dict[str, Any]]:
+    """One row per (player, market) using the preferred-book Vegas line."""
+    by_pm: dict[tuple[str, str], dict[str, Any]] = {}
+    for (player, market, _line), row in (snapshot or {}).items():
+        if not player or not market:
+            continue
+        rec = _snapshot_row_defaults(row if isinstance(row, dict) else None)
+        try:
+            vl = rec.get("vegas_line")
+            if vl is None:
+                vl = rec.get("open_line")
+            line_f = float(vl)
+        except (TypeError, ValueError):
+            continue
+        key = (str(player), str(market))
+        if key in by_pm:
+            continue
+        by_pm[key] = {
+            "player": str(player),
+            "odds_market": str(market),
+            "prop_type": ODDS_MARKET_TO_PROP_TYPE.get(str(market), str(market).replace("_", " ").title()),
+            "line": round(line_f, 2),
+            "board_sport": board_sport,
+            "source_book": "vegas",
+            "vegas_bookmaker": rec.get("implied_prob_book") or "",
+            "pick_type": "Standard",
+        }
+    return list(by_pm.values())
+
+
 def _lookup_snapshot_row(
     snapshot: dict[tuple[str, str, float], dict[str, Any]],
     player: str,
@@ -1087,6 +1231,29 @@ _SPORT_KEY_LABEL: dict[str, str] = {
     "baseball_mlb": "MLB",
     "basketball_wnba": "WNBA",
     "soccer_epl": "Soccer",
+    "soccer_usa_mls": "Soccer",
+    "soccer_uefa_champs_league": "Soccer",
+    "soccer_uefa_europa_league": "Soccer",
+    "soccer_spain_la_liga": "Soccer",
+    "soccer_germany_bundesliga": "Soccer",
+    "soccer_italy_serie_a": "Soccer",
+    "soccer_france_ligue_one": "Soccer",
+    "americanfootball_nfl": "NFL",
+    "americanfootball_ncaaf": "CFB",
+}
+
+JOIN_SPORT_TO_ODDS_KEY: dict[str, str] = {
+    "NBA": "basketball_nba",
+    "NBA1H": "basketball_nba",
+    "NBA1Q": "basketball_nba",
+    "NHL": "icehockey_nhl",
+    "MLB": "baseball_mlb",
+    "WNBA": "basketball_wnba",
+    "WNBA1H": "basketball_wnba",
+    "WNBA1Q": "basketball_wnba",
+    "SOCCER": "soccer_epl",
+    "NFL": "americanfootball_nfl",
+    "CFB": "americanfootball_ncaaf",
 }
 
 

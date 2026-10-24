@@ -42,8 +42,10 @@ if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
 
 from scripts.db_utils import log_pipeline_health
+from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
 from utils.step1_slate_date_filter import (
     apply_game_date_filter,
+    eastern_today_ymd,
     no_props_log_line,
     should_preserve_append_output,
 )
@@ -80,6 +82,12 @@ TRACKABLE_PROPS = {
     "plateappearances",
     "pitcher strikeouts + total bases",
     "pitcher strikeouts (combo)",
+    "pitches seen",
+    "pitchesseen",
+    "balls counted",
+    "ballscounted",
+    "strikes counted",
+    "strikescounted",
     # Pitcher
     "strikeouts",
     "pitcher strikeouts",
@@ -101,7 +109,45 @@ TRACKABLE_PROPS = {
     "inningspitched",
     "pitches thrown",
     "pitchesthrown",
+    "batters faced",
+    "battersfaced",
+    "balls thrown",
+    "ballsthrown",
+    "strikes thrown",
+    "strikesthrown",
+    "pitches thrown 95+ mph",
+    "pitchesthrown95mph",
+    "pitchesthrown95+mph",
 }
+
+# PrizePicks chip markets the Popular dump often omits. Partner-api returns them
+# on a single unpaginated page; public api.prizepicks.com ranks them last.
+CHIP_STAT_LABELS = (
+    "Pitches Seen",
+    "Balls Counted",
+    "Strikes Counted",
+    "Balls Thrown",
+    "Strikes Thrown",
+    "Batters Faced",
+    "Pitches Thrown 95+ MPH",
+    "Walks Allowed",
+    "1st Inning Walks Allowed",
+)
+
+
+def prop_track_key(s: str) -> str:
+    """Fold PrizePicks labels for TRACKABLE matching (spaces, +, parens)."""
+    return re.sub(r"[^a-z0-9]", "", str(s or "").lower())
+
+
+TRACKABLE_KEYS = frozenset(prop_track_key(p) for p in TRACKABLE_PROPS)
+CHIP_STAT_KEYS = tuple((lab, prop_track_key(lab)) for lab in CHIP_STAT_LABELS)
+
+
+def missing_chip_stats(prop_series) -> list[str]:
+    have = {prop_track_key(x) for x in prop_series.astype(str).tolist()}
+    return [lab for lab, key in CHIP_STAT_KEYS if key not in have]
+
 
 PICKTYPE_MAP = {"standard": "Standard", "goblin": "Goblin", "demon": "Demon"}
 
@@ -109,14 +155,13 @@ EMPTY_COLS = [
     "projection_id", "pp_projection_id", "player_id", "pp_game_id", "start_time",
     "player", "player_name", "image_url", "pos", "team", "opp_team", "pp_home_team", "pp_away_team",
     "prop_type", "line", "line_score", "standard_line", "pick_type", "sport", "fetched_at",
+    "pp_updated_at", "game_date", "board_date", "line_asof",
 ]
 
 
 def _stamp_fetched_at(df: pd.DataFrame) -> pd.DataFrame:
-    """UTC fetch timestamp for data-freshness passthrough (step5→step8)."""
-    out = df.copy()
-    out["fetched_at"] = datetime.now(ZoneInfo(DEFAULT_TZ)).isoformat()
-    return out
+    """ET fetch timestamp on every row for line-history and step8 freshness."""
+    return stamp_fetched_at(df, when=now_et_iso(), overwrite=True)
 
 PROFILE_DIR = Path.home() / ".pp_browser_profile"
 SNAPSHOT_DIR = Path(__file__).resolve().parents[1] / "outputs" / "step1_snapshots"
@@ -313,6 +358,7 @@ def parse_rows(data: List[dict], included: List[dict]) -> List[dict]:
             "standard_line":    standard_line,
             "pick_type":        pick_type,
             "sport":            "MLB",
+            "pp_updated_at":    extract_pp_updated_at(attrs),
         })
 
     return rows
@@ -353,6 +399,7 @@ def fetch_via_direct_api(
     forbid_cooldown_seconds: float,
     forbid_cooldown_jitter_min: float,
     forbid_cooldown_jitter_max: float,
+    fail_fast: bool = False,
 ) -> Tuple[List[dict], List[dict]]:
     mod = _load_prizepicks_api_module()
     return mod.fetch_projections(
@@ -367,6 +414,8 @@ def fetch_via_direct_api(
         forbid_cooldown_threshold=forbid_cooldown_threshold,
         forbid_cooldown_seconds=forbid_cooldown_seconds,
         forbid_cooldown_jitter=(forbid_cooldown_jitter_min, forbid_cooldown_jitter_max),
+        forbid_max_cooldown_windows=0 if fail_fast else 3,
+        fail_fast=bool(fail_fast),
     )
 
 
@@ -508,7 +557,7 @@ def _pick_cdp_warmed_page(context: Any, league_id: str) -> Any | None:
 def _cdp_board_ready(page: Any, league_id: str) -> bool:
     try:
         url = (page.url or "").lower()
-        return "prizepicks.com" in url and f"league_id={league_id}" in url
+        return "app.prizepicks.com" in url
     except Exception:
         return False
 
@@ -572,57 +621,16 @@ def _fetch_via_cdp_inpage(
             "(board must load) then re-run."
         )
 
-    payload = page.evaluate(
-        """async ({ leagueId }) => {
-            const hdrs = () => ({
-                "accept": "application/json, text/plain, */*",
-                "accept-language": (navigator.languages && navigator.languages.length)
-                    ? navigator.languages.join(",") : "en-US,en;q=0.9",
-                "referer": window.location.href,
-                "x-requested-with": "XMLHttpRequest",
-            });
-            let pageNum = 1;
-            const allData = [];
-            const allIncluded = [];
-            let lastStatus = 200;
-            while (pageNum <= 12) {
-                const ctrl = new AbortController();
-                const timer = setTimeout(() => ctrl.abort(), 45000);
-                try {
-                    const url = `https://api.prizepicks.com/projections?league_id=${leagueId}`
-                        + `&per_page=250&single_stat=true&page=${pageNum}`;
-                    const r = await fetch(url, {
-                        credentials: "include", headers: hdrs(), mode: "cors", signal: ctrl.signal
-                    });
-                    lastStatus = r.status;
-                    if (!r.ok) break;
-                    const j = await r.json();
-                    const chunk = Array.isArray(j?.data) ? j.data : [];
-                    if (Array.isArray(j?.included)) allIncluded.push(...j.included);
-                    allData.push(...chunk);
-                    if (chunk.length < 250) break;
-                    pageNum += 1;
-                } catch (e) {
-                    return {
-                        data: allData,
-                        included: allIncluded,
-                        status: lastStatus || 0,
-                        error: String(e && e.name ? e.name : e),
-                    };
-                } finally {
-                    clearTimeout(timer);
-                }
-            }
-            return { data: allData, included: allIncluded, status: lastStatus };
-        }""",
-        {"leagueId": str(league_id)},
+    from utils.prizepicks_cdp import fetch_projections_inpage
+
+    data, included, status, url = fetch_projections_inpage(
+        page,
+        league_id,
+        per_page=250,
+        request_timeout_ms=25_000,
+        max_pages=40,
     )
-    data = list((payload or {}).get("data") or [])
-    included = list((payload or {}).get("included") or [])
-    status = (payload or {}).get("status", 200)
-    print(f"  [CDP in-page] projections_status={status} rows={len(data)}")
-    if (payload or {}).get("error"):
-        print(f"  [CDP in-page] projections error={(payload or {}).get('error')}")
+    print(f"  [CDP in-page] projections_status={status} rows={len(data)} url={url}")
     return data, included
 
 
@@ -703,12 +711,20 @@ def fetch_via_playwright(timeout_s: int = 90, cdp_url: str | None = None) -> Tup
 
             data, included = _try_extract_projections(j)
             if data:
-                captured["data"] = data
-                captured.setdefault("included", [])
-                captured["included"].extend(included)
-                have_projections  = True
-                projections_time  = time.time()
-                print(f"  ✓ Captured {len(data)} projections from {url}")
+                existing = captured.setdefault("data", [])
+                seen = captured.setdefault("_proj_ids", set())
+                added = 0
+                for obj in data:
+                    oid = str(obj.get("id", "") or "")
+                    if not oid or oid in seen:
+                        continue
+                    seen.add(oid)
+                    existing.append(obj)
+                    added += 1
+                captured.setdefault("included", []).extend(included)
+                have_projections = True
+                projections_time = time.time()
+                print(f"  ✓ Captured {added} new projections ({len(existing)} total) from {url}")
 
     def _capture_complete() -> bool:
         if not have_projections:
@@ -771,7 +787,17 @@ def fetch_via_playwright(timeout_s: int = 90, cdp_url: str | None = None) -> Tup
                     except Exception:
                         pass
                     return data, included
-                print("  ⚠️  CDP in-page fetch returned 0 rows — falling back to network intercept...")
+                print("  ⚠️  CDP in-page fetch returned 0 rows — not navigating (avoids DataDome league hop)")
+                if cdp_opened_new_page:
+                    try:
+                        page.close()
+                    except Exception:
+                        pass
+                try:
+                    browser.close()
+                except Exception:
+                    pass
+                return data, included
             except Exception as exc:
                 print(f"  ⚠️  CDP in-page fetch failed ({exc}) — falling back to network intercept...")
         elif use_profile:
@@ -904,6 +930,23 @@ def main():
         action="store_true",
         help="Skip same-day date filter (keep full API board; explicit opt-in only).",
     )
+    ap.add_argument(
+        "--include-tomorrow",
+        action="store_true",
+        help="Also keep Eastern tomorrow's games (day-ahead Standard unders).",
+    )
+    ap.add_argument(
+        "--fail-fast",
+        "--fail-fast-403",
+        action="store_true",
+        dest="fail_fast",
+        help="Short HTTP path: 1 session wave, no long 403/429 cooldown stacks.",
+    )
+    ap.add_argument(
+        "--board-date",
+        default="",
+        help="Fetch calendar YYYY-MM-DD for board_date/line_asof (default: Eastern today).",
+    )
     # Compat aliases — accepted silently so existing pipeline calls don't break
     ap.add_argument("--gentle",         action="store_true",   help="(compat) no-op")
     ap.add_argument("--manual-seconds", type=int, default=None, help="(compat) no-op — manual window removed")
@@ -926,7 +969,7 @@ def main():
         help="Force Playwright intercept instead of direct API (legacy / DataDome fallback).",
     )
     ap.add_argument("--per-page", type=int, default=250, help="Direct API: per_page (default 250).")
-    ap.add_argument("--max-pages", type=int, default=8, help="Direct API: max pagination pages (default 8).")
+    ap.add_argument("--max-pages", type=int, default=40, help="Direct API: max pagination pages (default 40).")
     ap.add_argument("--api-retries", "--max-retries", type=int, default=4, help="Direct API: retries per GET inside each session wave (default 4).")
     ap.add_argument(
         "--api-session-waves",
@@ -998,24 +1041,31 @@ def main():
             f"retries={args.api_retries} session_waves={args.api_session_waves}"
         )
         try:
+            ff = bool(getattr(args, "fail_fast", False))
+            if ff:
+                print("  [mode] fail-fast HTTP — partner-api first, no 90s 429/403 sleeps")
             wave_lo, wave_hi = sorted(
                 (float(args.api_wave_gap_min), float(args.api_wave_gap_max))
             )
             data, included = fetch_via_direct_api(
                 per_page=int(args.per_page),
+                # Fail-fast only shortens 403/429 sleeps. Do not cap pages — chip
+                # markets (Pitches Seen, Walks Allowed, …) sit at the end of the
+                # public API rank order. Partner-api usually returns them on page 1.
                 max_pages=int(args.max_pages),
-                retries=int(args.api_retries),
-                inter_min=float(args.api_inter_min),
-                inter_max=float(args.api_inter_max),
-                session_min=float(args.api_session_min),
-                session_max=float(args.api_session_max),
-                first_page_waves=int(args.api_session_waves),
-                wave_gap_min=wave_lo,
-                wave_gap_max=wave_hi,
-                forbid_cooldown_threshold=int(args.api_403_cooldown_after),
-                forbid_cooldown_seconds=float(args.api_403_cooldown_seconds),
-                forbid_cooldown_jitter_min=float(args.api_403_cooldown_jitter_min),
-                forbid_cooldown_jitter_max=float(args.api_403_cooldown_jitter_max),
+                retries=min(2, int(args.api_retries)) if ff else int(args.api_retries),
+                inter_min=0.4 if ff else float(args.api_inter_min),
+                inter_max=1.0 if ff else float(args.api_inter_max),
+                session_min=0.2 if ff else float(args.api_session_min),
+                session_max=0.8 if ff else float(args.api_session_max),
+                first_page_waves=1 if ff else int(args.api_session_waves),
+                wave_gap_min=0.5 if ff else wave_lo,
+                wave_gap_max=1.0 if ff else wave_hi,
+                forbid_cooldown_threshold=99 if ff else int(args.api_403_cooldown_after),
+                forbid_cooldown_seconds=12.0 if ff else float(args.api_403_cooldown_seconds),
+                forbid_cooldown_jitter_min=2.0 if ff else float(args.api_403_cooldown_jitter_min),
+                forbid_cooldown_jitter_max=6.0 if ff else float(args.api_403_cooldown_jitter_max),
+                fail_fast=ff,
             )
         except Exception as e:
             data, included = [], []
@@ -1106,13 +1156,19 @@ def main():
 
     # Prop filter
     if not args.all_props:
-        mask    = df["prop_type"].str.lower().str.replace(" ", "").isin(
-            {p.replace(" ", "") for p in TRACKABLE_PROPS}
-        )
-        dropped = (~mask).sum()
-        df      = df[mask].reset_index(drop=True)
+        mask = df["prop_type"].map(prop_track_key).isin(TRACKABLE_KEYS)
+        dropped = int((~mask).sum())
+        df = df[mask].reset_index(drop=True)
         if dropped:
             print(f"  Filtered out {dropped} non-trackable props (use --all_props to keep all)")
+        missing_chips = missing_chip_stats(df["prop_type"])
+        if missing_chips:
+            print(
+                "  [WARN] Chip markets missing after TRACKABLE filter "
+                f"(not in payload): {', '.join(missing_chips)}"
+            )
+        else:
+            print("  [OK] All chip markets present (Pitches Seen, Walks Allowed, 95+ MPH, …)")
 
     rows_n_new = len(df)
     teams_n_new = df["team"].astype(str).nunique()
@@ -1180,6 +1236,8 @@ def main():
         target_date=str(args.date).strip(),
         tz_name=str(args.tz).strip() or DEFAULT_TZ,
         allow_nearest_future=bool(args.allow_nearest_future),
+        include_tomorrow=bool(getattr(args, "include_tomorrow", False)),
+        board_date=str(getattr(args, "board_date", None) or "").strip()[:10] or eastern_today_ymd(),
     )
     game_dates = sorted({d for d in filtered_df.get("game_date", pd.Series([], dtype=object)).astype(str).tolist() if d and d != "nan"})
     print(
@@ -1194,6 +1252,18 @@ def main():
 
     if len(df) == 0:
         print(no_props_log_line("MLB", str(args.date).strip()))
+        try:
+            from utils.step1_board_reconcile import run_step1_reconcile
+
+            run_step1_reconcile(
+                sport="MLB",
+                df=pd.DataFrame(),
+                out_dir=out_path.parent,
+                fetched_n=int(fetched_rows),
+                fetch_failed=False,
+            )
+        except Exception as _rec_exc:
+            print(f"  [WARN] category reconcile skipped: {_rec_exc}")
         if should_preserve_append_output(out_path, args.append):
             print("   (--append: left existing output file unchanged)")
             sys.exit(0)
@@ -1202,12 +1272,30 @@ def main():
         sys.exit(0)
 
     df = _stamp_fetched_at(df)
+    try:
+        from utils.step1_board_reconcile import run_step1_reconcile
+
+        df, _ = run_step1_reconcile(
+            sport="MLB",
+            df=df,
+            out_dir=out_path.parent,
+            fetched_n=int(fetched_rows),
+        )
+    except RuntimeError as _cov_exc:
+        print(f"❌ {_cov_exc}")
+        raise SystemExit(2) from _cov_exc
+    except Exception as _rec_exc:
+        print(f"  [WARN] category reconcile skipped: {_rec_exc}")
     df.to_csv(out_path, index=False, encoding="utf-8-sig")
+    from utils.pick_type_persist import assert_pick_type_persisted
+
+    assert_pick_type_persisted(out_path, sport="MLB")
     try:
         if str(_PROPORACLE_ROOT) not in sys.path:
             sys.path.insert(0, str(_PROPORACLE_ROOT))
-        from scripts.line_history_archive import archive_lines
-        archive_lines(df, sport="MLB")
+        from scripts.line_history_archive import try_archive_lines
+        pull_ts = str(df["fetched_at"].iloc[0]) if len(df) else ""
+        try_archive_lines(df, sport="MLB", only_fetched_at=pull_ts)
     except Exception as _arch_exc:
         print(f"  [WARN] line_history archive skipped: {_arch_exc}")
     _write_snapshot(df, target_date=str(args.date).strip())

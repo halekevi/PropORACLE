@@ -1,7 +1,8 @@
-"""NFL prop-aware defense rank selection (pass / rush / receiving).
+"""NFL prop-aware defense / unit rank selection (pass / rush / receiving / tackles).
 
 Mirrors CFB ``_prop_def_keys``: pass props → pass D, rush → rush D,
-receiving → pass D (coverage), else pass as overall fallback.
+receiving → pass D (coverage). Tackle props → opponent *rush offense*
+(defender counting volume from the run game they face), not opp pass D.
 """
 
 from __future__ import annotations
@@ -65,6 +66,19 @@ KICKING_PROPS = frozenset(
     }
 )
 
+# Defender counting: volume from the offense they face (run game primary).
+TACKLE_PROPS = frozenset(
+    {
+        "tackles",
+        "tackles_ast",
+        "tackles_assists",
+        "tackles_assisted",
+        "solo_tackles",
+        "assisted_tackles",
+        "tackle",
+    }
+)
+
 
 def _norm_prop(raw: object) -> str:
     s = str(raw or "").strip().lower()
@@ -73,10 +87,13 @@ def _norm_prop(raw: object) -> str:
 
 
 def prop_def_axis(prop: object) -> str:
-    """Return 'pass', 'rush', 'kick', or 'pass' (receiving / default)."""
+    """Return 'pass', 'rush', 'kick', 'opp_rush_off', or 'pass' (receiving / default)."""
     p = _norm_prop(prop)
     if p in KICKING_PROPS or "field_goal" in p or p.startswith("fg") or "kick" in p or p in ("xp", "pat"):
         return "kick"
+    # Tackles before generic "pass"/"rush" substring checks.
+    if p in TACKLE_PROPS or "tackle" in p:
+        return "opp_rush_off"
     if p in PASSING_PROPS or "pass" in p:
         return "pass"
     if p in RUSHING_PROPS or "rush" in p or p == "carries":
@@ -228,12 +245,19 @@ def select_opp_def_rank(
     prop: object | None = None,
     n_teams: int = 32,
 ) -> float:
-    """Pick opponent def rank for this prop (NaN if missing)."""
+    """Pick opponent unit rank for this prop (NaN if missing).
+
+    For tackle props the unit is opponent rush *offense* (1 = most rush YPG).
+    Tier labels still use overall_rank_to_def_tier; default d_aligned bands apply
+    (UNDER vs Elite rush OFF, OVER vs Weak).
+    """
     if prop is None:
         prop = row.get("prop_type_normalized") or row.get("prop_norm") or row.get("prop_type")
     axis = prop_def_axis(prop)
-    if axis == "rush":
-        keys: Iterable[str] = ("opp_rush_def_rank", "rush_def_rank", "opp_pass_def_rank")
+    if axis == "opp_rush_off":
+        keys: Iterable[str] = ("opp_rush_off_rank", "rush_off_rank")
+    elif axis == "rush":
+        keys = ("opp_rush_def_rank", "rush_def_rank", "opp_pass_def_rank")
     elif axis == "kick":
         keys = (
             "opp_fg_def_rank",

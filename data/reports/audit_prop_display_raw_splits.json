@@ -1,0 +1,1708 @@
+{
+  "window": {
+    "from": "2026-02-19",
+    "to": "2026-09-16",
+    "n_files": 206
+  },
+  "n_sport_canon_pairs": 188,
+  "n_hard_display_splits": 24,
+  "n_soft_splits": 55,
+  "hard_display_splits": [
+    {
+      "sport": "CBB",
+      "canon": "assists",
+      "display": "Assists",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "ast",
+          681
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 70,
+        "hr": 0.6,
+        "zero_share": 0.08571428571428572,
+        "zero": 6,
+        "known": 70
+      },
+      "std_over_n": 114,
+      "goblin_over_n": 497
+    },
+    {
+      "sport": "CBB",
+      "canon": "blocks",
+      "display": "Blocked Shots",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "blk",
+          145
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 5,
+        "hr": 0.4,
+        "zero_share": 0.4,
+        "zero": 2,
+        "known": 5
+      },
+      "std_over_n": 49,
+      "goblin_over_n": 91
+    },
+    {
+      "sport": "CBB",
+      "canon": "points",
+      "display": "Points",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "pts",
+          1848
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 312,
+        "hr": 0.47435897435897434,
+        "zero_share": 0.028846153846153848,
+        "zero": 9,
+        "known": 312
+      },
+      "std_over_n": 397,
+      "goblin_over_n": 1139
+    },
+    {
+      "sport": "CBB",
+      "canon": "pra",
+      "display": "Pts+Rebs+Asts",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "pra",
+          1185
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 331,
+        "hr": 0.5317220543806647,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 331
+      },
+      "std_over_n": 313,
+      "goblin_over_n": 541
+    },
+    {
+      "sport": "CBB",
+      "canon": "pts+ast",
+      "display": "Pts+Asts",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "pa",
+          631
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 276,
+        "hr": 0.5434782608695652,
+        "zero_share": 0.007246376811594203,
+        "zero": 2,
+        "known": 276
+      },
+      "std_over_n": 318,
+      "goblin_over_n": 37
+    },
+    {
+      "sport": "CBB",
+      "canon": "pts+reb",
+      "display": "Pts+Rebs",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "pr",
+          824
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 349,
+        "hr": 0.5530085959885387,
+        "zero_share": 0.0028653295128939827,
+        "zero": 1,
+        "known": 349
+      },
+      "std_over_n": 305,
+      "goblin_over_n": 170
+    },
+    {
+      "sport": "CBB",
+      "canon": "reb+ast",
+      "display": "Rebs+Asts",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "ra",
+          482
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 231,
+        "hr": 0.6103896103896104,
+        "zero_share": 0.004329004329004329,
+        "zero": 1,
+        "known": 231
+      },
+      "std_over_n": 195,
+      "goblin_over_n": 56
+    },
+    {
+      "sport": "CBB",
+      "canon": "rebounds",
+      "display": "Rebounds",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "reb",
+          1138
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 195,
+        "hr": 0.6102564102564103,
+        "zero_share": 0.020512820512820513,
+        "zero": 4,
+        "known": 195
+      },
+      "std_over_n": 177,
+      "goblin_over_n": 766
+    },
+    {
+      "sport": "CBB",
+      "canon": "steals",
+      "display": "Steals",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "stl",
+          407
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 20,
+        "hr": 0.7,
+        "zero_share": 0.7,
+        "zero": 14,
+        "known": 20
+      },
+      "std_over_n": 87,
+      "goblin_over_n": 300
+    },
+    {
+      "sport": "CBB",
+      "canon": "stocks",
+      "display": "Blks+Stls",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "stocks",
+          52
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 3,
+        "hr": 0.3333333333333333,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 3
+      },
+      "std_over_n": 26,
+      "goblin_over_n": 23
+    },
+    {
+      "sport": "CBB",
+      "canon": "threes",
+      "display": "3-PT Made",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "fg3m",
+          409
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 52,
+        "hr": 0.38461538461538464,
+        "zero_share": 0.19230769230769232,
+        "zero": 10,
+        "known": 52
+      },
+      "std_over_n": 60,
+      "goblin_over_n": 297
+    },
+    {
+      "sport": "CBB",
+      "canon": "turnovers",
+      "display": "Turnovers",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "tov",
+          271
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 44,
+        "hr": 0.5909090909090909,
+        "zero_share": 0.25,
+        "zero": 11,
+        "known": 44
+      },
+      "std_over_n": 69,
+      "goblin_over_n": 158
+    },
+    {
+      "sport": "NBA",
+      "canon": "fantasy",
+      "display": "Fantasy",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Fantasy Score",
+          4288
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 799,
+        "hr": 0.49937421777221525,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 799
+      },
+      "std_over_n": 1599,
+      "goblin_over_n": 1890
+    },
+    {
+      "sport": "NBA",
+      "canon": "pf",
+      "display": "Pf",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Personal Fouls",
+          1418
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 393,
+        "hr": 0.5216284987277354,
+        "zero_share": 0.0916030534351145,
+        "zero": 36,
+        "known": 393
+      },
+      "std_over_n": 244,
+      "goblin_over_n": 781
+    },
+    {
+      "sport": "NBA1H",
+      "canon": "fantasy",
+      "display": "Fantasy",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Fantasy Score",
+          439
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 168,
+        "hr": 0.5952380952380952,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 168
+      },
+      "std_over_n": 271,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "fantasy",
+      "display": "Fantasy",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "fantasy_score",
+          109
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 37,
+        "hr": 0.7837837837837838,
+        "zero_share": 0.05405405405405406,
+        "zero": 2,
+        "known": 37
+      },
+      "std_over_n": 72,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "player_tds",
+      "display": "Player Tds",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "player_touchdowns",
+          118
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 118,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "rushing_tds",
+      "display": "Rushing Tds",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "rush_tds",
+          8
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 8,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "tackles",
+      "display": "Tackles",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "tackles_ast",
+          180
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 72,
+        "hr": 0.6111111111111112,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 72
+      },
+      "std_over_n": 108,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NHL",
+      "canon": "pp_points",
+      "display": "Pp Points",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "power_play_points",
+          444
+        ],
+        [
+          "Power Play Points",
+          20
+        ]
+      ],
+      "n_raw_variants": 2,
+      "std_under": {
+        "n": 20,
+        "hr": 0.5,
+        "zero_share": 0.45,
+        "zero": 9,
+        "known": 20
+      },
+      "std_over_n": 444,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NHL",
+      "canon": "sog",
+      "display": "Shots On Target",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Shots On Goal",
+          3907
+        ],
+        [
+          "shots_on_goal",
+          3190
+        ]
+      ],
+      "n_raw_variants": 2,
+      "std_under": {
+        "n": 1110,
+        "hr": 0.8162162162162162,
+        "zero_share": 0.6585585585585586,
+        "zero": 731,
+        "known": 1110
+      },
+      "std_over_n": 3575,
+      "goblin_over_n": 2412
+    },
+    {
+      "sport": "NHL",
+      "canon": "toi",
+      "display": "Toi",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Time On Ice",
+          681
+        ],
+        [
+          "time_on_ice",
+          239
+        ]
+      ],
+      "n_raw_variants": 2,
+      "std_under": {
+        "n": 480,
+        "hr": 0.5958333333333333,
+        "zero_share": 0.014583333333333334,
+        "zero": 7,
+        "known": 480
+      },
+      "std_over_n": 440,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "Tennis",
+      "canon": "aces_set1",
+      "display": "Aces Set1",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "1st Set Aces",
+          2
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 1,
+      "goblin_over_n": 1
+    },
+    {
+      "sport": "WNBA",
+      "canon": "fantasy",
+      "display": "Fantasy",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": false,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Fantasy Score",
+          1591
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 412,
+        "hr": 0.5097087378640777,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 412
+      },
+      "std_over_n": 630,
+      "goblin_over_n": 549
+    }
+  ],
+  "soft_splits_sample": [
+    {
+      "sport": "CBB",
+      "canon": "double_double",
+      "display": "Double Double",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "double-double",
+          2
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 0,
+      "goblin_over_n": 2
+    },
+    {
+      "sport": "CBB",
+      "canon": "fantasy",
+      "display": "Fantasy",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "fantasy",
+          128
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 18,
+        "hr": 0.7222222222222222,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 18
+      },
+      "std_over_n": 42,
+      "goblin_over_n": 68
+    },
+    {
+      "sport": "CBB",
+      "canon": "points_combo",
+      "display": "Points (Combo)",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "points (combo)",
+          5
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 5,
+        "hr": 0.8,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 5
+      },
+      "std_over_n": 0,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "MLB",
+      "canon": "hitterfantasyscore",
+      "display": "Hitterfantasyscore",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Hitter Fantasy Score",
+          6128
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 1061,
+        "hr": 0.532516493873704,
+        "zero_share": 0.2827521206409048,
+        "zero": 300,
+        "known": 1061
+      },
+      "std_over_n": 2026,
+      "goblin_over_n": 3041
+    },
+    {
+      "sport": "MLB",
+      "canon": "pitcherfantasyscore",
+      "display": "Pitcherfantasyscore",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Pitcher Fantasy Score",
+          1637
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 372,
+        "hr": 0.5080645161290323,
+        "zero_share": 0.013440860215053764,
+        "zero": 5,
+        "known": 372
+      },
+      "std_over_n": 448,
+      "goblin_over_n": 817
+    },
+    {
+      "sport": "MLB",
+      "canon": "rbis",
+      "display": "Rbis",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "RBIs",
+          73
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 23,
+        "hr": 0.34782608695652173,
+        "zero_share": 0.34782608695652173,
+        "zero": 8,
+        "known": 23
+      },
+      "std_over_n": 46,
+      "goblin_over_n": 4
+    },
+    {
+      "sport": "NBA",
+      "canon": "double_double",
+      "display": "Double Double",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Double-Double",
+          89
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 7,
+        "hr": 0.7142857142857143,
+        "zero_share": 0.7142857142857143,
+        "zero": 5,
+        "known": 7
+      },
+      "std_over_n": 0,
+      "goblin_over_n": 82
+    },
+    {
+      "sport": "NBA",
+      "canon": "triple_double",
+      "display": "Triple Double",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "Triple-Double",
+          7
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 3,
+        "hr": 0.6666666666666666,
+        "zero_share": 0.6666666666666666,
+        "zero": 2,
+        "known": 3
+      },
+      "std_over_n": 0,
+      "goblin_over_n": 4
+    },
+    {
+      "sport": "NFL",
+      "canon": "completionpercentage",
+      "display": "Completionpercentage",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "completion_percentage",
+          3
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 3,
+        "hr": 0.3333333333333333,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 3
+      },
+      "std_over_n": 0,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "completionsinfirst10passattempts",
+      "display": "Completionsinfirst10Passattempts",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "completions_in_first_10_pass_attempts",
+          3
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 3,
+        "hr": 0.6666666666666666,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 3
+      },
+      "std_over_n": 0,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "fg_made",
+      "display": "Fg Made",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "fg_made",
+          32
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 32,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "fg_made_combo",
+      "display": "Fg Made (Combo)",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "fg_made_combo",
+          4
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 4,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "fieldgoalyardscombo",
+      "display": "Fieldgoalyardscombo",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "field_goal_yards_combo",
+          4
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 4,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "halveswith100passyards",
+      "display": "Halveswith100Passyards",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "halves_with_100_pass_yards",
+          3
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 3,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "halveswith25receivingyards",
+      "display": "Halveswith25Receivingyards",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "halves_with_25_receiving_yards",
+          6
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 6,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "halveswith25rushyards",
+      "display": "Halveswith25Rushyards",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "halves_with_25_rush_yards",
+          8
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 8,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "int",
+      "display": "Int",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "int",
+          11
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 7,
+        "hr": 0.8571428571428571,
+        "zero_share": 0.42857142857142855,
+        "zero": 3,
+        "known": 7
+      },
+      "std_over_n": 4,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "kickingpoints",
+      "display": "Kickingpoints",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "kicking_points",
+          44
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 16,
+        "hr": 0.9375,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 16
+      },
+      "std_over_n": 28,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "longestcompletion",
+      "display": "Longestcompletion",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "longest_completion",
+          20
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 20,
+        "hr": 0.6,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 20
+      },
+      "std_over_n": 0,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "longestfgmadeydscombo",
+      "display": "Longestfgmadeydscombo",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "longest_fg_made_yds_combo",
+          4
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 4,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "longestreception",
+      "display": "Longestreception",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "longest_reception",
+          179
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 125,
+        "hr": 0.8,
+        "zero_share": 0.128,
+        "zero": 16,
+        "known": 125
+      },
+      "std_over_n": 54,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "longestrush",
+      "display": "Longestrush",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "longest_rush",
+          50
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 50,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "pass_rush_yds",
+      "display": "Pass Rush Yds",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "pass_rush_yds",
+          26
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 26,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "passattempts",
+      "display": "Passattempts",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "pass_attempts",
+          24
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 24,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "passcompletions",
+      "display": "Passcompletions",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "pass_completions",
+          26
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 23,
+        "hr": 0.4782608695652174,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 23
+      },
+      "std_over_n": 3,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "passing_tds",
+      "display": "Passing Tds",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "passing_tds",
+          15
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 8,
+        "hr": 0.625,
+        "zero_share": 0.25,
+        "zero": 2,
+        "known": 8
+      },
+      "std_over_n": 7,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "passing_yards",
+      "display": "Passing Yards",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "passing_yards",
+          32
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 19,
+        "hr": 0.42105263157894735,
+        "zero_share": 0.0,
+        "zero": 0,
+        "known": 19
+      },
+      "std_over_n": 13,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "passyardscombo",
+      "display": "Passyardscombo",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "pass_yards_combo",
+          4
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 4,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "player_touchdowns_combo",
+      "display": "Player Touchdowns (Combo)",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "player_touchdowns_combo",
+          20
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 20,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "punts",
+      "display": "Punts",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "punts",
+          5
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 5,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "punts_inside_20",
+      "display": "Punts Inside 20",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "punts_inside_20",
+          8
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 8,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "punttouchbackscombo",
+      "display": "Punttouchbackscombo",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "punt_touchbacks_combo",
+          2
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 2,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "quarterswith1reception",
+      "display": "Quarterswith1Reception",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "quarters_with_1_reception",
+          5
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 5,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "quarterswith25passyards",
+      "display": "Quarterswith25Passyards",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "quarters_with_25_pass_yards",
+          3
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 3,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "quarterswith5receivingyards",
+      "display": "Quarterswith5Receivingyards",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "quarters_with_5_receiving_yards",
+          5
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 5,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "quarterswith5rushyards",
+      "display": "Quarterswith5Rushyards",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "quarters_with_5_rush_yards",
+          6
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 6,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "receiving_yards",
+      "display": "Receiving Yards",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "receiving_yards",
+          360
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 100,
+        "hr": 0.87,
+        "zero_share": 0.23,
+        "zero": 23,
+        "known": 100
+      },
+      "std_over_n": 260,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "receiving_yards_combo",
+      "display": "Receiving Yards (Combo)",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "receiving_yards_combo",
+          6
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 6,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "receivingyardsinfirst2receptions",
+      "display": "Receivingyardsinfirst2Receptions",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "receiving_yards_in_first_2_receptions",
+          3
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 0,
+        "hr": null,
+        "zero_share": null,
+        "zero": 0,
+        "known": 0
+      },
+      "std_over_n": 3,
+      "goblin_over_n": 0
+    },
+    {
+      "sport": "NFL",
+      "canon": "receptions",
+      "display": "Receptions",
+      "display_in_raw_labels": false,
+      "display_fold_matches_any_raw": true,
+      "multi_raw_family": false,
+      "raw_labels": [
+        [
+          "receptions",
+          220
+        ]
+      ],
+      "n_raw_variants": 1,
+      "std_under": {
+        "n": 96,
+        "hr": 0.8333333333333334,
+        "zero_share": 0.20833333333333334,
+        "zero": 20,
+        "known": 96
+      },
+      "std_over_n": 124,
+      "goblin_over_n": 0
+    }
+  ],
+  "std_under_high_zero_share": [
+    {
+      "sport": "NFL",
+      "canon": "sacks",
+      "display": "Sacks",
+      "n": 77,
+      "hr": 0.948051948051948,
+      "zero_share": 0.8961038961038961,
+      "zero": 69,
+      "known": 77,
+      "is_display_split": true
+    },
+    {
+      "sport": "NHL",
+      "canon": "goals",
+      "display": "Goals",
+      "n": 290,
+      "hr": 0.7827586206896552,
+      "zero_share": 0.7620689655172413,
+      "zero": 221,
+      "known": 290,
+      "is_display_split": false
+    },
+    {
+      "sport": "NHL",
+      "canon": "sog",
+      "display": "Shots On Target",
+      "n": 1110,
+      "hr": 0.8162162162162162,
+      "zero_share": 0.6585585585585586,
+      "zero": 731,
+      "known": 1110,
+      "is_display_split": true
+    },
+    {
+      "sport": "NHL",
+      "canon": "assists",
+      "display": "Assists",
+      "n": 539,
+      "hr": 0.686456400742115,
+      "zero_share": 0.6419294990723562,
+      "zero": 346,
+      "known": 539,
+      "is_display_split": false
+    },
+    {
+      "sport": "MLB",
+      "canon": "hits",
+      "display": "Hits",
+      "n": 2161,
+      "hr": 0.5557612216566404,
+      "zero_share": 0.5539102267468764,
+      "zero": 1197,
+      "known": 2161,
+      "is_display_split": false
+    },
+    {
+      "sport": "NBA",
+      "canon": "steals",
+      "display": "Steals",
+      "n": 220,
+      "hr": 0.5909090909090909,
+      "zero_share": 0.5454545454545454,
+      "zero": 120,
+      "known": 220,
+      "is_display_split": false
+    },
+    {
+      "sport": "MLB",
+      "canon": "runs",
+      "display": "Runs",
+      "n": 1760,
+      "hr": 0.5420454545454545,
+      "zero_share": 0.5414772727272728,
+      "zero": 953,
+      "known": 1760,
+      "is_display_split": false
+    },
+    {
+      "sport": "MLB",
+      "canon": "singles",
+      "display": "Singles",
+      "n": 2902,
+      "hr": 0.5372157133011716,
+      "zero_share": 0.5372157133011716,
+      "zero": 1559,
+      "known": 2902,
+      "is_display_split": false
+    },
+    {
+      "sport": "MLB",
+      "canon": "hitter_ks",
+      "display": "Hitter Strikeouts",
+      "n": 734,
+      "hr": 0.5504087193460491,
+      "zero_share": 0.5122615803814714,
+      "zero": 376,
+      "known": 734,
+      "is_display_split": false
+    },
+    {
+      "sport": "MLB",
+      "canon": "walks",
+      "display": "Walks",
+      "n": 437,
+      "hr": 0.5102974828375286,
+      "zero_share": 0.5102974828375286,
+      "zero": 223,
+      "known": 437,
+      "is_display_split": false
+    },
+    {
+      "sport": "NHL",
+      "canon": "points",
+      "display": "Points",
+      "n": 790,
+      "hr": 0.6126582278481013,
+      "zero_share": 0.4962025316455696,
+      "zero": 392,
+      "known": 790,
+      "is_display_split": false
+    },
+    {
+      "sport": "MLB",
+      "canon": "total_bases",
+      "display": "Total Bases",
+      "n": 2462,
+      "hr": 0.5373679935012186,
+      "zero_share": 0.4784727863525589,
+      "zero": 1178,
+      "known": 2462,
+      "is_display_split": false
+    },
+    {
+      "sport": "NBA",
+      "canon": "blocks",
+      "display": "Blocked Shots",
+      "n": 98,
+      "hr": 0.5408163265306123,
+      "zero_share": 0.4387755102040816,
+      "zero": 43,
+      "known": 98,
+      "is_display_split": false
+    }
+  ],
+  "note": "hard_display_splits = display_prop(canon) fold does not match any raw graded label fold (e.g. NHL sog \u2192 'Shots On Target' vs raw 'Shots On Goal'). soft = display text absent but fold matches, or multiple raw families."
+}

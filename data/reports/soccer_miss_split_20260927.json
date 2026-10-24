@@ -1,0 +1,31 @@
+{
+  "day": "2026-09-27",
+  "started_covered": 67,
+  "missing": 26,
+  "missing_starter_tier": {
+    "STARTER": 17,
+    "ROTATION": 9
+  },
+  "present_starter_tier": {
+    "STARTER": 34,
+    "ROTATION": 7
+  },
+  "missing_minutes_tier": {
+    "HIGH": 21,
+    "MEDIUM": 4,
+    "LOW": 1
+  },
+  "missing_competition": {
+    "America at Necaxa": 24,
+    "Inter Miami CF at Columbus Crew": 2
+  },
+  "missing_first_prop": {
+    "shots": 14,
+    "sog": 4,
+    "saves": 3,
+    "goals": 2,
+    "goal_assist": 2,
+    "passes": 1
+  },
+  "note": "All 26 missing have starter_tier STARTER or ROTATION \u2014 fetch gaps, not blank-bench voids. League column on step8 is always SOCCER; competition from ESPN event name. Saves: 3 keepers (2 STARTER + 1 ROTATION)."
+}

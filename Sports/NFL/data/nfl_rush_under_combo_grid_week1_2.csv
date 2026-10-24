@@ -1,0 +1,119 @@
+﻿window,combo,label,hits,n,hr,lift_pp
+UNDER / OVER-polarity factors,A,Elite OL,25,37,67.6,0.29999999999999716
+UNDER / OVER-polarity factors,B,Elite Rush Off,14,23,60.9,-6.399999999999999
+UNDER / OVER-polarity factors,C,Elite RB,5,13,38.5,-28.799999999999997
+UNDER / OVER-polarity factors,D,Weak Rush D,12,19,63.2,-4.099999999999994
+UNDER / OVER-polarity factors,E,Weak DL,21,29,72.4,5.1000000000000085
+UNDER / OVER-polarity factors,A+B,Elite OL + Elite Rush Off,12,20,60.0,-7.299999999999997
+UNDER / OVER-polarity factors,A+C,Elite OL + Elite RB,4,10,40.0,-27.299999999999997
+UNDER / OVER-polarity factors,A+D,Elite OL + Weak Rush D,9,12,75.0,7.700000000000003
+UNDER / OVER-polarity factors,A+E,Elite OL + Weak DL,15,21,71.4,4.1000000000000085
+UNDER / OVER-polarity factors,B+C,Elite Rush Off + Elite RB,1,4,25.0,-42.3
+UNDER / OVER-polarity factors,B+D,Elite Rush Off + Weak Rush D,5,7,71.4,4.1000000000000085
+UNDER / OVER-polarity factors,B+E,Elite Rush Off + Weak DL,10,15,66.7,-0.5999999999999943
+UNDER / OVER-polarity factors,C+D,Elite RB + Weak Rush D,1,3,33.3,-34.0
+UNDER / OVER-polarity factors,C+E,Elite RB + Weak DL,3,6,50.0,-17.299999999999997
+UNDER / OVER-polarity factors,D+E,Weak Rush D + Weak DL,6,9,66.7,-0.5999999999999943
+UNDER / OVER-polarity factors,A+B+C,Elite OL + Elite Rush Off + Elite RB,1,4,25.0,-42.3
+UNDER / OVER-polarity factors,A+B+D,Elite OL + Elite Rush Off + Weak Rush D,3,4,75.0,7.700000000000003
+UNDER / OVER-polarity factors,A+B+E,Elite OL + Elite Rush Off + Weak DL,9,14,64.3,-3.0
+UNDER / OVER-polarity factors,A+C+D,Elite OL + Elite RB + Weak Rush D,1,2,50.0,-17.299999999999997
+UNDER / OVER-polarity factors,A+C+E,Elite OL + Elite RB + Weak DL,2,5,40.0,-27.299999999999997
+UNDER / OVER-polarity factors,A+D+E,Elite OL + Weak Rush D + Weak DL,4,5,80.0,12.700000000000003
+UNDER / OVER-polarity factors,B+C+E,Elite Rush Off + Elite RB + Weak DL,1,3,33.3,-34.0
+UNDER / OVER-polarity factors,B+D+E,Elite Rush Off + Weak Rush D + Weak DL,4,5,80.0,12.700000000000003
+UNDER / OVER-polarity factors,A+B+C+E,Elite OL + Elite Rush Off + Elite RB + Weak DL,1,3,33.3,-34.0
+UNDER / OVER-polarity factors,A+B+D+E,Elite OL + Elite Rush Off + Weak Rush D + Weak DL,3,4,75.0,7.700000000000003
+UNDER / inverted thesis,Ainv,Weak OL,17,26,65.4,-1.8999999999999915
+UNDER / inverted thesis,Binv,NOT Elite Rush Off,21,29,72.4,5.1000000000000085
+UNDER / inverted thesis,Cinv,NOT Elite RB,30,39,76.9,9.600000000000009
+UNDER / inverted thesis,Dinv,Elite Rush D,15,19,78.9,11.600000000000009
+UNDER / inverted thesis,Einv,Elite DL,12,23,52.2,-15.099999999999994
+UNDER / inverted thesis,Ainv+Binv,Weak OL + NOT Elite Rush Off,13,18,72.2,4.900000000000006
+UNDER / inverted thesis,Ainv+Cinv,Weak OL + NOT Elite RB,14,19,73.7,6.400000000000006
+UNDER / inverted thesis,Ainv+Dinv,Weak OL + Elite Rush D,10,13,76.9,9.600000000000009
+UNDER / inverted thesis,Ainv+Einv,Weak OL + Elite DL,10,17,58.8,-8.5
+UNDER / inverted thesis,Binv+Cinv,NOT Elite Rush Off + NOT Elite RB,17,20,85.0,17.700000000000003
+UNDER / inverted thesis,Binv+Dinv,NOT Elite Rush Off + Elite Rush D,11,13,84.6,17.299999999999997
+UNDER / inverted thesis,Binv+Einv,NOT Elite Rush Off + Elite DL,6,11,54.5,-12.799999999999997
+UNDER / inverted thesis,Cinv+Dinv,NOT Elite RB + Elite Rush D,13,15,86.7,19.400000000000006
+UNDER / inverted thesis,Cinv+Einv,NOT Elite RB + Elite DL,11,15,73.3,6.0
+UNDER / inverted thesis,Dinv+Einv,Elite Rush D + Elite DL,8,12,66.7,-0.5999999999999943
+UNDER / inverted thesis,Ainv+Binv+Cinv,Weak OL + NOT Elite Rush Off + NOT Elite RB,10,12,83.3,16.0
+UNDER / inverted thesis,Ainv+Binv+Dinv,Weak OL + NOT Elite Rush Off + Elite Rush D,8,9,88.9,21.60000000000001
+UNDER / inverted thesis,Ainv+Binv+Einv,Weak OL + NOT Elite Rush Off + Elite DL,6,9,66.7,-0.5999999999999943
+UNDER / inverted thesis,Ainv+Cinv+Dinv,Weak OL + NOT Elite RB + Elite Rush D,8,10,80.0,12.700000000000003
+UNDER / inverted thesis,Ainv+Cinv+Einv,Weak OL + NOT Elite RB + Elite DL,9,12,75.0,7.700000000000003
+UNDER / inverted thesis,Ainv+Dinv+Einv,Weak OL + Elite Rush D + Elite DL,6,9,66.7,-0.5999999999999943
+UNDER / inverted thesis,Binv+Cinv+Dinv,NOT Elite Rush Off + NOT Elite RB + Elite Rush D,9,9,100.0,32.7
+UNDER / inverted thesis,Binv+Cinv+Einv,NOT Elite Rush Off + NOT Elite RB + Elite DL,5,5,100.0,32.7
+UNDER / inverted thesis,Binv+Dinv+Einv,NOT Elite Rush Off + Elite Rush D + Elite DL,4,6,66.7,-0.5999999999999943
+UNDER / inverted thesis,Cinv+Dinv+Einv,NOT Elite RB + Elite Rush D + Elite DL,8,10,80.0,12.700000000000003
+UNDER / inverted thesis,Ainv+Binv+Cinv+Dinv,Weak OL + NOT Elite Rush Off + NOT Elite RB + Elite Rush D,6,6,100.0,32.7
+UNDER / inverted thesis,Ainv+Binv+Cinv+Einv,Weak OL + NOT Elite Rush Off + NOT Elite RB + Elite DL,5,5,100.0,32.7
+UNDER / inverted thesis,Ainv+Binv+Dinv+Einv,Weak OL + NOT Elite Rush Off + Elite Rush D + Elite DL,4,5,80.0,12.700000000000003
+UNDER / inverted thesis,Ainv+Cinv+Dinv+Einv,Weak OL + NOT Elite RB + Elite Rush D + Elite DL,6,8,75.0,7.700000000000003
+UNDER / inverted thesis,Binv+Cinv+Dinv+Einv,NOT Elite Rush Off + NOT Elite RB + Elite Rush D + Elite DL,4,4,100.0,32.7
+UNDER / inverted thesis,Ainv+Binv+Cinv+Dinv+Einv,Weak OL + NOT Elite Rush Off + NOT Elite RB + Elite Rush D + Elite DL,4,4,100.0,32.7
+L5>=4 / inverted,Ainv,Weak OL,9,13,69.2,-5.799999999999997
+L5>=4 / inverted,Binv,NOT Elite Rush Off,12,16,75.0,0.0
+L5>=4 / inverted,Cinv,NOT Elite RB,14,16,87.5,12.5
+L5>=4 / inverted,Dinv,Elite Rush D,8,10,80.0,5.0
+L5>=4 / inverted,Einv,Elite DL,7,12,58.3,-16.700000000000003
+L5>=4 / inverted,Ainv+Binv,Weak OL + NOT Elite Rush Off,7,10,70.0,-5.0
+L5>=4 / inverted,Ainv+Cinv,Weak OL + NOT Elite RB,6,8,75.0,0.0
+L5>=4 / inverted,Ainv+Dinv,Weak OL + Elite Rush D,5,7,71.4,-3.5999999999999943
+L5>=4 / inverted,Ainv+Einv,Weak OL + Elite DL,6,9,66.7,-8.299999999999997
+L5>=4 / inverted,Binv+Cinv,NOT Elite Rush Off + NOT Elite RB,8,9,88.9,13.900000000000006
+L5>=4 / inverted,Binv+Dinv,NOT Elite Rush Off + Elite Rush D,6,7,85.7,10.700000000000003
+L5>=4 / inverted,Binv+Einv,NOT Elite Rush Off + Elite DL,4,7,57.1,-17.9
+L5>=4 / inverted,Cinv+Dinv,NOT Elite RB + Elite Rush D,6,7,85.7,10.700000000000003
+L5>=4 / inverted,Cinv+Einv,NOT Elite RB + Elite DL,6,7,85.7,10.700000000000003
+L5>=4 / inverted,Dinv+Einv,Elite Rush D + Elite DL,4,6,66.7,-8.299999999999997
+L5>=4 / inverted,Ainv+Binv+Cinv,Weak OL + NOT Elite Rush Off + NOT Elite RB,4,5,80.0,5.0
+L5>=4 / inverted,Ainv+Binv+Dinv,Weak OL + NOT Elite Rush Off + Elite Rush D,4,5,80.0,5.0
+L5>=4 / inverted,Ainv+Binv+Einv,Weak OL + NOT Elite Rush Off + Elite DL,4,6,66.7,-8.299999999999997
+L5>=4 / inverted,Ainv+Cinv+Dinv,Weak OL + NOT Elite RB + Elite Rush D,3,4,75.0,0.0
+L5>=4 / inverted,Ainv+Cinv+Einv,Weak OL + NOT Elite RB + Elite DL,5,6,83.3,8.299999999999997
+L5>=4 / inverted,Ainv+Dinv+Einv,Weak OL + Elite Rush D + Elite DL,3,5,60.0,-15.0
+L5>=4 / inverted,Binv+Cinv+Dinv,NOT Elite Rush Off + NOT Elite RB + Elite Rush D,4,4,100.0,25.0
+L5>=4 / inverted,Binv+Cinv+Einv,NOT Elite Rush Off + NOT Elite RB + Elite DL,3,3,100.0,25.0
+L5>=4 / inverted,Binv+Dinv+Einv,NOT Elite Rush Off + Elite Rush D + Elite DL,2,3,66.7,-8.299999999999997
+L5>=4 / inverted,Cinv+Dinv+Einv,NOT Elite RB + Elite Rush D + Elite DL,4,5,80.0,5.0
+L5>=4 / inverted,Ainv+Binv+Cinv+Dinv,Weak OL + NOT Elite Rush Off + NOT Elite RB + Elite Rush D,2,2,100.0,25.0
+L5>=4 / inverted,Ainv+Binv+Cinv+Einv,Weak OL + NOT Elite Rush Off + NOT Elite RB + Elite DL,3,3,100.0,25.0
+L5>=4 / inverted,Ainv+Binv+Dinv+Einv,Weak OL + NOT Elite Rush Off + Elite Rush D + Elite DL,2,3,66.7,-8.299999999999997
+L5>=4 / inverted,Ainv+Cinv+Dinv+Einv,Weak OL + NOT Elite RB + Elite Rush D + Elite DL,3,4,75.0,0.0
+L5>=4 / inverted,Binv+Cinv+Dinv+Einv,NOT Elite Rush Off + NOT Elite RB + Elite Rush D + Elite DL,2,2,100.0,25.0
+L5>=4 / inverted,Ainv+Binv+Cinv+Dinv+Einv,Weak OL + NOT Elite Rush Off + NOT Elite RB + Elite Rush D + Elite DL,2,2,100.0,25.0
+L5=5 / inverted,Ainv,Weak OL,3,4,75.0,-8.299999999999997
+L5=5 / inverted,Binv,NOT Elite Rush Off,2,2,100.0,16.700000000000003
+L5=5 / inverted,Cinv,NOT Elite RB,5,6,83.3,0.0
+L5=5 / inverted,Dinv,Elite Rush D,3,4,75.0,-8.299999999999997
+L5=5 / inverted,Einv,Elite DL,4,5,80.0,-3.299999999999997
+L5=5 / inverted,Ainv+Binv,Weak OL + NOT Elite Rush Off,1,1,100.0,16.700000000000003
+L5=5 / inverted,Ainv+Cinv,Weak OL + NOT Elite RB,3,4,75.0,-8.299999999999997
+L5=5 / inverted,Ainv+Dinv,Weak OL + Elite Rush D,2,3,66.7,-16.599999999999994
+L5=5 / inverted,Ainv+Einv,Weak OL + Elite DL,3,4,75.0,-8.299999999999997
+L5=5 / inverted,Binv+Cinv,NOT Elite Rush Off + NOT Elite RB,2,2,100.0,16.700000000000003
+L5=5 / inverted,Binv+Dinv,NOT Elite Rush Off + Elite Rush D,1,1,100.0,16.700000000000003
+L5=5 / inverted,Binv+Einv,NOT Elite Rush Off + Elite DL,1,1,100.0,16.700000000000003
+L5=5 / inverted,Cinv+Dinv,NOT Elite RB + Elite Rush D,3,4,75.0,-8.299999999999997
+L5=5 / inverted,Cinv+Einv,NOT Elite RB + Elite DL,4,5,80.0,-3.299999999999997
+L5=5 / inverted,Dinv+Einv,Elite Rush D + Elite DL,3,4,75.0,-8.299999999999997
+L5=5 / inverted,Ainv+Binv+Cinv,Weak OL + NOT Elite Rush Off + NOT Elite RB,1,1,100.0,16.700000000000003
+L5=5 / inverted,Ainv+Binv+Dinv,Weak OL + NOT Elite Rush Off + Elite Rush D,1,1,100.0,16.700000000000003
+L5=5 / inverted,Ainv+Binv+Einv,Weak OL + NOT Elite Rush Off + Elite DL,1,1,100.0,16.700000000000003
+L5=5 / inverted,Ainv+Cinv+Dinv,Weak OL + NOT Elite RB + Elite Rush D,2,3,66.7,-16.599999999999994
+L5=5 / inverted,Ainv+Cinv+Einv,Weak OL + NOT Elite RB + Elite DL,3,4,75.0,-8.299999999999997
+L5=5 / inverted,Ainv+Dinv+Einv,Weak OL + Elite Rush D + Elite DL,2,3,66.7,-16.599999999999994
+L5=5 / inverted,Binv+Cinv+Dinv,NOT Elite Rush Off + NOT Elite RB + Elite Rush D,1,1,100.0,16.700000000000003
+L5=5 / inverted,Binv+Cinv+Einv,NOT Elite Rush Off + NOT Elite RB + Elite DL,1,1,100.0,16.700000000000003
+L5=5 / inverted,Binv+Dinv+Einv,NOT Elite Rush Off + Elite Rush D + Elite DL,1,1,100.0,16.700000000000003
+L5=5 / inverted,Cinv+Dinv+Einv,NOT Elite RB + Elite Rush D + Elite DL,3,4,75.0,-8.299999999999997
+L5=5 / inverted,Ainv+Binv+Cinv+Dinv,Weak OL + NOT Elite Rush Off + NOT Elite RB + Elite Rush D,1,1,100.0,16.700000000000003
+L5=5 / inverted,Ainv+Binv+Cinv+Einv,Weak OL + NOT Elite Rush Off + NOT Elite RB + Elite DL,1,1,100.0,16.700000000000003
+L5=5 / inverted,Ainv+Binv+Dinv+Einv,Weak OL + NOT Elite Rush Off + Elite Rush D + Elite DL,1,1,100.0,16.700000000000003
+L5=5 / inverted,Ainv+Cinv+Dinv+Einv,Weak OL + NOT Elite RB + Elite Rush D + Elite DL,2,3,66.7,-16.599999999999994
+L5=5 / inverted,Binv+Cinv+Dinv+Einv,NOT Elite Rush Off + NOT Elite RB + Elite Rush D + Elite DL,1,1,100.0,16.700000000000003
+L5=5 / inverted,Ainv+Binv+Cinv+Dinv+Einv,Weak OL + NOT Elite Rush Off + NOT Elite RB + Elite Rush D + Elite DL,1,1,100.0,16.700000000000003

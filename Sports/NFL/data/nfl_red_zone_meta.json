@@ -1,0 +1,15 @@
+{
+  "built_at": "2026-09-22T17:18:37.444146+00:00",
+  "seasons": [
+    2025,
+    2026
+  ],
+  "rz_plays": 8379,
+  "n_teams": 32,
+  "n_players": 536,
+  "sources": {
+    "2025": "play_by_play_2025",
+    "2026": "play_by_play_2026"
+  },
+  "note": "Soft context only. yardline_100 <= 20."
+}

@@ -1,0 +1,884 @@
+{
+  "listed_all": {
+    "hits": 7010,
+    "n": 10686,
+    "rate": 65.6
+  },
+  "S": {
+    "hits": 949,
+    "n": 1192,
+    "rate": 79.6
+  },
+  "A": {
+    "hits": 2104,
+    "n": 2860,
+    "rate": 73.6
+  },
+  "S_plus_A": {
+    "hits": 3053,
+    "n": 4052,
+    "rate": 75.3
+  },
+  "rest_no_shadow": {
+    "hits": 3781,
+    "n": 6213,
+    "rate": 60.9
+  },
+  "shadow": {
+    "hits": 176,
+    "n": 421,
+    "rate": 41.8
+  },
+  "rest_gates": {
+    "as_listed": {
+      "hits": 3781,
+      "n": 6213,
+      "rate": 60.9
+    },
+    "cover_floor": {
+      "hits": 1367,
+      "n": 2106,
+      "rate": 64.9
+    },
+    "L5=5": {
+      "hits": 933,
+      "n": 1487,
+      "rate": 62.7
+    },
+    "L5=5 + cover": {
+      "hits": 463,
+      "n": 704,
+      "rate": 65.8
+    },
+    "D pass": {
+      "hits": 1485,
+      "n": 2355,
+      "rate": 63.1
+    },
+    "cover + D": {
+      "hits": 563,
+      "n": 819,
+      "rate": 68.7
+    },
+    "L5=5 + D": {
+      "hits": 389,
+      "n": 592,
+      "rate": 65.7
+    },
+    "z>=1": {
+      "hits": 384,
+      "n": 599,
+      "rate": 64.1
+    },
+    "z>=1.5": {
+      "hits": 57,
+      "n": 86,
+      "rate": 66.3
+    },
+    "cover + z>=1": {
+      "hits": 295,
+      "n": 438,
+      "rate": 67.4
+    }
+  },
+  "promoted_to_70": [
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hits",
+      "base": {
+        "hits": 565,
+        "n": 903,
+        "rate": 62.6
+      },
+      "gate": "cover + D",
+      "promoted": {
+        "hits": 16,
+        "n": 21,
+        "rate": 76.2
+      },
+      "lift_pp": 13.6
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hits+runs+rbis",
+      "base": {
+        "hits": 886,
+        "n": 1326,
+        "rate": 66.8
+      },
+      "gate": "L5=5 + cover",
+      "promoted": {
+        "hits": 209,
+        "n": 298,
+        "rate": 70.1
+      },
+      "lift_pp": 3.3
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hits+runs+rbis",
+      "base": {
+        "hits": 886,
+        "n": 1326,
+        "rate": 66.8
+      },
+      "gate": "D pass",
+      "promoted": {
+        "hits": 386,
+        "n": 544,
+        "rate": 71.0
+      },
+      "lift_pp": 4.2
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hits+runs+rbis",
+      "base": {
+        "hits": 886,
+        "n": 1326,
+        "rate": 66.8
+      },
+      "gate": "cover + D",
+      "promoted": {
+        "hits": 283,
+        "n": 384,
+        "rate": 73.7
+      },
+      "lift_pp": 6.9
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hits+runs+rbis",
+      "base": {
+        "hits": 886,
+        "n": 1326,
+        "rate": 66.8
+      },
+      "gate": "z>=1.5",
+      "promoted": {
+        "hits": 17,
+        "n": 23,
+        "rate": 73.9
+      },
+      "lift_pp": 7.1
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hitter_ks",
+      "base": {
+        "hits": 439,
+        "n": 698,
+        "rate": 62.9
+      },
+      "gate": "cover_floor",
+      "promoted": {
+        "hits": 37,
+        "n": 47,
+        "rate": 78.7
+      },
+      "lift_pp": 15.8
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "hitter_ks",
+      "base": {
+        "hits": 439,
+        "n": 698,
+        "rate": 62.9
+      },
+      "gate": "L5=5 + cover",
+      "promoted": {
+        "hits": 17,
+        "n": 22,
+        "rate": 77.3
+      },
+      "lift_pp": 14.4
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "runs",
+      "base": {
+        "hits": 50,
+        "n": 89,
+        "rate": 56.2
+      },
+      "gate": "D pass",
+      "promoted": {
+        "hits": 14,
+        "n": 20,
+        "rate": 70.0
+      },
+      "lift_pp": 13.8
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "reb+ast",
+      "base": {
+        "hits": 137,
+        "n": 202,
+        "rate": 67.8
+      },
+      "gate": "cover_floor",
+      "promoted": {
+        "hits": 76,
+        "n": 99,
+        "rate": 76.8
+      },
+      "lift_pp": 9.0
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "reb+ast",
+      "base": {
+        "hits": 137,
+        "n": 202,
+        "rate": 67.8
+      },
+      "gate": "L5=5",
+      "promoted": {
+        "hits": 50,
+        "n": 67,
+        "rate": 74.6
+      },
+      "lift_pp": 6.8
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "reb+ast",
+      "base": {
+        "hits": 137,
+        "n": 202,
+        "rate": 67.8
+      },
+      "gate": "L5=5 + cover",
+      "promoted": {
+        "hits": 37,
+        "n": 48,
+        "rate": 77.1
+      },
+      "lift_pp": 9.3
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "reb+ast",
+      "base": {
+        "hits": 137,
+        "n": 202,
+        "rate": 67.8
+      },
+      "gate": "cover + D",
+      "promoted": {
+        "hits": 26,
+        "n": 36,
+        "rate": 72.2
+      },
+      "lift_pp": 4.4
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "prop": "reb+ast",
+      "base": {
+        "hits": 137,
+        "n": 202,
+        "rate": 67.8
+      },
+      "gate": "z>=1",
+      "promoted": {
+        "hits": 27,
+        "n": 33,
+        "rate": 81.8
+      },
+      "lift_pp": 14.0
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "prop": "pra",
+      "base": {
+        "hits": 37,
+        "n": 56,
+        "rate": 66.1
+      },
+      "gate": "cover_floor",
+      "promoted": {
+        "hits": 15,
+        "n": 20,
+        "rate": 75.0
+      },
+      "lift_pp": 8.9
+    }
+  ],
+  "best_but_short": [
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "prop": "total_bases",
+      "base": {
+        "hits": 547,
+        "n": 873,
+        "rate": 62.7
+      },
+      "gate": "cover + D",
+      "promoted": {
+        "hits": 137,
+        "n": 196,
+        "rate": 69.9
+      },
+      "lift_pp": 7.2,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "prop": "hits",
+      "base": {
+        "hits": 15,
+        "n": 26,
+        "rate": 57.7
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 15,
+        "n": 26,
+        "rate": 57.7
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "prop": "hits+runs+rbis",
+      "base": {
+        "hits": 58,
+        "n": 122,
+        "rate": 47.5
+      },
+      "gate": "cover + D",
+      "promoted": {
+        "hits": 14,
+        "n": 26,
+        "rate": 53.8
+      },
+      "lift_pp": 6.3,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "prop": "pitcher_ks",
+      "base": {
+        "hits": 15,
+        "n": 28,
+        "rate": 53.6
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 15,
+        "n": 28,
+        "rate": 53.6
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "prop": "pitches thrown",
+      "base": {
+        "hits": 13,
+        "n": 24,
+        "rate": 54.2
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 13,
+        "n": 24,
+        "rate": 54.2
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "prop": "runs",
+      "base": {
+        "hits": 21,
+        "n": 43,
+        "rate": 48.8
+      },
+      "gate": "D pass",
+      "promoted": {
+        "hits": 13,
+        "n": 23,
+        "rate": 56.5
+      },
+      "lift_pp": 7.7,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "prop": "singles",
+      "base": {
+        "hits": 43,
+        "n": 88,
+        "rate": 48.9
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 43,
+        "n": 88,
+        "rate": 48.9
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "prop": "total_bases",
+      "base": {
+        "hits": 22,
+        "n": 41,
+        "rate": 53.7
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 22,
+        "n": 41,
+        "rate": 53.7
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "earned runs allowed",
+      "base": {
+        "hits": 16,
+        "n": 29,
+        "rate": 55.2
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 16,
+        "n": 29,
+        "rate": 55.2
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "hits",
+      "base": {
+        "hits": 37,
+        "n": 72,
+        "rate": 51.4
+      },
+      "gate": "D pass",
+      "promoted": {
+        "hits": 20,
+        "n": 35,
+        "rate": 57.1
+      },
+      "lift_pp": 5.7,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "hits allowed",
+      "base": {
+        "hits": 18,
+        "n": 34,
+        "rate": 52.9
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 18,
+        "n": 34,
+        "rate": 52.9
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "hits+runs+rbis",
+      "base": {
+        "hits": 97,
+        "n": 179,
+        "rate": 54.2
+      },
+      "gate": "L5=5",
+      "promoted": {
+        "hits": 31,
+        "n": 47,
+        "rate": 66.0
+      },
+      "lift_pp": 11.8,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "pitcher_ks",
+      "base": {
+        "hits": 16,
+        "n": 32,
+        "rate": 50.0
+      },
+      "gate": "D pass",
+      "promoted": {
+        "hits": 8,
+        "n": 15,
+        "rate": 53.3
+      },
+      "lift_pp": 3.3,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "pitches thrown",
+      "base": {
+        "hits": 16,
+        "n": 33,
+        "rate": 48.5
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 16,
+        "n": 33,
+        "rate": 48.5
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "plate appearances",
+      "base": {
+        "hits": 13,
+        "n": 28,
+        "rate": 46.4
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 13,
+        "n": 28,
+        "rate": 46.4
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard UNDER",
+      "prop": "singles",
+      "base": {
+        "hits": 96,
+        "n": 170,
+        "rate": 56.5
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 96,
+        "n": 170,
+        "rate": 56.5
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "prop": "saves",
+      "base": {
+        "hits": 23,
+        "n": 34,
+        "rate": 67.6
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 23,
+        "n": 34,
+        "rate": 67.6
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "prop": "shots",
+      "base": {
+        "hits": 71,
+        "n": 138,
+        "rate": 51.4
+      },
+      "gate": "L5=5 + cover",
+      "promoted": {
+        "hits": 10,
+        "n": 15,
+        "rate": 66.7
+      },
+      "lift_pp": 15.3,
+      "reached_70": false
+    },
+    {
+      "sport": "Tennis",
+      "book": "Standard OVER",
+      "prop": "games_won",
+      "base": {
+        "hits": 19,
+        "n": 39,
+        "rate": 48.7
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 19,
+        "n": 39,
+        "rate": 48.7
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "Tennis",
+      "book": "Standard OVER",
+      "prop": "total games",
+      "base": {
+        "hits": 33,
+        "n": 55,
+        "rate": 60.0
+      },
+      "gate": "L5=5",
+      "promoted": {
+        "hits": 13,
+        "n": 17,
+        "rate": 76.5
+      },
+      "lift_pp": 16.5,
+      "reached_70": false
+    },
+    {
+      "sport": "Tennis",
+      "book": "Standard UNDER",
+      "prop": "total games",
+      "base": {
+        "hits": 21,
+        "n": 38,
+        "rate": 55.3
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 21,
+        "n": 38,
+        "rate": 55.3
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "prop": "points (combo)",
+      "base": {
+        "hits": 29,
+        "n": 43,
+        "rate": 67.4
+      },
+      "gate": "cover_floor",
+      "promoted": {
+        "hits": 20,
+        "n": 29,
+        "rate": 69.0
+      },
+      "lift_pp": 1.6,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "prop": "pts+ast",
+      "base": {
+        "hits": 26,
+        "n": 41,
+        "rate": 63.4
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 26,
+        "n": 41,
+        "rate": 63.4
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "prop": "pts+reb",
+      "base": {
+        "hits": 33,
+        "n": 59,
+        "rate": 55.9
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 33,
+        "n": 59,
+        "rate": 55.9
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "prop": "reb+ast",
+      "base": {
+        "hits": 15,
+        "n": 26,
+        "rate": 57.7
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 15,
+        "n": 26,
+        "rate": 57.7
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "prop": "rebounds",
+      "base": {
+        "hits": 12,
+        "n": 24,
+        "rate": 50.0
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 12,
+        "n": 24,
+        "rate": 50.0
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard UNDER",
+      "prop": "points",
+      "base": {
+        "hits": 21,
+        "n": 43,
+        "rate": 48.8
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 21,
+        "n": 43,
+        "rate": 48.8
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard UNDER",
+      "prop": "points (combo)",
+      "base": {
+        "hits": 11,
+        "n": 23,
+        "rate": 47.8
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 11,
+        "n": 23,
+        "rate": 47.8
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard UNDER",
+      "prop": "pra",
+      "base": {
+        "hits": 17,
+        "n": 32,
+        "rate": 53.1
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 17,
+        "n": 32,
+        "rate": 53.1
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard UNDER",
+      "prop": "pts+ast",
+      "base": {
+        "hits": 17,
+        "n": 31,
+        "rate": 54.8
+      },
+      "gate": "as_listed",
+      "promoted": {
+        "hits": 17,
+        "n": 31,
+        "rate": 54.8
+      },
+      "lift_pp": 0.0,
+      "reached_70": false
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard UNDER",
+      "prop": "pts+reb",
+      "base": {
+        "hits": 20,
+        "n": 37,
+        "rate": 54.1
+      },
+      "gate": "D pass",
+      "promoted": {
+        "hits": 9,
+        "n": 15,
+        "rate": 60.0
+      },
+      "lift_pp": 5.9,
+      "reached_70": false
+    }
+  ]
+}

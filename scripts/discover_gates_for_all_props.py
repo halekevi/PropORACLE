@@ -10,6 +10,9 @@ Hard rules:
     (actual_value, margin, hit, result, and aliases).
   - Chronological OOS split (last 30% of dates held out).
   - Per-prop zero-actual / implausible-value sanity flags.
+  - Per-prop split-balance flags: if most of a cell's history falls on one
+    side of the *global* date split (late-arriving prop), oos_ticket_clear
+    is marked unreliable (WNBA FGA failure mode).
 
   py -3.14 scripts/discover_gates_for_all_props.py
   py -3.14 scripts/discover_gates_for_all_props.py --sport MLB --min-n 25
@@ -34,6 +37,11 @@ import all_ranked_prop_hit_rates as C  # noqa: E402
 import mlb_counting_gate_grid as G  # noqa: E402
 import prop_hit_tiers as T  # noqa: E402
 from utils.defense_tiers import normalize_def_tier_label  # noqa: E402
+from utils.discover_gates_split_balance import (  # noqa: E402
+    flagged_split_imbalance,
+    split_balance_by_cell,
+    split_balance_for_cell,
+)
 from utils.mlb_keep_gates import (  # noqa: E402
     BA_FLOOR,
     K_RATE_FLOOR,
@@ -790,14 +798,24 @@ def main() -> None:
     print(f"export -> {OUT_EXPORT}")
 
     sanity = sanity_report(rows)
+    split_bal = split_balance_by_cell(rows, train_dates, test_dates)
+    split_flags = flagged_split_imbalance(split_bal)
+    sanity["split_imbalance"] = split_flags
     OUT_SANITY.write_text(json.dumps(sanity, indent=2), encoding="utf-8")
     print(f"sanity flagged props: {len(sanity['flagged'])} -> {OUT_SANITY}")
+    print(f"split-imbalance cells: {len(split_flags)}")
     for f in sanity["flagged"][:12]:
         print(
             f"  FLAG {f['book']} {f['prop']}: "
             f"zero_rate={f.get('zero_rate')} mean_a={f.get('mean_actual')} "
             f"mean_line={f.get('mean_line')} ratio={f.get('actual_over_line')} "
             f"{f.get('flags')}"
+        )
+    for f in split_flags[:12]:
+        print(
+            f"  SPLIT {f['book']} {f['prop']}: "
+            f"train={f['train_n']}/{f['n']} oos={f['oos_n']}/{f['n']} "
+            f"| {f['flags'][0] if f.get('flags') else ''}"
         )
 
     gates = gate_catalog()
@@ -827,13 +845,23 @@ def main() -> None:
     for (book, prop), pool in sorted(by_cell.items(), key=lambda x: -len(x[1])):
         if len(pool) < args.min_n:
             continue
+        bal = split_bal.get((book, prop)) or split_balance_for_cell(
+            pool, train_dates, test_dates
+        )
         cell_gates = eval_pool(pool, unique_gates, train_dates, test_dates, args.min_n)
+        for g in cell_gates:
+            g["oos_split_reliable"] = bool(bal.get("oos_split_reliable", True))
+            g["oos_split_oos_share"] = bal.get("oos_share")
+            g["oos_ticket_clear_raw"] = bool(g.get("oos_ticket_clear"))
+            if not g["oos_split_reliable"]:
+                g["oos_ticket_clear"] = False
         report_cells.append(
             {
                 "book": book,
                 "prop": prop,
                 "n": len(pool),
                 "base_hr": rate(sum(r["hit"] for r in pool), len(pool)),
+                "split_balance": bal,
                 "top": cell_gates[:25],
             }
         )
@@ -865,6 +893,8 @@ def main() -> None:
         "coverage": cov,
         "sanity_flagged_n": len(sanity["flagged"]),
         "sanity_flagged": sanity["flagged"][:30],
+        "split_imbalance_n": len(split_flags),
+        "split_imbalance": split_flags[:40],
         "n_gates": len(unique_gates),
         "ranked": headline[:500],
         "cells": report_cells,
@@ -894,6 +924,9 @@ def main() -> None:
             "oos_n",
             "ticket_clear",
             "oos_ticket_clear",
+            "oos_ticket_clear_raw",
+            "oos_split_reliable",
+            "oos_split_oos_share",
         ]
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         w.writeheader()

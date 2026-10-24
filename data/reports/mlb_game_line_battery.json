@@ -1,0 +1,520 @@
+{
+  "generated_at": "2026-09-25T00:49:02.350048+00:00",
+  "total_cuts": {
+    "n_games_with_total": 1496,
+    "histogram": {
+      "6.0": 5,
+      "6.5": 17,
+      "7.0": 113,
+      "7.5": 250,
+      "8.0": 282,
+      "8.5": 321,
+      "9.0": 236,
+      "9.5": 128,
+      "10.0": 57,
+      "10.5": 33,
+      "11.0": 22,
+      "11.5": 9,
+      "12.0": 11,
+      "12.5": 4,
+      "13.0": 1,
+      "13.5": 2,
+      "14.0": 1,
+      "14.5": 2,
+      "15.0": 1,
+      "16.0": 1
+    },
+    "low_max": 7.5,
+    "high_min": 9.0,
+    "n_low": 385,
+    "n_high": 508,
+    "n_mid": 603
+  },
+  "eligibility": {
+    "over_heavy_fav_vs_pickem": {
+      "treat_games": 29,
+      "ctrl_games": 1040,
+      "eligible": false,
+      "status": "ineligible (below floor)"
+    },
+    "under_heavy_fav_vs_pickem": {
+      "treat_games": 29,
+      "ctrl_games": 1040,
+      "eligible": false,
+      "status": "ineligible (below floor)"
+    },
+    "over_high_vs_low_total_hitters": {
+      "treat_games": 508,
+      "ctrl_games": 385,
+      "eligible": true,
+      "status": "eligible"
+    },
+    "note": "Counts are unique closing-line games with a team (WP) or game (total) in the locked band. Floor is 200 per bucket. Do not substitute a new WP threshold after seeing these counts; any replacement band is only testable on future games."
+  },
+  "spot_check": [
+    {
+      "date": "2026-09-05",
+      "matchup": "TB@TEX",
+      "event_id": "401816821",
+      "stored_spread": 1.5,
+      "stored_total": 7.0,
+      "refetch_spread": 1.5,
+      "refetch_total": 7.0,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    },
+    {
+      "date": "2026-09-05",
+      "matchup": "OAK@SEA",
+      "event_id": "401816824",
+      "stored_spread": -1.5,
+      "stored_total": 7.5,
+      "refetch_spread": -1.5,
+      "refetch_total": 7.5,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    },
+    {
+      "date": "2026-09-05",
+      "matchup": "NYY@SD",
+      "event_id": "401816825",
+      "stored_spread": -1.5,
+      "stored_total": 7.5,
+      "refetch_spread": -1.5,
+      "refetch_total": 7.5,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    },
+    {
+      "date": "2026-09-05",
+      "matchup": "LAA@PIT",
+      "event_id": "401816812",
+      "stored_spread": -1.5,
+      "stored_total": 7.5,
+      "refetch_spread": -1.5,
+      "refetch_total": 7.5,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    },
+    {
+      "date": "2026-09-05",
+      "matchup": "ATL@PHI",
+      "event_id": "401816813",
+      "stored_spread": -1.5,
+      "stored_total": 8.0,
+      "refetch_spread": -1.5,
+      "refetch_total": 8.0,
+      "spread_match": true,
+      "total_match": true,
+      "provider": "DraftKings"
+    }
+  ],
+  "median_date": "2026-05-25",
+  "n_rows": 466811,
+  "n_games": 1433,
+  "primary": {
+    "over_heavy_fav_vs_pickem": {
+      "scored": false,
+      "eligibility": {
+        "treat_games": 29,
+        "ctrl_games": 1040,
+        "eligible": false,
+        "status": "ineligible (below floor)"
+      },
+      "pooled": {
+        "empty": true
+      },
+      "pre_median": {
+        "empty": true
+      },
+      "post_median": {
+        "empty": true
+      },
+      "decision": {
+        "status": "ineligible (below floor)",
+        "pass": false,
+        "reason": "ineligible (below floor)"
+      }
+    },
+    "over_high_vs_low_total_hitters": {
+      "scored": true,
+      "eligibility": {
+        "treat_games": 508,
+        "ctrl_games": 385,
+        "eligible": true,
+        "status": "eligible"
+      },
+      "pooled": {
+        "empty": false,
+        "treat_hits": 46373,
+        "treat_n": 160527,
+        "treat_rate": 0.2888797523158098,
+        "treat_games": 489,
+        "ctrl_hits": 26614,
+        "ctrl_n": 97839,
+        "ctrl_rate": 0.272018315804536,
+        "ctrl_games": 368,
+        "lift": 0.01686143651127373,
+        "se": 0.005639538606671678,
+        "ci_lo": 0.0033660206255084046,
+        "ci_hi": 0.03035685239703905,
+        "excludes_zero": true,
+        "clears_200": true
+      },
+      "pre_median": {
+        "empty": false,
+        "treat_hits": 11236,
+        "treat_n": 37865,
+        "treat_rate": 0.2967384127822527,
+        "treat_games": 205,
+        "ctrl_hits": 10292,
+        "ctrl_n": 38005,
+        "ctrl_rate": 0.270806472832522,
+        "ctrl_games": 220,
+        "lift": 0.02593193994973068,
+        "se": 0.007548559325185091,
+        "ci_lo": 0.007868237484562758,
+        "ci_hi": 0.0439956424148986,
+        "excludes_zero": true,
+        "clears_200": true
+      },
+      "post_median": {
+        "empty": false,
+        "treat_hits": 35137,
+        "treat_n": 122662,
+        "treat_rate": 0.2864538324827575,
+        "treat_games": 284,
+        "ctrl_hits": 16322,
+        "ctrl_n": 59834,
+        "ctrl_rate": 0.2727880469298392,
+        "ctrl_games": 148,
+        "lift": 0.013665785552918206,
+        "se": 0.00751091325660141,
+        "ci_lo": -0.004307829870128966,
+        "ci_hi": 0.031639400975965376,
+        "excludes_zero": false,
+        "clears_200": false
+      },
+      "decision": {
+        "status": "pass",
+        "pass": true,
+        "reason": "ok"
+      }
+    },
+    "under_heavy_fav_vs_pickem": {
+      "scored": false,
+      "eligibility": {
+        "treat_games": 29,
+        "ctrl_games": 1040,
+        "eligible": false,
+        "status": "ineligible (below floor)"
+      },
+      "pooled": {
+        "empty": true
+      },
+      "pre_median": {
+        "empty": true
+      },
+      "post_median": {
+        "empty": true
+      },
+      "decision": {
+        "status": "ineligible (below floor)",
+        "pass": false,
+        "reason": "ineligible (below floor)"
+      }
+    }
+  },
+  "collapsed": {
+    "over_heavy_fav_vs_pickem": {
+      "scored": false,
+      "eligibility": {
+        "treat_games": 29,
+        "ctrl_games": 1040,
+        "eligible": false,
+        "status": "ineligible (below floor)"
+      },
+      "pooled": {
+        "empty": true
+      },
+      "pre_median": {
+        "empty": true
+      },
+      "post_median": {
+        "empty": true
+      },
+      "decision": {
+        "status": "ineligible (below floor)",
+        "pass": false,
+        "reason": "ineligible (below floor)"
+      }
+    },
+    "over_high_vs_low_total_hitters": {
+      "scored": true,
+      "eligibility": {
+        "treat_games": 508,
+        "ctrl_games": 385,
+        "eligible": true,
+        "status": "eligible"
+      },
+      "pooled": {
+        "empty": false,
+        "treat_hits": 2532,
+        "treat_n": 8766,
+        "treat_rate": 0.2888432580424367,
+        "treat_games": 489,
+        "ctrl_hits": 1677,
+        "ctrl_n": 6215,
+        "ctrl_rate": 0.26983105390185036,
+        "ctrl_games": 368,
+        "lift": 0.01902773093039004,
+        "se": 0.005403649606719695,
+        "ci_lo": 0.006096797421509809,
+        "ci_hi": 0.03195866443927027,
+        "excludes_zero": true,
+        "clears_200": true
+      },
+      "pre_median": {
+        "empty": false,
+        "treat_hits": 976,
+        "treat_n": 3327,
+        "treat_rate": 0.29335737902013825,
+        "treat_games": 205,
+        "ctrl_hits": 904,
+        "ctrl_n": 3397,
+        "ctrl_rate": 0.26611716220194287,
+        "ctrl_games": 220,
+        "lift": 0.027206232739196153,
+        "se": 0.007748589005538068,
+        "ci_lo": 0.00866385924894356,
+        "ci_hi": 0.04574860622944875,
+        "excludes_zero": true,
+        "clears_200": true
+      },
+      "post_median": {
+        "empty": false,
+        "treat_hits": 1556,
+        "treat_n": 5439,
+        "treat_rate": 0.28608200036771464,
+        "treat_games": 284,
+        "ctrl_hits": 772,
+        "ctrl_n": 2818,
+        "ctrl_rate": 0.2739531582682754,
+        "ctrl_games": 148,
+        "lift": 0.01190464984065964,
+        "se": 0.007546596661689397,
+        "ci_lo": -0.006154355970763083,
+        "ci_hi": 0.029963655652082366,
+        "excludes_zero": false,
+        "clears_200": false
+      },
+      "decision": {
+        "status": "pass",
+        "pass": true,
+        "reason": "ok"
+      }
+    },
+    "under_heavy_fav_vs_pickem": {
+      "scored": false,
+      "eligibility": {
+        "treat_games": 29,
+        "ctrl_games": 1040,
+        "eligible": false,
+        "status": "ineligible (below floor)"
+      },
+      "pooled": {
+        "empty": true
+      },
+      "pre_median": {
+        "empty": true
+      },
+      "post_median": {
+        "empty": true
+      },
+      "decision": {
+        "status": "ineligible (below floor)",
+        "pass": false,
+        "reason": "ineligible (below floor)"
+      }
+    }
+  },
+  "within_prop_total": {
+    "weighted_lift": 0.01549011406943398,
+    "weight_covered": 0.9999999999999999,
+    "per_prop": [
+      {
+        "prop": "total_bases",
+        "n_high": 38834,
+        "n_low": 25699,
+        "games_high": 489,
+        "games_low": 368,
+        "rate_high": 0.2929649276407272,
+        "rate_low": 0.264212615276859,
+        "lift": 0.02875231236386816,
+        "mix_weight": 0.24977357701864797,
+        "skipped": false
+      },
+      {
+        "prop": "hits+runs+rbis",
+        "n_high": 24503,
+        "n_low": 12328,
+        "games_high": 270,
+        "games_low": 141,
+        "rate_high": 0.3337142390727666,
+        "rate_low": 0.3082414016872161,
+        "lift": 0.025472837385550506,
+        "mix_weight": 0.14255358677225333,
+        "skipped": false
+      },
+      {
+        "prop": "hits",
+        "n_high": 19535,
+        "n_low": 12399,
+        "games_high": 489,
+        "games_low": 368,
+        "rate_high": 0.3552597901202969,
+        "rate_low": 0.3421243648681345,
+        "lift": 0.01313542525216238,
+        "mix_weight": 0.12359985447001541,
+        "skipped": false
+      },
+      {
+        "prop": "hitter_ks",
+        "n_high": 14770,
+        "n_low": 10145,
+        "games_high": 411,
+        "games_low": 282,
+        "rate_high": 0.35037237643872715,
+        "rate_low": 0.37939871858058155,
+        "lift": -0.0290263421418544,
+        "mix_weight": 0.09643296718608485,
+        "skipped": false
+      },
+      {
+        "prop": "runs",
+        "n_high": 13661,
+        "n_low": 8725,
+        "games_high": 489,
+        "games_low": 368,
+        "rate_high": 0.26242588390308175,
+        "rate_low": 0.24412607449856732,
+        "lift": 0.018299809404514422,
+        "mix_weight": 0.08664452753071225,
+        "skipped": false
+      },
+      {
+        "prop": "rbis",
+        "n_high": 10223,
+        "n_low": 4940,
+        "games_high": 270,
+        "games_low": 141,
+        "rate_high": 0.19739802406338647,
+        "rate_low": 0.17611336032388664,
+        "lift": 0.02128466373949983,
+        "mix_weight": 0.05868806267078486,
+        "skipped": false
+      },
+      {
+        "prop": "walks",
+        "n_high": 8253,
+        "n_low": 5795,
+        "games_high": 482,
+        "games_low": 367,
+        "rate_high": 0.28995516781776326,
+        "rate_low": 0.26798964624676447,
+        "lift": 0.02196552157099879,
+        "mix_weight": 0.0543724793509982,
+        "skipped": false
+      },
+      {
+        "prop": "home_runs",
+        "n_high": 7929,
+        "n_low": 5145,
+        "games_high": 489,
+        "games_low": 368,
+        "rate_high": 0.13570437634001767,
+        "rate_low": 0.10379008746355685,
+        "lift": 0.03191428887646082,
+        "mix_weight": 0.050602633473444646,
+        "skipped": false
+      },
+      {
+        "prop": "singles",
+        "n_high": 6935,
+        "n_low": 3904,
+        "games_high": 279,
+        "games_low": 173,
+        "rate_high": 0.29790915645277577,
+        "rate_low": 0.31736680327868855,
+        "lift": -0.019457646825912778,
+        "mix_weight": 0.041952114442302776,
+        "skipped": false
+      },
+      {
+        "prop": "stolen_bases",
+        "n_high": 5221,
+        "n_low": 3523,
+        "games_high": 482,
+        "games_low": 367,
+        "rate_high": 0.08370044052863436,
+        "rate_low": 0.10615952313369288,
+        "lift": -0.022459082605058522,
+        "mix_weight": 0.03384346237508031,
+        "skipped": false
+      },
+      {
+        "prop": "doubles",
+        "n_high": 5289,
+        "n_low": 3247,
+        "games_high": 279,
+        "games_low": 173,
+        "rate_high": 0.16089998109283418,
+        "rate_low": 0.13058207576224207,
+        "lift": 0.030317905330592115,
+        "mix_weight": 0.033038402885828634,
+        "skipped": false
+      },
+      {
+        "prop": "hitter_fantasy_score",
+        "n_high": 3663,
+        "n_low": 1254,
+        "games_high": 82,
+        "games_low": 28,
+        "rate_high": 0.4856674856674857,
+        "rate_low": 0.47129186602870815,
+        "lift": 0.014375619638777537,
+        "mix_weight": 0.01903114186851211,
+        "skipped": false
+      },
+      {
+        "prop": "plate_appearances",
+        "n_high": 1205,
+        "n_low": 647,
+        "games_high": 170,
+        "games_low": 100,
+        "rate_high": 0.3975103734439834,
+        "rate_low": 0.33539412673879443,
+        "lift": 0.06211624670518895,
+        "mix_weight": 0.007168125836990935,
+        "skipped": false
+      },
+      {
+        "prop": "triples",
+        "n_high": 506,
+        "n_low": 88,
+        "games_high": 138,
+        "games_low": 43,
+        "rate_high": 0.039525691699604744,
+        "rate_low": 0.011363636363636364,
+        "lift": 0.02816205533596838,
+        "mix_weight": 0.002299064118343745,
+        "skipped": false
+      }
+    ],
+    "interpretation": "If weighted_lift stays near the pooled +1.7pp and positive, the effect is not just a change in prop mix. If it shrinks toward zero, high-total boards are carrying a different menu."
+  }
+}

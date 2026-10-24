@@ -179,9 +179,9 @@ def test_row_standard_high_prob_eligible_over_needs_higher_bar():
         "ml_prob": 0.62,
         "composite_hit_rate": 0.62,
         "l10_streak": "HOT",
-        "l5_under": 4,
+        "l5_under": 5,
         "l10_over": 3,
-        "l10_under": 7,
+        "l10_under": 8,
     }
     assert not _row_standard_high_prob_eligible(weak_over)
     assert _row_standard_high_prob_eligible(strong_over)
@@ -205,6 +205,7 @@ def test_strong_candidate_legs_standard_prob_no_hot_required():
                 "rank_score": 88,
                 "ml_prob": 0.72,
                 "composite_hit_rate": 0.72,
+                "l5_under": 5.0,
                 "l10_over": 2.0,
                 "l10_under": 8.0,
                 "l10_streak": "COLD",
@@ -274,8 +275,10 @@ def test_build_strong_tickets_standard_prob_labels_and_policy():
                 "rank_score": 80 + i,
                 "ml_prob": 0.72,
                 "composite_hit_rate": 0.72,
-                "l10_over": 3.0,
-                "l10_under": 7.0,
+                "l5_over": 5.0,
+                "l5_under": 5.0,
+                "l10_over": 8.0,
+                "l10_under": 8.0,
                 "l10_streak": "COLD",
                 "prop_quality_score": 0.80,
             }
@@ -315,6 +318,7 @@ def test_build_strong_tickets_standard_pick_mode_labels_slips():
                 "hit_rate": 0.70,
                 "rank_score": 80 + i,
                 "ml_prob": 0.70,
+                "l5_over": 5.0,
                 "l10_over": 8.0,
                 "l10_under": 2.0,
                 "l10_streak": "HOT",
@@ -375,6 +379,8 @@ def test_strong_candidate_legs_excludes_non_core_props():
                 "l10_streak": "HOT",
                 "hit_rate": 0.80,
                 "ml_prob": 0.80,
+                "l5_over": 5,
+                "own_def_tier": "Elite",
             },
             {
                 "sport": "WNBA",

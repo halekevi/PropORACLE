@@ -1,0 +1,95 @@
+---
+description: Cross-ticket player anchor exposure cap (slate-assembly layer)
+globs: "{scripts/combined_slate_tickets.py,scripts/build_goblin70_tickets.py,scripts/build_ultimate_tickets.py,scripts/check_slip_exposure.py,utils/slate_exposure_ledger.py,utils/manual_slip_exposure.py,utils/pp_submit_guard.py,_tmp_build_pp*.py,_tmp_*submit*.py}"
+alwaysApply: false
+---
+
+# Cross-ticket anchor exposure cap
+
+Sibling of the **within-ticket correlation rules** (hard blocks: all-same-team, same player twice; `same_game_pair` is a flag only until both graded groups reach n≥100 — see `utils/slip_correlation.py`). This rule is one level up: it limits how often the same player can **anchor** tickets across a slate day’s full card.
+
+## Why it exists (2026-09-19)
+
+Two systems independently concentrated exposure with no shared safeguard:
+
+1. **Automated mixer** — McGreevy Goblin Pitches Thrown O84.5 on **4** published tickets; Boyd / Schlittler / Ryan / etc. on 2–4. Published card: 27 distinct players across 29 tickets, **0 CFB**. Among multi-ticket players, **16/21** were the **same prop** repeated (not independent angles).
+2. **Manual / CDP builds** — Dampier on Power 3 #1 + 4-Pick Power Play; Overton on Flex 4 + 4-Pick Power Play. Never reached `tickets_latest`, but same failure mode.
+
+## MAX_SLIPS_PER_PLAYER reconciliation (locked)
+
+| Legacy | New |
+|--------|-----|
+| `MAX_SLIPS_PER_PLAYER = 4` (primary, flat) | **Superseded** as primary policy |
+| — | Anchor-cap ledger is authoritative |
+| — | `MAX_SLIPS_PER_PLAYER` becomes **derived** `max_anchor + max_nonanchor` (= **2** by default) |
+
+**Which wins:** every check must pass (stricter wins). There is no “flat-4 still allows it” escape hatch. Do not raise the flat ceiling back to 4.
+
+Env knobs (ledger):
+
+```
+PROPORACLE_SLATE_MAX_ANCHOR_TICKETS_PER_PLAYER=1
+PROPORACLE_SLATE_MAX_NONANCHOR_TICKETS_PER_PLAYER=1
+PROPORACLE_SLATE_BLOCK_SAME_PLAYER_PROP=1
+```
+
+## Manual path honesty (locked)
+
+Mixer and Goblin-70 go through `trim_payload_max_slips_per_player` → `utils.slate_exposure_ledger` on dual-card write. That path is **auto-enforced**.
+
+**Manual / CDP submit is also hard-gated** via `utils.pp_submit_guard.submit_lineup_guarded` (calls `utils.manual_slip_exposure.assert_clears_exposure` before any Submit click). Same-day session slips are registered under `data/cache/manual_slip_exposure_YYYY-MM-DD.json` so a second manual build sees the first (Dampier → Overton).
+
+1. Prefer `submit_lineup_guarded(...)` in every `_tmp_*submit*.py` / CDP submit helper.
+2. Or run `scripts/check_slip_exposure.py` then `--register` after a real Submit.
+3. Clicking PrizePicks Submit without either path is a rule violation — do not ship that pattern.
+
+## Rule (anchor-cap version)
+
+**At slate-assembly time, across the day’s full ticket set (Goblin-70 + graded-main mixer + any manual slip that ran the check CLI):**
+
+> A player may be the **anchor** on at most **one** ticket per slate date (ET).
+
+Complementary (non-anchor) appearances on other tickets are allowed once (default), subject to the same-prop block.
+
+### What counts as an anchor
+
+On each ticket, exactly one leg is the anchor (deterministic):
+
+1. Prefer highest badge (Diamond → … → Bronze), then
+2. Highest `rank_score`, then
+3. Highest |cover|/|edge|, then
+4. First leg as last resort.
+
+Manual builds: pass `--anchor "Player Name"` to `check_slip_exposure.py`.
+
+### What is still allowed
+
+- Same player as a **non-anchor** fill on a second ticket with a **different** prop (Boyd Hits anchors A; Boyd Outs as complementary on B).
+- That is the legitimate exception a flat “max 1 ticket per player” would wrongly kill.
+
+### What is rejected
+
+- Second ticket that would make the same player an **anchor** again that slate day.
+- Repeating the **identical** player+prop+direction on a second ticket (even as non-anchor) — McGreevy×4 copy-paste.
+
+## Assembly layer
+
+| Path | Enforcement |
+|------|-------------|
+| `combined_slate_tickets.py` | Auto — construction cap=2 + final trim via ledger |
+| `build_goblin70_tickets.py --write-web` | Auto — dual-card hygiene calls same trim (**includes G70**; no longer skipped) |
+| Manual / CDP `_tmp_*submit*` | **Auto** — `utils.pp_submit_guard.submit_lineup_guarded` (ledger + session register) |
+
+## Relationship to within-ticket correlation
+
+| Cap | Scope | Failure it stops |
+|-----|--------|------------------|
+| All-same-team / same player twice | Within one ticket | Hard reject |
+| `same_game_pair` flag | Within one ticket | Track vs non-pair; gate only after n≥100 each |
+| Cross-ticket anchor (this rule) | Across day’s tickets | Correlated ruin if one **player** goes wrong |
+
+## Out of scope
+
+- Does not loosen L5 / keep gates / season-cutoff rules.
+- Does not ban a player from the **pool** — only from anchoring multiple tickets + copy-pasting the same prop.
+- YOLO / demo sleeves may opt out via env only if explicitly documented; default is on for paying card paths.

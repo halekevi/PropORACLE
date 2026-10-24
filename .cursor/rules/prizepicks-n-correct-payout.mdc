@@ -1,0 +1,19 @@
+---
+description: PrizePicks real payout is N-correct, never the 1st place figure
+alwaysApply: true
+---
+
+# PrizePicks payout figure
+
+Never use the **1st place** multiplier from a PrizePicks slip, board, or screenshot.
+
+That number is not the ticket payout. It is a decoy / fantasy tier. Do not quote it, do not store it as `sweep_payout_x`, do not use it in EV, and do not compare tickets with it.
+
+**Use only the “N correct pays Xx” (or Flex 5-correct / 4-correct) lines.** Those match Entry → To Win.
+
+Example (6-leg mix with Goblins, 2026-08-23 slip):
+- Flex 6 correct **17x** ($20 → $340) — this is the payout
+- Power 6 correct **29x** — this is the Power payout
+- Ignore Flex “1st place 25x” and Power “1st place 37.5x”
+
+All-Standard 6-leg remains Flex 25x / 2x / 0.4x and Power 40x. Mixed or all-Goblin tickets are whatever **N correct** shows on that slip.

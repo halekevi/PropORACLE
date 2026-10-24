@@ -1,0 +1,14 @@
+{
+  "date": "2026-08-28",
+  "sort": "|L5_avg-line| then |L10| then |season|",
+  "n": 353,
+  "n_gold": 124,
+  "roots": {
+    "WNBA": "H:\\PropORACLE_main_cp",
+    "MLB": "H:\\PropORACLE_main_cp",
+    "SOCCER": "H:\\PropORACLE_main_cp",
+    "TENNIS": "H:\\PropORACLE",
+    "NFL": "H:\\PropORACLE_main_cp",
+    "CFB": "H:\\PropORACLE"
+  }
+}

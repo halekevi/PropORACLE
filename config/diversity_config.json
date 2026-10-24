@@ -2,11 +2,13 @@
   "max_leg_exposure": 2,
   "max_player_exposure": 2,
   "max_player_prop_exposure": 1,
+  "block_same_player_multistat": true,
   "void_risk_min_sample": 10,
   "max_jaccard_overlap": 0.55,
   "exposure_penalty_weight": 0.25,
   "overlap_penalty_weight": 0.35,
   "void_penalty_weight": 0.5,
   "enabled": true,
-  "_comment_player_prop": "max_player_prop_exposure applies per section/group (STRONG 6-Leg, MLB Mixed, …), not across the whole slate"
+  "_comment_player_prop": "max_player_prop_exposure applies per section/group (STRONG 6-Leg, MLB Mixed, …), not across the whole slate",
+  "_comment_cat1": "block_same_player_multistat: drop tickets with the same player on 2+ different props (cat1 lift >1 across sports)"
 }

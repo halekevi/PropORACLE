@@ -71,6 +71,7 @@ from utils.income_sport_breakdown import (
     read_cached_payload,
     refresh_cache as refresh_income_sport_breakdown_cache,
 )
+from utils.income_tracks import G70_START, is_card_track
 from utils.proporacle_data_root import (
     grade_history_read_paths,
     load_best_grade_history_runs,
@@ -793,6 +794,48 @@ def read_json_cached(path: Path, ttl: float | None = None) -> Any:
         return data
 
 
+# ── Excel read cache (mirrors read_json_cached above) ──────────────────────────
+# openpyxl parsing is slow; without this, endpoints that read a workbook re-parse
+# it from disk on every request. Keyed on (path, sheet_name); invalidated on mtime
+# change, same as the JSON cache, so a fresh pipeline run is picked up automatically.
+_excel_file_cache: dict[str, dict[str, Any]] = {}
+_EXCEL_FILE_CACHE_LOCK = threading.Lock()
+
+
+def read_excel_cached(path: Path, *, sheet_name: Any = 0, ttl: float | None = None, **read_kwargs: Any):
+    """Load an Excel sheet from disk with an in-process mtime-based cache.
+
+    Returns a copy of the cached DataFrame so callers are free to mutate
+    (e.g. reassign ``df.columns``) without corrupting the shared cache entry.
+    """
+    import pandas as pd
+
+    if ttl is None:
+        ttl = _PIPELINE_JSON_TTL
+    path = Path(path)
+    key = f"{path.resolve()}::{sheet_name}"
+    now = time.time()
+    try:
+        disk_mtime = path.stat().st_mtime
+    except OSError:
+        disk_mtime = None
+
+    with _EXCEL_FILE_CACHE_LOCK:
+        entry = _excel_file_cache.get(key)
+        if (
+            entry is not None
+            and now - entry["ts"] <= ttl
+            and disk_mtime is not None
+            and entry.get("mtime") == disk_mtime
+        ):
+            return entry["data"].copy()
+
+    df = pd.read_excel(str(path), sheet_name=sheet_name, **read_kwargs)
+    with _EXCEL_FILE_CACHE_LOCK:
+        _excel_file_cache[key] = {"data": df, "ts": now, "mtime": disk_mtime}
+    return df.copy()
+
+
 # ── Pre-serialized + pre-gzipped response cache ───────────────────────────────
 # Avoids re-serializing and re-compressing large payloads on every request.
 _gz_cache: dict[str, tuple[bytes, float]] = {}
@@ -1200,6 +1243,12 @@ def _selected_slate_sport_payload() -> dict:
 _SLATE_SPORT_UI_KEYS = frozenset(
     {
         "tier",
+        "edge_tier",
+        "prop_tier",
+        "prop_tier_base",
+        "prop_shadow",
+        "prop_promoted",
+        "prop_promote_reason",
         "rank_score",
         "player",
         "team",
@@ -1254,6 +1303,21 @@ _SLATE_SPORT_UI_KEYS = frozenset(
         "avg_vs_line",
         "share_lean",
         "line_as_pct_of_team",
+        "off_identity",
+        "team_vehicle",
+        "is_run_team",
+        "is_pass_team",
+        "is_fg_team",
+        "is_balanced",
+        "team_rush_share",
+        "team_pass_share",
+        "team_fg_pg",
+        "prop_share_pct",
+        "rush_yds_share_pct",
+        "rush_att_share_pct",
+        "rec_yds_share_pct",
+        "rec_tgt_share_pct",
+        "pass_yds_share_pct",
         *(f"g{i}" for i in range(1, 11)),
         *(f"stat_g{i}" for i in range(1, 11)),
         *(f"line_g{i}" for i in range(1, 11)),
@@ -1274,10 +1338,12 @@ def _merged_combined_slim_rows(payload: dict) -> list[dict[str, Any]]:
         for r in v:
             if not isinstance(r, dict):
                 continue
-            slim = _slim_slate_sport_row(r)
+            rr = dict(r)
+            if not rr.get("sport"):
+                rr["sport"] = sk.upper()
+            slim = _slim_slate_sport_row(rr)
             if "sport" not in slim:
-                lab = str(r.get("sport") or "").strip().upper()
-                slim["sport"] = lab or sk.upper()
+                slim["sport"] = sk.upper()
             out.append(slim)
 
     def _rank(x: dict[str, Any]) -> float:
@@ -1399,6 +1465,17 @@ def _slim_slate_sport_cell(key: str, v: Any) -> Any:
 
 def _slim_slate_sport_row(r: dict) -> dict:
     """One slate row: only UI keys, omit nulls / blanks after coercion."""
+    if isinstance(r, dict):
+        try:
+            scripts_dir = str(BASE_DIR / "scripts")
+            if scripts_dir not in sys.path:
+                sys.path.insert(0, scripts_dir)
+            from prop_hit_tiers import stamp_prop_tier_on_slate_row
+
+            sport_hint = str(r.get("sport") or "")
+            stamp_prop_tier_on_slate_row(r, sport_hint=sport_hint)
+        except Exception:
+            pass
     slim: dict[str, Any] = {}
     for kk in _SLATE_SPORT_UI_KEYS:
         if kk not in r:
@@ -1509,6 +1586,8 @@ def _slim_slate_sport_payload(payload: dict) -> dict:
         slim_rows: list[Any] = []
         for r in rows:
             if isinstance(r, dict):
+                if not r.get("sport"):
+                    r = {**r, "sport": str(k).upper()}
                 slim_rows.append(_slim_slate_sport_row(r))
             else:
                 slim_rows.append(r)
@@ -4160,6 +4239,10 @@ def api_pipeline_status():
     if len(soccer_override_date) != 10:
         soccer_override_date = None
     soccer_match_day = soccer_override_date or et_today
+    wnba_override_date = str((slate_payload or {}).get("wnba_date") or "").strip()[:10]
+    if len(wnba_override_date) != 10:
+        wnba_override_date = None
+    wnba_match_day = wnba_override_date or et_today
     # Strict game-day sports (matches index.html SLATE_STRICT_GAME_DAY_SPORTS + tennis).
     _game_day_sports = ("nhl", "nfl", "mlb", "nba1h", "nba1q", "soccer", "wnba", "wnba1h", "wnba1q", "tennis")
     game_day: dict[str, bool | None] = {}
@@ -4168,6 +4251,8 @@ def api_pipeline_status():
             target = tennis_match_day
         elif sid == "soccer":
             target = soccer_match_day
+        elif sid in ("wnba", "wnba1h", "wnba1q"):
+            target = wnba_match_day
         else:
             target = et_today
         game_day[sid] = _sport_rows_have_game_on_ymd(slate_payload, sid, target)
@@ -4234,6 +4319,7 @@ def api_pipeline_status():
         "et_today": et_today,
         "tennis_match_day": tennis_match_day,
         "soccer_match_day": soccer_match_day,
+        "wnba_match_day": wnba_match_day,
         "game_day": game_day,
         "tickets_date": board_meta.get("tickets_date"),
         "slate_date": board_meta.get("slate_date"),
@@ -4935,12 +5021,24 @@ def api_slate_legs():
                 if key not in seen:
                     seen.add(key)
                     legs.append(item)
+            ev = t.get("ev_power")
+            if ev is None:
+                pay = t.get("payout")
+                if isinstance(pay, dict):
+                    ev = pay.get("ev")
+            if ev is None:
+                ev = t.get("est_ev")
+            try:
+                ev_out = round(float(ev), 4) if ev is not None and str(ev).strip() != "" else None
+            except (TypeError, ValueError):
+                ev_out = None
             tickets_out.append(
                 {
                     "group_name": group_name,
                     "ticket_no": tno,
                     "ticket_key": ticket_key,
                     "n_legs": len(t_legs),
+                    "ev": ev_out,
                     "legs": t_legs,
                 }
             )
@@ -5831,7 +5929,7 @@ def api_slate_sport():
         return jsonify({"error": str(e), "sports": {}}), 404
     try:
         return _gz_json_response(
-            f"slate-sport-slim-v3:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-slim-v4:{_explorer_json_gz_bust_token()}",
             lambda: _slim_slate_sport_payload(_selected_slate_sport_payload()),
             ttl=_PIPELINE_JSON_TTL,
         )
@@ -5898,7 +5996,15 @@ def api_slate_sport_single(sport: str):
             rows = enriched + other
         except Exception:
             pass
-        slim_rows = [_slim_slate_sport_row(r) if isinstance(r, dict) else r for r in rows]
+        slim_rows = []
+        for r in rows:
+            if not isinstance(r, dict):
+                slim_rows.append(r)
+                continue
+            rr = dict(r)
+            if not rr.get("sport"):
+                rr["sport"] = str(sport_key).upper()
+            slim_rows.append(_slim_slate_sport_row(rr))
         if not slim_rows and sport_key == "wnba":
             slim_rows = _wnba_slate_rows_from_step8_fallback()
         slim_rows = _filter_slate_explorer_rows(slim_rows)
@@ -5911,7 +6017,7 @@ def api_slate_sport_single(sport: str):
 
     try:
         return _gz_json_response(
-            f"slate-sport-single-v1:{sport_key}:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-single-v2:{sport_key}:{_explorer_json_gz_bust_token()}",
             _build,
             ttl=60.0,
         )
@@ -6367,8 +6473,7 @@ def api_full_slate():
         return jsonify({"error": "combined slate Excel not found", "date": None, "columns": [], "rows": []}), 404
 
     try:
-        import pandas as pd
-        df = pd.read_excel(str(path), sheet_name="Full Slate", dtype=object, engine="openpyxl")
+        df = read_excel_cached(path, sheet_name="Full Slate", dtype=object, engine="openpyxl")
     except Exception as e:
         return jsonify({"error": f"Could not read Full Slate sheet: {e}", "date": run_date, "columns": [], "rows": []}), 500
 
@@ -6637,6 +6742,28 @@ def _load_grade_history_rows() -> list[dict[str, Any]]:
     return rows
 
 
+def _income_summary_from_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    total_tickets = sum(_to_int(r.get("tickets"), 0) for r in rows)
+    total_decided = sum(_to_int(r.get("decided"), 0) for r in rows)
+    total_paid = sum(_to_int(r.get("paid"), 0) for r in rows)
+    total_net = round(sum(_to_float(r.get("net_dollars"), 0.0) for r in rows), 2)
+    win_rate = (total_paid / total_decided) if total_decided > 0 else None
+    roi_pct = (total_net / (total_tickets * 10.0) * 100.0) if total_tickets > 0 else 0.0
+    dates = [str(r.get("date") or "")[:10] for r in rows if r.get("date")]
+    return {
+        "total_tickets": total_tickets,
+        "decided_tickets": total_decided,
+        "paid_tickets": total_paid,
+        "win_rate": win_rate,
+        "net_pnl": total_net,
+        "roi_pct": round(roi_pct, 2),
+        "streak": _current_streak_label(rows),
+        "date_min": min(dates) if dates else None,
+        "date_max": max(dates) if dates else None,
+        "g70_start": G70_START,
+    }
+
+
 def _parse_sports_tokens(raw: Any) -> list[str]:
     s = str(raw or "").upper()
     if not s:
@@ -6843,36 +6970,16 @@ def _load_sport_breakdown_rows(*, stake_per_pick: float = 10.0) -> list[dict[str
 @app.get("/income")
 def page_income():
     rows_asc = _load_grade_history_rows()
-    total_tickets = sum(_to_int(r.get("tickets"), 0) for r in rows_asc)
-    total_decided = sum(_to_int(r.get("decided"), 0) for r in rows_asc)
-    total_paid = sum(_to_int(r.get("paid"), 0) for r in rows_asc)
-    total_net = round(sum(_to_float(r.get("net_dollars"), 0.0) for r in rows_asc), 2)
-    win_rate = (total_paid / total_decided) if total_decided > 0 else None
-    roi_pct = (total_net / (total_tickets * 10.0) * 100.0) if total_tickets > 0 else 0.0
-    streak = _current_streak_label(rows_asc)
-
-    cum = 0.0
-    cum_points: list[dict[str, Any]] = []
-    for r in rows_asc:
-        cum += _to_float(r.get("net_dollars"), 0.0)
-        cum_points.append({"date": r.get("date"), "cum_net": round(cum, 2)})
-
+    card_rows = [r for r in rows_asc if is_card_track(r.get("track"))]
+    summary = _income_summary_from_rows(card_rows or rows_asc)
     rows_desc = list(reversed(rows_asc))
     sport_bundle = _load_sport_breakdown_bundle(stake_per_pick=10.0)
     return render_template(
         "dashboard_income.html",
         ui_build_id=_UI_BUILD_ID,
-        summary={
-            "total_tickets": total_tickets,
-            "decided_tickets": total_decided,
-            "paid_tickets": total_paid,
-            "win_rate": win_rate,
-            "net_pnl": total_net,
-            "roi_pct": round(roi_pct, 2),
-            "streak": streak,
-        },
+        summary=summary,
         daily_rows=rows_desc,
-        chart_points=Markup(json.dumps(cum_points)),
+        chart_points=Markup(json.dumps([])),
         sport_rows=sport_bundle["rows"],
         sport_monthly_rows=sport_bundle["monthly_rows"],
     )

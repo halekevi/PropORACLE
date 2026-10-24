@@ -5,7 +5,7 @@ This is a single reference for the most common PowerShell run commands in this r
 ## Open PowerShell in Project Root
 
 ```powershell
-cd "H:\halek\ProfileFromC\Desktop\PropORACLE"
+cd "H:\PropORACLE"
 ```
 
 ## Main Pipeline (`run_pipeline.ps1` at repo root)
@@ -94,19 +94,21 @@ One-off index/app patcher; requires `archive\root-text\patch_replacement.txt`. R
 
 ## Register Scheduled Tasks (`scripts/Register_Daily_Task.ps1`)
 
-After moving the repo (e.g. from OneDrive to `H:\halek\ProfileFromC\Desktop\PropORACLE`), open **elevated** PowerShell **in that folder** and re-run this script so every task action points at the new path.
+After moving the repo (e.g. from OneDrive to `H:\PropORACLE`), open **elevated** PowerShell **in that folder** and re-run this script so every task action points at the new path.
 
 ```powershell
 # Run once in elevated PowerShell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-cd "H:\halek\ProfileFromC\Desktop\PropORACLE"
+cd "H:\PropORACLE"
 .\scripts\Register_Daily_Task.ps1
 
 # Registered tasks (see scripts\Register_Daily_Task.ps1):
-#  - PropOracle - Tennis Early 3AM
-#  - PropOracle - Daily 5AM
-#  - PropOracle - Refresh 8AM / 9AM / 1030AM / 1PM  (run_refresh_with_log.ps1 → run_nba_late_fetch.ps1)
-#  - PropOracle - Payout CDP @ 11:00
+#  - PropOracle - DayAhead 9PM (initial scrape + live publish for tomorrow)
+#  - PropOracle - Daily 1AM (update fetch + publish; no grader)
+#  - PropOracle - Grader 3AM (A1 + yesterday grades)
+#  - PropOracle - Daily 5AM (juice-window update)
+#  - PropOracle - Daily 8AM (morning update) + Refresh 9AM / 1030AM / 1PM / 430PM
+#    (run_refresh_with_log.ps1 → run_nba_late_fetch.ps1 → Publish-LiveSite.ps1)
 # Ops overview: docs\guides\DAILY_OPS_OVERVIEW.md
 
 # Inspect what Windows will actually run (look for old OneDrive paths)
@@ -118,7 +120,7 @@ pwsh -NoProfile -File .\scripts\run_refresh_with_log.ps1 -RunLabel MANUAL_CDP_CA
 
 # Check task status
 Get-ScheduledTask | Where-Object TaskName -like "PropOracle -*" | Select TaskName, State
-Get-ScheduledTaskInfo -TaskName "PropOracle - Refresh 9AM" | Select LastRunTime, LastTaskResult
+Get-ScheduledTaskInfo -TaskName "PropOracle - Refresh 1030AM" | Select LastRunTime, LastTaskResult
 
 # Remove all PropOracle tasks
 Get-ScheduledTask | Where-Object TaskName -like "PropOracle -*" | ForEach-Object {
@@ -164,6 +166,11 @@ py -3.14 .\scripts\build_ticket_eval.py --date 2026-04-04
 
 # PrizePicks entries harvest (browser)
 py -3.14 -u .\scripts\capture_entries.py
+
+# Diamond 2x card (4-Flex / 5-Flex / 3-Power). Wired into run_daily.ps1 as STEP D-2x + A1e grade.
+py -3.14 .\scripts\diamond_2x_tickets.py --mode daily --date 2026-08-23
+py -3.14 .\scripts\diamond_2x_tickets.py --mode backtest --from 2026-03-10 --to 2026-08-22
+py -3.14 .\scripts\diamond_2x_tickets.py --mode report
 ```
 
 ## Notes

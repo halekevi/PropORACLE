@@ -15,11 +15,33 @@ def test_tennis_prop_family_serve_junk():
 def test_serve_junk_capped():
     df = pd.DataFrame(
         [
-            {"prop_type": "Aces", "direction": "OVER", "ml_prob": 0.72, "composite_hit_rate": 0.5},
+            {
+                "prop_type": "Aces",
+                "pick_type": "Goblin",
+                "direction": "OVER",
+                "ml_prob": 0.72,
+                "composite_hit_rate": 0.5,
+            },
         ]
     )
     out = apply_tennis_ml_prob_caps(df)
     assert float(out["ml_prob"].iloc[0]) <= 0.08
+
+
+def test_standard_under_aces_not_capped():
+    df = pd.DataFrame(
+        [
+            {
+                "prop_type": "Aces",
+                "pick_type": "Standard",
+                "direction": "UNDER",
+                "ml_prob": 0.72,
+                "composite_hit_rate": 0.9,
+            },
+        ]
+    )
+    out = apply_tennis_ml_prob_caps(df)
+    assert float(out["ml_prob"].iloc[0]) == 0.72
 
 
 def test_totals_over_floor():

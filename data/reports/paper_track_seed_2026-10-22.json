@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-22",
+  "nba1q_goblin_reb_ast": {
+    "legs": 9,
+    "note": "needs NBA1Q step8; 0 if board missing"
+  },
+  "nhl_std_under_pts_ast": {
+    "legs": 1,
+    "rule": "max 1 per game"
+  },
+  "promotion": "n>=100 forward + Wilson low > BE at real quotes"
+}

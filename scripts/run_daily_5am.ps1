@@ -4,10 +4,10 @@
   Unscheduled or scheduled full daily: git pull main, run_daily.ps1 (today's pipeline + publish), prop snapshot.
 
 .NOTES
-  Scheduled 5:00 AM fetch + line snapshot + live payout CDP. Grader/A1 stay at 3AM
-  when overnight stamps exist. 1AM already fetched overnight; this recaptures the
-  pre-lock board (lines + payout_patch / rate cards) before 8AM.
-  Refresh cadence after this: 8 / 9:45 / 10:30 / 1 / 4:30.
+  Scheduled 5:00 AM juice-window update + line snapshot + live payout CDP. Grader/A1 stay at 3AM
+  when overnight stamps exist. 9PM started and published the slate; 1AM republishes the update; this recaptures
+  Goblin juice before 8AM steam.
+  Refresh cadence after this: 8 / 9 / 10:30 / 1 / 4:30.
 #>
 param()
 
@@ -129,8 +129,10 @@ $env:PROPORACLE_BET_WINDOW = "5AM"
 $loggedHelper = Join-Path $PSScriptRoot "Invoke-LoggedPwsh.ps1"
 if (-not (Test-Path -LiteralPath $loggedHelper)) { $loggedHelper = Join-Path $Root "scripts\Invoke-LoggedPwsh.ps1" }
 $childLog = Join-Path $LogsDir ("run_daily_child_5am_{0:yyyy-MM-dd_HHmmss}.log" -f (Get-Date))
+$loggedHelperLoaded = $false
 if (Test-Path -LiteralPath $loggedHelper) {
     . $loggedHelper
+    $loggedHelperLoaded = $true
     $dailyExit = Invoke-LoggedPwsh -File $Daily -ArgumentList $dailyArgs -LogPath $childLog -WorkingDirectory $Root
 } else {
     Write-Host "[5AM DAILY] WARN: Invoke-LoggedPwsh.ps1 missing — child output may not be logged" -ForegroundColor Yellow
@@ -164,6 +166,46 @@ if ($healthExit -ne 0) {
     Write-Host "[5AM DAILY] HEALTH CHECK FAILED (exit $healthExit) — Task Scheduler will show non-zero LastTaskResult" -ForegroundColor Red
     try { Stop-Transcript | Out-Null } catch { }
     exit $healthExit
+}
+
+# Dual card + payout write-back, then republish so Railway gets live N-correct floors.
+$goblin70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
+if (Test-Path -LiteralPath $goblin70) {
+    Write-Host "[5AM DAILY] Goblin-70 + mixer dual card for $Today..." -ForegroundColor Cyan
+    $g70Log = Join-Path $LogsDir ("g70_writeweb_5am_{0}_{1:yyyyMMdd_HHmmss}.log" -f $Today, (Get-Date))
+    $g70Exit = 1
+    if ($loggedHelperLoaded -and (Get-Command Invoke-G70WriteWebStandalone -ErrorAction SilentlyContinue)) {
+        $g70Exit = Invoke-G70WriteWebStandalone -ScriptPath $goblin70 -Date $Today -LogPath $g70Log -WorkingDirectory $Root
+    }
+    else {
+        Write-Host "[5AM DAILY] WARN: Invoke-LoggedPwsh.ps1 missing — falling back to Tee-Object for --write-web" -ForegroundColor Yellow
+        & py -3.14 -u -X utf8 $goblin70 --date $Today --write-web 2>&1 | Tee-Object -FilePath $g70Log
+        $g70Exit = $LASTEXITCODE
+        Write-Host "write-web exit code: $g70Exit"
+    }
+    if ($g70Exit -ne 0) {
+        Write-Host "[5AM DAILY] WARN: Goblin-70 dual card exit $g70Exit" -ForegroundColor Yellow
+    }
+}
+$livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
+$dualTickets = Join-Path $Root "ui_runner\templates\tickets_latest.json"
+if (Test-Path -LiteralPath $livePayScript) {
+    Write-Host "[5AM DAILY] Payout CDP update (missing live + changed props)..." -ForegroundColor Cyan
+    try {
+        & pwsh -NoProfile -File $livePayScript -Date $Today -Root $Root -TicketsPath $dualTickets `
+            -RescrapeMode Auto -Window "5AM" -RebuildRateCard -FillMissingTickets
+        Write-Host "[5AM DAILY] Payout scrape exit $LASTEXITCODE" -ForegroundColor DarkGray
+    } catch {
+        Write-Host "[5AM DAILY] WARN: payout scrape failed (non-blocking): $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+}
+$publish = Join-Path $Root "scripts\Publish-LiveSite.ps1"
+if (Test-Path -LiteralPath $publish) {
+    Write-Host "[5AM DAILY] Publishing live site JSON to origin/main..." -ForegroundColor Cyan
+    & pwsh -NoProfile -File $publish -RepoRoot $Root -CommitMessage "chore: live tickets/slate $Today 5AM"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[5AM DAILY] LIVE SITE PUBLISH FAILED (exit $LASTEXITCODE)" -ForegroundColor Red
+    }
 }
 
 $AssertFresh = Join-Path $Root "scripts\Assert-ActiveSportsFresh.ps1"

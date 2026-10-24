@@ -131,11 +131,29 @@ def main() -> None:
     df.loc[ok5, "line_hit_rate_over_ou_5"]  = orou5.values
     df.loc[ok5, "line_hit_rate_under_ou_5"] = urou5.values
     # Dual-write Golf/WNBA aliases so step8 clean xlsx always has L5 Over/Under.
+    # Require a full 5-game window before L5 Over/Under can read as 5/5.
+    # All-zero windows are missing-box artifacts (fake UNDER locks) — blank them.
     _ensure_cols(df, ["last5_over", "last5_under", "l5_over", "l5_under"])
-    df.loc[ok5, "last5_over"] = over5.values
-    df.loc[ok5, "last5_under"] = under5.values
-    df.loc[ok5, "l5_over"] = over5.values
-    df.loc[ok5, "l5_under"] = under5.values
+    full5 = played5.ge(5.0)
+    zero_window = (
+        sub5.fillna(0).eq(0).all(axis=1)
+        & sub5.notna().sum(axis=1).ge(5)
+    )
+    l5_ok = ok5 & full5 & ~zero_window.reindex(df.index).fillna(False)
+    df.loc[ok5, "last5_over"] = np.nan
+    df.loc[ok5, "last5_under"] = np.nan
+    df.loc[ok5, "l5_over"] = np.nan
+    df.loc[ok5, "l5_under"] = np.nan
+    df.loc[l5_ok, "last5_over"] = over5.reindex(df.loc[l5_ok].index).values
+    df.loc[l5_ok, "last5_under"] = under5.reindex(df.loc[l5_ok].index).values
+    df.loc[l5_ok, "l5_over"] = over5.reindex(df.loc[l5_ok].index).values
+    df.loc[l5_ok, "l5_under"] = under5.reindex(df.loc[l5_ok].index).values
+    # Keep hit counts for audit, but flag thin / zero windows.
+    thin = ok5 & ~full5
+    df.loc[thin, "hit_rate_status"] = "THIN_L5"
+    df.loc[ok5 & zero_window.reindex(df.index).fillna(False), "hit_rate_status"] = (
+        "ZERO_L5_WINDOW"
+    )
 
     if args.compute10:
         stat10 = _get_stat_cols(df, 10)

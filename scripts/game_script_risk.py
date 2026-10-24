@@ -92,6 +92,7 @@ def total_risk_multiplier(sport: str, total: float | None) -> float:
     if total is None:
         return 1.00
     t = float(total)
+    # CFB must not reuse these basketball total bands (see CFB step6 sport=CBB bug).
     if sport in ("NBA", "CBB"):
         if t > 240:
             return 1.05
@@ -182,6 +183,22 @@ def prop_script_sensitivity(sport: str, prop_type: str) -> float:
     return 0.85
 
 
+def _espn_team_id(conn: sqlite3.Connection, sport: str, team: str) -> str | None:
+    try:
+        found = conn.execute(
+            """
+            SELECT DISTINCT espn_team_id FROM team_crosswalk
+            WHERE sport = ? AND abbr = ?
+            """,
+            (sport, str(team or "").strip().upper()),
+        ).fetchall()
+    except sqlite3.OperationalError:
+        return None
+    if len(found) != 1:
+        return None
+    return str(found[0][0])
+
+
 def _load_game_row(
     conn: sqlite3.Connection,
     sport: str,
@@ -189,21 +206,43 @@ def _load_game_row(
     team: str,
 ) -> tuple[dict[str, Any] | None, str | None, str | None, float | None]:
     keys = _team_lookup_keys(sport, team)
-    if not keys:
+    if not keys and not str(team or "").strip():
         return None, None, None, None
-    ph = ",".join("?" * len(keys))
-    q = (
-        f"SELECT home_team, away_team, spread, total FROM game_lines "
-        f"WHERE sport = ? AND game_date = ? AND (home_team IN ({ph}) OR away_team IN ({ph}))"
-    )
-    params: list[Any] = [sport, game_date] + keys + keys
-    cur = conn.execute(q, params)
-    row = cur.fetchone()
-    if not row:
-        return None, None, None, None
-    home, away, spread, total = row[0], row[1], row[2], row[3]
-    is_home = str(home).upper() in keys
-    is_away = str(away).upper() in keys
+    row = None
+    tid = _espn_team_id(conn, sport, team)
+    if tid:
+        try:
+            row = conn.execute(
+                """
+                SELECT home_team, away_team, home_team_id, away_team_id, spread, total
+                FROM game_lines
+                WHERE sport = ? AND game_date = ?
+                  AND (home_team_id = ? OR away_team_id = ?)
+                LIMIT 1
+                """,
+                (sport, game_date, tid, tid),
+            ).fetchone()
+        except sqlite3.OperationalError:
+            row = None
+    if row:
+        home, away, hid, aid, spread, total = row
+        is_home = str(hid or "") == tid
+        is_away = str(aid or "") == tid
+    else:
+        if not keys:
+            return None, None, None, None
+        ph = ",".join("?" * len(keys))
+        q = (
+            f"SELECT home_team, away_team, spread, total FROM game_lines "
+            f"WHERE sport = ? AND game_date = ? AND (home_team IN ({ph}) OR away_team IN ({ph}))"
+        )
+        params: list[Any] = [sport, game_date] + keys + keys
+        abbr_row = conn.execute(q, params).fetchone()
+        if not abbr_row:
+            return None, None, None, None
+        home, away, spread, total = abbr_row
+        is_home = str(home).upper() in keys
+        is_away = str(away).upper() in keys
     team_margin: float | None = None
     if spread is not None and (is_home or is_away):
         sp = float(spread)

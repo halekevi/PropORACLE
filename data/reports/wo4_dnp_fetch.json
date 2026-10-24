@@ -1,0 +1,1885 @@
+{
+  "cells": {
+    "mlb_hits+runs+rbis_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 32,
+        "n": 44,
+        "hr": 0.7273,
+        "wilson_low": 0.5815
+      },
+      "after": {
+        "hits": 32,
+        "n": 32,
+        "hr": 1.0,
+        "wilson_low": 0.8928
+      },
+      "shift": 0.2727,
+      "minutes_unknown_removed": 12,
+      "break_even": 0.769,
+      "reprice": true
+    },
+    "mlb_hits+runs+rbis_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 13,
+        "hr": 0.5385,
+        "wilson_low": 0.2914
+      },
+      "after": {
+        "hits": 2,
+        "n": 8,
+        "hr": 0.25,
+        "wilson_low": 0.0715
+      },
+      "shift": -0.2885,
+      "minutes_unknown_removed": 5,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_hits_allowed_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 11,
+        "n": 11,
+        "hr": 1.0,
+        "wilson_low": 0.7412
+      },
+      "after": {
+        "hits": 11,
+        "n": 11,
+        "hr": 1.0,
+        "wilson_low": 0.7412
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "mlb_hits_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 55,
+        "n": 97,
+        "hr": 0.567,
+        "wilson_low": 0.4677
+      },
+      "after": {
+        "hits": 55,
+        "n": 55,
+        "hr": 1.0,
+        "wilson_low": 0.9347
+      },
+      "shift": 0.433,
+      "minutes_unknown_removed": 42,
+      "break_even": 0.769,
+      "reprice": true
+    },
+    "mlb_hits_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null
+      },
+      "shift": null,
+      "minutes_unknown_removed": 1,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_hits_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 5,
+        "hr": 0.4,
+        "wilson_low": 0.1176
+      },
+      "after": {
+        "hits": 0,
+        "n": 3,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": -0.4,
+      "minutes_unknown_removed": 2,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_hitter_ks_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 48,
+        "n": 71,
+        "hr": 0.6761,
+        "wilson_low": 0.5606
+      },
+      "after": {
+        "hits": 48,
+        "n": 48,
+        "hr": 1.0,
+        "wilson_low": 0.9259
+      },
+      "shift": 0.3239,
+      "minutes_unknown_removed": 23,
+      "break_even": 0.769,
+      "reprice": true
+    },
+    "mlb_pitcher_ks_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 8,
+        "n": 11,
+        "hr": 0.7273,
+        "wilson_low": 0.4343
+      },
+      "after": {
+        "hits": 8,
+        "n": 11,
+        "hr": 0.7273,
+        "wilson_low": 0.4343
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "mlb_pitcher_ks_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_pitcherfantasyscore_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 9,
+        "hr": 0.7778,
+        "wilson_low": 0.4526
+      },
+      "after": {
+        "hits": 7,
+        "n": 9,
+        "hr": 0.7778,
+        "wilson_low": 0.4526
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "mlb_pitcherfantasyscore_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_pitches_thrown_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 5,
+        "n": 5,
+        "hr": 1.0,
+        "wilson_low": 0.5655
+      },
+      "after": {
+        "hits": 5,
+        "n": 5,
+        "hr": 1.0,
+        "wilson_low": 0.5655
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "mlb_pitches_thrown_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_pitching_outs_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "after": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "mlb_pitching_outs_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_runs_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 5,
+        "n": 8,
+        "hr": 0.625,
+        "wilson_low": 0.3057
+      },
+      "after": {
+        "hits": 0,
+        "n": 3,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": -0.625,
+      "minutes_unknown_removed": 5,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_singles_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077
+      },
+      "after": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424
+      },
+      "shift": 0.3333,
+      "minutes_unknown_removed": 1,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "mlb_singles_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 6,
+        "hr": 0.1667,
+        "wilson_low": 0.0301
+      },
+      "after": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "shift": 0.8333,
+      "minutes_unknown_removed": 5,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_singles_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": -0.8333,
+      "minutes_unknown_removed": 5,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_total_bases_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 54,
+        "n": 96,
+        "hr": 0.5625,
+        "wilson_low": 0.4628
+      },
+      "after": {
+        "hits": 54,
+        "n": 54,
+        "hr": 1.0,
+        "wilson_low": 0.9336
+      },
+      "shift": 0.4375,
+      "minutes_unknown_removed": 42,
+      "break_even": 0.769,
+      "reprice": true
+    },
+    "mlb_total_bases_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null
+      },
+      "shift": null,
+      "minutes_unknown_removed": 1,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_total_bases_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 4,
+        "n": 6,
+        "hr": 0.6667,
+        "wilson_low": 0.3
+      },
+      "after": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333,
+        "wilson_low": 0.0615
+      },
+      "shift": -0.3334,
+      "minutes_unknown_removed": 3,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "mlb_walks_allowed_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 9,
+        "hr": 0.7778,
+        "wilson_low": 0.4526
+      },
+      "after": {
+        "hits": 7,
+        "n": 8,
+        "hr": 0.875,
+        "wilson_low": 0.5291
+      },
+      "shift": 0.0972,
+      "minutes_unknown_removed": 1,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "mlb_walks_allowed_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_assists_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424
+      },
+      "after": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "nhl_assists_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 135,
+        "n": 165,
+        "hr": 0.8182,
+        "wilson_low": 0.7523
+      },
+      "after": {
+        "hits": 135,
+        "n": 165,
+        "hr": 0.8182,
+        "wilson_low": 0.7523
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_blocked_shots_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 9,
+        "hr": 0.7778,
+        "wilson_low": 0.4526
+      },
+      "after": {
+        "hits": 7,
+        "n": 7,
+        "hr": 1.0,
+        "wilson_low": 0.6457
+      },
+      "shift": 0.2222,
+      "minutes_unknown_removed": 2,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_goals_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 107,
+        "n": 126,
+        "hr": 0.8492,
+        "wilson_low": 0.7765
+      },
+      "after": {
+        "hits": 107,
+        "n": 126,
+        "hr": 0.8492,
+        "wilson_low": 0.7765
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_hits_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 4,
+        "n": 5,
+        "hr": 0.8,
+        "wilson_low": 0.3755
+      },
+      "after": {
+        "hits": 4,
+        "n": 5,
+        "hr": 0.8,
+        "wilson_low": 0.3755
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_hits_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 164,
+        "n": 315,
+        "hr": 0.5206,
+        "wilson_low": 0.4655
+      },
+      "after": {
+        "hits": 162,
+        "n": 313,
+        "hr": 0.5176,
+        "wilson_low": 0.4623
+      },
+      "shift": -0.003,
+      "minutes_unknown_removed": 2,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_plus_minus_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "after": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_points_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 13,
+        "n": 24,
+        "hr": 0.5417,
+        "wilson_low": 0.3507
+      },
+      "after": {
+        "hits": 13,
+        "n": 24,
+        "hr": 0.5417,
+        "wilson_low": 0.3507
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "nhl_points_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 8,
+        "hr": 0.875,
+        "wilson_low": 0.5291
+      },
+      "after": {
+        "hits": 7,
+        "n": 8,
+        "hr": 0.875,
+        "wilson_low": 0.5291
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_points_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 135,
+        "n": 168,
+        "hr": 0.8036,
+        "wilson_low": 0.737
+      },
+      "after": {
+        "hits": 135,
+        "n": 168,
+        "hr": 0.8036,
+        "wilson_low": 0.737
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_saves_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_saves_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 3,
+        "n": 4,
+        "hr": 0.75,
+        "wilson_low": 0.3006
+      },
+      "after": {
+        "hits": 3,
+        "n": 4,
+        "hr": 0.75,
+        "wilson_low": 0.3006
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_sog_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 22,
+        "n": 36,
+        "hr": 0.6111,
+        "wilson_low": 0.4486
+      },
+      "after": {
+        "hits": 22,
+        "n": 24,
+        "hr": 0.9167,
+        "wilson_low": 0.7415
+      },
+      "shift": 0.3056,
+      "minutes_unknown_removed": 12,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "nhl_sog_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 61,
+        "n": 106,
+        "hr": 0.5755,
+        "wilson_low": 0.4804
+      },
+      "after": {
+        "hits": 48,
+        "n": 93,
+        "hr": 0.5161,
+        "wilson_low": 0.416
+      },
+      "shift": -0.0594,
+      "minutes_unknown_removed": 13,
+      "break_even": 0.577,
+      "reprice": true
+    },
+    "nhl_toi_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424
+      },
+      "after": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "soccer_fouls_goblin_line05": {
+      "before": {
+        "hits": 737,
+        "n": 2047,
+        "hr": 0.36,
+        "wilson_low": 0.3395
+      },
+      "after": {
+        "hits": 737,
+        "n": 981,
+        "hr": 0.7513,
+        "wilson_low": 0.7233
+      },
+      "shift": 0.3913,
+      "minutes_unknown_removed": 633,
+      "break_even": 0.769,
+      "reprice": true
+    },
+    "soccer_saves_l5ge4": {
+      "before": {
+        "hits": 160,
+        "n": 248,
+        "hr": 0.6452,
+        "wilson_low": 0.5838
+      },
+      "after": {
+        "hits": 160,
+        "n": 229,
+        "hr": 0.6987,
+        "wilson_low": 0.6364
+      },
+      "shift": 0.0535,
+      "minutes_unknown_removed": 9,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "soccer_sot_l5ge4": {
+      "before": {
+        "hits": 17,
+        "n": 21,
+        "hr": 0.8095,
+        "wilson_low": 0.6
+      },
+      "after": {
+        "hits": 17,
+        "n": 18,
+        "hr": 0.9444,
+        "wilson_low": 0.7424
+      },
+      "shift": 0.1349,
+      "minutes_unknown_removed": 3,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_assists_combo_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "after": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_assists_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 247,
+        "n": 331,
+        "hr": 0.7462,
+        "wilson_low": 0.6967
+      },
+      "after": {
+        "hits": 247,
+        "n": 329,
+        "hr": 0.7508,
+        "wilson_low": 0.7013
+      },
+      "shift": 0.0046,
+      "minutes_unknown_removed": 2,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_assists_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_assists_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 4,
+        "hr": 0.5,
+        "wilson_low": 0.15
+      },
+      "after": {
+        "hits": 2,
+        "n": 4,
+        "hr": 0.5,
+        "wilson_low": 0.15
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_blocks_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077
+      },
+      "after": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_dreb_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "after": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fantasy_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 53,
+        "n": 76,
+        "hr": 0.6974,
+        "wilson_low": 0.5867
+      },
+      "after": {
+        "hits": 53,
+        "n": 76,
+        "hr": 0.6974,
+        "wilson_low": 0.5867
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_fantasy_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333,
+        "wilson_low": 0.0615
+      },
+      "after": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333,
+        "wilson_low": 0.0615
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fantasy_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 3,
+        "n": 8,
+        "hr": 0.375,
+        "wilson_low": 0.1368
+      },
+      "after": {
+        "hits": 3,
+        "n": 8,
+        "hr": 0.375,
+        "wilson_low": 0.1368
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fg2a_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 4,
+        "hr": 0.25,
+        "wilson_low": 0.0456
+      },
+      "after": {
+        "hits": 1,
+        "n": 4,
+        "hr": 0.25,
+        "wilson_low": 0.0456
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fg2a_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 9,
+        "hr": 0.7778,
+        "wilson_low": 0.4526
+      },
+      "after": {
+        "hits": 7,
+        "n": 9,
+        "hr": 0.7778,
+        "wilson_low": 0.4526
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fg2m_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "after": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_fg2m_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077
+      },
+      "after": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fg2m_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333,
+        "wilson_low": 0.0615
+      },
+      "after": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333,
+        "wilson_low": 0.0615
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fga_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 49,
+        "n": 61,
+        "hr": 0.8033,
+        "wilson_low": 0.6869
+      },
+      "after": {
+        "hits": 49,
+        "n": 61,
+        "hr": 0.8033,
+        "wilson_low": 0.6869
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": true
+    },
+    "wnba_fga_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365
+      },
+      "after": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fga_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365
+      },
+      "after": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fgm_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 6,
+        "n": 13,
+        "hr": 0.4615,
+        "wilson_low": 0.2321
+      },
+      "after": {
+        "hits": 6,
+        "n": 13,
+        "hr": 0.4615,
+        "wilson_low": 0.2321
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fgm_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 3,
+        "n": 5,
+        "hr": 0.6,
+        "wilson_low": 0.2307
+      },
+      "after": {
+        "hits": 3,
+        "n": 5,
+        "hr": 0.6,
+        "wilson_low": 0.2307
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fta_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "after": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_fta_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 4,
+        "hr": 0.25,
+        "wilson_low": 0.0456
+      },
+      "after": {
+        "hits": 1,
+        "n": 4,
+        "hr": 0.25,
+        "wilson_low": 0.0456
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_fta_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 5,
+        "hr": 0.4,
+        "wilson_low": 0.1176
+      },
+      "after": {
+        "hits": 2,
+        "n": 5,
+        "hr": 0.4,
+        "wilson_low": 0.1176
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_ftm_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 3,
+        "n": 4,
+        "hr": 0.75,
+        "wilson_low": 0.3006
+      },
+      "after": {
+        "hits": 3,
+        "n": 4,
+        "hr": 0.75,
+        "wilson_low": 0.3006
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_oreb_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365
+      },
+      "after": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_points_combo_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 12,
+        "hr": 0.5833,
+        "wilson_low": 0.3195
+      },
+      "after": {
+        "hits": 7,
+        "n": 12,
+        "hr": 0.5833,
+        "wilson_low": 0.3195
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_points_combo_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 9,
+        "hr": 0.7778,
+        "wilson_low": 0.4526
+      },
+      "after": {
+        "hits": 7,
+        "n": 9,
+        "hr": 0.7778,
+        "wilson_low": 0.4526
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_points_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 621,
+        "n": 845,
+        "hr": 0.7349,
+        "wilson_low": 0.7041
+      },
+      "after": {
+        "hits": 621,
+        "n": 842,
+        "hr": 0.7375,
+        "wilson_low": 0.7068
+      },
+      "shift": 0.0026,
+      "minutes_unknown_removed": 3,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_points_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 12,
+        "n": 24,
+        "hr": 0.5,
+        "wilson_low": 0.3143
+      },
+      "after": {
+        "hits": 12,
+        "n": 24,
+        "hr": 0.5,
+        "wilson_low": 0.3143
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_points_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 14,
+        "n": 25,
+        "hr": 0.56,
+        "wilson_low": 0.3707
+      },
+      "after": {
+        "hits": 14,
+        "n": 25,
+        "hr": 0.56,
+        "wilson_low": 0.3707
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_pra_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 232,
+        "n": 341,
+        "hr": 0.6804,
+        "wilson_low": 0.6291
+      },
+      "after": {
+        "hits": 232,
+        "n": 340,
+        "hr": 0.6824,
+        "wilson_low": 0.6311
+      },
+      "shift": 0.002,
+      "minutes_unknown_removed": 1,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_pra_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 14,
+        "hr": 0.5,
+        "wilson_low": 0.268
+      },
+      "after": {
+        "hits": 7,
+        "n": 14,
+        "hr": 0.5,
+        "wilson_low": 0.268
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_pra_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 8,
+        "n": 19,
+        "hr": 0.4211,
+        "wilson_low": 0.2314
+      },
+      "after": {
+        "hits": 8,
+        "n": 19,
+        "hr": 0.4211,
+        "wilson_low": 0.2314
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_pts+ast_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 188,
+        "n": 259,
+        "hr": 0.7259,
+        "wilson_low": 0.6685
+      },
+      "after": {
+        "hits": 188,
+        "n": 258,
+        "hr": 0.7287,
+        "wilson_low": 0.6714
+      },
+      "shift": 0.0028,
+      "minutes_unknown_removed": 1,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_pts+ast_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 4,
+        "n": 12,
+        "hr": 0.3333,
+        "wilson_low": 0.1381
+      },
+      "after": {
+        "hits": 4,
+        "n": 12,
+        "hr": 0.3333,
+        "wilson_low": 0.1381
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_pts+ast_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 7,
+        "n": 13,
+        "hr": 0.5385,
+        "wilson_low": 0.2914
+      },
+      "after": {
+        "hits": 7,
+        "n": 13,
+        "hr": 0.5385,
+        "wilson_low": 0.2914
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_pts+reb_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 220,
+        "n": 306,
+        "hr": 0.719,
+        "wilson_low": 0.6661
+      },
+      "after": {
+        "hits": 220,
+        "n": 305,
+        "hr": 0.7213,
+        "wilson_low": 0.6685
+      },
+      "shift": 0.0023,
+      "minutes_unknown_removed": 1,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_pts+reb_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 10,
+        "n": 17,
+        "hr": 0.5882,
+        "wilson_low": 0.3601
+      },
+      "after": {
+        "hits": 10,
+        "n": 17,
+        "hr": 0.5882,
+        "wilson_low": 0.3601
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_pts+reb_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 10,
+        "n": 16,
+        "hr": 0.625,
+        "wilson_low": 0.3864
+      },
+      "after": {
+        "hits": 10,
+        "n": 16,
+        "hr": 0.625,
+        "wilson_low": 0.3864
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_reb+ast_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 147,
+        "n": 192,
+        "hr": 0.7656,
+        "wilson_low": 0.7009
+      },
+      "after": {
+        "hits": 147,
+        "n": 192,
+        "hr": 0.7656,
+        "wilson_low": 0.7009
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_reb+ast_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "after": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_reb+ast_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 6,
+        "n": 8,
+        "hr": 0.75,
+        "wilson_low": 0.4093
+      },
+      "after": {
+        "hits": 6,
+        "n": 8,
+        "hr": 0.75,
+        "wilson_low": 0.4093
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_rebounds_combo_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 5,
+        "hr": 0.4,
+        "wilson_low": 0.1176
+      },
+      "after": {
+        "hits": 2,
+        "n": 5,
+        "hr": 0.4,
+        "wilson_low": 0.1176
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_rebounds_combo_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_rebounds_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 383,
+        "n": 525,
+        "hr": 0.7295,
+        "wilson_low": 0.69
+      },
+      "after": {
+        "hits": 383,
+        "n": 524,
+        "hr": 0.7309,
+        "wilson_low": 0.6914
+      },
+      "shift": 0.0014,
+      "minutes_unknown_removed": 1,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_rebounds_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 4,
+        "n": 5,
+        "hr": 0.8,
+        "wilson_low": 0.3755
+      },
+      "after": {
+        "hits": 4,
+        "n": 5,
+        "hr": 0.8,
+        "wilson_low": 0.3755
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_rebounds_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "after": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_steals_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 5,
+        "hr": 0.4,
+        "wilson_low": 0.1176
+      },
+      "after": {
+        "hits": 2,
+        "n": 5,
+        "hr": 0.4,
+        "wilson_low": 0.1176
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_stocks_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 4,
+        "n": 5,
+        "hr": 0.8,
+        "wilson_low": 0.3755
+      },
+      "after": {
+        "hits": 4,
+        "n": 5,
+        "hr": 0.8,
+        "wilson_low": 0.3755
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_stocks_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "after": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_stocks_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077
+      },
+      "after": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_threes_att_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 26,
+        "n": 33,
+        "hr": 0.7879,
+        "wilson_low": 0.6225
+      },
+      "after": {
+        "hits": 26,
+        "n": 33,
+        "hr": 0.7879,
+        "wilson_low": 0.6225
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": true
+    },
+    "wnba_threes_att_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 5,
+        "n": 8,
+        "hr": 0.625,
+        "wilson_low": 0.3057
+      },
+      "after": {
+        "hits": 5,
+        "n": 8,
+        "hr": 0.625,
+        "wilson_low": 0.3057
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_threes_att_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 6,
+        "n": 7,
+        "hr": 0.8571,
+        "wilson_low": 0.4869
+      },
+      "after": {
+        "hits": 6,
+        "n": 7,
+        "hr": 0.8571,
+        "wilson_low": 0.4869
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_threes_combo_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "after": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_threes_combo_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_threes_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 161,
+        "n": 215,
+        "hr": 0.7488,
+        "wilson_low": 0.6868
+      },
+      "after": {
+        "hits": 161,
+        "n": 205,
+        "hr": 0.7854,
+        "wilson_low": 0.7242
+      },
+      "shift": 0.0366,
+      "minutes_unknown_removed": 10,
+      "break_even": 0.769,
+      "reprice": true
+    },
+    "wnba_threes_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 4,
+        "n": 7,
+        "hr": 0.5714,
+        "wilson_low": 0.2505
+      },
+      "after": {
+        "hits": 4,
+        "n": 6,
+        "hr": 0.6667,
+        "wilson_low": 0.3
+      },
+      "shift": 0.0953,
+      "minutes_unknown_removed": 1,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_threes_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 3,
+        "n": 5,
+        "hr": 0.6,
+        "wilson_low": 0.2307
+      },
+      "after": {
+        "hits": 3,
+        "n": 5,
+        "hr": 0.6,
+        "wilson_low": 0.2307
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_turnovers_goblin_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 2,
+        "n": 8,
+        "hr": 0.25,
+        "wilson_low": 0.0715
+      },
+      "after": {
+        "hits": 2,
+        "n": 8,
+        "hr": 0.25,
+        "wilson_low": 0.0715
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.769,
+      "reprice": false
+    },
+    "wnba_turnovers_standard_over_l5eq5_l10ge8": {
+      "before": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "after": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    },
+    "wnba_turnovers_standard_under_l5eq5_l10ge8": {
+      "before": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "after": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0
+      },
+      "shift": 0.0,
+      "minutes_unknown_removed": 0,
+      "break_even": 0.577,
+      "reprice": false
+    }
+  },
+  "repriced": [
+    "mlb_hits+runs+rbis_goblin_over_l5eq5_l10ge8",
+    "mlb_hits_goblin_over_l5eq5_l10ge8",
+    "mlb_hitter_ks_goblin_over_l5eq5_l10ge8",
+    "mlb_total_bases_goblin_over_l5eq5_l10ge8",
+    "nhl_sog_standard_under_l5eq5_l10ge8",
+    "soccer_fouls_goblin_line05",
+    "wnba_fga_goblin_over_l5eq5_l10ge8",
+    "wnba_threes_att_goblin_over_l5eq5_l10ge8",
+    "wnba_threes_goblin_over_l5eq5_l10ge8"
+  ],
+  "fetch_gap": 178212,
+  "fetch_gap_by_sport": {
+    "NBA": 4208,
+    "NHL": 8160,
+    "CBB": 12136,
+    "Soccer": 127736,
+    "Tennis": 24807,
+    "NBA1Q": 485,
+    "NBA1H": 680
+  },
+  "fetch_gap_keep_shape": 110,
+  "fetch_gap_keep_shape_by_sport": {
+    "NHL": 105,
+    "Tennis": 5
+  },
+  "fetch_gap_keep_shape_rate": 0.000617242385473481
+}

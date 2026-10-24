@@ -1,0 +1,164 @@
+{
+  "observe_only": true,
+  "slate_date": "2026-10-21",
+  "dates": [
+    "2026-10-21",
+    "2026-10-24",
+    "2026-10-22",
+    "2026-10-23"
+  ],
+  "games_fetched": 53,
+  "rows_with_line": 1976,
+  "rows_total": 2002,
+  "source": "espn",
+  "default_blowout": 17.0,
+  "run_heavy": 0.58,
+  "pass_yards_goblin_d_veto": {
+    "n": 118,
+    "d_pass": 41,
+    "by_threshold": {
+      "14": {
+        "n_veto": 0,
+        "d_pass": 41,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0
+      },
+      "17": {
+        "n_veto": 0,
+        "d_pass": 41,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0,
+        "identity": {
+          "unique_players": [],
+          "unique_player_n": 0,
+          "unique_game_ids": [],
+          "unique_game_n": 0,
+          "kickoff_dates": []
+        }
+      },
+      "21": {
+        "n_veto": 0,
+        "d_pass": 41,
+        "rate_of_d_pass": 0.0,
+        "rate_of_goblin_over": 0.0
+      }
+    },
+    "unique_players": [
+      "Aidan Chiles",
+      "Alessio Milivojevic",
+      "Arch Manning",
+      "Avery Johnson",
+      "Baylor Hayes",
+      "Bear Bachmeier",
+      "Beau Pribula",
+      "Billy Edwards Jr.",
+      "Byrum Brown",
+      "CJ Bailey",
+      "Cale Hellums",
+      "Camden Coleman",
+      "Colton Joseph",
+      "Conner Weigman",
+      "Corey Dailey",
+      "DJ Lagway",
+      "Darian Mensah",
+      "Davis Warren",
+      "Deshawn Purdie",
+      "Devon Dampier",
+      "Drake Lindsey",
+      "Dylan Lonergan",
+      "Ethan Grunkemeyer",
+      "Isaiah Marshall",
+      "JC French IV",
+      "Jaden Craig",
+      "Jared Curtis",
+      "Jayden Maiava",
+      "Jaylen Raynor",
+      "John Mateer",
+      "Josh Hoover",
+      "Keelon Russell",
+      "Kenny Minchey",
+      "Kevin Jennings",
+      "Keyone Jenkins",
+      "LaNorris Sellers",
+      "Landyn Locke",
+      "Marcel Reed",
+      "Marcus Stokes",
+      "Mason McKenzie",
+      "Michael Hawkins Jr.",
+      "Noah Fifita",
+      "Rickie Collins",
+      "Sam Leavitt",
+      "Tait Reynolds",
+      "Trinidad Chambliss",
+      "Walker Eget",
+      "Will Hammond"
+    ],
+    "unique_player_n": 48,
+    "unique_game_ids": [
+      "188877",
+      "189103",
+      "189104",
+      "189105",
+      "189315",
+      "189485",
+      "189487",
+      "189490",
+      "195020",
+      "195021",
+      "195022",
+      "195023",
+      "195025",
+      "195029",
+      "195031",
+      "195032",
+      "195034",
+      "195039",
+      "195040",
+      "195041",
+      "195042",
+      "196966",
+      "196967",
+      "196969",
+      "196970",
+      "196971",
+      "196972",
+      "196973",
+      "196975",
+      "196976"
+    ],
+    "unique_game_n": 30,
+    "kickoff_dates": [
+      "2026-10-24",
+      "2026-10-23",
+      "2026-10-22",
+      "2026-10-21"
+    ]
+  },
+  "usage_share": {
+    "rush_share_rush_over": {
+      "n": 51,
+      "p25": 22.1,
+      "p50": 28.4,
+      "p75": 34.2
+    },
+    "tgt_share_rec_over": {
+      "n": 900,
+      "p25": 11.7,
+      "p50": 16.7,
+      "p75": 20.7
+    },
+    "pass_share_pass_over": {
+      "n": 140,
+      "p25": 86.9,
+      "p50": 93.8,
+      "p75": 96.0
+    },
+    "proposed_floors_not_applied": {
+      "rush": 0.4,
+      "pass": 0.7,
+      "rec": 0.18,
+      "status": "provisional_unvalidated",
+      "note": "Asserted before share distributions existed. Do not live-gate until hit rate by bucket is derived."
+    }
+  }
+}

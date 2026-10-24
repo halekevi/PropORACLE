@@ -15,6 +15,10 @@ from utils.defense_tiers import (  # noqa: E402
     normalize_def_tier_label,
 )
 
+# Defense labels: canonical Elite → Weak (same vocabulary as WNBA/NBA).
+# Prop-by-stat defense is not wired for CBB yet (cbb box table often empty);
+# overall def_tier / opp_def_tier is the badge/ticket D source.
+
 # Mapping from PrizePicks team abbreviations -> sr_name in cbb_def_rankings.csv
 ABBR_TO_SR = {
     # ── Power conferences ─────────────────────────────────────────────

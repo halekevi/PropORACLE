@@ -11,6 +11,20 @@ import collect_payout_data as cpd  # noqa: E402
 import validate_payout_ladder as vpl  # noqa: E402
 
 
+def test_team_position_line_does_not_replace_the_player():
+    player, line, prop = cpd.parse_card_lines(
+        ["SJSU - QB", "Luke Weaver", "vs WYO Fri 9:00pm", "234.5", "Pass Yards", "Less", "More"]
+    )
+    assert player == "Luke Weaver"
+    assert line == 234.5
+    assert prop == "Pass Yards"
+    player, line, prop = cpd.parse_card_lines(
+        ["FSU - RB", "Ousmane Kromah", "@ LOU Fri 7:00pm", "78.5", "Rush Yards", "Less", "More"]
+    )
+    assert player == "Ousmane Kromah"
+    assert line == 78.5
+
+
 def test_rejects_live_game_clock_as_player():
     player, line, prop = cpd.parse_card_lines(
         ["Q2 9:08", "7.5", "Assists", "More", "Less"]
@@ -62,9 +76,9 @@ def test_pick_cards_matches_goblin_count():
         for i in range(5)
     ]
     goblins = [
-        {"player": "G1", "prop_type": "Points", "line": 16.5, "pick_type": "goblin", "line_distance": 1.5, "standard_line": 18.0},
-        {"player": "G2", "prop_type": "Rebounds", "line": 4.5, "pick_type": "goblin", "line_distance": 2.0, "standard_line": 6.5},
-        {"player": "G3", "prop_type": "Assists", "line": 3.5, "pick_type": "goblin", "line_distance": 1.0, "standard_line": 4.5},
+        {"player": "GobOne", "prop_type": "Points", "line": 16.5, "pick_type": "goblin", "line_distance": 1.5, "standard_line": 18.0},
+        {"player": "GobTwo", "prop_type": "Rebounds", "line": 4.5, "pick_type": "goblin", "line_distance": 2.0, "standard_line": 6.5},
+        {"player": "GobThree", "prop_type": "Assists", "line": 3.5, "pick_type": "goblin", "line_distance": 1.0, "standard_line": 4.5},
     ]
     recipe = {
         "n_standard": 0,
@@ -76,3 +90,37 @@ def test_pick_cards_matches_goblin_count():
     assert pick is not None
     assert len(pick["legs"]) == 2
     assert all(l["pick_type"] == "Goblin" for l in pick["legs"])
+
+
+def test_pick_cards_prefers_hits_over_pitcher_ks():
+    standard = [
+        {"player": f"S{i}", "prop_type": "Hits", "line": 1.5 + i * 0.5, "pick_type": "standard"}
+        for i in range(4)
+    ]
+    goblins = [
+        {
+            "player": "KGuy",
+            "prop_type": "Pitcher Strikeouts",
+            "line": 4.5,
+            "pick_type": "goblin",
+            "line_distance": 1.0,
+            "standard_line": 5.5,
+        },
+        {
+            "player": "HGuy",
+            "prop_type": "Hits",
+            "line": 0.5,
+            "pick_type": "goblin",
+            "line_distance": 1.0,
+            "standard_line": 1.5,
+        },
+    ]
+    recipe = {
+        "n_standard": 0,
+        "n_goblin": 1,
+        "n_demon": 0,
+        "goblin_delta_sig": "1",
+    }
+    pick = vpl._pick_cards_for_recipe(recipe, standard=standard, goblins=goblins, demons=[])
+    assert pick is not None
+    assert pick["legs"][0]["player"] == "HGuy"
