@@ -1,13 +1,52 @@
 {
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "window": "1PM",
-  "generated_at": "2026-10-23T13:07:37-04:00",
+  "generated_at": "2026-10-24T13:05:20-04:00",
   "n_pulls_this_window": 5,
   "n_moved_this_window": 0,
-  "n_moved_from_initial": 2,
+  "n_moved_from_initial": 3,
   "is_initial_stamp": false,
   "force_payout": false,
   "rebuild_tickets": false,
-  "latest_fetched_at": "2026-10-23T13:03:24-04:00",
-  "initial_fetched_at": "2026-10-20T21:43:44-04:00"
+  "new_by_sport": {
+    "WNBA": {
+      "new_rows": 37,
+      "new_prop_types": [
+        "Double-Double",
+        "Minutes Played"
+      ]
+    },
+    "NHL": {
+      "new_rows": 413,
+      "new_prop_types": [
+        "Goalie Fantasy Score",
+        "Goalie Saves",
+        "Goalie Saves (Combo)",
+        "Goals Allowed"
+      ]
+    },
+    "SOCCER": {
+      "new_rows": 461,
+      "new_prop_types": []
+    },
+    "MLB": {
+      "new_rows": 16,
+      "new_prop_types": [
+        "Plate Appearances",
+        "Triples"
+      ]
+    }
+  },
+  "sport_rebuild_triggered": [
+    "MLB",
+    "NHL",
+    "SOCCER",
+    "WNBA"
+  ],
+  "sport_rebuild_enabled": [
+    "TENNIS"
+  ],
+  "rebuild_sports": [],
+  "latest_fetched_at": "2026-10-24T13:04:01-04:00",
+  "initial_fetched_at": "2026-10-23T01:06:10-04:00"
 }
