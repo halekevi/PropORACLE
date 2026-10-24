@@ -89,6 +89,21 @@ NHL_MIXER_HOLD_REASON = (
 )
 
 
+TENNIS_TOTAL_GAMES_HOLD_REASON = (
+    "Tennis Goblin OVER Total Games held from tickets (2026-10-24): on "
+    "face-verified dates the keep cell L5>=4+L10>=8 reads 35/62 = 56.5% "
+    "(keep_gate_face_split.json) against the 70.2% price, and a 2-leg at the "
+    "1.6x quoted today needs ~79% per leg. Hold until the cell is re-measured on "
+    "a face-verified step8 join. Games Won is unaffected. Re-enable with "
+    "PROPORACLE_TENNIS_TOTAL_GAMES_TICKETS=1."
+)
+
+
+def tennis_total_games_tickets_held(*, env: dict[str, str] | None = None) -> bool:
+    src = env if env is not None else os.environ
+    return _hold_flag(src, "PROPORACLE_TENNIS_TOTAL_GAMES_TICKETS")
+
+
 def nhl_mixer_tickets_held(*, env: dict[str, str] | None = None) -> bool:
     src = env if env is not None else os.environ
     return _hold_flag(src, "PROPORACLE_NHL_MIXER_TICKETS")

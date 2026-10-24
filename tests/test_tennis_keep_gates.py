@@ -70,8 +70,19 @@ def test_games_won_needs_std_discount_4():
 def test_total_games_needs_l5_4_and_l10_8():
     tg = _ten(prop="Total Games", cover=5.0, line=21.5, standard_line=21.5)
     assert tennis_goblin_keep_eligible(tg)
-    assert goblin_70_eligible(tg)
     assert _clears_list_gate(tg)
+    # Ticket hold (2026-10-24): verified-face cell 35/62 = 56.5% vs 70.2% price.
+    # The list still shows Total Games; Goblin-70 / Flex / mixer do not ticket it
+    # unless PROPORACLE_TENNIS_TOTAL_GAMES_TICKETS=1.
+    import os
+
+    os.environ.pop("PROPORACLE_TENNIS_TOTAL_GAMES_TICKETS", None)
+    assert not goblin_70_eligible(tg)
+    os.environ["PROPORACLE_TENNIS_TOTAL_GAMES_TICKETS"] = "1"
+    try:
+        assert goblin_70_eligible(tg)
+    finally:
+        os.environ.pop("PROPORACLE_TENNIS_TOTAL_GAMES_TICKETS", None)
     assert not tennis_goblin_keep_eligible(dict(tg, l5_over=3))
     assert not tennis_goblin_keep_eligible(dict(tg, l10_over=7))
     assert tennis_goblin_keep_eligible(dict(tg, l5_over=4))

@@ -269,8 +269,23 @@ def tennis_list_eligible(r: dict[str, Any]) -> bool:
     )
 
 
+def tennis_total_games_ticket_held(r: dict[str, Any]) -> bool:
+    """True when this row is Goblin OVER Total Games and the ticket hold is on.
+
+    List output still shows the prop; only ticket paths (Goblin-70, Standard
+    Flex, mixer) call this. See ``ticket_sport_holds.TENNIS_TOTAL_GAMES_HOLD_REASON``.
+    """
+    if _prop(r) != MATCH_TOTAL:
+        return False
+    from utils.ticket_sport_holds import tennis_total_games_tickets_held
+
+    return tennis_total_games_tickets_held()
+
+
 def tennis_ticket_gate_passes(r: dict[str, Any]) -> bool:
     """Goblin-70 + Standard Flex keep props."""
+    if tennis_total_games_ticket_held(r):
+        return False
     return tennis_list_eligible(r)
 
 
