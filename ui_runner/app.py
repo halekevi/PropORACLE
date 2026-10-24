@@ -116,6 +116,19 @@ def resolve_repo_root(config: Optional[dict] = None) -> Path:
 
 DATA_ROOT = persistent_data_dir(BASE_DIR)
 
+# graded_props_<date>.json: no longer tracked on main (see utils/graded_props_store.py). On Railway
+# they are synced from the graded-data branch into DATA_ROOT/graded_props at boot
+# (scripts/railway_serve.py) and fetched on demand for misses; locally the pipeline still writes
+# them into ui_runner/templates (untracked).
+from utils import graded_props_store as _graded_store  # noqa: E402
+
+GRADED_PROPS_DIR = _graded_store.graded_props_dir(BASE_DIR, TEMPLATES_DIR, DATA_ROOT)
+
+
+def _graded_props_files() -> list[Path]:
+    """Every graded_props_*.json visible to the app (synced dir, templates, archive), one per date."""
+    return _graded_store.list_files(BASE_DIR, TEMPLATES_DIR, DATA_ROOT)
+
 
 def _sport_dir(sports_subdir: str) -> Path:
     """Prefer Sports/<subdir>/ (canonical pipeline layout); fall back to repo-root folder."""
@@ -3223,14 +3236,8 @@ def api_payout_estimate_mult():
 
 
 def _graded_props_json_path_for_date(date_str: str) -> Path | None:
-    fname = f"graded_props_{date_str}.json"
-    for base in (TEMPLATES_DIR, ARCHIVE_DIR):
-        if not base.is_dir():
-            continue
-        cand = base / fname
-        if cand.is_file():
-            return cand
-    return None
+    """Synced dir → templates → archive; on Railway a miss is fetched from the graded-data branch."""
+    return _graded_store.path_for_date(date_str, BASE_DIR, TEMPLATES_DIR, DATA_ROOT)
 
 
 # mtime-keyed caches for /api/graded-props (avoid re-parse + reconcile every hit).
@@ -6912,7 +6919,7 @@ def _sport_breakdown_from_graded_props_json(stake_per_pick: float = 10.0) -> lis
     stats: dict[str, dict[str, float]] = {
         s: {"decided": 0.0, "paid": 0.0, "net": 0.0} for s in _SPORT_BREAKDOWN_ORDER
     }
-    files = sorted(TEMPLATES_DIR.glob("graded_props_*.json"))
+    files = _graded_props_files()
     for fp in files:
         try:
             payload = json.loads(fp.read_text(encoding="utf-8"))
@@ -7047,10 +7054,12 @@ _SPORT_BREAKDOWN_MEM: dict[str, Any] = {}
 def _load_sport_breakdown_bundle(*, stake_per_pick: float = 10.0) -> dict[str, list[dict[str, Any]]]:
     """Fast path for /income: read sport_breakdown.json; avoid per-request xlsx/props scans."""
     empty = {"rows": _empty_sport_breakdown_rows(), "monthly_rows": []}
-    sig = graded_props_signature(TEMPLATES_DIR)
+    sig = _graded_store.signature(_graded_props_files())
     force = os.environ.get("INCOME_REBUILD_SPORT", "").strip().lower() in ("1", "true", "yes", "on")
     if force:
-        bundle = refresh_income_sport_breakdown_cache(BASE_DIR, TEMPLATES_DIR, stake_per_pick=stake_per_pick)
+        bundle = refresh_income_sport_breakdown_cache(
+            BASE_DIR, TEMPLATES_DIR, stake_per_pick=stake_per_pick, graded_dir=GRADED_PROPS_DIR
+        )
         _SPORT_BREAKDOWN_MEM["sig"] = sig
         _SPORT_BREAKDOWN_MEM["bundle"] = bundle
         return bundle
@@ -7069,7 +7078,9 @@ def _load_sport_breakdown_bundle(*, stake_per_pick: float = 10.0) -> dict[str, l
         _SPORT_BREAKDOWN_MEM["bundle"] = cached
         return cached
 
-    bundle = refresh_income_sport_breakdown_cache(BASE_DIR, TEMPLATES_DIR, stake_per_pick=stake_per_pick)
+    bundle = refresh_income_sport_breakdown_cache(
+        BASE_DIR, TEMPLATES_DIR, stake_per_pick=stake_per_pick, graded_dir=GRADED_PROPS_DIR
+    )
     _SPORT_BREAKDOWN_MEM["sig"] = sig
     _SPORT_BREAKDOWN_MEM["bundle"] = bundle
     return bundle
@@ -7136,10 +7147,7 @@ def income_health():
         # Read sports from graded_props_*.json (same source as ingest)
         sports_seen = set()
         try:
-            import glob
-            gp_files = sorted(glob.glob(
-                str(Path(TEMPLATES_DIR) / "graded_props_*.json")
-            ))
+            gp_files = [str(p) for p in _graded_props_files()]
             for gp_file in gp_files[-7:]:  # last 7 days only
                 try:
                     gp = json.loads(Path(gp_file).read_text(encoding="utf-8"))

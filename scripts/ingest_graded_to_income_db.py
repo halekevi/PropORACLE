@@ -42,14 +42,25 @@ def _templates_dir() -> Path:
 
 
 def _graded_json_paths(for_date: str | None) -> list[Path]:
-    td = _templates_dir()
-    if not td.is_dir():
-        return []
-    paths = sorted(td.glob("graded_props_*.json"))
-    if for_date:
-        exact = td / f"graded_props_{for_date}.json"
-        return [exact] if exact.is_file() else []
-    return paths
+    # Synced data dir (Railway: DATA_ROOT/graded_props from the graded-data branch) → templates →
+    # archive, one file per date. See utils/graded_props_store.py.
+    try:
+        from utils import graded_props_store as _store
+
+        td = _templates_dir()
+        if for_date:
+            p = _store.path_for_date(for_date, _REPO, td, fetch=False)
+            return [p] if p is not None else []
+        return _store.list_files(_REPO, td)
+    except Exception:  # noqa: BLE001 - fall back to the historical templates glob
+        td = _templates_dir()
+        if not td.is_dir():
+            return []
+        paths = sorted(td.glob("graded_props_*.json"))
+        if for_date:
+            exact = td / f"graded_props_{for_date}.json"
+            return [exact] if exact.is_file() else []
+        return paths
 
 
 def _parse_date_from_path(p: Path) -> str | None:

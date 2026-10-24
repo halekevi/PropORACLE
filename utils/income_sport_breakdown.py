@@ -30,8 +30,10 @@ def normalize_sport_label(raw: Any) -> str:
     return _SPORT_ALIASES.get(s, s)
 
 
-def graded_props_signature(templates_dir: Path) -> str:
-    files = sorted(templates_dir.glob("graded_props_*.json"))
+def graded_props_signature(templates_dir: Path, graded_dir: Path | None = None) -> str:
+    """Signature of the graded_props set. ``graded_dir`` (utils.graded_props_store) wins when
+    given; ``templates_dir`` is the historical location and stays the default."""
+    files = sorted((graded_dir or templates_dir).glob("graded_props_*.json"))
     if not files:
         return "empty"
     mt = max(f.stat().st_mtime_ns for f in files)
@@ -53,11 +55,12 @@ def build_from_graded_props(
     templates_dir: Path,
     *,
     stake_per_pick: float = 10.0,
+    graded_dir: Path | None = None,
 ) -> list[dict[str, Any]]:
     stats: dict[str, dict[str, float]] = {
         s: {"decided": 0.0, "paid": 0.0, "net": 0.0} for s in SPORT_BREAKDOWN_ORDER
     }
-    for fp in sorted(templates_dir.glob("graded_props_*.json")):
+    for fp in sorted((graded_dir or templates_dir).glob("graded_props_*.json")):
         try:
             payload = json.loads(fp.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
@@ -106,9 +109,10 @@ def build_monthly_from_graded_props(
     templates_dir: Path,
     *,
     stake_per_pick: float = 10.0,
+    graded_dir: Path | None = None,
 ) -> list[dict[str, Any]]:
     stats: dict[tuple[str, str], dict[str, float]] = {}
-    for fp in sorted(templates_dir.glob("graded_props_*.json")):
+    for fp in sorted((graded_dir or templates_dir).glob("graded_props_*.json")):
         try:
             payload = json.loads(fp.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
@@ -177,13 +181,14 @@ def write_cache(
     *,
     monthly_rows: list[dict[str, Any]] | None = None,
     source: str = "graded_props_json",
+    graded_dir: Path | None = None,
 ) -> Path | None:
     payload = {
         "ok": True,
         "rows": rows,
         "monthly_rows": monthly_rows if monthly_rows is not None else [],
         "source": source,
-        "signature": graded_props_signature(templates_dir),
+        "signature": graded_props_signature(templates_dir, graded_dir),
         "updated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
     text = json.dumps(payload, indent=2, ensure_ascii=False) + "\n"
@@ -240,8 +245,9 @@ def refresh_cache(
     templates_dir: Path,
     *,
     stake_per_pick: float = 10.0,
+    graded_dir: Path | None = None,
 ) -> dict[str, list[dict[str, Any]]]:
-    rows = build_from_graded_props(templates_dir, stake_per_pick=stake_per_pick)
-    monthly_rows = build_monthly_from_graded_props(templates_dir, stake_per_pick=stake_per_pick)
-    write_cache(repo_root, templates_dir, rows, monthly_rows=monthly_rows)
+    rows = build_from_graded_props(templates_dir, stake_per_pick=stake_per_pick, graded_dir=graded_dir)
+    monthly_rows = build_monthly_from_graded_props(templates_dir, stake_per_pick=stake_per_pick, graded_dir=graded_dir)
+    write_cache(repo_root, templates_dir, rows, monthly_rows=monthly_rows, graded_dir=graded_dir)
     return {"rows": rows, "monthly_rows": monthly_rows}

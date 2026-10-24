@@ -104,7 +104,28 @@ def main() -> None:
     port = os.environ.get("PORT", "8080")
     tmpl = REPO / "ui_runner" / "templates"
     ingest_script = REPO / "scripts" / "ingest_graded_to_income_db.py"
-    if tmpl.is_dir() and next(tmpl.glob("graded_props_*.json"), None) and ingest_script.is_file():
+    sync_script = REPO / "scripts" / "sync_graded_props_from_branch.py"
+    sync_flag = os.environ.get("PROPORACLE_GRADED_SYNC", "").strip().lower()
+    on_railway = bool((os.environ.get("RAILWAY_ENVIRONMENT") or "").strip())
+    want_sync = sync_script.is_file() and (
+        sync_flag in {"1", "true", "yes", "on"} or (on_railway and sync_flag not in {"0", "false", "no", "off"})
+    )
+    if want_sync:
+        # graded_props_*.json are not in the checkout any more (data-only graded-data branch).
+        # Sync them into DATA_ROOT/graded_props, then ingest - all in the background.
+        print(
+            "[proporacle] Syncing graded_props from the graded-data branch, then ingesting "
+            "(background; gunicorn starts now)…",
+            flush=True,
+        )
+        subprocess.Popen(
+            [sys.executable, str(sync_script)],
+            cwd=str(REPO),
+            stdout=sys.stdout,
+            stderr=sys.stderr,
+            start_new_session=True,
+        )
+    elif tmpl.is_dir() and next(tmpl.glob("graded_props_*.json"), None) and ingest_script.is_file():
         print(
             "[proporacle] Ingesting graded_props → proporacle_income.db (background; gunicorn starts now)…",
             flush=True,

@@ -1519,10 +1519,15 @@ function Run-GitPushGradeArtifacts {
 
     Write-Host ""
     Write-Host "[ GIT ] Pushing grade HTML for slate date $GradeDate ..." -ForegroundColor Cyan
+    # graded_props_<date>.json go to the data-only graded-data branch (2026-10-24), not main.
+    $gradedPub = Join-Path $Root "scripts\Publish-GradedData.ps1"
+    if (Test-Path -LiteralPath $gradedPub) {
+        try { & $gradedPub -Date $GradeDate -RepoRoot $Root 2>&1 | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray } }
+        catch { Write-Host ("  WARN graded-data publish: " + $_.Exception.Message) -ForegroundColor Yellow }
+    }
     $candidates = @(
         "ui_runner/templates/slate_eval_$GradeDate.html",
-        "ui_runner/templates/ticket_eval_$GradeDate.html",
-        "ui_runner/templates/graded_props_$GradeDate.json"
+        "ui_runner/templates/ticket_eval_$GradeDate.html"
     )
     if ($AlsoTicketEvalDate -and ($AlsoTicketEvalDate -ne $GradeDate) -and ($AlsoTicketEvalDate -match '^\d{4}-\d{2}-\d{2}$')) {
         $candidates += "ui_runner/templates/ticket_eval_$AlsoTicketEvalDate.html"

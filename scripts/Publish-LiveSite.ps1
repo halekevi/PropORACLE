@@ -55,21 +55,58 @@ function Write-PublishAlert {
         # the persisted User-scope value.
         $hook = [string]$env:PROPORACLE_ALERT_WEBHOOK
         if (-not $hook) { $hook = [string][Environment]::GetEnvironmentVariable("PROPORACLE_ALERT_WEBHOOK", "User") }
-        if ($hook) {
-            try {
-                $text = "PropORACLE LIVE PUBLISH FAILED ($Stage): $Reason"
-                if ($hook -match '^https?://ntfy\.') {
-                    # ntfy shows the raw body, so send plain text (JSON would be displayed verbatim).
-                    Invoke-RestMethod -Uri $hook -Method Post -ContentType "text/plain; charset=utf-8" `
-                        -Headers @{ Title = "PropORACLE publish FAILED"; Priority = "high"; Tags = "rotating_light" } `
-                        -Body ([System.Text.Encoding]::UTF8.GetBytes($text)) -TimeoutSec 10 | Out-Null
-                } else {
-                    Invoke-RestMethod -Uri $hook -Method Post -ContentType "application/json" `
-                        -Body (@{ content = $text; text = $text } | ConvertTo-Json) -TimeoutSec 10 | Out-Null
-                }
-            } catch { }
+        # 2026-10-24: every window for ~20h was refused on the tree check and nobody saw it. The
+        # push result is now recorded next to the alert line so a dead hook is itself visible.
+        $pushNote = Send-PublishPush -Title "PropORACLE publish FAILED" -Text "PropORACLE LIVE PUBLISH FAILED ($Stage): $Reason" -Priority "high" -Tags "rotating_light"
+        try {
+            Add-Content -LiteralPath (Join-Path $logsDir "publish_alerts.log") -Value ("{0} [PUSH] {1}" -f $ts, $pushNote) -Encoding utf8
+        } catch { }
+    }
+}
+
+function Send-PublishPush {
+    <#
+      Post one line to PROPORACLE_ALERT_WEBHOOK (ntfy / Discord / Slack style). Returns a short
+      status string ("ntfy 200", "no hook", "error: ...") so callers can log whether the phone
+      actually got it. Never throws.
+    #>
+    param([string]$Title, [string]$Text, [string]$Priority = "default", [string]$Tags = "")
+    $hook = [string]$env:PROPORACLE_ALERT_WEBHOOK
+    if (-not $hook) { $hook = [string][Environment]::GetEnvironmentVariable("PROPORACLE_ALERT_WEBHOOK", "User") }
+    if (-not $hook) { return "no hook (PROPORACLE_ALERT_WEBHOOK unset)" }
+    # The main topic also carries ~20 routine "pipeline WARN" lines per run (injuries-missing,
+    # odds-missing, step8-validate), which is how twelve publish FAILs went unnoticed on
+    # 2026-10-23/24. High-priority alerts are therefore sent twice: to the main topic as
+    # ntfy priority "urgent", and to a quiet critical topic (PROPORACLE_ALERT_WEBHOOK_CRITICAL,
+    # default "<main topic>-critical") that carries nothing else. Subscribe to that one with sound.
+    $targets = @(@{ url = $hook; prio = $Priority })
+    if ($Priority -in @("high", "urgent", "max", "5", "4")) {
+        $targets[0].prio = "urgent"
+        $crit = [string]$env:PROPORACLE_ALERT_WEBHOOK_CRITICAL
+        if (-not $crit) { $crit = [string][Environment]::GetEnvironmentVariable("PROPORACLE_ALERT_WEBHOOK_CRITICAL", "User") }
+        if (-not $crit -and $hook -match '^https?://ntfy\.') { $crit = $hook.TrimEnd('/') + "-critical" }
+        if ($crit -and $crit -ne $hook) { $targets += @{ url = $crit; prio = "urgent" } }
+    }
+    $notes = @()
+    foreach ($t in $targets) {
+        try {
+            if ($t.url -match '^https?://ntfy\.') {
+                # ntfy shows the raw body, so send plain text (JSON would be displayed verbatim).
+                $hdr = @{ Title = $Title; Priority = $t.prio }
+                if ($Tags) { $hdr["Tags"] = $Tags }
+                $resp = Invoke-WebRequest -Uri $t.url -Method Post -ContentType "text/plain; charset=utf-8" `
+                    -Headers $hdr -Body ([System.Text.Encoding]::UTF8.GetBytes($Text)) -TimeoutSec 10 -UseBasicParsing
+                $notes += ("ntfy {0} {1}" -f [int]$resp.StatusCode, ($t.url -replace '^https?://[^/]+/', ''))
+            } else {
+                $resp = Invoke-WebRequest -Uri $t.url -Method Post -ContentType "application/json" `
+                    -Body (@{ content = $Text; text = $Text } | ConvertTo-Json) -TimeoutSec 10 -UseBasicParsing
+                $notes += ("webhook {0}" -f [int]$resp.StatusCode)
+            }
+        } catch {
+            $notes += ("error: " + $_.Exception.Message)
         }
     }
+    return ($notes -join "; ")
 }
 
 function Write-PublishOk {
@@ -80,6 +117,39 @@ function Write-PublishOk {
         ([ordered]@{ ok = $true; at = $ts; stage = "published"; reason = ""; last_ok_at = $ts } |
             ConvertTo-Json) | Set-Content -LiteralPath (Join-Path $logsDir "LAST_PUBLISH_STATUS.json") -Encoding utf8
     } catch { }
+}
+
+function Confirm-PublishedTickets {
+    <#
+      Post-push read-back. Fetches origin/main and compares the tickets_latest.json blob on the
+      remote with the local committed copy; also reports the remote card's date / generated_at
+      so the log line says what /tickets will serve. Returns @{ ok; reason; sha; date; generated_at }.
+    #>
+    param([string]$MainRoot)
+    $rel = "ui_runner/templates/tickets_latest.json"
+    $out = [ordered]@{ ok = $false; reason = ""; sha = ""; date = ""; generated_at = "" }
+    try {
+        git -C $MainRoot fetch -q origin main 2>&1 | Out-Null
+        $localSha = (git -C $MainRoot rev-parse ("HEAD:" + $rel) 2>$null | Out-String).Trim()
+        $remoteSha = (git -C $MainRoot rev-parse ("origin/main:" + $rel) 2>$null | Out-String).Trim()
+        if (-not $remoteSha) { $out.reason = "origin/main has no $rel after push"; return $out }
+        $out.sha = $remoteSha.Substring(0, 9)
+        $raw = git -C $MainRoot show ("origin/main:" + $rel) 2>$null | Out-String
+        try {
+            $j = $raw | ConvertFrom-Json
+            $out.date = [string]$j.date
+            $out.generated_at = [string]$j.generated_at
+        } catch { }
+        if ($localSha -ne $remoteSha) {
+            $out.reason = ("origin/main {0} carries tickets blob {1}, local commit has {2} (another push landed first? re-run publish)" -f $rel, $remoteSha.Substring(0, 9), $localSha.Substring(0, 9))
+            return $out
+        }
+        $out.ok = $true
+        return $out
+    } catch {
+        $out.reason = "read-back error: " + $_.Exception.Message
+        return $out
+    }
 }
 
 function Fail-Publish {
@@ -336,6 +406,13 @@ try {
         foreach ($line in $pushOut) { Write-Host "    $line" -ForegroundColor DarkGray }
         if ($LASTEXITCODE -eq 0) {
             Write-Host '[PUBLISH] OK - origin/main updated' -ForegroundColor Green
+            # Read-back: "push succeeded" is not "the card reached origin/main". Re-fetch and compare
+            # the tickets blob we just committed with what origin/main now carries.
+            $rb = Confirm-PublishedTickets -MainRoot $MainRoot
+            if (-not $rb.ok) {
+                Fail-Publish "read-back" $rb.reason
+            }
+            Write-Host ('[PUBLISH] read-back OK - origin/main tickets generated_at={0} date={1} sha={2}' -f $rb.generated_at, $rb.date, $rb.sha) -ForegroundColor Green
             Write-PublishOk
             exit 0
         }

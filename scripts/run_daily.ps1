@@ -2240,13 +2240,23 @@ else {
                     Write-Log "STEP E - sync_grades_report_dates: WARN (exit $LASTEXITCODE)"
                 }
             }
+            # graded_props_<date>.json no longer ride on main (2026-10-24): 1.1 GB of nightly
+            # regraded JSON made the live tree's git status ~6 s and tripped publishes. They go
+            # to the data-only graded-data branch; the app syncs/fetches them from there.
+            $gradedPub = Join-Path $MainRoot "scripts\Publish-GradedData.ps1"
+            if (Test-Path -LiteralPath $gradedPub) {
+                try {
+                    & $gradedPub -Date @($Yesterday, $Today) -RepoRoot $MainRoot 2>&1 | ForEach-Object { Write-Log "STEP E - graded-data: $_" }
+                } catch {
+                    Write-Log "STEP E - graded-data: WARN $($_.Exception.Message)"
+                }
+            }
             foreach ($gd in @($Yesterday, $Today)) {
                 foreach ($pat in @(
                     "ui_runner/templates/slate_eval_$gd.html",
                     "ui_runner/templates/ticket_eval_$gd.html",
                     "ui_runner/templates/ticket_eval_long_parlay_$gd.html",
-                    "ui_runner/templates/ticket_eval_high_leg_$gd.html",
-                    "ui_runner/templates/graded_props_$gd.json"
+                    "ui_runner/templates/ticket_eval_high_leg_$gd.html"
                 )) {
                     $full = Join-Path $MainRoot $pat
                     if (Test-Path -LiteralPath $full) {
