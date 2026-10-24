@@ -40,7 +40,15 @@ TARBALL_DEFAULT = "https://codeload.github.com/halekevi/PropORACLE/tar.gz/refs/h
 
 _NEG_CACHE: dict[str, float] = {}
 _NEG_TTL_SEC = 600.0
+_NEG_TTL_TRANSIENT_SEC = 45.0  # disk / network error, not a 404
 _FETCH_LOCK = threading.Lock()
+
+# Railway's writable layer stopped accepting files ~450 MB into the first full sync
+# (2026-10-24 15:02 ET deploy: 07-01..08-16 landed, 08-20 onward failed). The store therefore
+# keeps the newest dates within a byte budget and evicts the oldest dates to make room. A mounted
+# volume (PROPORACLE_PERSISTENT_DATA_DIR) can raise the budget to hold everything.
+DISK_BUDGET_MB_DEFAULT = 300
+DISK_FREE_MARGIN_BYTES = 150 * 1024 * 1024
 
 
 def _on_railway() -> bool:
@@ -137,31 +145,108 @@ def _ssl_context():
         return ssl.create_default_context()
 
 
-def _download_to(url: str, dest: Path, *, timeout: int = 120) -> bool:
-    """Stream ``url`` into ``dest`` atomically. False on 404 / network error."""
+def disk_budget_bytes() -> int | None:
+    """Byte budget for graded files in the synced dir; None = unlimited (local trees)."""
+    raw = (os.environ.get("PROPORACLE_GRADED_DISK_BUDGET_MB") or "").strip()
+    if raw:
+        try:
+            mb = float(raw)
+        except ValueError:
+            mb = DISK_BUDGET_MB_DEFAULT
+        return None if mb <= 0 else int(mb * 1024 * 1024)
+    return DISK_BUDGET_MB_DEFAULT * 1024 * 1024 if _on_railway() else None
+
+
+def _graded_files_in(d: Path) -> list[Path]:
+    try:
+        return sorted(p for p in d.glob("graded_props_*.json") if GRADED_PROPS_RE.match(p.name))
+    except OSError:
+        return []
+
+
+def ensure_room(dest_dir: Path, need_bytes: int, *, protect: str = "") -> bool:
+    """Evict the oldest dates in ``dest_dir`` until ``need_bytes`` fits the budget and the disk.
+
+    Returns False when it still does not fit (so the caller skips the write instead of
+    filling the disk). ``protect`` is a filename never evicted.
+    """
+    budget = disk_budget_bytes()
+    files = _graded_files_in(dest_dir)
+    total = sum((p.stat().st_size for p in files), 0)
+
+    def _free() -> int:
+        try:
+            import shutil
+
+            return shutil.disk_usage(str(dest_dir)).free
+        except OSError:
+            return 1 << 62
+
+    for p in files:  # ascending date = oldest first
+        fits_budget = budget is None or total + need_bytes <= budget
+        fits_disk = _free() - need_bytes >= DISK_FREE_MARGIN_BYTES
+        if fits_budget and fits_disk:
+            return True
+        if p.name == protect:
+            continue
+        try:
+            sz = p.stat().st_size
+            p.unlink()
+            total -= sz
+        except OSError:
+            continue
+    fits_budget = budget is None or total + need_bytes <= budget
+    return fits_budget and (_free() - need_bytes >= DISK_FREE_MARGIN_BYTES)
+
+
+def _download_to(url: str, dest: Path, *, timeout: int = 120, make_room: bool = True) -> str:
+    """Stream ``url`` into ``dest`` atomically.
+
+    Returns "ok", "notfound" (HTTP 404 → cache the miss), "noroom" (budget / disk) or
+    "error" (network / other OSError → short retry window).
+    """
     req = urllib.request.Request(url, headers={"User-Agent": "proporacle-graded-store/1"})
     tmp = dest.with_suffix(dest.suffix + f".part{os.getpid()}")
     try:
-        with urllib.request.urlopen(req, timeout=timeout, context=_ssl_context()) as resp, tmp.open("wb") as fh:
-            while True:
-                chunk = resp.read(1 << 20)
-                if not chunk:
-                    break
-                fh.write(chunk)
-        # Must be a JSON object with a props list before we accept it.
+        with urllib.request.urlopen(req, timeout=timeout, context=_ssl_context()) as resp:
+            length = resp.headers.get("Content-Length")
+            need = int(length) if length and length.isdigit() else 40 * 1024 * 1024
+            if make_room and not ensure_room(dest.parent, need, protect=dest.name):
+                return "noroom"
+            with tmp.open("wb") as fh:
+                while True:
+                    chunk = resp.read(1 << 20)
+                    if not chunk:
+                        break
+                    fh.write(chunk)
+        # Must be a JSON object before we accept it.
         with tmp.open("rb") as fh:
             head = fh.read(2)
-        if head.lstrip() [:1] != b"{":
+        if head.lstrip()[:1] != b"{":
             tmp.unlink(missing_ok=True)
-            return False
+            return "error"
         os.replace(tmp, dest)
-        return True
-    except (urllib.error.URLError, TimeoutError, OSError, ValueError):
-        try:
-            tmp.unlink(missing_ok=True)
-        except OSError:
-            pass
-        return False
+        return "ok"
+    except urllib.error.HTTPError as exc:
+        _cleanup(tmp)
+        return "notfound" if exc.code == 404 else "error"
+    except OSError as exc:  # includes URLError, disk full (ENOSPC)
+        _cleanup(tmp)
+        import errno
+
+        if getattr(exc, "errno", None) in (errno.ENOSPC, errno.EDQUOT):
+            return "noroom"
+        return "error"
+    except (TimeoutError, ValueError):
+        _cleanup(tmp)
+        return "error"
+
+
+def _cleanup(tmp: Path) -> None:
+    try:
+        tmp.unlink(missing_ok=True)
+    except OSError:
+        pass
 
 
 def path_for_date(
@@ -187,25 +272,83 @@ def path_for_date(
         return None
     now = time.monotonic()
     neg = _NEG_CACHE.get(fname)
-    if neg is not None and now - neg < _NEG_TTL_SEC:
+    if neg is not None and now < neg:
         return None
     dest_dir = graded_props_dir(repo_root, templates_dir, data_root)
     dest = dest_dir / fname
     with _FETCH_LOCK:
         if dest.is_file():
             return dest
-        ok = _download_to(f"{raw_base()}/{fname}", dest)
-    if not ok:
-        _NEG_CACHE[fname] = now
-        return None
-    return dest
+        status = _download_to(f"{raw_base()}/{fname}", dest)
+    if status == "ok":
+        return dest
+    _NEG_CACHE[fname] = now + (_NEG_TTL_SEC if status == "notfound" else _NEG_TTL_TRANSIENT_SEC)
+    return None
+
+
+def sync_newest_first(dest_dir: Path, *, timeout: int = 120, budget: int | None = None) -> dict:
+    """Fetch graded_props files one by one, newest date first, until the byte budget is used.
+
+    This is the Railway boot path: the writable layer cannot hold the whole branch, and the
+    grades pages people open are the recent ones. Older dates are still served on demand (with
+    eviction of the oldest cached date). Returns a report dict.
+    """
+    dest_dir = Path(dest_dir)
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    if budget is None:
+        budget = disk_budget_bytes()
+    report = {
+        "mode": "newest_first",
+        "dest": str(dest_dir),
+        "budget_mb": None if budget is None else round(budget / 1048576),
+        "written": 0,
+        "skipped": 0,
+        "stopped_at": "",
+        "ok": False,
+        "error": "",
+    }
+    t0 = time.monotonic()
+    idx = read_index(timeout=30)
+    dates = sorted((idx or {}).get("dates") or [], reverse=True)
+    if not dates:
+        report["error"] = "index.json unavailable"
+        report["seconds"] = round(time.monotonic() - t0, 1)
+        return report
+    used = sum((p.stat().st_size for p in _graded_files_in(dest_dir)), 0)
+    for d in dates:
+        fname = f"graded_props_{d}.json"
+        dest = dest_dir / fname
+        if dest.is_file():
+            report["skipped"] += 1
+            continue
+        # Do not evict newer files to make room for an older one: stop at the budget instead.
+        status = _download_to(f"{raw_base()}/{fname}", dest, timeout=timeout, make_room=False)
+        if status == "ok":
+            report["written"] += 1
+            used += dest.stat().st_size
+            if budget is not None and used >= budget:
+                report["stopped_at"] = d
+                break
+        elif status == "noroom":
+            report["stopped_at"] = d
+            break
+        elif status == "error":
+            report["error"] = f"fetch error at {d}"
+    report["ok"] = not report["error"]
+    report["seconds"] = round(time.monotonic() - t0, 1)
+    try:
+        (dest_dir / ".last_sync.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    except OSError:
+        pass
+    return report
 
 
 def sync_from_branch(dest_dir: Path, *, timeout: int = 600, overwrite: bool = True) -> dict:
     """Download the graded-data branch tarball and extract graded_props_*.json into ``dest_dir``.
 
-    Streams the gzip tar (no full download into memory). Returns a small report dict.
-    Used by ``scripts/railway_serve.py`` at boot so the ingest / income scans see every date.
+    Streams the gzip tar (no full download into memory). Returns a small report dict. Use only
+    where the whole set fits (local trees, a mounted volume); Railway boot uses
+    :func:`sync_newest_first`.
     """
     dest_dir = Path(dest_dir)
     dest_dir.mkdir(parents=True, exist_ok=True)
@@ -268,6 +411,9 @@ __all__ = [
     "signature",
     "path_for_date",
     "sync_from_branch",
+    "sync_newest_first",
+    "ensure_room",
+    "disk_budget_bytes",
     "read_index",
     "fetch_enabled",
     "raw_base",

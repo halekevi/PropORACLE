@@ -28,6 +28,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dest", default="", help="override destination directory")
     ap.add_argument("--no-ingest", action="store_true")
+    ap.add_argument("--newest-first", action="store_true", help="per-file newest-first sync (default on Railway)")
     ap.add_argument("--timeout", type=int, default=600)
     a = ap.parse_args()
 
@@ -38,6 +39,16 @@ def main() -> int:
         # with the branch copy (which may lag a regrade that has not been published yet).
         print(f"[graded-sync] dest is the templates dir ({dest}); skipping tarball sync", flush=True)
         rep = {"ok": True, "written": 0, "skipped": 0, "seconds": 0.0}
+    elif store.disk_budget_bytes() is not None or a.newest_first:
+        # Railway: the writable layer stopped at ~450 MB on the first full sync. Newest dates
+        # first, stop at the budget; older dates are fetched on demand with eviction.
+        print(f"[graded-sync] newest-first {store.raw_base()} -> {dest} (budget {store.disk_budget_bytes()})", flush=True)
+        rep = store.sync_newest_first(dest, timeout=a.timeout)
+        print(
+            f"[graded-sync] ok={rep['ok']} written={rep['written']} skipped={rep['skipped']} "
+            f"stopped_at={rep.get('stopped_at') or '-'} {rep.get('seconds')}s {rep.get('error') or ''}",
+            flush=True,
+        )
     else:
         print(f"[graded-sync] {store.tarball_url()} -> {dest}", flush=True)
         rep = store.sync_from_branch(dest, timeout=a.timeout)
