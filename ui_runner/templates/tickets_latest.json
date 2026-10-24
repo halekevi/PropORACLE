@@ -156,7 +156,7 @@
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
-            "recommendation": "HOLD",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "audit_all_hit_x": 6.0,
@@ -167,7 +167,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "OK"
         }
       ]
     },
@@ -311,7 +312,7 @@
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
-            "recommendation": "HOLD",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "audit_all_hit_x": 6.0,
@@ -322,7 +323,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NBA Standard Power 3",
@@ -458,7 +460,7 @@
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
-            "recommendation": "HOLD",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "audit_all_hit_x": 6.0,
@@ -469,7 +471,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NBA Standard Power 3",
@@ -605,7 +608,7 @@
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
-            "recommendation": "HOLD",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "audit_all_hit_x": 6.0,
@@ -616,7 +619,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NBA Standard Power 3",
@@ -752,7 +756,7 @@
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
-            "recommendation": "HOLD",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "audit_all_hit_x": 6.0,
@@ -763,7 +767,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NBA Standard Power 3",
@@ -899,7 +904,7 @@
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
-            "recommendation": "HOLD",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "audit_all_hit_x": 6.0,
@@ -910,7 +915,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NBA Standard Power 3",
@@ -1046,7 +1052,7 @@
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
-            "recommendation": "HOLD",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "audit_all_hit_x": 6.0,
@@ -1057,7 +1063,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "OK"
         },
         {
           "web_group_name": "NBA Standard Power 3",
@@ -1193,7 +1200,7 @@
             "p_all_win": 0.343,
             "p_miss_1": 0.0,
             "ev": 1.058,
-            "recommendation": "HOLD",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 60.0,
             "entry_20_to_win_guarantee": 120.0,
             "audit_all_hit_x": 6.0,
@@ -1204,7 +1211,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "OK"
         }
       ]
     },
@@ -1312,7 +1320,7 @@
             "p_all_win": 0.49,
             "p_miss_1": 0.0,
             "ev": 0.47,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 30.0,
             "entry_20_to_win_guarantee": 60.0,
             "audit_all_hit_x": 3.0,
@@ -1323,7 +1331,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         }
       ]
     },
@@ -1467,7 +1476,7 @@
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "audit_all_hit_x": 2.3,
@@ -1478,7 +1487,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         },
         {
           "web_group_name": "NBA Goblin-70 Power 3",
@@ -1614,7 +1624,7 @@
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "audit_all_hit_x": 2.3,
@@ -1625,7 +1635,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         },
         {
           "web_group_name": "NBA Goblin-70 Power 3",
@@ -1761,7 +1772,7 @@
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "audit_all_hit_x": 2.3,
@@ -1772,7 +1783,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         },
         {
           "web_group_name": "NBA Goblin-70 Power 3",
@@ -1908,7 +1920,7 @@
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "audit_all_hit_x": 2.3,
@@ -1919,7 +1931,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         },
         {
           "web_group_name": "NBA Goblin-70 Power 3",
@@ -2055,7 +2068,7 @@
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "audit_all_hit_x": 2.3,
@@ -2066,7 +2079,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         },
         {
           "web_group_name": "NBA Goblin-70 Power 3",
@@ -2202,7 +2216,7 @@
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "audit_all_hit_x": 2.3,
@@ -2213,7 +2227,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         },
         {
           "web_group_name": "NBA Goblin-70 Power 3",
@@ -2349,7 +2364,7 @@
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "audit_all_hit_x": 2.3,
@@ -2360,7 +2375,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         },
         {
           "web_group_name": "NBA Goblin-70 Power 3",
@@ -2496,7 +2512,7 @@
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "audit_all_hit_x": 2.3,
@@ -2507,7 +2523,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         }
       ]
     },
@@ -2651,7 +2668,7 @@
             "p_all_win": 0.444,
             "p_miss_1": 0.0,
             "ev": 0.022,
-            "recommendation": "HOLD",
+            "recommendation": "MARGINAL",
             "entry_10_to_win_guarantee": 23.0,
             "entry_20_to_win_guarantee": 46.0,
             "audit_all_hit_x": 2.3,
@@ -2662,7 +2679,8 @@
             },
             "ev_formula": "E[N-correct] - 1",
             "captured_at": null
-          }
+          },
+          "empirical_recommendation": "MARGINAL"
         }
       ]
     },
@@ -3615,7 +3633,7 @@
             "p_all_win": 0.9801,
             "p_miss_1": 0.0198,
             "ev": 0.5682,
-            "recommendation": "SKIP",
+            "recommendation": "OK",
             "entry_10_to_win_guarantee": 16.0,
             "entry_20_to_win_guarantee": 32.0,
             "sweep_payout": 1.6,
@@ -3634,7 +3652,7 @@
           "expected_wins_per_100": 33.6,
           "win_rate_score": 0.109902,
           "floor_ev": -0.890098,
-          "empirical_recommendation": "SKIP",
+          "empirical_recommendation": "OK",
           "run_id": "20261023_014702_909258",
           "first_seen_run_id": "20261023_014702_909258",
           "run_archived_at": "2026-10-23T01:47:02.911744+00:00",
@@ -4545,25 +4563,29 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.6,
-            "min_guarantee": 1.6,
-            "min_payout_x": 1.6,
+            "payout": 1.4,
+            "min_guarantee": 1.4,
+            "min_payout_x": 1.4,
             "min_guarantee_adjustment": 0.2667,
             "payout_adjustment": 1.0,
             "p_all_win": 0.2746,
             "p_miss_1": 0.4436,
-            "ev": -0.5606,
+            "ev": -0.6156,
             "recommendation": "STRONG",
-            "entry_10_to_win_guarantee": 16.0,
-            "entry_20_to_win_guarantee": 32.0,
-            "sweep_payout": 1.6,
-            "sweep_payout_x": 1.6,
+            "entry_10_to_win_guarantee": 14.0,
+            "entry_20_to_win_guarantee": 28.0,
+            "sweep_payout": 1.4,
+            "sweep_payout_x": 1.4,
             "audit_all_hit_x": 6.0,
-            "entry_10_to_win_sweep": 16.0,
+            "entry_10_to_win_sweep": 14.0,
             "payout_confidence_score": 0.4394,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "model_min_payout_x": 1.6
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.40 - 1.0",
+            "model_min_payout_x": 1.6,
+            "power_min_x": 1.4,
+            "display_min_x": 1.4,
+            "power_first_x": 6.0,
+            "captured_at": "2026-10-23T16:43:10-04:00"
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -4571,7 +4593,8 @@
           "run_id": "20261023_194934_910707",
           "first_seen_run_id": "20261023_194934_910707",
           "run_archived_at": "2026-10-23T19:49:34.923258+00:00",
-          "playable": true
+          "playable": true,
+          "display_min_x": 1.4
         },
         {
           "web_group_name": "STRONG 3-Leg",
@@ -5388,15 +5411,20 @@
   "hot_legs": 8,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 1.4,
-    "ok": 1.15,
-    "marginal": 1.0
+    "strong": 1.058,
+    "ok": 0.5092799999999998,
+    "marginal": 0.022
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
+      "strong": 1.058,
+      "ok": 0.5092799999999998,
+      "marginal": 0.022
+    },
+    "3": {
+      "strong": 1.058,
+      "ok": 0.4364000000000004,
+      "marginal": 0.022
     }
   },
   "tier_ev_percentiles": {
@@ -5419,7 +5447,7 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 0,
+    "legs_checked": 9,
     "failed_goblin": 0,
     "failed_tier": 0,
     "failed_streak": 0
