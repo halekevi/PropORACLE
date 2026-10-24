@@ -229,15 +229,13 @@ def tennis_goblin_keep_eligible(r: dict[str, Any]) -> bool:
 
 
 def tennis_standard_under_serve_eligible(r: dict[str, Any]) -> bool:
-    """Standard UNDER Aces / Double Faults. Ungated 90%+ at n>=40."""
-    if _pick(r) != "Standard":
-        return False
-    if _side(r) != "UNDER":
-        return False
-    sport = str(r.get("sport") or "").strip().upper()
-    if sport not in {"TENNIS", "Tennis", ""}:
-        return False
-    return _prop(r) in SERVE_UNDER_PROPS
+    """Standard UNDER Aces / DF — faded after serve-actual backfill.
+
+    Historical ~90% was missing→0 coercion (UNDER auto-HIT). Post-backfill
+    sourced rates sit ~57% / ~29%. Always False until a clean keep is re-proven.
+    Ported from the branch tree 2026-10-24 (tree-collapse decision for this gate).
+    """
+    return False
 
 
 def tennis_standard_games_won_over_eligible(r: dict[str, Any]) -> bool:

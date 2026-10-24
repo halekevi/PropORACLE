@@ -15,9 +15,7 @@ from utils.tennis_keep_gates import (  # noqa: E402
 )
 from utils.ticket_70_pool import (  # noqa: E402
     goblin_70_eligible,
-    standard_flex_kind,
     standard_ticket_eligible,
-    standard_ticket_p,
 )
 
 
@@ -102,15 +100,14 @@ def test_fade_aces_df_standard_demon():
     assert not _clears_list_gate(_ten(pick_type="Demon"))
 
 
-def test_standard_under_aces_df_ungated_keep():
+def test_standard_under_aces_df_faded_after_backfill():
+    """Pre-backfill ~90% was missing→0 inflation; post-backfill is not a keep."""
     aces = _ten(prop="Aces", pick_type="Standard", side="UNDER", cover=0.0)
     df = _ten(prop="Double Faults", pick_type="Standard", side="UNDER", cover=0.0)
     for row in (aces, df):
-        assert tennis_standard_under_serve_eligible(row)
-        assert standard_ticket_eligible(row)
-        assert _clears_list_gate(row)
-        assert standard_flex_kind(row) == "tennis_serve_under"
-        assert standard_ticket_p("tennis_serve_under") == 0.90
+        assert not tennis_standard_under_serve_eligible(row)
+        assert not standard_ticket_eligible(row)
+        assert not _clears_list_gate(row)
     over_aces = _ten(prop="Aces", pick_type="Standard", side="OVER")
     assert not tennis_standard_under_serve_eligible(over_aces)
     assert not standard_ticket_eligible(over_aces)
