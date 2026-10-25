@@ -1,0 +1,50 @@
+{
+  "track": "nfl_demon_rec_floor_shadow",
+  "prereg_date": "2026-10-25",
+  "frozen": true,
+  "amendments_closed": true,
+  "sibling_of": "nfl_demon_volume_shadow",
+  "do_not_edit_sibling": true,
+  "sport": "NFL",
+  "season": "regular",
+  "side": "OVER",
+  "face": {
+    "pick_type_literal": "Demon",
+    "board_requirement": "step1 pick_type column present with >=1 Goblin/Demon row"
+  },
+  "props_in": ["receptions"],
+  "props_default": "out",
+  "role": {
+    "receptions": "team target-share rank <= 2 and share >= 15pp",
+    "rank_max": 2,
+    "min_tgt_share_pp": 15,
+    "share_source": "target_share_L3 else rec_tgt_share"
+  },
+  "gate": {
+    "l5_floor": "min(current_stat_g1..g5 else stat_g1..g5) > line",
+    "l5_games_min": 5,
+    "line_cushion_avg": null
+  },
+  "script": {
+    "required": false,
+    "note": "script lives on the frozen lead-back / target-leader track"
+  },
+  "timing": {
+    "log_before_kickoff": true,
+    "game_date_after": "2026-10-25",
+    "motivating_example_excluded": "Tucker Demon receptions 3.5 on 2026-10-25"
+  },
+  "shape": {
+    "kind": "observe_legs_only",
+    "placed": false,
+    "if_promoted": "3-leg Flex, one player once, volume props only"
+  },
+  "bar": {
+    "decided_min": 100,
+    "wilson_z": 1.96,
+    "breakeven_from": "real scraped Demon N-correct via utils.scraped_quote.is_real_scraped_quote",
+    "never_1st_place": true,
+    "not_on_board_counts": false
+  },
+  "on_clear": "report only; no keep gate, no ticket wiring, user decides"
+}

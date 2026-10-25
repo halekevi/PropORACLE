@@ -6,11 +6,20 @@ is worth building. Nothing here is a keep gate. NFL Goblin-70 stays
 **shadow / hold**. Pre-registered experiments: Standard UNDER tackles
 (`ml/prereg/nfl_standard_under_2026-10-24.md`) and Demon volume
 (`ml/prereg/nfl_demon_volume_2026-10-25.md`, rush-attempt lead backs and
-reception target leaders when favored-or-close). Neither is placed.
+reception target leaders when favored-or-close) and Demon receptions
+L5-floor (`ml/prereg/nfl_demon_rec_floor_2026-10-25.md`, top-2 target
+share, line under L5 min). Neither is placed. The 2026-10-25 6-leg
+Power that finished 5/6 paid nothing; Flex would have paid 5/6.
 
-Sunday 2026-10-25: 1PM games are underway. What’s left is the 4:05 / 4:25
-window and SNF. Treat everything except the tackles shadow as shadow or
-very small.
+Sunday 2026-10-25: a 6-leg Power finished 5/6 (Skattebo rush-att Demon
+and Tucker rec Demon hit; Washington Standard rec-yards missed). 5/6
+Power pays nothing; the same slip as Flex would have paid. Washington
+was the thin leg: Standard yards near the median, no cushion, and the
+morning rebuild had already dropped his solo line. Pre-submit: flag any
+leg whose line sits near L5/projection with no floor. Volume Demons
+(attempts, receptions, targets) can sit under a workhorse’s usual floor;
+yards cannot. The frozen leader gate would not have logged Tucker — that
+is why the rec-floor track exists.
 
 ## 1. Where NFL stands
 
@@ -74,7 +83,8 @@ Logical order on a slate:
 |---|---|---|
 | Face / attach guards | `utils/stat_attach_guard.py`, ledger `face_status` | Analysis drops invalid |
 | Tackles Standard UNDER shadow | `ml/prereg/nfl_standard_under_2026-10-24.md` | Logging only. Sacks held |
-| Demon volume observe | `ml/prereg/nfl_demon_volume_2026-10-25.md` | Rush att / rec Demon OVER; lead back / target leader; favored-or-close; line under recent. Small stake, not a lock |
+| Demon volume observe | `ml/prereg/nfl_demon_volume_2026-10-25.md` | Rush att / rec Demon OVER; lead back / target leader; favored-or-close; line under recent. Frozen. Small stake, not a lock |
+| Demon rec-floor observe | `ml/prereg/nfl_demon_rec_floor_2026-10-25.md` | Receptions Demon OVER; top-2 + share ≥15pp; line below L5 min. Tucker-type, not the leader gate |
 | Snap % cache | `build_nfl_snap_pct_cache.py` → step4c | Rebuilt through week 7; `through_week` required |
 | Route / target / WOPR | `build_nfl_route_participation.py` → `attach_participation` | Week 7; week-freshness is a hard fail |
 | Pre-kick volume log | `utils/nfl_volume_snapshot.py` | Same as NBA minutes; lock per game at kick |

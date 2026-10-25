@@ -26,7 +26,9 @@ The projection calibration test is pre-registered at
 2025) and has not been run. Tackles Standard UNDER is one
 pre-registered shadow. Demon rush-attempt / reception volume is frozen
 (`ml/prereg/nfl_demon_volume_2026-10-25.md`; favored-or-close ≤ +3.5).
-Observe only. Needs a board spread (Odds API top-up) before it can log.
+A second track logs top-2 Demon receptions under the L5 floor
+(`ml/prereg/nfl_demon_rec_floor_2026-10-25.md`). Observe only. The
+leader gate needs a board spread before it can log.
 
 Every other sport uses the same stack
 ([`prop_skeleton.md`](prop_skeleton.md)): opportunity × rate × context

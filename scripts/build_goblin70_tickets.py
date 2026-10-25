@@ -2436,6 +2436,31 @@ def main() -> int:
                 )
         except Exception as exc:
             print(f"WARN: NFL Demon volume observe skipped ({exc})")
+        try:
+            from utils.nfl_demon_rec_floor_shadow import (
+                grade_pending as grade_rec_floor,
+                record_nfl_demon_rec_floor_shadow,
+            )
+
+            grade_rec_floor()
+            nfl_f = record_nfl_demon_rec_floor_shadow(board or [], date=args.date)
+            payload["nfl_demon_rec_floor_shadow"] = {
+                "track": nfl_f["track"],
+                "placed": False,
+                "face_verified_board": nfl_f["face_verified_board"],
+                "n_legs": nfl_f["n_legs"],
+                "skipped": nfl_f["skipped"],
+                "legs": [
+                    f"{l.get('player')} {l.get('prop_canon')} O{l.get('line')} floor={l.get('l5_floor')}"
+                    for l in nfl_f["legs"]
+                ],
+            }
+            print(
+                f"  [observe] NFL Demon rec floor (prereg 2026-10-25): {nfl_f['n_legs']} legs, "
+                f"face_verified={nfl_f['face_verified_board']}, skipped {nfl_f['skipped']}"
+            )
+        except Exception as exc:
+            print(f"WARN: NFL Demon rec-floor observe skipped ({exc})")
     suffix = "_l5eq5" if args.l5_eq_5 else ""
     out = OUT_DIR / f"goblin70_tickets_{args.date}{suffix}.json"
     OUT_DIR.mkdir(parents=True, exist_ok=True)

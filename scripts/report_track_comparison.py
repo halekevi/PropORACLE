@@ -131,6 +131,30 @@ def main() -> None:
             f"  {arm}: legs {rec['legs']}, decided {rec['decided']}, win {wr_s}{band}, "
             f"not on board {rec['not_on_board']}, {status}"
         )
+    from utils.nfl_demon_rec_floor_shadow import (
+        PREREG_DATE as NFLDF_PREREG,
+        summarize as nfldf_summary,
+    )
+
+    nfldf = nfldf_summary()
+    fbar = nfldf["bar"]
+    print(
+        f"\nNFL Demon rec-floor observe (prereg {NFLDF_PREREG}; top-2 target "
+        f"share ≥15pp, Demon receptions OVER under L5 min; not the leader gate): "
+        f"bar {fbar['decided_min']} decided, breakeven {fbar['breakeven']}, "
+        f"{fbar['quote_basis']} (real quotes {fbar['real_quotes_n']})"
+    )
+    for arm, rec in nfldf["arms"].items():
+        wr = rec["hit_rate"]
+        wr_s = f"{wr:.1%}" if wr is not None else "ungraded"
+        band = ""
+        if rec["wilson_low"] is not None:
+            band = f" ({rec['wilson_low']:.1%}–{rec['wilson_high']:.1%})"
+        status = "BAR MET" if rec["bar_met"] else (rec["bar_note"] or "not yet")
+        print(
+            f"  {arm}: legs {rec['legs']}, decided {rec['decided']}, win {wr_s}{band}, "
+            f"not on board {rec['not_on_board']}, {status}"
+        )
     if stamped_slip_count is None:
         print("\nl5_ranked_by_cell: module not on this tree, section skipped")
         return
