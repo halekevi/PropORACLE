@@ -136,6 +136,9 @@ def attach_participation(
     }
     r = r.rename(columns={k: v for k, v in renames.items() if k in r.columns})
 
+    overlap = [c for c in r.columns if c in out.columns and c not in {pcol}]
+    if overlap:
+        out = out.drop(columns=overlap, errors="ignore")
     out["_pnorm"] = out[pcol].map(norm_nfl_player_name)
     out = out.merge(r, left_on="_pnorm", right_on="player_norm", how="left")
     out = out.drop(columns=["_pnorm", "player_norm"], errors="ignore")

@@ -1,0 +1,47 @@
+{
+  "date": "2026-02-19",
+  "verdict": "CLEAN",
+  "graded": 1225,
+  "boxes_full": 32848,
+  "boxes_before": 19089,
+  "dropped_later": 13759,
+  "cols": [
+    {
+      "col": "proj_mu",
+      "n_diff": 0,
+      "max_abs": 0.0,
+      "n_compared": 554
+    },
+    {
+      "col": "proj_edge",
+      "n_diff": 0,
+      "max_abs": 0.0,
+      "n_compared": 554
+    },
+    {
+      "col": "proj_minutes",
+      "n_diff": 0,
+      "max_abs": 0.0,
+      "n_compared": 500
+    },
+    {
+      "col": "proj_hold",
+      "n_diff": 0,
+      "max_abs": 0.0,
+      "n_compared": 554
+    },
+    {
+      "col": "base_rate",
+      "n_diff": 0,
+      "max_abs": 0.0,
+      "n_compared": 1225
+    },
+    {
+      "col": "proj_p_play",
+      "n_diff": 0,
+      "max_abs": 0.0,
+      "n_compared": 554
+    }
+  ],
+  "gate_flips": 0
+}

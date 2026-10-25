@@ -1,0 +1,68 @@
+{
+  "track": "nfl_volume_projection",
+  "prereg_date": "2026-10-25",
+  "frozen": true,
+  "run_before_write": false,
+  "sport": "NFL",
+  "season": "regular",
+  "purpose": "calibration of volume x efficiency x script projection; no PrizePicks lines",
+  "split": {
+    "train": [2021, 2022, 2023, 2024],
+    "test": [2025],
+    "walk_forward": "2025 weeks 5-18, fit through W-1 score W",
+    "leakage": "features for game G use only games strictly before G",
+    "preseason": false,
+    "playoffs": false,
+    "pre_kick_snapshot_required_when_present": true
+  },
+  "features_in": [
+    "snap_pct_L3",
+    "snap_pct_season",
+    "target_share_L3",
+    "target_share_season",
+    "wopr_L3",
+    "route_pct_L3",
+    "carry_share_L3",
+    "closing_spread",
+    "closing_total",
+    "position",
+    "home_away"
+  ],
+  "features_out": [
+    "prizepicks_line",
+    "pick_type",
+    "same_game_box",
+    "post_kick_volume_rebuild"
+  ],
+  "route_pct": {
+    "current": "snap_proxy",
+    "prefer": "pbp_participation or stats_player_week.routes when available"
+  },
+  "targets": {
+    "receiving_yards": [15, 25, 40, 60, 80],
+    "receptions": [2, 4, 6],
+    "rushing_yards": [20, 40, 60],
+    "rush_attempts": [8, 12, 18],
+    "passing_yards": [180, 225, 270],
+    "pass_attempts": [25, 32, 38]
+  },
+  "primary_threshold": {
+    "receiving_yards": 40,
+    "receptions": 4,
+    "rushing_yards": 40,
+    "rush_attempts": 12,
+    "passing_yards": 225,
+    "pass_attempts": 32
+  },
+  "metrics": ["brier", "base_rate_brier", "decile_reliability", "ece", "mean_yards_mae"],
+  "bar": {
+    "brier_below_base_rate": true,
+    "ece_max": 0.05,
+    "top_two_deciles_gap_max": 0.08,
+    "top_two_deciles_n_min": 40,
+    "walk_forward_ece_max": 0.06,
+    "family_miss_does_not_admit_others": true
+  },
+  "on_clear": "report only; no keep gate, no ticket wiring, no live PP edge",
+  "on_fail": "do not retune on 2025; dated amendment then new held-out year"
+}

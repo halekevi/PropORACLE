@@ -29,21 +29,21 @@
     },
     {
       "label": "GATE L5=5 + L10>=8 + D",
-      "n": 41,
+      "n": 40,
       "hits": 19,
-      "hr": 0.4634,
-      "wilson_low": 0.3206,
-      "wilson_high": 0.6125,
+      "hr": 0.475,
+      "wilson_low": 0.3294,
+      "wilson_high": 0.625,
       "quotes": {
         "power2_3.00x": {
           "breakeven": 0.5774,
-          "ev": -0.3557,
+          "ev": -0.3231,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_6.00x": {
           "breakeven": 0.5503,
-          "ev": -0.4029,
+          "ev": -0.357,
           "point_clears": false,
           "wilson_clears": false
         }
@@ -51,21 +51,21 @@
     },
     {
       "label": "scout top-N proj_edge (matched gate volume)",
-      "n": 41,
+      "n": 40,
       "hits": 23,
-      "hr": 0.561,
-      "wilson_low": 0.4104,
-      "wilson_high": 0.7011,
+      "hr": 0.575,
+      "wilson_low": 0.4219,
+      "wilson_high": 0.7149,
       "quotes": {
         "power2_3.00x": {
           "breakeven": 0.5774,
-          "ev": -0.0559,
+          "ev": -0.0081,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_6.00x": {
           "breakeven": 0.5503,
-          "ev": 0.0592,
+          "ev": 0.1407,
           "point_clears": true,
           "wilson_clears": false
         }
@@ -73,121 +73,11 @@
     },
     {
       "label": "scout top-N proj_ev_edge (matched)",
-      "n": 41,
-      "hits": 27,
-      "hr": 0.6585,
-      "wilson_low": 0.5055,
-      "wilson_high": 0.7844,
-      "quotes": {
-        "power2_3.00x": {
-          "breakeven": 0.5774,
-          "ev": 0.301,
-          "point_clears": true,
-          "wilson_clears": false
-        },
-        "power3_6.00x": {
-          "breakeven": 0.5503,
-          "ev": 0.7135,
-          "point_clears": true,
-          "wilson_clears": false
-        }
-      }
-    },
-    {
-      "label": "scout top-3/day proj_edge",
-      "n": 249,
-      "hits": 139,
-      "hr": 0.5582,
-      "wilson_low": 0.4961,
-      "wilson_high": 0.6186,
-      "quotes": {
-        "power2_3.00x": {
-          "breakeven": 0.5774,
-          "ev": -0.0651,
-          "point_clears": false,
-          "wilson_clears": false
-        },
-        "power3_6.00x": {
-          "breakeven": 0.5503,
-          "ev": 0.0438,
-          "point_clears": true,
-          "wilson_clears": false
-        }
-      }
-    },
-    {
-      "label": "gate AND scout",
-      "n": 2,
-      "hits": 1,
-      "hr": 0.5,
-      "wilson_low": 0.0945,
-      "wilson_high": 0.9055,
-      "quotes": {
-        "power2_3.00x": {
-          "breakeven": 0.5774,
-          "ev": -0.25,
-          "point_clears": false,
-          "wilson_clears": false
-        },
-        "power3_6.00x": {
-          "breakeven": 0.5503,
-          "ev": -0.25,
-          "point_clears": false,
-          "wilson_clears": false
-        }
-      }
-    },
-    {
-      "label": "scout minus gate",
-      "n": 39,
-      "hits": 22,
-      "hr": 0.5641,
-      "wilson_low": 0.4098,
-      "wilson_high": 0.707,
-      "quotes": {
-        "power2_3.00x": {
-          "breakeven": 0.5774,
-          "ev": -0.0454,
-          "point_clears": false,
-          "wilson_clears": false
-        },
-        "power3_6.00x": {
-          "breakeven": 0.5503,
-          "ev": 0.077,
-          "point_clears": true,
-          "wilson_clears": false
-        }
-      }
-    },
-    {
-      "label": "GATE high proj_edge half",
-      "n": 21,
-      "hits": 6,
-      "hr": 0.2857,
-      "wilson_low": 0.1381,
-      "wilson_high": 0.4996,
-      "quotes": {
-        "power2_3.00x": {
-          "breakeven": 0.5774,
-          "ev": -0.7551,
-          "point_clears": false,
-          "wilson_clears": false
-        },
-        "power3_6.00x": {
-          "breakeven": 0.5503,
-          "ev": -0.8601,
-          "point_clears": false,
-          "wilson_clears": false
-        }
-      }
-    },
-    {
-      "label": "GATE low proj_edge half",
-      "n": 20,
-      "hits": 13,
+      "n": 40,
+      "hits": 26,
       "hr": 0.65,
-      "wilson_low": 0.4329,
-      "wilson_high": 0.8188,
+      "wilson_low": 0.4951,
+      "wilson_high": 0.7787,
       "quotes": {
         "power2_3.00x": {
           "breakeven": 0.5774,
@@ -202,15 +92,137 @@
           "wilson_clears": false
         }
       }
+    },
+    {
+      "label": "scout top-3/day proj_edge",
+      "n": 249,
+      "hits": 132,
+      "hr": 0.5301,
+      "wilson_low": 0.4681,
+      "wilson_high": 0.5912,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": -0.1569,
+          "point_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": -0.1061,
+          "point_clears": false,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "gate AND scout",
+      "n": 1,
+      "hits": 0,
+      "hr": 0.0,
+      "wilson_low": 0.0,
+      "wilson_high": 0.7935,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": -1.0,
+          "point_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": -1.0,
+          "point_clears": false,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "scout minus gate",
+      "n": 39,
+      "hits": 23,
+      "hr": 0.5897,
+      "wilson_low": 0.4342,
+      "wilson_high": 0.7292,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": 0.0434,
+          "point_clears": true,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": 0.2307,
+          "point_clears": true,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "GATE high proj_edge half",
+      "n": 20,
+      "hits": 8,
+      "hr": 0.4,
+      "wilson_low": 0.2188,
+      "wilson_high": 0.6134,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": -0.52,
+          "point_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": -0.616,
+          "point_clears": false,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "GATE low proj_edge half",
+      "n": 20,
+      "hits": 11,
+      "hr": 0.55,
+      "wilson_low": 0.3421,
+      "wilson_high": 0.7418,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": -0.0925,
+          "point_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": -0.0017,
+          "point_clears": false,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "pre-tip slate_minutes (joined only)",
+      "n": 0
+    },
+    {
+      "label": "GATE + pre-tip slate_minutes",
+      "n": 0
+    },
+    {
+      "label": "scout top-N + pre-tip slate_minutes",
+      "n": 0
     }
   ],
   "gate_by_prop": [],
   "scout_by_prop": [
     {
       "prop": "Points",
-      "n": 27,
-      "hr": 0.5185,
-      "wilson_low": 0.3399,
+      "n": 25,
+      "hr": 0.52,
+      "wilson_low": 0.335,
       "clears_primary": false,
       "clears_observe": false
     }
@@ -219,5 +231,7 @@
   "breakevens": {
     "power2_3.00x": 0.5774,
     "power3_6.00x": 0.5503
-  }
+  },
+  "pre_tip_snapshots": 96,
+  "slate_minutes_used": 0
 }

@@ -1,0 +1,210 @@
+{
+  "window": [
+    "2026-02-19",
+    "2026-10-20"
+  ],
+  "n_dates": 89,
+  "sleeves": [
+    {
+      "label": "ungated Standard OVER",
+      "n": 23509,
+      "hits": 11560,
+      "hr": 0.4917,
+      "wilson_low": 0.4853,
+      "wilson_high": 0.4981,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": -0.2746,
+          "point_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": -0.2866,
+          "point_clears": false,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "GATE L5=5 + L10>=8 + D",
+      "n": 10,
+      "hits": 4,
+      "hr": 0.4,
+      "wilson_low": 0.1682,
+      "wilson_high": 0.6873,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": -0.52,
+          "point_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": -0.616,
+          "point_clears": false,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "scout top-N proj_edge (matched gate volume)",
+      "n": 10,
+      "hits": 8,
+      "hr": 0.8,
+      "wilson_low": 0.4902,
+      "wilson_high": 0.9433,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": 0.92,
+          "point_clears": true,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": 2.072,
+          "point_clears": true,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "scout top-N proj_ev_edge (matched)",
+      "n": 10,
+      "hits": 6,
+      "hr": 0.6,
+      "wilson_low": 0.3127,
+      "wilson_high": 0.8318,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": 0.08,
+          "point_clears": true,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": 0.296,
+          "point_clears": true,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "scout top-3/day proj_edge",
+      "n": 252,
+      "hits": 131,
+      "hr": 0.5198,
+      "wilson_low": 0.4583,
+      "wilson_high": 0.5808,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": -0.1893,
+          "point_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": -0.1571,
+          "point_clears": false,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "gate AND scout",
+      "n": 0
+    },
+    {
+      "label": "scout minus gate",
+      "n": 10,
+      "hits": 8,
+      "hr": 0.8,
+      "wilson_low": 0.4902,
+      "wilson_high": 0.9433,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": 0.92,
+          "point_clears": true,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": 2.072,
+          "point_clears": true,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "GATE high proj_edge half",
+      "n": 5,
+      "hits": 4,
+      "hr": 0.8,
+      "wilson_low": 0.3755,
+      "wilson_high": 0.9638,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": 0.92,
+          "point_clears": true,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": 2.072,
+          "point_clears": true,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "GATE low proj_edge half",
+      "n": 5,
+      "hits": 0,
+      "hr": 0.0,
+      "wilson_low": 0.0,
+      "wilson_high": 0.4345,
+      "quotes": {
+        "power2_3.00x": {
+          "breakeven": 0.5774,
+          "ev": -1.0,
+          "point_clears": false,
+          "wilson_clears": false
+        },
+        "power3_6.00x": {
+          "breakeven": 0.5503,
+          "ev": -1.0,
+          "point_clears": false,
+          "wilson_clears": false
+        }
+      }
+    },
+    {
+      "label": "pre-tip slate_minutes (joined only)",
+      "n": 0
+    },
+    {
+      "label": "GATE + pre-tip slate_minutes",
+      "n": 0
+    },
+    {
+      "label": "scout top-N + pre-tip slate_minutes",
+      "n": 0
+    }
+  ],
+  "gate_by_prop": [],
+  "scout_by_prop": [],
+  "book": "Standard OVER",
+  "breakevens": {
+    "power2_3.00x": 0.5774,
+    "power3_6.00x": 0.5503
+  },
+  "pre_tip_snapshots": 96,
+  "slate_minutes_used": 0
+}

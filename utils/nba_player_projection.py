@@ -204,6 +204,14 @@ class NbaBoxIndex:
         obj._index()
         return obj
 
+    def restrict_before(self, before_date: str) -> "NbaBoxIndex":
+        """Copy with only boxes strictly before ``before_date``. Leakage test / freeze."""
+        before = str(before_date)[:10]
+        if self.df.empty:
+            return self.from_frame(self.df, k_table=self.k_table)
+        sub = self.df.loc[self.df["game_date"].astype(str).str[:10] < before]
+        return self.from_frame(sub, k_table=self.k_table)
+
     def _load(self) -> None:
         if not Path(self.db_path).is_file():
             return

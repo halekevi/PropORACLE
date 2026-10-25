@@ -114,6 +114,9 @@ def _load_depth_cache(path: Path) -> dict:
 
 def main() -> None:
     require_nfl_pipeline_active_or_exit()
+    from utils.nfl_volume_freshness import assert_nfl_volume_week_fresh
+
+    assert_nfl_volume_week_fresh(label="NFL step4c")
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", default="data/outputs/step3_nfl_with_defense.csv")

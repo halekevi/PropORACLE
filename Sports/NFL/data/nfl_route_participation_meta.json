@@ -1,9 +1,9 @@
 {
   "season": 2026,
-  "through_week": 2,
-  "built_at": "2026-09-22T14:22:01.411563+00:00",
-  "players": 413,
-  "game_rows": 768,
+  "through_week": 7,
+  "built_at": "2026-10-25T18:20:23.262381+00:00",
+  "players": 488,
+  "game_rows": 2235,
   "path": "Sports\\NFL\\data\\nfl_route_participation.csv",
   "games_path": "Sports\\NFL\\data\\nfl_route_participation_games.csv",
   "pbp_participation": {
@@ -17,7 +17,8 @@
   ],
   "notes": [
     "WOPR from nflverse stats_player_week (1.5*tgt_share + 0.7*air_share).",
-    "route_pct currently snap_pct proxy for WR/TE/RB until GSIS participation explode.",
+    "route_pct is snap_pct proxy until stats_player_week publishes routes or pbp_participation returns.",
+    "When pbp_participation_{season}.csv exists, overlay_pbp_routes replaces the proxy.",
     "Soft context first \u2014 hard gates behind PARTICIPATION_HARD_GATES_ENABLED.",
     "Name join uses utils.nfl_player_names.norm_nfl_player_name (DJ\u2194D.J., drop III)."
   ]

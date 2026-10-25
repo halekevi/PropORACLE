@@ -111,6 +111,9 @@ def load_stats_week(season: int) -> pd.DataFrame:
         "air_yards_share",
         "wopr",
         "season_type",
+        "routes",
+        "routes_run",
+        "route_participation",
     ]
     header = pd.read_csv(io.BytesIO(raw), nrows=0)
     cols = [c for c in usecols if c in header.columns]
@@ -132,6 +135,57 @@ def load_stats_week(season: int) -> pd.DataFrame:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")
     return df
+
+
+def overlay_pbp_routes(games: pd.DataFrame, season: int) -> pd.DataFrame:
+    """Replace snap-proxy route % with pbp_participation when the file exists.
+
+    Counts offense-player appearances per week as routes. If the schema is
+    unexpected, leave snap_proxy in place rather than fail the build.
+    """
+    url = f"{NFLVERSE}/pbp_participation/pbp_participation_{season}.csv"
+    try:
+        raw = _get_bytes(url)
+    except Exception as exc:
+        print(f"  pbp_participation download failed ({exc}); keeping snap_proxy")
+        return games
+    try:
+        part = pd.read_csv(io.BytesIO(raw))
+    except Exception as exc:
+        print(f"  pbp_participation parse failed ({exc}); keeping snap_proxy")
+        return games
+    id_col = next((c for c in ("gsis_id", "player_id", "nfl_id") if c in part.columns), "")
+    route_col = next(
+        (c for c in ("route", "routes", "was_running_route", "offense") if c in part.columns),
+        "",
+    )
+    week_col = "week" if "week" in part.columns else ""
+    if not id_col or not week_col:
+        print("  pbp_participation missing player/week columns; keeping snap_proxy")
+        return games
+    work = part.copy()
+    work[week_col] = pd.to_numeric(work[week_col], errors="coerce")
+    if route_col:
+        flag = pd.to_numeric(work[route_col], errors="coerce")
+        if flag.notna().any():
+            work = work.loc[flag.fillna(0).ne(0)]
+    counts = (
+        work.dropna(subset=[id_col, week_col])
+        .groupby([id_col, week_col], as_index=False)
+        .size()
+        .rename(columns={"size": "routes_pbp", id_col: "gsis_id", week_col: "week"})
+    )
+    out = games.merge(counts, on=["gsis_id", "week"], how="left")
+    snaps = pd.to_numeric(out.get("offense_snaps"), errors="coerce")
+    routes = pd.to_numeric(out.get("routes_pbp"), errors="coerce")
+    use = routes.notna() & snaps.notna() & (snaps > 0)
+    if not bool(use.any()):
+        print("  pbp_participation joined 0 route rows; keeping snap_proxy")
+        return games
+    out.loc[use, "route_pct"] = (100.0 * routes / snaps).clip(upper=100.0)
+    out.loc[use, "route_pct_source"] = "pbp_participation"
+    print(f"  pbp_participation route overlay rows={int(use.sum())}")
+    return out.drop(columns=["routes_pbp"], errors="ignore")
 
 
 def probe_participation(season: int) -> dict[str, Any]:
@@ -197,6 +251,9 @@ def build_game_rows(
             "target_share",
             "air_yards_share",
             "wopr",
+            "routes",
+            "routes_run",
+            "route_participation",
         )
         if c in t.columns
     ]
@@ -212,9 +269,20 @@ def build_game_rows(
         merged["player"] = merged["player"].fillna(merged["player_display_name"])
     merged["gsis_id"] = merged["player_id"] if "player_id" in merged.columns else pd.NA
     merged["season"] = season
-    # Route % proxy until GSIS participation explode lands for the season.
+    # Prefer true routes when nflverse publishes them. Snap % is the proxy.
     merged["route_pct"] = merged["snap_pct"]
     merged["route_pct_source"] = "snap_proxy"
+    if "route_participation" in merged.columns:
+        rp = _to_pct(pd.to_numeric(merged["route_participation"], errors="coerce"))
+        use = rp.notna()
+        merged.loc[use, "route_pct"] = rp[use]
+        merged.loc[use, "route_pct_source"] = "stats_route_participation"
+    elif "routes" in merged.columns or "routes_run" in merged.columns:
+        routes = pd.to_numeric(merged.get("routes", merged.get("routes_run")), errors="coerce")
+        snaps = pd.to_numeric(merged.get("offense_snaps"), errors="coerce")
+        use = routes.notna() & snaps.notna() & (snaps > 0)
+        merged.loc[use, "route_pct"] = (100.0 * routes / snaps).clip(upper=100.0)
+        merged.loc[use, "route_pct_source"] = "stats_routes"
     merged["wopr"] = pd.to_numeric(merged.get("wopr"), errors="coerce")
     merged["target_share"] = pd.to_numeric(merged.get("target_share"), errors="coerce")
     merged["air_yards_share"] = pd.to_numeric(merged.get("air_yards_share"), errors="coerce")
@@ -293,7 +361,12 @@ def main() -> int:
     print(f"  pbp_participation available={part_meta.get('available')}")
 
     games = build_game_rows(snaps, stats, season=season, through_week=through)
+    if part_meta.get("available"):
+        print("  pbp_participation present — overlaying true route %")
+        games = overlay_pbp_routes(games, season)
     print(f"  game skill rows={len(games)}")
+    if not games.empty and "route_pct_source" in games.columns:
+        print("  route_pct_source " + games["route_pct_source"].astype(str).value_counts().to_string())
     players = aggregate_players(games)
     print(f"  players={len(players)}")
 
@@ -348,9 +421,10 @@ def main() -> int:
     games[game_cols].to_csv(OUT_GAMES, index=False)
     players.to_csv(OUT, index=False)
 
+    max_week = int(pd.to_numeric(games["week"], errors="coerce").max()) if not games.empty else 0
     meta: dict[str, Any] = {
         "season": season,
-        "through_week": through,
+        "through_week": int(through or max_week),
         "built_at": datetime.now(timezone.utc).isoformat(),
         "players": int(len(players)),
         "game_rows": int(len(games)),
@@ -363,7 +437,8 @@ def main() -> int:
         ],
         "notes": [
             "WOPR from nflverse stats_player_week (1.5*tgt_share + 0.7*air_share).",
-            "route_pct currently snap_pct proxy for WR/TE/RB until GSIS participation explode.",
+            "route_pct is snap_pct proxy until stats_player_week publishes routes or pbp_participation returns.",
+            "When pbp_participation_{season}.csv exists, overlay_pbp_routes replaces the proxy.",
             "Soft context first — hard gates behind PARTICIPATION_HARD_GATES_ENABLED.",
             "Name join uses utils.nfl_player_names.norm_nfl_player_name (DJ↔D.J., drop III).",
         ],

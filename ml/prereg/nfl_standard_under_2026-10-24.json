@@ -11,8 +11,18 @@
     "source": "Sports/NFL/scripts/step1_fetch_prizepicks_nfl.py (live tree, pick_type persisted from 2026-10-24)"
   },
   "props_in": ["sacks", "tackles"],
-  "props_out_explicit": ["passcompletions"],
+  "props_in_logged": ["tackles"],
+  "props_out_explicit": ["passcompletions", "sacks"],
   "props_default": "out",
+  "amendments": [
+    {
+      "date": "2026-10-25",
+      "item": "sacks",
+      "action": "exclude_until_stat_attach_verified",
+      "readmit_when": "sacks history is non-zero for starters and stat_status is OK",
+      "note": "Original props_in stays sacks+tackles. Logged set is tackles only until attach is real. Not a new registration."
+    }
+  ],
   "gate": {
     "l10_under_min": 8,
     "cover_dir_min": 1.0,

@@ -1,39 +1,42 @@
 # NBA Goblin OVER — generic gate vs proj_edge scout at scraped quotes
 
-Window 2026-02-19 → 2026-10-20 (89 slates). Walk-forward box + cell priors; hold = thin player or thin cell. Scout candidate pool = unheld legs only.
+Window 2026-02-19 → 2026-10-20 (89 slates). Walk-forward box + cell priors; hold = thin player or thin cell. Scout candidate pool = unheld legs only. `slate_minutes` rescales `proj_mu` only on a pre-tip snapshot (0 joined / 96 stored keys). Post-tip confirmed is never an input.
 
-Breakevens: Power-2 1.40x 84.5% · Power-3 1.65x 84.6% · 2.00x 79.4% · 2.50x 73.7%.
+Breakevens: power2_1.40x 84.5% · power3_1.65x 84.6% · power3_2.00x 79.4% · power3_2.50x 73.7%.
 
-| sleeve | HR | n | Wilson lo | EV@1.40x | EV@1.65x | EV@2.00x | EV@2.50x | Wilson clears 1.65x |
+| sleeve | HR | n | Wilson lo | EV@1.4x | EV@1.65x | EV@2.0x | EV@2.5x | Wilson clears power3_1.65x |
 |---|---|---|---|---|---|---|---|---|
 | ungated Goblin OVER | 64.9% | 67952 | 0.6451 | -0.411 | -0.5497 | -0.4542 | -0.3177 | no |
-| GATE L5=5 + L10>=8 + D | 67.0% | 533 | 0.6288 | -0.3719 | -0.5042 | -0.399 | -0.2488 | no |
-| scout top-N proj_edge (matched gate volume) | 76.3% | 523 | 0.7246 | -0.1852 | -0.2673 | -0.1119 | 0.1101 | no |
-| scout top-N proj_ev_edge (matched) | 78.0% | 523 | 0.7426 | -0.148 | -0.2166 | -0.0505 | 0.1869 | no |
-| scout top-3/day proj_edge | 69.7% | 264 | 0.639 | -0.3199 | -0.4414 | -0.3229 | -0.1536 | no |
-| gate AND scout | 78.1% | 32 | 0.6124 | -0.1455 | -0.2132 | -0.0463 | 0.1921 | no |
-| scout minus gate | 76.2% | 491 | 0.7221 | -0.1877 | -0.2708 | -0.1161 | 0.1049 | no |
-| GATE high proj_edge half | 68.5% | 267 | 0.6274 | -0.3423 | -0.4687 | -0.3561 | -0.1951 | no |
-| GATE low proj_edge half | 65.4% | 266 | 0.5951 | -0.4009 | -0.5382 | -0.4402 | -0.3003 | no |
+| GATE L5=5 + L10>=8 + D | 66.9% | 519 | 0.627 | -0.3742 | -0.5069 | -0.4023 | -0.2528 | no |
+| scout top-N proj_edge (matched gate volume) | 76.4% | 509 | 0.7255 | -0.1823 | -0.2635 | -0.1073 | 0.1159 | no |
+| scout top-N proj_ev_edge (matched) | 78.6% | 509 | 0.7481 | -0.1354 | -0.1992 | -0.0294 | 0.2133 | no |
+| scout top-3/day proj_edge | 68.6% | 264 | 0.6273 | -0.3419 | -0.4682 | -0.3555 | -0.1943 | no |
+| gate AND scout | 78.6% | 28 | 0.6046 | -0.1357 | -0.1997 | -0.0299 | 0.2126 | no |
+| scout minus gate | 76.3% | 481 | 0.723 | -0.185 | -0.2671 | -0.1116 | 0.1105 | no |
+| GATE high proj_edge half | 68.8% | 260 | 0.6298 | -0.3364 | -0.4616 | -0.3474 | -0.1842 | no |
+| GATE low proj_edge half | 64.9% | 259 | 0.5887 | -0.411 | -0.5497 | -0.4542 | -0.3177 | no |
+| pre-tip slate_minutes (joined only) | — | 0 | — | — | — | — | — | no |
+| GATE + pre-tip slate_minutes | — | 0 | — | — | — | — | — | no |
+| scout top-N + pre-tip slate_minutes | — | 0 | — | — | — | — | — | no |
 
 ## GATE by prop (n>=20)
 
-| prop | HR | n | Wilson lo | clears 1.65x | clears 2.00x |
+| prop | HR | n | Wilson lo | clears power2_1.40x | clears power3_1.65x |
 |---|---|---|---|---|---|
-| Rebounds | 69.8% | 136 | 0.6168 | no | no |
-| 3-PT Made | 70.0% | 70 | 0.5846 | no | no |
-| Assists | 68.6% | 86 | 0.5818 | no | no |
-| Points | 64.7% | 173 | 0.5737 | no | no |
-| Steals | 64.4% | 59 | 0.5166 | no | no |
+| Rebounds | 69.9% | 133 | 0.6166 | no | no |
+| Assists | 70.7% | 92 | 0.6067 | no | no |
+| 3-PT Made | 69.7% | 66 | 0.5778 | no | no |
+| Points | 62.7% | 161 | 0.5505 | no | no |
+| Steals | 65.5% | 58 | 0.5267 | no | no |
 
 ## Scout top-N by prop (n>=20)
 
-| prop | HR | n | Wilson lo | clears 1.65x | clears 2.00x |
+| prop | HR | n | Wilson lo | clears power2_1.40x | clears power3_1.65x |
 |---|---|---|---|---|---|
-| Rebounds | 81.1% | 169 | 0.7449 | no | no |
-| Points | 78.1% | 128 | 0.702 | no | no |
-| Assists | 76.6% | 107 | 0.6778 | no | no |
-| 3-PT Made | 70.1% | 87 | 0.5981 | no | no |
+| Rebounds | 80.7% | 166 | 0.7405 | no | no |
+| Points | 77.5% | 120 | 0.6924 | no | no |
+| Assists | 77.4% | 106 | 0.6852 | no | no |
+| 3-PT Made | 71.8% | 85 | 0.6142 | no | no |
 | Turnovers | 57.7% | 26 | 0.3895 | no | no |
 
-NBA Goblin stays shadow until a sleeve's Wilson lower bound clears the scraped quote.
+NBA Goblin OVER stays shadow until a sleeve's Wilson lower bound clears the scraped quote.

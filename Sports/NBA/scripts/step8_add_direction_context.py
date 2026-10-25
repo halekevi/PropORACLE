@@ -286,6 +286,46 @@ def build_clean_xlsx(
     except Exception as exc:
         print(f"⚠️  step8 minutes/role attach skipped: {exc}")
 
+    try:
+        from utils.nba_slate_minutes import attach_slate_minutes_columns
+
+        df2 = attach_slate_minutes_columns(df2, as_of=as_of)
+        vc = (
+            df2["tonight_starter"].astype(str).value_counts().to_dict()
+            if "tonight_starter" in df2.columns
+            else {}
+        )
+        print(f"→ step8 slate minutes/starters attached {vc}")
+        try:
+            _scripts = _repo / "scripts"
+            if _scripts.is_dir() and str(_scripts) not in sys.path:
+                sys.path.insert(0, str(_scripts))
+            from score_nba_stat_projections import score_and_freeze_live_board
+
+            pre = True
+            if "slate_pre_tip" in df2.columns:
+                pre = bool(pd.Series(df2["slate_pre_tip"]).fillna(False).astype(bool).any())
+            _, n_fr = score_and_freeze_live_board(df2, as_of, pre_tip=pre)
+            print(f"→ step8 pre-tip proj_edge freeze rows={n_fr}")
+        except Exception as exc:
+            print(f"⚠️  step8 proj_edge freeze skipped: {exc}")
+    except Exception as exc:
+        print(f"⚠️  step8 slate minutes attach skipped: {exc}")
+
+    # primary_stats (team top-3 reb/ast/blk/2PA/3PA/FTA ∪ position) + role_fit
+    try:
+        from utils.nba_role_fit import attach_role_fit_columns
+
+        df2 = attach_role_fit_columns(df2, as_of=as_of)
+        vc = (
+            df2["role_fit"].astype(str).value_counts().to_dict()
+            if "role_fit" in df2.columns
+            else {}
+        )
+        print(f"→ step8 role_fit attached {vc}")
+    except Exception as exc:
+        print(f"⚠️  step8 role_fit attach skipped: {exc}")
+
     if "abs_edge" not in df2.columns and "edge" in df2.columns:
         df2["abs_edge"] = pd.to_numeric(df2["edge"], errors="coerce").abs()
 
@@ -484,6 +524,10 @@ def build_clean_xlsx(
         'prop_type', 'pick_type', 'line', 'standard_line',
         # Minutes / role — next to player-prop-line (not buried at col 95)
         'minutes_tier', 'starter_flag', 'starter_flag_preseason', 'clean_minutes',
+        'tonight_starter', 'tonight_starter_source', 'player_injury_status',
+        'slate_minutes', 'slate_minutes_lo', 'slate_minutes_hi',
+        'minutes_vs_role', 'slate_minutes_note',
+        'slate_as_of', 'slate_pre_tip', 'game_window', 'tip_utc',
         'team_stat_rank', 'team_stat_n',
         'min_last5_avg', 'min_preseason_avg', 'min_season_avg', 'min_per_game',
         'l5_minutes_gap', 'role_mpg', 'minutes_tier_l5', 'minutes_flag',
@@ -500,6 +544,8 @@ def build_clean_xlsx(
         'line_hit_rate_over_ou_5',
         'stat_last5_avg', 'stat_season_avg',
         'last5_over', 'last5_under',
+        'l5_has_zero', 'l5_skipped_dnp', 'l5_zero_or_dnp',
+        'primary_stats', 'primary_source', 'position_bucket', 'role_fit',
         'l10_over', 'l10_under', 'l10_over_pct', 'l10_streak',
         'n_legs_sample',
         'OVERALL_DEF_RANK', 'DEF_TIER',
@@ -581,11 +627,30 @@ def build_clean_xlsx(
         'line_hit_rate_over_ou_5': 'Hit Rate (5g)',
         'stat_last5_avg': 'Last 5 Avg', 'stat_season_avg': 'Season Avg',
         'last5_over': 'L5 Over', 'last5_under': 'L5 Under',
+        'l5_has_zero': 'L5 Has Zero',
+        'l5_skipped_dnp': 'L5 Skipped DNP',
+        'l5_zero_or_dnp': 'L5 Zero Or DNP',
+        'primary_stats': 'Primary Stats',
+        'primary_source': 'Primary Source',
+        'position_bucket': 'Position Bucket',
+        'role_fit': 'Role Fit',
         'n_legs_sample': 'N Legs Sample',
         'OVERALL_DEF_RANK': 'Def Rank', 'DEF_TIER': 'Def Tier',
         'minutes_tier': 'Min Tier',
         'starter_flag': 'Starter',
         'starter_flag_preseason': 'Starter Pre',
+        'tonight_starter': 'Tonight Starter',
+        'tonight_starter_source': 'Tonight Source',
+        'player_injury_status': 'Injury Status',
+        'slate_minutes': 'Slate Min',
+        'slate_minutes_lo': 'Slate Min Lo',
+        'slate_minutes_hi': 'Slate Min Hi',
+        'minutes_vs_role': 'Min vs Role',
+        'slate_minutes_note': 'Slate Min Note',
+        'slate_as_of': 'Slate As Of',
+        'slate_pre_tip': 'Slate Pre Tip',
+        'game_window': 'Game Window',
+        'tip_utc': 'Tip UTC',
         'clean_minutes': 'Clean Minutes',
         'team_stat_rank': 'Team Rank',
         'team_stat_n': 'Team N',

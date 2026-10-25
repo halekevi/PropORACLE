@@ -12,6 +12,13 @@ _daily_topn has no candidates. This passes lookup= and index= like the
 backtest does.
 
   py -3.14 -m ml.nba_scout_quotes [--from 2026-02-19] [--to 2026-10-22]
+
+Do not re-run before 2026-11-20. The Oct 25 pass closed the NBA
+candidate. Re-runs before a few weeks of graded pre-tip snapshots
+are a multiple-comparisons trap. Next pass joins slate_minutes only
+where a pre-tip snapshot exists, and reads frozen proj_edge rankings
+from data/cache/nba_proj_edge/ so later box ingests cannot rewrite
+February history.
 """
 from __future__ import annotations
 
@@ -38,8 +45,10 @@ from score_nba_stat_projections import (  # noqa: E402
     attach_nba_projections,
     wilson_interval,
 )
-from utils.nba_player_projection import DEFAULT_DB, NbaBoxIndex  # noqa: E402
 from utils.expanding_marginals import walk_forward_lookups_by_date  # noqa: E402
+from utils.nba_player_projection import DEFAULT_DB, NbaBoxIndex  # noqa: E402
+from utils.nba_proj_edge_snapshot import apply_frozen_proj, frozen_exists, load_frozen_day  # noqa: E402
+from utils.nba_slate_minutes import apply_pre_tip_slate_minutes, load_pre_tip_lookup  # noqa: E402
 
 OUT_DIR = _REPO / "data" / "reports" / "ml_discover_gates"
 
@@ -175,20 +184,30 @@ def main(argv: list[str] | None = None) -> int:
     lookups = walk_forward_lookups_by_date(graded.loc[sport.eq("NBA")])
     dates = sorted({str(x)[:10] for x in nba["file_date"].astype(str)})
     parts = []
+    n_frozen = 0
     for i, d in enumerate(dates):
         day = nba.loc[nba["file_date"].astype(str).str[:10].eq(d)].copy()
-        scored = attach_nba_projections(
-            day, as_of=d, db_path=Path(args.db), index=index, lookup=lookups.get(d, {})
-        )
-        scored["_gate"] = _attach_gate(scored, index, d)
+        if frozen_exists(d):
+            scored = apply_frozen_proj(day, load_frozen_day(d))
+            n_frozen += 1
+        else:
+            scored = attach_nba_projections(
+                day, as_of=d, db_path=Path(args.db), index=index, lookup=lookups.get(d, {})
+            )
+            scored["_gate"] = _attach_gate(scored, index, d)
         parts.append(scored)
         if (i + 1) % 10 == 0 or i == len(dates) - 1:
             print(f"[scout] scored {i + 1}/{len(dates)} ({d})")
+    print(f"[scout] frozen proj_edge dates={n_frozen}/{len(dates)}")
     out = pd.concat(parts, ignore_index=True)
+    pre_tip = load_pre_tip_lookup()
+    out = apply_pre_tip_slate_minutes(out, pre_tip)
     pt = out["pick_type"].map(_pt_label) if "pick_type" in out.columns else pd.Series("Standard", index=out.index)
     direction = out["direction"].astype(str).str.upper() if "direction" in out.columns else pd.Series("", index=out.index)
     book_mask = pt.eq(book_pick) & direction.eq(book_dir)
     out = out.loc[book_mask].copy()
+    used_n = int(pd.to_numeric(out.get("slate_minutes_used"), errors="coerce").fillna(0).eq(1).sum())
+    print(f"[scout] pre-tip slate_minutes joined={used_n} of {len(out)} {BOOK} (post-tip snapshots ignored)")
     hold = pd.to_numeric(out["proj_hold"], errors="coerce").fillna(1.0)
     y = _hitmiss_binary(out)
     print(
@@ -228,6 +247,10 @@ def main(argv: list[str] | None = None) -> int:
         hi_df = g2.loc[g2["_edge"] >= med]
         lo_df = g2.loc[g2["_edge"] < med]
 
+    used_mask = pd.to_numeric(out.get("slate_minutes_used"), errors="coerce").fillna(0).eq(1)
+    used_df = out.loc[used_mask].copy()
+    used_gate = gate_df.loc[pd.to_numeric(gate_df.get("slate_minutes_used"), errors="coerce").fillna(0).eq(1)] if not gate_df.empty else pd.DataFrame()
+    used_top = top_df.loc[pd.to_numeric(top_df.get("slate_minutes_used"), errors="coerce").fillna(0).eq(1)] if not top_df.empty else pd.DataFrame()
     sleeves = [
         _sleeve(out, f"ungated {BOOK}"),
         _sleeve(gate_df, "GATE L5=5 + L10>=8 + D"),
@@ -238,6 +261,9 @@ def main(argv: list[str] | None = None) -> int:
         _sleeve(only_df, "scout minus gate"),
         _sleeve(hi_df, "GATE high proj_edge half"),
         _sleeve(lo_df, "GATE low proj_edge half"),
+        _sleeve(used_df, "pre-tip slate_minutes (joined only)"),
+        _sleeve(used_gate, "GATE + pre-tip slate_minutes"),
+        _sleeve(used_top, "scout top-N + pre-tip slate_minutes"),
     ]
     by_prop_gate = _by_prop(gate_df)
     by_prop_scout = _by_prop(top_df)
@@ -250,6 +276,8 @@ def main(argv: list[str] | None = None) -> int:
         "scout_by_prop": by_prop_scout,
         "book": BOOK,
         "breakevens": {name: round(breakeven(l, x), 4) for name, l, x in QUOTES},
+        "pre_tip_snapshots": len(pre_tip),
+        "slate_minutes_used": used_n,
     }
     slug = BOOK.lower().replace(" ", "_")
     stem = "nba_scout_quotes" if BOOK == "Goblin OVER" else f"nba_scout_quotes_{slug}"
@@ -264,7 +292,9 @@ def main(argv: list[str] | None = None) -> int:
         f"# NBA {BOOK} — generic gate vs proj_edge scout at scraped quotes",
         "",
         f"Window {dates[0]} → {dates[-1]} ({len(dates)} slates). Walk-forward box + cell priors; "
-        "hold = thin player or thin cell. Scout candidate pool = unheld legs only.",
+        "hold = thin player or thin cell. Scout candidate pool = unheld legs only. "
+        f"`slate_minutes` rescales `proj_mu` only on a pre-tip snapshot "
+        f"({used_n} joined / {len(pre_tip)} stored keys). Post-tip confirmed is never an input.",
         "",
         f"Breakevens: {be_txt}.",
         "",

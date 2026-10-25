@@ -12,6 +12,40 @@ This package is **not** the ticket-probability model in `docs/ml/` and
 NBA Goblin-70 stays **shadow / hold** until a slice clears the Wilson lower
 bound at a scraped quote on dates the search has not seen.
 
+NBA factor stack and quote gaps live in [`nba_prop_assessment.md`](nba_prop_assessment.md).
+Oct 25 closed the NBA scout candidate. Next scout **2026-11-20** (pre-tip
+`slate_minutes` only). Standard stay **3-pick Power at 6x or 2-pick at 3x — no 4–6 leg slips**.
+
+NFL stands in [`nfl_prop_assessment.md`](nfl_prop_assessment.md). Historical
+keep cells are not a prior (face labels defaulted until 10-23). First build
+is nflverse snap + target share. Volume-week freshness is a hard fail.
+Pre-kick snapshots go in `Sports/NFL/data/cache/nfl_volume_snapshots.jsonl`.
+The projection calibration test is pre-registered at
+`ml/prereg/nfl_volume_projection_2026-10-25.md` (train 2021–2024, test
+2025) and has not been run. Tackles Standard UNDER is the only
+pre-registered shadow.
+
+Every other sport uses the same stack
+([`prop_skeleton.md`](prop_skeleton.md)): opportunity × rate × context
+→ distribution → calibrate → N-correct quote. Thin adapter per sport.
+
+| Note | Status | First step |
+|---|---|---|
+| [`nba_prop_assessment.md`](nba_prop_assessment.md) | Scout closed Oct 25. Next 2026-11-20 | Pre-tip minutes only |
+| [`nfl_prop_assessment.md`](nfl_prop_assessment.md) | Volume through week 7. G70 shadow | Calibration prereg; do not run yet |
+| [`nhl_prop_assessment.md`](nhl_prop_assessment.md) | In season. Mixer held. No keep file | Daily Faceoff goalies, totals, ESPN vs NHL API |
+| [`soccer_prop_assessment.md`](soccer_prop_assessment.md) | Keep cells unverified | DNP voiding in grading and L5 |
+| [`tennis_prop_assessment.md`](tennis_prop_assessment.md) | Goblin verified. Total Games held | Replace stale Sackmann; ML → Total Games |
+| [`cfb_prop_assessment.md`](cfb_prop_assessment.md) | Weekly. CFBD key unset | Set `CFBD_API_KEY`; red-zone for Player TDs |
+| [`cbb_prop_assessment.md`](cbb_prop_assessment.md) | Resume 2026-11-01 | Dry run this week: `pick_type`, smoke, faces, em-dash |
+| [`mlb_prop_assessment.md`](mlb_prop_assessment.md) | Series, then offseason. Keep gates live | Winter Statcast projection + calibration |
+| [`wnba_prop_assessment.md`](wnba_prop_assessment.md) | Off until May | Port NBA minutes / `proj_mu` |
+| [`golf_prop_assessment.md`](golf_prop_assessment.md) | Light. Course-blind | Later (DataGolf) |
+| [`period_prop_assessment.md`](period_prop_assessment.md) | All held | After full-game layers |
+
+Priority: CBB dry run → soccer DNP → NHL inputs → tennis feed → CFBD
+key → MLB/WNBA winter → golf / periods.
+
 ## Tools
 
 | Tool | Role |

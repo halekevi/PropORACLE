@@ -146,7 +146,13 @@ def download_snap_counts(season: int, *, session: requests.Session | None = None
     return pd.read_csv(io.BytesIO(r.content), compression="gzip")
 
 
-def build_cache_payload(season: int, players: dict[str, dict[str, Any]], *, source: str) -> dict[str, Any]:
+def build_cache_payload(
+    season: int,
+    players: dict[str, dict[str, Any]],
+    *,
+    source: str,
+    through_week: int = 0,
+) -> dict[str, Any]:
     # Unique player records (name keys only for meta count)
     name_keys = [k for k, v in players.items() if k == _norm_name(v.get("player"))]
     return {
@@ -155,6 +161,7 @@ def build_cache_payload(season: int, players: dict[str, dict[str, Any]], *, sour
             "source": source,
             "built_at": datetime.now(timezone.utc).isoformat(),
             "players": len(name_keys),
+            "through_week": int(through_week),
         },
         "players": players,
     }
@@ -188,7 +195,13 @@ def main(argv: list[str] | None = None) -> int:
     print(f"[nfl snap cache] loaded season={season} rows={len(df)} from {source}")
 
     players = aggregate_snap_cache(df)
-    payload = build_cache_payload(season, players, source=source)
+    through = 0
+    if "week" in df.columns:
+        wk = pd.to_numeric(df["week"], errors="coerce")
+        if wk.notna().any():
+            through = int(wk.max())
+    payload = build_cache_payload(season, players, source=source, through_week=through)
+    print(f"[nfl snap cache] through_week={through}")
     n = payload["meta"]["players"]
     print(f"[nfl snap cache] players={n} keys={len(players)}")
 

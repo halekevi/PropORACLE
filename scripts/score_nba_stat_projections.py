@@ -272,6 +272,48 @@ def attach_nba_projections(
     return out
 
 
+def score_and_freeze_live_board(
+    df: pd.DataFrame,
+    slate: object,
+    *,
+    pre_tip: bool,
+    db_path: Path | None = None,
+    templates: Path | None = None,
+) -> tuple[pd.DataFrame, int]:
+    """Score a live NBA board and merge proj_edge for games that have not tipped."""
+    from utils.nba_proj_edge_snapshot import row_still_pre_tip, write_pre_tip_frozen_day
+    from utils.nba_slate_minutes import apply_pre_tip_slate_minutes, load_pre_tip_lookup
+
+    as_of = str(slate)[:10]
+    if len(as_of) != 10:
+        return df, 0
+    out = df.copy()
+    if "file_date" not in out.columns:
+        out["file_date"] = as_of
+    still_open = any(row_still_pre_tip(row, fallback=pre_tip) for _, row in out.iterrows())
+    if not still_open:
+        return out, 0
+    graded = pd.DataFrame()
+    tdir = Path(templates) if templates else _ROOT / "ui_runner" / "templates"
+    if tdir.is_dir():
+        try:
+            graded = _load_graded(tdir)
+        except Exception:
+            graded = pd.DataFrame()
+    lookup: dict = {}
+    if not graded.empty and "sport" in graded.columns:
+        sport = graded["sport"].astype(str).str.strip().str.upper()
+        lookup = walk_forward_lookups_by_date(graded.loc[sport.eq("NBA")]).get(as_of, {})
+    index = NbaBoxIndex(db_path or DEFAULT_DB)
+    scored = attach_nba_projections(
+        out, as_of=as_of, db_path=Path(db_path or DEFAULT_DB), index=index, lookup=lookup
+    )
+    scored["_gate"] = _attach_gate(scored, index, as_of)
+    scored = apply_pre_tip_slate_minutes(scored, load_pre_tip_lookup())
+    n = write_pre_tip_frozen_day(scored, as_of, pre_tip=pre_tip)
+    return scored, n
+
+
 def _print_slate_summary(df: pd.DataFrame) -> None:
     scored = df["proj_p_play"].notna() if "proj_p_play" in df.columns else pd.Series(False, index=df.index)
     n = int(scored.sum())

@@ -49,6 +49,12 @@ try {
     Write-Host "  [warn] context freshness check skipped" -ForegroundColor DarkYellow
 }
 
+# Hard: snap / target cache must cover the last completed NFL week.
+& py -3.14 -c "from utils.nfl_volume_freshness import assert_nfl_volume_week_fresh; assert_nfl_volume_week_fresh(label='NFL pipeline')"
+if ($LASTEXITCODE -ne 0) {
+    throw "NFL volume cache is behind the last completed week. Rebuild snap + route before continuing."
+}
+
 function Run-Step {
     param(
         [string]$Label,

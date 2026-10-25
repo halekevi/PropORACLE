@@ -41,33 +41,33 @@
     },
     {
       "label": "GATE L5=5 + L10>=8 + D",
-      "n": 533,
-      "hits": 357,
-      "hr": 0.6698,
-      "wilson_low": 0.6288,
-      "wilson_high": 0.7084,
+      "n": 519,
+      "hits": 347,
+      "hr": 0.6686,
+      "wilson_low": 0.627,
+      "wilson_high": 0.7077,
       "quotes": {
         "power2_1.40x": {
           "breakeven": 0.8452,
-          "ev": -0.3719,
+          "ev": -0.3742,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_1.65x": {
           "breakeven": 0.8463,
-          "ev": -0.5042,
+          "ev": -0.5069,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.00x": {
           "breakeven": 0.7937,
-          "ev": -0.399,
+          "ev": -0.4023,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.50x": {
           "breakeven": 0.7368,
-          "ev": -0.2488,
+          "ev": -0.2528,
           "point_clears": false,
           "wilson_clears": false
         }
@@ -75,33 +75,33 @@
     },
     {
       "label": "scout top-N proj_edge (matched gate volume)",
-      "n": 523,
-      "hits": 399,
-      "hr": 0.7629,
-      "wilson_low": 0.7246,
-      "wilson_high": 0.7974,
+      "n": 509,
+      "hits": 389,
+      "hr": 0.7642,
+      "wilson_low": 0.7255,
+      "wilson_high": 0.7991,
       "quotes": {
         "power2_1.40x": {
           "breakeven": 0.8452,
-          "ev": -0.1852,
+          "ev": -0.1823,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_1.65x": {
           "breakeven": 0.8463,
-          "ev": -0.2673,
+          "ev": -0.2635,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.00x": {
           "breakeven": 0.7937,
-          "ev": -0.1119,
+          "ev": -0.1073,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.50x": {
           "breakeven": 0.7368,
-          "ev": 0.1101,
+          "ev": 0.1159,
           "point_clears": true,
           "wilson_clears": false
         }
@@ -109,33 +109,33 @@
     },
     {
       "label": "scout top-N proj_ev_edge (matched)",
-      "n": 523,
-      "hits": 408,
-      "hr": 0.7801,
-      "wilson_low": 0.7426,
-      "wilson_high": 0.8135,
+      "n": 509,
+      "hits": 400,
+      "hr": 0.7859,
+      "wilson_low": 0.7481,
+      "wilson_high": 0.8193,
       "quotes": {
         "power2_1.40x": {
           "breakeven": 0.8452,
-          "ev": -0.148,
+          "ev": -0.1354,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_1.65x": {
           "breakeven": 0.8463,
-          "ev": -0.2166,
+          "ev": -0.1992,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.00x": {
           "breakeven": 0.7937,
-          "ev": -0.0505,
+          "ev": -0.0294,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.50x": {
           "breakeven": 0.7368,
-          "ev": 0.1869,
+          "ev": 0.2133,
           "point_clears": true,
           "wilson_clears": true
         }
@@ -144,32 +144,32 @@
     {
       "label": "scout top-3/day proj_edge",
       "n": 264,
-      "hits": 184,
-      "hr": 0.697,
-      "wilson_low": 0.639,
-      "wilson_high": 0.7493,
+      "hits": 181,
+      "hr": 0.6856,
+      "wilson_low": 0.6273,
+      "wilson_high": 0.7386,
       "quotes": {
         "power2_1.40x": {
           "breakeven": 0.8452,
-          "ev": -0.3199,
+          "ev": -0.3419,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_1.65x": {
           "breakeven": 0.8463,
-          "ev": -0.4414,
+          "ev": -0.4682,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.00x": {
           "breakeven": 0.7937,
-          "ev": -0.3229,
+          "ev": -0.3555,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.50x": {
           "breakeven": 0.7368,
-          "ev": -0.1536,
+          "ev": -0.1943,
           "point_clears": false,
           "wilson_clears": false
         }
@@ -177,33 +177,33 @@
     },
     {
       "label": "gate AND scout",
-      "n": 32,
-      "hits": 25,
-      "hr": 0.7812,
-      "wilson_low": 0.6124,
-      "wilson_high": 0.8898,
+      "n": 28,
+      "hits": 22,
+      "hr": 0.7857,
+      "wilson_low": 0.6046,
+      "wilson_high": 0.8979,
       "quotes": {
         "power2_1.40x": {
           "breakeven": 0.8452,
-          "ev": -0.1455,
+          "ev": -0.1357,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_1.65x": {
           "breakeven": 0.8463,
-          "ev": -0.2132,
+          "ev": -0.1997,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.00x": {
           "breakeven": 0.7937,
-          "ev": -0.0463,
+          "ev": -0.0299,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.50x": {
           "breakeven": 0.7368,
-          "ev": 0.1921,
+          "ev": 0.2126,
           "point_clears": true,
           "wilson_clears": false
         }
@@ -211,33 +211,33 @@
     },
     {
       "label": "scout minus gate",
-      "n": 491,
-      "hits": 374,
-      "hr": 0.7617,
-      "wilson_low": 0.7221,
-      "wilson_high": 0.7973,
+      "n": 481,
+      "hits": 367,
+      "hr": 0.763,
+      "wilson_low": 0.723,
+      "wilson_high": 0.7988,
       "quotes": {
         "power2_1.40x": {
           "breakeven": 0.8452,
-          "ev": -0.1877,
+          "ev": -0.185,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_1.65x": {
           "breakeven": 0.8463,
-          "ev": -0.2708,
+          "ev": -0.2671,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.00x": {
           "breakeven": 0.7937,
-          "ev": -0.1161,
+          "ev": -0.1116,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.50x": {
           "breakeven": 0.7368,
-          "ev": 0.1049,
+          "ev": 0.1105,
           "point_clears": true,
           "wilson_clears": false
         }
@@ -245,33 +245,33 @@
     },
     {
       "label": "GATE high proj_edge half",
-      "n": 267,
-      "hits": 183,
-      "hr": 0.6854,
-      "wilson_low": 0.6274,
-      "wilson_high": 0.7381,
+      "n": 260,
+      "hits": 179,
+      "hr": 0.6885,
+      "wilson_low": 0.6298,
+      "wilson_high": 0.7417,
       "quotes": {
         "power2_1.40x": {
           "breakeven": 0.8452,
-          "ev": -0.3423,
+          "ev": -0.3364,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_1.65x": {
           "breakeven": 0.8463,
-          "ev": -0.4687,
+          "ev": -0.4616,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.00x": {
           "breakeven": 0.7937,
-          "ev": -0.3561,
+          "ev": -0.3474,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.50x": {
           "breakeven": 0.7368,
-          "ev": -0.1951,
+          "ev": -0.1842,
           "point_clears": false,
           "wilson_clears": false
         }
@@ -279,127 +279,142 @@
     },
     {
       "label": "GATE low proj_edge half",
-      "n": 266,
-      "hits": 174,
-      "hr": 0.6541,
-      "wilson_low": 0.5951,
-      "wilson_high": 0.7087,
+      "n": 259,
+      "hits": 168,
+      "hr": 0.6486,
+      "wilson_low": 0.5887,
+      "wilson_high": 0.7042,
       "quotes": {
         "power2_1.40x": {
           "breakeven": 0.8452,
-          "ev": -0.4009,
+          "ev": -0.411,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_1.65x": {
           "breakeven": 0.8463,
-          "ev": -0.5382,
+          "ev": -0.5497,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.00x": {
           "breakeven": 0.7937,
-          "ev": -0.4402,
+          "ev": -0.4542,
           "point_clears": false,
           "wilson_clears": false
         },
         "power3_2.50x": {
           "breakeven": 0.7368,
-          "ev": -0.3003,
+          "ev": -0.3177,
           "point_clears": false,
           "wilson_clears": false
         }
       }
+    },
+    {
+      "label": "pre-tip slate_minutes (joined only)",
+      "n": 0
+    },
+    {
+      "label": "GATE + pre-tip slate_minutes",
+      "n": 0
+    },
+    {
+      "label": "scout top-N + pre-tip slate_minutes",
+      "n": 0
     }
   ],
   "gate_by_prop": [
     {
       "prop": "Rebounds",
-      "n": 136,
-      "hr": 0.6985,
-      "wilson_low": 0.6168,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
-    },
-    {
-      "prop": "3-PT Made",
-      "n": 70,
-      "hr": 0.7,
-      "wilson_low": 0.5846,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
+      "n": 133,
+      "hr": 0.6992,
+      "wilson_low": 0.6166,
+      "clears_primary": false,
+      "clears_observe": false
     },
     {
       "prop": "Assists",
-      "n": 86,
-      "hr": 0.686,
-      "wilson_low": 0.5818,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
+      "n": 92,
+      "hr": 0.7065,
+      "wilson_low": 0.6067,
+      "clears_primary": false,
+      "clears_observe": false
+    },
+    {
+      "prop": "3-PT Made",
+      "n": 66,
+      "hr": 0.697,
+      "wilson_low": 0.5778,
+      "clears_primary": false,
+      "clears_observe": false
     },
     {
       "prop": "Points",
-      "n": 173,
-      "hr": 0.6474,
-      "wilson_low": 0.5737,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
+      "n": 161,
+      "hr": 0.6273,
+      "wilson_low": 0.5505,
+      "clears_primary": false,
+      "clears_observe": false
     },
     {
       "prop": "Steals",
-      "n": 59,
-      "hr": 0.6441,
-      "wilson_low": 0.5166,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
+      "n": 58,
+      "hr": 0.6552,
+      "wilson_low": 0.5267,
+      "clears_primary": false,
+      "clears_observe": false
     }
   ],
   "scout_by_prop": [
     {
       "prop": "Rebounds",
-      "n": 169,
-      "hr": 0.8107,
-      "wilson_low": 0.7449,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
+      "n": 166,
+      "hr": 0.8072,
+      "wilson_low": 0.7405,
+      "clears_primary": false,
+      "clears_observe": false
     },
     {
       "prop": "Points",
-      "n": 128,
-      "hr": 0.7812,
-      "wilson_low": 0.702,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
+      "n": 120,
+      "hr": 0.775,
+      "wilson_low": 0.6924,
+      "clears_primary": false,
+      "clears_observe": false
     },
     {
       "prop": "Assists",
-      "n": 107,
-      "hr": 0.7664,
-      "wilson_low": 0.6778,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
+      "n": 106,
+      "hr": 0.7736,
+      "wilson_low": 0.6852,
+      "clears_primary": false,
+      "clears_observe": false
     },
     {
       "prop": "3-PT Made",
-      "n": 87,
-      "hr": 0.7011,
-      "wilson_low": 0.5981,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
+      "n": 85,
+      "hr": 0.7176,
+      "wilson_low": 0.6142,
+      "clears_primary": false,
+      "clears_observe": false
     },
     {
       "prop": "Turnovers",
       "n": 26,
       "hr": 0.5769,
       "wilson_low": 0.3895,
-      "clears_1.65x_wilson": false,
-      "clears_2.00x_wilson": false
+      "clears_primary": false,
+      "clears_observe": false
     }
   ],
+  "book": "Goblin OVER",
   "breakevens": {
     "power2_1.40x": 0.8452,
     "power3_1.65x": 0.8463,
     "power3_2.00x": 0.7937,
     "power3_2.50x": 0.7368
-  }
+  },
+  "pre_tip_snapshots": 96,
+  "slate_minutes_used": 0
 }

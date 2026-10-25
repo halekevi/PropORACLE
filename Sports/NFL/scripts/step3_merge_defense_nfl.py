@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -282,18 +283,27 @@ def main() -> None:
             print(f"[NFL step3] team form not found ({tf}); skip last-5 merge")
 
     from utils.nfl_context_freshness import warn_if_stale
+    from utils.nfl_volume_freshness import assert_nfl_volume_week_fresh
     from utils.nfl_team_unit_ranks import attach_nfl_unit_ranks
     from utils.nfl_scoring_vehicles import attach_nfl_identity_and_share
     from utils.nfl_unit_line_ranks import attach_nfl_unit_line_ranks
     from utils.nfl_route_participation_gate import attach_participation
     from utils.nfl_context_layers import attach_nfl_context_layers
+    from utils.nfl_volume_snapshot import append_pre_kick_snapshot
 
     warn_if_stale(_REPO_ROOT, label="NFL step3")
+    assert_nfl_volume_week_fresh(label="NFL step3")
 
     df = attach_nfl_unit_ranks(df, _REPO_ROOT)
     df = attach_nfl_identity_and_share(df, _REPO_ROOT)
     df = attach_nfl_unit_line_ranks(df, _REPO_ROOT)
     df = attach_participation(df, _REPO_ROOT)
+    try:
+        slate = str(df.get("game_date", df.get("file_date", pd.Series([""]))).astype(str).str[:10].mode().iloc[0] or "")
+        n_snap = append_pre_kick_snapshot(df, slate=slate or date.today().isoformat())
+        print(f"[NFL step3] pre-kick volume snapshot rows={n_snap}")
+    except Exception as exc:
+        print(f"[NFL step3] volume snapshot skipped: {exc}")
     df = attach_nfl_context_layers(df, _REPO_ROOT)
     # Re-assign after unit ranks so tackle props can read opp_rush_off_rank.
     df = assign_prop_aware_def_tier(df, n_teams=32)
