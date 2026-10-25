@@ -415,6 +415,16 @@ def unverified_face_dates() -> set[tuple[str, str]]:
     return bad
 
 
+def drop_invalid_stat_attach(sport: str, rows: list[dict]) -> tuple[list[dict], dict]:
+    """Drop YPC / first-N / longest reception / completion-stat rows (2026-10-25)."""
+    try:
+        from utils.stat_attach_invalid import tag_rows
+    except Exception as exc:  # pragma: no cover
+        print(f"  stat-attach filter unavailable ({exc})", flush=True)
+        return rows, {"dropped": 0, "by_reason": {}}
+    return tag_rows(rows, sport_key=sport)
+
+
 def drop_unverified_face_dates(sport: str, rows: list[dict]) -> tuple[list[dict], dict]:
     bad = unverified_face_dates()
     key_sport = {"SOCCER": "SOCCER", "TENNIS": "TENNIS"}.get(sport.upper(), sport.upper())
@@ -461,6 +471,13 @@ def main(argv: list[str] | None = None) -> int:
                 f"unverified-face dates (pick_type defaulted / Standard ladders); kept {len(rows)}",
                 flush=True,
             )
+        rows, attach_meta = drop_invalid_stat_attach(sport, rows)
+        if attach_meta["dropped"]:
+            print(
+                f"  stat-attach filter: dropped {attach_meta['dropped']} sibling-mapped / "
+                f"zero-filled props (YPC, first-N, longest rec, completion); kept {len(rows)}",
+                flush=True,
+            )
         for book in books:
             pool = [r for r in rows if r.get("book") == book]
             if len(pool) < args.min_n:
@@ -478,6 +495,11 @@ def main(argv: list[str] | None = None) -> int:
                 "rows_dropped": face_meta["dropped"],
                 "unverified_dates": face_meta["dates"],
                 "note": "rows on default-label / Standard-ladder dates excluded (utils.face_ladder)",
+            }
+            rec["stat_attach_filter"] = {
+                "rows_dropped": attach_meta["dropped"],
+                "by_reason": attach_meta.get("by_reason") or {},
+                "note": "YPC / first-N / longest reception / completion stats tagged invalid 2026-10-25",
             }
             results.append(rec)
             print(

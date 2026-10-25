@@ -93,7 +93,7 @@ def main() -> None:
     nflu = nflu_summary()
     bar = nflu["bar"]
     print(
-        f"\nNFL Standard UNDER shadow (prereg {NFLU_PREREG}; sacks/tackles, L10>=8 + cover>=1, "
+        f"\nNFL Standard UNDER shadow (prereg {NFLU_PREREG}; tackles only, sacks held 2026-10-25 until attach, L10>=8 + cover>=1, "
         f"2-leg Power): bar {bar['decided_min']} decided, breakeven {bar['breakeven']:.1%} "
         f"({bar['quote_basis']}, real quotes {bar['real_quotes_n']})"
     )

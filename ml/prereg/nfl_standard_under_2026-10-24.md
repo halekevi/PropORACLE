@@ -34,6 +34,23 @@ The shadow starts from zero on boards whose step1 stored a mixed `pick_type`.
 | Sport | NFL, regular season only (`season_class == regular`) |
 | Props in | `sacks`, `tackles` (PrizePicks "Tackles + Ast" canons to `tackles`) |
 | Props out | `passcompletions` (explicit); everything else not listed is out |
+
+## Amendment 2026-10-25 — sacks held
+
+Frozen 2026-10-24 listed `sacks` and `tackles`. Sunday attach showed sacks
+history as all-zero / `UNSUPPORTED_PROP` for starters (sibling or missing
+column, not a real sack line). `utils/nfl_std_under_shadow.py` now logs
+**tackles only**.
+
+**Sacks excluded until stat attach verified; re-admitted when sacks history
+is non-zero for starters.** This is a dated amendment, not a new
+pre-registration. The original `props_in` stays `sacks` + `tackles` so the
+shadow can take sacks back without rewriting the 10-24 spec. Until then the
+logged set is a subset of what was registered.
+
+Logger reject reasons: `prop_excluded` for `sacks`. Re-admit by restoring
+`sacks` to `PROPS_IN` after a board where starter sack L5 is non-zero and
+`stat_status` is OK. Do not silently leave them out after attach is fixed.
 | Face | literal `Standard` in step1 `pick_type`; board must have ≥1 Goblin/Demon row (`step1_has_pick_type`) |
 | Side | UNDER only |
 | Gate | `l10_under >= 8` AND directional cover `line − L5 avg >= 1` |

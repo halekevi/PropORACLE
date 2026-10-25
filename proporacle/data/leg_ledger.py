@@ -708,6 +708,10 @@ def ingest_graded(repo: Path | None = None, *, date: str | None = None, root: Pa
             write_face_status(root)
         except Exception as exc:  # pragma: no cover - never block ingest
             print(f"[leg_ledger] face_status refresh skipped: {exc}")
+        try:
+            write_stat_attach_status(root)
+        except Exception as exc:  # pragma: no cover - never block ingest
+            print(f"[leg_ledger] stat_attach_status refresh skipped: {exc}")
     return {"files": n_files, "legs": n_legs, "features": n_feat, "skipped": n_skip}
 
 
@@ -742,6 +746,7 @@ def current_legs(root: Path | None = None, *, with_face: bool = True) -> pd.Data
     df = df.drop_duplicates(subset=["leg_id"], keep="last")
     if with_face:
         df = attach_face_status(df, root)
+        df = attach_stat_attach_status(df, root)
     return df
 
 
@@ -828,33 +833,147 @@ def attach_face_status(df: pd.DataFrame, root: Path | None = None) -> pd.DataFra
     return out
 
 
+# ------------------------------------------------------------ stat attach
+# Props whose historical L5 / actuals were sibling-mapped or zero-filled
+# (YPC, first-N / period, longest reception, completion stats). First-class
+# like face_status so discover_gates / analysis_legs cannot forget them.
+STAT_ATTACH_TABLE = "stat_attach_status"
+
+
+def _stat_attach_path(root: Path | None = None) -> Path:
+    return ledger_root(root) / STAT_ATTACH_TABLE / "stat_attach_status.parquet"
+
+
+def compute_stat_attach_status(legs: pd.DataFrame) -> pd.DataFrame:
+    from utils.stat_attach_invalid import TAGGED, analysis_invalid_reason
+
+    if legs.empty:
+        return pd.DataFrame(
+            columns=["sport", "prop_canon", "status", "stat_attach_ok", "reason", "tagged"]
+        )
+    prop_col = "prop_canon" if "prop_canon" in legs.columns else (
+        "prop" if "prop" in legs.columns else ""
+    )
+    if not prop_col or "sport" not in legs.columns:
+        return pd.DataFrame(
+            columns=["sport", "prop_canon", "status", "stat_attach_ok", "reason", "tagged"]
+        )
+    keys = (
+        legs[["sport", prop_col]]
+        .assign(sport=lambda d: d["sport"].astype(str).str.upper(), prop_canon=lambda d: d[prop_col].astype(str))
+        .drop_duplicates()
+    )
+    keys["reason"] = [analysis_invalid_reason(s, p) for s, p in zip(keys["sport"], keys["prop_canon"])]
+    keys["status"] = keys["reason"].map(lambda r: "invalid_mapping" if r else "ok")
+    keys["stat_attach_ok"] = keys["reason"].eq("")
+    keys["tagged"] = TAGGED
+    keys["computed_at"] = _now_iso()
+    return keys[["sport", "prop_canon", "status", "stat_attach_ok", "reason", "tagged", "computed_at"]]
+
+
+def write_stat_attach_status(root: Path | None = None, *, legs: pd.DataFrame | None = None) -> pd.DataFrame:
+    if legs is None:
+        legs = current_legs(root, with_face=False)
+    st = compute_stat_attach_status(legs)
+    path = _stat_attach_path(root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if not st.empty and parquet_available():
+        write_props_parquet(st, path)
+    return st
+
+
+def read_stat_attach_status(root: Path | None = None) -> pd.DataFrame:
+    path = _stat_attach_path(root)
+    if not path.is_file():
+        return pd.DataFrame()
+    try:
+        return pd.read_parquet(path)
+    except Exception:
+        return pd.DataFrame()
+
+
+def stat_attach_status(root: Path | None = None, *, refresh: bool = False) -> pd.DataFrame:
+    st = pd.DataFrame() if refresh else read_stat_attach_status(root)
+    if st.empty:
+        st = write_stat_attach_status(root)
+    return st
+
+
+def attach_stat_attach_status(df: pd.DataFrame, root: Path | None = None) -> pd.DataFrame:
+    """Add ``stat_attach_status`` / ``stat_attach_ok`` / ``stat_attach_reason``.
+
+    Source of truth is ``utils.stat_attach_invalid`` (frozen 2026-10-25). The
+    stored table is the inspectable copy, same shape as ``face_status``.
+    """
+    from utils.stat_attach_invalid import analysis_invalid_reason
+
+    if df.empty:
+        return df
+    out = df.copy()
+    prop_col = "prop_canon" if "prop_canon" in out.columns else (
+        "prop" if "prop" in out.columns else ""
+    )
+    if not prop_col or "sport" not in out.columns:
+        out["stat_attach_status"] = "ok"
+        out["stat_attach_ok"] = True
+        out["stat_attach_reason"] = ""
+        return out
+    reasons = [
+        analysis_invalid_reason(s, p)
+        for s, p in zip(out["sport"], out[prop_col])
+    ]
+    out["stat_attach_reason"] = reasons
+    out["stat_attach_status"] = ["invalid_mapping" if r else "ok" for r in reasons]
+    out["stat_attach_ok"] = [not bool(r) for r in reasons]
+    have = read_stat_attach_status(root)
+    if have.empty:
+        try:
+            write_stat_attach_status(root, legs=out)
+        except Exception:
+            pass
+    return out
+
+
 def analysis_legs(
     root: Path | None = None,
     *,
     include_unverified: bool = False,
+    include_invalid_attach: bool = False,
     decided_only: bool = False,
 ) -> pd.DataFrame:
     """Default entry point for hit-rate / gate / calibration work.
 
-    Returns face-verified legs only unless ``include_unverified=True`` is passed
-    explicitly, and prints how many rows were held back so a report cannot
-    quietly include default-label dates.
+    Returns face-verified, stat-attach-ok legs unless the matching
+    ``include_*`` flag is passed. Prints how many rows were held back so a
+    report cannot quietly include default-label dates or sibling-mapped props
+    (YPC / first-N / longest reception / completion stats; 2026-10-25).
     """
     df = current_legs(root)
     if df.empty:
         return df
     if decided_only and "result" in df.columns:
         df = df[df["result"].isin(["HIT", "MISS"])]
-    if include_unverified:
-        return df
-    bad = ~df["face_verified"].astype(bool)
-    if bad.any():
-        by = df[bad].groupby("sport").size().sort_values(ascending=False)
-        print(
-            f"[analysis_legs] dropped {int(bad.sum()):,} legs on unverified-face sport-dates: "
-            + ", ".join(f"{s} {n:,}" for s, n in by.items())
-        )
-    return df[~bad]
+    if not include_unverified and "face_verified" in df.columns:
+        bad = ~df["face_verified"].astype(bool)
+        if bad.any():
+            by = df[bad].groupby("sport").size().sort_values(ascending=False)
+            print(
+                f"[analysis_legs] dropped {int(bad.sum()):,} legs on unverified-face sport-dates: "
+                + ", ".join(f"{s} {n:,}" for s, n in by.items())
+            )
+        df = df[~bad]
+    if not include_invalid_attach and "stat_attach_ok" in df.columns:
+        bad_att = ~df["stat_attach_ok"].astype(bool)
+        if bad_att.any():
+            by = df[bad_att].groupby(
+                df.loc[bad_att, "stat_attach_reason"] if "stat_attach_reason" in df.columns else "sport"
+            ).size()
+            print(
+                f"[analysis_legs] dropped {int(bad_att.sum()):,} legs on invalid-stat-attach props: "
+                + ", ".join(f"{s} {n:,}" for s, n in by.items())
+            )
+        df = df[~bad_att]
+    return df
 
 
 def _latest_part_per_source(df: pd.DataFrame) -> pd.DataFrame:
