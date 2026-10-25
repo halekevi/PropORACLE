@@ -46,17 +46,46 @@ PERIOD_OVERRIDES_PATH = _HERE.parent / "data" / "reference" / "period_actual_ove
 _PERIOD_OVERRIDES_CACHE: dict[tuple[str, str, str], List[float]] | None = None
 
 
+# Repo-root reference DB (scripts/build_boxscore_ref.py writes nba/nhl/soccer/wnba here).
+# Sports/NBA/data/cache/proporacle_ref.db is written by scripts/build_nba1q_history_db.py and
+# holds only the nba1q period table, so an unqualified `FROM nba` against it raised
+# "no such table: nba" and the full-game NBA pipeline failed every window from 2026-10-22
+# until 2026-10-25 (combined + Goblin-70 skipped each night). Both files are opened: the
+# requested path as `main`, the other as an attached schema, and SQLite resolves unqualified
+# table names across them (main first).
+REPO_DB_PATH = _HERE.parents[2] / "data" / "cache" / "proporacle_ref.db"
+
+
 def open_db(db_path: Optional[Path] = None) -> sqlite3.Connection:
-    """Open the PropOracle reference DB (read-only safe, WAL mode)."""
+    """Open the PropOracle reference DB (read-only safe, WAL mode).
+
+    The sibling reference DB (repo-root ↔ Sports/NBA cache) is ATTACHed when it exists so
+    both the full-game ``nba`` table and the ``nba1q`` period table resolve.
+    """
     path = Path(db_path) if db_path else DB_PATH
-    if not path.exists():
+    candidates = [p for p in (path, DB_PATH, REPO_DB_PATH) if p.exists()]
+    if not candidates:
         raise FileNotFoundError(
             f"PropOracle reference DB not found at {path}\n"
             f"Run: py scripts/build_boxscore_ref.py --backfill --days 30"
         )
-    con = sqlite3.connect(path)
+    primary = candidates[0]
+    con = sqlite3.connect(primary)
     con.execute("PRAGMA journal_mode=WAL;")
     con.row_factory = sqlite3.Row
+    seen = {primary.resolve()}
+    for i, extra in enumerate(candidates[1:]):
+        try:
+            rp = extra.resolve()
+        except OSError:
+            continue
+        if rp in seen:
+            continue
+        seen.add(rp)
+        try:
+            con.execute(f"ATTACH DATABASE ? AS ref{i}", (str(extra),))
+        except sqlite3.Error:
+            pass
     return con
 
 
