@@ -9,7 +9,8 @@ rungs where UNDER was never offered. The backtest number is not a price.
 
 Pre-registration (frozen — see ml/prereg/nfl_standard_under_2026-10-24.md):
 
-  props   sacks, tackles (PrizePicks "Tackles + Ast" canons to tackles).
+  props   tackles only (PrizePicks "Tackles + Ast" canons to tackles).
+          Sacks dropped 2026-10-25 (attach/all-zero contamination).
           Everything else is out; pass completions explicitly out.
   face    literal ``Standard`` pick_type on a board whose step1 stored
           pick_type. Default labels do not qualify.
@@ -46,8 +47,8 @@ from utils.scraped_quote import is_real_scraped_quote, real_scraped_payout_x
 
 TRACK = "nfl_std_under_shadow"
 PREREG_DATE = "2026-10-24"
-PROPS_IN = frozenset({"sacks", "tackles"})
-PROPS_OUT_EXPLICIT = frozenset({"passcompletions"})
+PROPS_IN = frozenset({"tackles"})
+PROPS_OUT_EXPLICIT = frozenset({"passcompletions", "sacks"})
 RULE4_LINES = frozenset({0.5, 2.5, 4.5})
 ARMS = ("rule4_applied", "rule4_waived")
 FLAT_POWER2_X = 3.0
@@ -169,6 +170,30 @@ def leg_qualifies(row: dict[str, Any], *, face_verified: bool) -> tuple[bool, st
         return False, "prop_excluded"
     if prop not in PROPS_IN:
         return False, "prop_not_listed"
+    from utils.stat_attach_guard import (
+        attach_status_blocks_l5,
+        is_all_zero_history,
+        row_qualifies_for_list,
+    )
+
+    if attach_status_blocks_l5(row.get("stat_status")):
+        return False, "stat_status_not_ok"
+    ok_list, why_list = row_qualifies_for_list(row)
+    if not ok_list and why_list in {
+        "all_zero_mapping_failure",
+        "implausible_ypc_scale",
+        "implausible_longest_scale",
+        "implausible_comp_pct_scale",
+        "l5_hits_no_games",
+        "unsupported_period_prop",
+    }:
+        return False, why_list
+    hist = []
+    for i in range(1, 11):
+        hist.append(row.get(f"stat_g{i}"))
+    avg = _f(row.get("avg_l5"))
+    if is_all_zero_history(hist) or avg == 0.0:
+        return False, "all_zero_history"
     l10 = _f(row.get("l10_under"))
     if l10 is None or l10 < MIN_L10:
         return False, "l10_under_lt_8"

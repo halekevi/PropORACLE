@@ -97,6 +97,7 @@ from utils.cfb_keep_gates import (  # noqa: E402
 )
 from utils.tennis_keep_gates import tennis_list_eligible  # noqa: E402
 from utils.l5_push_aware import is_clean_l5_five  # noqa: E402
+from utils.stat_attach_guard import row_qualifies_for_list  # noqa: E402
 from utils.l5_recency_policy import WNBA_L5_MIN, is_wnba_family  # noqa: E402
 from utils.pp_board_prop_map import is_ou_ranker_prop  # noqa: E402
 from utils.ticket_70_pool import skip_combo_player  # noqa: E402
@@ -394,13 +395,13 @@ def _avg_windows(r) -> tuple[float | None, float | None, float | None]:
     PrizePicks last-5 is the list sample. Season/L10 on MLB pitching is often
     pulled down by short outings (Lowder L5 94 vs L10/season 70).
     """
-    l5 = _first_num(r, "stat_last5_avg", "Last 5 Avg", "last5_avg")
+    l5 = _first_num(r, "stat_last5_avg", "Last 5 Avg", "last5_avg", "avg_L5", "avg_l5")
     if l5 is None:
         l5 = _mean_stat_g(r, 5)
-    l10 = _first_num(r, "stat_last10_avg", "Last 10 Avg", "last10_avg")
+    l10 = _first_num(r, "stat_last10_avg", "Last 10 Avg", "last10_avg", "avg_L10", "avg_l10")
     if l10 is None:
         l10 = _mean_stat_g(r, 10)
-    seas = _first_num(r, "stat_season_avg", "season_avg", "Season Avg", "Projection")
+    seas = _first_num(r, "stat_season_avg", "season_avg", "Season Avg", "Projection", "avg_season")
     if seas is None:
         seas = l10 if l10 is not None else l5
     return l5, l10, seas
@@ -451,8 +452,20 @@ def _first_count(*vals):
 
 def _l5(r, over: bool):
     if over:
-        return _first_count(r.get("l5_over"), r.get("last5_over"), r.get("L5 Over"))
-    return _first_count(r.get("l5_under"), r.get("last5_under"), r.get("L5 Under"))
+        return _first_count(
+            r.get("l5_over"),
+            r.get("last5_over"),
+            r.get("L5 Over"),
+            r.get("line_hits_over_5"),
+            r.get("over_L5_raw"),
+        )
+    return _first_count(
+        r.get("l5_under"),
+        r.get("last5_under"),
+        r.get("L5 Under"),
+        r.get("line_hits_under_5"),
+        r.get("under_L5_raw"),
+    )
 
 
 def _l5_push(r) -> int | None:
@@ -754,7 +767,13 @@ def filter_step8_to_slate_date(df: pd.DataFrame, date: str, sport: str = "") -> 
         if col not in df.columns:
             continue
         gd = df[col].astype(str).str[:10]
-        return df.loc[gd.isin(keep) | gd.eq("") | gd.eq("nan")].copy()
+        blank = gd.eq("") | gd.eq("nan") | gd.eq("None")
+        # Period / NBA leftovers often have a blank Game Date with a May
+        # matchup still in Team/Opp. Blank is not "today".
+        sport_u = str(sport or "").upper()
+        if sport_u in {"NBA", "NBA1Q", "NBA1H", "CBB", "WCBB", "WNBA", "WNBA1H", "WNBA1Q"}:
+            return df.loc[gd.isin(keep)].copy()
+        return df.loc[gd.isin(keep) | blank].copy()
     return df
 
 
@@ -897,7 +916,24 @@ def _attach_nfl_box_logs(df: pd.DataFrame, root: Path) -> pd.DataFrame:
         lines = line.map(lambda value: "" if pd.isna(value) else f"{float(value):.2f}")
         return names + "|" + pd.Series(folded, index=frame.index) + "|" + lines
 
-    keep = ["_box_key", *stat_cols, *cur_cols]
+    extra = [
+        c
+        for c in (
+            "stat_last5_avg",
+            "stat_last10_avg",
+            "stat_season_avg",
+            "stat_status",
+            "line_hits_over_5",
+            "line_hits_under_5",
+            "line_hits_push_5",
+            "line_hits_over_10",
+            "line_hits_under_10",
+            "games_used",
+            "l5_sample_n",
+        )
+        if c in logs.columns
+    ]
+    keep = ["_box_key", *stat_cols, *cur_cols, *extra]
     logs = logs.copy()
     logs["_box_key"] = _key(logs, ("player", "player_name"), ("prop_type", "prop"))
     logs = logs.dropna(subset=[stat_cols[0]])
@@ -905,7 +941,7 @@ def _attach_nfl_box_logs(df: pd.DataFrame, root: Path) -> pd.DataFrame:
     board = df.copy()
     board["_box_key"] = _key(board, ("Player", "player"), ("Prop", "prop", "prop_type"))
     merged = board.merge(logs[keep], on="_box_key", how="left", suffixes=("", "_box"))
-    for col in (*stat_cols, *cur_cols):
+    for col in (*stat_cols, *cur_cols, *extra):
         boxed = f"{col}_box"
         if boxed not in merged.columns:
             continue
@@ -928,7 +964,12 @@ def load_nfl(root: Path, date: str) -> pd.DataFrame:
         root / "outputs" / date / f"step8_nfl_direction_clean_{date}.xlsx",
     ]
     path = next((p for p in candidates if table_exists(p)), None)
+    step5 = root / "Sports" / "NFL" / "data" / "outputs" / "step5_nfl_with_stats.csv"
     if path is None:
+        if step5.is_file():
+            df = pd.read_csv(step5, low_memory=False)
+            df["sport"] = "NFL"
+            return df
         return pd.DataFrame()
     df = read_table(path, sheet_order=("ALL",))
     df["sport"] = "NFL"
@@ -1010,7 +1051,8 @@ def load_golf(root: Path, date: str) -> pd.DataFrame:
 
 
 CBB_SEASON_END_2026 = "2026-04-07"
-CBB_SEASON_RESUME = "2026-11-01"
+# Early DI / exhibition boards post mid-to-late October; was 2026-11-01.
+CBB_SEASON_RESUME = "2026-10-20"
 
 
 def _cbb_season_active(date: str) -> bool:
@@ -1021,16 +1063,28 @@ def _cbb_season_active(date: str) -> bool:
 def _load_cbb_family(root: Path, date: str, sport: str, folder: str) -> pd.DataFrame:
     """CBB/WCBB step8 when present (combined still uses step6 until step8 is wired)."""
     key = folder.lower()
-    candidates = [
+    dated = [
         root / "outputs" / date / folder / f"step8_{key}_direction_clean.xlsx",
         root / "outputs" / date / folder / f"step8_{key}_direction_clean_{date}.xlsx",
-        root / "Sports" / "CBB" / "outputs" / f"step8_{key}_direction_clean.xlsx",
     ]
-    path = next((p for p in candidates if table_exists(p)), None)
+    leftover = root / "Sports" / "CBB" / "outputs" / f"step8_{key}_direction_clean.xlsx"
+    keep = _slate_keep_dates(date, sport)
+    path = next((p for p in dated if table_exists(p)), None)
+    if path is None and table_exists(leftover):
+        trial = read_table(leftover, sheet_order=("ALL",))
+        dates = _nba_game_dates(trial) if trial is not None else set()
+        if trial is None or trial.empty or not dates or not (dates & keep):
+            print(
+                f"  [WARN] {sport} skip stale leftover {leftover.name} "
+                f"game_dates={sorted(dates)[:3] if dates else 'none'} (want {sorted(keep)})"
+            )
+            return pd.DataFrame()
+        path = leftover
     if path is None:
         return pd.DataFrame()
     df = read_table(path, sheet_order=("ALL",))
     df["sport"] = sport
+    df = filter_step8_to_slate_date(df, date, sport)
     return df
 
 
@@ -1068,21 +1122,37 @@ def _load_folder_step8(
     folder: str,
     sports_rel: tuple[str, ...],
 ) -> pd.DataFrame:
-    """Period / NBA step8: outputs/<date>/<folder>/ then Sports/<rel>/ static copy."""
+    """Period step8: dated outputs/<date>/<folder>/ first.
+
+    Sports/<rel>/ static copies are leftovers (May NBA1Q Finals, May WNBA).
+    Use one only when its Game Date intersects the slate window.
+    """
     if _skip_inactive_slate(root, date, folder):
         return pd.DataFrame()
     stem = f"step8_{folder}_direction_clean"
-    candidates = [
+    dated = [
         root / "outputs" / date / folder / f"{stem}.xlsx",
         root / "outputs" / date / folder / f"{stem}_{date}.xlsx",
         root / "outputs" / date / f"{stem}_{date}.xlsx",
-        root.joinpath(*sports_rel) / f"{stem}.xlsx",
     ]
-    path = next((p for p in candidates if table_exists(p)), None)
+    leftover = root.joinpath(*sports_rel) / f"{stem}.xlsx"
+    keep = _slate_keep_dates(date, sport)
+    path = next((p for p in dated if table_exists(p)), None)
+    if path is None and table_exists(leftover):
+        trial = read_table(leftover, sheet_order=("ALL",))
+        dates = _nba_game_dates(trial) if trial is not None else set()
+        if trial is None or trial.empty or not dates or not (dates & keep):
+            print(
+                f"  [WARN] {sport} skip stale leftover {leftover.name} "
+                f"game_dates={sorted(dates)[:3] if dates else 'none'} (want {sorted(keep)})"
+            )
+            return pd.DataFrame()
+        path = leftover
     if path is None:
         return pd.DataFrame()
     df = read_table(path, sheet_order=("ALL",))
     df["sport"] = sport
+    df = filter_step8_to_slate_date(df, date, sport)
     return df
 
 
@@ -1168,6 +1238,9 @@ def recs(df: pd.DataFrame) -> list[dict]:
     n_teams = _n_teams(df)
     for _, r in df.iterrows():
         if str(r.get("sport") or "").upper() == "TENNIS" and tennis_bo5_graded_on_bo3_tape(r):
+            continue
+        ok_attach, _why_attach = row_qualifies_for_list(r)
+        if not ok_attach:
             continue
         prop = str(r.get("prop_type") or r.get("prop") or r.get("Prop") or "").strip()
         if prop.lower() in SKIP_PROPS:
@@ -1924,9 +1997,30 @@ def main() -> int:
     ):
         df_x = loader(root, date)
         if df_x.empty:
-            if sport in {"CBB", "WCBB"} and _cbb_season_active(date):
-                print(f"\n===== {sport} =====\n  (no step8 file)")
-                by_sport[sport] = []
+            # Always print in-season boards (incl. NBA) so L5=5 replies never
+            # silently omit a requested sport. CBB/WCBB stay quiet only while
+            # the calendar still says off-season.
+            if sport in {"CBB", "WCBB"} and not _cbb_season_active(date):
+                continue
+            folder = {
+                "CBB": "cbb",
+                "WCBB": "wcbb",
+                "NBA": "nba",
+                "NBA1Q": "nba1q",
+                "NBA1H": "nba1h",
+                "WNBA1Q": "wnba1q",
+                "WNBA1H": "wnba1h",
+            }.get(sport, sport.lower())
+            stem = (
+                f"step8_{folder}_direction_clean.xlsx"
+                if sport != "NBA"
+                else "step8_nba_direction_clean.xlsx"
+            )
+            print(
+                f"\n===== {sport} =====\n"
+                + step8_empty_reason(root, date, sport, folder, stem)
+            )
+            by_sport[sport] = []
             continue
         all_rows.extend(recs(df_x))
         so, su, gob = bucket(all_rows, sport)

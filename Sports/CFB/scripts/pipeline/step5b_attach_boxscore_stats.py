@@ -38,6 +38,9 @@ if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
 
 from scripts.db_utils import log_pipeline_health
+from utils.dnp_zero_void import is_dnp_zero_actual
+from utils.nfl_unsupported_props import is_football_period_split_prop
+from utils.stat_attach_guard import decide_attach
 
 HEADERS = {"User-Agent": "Mozilla/5.0", "Accept": "application/json, text/plain, */*"}
 ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/{league}/scoreboard"
@@ -191,6 +194,29 @@ def parse_players(
             def idx(lbl: str):
                 return labels.index(lbl) if lbl in labels else None
 
+            def _f_opt(val) -> Optional[float]:
+                try:
+                    s = str(val).strip()
+                    if s in ("", "--", "nan", "None"):
+                        return None
+                    if "/" in s:
+                        return None
+                    return float(s)
+                except Exception:
+                    return None
+
+            def _cmp_att(val) -> Tuple[Optional[float], Optional[float]]:
+                s = str(val).strip()
+                if s in ("", "--", "nan", "None"):
+                    return None, None
+                if "/" in s:
+                    a, b = s.split("/", 1)
+                    try:
+                        return float(a.strip()), float(b.strip())
+                    except (TypeError, ValueError):
+                        return None, None
+                return _f_opt(s), None
+
             for a in athletes:
                 ath = a.get("athlete", {}) or {}
                 aid = str(ath.get("id", "")).strip()
@@ -218,35 +244,92 @@ def parse_players(
                     cmp_i = idx("C")
                     if cmp_i is None:
                         cmp_i = idx("CMP")
+                    catt = idx("C/ATT")
+                    att_i = idx("ATT")
                     int_i = idx("INT")
+                    lng = idx("LONG")
+                    if lng is None:
+                        lng = idx("LNG")
                     if y is not None and y < len(st):
                         row["PASS_YDS"] = _f(st[y])
                     if td is not None and td < len(st):
                         row["PASS_TD"] = _f(st[td])
-                    if cmp_i is not None and cmp_i < len(st):
-                        row["PASS_CMP"] = _f(st[cmp_i])
+                    if catt is not None and catt < len(st):
+                        cmp_v, att_v = _cmp_att(st[catt])
+                        if cmp_v is not None:
+                            row["PASS_CMP"] = cmp_v
+                        if att_v is not None:
+                            row["PASS_ATT"] = att_v
+                    else:
+                        if cmp_i is not None and cmp_i < len(st):
+                            row["PASS_CMP"] = _f(st[cmp_i])
+                        if att_i is not None and att_i < len(st):
+                            v = _f_opt(st[att_i])
+                            if v is not None:
+                                row["PASS_ATT"] = v
                     if int_i is not None and int_i < len(st):
                         row["PASS_INT"] = _f(st[int_i])
+                    if lng is not None and lng < len(st):
+                        v = _f_opt(st[lng])
+                        if v is not None:
+                            row["PASS_LONG"] = v
+                    psack = idx("SACKS")
+                    if psack is None:
+                        psack = idx("SACK")
+                    if psack is not None and psack < len(st):
+                        v = _f_opt(st[psack])
+                        if v is not None:
+                            row["PASS_SACKS"] = v
                 elif cat == "rushing":
                     y = idx("YDS")
                     td = idx("TD")
+                    car = idx("CAR")
+                    if car is None:
+                        car = idx("ATT")
+                    lng = idx("LONG")
+                    if lng is None:
+                        lng = idx("LNG")
                     if y is not None and y < len(st):
                         row["RUSH_YDS"] = _f(st[y])
                     if td is not None and td < len(st):
                         row["RUSH_TD"] = _f(st[td])
+                    if car is not None and car < len(st):
+                        v = _f_opt(st[car])
+                        if v is not None:
+                            row["RUSH_ATT"] = v
+                    if lng is not None and lng < len(st):
+                        v = _f_opt(st[lng])
+                        if v is not None:
+                            row["RUSH_LONG"] = v
                 elif cat == "receiving":
                     rec = idx("REC")
                     y = idx("YDS")
                     td = idx("TD")
+                    lng = idx("LONG")
+                    if lng is None:
+                        lng = idx("LNG")
+                    tgt = idx("TGTS")
+                    if tgt is None:
+                        tgt = idx("TGT")
                     if rec is not None and rec < len(st):
                         row["REC"] = _f(st[rec])
                     if y is not None and y < len(st):
                         row["REC_YDS"] = _f(st[y])
                     if td is not None and td < len(st):
                         row["REC_TD"] = _f(st[td])
+                    if lng is not None and lng < len(st):
+                        v = _f_opt(st[lng])
+                        if v is not None:
+                            row["REC_LONG"] = v
+                    if tgt is not None and tgt < len(st):
+                        v = _f_opt(st[tgt])
+                        if v is not None:
+                            row["REC_TGT"] = v
                 elif cat == "defensive":
                     tot = idx("TOT")
                     sack = idx("SACK")
+                    if sack is None:
+                        sack = idx("SACKS")
                     dint = idx("INT")
                     if tot is not None and tot < len(st):
                         row["TACK_TOT"] = _f(st[tot])
@@ -256,20 +339,55 @@ def parse_players(
                         row["DEF_INT"] = _f(st[dint])
                 elif cat == "kicking":
                     pts = idx("PTS")
+                    fg = idx("FG")
+                    if fg is None:
+                        fg = idx("FGM")
+                    xp = idx("XP")
+                    if xp is None:
+                        xp = idx("XPM")
                     if pts is not None and pts < len(st):
                         row["KICK_PTS"] = _f(st[pts])
+                    if fg is not None and fg < len(st):
+                        raw = str(st[fg]).strip()
+                        if "/" in raw:
+                            try:
+                                row["KICK_FG"] = float(raw.split("/", 1)[0])
+                            except (TypeError, ValueError):
+                                pass
+                        else:
+                            v = _f_opt(st[fg])
+                            if v is not None:
+                                row["KICK_FG"] = v
+                    if xp is not None and xp < len(st):
+                        raw = str(st[xp]).strip()
+                        if "/" in raw:
+                            try:
+                                row["KICK_XP"] = float(raw.split("/", 1)[0])
+                            except (TypeError, ValueError):
+                                pass
+                        else:
+                            v = _f_opt(st[xp])
+                            if v is not None:
+                                row["KICK_XP"] = v
 
     _stat_keys = (
         "PASS_YDS", "RUSH_YDS", "REC_YDS", "REC", "PASS_TD", "RUSH_TD", "REC_TD",
-        "PASS_CMP", "PASS_INT", "SACK", "TACK_TOT", "KICK_PTS", "DEF_INT",
+        "PASS_CMP", "PASS_ATT", "PASS_INT", "PASS_SACKS", "SACK", "TACK_TOT",
+        "KICK_PTS", "KICK_FG", "KICK_XP", "DEF_INT",
+        "PASS_LONG", "RUSH_LONG", "REC_LONG", "REC_TGT", "RUSH_ATT",
     )
+    _optional_absent = {
+        "PASS_LONG", "RUSH_LONG", "REC_LONG", "REC_TGT", "RUSH_ATT",
+        "PASS_ATT", "PASS_CMP", "PASS_SACKS", "KICK_FG", "KICK_XP",
+    }
     rows: List[dict] = []
     for row in by_ath.values():
-        if not any(row.get(k) for k in _stat_keys):
+        if not any(row.get(k) not in (None, "") for k in _stat_keys):
             continue
         for k in _stat_keys:
+            if k in _optional_absent:
+                continue
             row.setdefault(k, 0.0)
-        # CFB boxscores have no MIN column; mark participation for rolling-window filters.
         row["MIN"] = 1.0
         rows.append(row)
     return rows
@@ -301,8 +419,60 @@ def fantasy(r: dict) -> float:
     )
 
 
+def _box_float(r: dict, key: str) -> Optional[float]:
+    raw = r.get(key)
+    if raw is None or raw == "":
+        return None
+    try:
+        v = float(raw)
+    except (TypeError, ValueError):
+        return None
+    if v != v:
+        return None
+    return v
+
+
+def _pass_count(r: dict, key: str) -> Optional[float]:
+    """Completions or attempts. A 0 beside real pass yards is a blank, not a game."""
+    v = _box_float(r, key)
+    yds = _box_float(r, "PASS_YDS")
+    if v == 0 and yds is not None and yds > 0:
+        return None
+    return v
+
+
+def _rush_yards_per_carry(r: dict) -> Optional[float]:
+    yds = _box_float(r, "RUSH_YDS")
+    att = _box_float(r, "RUSH_ATT")
+    if yds is None or att is None or att <= 0:
+        return None
+    return round(float(yds) / float(att), 1)
+
+
+def _completion_percentage(r: dict) -> Optional[float]:
+    cmp_v = _pass_count(r, "PASS_CMP")
+    att = _pass_count(r, "PASS_ATT")
+    if cmp_v is None or att is None or att <= 0:
+        return None
+    return round(100.0 * float(cmp_v) / float(att), 1)
+
+
+def _stat_num(r: dict, key: str) -> float:
+    try:
+        v = r.get(key)
+        if v is None or v == "":
+            return 0.0
+        return float(v)
+    except (TypeError, ValueError):
+        return 0.0
+
+
 def prop_value(prop_norm: str, r: dict) -> Optional[float]:
     p = str(prop_norm or "").strip().lower()
+    p = re.sub(r"[^a-z0-9]+", "_", p).strip("_")
+    # Period / first-N boards: never fuzzy-map onto full-game box columns.
+    if is_football_period_split_prop(p):
+        return None
     m = {
         "pass_yds": r.get("PASS_YDS"),
         "rush_yds": r.get("RUSH_YDS"),
@@ -319,35 +489,101 @@ def prop_value(prop_norm: str, r: dict) -> Optional[float]:
         "rushing_tds": r.get("RUSH_TD"),
         "receiving_tds": r.get("REC_TD"),
         "receptions": r.get("REC"),
-        "pass_completions": r.get("PASS_CMP"),
-        "completions": r.get("PASS_CMP"),
+        "pass_completions": _pass_count(r, "PASS_CMP"),
+        "pass_cmp": _pass_count(r, "PASS_CMP"),
+        "completions": _pass_count(r, "PASS_CMP"),
+        "pass_att": _pass_count(r, "PASS_ATT"),
+        "pass_attempts": _pass_count(r, "PASS_ATT"),
+        "rush_att": r.get("RUSH_ATT"),
+        "rush_attempts": r.get("RUSH_ATT"),
         "interceptions_thrown": r.get("PASS_INT"),
         "interceptions": r.get("PASS_INT") or r.get("DEF_INT"),
         "sacks": r.get("SACK"),
+        "sacks_taken": r.get("PASS_SACKS"),
+        "tackles": r.get("TACK_TOT"),
         "tackles_assists": r.get("TACK_TOT"),
+        "tackles_ast": r.get("TACK_TOT"),
         "kicking_points": r.get("KICK_PTS"),
+        "kick_pts": r.get("KICK_PTS"),
+        "pat_made": r.get("KICK_XP"),
+        "fg_made": r.get("KICK_FG"),
+        "extra_points": r.get("KICK_XP"),
+        "field_goals": r.get("KICK_FG"),
+        "player_td": _stat_num(r, "PASS_TD") + _stat_num(r, "RUSH_TD") + _stat_num(r, "REC_TD"),
+        "player_tds": _stat_num(r, "PASS_TD") + _stat_num(r, "RUSH_TD") + _stat_num(r, "REC_TD"),
+        "pass_rush_yds": _stat_num(r, "PASS_YDS") + _stat_num(r, "RUSH_YDS"),
+        "rush_rec_yds": _stat_num(r, "RUSH_YDS") + _stat_num(r, "REC_YDS"),
+        "pass_long": r.get("PASS_LONG"),
+        "rush_long": r.get("RUSH_LONG"),
+        "rec_long": r.get("REC_LONG"),
+        "longest_reception": r.get("REC_LONG"),
+        "longest_completion": r.get("PASS_LONG"),
+        "longest_rush": r.get("RUSH_LONG"),
+        "rec_tgt": r.get("REC_TGT"),
         "fantasy": fantasy(r),
+        "rush_yards_per_carry": _rush_yards_per_carry(r),
+        "yards_per_carry": _rush_yards_per_carry(r),
+        "ypc": _rush_yards_per_carry(r),
+        "completion_percentage": _completion_percentage(r),
+        "completion_pct": _completion_percentage(r),
+        "comp_pct": _completion_percentage(r),
     }
     if p in m and m[p] is not None:
         return m[p]
     if "fantasy" in p:
         return fantasy(r)
+    if "longest" in p and "completion" in p:
+        return r.get("PASS_LONG")
+    if "longest" in p and "rush" in p:
+        return r.get("RUSH_LONG")
+    if "longest" in p and ("rec" in p or "reception" in p):
+        return r.get("REC_LONG")
+    if "target" in p:
+        return r.get("REC_TGT")
+    if "rush" in p and ("att" in p or "attempt" in p):
+        return r.get("RUSH_ATT")
+    if "pass" in p and ("att" in p or "attempt" in p) and "td" not in p:
+        return _pass_count(r, "PASS_ATT")
+    if "rush" in p and "rec" in p and "yd" in p:
+        return m["rush_rec_yds"]
+    if "pass" in p and "rush" in p and "yd" in p:
+        return m["pass_rush_yds"]
     if "pass" in p and "yard" in p:
         return r.get("PASS_YDS")
-    if "rush" in p and "yard" in p:
+    if (
+        "rush" in p
+        and "yard" in p
+        and "per" not in p
+        and "avg" not in p
+        and "ypc" not in p
+    ):
         return r.get("RUSH_YDS")
     if ("rec" in p or "receiv" in p) and "yard" in p:
         return r.get("REC_YDS")
     if "reception" in p or p == "rec":
         return r.get("REC")
-    if "completion" in p:
-        return r.get("PASS_CMP")
-    if "sack" in p:
+    if (
+        ("completion" in p or p in ("pass_cmp", "cmp"))
+        and "percent" not in p
+        and "pct" not in p
+    ):
+        return _pass_count(r, "PASS_CMP")
+    if "sack" in p and "taken" in p:
+        return r.get("PASS_SACKS")
+    if p == "sacks" or ("sack" in p and "taken" not in p):
         return r.get("SACK")
     if "kick" in p and "point" in p:
         return r.get("KICK_PTS")
+    if p in ("pat_made", "extra_points") or ("pat" in p and "made" in p):
+        return r.get("KICK_XP")
+    if p in ("fg_made", "field_goals") or ("field" in p and "goal" in p):
+        return r.get("KICK_FG")
+    if "fg" in p and "made" in p:
+        return r.get("KICK_FG")
     if "tackle" in p:
         return r.get("TACK_TOT")
+    if "touchdown" in p or p in ("player_td", "player_tds", "tds"):
+        return m["player_td"]
     return m.get(p)
 
 
@@ -858,6 +1094,17 @@ def main():
         prop = str(row.get(prop_col,        "")).strip()
         line = row.get("line", None)
 
+        unsup = 0
+        if "unsupported_prop" in row.index:
+            try:
+                unsup = int(float(row.get("unsupported_prop") or 0))
+            except (TypeError, ValueError):
+                unsup = 0
+        if unsup == 1 or is_football_period_split_prop(prop):
+            stat_status.append("UNSUPPORTED_PROP")
+            out_rows.append({})
+            continue
+
         # When team_id is missing, fall through to ID-only then name-only matching.
         # Handles CBB props where ESPN team_id was never resolved by step5a,
         # and also covers slates processed by attach_cbb_athlete_ids (espn_id present
@@ -882,13 +1129,36 @@ def main():
             stat_status.append("NO_BOX_HISTORY"); out_rows.append({}); continue
 
         played = [g for g in games if game_played_for_prop(g, prop)]
-        vals = [float(v) for g in played
-                if (v := prop_value(prop, g)) is not None]
+        raw_vals = []
+        kept_games = []
+        for g in played:
+            v = prop_value(prop, g)
+            if v is None:
+                continue
+            try:
+                fv = float(v)
+            except (TypeError, ValueError):
+                continue
+            if is_dnp_zero_actual(fv, g):
+                continue
+            raw_vals.append(fv)
+            kept_games.append(g)
 
-        if not vals:
-            stat_status.append("UNSUPPORTED_PROP"); out_rows.append({}); continue
-        if len(vals) < 5:
-            stat_status.append("INSUFFICIENT_GAMES"); out_rows.append({"games_used": len(vals)}); continue
+        if not raw_vals:
+            stat_status.append("UNSUPPORTED_PROP")
+            out_rows.append({})
+            continue
+
+        role = str(row.get("position_group") or row.get("pos") or row.get("role") or "")
+        vals, attach_st = decide_attach(
+            raw_vals, prop, line, role=role, min_games=5, games=kept_games
+        )
+        if vals is None or attach_st != "OK":
+            extra = {"games_used": len(raw_vals)} if raw_vals else {}
+            stat_status.append(attach_st)
+            out_rows.append(extra)
+            continue
+        played = kept_games[: len(vals)]
 
         # vals is now newest-first (already sorted from dedup_sort)
 

@@ -33,11 +33,18 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import sys
 from pathlib import Path
 from typing import List, Optional
 
 import numpy as np
 import pandas as pd
+
+_REPO = Path(__file__).resolve().parent.parent
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+from utils.dnp_zero_void import is_dnp_zero_actual
+from utils.stat_attach_guard import decide_attach
 
 # ── Default DB path ────────────────────────────────────────────────────────────
 _HERE = Path(__file__).resolve().parent
@@ -233,25 +240,61 @@ def _resolve_prop(prop_norm: str, sport: str) -> Optional[str]:
 
 
 # ── Core DB query ──────────────────────────────────────────────────────────────
+_PT_COL = {
+    "soccer": "minutes_played",
+    "nba": "minutes",
+    "cbb": "minutes",
+    "nhl": "toi",
+}
+
+
 def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
                 stat_expr: str, params: tuple, n: int) -> List[float]:
     """
     Generic indexed stat query.
     Returns up to n most-recent non-null values, newest first.
+    DNP-zero games (minutes/TOI == 0 or inactive) are voided, not Under hits.
+    Missing stats stay missing — never zero-filled.
     """
-    sql = f"""
-        SELECT {stat_expr} AS val
-        FROM {table}
-        WHERE {where_clause}
-          AND {stat_expr} IS NOT NULL
-        ORDER BY game_date DESC
-        LIMIT {n}
-    """
+    pt = _PT_COL.get(table)
+    extra = max(n * 3, n)
+    if pt:
+        sql = f"""
+            SELECT {stat_expr} AS val, {pt} AS pt
+            FROM {table}
+            WHERE {where_clause}
+              AND {stat_expr} IS NOT NULL
+            ORDER BY game_date DESC
+            LIMIT {extra}
+        """
+    else:
+        sql = f"""
+            SELECT {stat_expr} AS val, NULL AS pt
+            FROM {table}
+            WHERE {where_clause}
+              AND {stat_expr} IS NOT NULL
+            ORDER BY game_date DESC
+            LIMIT {extra}
+        """
     try:
         rows = con.execute(sql, params).fetchall()
-        return [float(r[0]) for r in rows if r[0] is not None]
     except Exception:
         return []
+    out: List[float] = []
+    for r in rows:
+        if r[0] is None:
+            continue
+        try:
+            val = float(r[0])
+        except (TypeError, ValueError):
+            continue
+        pt_v = r[1] if len(r) > 1 else None
+        if is_dnp_zero_actual(val, {"minutes": pt_v, "toi": pt_v}):
+            continue
+        out.append(val)
+        if len(out) >= n:
+            break
+    return out
 
 
 def _nfkd_norm(s: str) -> str:
@@ -544,7 +587,8 @@ def attach_stats(
     slate["_line_num"] = pd.to_numeric(slate.get(line_col, ""), errors="coerce")
 
     status_counts = {"OK": 0, "NO_ID": 0, "NO_DATA": 0,
-                     "UNSUPPORTED_PROP": 0, "INSUFFICIENT_GAMES": 0}
+                     "UNSUPPORTED_PROP": 0, "INSUFFICIENT_GAMES": 0,
+                     "MAPPING_FAILURE": 0, "IMPLAUSIBLE_L5": 0}
 
     for idx, row in slate.iterrows():
         prop     = str(row.get(prop_col, "")).lower().strip()
@@ -588,11 +632,13 @@ def attach_stats(
             status_counts["NO_DATA"] += 1
             continue
 
-        if len(vals) < 2:
-            slate.at[idx, "stat_status"] = "INSUFFICIENT_GAMES"
-            status_counts["INSUFFICIENT_GAMES"] += 1
-            # Still attach what we have rather than voiding
-            # (1-game players are better than no data)
+        role = str(row.get("pos") or row.get("position_group") or row.get("role") or "")
+        kept, attach_status = decide_attach(vals, prop, line, role=role, min_games=2)
+        if kept is None or attach_status != "OK":
+            slate.at[idx, "stat_status"] = attach_status
+            status_counts[attach_status] = status_counts.get(attach_status, 0) + 1
+            continue
+        vals = kept
 
         # ── Fill per-game columns ──────────────────────────────────────────
         for i in range(1, n + 1):

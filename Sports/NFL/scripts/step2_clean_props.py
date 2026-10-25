@@ -28,6 +28,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 from _nfl_pipeline_active import require_nfl_pipeline_active_or_exit
 from utils.nfl_prop_defense import fill_opp_team_from_game
+from utils.nfl_unsupported_props import mark_football_unsupported_props
 
 PASSING_PROPS = frozenset(
     {
@@ -142,6 +143,10 @@ def main() -> None:
         for i, p in enumerate(df["prop_type_normalized"])
     ]
     df = fill_opp_team_from_game(df)
+    df = mark_football_unsupported_props(df, prop_col="prop_type_normalized")
+    n_unsup = int(pd.to_numeric(df["unsupported_prop"], errors="coerce").fillna(0).sum())
+    if n_unsup:
+        print(f"[NFL step2] unsupported_prop={n_unsup} (period/first-N; no box L5)")
 
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)

@@ -178,6 +178,13 @@ def main():
     else:
         df["prop_norm"] = ""
 
+    from utils.nfl_unsupported_props import mark_football_unsupported_props
+
+    df = mark_football_unsupported_props(df, prop_col="prop_norm")
+    n_unsup = int(pd.to_numeric(df["unsupported_prop"], errors="coerce").fillna(0).sum())
+    if n_unsup:
+        print(f"  unsupported_prop={n_unsup} (period/first-N; no box L5)")
+
     # pick_type normalized
     odds_col = "odds_type" if "odds_type" in df.columns else ("pick_type" if "pick_type" in df.columns else "")
     if odds_col:

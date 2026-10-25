@@ -37,27 +37,28 @@ def test_leg_gate_and_props():
     ok, why = S.leg_qualifies(_row("A", "tackles_ast", 6.5), face_verified=True)
     assert ok, why
     assert S.leg_qualifies(_row("A", "pass_completions", 20.5), face_verified=True) == (False, "prop_excluded")
+    assert S.leg_qualifies(_row("A", "sacks", 0.5, avg=-0.6), face_verified=True) == (False, "prop_excluded")
     assert S.leg_qualifies(_row("A", "rushing_yards", 40.5), face_verified=True) == (False, "prop_not_listed")
-    assert S.leg_qualifies(_row("A", "sacks", 0.5, l10u=7), face_verified=True) == (False, "l10_under_lt_8")
-    assert S.leg_qualifies(_row("A", "sacks", 0.5, avg=0.2), face_verified=True) == (False, "cover_lt_1")
-    assert S.leg_qualifies(_row("A", "sacks", 0.5, pt="Goblin"), face_verified=True) == (False, "not_literal_standard")
-    assert S.leg_qualifies(_row("A", "sacks", 0.5, side="OVER"), face_verified=True) == (False, "not_under")
-    assert S.leg_qualifies(_row("A", "sacks", 0.5), face_verified=False)[1] == "face_unverified_step1_no_pick_type"
+    assert S.leg_qualifies(_row("A", "tackles_ast", 6.5, l10u=7), face_verified=True) == (False, "l10_under_lt_8")
+    assert S.leg_qualifies(_row("A", "tackles_ast", 6.5, avg=6.0), face_verified=True) == (False, "cover_lt_1")
+    assert S.leg_qualifies(_row("A", "tackles_ast", 6.5, pt="Goblin"), face_verified=True) == (False, "not_literal_standard")
+    assert S.leg_qualifies(_row("A", "tackles_ast", 6.5, side="OVER"), face_verified=True) == (False, "not_under")
+    assert S.leg_qualifies(_row("A", "tackles_ast", 6.5), face_verified=False)[1] == "face_unverified_step1_no_pick_type"
 
 
 def test_rule4_arms_share_one_leg_log(tmp_path: Path):
     _step1(tmp_path, "2026-10-25")
     board = [
-        _row("A", "sacks", 0.5, avg=-0.6),
+        _row("A", "tackles_ast", 4.5, avg=2.0),
         _row("B", "tackles_ast", 6.5, team="NYG", opp="DAL"),
         _row("C", "tackles_ast", 8.5, team="PHI", opp="WAS"),
-        _row("D", "sacks", 1.5, team="WAS", opp="PHI", avg=0.3),
+        _row("D", "tackles_ast", 5.5, team="WAS", opp="PHI", avg=3.0),
     ]
     log = tmp_path / "track.jsonl"
     res = S.record_nfl_std_under_shadow(board, date="2026-10-25", root=tmp_path, path=log)
     assert res["face_verified_board"] is True
     assert res["n_legs"] == 4
-    assert res["n_rule4_blocked"] == 1
+    assert res["n_rule4_blocked"] == 1  # 4.5 line
     assert res["n_slips"]["rule4_waived"] == 2
     assert res["n_slips"]["rule4_applied"] == 1
     rows = [json.loads(l) for l in log.read_text().splitlines()]
@@ -72,7 +73,7 @@ def test_rule4_arms_share_one_leg_log(tmp_path: Path):
 def test_default_standard_board_is_not_face_verified(tmp_path: Path):
     _step1(tmp_path, "2026-10-25", mixed=False)
     log = tmp_path / "track.jsonl"
-    res = S.record_nfl_std_under_shadow([_row("A", "sacks", 0.5, avg=-0.6)], date="2026-10-25", root=tmp_path, path=log)
+    res = S.record_nfl_std_under_shadow([_row("A", "tackles_ast", 6.5)], date="2026-10-25", root=tmp_path, path=log)
     assert res["face_verified_board"] is False
     assert res["n_legs"] == 0
     assert res["skipped"] == {"face_unverified_step1_no_pick_type": 1}
@@ -82,7 +83,7 @@ def test_grade_confirms_face_on_board(tmp_path: Path):
     _step1(tmp_path, "2026-10-25")
     log = tmp_path / "track.jsonl"
     board = [
-        _row("A", "sacks", 0.5, avg=-0.6),
+        _row("A", "tackles_ast", 5.5, avg=2.0),
         _row("B", "tackles_ast", 6.5, team="NYG", opp="DAL"),
         _row("C", "tackles_ast", 8.5, team="PHI", opp="WAS"),
     ]
@@ -91,7 +92,7 @@ def test_grade_confirms_face_on_board(tmp_path: Path):
     tpl.mkdir()
     graded = {
         "props": [
-            {"sport": "NFL", "player": "A", "prop": "sacks", "direction": "UNDER", "line": 0.5, "pick_type": "Standard", "result": "HIT", "actual_value": 0},
+            {"sport": "NFL", "player": "A", "prop": "tackles_ast", "direction": "UNDER", "line": 5.5, "pick_type": "Standard", "result": "HIT", "actual_value": 2},
             {"sport": "NFL", "player": "B", "prop": "tackles_ast", "direction": "UNDER", "line": 6.5, "pick_type": "Goblin", "result": "HIT", "actual_value": 3},
             # C never on the graded board at 8.5
         ]
@@ -109,5 +110,4 @@ def test_grade_confirms_face_on_board(tmp_path: Path):
     assert arm["decided"] == 1 and arm["hits"] == 1 and arm["not_on_board"] == 2
     assert arm["bar_met"] is False
     assert summ["bar"]["quote_basis"] == "flat_3x_unverified"
-    # The 0.5 sacks leg is the only decided one; the applied arm drops it.
-    assert summ["arms"]["rule4_applied"]["decided"] == 0
+    assert summ["arms"]["rule4_applied"]["decided"] == 1

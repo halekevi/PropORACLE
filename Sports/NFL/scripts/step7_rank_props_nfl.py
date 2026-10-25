@@ -123,6 +123,12 @@ def main() -> None:
     df["recommended_side"] = dir_u
     df["bet_direction"] = dir_u
 
+    if "unsupported_prop" in df.columns:
+        unsup = pd.to_numeric(df["unsupported_prop"], errors="coerce").fillna(0).astype(int).eq(1)
+        if unsup.any():
+            df.loc[unsup, "hit_rate"] = float("nan")
+            print(f"[NFL step7] cleared hit_rate on {int(unsup.sum())} unsupported_prop row(s)")
+
     df["ml_prob"] = pd.to_numeric(df["hit_rate"], errors="coerce").clip(0.35, 0.92)
     apply_consistency_grade_scores(df, "NFL")
     df["tier"] = assign_tier_column(df, sport="nfl")
@@ -137,7 +143,13 @@ def main() -> None:
     df["composite_hit_rate"] = df["hit_rate"]
     df["line_hit_rate"] = df["hit_rate"]
 
-    elig = df[df["tier"].isin(["A", "B", "C"])].copy()
+    elig_mask = df["tier"].isin(["A", "B", "C"])
+    if "unsupported_prop" in df.columns:
+        elig_mask = elig_mask & pd.to_numeric(df["unsupported_prop"], errors="coerce").fillna(0).astype(int).eq(0)
+    if "stat_status" in df.columns:
+        from utils.stat_attach_guard import attach_status_blocks_l5
+        elig_mask = elig_mask & ~df["stat_status"].map(attach_status_blocks_l5)
+    elig = df[elig_mask].copy()
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with pd.ExcelWriter(out_path, engine="openpyxl") as w:
