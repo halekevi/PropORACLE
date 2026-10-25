@@ -93,7 +93,7 @@ def main() -> None:
     nflu = nflu_summary()
     bar = nflu["bar"]
     print(
-        f"\nNFL Standard UNDER shadow (prereg {NFLU_PREREG}; sacks/tackles, L10>=8 + cover>=1, "
+        f"\nNFL Standard UNDER shadow (prereg {NFLU_PREREG}; tackles only, sacks held 2026-10-25 until attach, L10>=8 + cover>=1, "
         f"2-leg Power): bar {bar['decided_min']} decided, breakeven {bar['breakeven']:.1%} "
         f"({bar['quote_basis']}, real quotes {bar['real_quotes_n']})"
     )
@@ -108,6 +108,28 @@ def main() -> None:
             f"  {arm}: legs {rec['legs']}, decided {rec['decided']}, win {wr_s}{band}, "
             f"not on board {rec['not_on_board']}, slips {rec['slips']} "
             f"({rec['slip_wins']}/{rec['slips_decided']} decided), {status}"
+        )
+    from utils.nfl_demon_volume_shadow import PREREG_DATE as NFLD_PREREG, summarize as nfld_summary
+
+    nfld = nfld_summary()
+    dbar = nfld["bar"]
+    print(
+        f"\nNFL Demon volume observe (prereg {NFLD_PREREG}; rush-attempt lead backs + "
+        f"reception target leaders, favored-or-close, line under recent volume, "
+        f"Demon OVER only): bar {dbar['decided_min']} "
+        f"decided, breakeven {dbar['breakeven']}, {dbar['quote_basis']} "
+        f"(real quotes {dbar['real_quotes_n']})"
+    )
+    for arm, rec in nfld["arms"].items():
+        wr = rec["hit_rate"]
+        wr_s = f"{wr:.1%}" if wr is not None else "ungraded"
+        band = ""
+        if rec["wilson_low"] is not None:
+            band = f" ({rec['wilson_low']:.1%}–{rec['wilson_high']:.1%})"
+        status = "BAR MET" if rec["bar_met"] else (rec["bar_note"] or "not yet")
+        print(
+            f"  {arm}: legs {rec['legs']}, decided {rec['decided']}, win {wr_s}{band}, "
+            f"not on board {rec['not_on_board']}, {status}"
         )
     if stamped_slip_count is None:
         print("\nl5_ranked_by_cell: module not on this tree, section skipped")

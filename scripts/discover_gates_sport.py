@@ -46,6 +46,13 @@ except Exception:  # pragma: no cover
     def is_football_period_split_prop(_p) -> bool:
         return False
 
+try:
+    from utils.stat_attach_invalid import is_analysis_invalid_prop
+except Exception:  # pragma: no cover
+
+    def is_analysis_invalid_prop(_sport, _p) -> bool:
+        return False
+
 
 OUT_DIR = _REPO / "data" / "reports"
 
@@ -526,6 +533,8 @@ def iter_sport_rows(sport_key: str) -> tuple[list[dict], dict]:
             if cfg.get("exclude_period") and (
                 is_football_period_split_prop(prop)
                 or is_football_period_split_prop(r.get("prop"))
+                or is_analysis_invalid_prop(sport_key, prop)
+                or is_analysis_invalid_prop(sport_key, r.get("prop"))
             ):
                 skipped_period += 1
                 continue

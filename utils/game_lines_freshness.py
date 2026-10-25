@@ -22,7 +22,7 @@ FETCH_SPORTS = ("MLB", "NBA", "NHL", "Soccer", "CBB")
 
 NBA_SEASON_RESUME = "2026-10-01"
 NHL_REGULAR_RESUME = "2026-10-08"  # preseason optional; regular season required
-CBB_SEASON_RESUME = "2026-11-01"
+CBB_SEASON_RESUME = "2026-10-20"  # early DI / exhibition; was 2026-11-01
 MLB_SEASON_END = "2026-11-05"
 
 

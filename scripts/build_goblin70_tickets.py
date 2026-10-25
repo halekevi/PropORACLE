@@ -2382,6 +2382,41 @@ def main() -> int:
             )
         except Exception as exc:
             print(f"WARN: NFL Standard UNDER shadow skipped ({exc})")
+        try:
+            from utils.nfl_demon_volume_shadow import (
+                grade_pending as grade_demon_volume,
+                record_nfl_demon_volume_shadow,
+            )
+
+            grade_demon_volume()
+            nfl_d = record_nfl_demon_volume_shadow(board or [], date=args.date)
+            payload["nfl_demon_volume_shadow"] = {
+                "track": nfl_d["track"],
+                "placed": False,
+                "face_verified_board": nfl_d["face_verified_board"],
+                "n_legs": nfl_d["n_legs"],
+                "n_rush_attempts": nfl_d["n_rush_attempts"],
+                "n_receptions": nfl_d["n_receptions"],
+                "spread_missing": nfl_d.get("spread_missing"),
+                "needs_odds_spread": nfl_d.get("needs_odds_spread"),
+                "skipped": nfl_d["skipped"],
+                "legs": [
+                    f"{l.get('player')} {l.get('prop_canon')} O{l.get('line')}"
+                    for l in nfl_d["legs"]
+                ],
+            }
+            print(
+                f"  [observe] NFL Demon volume (prereg 2026-10-25): {nfl_d['n_legs']} legs "
+                f"(rush {nfl_d['n_rush_attempts']}, rec {nfl_d['n_receptions']}), "
+                f"face_verified={nfl_d['face_verified_board']}, skipped {nfl_d['skipped']}"
+            )
+            if nfl_d.get("needs_odds_spread"):
+                print(
+                    "  [observe] NFL Demon volume blocked: every Demon rush/rec row "
+                    "is missing spread. Top up Odds API / re-run step6b — do not loosen the gate."
+                )
+        except Exception as exc:
+            print(f"WARN: NFL Demon volume observe skipped ({exc})")
     suffix = "_l5eq5" if args.l5_eq_5 else ""
     out = OUT_DIR / f"goblin70_tickets_{args.date}{suffix}.json"
     OUT_DIR.mkdir(parents=True, exist_ok=True)

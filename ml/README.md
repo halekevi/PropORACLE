@@ -16,14 +16,17 @@ NBA factor stack and quote gaps live in [`nba_prop_assessment.md`](nba_prop_asse
 Oct 25 closed the NBA scout candidate. Next scout **2026-11-20** (pre-tip
 `slate_minutes` only). Standard stay **3-pick Power at 6x or 2-pick at 3x — no 4–6 leg slips**.
 
-NFL stands in [`nfl_prop_assessment.md`](nfl_prop_assessment.md). Historical
+NFL stands in [`nfl_prop_assessment.md`](nfl_prop_assessment.md)
+(full-board category reference in §7). Historical
 keep cells are not a prior (face labels defaulted until 10-23). First build
 is nflverse snap + target share. Volume-week freshness is a hard fail.
 Pre-kick snapshots go in `Sports/NFL/data/cache/nfl_volume_snapshots.jsonl`.
 The projection calibration test is pre-registered at
 `ml/prereg/nfl_volume_projection_2026-10-25.md` (train 2021–2024, test
-2025) and has not been run. Tackles Standard UNDER is the only
-pre-registered shadow.
+2025) and has not been run. Tackles Standard UNDER is one
+pre-registered shadow. Demon rush-attempt / reception volume is frozen
+(`ml/prereg/nfl_demon_volume_2026-10-25.md`; favored-or-close ≤ +3.5).
+Observe only. Needs a board spread (Odds API top-up) before it can log.
 
 Every other sport uses the same stack
 ([`prop_skeleton.md`](prop_skeleton.md)): opportunity × rate × context

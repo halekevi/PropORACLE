@@ -3,8 +3,10 @@
 Working note next to this folder’s `README.md` and `nba_prop_assessment.md`.
 How to judge every PrizePicks NFL face, what is already attached, and what
 is worth building. Nothing here is a keep gate. NFL Goblin-70 stays
-**shadow / hold**. The only pre-registered experiment is Standard UNDER
-tackles (`ml/prereg/nfl_standard_under_2026-10-24.md`).
+**shadow / hold**. Pre-registered experiments: Standard UNDER tackles
+(`ml/prereg/nfl_standard_under_2026-10-24.md`) and Demon volume
+(`ml/prereg/nfl_demon_volume_2026-10-25.md`, rush-attempt lead backs and
+reception target leaders when favored-or-close). Neither is placed.
 
 Sunday 2026-10-25: 1PM games are underway. What’s left is the 4:05 / 4:25
 window and SNF. Treat everything except the tackles shadow as shadow or
@@ -72,6 +74,7 @@ Logical order on a slate:
 |---|---|---|
 | Face / attach guards | `utils/stat_attach_guard.py`, ledger `face_status` | Analysis drops invalid |
 | Tackles Standard UNDER shadow | `ml/prereg/nfl_standard_under_2026-10-24.md` | Logging only. Sacks held |
+| Demon volume observe | `ml/prereg/nfl_demon_volume_2026-10-25.md` | Rush att / rec Demon OVER; lead back / target leader; favored-or-close; line under recent. Small stake, not a lock |
 | Snap % cache | `build_nfl_snap_pct_cache.py` → step4c | Rebuilt through week 7; `through_week` required |
 | Route / target / WOPR | `build_nfl_route_participation.py` → `attach_participation` | Week 7; week-freshness is a hard fail |
 | Pre-kick volume log | `utils/nfl_volume_snapshot.py` | Same as NBA minutes; lock per game at kick |
@@ -93,6 +96,8 @@ Logical order on a slate:
    run the model until that file is the spec.** No PrizePicks lines in
    that test. Only the later edge-vs-PP experiment needs forward faces.
 3. **Odds API top-up** — restores script. Bigger here than NBA.
+   Demon volume observe (frozen) cannot log a leg without `spread`;
+   missing lines fail `spread_unknown`. Account action, not a gate edit.
 4. **Inactives at T−90** — same shape as NBA T−30, a few minutes earlier
    relative to kickoff. Practice reports midweek.
 5. **Unsupported props** — completions, FGs, period props need ESPN
@@ -123,9 +128,14 @@ real quotes, no 4–6 leg Standard slips.
 
 ## Today
 
-Tackles shadow is logging. Everything else on the Sunday list is
-unproven Goblin OVER or a Standard built without current role data —
-shadow or very small. 1PM games are live; do not ticket those.
+Tackles shadow is logging. Demon volume is pre-registered the same way:
+lead back / target leader with no committee or injury, favored or close
+(spread ≤ +3.5), and the live Demon still under recent volume. Observe
+only; a matching face is a small-stake candidate until the log has a
+few weeks, not a lock. First slate after 2026-10-25. Everything else on
+the Sunday list is unproven Goblin OVER or a Standard built without
+current role data — shadow or very small. 1PM games are live; do not
+ticket those.
 
 Volume caches are no longer a Tuesday reminder. `assert_nfl_volume_week_fresh`
 fails NFL step3 / step4c / `run_nfl_pipeline.ps1` when snap or route
@@ -142,3 +152,170 @@ WOPR values land in `Sports/NFL/data/cache/nfl_volume_snapshots.jsonl`
 the same way NBA minutes snapshot. Train later on those rows only.
 Route % stays a snap proxy until `pbp_participation` exists; the route
 builder switches automatically when that file returns.
+
+## 7. Category reference (full board)
+
+Nothing in this section is a keep gate. Niche-market edge is a
+**hypothesis to pre-register**, not a conclusion. Popular props (pass
+yards, receiving yards, anytime TDs) get the most market attention.
+
+Skip Fantasy Score (already banned) and every `(Combo)` two-player
+prop. The data cannot assess those well.
+
+### Volume (best place to focus)
+
+Rush Attempts, Receptions, Rec Targets, Pass Attempts, Pass Completions,
+Tackles+Ast.
+
+What decides them: role and opportunity (snap share, routes, target
+share, carry share), game script (spread and total), pass rate over
+expected, and for tackles the opponent’s run rate and plays per game
+plus defensive snap share.
+
+Data: snaps / routes / target and carry share from nflverse (now
+attached), spreads and totals (Odds API), defensive snap counts.
+
+Pipeline: rush attempts and receptions are supported. Pass attempts and
+completions are unsupported (no `PASS_CMP` / `PASS_ATT` columns).
+Targets still need nflverse targets joined to the board.
+
+Volume is the steadiest part of football. Skattebo Demon rush attempts
+is the example. That track is frozen at
+`ml/prereg/nfl_demon_volume_2026-10-25.md` (observe only).
+
+### Yardage
+
+Pass Yards, Rush Yards, Receiving Yards, Rush+Rec Yds, Pass+Rush Yds.
+
+Volume × efficiency. Efficiency is noisy — shrink it heavily toward a
+position average.
+
+Data: air yards and aDOT, opponent defense by position (EPA allowed),
+pressure rate vs pass blocking, wind.
+
+Supported, but these are the most-watched props and likely the most
+efficiently priced.
+
+### Kicking
+
+Kicking Points, FG Made, PAT Made.
+
+Team implied total, red-zone efficiency (field goals from stalled
+drives), dome or wind, kicker range, coach aggression on fourth down.
+
+Kicking points supported. FG made is unsupported.
+
+### Derived and first / longest
+
+Completion %, Passer Rating, Rush Yards Per Carry, Yards on First
+Reception, Rush Yards in First 5 Attempts, Consecutive Pass Completions,
+Longest Rush / Reception / Completion.
+
+Individual-play markets. High variance. Today’s mapping failures (YPC
+built from total rush yards, “longest reception” from catch counts).
+
+nflverse play-by-play computes every one of these exactly, for grading
+and for history. Do not sibling-map them.
+
+### Quarter and half thresholds
+
+Quarters with 1+ Reception / 5+ Rush Yds / 10+ Rec Yds / 25+ Pass Yds;
+Halves with 25+ Rush / 25+ Rec / 100+ Pass Yds.
+
+How consistently a player gets volume across periods, plus game script
+(stars sit in blowouts). Same nflverse play-by-play, quarter-tagged.
+
+Interesting because “quarters with 1+ reception” for a target leader is
+a distribution question that is hard to eyeball and may be priced
+loosely. Hypothesis only.
+
+### Touchdowns, interceptions, sacks
+
+Anytime TDs, Rush TDs, Pass TDs, INT, Sacks, Sacks Taken.
+
+Low-count, high-variance. TDs: red-zone and goal-line share plus
+implied team total. INTs: QB interception rate and opponent pressure.
+Sacks: pass-rush win rate vs pass blocking and opponent dropbacks.
+
+Mostly avoid for tickets. Sacks return to the Standard UNDER shadow
+once the stat attaches.
+
+### Punting
+
+Punts, Punts Inside 20, Punt Touchbacks.
+
+Roughly the inverse of offensive success: weak offense, strong defense,
+low implied total, bad weather. Needs play-by-play, team efficiency,
+implied totals. Niche and probably lightly modeled. Hypothesis only.
+
+## 8. Biggest unlock: nflverse play-by-play
+
+About 40% of the 2026-10-25 board was unmeasurable (1,630 unsupported
+plus 466 mapping failures). Play-by-play fixes most of that in one
+integration:
+
+- Grade derived, first-N, longest, quarter, and half props correctly
+- Build honest history for them
+- Model them, because each is a function of plays
+
+`pbp_participation` is still 404; route % is a snap proxy until that
+file returns. Play-by-play attach is a separate ingest from the weekly
+stat tables already on the board.
+
+## 9. ML layer (per family)
+
+```
+volume model (snaps, routes, targets, carries, plays;
+             tackles opportunity for defenders)
+        ×  efficiency model (shrunk toward position averages)
+        ×  game-script adjustment (spread + total)
+        →  distribution
+             Poisson / negbin for counts
+             quantile LightGBM for yards
+             quarter-level counts for threshold props
+        →  calibrate on 2021–2025 nflverse
+           (existing prereg: ECE ≤ 0.05 per family,
+            ml/prereg/nfl_volume_projection_2026-10-25.md)
+        →  compare to the real N-correct quote
+        →  discover_gates on the residuals
+```
+
+Do not run the volume projection until that prereg is the spec.
+
+Long-term: a drive-level game simulator (a few thousand play-by-play
+paths per game). Yards, attempts, longest, first reception, quarters,
+kicking, and punts then fall out of the same simulation. Larger
+project; what serious NFL modelers use. Not a near-term ticket path.
+
+## 10. Where language models help
+
+Not by picking props. A language model has no edge at guessing
+outcomes. Use it to turn unstructured information into timestamped
+features, which is where the market moves:
+
+| Job | Output |
+|---|---|
+| News to features | Injury reports, Wed–Fri practice, beat posts, pressers → `expected_role_change`, `snap_limit`, `new_starter`, each with a pre-kick timestamp |
+| Role-change detection | Trades, depth-chart promotions, backup RB taking over |
+| Daily data-quality reviewer | Automated pass over the best-props list; flag all-zero starter history, YPC with an 82-yard average |
+| Factor cards | Plain-language projection notes for human judgment |
+
+Treat AI features like any other input. Log them with a pre-kickoff
+timestamp and test them in a shadow first. A summary written after the
+news broke can leak the answer.
+
+## 11. Build order (after current volume attach)
+
+1. **nflverse play-by-play attach** — correct grading and history for
+   every derived and period prop.
+2. **Volume models** for attempts, receptions, targets, and tackles,
+   plus spreads from Odds API or ESPN. Odds API top-up is still the
+   account blocker for script on the live board.
+3. **Pre-register a niche-market test** — punts, kicking points,
+   quarter thresholds. Write the spec before any run.
+4. **AI news-to-features**, with timestamps, shadow only.
+5. **Drive-level simulator** as the long-term upgrade.
+
+Current locks that do not move for this list: Demon volume observe is
+frozen; tackles Standard UNDER is logging; volume-week freshness is a
+hard fail; no Demons on the general ticket path.

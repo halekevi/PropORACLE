@@ -1016,7 +1016,8 @@ def load_golf(root: Path, date: str) -> pd.DataFrame:
 
 
 CBB_SEASON_END_2026 = "2026-04-07"
-CBB_SEASON_RESUME = "2026-11-01"
+# Early DI / exhibition boards post mid-to-late October; was 2026-11-01.
+CBB_SEASON_RESUME = "2026-10-20"
 
 
 def _cbb_season_active(date: str) -> bool:
@@ -1361,6 +1362,52 @@ def recs(df: pd.DataFrame) -> list[dict]:
             "roster_note": _clean(r.get("roster_note")),
             "new_teammates": _clean(r.get("new_teammates")),
             "roster_change_reason": _clean(r.get("roster_change_reason")),
+            "l5_zero_or_dnp": int(r.get("l5_zero_or_dnp") or 0) == 1
+            or str(r.get("l5_zero_or_dnp") or r.get("L5 Zero Or DNP") or "")
+            .strip()
+            .lower()
+            in {"1", "true", "yes"},
+            "l5_has_zero": int(r.get("l5_has_zero") or 0) == 1
+            or str(r.get("l5_has_zero") or r.get("L5 Has Zero") or "")
+            .strip()
+            .lower()
+            in {"1", "true", "yes"},
+            "l5_skipped_dnp": _first_count(
+                r.get("l5_skipped_dnp"), r.get("L5 Skipped DNP")
+            )
+            or 0,
+            "role_fit": _clean(r.get("role_fit") or r.get("Role Fit")).lower(),
+            "primary_stats": _clean(
+                r.get("primary_stats") or r.get("Primary Stats")
+            ),
+            "primary_source": _clean(
+                r.get("primary_source") or r.get("Primary Source")
+            ),
+            "position_bucket": _clean(
+                r.get("position_bucket") or r.get("Position Bucket")
+            ),
+            "spread": _flt(r.get("spread") or r.get("Spread")),
+            "snap_pct_L3": _flt(
+                r.get("snap_pct_L3") or r.get("Snap L3") or r.get("snap_pct_season")
+            ),
+            "target_share_L3": _flt(
+                r.get("target_share_L3")
+                or r.get("Tgt Share L3")
+                or r.get("target_share_season")
+            ),
+            "rush_att_share": _flt(
+                r.get("rush_att_share")
+                or r.get("rush_att_share_pct")
+                or r.get("Rush Att Share")
+            ),
+            "rec_tgt_share": _flt(
+                r.get("rec_tgt_share")
+                or r.get("rec_tgt_share_pct")
+                or r.get("Rec Tgt Share")
+            ),
+            "injury_status": _clean(
+                r.get("injury_status") or r.get("Injury") or r.get("Injury Status")
+            ),
         }
         rec["starter_policy"] = policy_from_row({**dict(r), **rec})
         rec["expected_snaps"] = expected_snaps_bucket(rec["starter_policy"])
@@ -1619,10 +1666,31 @@ def _fmt(r: dict, side: str) -> str:
             roster_s = "  roster_changed"
         if mates and mates not in roster_s:
             roster_s += f"  new:{mates}"
+    zero_s = ""
+    if r.get("l5_zero_or_dnp"):
+        bits = []
+        if r.get("l5_has_zero"):
+            bits.append("zero")
+        skipped = r.get("l5_skipped_dnp") or 0
+        try:
+            skipped_n = int(skipped)
+        except (TypeError, ValueError):
+            skipped_n = 0
+        if skipped_n > 0:
+            bits.append(f"dnp×{skipped_n}")
+        zero_s = f"  L5_zero_or_dnp({'+'.join(bits) or 'flag'})"
+    role_s = ""
+    rf = str(r.get("role_fit") or "").strip().lower()
+    if rf:
+        pri = str(r.get("primary_stats") or "").strip()
+        role_s = f"  role={rf}"
+        if pri:
+            role_s += f"({pri})"
     return (
         f"  {tag:12} {r['player']:24} {r['prop']:24} {prefix}{line}  "
         f"L5 {l5}  L5avg {l5a_s}  L10avg {l10a_s}  szn {avg_s}  cov {cov_s}  "
-        f"{d_s:12}{miss_s}{note_s}{pol_s}{l8_s}{roster_s}  {r.get('matchup') or ''}"
+        f"{d_s:12}{miss_s}{note_s}{pol_s}{l8_s}{roster_s}{zero_s}{role_s}  "
+        f"{r.get('matchup') or ''}"
     )
 
 
@@ -1958,9 +2026,30 @@ def main() -> int:
     ):
         df_x = loader(root, date)
         if df_x.empty:
-            if sport in {"CBB", "WCBB"} and _cbb_season_active(date):
-                print(f"\n===== {sport} =====\n  (no step8 file)")
-                by_sport[sport] = []
+            # Always print in-season boards (incl. NBA) so L5=5 replies never
+            # silently omit a requested sport. CBB/WCBB stay quiet only while
+            # the calendar still says off-season.
+            if sport in {"CBB", "WCBB"} and not _cbb_season_active(date):
+                continue
+            folder = {
+                "CBB": "cbb",
+                "WCBB": "wcbb",
+                "NBA": "nba",
+                "NBA1Q": "nba1q",
+                "NBA1H": "nba1h",
+                "WNBA1Q": "wnba1q",
+                "WNBA1H": "wnba1h",
+            }.get(sport, sport.lower())
+            stem = (
+                f"step8_{folder}_direction_clean.xlsx"
+                if sport != "NBA"
+                else "step8_nba_direction_clean.xlsx"
+            )
+            print(
+                f"\n===== {sport} =====\n"
+                + step8_empty_reason(root, date, sport, folder, stem)
+            )
+            by_sport[sport] = []
             continue
         all_rows.extend(recs(df_x))
         so, su, gob = bucket(all_rows, sport)
