@@ -21,6 +21,12 @@ leg whose line sits near L5/projection with no floor. Volume Demons
 yards cannot. The frozen leader gate would not have logged Tucker — that
 is why the rec-floor track exists.
 
+Two observe-only backtests sit next to those tracks
+(`ml/prereg/volume_floor_backtest_2026-10-25.md`). They must not retune
+them. A is line-based on face-verified NBA/MLB (and whatever else
+clears). B is line-free NFL floor persistence from nflverse. Neither
+produces honest EV. A better cut becomes a new track.
+
 ## 1. Where NFL stands
 
 Historical NFL results are **not a prior**. Face labels were defaulted

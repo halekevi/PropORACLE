@@ -1,0 +1,61 @@
+{
+  "track": "volume_floor_backtest",
+  "prereg_date": "2026-10-25",
+  "frozen_forward_tracks_do_not_edit": [
+    "nfl_std_under_shadow",
+    "nfl_demon_volume_shadow",
+    "nfl_demon_rec_floor_shadow"
+  ],
+  "on_better_rule": "register a new dated track; do not retune the frozen three",
+  "honest_ev": false,
+  "honest_ev_reason": "historical Demon N-correct quotes were not scraped",
+  "volume_canons": {
+    "NBA": ["fga", "fg2a", "threes_att", "fta"],
+    "WNBA": ["fga", "fg2a", "threes_att", "fta"],
+    "NBA1H": ["fga", "fg2a", "threes_att", "fta"],
+    "WNBA1H": ["fga", "fg2a", "threes_att", "fta"],
+    "CBB": ["fga", "fg2a", "threes_att", "fta"],
+    "MLB": ["pitches_thrown"],
+    "NFL": ["receptions", "rec", "rush_att", "rush_attempts", "rushattempts", "rec_tgt"],
+    "CFB": ["rec", "rush_att", "rec_tgt"],
+    "Soccer": ["shots"]
+  },
+  "volume_out": ["yards", "longest", "made", "points", "rebounds", "assists", "combos", "tds", "hits", "tb"],
+  "role": {
+    "rank_max": 2,
+    "receptions_min_share_pp": 15,
+    "as_of": "games strictly before this one"
+  },
+  "floor": {
+    "l5_games_min": 5,
+    "over_equiv": "min(L5) > line == directional L5 = 5"
+  },
+  "A": {
+    "source": "graded_props_*.json",
+    "face": "verified sport-dates only",
+    "books": ["Goblin OVER", "Standard OVER", "Demon OVER"],
+    "gate": ["L5=5", "L10>=8", "D_ok"],
+    "walk_forward": "last 30% of dates held out",
+    "min_n": 50,
+    "bh_alpha": 0.10,
+    "bh_on": "OOS vs approximate rung breakeven",
+    "breakeven": {
+      "Goblin OVER": 0.846,
+      "Standard OVER": 0.577,
+      "Demon OVER": null
+    }
+  },
+  "B": {
+    "source": "nflverse stats_player_week REG",
+    "headline_seasons": [2021, 2022, 2023, 2024, 2025],
+    "extra_seasons": [2026],
+    "families": ["rush_attempts", "receptions"],
+    "price": null
+  },
+  "read": {
+    "volume_beats_nonvolume_in_gate": "use volume as filter or tiebreaker; not a promotion",
+    "persistence_ge_80": "Demon tracks have a strong prior; watch forward logs",
+    "persistence_near_60": "Skattebo and Tucker were mostly a good day",
+    "no_difference": "the two Demons were variance; nothing was promoted"
+  }
+}

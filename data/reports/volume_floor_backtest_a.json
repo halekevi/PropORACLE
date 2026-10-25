@@ -1,0 +1,4420 @@
+{
+  "part": "A",
+  "meta": {
+    "raw_n": 751298,
+    "face_verified_n": 748017,
+    "dropped_unverified": 3281,
+    "skipped": {
+      "not_hit_miss": 517978,
+      "no_prop": 43525,
+      "not_over": 50239,
+      "not_book": 0
+    },
+    "unverified_sport_dates": [
+      "NBA1H|2026-02-19",
+      "NBA1H|2026-02-24",
+      "NBA1H|2026-03-23",
+      "NBA1H|2026-03-25",
+      "NFL|2026-09-09",
+      "NFL|2026-09-10",
+      "NFL|2026-09-13",
+      "NFL|2026-09-14",
+      "NFL|2026-09-28",
+      "NFL|2026-10-04",
+      "NFL|2026-10-05",
+      "NFL|2026-10-08",
+      "NFL|2026-10-11",
+      "NFL|2026-10-12",
+      "NFL|2026-10-15",
+      "NFL|2026-10-18",
+      "NFL|2026-10-19",
+      "SOCCER|2026-04-03",
+      "SOCCER|2026-04-04",
+      "SOCCER|2026-04-05",
+      "SOCCER|2026-04-06",
+      "SOCCER|2026-04-11",
+      "SOCCER|2026-05-09",
+      "SOCCER|2026-05-10",
+      "SOCCER|2026-05-11",
+      "SOCCER|2026-05-12",
+      "SOCCER|2026-05-13",
+      "SOCCER|2026-05-14",
+      "SOCCER|2026-05-15",
+      "SOCCER|2026-05-16",
+      "SOCCER|2026-05-17",
+      "SOCCER|2026-05-18",
+      "SOCCER|2026-05-19",
+      "SOCCER|2026-05-20",
+      "SOCCER|2026-05-22",
+      "SOCCER|2026-05-23",
+      "SOCCER|2026-05-24",
+      "SOCCER|2026-05-30"
+    ],
+    "face_status_rows": 586,
+    "dates": [
+      "2026-02-19",
+      "2026-02-20",
+      "2026-02-24",
+      "2026-02-25",
+      "2026-02-26",
+      "2026-02-27",
+      "2026-02-28",
+      "2026-03-01",
+      "2026-03-02",
+      "2026-03-03",
+      "2026-03-04",
+      "2026-03-06",
+      "2026-03-07",
+      "2026-03-08",
+      "2026-03-09",
+      "2026-03-10",
+      "2026-03-11",
+      "2026-03-12",
+      "2026-03-13",
+      "2026-03-14",
+      "2026-03-15",
+      "2026-03-16",
+      "2026-03-17",
+      "2026-03-18",
+      "2026-03-19",
+      "2026-03-20",
+      "2026-03-21",
+      "2026-03-22",
+      "2026-03-23",
+      "2026-03-24",
+      "2026-03-25",
+      "2026-03-26",
+      "2026-03-27",
+      "2026-03-28",
+      "2026-03-29",
+      "2026-03-30",
+      "2026-03-31",
+      "2026-04-01",
+      "2026-04-02",
+      "2026-04-03",
+      "2026-04-04",
+      "2026-04-05",
+      "2026-04-06",
+      "2026-04-07",
+      "2026-04-08",
+      "2026-04-09",
+      "2026-04-10",
+      "2026-04-11",
+      "2026-04-12",
+      "2026-04-13",
+      "2026-04-14",
+      "2026-04-15",
+      "2026-04-16",
+      "2026-04-17",
+      "2026-04-18",
+      "2026-04-19",
+      "2026-04-20",
+      "2026-04-21",
+      "2026-04-22",
+      "2026-04-23",
+      "2026-04-24",
+      "2026-04-25",
+      "2026-04-26",
+      "2026-04-27",
+      "2026-04-28",
+      "2026-04-29",
+      "2026-04-30",
+      "2026-05-07",
+      "2026-05-08",
+      "2026-05-09",
+      "2026-05-10",
+      "2026-05-11",
+      "2026-05-12",
+      "2026-05-13",
+      "2026-05-14",
+      "2026-05-15",
+      "2026-05-16",
+      "2026-05-17",
+      "2026-05-18",
+      "2026-05-19",
+      "2026-05-20",
+      "2026-05-21",
+      "2026-05-22",
+      "2026-05-23",
+      "2026-05-24",
+      "2026-05-25",
+      "2026-05-26",
+      "2026-05-27",
+      "2026-05-28",
+      "2026-05-29",
+      "2026-05-30",
+      "2026-05-31",
+      "2026-06-01",
+      "2026-06-02",
+      "2026-06-03",
+      "2026-06-04",
+      "2026-06-05",
+      "2026-06-06",
+      "2026-06-07",
+      "2026-06-08",
+      "2026-06-09",
+      "2026-06-10",
+      "2026-06-11",
+      "2026-06-12",
+      "2026-06-13",
+      "2026-06-14",
+      "2026-06-15",
+      "2026-06-16",
+      "2026-06-17",
+      "2026-06-18",
+      "2026-06-19",
+      "2026-06-20",
+      "2026-06-21",
+      "2026-06-22",
+      "2026-06-23",
+      "2026-06-24",
+      "2026-06-25",
+      "2026-06-26",
+      "2026-06-27",
+      "2026-06-28",
+      "2026-06-29",
+      "2026-06-30",
+      "2026-07-01",
+      "2026-07-02",
+      "2026-07-03",
+      "2026-07-04",
+      "2026-07-05",
+      "2026-07-06",
+      "2026-07-07",
+      "2026-07-08",
+      "2026-07-09",
+      "2026-07-10",
+      "2026-07-11",
+      "2026-07-12",
+      "2026-07-13",
+      "2026-07-14",
+      "2026-07-15",
+      "2026-07-16",
+      "2026-07-17",
+      "2026-07-18",
+      "2026-07-19",
+      "2026-07-20",
+      "2026-07-21",
+      "2026-07-22",
+      "2026-07-23",
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26",
+      "2026-07-27",
+      "2026-07-28",
+      "2026-07-29",
+      "2026-07-30",
+      "2026-07-31",
+      "2026-08-01",
+      "2026-08-02",
+      "2026-08-04",
+      "2026-08-05",
+      "2026-08-06",
+      "2026-08-07",
+      "2026-08-08",
+      "2026-08-09",
+      "2026-08-10",
+      "2026-08-11",
+      "2026-08-12",
+      "2026-08-13",
+      "2026-08-14",
+      "2026-08-15",
+      "2026-08-16",
+      "2026-08-17",
+      "2026-08-18",
+      "2026-08-19",
+      "2026-08-20",
+      "2026-08-21",
+      "2026-08-22",
+      "2026-08-23",
+      "2026-08-24",
+      "2026-08-25",
+      "2026-08-26",
+      "2026-08-27",
+      "2026-08-28",
+      "2026-08-29",
+      "2026-08-30",
+      "2026-08-31",
+      "2026-09-01",
+      "2026-09-02",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-06",
+      "2026-09-07",
+      "2026-09-08",
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20",
+      "2026-09-21",
+      "2026-09-22",
+      "2026-09-23",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26",
+      "2026-09-27",
+      "2026-09-29",
+      "2026-09-30",
+      "2026-10-02",
+      "2026-10-04",
+      "2026-10-07",
+      "2026-10-09",
+      "2026-10-10",
+      "2026-10-11",
+      "2026-10-12",
+      "2026-10-14",
+      "2026-10-17",
+      "2026-10-18",
+      "2026-10-19",
+      "2026-10-20",
+      "2026-10-21",
+      "2026-10-22",
+      "2026-10-23",
+      "2026-10-24"
+    ],
+    "train_dates": [
+      "2026-02-19",
+      "2026-02-20",
+      "2026-02-24",
+      "2026-02-25",
+      "2026-02-26",
+      "2026-02-27",
+      "2026-02-28",
+      "2026-03-01",
+      "2026-03-02",
+      "2026-03-03",
+      "2026-03-04",
+      "2026-03-06",
+      "2026-03-07",
+      "2026-03-08",
+      "2026-03-09",
+      "2026-03-10",
+      "2026-03-11",
+      "2026-03-12",
+      "2026-03-13",
+      "2026-03-14",
+      "2026-03-15",
+      "2026-03-16",
+      "2026-03-17",
+      "2026-03-18",
+      "2026-03-19",
+      "2026-03-20",
+      "2026-03-21",
+      "2026-03-22",
+      "2026-03-23",
+      "2026-03-24",
+      "2026-03-25",
+      "2026-03-26",
+      "2026-03-27",
+      "2026-03-28",
+      "2026-03-29",
+      "2026-03-30",
+      "2026-03-31",
+      "2026-04-01",
+      "2026-04-02",
+      "2026-04-03",
+      "2026-04-04",
+      "2026-04-05",
+      "2026-04-06",
+      "2026-04-07",
+      "2026-04-08",
+      "2026-04-09",
+      "2026-04-10",
+      "2026-04-11",
+      "2026-04-12",
+      "2026-04-13",
+      "2026-04-14",
+      "2026-04-15",
+      "2026-04-16",
+      "2026-04-17",
+      "2026-04-18",
+      "2026-04-19",
+      "2026-04-20",
+      "2026-04-21",
+      "2026-04-22",
+      "2026-04-23",
+      "2026-04-24",
+      "2026-04-25",
+      "2026-04-26",
+      "2026-04-27",
+      "2026-04-28",
+      "2026-04-29",
+      "2026-04-30",
+      "2026-05-07",
+      "2026-05-08",
+      "2026-05-09",
+      "2026-05-10",
+      "2026-05-11",
+      "2026-05-12",
+      "2026-05-13",
+      "2026-05-14",
+      "2026-05-15",
+      "2026-05-16",
+      "2026-05-17",
+      "2026-05-18",
+      "2026-05-19",
+      "2026-05-20",
+      "2026-05-21",
+      "2026-05-22",
+      "2026-05-23",
+      "2026-05-24",
+      "2026-05-25",
+      "2026-05-26",
+      "2026-05-27",
+      "2026-05-28",
+      "2026-05-29",
+      "2026-05-30",
+      "2026-05-31",
+      "2026-06-01",
+      "2026-06-02",
+      "2026-06-03",
+      "2026-06-04",
+      "2026-06-05",
+      "2026-06-06",
+      "2026-06-07",
+      "2026-06-08",
+      "2026-06-09",
+      "2026-06-10",
+      "2026-06-11",
+      "2026-06-12",
+      "2026-06-13",
+      "2026-06-14",
+      "2026-06-15",
+      "2026-06-16",
+      "2026-06-17",
+      "2026-06-18",
+      "2026-06-19",
+      "2026-06-20",
+      "2026-06-21",
+      "2026-06-22",
+      "2026-06-23",
+      "2026-06-24",
+      "2026-06-25",
+      "2026-06-26",
+      "2026-06-27",
+      "2026-06-28",
+      "2026-06-29",
+      "2026-06-30",
+      "2026-07-01",
+      "2026-07-02",
+      "2026-07-03",
+      "2026-07-04",
+      "2026-07-05",
+      "2026-07-06",
+      "2026-07-07",
+      "2026-07-08",
+      "2026-07-09",
+      "2026-07-10",
+      "2026-07-11",
+      "2026-07-12",
+      "2026-07-13",
+      "2026-07-14",
+      "2026-07-15",
+      "2026-07-16",
+      "2026-07-17",
+      "2026-07-18",
+      "2026-07-19",
+      "2026-07-20",
+      "2026-07-21",
+      "2026-07-22",
+      "2026-07-23",
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26",
+      "2026-07-27",
+      "2026-07-28",
+      "2026-07-29",
+      "2026-07-30",
+      "2026-07-31",
+      "2026-08-01",
+      "2026-08-02",
+      "2026-08-04",
+      "2026-08-05",
+      "2026-08-06",
+      "2026-08-07",
+      "2026-08-08"
+    ],
+    "oos_dates": [
+      "2026-08-09",
+      "2026-08-10",
+      "2026-08-11",
+      "2026-08-12",
+      "2026-08-13",
+      "2026-08-14",
+      "2026-08-15",
+      "2026-08-16",
+      "2026-08-17",
+      "2026-08-18",
+      "2026-08-19",
+      "2026-08-20",
+      "2026-08-21",
+      "2026-08-22",
+      "2026-08-23",
+      "2026-08-24",
+      "2026-08-25",
+      "2026-08-26",
+      "2026-08-27",
+      "2026-08-28",
+      "2026-08-29",
+      "2026-08-30",
+      "2026-08-31",
+      "2026-09-01",
+      "2026-09-02",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-06",
+      "2026-09-07",
+      "2026-09-08",
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20",
+      "2026-09-21",
+      "2026-09-22",
+      "2026-09-23",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26",
+      "2026-09-27",
+      "2026-09-29",
+      "2026-09-30",
+      "2026-10-02",
+      "2026-10-04",
+      "2026-10-07",
+      "2026-10-09",
+      "2026-10-10",
+      "2026-10-11",
+      "2026-10-12",
+      "2026-10-14",
+      "2026-10-17",
+      "2026-10-18",
+      "2026-10-19",
+      "2026-10-20",
+      "2026-10-21",
+      "2026-10-22",
+      "2026-10-23",
+      "2026-10-24"
+    ],
+    "n_rows": 748017,
+    "frozen_tracks_untouched": [
+      "nfl_std_under_shadow",
+      "nfl_demon_volume_shadow",
+      "nfl_demon_rec_floor_shadow"
+    ],
+    "honest_ev": false
+  },
+  "cells": [
+    {
+      "sport": "CBB",
+      "book": "Goblin OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Goblin OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Goblin OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Goblin OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Goblin OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Goblin OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": null
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Goblin OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Standard OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Standard OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Standard OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Standard OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Standard OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Standard OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": null
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CBB",
+      "book": "Standard OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Goblin OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0127,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0127,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Goblin OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 31,
+        "n": 39,
+        "hr": 0.7949,
+        "wilson_low": 0.6447,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0511,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 31,
+        "n": 39,
+        "hr": 0.7949,
+        "wilson_low": 0.6447,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0511,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Goblin OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 30,
+        "n": 35,
+        "hr": 0.8571,
+        "wilson_low": 0.7062,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.0111,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 30,
+        "n": 35,
+        "hr": 0.8571,
+        "wilson_low": 0.7062,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.0111,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Goblin OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Goblin OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 36,
+        "n": 45,
+        "hr": 0.8,
+        "wilson_low": 0.6618,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.046,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 36,
+        "n": 45,
+        "hr": 0.8,
+        "wilson_low": 0.6618,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.046,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Goblin OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Goblin OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": 0.0384,
+      "volume_in_gate": {
+        "hits": 5,
+        "n": 6,
+        "hr": 0.8333,
+        "wilson_low": 0.4365,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0127,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 31,
+        "n": 39,
+        "hr": 0.7949,
+        "wilson_low": 0.6447,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0511,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Standard OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Standard OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Standard OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.0897,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 2,
+        "n": 3,
+        "hr": 0.6667,
+        "wilson_low": 0.2077,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.0897,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Standard OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Standard OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Standard OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": null
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "CFB",
+      "book": "Standard OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.154,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 84,
+        "n": 88,
+        "hr": 0.9545,
+        "wilson_low": 0.8889,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.1085,
+        "thin": false,
+        "wilson_clears_be": true
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 43,
+        "n": 56,
+        "hr": 0.7679,
+        "wilson_low": 0.6423,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0781,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.154,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 86,
+        "n": 90,
+        "hr": 0.9556,
+        "wilson_low": 0.8912,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.1096,
+        "thin": false,
+        "wilson_clears_be": true
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": 0.0,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Goblin OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": 0.0455,
+      "volume_in_gate": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.154,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 84,
+        "n": 88,
+        "hr": 0.9545,
+        "wilson_low": 0.8889,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.1085,
+        "thin": false,
+        "wilson_clears_be": true
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.577,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.077,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.577,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Standard OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.577,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Demon OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Demon OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 4,
+        "n": 5,
+        "hr": 0.8,
+        "wilson_low": 0.3755,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Demon OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Demon OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Demon OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 4,
+        "n": 5,
+        "hr": 0.8,
+        "wilson_low": 0.3755,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Demon OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "MLB",
+      "book": "Demon OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 4,
+        "n": 5,
+        "hr": 0.8,
+        "wilson_low": 0.3755,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Goblin OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.346,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.346,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Goblin OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 365,
+        "n": 463,
+        "hr": 0.7883,
+        "wilson_low": 0.7488,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0577,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 361,
+        "n": 458,
+        "hr": 0.7882,
+        "wilson_low": 0.7485,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0578,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": 0.9995945251225345
+    },
+    {
+      "sport": "NBA",
+      "book": "Goblin OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 36,
+        "n": 56,
+        "hr": 0.6429,
+        "wilson_low": 0.5119,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.2031,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 3,
+        "n": 8,
+        "hr": 0.375,
+        "wilson_low": 0.1368,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.471,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Goblin OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 6,
+        "n": 8,
+        "hr": 0.75,
+        "wilson_low": 0.4093,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.096,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Goblin OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 366,
+        "n": 465,
+        "hr": 0.7871,
+        "wilson_low": 0.7476,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0589,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 362,
+        "n": 460,
+        "hr": 0.787,
+        "wilson_low": 0.7472,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.059,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": 0.9996917132953533
+    },
+    {
+      "sport": "NBA",
+      "book": "Goblin OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": 0.0,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Goblin OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": -0.2883,
+      "volume_in_gate": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.346,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 365,
+        "n": 463,
+        "hr": 0.7883,
+        "wilson_low": 0.7488,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0577,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Standard OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Standard OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 23,
+        "n": 38,
+        "hr": 0.6053,
+        "wilson_low": 0.4472,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.0283,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 23,
+        "n": 38,
+        "hr": 0.6053,
+        "wilson_low": 0.4472,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.0283,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Standard OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 32,
+        "n": 63,
+        "hr": 0.5079,
+        "wilson_low": 0.3876,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.0691,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 2,
+        "n": 4,
+        "hr": 0.5,
+        "wilson_low": 0.15,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.077,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Standard OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 6,
+        "n": 15,
+        "hr": 0.4,
+        "wilson_low": 0.1982,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.177,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Standard OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 23,
+        "n": 38,
+        "hr": 0.6053,
+        "wilson_low": 0.4472,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.0283,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 23,
+        "n": 38,
+        "hr": 0.6053,
+        "wilson_low": 0.4472,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.0283,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Standard OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": 0.0,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Standard OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 23,
+        "n": 38,
+        "hr": 0.6053,
+        "wilson_low": 0.4472,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.0283,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Demon OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Demon OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 9,
+        "n": 24,
+        "hr": 0.375,
+        "wilson_low": 0.2116,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 9,
+        "n": 24,
+        "hr": 0.375,
+        "wilson_low": 0.2116,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Demon OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 12,
+        "n": 23,
+        "hr": 0.5217,
+        "wilson_low": 0.3296,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 1,
+        "n": 3,
+        "hr": 0.3333,
+        "wilson_low": 0.0615,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Demon OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Demon OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 9,
+        "n": 24,
+        "hr": 0.375,
+        "wilson_low": 0.2116,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 9,
+        "n": 24,
+        "hr": 0.375,
+        "wilson_low": 0.2116,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Demon OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": 0.0,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA",
+      "book": "Demon OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 9,
+        "n": 24,
+        "hr": 0.375,
+        "wilson_low": 0.2116,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Goblin OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Goblin OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Goblin OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Goblin OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Goblin OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Goblin OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": null
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Goblin OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Standard OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Standard OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.423,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Standard OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Standard OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Standard OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.423,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Standard OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Standard OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.423,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Demon OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Demon OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Demon OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Demon OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Demon OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Demon OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": null
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NBA1H",
+      "book": "Demon OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Goblin OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 7,
+        "n": 8,
+        "hr": 0.875,
+        "wilson_low": 0.5291,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.029,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 7,
+        "n": 8,
+        "hr": 0.875,
+        "wilson_low": 0.5291,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.029,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Goblin OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 46,
+        "n": 50,
+        "hr": 0.92,
+        "wilson_low": 0.8116,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.074,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 46,
+        "n": 50,
+        "hr": 0.92,
+        "wilson_low": 0.8116,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.074,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": 0.09853962880386927
+    },
+    {
+      "sport": "NFL",
+      "book": "Goblin OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 29,
+        "n": 34,
+        "hr": 0.8529,
+        "wilson_low": 0.6987,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.0069,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 29,
+        "n": 34,
+        "hr": 0.8529,
+        "wilson_low": 0.6987,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.0069,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Goblin OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 5,
+        "n": 5,
+        "hr": 1.0,
+        "wilson_low": 0.5655,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.154,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 5,
+        "n": 5,
+        "hr": 1.0,
+        "wilson_low": 0.5655,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.154,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Goblin OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 53,
+        "n": 58,
+        "hr": 0.9138,
+        "wilson_low": 0.8136,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.0678,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 53,
+        "n": 58,
+        "hr": 0.9138,
+        "wilson_low": 0.8136,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.0678,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": 0.10017719962031872
+    },
+    {
+      "sport": "NFL",
+      "book": "Goblin OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 2,
+        "share_of_floor": 0.4,
+        "share_of_gate": 0.0345
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Goblin OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": -0.045,
+      "volume_in_gate": {
+        "hits": 7,
+        "n": 8,
+        "hr": 0.875,
+        "wilson_low": 0.5291,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.029,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 46,
+        "n": 50,
+        "hr": 0.92,
+        "wilson_low": 0.8116,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.074,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Standard OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Standard OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 5,
+        "n": 7,
+        "hr": 0.7143,
+        "wilson_low": 0.3589,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.1373,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 5,
+        "n": 7,
+        "hr": 0.7143,
+        "wilson_low": 0.3589,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.1373,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Standard OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.423,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 2,
+        "n": 2,
+        "hr": 1.0,
+        "wilson_low": 0.3424,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.423,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Standard OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Standard OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 5,
+        "n": 7,
+        "hr": 0.7143,
+        "wilson_low": 0.3589,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.1373,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 5,
+        "n": 7,
+        "hr": 0.7143,
+        "wilson_low": 0.3589,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.1373,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Standard OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Standard OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 5,
+        "n": 7,
+        "hr": 0.7143,
+        "wilson_low": 0.3589,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.1373,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Demon OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Demon OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Demon OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Demon OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Demon OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Demon OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "NFL",
+      "book": "Demon OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 7,
+        "n": 8,
+        "hr": 0.875,
+        "wilson_low": 0.5291,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.029,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": null
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Goblin OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Standard OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Standard OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Standard OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 60,
+        "n": 93,
+        "hr": 0.6452,
+        "wilson_low": 0.5439,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.0682,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Standard OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Standard OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Standard OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": null
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Standard OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Demon OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Demon OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Demon OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 13,
+        "n": 18,
+        "hr": 0.7222,
+        "wilson_low": 0.4913,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Demon OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Demon OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Demon OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": null
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "Soccer",
+      "book": "Demon OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 28,
+        "n": 35,
+        "hr": 0.8,
+        "wilson_low": 0.6411,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.046,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 14,
+        "n": 16,
+        "hr": 0.875,
+        "wilson_low": 0.6398,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.029,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 778,
+        "n": 1055,
+        "hr": 0.7374,
+        "wilson_low": 0.7101,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.1086,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 215,
+        "n": 304,
+        "hr": 0.7072,
+        "wilson_low": 0.6538,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.1388,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": 0.9999999997007833
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 107,
+        "n": 133,
+        "hr": 0.8045,
+        "wilson_low": 0.729,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0415,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 65,
+        "n": 83,
+        "hr": 0.7831,
+        "wilson_low": 0.683,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.0629,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": 0.9537228840049167
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 1,
+        "n": 1,
+        "hr": 1.0,
+        "wilson_low": 0.2065,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": 0.154,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 806,
+        "n": 1090,
+        "hr": 0.7394,
+        "wilson_low": 0.7126,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.1066,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 229,
+        "n": 320,
+        "hr": 0.7156,
+        "wilson_low": 0.6639,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.1304,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": 0.9999999989822781
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": 0.0,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Goblin OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": 0.0626,
+      "volume_in_gate": {
+        "hits": 28,
+        "n": 35,
+        "hr": 0.8,
+        "wilson_low": 0.6411,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.046,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 778,
+        "n": 1055,
+        "hr": 0.7374,
+        "wilson_low": 0.7101,
+        "breakeven": 0.846,
+        "hr_minus_breakeven": -0.1086,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 3,
+        "n": 5,
+        "hr": 0.6,
+        "wilson_low": 0.2307,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.023,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 16,
+        "n": 31,
+        "hr": 0.5161,
+        "wilson_low": 0.3484,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.0609,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 5,
+        "n": 7,
+        "hr": 0.7143,
+        "wilson_low": 0.3589,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.1373,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 31,
+        "n": 57,
+        "hr": 0.5439,
+        "wilson_low": 0.4159,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.0331,
+        "thin": false,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 4,
+        "n": 10,
+        "hr": 0.4,
+        "wilson_low": 0.1682,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.177,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 5,
+        "n": 9,
+        "hr": 0.5556,
+        "wilson_low": 0.2666,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.0214,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 19,
+        "n": 36,
+        "hr": 0.5278,
+        "wilson_low": 0.3701,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.0492,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 5,
+        "n": 7,
+        "hr": 0.7143,
+        "wilson_low": 0.3589,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.1373,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 1,
+        "share_of_floor": 0.1111,
+        "share_of_gate": 0.0278
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Standard OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": 0.0839,
+      "volume_in_gate": {
+        "hits": 3,
+        "n": 5,
+        "hr": 0.6,
+        "wilson_low": 0.2307,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": 0.023,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 16,
+        "n": 31,
+        "hr": 0.5161,
+        "wilson_low": 0.3484,
+        "breakeven": 0.577,
+        "hr_minus_breakeven": -0.0609,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Demon OVER",
+      "slice": "volume_in_gate",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Demon OVER",
+      "slice": "nonvolume_in_gate",
+      "all": {
+        "hits": 2,
+        "n": 9,
+        "hr": 0.2222,
+        "wilson_low": 0.0632,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Demon OVER",
+      "slice": "volume_floor",
+      "all": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 1,
+        "hr": 0.0,
+        "wilson_low": 0.0,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Demon OVER",
+      "slice": "volume_floor_top2",
+      "all": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Demon OVER",
+      "slice": "gate",
+      "all": {
+        "hits": 2,
+        "n": 9,
+        "hr": 0.2222,
+        "wilson_low": 0.0632,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "oos": {
+        "hits": 1,
+        "n": 2,
+        "hr": 0.5,
+        "wilson_low": 0.0945,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Demon OVER",
+      "slice": "overlap_floor_top2_vs_gate",
+      "overlap": {
+        "n": 0,
+        "share_of_floor": null,
+        "share_of_gate": 0.0
+      },
+      "all": null,
+      "oos": null,
+      "bh_keep": false,
+      "oos_p": null
+    },
+    {
+      "sport": "WNBA",
+      "book": "Demon OVER",
+      "slice": "volume_minus_nonvolume_in_gate",
+      "delta_hr": null,
+      "volume_in_gate": {
+        "hits": 0,
+        "n": 0,
+        "hr": null,
+        "wilson_low": null,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "nonvolume_in_gate": {
+        "hits": 2,
+        "n": 9,
+        "hr": 0.2222,
+        "wilson_low": 0.0632,
+        "breakeven": null,
+        "hr_minus_breakeven": null,
+        "thin": true,
+        "wilson_clears_be": false
+      },
+      "bh_keep": false,
+      "oos_p": null
+    }
+  ]
+}

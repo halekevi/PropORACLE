@@ -71,6 +71,7 @@ data/ledger/
 
 # SQLite databases — local only, not synced to OneDrive
 data/cache/
+Sports/NFL/data/cache/nflverse_stats_player_week_*.csv
 data/cache/*.db
 data/cache/*.db-wal
 data/cache/*.db-shm

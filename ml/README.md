@@ -28,7 +28,10 @@ pre-registered shadow. Demon rush-attempt / reception volume is frozen
 (`ml/prereg/nfl_demon_volume_2026-10-25.md`; favored-or-close ≤ +3.5).
 A second track logs top-2 Demon receptions under the L5 floor
 (`ml/prereg/nfl_demon_rec_floor_2026-10-25.md`). Observe only. The
-leader gate needs a board spread before it can log.
+leader gate needs a board spread before it can log. Volume-floor
+backtests A (ledger) and B (nflverse persistence) are pre-registered at
+`ml/prereg/volume_floor_backtest_2026-10-25.md` and must not edit those
+three tracks.
 
 Every other sport uses the same stack
 ([`prop_skeleton.md`](prop_skeleton.md)): opportunity × rate × context
@@ -131,6 +134,15 @@ py -3.14 scripts\discover_nba_goblin_quote_gates.py
 ```
 
 Writes `data/reports/ml_discover_gates/summary.md` plus per-sport JSON.
+
+Volume-floor backtests A (ledger) and B (nflverse). Locked spec; does
+not touch the three frozen forward tracks. No Demon EV.
+
+```powershell
+py -3.14 -m ml.volume_floor_backtest
+```
+
+Writes `data/reports/volume_floor_backtest_a.md` and `_b.md`.
 
 NBA scout vs generic gate at scraped quotes (walk-forward box + cell priors;
 passes `lookup=` / `index=` so legs are not all held):
