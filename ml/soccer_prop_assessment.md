@@ -3,7 +3,9 @@
 Working note next to `prop_skeleton.md`. Keep file:
 `utils/soccer_keep_gates.py`. **Faces unverified**
 (`SOCCER_KEEP_GATE_FACES_VERIFIED = False`). Saves are list-only.
-Nothing soccer can be re-priced until DNP voiding is honest.
+DNP voiding is in code (`312608837`). The leftover is a **re-measure**:
+soccer step4 has not been rerun, so L5 history can still carry the old
+zeros, and the Shots / SOT keep cells are still unverified.
 
 ## 1. Where soccer stands
 
@@ -21,11 +23,11 @@ by inclusion, but:
   55–65%), under the ~77% a 3-leg at 2.2x needs. The L5≥4 cell 21/26
   is not a price.
 
-DNP-zero grading and L5 history are still the standing leftover.
-Unknown minutes treated as zero invents Under hits and fake L5=5.
-**Fix that first.** Do not quote the three keep cells as prices again
-until they are re-measured on a face-verified step8 join after DNP
-is correct.
+DNP-zero voiding and L5 skip of `minutes_played == 0` landed in
+`utils/dnp_zero_void.py` and step4. **That does not re-measure the
+cells.** Until soccer step4 is rerun on a live slate and Shots / SOT
+are counted on face-verified dates, do not quote the three keep cells
+as prices.
 
 ## 2. Factors behind every soccer prop
 
@@ -62,14 +64,16 @@ Logical order on a slate:
 | Keep file | `utils/soccer_keep_gates.py` | Live list/ticket rules; prices flagged unverified |
 | Face windows | `SOCCER_UNVERIFIED_FACE_WINDOWS` | 03-26..04-11 and 05-09..06-16 |
 | Competition block | `utils/competition_history.py` | Thin cups out |
-| DNP void helper | `utils/dnp_zero_void.py` | Generic; soccer grading / L5 history still pending |
+| DNP void helper | `utils/dnp_zero_void.py` | In grading and L5. Step4 rerun + re-measure still pending |
 | Starter / Off | step8 usage | Off = STARTER or HIGH_VOL or top-3 for SOT list |
 
 ## 5. Gaps, in build order
 
-1. **DNP voiding in grading and L5 history.** First. No new cell until
-   this is done.
-2. Re-measure Shots / SOT / Saves on face-verified step8 after (1).
+1. **Re-measure (next).** Rerun soccer step4 so L5 is rebuilt without
+   DNP zeros, then recount Shots and SOT on face-verified dates. Saves
+   stay off tickets. No new price until that join exists.
+2. DNP voiding in grading and L5 history — **done in code**. Does not
+   replace (1).
 3. **FBref / Understat** — xG and shots per 90 for the rate layer.
 4. **Sofascore or official lineups** — confirmed starters as a hard
    input, snapshotted before kickoff (same as NBA minutes / NFL volume).

@@ -2,8 +2,10 @@
 
 Working note next to `prop_skeleton.md` and `Sports/CBB/README.md`.
 No keep file. Full parallel runs skip both boards until **2026-11-01**.
-Opening night is about a week out. The job this week is a **dry pass**,
-not a gate search.
+Opening night is about a week out. The job this week is a **dry pass on an archived slate**, not a wait
+for opening night. CBB / WCBB tickets stay held
+(`PROPORACLE_CBB_TICKETS`) until the first real 2026-27 board passes
+the same checks.
 
 ## 1. Where CBB stands
 
@@ -60,25 +62,41 @@ Logical order once boards post:
 
 ## 5. Gaps — dry pass this week (urgent)
 
-Run before 2026-11-01 so opening night is not another NBA-style scramble.
+A live Oct 25 ForceCBB run is a real `no_slate` (HTTP 403 → CDP 0).
+That does not test pick_type, smoke, faces, or em-dash. The archived
+late-season board is 2026-02-21 (`Sports/CBB/archive/old_outputs/`;
+no March step1 was kept on disk). Dry pass ran 2026-10-25.
 
 ```powershell
-.\run_pipeline.ps1 -CBBOnly -ForceCBB
+py -3.14 scripts\cbb_opening_dry_pass.py
+.\run_pipeline.ps1 -Date 2026-02-21 -CBBOnly -ForceCBB -SkipFetch -SkipCombined -SkipPush
 ```
 
-Checklist:
+Checklist (2026-02-21 board, 6,963 rows):
 
-1. **step1 persists `pick_type`** — refuse a ≥100-row board that is
-   100% Standard (same assert as NFL). Empty / dash is not a face.
-2. **Import smoke test passes** — athletes master (women’s file is
-   separate), box caches, defense ranks.
-3. **Faces verify** on whatever exhibition / early-DI board posts.
-4. **Prop-name writer** — no em dash / replacement character on
-   `prop` in graded JSON or step8. Confirm with a fixture that used
-   to emit `\u2014`.
-5. Confirm live WCBB league id when the tab is dark vs posted.
+1. **step1 persists `pick_type`** — pass. Disk re-read
+   Standard 1,596 / Goblin 1,808 / Demon 3,559 / blank 0. Survived
+   step2 (`pick_type` counts unchanged).
+2. **Import smoke** — pass. men 374,695 / women 331,906 /
+   def 12,793 / box 11,282,138.
+3. **Faces verify** — pass. Mixed Standard / Goblin / Demon.
+4. **Prop-name writer** — pass on this board. `GARBAGE_PROPS`
+   holds `\u2014`; archived `prop` values are clean. Injected em dash
+   is flagged. (The Feb 26–Mar 15 dash was on graded files, not this
+   step1.)
+5. Confirm live WCBB league id when the tab is dark vs posted —
+   still open.
 
-Force is for the dry pass only. Do not publish CBB tickets from it.
+Pipeline steps 2–6 completed (6,897 OK box attach / 66 no history;
+step6 date-filter kept 2026-02-21). Step7b still fails: the unified
+model asks for empty MLB feature cols (`batting_order_pos`,
+`park_factor_overall`, …). That is a scoring-matrix issue, not an
+opening-night board check. `import sys` was missing on that error
+path and is now present.
+
+Do not publish CBB tickets from the dry pass. Opening night stays
+held until `PROPORACLE_CBB_TICKETS=1` after the first real 2026-27
+board passes the same four checks.
 
 ## 6. How the ML fits
 

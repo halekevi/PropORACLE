@@ -367,6 +367,12 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
             if nba_g70_tickets_held():
                 print(NBA_G70_HOLD_REASON, flush=True)
                 continue
+        if loader_name in {"load_cbb", "load_wcbb"}:
+            from utils.ticket_sport_holds import CBB_HOLD_REASON, cbb_tickets_held
+
+            if cbb_tickets_held():
+                print(CBB_HOLD_REASON, flush=True)
+                continue
         loader = getattr(R, loader_name, None)
         if not callable(loader):
             continue
@@ -377,8 +383,10 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
         rows = [r for r in rows if str(r.get("sport") or "").upper() != "GOLF"]
         print(golf_skip_warning(rows), flush=True)
     from utils.ticket_sport_holds import (
+        CBB_HOLD_REASON,
         NBA1Q_HOLD_REASON,
         NBA_G70_HOLD_REASON,
+        cbb_tickets_held,
         nba1q_tickets_held,
         nba_g70_tickets_held,
     )
@@ -399,6 +407,17 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
                 if str(r.get("sport") or "").upper() not in {"NBA", "NBA1H"}
             ]
             print(f"{NBA_G70_HOLD_REASON} dropped {n_nba} board row(s)", flush=True)
+    if cbb_tickets_held():
+        n_cbb = sum(
+            1 for r in rows if str(r.get("sport") or "").upper() in {"CBB", "WCBB"}
+        )
+        if n_cbb:
+            rows = [
+                r
+                for r in rows
+                if str(r.get("sport") or "").upper() not in {"CBB", "WCBB"}
+            ]
+            print(f"{CBB_HOLD_REASON} dropped {n_cbb} board row(s)", flush=True)
     return rows
 
 # PAY lives in utils.n_correct_payout. Resolve order: CDP scrape (matching

@@ -37,17 +37,18 @@ Every other sport uses the same stack
 | [`nba_prop_assessment.md`](nba_prop_assessment.md) | Scout closed Oct 25. Next 2026-11-20 | Pre-tip minutes only |
 | [`nfl_prop_assessment.md`](nfl_prop_assessment.md) | Volume through week 7. G70 shadow | Calibration prereg; do not run yet |
 | [`nhl_prop_assessment.md`](nhl_prop_assessment.md) | In season. Mixer held. No keep file | Daily Faceoff goalies, totals, ESPN vs NHL API |
-| [`soccer_prop_assessment.md`](soccer_prop_assessment.md) | Keep cells unverified | DNP voiding in grading and L5 |
+| [`soccer_prop_assessment.md`](soccer_prop_assessment.md) | Keep cells unverified | Rerun step4; re-measure Shots / SOT |
 | [`tennis_prop_assessment.md`](tennis_prop_assessment.md) | Goblin verified. Total Games held | Replace stale Sackmann; ML → Total Games |
 | [`cfb_prop_assessment.md`](cfb_prop_assessment.md) | Weekly. CFBD key unset | Set `CFBD_API_KEY`; red-zone for Player TDs |
-| [`cbb_prop_assessment.md`](cbb_prop_assessment.md) | Resume 2026-11-01 | Dry run this week: `pick_type`, smoke, faces, em-dash |
+| [`cbb_prop_assessment.md`](cbb_prop_assessment.md) | Archived dry-pass checks OK; tickets held | Opening-night board must pass the same four checks |
 | [`mlb_prop_assessment.md`](mlb_prop_assessment.md) | Series, then offseason. Keep gates live | Winter Statcast projection + calibration |
 | [`wnba_prop_assessment.md`](wnba_prop_assessment.md) | Off until May | Port NBA minutes / `proj_mu` |
 | [`golf_prop_assessment.md`](golf_prop_assessment.md) | Light. Course-blind | Later (DataGolf) |
 | [`period_prop_assessment.md`](period_prop_assessment.md) | All held | After full-game layers |
 
-Priority: CBB dry run → soccer DNP → NHL inputs → tennis feed → CFBD
-key → MLB/WNBA winter → golf / periods.
+Priority this week: Odds API / ESPN spreads (Demon shadow) → CBB
+archived-slate dry pass (tickets held) → soccer step4 re-measure
+Shots / SOT → nflverse play-by-play. Everything else waits.
 
 ## Tools
 

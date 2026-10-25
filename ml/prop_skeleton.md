@@ -53,8 +53,8 @@ says the inputs exist.
 
 | Priority | Sport | First step | Note |
 |---|---|---|---|
-| 1 | CBB / WCBB | Dry run this week: `pick_type`, import smoke, faces, em-dash prop names | Opens ~2026-11-01 |
-| 2 | Soccer | DNP voiding in grading and L5 history | Live daily; keep cells unverified until this is honest |
+| 1 | CBB / WCBB | Archived-slate dry pass (`pick_type`, smoke, faces, em-dash). Tickets held until opening board clears | Opens ~2026-11-01 |
+| 2 | Soccer | Rerun step4; re-measure Shots / SOT on verified dates | DNP void is in code; cells still unverified |
 | 3 | NHL | Daily Faceoff goalies, game totals, ESPN vs NHL API conflicts | Live; no keep gate; mixer held |
 | 4 | Tennis | Replace the stale Sackmann feed; moneyline → Total Games | Live; Total Games held |
 | 5 | CFB | Set `CFBD_API_KEY` | Weekly; Player TDs need red-zone share |
