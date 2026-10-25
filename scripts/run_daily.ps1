@@ -2997,6 +2997,15 @@ if (-not $script:ActiveSportsFreshChecked) {
 
 $dur = (Get-Date) - $script:DailyStart
 Write-Log "Daily run complete. Duration: $([int]$dur.TotalMinutes)m $([int]$dur.Seconds)s"
+# One ntfy digest for this run's routine WARNs (utils/pipeline_alerts.py spools them).
+try {
+    $flushPy = Join-Path $Root "scripts\flush_pipeline_alerts.py"
+    if (Test-Path -LiteralPath $flushPy) {
+        $digestLabel = if ($env:PROPORACLE_RUN_LABEL) { $env:PROPORACLE_RUN_LABEL } else { "daily" }
+        $digestOut = & py -3.14 -X utf8 $flushPy --label $digestLabel 2>&1 | Out-String
+        Write-Log ("Alert digest: " + $digestOut.Trim())
+    }
+} catch { Write-Log "Alert digest: WARN $($_.Exception.Message)" }
 if ($WeeklyAnalysis -and $script:WeeklyAnalysisReport) {
     Write-Log "Weekly grader analysis report: $($script:WeeklyAnalysisReport)"
     Write-Host "Weekly grader analysis report: $($script:WeeklyAnalysisReport)" -ForegroundColor Cyan

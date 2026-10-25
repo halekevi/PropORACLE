@@ -14,6 +14,7 @@ param(
 
 $ErrorActionPreference = "Continue"
 try { $Host.UI.RawUI.WindowTitle = "PropOracle - Refresh $RunLabel" } catch { }
+$env:PROPORACLE_RUN_LABEL = $RunLabel
 $Root = Split-Path $PSScriptRoot -Parent
 # Fail before late-fetch if live-tree utils are missing (cfb_l8_bonus / role_from_snap class).
 & (Join-Path $Root "scripts\Invoke-SmokeImport.ps1") -Root $Root -Label "smoke-import/refresh"
@@ -362,6 +363,14 @@ try {
     }
 }
 finally {
+    # One ntfy digest of this window's routine WARNs (utils/pipeline_alerts.py spools them).
+    try {
+        $flushPy = Join-Path $Root "scripts\flush_pipeline_alerts.py"
+        if (Test-Path -LiteralPath $flushPy) {
+            $digestOut = & py -3.14 -X utf8 $flushPy --label $RunLabel 2>&1 | Out-String
+            Write-Host ("[REFRESH $RunLabel] " + $digestOut.Trim()) -ForegroundColor DarkGray
+        }
+    } catch { }
     if (Test-Path -LiteralPath $LockFile) {
         $currentLock = (Get-Content -LiteralPath $LockFile -ErrorAction SilentlyContinue | Select-Object -First 1)
         if ("$currentLock" -like "*PID $PID*") {

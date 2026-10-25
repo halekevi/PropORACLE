@@ -474,6 +474,15 @@
           <div>
             <h2>Board props</h2>
             <p class="panel-note">Every graded listing at $10 as a single — not the ticket card. Ignore Net vs headline P&amp;L.</p>
+            {% if board_coverage and board_coverage.n_local %}
+            <p class="panel-note" id="board-coverage" data-partial="{{ 1 if board_coverage.partial else 0 }}"
+               style="{{ 'color:#d97706;font-weight:600' if board_coverage.partial else '' }}">
+              Covers {{ board_coverage.min_date }} → {{ board_coverage.max_date }}
+              ({{ board_coverage.n_local }}{% if board_coverage.n_available %} of {{ board_coverage.n_available }}{% endif %} graded dates{% if board_coverage.partial %} — partial window; totals are not all-time{% endif %}).
+            </p>
+            {% elif board_coverage %}
+            <p class="panel-note" id="board-coverage" data-partial="1" style="color:#d97706;font-weight:600">No graded props available on this host — table is empty, not zero.</p>
+            {% endif %}
           </div>
         </div>
         <div class="tbl-scroll tall">

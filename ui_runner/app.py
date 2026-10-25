@@ -7097,6 +7097,12 @@ def page_income():
     summary = _income_summary_from_rows(card_rows or rows_asc)
     rows_desc = list(reversed(rows_asc))
     sport_bundle = _load_sport_breakdown_bundle(stake_per_pick=10.0)
+    # Board-props totals are built from whatever graded_props files this host holds. On Railway
+    # that is a budgeted newest-first window, so say which dates the numbers cover.
+    try:
+        board_coverage = _graded_store.coverage(_graded_props_files(), GRADED_PROPS_DIR)
+    except Exception:  # noqa: BLE001
+        board_coverage = None
     return render_template(
         "dashboard_income.html",
         ui_build_id=_UI_BUILD_ID,
@@ -7105,6 +7111,7 @@ def page_income():
         chart_points=Markup(json.dumps([])),
         sport_rows=sport_bundle["rows"],
         sport_monthly_rows=sport_bundle["monthly_rows"],
+        board_coverage=board_coverage,
     )
 
 
@@ -7144,6 +7151,10 @@ def income_health():
             }
 
         payload["total_rows"] = int(total_rows)
+        try:
+            payload["graded_props_coverage"] = _graded_store.coverage(_graded_props_files(), GRADED_PROPS_DIR)
+        except Exception:  # noqa: BLE001
+            payload["graded_props_coverage"] = None
         # Read sports from graded_props_*.json (same source as ingest)
         sports_seen = set()
         try:

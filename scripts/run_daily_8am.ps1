@@ -13,6 +13,7 @@ param()
 
 $ErrorActionPreference = "Continue"
 try { $Host.UI.RawUI.WindowTitle = "PropOracle - Daily 8AM" } catch { }
+$env:PROPORACLE_RUN_LABEL = "8AM"  # digest label for utils/pipeline_alerts.py
 $Root = Split-Path $PSScriptRoot -Parent
 $Refresh = Join-Path $Root "scripts\run_refresh_with_log.ps1"
 $SkipFlagDir = Join-Path $Root "data\cache"

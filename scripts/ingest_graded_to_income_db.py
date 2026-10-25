@@ -256,6 +256,32 @@ def main() -> None:
             print(f"[INGEST] {sport}: {n} rows, total={total}")
         _log.info(f"[INGEST] Complete — total={total} rows")
         print(f"Done. Total HIT/MISS rows with ml_prob: {total}")
+        # Record which dates this ingest actually covered. On Railway the graded set is a
+        # budgeted newest-first window, so a P&L total from this DB is a window, not all-time.
+        try:
+            from datetime import datetime, timezone
+
+            from utils import graded_props_store as _store
+
+            dates = sorted(d for d in (_parse_date_from_path(p) for p in paths) if d)
+            gdir = _store.graded_props_dir(_REPO, _templates_dir())
+            cov = _store.coverage(paths, gdir)
+            cov.update({
+                "ingested_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+                "dates_ingested": dates,
+                "rows": int(total),
+            })
+            cov_path = gdir / ".ingest_coverage.json"
+            cov_path.write_text(json.dumps(cov, indent=2), encoding="utf-8")
+            _log.info(
+                f"[INGEST] coverage {cov['min_date']}..{cov['max_date']} n={cov['n_local']}"
+                f" of {cov['n_available']} partial={cov['partial']} -> {cov_path}"
+            )
+            if cov["partial"]:
+                print(f"[INGEST] PARTIAL WINDOW: {cov['n_local']} of {cov['n_available']} graded dates "
+                      f"({cov['min_date']}..{cov['max_date']}) - income totals from this DB are not all-time")
+        except Exception as exc:  # noqa: BLE001
+            _log.info(f"[INGEST] coverage note failed: {exc}")
     finally:
         conn.close()
 

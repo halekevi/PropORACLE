@@ -175,10 +175,20 @@ def run(*, base: str, alert: bool) -> dict:
         out["max_age_hours"] = limit
         if age_h > limit:
             problems.append(f"served card generated {age_h:.1f}h ago (limit {limit:.0f}h at this hour) - publish windows are not landing")
+    # Dual card = Goblin-70 groups first, mixer under. The `mode` tag alone is not proof: the
+    # 2026-10-25 01:22 card said goblin70+graded_main and carried NFL mixer groups only
+    # (NBA step4 died, combined + Goblin-70 were skipped, a bypass path pushed the stale file).
+    names = [str(g.get("group_name") or "") for g in groups if isinstance(g, dict)]
+    has_g70 = any(("Goblin-70" in n) or ("YOLO Goblin" in n) for n in names)
+    has_mixer = any(not (("Goblin-70" in n) or ("YOLO Goblin" in n)) for n in names)
+    out["served_has_goblin70"] = has_g70
+    out["served_has_mixer"] = has_mixer
     if "goblin70+graded_main" not in mode:
         out["warnings"].append(f"served mode is {mode!r}, not the dual card")
     if not groups:
         problems.append("served card has no groups")
+    elif not has_g70:
+        problems.append("served card has no Goblin-70 groups (mixer-only) - Goblin-70 build did not land")
 
     origin = _origin_main_card()
     if origin:
@@ -226,6 +236,14 @@ def main() -> int:
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
     res = run(base=a.base, alert=not a.no_alert)
+    if not a.no_alert:
+        # Drain a WARN digest left behind by a run that died before its own flush.
+        try:
+            from utils.pipeline_alerts import flush_pipeline_alert_digest
+
+            res["digest"] = flush_pipeline_alert_digest("orphaned run", min_age_sec=90 * 60)
+        except Exception as exc:  # noqa: BLE001
+            res["digest"] = f"error: {exc}"
     if a.json:
         print(json.dumps(res, indent=2, ensure_ascii=False))
     else:

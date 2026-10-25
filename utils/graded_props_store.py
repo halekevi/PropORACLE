@@ -314,6 +314,10 @@ def sync_newest_first(dest_dir: Path, *, timeout: int = 120, budget: int | None 
         report["error"] = "index.json unavailable"
         report["seconds"] = round(time.monotonic() - t0, 1)
         return report
+    try:  # cached for coverage() so the income page can say "N of M dates" without a fetch
+        (dest_dir / ".index.json").write_text(json.dumps(idx), encoding="utf-8")
+    except OSError:
+        pass
     used = sum((p.stat().st_size for p in _graded_files_in(dest_dir)), 0)
     for d in dates:
         fname = f"graded_props_{d}.json"
@@ -392,6 +396,33 @@ def sync_from_branch(dest_dir: Path, *, timeout: int = 600, overwrite: bool = Tr
     return report
 
 
+def coverage(files: Iterable[Path], graded_dir: Path | None = None) -> dict:
+    """Which graded dates this host actually has, versus what the data branch carries.
+
+    With the Railway disk budget the synced set is the newest N dates, so any total built from
+    these files is a window, not all-time. ``n_available`` comes from the cached
+    ``.index.json`` (written by sync_newest_first) - no network at request time.
+    """
+    dates = sorted(
+        m.group(1) for m in (GRADED_PROPS_RE.match(Path(f).name) for f in files) if m
+    )
+    n_avail = None
+    if graded_dir is not None:
+        try:
+            raw = json.loads((Path(graded_dir) / ".index.json").read_text(encoding="utf-8"))
+            n_avail = int(raw.get("n") or len(raw.get("dates") or [])) or None
+        except (OSError, ValueError, TypeError):
+            n_avail = None
+    out = {
+        "n_local": len(dates),
+        "min_date": dates[0] if dates else None,
+        "max_date": dates[-1] if dates else None,
+        "n_available": n_avail,
+        "partial": bool(n_avail and len(dates) < n_avail),
+    }
+    return out
+
+
 def read_index(*, timeout: int = 30) -> dict | None:
     """index.json from the data branch (dates list), or None."""
     url = raw_base().rsplit("/", 1)[0] + "/index.json"
@@ -409,6 +440,7 @@ __all__ = [
     "search_dirs",
     "list_files",
     "signature",
+    "coverage",
     "path_for_date",
     "sync_from_branch",
     "sync_newest_first",
