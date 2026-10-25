@@ -107,3 +107,16 @@ def tennis_total_games_tickets_held(*, env: dict[str, str] | None = None) -> boo
 def nhl_mixer_tickets_held(*, env: dict[str, str] | None = None) -> bool:
     src = env if env is not None else os.environ
     return _hold_flag(src, "PROPORACLE_NHL_MIXER_TICKETS")
+
+
+CBB_HOLD_REASON = (
+    "CBB / WCBB tickets held until the first real 2026-27 board passes "
+    "step1 pick_type, import smoke, face mix, and no em-dash prop names. "
+    "The Oct 25 ForceCBB run was a real no_slate, not those checks. "
+    "Re-enable with PROPORACLE_CBB_TICKETS=1 after opening night clears."
+)
+
+
+def cbb_tickets_held(*, env: dict[str, str] | None = None) -> bool:
+    src = env if env is not None else os.environ
+    return _hold_flag(src, "PROPORACLE_CBB_TICKETS")
