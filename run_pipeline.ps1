@@ -23,7 +23,7 @@
 #  WNBA CDP env (optional): PROPORACLE_PP_CDP or PRIZEPICKS_CDP — used when -WNBACdp omitted.
 #    .\run_pipeline.ps1 -NFLOnly               # NFL only (delegates to scripts\run_nfl_pipeline.ps1) + Combined
 #    .\run_pipeline.ps1 -ForceWNBA           # Include WNBA in full parallel run before season start (QA)
-#    .\run_pipeline.ps1 -ForceCBB            # Run NCAABB Mens+Women before 2026-11-01 resume
+#    .\run_pipeline.ps1 -ForceCBB            # Run NCAABB Mens+Women before CBB resume date
 #    .\run_pipeline.ps1 -CBBOnly -ForceCBB   # Off-season dry run (boards are empty until tipoff)
 #    .\run_pipeline.ps1 -CombinedOnly          # Re-run combined + web tickets (multi-sport /tickets JSON)
 #    .\run_pipeline.ps1 -CombinedOnly -WebEvOnly   # Stricter /tickets: positive-EV gate only (+ Tennis bypass)
@@ -330,21 +330,19 @@ $NFLOffSeason = Test-FootballOffSeason -PipelineDate $Date -ResumeYmd $NFL_SEASO
 $CFBOffSeason = Test-FootballOffSeason -PipelineDate $Date -ResumeYmd $CFB_SEASON_RESUME -Force:($ForceCFB.IsPresent -or $ForceAll.IsPresent)
 
 # CBB / WCBB: 2025-26 ended after the 2026 titles (WCBB Apr 5, CBB Apr 6).
-# Next DI tipoff window: 2026-11-01. Override: $env:PROPORACLE_CBB_RESUME / -ForceCBB / -ForceAll
+# Early DI / exhibition resume: 2026-10-20. Override: $env:PROPORACLE_CBB_RESUME / -ForceCBB / -ForceAll
 $CBB_SEASON_END = "2026-04-07"
-$CBB_SEASON_RESUME = "2026-11-01"
+$CBB_SEASON_RESUME = "2026-10-20"
 if ($env:PROPORACLE_CBB_RESUME) { $CBB_SEASON_RESUME = $env:PROPORACLE_CBB_RESUME.Trim() }
 function Test-CbbOffSeason {
     param([string]$PipelineDate, [string]$EndYmd, [string]$ResumeYmd, [switch]$Force)
     if ($Force) { return $false }
+    # In previous season (before title window end) → active.
     if ($PipelineDate -lt $EndYmd) { return $false }
-    if ($PipelineDate -lt $ResumeYmd) { return $true }
-    try {
-        $d = [datetime]::ParseExact($PipelineDate, "yyyy-MM-dd", [System.Globalization.CultureInfo]::InvariantCulture)
-        return ($d.Month -ge 5 -and $d.Month -le 10)
-    } catch {
-        return $true
-    }
+    # On/after resume (early tip / exhibition) → active.
+    if ($PipelineDate -ge $ResumeYmd) { return $false }
+    # Between end and resume → off-season.
+    return $true
 }
 $CBBOffSeason = Test-CbbOffSeason -PipelineDate $Date -EndYmd $CBB_SEASON_END -ResumeYmd $CBB_SEASON_RESUME -Force:($ForceCBB.IsPresent -or $ForceAll.IsPresent)
 $OutDir    = Join-Path $Root "outputs\$Date"
@@ -781,8 +779,11 @@ function Invoke-WcbbPipeline {
     $step1 = Join-Path $OutDir "step1_wcbb.csv"
     $ok = $true
     if (-not $SkipFetch) {
-        $ok = Run-Step "WCBB Step 1 - Fetch PrizePicks (NCAABB Women)" $CBBDir `
-            ".\scripts\pipeline\step1_pp_cbb_scraper.py" "--board wcbb --out `"$step1`""
+        $ok = Invoke-PrizePicksStep1Cascade -SportLabel "WCBB" -WorkDir $CBBDir `
+            -ScriptRel ".\scripts\pipeline\step1_pp_cbb_scraper.py" `
+            -OutputPath $step1 -PipelineDate $Date `
+            -HttpArgs @("--board", "wcbb", "--out", $step1) `
+            -SkipDateHealth
     } else {
         Write-Host "  [WCBB] Skipping step1 fetch -- using existing $step1" -ForegroundColor DarkGray
     }
@@ -803,6 +804,13 @@ function Invoke-WcbbPipeline {
     if ($ok) { $ok = Run-Step "WCBB Step 5 - Boxscore Stats" $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py" "--input `"$OutDir\step3_wcbb.csv`" --output `"$OutDir\step5b_wcbb.csv`" --cache data\cache\wcbb_boxscore_cache.csv --days 90 --league womens-college-basketball" }
     if ($ok) { $ok = Run-Step "WCBB Step 6 - Rank Props" $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py" "--input `"$OutDir\step5b_wcbb.csv`" --output `"$OutDir\step6_ranked_wcbb.xlsx`" --cache data\cache\wcbb_boxscore_cache.csv" }
     if ($ok) { $ok = Invoke-PropOracleStep7b "WCBB" "$OutDir\step6_ranked_wcbb.xlsx" }
+    if ($ok) { $ok = Run-Step "WCBB Step 8 - Direction Context" $CBBDir ".\scripts\pipeline\step8_add_direction_context_cbb.py" "--input `"$OutDir\step6_ranked_wcbb.xlsx`" --output `"$OutDir\step8_wcbb_direction_clean.xlsx`" --date $Date --sport WCBB" }
+    if ($ok) {
+        Copy-DatedSlateOutput `
+            -SourcePath (Join-Path $OutDir "step8_wcbb_direction_clean.xlsx") `
+            -DatedFileName "step8_wcbb_direction_clean_$Date.xlsx" `
+            -Label "WCBB"
+    }
     return $ok
 }
 
@@ -2603,13 +2611,33 @@ if ($CBBOnly) {
     Write-Host "[ CBB PIPELINE ]" -ForegroundColor Magenta
     Write-Host ""
     $ok = $true
-    if (-not $SkipFetch) { if ($ok) { $ok = Run-Step "CBB Step 1 - Fetch PrizePicks (NCAABB Mens)"      $CBBDir ".\scripts\pipeline\step1_pp_cbb_scraper.py"      "--board cbb --out `"$CBBRunOutDir\step1_cbb.csv`"" } } else { Write-Host "  [CBB] Skipping step1 fetch -- using existing $CBBRunOutDir\step1_cbb.csv" -ForegroundColor DarkGray }
-    if ($ok) { $ok = Run-Step "CBB Step 2 - Normalize"               $CBBDir ".\scripts\pipeline\step2_normalize.py"                            "--input `"$CBBRunOutDir\step1_cbb.csv`" --output `"$CBBRunOutDir\step2_cbb.csv`"" }
-    if ($ok) { $ok = Run-Step "CBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py"                 "--input `"$CBBRunOutDir\step2_cbb.csv`" --defense data\reference\cbb_def_rankings.csv --output `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`"" }
-    if ($ok) { $ok = Run-Step "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`" --output `"$CBBRunOutDir\step3_cbb.csv`" --master data/reference/ncaa_mbb_athletes_master.csv" }
-    if ($ok) { $ok = Run-Step "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CBBRunOutDir\step3_cbb.csv`" --output `"$CBBRunOutDir\step5b_cbb.csv`"" }
-    if ($ok) { $ok = Run-Step "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`"" }
-    if ($ok) { $ok = Invoke-PropOracleStep7b "CBB" "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
+    if (-not $SkipFetch) {
+        if ($ok) {
+            $ok = Invoke-PrizePicksStep1Cascade -SportLabel "CBB" -WorkDir $CBBDir `
+                -ScriptRel ".\scripts\pipeline\step1_pp_cbb_scraper.py" `
+                -OutputPath "$CBBRunOutDir\step1_cbb.csv" -PipelineDate $Date `
+                -HttpArgs @("--board", "cbb", "--out", "$CBBRunOutDir\step1_cbb.csv") `
+                -SkipDateHealth
+        }
+    } else { Write-Host "  [CBB] Skipping step1 fetch -- using existing $CBBRunOutDir\step1_cbb.csv" -ForegroundColor DarkGray }
+    if ($ok -and (Test-Step1NoSlate -CsvPath "$CBBRunOutDir\step1_cbb.csv" -TargetDate $Date)) {
+        Write-Host "  [CBB] no slate — skipping steps 2-6." -ForegroundColor DarkGray
+        $ok = $true
+    } elseif ($ok) {
+        if ($ok) { $ok = Run-Step "CBB Step 2 - Normalize"               $CBBDir ".\scripts\pipeline\step2_normalize.py"                            "--input `"$CBBRunOutDir\step1_cbb.csv`" --output `"$CBBRunOutDir\step2_cbb.csv`"" }
+        if ($ok) { $ok = Run-Step "CBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py"                 "--input `"$CBBRunOutDir\step2_cbb.csv`" --defense data\reference\cbb_def_rankings.csv --output `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`"" }
+        if ($ok) { $ok = Run-Step "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`" --output `"$CBBRunOutDir\step3_cbb.csv`" --master data/reference/ncaa_mbb_athletes_master.csv" }
+        if ($ok) { $ok = Run-Step "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CBBRunOutDir\step3_cbb.csv`" --output `"$CBBRunOutDir\step5b_cbb.csv`"" }
+        if ($ok) { $ok = Run-Step "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`"" }
+        if ($ok) { $ok = Invoke-PropOracleStep7b "CBB" "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
+        if ($ok) { $ok = Run-Step "CBB Step 8 - Direction Context"       $CBBDir ".\scripts\pipeline\step8_add_direction_context_cbb.py"          "--input `"$CBBRunOutDir\step6_ranked_cbb.xlsx`" --output `"$CBBRunOutDir\step8_cbb_direction_clean.xlsx`" --date $Date --sport CBB" }
+        if ($ok) {
+            Copy-DatedSlateOutput `
+                -SourcePath (Join-Path $CBBRunOutDir "step8_cbb_direction_clean.xlsx") `
+                -DatedFileName "step8_cbb_direction_clean_$Date.xlsx" `
+                -Label "CBB"
+        }
+    }
     $wcbbOk = Invoke-WcbbPipeline -OutDir $WCBBRunOutDir -SkipFetch:$SkipFetch
     Write-Host ""
     if ($ok) { Write-Host "  CBB (NCAABB Mens) complete." -ForegroundColor Green } else { Write-Host "  CBB (NCAABB Mens) FAILED." -ForegroundColor Red }
@@ -2844,7 +2872,7 @@ if ($WNBAOffSeason -and -not $ForceWNBA.IsPresent) {
     Write-Host "  [WNBA] Parallel job skipped until $WNBA_SEASON_START (use -ForceWNBA to run early)." -ForegroundColor DarkGray
 }
 
-# Men's + women's CBB: skip Apr 7 through Oct 31. Resume 2026-11-01 (use -ForceCBB).
+# Men's + women's CBB: skip Apr 7 through day before resume. Resume 2026-10-20 (use -ForceCBB).
 $CBB_PARALLEL_ACTIVE = -not $CBBOffSeason
 if (-not $CBB_PARALLEL_ACTIVE) {
     Write-Host "  [CBB] Parallel job skipped until $CBB_SEASON_RESUME (NCAABB Mens/Women; use -ForceCBB)." -ForegroundColor DarkGray
@@ -3127,18 +3155,35 @@ $CBBJob = Start-Job -ScriptBlock {
         return (Test-Step1NoSlate -CsvPath $CsvPath -TargetDate $Date)
     }
     $ok = $true
-    if (-not $SkipFetch) { if ($ok) { $ok = Run-Step-Job "CBB Step 1 - Fetch PrizePicks (NCAABB Mens)"      $CBBDir ".\scripts\pipeline\step1_pp_cbb_scraper.py"      "--board cbb --out `"$CBBRunOutDir\step1_cbb.csv`"" } } else { Write-Output "[CBB] Skipping step1 fetch" }
-    if ($ok) { $ok = Run-Step-Job "CBB Step 2 - Normalize"               $CBBDir ".\scripts\pipeline\step2_normalize.py"                            "--input `"$CBBRunOutDir\step1_cbb.csv`" --output `"$CBBRunOutDir\step2_cbb.csv`"" }
-    if ($ok) { $ok = Run-Step-Job "CBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py"                 "--input `"$CBBRunOutDir\step2_cbb.csv`" --defense data\reference\cbb_def_rankings.csv --output `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`"" }
-    if ($ok) { $ok = Run-Step-Job "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`" --output `"$CBBRunOutDir\step3_cbb.csv`" --master data/reference/ncaa_mbb_athletes_master.csv" }
-    if ($ok) { $ok = Run-Step-Job "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CBBRunOutDir\step3_cbb.csv`" --output `"$CBBRunOutDir\step5b_cbb.csv`"" }
-    if ($ok) { $ok = Run-Step-Job "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`"" }
-    if ($ok) { $ok = Invoke-Step7b-Job "CBB" $RepoRoot "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
+    if (-not $SkipFetch) {
+        if ($ok) {
+            $ok = Invoke-PrizePicksStep1Cascade -AsJobOutput -SportLabel "CBB" -WorkDir $CBBDir `
+                -ScriptRel ".\scripts\pipeline\step1_pp_cbb_scraper.py" `
+                -OutputPath "$CBBRunOutDir\step1_cbb.csv" -PipelineDate $Date `
+                -HttpArgs @("--board", "cbb", "--out", "$CBBRunOutDir\step1_cbb.csv") `
+                -SkipDateHealth
+        }
+    } else { Write-Output "[CBB] Skipping step1 fetch" }
+    if ($ok -and (Test-Step1NoSlate-Job -CsvPath "$CBBRunOutDir\step1_cbb.csv")) {
+        Write-Output "[CBB] no slate — skipping steps 2-6"
+    } elseif ($ok) {
+        if ($ok) { $ok = Run-Step-Job "CBB Step 2 - Normalize"               $CBBDir ".\scripts\pipeline\step2_normalize.py"                            "--input `"$CBBRunOutDir\step1_cbb.csv`" --output `"$CBBRunOutDir\step2_cbb.csv`"" }
+        if ($ok) { $ok = Run-Step-Job "CBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py"                 "--input `"$CBBRunOutDir\step2_cbb.csv`" --defense data\reference\cbb_def_rankings.csv --output `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`"" }
+        if ($ok) { $ok = Run-Step-Job "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`" --output `"$CBBRunOutDir\step3_cbb.csv`" --master data/reference/ncaa_mbb_athletes_master.csv" }
+        if ($ok) { $ok = Run-Step-Job "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CBBRunOutDir\step3_cbb.csv`" --output `"$CBBRunOutDir\step5b_cbb.csv`"" }
+        if ($ok) { $ok = Run-Step-Job "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`"" }
+        if ($ok) { $ok = Invoke-Step7b-Job "CBB" $RepoRoot "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
+        if ($ok) { $ok = Run-Step-Job "CBB Step 8 - Direction Context"       $CBBDir ".\scripts\pipeline\step8_add_direction_context_cbb.py"          "--input `"$CBBRunOutDir\step6_ranked_cbb.xlsx`" --output `"$CBBRunOutDir\step8_cbb_direction_clean.xlsx`" --date $Date --sport CBB" }
+    }
     if (-not (Test-Path $WCBBRunOutDir)) { New-Item -ItemType Directory -Force -Path $WCBBRunOutDir | Out-Null }
     $wcbb1 = Join-Path $WCBBRunOutDir "step1_wcbb.csv"
     $wcbbOk = $true
     if (-not $SkipFetch) {
-        $wcbbOk = Run-Step-Job "WCBB Step 1 - Fetch PrizePicks (NCAABB Women)" $CBBDir ".\scripts\pipeline\step1_pp_cbb_scraper.py" "--board wcbb --out `"$wcbb1`""
+        $wcbbOk = Invoke-PrizePicksStep1Cascade -AsJobOutput -SportLabel "WCBB" -WorkDir $CBBDir `
+            -ScriptRel ".\scripts\pipeline\step1_pp_cbb_scraper.py" `
+            -OutputPath $wcbb1 -PipelineDate $Date `
+            -HttpArgs @("--board", "wcbb", "--out", $wcbb1) `
+            -SkipDateHealth
     } else { Write-Output "[WCBB] Skipping step1 fetch" }
     if ($wcbbOk -and (Test-Step1NoSlate-Job -CsvPath $wcbb1)) {
         Write-Output "[WCBB] no slate — skipping steps 2-6"
@@ -3151,6 +3196,7 @@ $CBBJob = Start-Job -ScriptBlock {
         if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 5 - Boxscore Stats" $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py" "--input `"$WCBBRunOutDir\step3_wcbb.csv`" --output `"$WCBBRunOutDir\step5b_wcbb.csv`" --cache data\cache\wcbb_boxscore_cache.csv --days 90 --league womens-college-basketball" }
         if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 6 - Rank Props" $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py" "--input `"$WCBBRunOutDir\step5b_wcbb.csv`" --output `"$WCBBRunOutDir\step6_ranked_wcbb.xlsx`" --cache data\cache\wcbb_boxscore_cache.csv" }
         if ($wcbbOk) { $wcbbOk = Invoke-Step7b-Job "WCBB" $RepoRoot "$WCBBRunOutDir\step6_ranked_wcbb.xlsx" }
+        if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 8 - Direction Context" $CBBDir ".\scripts\pipeline\step8_add_direction_context_cbb.py" "--input `"$WCBBRunOutDir\step6_ranked_wcbb.xlsx`" --output `"$WCBBRunOutDir\step8_wcbb_direction_clean.xlsx`" --date $Date --sport WCBB" }
     }
     return ($ok -and $wcbbOk)
 } -ArgumentList $CBBDir, $Date, $SkipFetch, $Root, $CBBRunOutDir, $WCBBRunOutDir

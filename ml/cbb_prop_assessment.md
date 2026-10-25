@@ -88,11 +88,11 @@ Checklist (2026-02-21 board, 6,963 rows):
    still open.
 
 Pipeline steps 2–6 completed (6,897 OK box attach / 66 no history;
-step6 date-filter kept 2026-02-21). Step7b still fails: the unified
-model asks for empty MLB feature cols (`batting_order_pos`,
-`park_factor_overall`, …). That is a scoring-matrix issue, not an
-opening-night board check. `import sys` was missing on that error
-path and is now present.
+step6 date-filter kept 2026-02-21). Step7b no longer scores CBB /
+WCBB: it exits OK with `no model for CBB` and leaves `ml_prob`
+blank. Scoring those rows through empty MLB features is not a
+price. A thin step8 then writes `step8_cbb_direction_clean.xlsx`
+so opening night still has a board file.
 
 Do not publish CBB tickets from the dry pass. Opening night stays
 held until `PROPORACLE_CBB_TICKETS=1` after the first real 2026-27

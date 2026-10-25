@@ -39,8 +39,8 @@ Outputs:
 
 | | Path |
 |---|---|
-| Mens | `outputs/<date>/cbb/step6_ranked_cbb.xlsx` |
-| Women | `outputs/<date>/wcbb/step6_ranked_wcbb.xlsx` |
+| Mens | `outputs/<date>/cbb/step6_ranked_cbb.xlsx` and `step8_cbb_direction_clean.xlsx` |
+| Women | `outputs/<date>/wcbb/step6_ranked_wcbb.xlsx` and `step8_wcbb_direction_clean.xlsx` |
 
 Combined picks those up automatically (`MAIN` resumes 2026-11-01).
 
@@ -60,4 +60,4 @@ py -3.14 scripts\utilities\build_espn_athletes_master.py --gender women --out da
 
 ## Best props
 
-`scripts/rank_best_props_today.py` prints CBB and WCBB sections when the slate date is in season **or** a step8 file exists. Combined still ranks from step6 until a CBB/WCBB step8 is added.
+`scripts/rank_best_props_today.py` prints CBB and WCBB sections when the slate date is in season **or** a step8 file exists. Combined still ranks from step6. Step7b does not score CBB (`ml_prob` stays blank).

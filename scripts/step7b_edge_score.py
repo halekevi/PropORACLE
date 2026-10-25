@@ -46,6 +46,20 @@ def _repo_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
+def _cbb_family(sport_label: str) -> bool:
+    """CBB / WCBB have no trusted unified model. Do not score them."""
+    raw = str(sport_label or "").strip().upper()
+    return raw in {"CBB", "WCBB"} or _norm_sport(raw) == "CBB"
+
+
+def _skip_cbb_scoring(sport_label: str) -> None:
+    raw = str(sport_label or "").strip().upper() or "CBB"
+    print(
+        f"[step7b] no model for {raw} — leave ml_prob blank; step8 continues.",
+        flush=True,
+    )
+
+
 def _norm_sport(s: str) -> str:
     x = str(s or "").strip().upper()
     if x == "SOC":
@@ -557,6 +571,11 @@ def main() -> None:
             print(f"ERROR: --step7-xlsx not found: {xp}", file=sys.stderr)
             raise SystemExit(1)
 
+    if all(_cbb_family(s) for s in ordered):
+        for s in ordered:
+            _skip_cbb_scoring(s)
+        return
+
     mdir = root / "models"
     loaded = load_unified_edge_model(mdir)
     if loaded is None:
@@ -569,6 +588,10 @@ def main() -> None:
     n_ok = 0
     explicit_failed = False
     for i, sport_label in enumerate(ordered):
+        if _cbb_family(sport_label):
+            _skip_cbb_scoring(sport_label)
+            n_ok += 1
+            continue
         ok = score_step7_workbook(
             root=root,
             sport_label=sport_label,
