@@ -1269,7 +1269,8 @@ def main():
     if not dropped_df.empty:
         sheets["DROPPED"] = dropped_df
     write_excel_sheets(args.output, sheets)
-    write_parquet_sidecar(out_sorted.loc[elig_sorted], args.output)
+    write_parquet_sidecar(out_sorted, args.output, sheet="ALL")
+    write_parquet_sidecar(out_sorted.loc[elig_sorted], args.output, sheet="ELIGIBLE")
 
     print(f"✅ Saved → {args.output}")
     print(f"ALL rows (incl. Demon observe) : {len(out_sorted)}")

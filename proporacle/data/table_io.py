@@ -16,8 +16,77 @@ import pandas as pd
 _PARQUET_ENGINES = ("pyarrow", "fastparquet")
 
 
-def parquet_sidecar_path(path: str | Path) -> Path:
-    return Path(path).with_suffix(".parquet")
+def _sheet_token(sheet: str | None) -> str:
+    raw = str(sheet or "").strip()
+    if not raw:
+        return ""
+    safe = "".join(ch if ch.isalnum() else "_" for ch in raw)
+    return safe.strip("_")
+
+
+def parquet_sidecar_path(path: str | Path, sheet: str | None = None) -> Path:
+    """Sibling parquet hop. Key by sheet when one is named (``stem_ALL.parquet``).
+
+    Unkeyed ``stem.parquet`` is the CSV / legacy hop. A reader that asked for a
+    sheet must not use that file — it may be ELIGIBLE or another subset.
+    """
+    p = Path(path)
+    token = _sheet_token(sheet)
+    if token:
+        return p.with_name(f"{p.stem}_{token}.parquet")
+    return p.with_suffix(".parquet")
+
+
+def iter_parquet_sidecars(path: str | Path) -> list[Path]:
+    p = Path(path)
+    found: list[Path] = []
+    unkeyed = p.with_suffix(".parquet")
+    if unkeyed.is_file():
+        found.append(unkeyed)
+    parent = p.parent
+    if parent.is_dir():
+        for q in sorted(parent.glob(f"{p.stem}_*.parquet")):
+            if q not in found:
+                found.append(q)
+    return found
+
+
+def _requested_sheet(sheet: str | None, sheet_order: tuple[str, ...] | None) -> str:
+    raw = str(sheet or "").strip()
+    if raw:
+        return raw
+    if sheet_order:
+        return str(sheet_order[0] or "").strip()
+    return ""
+
+
+def _resolve_parquet_hop(
+    path: Path,
+    *,
+    requested_sheet: str,
+    suffix: str,
+) -> Path | None:
+    """Return a sidecar only when it matches the requested sheet.
+
+    CSV keeps the unkeyed hop. XLSX never uses an unkeyed sidecar when the
+    workbook exists — that file may be a different sheet.
+    """
+    if suffix in {".csv", ".txt"}:
+        unkeyed = parquet_sidecar_path(path)
+        return unkeyed if unkeyed.is_file() else None
+    if suffix == ".parquet":
+        return path if path.is_file() else None
+    if requested_sheet:
+        keyed = parquet_sidecar_path(path, sheet=requested_sheet)
+        return keyed if keyed.is_file() else None
+    keyed_all = parquet_sidecar_path(path, sheet="ALL")
+    if keyed_all.is_file():
+        return keyed_all
+    if not path.is_file():
+        unkeyed = parquet_sidecar_path(path)
+        if unkeyed.is_file():
+            return unkeyed
+    return None
 
 
 def parquet_available() -> bool:
@@ -36,7 +105,7 @@ def parquet_available() -> bool:
 
 def table_exists(path: str | Path) -> bool:
     p = Path(path)
-    return p.is_file() or parquet_sidecar_path(p).is_file()
+    return p.is_file() or bool(iter_parquet_sidecars(p))
 
 
 def _dedupe_columns(df: pd.DataFrame) -> pd.DataFrame:
@@ -86,14 +155,20 @@ def _parquet_cell(v: Any) -> Any:
     return str(v)
 
 
-def write_parquet_sidecar(df: pd.DataFrame, path: str | Path) -> Path | None:
-    """Write ``<stem>.parquet`` next to csv/xlsx ``path``. No-op without pyarrow."""
+def write_parquet_sidecar(
+    df: pd.DataFrame,
+    path: str | Path,
+    sheet: str | None = None,
+) -> Path | None:
+    """Write a sibling parquet hop. XLSX defaults to the ALL sheet key."""
     if df is None or not parquet_available():
         return None
     p = Path(path)
     if not str(p):
         return None
-    pq = parquet_sidecar_path(p)
+    if sheet is None and p.suffix.lower() in {".xlsx", ".xlsm", ".xls"}:
+        sheet = "ALL"
+    pq = parquet_sidecar_path(p, sheet=sheet)
     pq.parent.mkdir(parents=True, exist_ok=True)
     body = _prepare_for_parquet(df)
     try:
@@ -108,35 +183,46 @@ def write_parquet_sidecar(df: pd.DataFrame, path: str | Path) -> Path | None:
     return pq
 
 
-def write_parquet_sidecars(df: pd.DataFrame, *paths: str | Path) -> list[Path]:
+def write_parquet_sidecars(
+    df: pd.DataFrame,
+    *paths: str | Path,
+    sheet: str | None = None,
+) -> list[Path]:
     written: list[Path] = []
     seen: set[str] = set()
     for path in paths:
         if not path:
             continue
-        key = str(parquet_sidecar_path(path).resolve()).lower()
+        p = Path(path)
+        token_sheet = sheet
+        if token_sheet is None and p.suffix.lower() in {".xlsx", ".xlsm", ".xls"}:
+            token_sheet = "ALL"
+        key = str(parquet_sidecar_path(p, sheet=token_sheet).resolve()).lower()
         if key in seen:
             continue
         seen.add(key)
-        out = write_parquet_sidecar(df, path)
+        out = write_parquet_sidecar(df, path, sheet=sheet)
         if out is not None:
             written.append(out)
     return written
 
 
 def copy_parquet_sidecar(src: str | Path, dest: str | Path) -> Path | None:
-    """Copy ``src``'s parquet sidecar next to ``dest`` (dated outputs/)."""
-    src_pq = parquet_sidecar_path(src)
-    if not src_pq.is_file():
-        return None
-    dest_pq = parquet_sidecar_path(dest)
-    dest_pq.parent.mkdir(parents=True, exist_ok=True)
-    try:
-        shutil.copy2(src_pq, dest_pq)
-    except OSError as exc:
-        print(f"[table_io] WARN parquet copy skipped ({dest_pq.name}): {exc}")
-        return None
-    return dest_pq
+    """Copy src sidecars (keyed and unkeyed) next to dest."""
+    src_p = Path(src)
+    dest_p = Path(dest)
+    dest_p.parent.mkdir(parents=True, exist_ok=True)
+    copied: Path | None = None
+    for src_pq in iter_parquet_sidecars(src_p):
+        suffix = src_pq.name[len(src_p.stem) :]
+        dest_pq = dest_p.with_name(f"{dest_p.stem}{suffix}")
+        try:
+            shutil.copy2(src_pq, dest_pq)
+        except OSError as exc:
+            print(f"[table_io] WARN parquet copy skipped ({dest_pq.name}): {exc}")
+            continue
+        copied = dest_pq
+    return copied
 
 
 def _drop_arrow_backend(df: pd.DataFrame) -> pd.DataFrame:
@@ -241,16 +327,18 @@ def read_table(
     prefer_parquet: bool = True,
     **csv_kwargs: Any,
 ) -> pd.DataFrame:
-    """Read parquet sidecar if present, else CSV/XLSX/parquet at ``path``."""
+    """Read a sheet-keyed parquet sidecar when it matches, else CSV/XLSX."""
     p = Path(path)
-    sidecar = parquet_sidecar_path(p)
-    if prefer_parquet and sidecar.is_file() and parquet_available():
-        try:
-            return _read_parquet(sidecar)
-        except Exception as exc:
-            print(f"[table_io] WARN parquet read failed ({sidecar.name}), falling back: {exc}")
-
     suffix = p.suffix.lower()
+    requested = _requested_sheet(sheet, sheet_order)
+    if prefer_parquet and parquet_available():
+        hop = _resolve_parquet_hop(p, requested_sheet=requested, suffix=suffix)
+        if hop is not None:
+            try:
+                return _read_parquet(hop)
+            except Exception as exc:
+                print(f"[table_io] WARN parquet read failed ({hop.name}), falling back: {exc}")
+
     if suffix == ".parquet":
         return _read_parquet(p)
     if suffix in {".csv", ".txt"}:
@@ -262,8 +350,9 @@ def read_table(
         return _dedupe_columns(
             pd.read_excel(p, sheet_name=chosen, engine="openpyxl", header=header_row)
         )
-    if sidecar.is_file() and parquet_available():
-        return _read_parquet(sidecar)
+    leftover = _resolve_parquet_hop(p, requested_sheet=requested, suffix=suffix)
+    if leftover is not None and parquet_available():
+        return _read_parquet(leftover)
     raise FileNotFoundError(f"Unsupported table path: {p}")
 
 

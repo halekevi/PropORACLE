@@ -165,6 +165,43 @@ def test_existing_arrow_string_l5_over_accepts_float(tmp_path: Path):
     assert list(got["l5_over"]) == [4.0, 5.0]
 
 
+def test_xlsx_unkeyed_sidecar_is_not_used_for_all_sheet(tmp_path: Path):
+    """Legacy stem.parquet may be ELIGIBLE. ALL must come from Excel or stem_ALL."""
+    xlsx = tmp_path / "step6_ranked_cbb.xlsx"
+    write_excel_sheets(
+        xlsx,
+        {
+            "ALL": pd.DataFrame(
+                {"player": ["G", "D", "S"], "pick_type": ["Goblin", "Demon", "Standard"]}
+            ),
+            "ELIGIBLE": pd.DataFrame({"player": ["S"], "pick_type": ["Standard"]}),
+        },
+        stamp_meta=False,
+    )
+    eligible = pd.DataFrame({"player": ["S"], "pick_type": ["Standard"]})
+    eligible.to_parquet(xlsx.with_suffix(".parquet"), index=False)
+    got = read_table(xlsx, sheet="ALL")
+    assert len(got) == 3
+    assert set(got["pick_type"].astype(str)) == {"Goblin", "Demon", "Standard"}
+
+
+def test_xlsx_keyed_all_sidecar_is_used(tmp_path: Path):
+    xlsx = tmp_path / "step8_tennis_direction_clean.xlsx"
+    write_excel_sheets(
+        xlsx,
+        {"ALL": pd.DataFrame({"player": ["excel"], "pick_type": ["Standard"]})},
+        stamp_meta=False,
+    )
+    write_parquet_sidecar(
+        pd.DataFrame({"player": ["sidecar"], "pick_type": ["Goblin"]}),
+        xlsx,
+        sheet="ALL",
+    )
+    got = read_table(xlsx, sheet="ALL")
+    assert list(got["player"]) == ["sidecar"]
+    assert list(got["pick_type"]) == ["Goblin"]
+
+
 def test_step7b_refresh_keeps_parquet_in_sync(tmp_path: Path):
     """step8 prefers parquet; scoring the xlsx must rewrite the sidecar too."""
     xlsx = tmp_path / "step7_ranked.xlsx"

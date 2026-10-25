@@ -47,6 +47,11 @@ def _copy_dated(out_xlsx: Path, slate_date: str, sport: str) -> None:
     d = (slate_date or "").strip()[:10]
     if not d or not out_xlsx.is_file():
         return
+    try:
+        if _REPO.joinpath("outputs") not in out_xlsx.resolve().parents:
+            return
+    except OSError:
+        return
     folder = "wcbb" if sport == "WCBB" else "cbb"
     stem = "step8_wcbb_direction_clean" if sport == "WCBB" else "step8_cbb_direction_clean"
     dated = _REPO / "outputs" / d / folder / f"{stem}_{d}.xlsx"
@@ -80,12 +85,7 @@ def main() -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     sport = str(args.sport or "").strip().upper() or _sport_code(args.input, args.output)
-    df = read_table(
-        inp,
-        sheet=args.sheet,
-        sheet_order=(args.sheet, "ALL"),
-        prefer_parquet=False,
-    )
+    df = read_table(inp, sheet=args.sheet, sheet_order=(args.sheet, "ALL"))
     if df.empty:
         write_excel_sheets(out_path, {"ALL": pd.DataFrame()})
         write_parquet_sidecar(pd.DataFrame(), out_path)
