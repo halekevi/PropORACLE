@@ -983,6 +983,14 @@ def main() -> None:
             result, edge = "VOID", np.nan
             void_reason = "DNP"
             no_data_void_rows += 1
+        elif (
+            minutes_played is None
+            and float(actual) == 0.0
+            and str(direction).strip().upper() == "UNDER"
+        ):
+            result, edge = "VOID", np.nan
+            void_reason = "SOCCER_UNDER_ZERO_NO_MINUTES"
+            no_data_void_rows += 1
         elif _soccer_volume_actual_suspicious(prop_type, actual, line):
             result, edge = "VOID", np.nan
             void_reason = "NO_DATA"

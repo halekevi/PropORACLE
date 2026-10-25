@@ -4,10 +4,12 @@ from __future__ import annotations
 from utils.dnp_zero_void import (
     FACEOFF_PCT_MISMATCH,
     NFL_UNDER_ZERO_NO_SNAPS,
+    SOCCER_UNDER_ZERO_NO_MINUTES,
     is_dnp_zero_actual,
     void_if_dnp_zero,
     void_if_nfl_under_zero_no_snaps,
     void_if_nhl_faceoff_pct_vs_count,
+    void_if_soccer_under_zero_no_minutes,
     would_old_unknown_pt_void,
 )
 
@@ -90,3 +92,38 @@ def test_nhl_faceoff_pct_vs_count_voids():
     )
     # Real FOW count vs count line stands.
     assert void_if_nhl_faceoff_pct_vs_count(6.0, row) is None
+
+
+def test_soccer_under_zero_without_minutes_voids():
+    row = {"sport": "SOCCER", "bet_direction": "UNDER", "prop": "shots"}
+    assert void_if_soccer_under_zero_no_minutes(0.0, row) == (
+        "VOID",
+        SOCCER_UNDER_ZERO_NO_MINUTES,
+    )
+
+
+def test_soccer_under_zero_with_minutes_stands():
+    row = {
+        "sport": "SOCCER",
+        "bet_direction": "UNDER",
+        "prop": "shots",
+        "minutes_played": 84,
+    }
+    assert void_if_soccer_under_zero_no_minutes(0.0, row) is None
+
+
+def test_soccer_under_zero_minutes_played_zero_is_dnp():
+    row = {
+        "sport": "SOCCER",
+        "bet_direction": "UNDER",
+        "prop": "shots",
+        "minutes_played": 0,
+    }
+    assert void_if_dnp_zero(0.0, row) == ("VOID", "DNP_ZERO")
+    assert void_if_soccer_under_zero_no_minutes(0.0, row) == ("VOID", "DNP_ZERO")
+
+
+def test_soccer_over_zero_unknown_minutes_stays_graded():
+    row = {"sport": "SOCCER", "bet_direction": "OVER", "prop": "shots"}
+    assert void_if_soccer_under_zero_no_minutes(0.0, row) is None
+    assert void_if_dnp_zero(0.0, row) is None

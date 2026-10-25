@@ -313,6 +313,40 @@ def test_get_vals_soccer_dedupes_same_date_espn_over_sofa():
     assert vals == [4.0, 3.0]
 
 
+def test_get_vals_soccer_skips_dnp_zero_minutes():
+    """minutes_played==0 is a voided appearance, not an L5 Under 0."""
+    con = sqlite3.connect(":memory:")
+    con.execute(
+        """
+        CREATE TABLE soccer (
+            game_date TEXT NOT NULL,
+            event_id TEXT NOT NULL,
+            league TEXT,
+            home_team TEXT,
+            away_team TEXT,
+            player TEXT NOT NULL,
+            team TEXT,
+            espn_player_id TEXT,
+            sh REAL, sog REAL, g REAL, a REAL,
+            sv REAL, pa REAL, kp REAL, tk REAL,
+            fc REAL, yc REAL, minutes_played REAL,
+            clearances REAL, dribble_attempts REAL,
+            PRIMARY KEY (event_id, player, team)
+        )
+        """
+    )
+    con.execute(
+        "INSERT INTO soccer (game_date, event_id, player, team, espn_player_id, sh, minutes_played) "
+        "VALUES ('2026-08-21', '401877008', 'Brian', 'AME', '144325', 0, 0)"
+    )
+    con.execute(
+        "INSERT INTO soccer (game_date, event_id, player, team, espn_player_id, sh, minutes_played) "
+        "VALUES ('2026-08-16', '401877009', 'Brian', 'AME', '144325', 3, 90)"
+    )
+    vals = get_vals_soccer(con, "144325", "shots", n=5, player_name="Brian")
+    assert vals == [3.0]
+
+
 def test_get_vals_soccer_tackles_count_omitted_zeros():
     """PP Last 5 keeps 0-tackle appearances; do not skip to older non-zero games."""
     con = sqlite3.connect(":memory:")
@@ -480,7 +514,9 @@ def test_espn_omitted_saves_count_as_zero_on_appearance():
     vals = get_vals_soccer(
         con, "168747", "saves", n=5, player_name="Max Crocombe", team="MILLWALL"
     )
-    assert vals == [2.0, 1.0, 0.0, 0.0, 0.0]
+    # Missing Sofa `sv` is unknown, not 0 (Pacheco King's Cup fake L5=5 Unders).
+    # Appearance (sh=0) does not coalesce saves. Stop at the first gap.
+    assert vals == [2.0, 1.0]
 
 
 def test_stale_espn_targets_short_club_tape():

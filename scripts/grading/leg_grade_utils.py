@@ -272,6 +272,7 @@ def slate_grade_row(actual: float | None, row: dict[str, Any] | pd.Series) -> tu
         from utils.dnp_zero_void import (
             void_if_dnp_zero,
             void_if_nfl_under_zero_no_snaps,
+            void_if_soccer_under_zero_no_minutes,
             void_if_nhl_faceoff_pct_vs_count,
         )
 
@@ -279,6 +280,7 @@ def slate_grade_row(actual: float | None, row: dict[str, Any] | pd.Series) -> tu
         for fn in (
             void_if_dnp_zero,
             void_if_nfl_under_zero_no_snaps,
+            void_if_soccer_under_zero_no_minutes,
             void_if_nhl_faceoff_pct_vs_count,
         ):
             hit = fn(float(act), row_map)

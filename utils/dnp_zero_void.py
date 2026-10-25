@@ -17,6 +17,7 @@ VOID_REASON = "DNP_ZERO"
 
 _PLAYING_TIME_KEYS = (
     "minutes",
+    "minutes_played",
     "mins",
     "min",
     "mp",
@@ -317,6 +318,44 @@ def void_if_nfl_under_zero_no_snaps(
     pt = playing_time_value(row)
     if pt is None:
         return "VOID", NFL_UNDER_ZERO_NO_SNAPS
+    if pt <= 0.0:
+        return "VOID", VOID_REASON
+    return None
+
+
+SOCCER_UNDER_ZERO_NO_MINUTES = "SOCCER_UNDER_ZERO_NO_MINUTES"
+
+
+def void_if_soccer_under_zero_no_minutes(
+    actual: float | None,
+    row: dict[str, Any] | Any,
+) -> tuple[str, str] | None:
+    """Soccer UNDER actual=0 without minutes evidence must not count as a HIT.
+
+    Same shape as the NFL snap rule. Positive DNP (minutes==0) still voids
+    via ``void_if_dnp_zero``. Unknown minutes + a silent zero is VOID, not
+    an Under hit that pads L5. A played-box 0 (minutes > 0) stays graded.
+    OVER zeros with unknown minutes stay MISS.
+    """
+    if _sport(row) not in {"SOCCER", "SOC"}:
+        return None
+    if _direction(row) != "UNDER":
+        return None
+    if actual is None:
+        return None
+    try:
+        a = float(actual)
+    except (TypeError, ValueError):
+        return None
+    if math.isnan(a) or a != 0.0:
+        return None
+    if is_dnp_zero_actual(actual, row):
+        return "VOID", VOID_REASON
+    if _played_box_evidence(row):
+        return None
+    pt = playing_time_value(row)
+    if pt is None:
+        return "VOID", SOCCER_UNDER_ZERO_NO_MINUTES
     if pt <= 0.0:
         return "VOID", VOID_REASON
     return None

@@ -256,18 +256,47 @@ def _allstar_date_exclusion_sql(sport: str, date_col: str = "game_date") -> tupl
     return allstar_date_exclusion_sql(sport, date_col=date_col)
 
 
+_PT_COL = {
+    "soccer": "minutes_played",
+    "nba": "minutes",
+    "cbb": "minutes",
+    "nhl": "toi",
+}
+
+
+def _flag_l5_zero_or_dnp(vals: List[float], skipped_dnp: int = 0) -> dict:
+    """Flag L5 windows that include a literal 0 or skipped a DNP-zero game."""
+    l5 = list(vals[:5]) if vals else []
+    has_zero = any(abs(float(v)) < 1e-12 for v in l5)
+    skipped = int(skipped_dnp or 0)
+    return {
+        "l5_has_zero": "1" if has_zero else "0",
+        "l5_skipped_dnp": str(skipped),
+        "l5_zero_or_dnp": "1" if (has_zero or skipped > 0) else "0",
+    }
+
+
 def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
                 stat_expr: str, params: tuple, n: int,
                 *, sport: str = "", min_game_date: str = "",
                 card_window: bool = False,
-                regular_season_only: bool = False) -> List[float]:
+                regular_season_only: bool = False,
+                meta: dict | None = None) -> List[float]:
     """
     Generic indexed stat query.
     Returns up to n most-recent non-null values, newest first.
     min_game_date drops older seasons (NBAP last-5 is this preseason only).
     card_window: keep regular + playoffs, drop preseason (PP card L5).
     regular_season_only: legacy — prefer card_window (playoffs stay).
+    DNP-zero (minutes/TOI==0) is voided, not an Under hit; count in meta['skipped_dnp'].
     """
+    from datetime import date as _date
+
+    try:
+        from utils.dnp_zero_void import is_dnp_zero_actual
+    except Exception:
+        is_dnp_zero_actual = None  # type: ignore
+
     sport_key = sport or table
     exclude_sql, exclude_params = _allstar_team_exclusion_sql(sport_key)
     date_sql, date_params = _allstar_date_exclusion_sql(sport_key)
@@ -275,10 +304,12 @@ def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
     floor_sql = " AND game_date >= ?" if floor else ""
     floor_params = (floor,) if floor else ()
     filter_windows = card_window or regular_season_only
-    # Pull extra rows when filtering windows so L5 still fills after drops.
-    fetch_n = max(n * 8, n) if filter_windows else n
+    # Pull extra rows when filtering windows / DNP voids so L5 still fills.
+    fetch_n = max(n * 8, n) if (filter_windows or is_dnp_zero_actual) else n
+    pt = _PT_COL.get(table)
+    pt_sel = pt if pt else "NULL"
     sql = f"""
-        SELECT game_date, {stat_expr} AS val
+        SELECT game_date, {stat_expr} AS val, {pt_sel} AS pt
         FROM {table}
         WHERE {where_clause}
           AND {stat_expr} IS NOT NULL
@@ -294,31 +325,55 @@ def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
             tuple(params) + tuple(exclude_params) + tuple(date_params) + tuple(floor_params),
         ).fetchall()
     except Exception:
+        if meta is not None:
+            meta["skipped_dnp"] = 0
         return []
-    if not filter_windows:
-        return [float(r[1]) for r in rows if r[1] is not None]
-    try:
-        from datetime import date as _date
-        from utils.nba_minutes_role import classify_game
-    except Exception:
-        return [float(r[1]) for r in rows if r[1] is not None][:n]
+
     if card_window:
         allow = {"regular", "playoffs"}
-    else:
+    elif regular_season_only:
         allow = {"regular"}
+    else:
+        allow = None
+
+    classify_game = None
+    if allow is not None:
+        try:
+            from utils.nba_minutes_role import classify_game as _cg
+
+            classify_game = _cg
+        except Exception:
+            if meta is not None:
+                meta["skipped_dnp"] = 0
+            return [float(r[1]) for r in rows if r[1] is not None][:n]
+
     out: List[float] = []
-    for gd, val in rows:
+    skipped_dnp = 0
+    for r in rows:
+        gd, val, pt_v = r[0], r[1], r[2] if len(r) > 2 else None
         if val is None:
             continue
         try:
-            d = _date.fromisoformat(str(gd)[:10])
-        except ValueError:
+            fval = float(val)
+        except (TypeError, ValueError):
             continue
-        if classify_game(d) not in allow:
+        if allow is not None and classify_game is not None:
+            try:
+                d = _date.fromisoformat(str(gd)[:10])
+            except ValueError:
+                continue
+            if classify_game(d) not in allow:
+                continue
+        if is_dnp_zero_actual is not None and is_dnp_zero_actual(
+            fval, {"minutes": pt_v, "toi": pt_v}
+        ):
+            skipped_dnp += 1
             continue
-        out.append(float(val))
+        out.append(fval)
         if len(out) >= n:
             break
+    if meta is not None:
+        meta["skipped_dnp"] = skipped_dnp
     return out
 
 
@@ -397,6 +452,33 @@ def _soccer_club_match(hint: str, db_team: str) -> bool:
     return False
 
 
+def _soccer_table_cols(con: sqlite3.Connection) -> set[str]:
+    try:
+        return {str(r[1]) for r in con.execute("PRAGMA table_info(soccer)").fetchall()}
+    except Exception:
+        return set()
+
+
+def _soccer_appeared_sql(cols: set[str]) -> str:
+    parts: list[str] = []
+    for c in (
+        "pa",
+        "sh",
+        "sog",
+        "fc",
+        "tk",
+        "sv",
+        "crosses",
+        "clearances",
+        "dribble_attempts",
+    ):
+        if c in cols:
+            parts.append(f"{c} IS NOT NULL")
+    if "minutes_played" in cols:
+        parts.append("coalesce(minutes_played, 0) > 0")
+    return " OR ".join(parts) if parts else "1=1"
+
+
 def _query_soccer_vals(
     con: sqlite3.Connection,
     where_clause: str,
@@ -414,16 +496,11 @@ def _query_soccer_vals(
     exclude_sql, exclude_params = _allstar_team_exclusion_sql("soccer")
     date_sql, date_params = _allstar_date_exclusion_sql("soccer")
     select_sql, _val_filter = _soccer_select_and_filter(stat_expr)
-    # Appearance = any box row for the player (not prop-filtered).
-    appeared = (
-        "pa IS NOT NULL OR sh IS NOT NULL OR sog IS NOT NULL "
-        "OR fc IS NOT NULL OR tk IS NOT NULL OR sv IS NOT NULL "
-        "OR crosses IS NOT NULL OR clearances IS NOT NULL "
-        "OR dribble_attempts IS NOT NULL "
-        "OR coalesce(minutes_played, 0) > 0"
-    )
+    cols = _soccer_table_cols(con)
+    appeared = _soccer_appeared_sql(cols)
+    mins_sel = "minutes_played" if "minutes_played" in cols else "NULL"
     sql = f"""
-        SELECT game_date, event_id, {select_sql}, team
+        SELECT game_date, event_id, {select_sql}, team, {mins_sel}
         FROM soccer
         WHERE {where_clause}
           AND ({appeared})
@@ -443,16 +520,28 @@ def _query_soccer_vals(
         seen: set[str] = set()
         out: List[float] = []
         hint = str(team_hint or "").strip()
-        for gd, _eid, val, db_team in rows:
+        for gd, _eid, val, db_team, mins in rows:
             key = str(gd or "")[:10]
             if not key or key in seen:
                 continue
             if prefer_hint and hint and not _soccer_club_match(hint, str(db_team or "")):
                 continue
-            seen.add(key)
-            # Gap: played this date but prop missing — do not skip to older games.
+            # Positive DNP (minutes present and 0) is not an L5 Under hit.
+            try:
+                mv = float(mins) if mins is not None else None
+            except (TypeError, ValueError):
+                mv = None
+            if mv is not None and mv <= 0:
+                seen.add(key)
+                continue
+            # ESPN stub with a missing prop: leave the date open for sofa_*.
+            # A sofa row missing the prop is a real gap — stop, do not pad older 0s.
             if val is None:
-                break
+                if str(_eid or "").startswith("sofa_"):
+                    seen.add(key)
+                    break
+                continue
+            seen.add(key)
             out.append(float(val))
             if len(out) >= n:
                 break
@@ -496,25 +585,28 @@ def get_vals_nba(con: sqlite3.Connection, espn_id: str,
                   prop_norm: str, n: int = 10, player_name: str = "",
                   min_game_date: str = "",
                   card_window: bool = False,
-                  regular_season_only: bool = False) -> List[float]:
+                  regular_season_only: bool = False,
+                  meta: dict | None = None) -> List[float]:
     expr = _resolve_prop(prop_norm, "nba")
     if not expr:
         return []
     floor = str(min_game_date or "")[:10]
+    kw = dict(
+        min_game_date=floor,
+        card_window=card_window,
+        regular_season_only=regular_season_only,
+        meta=meta,
+    )
     # Primary: ESPN athlete ID (exact, unambiguous)
     vals = _query_vals(con, "nba",
                        "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n,
-                       min_game_date=floor,
-                       card_window=card_window,
-                       regular_season_only=regular_season_only)
+                       **kw)
     if not vals and player_name:
         # Fallback 1: exact lowercase match (covers DB storing accented names)
         norm = player_name.strip().lower()
         vals = _query_vals(con, "nba",
                            "lower(player) = ?", expr, (norm,), n,
-                           min_game_date=floor,
-                           card_window=card_window,
-                           regular_season_only=regular_season_only)
+                           **kw)
         # Fallback 2: NFKD-normalized match (covers DB storing ASCII names vs
         #             PrizePicks sending accented names, or vice versa)
         if not vals:
@@ -680,13 +772,7 @@ def get_vals_soccer(con: sqlite3.Connection, espn_player_id: str,
         if needle:
             try:
                 select_sql, _vf = _soccer_select_and_filter(expr)
-                appeared = (
-                    "pa IS NOT NULL OR sh IS NOT NULL OR sog IS NOT NULL "
-                    "OR fc IS NOT NULL OR tk IS NOT NULL OR sv IS NOT NULL "
-                    "OR crosses IS NOT NULL OR clearances IS NOT NULL "
-                    "OR dribble_attempts IS NOT NULL "
-                    "OR coalesce(minutes_played, 0) > 0"
-                )
+                appeared = _soccer_appeared_sql(_soccer_table_cols(con))
                 sql = f"""
                     SELECT player, game_date, team, {select_sql}
                     FROM soccer
@@ -835,6 +921,8 @@ def attach_stats(
     ]
     if sport in ("nba", "cbb"):
         out_cols.append("min_last5_avg")
+    if sport == "nba":
+        out_cols += ["l5_has_zero", "l5_skipped_dnp", "l5_zero_or_dnp"]
     if sport == "soccer":
         out_cols += ["avg_minutes", "avg_passes"]
 
@@ -886,6 +974,7 @@ def attach_stats(
             str(row.get("is_combo_player", "")).strip().lower() in ("1", "true", "yes")
         )
 
+        query_meta: dict = {}
         if is_combo:
             ids = [p.strip() for p in raw_id.split(combo_sep) if p.strip()]
             vals = get_vals_combo(get_fn, con, ids, prop, n)
@@ -901,6 +990,7 @@ def attach_stats(
                     con, raw_id, prop, n,
                     player_name=player_name, min_game_date=floor,
                     card_window=True,
+                    meta=query_meta,
                 )
             elif sport == "cbb" and player_name:
                 vals = get_fn(con, raw_id, prop, n, player_name=player_name)
@@ -922,6 +1012,13 @@ def attach_stats(
             status_counts["INSUFFICIENT_GAMES"] += 1
             # Still attach what we have rather than voiding
             # (1-game players are better than no data)
+
+        if sport == "nba":
+            flags = _flag_l5_zero_or_dnp(
+                vals, skipped_dnp=int(query_meta.get("skipped_dnp") or 0)
+            )
+            for fk, fv in flags.items():
+                slate.at[idx, fk] = fv
 
         # ── Fill per-game columns ──────────────────────────────────────────
         for i in range(1, n + 1):
