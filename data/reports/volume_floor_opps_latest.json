@@ -1,0 +1,97 @@
+{
+  "purpose": "opportunity count; not a track; frozen gates untouched",
+  "slate_week": 8,
+  "nflverse_prior_weeks": 7,
+  "slates": [
+    {
+      "date": "2026-10-23",
+      "path": "H:\\PropORACLE_main_cp\\outputs\\2026-10-23\\nfl\\step8_nfl_direction_clean_2026-10-23.xlsx",
+      "volume_std_demon_n": 666,
+      "top2_std_demon_n": 269,
+      "opp_n": 3,
+      "opp_standard": 0,
+      "opp_demon": 3,
+      "goblin_floor_n": 31,
+      "opps": [
+        {
+          "player": "Cam Skattebo",
+          "team": "NYG",
+          "prop": "rush_attempts",
+          "pick": "Demon",
+          "line": 9.5,
+          "l5_min": 12.0,
+          "rank": 1
+        },
+        {
+          "player": "Cam Skattebo",
+          "team": "NYG",
+          "prop": "rush_attempts",
+          "pick": "Demon",
+          "line": 8.5,
+          "l5_min": 12.0,
+          "rank": 1
+        },
+        {
+          "player": "MarShawn Lloyd",
+          "team": "GB",
+          "prop": "rush_attempts",
+          "pick": "Demon",
+          "line": 3.5,
+          "l5_min": 4.0,
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "path": "H:\\PropORACLE_main_cp\\outputs\\2026-10-25\\nfl\\step8_nfl_direction_clean_2026-10-25.xlsx",
+      "volume_std_demon_n": 484,
+      "top2_std_demon_n": 148,
+      "opp_n": 3,
+      "opp_standard": 2,
+      "opp_demon": 1,
+      "goblin_floor_n": 15,
+      "opps": [
+        {
+          "player": "Cam Skattebo",
+          "team": "NYG",
+          "prop": "rush_attempts",
+          "pick": "Demon",
+          "line": 9.5,
+          "l5_min": 12.0,
+          "rank": 1
+        },
+        {
+          "player": "MarShawn Lloyd",
+          "team": "GB",
+          "prop": "rush_attempts",
+          "pick": "Standard",
+          "line": 3.5,
+          "l5_min": 4.0,
+          "rank": 1
+        },
+        {
+          "player": "Seth McGowan",
+          "team": "IND",
+          "prop": "rush_attempts",
+          "pick": "Standard",
+          "line": 3.5,
+          "l5_min": 4.0,
+          "rank": 2
+        }
+      ]
+    }
+  ],
+  "total_opp": 6,
+  "total_standard": 2,
+  "total_demon": 4,
+  "total_goblin_floor": 46,
+  "per_slate": {
+    "2026-10-23": 3,
+    "2026-10-25": 3
+  },
+  "mean_per_slate": 3.0,
+  "unique_player_prop_line": 5,
+  "face_verified_from": "2026-10-23",
+  "tucker_note": "Tre Tucker Demon receptions 3.5 is below his L5 min (4) but L3 target-share rank is 3 (Jeanty is 2). Rec-floor would skip him on this as-of share. He is #2 among LV WR/TE."
+}

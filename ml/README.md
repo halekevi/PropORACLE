@@ -144,6 +144,15 @@ py -3.14 -m ml.volume_floor_backtest
 
 Writes `data/reports/volume_floor_backtest_a.md` and `_b.md`.
 
+How often a Standard or Demon volume line sits under that floor on
+face-labeled NFL boards (count only; frozen tracks untouched):
+
+```powershell
+py -3.14 -m ml.volume_floor_opps
+```
+
+Writes `data/reports/volume_floor_opps_latest.md`.
+
 NBA scout vs generic gate at scraped quotes (walk-forward box + cell priors;
 passes `lookup=` / `index=` so legs are not all held):
 
