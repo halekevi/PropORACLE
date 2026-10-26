@@ -7,7 +7,7 @@ from utils import nba_attempts_floor_shadow as ATT
 from utils import nba_assists_floor_shadow as AST
 from utils import nba_rebounds_floor_shadow as REB
 from utils import nhl_sog_floor_shadow as SOG
-from utils.volume_floor_observe import l5_floor, role_tag
+from utils.volume_floor_observe import l5_current_season_n, l5_floor, role_tag
 from utils.volume_floor_role_tag import nfl_role_tag
 
 
@@ -94,6 +94,29 @@ def test_goblin_stays_out(tmp_path: Path):
 def test_l5_floor_is_min():
     row = _nba("A", "Rebounds", 7.5, games=(12, 9, 14, 11, 10))
     assert l5_floor(row) == 9
+
+
+def test_l5_current_season_n_is_log_only(tmp_path: Path):
+    a = _nba("A", "Rebounds", 7.5, avg=14)
+    a["current_stat_g1"] = 12
+    a["current_stat_g2"] = 11
+    b = _nba("B", "Rebounds", 6.5, avg=11)
+    b["window_mix"] = "RROOO"
+    step = tmp_path / "outputs" / "2026-11-01" / "nba"
+    step.mkdir(parents=True)
+    (step / "step1_pp_props_today.csv").write_text(
+        "projection_id,pick_type,line\n1,Demon,7.5\n2,Goblin,3.5\n",
+        encoding="utf-8",
+    )
+    res = REB.record_nba_rebounds_floor_shadow(
+        [a, b], date="2026-11-01", root=tmp_path, path=tmp_path / "log.jsonl"
+    )
+    assert res["n_legs"] == 2
+    by = {l["player"]: l["l5_current_season_n"] for l in res["legs"]}
+    assert by["A"] == 2
+    assert by["B"] == 2
+    assert l5_current_season_n({"current_stat_g1": 8}) == 1
+    assert l5_current_season_n({"window_mix": "OOOOO"}) == 0
 
 
 def test_backup_tag_does_not_block():

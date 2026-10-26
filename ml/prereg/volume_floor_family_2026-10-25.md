@@ -26,5 +26,13 @@ NFL logs get a `role_tag` (`lead` / `secondary` / `backup`) after the
 row is written. The tag does not change who qualifies. Lloyd / McGowan
 style cheap floors can be split later.
 
+NBA floor-track rows also log `l5_current_season_n` (0–5): how many of
+the five L5 games are current-season RS. Early-season floors often come
+from last spring (Porter, Jerome). The tag does not change who qualifies.
+
 Not registered: NFL WR/TE-only target rank. Jeanty counting in LV’s
 target-share list is the frozen rec-floor definition.
+
+Gift scan (`ml/prereg/gift_scan_2026-10-25.md`) reads the floor table.
+The 84% is unconditional. Injury, teammate tags, line drops, and
+missing T−30 / NFL inactives flag a gift; they do not delete it.

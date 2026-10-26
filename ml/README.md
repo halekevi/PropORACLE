@@ -32,7 +32,14 @@ leader gate needs a board spread before it can log. NFL stays running
 even if it cannot hit 100 legs this season. Separate floor tracks for
 NBA rebounds / assists / attempts and NHL SOG are registered in
 `ml/prereg/volume_floor_family_2026-10-25.md` — do not pool them into
-NFL. Volume-floor backtests A/B must not edit any of these.
+NFL. Volume-floor backtests A/B must not edit any of these. The
+all-category floor-persistence table is `ml/prereg/floor_persistence_2026-10-25.md`
+→ `data/reports/floor_persistence/`. Gift scan (Steps 3–5) is
+`ml/prereg/gift_scan_2026-10-25.md` — adverse-selection checks logged on
+every gift; ntfy only on a clean pass. Pre-submit slip check is
+`py -3.14 -m ml.slip_check`; `--place --quote 1.65 --source live_cdp`
+appends `placed: true` to `data/reports/gift_scan/slip_check.jsonl`.
+A share-to-endpoint or short site form is later.
 
 Every other sport uses the same stack
 ([`prop_skeleton.md`](prop_skeleton.md)): opportunity × rate × context

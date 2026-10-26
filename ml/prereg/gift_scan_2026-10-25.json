@@ -1,0 +1,37 @@
+{
+  "track": "gift_scan",
+  "prereg_date": "2026-10-25",
+  "frozen": true,
+  "placed_default": false,
+  "edge_pts": 0.05,
+  "goblin_min_k": 1,
+  "standard_be": {"2": 0.577, "3": 0.550},
+  "goblin_be": "per_delta_scraped_card",
+  "goblin_be_3leg_power": "retired_flat_0.846_use_per_delta",
+  "demon_be": "scraped_rate_card_only",
+  "published_after_start_excluded_from_measurement": true,
+  "adverse_checks": [
+    "injury_player",
+    "injury_teammate_role",
+    "line_dropped",
+    "role_confirmed",
+    "floor_margin_k"
+  ],
+  "alert_only": "all_checks_pass",
+  "log_failed_checks": true,
+  "slip": {
+    "legs": [2, 3],
+    "flex_default": true,
+    "min_quote": 1.4,
+    "different_games": true,
+    "one_player": true,
+    "gifts_only": true
+  },
+  "ntfy_env": "PROPORACLE_NTFY_TOPIC",
+  "out_dir": "data/reports/gift_scan",
+  "frozen_tracks_do_not_edit": [
+    "nfl_std_under_shadow",
+    "nfl_demon_volume_shadow",
+    "nfl_demon_rec_floor_shadow"
+  ]
+}

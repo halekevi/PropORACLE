@@ -2518,6 +2518,25 @@ def main() -> int:
                 )
             except Exception as exc:
                 print(f"WARN: {_label} observe skipped ({exc})")
+        try:
+            from ml.gift_scan import scan as gift_scan
+
+            gs = gift_scan(date=args.date, alert=True, write=True)
+            payload["gift_scan"] = {
+                "placed": False,
+                "n_gifts": gs["n_gifts"],
+                "n_clean": gs["n_clean"],
+                "n_flagged": gs["n_flagged"],
+                "n_alerts": gs["n_alerts"],
+                "n_slips": gs["n_slips"],
+            }
+            print(
+                f"  [observe] gift scan: {gs['n_gifts']} gifts "
+                f"(clean {gs['n_clean']} / flagged {gs['n_flagged']}), "
+                f"alerts {gs['n_alerts']}, slips {gs['n_slips']}"
+            )
+        except Exception as exc:
+            print(f"WARN: gift scan skipped ({exc})")
     suffix = "_l5eq5" if args.l5_eq_5 else ""
     out = OUT_DIR / f"goblin70_tickets_{args.date}{suffix}.json"
     OUT_DIR.mkdir(parents=True, exist_ok=True)

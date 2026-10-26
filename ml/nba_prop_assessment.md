@@ -7,7 +7,8 @@ is a keep gate. NBA Goblin-70 stays shadow / hold.
 Three observe-only volume-floor tracks (2026-10-25), each frozen and
 separate: rebounds, assists, and attempts (FGA/2PA/3PA/FTA). Standard
 or Demon OVER, top-2, line under the L5 min. Not pooled with NFL.
-Not on `/tickets`.
+Not on `/tickets`. Each logged row carries `l5_current_season_n` (0–5)
+so last-spring floors can be split later. Log-only.
 
 Sunday 2026-10-25 slate: Odds API 401 (quota), so spreads / totals / blowout
 risk were blank. LAL sat Saturday — the earlier B2B flag on Reaves was wrong.

@@ -1,0 +1,20 @@
+{
+  "track": "floor_persistence",
+  "prereg_date": "2026-10-25",
+  "frozen": true,
+  "k": [0, 1, 2],
+  "roles": ["lead", "top2", "all"],
+  "min_n": 50,
+  "bh_alpha": 0.10,
+  "bh_null": 0.70,
+  "leakage": "features for game G use only games strictly before G",
+  "unsupported_out": true,
+  "binary_props": {
+    "player_tds": 1,
+    "anytime_tds": 1,
+    "double_double": 1,
+    "goals": 1
+  },
+  "out_dir": "data/reports/floor_persistence",
+  "on_clear": "lookup table for the gift scan; not a keep gate"
+}

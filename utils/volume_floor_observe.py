@@ -98,6 +98,30 @@ def l5_games(row: dict[str, Any]) -> list[float]:
     return out
 
 
+def l5_current_season_n(row: dict[str, Any]) -> int:
+    """How many of the five L5 slots are current-season. Log-only.
+
+    Counts numeric ``current_stat_g1..g5``. If those are empty, counts ``R``
+    in ``window_mix`` (current RS). Playoff ``O`` and preseason ``P`` are
+    not this season. Does not change who qualifies.
+    """
+    n = 0
+    for i in range(1, 6):
+        if _f(row.get(f"current_stat_g{i}")) is not None:
+            n += 1
+        elif _f(row.get(f"Current G{i}")) is not None:
+            n += 1
+    if n:
+        return min(5, n)
+    mix = str(row.get("window_mix") or row.get("windowMix") or "").upper()
+    if mix:
+        return min(5, mix.count("R"))
+    sample = _f(row.get("l5_sample_n") or row.get("L5 Sample N"))
+    if sample is not None:
+        return int(min(5, max(0, sample)))
+    return 0
+
+
 def l5_floor(row: dict[str, Any]) -> float | None:
     games = l5_games(row)
     if len(games) < L5_GAMES_MIN:
@@ -315,6 +339,9 @@ def _leg_record(
         "rank": rank,
         "role_tag": role_tag(rank, minutes, backup_below=spec.backup_minutes_below),
         "role_source": role_source,
+        "l5_current_season_n": (
+            l5_current_season_n(row) if spec.sport == "NBA" else None
+        ),
         "start_time": row.get("start_time") or row.get("game_time"),
         "p": None,
         "p_source": "unpriced_observe",
