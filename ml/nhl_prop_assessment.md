@@ -4,6 +4,10 @@ Working note next to `prop_skeleton.md`. Nothing here is a keep gate.
 NHL has **no keep file**. Goblin-70 stays off. The mixer is **held**
 (`PROPORACLE_NHL_MIXER_TICKETS`).
 
+A volume-floor observe for Standard/Demon SOG (top-2, line under L5 min)
+is registered at `ml/prereg/nhl_sog_floor_2026-10-25.md`. It is not the
+Goblin 0.5 SOG shadow and it is not a keep gate.
+
 ## 1. Where NHL stands
 
 No edge found. The generic L5=5+L10≥8+D stack does not lift Goblin

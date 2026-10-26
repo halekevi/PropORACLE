@@ -2461,6 +2461,63 @@ def main() -> int:
             )
         except Exception as exc:
             print(f"WARN: NFL Demon rec-floor observe skipped ({exc})")
+        try:
+            from utils.volume_floor_role_tag import annotate_nfl_logs
+
+            n_tag = annotate_nfl_logs(board or [], date=args.date)
+            if n_tag:
+                print(f"  [observe] NFL role_tag attached on {n_tag} log row(s)")
+        except Exception as exc:
+            print(f"WARN: NFL role_tag annotate skipped ({exc})")
+        for _label, _mod, _fn, _key in (
+            (
+                "NBA rebounds floor",
+                "utils.nba_rebounds_floor_shadow",
+                "record_nba_rebounds_floor_shadow",
+                "nba_rebounds_floor_shadow",
+            ),
+            (
+                "NBA assists floor",
+                "utils.nba_assists_floor_shadow",
+                "record_nba_assists_floor_shadow",
+                "nba_assists_floor_shadow",
+            ),
+            (
+                "NBA attempts floor",
+                "utils.nba_attempts_floor_shadow",
+                "record_nba_attempts_floor_shadow",
+                "nba_attempts_floor_shadow",
+            ),
+            (
+                "NHL SOG floor",
+                "utils.nhl_sog_floor_shadow",
+                "record_nhl_sog_floor_shadow",
+                "nhl_sog_floor_shadow",
+            ),
+        ):
+            try:
+                _m = __import__(_mod, fromlist=["grade_pending", _fn])
+                _m.grade_pending()
+                _rec = getattr(_m, _fn)(board or [], date=args.date)
+                payload[_key] = {
+                    "track": _rec["track"],
+                    "placed": False,
+                    "face_verified_board": _rec["face_verified_board"],
+                    "n_legs": _rec["n_legs"],
+                    "skipped": _rec["skipped"],
+                    "legs": [
+                        f"{l.get('player')} {l.get('prop_canon')} "
+                        f"{l.get('pick_type')} O{l.get('line')} "
+                        f"floor={l.get('l5_floor')} {l.get('role_tag')}"
+                        for l in _rec["legs"]
+                    ],
+                }
+                print(
+                    f"  [observe] {_label} (prereg 2026-10-25): {_rec['n_legs']} legs, "
+                    f"face_verified={_rec['face_verified_board']}, skipped {_rec['skipped']}"
+                )
+            except Exception as exc:
+                print(f"WARN: {_label} observe skipped ({exc})")
     suffix = "_l5eq5" if args.l5_eq_5 else ""
     out = OUT_DIR / f"goblin70_tickets_{args.date}{suffix}.json"
     OUT_DIR.mkdir(parents=True, exist_ok=True)

@@ -28,10 +28,11 @@ pre-registered shadow. Demon rush-attempt / reception volume is frozen
 (`ml/prereg/nfl_demon_volume_2026-10-25.md`; favored-or-close ≤ +3.5).
 A second track logs top-2 Demon receptions under the L5 floor
 (`ml/prereg/nfl_demon_rec_floor_2026-10-25.md`). Observe only. The
-leader gate needs a board spread before it can log. Volume-floor
-backtests A (ledger) and B (nflverse persistence) are pre-registered at
-`ml/prereg/volume_floor_backtest_2026-10-25.md` and must not edit those
-three tracks.
+leader gate needs a board spread before it can log. NFL stays running
+even if it cannot hit 100 legs this season. Separate floor tracks for
+NBA rebounds / assists / attempts and NHL SOG are registered in
+`ml/prereg/volume_floor_family_2026-10-25.md` — do not pool them into
+NFL. Volume-floor backtests A/B must not edit any of these.
 
 Every other sport uses the same stack
 ([`prop_skeleton.md`](prop_skeleton.md)): opportunity × rate × context

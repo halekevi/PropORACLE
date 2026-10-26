@@ -1,0 +1,18 @@
+{
+  "track": "nba_attempts_floor_shadow",
+  "prereg_date": "2026-10-25",
+  "frozen": true,
+  "amendments_closed": true,
+  "sport": "NBA",
+  "season": "regular",
+  "period": "full_game",
+  "side": "OVER",
+  "faces": ["Standard", "Demon"],
+  "props_in": ["fga", "fg2a", "threes_att", "fta"],
+  "props_out": ["fgm", "fg2m", "ftm", "threes", "points"],
+  "role": {"rank_max": 2, "share": "avg_l5 else usage_pct else minutes"},
+  "gate": {"l5_floor": "min(L5) > line", "l5_games_min": 5},
+  "role_tag": "lead / secondary / backup; log only",
+  "bar": {"decided_min": 100, "breakeven_from": "real scraped N-correct", "never_1st_place": true},
+  "on_clear": "report only; do not pool with NFL tracks"
+}

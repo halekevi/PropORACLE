@@ -155,6 +155,36 @@ def main() -> None:
             f"  {arm}: legs {rec['legs']}, decided {rec['decided']}, win {wr_s}{band}, "
             f"not on board {rec['not_on_board']}, {status}"
         )
+    for title, mod_name, fn in (
+        ("NBA rebounds floor", "utils.nba_rebounds_floor_shadow", "summarize"),
+        ("NBA assists floor", "utils.nba_assists_floor_shadow", "summarize"),
+        ("NBA attempts floor", "utils.nba_attempts_floor_shadow", "summarize"),
+        ("NHL SOG floor", "utils.nhl_sog_floor_shadow", "summarize"),
+    ):
+        try:
+            _m = __import__(mod_name, fromlist=[fn])
+            fam = getattr(_m, fn)()
+        except Exception as exc:
+            print(f"\n{title}: skipped ({exc})")
+            continue
+        print(
+            f"\n{title} (prereg {fam.get('prereg')}; Standard/Demon OVER, "
+            f"top-2, line under L5 min; own track, not pooled with NFL): "
+            f"bar {fam['bar']['decided_min']} decided"
+        )
+        for arm, rec in fam["arms"].items():
+            wr = rec["hit_rate"]
+            wr_s = f"{wr:.1%}" if wr is not None else "ungraded"
+            band = ""
+            if rec["wilson_low"] is not None:
+                band = f" ({rec['wilson_low']:.1%}–{rec['wilson_high']:.1%})"
+            status = "BAR MET" if rec["bar_met"] else (rec["bar_note"] or "not yet")
+            tags = rec.get("role_tags") or {}
+            tag_s = ",".join(f"{k}={v}" for k, v in tags.items()) or "-"
+            print(
+                f"  {arm}: legs {rec['legs']}, decided {rec['decided']}, "
+                f"win {wr_s}{band}, tags {tag_s}, {status}"
+            )
     if stamped_slip_count is None:
         print("\nl5_ranked_by_cell: module not on this tree, section skipped")
         return

@@ -28,11 +28,13 @@ clears). B is line-free NFL floor persistence from nflverse. Neither
 produces honest EV. A better cut becomes a new track.
 
 Floor persistence is ~85% for top-2 volume. PrizePicks usually prices
-that as a Goblin. The opportunity count
-(`ml/volume_floor_opps.py`) is how often a Standard or Demon lands
-under the floor instead. Face-labeled slates 2026-10-23 and 10-25:
-about 3 such lines per board, 15–31 Goblins on the same floor. Tucker
-Demon rec 3.5 is under his min but L3 target rank is 3 (Jeanty).
+that as a Goblin. About 3 Standard/Demon gifts a week — not enough for
+100 NFL legs this season. Keep the NFL tracks running anyway. NBA
+rebounds / assists / attempts and NHL SOG are separate tracks
+(`ml/prereg/volume_floor_family_2026-10-25.md`). Jeanty in LV’s
+target-share rank is the frozen rec-floor definition; a WR/TE-only
+cut would be a new track. NFL logs get a `role_tag`
+(lead / secondary / backup) without changing who qualifies.
 
 ## 1. Where NFL stands
 

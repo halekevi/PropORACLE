@@ -1,0 +1,19 @@
+{
+  "track": "nhl_sog_floor_shadow",
+  "prereg_date": "2026-10-25",
+  "frozen": true,
+  "amendments_closed": true,
+  "sport": "NHL",
+  "season": "regular",
+  "period": "full_game",
+  "side": "OVER",
+  "faces": ["Standard", "Demon"],
+  "props_in": ["sog"],
+  "props_out": ["points", "goals", "assists", "blocks", "hits"],
+  "role": {"rank_max": 2, "share": "avg_l5 else toi"},
+  "gate": {"l5_floor": "min(L5) > line", "l5_games_min": 5},
+  "role_tag": "lead / secondary / backup; log only",
+  "bar": {"decided_min": 100, "breakeven_from": "real scraped N-correct", "never_1st_place": true},
+  "on_clear": "report only; do not pool with NFL or the Goblin 0.5 SOG shadow",
+  "not_the_goblin_05_shadow": true
+}
