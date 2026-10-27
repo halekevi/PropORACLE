@@ -771,6 +771,28 @@ function Get-MLBStep1DateHealth {
     return (Get-Step1DateHealth -CsvPath $CsvPath -TargetDate $TargetDate)
 }
 
+function Invoke-BoxscoreRefBackfill {
+    param(
+        [string[]]$Sports,
+        [int]$Days = 3
+    )
+    $backfillScript = Join-Path $NBADir "scripts\build_boxscore_ref.py"
+    if (-not (Test-Path $backfillScript)) {
+        Write-Host "  WARNING: build_boxscore_ref.py not found -- skipping backfill" -ForegroundColor Yellow
+        return
+    }
+    if (-not $Sports -or @($Sports).Count -eq 0) {
+        Write-Host "[ DB BACKFILL ] skipped (no sports requested)" -ForegroundColor DarkGray
+        return
+    }
+    Write-Host "[ DB BACKFILL ]" -ForegroundColor Cyan
+    Write-Host "  Syncing proporacle_ref.db for last $Days days ($($Sports -join ' '))..." -ForegroundColor DarkGray
+    $bfArgList = @("--backfill", "--days", "$Days", "--sports") + $Sports
+    $backfillOut = & py -3.14 $backfillScript @bfArgList 2>&1
+    foreach ($line in $backfillOut) { Write-Host "  $line" -ForegroundColor DarkGray }
+    Write-Host "  DB backfill complete ($($Sports -join ' '))." -ForegroundColor Green
+}
+
 # Test-Step1NoSlate lives in scripts\prizepicks_step1_cascade.ps1 (empty + date mismatch).
 
 function Invoke-WcbbPipeline {
@@ -2664,6 +2686,11 @@ if ($NBAOnly) {
 
     if (Test-Path (Join-Path $NBADir "RUN_COMPLETE.flag")) { Remove-Item (Join-Path $NBADir "RUN_COMPLETE.flag") -Force }
 
+    # Daily STEP C runs -NBAOnly first, then ForceAll with SKIP_NBA_JOB. This
+    # attach is the one that writes tonight's NBA board, so the box DB has to
+    # be current *before* step4. Backfill-after-exit left L5 one night behind.
+    Invoke-BoxscoreRefBackfill -Sports @("nba")
+
     if ($RefreshCache) {
         Write-Host "  [Cache] Wiping ESPN cache files..." -ForegroundColor Yellow
         Remove-Item (Join-Path $NBADir "nba_espn_boxscore_cache.csv") -Force -ErrorAction SilentlyContinue
@@ -2824,8 +2851,8 @@ if ($NBAOnly) {
 #  FULL PARALLEL RUN  (active: Soccer + Tennis + MLB + Golf [+ WNBA when in season]
 #  Off-season scaffolding kept for NBA/NHL/NFL/CFB/CBB — date-gated)
 # =============================================================================
-# Active in-season set: MLB, Soccer, Tennis, Golf, WNBA (date-gated).
-# proporacle_ref DB backfill currently supports soccer among that set (not nba/nhl).
+# Active in-season set: MLB, Soccer, Tennis, Golf, WNBA, NBA, NHL (date-gated).
+# Box DB backfill: NBA/NHL always (SkipFetch too); soccer on the overnight fetch.
 if ($RefreshCache -and -not $NBAOffSeason) {
     Write-Host "  [Cache] Wiping ESPN cache files..." -ForegroundColor Yellow
     Remove-Item (Join-Path $NBADir "nba_espn_boxscore_cache.csv") -Force -ErrorAction SilentlyContinue
@@ -2838,31 +2865,15 @@ if ($RefreshCache -and -not $NBAOffSeason) {
     Write-Host "  [SKIP] NBA off-season -- skipping NBA cache refresh" -ForegroundColor DarkGray
 }
 
-# -- Backfill boxscore DB for last 3 days (soccer, plus NBA once resumed) ------
-if ($SkipFetch) {
-    Write-Host "[ DB BACKFILL ] skipped (-SkipFetch / mid-day refresh)" -ForegroundColor DarkGray
-} else {
-Write-Host "[ DB BACKFILL ]" -ForegroundColor Cyan
-Write-Host "  Syncing proporacle_ref.db for last 3 days..." -ForegroundColor DarkGray
-$backfillScript = Join-Path $NBADir "scripts\build_boxscore_ref.py"
-if (Test-Path $backfillScript) {
-    # CBB stays off while that season is paused. NBA is on after
-    # $NBA_SEASON_RESUME so preseason box scores feed NBAP last-5. NHL is on after
-    # $NHL_SEASON_RESUME: step4 NHL reads ONLY this DB, so skipping the backfill leaves
-    # last spring's playoff games as "L5" (it did, until 2026-10-20).
-    # MLB/Tennis/WNBA use sport-local caches.
-    $bfSports = @("soccer")
-    if (-not $NBAOffSeason) { $bfSports += "nba" }
-    if (-not $NHLOffSeason) { $bfSports += "nhl" }
-    $bfArgList = @("--backfill", "--days", "3", "--sports") + $bfSports
-    $backfillOut = & py -3.14 $backfillScript @bfArgList 2>&1
-    foreach ($line in $backfillOut) { Write-Host "  $line" -ForegroundColor DarkGray }
-    Write-Host "  DB backfill complete ($($bfSports -join ' '))." -ForegroundColor Green
-} else {
-    Write-Host "  WARNING: build_boxscore_ref.py not found -- skipping backfill" -ForegroundColor Yellow
-}
+# -- Backfill boxscore DB. NBA/NHL stay on even for -SkipFetch so mid-day
+# refreshes do not keep last night's boxes off the card-window L5. Soccer
+# (many leagues) stays on the full overnight fetch only.
+$bfSports = @()
+if (-not $SkipFetch) { $bfSports += "soccer" }
+if (-not $NBAOffSeason) { $bfSports += "nba" }
+if (-not $NHLOffSeason) { $bfSports += "nhl" }
+Invoke-BoxscoreRefBackfill -Sports $bfSports
 Write-Host ""
-}
 
 if (Test-Path (Join-Path $NBADir "RUN_COMPLETE.flag")) { Remove-Item (Join-Path $NBADir "RUN_COMPLETE.flag") -Force }
 $wnbaParallel = ($ForceWNBA.IsPresent -or (($Date -ge $WNBA_SEASON_START) -and -not $WNBAOffSeason))

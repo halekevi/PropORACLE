@@ -128,7 +128,8 @@ def classify_game(d: date) -> str:
 
 # Root cache is canonical. Sports/NBA copy is supplemental (playoff rows) only.
 NBA_BOX_ROOT = _REPO / "data" / "cache" / "proporacle_ref.db"
-NBA_BOX_MAX_STALE_DAYS = 3
+# One finished slate. A 3-day window hid missing Oct 25–26 (lag=3 still passed).
+NBA_BOX_MAX_STALE_DAYS = 1
 
 
 def _db_path() -> Path:

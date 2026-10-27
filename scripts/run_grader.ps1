@@ -453,6 +453,27 @@ if (-not (Test-Path $CombinedTicketGrader)) {
 }
 
 # =============================
+# Step 0 — box DB before grade (NBA/NHL/soccer)
+# Comments in step4 already claimed this; the nightly job never called it.
+# =============================
+$boxRefScript = Join-Path $SportsRoot "NBA\scripts\build_boxscore_ref.py"
+if (Test-Path -LiteralPath $boxRefScript) {
+    $bfSports = @("soccer")
+    if (-not $NBAGradingOffSeason) { $bfSports += "nba" }
+    $NHL_SEASON_RESUME = "2026-09-01"
+    if ($env:NHL_RESUME_DATE) { $NHL_SEASON_RESUME = $env:NHL_RESUME_DATE.Trim() }
+    $nhlOff = $Date -lt $NHL_SEASON_RESUME
+    if (-not $nhlOff) { $bfSports += "nhl" }
+    Write-Host "[GRADER] Step 0 boxscore backfill ($Date, $($bfSports -join ' '))..." -ForegroundColor Cyan
+    & py -3.14 $boxRefScript --date $Date --backfill --days 3 --sports @bfSports
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[GRADER] WARN: boxscore backfill exit $LASTEXITCODE — continuing with on-disk DB" -ForegroundColor Yellow
+    }
+} else {
+    Write-Host "[GRADER] WARN: $boxRefScript missing — box DB not refreshed" -ForegroundColor Yellow
+}
+
+# =============================
 # Fetch Required Actuals First
 # =============================
 if (Test-Path $FetchActualsScript) {
