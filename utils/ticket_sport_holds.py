@@ -4,11 +4,24 @@ NBA1Q: 1Q Goblin Points can show a full-game projection/edge (Gafford 1.5 vs ~16
 and a false L5=5 if period history is missing or mixed with full-game logs.
 Period fetch exists; hold tickets until 1Q L5/projection are period-only.
 Re-enable with PROPORACLE_NBA1Q_TICKETS=1 after that audit.
+
+NBA mixer also drops a player with fewer than 5 current-season regular-season
+games (``nba_mixer_thin_rs_row``). Card L5 is still last-season RS/playoffs
+for that player. Tighten-only: missing n holds; never adds a leg. Does not
+lift ``nba_mixer_tickets_held``.
+
+Sport-wide mixer hold stays on until most of the league has 5 current RS
+games (~mid-November). Then turn it off and let the per-player hold work.
+Before turning it off, Goblin OVER L5=5 on real 2026 L5 must hold ~70%.
+``nba_mixer_sport_hold_unlock_ok`` is that checklist — it does not flip
+the hold.
 """
 
 from __future__ import annotations
 
 import os
+from datetime import date
+from typing import Any
 
 NBA1Q_HOLD_REASON = (
     "NBA1Q tickets held: 1Q lines can inherit full-game averages/L5 "
@@ -39,9 +52,18 @@ NBA_G70_HOLD_REASON = (
 
 NBA_MIXER_HOLD_REASON = (
     "NBA mixer/Standard held: ml_prob is the step7 default (~0.49), not a 7b "
-    "score, so rank-by-ml_prob is arbitrary. Hold until step7b actually runs. "
-    "Re-enable with PROPORACLE_NBA_MIXER_TICKETS=1."
+    "score, so rank-by-ml_prob is arbitrary. Keep this sport-wide hold until "
+    "most of the league has 5 current RS games (~mid-November 2026). Then "
+    "turn it off and let nba_mixer_thin_rs_row do the work. Before turning "
+    "it off, Goblin OVER L5=5 on real 2026 L5 (l5_current_season_n=5) must "
+    "hold ~70%; if that slice is still sliding below 70%, keep the sport "
+    "hold on. Re-enable with PROPORACLE_NBA_MIXER_TICKETS=1."
 )
+
+# Advisory only. Does not flip nba_mixer_tickets_held.
+NBA_MIXER_SPORT_HOLD_REVIEW = date(2026, 11, 15)
+NBA_MIXER_UNLOCK_L5_FLOOR = 0.70
+NBA_MIXER_UNLOCK_MIN_N = 30
 
 
 def _hold_flag(src: dict[str, str], key: str, *, default: bool = True) -> bool:
@@ -61,6 +83,104 @@ def nba_g70_tickets_held(*, env: dict[str, str] | None = None) -> bool:
 def nba_mixer_tickets_held(*, env: dict[str, str] | None = None) -> bool:
     src = env if env is not None else os.environ
     return _hold_flag(src, "PROPORACLE_NBA_MIXER_TICKETS")
+
+
+def nba_mixer_sport_hold_unlock_ok(
+    report: dict[str, Any] | None,
+    *,
+    as_of: date | None = None,
+) -> tuple[bool, str]:
+    """Whether the sport-wide mixer hold *may* be turned off.
+
+    Does not change ``nba_mixer_tickets_held``. Both of these must pass:
+
+    1. Calendar: as_of on/after ``NBA_MIXER_SPORT_HOLD_REVIEW`` (mid-November).
+    2. Real 2026 L5: Goblin OVER L5=5 with ``l5_current_season_n=5`` hits
+       at least ``NBA_MIXER_UNLOCK_L5_FLOOR`` on n>=``NBA_MIXER_UNLOCK_MIN_N``.
+       Below ~70%, keep the sport hold on.
+    """
+    day = as_of or date.today()
+    if day < NBA_MIXER_SPORT_HOLD_REVIEW:
+        return False, (
+            f"{day.isoformat()} is before {NBA_MIXER_SPORT_HOLD_REVIEW.isoformat()} "
+            "(most of the league does not yet have 5 current RS games)"
+        )
+    cell = (report or {}).get("goblin_over_2026_l5eq5") or {}
+    try:
+        n = int(cell.get("n") or 0)
+    except (TypeError, ValueError):
+        n = 0
+    try:
+        hr = cell.get("hit_rate")
+        hr_f = None if hr is None else float(hr)
+    except (TypeError, ValueError):
+        hr_f = None
+    if n < NBA_MIXER_UNLOCK_MIN_N:
+        return False, (
+            f"2026 L5=5 Goblin OVER n={n} < {NBA_MIXER_UNLOCK_MIN_N} "
+            "(too thin to lift the sport hold)"
+        )
+    if hr_f is None or hr_f < NBA_MIXER_UNLOCK_L5_FLOOR:
+        shown = "none" if hr_f is None else f"{hr_f:.1%}"
+        return False, (
+            f"2026 L5=5 Goblin OVER {shown} n={n} is below "
+            f"{NBA_MIXER_UNLOCK_L5_FLOOR:.0%} — keep the sport hold on"
+        )
+    return True, (
+        f"2026 L5=5 Goblin OVER {hr_f:.1%} n={n} clears "
+        f"{NBA_MIXER_UNLOCK_L5_FLOOR:.0%}; sport hold may be turned off"
+    )
+
+
+# Per-player: card L5 is last-season RS/playoffs until 5 current RS games.
+# Same bar as team_changed / PRE_BRIDGE_MIN_RS. Missing count holds (tighten-only).
+NBA_THIN_RS_MIN = 5
+NBA_FAMILY_SPORTS = frozenset({"NBA", "NBA1H", "NBA1Q"})
+NBA_THIN_RS_HOLD_REASON = (
+    "NBA mixer leg held: fewer than 5 current-season regular-season games. "
+    "Card L5 is still last-season RS/playoffs for that player. Same shape as "
+    "team_changed. Missing current_season_rs_n holds. Does not lift the "
+    "sport-level mixer hold."
+)
+
+
+def nba_family_sport(sport: object) -> bool:
+    return str(sport or "").strip().upper() in NBA_FAMILY_SPORTS
+
+
+def _row_current_season_rs_n(r: dict) -> int | None:
+    for key in (
+        "current_season_rs_n",
+        "Current Season RS N",
+        "n_current_season_rs",
+        "Current Season Rs N",
+    ):
+        raw = r.get(key)
+        if raw is None:
+            continue
+        try:
+            if isinstance(raw, float) and raw != raw:
+                continue
+        except (TypeError, ValueError):
+            continue
+        s = str(raw).strip()
+        if s.lower() in {"", "nan", "none", "<na>"}:
+            continue
+        try:
+            return int(float(s))
+        except (TypeError, ValueError):
+            continue
+    return None
+
+
+def nba_mixer_thin_rs_row(r: dict) -> bool:
+    """True when this NBA-family row stays off tickets (missing n holds)."""
+    if not nba_family_sport(r.get("sport")):
+        return False
+    n = _row_current_season_rs_n(r)
+    if n is None:
+        return True
+    return n < NBA_THIN_RS_MIN
 
 
 # Face audit 2026-10-24: NHL graded rows carry default labels (zero

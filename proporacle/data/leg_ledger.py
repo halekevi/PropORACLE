@@ -973,6 +973,19 @@ def analysis_legs(
                 + ", ".join(f"{s} {n:,}" for s, n in by.items())
             )
         df = df[~bad_att]
+    from utils.stale_board_tickets import ticket_leg_row_is_stale_board
+
+    stale = pd.Series(
+        [ticket_leg_row_is_stale_board(r) for r in df.to_dict("records")],
+        index=df.index,
+    )
+    if "invalid_reason" in df.columns:
+        stale = stale | df["invalid_reason"].astype(str).str.strip().str.lower().eq(
+            "stale_board"
+        )
+    if stale.any():
+        print(f"[analysis_legs] dropped {int(stale.sum()):,} stale_board legs")
+        df = df[~stale]
     return df
 
 

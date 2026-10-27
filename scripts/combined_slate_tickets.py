@@ -16719,6 +16719,21 @@ def filter_eligible(
     if "league" in df.columns:
         lg = df["league"].astype(str).str.strip().str.upper()
         _apply_gate(~lg.isin({"NFLSZN", "SOCCERSZN"}), "season_long_board", "after_season_long_board")
+    from utils.ticket_sport_holds import NBA_FAMILY_SPORTS, NBA_THIN_RS_MIN
+
+    sport_s = (
+        df["sport"].astype(str).str.upper().str.strip()
+        if "sport" in df.columns
+        else pd.Series("", index=df.index)
+    )
+    nba_fam = sport_s.isin(NBA_FAMILY_SPORTS)
+    rs_n = pd.to_numeric(df.get("current_season_rs_n"), errors="coerce")
+    if (rs_n is None or rs_n.isna().all()) and "Current Season RS N" in df.columns:
+        rs_n = pd.to_numeric(df["Current Season RS N"], errors="coerce")
+    if rs_n is None:
+        rs_n = pd.Series(np.nan, index=df.index)
+    thin_rs = nba_fam & (rs_n.isna() | (rs_n < NBA_THIN_RS_MIN))
+    _apply_gate(~thin_rs, "nba_thin_current_rs", "after_nba_thin_current_rs")
 
     if {"pick_type", "direction"}.issubset(df.columns):
         invalid_side = df.apply(
