@@ -1128,7 +1128,7 @@ def main():
     cache_filt = cache[
         season_mask
         & (cache_dates >= pd.Timestamp(cutoff_stat))
-        & (cache_dates <= pd.Timestamp(stat_target))
+        & (cache_dates < pd.Timestamp(stat_target))
     ].copy()
     # Purge All-Star game days from rolling L5/L10 (fetch skip alone is not enough if
     # ASG rows are already in wnba_espn_cache.csv).

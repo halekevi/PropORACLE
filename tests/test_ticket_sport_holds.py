@@ -60,6 +60,10 @@ def test_nba_mixer_sport_hold_unlock_is_advisory():
     thin = {"goblin_over_2026_l5eq5": {"n": 8, "hit_rate": 1.0}}
     ok, _why = nba_mixer_sport_hold_unlock_ok(thin, as_of=date(2026, 11, 20))
     assert ok is False
+    # Padded last-season window must not unlock. Only the 2026 L5=5 cell.
+    padded = {"goblin_over_l5eq5": {"n": 80, "hit_rate": 0.90, "l5_window_n": 5}}
+    ok, _why = nba_mixer_sport_hold_unlock_ok(padded, as_of=date(2026, 11, 20))
+    assert ok is False
 
 
 def test_nba_mixer_thin_rs_row_tightens_only():

@@ -135,6 +135,88 @@ def _prop(row: Any) -> str:
     )
 
 
+_NBA_FAMILY = frozenset({"NBA", "NBA1H", "NBA1Q"})
+
+
+def _row_sport(row: Any) -> str:
+    return str(_get(row, "sport", "Sport", "league") or "").strip().upper()
+
+
+def l5_box_n(row: Any) -> int | None:
+    """How many real L5 boxes we can see. None = no evidence (do not fail).
+
+    NFL/CFB weekend log: ``l5_window_n`` may include last season (players
+    already have 7+ current games). That is a real five-box face.
+
+    NBA: last-season pad is the early-season problem. Use
+    ``l5_current_season_n`` only — never ``l5_window_n``. The 11-15 unlock
+    slice is the same rule (``l5_current_season_n = 5``).
+    """
+    sport = _row_sport(row)
+    if sport in _NBA_FAMILY or sport.startswith("NBA"):
+        n = _num(
+            _get(
+                row,
+                "l5_current_season_n",
+                "L5 Current RS N",
+                "L5rs",
+            )
+        )
+        if n is not None:
+            return int(n)
+        return None
+    gcount = 0
+    saw_g = False
+    for i in range(1, 6):
+        n = _num(_get(row, f"stat_g{i}", f"G{i}"))
+        if n is not None:
+            gcount += 1
+            saw_g = True
+    if saw_g:
+        return gcount
+    window = _num(_get(row, "l5_window_n", "L5 Window N"))
+    if window is not None:
+        return int(window)
+    decided = _num(_get(row, "l5_decided", "last5_decided", "L5 Decided"))
+    if decided is not None:
+        return int(decided)
+    flag = str(
+        _get(row, "season_l5_flag", "Season L5 Flag", "stat_status", "Stat Status") or ""
+    ).upper()
+    if any(tok in flag for tok in ("PRIOR_SEASON", "CROSS_SEASON")):
+        return None
+    sample = _num(_get(row, "games_used", "l5_sample_n", "Games Used", "L5 Sample N"))
+    if sample is not None:
+        return int(sample)
+    return None
+
+
+def l5_eq5_ok(row: Any) -> bool:
+    """L5=5 needs five real boxes. INSUFFICIENT / NO_DATA / NO_ID fail."""
+    status = _get(row, "stat_status", "Stat Status")
+    if attach_status_blocks_l5(status):
+        return False
+    n = l5_box_n(row)
+    if n is not None and n < 5:
+        return False
+    over = _num(_get(row, "l5_over", "last5_over", "line_hits_over_5", "L5 Over"))
+    under = _num(_get(row, "l5_under", "last5_under", "line_hits_under_5", "L5 Under"))
+    hits = None
+    side = str(_get(row, "side", "direction", "final_bet_direction") or "").upper()
+    if side == "UNDER":
+        hits = under if under is not None else over
+    elif side == "OVER":
+        hits = over if over is not None else under
+    else:
+        if over is not None and under is not None:
+            hits = max(over, under)
+        else:
+            hits = over if over is not None else under
+    if hits is None or hits < 5:
+        return False
+    return True
+
+
 def attach_status_blocks_l5(status: object) -> bool:
     """True when this status must carry no L5/L10 and cannot list/gate/shadow."""
     s = str(status or "").strip().upper()

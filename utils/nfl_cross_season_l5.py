@@ -130,6 +130,8 @@ def assemble_nfl_l5_window(
         day = parse_box_date(raw.get("game_date") or raw.get("_dt"))
         if day is None:
             continue
+        if day >= slate:
+            continue
         src = classify_nfl_l5_source(day, slate)
         if src is None:
             continue

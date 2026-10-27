@@ -249,13 +249,17 @@ _PT_COL = {
 
 
 def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
-                stat_expr: str, params: tuple, n: int) -> List[float]:
+                stat_expr: str, params: tuple, n: int,
+                max_game_date: str = "") -> List[float]:
     """
     Generic indexed stat query.
     Returns up to n most-recent non-null values, newest first.
     DNP-zero games (minutes/TOI == 0 or inactive) are voided, not Under hits.
     Missing stats stay missing — never zero-filled.
+    Tonight's box stays out via game_date < slate.
     """
+    from utils.step4_asof import game_date_before_slate_sql
+    ceil_sql, ceil_params = game_date_before_slate_sql(max_game_date)
     pt = _PT_COL.get(table)
     extra = max(n * 3, n)
     if pt:
@@ -264,6 +268,7 @@ def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
             FROM {table}
             WHERE {where_clause}
               AND {stat_expr} IS NOT NULL
+              {ceil_sql}
             ORDER BY game_date DESC
             LIMIT {extra}
         """
@@ -273,11 +278,12 @@ def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
             FROM {table}
             WHERE {where_clause}
               AND {stat_expr} IS NOT NULL
+              {ceil_sql}
             ORDER BY game_date DESC
             LIMIT {extra}
         """
     try:
-        rows = con.execute(sql, params).fetchall()
+        rows = con.execute(sql, tuple(params) + tuple(ceil_params)).fetchall()
     except Exception:
         return []
     out: List[float] = []
@@ -305,18 +311,21 @@ def _nfkd_norm(s: str) -> str:
 
 
 def get_vals_nba(con: sqlite3.Connection, espn_id: str,
-                  prop_norm: str, n: int = 10, player_name: str = "") -> List[float]:
+                  prop_norm: str, n: int = 10, player_name: str = "",
+                  max_game_date: str = "") -> List[float]:
     expr = _resolve_prop(prop_norm, "nba")
     if not expr:
         return []
     # Primary: ESPN athlete ID (exact, unambiguous)
     vals = _query_vals(con, "nba",
-                       "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n)
+                       "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n,
+                       max_game_date=max_game_date)
     if not vals and player_name:
         # Fallback 1: exact lowercase match (covers DB storing accented names)
         norm = player_name.strip().lower()
         vals = _query_vals(con, "nba",
-                           "lower(player) = ?", expr, (norm,), n)
+                           "lower(player) = ?", expr, (norm,), n,
+                           max_game_date=max_game_date)
         # Fallback 2: NFKD-normalized match (covers DB storing ASCII names vs
         #             PrizePicks sending accented names, or vice versa)
         if not vals:
@@ -327,16 +336,19 @@ def get_vals_nba(con: sqlite3.Connection, espn_id: str,
                 if len(parts) >= 2:
                     first, last = parts[0], parts[-1]
                     try:
+                        from utils.step4_asof import game_date_before_slate_sql
+                        ceil_sql, ceil_params = game_date_before_slate_sql(max_game_date)
                         sql = f"""
                             SELECT player, {expr} AS val
                             FROM nba
                             WHERE lower(player) LIKE ?
                               AND lower(player) LIKE ?
                               AND {expr} IS NOT NULL
+                              {ceil_sql}
                             ORDER BY game_date DESC
                             LIMIT {n * 5}
                         """
-                        rows = con.execute(sql, (f"{first}%", f"%{last}")).fetchall()
+                        rows = con.execute(sql, (f"{first}%", f"%{last}") + ceil_params).fetchall()
                         vals = [
                             float(r[1]) for r in rows
                             if r[1] is not None and _nfkd_norm(r[0]) == norm_ascii
@@ -347,12 +359,14 @@ def get_vals_nba(con: sqlite3.Connection, espn_id: str,
 
 
 def get_vals_cbb(con: sqlite3.Connection, espn_id: str,
-                  prop_norm: str, n: int = 10) -> List[float]:
+                  prop_norm: str, n: int = 10,
+                  max_game_date: str = "") -> List[float]:
     expr = _resolve_prop(prop_norm, "cbb")
     if not expr:
         return []
     return _query_vals(con, "cbb",
-                       "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n)
+                       "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n,
+                       max_game_date=max_game_date)
 
 
 def _nhl_lookup_name(player: str) -> str:
@@ -364,7 +378,8 @@ def _nhl_lookup_name(player: str) -> str:
 
 
 def get_vals_nhl(con: sqlite3.Connection, player: str,
-                  prop_norm: str, n: int = 10) -> List[float]:
+                  prop_norm: str, n: int = 10,
+                  max_game_date: str = "") -> List[float]:
     """
     NHL lookup by player name (no ESPN ID in NHL pipeline).
     Exact match first, then case-insensitive / NFKD / alias fallback.
@@ -374,16 +389,20 @@ def get_vals_nhl(con: sqlite3.Connection, player: str,
         return []
     lookup = _nhl_lookup_name(player)
     vals = _query_vals(con, "nhl",
-                       "player = ?", expr, (lookup,), n)
+                       "player = ?", expr, (lookup,), n,
+                       max_game_date=max_game_date)
     if not vals:
         vals = _query_vals(con, "nhl",
-                           "lower(player) = lower(?)", expr, (lookup,), n)
+                           "lower(player) = lower(?)", expr, (lookup,), n,
+                           max_game_date=max_game_date)
     if not vals and lookup != player:
         vals = _query_vals(con, "nhl",
-                           "player = ?", expr, (str(player),), n)
+                           "player = ?", expr, (str(player),), n,
+                           max_game_date=max_game_date)
         if not vals:
             vals = _query_vals(con, "nhl",
-                               "lower(player) = lower(?)", expr, (str(player),), n)
+                               "lower(player) = lower(?)", expr, (str(player),), n,
+                               max_game_date=max_game_date)
     if not vals:
         norm_ascii = _nfkd_norm(player)
         if norm_ascii:
@@ -391,16 +410,19 @@ def get_vals_nhl(con: sqlite3.Connection, player: str,
             if len(parts) >= 2:
                 first, last = parts[0], parts[-1]
                 try:
+                    from utils.step4_asof import game_date_before_slate_sql
+                    ceil_sql, ceil_params = game_date_before_slate_sql(max_game_date)
                     sql = f"""
                         SELECT player, {expr} AS val
                         FROM nhl
                         WHERE lower(player) LIKE ?
                           AND lower(player) LIKE ?
                           AND {expr} IS NOT NULL
+                          {ceil_sql}
                         ORDER BY game_date DESC
                         LIMIT {n * 5}
                     """
-                    rows = con.execute(sql, (f"{first}%", f"%{last}")).fetchall()
+                    rows = con.execute(sql, (f"{first}%", f"%{last}") + ceil_params).fetchall()
                     vals = [
                         float(r[1]) for r in rows
                         if r[1] is not None and _nfkd_norm(r[0]) == norm_ascii
@@ -412,7 +434,8 @@ def get_vals_nhl(con: sqlite3.Connection, player: str,
 
 def get_vals_soccer(con: sqlite3.Connection, espn_player_id: str,
                      prop_norm: str, n: int = 10,
-                     player_name: str = "") -> List[float]:
+                     player_name: str = "",
+                     max_game_date: str = "") -> List[float]:
     expr = _resolve_prop(prop_norm, "soccer")
     if not expr:
         return []
@@ -423,20 +446,23 @@ def get_vals_soccer(con: sqlite3.Connection, espn_player_id: str,
 
     # Primary: lookup by ESPN player ID
     vals = _query_vals(con, "soccer",
-                       "espn_player_id = ?", expr, (eid,), n)
+                       "espn_player_id = ?", expr, (eid,), n,
+                       max_game_date=max_game_date)
 
     # Fallback 1: exact name match (DB often uses a different ID space than PrizePicks cache)
     if not vals and player_name:
         norm = player_name.strip().lower()
         vals = _query_vals(con, "soccer",
-                           "lower(player) = ?", expr, (norm,), n)
+                           "lower(player) = ?", expr, (norm,), n,
+                           max_game_date=max_game_date)
 
     # Fallback 2: legacy FBref rows (subset of name match; kept for explicitness)
     if not vals and player_name:
         norm = player_name.strip().lower()
         vals = _query_vals(con, "soccer",
                            "lower(player) = ? AND espn_player_id LIKE 'fbref_%'",
-                           expr, (norm,), n)
+                           expr, (norm,), n,
+                           max_game_date=max_game_date)
 
     # Fallback 3: NFKD accent-normalized name (DB ASCII vs slate accented)
     if not vals and player_name:
@@ -447,16 +473,19 @@ def get_vals_soccer(con: sqlite3.Connection, espn_player_id: str,
                 parts = norm_ascii.split()
                 if len(parts) >= 2:
                     first, last = parts[0], parts[-1]
+                    from utils.step4_asof import game_date_before_slate_sql
+                    ceil_sql, ceil_params = game_date_before_slate_sql(max_game_date)
                     sql = f"""
                         SELECT player, {expr} AS val
                         FROM soccer
                         WHERE lower(player) LIKE ?
                           AND lower(player) LIKE ?
                           AND {expr} IS NOT NULL
+                          {ceil_sql}
                         ORDER BY game_date DESC
                         LIMIT ?
                     """
-                    rows = con.execute(sql, (f"{first}%", f"%{last}", n * 8)).fetchall()
+                    rows = con.execute(sql, (f"{first}%", f"%{last}") + ceil_params + (n * 8,)).fetchall()
                     vals = [
                         float(r[1]) for r in rows
                         if r[1] is not None and _nfkd_norm(str(r[0])) == norm_ascii
@@ -481,14 +510,17 @@ def get_avg_passes_soccer(con: sqlite3.Connection, espn_player_id: str,
 
 
 def get_avg_minutes_nba(con: sqlite3.Connection, espn_id: str,
-                         n: int = 5, table: str = "nba") -> Optional[float]:
+                         n: int = 5, table: str = "nba",
+                         max_game_date: str = "") -> Optional[float]:
     vals = _query_vals(con, table, "ESPN_ATHLETE_ID = ?",
-                       "minutes", (str(espn_id),), n)
+                       "minutes", (str(espn_id),), n,
+                       max_game_date=max_game_date)
     return float(np.mean(vals)) if vals else None
 
 
 # ── Combo player support ───────────────────────────────────────────────────────
-def get_vals_combo(get_fn, con, ids: List[str], prop_norm: str, n: int) -> List[float]:
+def get_vals_combo(get_fn, con, ids: List[str], prop_norm: str, n: int,
+                   max_game_date: str = "") -> List[float]:
     """
     Sum stats across multiple players (combo props).
     Aligns by game index (most recent game 1, etc.).
@@ -496,7 +528,7 @@ def get_vals_combo(get_fn, con, ids: List[str], prop_norm: str, n: int) -> List[
     """
     per_player = []
     for pid in ids:
-        vals = get_fn(con, pid, prop_norm, n)
+        vals = get_fn(con, pid, prop_norm, n, max_game_date=max_game_date)
         if not vals:
             return []
         per_player.append(vals)
@@ -615,17 +647,19 @@ def attach_stats(
             str(row.get("is_combo_player", "")).strip().lower() in ("1", "true", "yes")
         )
 
+        from utils.step4_asof import row_l5_cutoff
+        cutoff = row_l5_cutoff(row)
         if is_combo:
             ids = [p.strip() for p in raw_id.split(combo_sep) if p.strip()]
-            vals = get_vals_combo(get_fn, con, ids, prop, n)
+            vals = get_vals_combo(get_fn, con, ids, prop, n, max_game_date=cutoff)
         else:
             player_name = str(row.get("player", "")).strip()
             if sport in ("nba", "cbb") and player_name:
-                vals = get_fn(con, raw_id, prop, n, player_name=player_name)
+                vals = get_fn(con, raw_id, prop, n, player_name=player_name, max_game_date=cutoff)
             elif sport == "soccer" and player_name:
-                vals = get_fn(con, raw_id, prop, n, player_name=player_name)
+                vals = get_fn(con, raw_id, prop, n, player_name=player_name, max_game_date=cutoff)
             else:
-                vals = get_fn(con, raw_id, prop, n)
+                vals = get_fn(con, raw_id, prop, n, max_game_date=cutoff)
 
         if not vals:
             slate.at[idx, "stat_status"] = "NO_DATA"
@@ -668,7 +702,7 @@ def attach_stats(
 
         # ── Sport-specific context columns ─────────────────────────────────
         if sport in ("nba", "cbb") and not is_combo:
-            min_avg = get_avg_minutes_nba(con, raw_id, n=5, table=sport)
+            min_avg = get_avg_minutes_nba(con, raw_id, n=5, table=sport, max_game_date=cutoff)
             if min_avg is not None:
                 slate.at[idx, "min_last5_avg"] = fmt_num(min_avg)
 
@@ -711,13 +745,19 @@ def _attach_role_stability(
         mins: List[float] = []
         if sport in ("nba", "cbb", "nba1h", "nba1q"):
             table = "nba" if sport.startswith("nba") else sport
-            mins = _query_vals(con, table, "ESPN_ATHLETE_ID = ?", "minutes", (raw_id,), 10)
+            from utils.step4_asof import row_l5_cutoff
+            cut = row_l5_cutoff(row)
+            mins = _query_vals(con, table, "ESPN_ATHLETE_ID = ?", "minutes", (raw_id,), 10, max_game_date=cut)
         elif sport == "nhl":
             pname = str(row.get("player_name", row.get("player", ""))).strip()
-            mins = get_vals_nhl(con, pname, "time on ice", 10)
+            from utils.step4_asof import row_l5_cutoff
+            cut = row_l5_cutoff(row)
+            mins = get_vals_nhl(con, pname, "time on ice", 10, max_game_date=cut)
         elif sport == "soccer":
             pname = str(row.get("player", "")).strip()
-            mins = get_vals_soccer(con, raw_id, "minutes", 10, player_name=pname)
+            from utils.step4_asof import row_l5_cutoff
+            cut = row_l5_cutoff(row)
+            mins = get_vals_soccer(con, raw_id, "minutes", 10, player_name=pname, max_game_date=cut)
 
         if len(mins) < 3:
             continue

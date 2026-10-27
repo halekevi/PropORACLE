@@ -31,6 +31,9 @@ MODULES = [
     "utils.soccer_keep_gates",
     "utils.tennis_keep_gates",
     "utils.ticket_70_pool",
+    "utils.step4_asof",
+    "utils.stat_attach_guard",
+    "utils.ticket_sport_holds",
     "utils.ui_live_json",
     "rank_best_props_today",
     "build_goblin70_tickets",
@@ -41,6 +44,9 @@ MODULES = [
 SYMBOLS = [
     ("utils.cfb_keep_gates", "cfb_l8_bonus"),
     ("utils.nfl_prop_defense", "role_from_snap"),
+    ("utils.step4_asof", "game_date_before_slate_sql"),
+    ("utils.stat_attach_guard", "l5_eq5_ok"),
+    ("utils.ticket_sport_holds", "nba_mixer_sport_hold_unlock_ok"),
 ]
 
 SCAN_ROOTS = [

@@ -189,7 +189,19 @@ def directional_l5(r: dict[str, Any]) -> float | None:
 
 
 def ticket_l5_at_least_5(r: dict[str, Any]) -> bool:
-    """Ticket selection floor. Keep gates rank the pool; L5 must still be 5."""
+    """Ticket selection floor. Keep gates rank the pool; L5 must still be 5.
+
+    Five real boxes. INSUFFICIENT_GAMES / NO_DATA / NO_ID fail even if a
+    leftover last5_over looks like 5. NBA uses ``l5_current_season_n``,
+    never a last-season ``l5_window_n``.
+    """
+    from utils.stat_attach_guard import attach_status_blocks_l5, l5_box_n
+
+    if attach_status_blocks_l5(r.get("stat_status") or r.get("Stat Status")):
+        return False
+    n = l5_box_n(r)
+    if n is not None and n < 5:
+        return False
     l5 = directional_l5(r)
     return l5 is not None and l5 >= 5
 
@@ -496,8 +508,10 @@ def ticket_gate_passes(r: dict[str, Any]) -> bool:
     # NFL receiving_yards UNDER: L5=5 is anti-edge (W1+W2 4/10 vs base 75/120).
     # Skip L5=5 only; still require L10>=8 + D below.
     skip_l5 = sport == "NFL" and nfl_std_under_skips_l5_eq5(r)
-    l5 = _l5(r)
-    if not skip_l5 and (l5 is None or l5 < 5):
+    if not skip_l5 and not ticket_l5_at_least_5(r):
+        return False
+    from utils.nba_minutes_role import ticket_minutes_fail_closed
+    if ticket_minutes_fail_closed(r):
         return False
     # NFL: PRIOR_SEASON_FILL can make face L5=5; tickets need an assembled
     # 5-row window (ALLOW_CROSS_SEASON_L5) or current-season n>=5.
@@ -545,6 +559,9 @@ def goblin_70_eligible(r: dict[str, Any]) -> bool:
     if _pick(r) != "Goblin" or _side(r) != "OVER":
         return False
     if not ticket_l5_at_least_5(r):
+        return False
+    from utils.nba_minutes_role import ticket_minutes_fail_closed
+    if ticket_minutes_fail_closed(r):
         return False
     if _is_nflp_row(r):
         return False
@@ -718,6 +735,9 @@ def standard_ticket_eligible(r: dict[str, Any]) -> bool:
     if side not in {"OVER", "UNDER"}:
         return False
     if not ticket_l5_at_least_5(r):
+        return False
+    from utils.nba_minutes_role import ticket_minutes_fail_closed
+    if ticket_minutes_fail_closed(r):
         return False
     if _sport(r) == "MLB":
         return False

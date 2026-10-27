@@ -902,9 +902,12 @@ def build_player_histories(
         if tid and pn:  raw_by_name.setdefault((tid, pn), []).append(rr)
 
     def dedup_sort(game_list):
+        from utils.step4_asof import box_date_before_slate
         sorted_games = sorted(game_list, key=lambda r: r.get("game_date",""), reverse=True)
         seen, out = set(), []
         for g in sorted_games:
+            if end_date and not box_date_before_slate(g.get("game_date"), end_date):
+                continue
             eid = str(g.get("event_id",""))
             if eid and eid in seen: continue
             if eid: seen.add(eid)

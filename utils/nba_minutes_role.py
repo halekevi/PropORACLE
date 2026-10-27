@@ -412,6 +412,32 @@ def role_changed_from_minutes(
 
 
 CLEAN_MINUTES_GAP = 3.0
+NO_MINUTES_TOKEN = "no_minutes_data"
+
+
+def ticket_minutes_fail_closed(row: object) -> bool:
+    """Ticket-facing: ``no_minutes_data`` fails closed. Missing flag is fine."""
+    getter = row.get if hasattr(row, "get") else None
+    if getter is None:
+        return False
+    for key in (
+        "minutes_flag",
+        "Minutes Flag",
+        "l5_minutes_gap",
+        "min_last5_avg",
+        "min_per_game",
+        "min_season_avg",
+        "clean_minutes",
+    ):
+        raw = getter(key)
+        if raw is None:
+            continue
+        s = str(raw).strip().lower()
+        if not s or s in {"nan", "none"}:
+            continue
+        if NO_MINUTES_TOKEN in s:
+            return True
+    return False
 
 
 def clean_minutes_ok(

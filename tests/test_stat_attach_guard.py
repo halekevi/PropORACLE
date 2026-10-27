@@ -5,6 +5,8 @@ from utils.stat_attach_guard import (
     attach_status_blocks_l5,
     decide_attach,
     implausible_l5_vs_line,
+    l5_box_n,
+    l5_eq5_ok,
     l5_hits_without_games,
     mapping_failure_all_zero,
     row_qualifies_for_list,
@@ -91,3 +93,31 @@ def test_list_gate():
         {"stat_status": "UNSUPPORTED_PROP", "prop": "yards_on_first_reception", "line": 11.5, "l5_over": 5}
     )
     assert not bad and why == "stat_status_not_ok"
+
+
+def test_l5_box_n_nba_uses_current_season_not_window():
+    nba_pad = {
+        "sport": "NBA",
+        "l5_over": 5,
+        "l5_window_n": 5,
+        "l5_current_season_n": 2,
+        "stat_g1": 20,
+        "stat_g2": 22,
+        "stat_g3": 18,
+        "stat_g4": 21,
+        "stat_g5": 19,
+        "side": "OVER",
+    }
+    assert l5_box_n(nba_pad) == 2
+    assert not l5_eq5_ok(nba_pad)
+    assert l5_eq5_ok(dict(nba_pad, l5_current_season_n=5))
+    nfl_face = {
+        "sport": "NFL",
+        "l5_over": 5,
+        "l5_window_n": 5,
+        "l5_sample_n": 2,
+        "season_l5_flag": "CROSS_SEASON_L5",
+        "side": "OVER",
+    }
+    assert l5_box_n(nfl_face) == 5
+    assert l5_eq5_ok(nfl_face)
