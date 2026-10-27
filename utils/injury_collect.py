@@ -182,77 +182,146 @@ def _nba_pdf_slots(now: datetime) -> list[str]:
     return out
 
 
+_NBA_TEAM_ALIASES: tuple[tuple[str, str], ...] = (
+    ("AtlantaHawks", "ATL"),
+    ("Atlanta Hawks", "ATL"),
+    ("BostonCeltics", "BOS"),
+    ("Boston Celtics", "BOS"),
+    ("BrooklynNets", "BKN"),
+    ("Brooklyn Nets", "BKN"),
+    ("CharlotteHornets", "CHA"),
+    ("Charlotte Hornets", "CHA"),
+    ("ChicagoBulls", "CHI"),
+    ("Chicago Bulls", "CHI"),
+    ("ClevelandCavaliers", "CLE"),
+    ("Cleveland Cavaliers", "CLE"),
+    ("DallasMavericks", "DAL"),
+    ("Dallas Mavericks", "DAL"),
+    ("DenverNuggets", "DEN"),
+    ("Denver Nuggets", "DEN"),
+    ("DetroitPistons", "DET"),
+    ("Detroit Pistons", "DET"),
+    ("GoldenStateWarriors", "GSW"),
+    ("Golden State Warriors", "GSW"),
+    ("HoustonRockets", "HOU"),
+    ("Houston Rockets", "HOU"),
+    ("IndianaPacers", "IND"),
+    ("Indiana Pacers", "IND"),
+    ("LAClippers", "LAC"),
+    ("LA Clippers", "LAC"),
+    ("LosAngelesClippers", "LAC"),
+    ("Los Angeles Clippers", "LAC"),
+    ("LosAngelesLakers", "LAL"),
+    ("Los Angeles Lakers", "LAL"),
+    ("MemphisGrizzlies", "MEM"),
+    ("Memphis Grizzlies", "MEM"),
+    ("MiamiHeat", "MIA"),
+    ("Miami Heat", "MIA"),
+    ("MilwaukeeBucks", "MIL"),
+    ("Milwaukee Bucks", "MIL"),
+    ("MinnesotaTimberwolves", "MIN"),
+    ("Minnesota Timberwolves", "MIN"),
+    ("NewOrleansPelicans", "NOP"),
+    ("New Orleans Pelicans", "NOP"),
+    ("NewYorkKnicks", "NYK"),
+    ("New York Knicks", "NYK"),
+    ("OklahomaCityThunder", "OKC"),
+    ("Oklahoma City Thunder", "OKC"),
+    ("OrlandoMagic", "ORL"),
+    ("Orlando Magic", "ORL"),
+    ("Philadelphia76ers", "PHI"),
+    ("Philadelphia 76ers", "PHI"),
+    ("PhoenixSuns", "PHX"),
+    ("Phoenix Suns", "PHX"),
+    ("PortlandTrailBlazers", "POR"),
+    ("Portland Trail Blazers", "POR"),
+    ("SacramentoKings", "SAC"),
+    ("Sacramento Kings", "SAC"),
+    ("SanAntonioSpurs", "SAS"),
+    ("San Antonio Spurs", "SAS"),
+    ("TorontoRaptors", "TOR"),
+    ("Toronto Raptors", "TOR"),
+    ("UtahJazz", "UTA"),
+    ("Utah Jazz", "UTA"),
+    ("WashingtonWizards", "WAS"),
+    ("Washington Wizards", "WAS"),
+)
+
+
 def _parse_nba_injury_pdf_text(text: str, captured_at: str) -> list[dict]:
-    """Best-effort parse of official NBA injury PDF text layout."""
+    """Parse official NBA injury PDF text (pdfplumber often drops spaces)."""
     rows: list[dict] = []
-    # "Last, First Status Reason..." patterns after team names are noisy;
-    # match Player Last, First + status token.
-    status_re = re.compile(
-        r"(?P<last>[A-Za-z'.\-]+),\s+(?P<first>[A-Za-z'.\-]+(?:\s+[A-Za-z'.\-]+)?)\s+"
-        r"(?P<status>Out|Doubtful|Questionable|Probable|Available|GTD|Day-To-Day)\b"
-        r"(?:\s+(?P<reason>.+?))?(?=(?:[A-Za-z'.\-]+,\s+[A-Za-z])|$)",
-        re.IGNORECASE | re.DOTALL,
+    # Last,First StatusReason  — comma may have zero spaces; status glued to reason.
+    player_re = re.compile(
+        r"(?P<last>[A-Z][A-Za-z'.\-]+),(?P<first>[A-Z][A-Za-z'.\-]+)\s*"
+        r"(?P<status>Out|Doubtful|Questionable|Probable|Available|GTD|Day-To-Day)"
+        r"(?P<reason>[^\n]*?)(?=(?:[A-Z][A-Za-z'.\-]+,[A-Z])|$)",
+        re.IGNORECASE,
     )
-    # Team abbreviation context: keep last seen ALLCAPS 2-3 letter token near matchup
     team = ""
-    for line in text.splitlines():
-        m_team = re.search(r"\b([A-Z]{2,3})@([A-Z]{2,3})\b", line)
-        if m_team:
-            # don't know which team the following players belong to; leave blank until
-            # a full team name appears
-            pass
-        # Full team names often precede player rows
-        for name, abbr in (
-            ("Atlanta Hawks", "ATL"),
-            ("Boston Celtics", "BOS"),
-            ("Brooklyn Nets", "BKN"),
-            ("Charlotte Hornets", "CHA"),
-            ("Chicago Bulls", "CHI"),
-            ("Cleveland Cavaliers", "CLE"),
-            ("Dallas Mavericks", "DAL"),
-            ("Denver Nuggets", "DEN"),
-            ("Detroit Pistons", "DET"),
-            ("Golden State Warriors", "GSW"),
-            ("Houston Rockets", "HOU"),
-            ("Indiana Pacers", "IND"),
-            ("LA Clippers", "LAC"),
-            ("Los Angeles Clippers", "LAC"),
-            ("Los Angeles Lakers", "LAL"),
-            ("Memphis Grizzlies", "MEM"),
-            ("Miami Heat", "MIA"),
-            ("Milwaukee Bucks", "MIL"),
-            ("Minnesota Timberwolves", "MIN"),
-            ("New Orleans Pelicans", "NOP"),
-            ("New York Knicks", "NYK"),
-            ("Oklahoma City Thunder", "OKC"),
-            ("Orlando Magic", "ORL"),
-            ("Philadelphia 76ers", "PHI"),
-            ("Phoenix Suns", "PHX"),
-            ("Portland Trail Blazers", "POR"),
-            ("Sacramento Kings", "SAC"),
-            ("San Antonio Spurs", "SAS"),
-            ("Toronto Raptors", "TOR"),
-            ("Utah Jazz", "UTA"),
-            ("Washington Wizards", "WAS"),
-        ):
-            if name.lower() in line.lower():
+    # Longest team alias first so "LosAngelesClippers" wins over "LAClippers"
+    aliases = sorted(_NBA_TEAM_ALIASES, key=lambda x: len(x[0]), reverse=True)
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("Injury Report") or line.startswith("GameDate"):
+            continue
+        if re.search(r"Page\s*\d+\s*of\s*\d+", line, re.I):
+            continue
+        if "NOTYETSUBMITTED" in line.replace(" ", "").upper():
+            # Still detect team name before the NOT YET marker.
+            for name, abbr in aliases:
+                if name.replace(" ", "").lower() in line.replace(" ", "").lower():
+                    team = abbr
+                    break
+            continue
+        for name, abbr in aliases:
+            key = name.replace(" ", "").lower()
+            blob = line.replace(" ", "").lower()
+            if key in blob:
                 team = abbr
-        for m in status_re.finditer(line):
+                # Prefer the rightmost / last team token on the line
+        # Walk left-to-right for team changes within a line (away then home).
+        positions: list[tuple[int, str]] = []
+        compact = line.replace(" ", "")
+        compact_lower = compact.lower()
+        for name, abbr in aliases:
+            key = name.replace(" ", "").lower()
+            start = 0
+            while True:
+                idx = compact_lower.find(key, start)
+                if idx < 0:
+                    break
+                positions.append((idx, abbr))
+                start = idx + len(key)
+        positions.sort()
+        # Apply player matches against original line; update team by compact offset.
+        for m in player_re.finditer(line):
+            # Approximate team: last team alias whose start is before this match
+            # in the compacted string.
+            before = line[: m.start()].replace(" ", "").lower()
+            cur_team = team
+            for idx, abbr in positions:
+                if idx <= len(before):
+                    cur_team = abbr
             player = f"{m.group('first').strip()} {m.group('last').strip()}"
             status = m.group("status")
             reason = (m.group("reason") or "").strip()
             reason = re.sub(r"\s+", " ", reason)
+            # Soft-split glued reasons: Injury/Illness-RightHamstringStrain
+            if reason.startswith("/") or reason.startswith("-"):
+                reason = reason.lstrip("/- ")
             rows.append(
                 _row(
                     sport="NBA",
                     player=player,
-                    team=team,
+                    team=cur_team,
                     status=status,
                     injury=reason,
                     source="nba_official_pdf",
                     captured_at=captured_at,
                 )
             )
+            team = cur_team
     return rows
 
 
@@ -522,13 +591,22 @@ def merge_latest_csv(
     all_rows: list[dict],
     *,
     root: Path | None = None,
+    replace_sports: set[str] | None = None,
 ) -> Path:
     path = latest_csv_path(root=root)
     path.parent.mkdir(parents=True, exist_ok=True)
     cols = ["player", "team", "status", "injury", "source", "captured_at", "sport"]
-    # Prefer OUT over softer statuses for same player+team+sport; newest captured_at wins ties
+    # Prefer OUT over softer statuses for same player+team+sport.
+    # Official NBA PDF / nflverse beat ESPN when status severity ties (game-day truth).
     best: dict[tuple[str, str, str], dict] = {}
     rank = {"OUT": 0, "Doubtful": 1, "Questionable": 2, "GTD": 3, "Probable": 4}
+    source_rank = {
+        "nba_official_pdf": 0,
+        "nflverse": 0,
+        "espn_nba": 2,
+        "espn_nfl": 2,
+    }
+    replace = {s.upper() for s in (replace_sports or set())}
 
     def _key(r: dict) -> tuple[str, str, str]:
         return (
@@ -536,6 +614,27 @@ def merge_latest_csv(
             str(r.get("team") or "").strip().upper(),
             str(r.get("sport") or "").strip().upper(),
         )
+
+    def _src_rank(r: dict) -> int:
+        src = str(r.get("source") or "")
+        if src in source_rank:
+            return source_rank[src]
+        if src.startswith("espn_"):
+            return 2
+        return 1
+
+    # Keep prior sports when this run is a partial collect (e.g. --sports NBA).
+    if path.is_file():
+        try:
+            for r in load_latest_rows(root=root):
+                sp = str(r.get("sport") or "").strip().upper()
+                if replace and sp in replace:
+                    continue
+                k = _key(r)
+                if k[0]:
+                    best[k] = r
+        except Exception:
+            pass
 
     for r in all_rows:
         k = _key(r)
@@ -549,7 +648,13 @@ def merge_latest_csv(
         cr = rank.get(normalize_inj_status(r.get("status")), 9)
         if cr < pr:
             best[k] = r
-        elif cr == pr and str(r.get("captured_at") or "") > str(prev.get("captured_at") or ""):
+        elif cr > pr:
+            continue
+        elif _src_rank(r) < _src_rank(prev):
+            best[k] = r
+        elif _src_rank(r) == _src_rank(prev) and str(r.get("captured_at") or "") > str(
+            prev.get("captured_at") or ""
+        ):
             best[k] = r
 
     with path.open("w", encoding="utf-8", newline="") as f:

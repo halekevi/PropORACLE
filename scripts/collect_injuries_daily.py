@@ -61,7 +61,7 @@ def main() -> int:
         all_rows.extend(rows)
         print(f"[injuries] {sport}: {len(rows)} rows -> {path.name}")
 
-    latest = merge_latest_csv(all_rows, root=root)
+    latest = merge_latest_csv(all_rows, root=root, replace_sports=set(sports))
     summary["latest_csv"] = str(latest.relative_to(root))
     summary["n_total"] = len(all_rows)
     summary_path = injuries_dir(date_str, root=root) / f"_collect_{stamp}.json"
