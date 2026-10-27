@@ -464,8 +464,14 @@ if (Test-Path -LiteralPath $boxRefScript) {
     if ($env:NHL_RESUME_DATE) { $NHL_SEASON_RESUME = $env:NHL_RESUME_DATE.Trim() }
     $nhlOff = $Date -lt $NHL_SEASON_RESUME
     if (-not $nhlOff) { $bfSports += "nhl" }
-    Write-Host "[GRADER] Step 0 boxscore backfill ($Date, $($bfSports -join ' '))..." -ForegroundColor Cyan
-    & py -3.14 $boxRefScript --date $Date --backfill --days 3 --sports @bfSports
+    $refDb = ""
+    Push-Location $Root
+    try {
+        $refDb = (& py -3.14 -c "from utils.proporacle_ref_db import resolve_ref_db; print(resolve_ref_db(allow_missing=True))").ToString().Trim()
+    } finally { Pop-Location }
+    Write-Host "[GRADER] Step 0 boxscore backfill ($Date, $($bfSports -join ' ')) db=$refDb" -ForegroundColor Cyan
+    $bfArgs = @($boxRefScript, "--date", $Date, "--backfill", "--days", "3", "--db", $refDb, "--sports") + $bfSports
+    & py -3.14 @bfArgs
     if ($LASTEXITCODE -ne 0) {
         Write-Host "[GRADER] WARN: boxscore backfill exit $LASTEXITCODE — continuing with on-disk DB" -ForegroundColor Yellow
     }

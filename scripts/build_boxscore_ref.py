@@ -60,7 +60,12 @@ from typing import Callable, Optional, TypeVar
 import requests
 
 # ── Config ────────────────────────────────────────────────────────────────────
-DB_PATH = Path(__file__).resolve().parent.parent / "data" / "cache" / "proporacle_ref.db"
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+from utils.proporacle_ref_db import connect_ref_db, log_ref_db, resolve_ref_db
+
+DB_PATH = resolve_ref_db(allow_missing=True)
 
 HEADERS = {
     "User-Agent": (
@@ -294,9 +299,7 @@ CREATE_INDEXES = [
 
 def init_db(db_path: Path) -> sqlite3.Connection:
     db_path.parent.mkdir(parents=True, exist_ok=True)
-    con = sqlite3.connect(db_path)
-    con.execute("PRAGMA journal_mode=WAL;")  # safe concurrent reads
-    con.execute("PRAGMA synchronous=NORMAL;")
+    con = connect_ref_db(db_path, write=True)
     con.execute(CREATE_NBA_CBB.format(table="nba"))
     con.execute(CREATE_NBA_CBB.format(table="cbb"))
     con.execute(CREATE_NHL)
@@ -1343,7 +1346,8 @@ def main():
                     help="Write defense CSV into DB. Format: --upsert-defense nhl=path/to/nhl_defense_summary.csv")
     args = ap.parse_args()
 
-    db_path = Path(args.db) if args.db else DB_PATH
+    db_path = Path(args.db) if args.db else resolve_ref_db(allow_missing=True)
+    log_ref_db(db_path, extra="source=build_boxscore_ref")
     con = init_db(db_path)
     print(f"📦 DB: {db_path}")
 

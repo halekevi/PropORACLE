@@ -128,32 +128,15 @@ def classify_game(d: date) -> str:
 
 # Root cache is canonical. Sports/NBA copy is supplemental (playoff rows) only.
 NBA_BOX_ROOT = _REPO / "data" / "cache" / "proporacle_ref.db"
-# One finished slate. A 3-day window hid missing Oct 25–26 (lag=3 still passed).
+# Kept for callers; freshness is last completed slate, not this calendar gap.
 NBA_BOX_MAX_STALE_DAYS = 1
 
 
 def _db_path() -> Path:
-    """Canonical NBA box DB = repo ``data/cache/proporacle_ref.db``.
+    """Canonical box DB: env / pin / newest worktree copy (see proporacle_ref_db)."""
+    from utils.proporacle_ref_db import resolve_ref_db
 
-    Do not fall through to the Sports/NBA copy — that path went stale through
-    June while the root DB already had October openers.
-    """
-    if NBA_BOX_ROOT.exists():
-        return NBA_BOX_ROOT
-    try:
-        from scripts.db_utils import default_db_path
-
-        p = Path(default_db_path())
-        if p.exists():
-            return p
-    except Exception:
-        pass
-    raise FileNotFoundError(
-        f"NBA box DB missing at {NBA_BOX_ROOT}. "
-        "Run: py -3.14 Sports/NBA/scripts/build_boxscore_ref.py "
-        "--sports nba --backfill --days 7 "
-        f"--db {NBA_BOX_ROOT}"
-    )
+    return resolve_ref_db()
 
 
 def nba_box_max_date(df: pd.DataFrame | None = None) -> date | None:
@@ -162,18 +145,9 @@ def nba_box_max_date(df: pd.DataFrame | None = None) -> date | None:
         mx = pd.to_datetime(df["game_date"], errors="coerce").max()
         if pd.notna(mx):
             return mx.date()
-    root = _db_path()
-    con = sqlite3.connect(str(root))
-    try:
-        row = con.execute("SELECT max(game_date) FROM nba").fetchone()
-    finally:
-        con.close()
-    if not row or not row[0]:
-        return None
-    try:
-        return date.fromisoformat(str(row[0])[:10])
-    except ValueError:
-        return None
+    from utils.proporacle_ref_db import peek_nba_max_date
+
+    return peek_nba_max_date(_db_path())
 
 
 def assert_nba_box_fresh(
@@ -181,21 +155,26 @@ def assert_nba_box_fresh(
     as_of: date | None = None,
     max_stale_days: int = NBA_BOX_MAX_STALE_DAYS,
     df: pd.DataFrame | None = None,
+    last_completed: date | None = None,
+    has_final=None,
 ) -> date:
-    """Raise if root/merged NBA boxes lag ``as_of`` by more than ``max_stale_days``."""
+    """Raise if boxes lag the last completed NBA slate (not calendar yesterday)."""
+    from utils.proporacle_ref_db import assert_ref_db_fresh
+
     as_of = as_of or date.today()
     mx = nba_box_max_date(df)
-    if mx is None:
-        raise RuntimeError(f"NBA box DB has no game_date rows (as_of={as_of})")
-    lag = (as_of - mx).days
-    if lag > int(max_stale_days):
-        raise RuntimeError(
-            f"NBA box DB stale: max game_date={mx} as_of={as_of} "
-            f"lag={lag}d > {max_stale_days}d. "
-            f"Refresh root DB: py -3.14 Sports/NBA/scripts/build_boxscore_ref.py "
-            f"--sports nba --date {as_of.isoformat()} --db {NBA_BOX_ROOT}"
-        )
-    return mx
+    _ = max_stale_days  # calendar gap is not the test
+    try:
+        path = _db_path()
+    except Exception:
+        path = NBA_BOX_ROOT
+    return assert_ref_db_fresh(
+        as_of=as_of,
+        db_max=mx,
+        last_completed=last_completed,
+        has_final=has_final,
+        path=path,
+    )
 
 
 _NBA_BOX_SQL = (
@@ -218,7 +197,9 @@ def _nba_db_candidates() -> list[Path]:
 
 
 def _read_nba_boxes(path: Path) -> pd.DataFrame:
-    con = sqlite3.connect(str(path))
+    from utils.proporacle_ref_db import connect_ref_db
+
+    con = connect_ref_db(path)
     try:
         # Older Sports/NBA copies may lack starter / season_window cols.
         have = {r[1] for r in con.execute("PRAGMA table_info(nba)")}
@@ -267,11 +248,12 @@ def _read_nba_boxes(path: Path) -> pd.DataFrame:
 def load_nba_box_frame() -> pd.DataFrame:
     """Union of NBA box caches (player + game_date).
 
-    Root ``data/cache/proporacle_ref.db`` is required and must be fresh
-    (max game_date within ``NBA_BOX_MAX_STALE_DAYS`` of today).
-    Sports/NBA copy may still merge in for playoff rows, but never as the
-    sole source.
+    Canonical ref DB (env / pin / newest worktree) must include the last
+    completed NBA slate. Sports/NBA copy may still merge playoff rows.
     """
+    from utils.proporacle_ref_db import log_ref_db
+
+    log_ref_db(extra="source=load_nba_box_frame")
     frames = [_read_nba_boxes(p) for p in _nba_db_candidates()]
     frames = [f for f in frames if f is not None and not f.empty]
     if not frames:

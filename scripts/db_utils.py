@@ -8,31 +8,23 @@ from typing import Any, Optional
 
 
 def find_db_path(start: Optional[Path] = None) -> Path:
-    """
-    Resolve central DB path using only relative discovery.
-    Walk upward until we find data/cache/proporacle_ref.db; otherwise return default
-    at <repo_root>/data/cache/proporacle_ref.db (created on first write).
-    """
-    here = (start or Path(__file__)).resolve()
-    if here.is_file():
-        here = here.parent
+    """Canonical ref DB (env / pin / newest worktree). ``start`` is ignored."""
+    from utils.proporacle_ref_db import resolve_ref_db
 
-    for _ in range(8):
-        candidate = here / "data" / "cache" / "proporacle_ref.db"
-        if candidate.exists():
-            return candidate
-        here = here.parent
+    _ = start
+    return resolve_ref_db(allow_missing=True)
 
-    return Path(__file__).resolve().parent.parent / "data" / "cache" / "proporacle_ref.db"
+
+def default_db_path() -> Path:
+    return find_db_path()
 
 
 def open_db(db_path: Optional[Path] = None) -> sqlite3.Connection:
-    p = db_path or find_db_path()
+    from utils.proporacle_ref_db import connect_ref_db, resolve_ref_db
+
+    p = Path(db_path) if db_path is not None else resolve_ref_db(allow_missing=True)
     p.parent.mkdir(parents=True, exist_ok=True)
-    con = sqlite3.connect(p)
-    con.execute("PRAGMA journal_mode=WAL;")
-    con.execute("PRAGMA synchronous=NORMAL;")
-    return con
+    return connect_ref_db(p, write=True)
 
 
 CREATE_WNBA = """

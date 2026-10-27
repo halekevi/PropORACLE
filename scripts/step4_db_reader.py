@@ -44,23 +44,24 @@ _REPO = Path(__file__).resolve().parent.parent
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 from utils.dnp_zero_void import is_dnp_zero_actual
+from utils.proporacle_ref_db import connect_ref_db, log_ref_db, resolve_ref_db
 from utils.stat_attach_guard import decide_attach
 
 # ── Default DB path ────────────────────────────────────────────────────────────
 _HERE = Path(__file__).resolve().parent
-DB_PATH = _HERE.parent / "data" / "cache" / "proporacle_ref.db"
+DB_PATH = resolve_ref_db(allow_missing=True)
 
 
 def open_db(db_path: Optional[Path] = None) -> sqlite3.Connection:
-    """Open the PropOracle reference DB (read-only safe, WAL mode)."""
-    path = Path(db_path) if db_path else DB_PATH
+    """Open the PropOracle reference DB (busy-timeout + retry)."""
+    path = Path(db_path) if db_path else resolve_ref_db()
     if not path.exists():
         raise FileNotFoundError(
             f"PropOracle reference DB not found at {path}\n"
-            f"Run: py scripts/build_boxscore_ref.py --backfill --days 30"
+            f"Run: py scripts/build_boxscore_ref.py --backfill --days 30 --db {path}"
         )
-    con = sqlite3.connect(path)
-    con.execute("PRAGMA journal_mode=WAL;")
+    log_ref_db(path, extra="source=step4")
+    con = connect_ref_db(path)
     con.row_factory = sqlite3.Row
     return con
 

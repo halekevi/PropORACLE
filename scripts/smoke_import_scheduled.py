@@ -32,6 +32,7 @@ MODULES = [
     "utils.tennis_keep_gates",
     "utils.ticket_70_pool",
     "utils.step4_asof",
+    "utils.proporacle_ref_db",
     "utils.stat_attach_guard",
     "utils.ticket_sport_holds",
     "utils.ui_live_json",
@@ -45,6 +46,7 @@ SYMBOLS = [
     ("utils.cfb_keep_gates", "cfb_l8_bonus"),
     ("utils.nfl_prop_defense", "role_from_snap"),
     ("utils.step4_asof", "game_date_before_slate_sql"),
+    ("utils.proporacle_ref_db", "resolve_ref_db"),
     ("utils.stat_attach_guard", "l5_eq5_ok"),
     ("utils.ticket_sport_holds", "nba_mixer_sport_hold_unlock_ok"),
 ]

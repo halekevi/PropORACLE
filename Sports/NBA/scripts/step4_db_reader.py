@@ -43,42 +43,34 @@ _REPO_ROOT = Path(__file__).resolve().parents[3]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 from utils.dnp_zero_void import is_dnp_zero_actual
+from utils.proporacle_ref_db import connect_ref_db, log_ref_db, resolve_ref_db
 from utils.stat_attach_guard import decide_attach
 
 # ── Default DB path ────────────────────────────────────────────────────────────
 _HERE = Path(__file__).resolve().parent
-DB_PATH = _HERE.parent / "data" / "cache" / "proporacle_ref.db"
+DB_PATH = resolve_ref_db(allow_missing=True)
 MIN_SAMPLE_FOR_TICKET = 4
 PERIOD_OVERRIDES_PATH = _HERE.parent / "data" / "reference" / "period_actual_overrides.csv"
 _PERIOD_OVERRIDES_CACHE: dict[tuple[str, str, str], List[float]] | None = None
 
 
-# Repo-root reference DB (scripts/build_boxscore_ref.py writes nba/nhl/soccer/wnba here).
-# Sports/NBA/data/cache/proporacle_ref.db is written by scripts/build_nba1q_history_db.py and
-# holds only the nba1q period table, so an unqualified `FROM nba` against it raised
-# "no such table: nba" and the full-game NBA pipeline failed every window from 2026-10-22
-# until 2026-10-25 (combined + Goblin-70 skipped each night). Both files are opened: the
-# requested path as `main`, the other as an attached schema, and SQLite resolves unqualified
-# table names across them (main first).
-REPO_DB_PATH = _HERE.parents[2] / "data" / "cache" / "proporacle_ref.db"
+# Sports/NBA cache holds nba1q only; ATTACH it so period tables still resolve.
+NBA1Q_DB_PATH = _HERE.parent / "data" / "cache" / "proporacle_ref.db"
+REPO_DB_PATH = DB_PATH
 
 
 def open_db(db_path: Optional[Path] = None) -> sqlite3.Connection:
-    """Open the PropOracle reference DB (read-only safe, WAL mode).
-
-    The sibling reference DB (repo-root ↔ Sports/NBA cache) is ATTACHed when it exists so
-    both the full-game ``nba`` table and the ``nba1q`` period table resolve.
-    """
-    path = Path(db_path) if db_path else DB_PATH
-    candidates = [p for p in (path, DB_PATH, REPO_DB_PATH) if p.exists()]
+    """Open the canonical ref DB (busy-timeout + retry). ATTACH nba1q sibling."""
+    path = Path(db_path) if db_path else resolve_ref_db()
+    candidates = [p for p in (path, DB_PATH, NBA1Q_DB_PATH) if p.exists()]
     if not candidates:
         raise FileNotFoundError(
             f"PropOracle reference DB not found at {path}\n"
-            f"Run: py scripts/build_boxscore_ref.py --backfill --days 30"
+            f"Run: py scripts/build_boxscore_ref.py --backfill --days 30 --db {path}"
         )
     primary = candidates[0]
-    con = sqlite3.connect(primary)
-    con.execute("PRAGMA journal_mode=WAL;")
+    log_ref_db(primary, extra="source=step4")
+    con = connect_ref_db(primary)
     con.row_factory = sqlite3.Row
     seen = {primary.resolve()}
     for i, extra in enumerate(candidates[1:]):

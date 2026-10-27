@@ -771,6 +771,32 @@ function Get-MLBStep1DateHealth {
     return (Get-Step1DateHealth -CsvPath $CsvPath -TargetDate $TargetDate)
 }
 
+function Resolve-PropOracleRefDb {
+    Push-Location $Root
+    try {
+        $p = & py -3.14 -c "from utils.proporacle_ref_db import resolve_ref_db; print(resolve_ref_db(allow_missing=True))"
+        return "$p".Trim()
+    } finally {
+        Pop-Location
+    }
+}
+
+function Wait-RefreshLockForBoxfill {
+    $lockFile = Join-Path $Root "data\cache\refresh.lock"
+    $deadline = (Get-Date).AddMinutes(2)
+    while ((Get-Date) -lt $deadline) {
+        if (-not (Test-Path -LiteralPath $lockFile)) { return }
+        $line = (Get-Content -LiteralPath $lockFile -ErrorAction SilentlyContinue | Select-Object -First 1)
+        $lockPid = $null
+        if ("$line" -match 'PID\s+(\d+)') { $lockPid = [int]$Matches[1] }
+        if (-not $lockPid -or $lockPid -eq $PID) { return }
+        if (-not (Get-Process -Id $lockPid -ErrorAction SilentlyContinue)) { return }
+        Write-Host "  waiting for refresh.lock ($line) before box backfill..." -ForegroundColor DarkGray
+        Start-Sleep -Seconds 5
+    }
+    Write-Host "  WARN: refresh.lock still held — proceeding with SQLite busy-timeout" -ForegroundColor Yellow
+}
+
 function Invoke-BoxscoreRefBackfill {
     param(
         [string[]]$Sports,
@@ -785,9 +811,11 @@ function Invoke-BoxscoreRefBackfill {
         Write-Host "[ DB BACKFILL ] skipped (no sports requested)" -ForegroundColor DarkGray
         return
     }
+    Wait-RefreshLockForBoxfill
+    $refDb = Resolve-PropOracleRefDb
     Write-Host "[ DB BACKFILL ]" -ForegroundColor Cyan
-    Write-Host "  Syncing proporacle_ref.db for last $Days days ($($Sports -join ' '))..." -ForegroundColor DarkGray
-    $bfArgList = @("--backfill", "--days", "$Days", "--sports") + $Sports
+    Write-Host "  Syncing $refDb for last $Days days ($($Sports -join ' '))..." -ForegroundColor DarkGray
+    $bfArgList = @("--backfill", "--days", "$Days", "--db", $refDb, "--sports") + $Sports
     $backfillOut = & py -3.14 $backfillScript @bfArgList 2>&1
     foreach ($line in $backfillOut) { Write-Host "  $line" -ForegroundColor DarkGray }
     Write-Host "  DB backfill complete ($($Sports -join ' '))." -ForegroundColor Green
