@@ -1,0 +1,18 @@
+---
+description: Never edit or checkout live-tree files without saving a diff first
+alwaysApply: true
+---
+
+# No live-tree edits
+
+`H:\PropORACLE_main_cp` is the scheduled-task checkout. Do not edit files there, restore them with `git checkout`, or `git pull` over dirty files without a saved diff.
+
+**Every change goes through origin/main, then a pull on the live tree.** That is how work stays in one place.
+
+Before any `git checkout --`, `git restore`, `git reset`, or overwrite of a live-tree file:
+
+1. `git -C H:\PropORACLE_main_cp diff -- <paths> > backups/live_dirty_<yyyyMMdd_HHmmss>.patch`
+2. Only then restore or pull.
+3. Keep the patch. Do not delete it after the restore.
+
+If a live file is dirty and you need it to match main, save the patch first even when you think the dirt is junk. Today’s discarded six-script restore lost uncommitted mixer-hold wiring because no patch was saved.
