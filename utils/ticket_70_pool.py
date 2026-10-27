@@ -555,8 +555,13 @@ def goblin_70_eligible(r: dict[str, Any]) -> bool:
     from Goblin-70 tickets. ``ml_prob`` is never a gate or sort key. A 0.99
     score cannot rescue a failed L5/L10/D/cover row; a 0.10 score cannot
     drop a clear one.
+    OUT / IR / PUP / NFI / suspended players are hard-dropped (Phase 1 injury).
     """
     if _pick(r) != "Goblin" or _side(r) != "OVER":
+        return False
+    from utils.injury_gate import is_injury_out
+
+    if is_injury_out(r):
         return False
     if not ticket_l5_at_least_5(r):
         return False
@@ -727,6 +732,10 @@ def live_board_fill_ok(
 
 def standard_ticket_eligible(r: dict[str, Any]) -> bool:
     """Standard OVER or UNDER that clears the same L5/L10/D ticket gate."""
+    from utils.injury_gate import is_injury_out
+
+    if is_injury_out(r):
+        return False
     if _pick(r) != "Standard":
         return False
     if wnba_fantasy_ticket_fade(r):
@@ -795,7 +804,12 @@ def standard_yolo_eligible(r: dict[str, Any]) -> bool:
     L5=5+L10+D Standards never (steals UNDER thin exception only). Tennis
     Games Won OVER only. Soccer keep (Saves / Shots / SOT). NFL / CFB only
     through their Standard keep paths. Zero clears → no Standard YOLO ticket.
+    OUT players are hard-dropped (Phase 1 injury).
     """
+    from utils.injury_gate import is_injury_out
+
+    if is_injury_out(r):
+        return False
     return standard_yolo_kind(r) is not None
 
 

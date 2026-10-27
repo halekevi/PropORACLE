@@ -272,6 +272,16 @@ try {
             Write-Host "[REFRESH $RunLabel] PRE snapshot logging failed (continuing)" -ForegroundColor Yellow
         }
 
+        # Injury collect + OUT hard-drop feed (5AM / 10:30 / 4:30 required; all refreshes OK).
+        $Injuries = Join-Path $Root "scripts\run_injuries.ps1"
+        if (Test-Path -LiteralPath $Injuries) {
+            Write-Host "[REFRESH $RunLabel] Injuries collect/attach..." -ForegroundColor Cyan
+            & pwsh -NoProfile -File $Injuries -Date $todayEt -Window $RunLabel
+            if ($LASTEXITCODE -ne 0) {
+                Write-Host "[REFRESH $RunLabel] WARN: injuries exit $LASTEXITCODE (continuing)" -ForegroundColor Yellow
+            }
+        }
+
         $loggedHelper = Join-Path $PSScriptRoot "Invoke-LoggedPwsh.ps1"
         if (-not (Test-Path -LiteralPath $loggedHelper)) { $loggedHelper = Join-Path $Root "scripts\Invoke-LoggedPwsh.ps1" }
         $childLog = Join-Path $LogsDir ("late_fetch_child_{0}_{1:yyyy-MM-dd_HHmmss}.log" -f $RunLabel, (Get-Date))

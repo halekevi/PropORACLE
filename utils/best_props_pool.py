@@ -336,6 +336,11 @@ def row_to_best_props_rec(r: dict | pd.Series, n_teams: int | None = None) -> di
     pick_type = _pick(r.get("pick_type"))
     if pick_type == "Demon":
         return None
+    # OUT / IR / PUP / NFI / suspended — drop from seed pool (Q/GTD flag-only).
+    from utils.injury_gate import is_injury_out
+
+    if is_injury_out(r):
+        return None
     side = _dir(r)
     if pick_type == "Goblin" and side != "OVER":
         return None

@@ -1064,6 +1064,26 @@ else {
 }
 
 # =============================================================================
+# STEP B-inj — Injury collect (Phase 1 OUT hard-drop feed; before tickets)
+# =============================================================================
+$InjuriesPs1 = Join-Path $Root "scripts\run_injuries.ps1"
+if (Test-Path -LiteralPath $InjuriesPs1) {
+    Write-Log "STEP B-inj - Injuries collect: START"
+    try {
+        & py -3.14 (Join-Path $Root "scripts\collect_injuries_daily.py") --date $Today --root $Root
+        if ($LASTEXITCODE -ne 0) {
+            Write-Log "STEP B-inj - Injuries collect: WARN (exit $LASTEXITCODE)"
+        } else {
+            Write-Log "STEP B-inj - Injuries collect: OK"
+        }
+    } catch {
+        Write-Log "STEP B-inj - Injuries collect: WARN ($($_.Exception.Message))"
+    }
+} else {
+    Write-Log "STEP B-inj - Injuries collect: SKIP (script missing)"
+}
+
+# =============================================================================
 # STEP C — Full pipeline for today
 # =============================================================================
 if (-not $SkipPipeline) {
@@ -1352,6 +1372,22 @@ if (-not $SkipPipeline) {
 }
 else {
     Write-Log "STEP C - Pipeline ($Today): SKIPPED (-SkipPipeline)"
+}
+
+# Attach + measure + daily report once step8 boards exist (ntfy after 4:30 only).
+if (Test-Path -LiteralPath $InjuriesPs1) {
+    Write-Log "STEP C-inj - Injuries attach/report: START"
+    try {
+        $injWindow = if ($env:PROPORACLE_BET_WINDOW) { "$($env:PROPORACLE_BET_WINDOW)" } else { "5AM" }
+        & pwsh -NoProfile -File $InjuriesPs1 -Date $Today -Window $injWindow
+        if ($LASTEXITCODE -ne 0) {
+            Write-Log "STEP C-inj - Injuries attach/report: WARN (exit $LASTEXITCODE)"
+        } else {
+            Write-Log "STEP C-inj - Injuries attach/report: OK"
+        }
+    } catch {
+        Write-Log "STEP C-inj - Injuries attach/report: WARN ($($_.Exception.Message))"
+    }
 }
 
 # =============================================================================

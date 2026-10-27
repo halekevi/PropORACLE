@@ -1515,6 +1515,13 @@ def recs(df: pd.DataFrame) -> list[dict]:
 recs = recs  # diamond_2x_tickets import alias
 
 
+def _injury_out(r: dict) -> bool:
+    """True when board marks the player Out (do not list or ticket)."""
+    from utils.injury_gate import is_injury_out
+
+    return is_injury_out(r)
+
+
 def _clears_list_gate(r: dict) -> bool:
     """L5 >= 4 for in-season sports; WNBA family requires L5 = 5.
 
@@ -1527,10 +1534,13 @@ def _clears_list_gate(r: dict) -> bool:
     gates (Shots L5=5+L10; SOT L5>=4+Off; Saves L5>=4+own D). Other soccer props
     stay off. CFB drops Goblin OVER rush_att / kick_pts; other CFB rows stay
     on L5>=4 (D badge-only).
+    ESPN Out players are dropped from the list (not just flagged).
     """
     pt = r.get("pick_type")
     side = r.get("side") or ""
     if pt == "Demon":
+        return False
+    if _injury_out(r):
         return False
     sport_u = str(r.get("sport") or "").strip().upper()
     # Yes/no specials + multi-player combos stay off the O/U 5/5 list.

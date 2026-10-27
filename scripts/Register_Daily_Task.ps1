@@ -51,8 +51,9 @@ $ScriptGrader = Join-Path $PipelineRoot "scripts\run_grader_evening.ps1"
 $Script5 = Join-Path $PipelineRoot "scripts\run_daily_5am.ps1"
 $Script8 = Join-Path $PipelineRoot "scripts\run_daily_8am.ps1"
 $ScriptRefresh = Join-Path $PipelineRoot "scripts\run_refresh_with_log.ps1"
+$ScriptInjuries = Join-Path $PipelineRoot "scripts\run_injuries.ps1"
 
-foreach ($s in @($ScriptDayAhead, $ScriptMlbFill, $Script1, $ScriptGrader, $Script5, $Script8, $ScriptRefresh, (Join-Path $PipelineRoot "scripts\Publish-LiveSite.ps1"))) {
+foreach ($s in @($ScriptDayAhead, $ScriptMlbFill, $Script1, $ScriptGrader, $Script5, $Script8, $ScriptRefresh, $ScriptInjuries, (Join-Path $PipelineRoot "scripts\Publish-LiveSite.ps1"))) {
     if (-not (Test-Path $s)) {
         Write-Error "Required script missing: $s"
         exit 1
@@ -94,7 +95,10 @@ function Register-PropTask {
         [string]$Description,
         [string]$ScriptPath,
         [string]$At,
-        [string]$ExtraArgs = ""
+        [string]$ExtraArgs = "",
+        [TimeSpan]$RepetitionInterval = [TimeSpan]::Zero,
+        [TimeSpan]$RepetitionDuration = [TimeSpan]::Zero,
+        [TimeSpan]$ExecutionTimeLimit = (New-TimeSpan -Hours 4)
     )
 
     # One console only: Task Scheduler runs pwsh.exe with Interactive logon.
@@ -109,8 +113,14 @@ function Register-PropTask {
         -WorkingDirectory $PipelineRoot
 
     $trigger = New-ScheduledTaskTrigger -Daily -At $At
+    if ($RepetitionInterval -gt [TimeSpan]::Zero) {
+        $dur = if ($RepetitionDuration -gt [TimeSpan]::Zero) { $RepetitionDuration } else { (New-TimeSpan -Hours 12) }
+        $trigger.Repetition = (New-ScheduledTaskTrigger -Once -At $At `
+            -RepetitionInterval $RepetitionInterval `
+            -RepetitionDuration $dur).Repetition
+    }
     $settings = New-ScheduledTaskSettingsSet `
-        -ExecutionTimeLimit (New-TimeSpan -Hours 4) `
+        -ExecutionTimeLimit $ExecutionTimeLimit `
         -RestartCount 2 `
         -RestartInterval (New-TimeSpan -Minutes 15) `
         -StartWhenAvailable `
@@ -223,6 +233,17 @@ Register-PropTask `
     -At "16:30" `
     -ExtraArgs "-RunLabel 430PM"
 
+# T-60 injury collect: every 15m; script no-ops unless earliest tip is 50–70 min away.
+Register-PropTask `
+    -TaskName "PropOracle - Injuries T-60" `
+    -Description "Every 15m: injury collect when earliest slate tip is T-60 (50-70 min). Opens visible PowerShell." `
+    -ScriptPath $ScriptInjuries `
+    -At "10:00" `
+    -ExtraArgs "-T60" `
+    -RepetitionInterval (New-TimeSpan -Minutes 15) `
+    -RepetitionDuration (New-TimeSpan -Hours 12) `
+    -ExecutionTimeLimit (New-TimeSpan -Minutes 20)
+
 Write-Host ""
 Write-Host "Scheduler tasks registered (visible PowerShell windows)." -ForegroundColor Green
 Write-Host "  - PropOracle - DayAhead 9PM (soccer/tennis/etc. tomorrow card)"
@@ -237,8 +258,10 @@ Write-Host "  - PropOracle - Refresh 945AM (follow-up lock + publish)"
 Write-Host "  - PropOracle - Refresh 1030AM (PP morning move + ticket patch + publish)"
 Write-Host "  - PropOracle - Refresh 1PM (afternoon + publish)"
 Write-Host "  - PropOracle - Refresh 430PM (evening 7pm slate + publish)"
+Write-Host "  - PropOracle - Injuries T-60 (every 15m; collect when tip is 50-70 min away)"
 Write-Host ""
 Write-Host "CDP payout scrape: MLB fill (when posted) + 1AM + 5AM + each refresh (no standalone 11AM/3PM tasks)." -ForegroundColor Yellow
+Write-Host "Injuries: also runs inside 5AM daily + each refresh (10:30 / 4:30). OUT hard-drops from tickets." -ForegroundColor Yellow
 Write-Host "Removed: Tennis Early 3AM, Grader 1AM (now Grader 3AM), Payout CDP 11AM/3PM, extra graders 7PM–12AM" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "Quick checks:"
