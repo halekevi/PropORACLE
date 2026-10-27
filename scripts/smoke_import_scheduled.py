@@ -89,7 +89,17 @@ def _module_defines(mod_name: str, attr: str, cache: dict[str, set[str] | None])
     names = cache[mod_name]
     if names is None:
         return None
-    return attr in names
+    if attr in names:
+        return True
+    # `from utils import graded_props_store` is a submodule, not a package attr.
+    try:
+        importlib.import_module(f"{mod_name}.{attr}")
+        names.add(attr)
+        return True
+    except ModuleNotFoundError:
+        return False
+    except Exception:  # noqa: BLE001 — submodule file exists but failed to load
+        return None
 
 
 def ast_scan_utils_imports() -> list[str]:

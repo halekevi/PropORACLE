@@ -30,6 +30,31 @@ PROD = frozenset({"Weak", "Below Avg"})
 STINGY = frozenset({"Elite", "Above Avg"})
 STRONG_BAT = frozenset({"Strong", "Above Avg"})
 
+# Parent L10>=8 Goblin OVER cells. The category file's child cell is the
+# L5 slice. Pitcher prices use these parents. Postseason then subtracts 3 points.
+MLB_PITCHER_L10_PARENT: dict[str, tuple[int, int]] = {
+    "pitching_outs": (399, 498),
+    "pitcher_ks": (743, 975),
+    "hits_allowed": (633, 823),
+}
+
+
+def pitcher_l10_parent_cell(row_or_prop: object) -> dict[str, float] | None:
+    """L10 parent hit rate for a pitcher volume prop. None for every other prop."""
+    if isinstance(row_or_prop, dict):
+        sport = str(row_or_prop.get("sport") or "").strip().upper()
+        if sport != "MLB":
+            return None
+        prop = _canon(sport, row_or_prop.get("prop") or row_or_prop.get("prop_type"))
+    else:
+        prop = _canon("MLB", row_or_prop)
+    pair = MLB_PITCHER_L10_PARENT.get(prop)
+    if not pair:
+        return None
+    hits, n = pair
+    return {"hr": hits / n, "n": float(n), "hit": float(hits), "prop": prop}
+
+
 KEEP_PROPS = frozenset(
     {
         "walks_allowed",

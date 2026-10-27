@@ -772,7 +772,7 @@ async function fetch_smart(localPath) {
             net_dollars: net,
             roi_pct: roi,
           };
-        }).filter((r) => /^\d{4}-\d{2}-\d{2}$/.test(r.date));
+        }).filter((r) => /^\\d{4}-\\d{2}-\\d{2}$/.test(r.date));
       }
 
       function renderSports(payload) {

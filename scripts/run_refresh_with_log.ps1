@@ -16,8 +16,13 @@ $ErrorActionPreference = "Continue"
 try { $Host.UI.RawUI.WindowTitle = "PropOracle - Refresh $RunLabel" } catch { }
 $env:PROPORACLE_RUN_LABEL = $RunLabel
 $Root = Split-Path $PSScriptRoot -Parent
-# Fail before late-fetch if live-tree utils are missing (cfb_l8_bonus / role_from_snap class).
+# Fail before lock/fetch if live-tree utils are missing (cfb_l8_bonus / role_from_snap class).
+# `& script.ps1` does not stop this parent when the child `exit`s — check the code.
 & (Join-Path $Root "scripts\Invoke-SmokeImport.ps1") -Root $Root -Label "smoke-import/refresh"
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[REFRESH $RunLabel] smoke-import failed (exit $LASTEXITCODE) — stopping before lock/fetch. Not publishing." -ForegroundColor Red
+    exit $LASTEXITCODE
+}
 $LateFetch = Join-Path $Root "scripts\run_nba_late_fetch.ps1"
 $Snapshot = Join-Path $Root "scripts\log_prop_snapshot.ps1"
 $LockDir = Join-Path $Root "data\cache"
