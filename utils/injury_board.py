@@ -26,6 +26,24 @@ from utils.injury_gate import (  # noqa: E402
 TOP_N_TEAMMATES = 2
 
 
+def _is_gleague_out(name: str, index: dict[tuple[str, str, str], dict[str, Any]], sport: str, team: str) -> bool:
+    """G-League two-way / assignment outs do not open starter minutes."""
+    fold = fold_player_name(name)
+    lit = sport.upper()
+    tm = canon_team_abbr(lit, team)
+    for (sp, pl, t), rec in index.items():
+        if sp != lit or pl != fold:
+            continue
+        if tm and t and t != tm:
+            continue
+        blob = f"{rec.get('injury') or ''} {rec.get('status') or ''}".lower()
+        if "gleague" in blob.replace(" ", "") or "g-league" in blob or "two-way" in blob:
+            return True
+        if "on assignment" in blob or "onassignment" in blob.replace(" ", ""):
+            return True
+    return False
+
+
 def _sport_of(row: dict[str, Any]) -> str:
     return str(row.get("sport") or row.get("Sport") or row.get("league") or "").strip().upper()
 
@@ -125,7 +143,34 @@ def attach_injury_columns(
             teams_seen.add((sp, opp))
     out_lists = {(sp, tm): team_out_players(index, sp, tm) for sp, tm in teams_seen}
 
+    # Top-2 board usage proxy per team (avg_l5 / season avg) — who leaving opens minutes.
+    team_top2: dict[tuple[str, str], list[str]] = {}
+    ranked_avg: dict[tuple[str, str], dict[str, float]] = {}
+    for row in board:
+        sp = _sport_of(row)
+        tm = canon_team_abbr(sp, _team_of(row))
+        pl = fold_player_name(_player_of(row))
+        if not sp or not tm or not pl:
+            continue
+        avg = None
+        for k in ("avg_l5", "stat_last5_avg", "l5_avg", "season_avg", "avg"):
+            try:
+                avg = float(row.get(k))  # type: ignore[arg-type]
+                break
+            except (TypeError, ValueError):
+                continue
+        if avg is None:
+            continue
+        slot = ranked_avg.setdefault((sp, tm), {})
+        prev = slot.get(pl)
+        if prev is None or avg > prev:
+            slot[pl] = avg
+    for key, pmap in ranked_avg.items():
+        ordered = sorted(pmap.items(), key=lambda kv: kv[1], reverse=True)
+        team_top2[key] = [name for name, _a in ordered[:2]]
+
     enriched: list[dict[str, Any]] = []
+    minutes_opp_n = 0
     for row in board:
         rec = dict(row)
         sport = _sport_of(rec)
@@ -172,8 +217,36 @@ def attach_injury_columns(
             rec["inj_stale"] = 0
         team_outs = [n for n in out_lists.get((sport, team), []) if fold_player_name(n) != player]
         opp_outs = out_lists.get((sport, opp), []) if opp else []
+        # G-League two-ways don't free starter minutes; ignore for opportunity flag.
+        meaningful_outs = [
+            n for n in team_outs if not _is_gleague_out(n, index, sport, team)
+        ]
         rec["team_out_list"] = ",".join(team_outs)
         rec["opp_out_list"] = ",".join(opp_outs)
+
+        # Flag-only: available board legs when a real (non-G-League) teammate is OUT
+        # → possible minutes / usage bump. Prefer top-2-by-avg when that OUT is still
+        # on the board; otherwise any Injury/Illness OUT counts. Never a ticket gate.
+        top2 = team_top2.get((sport, team), [])
+        top2_out = [
+            n
+            for n in meaningful_outs
+            if fold_player_name(n) in {fold_player_name(t) for t in top2}
+        ]
+        self_out = is_injury_out(rec.get("inj_status") or rec.get("injury_status"))
+        if meaningful_outs and not self_out:
+            rec["minutes_opp"] = 1
+            rec["minutes_opp_from"] = ",".join(top2_out or meaningful_outs[:4])
+            rec["backup_spot"] = 1
+            minutes_opp_n += 1
+        elif team_outs and not self_out:
+            rec["minutes_opp"] = 0
+            rec["minutes_opp_from"] = ""
+            rec["backup_spot"] = 1  # only G-League teammates out
+        else:
+            rec["minutes_opp"] = 0
+            rec["minutes_opp_from"] = ""
+            rec["backup_spot"] = 0
         enriched.append(rec)
 
     stats = {
@@ -183,6 +256,7 @@ def attach_injury_columns(
         "n_out": out_n,
         "n_soft_flag": soft_n,
         "n_stale": stale_n,
+        "n_minutes_opp": minutes_opp_n,
         "injuries_csv": str(latest_csv_path(root=root)),
         "unmatched_sample": unmatched[:40],
     }

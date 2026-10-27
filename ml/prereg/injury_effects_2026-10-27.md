@@ -12,6 +12,14 @@ A player listed **OUT** (also IR / PUP / NFI / suspended / inactive) cannot be
 on a ticket. Questionable / GTD / Doubtful / Probable are flag-only.
 `slip_check` warns on soft flags and on injury snapshots older than 6 hours.
 
+## Spotting backups / minutes (flag only)
+
+When a team's top-2 board-usage player is OUT, board props for remaining
+teammates get `minutes_opp=1` + `minutes_opp_from` (who sat). The daily report
+lists these as **Backup / minutes spots** — possible more minutes and stats.
+This is a hand-check list only. It does **not** clear a ticket gate, change
+badge, or move L5.
+
 ## What is measured (not ticketed)
 
 Using as-of injury snapshots under `data/injuries/<date>/` with `captured_at`

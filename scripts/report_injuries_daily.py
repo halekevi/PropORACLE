@@ -170,6 +170,41 @@ def build_report(root: Path, date: str) -> tuple[str, dict[str, Any]]:
         lines.append(f"- Questionable/GTD/Doubtful ({len(soft)}): {soft_lbl}")
         if top2_out.get(sport):
             lines.append("- Top-2 usage OUT: " + "; ".join(top2_out[sport]))
+
+        # Backup / minutes spots: board props for players still available when a
+        # teammate (esp. top-2) is OUT — flag only, not ticketed.
+        spots = [
+            r
+            for r in board
+            if str(r.get("sport") or "").upper() == sport
+            and int(r.get("minutes_opp") or 0) == 1
+            and not is_injury_out(r.get("inj_status"))
+        ]
+        # Dedupe player+prop
+        seen_spot: set[tuple[str, str]] = set()
+        spot_lines: list[str] = []
+        for r in spots:
+            key = (
+                fold_player_name(r.get("player") or r.get("player_name")),
+                str(r.get("prop") or r.get("prop_type") or "").strip().lower(),
+            )
+            if key in seen_spot:
+                continue
+            seen_spot.add(key)
+            spot_lines.append(
+                f"  - {r.get('player')} {r.get('prop') or r.get('prop_type') or ''} "
+                f"({r.get('team')}) ← OUT {r.get('minutes_opp_from') or r.get('team_out_list')}"
+            )
+        if spot_lines:
+            lines.append(
+                f"- Backup / minutes spots ({len(spot_lines)}, flag only — more minutes/stats potential):"
+            )
+            lines.extend(spot_lines[:25])
+        elif top2_out.get(sport):
+            lines.append(
+                "- Backup / minutes spots: (no board props matched yet — attach after step8)"
+            )
+
         board_hits = [
             r
             for r in board
@@ -196,6 +231,7 @@ def build_report(root: Path, date: str) -> tuple[str, dict[str, Any]]:
         "n_latest": len(latest),
         "n_board_affected": len(affected),
         "top2_out": dict(top2_out),
+        "n_minutes_opp": sum(1 for r in board if int(r.get("minutes_opp") or 0) == 1),
         "sports": {s: len(v) for s, v in by_sport.items()},
     }
     return "\n".join(lines), payload

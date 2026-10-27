@@ -22,34 +22,65 @@ from utils.injury_board import attach_injury_columns, write_unmatched_log  # noq
 from utils.injury_collect import injuries_dir, now_et  # noqa: E402
 
 
-SPORT_GLOBS = (
-    ("NBA", "nba/step8_nba_direction_clean*.xlsx", "step8_nba_direction_clean*.xlsx"),
-    ("NFL", "nfl/step8_nfl_direction_clean*.xlsx", "step8_nfl_direction_clean*.xlsx"),
-    ("NHL", "nhl/step8_nhl_direction_clean*.xlsx", "step8_nhl_direction_clean*.xlsx"),
-    ("CFB", "cfb/step8_cfb_direction_clean*.xlsx", None),
-    ("CBB", "cbb/step8_cbb_direction_clean*.xlsx", None),
-    ("SOCCER", "soccer/step8_soccer_direction_clean*.xlsx", None),
-    ("TENNIS", "tennis/step8_tennis_direction_clean*.xlsx", None),
-    ("WNBA", "wnba/step8_wnba_direction_clean*.xlsx", "step8_wnba_direction_clean*.xlsx"),
-    ("MLB", "mlb/step8_mlb_direction_clean*.xlsx", "step8_mlb_direction_clean*.xlsx"),
-)
+SPORT_PATTERNS: dict[str, tuple[str, ...]] = {
+    # Prefer *_ALL.parquet — xlsx default sheet is often 1-row _META.
+    "NBA": (
+        "step8_nba_direction_clean*_ALL.parquet",
+        "nba/step8_nba_direction_clean*.parquet",
+        "nba/step8_nba_direction_clean*.xlsx",
+        "step8_nba_direction_clean*.xlsx",
+    ),
+    "NFL": (
+        "nfl/step8_nfl_direction_clean*.parquet",
+        "nfl/step8_nfl_direction_clean*.xlsx",
+        "step8_nfl_direction_clean*.xlsx",
+    ),
+    "NHL": (
+        "nhl/step8_nhl_direction_clean*.parquet",
+        "nhl/step8_nhl_direction_clean*.xlsx",
+        "step8_nhl_direction_clean*.xlsx",
+    ),
+    "CFB": ("cfb/step8_cfb_direction_clean*.xlsx",),
+    "CBB": ("cbb/step8_cbb_direction_clean*.xlsx",),
+    "SOCCER": ("soccer/step8_soccer_direction_clean*.xlsx",),
+    "TENNIS": ("tennis/step8_tennis_direction_clean*.xlsx", "step8_tennis_direction_clean*.xlsx"),
+    "WNBA": ("wnba/step8_wnba_direction_clean*.xlsx", "step8_wnba_direction_clean*.xlsx"),
+    "MLB": ("mlb/step8_mlb_direction_clean*.xlsx", "step8_mlb_direction_clean*.xlsx"),
+}
 
 
-def _find_step8(root: Path, date: str, sport: str, nested: str, flat: str | None) -> Path | None:
+def _find_step8(root: Path, date: str, patterns: tuple[str, ...]) -> Path | None:
     base = root / "outputs" / date
     cands: list[Path] = []
-    for pattern in (nested, flat):
-        if not pattern:
-            continue
-        cands.extend(sorted(base.glob(pattern), key=lambda p: p.stat().st_mtime, reverse=True))
-    return cands[0] if cands else None
+    for pattern in patterns:
+        cands.extend(base.glob(pattern))
+    if not cands:
+        return None
+    cands.sort(
+        key=lambda p: (
+            0 if p.suffix.lower() == ".parquet" else 1,
+            0 if "_ALL" in p.name.upper() else 1,
+            -p.stat().st_mtime,
+        )
+    )
+    return cands[0]
 
 
 def _load_board(path: Path, sport: str) -> list[dict]:
     try:
-        df = pd.read_excel(path) if path.suffix.lower() in {".xlsx", ".xls"} else pd.read_csv(path)
+        if path.suffix.lower() == ".parquet":
+            df = pd.read_parquet(path)
+        elif path.suffix.lower() in {".xlsx", ".xls"}:
+            xl = pd.ExcelFile(path)
+            sheet = "ALL" if "ALL" in xl.sheet_names else xl.sheet_names[0]
+            df = pd.read_excel(path, sheet_name=sheet)
+        else:
+            df = pd.read_csv(path, low_memory=False)
     except Exception as exc:
         print(f"[attach] WARN skip {path.name}: {exc}")
+        return []
+    if len(df) <= 2 and "banner" in df.columns and "player" not in df.columns and "Player" not in df.columns:
+        print(f"[attach] WARN {path.name} looks like meta-only ({len(df)} rows) — skip")
         return []
     rows = df.where(pd.notnull(df), None).to_dict(orient="records")
     for r in rows:
@@ -67,11 +98,13 @@ def main() -> int:
 
     board: list[dict] = []
     sources: dict[str, str] = {}
-    for sport, nested, flat in SPORT_GLOBS:
-        path = _find_step8(root, date, sport, nested, flat)
+    for sport, patterns in SPORT_PATTERNS.items():
+        path = _find_step8(root, date, patterns)
         if path is None:
             continue
         part = _load_board(path, sport)
+        if not part:
+            continue
         board.extend(part)
         sources[sport] = str(path.relative_to(root))
         print(f"[attach] {sport}: {len(part)} rows from {path.name}")
