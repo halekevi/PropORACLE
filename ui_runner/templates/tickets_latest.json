@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26 05:17:09 UTC",
+  "generated_at": "2026-10-26 14:33:51 UTC",
   "date": "2026-10-26",
   "tennis_date": "2026-10-26",
   "filters": {
@@ -106,9 +106,10 @@
   "run_archived_at": "2026-10-26T01:46:33.553705+00:00",
   "grade_pool": true,
   "run_ids": [
-    "20261026_014633_550812"
+    "20261026_014633_550812",
+    "20261026_131232_070774"
   ],
-  "latest_run_id": "20261026_014633_550812",
+  "latest_run_id": "20261026_131232_070774",
   "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
@@ -125,5 +126,5 @@
     "goblin70",
     "graded_main"
   ],
-  "schedule_gate_blocked": 4
+  "schedule_gate_blocked": 7
 }
