@@ -54,16 +54,41 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+# Sports/NBA/scripts -> repo root. Do not walk upward into
+# Sports/NBA/data/cache/proporacle_ref.db — that copy is period-only (nba1q)
+# and has no `nba` table. Same root-first rule as step4_db_reader.
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+from utils.proporacle_ref_db import resolve_ref_db  # noqa: E402
 
-# ── DB path resolution ────────────────────────────────────────────────────────
-_here = Path(__file__).resolve().parent
-DB_PATH = Path("data/cache/proporacle_ref.db")
-for _ in range(6):
-    candidate = _here.parent / "data" / "cache" / "proporacle_ref.db"
-    if candidate.exists():
-        DB_PATH = candidate
-        break
-    _here = _here.parent
+
+def _intel_db_path(override: str = "") -> Path:
+    """Root box DB only. Sports/NBA/data/cache is period-only (nba1q)."""
+    if override:
+        p = Path(override)
+        if not p.exists():
+            raise FileNotFoundError(p)
+        return p
+    return resolve_ref_db(allow_missing=False)
+
+
+def _has_nba_table(con: sqlite3.Connection) -> bool:
+    row = con.execute(
+        "SELECT 1 FROM sqlite_master WHERE type IN ('table', 'view') "
+        "AND name='nba' LIMIT 1"
+    ).fetchone()
+    return row is not None
+
+
+def _fail_closed(reason: str) -> None:
+    print(f"ALERT [step6e] {reason}", file=sys.stderr)
+    print(
+        "   Run: py -3.14 Sports/NBA/scripts/build_boxscore_ref.py "
+        "--backfill --days 150 --sports nba",
+        file=sys.stderr,
+    )
+    raise SystemExit(2)
 
 
 # ── Prop → DB column mapping ──────────────────────────────────────────────────
@@ -320,24 +345,25 @@ def main():
     ap.add_argument("--db",     default="", help="Override DB path")
     args = ap.parse_args()
 
-    db_path = Path(args.db) if args.db else DB_PATH
-
-    # Graceful fallback if DB not found
-    if not db_path.exists():
-        print(f"⚠️  DB not found at {db_path} — passing through without intel")
-        print(f"   Run: py scripts/build_boxscore_ref.py --backfill --days 150")
-        df = pd.read_csv(args.input, encoding="utf-8-sig")
-        for col in EMPTY_INTEL:
-            df[col] = np.nan
-        df.to_csv(args.output, index=False, encoding="utf-8")
-        print(f"✅ Saved (no intel) → {args.output}")
-        return
+    try:
+        db_path = _intel_db_path(args.db)
+    except FileNotFoundError as exc:
+        _fail_closed(f"root box DB not found: {exc}")
+    except Exception as exc:
+        _fail_closed(f"could not resolve root box DB: {type(exc).__name__}: {exc}")
 
     print(f"[S6e] Input:  {args.input}")
+    print(f"[S6e] DB:     {db_path}")
     df = pd.read_csv(args.input, dtype=str, encoding="utf-8-sig").fillna("")
     print(f"      {len(df)} rows")
 
     con = sqlite3.connect(str(db_path))
+    if not _has_nba_table(con):
+        con.close()
+        _fail_closed(
+            f"no nba table in {db_path} "
+            "(period-only nba1q copy is not the root box DB)"
+        )
     db_rows = con.execute("SELECT COUNT(*) FROM nba").fetchone()[0]
     db_min  = con.execute("SELECT MIN(game_date) FROM nba").fetchone()[0]
     db_max  = con.execute("SELECT MAX(game_date) FROM nba").fetchone()[0]

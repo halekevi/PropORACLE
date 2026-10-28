@@ -1174,6 +1174,39 @@ function Test-ValidXlsx {
     }
 }
 
+function Publish-NbaStep8Artifacts {
+    param([string]$Reason = "")
+    $step8Clean = Join-Path $NBARunOutDir "step8_all_direction_clean.xlsx"
+    if (-not (Test-Path -LiteralPath $step8Clean)) {
+        Write-Host "  [NBA publish] skip — no step8_all_direction_clean.xlsx ($Reason)" -ForegroundColor DarkGray
+        return $false
+    }
+    if (-not (Test-ValidXlsx -Path $step8Clean)) {
+        Write-Host "  [NBA publish] ALERT — corrupt step8 xlsx ($Reason)" -ForegroundColor Red
+        return $false
+    }
+    $sportOutDir = Join-Path $NBADir "data\outputs"
+    $sportOut = Join-Path $sportOutDir "step8_all_direction_clean.xlsx"
+    $sportRoot = Join-Path $NBADir "step8_all_direction_clean.xlsx"
+    if ($script:MirrorUndatedSportStep8) {
+        try {
+            if (-not (Test-Path -LiteralPath $sportOutDir)) {
+                New-Item -ItemType Directory -Force -Path $sportOutDir | Out-Null
+            }
+            Copy-ItemForceRetry -Source $step8Clean -Destination $sportOut
+            Copy-ItemForceRetry -Source $step8Clean -Destination $sportRoot
+            Write-Host "  [NBA publish] sport-root + data/outputs -> $sportRoot" -ForegroundColor DarkGray
+        } catch {
+            Write-Host "  [NBA publish] ALERT: same-day sport-root copy failed: $_" -ForegroundColor Red
+            return $false
+        }
+    } else {
+        Write-Host "  [NBA publish] skip undated sport-root mirror (day-ahead Date=$Date ET today=$EasternToday)" -ForegroundColor DarkGray
+    }
+    Copy-DatedSlateOutput -SourcePath $step8Clean -DatedFileName "step8_nba_direction_clean_$Date.xlsx" -Label "NBA"
+    return $true
+}
+
 function Publish-MlbStep8Artifacts {
     param([string]$Reason = "")
     $step8Clean = Join-Path $MLBRunOutDir "step8_mlb_direction_clean.xlsx"
@@ -2829,9 +2862,9 @@ if ($NBAOnly) {
     if ($ok) { Invoke-PyNbaStatProjection -RepoRoot $Root -Step7Xlsx "$NBARunOutDir\step7_ranked_props.xlsx" -PipelineDate $Date }
     if ($ok) { $ok = Run-Step "NBA Step 8 - Direction Context"       $NBADir (Join-Path $SportsRoot "NBA\scripts\step8_add_direction_context.py")         "--input `"$NBARunOutDir\step7_ranked_props.xlsx`" --sheet ALL --output `"$NBARunOutDir\step8_all_direction.csv`" --date $Date" }
     if ($ok) {
-        $nbaMainStep8 = Join-Path $NBARunOutDir "step8_all_direction_clean.xlsx"
-        if (Test-Path $nbaMainStep8) {
-            Copy-DatedSlateOutput -SourcePath $nbaMainStep8 -DatedFileName "step8_nba_direction_clean_$Date.xlsx" -Label "NBA"
+        if (-not (Publish-NbaStep8Artifacts -Reason "sequential")) {
+            Write-Host "  FAILED: [NBA] same-day sport-root / dated step8 publish" -ForegroundColor Red
+            $ok = $false
         }
     }
     # Matchup edge JSON — dedicated NBA builder (top/bottom-3, UNDER edges). Run after step8.
@@ -4283,10 +4316,12 @@ if ($NBAOffSeason) {
         $NBASuccess = $false
     }
 
-    # Dated NBA main step8 for run_grader (avoids empty grades after the live workbook rolls to the next slate day).
-    $nbaMainStep8Parallel = Join-Path $NBARunOutDir "step8_all_direction_clean.xlsx"
-    if (Test-Path $nbaMainStep8Parallel) {
-        Copy-DatedSlateOutput -SourcePath $nbaMainStep8Parallel -DatedFileName "step8_nba_direction_clean_$Date.xlsx" -Label "NBA"
+    # Dated NBA main step8 + same-day sport-root (Railway / combined read sport-root).
+    if ($NBASuccess) {
+        if (-not (Publish-NbaStep8Artifacts -Reason "parallel")) {
+            Write-Host "  FAILED: [NBA] same-day sport-root / dated step8 publish" -ForegroundColor Red
+            $NBASuccess = $false
+        }
     }
 
     # NBA period sub-slates (soft-fail): full-game NBASuccess stays true if 1H/1Q die.

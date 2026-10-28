@@ -100,8 +100,12 @@ foreach ($pair in @(
         elseif ($label -eq "step6d") { Copy-Item $s6c $s6d -Force }
     }
 }
-$rankIn = $s6d
-if (-not (Test-Path $rankIn)) { $rankIn = $s6 }
+$s6e = Join-Path $OutDated "step6e_with_intel.csv"
+if (-not (Test-Path $s6d)) { throw "step6d missing; cannot run step6e" }
+Run-Step "step6e" ".\scripts\step6e_attach_intel.py" @(
+    "--input", $s6d, "--output", $s6e
+)
+$rankIn = $s6e
 Run-Step "step7" ".\scripts\step7_rank_props.py" @("--input", $rankIn, "--output", $s7)
 Run-Step "step8" ".\scripts\step8_add_direction_context.py" @(
     "--input", $s7, "--sheet", "ALL", "--output", $s8csv, "--xlsx", $s8xlsx, "--date", $Date
@@ -132,5 +136,10 @@ if (Test-Path (Split-Path $mainCpOut -Parent)) {
     Copy-Item $s8xlsx (Join-Path $mainCpOut "step8_all_direction_clean.xlsx") -Force
     Copy-Item $s8xlsx (Join-Path $mainCpOut "step8_all_direction_clean_$Date.xlsx") -Force
     Copy-Item $s8xlsx (Join-Path $mainCpRoot "outputs\$Date\step8_nba_direction_clean_$Date.xlsx") -Force
+    $mainCpSportOut = Join-Path $mainCpRoot "Sports\NBA\data\outputs"
+    $mainCpSportRoot = Join-Path $mainCpRoot "Sports\NBA\step8_all_direction_clean.xlsx"
+    New-Item -ItemType Directory -Force -Path $mainCpSportOut | Out-Null
+    Copy-Item $s8xlsx (Join-Path $mainCpSportOut "step8_all_direction_clean.xlsx") -Force
+    Copy-Item $s8xlsx $mainCpSportRoot -Force
 }
 Write-Host "OK NBA step8 -> $s8xlsx" -ForegroundColor Green
