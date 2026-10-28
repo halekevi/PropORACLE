@@ -1,0 +1,63 @@
+{
+  "track": "goblin_specialist_clean_retrain",
+  "registered_at": "2026-10-28",
+  "registered_before_holdout_metrics": true,
+  "placed": false,
+  "promote": false,
+  "source": "analysis_legs(decided_only=True)",
+  "filters": {
+    "verified_faces_only": true,
+    "include_unverified": false,
+    "stale_boards_dropped": true,
+    "source_board_date_mismatch_dropped": true,
+    "invalid_stat_attach_dropped": true,
+    "as_of_features_only": true,
+    "decided_only": true
+  },
+  "split": {
+    "train": "event_or_slate_date < 2026-09-01",
+    "test": "event_or_slate_date >= 2026-09-01",
+    "cut": "2026-09-01",
+    "random_split": false,
+    "within_train_fit_platt_only": true
+  },
+  "target": {
+    "primary": "goblin_oos_corr",
+    "goblin_corr_gt": 0.15,
+    "compare_to_prior_slice": {
+      "artifact": "models/edge_model_goblin_over.pkl",
+      "trained_approx": "2026-08-28",
+      "goblin_test_corr": 0.30,
+      "note": "honest comparison; cleaner later window may be lower"
+    }
+  },
+  "report": {
+    "metrics": ["corr", "auc", "calibration"],
+    "breakout": "sport x rung",
+    "rungs": ["Goblin", "Standard", "Demon"]
+  },
+  "features": {
+    "start_from": "august_goblin_specialist_feature_list",
+    "must_include": ["l5_current_season_n", "clean_minutes"],
+    "always_exclude": ["edge", "abs_edge", "prop_score", "result", "actual_value"]
+  },
+  "model": {
+    "start_from_artifact": "models/edge_model_goblin_over.pkl",
+    "not_from": "models/edge_model_unified.pkl",
+    "train_book": "goblin",
+    "train_direction": "OVER",
+    "candidate": "models/edge_model_goblin_over_clean_2026-10-28.pkl",
+    "sidecars": [
+      "models/edge_model_goblin_over_clean_2026-10-28_features.json",
+      "models/edge_model_goblin_over_clean_2026-10-28_metadata.json",
+      "models/edge_model_goblin_over_clean_2026-10-28_slice_calibrators.pkl"
+    ]
+  },
+  "do_not_write": [
+    "models/edge_model_unified.pkl",
+    "ui_runner/templates/tickets_latest.json",
+    "ui_runner/runtime/tickets_latest.json"
+  ],
+  "do_not_edit": "H:\\PropORACLE_main_cp",
+  "runner": "scripts/train_edge_model.py --pick-type goblin --direction OVER --output-model models/edge_model_goblin_over_clean_2026-10-28.pkl"
+}

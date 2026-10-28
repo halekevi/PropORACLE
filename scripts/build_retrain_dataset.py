@@ -143,6 +143,35 @@ ENRICHMENT_RAW_COLS = [
     "l10_under",
     "l10_over_pct",
     "l10_streak",
+    # Per-stat D + minutes + season avg (step8 keep-list upgrades)
+    "stat_def_rank",
+    "stat_def_tier",
+    "stat_def_category",
+    "stat_season_avg",
+    "stat_last5_avg",
+    "stat_last10_avg",
+    "min_last5_avg",
+    "min_per_game",
+    "min_season_avg",
+    "SHOTS_DEF_RANK",
+    "SHOTS_DEF_TIER",
+    # Football snap / role (NFL + CFB step4c/step8)
+    "snap_pct_L3",
+    "snap_pct_season",
+    "target_share_L3",
+    "route_pct_L3",
+    "expected_snaps",
+    # Tennis surface (next retrain)
+    "surface",
+    "surface_encoded",
+    "aces_per_match_mean",
+    "first_serve_pct",
+    "win_rate_on_surface",
+    "games_won_per_match",
+    "surface_specialist",
+    "surface_struggle",
+    "n_matches_on_surface",
+    "h2h_win_rate_on_surface",
     # 70% stack / opponent context (step7/step8)
     "consistency_grade",
     "team_top3_rank",
@@ -152,6 +181,10 @@ ENRICHMENT_RAW_COLS = [
     "top3_elite_fader",
     "top3_def_context",
     "top3_under_context",
+    # Clean-ledger adds (as-of; Goblin specialist 2026-10-28)
+    "l5_current_season_n",
+    "clean_minutes",
+    "current_season_rs_n",
 ]
 
 JOIN_FEATURE_COLS = list(dict.fromkeys(STEP8_FEATURE_COLS + ENRICHMENT_RAW_COLS))
@@ -332,6 +365,13 @@ def _canonicalize_step8_columns(df: pd.DataFrame) -> pd.DataFrame:
         "Line Hit Rate": "line_hit_rate",
         "Hit Rate (5g)": "hit_rate_L5",
         "Hit Rate (10g)": "hit_rate_L10",
+        "Last 5 Avg": "stat_last5_avg",
+        "l5_avg": "stat_last5_avg",
+        "avg_L5": "stat_last5_avg",
+        "Last 10 Avg": "stat_last10_avg",
+        "avg_L10": "stat_last10_avg",
+        "Season Avg": "stat_season_avg",
+        "avg_season": "stat_season_avg",
         "Opp": "opp_team",
         "Team": "team",
     }
@@ -463,6 +503,42 @@ def load_step8_sport(root: Path, sport: str) -> pd.DataFrame | None:
             if df is not None:
                 return df
         return None
+    if sport_u in ("NFL", "NFLP"):
+        return _first_step_table(
+            [
+                root / "Sports" / "NFL" / "outputs" / "step8_nfl_direction_clean.xlsx",
+                root / "Sports" / "NFL" / "data" / "outputs" / "step8_nfl_direction_clean.xlsx",
+                root / "NFL" / "outputs" / "step8_nfl_direction_clean.xlsx",
+            ]
+        )
+    if sport_u == "CFB":
+        return _first_step_table(
+            [
+                root / "Sports" / "CFB" / "outputs" / "step8_cfb_direction_clean.xlsx",
+                root / "Sports" / "CFB" / "step8_cfb_direction_clean.xlsx",
+            ]
+        )
+    if sport_u in ("CFB1H", "CFB1"):
+        return _first_step_table(
+            [
+                root / "Sports" / "CFB" / "outputs" / "step8_cfb1h_direction_clean.xlsx",
+                root / "Sports" / "CFB" / "step8_cfb1h_direction_clean.xlsx",
+            ]
+        )
+    if sport_u == "WCBB":
+        return _first_step_table(
+            [
+                root / "Sports" / "CBB" / "outputs" / "step6_ranked_wcbb.xlsx",
+                root / "Sports" / "CBB" / "data" / "outputs" / "step6_ranked_wcbb.xlsx",
+            ]
+        )
+    if sport_u == "GOLF":
+        return _first_step_table(
+            [
+                root / "Sports" / "Golf" / "outputs" / "step8_golf_direction_clean.xlsx",
+                root / "Sports" / "Golf" / "step8_golf_direction_clean.xlsx",
+            ]
+        )
     return None
 
 
@@ -485,7 +561,7 @@ def _cbb_step6_paths(root: Path, file_date: str | None = None) -> list[Path]:
     return dated + static
 
 
-def _read_cbb_step6_table(path: Path) -> pd.DataFrame | None:
+def _read_step_table(path: Path) -> pd.DataFrame | None:
     if not path.is_file():
         return None
     try:
@@ -496,6 +572,17 @@ def _read_cbb_step6_table(path: Path) -> pd.DataFrame | None:
     except Exception:
         return None
     return df if df is not None and len(df) > 0 else None
+
+
+def _first_step_table(paths: list[Path]) -> pd.DataFrame | None:
+    for p in paths:
+        df = _read_step_table(p)
+        if df is not None:
+            return df
+    return None
+
+
+_read_cbb_step6_table = _read_step_table
 
 
 # Dated outputs/<YYYY-MM-DD>/ pipeline CSVs for NBA1H (not full-game step8_all_direction).
@@ -792,6 +879,70 @@ def load_step8_dated_snapshot(root: Path, sport: str, file_date: str) -> tuple[p
         if df is not None:
             return df, True
         return None, False
+    if sport_u in ("NFL", "NFLP"):
+        dated = [
+            root / "outputs" / d / "nfl" / "step8_nfl_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_nfl_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "nfl" / "step7_nfl_ranked.xlsx",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
+    if sport_u == "CFB":
+        dated = [
+            root / "outputs" / d / "cfb" / "step8_cfb_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_cfb_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "cfb" / "step6_ranked_cfb.xlsx",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
+    if sport_u in ("CFB1H", "CFB1"):
+        dated = [
+            root / "outputs" / d / "cfb1h" / "step8_cfb1h_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_cfb1h_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "cfb1h" / "step6_ranked_cfb1h.xlsx",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
+    if sport_u == "WCBB":
+        dated = [
+            root / "outputs" / d / "wcbb" / "step6_ranked_wcbb.xlsx",
+            root / "outputs" / d / "wcbb" / "step6_ranked_wcbb.csv",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
+    if sport_u == "GOLF":
+        dated = [
+            root / "outputs" / d / "golf" / "step8_golf_direction_clean.xlsx",
+            root / "outputs" / d / "golf" / "step8_golf_direction.csv",
+            root / "outputs" / d / f"step8_golf_direction_clean_{d}.xlsx",
+        ]
+        df = _first_step_table(dated)
+        if df is not None:
+            return df, False
+        df = load_step8_sport(root, sport)
+        if df is not None:
+            return df, True
+        return None, False
     return None, False
 
 
@@ -872,6 +1023,35 @@ def has_dated_step8_snapshot(root: Path, sport: str, file_date: str) -> bool:
             root / "outputs" / d / f"step6_ranked_cbb_{d}.xlsx",
             root / "outputs" / d / f"step6_ranked_cbb_{d}_FILTERED.xlsx",
             root / "outputs" / d / "step6_ranked_cbb.xlsx",
+        ]
+    elif sport_u in ("NFL", "NFLP"):
+        candidates = [
+            root / "outputs" / d / "nfl" / "step8_nfl_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_nfl_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "nfl" / "step7_nfl_ranked.xlsx",
+        ]
+    elif sport_u == "CFB":
+        candidates = [
+            root / "outputs" / d / "cfb" / "step8_cfb_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_cfb_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "cfb" / "step6_ranked_cfb.xlsx",
+        ]
+    elif sport_u in ("CFB1H", "CFB1"):
+        candidates = [
+            root / "outputs" / d / "cfb1h" / "step8_cfb1h_direction_clean.xlsx",
+            root / "outputs" / d / f"step8_cfb1h_direction_clean_{d}.xlsx",
+            root / "outputs" / d / "cfb1h" / "step6_ranked_cfb1h.xlsx",
+        ]
+    elif sport_u == "WCBB":
+        candidates = [
+            root / "outputs" / d / "wcbb" / "step6_ranked_wcbb.xlsx",
+            root / "outputs" / d / "wcbb" / "step6_ranked_wcbb.csv",
+        ]
+    elif sport_u == "GOLF":
+        candidates = [
+            root / "outputs" / d / "golf" / "step8_golf_direction_clean.xlsx",
+            root / "outputs" / d / "golf" / "step8_golf_direction.csv",
+            root / "outputs" / d / f"step8_golf_direction_clean_{d}.xlsx",
         ]
     return any(p.is_file() for p in candidates)
 
@@ -1001,12 +1181,6 @@ def _load_graded_workbook_rows(root: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
         if "result" in norm.columns:
             ru = norm["result"].astype(str).str.strip().str.upper()
             norm = norm.loc[ru.isin(("HIT", "MISS")) | ru.isin(("WIN", "LOSS", "WON", "LOSE"))].copy()
-            try:
-                from utils.grade_cell_exclusions import drop_excluded
-
-                norm = drop_excluded(norm)
-            except Exception:
-                pass
         norm["source_file"] = p.name
         for f in canonical_fields:
             if f not in norm.columns:
@@ -1110,6 +1284,288 @@ def diagnose_tennis_zero_join(root: Path, dataset_path: Path | None = None) -> i
     return 0
 
 
+# Keys unpacked from ledger extra_json. As-of board/step8 fields only — never
+# post-game actuals. SOURCE_BOARD_DATE is kept so a second stale pass can fire.
+ASOF_EXTRA_KEYS: tuple[str, ...] = (
+    "l5_current_season_n",
+    "clean_minutes",
+    "current_season_rs_n",
+    "last5_over",
+    "last5_under",
+    "hit_rate_L5",
+    "hit_rate_L10",
+    "hit_rate_over_L5",
+    "hit_rate_over_L10",
+    "SOURCE_BOARD_DATE",
+    "source_board_date",
+    "invalid_reason",
+    "rank_score",
+    "blended_score",
+    "projection",
+    "composite_hit_rate",
+    "line_hit_rate",
+    "stat_last5_avg",
+    "stat_last10_avg",
+    "stat_season_avg",
+    "def_rank",
+    "usage_pct",
+)
+
+_POSTGAME_EXTRA_BLOCK = frozenset(
+    {
+        "actual_value",
+        "result",
+        "hit",
+        "margin",
+        "result_binary",
+        "graded_at",
+        "payout",
+        "outcome",
+    }
+)
+
+
+def _count_to_rate(ser: pd.Series, n_games: float) -> pd.Series:
+    num = pd.to_numeric(ser, errors="coerce")
+    if not num.notna().any():
+        return num
+    med = float(num.dropna().median())
+    if med > 1.0:
+        return (num / n_games).clip(0.0, 1.0)
+    return num.clip(0.0, 1.0)
+
+
+def expand_ledger_extra_json(feat: pd.DataFrame, keys: tuple[str, ...] = ASOF_EXTRA_KEYS) -> pd.DataFrame:
+    """Pull as-of keys out of extra_json without promoting post-game columns."""
+    out = feat.copy()
+    if "extra_json" not in out.columns or out.empty:
+        return out
+    want = [k for k in keys if k not in _POSTGAME_EXTRA_BLOCK]
+    missing = list(want)
+    if not missing:
+        return out
+    raw = out["extra_json"]
+    nonempty = raw.notna() & raw.astype(str).str.strip().ne("") & ~raw.astype(str).str.strip().str.lower().isin(
+        {"none", "nan", "null", "{}"}
+    )
+    if not nonempty.any():
+        for k in missing:
+            if k not in out.columns:
+                out[k] = np.nan
+        return out
+    parsed: list[dict[str, Any]] = []
+    for val in raw.tolist():
+        if not val or str(val).strip() in {"", "none", "nan", "null", "{}"}:
+            parsed.append({})
+            continue
+        try:
+            obj = json.loads(val) if isinstance(val, str) else val
+        except (TypeError, ValueError, json.JSONDecodeError):
+            parsed.append({})
+            continue
+        parsed.append(obj if isinstance(obj, dict) else {})
+    new_cols: dict[str, pd.Series] = {}
+    for k in missing:
+        vals = [obj.get(k) if isinstance(obj, dict) else None for obj in parsed]
+        fill = pd.Series(vals, index=out.index)
+        if k not in out.columns:
+            new_cols[k] = fill
+        else:
+            cur = out[k]
+            blank = cur.isna() | cur.astype(str).str.strip().eq("") | cur.astype(str).str.strip().str.lower().eq("nan")
+            out[k] = cur.where(~blank, fill)
+    if new_cols:
+        out = pd.concat([out, pd.DataFrame(new_cols, index=out.index)], axis=1)
+    return out
+
+
+def _vector_stale_mask(df: pd.DataFrame) -> pd.Series:
+    """SOURCE_BOARD_DATE mismatch, May/June on fall slates, and >3d game vs slate gap."""
+    idx = df.index
+    bad = pd.Series(False, index=idx)
+    slate = pd.Series("", index=idx, dtype="object")
+    for col in ("slate_date", "file_date", "date"):
+        if col in df.columns:
+            slate = df[col].astype(str).str[:10]
+            break
+    if "invalid_reason" in df.columns:
+        bad = bad | df["invalid_reason"].astype(str).str.strip().str.lower().eq("stale_board")
+    gd = None
+    for col in ("game_date", "step8_game_date", "Game Date"):
+        if col in df.columns:
+            gd = df[col].astype(str).str[:10]
+            break
+    if gd is None:
+        return bad.fillna(False)
+    gm = pd.to_numeric(gd.str[5:7], errors="coerce")
+    sm = pd.to_numeric(slate.str[5:7], errors="coerce")
+    bad = bad | (gm.isin([5, 6]) & sm.isin([9, 10, 11]))
+    gdt = pd.to_datetime(gd, errors="coerce")
+    sdt = pd.to_datetime(slate, errors="coerce")
+    gap = (gdt - sdt).abs().dt.days
+    bad = bad | (gap > 3)
+    for col in ("SOURCE_BOARD_DATE", "source_board_date"):
+        if col not in df.columns:
+            continue
+        src = df[col].astype(str).str[:10]
+        dated = src.str.match(r"20\d{2}-\d{2}-\d{2}", na=False) & gd.str.match(
+            r"20\d{2}-\d{2}-\d{2}", na=False
+        )
+        bad = bad | (dated & src.ne(gd))
+    return bad.fillna(False)
+
+
+def drop_source_board_date_mismatches(df: pd.DataFrame) -> pd.DataFrame:
+    """Second stale pass: SOURCE_BOARD_DATE vs game/slate date (analysis_legs already drops most)."""
+    if df.empty:
+        return df
+    work = df
+    if "slate_date" not in work.columns and "file_date" in work.columns:
+        work = work.copy()
+        work["slate_date"] = work["file_date"]
+    try:
+        from utils.stale_board_tickets import universe_stale_mask
+
+        mask = universe_stale_mask(work)
+    except ImportError:
+        mask = _vector_stale_mask(work)
+    mask = pd.Series(mask, index=df.index).fillna(False)
+    if mask.any():
+        print(f"[analysis_legs dataset] dropped {int(mask.sum()):,} SOURCE_BOARD_DATE / stale_board rows")
+        return df.loc[~mask].copy()
+    return df
+
+
+def analysis_legs_to_retrain_frame(
+    legs: pd.DataFrame,
+    features: pd.DataFrame | None = None,
+) -> pd.DataFrame:
+    """Map analysis_legs (+ features table) onto the retrain CSV schema."""
+    if legs is None or legs.empty:
+        return pd.DataFrame()
+    out = legs.copy()
+    if features is not None and not features.empty and "leg_id" in out.columns and "leg_id" in features.columns:
+        feat = features.copy()
+        if "ingested_at" in feat.columns:
+            feat = feat.sort_values("ingested_at")
+        feat = feat.drop_duplicates("leg_id", keep="last")
+        feat = expand_ledger_extra_json(feat)
+        skip_join = {
+            "sport",
+            "slate_date",
+            "slate_date_et",
+            "source_path",
+            "source_sha256",
+            "ingested_at",
+            "source_filename",
+            "extra_json",
+        }
+        drop_from_feat = [
+            c for c in feat.columns if c != "leg_id" and (c in skip_join or c in out.columns)
+        ]
+        feat = feat.drop(columns=drop_from_feat, errors="ignore")
+        out = out.merge(feat, on="leg_id", how="left")
+
+    if "result_binary" not in out.columns:
+        hit = pd.to_numeric(out["hit"], errors="coerce") if "hit" in out.columns else pd.Series(np.nan, index=out.index)
+        if "result" in out.columns:
+            ru = out["result"].astype(str).str.strip().str.upper()
+            hit = hit.where(hit.notna(), ru.map({"HIT": 1.0, "WIN": 1.0, "MISS": 0.0, "LOSS": 0.0}))
+        out["result_binary"] = hit
+    out = out.loc[pd.to_numeric(out["result_binary"], errors="coerce").isin([0.0, 1.0])].copy()
+    out["hit"] = pd.to_numeric(out["result_binary"], errors="coerce")
+
+    if "sport" not in out.columns:
+        for c in ("sport_x", "sport_y"):
+            if c in out.columns:
+                out["sport"] = out[c]
+                break
+    slate = pd.Series("", index=out.index, dtype="object")
+    for c in ("slate_date", "slate_date_et", "slate_date_x", "slate_date_y"):
+        if c not in out.columns:
+            continue
+        cand = out[c].astype(str).str.strip().str[:10]
+        ok = cand.str.fullmatch(r"\d{4}-\d{2}-\d{2}", na=False)
+        slate = cand.where(ok, slate)
+    gd = out["game_date"] if "game_date" in out.columns else pd.Series("", index=out.index)
+    gd_s = gd.astype(str).str.strip().str[:10]
+    gd_s = gd_s.where(gd_s.str.fullmatch(r"\d{4}-\d{2}-\d{2}", na=False), slate)
+    out["file_date"] = slate
+    out["game_date"] = gd_s
+    out["step8_game_date"] = gd_s
+
+    if "last5_over" not in out.columns or out["last5_over"].isna().all():
+        if "l5_over" in out.columns:
+            out["last5_over"] = pd.to_numeric(out["l5_over"], errors="coerce")
+    if "last5_under" not in out.columns or out["last5_under"].isna().all():
+        if "l5_under" in out.columns:
+            out["last5_under"] = pd.to_numeric(out["l5_under"], errors="coerce")
+    if "hit_rate_over_L5" not in out.columns or out["hit_rate_over_L5"].isna().all():
+        src = out["last5_over"] if "last5_over" in out.columns else out.get("l5_over")
+        if src is not None:
+            out["hit_rate_over_L5"] = _count_to_rate(src, 5.0)
+    if "hit_rate_over_L10" not in out.columns or out["hit_rate_over_L10"].isna().all():
+        src10 = out["l10_over"] if "l10_over" in out.columns else None
+        if src10 is not None:
+            out["hit_rate_over_L10"] = _count_to_rate(src10, 10.0)
+    if "composite_hit_rate" not in out.columns or out["composite_hit_rate"].isna().all():
+        if "hit_rate" in out.columns:
+            out["composite_hit_rate"] = pd.to_numeric(out["hit_rate"], errors="coerce")
+
+    for c in ("l5_current_season_n", "clean_minutes", "current_season_rs_n"):
+        if c not in out.columns:
+            out[c] = np.nan
+    out["l5_current_season_n"] = pd.to_numeric(out["l5_current_season_n"], errors="coerce")
+    cm = pd.to_numeric(out["clean_minutes"], errors="coerce")
+    if cm.isna().all():
+        t = out["clean_minutes"].astype(str).str.strip().str.lower()
+        cm = t.map({"1": 1.0, "true": 1.0, "yes": 1.0, "y": 1.0, "0": 0.0, "false": 0.0, "no": 0.0})
+    out["clean_minutes"] = cm
+
+    _pt = out.get("pick_type", pd.Series("", index=out.index))
+    _dir = out.get("direction", pd.Series("", index=out.index))
+    out["pick_type_group"] = [normalize_pick_type_group(pt, d) for pt, d in zip(_pt, _dir, strict=False)]
+    out["def_tier_norm"] = out.get("def_tier", pd.Series("", index=out.index)).map(normalize_def_tier)
+    fd = out["file_date"].astype(str).str.strip().str[:10]
+    out["tier_era"] = (fd >= TIER_OVERHAUL_DATE).astype(int)
+
+    out = drop_source_board_date_mismatches(out)
+    return out
+
+
+def build_from_analysis_legs(
+    root: Path,
+    *,
+    output: Path | None = None,
+) -> pd.DataFrame:
+    """Rebuild a retrain CSV from analysis_legs() (verified faces, attach-ok, stale dropped)."""
+    from proporacle.data.leg_ledger import analysis_legs, read_table_df
+
+    ledger = root / "data" / "ledger"
+    if not ledger.is_dir():
+        ledger = None
+    print(f"[analysis_legs dataset] loading analysis_legs(decided_only=True) ledger={ledger}...")
+    legs = analysis_legs(ledger, decided_only=True)
+    print(f"[analysis_legs dataset] legs={len(legs):,}")
+    feat = read_table_df("features", ledger)
+    print(f"[analysis_legs dataset] features rows={len(feat):,}")
+    out = analysis_legs_to_retrain_frame(legs, feat)
+    if out.empty:
+        print("[analysis_legs dataset] empty after mapping.")
+        return out
+    out_path = Path(output) if output is not None else (root / "data" / "retrain_dataset_goblin_clean_2026-10-28.csv")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out.to_csv(out_path, index=False, encoding="utf-8-sig")
+    print(f"[analysis_legs dataset] wrote {out_path} rows={len(out):,}")
+    if "file_date" in out.columns:
+        fd = out["file_date"].astype(str).str[:10]
+        print(f"[analysis_legs dataset] dates {fd.min()} .. {fd.max()}")
+    n_l5 = int(pd.to_numeric(out.get("l5_current_season_n"), errors="coerce").notna().sum())
+    n_min = int(pd.to_numeric(out.get("clean_minutes"), errors="coerce").notna().sum())
+    print(f"[analysis_legs dataset] l5_current_season_n filled={n_l5:,} clean_minutes filled={n_min:,}")
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo-root", type=Path, default=None, help="PropORACLE repo root (default: parent of scripts/)")
@@ -1127,6 +1583,15 @@ def main() -> int:
         help="Print Tennis zero-join diagnostic and exit (no dataset rebuild).",
     )
     ap.add_argument(
+        "--from-analysis-legs",
+        action="store_true",
+        help=(
+            "Rebuild from analysis_legs(decided_only=True) instead of graded_props JSON + step8. "
+            "Verified faces, attach-ok, stale/SOURCE_BOARD_DATE dropped. Default output is "
+            "data/retrain_dataset_goblin_clean_2026-10-28.csv (does not overwrite retrain_dataset.csv)."
+        ),
+    )
+    ap.add_argument(
         "--output",
         type=Path,
         default=None,
@@ -1142,6 +1607,12 @@ def main() -> int:
     if args.diagnose_tennis:
         return diagnose_tennis_zero_join(root)
 
+    if args.from_analysis_legs:
+        dated = root / "data" / "retrain_dataset_goblin_clean_2026-10-28.csv"
+        dest = Path(args.output).expanduser().resolve() if args.output is not None else dated
+        frame = build_from_analysis_legs(root, output=dest)
+        return 0 if not frame.empty else 1
+
     before_cov_df, after_cov_df = _load_graded_workbook_rows(root)
     before_cov = coverage_report(before_cov_df)
     after_cov = coverage_report(after_cov_df)
@@ -1155,13 +1626,6 @@ def main() -> int:
 
     df["result_u"] = df["result"].astype(str).str.strip().str.upper()
     decided = df[df["result_u"].isin(("HIT", "MISS"))].copy()
-    # Cells whose stored actuals are not real stat values (Tennis Aces/DF/1st Set Aces zero-fill,
-    # CFB/NFL Pass Attempts zero-fill, NHL Faceoffs Won units). See utils/grade_cell_exclusions.
-    from utils.grade_cell_exclusions import drop_excluded
-
-    _n_before_excl = len(decided)
-    decided = drop_excluded(decided)
-    print(f"[retrain] grade-cell exclusions removed {_n_before_excl - len(decided):,} decided rows")
     decided["result_binary"] = (decided["result_u"] == "HIT").astype(int)
 
     from_s = str(args.from_date or "").strip()[:10]
@@ -1464,8 +1928,10 @@ def main() -> int:
                 if c not in m.columns:
                     m[c] = np.nan
                 m.loc[~m["_joined"], c] = np.nan
-            if "_file_d" in m.columns and "_game_d" in m.columns:
-                m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
+            if "_game_d" not in m.columns:
+                m["_game_d"] = pd.NaT
+            m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
+            m = m.copy()
         elif sk_u == "TENNIS":
             m = g.copy()
             m["_joined"] = False
@@ -1507,6 +1973,7 @@ def main() -> int:
             if "_game_d" not in m.columns:
                 m["_game_d"] = pd.NaT
             m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
+            m = m.copy()
         else:
             loose_pick = sk_u in ("NHL", "SOCCER")
             if loose_pick:
@@ -1526,6 +1993,13 @@ def main() -> int:
             m = _merge_step8(g, merge_on, dedupe_keys)
             m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
 
+        if "_joined" not in m.columns:
+            m["_joined"] = False
+        if "_date_diff" not in m.columns:
+            if "_file_d" in m.columns and "_game_d" in m.columns:
+                m["_date_diff"] = (m["_file_d"] - m["_game_d"]).abs().dt.days
+            else:
+                m["_date_diff"] = np.nan
         m = m.sort_values(["_joined", "_date_diff"], ascending=[False, True])
         dedupe_keys = ["file_date", "sport", "player", "prop", "line", "pick_type", "direction", "result_binary"]
         dedupe_keys = [k for k in dedupe_keys if k in m.columns]
@@ -1720,6 +2194,13 @@ def main() -> int:
         except Exception as e:
             print(f"[retrain] MLB opp_team_id backfill failed: {e}")
 
+    try:
+        from enrich_retrain_from_caches import enrich_retrain_dataframe
+
+        out_df = enrich_retrain_dataframe(out_df, root)
+    except Exception as e:
+        print(f"[retrain] cache enrich failed: {e}")
+
     # Critical training hygiene: supervised target must be present.
     # Keep only rows with known hit outcome before any final export.
     before_hit = len(out_df)
@@ -1749,7 +2230,11 @@ def main() -> int:
         "blended_score",
         "opp_team_id",
     ]
-    drop_cols = [c for c in drop_cols if c not in keep_always]
+    drop_cols = [
+        c
+        for c in drop_cols
+        if c not in keep_always and c not in ENRICHMENT_RAW_COLS and c not in JOIN_FEATURE_COLS
+    ]
     if drop_cols:
         out_df = out_df.drop(columns=drop_cols, errors="ignore")
     print(f"Dropped {len(drop_cols)} all-null columns: {drop_cols}")
@@ -1787,7 +2272,20 @@ def main() -> int:
         jr = round(100.0 * jn / ng, 2) if ng else 0.0
         print(f"  sport={sp}  decided={ng:,}  joined={jn:,}  join_rate%={jr}  unjoined%={up}")
 
-    sport_labels = ["NBA", "NHL", "MLB", "Soccer", "WNBA", "Tennis"]
+    sport_labels = [
+        "NBA",
+        "NHL",
+        "MLB",
+        "Soccer",
+        "WNBA",
+        "Tennis",
+        "NFL",
+        "CFB",
+        "CBB",
+        "WCBB",
+        "Golf",
+        "CFB1H",
+    ]
     sport_norm = out_df.get("sport", pd.Series("", index=out_df.index)).astype(str).str.strip().str.upper()
     for sport in sport_labels:
         key = "SOCCER" if sport == "Soccer" else sport.upper()

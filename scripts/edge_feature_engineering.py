@@ -28,6 +28,56 @@ SPORT_ENCODING = {
     "NBA1Q": 6,
     "WNBA": 7,
     "TENNIS": 8,
+    "GOLF": 9,
+    "NFL": 10,
+    "NFLP": 10,
+    "CFB": 11,
+    "CFB1H": 11,
+    "WCBB": 1,
+}
+
+# Frozen prop-category codes for the next retrain. Unknown props share 99.
+# Live pickle ignores this column until a promote.
+_PROP_ENCODING: dict[str, float] = {
+    "points": 0,
+    "rebounds": 1,
+    "assists": 2,
+    "steals": 3,
+    "blocks": 4,
+    "turnovers": 5,
+    "threes": 6,
+    "3_pt_made": 6,
+    "3pt_made": 6,
+    "pra": 7,
+    "pts_rebs_asts": 7,
+    "hits": 8,
+    "total_bases": 9,
+    "strikeouts": 10,
+    "hitter_strikeouts": 10,
+    "pitcher_strikeouts": 11,
+    "runs": 12,
+    "rbi": 13,
+    "hits_runs_rbis": 14,
+    "singles": 15,
+    "walks": 16,
+    "outs": 17,
+    "earned_runs": 18,
+    "saves": 19,
+    "goals": 20,
+    "shots": 21,
+    "shots_on_target": 22,
+    "sog": 22,
+    "aces": 23,
+    "double_faults": 24,
+    "games_won": 25,
+    "total_games": 25,
+    "breaks": 26,
+    "passing_yards": 27,
+    "rushing_yards": 28,
+    "receiving_yards": 29,
+    "receptions": 30,
+    "fantasy_score": 31,
+    "combo": 32,
 }
 
 FEATURE_COLUMNS: list[str] = [
@@ -138,6 +188,28 @@ FEATURE_COLUMNS: list[str] = [
     "player_goals_minus_xg",
     "player_shots_per90",
     "xg_tier_encoded",
+    # Shared upgrades (live pickle ignores extras until retrain)
+    "prop_encoded",
+    "avg_season_vs_line",
+    "stat_def_rank",
+    "stat_def_tier_encoded",
+    # Tennis-only (excluded from Jun-13 tree; wired for next retrain)
+    "surface_encoded",
+    "aces_per_match_mean",
+    "first_serve_pct",
+    "win_rate_on_surface",
+    "games_won_per_match",
+    "surface_specialist",
+    "surface_struggle",
+    "n_matches_on_surface",
+    "h2h_win_rate_on_surface",
+    # Football (NFL/CFB; live pickle ignores extras until retrain)
+    "snap_pct_L3",
+    "target_share_L3",
+    "route_pct_L3",
+    # Clean-ledger adds (Goblin specialist 2026-10-28; live pickle ignores until promote)
+    "l5_current_season_n",
+    "clean_minutes",
 ]
 
 # Post-game / label-adjacent columns — never tree inputs (trainer scopes FEATURE_COLUMNS;
@@ -209,6 +281,11 @@ SPORT_FEATURE_OVERRIDES: dict[str, list[str]] = {
         "surface_specialist",
         "surface_struggle",
         "n_matches_on_surface",
+        "h2h_win_rate_on_surface",
+        "prop_encoded",
+        "avg_season_vs_line",
+        "stat_def_rank",
+        "stat_def_tier_encoded",
     ],
     "NBA1H": [
         "h1_hit_rate_over",
@@ -218,6 +295,18 @@ SPORT_FEATURE_OVERRIDES: dict[str, list[str]] = {
         "h1_line_value_ratio",
         "h1_implied_total",
         "q1_pace_proxy",
+    ],
+    "NFL": [
+        "snap_pct_L3",
+        "target_share_L3",
+        "route_pct_L3",
+        "role_stability_score",
+    ],
+    "CFB": [
+        "snap_pct_L3",
+        "target_share_L3",
+        "route_pct_L3",
+        "role_stability_score",
     ],
     "NBA": [
         "usage_pct",
@@ -405,6 +494,10 @@ def _norm_sport(sport: str) -> str:
     x = str(sport or "").strip().upper()
     if x == "FOOTBALL" or x == "SOC":
         return "SOCCER"
+    if x in ("NFL-PRESEASON", "NFL PRESEASON"):
+        return "NFLP"
+    if x in ("CFB1H", "CFB1"):
+        return "CFB"
     return x
 
 
@@ -534,6 +627,18 @@ def _minutes_base_value(df: pd.DataFrame, sport: str) -> pd.Series:
         g = avg_l10.fillna(toi).fillna(avg_l5)
         return pd.Series(np.where(is_g, g, sk), index=idx).astype(float)
 
+    # Basketball: real MPG only — never fall back to prop-stat averages.
+    if sp in ("NBA", "WNBA", "NBA1H", "NBA1Q", "CBB", "WCBB"):
+        real = _to_num(
+            _first_col(df, ("min_last5_avg", "min_per_game", "min_season_avg", "avg_minutes"))
+        )
+        return real.astype(float)
+
+    if sp in ("NFL", "NFLP", "CFB"):
+        snap = _to_num(_first_col(df, ("snap_pct_L3", "snap_pct_season", "snap_pct", "Snap L3")))
+        snap = snap.where(snap.isna() | (snap > 1.0), snap * 100.0)
+        return snap.astype(float)
+
     base = avg_l10.fillna(avg_min).fillna(avg_l5)
     if sp == "SOCCER":
         base = base.fillna(_to_num(_first_col(df, ("minutes_per_game", "avg_minutes_L10"))))
@@ -544,12 +649,28 @@ def _minutes_tier_numeric(df: pd.DataFrame, sport: str) -> pd.Series:
     sp = _norm_sport(sport)
     m = _minutes_base_value(df, sport)
     out = pd.Series(0.0, index=df.index)
-    if sp in ("NBA", "CBB"):
+    if sp in ("NBA", "CBB", "WCBB"):
         if sp == "NBA":
             out = np.where(m >= 28, 3.0, np.where(m >= 22, 2.0, np.where(m >= 15, 1.0, 0.0)))
         else:
             out = np.where(m >= 25, 3.0, np.where(m >= 20, 2.0, np.where(m >= 12, 1.0, 0.0)))
         return pd.Series(out, index=df.index)
+    if sp in ("NFL", "NFLP", "CFB"):
+        labels = df.get("minutes_tier")
+        mapped = pd.Series(np.nan, index=df.index, dtype=float)
+        if labels is not None:
+            mapped = (
+                labels.astype(str)
+                .str.strip()
+                .str.upper()
+                .map({"HIGH": 2.0, "MEDIUM": 1.0, "LOW": 0.0})
+                .astype(float)
+            )
+        snap_tier = pd.Series(
+            np.where(m >= 70, 2.0, np.where(m >= 40, 1.0, np.where(m.notna(), 0.0, np.nan))),
+            index=df.index,
+        )
+        return mapped.where(mapped.notna(), snap_tier)
     if sp == "NHL":
         is_g = _is_nhl_goalie_row(df)
         out = np.where(
@@ -627,6 +748,18 @@ def _prop_type_key(df: pd.DataFrame) -> pd.Series:
     )
 
 
+def _prop_encoded_series(df: pd.DataFrame) -> pd.Series:
+    raw = _prop_type_key(df)
+    tok = raw.map(lambda s: re.sub(r"[^a-z0-9]+", "_", str(s or "")).strip("_"))
+    codes = tok.map(_PROP_ENCODING)
+    return pd.to_numeric(codes, errors="coerce").fillna(99.0)
+
+
+def _bool01_series(s: pd.Series) -> pd.Series:
+    t = s.astype(str).str.strip().str.lower()
+    return t.isin(["1", "true", "yes", "y"]).astype(float)
+
+
 def _team_key(df: pd.DataFrame) -> pd.Series:
     return _first_col(df, ("team", "Team", "pp_team")).astype(str).str.strip().str.lower()
 
@@ -675,8 +808,29 @@ def build_feature_vector(df: pd.DataFrame, sport: str) -> pd.DataFrame:
     is_under = dirs.eq("UNDER")
 
     line_score = _to_num(_first_col(out, ("line_score", "line")))
-    def_rank = _to_num(_first_col(out, ("def_rank", "OVERALL_DEF_RANK", "OPP_OVERALL_DEF_RANK")))
-    def_te = _def_tier_encoded_series(out)
+    overall_rank = _to_num(_first_col(out, ("def_rank", "OVERALL_DEF_RANK", "OPP_OVERALL_DEF_RANK")))
+    stat_def_rank = _to_num(_first_col(out, ("stat_def_rank",)))
+    if sp == "SOCCER":
+        shots_rk = _to_num(_first_col(out, ("SHOTS_DEF_RANK",)))
+        is_shot = _prop_type_key(out).str.contains("shot", na=False)
+        stat_def_rank = stat_def_rank.where(stat_def_rank.notna(), shots_rk.where(is_shot, np.nan))
+    def_rank = stat_def_rank.where(stat_def_rank.notna(), overall_rank)
+    if "stat_def_tier" in out.columns:
+        tier_pref = out["stat_def_tier"].astype(str).str.strip()
+        blank = tier_pref.eq("") | tier_pref.str.lower().isin(["nan", "none", "n/a"])
+        overall_tier = _first_col(out, ("def_tier", "DEF_TIER", "defense_tier"))
+        work = out.copy()
+        work["def_tier"] = overall_tier.where(blank, tier_pref)
+        def_te = _def_tier_encoded_series(work)
+    elif sp == "SOCCER" and "SHOTS_DEF_TIER" in out.columns:
+        shots_tier = out["SHOTS_DEF_TIER"].astype(str).str.strip()
+        is_shot = _prop_type_key(out).str.contains("shot", na=False)
+        overall_tier = _first_col(out, ("def_tier", "DEF_TIER", "defense_tier"))
+        work = out.copy()
+        work["def_tier"] = overall_tier.where(~is_shot, shots_tier)
+        def_te = _def_tier_encoded_series(work)
+    else:
+        def_te = _def_tier_encoded_series(out)
 
     hr5 = _scale_hit_pct(_first_col(out, ("hit_rate_over_L5", "line_hit_rate_over_ou_5")))
     hr10 = _scale_hit_pct(_first_col(out, ("hit_rate_over_L10", "line_hit_rate_over_ou_10")))
@@ -688,8 +842,10 @@ def build_feature_vector(df: pd.DataFrame, sport: str) -> pd.DataFrame:
     ls_safe = line_score.replace(0, np.nan)
     avg_l5 = _to_num(_first_col(out, ("avg_L5", "stat_last5_avg")))
     avg_l10 = _to_num(_first_col(out, ("avg_L10", "stat_last10_avg")))
+    avg_season = _to_num(_first_col(out, ("avg_season", "stat_season_avg", "intel_season_avg")))
     av5vl = ((avg_l5 - line_score) / ls_safe).clip(-2.0, 2.0)
     av10vl = ((avg_l10 - line_score) / ls_safe).clip(-2.0, 2.0)
+    avsvn = ((avg_season - line_score) / ls_safe).clip(-2.0, 2.0)
 
     # Play-side edge: same convention as prop ML (ml_play_side_edge / step7 _build_*_ml_X).
     # Raw slate edge is projection - line; good UNDERs are negative raw — flip so the feature
@@ -738,6 +894,10 @@ def build_feature_vector(df: pd.DataFrame, sport: str) -> pd.DataFrame:
 
     out["avg_L5_vs_line"] = av5vl
     out["avg_L10_vs_line"] = av10vl
+    out["avg_season_vs_line"] = avsvn
+    out["prop_encoded"] = _prop_encoded_series(out)
+    out["stat_def_rank"] = stat_def_rank
+    out["stat_def_tier_encoded"] = def_te
     out["edge"] = edge
     out["prop_score"] = prop_score
     out["sport_encoded"] = sport_enc
@@ -784,7 +944,6 @@ def build_feature_vector(df: pd.DataFrame, sport: str) -> pd.DataFrame:
         "park_factor_overall",
         "wind_speed_mph",
         "wind_out_to_cf",
-        "role_stability_score",
     ):
         if col not in out.columns:
             out[col] = np.nan
@@ -792,6 +951,12 @@ def build_feature_vector(df: pd.DataFrame, sport: str) -> pd.DataFrame:
             out[col] = np.nan
         elif col in ("top_of_order", "wind_out_to_cf"):
             out[col] = _to_num(out[col]).fillna(0.0)
+
+    rs = _to_num(_first_col(out, ("role_stability_score",)))
+    if sp in ("MLB", "NBA", "NFL", "NFLP", "CFB"):
+        out["role_stability_score"] = rs
+    else:
+        out["role_stability_score"] = np.nan
 
     if sp != "MLB":
         out["pitcher_advantage_encoded"] = np.nan
@@ -916,6 +1081,54 @@ def build_feature_vector(df: pd.DataFrame, sport: str) -> pd.DataFrame:
 
     if sp != "SOCCER":
         out["xg_tier_encoded"] = np.nan
+
+    tennis_num = (
+        "surface_encoded",
+        "aces_per_match_mean",
+        "first_serve_pct",
+        "win_rate_on_surface",
+        "games_won_per_match",
+        "n_matches_on_surface",
+        "h2h_win_rate_on_surface",
+    )
+    tennis_bool = ("surface_specialist", "surface_struggle")
+    if sp == "TENNIS":
+        out["surface_encoded"] = _to_num(_first_col(out, ("surface_encoded",)))
+        if out["surface_encoded"].isna().all() and "surface" in out.columns:
+            surf = out["surface"].astype(str).str.strip().str.lower()
+            out["surface_encoded"] = surf.map({"hard": 0.0, "clay": 1.0, "grass": 2.0})
+        for col in tennis_num:
+            if col == "surface_encoded":
+                continue
+            out[col] = _to_num(_first_col(out, (col,)))
+        for col in tennis_bool:
+            out[col] = _bool01_series(_first_col(out, (col,)))
+    else:
+        for col in (*tennis_num, *tennis_bool):
+            out[col] = np.nan
+
+    football_sp = sp in ("NFL", "NFLP", "CFB")
+    snap = _to_num(_first_col(out, ("snap_pct_L3", "Snap L3", "snap_pct_season", "snap_pct")))
+    tgt = _to_num(_first_col(out, ("target_share_L3", "Tgt Share L3", "target_share_season")))
+    route = _to_num(_first_col(out, ("route_pct_L3", "Route % L3", "route_pct_season")))
+    if football_sp:
+        snap = snap.where(snap.isna() | (snap > 1.0), snap * 100.0)
+        tgt = tgt.where(tgt.isna() | (tgt > 1.0), tgt * 100.0)
+        route = route.where(route.isna() | (route > 1.0), route * 100.0)
+        out["snap_pct_L3"] = snap
+        out["target_share_L3"] = tgt
+        out["route_pct_L3"] = route
+    else:
+        out["snap_pct_L3"] = np.nan
+        out["target_share_L3"] = np.nan
+        out["route_pct_L3"] = np.nan
+
+    out["l5_current_season_n"] = _to_num(
+        _first_col(out, ("l5_current_season_n", "L5 Current RS N"))
+    )
+    cm_raw = _first_col(out, ("clean_minutes", "Clean Minutes"))
+    cm_num = _to_num(cm_raw)
+    out["clean_minutes"] = cm_num.where(cm_num.notna(), _bool01_series(cm_raw))
 
     return out
 
