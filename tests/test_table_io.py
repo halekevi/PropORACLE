@@ -11,8 +11,10 @@ from proporacle.data.table_io import (
     copy_parquet_sidecar,
     format_step8_meta_banner,
     infer_slate_date_from_path,
+    nba_required_columns_all_blank,
     parquet_available,
     parquet_sidecar_path,
+    read_step8_meta_freshness,
     read_table,
     read_table_str,
     step8_freshness_label,
@@ -113,6 +115,52 @@ def test_step8_meta_banner_marks_stale(tmp_path: Path):
     raw = pd.read_excel(dated, sheet_name="ALL")
     assert list(raw["player"]) == ["Chen"]
     assert list(read_table(dated, prefer_parquet=False)["player"]) == ["Chen"]
+
+
+def test_nba_blank_safety_columns_mark_freshness_fail(tmp_path: Path):
+    assert step8_freshness_label("2026-10-28", "2026-10-28") == "OK"
+    assert step8_freshness_label("2026-10-28", "2026-10-28", column_fail=True) == "FAIL"
+    assert step8_freshness_label("2026-10-20", "2026-10-21", column_fail=True) == "STALE"
+
+    blank = pd.DataFrame(
+        {
+            "Player": ["X"],
+            "L5 Current RS N": [None],
+            "Current Season RS N": [None],
+            "Clean Minutes": [None],
+            "Minutes Flag": [None],
+        }
+    )
+    assert nba_required_columns_all_blank(blank) == [
+        "L5 Current RS N",
+        "Current Season RS N",
+        "Clean Minutes",
+        "Minutes Flag",
+    ]
+    filled = blank.copy()
+    filled["L5 Current RS N"] = [3]
+    filled["Current Season RS N"] = [4]
+    filled["Clean Minutes"] = [True]
+    filled["Minutes Flag"] = ["ok"]
+    assert nba_required_columns_all_blank(filled) == []
+
+    dated = tmp_path / "outputs" / "2026-10-28" / "nba" / "step8_all_direction_clean.xlsx"
+    dated.parent.mkdir(parents=True)
+    write_excel_sheets(dated, {"ALL": blank}, run_date="2026-10-28")
+    assert read_step8_meta_freshness(dated) == "FAIL"
+    meta = pd.read_excel(dated, sheet_name="_META")
+    assert "FAIL" in str(meta["banner"].iloc[0])
+    assert "L5 Current RS N" in str(meta["blank_cols"].iloc[0])
+
+    nfl = tmp_path / "outputs" / "2026-10-28" / "nfl" / "step8_nfl_direction_clean.xlsx"
+    nfl.parent.mkdir(parents=True)
+    write_excel_sheets(nfl, {"ALL": blank}, run_date="2026-10-28")
+    assert read_step8_meta_freshness(nfl) == "OK"
+
+    wnba = tmp_path / "outputs" / "2026-10-28" / "wnba" / "step8_wnba_direction_clean.xlsx"
+    wnba.parent.mkdir(parents=True)
+    write_excel_sheets(wnba, {"ALL": blank}, run_date="2026-10-28")
+    assert read_step8_meta_freshness(wnba) == "OK"
 
 
 def test_read_table_skips_legacy_row0_banner(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):

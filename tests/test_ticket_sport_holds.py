@@ -72,9 +72,17 @@ def test_nba_mixer_thin_rs_row_tightens_only():
     assert nba_mixer_thin_rs_row({"sport": "WNBA", "current_season_rs_n": 1}) is False
     assert nba_mixer_thin_rs_row({"sport": "NBA"}) is True
     assert nba_mixer_thin_rs_row({"sport": "NBA", "current_season_rs_n": 3}) is True
-    assert nba_mixer_thin_rs_row({"sport": "NBA", "current_season_rs_n": 5}) is False
+    assert nba_mixer_thin_rs_row(
+        {"sport": "NBA", "current_season_rs_n": 5, "l5_current_season_n": 5}
+    ) is False
+    assert nba_mixer_thin_rs_row({"sport": "NBA", "current_season_rs_n": 5}) is True
+    assert nba_mixer_thin_rs_row(
+        {"sport": "NBA", "current_season_rs_n": 8, "l5_current_season_n": 0}
+    ) is False
     assert nba_mixer_thin_rs_row({"sport": "NBA1Q", "Current Season RS N": 4}) is True
-    assert nba_mixer_thin_rs_row({"sport": "NBA1H", "current_season_rs_n": 8}) is False
+    assert nba_mixer_thin_rs_row(
+        {"sport": "NBA1H", "current_season_rs_n": 8, "l5_current_season_n": 3}
+    ) is False
 
 
 def test_nhl_mixer_held_by_default():

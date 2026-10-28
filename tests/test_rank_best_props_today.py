@@ -13,7 +13,9 @@ sys.path.insert(0, str(_REPO / "scripts"))
 from rank_best_props_today import (  # noqa: E402
     _atp_tier_from_rank,
     _avg_windows,
+    _nba_thin_rs,
     _over_d_ok,
+    _promo,
     _under_d_ok,
     bucket,
     filter_step8_to_slate_date,
@@ -69,6 +71,36 @@ def test_mlb_hitter_strikeouts_d_invert():
     assert not _over_d_ok("MLB", "Elite", "Hits")
     assert _under_d_ok("MLB", "Elite", "Hits")
     assert _under_d_ok("MLB", "Above Avg", "Hits")
+
+
+def test_nba_thin_rs_caps_diamond():
+    gold = {
+        "sport": "NBA",
+        "badge": "Gold",
+        "l10": 9,
+        "season_hr": 0.85,
+        "season_n": 12,
+        "current_season_rs_n": 3,
+    }
+    assert _nba_thin_rs(gold)
+    assert _promo(gold) == "Gold"
+    gold["current_season_rs_n"] = 12
+    gold["l5_current_season_n"] = 5
+    assert not _nba_thin_rs(gold)
+    assert _promo(gold) == "Diamond"
+    missing = {
+        "sport": "NBA",
+        "badge": "Gold",
+        "l10": 9,
+        "season_hr": 0.85,
+        "season_n": 12,
+    }
+    assert _nba_thin_rs(missing)
+    assert _promo(missing) == "Gold"
+    blank_l5 = dict(gold)
+    blank_l5.pop("l5_current_season_n", None)
+    assert _nba_thin_rs(blank_l5)
+    assert _promo(blank_l5) == "Gold"
 
 
 def test_tennis_atp_tiers():

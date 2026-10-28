@@ -149,6 +149,129 @@ def reset_injury_out_cache() -> None:
     _LATEST_OUT_KEYS = None
 
 
+def _fold_name(raw: object) -> str:
+    try:
+        import sys
+        from pathlib import Path
+
+        _root = Path(__file__).resolve().parents[1]
+        _scripts = _root / "scripts"
+        for _p in (_root, _scripts):
+            if str(_p) not in sys.path:
+                sys.path.insert(0, str(_p))
+        from player_name_norm import fold_player_name
+
+        return fold_player_name(raw)
+    except Exception:
+        return str(raw or "").strip().lower()
+
+
+def _feed_out_names(
+    sport: str,
+    *,
+    feed_rows: list[dict] | None = None,
+) -> list[tuple[str, str]]:
+    """Unique (folded name, display name) for injury-feed OUT players in ``sport``."""
+    sport_u = str(sport or "").strip().upper()
+    rows = feed_rows
+    if rows is None:
+        try:
+            from utils.injury_collect import load_latest_rows
+
+            rows = load_latest_rows()
+        except Exception:
+            rows = []
+    out: dict[str, str] = {}
+    for r in rows or []:
+        sp = str(r.get("sport") or r.get("Sport") or "").strip().upper()
+        if sport_u and sp and sp != sport_u:
+            continue
+        if normalize_inj_status(r.get("status") or r.get("injury_status") or r) != "OUT":
+            continue
+        display = str(r.get("player") or r.get("player_name") or r.get("Player") or "").strip()
+        fold = _fold_name(display)
+        if fold:
+            out.setdefault(fold, display or fold)
+    return sorted(out.items(), key=lambda kv: kv[1].lower())
+
+
+def drop_injury_out_rows(
+    df,
+    *,
+    log_prefix: str = "OUT dropped",
+    sport: str = "NBA",
+    feed_rows: list[dict] | None = None,
+):
+    """Remove OUT / IR / suspended rows from a board frame.
+
+    Drops board-status OUT **and** injury-feed OUT names that match a board
+    player (late scratch still listed as healthy). Logs feed_out / matched /
+    unmatched so ``0 dropped`` is only trusted when the feed actually matched.
+    """
+    import pandas as pd
+
+    player_col = "player" if "player" in df.columns else (
+        "Player" if "Player" in df.columns else None
+    )
+    cols = [
+        c
+        for c in (
+            "injury_status",
+            "player_injury_status",
+            "Injury Status",
+            "Player Injury Status",
+        )
+        if c in df.columns
+    ]
+    feed = _feed_out_names(sport, feed_rows=feed_rows)
+    feed_folds = {fold for fold, _disp in feed}
+    n_feed = len(feed)
+    board_folds: set[str] = set()
+    if player_col and not getattr(df, "empty", True):
+        board_folds = {_fold_name(v) for v in df[player_col].tolist()}
+        board_folds.discard("")
+    matched = [(fold, disp) for fold, disp in feed if fold in board_folds]
+    unmatched = [(fold, disp) for fold, disp in feed if fold not in board_folds]
+    n_matched = len(matched)
+    n_unmatched = len(unmatched)
+
+    if getattr(df, "empty", True):
+        feed_bit = "feed=empty" if n_feed == 0 else (
+            f"feed_out={n_feed} matched={n_matched} unmatched={n_unmatched}"
+        )
+        print(f"{log_prefix}: 0 players / 0 rows (empty board; {feed_bit})")
+        return df
+
+    mask = pd.Series(False, index=df.index)
+    seen_status: list[str] = []
+    for c in cols:
+        raw = df[c].fillna("").astype(str)
+        uniq = raw.unique().tolist()
+        bad = {v for v in uniq if is_injury_out(v)}
+        if bad:
+            seen_status.extend(sorted(bad))
+            mask = mask | raw.isin(bad)
+    if player_col and feed_folds:
+        folded = df[player_col].map(_fold_name)
+        mask = mask | folded.isin(feed_folds)
+
+    n_rows = int(mask.sum())
+    n_players = int(df.loc[mask, player_col].nunique()) if player_col and n_rows else 0
+    statuses = ",".join(sorted(set(seen_status))) if seen_status else "none"
+    if n_feed == 0:
+        feed_bit = "feed_out=0 feed=empty"
+    else:
+        feed_bit = f"feed_out={n_feed} matched={n_matched} unmatched={n_unmatched}"
+    print(f"{log_prefix}: {n_players} players / {n_rows} rows (status={statuses}; {feed_bit})")
+    if unmatched:
+        sample = ", ".join(disp for _f, disp in unmatched[:8])
+        extra = "" if n_unmatched <= 8 else f" +{n_unmatched - 8} more"
+        print(f"{log_prefix} unmatched: {sample}{extra}")
+    if n_rows:
+        return df.loc[~mask].copy()
+    return df
+
+
 def is_injury_out(row_or_raw: object) -> bool:
     """Hard ticket / list drop: player cannot play.
 

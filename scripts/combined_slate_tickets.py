@@ -13710,6 +13710,17 @@ def _board_history_enrichment(df: pd.DataFrame, sport_label: str) -> pd.DataFram
 # ── Load & normalize NBA ───────────────────────────────────────────────────────
 def load_nba(path: str) -> pd.DataFrame:
     path = resolve_input_path(path, fallback_filename="step8_all_direction_clean.xlsx")
+    from proporacle.data.table_io import read_step8_meta_freshness
+
+    fresh = read_step8_meta_freshness(path)
+    if fresh == "FAIL":
+        print(
+            f"[load_nba] skip step8 freshness=FAIL {path} "
+            "(required safety columns blank)"
+        )
+        return pd.DataFrame()
+    if fresh == "STALE":
+        print(f"[load_nba] WARN step8 freshness=STALE {path}")
     df = _read_pipeline_table(path, sheet_order=("ALL",))
 
     df = df.rename(

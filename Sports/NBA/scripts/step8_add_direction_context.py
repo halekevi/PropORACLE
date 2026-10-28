@@ -49,6 +49,7 @@ from utils.step8_edge_direction import reconcile_signed_edge_abs_dataframe
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
+from proporacle.data.table_io import write_excel_sheets
 from scripts.l10_streak_utils import finalize_l10_ui_columns
 from utils.hit_tracking_columns import HIT_TRACKING_RENAME, attach_hit_tracking_columns
 from utils.stack_context_cols import STACK_CONTEXT_COLS, STACK_CONTEXT_RENAME
@@ -64,6 +65,13 @@ _ET = ZoneInfo("America/New_York")
 
 def _start_times_et(s: pd.Series) -> pd.Series:
     return pd.to_datetime(s, utc=True, errors="coerce").dt.tz_convert(_ET)
+
+
+def _drop_injury_out_rows(df: pd.DataFrame) -> pd.DataFrame:
+    """Hard-drop OUT / IR / suspended players from the step8 board. Logs the count."""
+    from utils.injury_gate import drop_injury_out_rows
+
+    return drop_injury_out_rows(df, log_prefix="NBA OUT dropped", sport="NBA")
 
 
 def _format_et_clock(et: pd.Series) -> pd.Series:
@@ -174,7 +182,13 @@ def write_sheet(wb, name, data):
     ws.freeze_panes = 'A2'
     ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}1"
 
-def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
+def build_clean_xlsx(
+    df: pd.DataFrame,
+    xlsx_path: str,
+    source_hint: str = "",
+    *,
+    as_of=None,
+):
     df2 = df.copy()
     if "minutes_tier" in df2.columns:
         df2["minutes_tier"] = df2["minutes_tier"].astype(object)
@@ -208,6 +222,30 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         if m_ok.any():
             keys = mt_num.loc[m_ok].round().astype("Int64")
             df2.loc[m_ok, "minutes_tier"] = keys.map(_min_tier_map).astype(str)
+
+    # RS / preseason mpg, Min Tier from role_mpg. Do not share a try with
+    # L5 season counts — a stale-DB minutes skip used to blank both.
+    try:
+        from utils.nba_minutes_role import attach_minutes_role_columns
+
+        df2 = attach_minutes_role_columns(df2, as_of=as_of, require_fresh=True)
+        n_min = int(pd.to_numeric(df2.get("clean_minutes"), errors="coerce").notna().sum()) if "clean_minutes" in df2.columns else 0
+        n_flag = int(
+            df2["minutes_flag"].astype(str).str.strip().ne("").sum()
+        ) if "minutes_flag" in df2.columns else 0
+        print(f"→ step8 minutes/role attached clean_minutes={n_min}/{len(df2)} minutes_flag={n_flag}/{len(df2)}")
+    except Exception as exc:
+        print(f"⚠️  step8 minutes/role attach skipped: {exc}")
+
+    try:
+        from utils.nba_early_l5 import attach_nba_l5_season_counts
+
+        df2 = attach_nba_l5_season_counts(df2, as_of=as_of, require_fresh=True)
+        n_rs = int(pd.to_numeric(df2.get("current_season_rs_n"), errors="coerce").notna().sum()) if "current_season_rs_n" in df2.columns else 0
+        n_l5 = int(pd.to_numeric(df2.get("l5_current_season_n"), errors="coerce").notna().sum()) if "l5_current_season_n" in df2.columns else 0
+        print(f"→ step8 L5 season counts attached current_season_rs_n={n_rs}/{len(df2)} l5_current_season_n={n_l5}/{len(df2)}")
+    except Exception as exc:
+        print(f"⚠️  step8 L5 season counts skipped: {exc}")
 
     if "abs_edge" not in df2.columns and "edge" in df2.columns:
         df2["abs_edge"] = pd.to_numeric(df2["edge"], errors="coerce").abs()
@@ -418,7 +456,9 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         'l10_over', 'l10_under', 'l10_over_pct', 'l10_streak',
         'n_legs_sample',
         'OVERALL_DEF_RANK', 'DEF_TIER',
-        'minutes_tier', 'shot_role', 'usage_role',
+        'minutes_tier', 'clean_minutes', 'minutes_flag',
+        'current_season_rs_n', 'l5_current_season_n', 'is_early_season',
+        'shot_role', 'usage_role',
         'league', 'league_id',
         'pp_projection_id', 'projection_id',
         'void_reason',
@@ -502,6 +542,11 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
         'n_legs_sample': 'N Legs Sample',
         'OVERALL_DEF_RANK': 'Def Rank', 'DEF_TIER': 'Def Tier',
         'minutes_tier': 'Min Tier', 'shot_role': 'Shot Role', 'usage_role': 'Usage Role',
+        'clean_minutes': 'Clean Minutes',
+        'minutes_flag': 'Minutes Flag',
+        'current_season_rs_n': 'Current Season RS N',
+        'l5_current_season_n': 'L5 Current RS N',
+        'is_early_season': 'Is Early Season',
         'void_reason': 'Void Reason',
         'usage_vacuum': 'usage_vacuum',
         'team_star_out': 'team_star_out',
@@ -550,15 +595,26 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str, source_hint: str = ""):
     }
     clean = clean.rename(columns=rename)
 
-    wb = Workbook()
-    wb.remove(wb.active)
-    write_sheet(wb, 'ALL', clean)
-    for tier in ['A', 'B', 'C', 'D']:
-        subset = clean[clean['Tier'] == tier].copy()
+    sheets = {"ALL": clean}
+    for tier in ["A", "B", "C", "D"]:
+        subset = clean[clean["Tier"] == tier].copy()
         if len(subset):
-            write_sheet(wb, f'Tier {tier}', subset)
-
-    wb.save(xlsx_path)
+            sheets[f"Tier {tier}"] = subset
+    slate = ""
+    for col in ("Game Date", "game_date"):
+        if col in clean.columns and len(clean):
+            dates = (
+                clean[col]
+                .dropna()
+                .astype(str)
+                .str.strip()
+                .str[:10]
+            )
+            dates = dates[dates.str.match(r"\d{4}-\d{2}-\d{2}", na=False)]
+            if len(dates):
+                slate = str(dates.mode().iloc[0])
+                break
+    write_excel_sheets(xlsx_path, sheets, slate_date=slate)
     print(f"📊 Clean XLSX saved → {xlsx_path}")
 
 def main() -> None:
@@ -667,6 +723,8 @@ def main() -> None:
     if carry_df is not None:
         out = reattach_enrichment_carry(out, carry_df, carry_cols, label=args.input)
 
+    out = _drop_injury_out_rows(out)
+
     # Save full CSV
     out.to_csv(args.output, index=False, encoding="utf-8-sig")
     print(f"✅ Saved → {args.output}")
@@ -679,7 +737,13 @@ def main() -> None:
     # Save clean XLSX (non-fatal — CSV is the recovery path)
     xlsx_path = args.xlsx if args.xlsx else args.output.replace(".csv", "_clean.xlsx")
     try:
-        build_clean_xlsx(out, xlsx_path, source_hint=args.input)
+        as_of = None
+        if (args.date or "").strip():
+            try:
+                as_of = date.fromisoformat(args.date.strip()[:10])
+            except ValueError:
+                as_of = None
+        build_clean_xlsx(out, xlsx_path, source_hint=args.input, as_of=as_of)
         _copy_dated_step8_nba(xlsx_path, (args.date or "").strip())
     except Exception as exc:
         print(f"⚠️  Clean XLSX skipped ({type(exc).__name__}: {exc})")

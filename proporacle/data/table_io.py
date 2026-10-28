@@ -474,14 +474,61 @@ def infer_slate_date_from_path(path: str | Path) -> str:
     return ""
 
 
-def step8_freshness_label(slate_date: str, run_date: str = "") -> str:
-    """STALE when slate_date is strictly older than run_date (default: ET today)."""
+_NBA_PATH_PARTS = frozenset({"nba", "nba1h", "nba1q", "nbap"})
+_NBA_REQUIRED_SAFETY_COLS: tuple[tuple[tuple[str, ...], str], ...] = (
+    (("l5_current_season_n", "L5 Current RS N"), "L5 Current RS N"),
+    (("current_season_rs_n", "Current Season RS N"), "Current Season RS N"),
+    (("clean_minutes", "Clean Minutes"), "Clean Minutes"),
+    (("minutes_flag", "Minutes Flag"), "Minutes Flag"),
+)
+_BLANK_CELL = frozenset({"", "nan", "none", "<na>", "<na>", "nat"})
+
+
+def path_looks_nba_step8(path: str | Path) -> bool:
+    p = Path(path)
+    if any(str(part).lower() in _NBA_PATH_PARTS for part in p.parts):
+        return True
+    stem = p.stem.lower()
+    # ``wnba`` contains ``nba`` as a substring — match NBA tokens only.
+    return (
+        stem.startswith("step8_nba")
+        or "_nba_" in stem
+        or stem.endswith("_nba")
+    )
+
+
+def _series_all_blank(series: pd.Series) -> bool:
+    if series is None or len(series) == 0:
+        return True
+    s = series.astype("string").fillna("").str.strip().str.lower()
+    return bool(s.isin(_BLANK_CELL).all())
+
+
+def nba_required_columns_all_blank(df: pd.DataFrame) -> list[str]:
+    """Display names of required NBA safety columns that are 100% blank."""
+    missing: list[str] = []
+    for names, label in _NBA_REQUIRED_SAFETY_COLS:
+        present = [n for n in names if n in df.columns]
+        if not present or all(_series_all_blank(df[n]) for n in present):
+            missing.append(label)
+    return missing
+
+
+def step8_freshness_label(
+    slate_date: str,
+    run_date: str = "",
+    *,
+    column_fail: bool = False,
+) -> str:
+    """STALE when slate_date is older than run_date; FAIL when NBA safety cols are blank."""
     slate = (slate_date or "").strip()[:10]
     run = (run_date or "").strip()[:10] or _et_today_iso()
     if len(slate) < 10 or len(run) < 10:
-        return ""
+        return "FAIL" if column_fail else ""
     if slate < run:
         return "STALE"
+    if column_fail:
+        return "FAIL"
     return "OK"
 
 
@@ -490,12 +537,13 @@ def format_step8_meta_banner(
     slate_date: str = "",
     run_date: str = "",
     build_time: str = "",
+    column_fail: bool = False,
 ) -> tuple[str, str]:
-    """Return (banner text, freshness label). freshness is STALE|OK|''."""
+    """Return (banner text, freshness label). freshness is STALE|FAIL|OK|''."""
     slate = (slate_date or "").strip()[:10]
     run = (run_date or "").strip()[:10] or _et_today_iso()
     built = (build_time or "").strip() or _now_build_stamp()
-    fresh = step8_freshness_label(slate, run)
+    fresh = step8_freshness_label(slate, run, column_fail=column_fail)
     bits = [
         f"slate_date={slate or 'UNKNOWN'}",
         f"build_time={built}",
@@ -504,6 +552,20 @@ def format_step8_meta_banner(
     if fresh:
         bits.append(fresh)
     return " | ".join(bits), fresh
+
+
+def read_step8_meta_freshness(path: str | Path) -> str:
+    """Read ``_META.freshness`` from an xlsx. Empty when the sheet is missing."""
+    p = Path(path)
+    if p.suffix.lower() not in {".xlsx", ".xlsm"} or not p.is_file():
+        return ""
+    try:
+        meta = pd.read_excel(p, sheet_name="_META")
+    except Exception:
+        return ""
+    if meta is None or getattr(meta, "empty", True) or "freshness" not in meta.columns:
+        return ""
+    return str(meta["freshness"].iloc[0] or "").strip().upper()
 
 
 def _style_xlsxwriter_sheet(
@@ -611,12 +673,28 @@ def write_excel_sheets(
     if not slate:
         slate = (os.environ.get("PROPORACLE_SLATE_DATE") or os.environ.get("PROPORACLE_DATE") or "").strip()[:10]
     run = (run_date or "").strip()[:10] or (os.environ.get("PROPORACLE_RUN_DATE") or "").strip()[:10] or _et_today_iso()
+    blank_cols: list[str] = []
+    column_fail = False
+    if stamp_meta and path_looks_nba_step8(p):
+        all_df = cleaned.get("ALL")
+        if all_df is None:
+            all_df = next(iter(cleaned.values()), None)
+        if all_df is not None and not all_df.empty:
+            blank_cols = nba_required_columns_all_blank(all_df)
+            column_fail = bool(blank_cols)
     banner, fresh = format_step8_meta_banner(
-        slate_date=slate, run_date=run, build_time=build_time
+        slate_date=slate,
+        run_date=run,
+        build_time=build_time,
+        column_fail=column_fail,
     )
-    stale = fresh == "STALE"
-    if stamp_meta and stale:
+    if stamp_meta and fresh == "STALE":
         print(f"[table_io] STALE step8 workbook slate_date={slate} run_date={run} -> {p.name}")
+    elif stamp_meta and fresh == "FAIL":
+        print(
+            f"[table_io] FAIL step8 workbook missing safety columns "
+            f"{blank_cols} slate_date={slate} -> {p.name}"
+        )
     elif stamp_meta:
         print(f"[table_io] step8 meta {banner}")
 
@@ -635,6 +713,7 @@ def write_excel_sheets(
                     "run_date": run,
                     "freshness": fresh or "",
                     "banner": banner,
+                    "blank_cols": ",".join(blank_cols),
                 }
             ]
         )

@@ -139,8 +139,8 @@ NBA_FAMILY_SPORTS = frozenset({"NBA", "NBA1H", "NBA1Q"})
 NBA_THIN_RS_HOLD_REASON = (
     "NBA mixer leg held: fewer than 5 current-season regular-season games. "
     "Card L5 is still last-season RS/playoffs for that player. Same shape as "
-    "team_changed. Missing current_season_rs_n holds. Does not lift the "
-    "sport-level mixer hold."
+    "team_changed. Missing current_season_rs_n or l5_current_season_n "
+    "holds. Does not lift the sport-level mixer hold."
 )
 
 
@@ -148,13 +148,8 @@ def nba_family_sport(sport: object) -> bool:
     return str(sport or "").strip().upper() in NBA_FAMILY_SPORTS
 
 
-def _row_current_season_rs_n(r: dict) -> int | None:
-    for key in (
-        "current_season_rs_n",
-        "Current Season RS N",
-        "n_current_season_rs",
-        "Current Season Rs N",
-    ):
+def _row_int_field(r: dict, keys: tuple[str, ...]) -> int | None:
+    for key in keys:
         raw = r.get(key)
         if raw is None:
             continue
@@ -173,12 +168,41 @@ def _row_current_season_rs_n(r: dict) -> int | None:
     return None
 
 
+def _row_current_season_rs_n(r: dict) -> int | None:
+    return _row_int_field(
+        r,
+        (
+            "current_season_rs_n",
+            "Current Season RS N",
+            "n_current_season_rs",
+            "Current Season Rs N",
+        ),
+    )
+
+
+def _row_l5_current_season_n(r: dict) -> int | None:
+    return _row_int_field(
+        r,
+        (
+            "l5_current_season_n",
+            "L5 Current RS N",
+            "L5rs",
+        ),
+    )
+
+
 def nba_mixer_thin_rs_row(r: dict) -> bool:
-    """True when this NBA-family row stays off tickets (missing n holds)."""
+    """True when this NBA-family row stays off tickets (missing n holds).
+
+    Blank ``current_season_rs_n`` or blank ``l5_current_season_n`` holds.
+    A filled 0 on L5 current-season n is a real count (all last-season L5),
+    not a missing column.
+    """
     if not nba_family_sport(r.get("sport")):
         return False
     n = _row_current_season_rs_n(r)
-    if n is None:
+    l5n = _row_l5_current_season_n(r)
+    if n is None or l5n is None:
         return True
     return n < NBA_THIN_RS_MIN
 

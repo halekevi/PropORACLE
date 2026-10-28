@@ -569,6 +569,30 @@ def _cfb_prior_fill(r: dict) -> bool:
     return flag in _CFB_PRIOR_FILL_FLAGS
 
 
+def _nba_thin_rs(r: dict) -> bool:
+    """True when NBA-family current-season RS n is missing or below 5.
+
+    Blank ``l5_current_season_n`` also caps (fail closed). A filled 0 is a
+    real count and does not cap by itself when RS n is >= 5.
+    """
+    sport = str(r.get("sport") or "").strip().upper()
+    if sport not in {"NBA", "NBA1H", "NBA1Q"}:
+        return False
+    n = _num(
+        r.get("current_season_rs_n")
+        or r.get("Current Season RS N")
+        or r.get("n_current_season_rs")
+    )
+    l5n = _num(
+        r.get("l5_current_season_n")
+        or r.get("L5 Current RS N")
+        or r.get("L5rs")
+    )
+    if n is None or l5n is None:
+        return True
+    return int(n) < 5
+
+
 def _promo(r: dict) -> str:
     gold = r.get("badge") == "Gold"
     l10 = r.get("l10")
@@ -579,7 +603,8 @@ def _promo(r: dict) -> str:
         and r["season_hr"] > 0.70
     )
     # Filled CFB L5 is listable; it is not a genuine 5-game 2026 Diamond/Platinum.
-    if gold and _cfb_prior_fill(r):
+    # NBA card L5 is last-season until 5 current RS games — same Gold cap.
+    if gold and (_cfb_prior_fill(r) or _nba_thin_rs(r)):
         return "Gold"
     if gold and l10_ok and szn_ok:
         return "Diamond"
@@ -1199,6 +1224,18 @@ def load_nba(root: Path, date: str) -> pd.DataFrame:
         break
     if df.empty:
         return pd.DataFrame()
+    if chosen is not None:
+        from proporacle.data.table_io import read_step8_meta_freshness
+
+        fresh = read_step8_meta_freshness(chosen)
+        if fresh == "FAIL":
+            print(
+                f"  [WARN] NBA skip step8 freshness=FAIL {chosen.name} "
+                "(required safety columns blank)"
+            )
+            return pd.DataFrame()
+        if fresh == "STALE":
+            print(f"  [WARN] NBA step8 freshness=STALE {chosen.name}")
     df = df.copy()
     df["sport"] = "NBA"
     df = filter_step8_to_slate_date(df, date, "NBA")
@@ -1289,6 +1326,16 @@ def recs(df: pd.DataFrame) -> list[dict]:
             "games_used": _num(r.get("games_used") or r.get("Games Used")),
             "l5_sample_n": _num(r.get("l5_sample_n") or r.get("L5 Sample N")),
             "l5_window_n": _num(r.get("l5_window_n") or r.get("L5 Window N")),
+            "current_season_rs_n": _num(
+                r.get("current_season_rs_n")
+                or r.get("Current Season RS N")
+                or r.get("n_current_season_rs")
+            ),
+            "l5_current_season_n": _num(
+                r.get("l5_current_season_n")
+                or r.get("L5 Current RS N")
+                or r.get("L5rs")
+            ),
             "l5_source_counts": _clean(
                 r.get("l5_source_counts") or r.get("L5 Source Counts")
             ),

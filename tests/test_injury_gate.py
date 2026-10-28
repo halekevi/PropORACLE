@@ -4,6 +4,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 
 from utils.injury_gate import (
+    drop_injury_out_rows,
     injury_snapshot_stale,
     is_injury_out,
     is_injury_soft_flag,
@@ -55,6 +56,43 @@ def test_stale_fail_closed() -> None:
     assert injury_snapshot_stale(None, now=now)
 
 
+def test_step8_drops_out_rows() -> None:
+    import pandas as pd
+
+    df = pd.DataFrame(
+        {
+            "player": ["A", "B", "B", "C"],
+            "injury_status": ["Out", "Questionable", "Questionable", ""],
+            "player_injury_status": ["OUT", "Questionable", "Questionable", "HEALTHY"],
+        }
+    )
+    out = drop_injury_out_rows(df, log_prefix="NBA OUT dropped", feed_rows=[])
+    assert list(out["player"]) == ["B", "B", "C"]
+
+
+def test_feed_out_matches_late_scratch(capsys) -> None:
+    import pandas as pd
+
+    df = pd.DataFrame(
+        {
+            "player": ["Jalen Brunson", "Jalen Brunson", "Josh Hart"],
+            "injury_status": ["healthy", "healthy", "Questionable"],
+        }
+    )
+    feed = [
+        {"sport": "NBA", "player": "Jalen Brunson", "status": "Out"},
+        {"sport": "NBA", "player": "Victor Wembanyama", "status": "Out"},
+        {"sport": "WNBA", "player": "Josh Hart", "status": "Out"},
+    ]
+    out = drop_injury_out_rows(
+        df, log_prefix="NBA OUT dropped", sport="NBA", feed_rows=feed
+    )
+    assert list(out["player"]) == ["Josh Hart"]
+    log = capsys.readouterr().out
+    assert "feed_out=2 matched=1 unmatched=1" in log
+    assert "Victor Wembanyama" in log
+
+
 def test_goblin70_drops_out() -> None:
     from utils.ticket_70_pool import goblin_70_eligible
 
@@ -69,8 +107,4 @@ def test_goblin70_drops_out() -> None:
         "l10_over": 8,
         "injury_status": "Out",
     }
-    # OUT short-circuits before sport keep / L10 gates.
     assert goblin_70_eligible(row) is False
-    row["injury_status"] = "Questionable"
-    # Soft flag alone must not be the OUT hard-drop (may still fail other gates).
-    assert is_injury_out(row) is False

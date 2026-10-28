@@ -244,12 +244,16 @@ def _read_nba_boxes(path: Path) -> pd.DataFrame:
         con.close()
 
 
-@lru_cache(maxsize=1)
-def load_nba_box_frame() -> pd.DataFrame:
+@lru_cache(maxsize=4)
+def load_nba_box_frame(require_fresh: bool = True) -> pd.DataFrame:
     """Union of NBA box caches (player + game_date).
 
     Canonical ref DB (env / pin / newest worktree) must include the last
     completed NBA slate. Sports/NBA copy may still merge playoff rows.
+
+    ``require_fresh=False`` still loads whatever boxes exist so step8 can
+    stamp minutes / RS-n columns; ``_META`` freshness FAIL is the board-level
+    gate when those columns stay blank.
     """
     from utils.proporacle_ref_db import log_ref_db
 
@@ -300,7 +304,8 @@ def load_nba_box_frame() -> pd.DataFrame:
     ):
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")
-    assert_nba_box_fresh(as_of=date.today(), df=df)
+    if require_fresh:
+        assert_nba_box_fresh(as_of=date.today(), df=df)
     return df
 
 
@@ -396,10 +401,41 @@ def role_changed_from_minutes(
 
 CLEAN_MINUTES_GAP = 3.0
 NO_MINUTES_TOKEN = "no_minutes_data"
+_NBA_FAMILY_SPORTS = frozenset({"NBA", "NBA1H", "NBA1Q", "NBAP"})
+_BLANK_TOKENS = frozenset({"", "nan", "none", "<na>", "<na>"})
+
+
+def _row_sport(getter) -> str:
+    for key in ("sport", "League", "league", "Sport"):
+        raw = getter(key)
+        if raw is None:
+            continue
+        s = str(raw).strip().upper()
+        if s and s.lower() not in _BLANK_TOKENS:
+            return s
+    return ""
+
+
+def _is_blank_minutes_value(raw: object) -> bool:
+    if raw is None:
+        return True
+    try:
+        if isinstance(raw, float) and raw != raw:
+            return True
+    except (TypeError, ValueError):
+        pass
+    s = str(raw).strip().lower()
+    return s in _BLANK_TOKENS
 
 
 def ticket_minutes_fail_closed(row: object) -> bool:
-    """Ticket-facing: ``no_minutes_data`` fails closed. Missing flag is fine."""
+    """Ticket-facing minutes gate.
+
+    ``no_minutes_data`` always fails closed. For NBA-family rows a blank
+    Clean Minutes also fails closed (the 10-28 board left the column empty
+    and the missing-flag path treated that as fine). NFL / CFB / MLB never
+    carry the column and stay exempt.
+    """
     getter = row.get if hasattr(row, "get") else None
     if getter is None:
         return False
@@ -411,16 +447,23 @@ def ticket_minutes_fail_closed(row: object) -> bool:
         "min_per_game",
         "min_season_avg",
         "clean_minutes",
+        "Clean Minutes",
     ):
         raw = getter(key)
         if raw is None:
             continue
         s = str(raw).strip().lower()
-        if not s or s in {"nan", "none"}:
+        if not s or s in _BLANK_TOKENS:
             continue
         if NO_MINUTES_TOKEN in s:
             return True
-    return False
+    sport = _row_sport(getter)
+    if sport not in _NBA_FAMILY_SPORTS:
+        return False
+    for key in ("clean_minutes", "Clean Minutes"):
+        if not _is_blank_minutes_value(getter(key)):
+            return False
+    return True
 
 
 def clean_minutes_ok(
@@ -449,6 +492,7 @@ def clean_minutes_ok(
 def player_minutes_profiles(
     *,
     as_of: date | None = None,
+    require_fresh: bool = True,
 ) -> dict[str, PlayerMinutesProfile]:
     """Key = normalized player name. Uses latest team from most recent game.
 
@@ -458,7 +502,7 @@ def player_minutes_profiles(
     Min Tier / role_mpg = season minutes (starter status). Preseason is stored
     separately and only drives the role_changed flag on attach.
     """
-    df = load_nba_box_frame()
+    df = load_nba_box_frame(require_fresh=require_fresh)
     if df.empty:
         return {}
     as_of = as_of or date.today()
@@ -555,7 +599,12 @@ def _status_from_preseason_starter(
     return _status_from_mpg(mpg)
 
 
-def attach_minutes_role_columns(df: pd.DataFrame, *, as_of: date | None = None) -> pd.DataFrame:
+def attach_minutes_role_columns(
+    df: pd.DataFrame,
+    *,
+    as_of: date | None = None,
+    require_fresh: bool = True,
+) -> pd.DataFrame:
     """Fill season/preseason minutes, l5 gap, Min Tier from season mpg.
 
     Preseason does not pull Min Tier down for rested starters. role_changed
@@ -563,7 +612,7 @@ def attach_minutes_role_columns(df: pd.DataFrame, *, as_of: date | None = None) 
     fields get no_minutes_data. clean_minutes marks the uncontaminated pool.
     """
     out = df.copy()
-    profiles = player_minutes_profiles(as_of=as_of)
+    profiles = player_minutes_profiles(as_of=as_of, require_fresh=require_fresh)
 
     def _ensure(col: str, default=None) -> None:
         if col not in out.columns:
