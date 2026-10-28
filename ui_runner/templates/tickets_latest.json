@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-28 02:23:43 UTC",
+  "generated_at": "2026-10-28 05:20:18 UTC",
   "date": "2026-10-28",
   "tennis_date": "2026-10-28",
   "ticket_track": "goblin70",
@@ -23,8 +23,8 @@
     "goblin_70_raw": 9,
     "standard_allowlist": 0,
     "standard_allowlist_raw": 0,
-    "standard_yolo": 0,
-    "standard_yolo_raw": 0,
+    "standard_yolo": 1,
+    "standard_yolo_raw": 1,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
