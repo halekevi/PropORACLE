@@ -239,11 +239,13 @@ PROP_NORM_MAP={
     '3-pt attempted':'3-pt attempted','3pt attempted':'3-pt attempted','3pa':'3-pt attempted',
     '3 pt attempted':'3-pt attempted','3-point attempted':'3-pt attempted','3 point attempted':'3-pt attempted',
     'three pointers attempted':'3-pt attempted','three pointer attempted':'3-pt attempted',
+    '3-pt att':'3-pt attempted','3pt att':'3-pt attempted',
     # Two Pointers
     'two pointers made':'two pointers made','2-pt made':'two pointers made',
     '2pt made':'two pointers made','two pointer made':'two pointers made',
     'two pointers attempted':'two pointers attempted','2-pt attempted':'two pointers attempted',
     '2pt attempted':'two pointers attempted','two pointer attempted':'two pointers attempted',
+    '2-pt att':'two pointers attempted','2pt att':'two pointers attempted',
     # Free Throws
     'free throws made':'free throws made','ftm':'free throws made',
     'free throw made':'free throws made',
@@ -440,6 +442,14 @@ def norm_prop_key(p) -> str:
     s = " ".join(s.replace("_", " ").split())
     if s.endswith(" combo"):
         s = s[: -len(" combo")].strip()
+    try:
+        from utils.prop_norm import display_prop, prop_key
+
+        key = prop_key(s)
+        if key:
+            return str(display_prop(key)).strip().lower()
+    except Exception:
+        pass
     return PROP_NORM_MAP.get(s, s)
 
 

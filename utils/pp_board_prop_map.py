@@ -13,7 +13,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Iterable
 
-from utils.prop_norm import fold
+from utils.prop_norm import HOOPS_FACE_ALIASES, fold, prop_key
 
 
 @dataclass(frozen=True)
@@ -50,10 +50,12 @@ def _cat(
     kind: str = "single",
     required: bool = True,
 ) -> PropCategory:
+    extra = HOOPS_FACE_ALIASES.get(key, ())
+    merged = tuple(dict.fromkeys((*aliases, *extra)))
     return PropCategory(
         key=key,
         card_label=card,
-        aliases=aliases,
+        aliases=merged,
         box_cols=box or (key,),
         hr_cell=hr or key,
         kind=kind,
@@ -71,28 +73,36 @@ NBA_CATEGORIES: tuple[PropCategory, ...] = (
     _cat(
         "threes_att",
         "3-PT Attempted",
-        aliases=("3PT Attempted", "3pa", "Three Pointers Attempted"),
+        aliases=("3PT Attempted", "3pa", "Three Pointers Attempted", "3-PT Att", "3PT Att"),
         box=("fg3a",),
     ),
     _cat("fgm", "FG Made", aliases=("Field Goals Made", "FGM"), box=("fgm",)),
-    _cat("fga", "FG Attempted", aliases=("Field Goals Attempted", "FGA"), box=("fga",)),
+    _cat("fga", "FG Attempted", aliases=("Field Goals Attempted", "FGA", "FG Att"), box=("fga",)),
     _cat(
         "fg2m",
         "Two Pointers Made",
-        aliases=("2PT Made", "2pm", "2pts Made", "2 Pts Made"),
+        aliases=("2PT Made", "2pm", "2pts Made", "2 Pts Made", "2-PT Made"),
         box=("fg2m",),
     ),
     _cat(
         "fg2a",
         "Two Pointers Attempted",
-        aliases=("2PT Attempted", "2pa", "2pts Attempted", "2 Pts Attempted"),
+        aliases=(
+            "2PT Attempted",
+            "2pa",
+            "2pts Attempted",
+            "2 Pts Attempted",
+            "2-PT Att",
+            "2PT Att",
+            "2-Pt Att",
+        ),
         box=("fg2a",),
     ),
     _cat("ftm", "Free Throws Made", aliases=("FT Made", "FTM"), box=("ftm",)),
     _cat(
         "fta",
         "Free Throws Attempted",
-        aliases=("FT Attempted", "FTA"),
+        aliases=("FT Attempted", "FTA", "FT Att"),
         box=("fta",),
     ),
     _cat(
@@ -203,6 +213,21 @@ NBA_CATEGORIES: tuple[PropCategory, ...] = (
         aliases=("3-PT Made Combo", "3PT Made (Combo)"),
         box=("fg3m",),
         kind="combo_player",
+        required=False,
+    ),
+    # Full-game card chips (not NBA1Q). API stat_type is this exact wording.
+    _cat(
+        "quarters_3plus",
+        "Quarters with 3+ Points",
+        aliases=("Quarters With 3+ Points",),
+        box=("pts",),
+        required=False,
+    ),
+    _cat(
+        "quarters_5plus",
+        "Quarters with 5+ Points",
+        aliases=("Quarters With 5+ Points",),
+        box=("pts",),
         required=False,
     ),
 )
@@ -325,6 +350,87 @@ WNBA_CATEGORIES: tuple[PropCategory, ...] = (
         "Fantasy Score",
         aliases=("Fantasy", "FS"),
         box=("fantasy_score",),
+        required=False,
+    ),
+    # Same chips as NBA when posted; not required (WNBA tabs are thinner).
+    _cat(
+        "threes_att",
+        "3-PT Attempted",
+        aliases=("3PT Attempted", "3pa"),
+        box=("fg3a",),
+        required=False,
+    ),
+    _cat(
+        "fg2m",
+        "Two Pointers Made",
+        aliases=("2PT Made", "2pm"),
+        box=("fg2m",),
+        required=False,
+    ),
+    _cat(
+        "fg2a",
+        "Two Pointers Attempted",
+        aliases=("2PT Attempted", "2pa"),
+        box=("fg2a",),
+        required=False,
+    ),
+    _cat("ftm", "Free Throws Made", aliases=("FT Made",), box=("ftm",), required=False),
+    _cat(
+        "fta",
+        "Free Throws Attempted",
+        aliases=("FT Attempted",),
+        box=("fta",),
+        required=False,
+    ),
+    _cat(
+        "dreb",
+        "Defensive Rebounds",
+        aliases=("Def Rebounds",),
+        box=("dreb",),
+        required=False,
+    ),
+    _cat(
+        "oreb",
+        "Offensive Rebounds",
+        aliases=("Off Rebounds",),
+        box=("oreb",),
+        required=False,
+    ),
+    _cat("dunks", "Dunks", aliases=("Dunk",), box=("dunks",), required=False),
+    _cat(
+        "stocks",
+        "Blks+Stls",
+        aliases=("Blks-Stls", "Stocks"),
+        box=("blk", "stl"),
+        kind="combo",
+        required=False,
+    ),
+    _cat(
+        "double_double",
+        "Double-Double",
+        aliases=("Double Double",),
+        box=("pts", "reb", "ast", "stl", "blk"),
+        kind="special",
+        required=False,
+    ),
+    _cat(
+        "triple_double",
+        "Triple-Double",
+        aliases=("Triple Double",),
+        box=("pts", "reb", "ast", "stl", "blk"),
+        kind="special",
+        required=False,
+    ),
+    _cat(
+        "quarters_3plus",
+        "Quarters with 3+ Points",
+        box=("pts",),
+        required=False,
+    ),
+    _cat(
+        "quarters_5plus",
+        "Quarters with 5+ Points",
+        box=("pts",),
         required=False,
     ),
 )
@@ -459,6 +565,20 @@ def _alias_index(cats: Iterable[PropCategory]) -> dict[str, PropCategory]:
 _SPORT_INDEX: dict[str, dict[str, PropCategory]] = {
     sport: _alias_index(cats) for sport, cats in SPORT_CATEGORIES.items()
 }
+_SPORT_BY_KEY: dict[str, dict[str, PropCategory]] = {
+    sport: {c.key: c for c in cats} for sport, cats in SPORT_CATEGORIES.items()
+}
+_LOOKUP_PARENT = {
+    "NBA1Q": "NBA",
+    "NBA1H": "NBA",
+    "NBAP": "NBA",
+    "WNBA1Q": "WNBA",
+    "WNBA1H": "WNBA",
+    "WNBA2H": "WNBA",
+    "WNBA4Q": "WNBA",
+    "CBB": "NBA",
+    "WCBB": "WNBA",
+}
 
 
 def categories_for_sport(sport: str) -> tuple[PropCategory, ...]:
@@ -468,13 +588,19 @@ def categories_for_sport(sport: str) -> tuple[PropCategory, ...]:
 def lookup_category(sport: str, label: object) -> PropCategory | None:
     """Map a card/board label to its category. None = unmapped."""
     sport_u = str(sport or "").strip().upper()
+    parent = _LOOKUP_PARENT.get(sport_u, sport_u)
+    key = prop_key(label, sport_u)
+    if key:
+        cat = (_SPORT_BY_KEY.get(sport_u) or _SPORT_BY_KEY.get(parent) or {}).get(key)
+        if cat is not None:
+            return cat
     folded = fold(label)
     if not folded:
         return None
-    idx = _SPORT_INDEX.get(sport_u)
+    idx = _SPORT_INDEX.get(sport_u) or _SPORT_INDEX.get(parent)
     if idx is not None:
         return idx.get(folded)
-    for cat in categories_for_sport(sport_u):
+    for cat in categories_for_sport(sport_u) or categories_for_sport(parent):
         if fold(cat.card_label) == folded or fold(cat.key) == folded:
             return cat
         if any(fold(a) == folded for a in cat.aliases):

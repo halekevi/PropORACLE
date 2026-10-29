@@ -35,20 +35,31 @@ from utils.nba_minutes_role import clear_nba_box_frame_cache, load_nba_box_frame
 ATTEMPT_PROPS = frozenset(
     {
         "FG Attempted",
+        "FG Att",
         "Two Pointers Attempted",
+        "2-PT Att",
+        "2PT Att",
         "3-PT Attempted",
+        "3-PT Att",
         "Free Throws Attempted",
+        "FT Att",
         "FG Made",
         "Two Pointers Made",
+        "2-PT Made",
         "Free Throws Made",
     }
 )
 ATTEMPT_KEYS = frozenset(
     {
         "fg attempted",
+        "fg att",
         "two pointers attempted",
+        "2-pt att",
+        "2pt att",
         "3-pt attempted",
+        "3-pt att",
         "free throws attempted",
+        "ft att",
         "fg made",
         "two pointers made",
         "free throws made",
@@ -84,11 +95,23 @@ BOARD_CANDIDATES = [
 
 
 def _prop_key(prop: str) -> str:
+    try:
+        from utils.prop_norm import prop_key as _canon_prop_key
+
+        key = _canon_prop_key(prop, "NBA")
+        if key:
+            return key
+    except Exception:
+        pass
     return str(prop or "").strip().lower().replace("(combo)", "").strip()
 
 
+ATTEMPT_CANON = frozenset({"fga", "fg2a", "threes_att", "fta", "fgm", "fg2m", "ftm"})
+
+
 def _is_attempt(prop: str) -> bool:
-    return _prop_key(prop) in ATTEMPT_KEYS
+    k = _prop_key(prop)
+    return k in ATTEMPT_CANON or k in ATTEMPT_KEYS
 
 
 def _family(prop: str) -> str:

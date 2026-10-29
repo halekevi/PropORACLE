@@ -1235,6 +1235,9 @@ def main() -> None:
         if df is not None and not df.empty and "prop_type" in df.columns:
             pts = int(df["prop_type"].astype(str).str.lower().str.contains("points").sum())
             log_shooting_coverage(df["prop_type"], sport=sport_tag, n_points=pts)
+            from utils.prop_norm import report_unmapped_props
+
+            report_unmapped_props(df["prop_type"], sport=sport_tag, fail_gated=True)
     except RuntimeError as _cov_exc:
         print(f"❌ {_cov_exc}")
         raise SystemExit(2) from _cov_exc

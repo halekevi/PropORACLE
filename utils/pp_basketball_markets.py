@@ -9,7 +9,7 @@ from typing import Any, Iterable, Mapping
 
 # Canonical family -> substrings on PrizePicks prop_type (lowercased).
 SHOOTING_FAMILIES: dict[str, tuple[str, ...]] = {
-    "fg_attempted": ("fg attempted", "field goals attempted"),
+    "fg_attempted": ("fg attempted", "field goals attempted", "fg att"),
     "fg_made": ("fg made", "field goals made", "fgm"),
     "threes_attempted": (
         "3-pt attempted",
@@ -17,6 +17,8 @@ SHOOTING_FAMILIES: dict[str, tuple[str, ...]] = {
         "three pointers attempted",
         "3pa",
         "threes attempted",
+        "3-pt att",
+        "3pt att",
     ),
     "threes_made": (
         "3-pt made",
@@ -26,7 +28,7 @@ SHOOTING_FAMILIES: dict[str, tuple[str, ...]] = {
         "threes made",
         "3pts made",
     ),
-    "ft_attempted": ("free throws attempted",),
+    "ft_attempted": ("free throws attempted", "ft att", "ft attempted"),
     "ft_made": ("free throws made",),
     "two_attempted": (
         "two pointers attempted",
@@ -36,6 +38,8 @@ SHOOTING_FAMILIES: dict[str, tuple[str, ...]] = {
         "2pts attempted",
         "2 pts attempted",
         "two pts attempted",
+        "2-pt att",
+        "2pt att",
     ),
     "two_made": (
         "two pointers made",
@@ -53,13 +57,17 @@ SHOOTING_FAMILIES: dict[str, tuple[str, ...]] = {
 BASKETBALL_IN_GAME_FLAGS: tuple[str, ...] = ("false", "true")
 
 FULL_GAME_HOOPS: frozenset[str] = frozenset({"WNBA", "NBA", "CBB", "WCBB"})
-# PrizePicks league_id → full-game hoops tag (period boards are omitted).
+# PrizePicks league_id → hoops tag. Period boards are NOT full-game (no FGA tab).
 HOOPS_SPORT_BY_LEAGUE_ID: dict[str, str] = {
     "3": "WNBA",
     "7": "NBA",
     "237": "NBA",  # NBAP preseason — same full-game shooting markets
     "20": "CBB",
     "176": "WCBB",
+    "84": "NBA1H",
+    "192": "NBA1Q",
+    "193": "WNBA1H",
+    "308": "WNBA1Q",
 }
 
 
@@ -115,8 +123,11 @@ def log_shooting_coverage(
         pts = sum(1 for p in props if "point" in _prop_text(p) and "quarter" not in _prop_text(p))
     missing = missing_core_shooting(counts)
     if is_full_game_hoops(sport) and missing and (pts or 0) >= 20:
-        print(
-            f"  [WARN] {sport} board has {pts} points rows but missing {', '.join(missing)}. "
-            "Those markets are on in_game=false (pregame). Re-fetch both flags; do not keep a live-only pull."
+        msg = (
+            f"{sport} board has {pts} points rows but missing {', '.join(missing)}. "
+            "Those markets are on in_game=false (pregame). Re-fetch both flags; "
+            "do not keep a Popular/live-only pull."
         )
+        print(f"  [WARN] {msg}")
+        raise RuntimeError(msg)
     return counts
