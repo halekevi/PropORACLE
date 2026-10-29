@@ -23,6 +23,8 @@ Quarter / half splits: scripts/fetch_nba_period_actuals.py (--segment 1Q|2Q|3Q|4
 
 "Quarters with 3+ / 5+ Points" are derived from ESPN regulation (Q1–Q4) play-by-play scoring
 on the same summary/core endpoints as the box score (not available as a flat box aggregate).
+Dunks are made dunks only from that same PBP (putback / alley-oop / tip included; misses and
+blocks skipped). ESPN traditional box scores have no dunks column.
 """
 
 import argparse
@@ -345,25 +347,10 @@ def _nba_athlete_id_to_player_team(box: dict) -> dict[str, tuple[str, str]]:
 
 
 def _nba_plays_from_summary(box: dict, event_id: str) -> list:
-    """Plays array from game summary JSON, or ESPN core play-by-play XHR if missing."""
-    gp = box.get("gamepackageJSON")
-    if isinstance(gp, dict) and isinstance(gp.get("plays"), list):
-        return gp["plays"]
-    if isinstance(box.get("plays"), list):
-        return box["plays"]
-    eid = str(event_id or "").strip()
-    if not eid:
-        return []
-    try:
-        url = f"https://cdn.espn.com/core/nba/playbyplay?gameId={eid}&xhr=1"
-        r = requests.get(url, headers=HEADERS, timeout=25)
-        r.raise_for_status()
-        payload = r.json() or {}
-        gp2 = payload.get("gamepackageJSON", {}) or {}
-        pl = gp2.get("plays") or []
-        return pl if isinstance(pl, list) else []
-    except Exception:
-        return []
+    """Plays from summary JSON if present, else ESPN site.api summary, else CDN XHR."""
+    from utils.nba_pbp_dunks import espn_plays_for_event
+
+    return espn_plays_for_event(str(event_id or ""), box)
 
 
 def _nba_regulation_period_points_from_plays(plays: list) -> dict[str, dict[int, float]]:
@@ -443,7 +430,9 @@ def _nba_regulation_period_points_from_plays(plays: list) -> dict[str, dict[int,
     return acc
 
 
-def parse_nba_quarter_milestone_rows(box: dict, event_id: str = "") -> list[dict]:
+def parse_nba_quarter_milestone_rows(
+    box: dict, event_id: str = "", plays: list | None = None
+) -> list[dict]:
     """
     Build actuals rows for PrizePicks-style regulation quarter scoring props using ESPN PBP.
     Emits 0.0–4.0 for every player listed in the boxscore roster.
@@ -452,7 +441,8 @@ def parse_nba_quarter_milestone_rows(box: dict, event_id: str = "") -> list[dict
     if not athlete_meta:
         return []
 
-    plays = _nba_plays_from_summary(box, event_id)
+    if plays is None:
+        plays = _nba_plays_from_summary(box, event_id)
     acc = _nba_regulation_period_points_from_plays(plays)
 
     rows: list[dict] = []
@@ -473,6 +463,24 @@ def parse_nba_quarter_milestone_rows(box: dict, event_id: str = "") -> list[dict
                     "actual": round(val, 1),
                 }
             )
+    return rows
+
+
+def parse_nba_dunk_rows(
+    box: dict, event_id: str = "", plays: list | None = None
+) -> list[dict]:
+    """Made-dunk counts from ESPN PBP. One row per boxscore athlete (0 if none)."""
+    from utils.nba_pbp_dunks import dunk_actual_rows
+
+    athlete_meta = _nba_athlete_id_to_player_team(box)
+    if not athlete_meta:
+        return []
+    if plays is None:
+        plays = _nba_plays_from_summary(box, event_id)
+    rows = dunk_actual_rows(athlete_meta, plays)
+    for r in rows:
+        r["player"] = normalize_player_name(r.get("player", ""))
+        r["actual"] = round(float(r.get("actual") or 0), 1)
     return rows
 
 
@@ -894,9 +902,17 @@ def fetch_sport(sport_path, date_str, window=2, nba_extra_days: int = 0):
         )
         all_rows.extend(stat_rows)
         if sport_path == "nba":
-            qmile = parse_nba_quarter_milestone_rows(box, event_id=str(event_id))
+            plays = _nba_plays_from_summary(box, str(event_id))
+            qmile = parse_nba_quarter_milestone_rows(
+                box, event_id=str(event_id), plays=plays
+            )
+            dunks = parse_nba_dunk_rows(box, event_id=str(event_id), plays=plays)
             all_rows.extend(qmile)
-            print(f"    -> {len(stat_rows)} stat rows (+{len(qmile)} quarter-milestone)")
+            all_rows.extend(dunks)
+            print(
+                f"    -> {len(stat_rows)} stat rows "
+                f"(+{len(qmile)} quarter-milestone +{len(dunks)} dunks)"
+            )
         else:
             print(f"    -> {len(stat_rows)} stat rows")
         all_box_dnp.extend(dnp_part)

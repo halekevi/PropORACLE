@@ -119,6 +119,8 @@ _NBA_PROP_MAP = {
     "personal fouls":          "pf",
     "personalfouls":           "pf",
     "pf":                      "pf",
+    "dunks":                   "dunks",
+    "dunk":                    "dunks",
     "fantasy score":           "fantasy_score",
     "fantasy_score":           "fantasy_score",
     "fantasy":                 "fantasy_score",   # norm_prop maps "Fantasy Score" → "fantasy"

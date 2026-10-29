@@ -1218,6 +1218,7 @@ def main() -> None:
         "field goals attempted": "fga", "field goals made": "fgm",
         "fga": "fga", "fgm": "fgm",
         "fg3a": "fg3a", "fg3m": "fg3m", "fg2a": "fg2a", "fg2m": "fg2m",
+        "dunks": "dunks", "dunk": "dunks",
     }
     out["prop_norm"] = (out["prop_norm"].astype(str).str.lower().str.strip()
                         .map(lambda x: _PROP_NORM_MAP.get(x, x)))

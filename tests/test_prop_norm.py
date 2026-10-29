@@ -9,7 +9,13 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from prop_hit_tiers import assign_tier, cover_need  # noqa: E402
-from utils.prop_norm import canon_prop, display_prop, preferred_hr, prop_key  # noqa: E402
+from utils.prop_norm import (  # noqa: E402
+    canon_prop,
+    display_prop,
+    preferred_hr,
+    prop_key,
+    prop_key_for_player,
+)
 
 
 def test_prop_key_unifies_2pt_att_spellings():
@@ -25,6 +31,30 @@ def test_prop_key_unifies_other_card_faces():
     assert prop_key("Off Reb", "NBA") == "oreb"
     assert prop_key("Def Reb", "NBA") == "dreb"
     assert prop_key("Qtrs with 3+ Pts", "NBA") == "quarters_3plus"
+
+
+def test_prop_key_3pta_3ptm_card_faces():
+    assert prop_key("3PTA", "NBA") == "threes_att"
+    assert prop_key("3pta", "NBA") == "threes_att"
+    assert prop_key("3PTM", "NBA") == "threes"
+    assert prop_key("3ptm", "NBA") == "threes"
+
+
+def test_duo_player_label_files_combo_market():
+    assert prop_key("Assists", "NBA") == "assists"
+    assert (
+        prop_key_for_player("Assists", "NBA", "Jalen Johnson + James Harden")
+        == "assists_combo"
+    )
+    assert prop_key_for_player("Assists", "NBA", "Jalen Johnson") == "assists"
+    assert (
+        prop_key_for_player("3-PT Made", "NBA", "Jalen Johnson + James Harden")
+        == "threes_combo"
+    )
+    assert (
+        prop_key_for_player("Assists (Combo)", "NBA", "Jalen Johnson + James Harden")
+        == "assists_combo"
+    )
 
 
 def _step1_csv_paths() -> list[tuple[Path, str]]:

@@ -233,7 +233,7 @@ def _read_nba_boxes(path: Path) -> pd.DataFrame:
             "bs",
             "fantasy_score",
         ]
-        for opt in ("starter", "season_window", "preseason_year"):
+        for opt in ("starter", "season_window", "preseason_year", "dunks"):
             if opt in have:
                 cols.append(opt)
         sql = f"SELECT {', '.join(cols)} FROM nba"
@@ -301,6 +301,7 @@ def load_nba_box_frame(require_fresh: bool = True) -> pd.DataFrame:
         "ra",
         "bs",
         "fantasy_score",
+        "dunks",
     ):
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")

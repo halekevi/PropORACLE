@@ -312,6 +312,7 @@ def _migrate_columns(con: sqlite3.Connection) -> None:
             ("pr",   "REAL"), ("pa",   "REAL"), ("ra",  "REAL"),
             ("bs",   "REAL"), ("fantasy_score", "REAL"),
             ("espn_athlete_id", "TEXT"),
+            ("dunks", "REAL"),
         ],
         "cbb": [
             ("fg2m", "REAL"), ("fg2a", "REAL"), ("pf", "REAL"),
@@ -668,7 +669,16 @@ def fetch_nba(date_str: str, con: sqlite3.Connection) -> int:
             box = _get(NBA_SUMMARY.format(event_id=eid))
             if not box:
                 return []
-            return _parse_bball_boxscore(box, eid, date_str, home, away, "NBA")
+            rows = _parse_bball_boxscore(box, eid, date_str, home, away, "NBA")
+            try:
+                from utils.nba_pbp_dunks import apply_dunks_to_box_rows, espn_plays_for_event
+
+                plays = espn_plays_for_event(eid, box)
+                apply_dunks_to_box_rows(rows, plays)
+            except Exception:
+                for r in rows:
+                    r.setdefault("dunks", None)
+            return rows
 
         page_rows = _parallel_flatmap(_nba_one, work)
         all_rows.extend(page_rows)

@@ -252,6 +252,7 @@ PROP_NORM_MAP={
     # Other
     'offensive rebounds':'offensive rebounds','defensive rebounds':'defensive rebounds',
     'personal fouls':'personal fouls','fantasy score':'fantasy score',
+    'dunks':'dunks','dunk':'dunks',
     'quarters with 3+ points':'quarters with 3+ points',
     'quarters with 4+ points':'quarters with 4+ points',
     'quarters with 5+ points':'quarters with 5+ points',
@@ -1418,8 +1419,10 @@ def apply_actuals(df, actuals_path):
 
         # Multi-player combo props (PlayerA + PlayerB): sum each player's stat.
         # Use per-arm team tokens (LAD/CIN) — do not reuse the slash combo as one team key.
+        # Card/slip faces often omit "(Combo)" when the player label is already a duo.
         if pd.isna(actual):
             from utils.combo_actuals import sum_multiplayer_combo_actual
+            from utils.prop_norm import is_duo_player_label, prop_key_for_player
 
             def _arm_lookup(pname: str, tm: str, _pk: str):
                 arm_row = row.copy()
@@ -1428,10 +1431,17 @@ def apply_actuals(df, actuals_path):
                     arm_row["team"] = tm
                 return _resolve_actual_for_player(lookup, pname, arm_row)
 
+            player_lab = row.get("player", "")
+            sport_lab = str(row.get("sport") or row.get("league") or "")
+            combo_prop = _primary_prop_from_row(row) or ""
+            if is_duo_player_label(player_lab):
+                combo_prop = (
+                    prop_key_for_player(combo_prop, sport_lab, player_lab) or combo_prop
+                )
             duo = sum_multiplayer_combo_actual(
-                row.get("player", ""),
+                player_lab,
                 row.get("team", ""),
-                _primary_prop_from_row(row) or "",
+                combo_prop,
                 _arm_lookup,
             )
             if duo is not None:

@@ -47,7 +47,7 @@ from utils.n_correct_payout import (  # noqa: E402
     lookup_live_cdp_scrape,
 )
 from utils.nfl_unsupported_props import is_football_period_split_prop  # noqa: E402
-from utils.prop_norm import canon_prop  # noqa: E402
+from utils.prop_norm import canon_prop, prop_key_for_player  # noqa: E402
 from utils.scraped_quote import (  # noqa: E402
     SCRAPED_PAYOUT_SOURCES,
     is_real_scraped_quote,
@@ -155,6 +155,9 @@ def _norm_leg(row: dict[str, Any]) -> dict[str, Any]:
     sport = _sport_of(out)
     if sport:
         out["sport"] = sport
+    key = prop_key_for_player(out["prop"], sport, out["player"])
+    if key:
+        out["prop_canon"] = key
     return out
 
 

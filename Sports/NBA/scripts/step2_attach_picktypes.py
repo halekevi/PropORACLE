@@ -295,8 +295,6 @@ def main() -> None:
     # ── Drop prop types with no stat backing or that are ungradeable ──
     EXCLUDE_PROPS = {
         "Points - 1st 3 Minutes",   # 1st-quarter prop, drop per design
-        "Dunks",                     # not tracked in ESPN API
-        "3-PT Made (Combo)",         # combo prop, ungradeable per-player
     }
     before = len(df)
     df = df[~df["prop_type"].isin(EXCLUDE_PROPS)].reset_index(drop=True)

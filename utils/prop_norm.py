@@ -584,7 +584,9 @@ _TOKEN_RE = re.compile(r"[a-z]+|\d+", re.I)
 ABBREV: dict[str, str] = {
     "att": "attempted",
     "atts": "attempted",
+    "pta": "attempted",
     "md": "made",
+    "ptm": "made",
     "pt": "point",
     "pts": "points",
     "reb": "rebounds",
@@ -648,8 +650,8 @@ HOOPS_FACE_ALIASES: dict[str, tuple[str, ...]] = {
     "fga": ("FG Att", "FGA", "FG Attempted"),
     "fg2m": ("2-PT Made", "2PT Made", "2-Pt Made", "2PM", "2pts Made"),
     "fg2a": ("2-PT Att", "2PT Att", "2-Pt Att", "2 Pt Att", "2PA", "2pts Attempted"),
-    "threes": ("3PM", "3-PTM", "3PT Made"),
-    "threes_att": ("3-PT Att", "3PT Att", "3-Pt Att", "3PA"),
+    "threes": ("3PM", "3-PTM", "3PT Made", "3PTM", "3ptm"),
+    "threes_att": ("3-PT Att", "3PT Att", "3-Pt Att", "3PA", "3PTA", "3pta"),
     "ftm": ("FT Md", "FTM", "FT Made"),
     "fta": ("FT Att", "FTA", "FT Attempted"),
     "oreb": ("Off Reb", "Off Rebs", "OReb", "OREB", "Offensive Reb"),
@@ -703,6 +705,10 @@ for _src, _key in (
     ("twopointersmade", "fg2m"),
     ("3pointattempted", "threes_att"),
     ("3pointmade", "threes"),
+    ("3pta", "threes_att"),
+    ("3ptm", "threes"),
+    ("3attempted", "threes_att"),
+    ("3made", "threes"),
     ("fieldgoalattempted", "fga"),
     ("fieldgoalmade", "fgm"),
     ("freethrowattempted", "fta"),
@@ -778,6 +784,47 @@ def _clean_prop_raw(prop: object) -> str:
     if raw.lower() in ("nan", "<na>", "none", "<nat>"):
         return ""
     return _SPACE_RE.sub(" ", raw)
+
+
+_DUO_PLAYER_RE = re.compile(
+    r"[A-Za-z][^+]{0,80}\s+\+\s+[A-Za-z]|\S+\+\S+",
+)
+
+
+def is_duo_player_label(player: object) -> bool:
+    """True when the card/slip player field is two names (``A + B`` or ``A+B``)."""
+    raw = str(player or "").strip()
+    if not raw or not _DUO_PLAYER_RE.search(raw):
+        return False
+    for sep in (" + ", "+"):
+        if sep not in raw:
+            continue
+        parts = [p.strip() for p in raw.split(sep) if p.strip()]
+        if len(parts) >= 2 and all(any(ch.isalpha() for ch in p) for p in parts[:2]):
+            return True
+    return False
+
+
+def prop_key_for_player(
+    raw: object, sport: object = "", player: object = ""
+) -> str | None:
+    """Like ``prop_key``, but a duo player label files the market as ``*_combo``.
+
+    Screenshot/slip text often omits ``(Combo)`` while the player is
+    ``Jalen Johnson + James Harden``. API ``stat_type`` already includes
+    ``(Combo)`` so step1 is unchanged. ``prop_key("Assists", "NBA")`` stays
+    ``assists``.
+    """
+    hit = prop_key(raw, sport)
+    if hit is None:
+        return None
+    if hit.endswith("_combo"):
+        return hit
+    if not is_duo_player_label(player):
+        return hit
+    if hit == "pitcher_ks":
+        return "strikeouts_combo"
+    return f"{hit}_combo"
 
 
 def prop_key(raw: object, sport: object = "") -> str | None:
