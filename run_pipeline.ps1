@@ -564,7 +564,7 @@ function Invoke-NBAStep1Fetch {
             New-Item -ItemType Directory -Force -Path $outDir | Out-Null
         }
         $output = & py -3.14 ".\scripts\step1_fetch_prizepicks_api.py" `
-            --league_id 7 --game_mode pickem --per_page 250 --max_pages 5 `
+            --league_id 7 --game_mode pickem --per_page 250 --max_pages 20 `
             --sleep 2.0 --cooldown_seconds 90 --max_cooldowns 3 --jitter_seconds 10.0 `
             --replace --date $PipelineDate `
             --output $OutputPath 2>&1
@@ -2770,7 +2770,7 @@ if ($NBAOnly) {
                 -ScriptRel ".\scripts\step1_fetch_prizepicks_api.py" `
                 -OutputPath $nbaStep1Solo `
                 -PipelineDate $Date `
-                -HttpArgs @("--league_id", "7", "--game_mode", "pickem", "--per_page", "250", "--max_pages", "5", "--replace", "--output", $nbaStep1Solo, "--date", $Date)  # NBA 7 + NBAP 237
+                -HttpArgs @("--league_id", "7", "--game_mode", "pickem", "--per_page", "250", "--max_pages", "20", "--replace", "--output", $nbaStep1Solo, "--date", $Date)  # NBA 7 + NBAP 237
         }
     } else {
         Write-Host "  [NBA] Skipping step1 fetch -- using existing $nbaStep1Solo" -ForegroundColor DarkGray
@@ -3079,7 +3079,7 @@ $NBAJob = Start-Job -ScriptBlock {
                 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
             }
             $output = & py -3.14 ".\scripts\step1_fetch_prizepicks_api.py" `
-                --league_id 7 --game_mode pickem --per_page 250 --max_pages 5 `
+                --league_id 7 --game_mode pickem --per_page 250 --max_pages 20 `
                 --sleep 2.0 --cooldown_seconds 90 --max_cooldowns 3 --jitter_seconds 10.0 `
                 --replace --date $PipelineDate `
                 --output $OutputPath 2>&1
@@ -3104,7 +3104,7 @@ $NBAJob = Start-Job -ScriptBlock {
             $ok = Invoke-PrizePicksStep1Cascade -AsJobOutput -SportLabel "NBA" -WorkDir $NBADir `
                 -ScriptRel ".\scripts\step1_fetch_prizepicks_api.py" `
                 -OutputPath $nbaStep1 -PipelineDate $Date `
-                -HttpArgs @("--league_id", "7", "--game_mode", "pickem", "--per_page", "250", "--max_pages", "5", "--replace", "--output", $nbaStep1, "--date", $Date)
+                -HttpArgs @("--league_id", "7", "--game_mode", "pickem", "--per_page", "250", "--max_pages", "20", "--replace", "--output", $nbaStep1, "--date", $Date)
         }
     } else {
         Write-Output "[NBA] Skipping step1 fetch"

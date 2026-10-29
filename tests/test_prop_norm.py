@@ -9,7 +9,64 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from prop_hit_tiers import assign_tier, cover_need  # noqa: E402
-from utils.prop_norm import canon_prop, display_prop, preferred_hr  # noqa: E402
+from utils.prop_norm import canon_prop, display_prop, preferred_hr, prop_key  # noqa: E402
+
+
+def test_prop_key_unifies_2pt_att_spellings():
+    for label in ("2-PT Att", "Two Pointers Attempted", "2PT Attempted", "2PA"):
+        assert prop_key(label, "NBA") == "fg2a", label
+
+
+def test_prop_key_unifies_other_card_faces():
+    assert prop_key("3-PT Att", "NBA") == "threes_att"
+    assert prop_key("FG Att", "NBA") == "fga"
+    assert prop_key("FT Att", "NBA") == "fta"
+    assert prop_key("2-PT Made", "NBA") == "fg2m"
+    assert prop_key("Off Reb", "NBA") == "oreb"
+    assert prop_key("Def Reb", "NBA") == "dreb"
+    assert prop_key("Qtrs with 3+ Pts", "NBA") == "quarters_3plus"
+
+
+def _step1_csv_paths() -> list[tuple[Path, str]]:
+    roots = [ROOT, Path(r"H:\PropORACLE_main_cp")]
+    found: list[tuple[Path, str]] = []
+    seen: set[str] = set()
+    for root in roots:
+        if not root.is_dir():
+            continue
+        for path in root.glob("outputs/*/*/step1*.csv"):
+            sport = path.parent.name.upper()
+            key = str(path)
+            if key in seen:
+                continue
+            seen.add(key)
+            found.append((path, sport))
+    return found
+
+
+def test_every_saved_step1_stat_type_has_a_prop_key():
+    import pandas as pd
+
+    paths = _step1_csv_paths()
+    if not paths:
+        return
+    misses: list[str] = []
+    for path, sport in paths:
+        try:
+            df = pd.read_csv(path, nrows=0)
+        except Exception:
+            continue
+        col = next((c for c in ("prop_type", "stat_type", "Prop") if c in df.columns), None)
+        if not col:
+            continue
+        try:
+            series = pd.read_csv(path, usecols=[col])[col]
+        except Exception:
+            continue
+        for label in sorted({str(x).strip() for x in series if str(x).strip() and str(x).lower() != "nan"}):
+            if prop_key(label, sport) is None:
+                misses.append(f"{sport}: {label!r}  ({path})")
+    assert not misses, "unmapped step1 labels:\n" + "\n".join(misses[:80])
 
 
 def test_wnba_board_aliases():

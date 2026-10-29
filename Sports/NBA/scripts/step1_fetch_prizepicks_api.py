@@ -1164,6 +1164,12 @@ def main() -> None:
         sport = hoops_sport_for_league(args.league_id, fallback="NBA")
         pts = int(df["prop_type"].astype(str).str.lower().str.contains("points").sum())
         log_shooting_coverage(df["prop_type"], sport=sport, n_points=pts)
+        from utils.prop_norm import report_unmapped_props
+
+        report_unmapped_props(df["prop_type"], sport=sport, fail_gated=True)
+    except RuntimeError as _cov_exc:
+        print(f"❌ {_cov_exc}")
+        raise SystemExit(2) from _cov_exc
     except Exception as _sc_exc:
         print(f"  [WARN] shooting coverage log skipped: {_sc_exc}")
     df = stamp_fetched_at(df, when=pull_ts, overwrite=True)

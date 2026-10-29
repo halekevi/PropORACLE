@@ -21,10 +21,11 @@ Standard or OVER with UNDER. Combos are not mixed with singles.
 """
 from __future__ import annotations
 
+from collections import Counter
+from typing import Any, Iterable, Mapping
 import re
-from typing import Any, Mapping
 
-_COMBO_RE = re.compile(r"\(combo\)\s*$", re.I)
+_COMBO_RE = re.compile(r"\(combos?\)\s*$", re.I)
 _SPACE_RE = re.compile(r"\s+")
 
 # fold(label) -> canon. Sport-specific maps win over GLOBAL.
@@ -63,6 +64,7 @@ GLOBAL_FOLD: dict[str, str] = {
     "fga": "fga",
     "fgattempted": "fga",
     "fieldgoalsattempted": "fga",
+    "fgatt": "fga",
     "threes": "threes",
     "fg3m": "threes",
     "3ptmade": "threes",
@@ -83,6 +85,7 @@ GLOBAL_FOLD: dict[str, str] = {
     "3pa": "threes_att",
     "3ptsattempted": "threes_att",
     "threesattempted": "threes_att",
+    "3ptatt": "threes_att",
     "fg2m": "fg2m",
     "2ptmade": "fg2m",
     "2ptfgmade": "fg2m",
@@ -103,6 +106,7 @@ GLOBAL_FOLD: dict[str, str] = {
     "twoptsattempted": "fg2a",
     "2pointsattempted": "fg2a",
     "twopointsattempted": "fg2a",
+    "2ptatt": "fg2a",
     "pa": "pts+ast",
     "pr": "pts+reb",
     "ra": "reb+ast",
@@ -112,6 +116,7 @@ GLOBAL_FOLD: dict[str, str] = {
     "fta": "fta",
     "ftattempted": "fta",
     "freethrowsattempted": "fta",
+    "ftatt": "fta",
     "oreb": "oreb",
     "offensiverebounds": "oreb",
     "offensiverebound": "oreb",
@@ -120,8 +125,11 @@ GLOBAL_FOLD: dict[str, str] = {
     "defensiverebound": "dreb",
     "pf": "pf",
     "personalfouls": "pf",
+    "dunks": "dunks",
+    "dunk": "dunks",
     "minutes": "minutes",
     "min": "minutes",
+    "minutesplayed": "minutes",
     "doubledouble": "double_double",
     "tripledouble": "triple_double",
     "quarterswith3points": "quarters_3plus",
@@ -129,6 +137,8 @@ GLOBAL_FOLD: dict[str, str] = {
     "quarterswith5points": "quarters_5plus",
     "fantasy": "fantasy",
     "fantasyscore": "fantasy",
+    "goaliefantasyscore": "fantasy",
+    "outfieldfantasyscore": "fantasy",
     "sog": "sog",
     "shotsongoal": "sog",
     "shotsontarget": "sog",
@@ -281,6 +291,11 @@ GOLF_FOLD: dict[str, str] = {
     "tourneyfinishingposition": "finish_pos",
     "tournamentfinishingposition": "finish_pos",
     "finishingposition": "finish_pos",
+    "birdiesorbettermatchup": "birdies_or_better",
+    "pars": "pars",
+    "holesplayed": "holes_played",
+    "holeslost": "holes_lost",
+    "holeswon": "holes_won",
 }
 
 NHL_FOLD: dict[str, str] = {
@@ -329,6 +344,99 @@ NFL_FOLD: dict[str, str] = {
     "passints": "interceptions",
     "playertouchdowns": "player_tds",
     "anytimetd": "player_tds",
+    "anytimetds": "player_tds",
+    "kickingpoints": "kicking_points",
+    "longestcompletion": "longest_completion",
+    "longestreception": "longest_reception",
+    "longestrush": "longest_rush",
+    "passattempts": "pass_att",
+    "passcompletions": "pass_comp",
+    "passrushrectds": "pass_rush_rec_tds",
+    "rectargets": "rec_tgt",
+    "rushattempts": "rush_att",
+    "rushrectds": "rush_rec_tds",
+    "completionpercentage": "completion_pct",
+    "passerating": "passer_rating",
+    "passerrating": "passer_rating",
+    "punts": "punts",
+    "sackstaken": "sacks_taken",
+    "rushyardspercarry": "ypc",
+    "yardsonfirstreception": "first_rec_yds",
+    "yardsonfirstrushattempt": "first_rush_yds",
+    "rushyardsinfirst5attempts": "rush_yds_first5",
+    "completionsinfirst10passattempts": "comp_first10",
+    "consecutivepasscompletions": "consecutive_comp",
+    "fieldgoalyards": "fg_yards",
+    "passyards": "passing_yards",
+    "rushyards": "rushing_yards",
+    "kicking_points": "kicking_points",
+    "longest_completion": "longest_completion",
+    "longest_reception": "longest_reception",
+    "longest_rush": "longest_rush",
+    "pass_attempts": "pass_att",
+    "pass_completions": "pass_comp",
+    "rec_targets": "rec_tgt",
+    "rush_attempts": "rush_att",
+    "rush_rec_tds": "rush_rec_tds",
+    "anytime_tds": "player_tds",
+    "completion_percentage": "completion_pct",
+    "punts": "punts",
+    "sacks_taken": "sacks_taken",
+    "halveswith100passyards": "halves_100_pass",
+    "halveswith150passyards": "halves_150_pass",
+    "halveswith25receivingyards": "halves_25_rec",
+    "halveswith25rushyards": "halves_25_rush",
+    "halveswith40receivingyards": "halves_40_rec",
+    "halveswith50rushyards": "halves_50_rush",
+    "quarterswith10receivingyards": "qtr_10_rec",
+    "quarterswith10rushyards": "qtr_10_rush",
+    "quarterswith1reception": "qtr_1_rec",
+    "quarterswith25passyards": "qtr_25_pass",
+    "quarterswith30passyards": "qtr_30_pass",
+    "quarterswith5receivingyards": "qtr_5_rec",
+    "quarterswith5rushyards": "qtr_5_rush",
+    "firstfieldgoaldistance": "first_fg_dist",
+    "lastfieldgoaldistance": "last_fg_dist",
+    "longestfieldgoalmadeyds": "longest_fg",
+    "shortestfieldgoalmadeyds": "shortest_fg",
+    "punttouchbacks": "punt_touchbacks",
+    "rushyardsinfirst5attempts": "rush_yds_first5",
+    "halves_with_100_pass_yards": "halves_100_pass",
+    "halves_with_150_pass_yards": "halves_150_pass",
+    "halves_with_25_receiving_yards": "halves_25_rec",
+    "halves_with_25_rush_yards": "halves_25_rush",
+    "halves_with_40_receiving_yards": "halves_40_rec",
+    "halves_with_50_rush_yards": "halves_50_rush",
+    "quarters_with_10_receiving_yards": "qtr_10_rec",
+    "quarters_with_10_rush_yards": "qtr_10_rush",
+    "quarters_with_1_reception": "qtr_1_rec",
+    "quarters_with_25_pass_yards": "qtr_25_pass",
+    "quarters_with_30_pass_yards": "qtr_30_pass",
+    "quarters_with_5_receiving_yards": "qtr_5_rec",
+    "quarters_with_5_rush_yards": "qtr_5_rush",
+    "pass_rush_rec_tds": "pass_rush_rec_tds",
+    "rush_yards_per_carry": "ypc",
+    "yards_on_first_reception": "first_rec_yds",
+    "yards_on_first_rush_attempt": "first_rush_yds",
+    "rush_yards_in_first_5_attempts": "rush_yds_first5",
+    "completions_in_first_10_pass_attempts": "comp_first10",
+    "consecutive_pass_completions": "consecutive_comp",
+    "field_goal_yards": "fg_yards",
+    "first_fg_distance": "first_fg_dist",
+    "last_fg_distance": "last_fg_dist",
+    "longest_fg_made_yds": "longest_fg",
+    "shortest_fg_made_yds": "shortest_fg",
+    "punt_touchbacks": "punt_touchbacks",
+    "passer_rating": "passer_rating",
+    "pass_yards": "passing_yards",
+    "rush_yards": "rushing_yards",
+    "rec_yards": "receiving_yards",
+    "receiving_yards_in_first_2_receptions": "rec_yds_first2",
+    "quarters_with_1_kicking_point": "qtr_1_kick",
+    "quarters_with_20_pass_yards": "qtr_20_pass",
+    "receivingyardsinfirst2receptions": "rec_yds_first2",
+    "quarterswith1kickingpoint": "qtr_1_kick",
+    "quarterswith20passyards": "qtr_20_pass",
     "fgmade": "fg_made",
     "patmade": "pat_made",
     "passrushyds": "pass_rush_yds",
@@ -363,6 +471,15 @@ CFB_FOLD: dict[str, str] = {
     "fgmade": "fg_made",
     "patmade": "pat_made",
     "playertouchdowns": "player_td",
+    "anytimetd": "player_td",
+    "anytimetds": "player_td",
+    "longestcompletion": "longest_completion",
+    "longestreception": "longest_reception",
+    "longestrush": "longest_rush",
+    "passcompletions": "pass_cmp",
+    "passints": "int",
+    "rushrectds": "rush_rec_td",
+    "passrushrectds": "pass_rush_rec_td",
     "sacks": "sacks",
     "tackles": "tackles",
     "tacklesforloss": "tfl",
@@ -380,6 +497,7 @@ SPORT_FOLD: dict[str, dict[str, str]] = {
     "NFL": NFL_FOLD,
     "NFLP": NFL_FOLD,
     "CFB": CFB_FOLD,
+    "CFB1H": CFB_FOLD,
     "GOLF": GOLF_FOLD,
     "PGA": GOLF_FOLD,
 }
@@ -413,9 +531,16 @@ DISPLAY: dict[str, str] = {
     "fta": "Free Throws Attempted",
     "oreb": "Offensive Rebounds",
     "dreb": "Defensive Rebounds",
+    "pf": "Personal Fouls",
+    "dunks": "Dunks",
+    "fantasy": "Fantasy Score",
+    "double_double": "Double-Double",
+    "triple_double": "Triple-Double",
     "quarters_3plus": "Quarters with 3+ Points",
     "quarters_4plus": "Quarters with 4+ Points",
     "quarters_5plus": "Quarters with 5+ Points",
+    # Default = soccer PP wording. NHL uses sport-aware override in display_prop
+    # ("Shots On Goal") — collapsing both onto "Shots On Target" hid a grading bug.
     "sog": "Shots On Target",
     "saves": "Goalie Saves",
     "saves_combo": "Goalie Saves (Combo)",
@@ -454,6 +579,164 @@ def fold(text: object) -> str:
     return re.sub(r"[^a-z0-9]+", "", s)
 
 
+# Token expander: "2-PT Att" / "Two Pointers Attempted" / "2PT Attempted" → same key.
+_TOKEN_RE = re.compile(r"[a-z]+|\d+", re.I)
+ABBREV: dict[str, str] = {
+    "att": "attempted",
+    "atts": "attempted",
+    "md": "made",
+    "pt": "point",
+    "pts": "points",
+    "reb": "rebounds",
+    "rebs": "rebounds",
+    "ast": "assists",
+    "asts": "assists",
+    "blk": "blocks",
+    "blks": "blocks",
+    "stl": "steals",
+    "stls": "steals",
+    "fg": "fieldgoal",
+    "ft": "freethrow",
+    "to": "turnovers",
+    "tos": "turnovers",
+    "off": "offensive",
+    "def": "defensive",
+    "qtr": "quarters",
+    "qtrs": "quarters",
+    "pointer": "pointers",
+    "rebound": "rebounds",
+}
+
+
+def expand_prop_tokens(raw: object) -> str:
+    tokens = _TOKEN_RE.findall(str(raw or "").lower())
+    return "".join(ABBREV.get(t, t) for t in tokens)
+
+
+def _index_forms(dst: dict[str, str], src: str, key: str) -> None:
+    if not key:
+        return
+    compact = fold(src)
+    expanded = expand_prop_tokens(src)
+    if compact:
+        dst[compact] = key
+    if expanded:
+        dst[expanded] = key
+    raw = str(src or "").strip().lower()
+    if raw:
+        dst[raw] = key
+
+
+def _seed_canon(base: Mapping[str, str]) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for src, key in base.items():
+        _index_forms(out, src, key)
+        _index_forms(out, key, key)
+    return out
+
+
+# Card face on the slip is shorter than the board tab
+# ("9.5 2-PT Att" vs tab "Two Pointers Attempted"). Same market.
+HOOPS_FACE_ALIASES: dict[str, tuple[str, ...]] = {
+    "points": ("Pts", "Pt"),
+    "rebounds": ("Rebs", "Reb"),
+    "assists": ("Asts", "Ast"),
+    "steals": ("Stls", "Stl"),
+    "blocks": ("Blks", "Blk"),
+    "turnovers": ("TOs",),
+    "fgm": ("FG Md", "FGM", "FG Made"),
+    "fga": ("FG Att", "FGA", "FG Attempted"),
+    "fg2m": ("2-PT Made", "2PT Made", "2-Pt Made", "2PM", "2pts Made"),
+    "fg2a": ("2-PT Att", "2PT Att", "2-Pt Att", "2 Pt Att", "2PA", "2pts Attempted"),
+    "threes": ("3PM", "3-PTM", "3PT Made"),
+    "threes_att": ("3-PT Att", "3PT Att", "3-Pt Att", "3PA"),
+    "ftm": ("FT Md", "FTM", "FT Made"),
+    "fta": ("FT Att", "FTA", "FT Attempted"),
+    "oreb": ("Off Reb", "Off Rebs", "OReb", "OREB", "Offensive Reb"),
+    "dreb": ("Def Reb", "Def Rebs", "DReb", "DREB", "Defensive Reb"),
+    "dunks": ("Dunk",),
+    "pra": ("PRA",),
+    "pts+reb": ("PR",),
+    "pts+ast": ("PA",),
+    "reb+ast": ("RA",),
+    "stocks": ("Stocks",),
+    "double_double": ("DD",),
+    "triple_double": ("TD",),
+    "fantasy": ("FS",),
+    "quarters_3plus": (
+        "Qtrs with 3+ Pts",
+        "Quarters w/ 3+ Pts",
+        "3+ Pts Qtrs",
+        "Qtrs w/ 3+ Pts",
+    ),
+    "quarters_5plus": (
+        "Qtrs with 5+ Pts",
+        "Quarters w/ 5+ Pts",
+        "5+ Pts Qtrs",
+        "Qtrs w/ 5+ Pts",
+    ),
+}
+
+
+def _register_hoops_face_aliases() -> None:
+    for key, aliases in HOOPS_FACE_ALIASES.items():
+        GLOBAL_FOLD.setdefault(fold(key), key)
+        for a in aliases:
+            folded = fold(a)
+            if folded:
+                GLOBAL_FOLD[folded] = key
+
+
+_register_hoops_face_aliases()
+
+# One lookup table. Compact fold keys plus expanded token forms.
+CANON: dict[str, str] = _seed_canon(GLOBAL_FOLD)
+for _k, _aliases in HOOPS_FACE_ALIASES.items():
+    _index_forms(CANON, _k, _k)
+    for _a in _aliases:
+        _index_forms(CANON, _a, _k)
+# Explicit expanded spellings (card face vs tab).
+for _src, _key in (
+    ("2pointattempted", "fg2a"),
+    ("twopointersattempted", "fg2a"),
+    ("2pointmade", "fg2m"),
+    ("twopointersmade", "fg2m"),
+    ("3pointattempted", "threes_att"),
+    ("3pointmade", "threes"),
+    ("fieldgoalattempted", "fga"),
+    ("fieldgoalmade", "fgm"),
+    ("freethrowattempted", "fta"),
+    ("freethrowmade", "ftm"),
+    ("offensiverebounds", "oreb"),
+    ("defensiverebounds", "dreb"),
+    ("blockssteals", "stocks"),
+    ("pointsreboundsassists", "pra"),
+    ("pointsrebounds", "pts+reb"),
+    ("pointsassists", "pts+ast"),
+    ("reboundsassists", "reb+ast"),
+    ("quarterswith3points", "quarters_3plus"),
+    ("quarterswith5points", "quarters_5plus"),
+    ("quarterswith4points", "quarters_4plus"),
+):
+    _index_forms(CANON, _src, _key)
+
+# td/dd are basketball-only (NFL "TD" is a touchdown).
+_HOOPS_ONLY = {
+    "td": "triple_double",
+    "dd": "double_double",
+    "tripledouble": "triple_double",
+    "doubledouble": "double_double",
+}
+HOOPS_CANON: dict[str, str] = dict(CANON)
+HOOPS_CANON.update(_HOOPS_ONLY)
+for _src, _key in _HOOPS_ONLY.items():
+    _index_forms(HOOPS_CANON, _src, _key)
+
+SPORT_CANON: dict[str, dict[str, str]] = {
+    sport: _seed_canon(table) for sport, table in SPORT_FOLD.items()
+}
+
+
 def _sport_key(sport: object) -> str:
     s = str(sport or "").strip().upper()
     if s == "SOC":
@@ -485,45 +768,57 @@ def _known_canon_keys() -> frozenset[str]:
 _KNOWN_CANON = _known_canon_keys()
 
 
-def canon_prop(sport: object, prop: object) -> str:
-    """One key per market. Combo and 1st-set stay distinct from the full-game single."""
-    # pd.NA / NaN must not go through ``prop or ""`` (bool(NA) raises).
+def _clean_prop_raw(prop: object) -> str:
     if prop is None:
-        raw = ""
-    else:
-        try:
-            raw = str(prop).strip()
-        except Exception:
-            raw = ""
+        return ""
+    try:
+        raw = str(prop).strip()
+    except Exception:
+        return ""
     if raw.lower() in ("nan", "<na>", "none", "<nat>"):
-        raw = ""
-    raw = _SPACE_RE.sub(" ", raw)
-    if not raw:
         return ""
-    if raw in _KNOWN_CANON:
-        return raw
-    # Already-canon combo keys (points_combo) must not re-fold to pointscombo.
-    if raw.endswith("_combo"):
-        inner = raw[: -len("_combo")]
-        sport_k = _sport_key(sport)
-        if inner in _KNOWN_CANON or _lookup(sport_k, fold(inner)) is not None:
-            return raw
-    sport_k = _sport_key(sport)
-    combo = bool(_COMBO_RE.search(raw))
-    base = _COMBO_RE.sub("", raw).strip()
-    folded = fold(base)
-    if not folded:
-        return ""
+    return _SPACE_RE.sub(" ", raw)
 
-    hit = _lookup(sport_k, folded)
+
+def prop_key(raw: object, sport: object = "") -> str | None:
+    """One key per market. None = unmapped (do not invent a fold key)."""
+    text = _clean_prop_raw(raw)
+    if not text:
+        return None
+    sport_k = _sport_key(sport)
+    if text in _KNOWN_CANON:
+        sport_hit = _lookup(sport_k, fold(text))
+        if sport_hit is None or sport_hit == text:
+            return text
+    snake_combo = text.endswith("_combo")
+    combo = bool(_COMBO_RE.search(text)) or snake_combo
+    if snake_combo:
+        base = text[: -len("_combo")].strip()
+    else:
+        base = _COMBO_RE.sub("", text).strip()
+    if snake_combo:
+        inner_hit = _lookup(sport_k, fold(base))
+        if inner_hit or base in _KNOWN_CANON:
+            if inner_hit == "pitcher_ks":
+                return "strikeouts_combo"
+            if inner_hit and inner_hit.endswith("_combo"):
+                return inner_hit
+            return f"{(inner_hit or base)}_combo"
+    expanded = expand_prop_tokens(base)
+    folded = fold(base)
+    table = SPORT_CANON.get(sport_k, {})
+    hoops = HOOPS_CANON if sport_k in BASKETBALL else CANON
+    hit = table.get(expanded) or hoops.get(expanded)
+    if hit is None:
+        hit = table.get(folded) or hoops.get(folded)
     if hit is None and sport_k == "MLB":
-        if "hitter" in folded and "strike" in folded:
+        blob = expanded or folded
+        if "hitter" in blob and "strike" in blob:
             hit = "hitter_ks"
-        elif "pitcher" in folded and "strike" in folded:
+        elif "pitcher" in blob and "strike" in blob:
             hit = "pitcher_ks"
     if hit is None:
-        hit = folded
-
+        return None
     if combo:
         if hit == "pitcher_ks":
             return "strikeouts_combo"
@@ -533,11 +828,29 @@ def canon_prop(sport: object, prop: object) -> str:
     return hit
 
 
-def display_prop(canon: object) -> str:
+def canon_prop(sport: object, prop: object) -> str:
+    """One key per market. Empty string when unmapped."""
+    hit = prop_key(prop, sport)
+    return hit or ""
+
+
+def display_prop(canon: object, sport: object = None) -> str:
+    """Human label for a canon prop.
+
+    Optional ``sport`` picks sport-specific wording when one canon key is shared
+    across leagues (NHL ``sog`` → "Shots On Goal"; soccer keeps "Shots On Target").
+    """
     c = str(canon or "").strip()
+    sp = _sport_key(sport) if sport is not None else ""
     if c.endswith("_combo"):
-        inner = display_prop(c[: -len("_combo")])
+        inner = display_prop(c[: -len("_combo")], sport=sport)
         return f"{inner} (Combo)"
+    if c == "sog" and sp == "NHL":
+        return "Shots On Goal"
+    if c == "toi" and sp == "NHL":
+        return "Time On Ice"
+    if c == "pp_points" and sp == "NHL":
+        return "Power Play Points"
     return DISPLAY.get(c, c.replace("_", " ").title())
 
 
@@ -575,7 +888,101 @@ def hr_lookup_key(sport: object, prop: object) -> str:
 
 def apply_canon_row(sport: object, prop: object, extra: Mapping[str, Any] | None = None) -> dict[str, Any]:
     c = canon_prop(sport, prop)
-    out = {"prop_canon": c, "prop_display": display_prop(c), "prop_fold": fold(c)}
+    out = {
+        "prop_canon": c,
+        "prop_display": display_prop(c, sport=sport),
+        "prop_fold": fold(c),
+    }
     if extra:
         out.update(dict(extra))
     return out
+
+
+def unmapped_prop_counts(
+    labels: Iterable[object],
+    *,
+    sport: object = "",
+) -> list[tuple[str, int]]:
+    """Distinct raw labels whose ``prop_key`` is None, with counts."""
+    counts: Counter[str] = Counter()
+    for raw in labels:
+        text = _clean_prop_raw(raw)
+        if not text:
+            continue
+        if prop_key(text, sport) is None:
+            counts[text] += 1
+    return counts.most_common()
+
+
+def gated_unmapped_labels(
+    unmapped: Iterable[tuple[str, int]],
+    *,
+    sport: object = "",
+) -> list[tuple[str, int]]:
+    """Unmapped labels that expand to a required/gated market."""
+    sport_u = _sport_key(sport)
+    gated_forms: set[str] = set()
+    try:
+        from utils.pp_board_prop_map import categories_for_sport, required_keys
+
+        need = required_keys(sport_u)
+        for cat in categories_for_sport(sport_u):
+            if cat.key not in need and not cat.required_on_board:
+                continue
+            gated_forms.add(expand_prop_tokens(cat.card_label))
+            gated_forms.add(fold(cat.card_label))
+            gated_forms.add(cat.key)
+            for alias in cat.aliases:
+                gated_forms.add(expand_prop_tokens(alias))
+                gated_forms.add(fold(alias))
+    except Exception:
+        need = frozenset()
+    if sport_u in BASKETBALL:
+        gated_forms.update(
+            {
+                "fg2a",
+                "fg2m",
+                "fga",
+                "fgm",
+                "fta",
+                "ftm",
+                "threes_att",
+                "threes",
+                "2pointattempted",
+                "3pointattempted",
+                "fieldgoalattempted",
+                "freethrowattempted",
+            }
+        )
+    hits: list[tuple[str, int]] = []
+    for label, n in unmapped:
+        ex = expand_prop_tokens(label)
+        fd = fold(label)
+        if ex in gated_forms or fd in gated_forms:
+            hits.append((label, n))
+    return hits
+
+
+def report_unmapped_props(
+    labels: Iterable[object],
+    *,
+    sport: object = "",
+    fail_gated: bool = True,
+) -> list[tuple[str, int]]:
+    """Print unmapped ``stat_type`` counts. Raise if a gated market is unmapped."""
+    unmapped = unmapped_prop_counts(labels, sport=sport)
+    sport_u = _sport_key(sport) or "SPORT"
+    if not unmapped:
+        print(f"  [prop_key {sport_u}] all labels mapped")
+        return []
+    print(f"  [WARN] {sport_u} unmapped stat_type ({len(unmapped)} labels):")
+    for label, n in unmapped:
+        print(f"      {n:5}  {label!r}  expand={expand_prop_tokens(label)!r}")
+    gated = gated_unmapped_labels(unmapped, sport=sport)
+    if gated and fail_gated:
+        bits = ", ".join(f"{lab!r} n={n}" for lab, n in gated)
+        raise RuntimeError(
+            f"{sport_u} unmapped gated props: {bits}. "
+            "Add the spelling to utils.prop_norm CANON / ABBREV."
+        )
+    return unmapped

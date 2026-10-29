@@ -2820,7 +2820,7 @@ if ($NowHour -ge 10) {
         "--league_id", "7",
         "--game_mode", "pickem",
         "--per_page", "250",
-        "--max_pages", "3",
+        "--max_pages", "20",
         "--retries", "2",
         "--sleep", "2.0",
         "--fail-fast",

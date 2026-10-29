@@ -404,7 +404,7 @@ else {
         "--league_id", "7",
         "--game_mode", "pickem",
         "--per_page", "250",
-        "--max_pages", "3",
+        "--max_pages", "20",
         "--retries", "$MaxRetries",
         "--sleep", "2.0",
         "--cooldown_seconds", "180",

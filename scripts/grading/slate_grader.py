@@ -440,6 +440,14 @@ def norm_prop_key(p) -> str:
     s = " ".join(s.replace("_", " ").split())
     if s.endswith(" combo"):
         s = s[: -len(" combo")].strip()
+    try:
+        from utils.prop_norm import display_prop, prop_key
+
+        key = prop_key(s)
+        if key:
+            return str(display_prop(key)).strip().lower()
+    except Exception:
+        pass
     return PROP_NORM_MAP.get(s, s)
 
 

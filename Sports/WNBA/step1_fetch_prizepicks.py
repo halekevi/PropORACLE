@@ -1214,6 +1214,18 @@ def main():
 
     df = _stamp_fetched_at(df)
     df["sport"] = sport_tag
+    try:
+        from utils.pp_basketball_markets import log_shooting_coverage
+        from utils.prop_norm import report_unmapped_props
+
+        pts = int(df["prop_type"].astype(str).str.lower().str.contains("points").sum())
+        log_shooting_coverage(df["prop_type"], sport=sport_tag, n_points=pts)
+        report_unmapped_props(df["prop_type"], sport=sport_tag, fail_gated=True)
+    except RuntimeError as _cov_exc:
+        print(f"❌ {_cov_exc}")
+        raise SystemExit(2) from _cov_exc
+    except Exception as _sc_exc:
+        print(f"  [WARN] shooting coverage log skipped: {_sc_exc}")
     df.to_csv(out_path, index=False, encoding="utf-8-sig")
     from utils.pick_type_persist import assert_pick_type_persisted
 

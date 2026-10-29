@@ -297,16 +297,55 @@ _SOCCER_PROP_MAP = {
 }
 
 
+# Canon key (from prop_key) → SQL box column. Spellings live in utils.prop_norm.
+_CANON_TO_NBA_BOX = {
+    "points": "pts",
+    "rebounds": "reb",
+    "assists": "ast",
+    "steals": "stl",
+    "blocks": "blk",
+    "turnovers": "tov",
+    "fgm": "fgm",
+    "fga": "fga",
+    "threes": "fg3m",
+    "threes_att": "fg3a",
+    "fg2m": "fg2m",
+    "fg2a": "fg2a",
+    "ftm": "ftm",
+    "fta": "fta",
+    "oreb": "oreb",
+    "dreb": "dreb",
+    "pf": "pf",
+    "dunks": "dunks",
+    "fantasy": "fantasy_score",
+    "pra": "pts + reb + ast",
+    "pts+reb": "pts + reb",
+    "pts+ast": "pts + ast",
+    "reb+ast": "reb + ast",
+    "stocks": "blk + stl",
+    "minutes": "minutes",
+}
+
+
 def _resolve_prop(prop_norm: str, sport: str) -> Optional[str]:
     """Return the SQL column expression for a prop_norm, or None if unknown."""
     p = str(prop_norm or "").lower().strip()
     # Strip trailing (combo) marker
     p = p.replace("(combo)", "").strip()
-    if sport in ("nba", "cbb"):
+    sport_u = str(sport or "").strip().lower()
+    try:
+        from utils.prop_norm import prop_key
+
+        key = prop_key(p, sport_u.upper())
+    except Exception:
+        key = None
+    if sport_u in ("nba", "cbb"):
+        if key and key in _CANON_TO_NBA_BOX:
+            return _CANON_TO_NBA_BOX[key]
         return _NBA_PROP_MAP.get(p)
-    if sport == "nhl":
+    if sport_u == "nhl":
         return _NHL_PROP_MAP.get(p)
-    if sport == "soccer":
+    if sport_u == "soccer":
         return _SOCCER_PROP_MAP.get(p)
     return None
 
