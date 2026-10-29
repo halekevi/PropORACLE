@@ -14,7 +14,9 @@ Order: shared windows → #1 PP reconcile → #2 course-baseline projection
 | Shared windows + push/decided | `utils/golf_windows.py`; step5/step8 columns | **landed** |
 | Push-aware L5 (all sports) | `utils/l5_push_aware.py` via `fill_l5_from_stat_games` | **landed** |
 | #1 PP reconcile | `utils/golf_pp_reconcile.py` + manual fixture (scrape has no chart yet) | **landed** |
-| #2 Course-baseline projection + walk-forward | — | next |
+| #2 Course-baseline projection + walk-forward | `utils/golf_course_baseline.py`; step8 observe-only | **landed** |
+| Grader WD / missed-cut / integer PUSH → VOID | `golf_actuals.py` + `golf_grader.py` | **landed** |
+| Tickets | unregistered (CBB rule) until a keep-gate cell exists | **off** |
 
 ---
 

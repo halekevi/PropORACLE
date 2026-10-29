@@ -1,7 +1,8 @@
 """Which sports have a ticket rule, and whether it replaces L5/L10/D.
 
-A sport with no entry is off. NHL, CBB, and WCBB stay unregistered. NHL
-Shots On Goal still has no cell to ticket from. NBA full-game and NBA1H
+A sport with no entry is off. NHL, CBB, WCBB, and Golf stay unregistered.
+Golf has no keep-gate cell yet (course-baseline projection is observe-only).
+NHL Shots On Goal still has no cell to ticket from. NBA full-game and NBA1H
 stay unregistered: the default L5=5+L10>=8+D stack is -EV in the Goblin
 backtest (0.668 vs ~0.737 breakeven). Mixer/Standard NBA is held until
 step7b scores. See ``utils.ticket_sport_holds``. Holds (thin competitions
@@ -12,7 +13,6 @@ from __future__ import annotations
 from typing import Any, Callable
 
 from utils.cfb_keep_gates import cfb_ticket_fade
-from utils.golf_keep_gates import golf_ticket_eligible
 from utils.mlb_keep_gates import mlb_goblin_keep_eligible
 from utils.nfl_keep_gates import nfl_goblin_ticket_eligible, nfl_standard_ticket_eligible
 from utils.soccer_keep_gates import soccer_ticket_gate_passes
@@ -47,9 +47,7 @@ SPORT_RULES: dict[str, tuple[str, RuleFn | None]] = {
     "TENNIS": ("replace", tennis_ticket_gate_passes),
     # Shots / SOT / Saves. List may enter SOT/Saves at L5>=4; tickets need L5=5.
     "SOCCER": ("replace", soccer_ticket_gate_passes),
-    # L5=5 + L10>=8, no opponent D.
-    "GOLF": ("replace", golf_ticket_eligible),
-    "PGA": ("replace", golf_ticket_eligible),
+    # Golf stays unregistered until a keep-gate cell is pre-registered.
     # Keep-list props, then the default stack (some Unders skip L5=5).
     "NFL": ("add", nfl_keep_allows),
     # Default stack, then fade player TDs, rec-yards Under, rush att, kick pts.

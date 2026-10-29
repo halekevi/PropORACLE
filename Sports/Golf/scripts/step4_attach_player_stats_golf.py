@@ -54,7 +54,11 @@ CACHE_COLUMNS = [
     "player_key",
     "tournament_date",
     "tournament_name",
+    "event_id",
+    "course_id",
     "round",
+    "round_date",
+    "player_status",
     "strokes",
     "birdies",
     "bogeys",
@@ -106,6 +110,40 @@ def prop_stat_key(prop_type: str) -> str | None:
     return None
 
 
+def _venue_id(ev: dict, comp: dict) -> str:
+    for obj in (comp, ev):
+        venue = (obj or {}).get("venue") or {}
+        if isinstance(venue, dict):
+            vid = str(venue.get("id") or "").strip()
+            if vid:
+                return vid
+    return ""
+
+
+def _competitor_status(player: dict) -> str:
+    st = player.get("status")
+    if isinstance(st, dict):
+        t = st.get("type") if isinstance(st.get("type"), dict) else {}
+        raw = t.get("abbreviation") or t.get("name") or st.get("displayName") or ""
+        return str(raw).strip().upper()
+    return str(st or "").strip().upper()
+
+
+def _linescore_date(rnd: dict, event_start: str, round_n: int) -> str:
+    raw = str(rnd.get("date") or rnd.get("startDate") or "").strip()
+    if raw:
+        try:
+            return eastern_slate_date(raw)
+        except Exception:
+            pass
+    try:
+        d0 = date.fromisoformat(str(event_start)[:10])
+        rn = max(1, int(round_n))
+        return (d0 + timedelta(days=rn - 1)).isoformat()
+    except (TypeError, ValueError):
+        return str(event_start)[:10]
+
+
 def _event_date(ev: dict) -> str:
     raw = str(ev.get("date") or ev.get("startDate") or "").strip()
     if not raw:
@@ -142,7 +180,9 @@ def _rows_from_events(events: list[dict]) -> list[dict]:
     for ev in events:
         t_name = str(ev.get("name") or "").strip()
         t_date = _event_date(ev)
+        event_id = str(ev.get("id") or "").strip()
         for comp in ev.get("competitions") or []:
+            course_id = _venue_id(ev, comp)
             for p in comp.get("competitors") or []:
                 ath = p.get("athlete") or {}
                 pname = str(ath.get("displayName") or ath.get("shortName") or "").strip()
@@ -150,6 +190,7 @@ def _rows_from_events(events: list[dict]) -> list[dict]:
                     continue
                 pk = _player_key(pname)
                 aid = str(ath.get("id") or "").strip()
+                player_status = _competitor_status(p)
                 for ri, rnd in enumerate(p.get("linescores") or [], start=1):
                     parsed = parse_round_stats(rnd)
                     strokes = parsed.get("strokes")
@@ -167,7 +208,11 @@ def _rows_from_events(events: list[dict]) -> list[dict]:
                             "player_key": pk,
                             "tournament_date": t_date,
                             "tournament_name": t_name,
+                            "event_id": event_id,
+                            "course_id": course_id,
                             "round": ri,
+                            "round_date": _linescore_date(rnd, t_date, ri),
+                            "player_status": player_status,
                             "strokes": strokes,
                             "birdies": parsed.get("birdies"),
                             "bogeys": parsed.get("bogeys"),
@@ -186,8 +231,52 @@ def _rows_from_events(events: list[dict]) -> list[dict]:
     return rows
 
 
+def _fill_blank_course_ids(df: pd.DataFrame) -> pd.DataFrame:
+    """Slug tournament name when ESPN venue id is missing."""
+    if df is None or df.empty:
+        return df
+    out = df.copy()
+    if "course_id" not in out.columns:
+        out["course_id"] = ""
+    empty = out["course_id"].astype(str).str.strip().isin({"", "nan", "none", "None"})
+    if empty.any() and "tournament_name" in out.columns:
+        from utils.golf_course_baseline import course_key
+
+        out.loc[empty, "course_id"] = out.loc[empty, "tournament_name"].map(
+            lambda x: course_key({"tournament_name": x})
+        )
+    return out
+
+
+def _fill_blank_round_dates(df: pd.DataFrame) -> pd.DataFrame:
+    if df is None or df.empty:
+        return df
+    out = df.copy()
+    if "round_date" not in out.columns:
+        out["round_date"] = ""
+    empty = out["round_date"].astype(str).str.strip().isin({"", "nan", "none", "None", "NaT"})
+    if not empty.any():
+        return out
+    for idx in out.index[empty]:
+        td = str(out.at[idx, "tournament_date"] if "tournament_date" in out.columns else "")[:10]
+        rn = out.at[idx, "round"] if "round" in out.columns else 1
+        try:
+            d0 = date.fromisoformat(td)
+            n = int(float(rn))
+            if n < 1:
+                n = 1
+            out.at[idx, "round_date"] = (d0 + timedelta(days=n - 1)).isoformat()
+        except (TypeError, ValueError):
+            out.at[idx, "round_date"] = td
+    return out
+
+
 def _attach_vs_field(df: pd.DataFrame) -> pd.DataFrame:
-    """vs_field = strokes - field average for that tournament_date + round."""
+    """vs_field = strokes - field average for that tournament_date + round.
+
+    Field mean uses completed 18-hole rounds only so WD 9-hole scores
+    do not pull the baseline down.
+    """
     out = df.copy()
     if out.empty or "strokes" not in out.columns:
         return out
@@ -197,9 +286,12 @@ def _attach_vs_field(df: pd.DataFrame) -> pd.DataFrame:
         if k not in out.columns:
             out["vs_field"] = np.nan
             return out
+    holes = pd.to_numeric(out.get("holes_played"), errors="coerce")
+    full = out.dropna(subset=["strokes"]).copy()
+    if holes is not None and holes.notna().any():
+        full = full.loc[holes.reindex(full.index).fillna(18).sub(18).abs() < 0.1]
     field = (
-        out.dropna(subset=["strokes"])
-        .groupby(keys, dropna=False)["strokes"]
+        full.groupby(keys, dropna=False)["strokes"]
         .mean()
         .rename("field_avg_strokes")
     )
@@ -318,6 +410,7 @@ def refresh_round_cache(cache_path: Path, weeks_back: int = 12) -> pd.DataFrame:
             new_df[c] = pd.to_numeric(new_df[c], errors="coerce")
     new_df["player_key"] = new_df["player_name"].map(_player_key)
     new_df["tournament_date"] = new_df["tournament_date"].astype(str).str[:10]
+    new_df = _fill_blank_course_ids(new_df)
     new_df = _attach_vs_field(new_df)
     old = load_round_cache(cache_path)
     if not old.empty and "tournament_date" in old.columns:
@@ -327,6 +420,8 @@ def refresh_round_cache(cache_path: Path, weeks_back: int = 12) -> pd.DataFrame:
     # Normalize date before dedupe — otherwise ISO vs date-only twins survive.
     merged["tournament_date"] = merged["tournament_date"].astype(str).str[:10]
     merged = _prefer_clean_round_rows(merged)
+    merged = _fill_blank_course_ids(merged)
+    merged = _fill_blank_round_dates(merged)
     merged = merged[merged["tournament_date"] >= start_floor.isoformat()].copy()
     # Recompute vs_field on the merged window so old rows get a field baseline too.
     merged = _attach_vs_field(merged)

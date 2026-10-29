@@ -114,6 +114,24 @@ def test_counts_from_stat_g_row():
     assert c.over == 1
 
 
+def test_wd_short_round_excluded_from_l5():
+    rows = _rounds().to_dict("records")
+    rows.append(
+        {
+            "tournament_date": "2026-10-06",
+            "round": 1,
+            "course_id": "port_royal",
+            "pars": 4,
+            "strokes": 40,
+            "holes_played": 9,
+            "player_status": "WD",
+        }
+    )
+    win = select_window(pd.DataFrame(rows), kind="l5_all")
+    assert len(win) == 5
+    assert 40 not in set(pd.to_numeric(win["strokes"], errors="coerce"))
+
+
 def test_player_windows_course_vs_all():
     out = player_windows(
         _rounds(),

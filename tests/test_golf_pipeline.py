@@ -44,6 +44,7 @@ def test_golf_step8_does_not_invent_l5_from_hit_rate():
     assert "fillna(0.5) * 5" not in src
     assert "l5_over_fallback" not in src
     assert "fill_l5_from_stat_games" in src
+    assert "apply_course_baseline" in src
 
 
 def test_golf_step7_keeps_stat_g_columns():
@@ -138,6 +139,84 @@ def test_golf_grader_over_uses_gte_line():
     assert golf_grader._grade("UNDER", 67.5, 67.0)[0] == "HIT"
     assert golf_grader._grade("UNDER", 67.5, 67.5)[0] == "MISS"
     assert golf_grader._grade("OVER", 67.5, None)[0] == "VOID"
+
+
+def test_golf_grader_integer_push_is_void():
+    sys.path.insert(0, str(ROOT / "Sports" / "Golf" / "scripts"))
+    import golf_grader  # noqa: E402
+
+    res, note, reason = golf_grader._grade("OVER", 11.0, 11.0)
+    assert res == "VOID"
+    assert reason == "PUSH"
+    assert golf_grader._grade("UNDER", 11.0, 11.0)[0] == "VOID"
+    # Half-point lines cannot push.
+    assert golf_grader._grade("OVER", 67.5, 67.5)[0] == "HIT"
+
+
+def test_golf_grader_wd_and_missed_cut_void():
+    sys.path.insert(0, str(ROOT / "Sports" / "Golf" / "scripts"))
+    import golf_grader  # noqa: E402
+
+    assert golf_grader._grade("OVER", 70.5, 38.0, status="WD")[0] == "VOID"
+    assert golf_grader._grade("OVER", 70.5, None, status="MISSED_CUT") == (
+        "VOID",
+        "MISSED_CUT",
+        "MISSED_CUT",
+    )
+
+
+def test_golf_actuals_skip_wd_short_round():
+    sys.path.insert(0, str(ROOT / "Sports" / "Golf" / "scripts"))
+    from golf_actuals import actuals_rows_for_date, lookup_player_day  # noqa: E402
+
+    cache = pd.DataFrame(
+        {
+            "player_name": ["Wd Golfer", "Ok Golfer"],
+            "player_key": ["wd golfer", "ok golfer"],
+            "tournament_date": ["2026-08-27", "2026-08-27"],
+            "tournament_name": ["Test Open", "Test Open"],
+            "event_id": ["ev1", "ev1"],
+            "round": [1, 1],
+            "holes_played": [9, 18],
+            "player_status": ["WD", ""],
+            "strokes": [40.0, 68.0],
+            "birdies_or_better": [0.0, 5.0],
+            "pars": [3.0, 10.0],
+            "bogeys_or_worse": [6.0, 3.0],
+        }
+    )
+    rows = actuals_rows_for_date(cache, "2026-08-27")
+    players = {r["player"] for r in rows}
+    assert "Wd Golfer" not in players
+    assert "Ok Golfer" in players
+    assert lookup_player_day(cache, "2026-08-27", "wd golfer").status == "WD"
+
+
+def test_golf_missed_cut_r3_void_not_miss():
+    sys.path.insert(0, str(ROOT / "Sports" / "Golf" / "scripts"))
+    from golf_actuals import lookup_player_day  # noqa: E402
+
+    cache = pd.DataFrame(
+        {
+            "player_name": ["Cut Golfer", "Cut Golfer", "Made Cut"],
+            "player_key": ["cut golfer", "cut golfer", "made cut"],
+            "tournament_date": ["2026-08-27", "2026-08-27", "2026-08-27"],
+            "tournament_name": ["Test Open", "Test Open", "Test Open"],
+            "event_id": ["ev1", "ev1", "ev1"],
+            "round": [1, 2, 3],
+            "round_date": ["2026-08-27", "2026-08-28", "2026-08-29"],
+            "holes_played": [18, 18, 18],
+            "player_status": ["CUT", "CUT", ""],
+            "strokes": [75.0, 74.0, 69.0],
+            "birdies_or_better": [1.0, 2.0, 5.0],
+            "pars": [8.0, 9.0, 11.0],
+            "bogeys_or_worse": [9.0, 7.0, 2.0],
+        }
+    )
+    day = lookup_player_day(cache, "2026-08-29", "cut golfer")
+    assert day.status == "MISSED_CUT"
+    made = lookup_player_day(cache, "2026-08-29", "made cut")
+    assert made.status == "OK"
 
 
 def test_golf_on_grader_and_daily_schedules():

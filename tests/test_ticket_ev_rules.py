@@ -15,6 +15,7 @@ from utils.ticket_ev_build import (  # noqa: E402
     build_sport_then_mix,
     score_slip,
 )
+from utils.golf_keep_gates import golf_ticket_eligible  # noqa: E402
 from utils.ticket_keep_registry import rule_for  # noqa: E402
 
 
@@ -56,6 +57,17 @@ def test_out_of_season_sports_are_not_registered():
     assert rule_for("NBA") is None
     assert rule_for("CBB") is None
     assert rule_for("WCBB") is None
+    assert rule_for("GOLF") is None
+    assert rule_for("PGA") is None
+    assert not golf_ticket_eligible(
+        {
+            "sport": "GOLF",
+            "pick_type": "Goblin",
+            "side": "OVER",
+            "l5_over": 5,
+            "l10_over": 8,
+        }
+    )
     assert rule_for("WNBA")[0] == "add"
     assert rule_for("MLB")[0] == "replace"
     assert rule_for("Tennis")[0] == "replace"

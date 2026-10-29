@@ -174,6 +174,9 @@ def build_clean_xlsx(df: pd.DataFrame, xlsx_path: str) -> None:
         "l5_over", "l5_under", "l5_push", "l5_decided", "thin_decided",
         "hit_rate_decided_over_5", "hit_rate_decided_under_5",
         "golf_pp_reconcile", "pp_mismatch_rounds",
+        "golf_course_baseline", "golf_skill_vs_field",
+        "golf_proj_mu", "golf_proj_sd", "golf_proj_p_over", "golf_proj_p_push",
+        "golf_proj_edge", "golf_proj_hold", "no_course_history",
         "stat_g1", "stat_g2", "stat_g3", "stat_g4", "stat_g5",
         "stat_g6", "stat_g7", "stat_g8", "stat_g9", "stat_g10",
         "l10_over", "l10_under", "l10_over_pct", "l10_streak", "l10_games_played",
@@ -335,18 +338,24 @@ def main() -> None:
     out["direction"] = final_dir
     out["bet_direction"] = final_dir
     out["void_reason"] = ""
+    cache_path = root / "Sports" / "Golf" / "cache" / "golf_round_cache.csv"
+    if cache_path.is_file():
+        rounds_cache = pd.read_csv(cache_path, low_memory=False, encoding="utf-8-sig")
+    else:
+        rounds_cache = pd.DataFrame()
     # PP chart reconcile (fixture until board scrape captures chart series).
     try:
         from utils.golf_pp_reconcile import apply_pp_reconcile
 
-        cache_path = root / "Sports" / "Golf" / "cache" / "golf_round_cache.csv"
-        if cache_path.is_file():
-            rounds_cache = pd.read_csv(cache_path, low_memory=False, encoding="utf-8-sig")
-        else:
-            rounds_cache = pd.DataFrame()
         out = apply_pp_reconcile(out, rounds_cache)
     except Exception as exc:
         print(f"[Golf step8] WARN PP reconcile skipped: {exc}")
+    try:
+        from utils.golf_course_baseline import apply_course_baseline
+
+        out = apply_course_baseline(out, rounds_cache, as_of=target_str)
+    except Exception as exc:
+        print(f"[Golf step8] WARN course-baseline projection skipped: {exc}")
 
     # Hold bad scorecard attaches / PP mismatches (flags-not-drops): blank direction.
     hold = pd.Series(False, index=out.index)

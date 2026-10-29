@@ -28,6 +28,20 @@ L5_ALL_N = 5
 SKILL_WINDOW_N = 20
 DEFAULT_COURSE_N = 5
 
+WD_STATUS = frozenset(
+    {
+        "WD",
+        "W/D",
+        "DQ",
+        "DNS",
+        "DNF",
+        "WITHDRAWN",
+        "WITHDRAW",
+    }
+)
+# Tournament missed-cut labels. Completed R1/R2 still belong in L5.
+MISSED_CUT_STATUS = frozenset({"CUT", "MC", "M/C", "WD-CUT"})
+
 # Canonical column → accepted aliases (first present wins).
 _COL_ALIASES: dict[str, tuple[str, ...]] = {
     "round_date": ("round_date", "tournament_date", "date"),
@@ -51,10 +65,44 @@ __all__ = [
     "counts_from_stat_g_row",
     "line_outcome",
     "normalize_rounds",
+    "completed_rounds",
+    "is_wd_status",
     "select_window",
     "count_stat_window",
     "player_windows",
+    "WD_STATUS",
+    "MISSED_CUT_STATUS",
 ]
+
+
+def is_wd_status(raw: object) -> bool:
+    s = str(raw or "").strip().upper()
+    if not s or s in {"NAN", "NONE", "NAT"}:
+        return False
+    if s in WD_STATUS:
+        return True
+    if s in MISSED_CUT_STATUS:
+        return False
+    return "WITHDRAW" in s or s.startswith("WD")
+
+
+def is_missed_cut_status(raw: object) -> bool:
+    s = str(raw or "").strip().upper()
+    return s in MISSED_CUT_STATUS
+
+
+def completed_rounds(rounds: pd.DataFrame) -> pd.DataFrame:
+    """Drop WD / short-round rows. Missing holes (legacy cache) stay in."""
+    if rounds is None or rounds.empty:
+        return rounds
+    work = rounds
+    keep = pd.Series(True, index=work.index)
+    if "holes_played" in work.columns:
+        holes = pd.to_numeric(work["holes_played"], errors="coerce")
+        keep &= holes.isna() | (holes.sub(18).abs() < 0.1)
+    if "player_status" in work.columns:
+        keep &= ~work["player_status"].map(is_wd_status)
+    return work.loc[keep].copy()
 
 
 def _parse_date(val: object) -> date | None:
@@ -123,7 +171,7 @@ def select_window(
     ``as_of`` is exclusive: only rounds with ``round_date`` strictly before
     that date are eligible (walk-forward guard).
     """
-    work = normalize_rounds(rounds)
+    work = completed_rounds(normalize_rounds(rounds))
     if work.empty:
         return work.iloc[0:0].copy()
 

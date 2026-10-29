@@ -8,6 +8,7 @@ Writes graded_golf_{date}.xlsx (sheets graded + Box Raw).
 from __future__ import annotations
 
 import argparse
+import math
 import sys
 from pathlib import Path
 
@@ -20,7 +21,13 @@ if str(_SCRIPT_DIR) not in sys.path:
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
-from golf_actuals import actuals_lookup, load_golf_round_cache, prop_stat_key, _player_key  # noqa: E402
+from golf_actuals import (  # noqa: E402
+    actuals_lookup,
+    load_golf_round_cache,
+    lookup_player_day,
+    prop_stat_key,
+    _player_key,
+)
 from scripts.l10_streak_utils import enrich_graded_l10_columns  # noqa: E402
 
 _DEF_GRADED_COLS = [
@@ -51,9 +58,25 @@ def _load_slate(path: Path) -> pd.DataFrame:
     return pd.read_csv(path, dtype=str, encoding="utf-8-sig").fillna("")
 
 
-def _grade(direction: str, line: float, actual: float | None) -> tuple[str, str, str]:
+def _is_integer_line(line: float) -> bool:
+    return math.isfinite(line) and abs(line - round(line)) < 1e-9
+
+
+def _grade(
+    direction: str,
+    line: float,
+    actual: float | None,
+    status: str = "",
+) -> tuple[str, str, str]:
+    st = str(status or "").strip().upper()
+    if st in {"WD", "INCOMPLETE"}:
+        return "VOID", "WD", "WD"
+    if st in {"MISSED_CUT", "CUT", "MC"}:
+        return "VOID", "MISSED_CUT", "MISSED_CUT"
     if actual is None:
         return "VOID", "NO_MATCH_OR_INCOMPLETE", "NO_DATA"
+    if _is_integer_line(line) and abs(float(actual) - float(line)) < 1e-9:
+        return "VOID", "PUSH", "PUSH"
     d = direction.strip().upper()
     if d == "OVER":
         return ("HIT", "", "") if actual >= line else ("MISS", "", "")
@@ -146,8 +169,9 @@ def main() -> None:
         except (TypeError, ValueError):
             line = float("nan")
         pk = _player_key(player)
-        actual = lookup.get((pk, stat))
-        res, note, void_reason = _grade(direction, line, actual)
+        day = lookup_player_day(cache, target, pk)
+        actual = lookup.get((pk, stat)) if day.status == "OK" else None
+        res, note, void_reason = _grade(direction, line, actual, status=day.status)
         note_out = note or ("" if actual is not None else "PLAYER_OR_DATE_NOT_FOUND")
         rows.append(
             {
