@@ -134,6 +134,7 @@ def test_golf_grader_over_uses_gte_line():
     import golf_grader  # noqa: E402
 
     assert golf_grader._grade("OVER", 67.5, 68.0)[0] == "HIT"
+    # Strokes never land on 67.5; this branch is the same as > for integer actuals.
     assert golf_grader._grade("OVER", 67.5, 67.5)[0] == "HIT"
     assert golf_grader._grade("OVER", 67.5, 67.0)[0] == "MISS"
     assert golf_grader._grade("UNDER", 67.5, 67.0)[0] == "HIT"

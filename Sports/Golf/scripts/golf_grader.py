@@ -75,6 +75,8 @@ def _grade(
         return "VOID", "MISSED_CUT", "MISSED_CUT"
     if actual is None:
         return "VOID", "NO_MATCH_OR_INCOMPLETE", "NO_DATA"
+    # Strokes and pars are integers: a .5 line can never equal the actual, so
+    # only integer lines push. >= vs > on 67.5 is the same decision.
     if _is_integer_line(line) and abs(float(actual) - float(line)) < 1e-9:
         return "VOID", "PUSH", "PUSH"
     d = direction.strip().upper()

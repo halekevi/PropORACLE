@@ -144,8 +144,11 @@ Labels only. No gate changes. Same promotion path as NBA projection.
 ### Backtest
 
 Do not wait for graded props. Walk forward over the cached rounds (~2,588):
-project each round using **only** rounds before it; check calibration of `µ/σ`
-and count models. When archived PP golf lines exist, score against those too.
+project each round using **only earlier events** for B (not this week's
+field — vs_field is defined against that same average). Skill S may use this
+week's earlier rounds. Check µ/σ on **priced** (unheld) rows, split R1/R2 vs
+R3/R4, and report |z|<1 / |z|<2 plus each tail. When archived PP golf lines
+exist, score against those too.
 
 ---
 
@@ -157,7 +160,8 @@ and count models. When archived PP golf lines exist, score against those too.
    birdies-or-better
 3. **Projection:** Crowe-like fixture (`to_par −5.4` / `vs_field −2.2`) at a
    near-par course lands ≈ 68.8 with `P(over 68.5)` slightly above 0.5
-4. **Walk-forward guard:** no round may use data from its own date or later
+4. **Walk-forward guard:** B uses earlier *events* at the course, not the
+   same day's field and not R1/R2 of the same tournament
 
 ---
 

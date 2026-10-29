@@ -7,6 +7,8 @@ import pandas as pd
 
 from utils.golf_course_baseline import (
     apply_course_baseline,
+    course_field_stats,
+    print_walkforward_summary,
     project_leg,
     project_strokes,
     walk_forward_strokes,
@@ -97,6 +99,71 @@ def test_walk_forward_strokes_never_uses_own_round():
     assert not out.empty
     # Last projected date must be after the first 8 rounds.
     assert str(out["round_date"].min()) >= "2026-09-09"
+    assert "round_num" in out.columns
+
+
+def test_b_excludes_same_event_not_just_same_day():
+    """Thursday's field at this event must not enter B for Friday."""
+    hist = []
+    start = date(2026, 8, 1)
+    for i in range(12):
+        d = start + timedelta(days=i)
+        hist.append(
+            {
+                "player_key": f"field{i}",
+                "course_id": "near_par",
+                "event_id": f"old{i}",
+                "round_date": d.isoformat(),
+                "tournament_date": d.isoformat(),
+                "tournament_name": f"Old {i}",
+                "round": 1,
+                "strokes": 71.0,
+                "to_par": 0.0,
+                "vs_field": 0.0,
+                "course_par": 71,
+                "holes_played": 18,
+            }
+        )
+    r1 = [
+        {
+            "player_key": f"wk{i}",
+            "course_id": "near_par",
+            "event_id": "this_week",
+            "round_date": "2026-10-09",
+            "tournament_date": "2026-10-09",
+            "tournament_name": "This Open",
+            "round": 1,
+            "strokes": 89.0,
+            "to_par": 18.0,
+            "vs_field": 0.0,
+            "course_par": 71,
+            "holes_played": 18,
+        }
+        for i in range(20)
+    ]
+    cache = pd.DataFrame(hist + r1)
+    as_of = date(2026, 10, 10)
+    clean = course_field_stats(cache, "near_par", as_of=as_of, event_id="this_week")
+    leaked = course_field_stats(cache, "near_par", as_of=as_of)
+    assert leaked["B"] > clean["B"]
+    assert abs(float(clean["B"]) - 71.0) < 1.0
+
+
+def test_walkforward_summary_missing_columns_and_split(capsys):
+    print_walkforward_summary(pd.DataFrame({"player_key": ["a"]}))
+    out = pd.DataFrame(
+        {
+            "z": [0.2, 0.1, 2.5, -2.4],
+            "golf_proj_hold": [0, 0, 0, 1],
+            "round_num": [1, 3, 2, 4],
+        }
+    )
+    print_walkforward_summary(out)
+    text = capsys.readouterr().out
+    assert "priced" in text
+    assert "held" in text
+    assert "priced R1-R2" in text
+    assert "priced R3-R4" in text
 
 
 def test_apply_course_baseline_observe_only_columns():

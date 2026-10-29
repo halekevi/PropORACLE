@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import math
 import re
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from typing import Any
 
 import numpy as np
@@ -116,6 +116,55 @@ def _as_of(val: object) -> date | None:
     return _parse_date(val)
 
 
+def _ensure_calendar_round_dates(work: pd.DataFrame) -> pd.DataFrame:
+    """Derive round_date from event start + round when the cache collapsed to Thursday."""
+    if work.empty:
+        return work
+    out = work.copy()
+    td = out["tournament_date"] if "tournament_date" in out.columns else out.get("round_date")
+    rn = pd.to_numeric(out.get("round_num"), errors="coerce").fillna(1)
+    rd = out["round_date"] if "round_date" in out.columns else None
+    derived: list[date | None] = []
+    for t, n, r in zip(td, rn, rd if rd is not None else [None] * len(out)):
+        n_i = int(n) if pd.notna(n) else 1
+        if n_i < 1:
+            n_i = 1
+        base = _parse_date(t)
+        got = _parse_date(r)
+        if got is None and base is not None:
+            derived.append(base + timedelta(days=n_i - 1))
+        elif got is not None and base is not None and n_i > 1 and got == base:
+            derived.append(base + timedelta(days=n_i - 1))
+        else:
+            derived.append(got)
+    out["round_date"] = derived
+    return out
+
+
+def _exclude_event(
+    work: pd.DataFrame,
+    *,
+    event_id: str = "",
+    tournament_date: object = None,
+    tournament_name: str = "",
+) -> pd.DataFrame:
+    """Drop the current event so B cannot see this week's field / setup."""
+    if work.empty:
+        return work
+    eid = str(event_id or "").strip()
+    if eid and eid.lower() not in {"nan", "none"} and "event_id" in work.columns:
+        return work.loc[work["event_id"].astype(str) != eid].copy()
+    tdate = str(_parse_date(tournament_date) or tournament_date or "")[:10]
+    tname = str(tournament_name or "").strip().lower()
+    if tdate and tdate.lower() not in {"nan", "none"} and "tournament_date" in work.columns:
+        td = work["tournament_date"].map(lambda x: str(_parse_date(x) or x or "")[:10])
+        if tname and "tournament_name" in work.columns:
+            names = work["tournament_name"].astype(str).str.strip().str.lower()
+            return work.loc[~((td == tdate) & (names == tname))].copy()
+        return work.loc[td != tdate].copy()
+    return work
+
+
 def _full18(work: pd.DataFrame) -> pd.DataFrame:
     if work.empty:
         return work
@@ -136,8 +185,20 @@ def _before(work: pd.DataFrame, as_of: date | None) -> pd.DataFrame:
     return work.loc[parsed.notna() & (parsed < as_of)].copy()
 
 
-def tour_means(cache: pd.DataFrame, *, as_of: date | None = None) -> dict[str, float]:
-    work = _full18(_before(fill_course_ids(cache), as_of))
+def tour_means(
+    cache: pd.DataFrame,
+    *,
+    as_of: date | None = None,
+    event_id: str = "",
+    tournament_date: object = None,
+    tournament_name: str = "",
+) -> dict[str, float]:
+    work = _exclude_event(
+        _full18(_before(_ensure_calendar_round_dates(fill_course_ids(cache)), as_of)),
+        event_id=event_id,
+        tournament_date=tournament_date,
+        tournament_name=tournament_name,
+    )
     if work.empty:
         return {
             "to_par": TOUR_MEAN_TO_PAR_DEFAULT,
@@ -146,12 +207,17 @@ def tour_means(cache: pd.DataFrame, *, as_of: date | None = None) -> dict[str, f
             "sd_vs_field": POOLED_SD_DEFAULT,
             "n": 0,
         }
-    tp = pd.to_numeric(work.get("to_par"), errors="coerce")
-    vf = pd.to_numeric(work.get("vs_field"), errors="coerce")
-    bird = pd.to_numeric(work.get("birdies_or_better"), errors="coerce")
+    def _num(col: str) -> pd.Series:
+        if col not in work.columns:
+            return pd.Series(index=work.index, dtype=float)
+        return pd.to_numeric(work[col], errors="coerce")
+
+    tp = _num("to_par")
+    vf = _num("vs_field")
+    bird = _num("birdies_or_better")
     if bird.isna().all():
-        bird = pd.to_numeric(work.get("birdies"), errors="coerce")
-    pars = pd.to_numeric(work.get("pars"), errors="coerce")
+        bird = _num("birdies")
+    pars = _num("pars")
     sd = float(vf.std(ddof=1)) if vf.notna().sum() >= 8 else POOLED_SD_DEFAULT
     return {
         "to_par": float(tp.mean()) if tp.notna().any() else TOUR_MEAN_TO_PAR_DEFAULT,
@@ -167,11 +233,29 @@ def course_field_stats(
     course_id: str,
     *,
     as_of: date | None = None,
+    event_id: str = "",
+    tournament_date: object = None,
+    tournament_name: str = "",
 ) -> dict[str, float | int | bool]:
-    """Historical field mean to-par / birdies / pars at this course (walk-forward)."""
-    work = _full18(_before(fill_course_ids(cache), as_of))
+    """Historical field mean to-par at this course from earlier *events* only.
+
+    Same-day and same-event rounds are dropped. Those field averages are this
+    week's setup; vs_field is defined against them, so putting them in B leaks.
+    """
+    work = _exclude_event(
+        _full18(_before(_ensure_calendar_round_dates(fill_course_ids(cache)), as_of)),
+        event_id=event_id,
+        tournament_date=tournament_date,
+        tournament_name=tournament_name,
+    )
     cid = str(course_id or "").strip()
-    tour = tour_means(cache, as_of=as_of)
+    tour = tour_means(
+        cache,
+        as_of=as_of,
+        event_id=event_id,
+        tournament_date=tournament_date,
+        tournament_name=tournament_name,
+    )
     empty = {
         "par": PAR_DEFAULT,
         "mean_to_par": float(tour["to_par"]),
@@ -314,10 +398,13 @@ def project_leg(
     line: float,
     course_id: str = "",
     as_of: date | str | None = None,
+    event_id: str = "",
+    tournament_date: object = None,
+    tournament_name: str = "",
 ) -> dict[str, Any]:
     """Walk-forward projection for one player/prop. Uses only rounds before ``as_of``."""
     cutoff = _as_of(as_of)
-    work = fill_course_ids(cache)
+    work = _ensure_calendar_round_dates(fill_course_ids(cache))
     if "player_key" not in work.columns and "player_name" in work.columns:
         from utils.player_name_utils import normalize_player_name
 
@@ -326,9 +413,22 @@ def project_leg(
     pk = str(player_key or "").strip().lower()
     player = work[work["player_key"].astype(str).str.lower() == pk].copy() if not work.empty else work
     cid = str(course_id or "").strip()
-    field = course_field_stats(work, cid, as_of=cutoff)
+    field = course_field_stats(
+        work,
+        cid,
+        as_of=cutoff,
+        event_id=event_id,
+        tournament_date=tournament_date,
+        tournament_name=tournament_name,
+    )
     skill = skill_vs_field(player, as_of=cutoff)
-    tour = tour_means(work, as_of=cutoff)
+    tour = tour_means(
+        work,
+        as_of=cutoff,
+        event_id=event_id,
+        tournament_date=tournament_date,
+        tournament_name=tournament_name,
+    )
     sd = _shrink_sd(float(skill["sd"]), int(skill["n"]), float(tour["sd_vs_field"]))
     hold = int(skill["hold"])
     family = _prop_family(prop_type)
@@ -439,6 +539,9 @@ def apply_course_baseline(
             line=line_f,
             course_id=cid,
             as_of=row_as_of,
+            event_id=str(row.get("event_id") or ""),
+            tournament_date=row.get("tournament_date") or row.get("game_date"),
+            tournament_name=str(row.get("tournament_name") or row.get("tournament") or row.get("event") or ""),
         )
         for k, v in got.items():
             out.at[idx, k] = v
@@ -451,12 +554,14 @@ def apply_course_baseline(
     return out
 
 
-def walk_forward_strokes(cache: pd.DataFrame, *, min_prior: int = 8) -> pd.DataFrame:
-    """Project every full-18 strokes round using only earlier rounds.
+def walk_forward_strokes(cache: pd.DataFrame, *, min_prior: int = 0) -> pd.DataFrame:
+    """Project every full-18 strokes round using only earlier *events* for B.
 
-    Used to check µ/σ calibration. Does not need PrizePicks lines.
+    Skill S may use this week's earlier rounds (form). B does not: same-event
+    field averages are this week's setup, and vs_field is defined against them.
+    Held rows (thin skill window) stay in the frame so calibration can split.
     """
-    work = _full18(fill_course_ids(cache))
+    work = _full18(_ensure_calendar_round_dates(fill_course_ids(cache)))
     if work.empty:
         return pd.DataFrame()
     work = work.sort_values(["round_date", "round_num"], kind="mergesort")
@@ -477,6 +582,9 @@ def walk_forward_strokes(cache: pd.DataFrame, *, min_prior: int = 8) -> pd.DataF
             line=float(actual) - 0.5,
             course_id=cid,
             as_of=as_of,
+            event_id=str(rec.get("event_id") or ""),
+            tournament_date=rec.get("tournament_date"),
+            tournament_name=str(rec.get("tournament_name") or ""),
         )
         mu = got.get("golf_proj_mu")
         sd = got.get("golf_proj_sd")
@@ -488,10 +596,13 @@ def walk_forward_strokes(cache: pd.DataFrame, *, min_prior: int = 8) -> pd.DataF
         if skill_n < int(min_prior):
             continue
         z = (float(actual) - float(mu)) / float(sd) if sd and float(sd) > 0 else float("nan")
+        rn = pd.to_numeric(rec.get("round_num"), errors="coerce")
         rows.append(
             {
                 "player_key": pk,
                 "round_date": str(as_of),
+                "round_num": int(rn) if pd.notna(rn) else None,
+                "event_id": str(rec.get("event_id") or ""),
                 "course_id": cid,
                 "actual": float(actual),
                 "mu": float(mu),
@@ -503,6 +614,42 @@ def walk_forward_strokes(cache: pd.DataFrame, *, min_prior: int = 8) -> pd.DataF
             }
         )
     return pd.DataFrame(rows)
+
+
+def print_walkforward_summary(out: pd.DataFrame) -> None:
+    """Priced vs held, weekend split, and tail coverage. Normal: |z|<1 ~0.68, |z|<2 ~0.95, |z|>2 ~0.023 each side."""
+    if out is None or out.empty:
+        print("[golf-proj] n=0")
+        return
+    z = pd.to_numeric(out.get("z", pd.Series(index=out.index, dtype=float)), errors="coerce")
+    held = pd.to_numeric(
+        out.get("golf_proj_hold", pd.Series(0, index=out.index)), errors="coerce"
+    ).fillna(0).astype(bool)
+
+    def _summ(mask: pd.Series, label: str) -> None:
+        zz = z[mask].dropna()
+        if zz.empty:
+            print(f"[golf-proj] {label}: n=0")
+            return
+        over_tail = float((zz > 2).mean())
+        under_tail = float((zz < -2).mean())
+        print(
+            f"[golf-proj] {label}: n={len(zz)} mean_z={zz.mean():.3f} sd_z={zz.std(ddof=1):.3f} "
+            f"|z|<1={float((zz.abs() < 1).mean()):.3f} |z|<2={float((zz.abs() < 2).mean()):.3f} "
+            f"z>2={over_tail:.3f} z<-2={under_tail:.3f}"
+        )
+        if label == "priced" and len(zz) >= 50 and over_tail > under_tail + 0.02:
+            print(
+                "[golf-proj] over-tail exceeds under-tail — "
+                "skewed/mixture σ before scanning Unders"
+            )
+
+    _summ(~held, "priced")
+    _summ(held, "held")
+    if "round_num" in out.columns:
+        rn = pd.to_numeric(out["round_num"], errors="coerce")
+        _summ(~held & rn.isin([1, 2]), "priced R1-R2")
+        _summ(~held & rn.isin([3, 4]), "priced R3-R4")
 
 
 __all__ = [
@@ -518,4 +665,5 @@ __all__ = [
     "skill_vs_field",
     "tour_means",
     "walk_forward_strokes",
+    "print_walkforward_summary",
 ]
