@@ -64,6 +64,7 @@ _REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 from utils.proporacle_ref_db import connect_ref_db, log_ref_db, resolve_ref_db
+from utils.nba_fantasy_score import nba_fantasy_score
 
 DB_PATH = resolve_ref_db(allow_missing=True)
 
@@ -635,13 +636,7 @@ def _parse_bball_boxscore(box: dict, event_id: str, game_date: str,
                 ra  = combo(reb, ast)
                 bs  = combo(blk, stl)
 
-                fs = None
-                # PrizePicks NBA Fantasy Score formula:
-                # PTS×1.0 + REB×1.2 + AST×1.5 + STL×3.0 + BLK×3.0 - TOV×1.0
-                # No fg3m bonus, no double-double bonus (those are DraftKings, not PP)
-                if all(x is not None for x in [pts, reb, ast, stl, blk, tov]):
-                    fs = (pts * 1.0 + reb * 1.2 + ast * 1.5
-                          + stl * 3.0 + blk * 3.0 - tov * 1.0)
+                fs = nba_fantasy_score(pts, reb, ast, stl, blk, tov)
 
                 rows.append({
                     "game_date": game_date, "event_id": event_id,

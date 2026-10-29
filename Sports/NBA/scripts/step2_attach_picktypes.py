@@ -40,7 +40,7 @@ from nba_api.stats.static import players
 _PROPORACLE_ROOT = Path(__file__).resolve().parents[3]
 if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
-from utils.fantasy_prop_filter import drop_fantasy_props
+from utils.fantasy_prop_filter import fantasy_prop_mask
 
 COMBO_SEP = "|"
 
@@ -288,9 +288,12 @@ def main() -> None:
     df["pick_type"] = df["pick_type"].astype(str).apply(norm_pick_type)
     df["prop_norm"] = df["prop_type"].astype(str).apply(norm_prop)
 
-    df, n_fantasy = drop_fantasy_props(df)
-    if n_fantasy:
-        print(f"  Dropped {n_fantasy} fantasy prop row(s)")
+    n_fs = int(fantasy_prop_mask(df).sum())
+    if n_fs:
+        print(
+            f"  Keeping {n_fs} Fantasy Score row(s) for grading "
+            f"(off tickets unless a gift-scan cell clears)"
+        )
 
     # ── Drop prop types with no stat backing or that are ungradeable ──
     EXCLUDE_PROPS = {

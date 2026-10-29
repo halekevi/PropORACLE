@@ -1,4 +1,10 @@
-"""Drop PrizePicks fantasy-score markets from pipeline slates."""
+"""Identify PrizePicks fantasy-score markets.
+
+NBA Fantasy Score stays on the fetch/grade path (box-derived from the
+PrizePicks scoring chart). Ticket builders still use these helpers to
+keep it off slips unless a gift-scan cell clears. Other sports still
+drop it at step1/step2.
+"""
 
 from __future__ import annotations
 

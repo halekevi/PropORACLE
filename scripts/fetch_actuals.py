@@ -45,6 +45,7 @@ for _p in (_SCRIPTS_DIR, _REPO_ROOT):
 
 from player_name_norm import fold_player_name  # noqa: E402
 from utils.player_name_utils import normalize_player_name  # noqa: E402
+from utils.nba_fantasy_score import nba_fantasy_score  # noqa: E402
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -104,19 +105,8 @@ def parse_stats(player_name, t_abbr, stat_map):
 
     dd_actual, td_actual = _double_triple_from_five(pts, reb, ast, stl, blk)
 
-    # PrizePicks NBA Fantasy Score:
-    # PTS*1.0 + REB*1.2 + AST*1.5 + STL*3.0 + BLK*3.0 - TOV*1.0
-    # (No 3PM bonus, no double-double bonuses.)
-    fs = None
-    if all(x is not None for x in [pts, reb, ast, stl, blk, tov]):
-        fs = (
-            pts * 1.0
-            + reb * 1.2
-            + ast * 1.5
-            + stl * 3.0
-            + blk * 3.0
-            - tov * 1.0
-        )
+    # PrizePicks NBA Fantasy Score — see utils.nba_fantasy_score (Scoring Chart).
+    fs = nba_fantasy_score(pts, reb, ast, stl, blk, tov)
 
     prop_map = {
         'Points':                 pts,

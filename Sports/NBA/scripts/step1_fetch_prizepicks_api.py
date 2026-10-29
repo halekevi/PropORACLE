@@ -52,7 +52,8 @@ _PROPORACLE_ROOT = Path(__file__).resolve().parents[3]
 if str(_PROPORACLE_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROPORACLE_ROOT))
 
-from utils.fantasy_prop_filter import drop_fantasy_props
+from utils.fantasy_prop_filter import drop_fantasy_props, fantasy_prop_mask
+from utils.nba_fantasy_score import keep_nba_fantasy_sport
 from utils.allstar_filter import drop_allstar_props
 from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
 from utils.step1_slate_date_filter import (
@@ -1141,9 +1142,20 @@ def main() -> None:
 
     df = filtered_df
 
-    df, n_fantasy = drop_fantasy_props(df)
-    if n_fantasy:
-        print(f"  Dropped {n_fantasy} fantasy prop row(s)")
+    from utils.pp_basketball_markets import hoops_sport_for_league
+
+    _hoops = hoops_sport_for_league(args.league_id, fallback="NBA")
+    if keep_nba_fantasy_sport(_hoops):
+        n_keep_fs = int(fantasy_prop_mask(df).sum())
+        if n_keep_fs:
+            print(
+                f"  Keeping {n_keep_fs} Fantasy Score row(s) for grading "
+                f"(off tickets unless a gift-scan cell clears)"
+            )
+    else:
+        df, n_fantasy = drop_fantasy_props(df)
+        if n_fantasy:
+            print(f"  Dropped {n_fantasy} fantasy prop row(s)")
     df, n_allstar = drop_allstar_props(df, sport="NBA")
     if n_allstar:
         print(f"  Dropped {n_allstar} All-Star prop row(s)")
@@ -1159,9 +1171,9 @@ def main() -> None:
 
     # ── Write output ──────────────────────────────────────────────────────────
     try:
-        from utils.pp_basketball_markets import hoops_sport_for_league, log_shooting_coverage
+        from utils.pp_basketball_markets import log_shooting_coverage
 
-        sport = hoops_sport_for_league(args.league_id, fallback="NBA")
+        sport = _hoops
         pts = int(df["prop_type"].astype(str).str.lower().str.contains("points").sum())
         log_shooting_coverage(df["prop_type"], sport=sport, n_points=pts)
         from utils.prop_norm import report_unmapped_props

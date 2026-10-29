@@ -32,6 +32,7 @@ from utils.slate_fields import (  # noqa: E402
 )
 from utils.group_rank_tier import assign_tier_column  # noqa: E402
 from utils.fantasy_prop_filter import drop_fantasy_props  # noqa: E402
+from utils.nba_fantasy_score import keep_nba_fantasy_sport  # noqa: E402
 from scripts.l10_streak_utils import enrich_graded_l10_columns  # noqa: E402
 
 
@@ -689,8 +690,9 @@ def load_nba(path: str, sport_code: str = "NBA") -> pd.DataFrame:
         raise KeyError(f"NBA slate missing 'player' column. Found columns: {list(df.columns)}")
     # Diagnostic key (apply_actuals rebuilds with team/date for resolution).
     df["player_key"] = _slate_player_key_series(df)
-    # NFL fantasy_score is a real board chip with box-derived actuals — keep it.
-    if str(sport_code or "").upper() == "NFL":
+    # NFL / NBA Fantasy Score are real board chips with box-derived actuals.
+    sport_u = str(sport_code or "").upper()
+    if sport_u == "NFL" or keep_nba_fantasy_sport(sport_u):
         return df
     return _drop_fantasy_from_slate(df)
 

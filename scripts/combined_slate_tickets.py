@@ -3444,7 +3444,8 @@ def _apply_diversity_filter_to_ticket_groups(
 # Blocked Shots NBA: 41.9% overall, too low for any ticket
 # Combo props: small sample, unreliable
 # NHL OVER props: 21.5% hit rate — never use OVER direction in NHL tickets
-# Fantasy Score props are excluded from the full pipeline (step1/step2 + tickets + grading).
+# Fantasy Score is fetched/graded for NBA (box formula) but banned from tickets
+# unless a gift-scan cell clears. Other sports still drop it earlier.
 TICKET_EXCLUDED_PROPS = {
     "fantasy score", "fantasy_score", "fantasy",
     "personal fouls",
