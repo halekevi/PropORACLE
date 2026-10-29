@@ -264,12 +264,23 @@ def _choose_max_min(df: pd.DataFrame, min_col: str) -> pd.Series:
     return df.loc[mins.idxmax()]
 
 
+def _load_table(path: str | Path) -> pd.DataFrame:
+    """CSV or Excel. Excel prefers the ALL sheet (full board, not a banner tab)."""
+    p = Path(path)
+    if p.suffix.lower() in {".xlsx", ".xlsm", ".xls"}:
+        xls = pd.ExcelFile(p, engine="openpyxl")
+        names = [s for s in xls.sheet_names if str(s) != "_META"]
+        sheet = "ALL" if "ALL" in names else (names[0] if names else xls.sheet_names[0])
+        return pd.read_excel(p, sheet_name=sheet, dtype=str).fillna("")
+    return pd.read_csv(p, dtype=str).fillna("")
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Main
 # ──────────────────────────────────────────────────────────────────────────────
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--slate",   required=True, help="Slate CSV (step5b or step3b output)")
+    ap.add_argument("--slate",   required=True, help="Slate CSV or step8 xlsx (ALL sheet = full board)")
     ap.add_argument("--actuals", required=True, help="Actuals CSV from ESPN fetcher")
     ap.add_argument("--out",     required=True, help="Output .xlsx")
     ap.add_argument("--date",    required=False, help="Optional (ignored) — kept for backward compat")
@@ -280,8 +291,8 @@ def main():
     )
     args = ap.parse_args()
 
-    slate   = pd.read_csv(args.slate,   dtype=str).fillna("")
-    actuals_raw = pd.read_csv(args.actuals, dtype=str).fillna("")
+    slate = _load_table(args.slate)
+    actuals_raw = _load_table(args.actuals)
 
     # ── Pivot actuals from long to wide format ────────────────────────────────
     # fetch_actuals.py outputs one row per player+prop_type (long format).

@@ -4641,6 +4641,446 @@ def fit_payout_rate_card_from_grid(grid: dict) -> dict:
     }
 
 
+def _capture_one_mix_plan(
+    frame,
+    page,
+    plan: dict,
+    *,
+    delay_sec: float,
+    sport: str = "",
+) -> tuple[dict[str, Any], Any]:
+    """Click a planned mix, read Power N-correct (min guarantee). Never 1st-place."""
+    label = str(plan.get("type") or "")
+    n_legs = int(plan.get("n_legs") or (int(plan.get("n_goblin") or 0) + int(plan.get("n_standard") or 0)))
+    rec: dict[str, Any] = {
+        "type": label,
+        "slip_type": label,
+        "n_legs": n_legs,
+        "n_goblin": int(plan.get("n_goblin") or 0),
+        "n_standard": int(plan.get("n_standard") or 0),
+        "dev_bucket": plan.get("dev_bucket"),
+        "deviations": list(plan.get("target_deviations") or []),
+        "avg_deviation": None,
+        "min_x": None,
+        "first_x": None,
+        "power_min_x": None,
+        "power_first_x": None,
+        "status": "failed",
+        "error": None,
+        "legs": [],
+    }
+    if rec["deviations"]:
+        rec["avg_deviation"] = round(sum(rec["deviations"]) / len(rec["deviations"]), 3)
+
+    max_attempts = 2 if label in MIX_GRID_PRIORITY_TYPES else 1
+    for attempt in range(1, max_attempts + 1):
+        try:
+            clear_slip(frame)
+            _, frame = verify_slip_empty(frame, page)
+            dismiss_modal(frame, page)
+            set_ticket_type(frame, "power")
+            frame.wait_for_timeout(int(max(0.1, delay_sec) * 1000))
+
+            clicked = 0
+            leg_meta: list[dict] = []
+            current_tab = None
+            for item in plan["cards"]:
+                card = item["card"]
+                direction = str(item.get("direction") or "OVER").upper()
+                tab = str(card.get("source_filter") or "Popular")
+                ok = False
+                try:
+                    if tab != current_tab:
+                        dismiss_modal(frame, page)
+                        tloc = frame.get_by_text(tab, exact=True).first
+                        if tloc.count() == 0:
+                            tloc = frame.get_by_text(tab, exact=False).first
+                        tloc.click(force=True, timeout=2000)
+                        frame.wait_for_timeout(900)
+                        _scroll_board_for_lazy_load(page)
+                        current_tab = tab
+                    dismiss_modal(frame, page)
+                    fresh = get_all_cards(frame)
+                    resolved = resolve_leg_card(card, fresh)
+                    if resolved is None:
+                        print(
+                            f"  [WARN] unresolved {card.get('player')} "
+                            f"{card.get('line')} {card.get('prop_type')} "
+                            f"({card.get('pick_type')}) on tab={tab}"
+                        )
+                    else:
+                        ok = click_leg(frame, resolved, direction)
+                        if ok:
+                            card = resolved
+                except Exception as e:
+                    print(f"  [WARN] resolve/click failed: {e}")
+                if not ok:
+                    ok = add_leg(
+                        frame,
+                        page,
+                        {
+                            "player": card.get("player"),
+                            "prop_type": card.get("prop_type"),
+                            "direction": direction,
+                        },
+                    )
+                if ok:
+                    clicked += 1
+                    sport_val = (
+                        str(sport or card.get("sport") or "").strip().upper() or None
+                    )
+                    leg_meta.append(
+                        {
+                            "player": card.get("player"),
+                            "prop_type": card.get("prop_type"),
+                            "line": card.get("line"),
+                            "role": item.get("role"),
+                            "pick_type": card.get("pick_type"),
+                            "source_filter": card.get("source_filter"),
+                            "line_distance": card.get("line_distance"),
+                            "dev_bucket": card.get("dev_bucket"),
+                            "start_time": card.get("start_time")
+                            or card.get("event_start_time")
+                            or card.get("game_start_time"),
+                            "event_start_time": card.get("event_start_time")
+                            or card.get("start_time")
+                            or card.get("game_start_time"),
+                            "standard_line": card.get("standard_line"),
+                            "team": card.get("team"),
+                            "opp": card.get("opp") or card.get("opponent"),
+                            "game_id": card.get("game_id") or card.get("pp_game_id"),
+                            "sport": sport_val,
+                        }
+                    )
+                else:
+                    print(f"  [WARN] click failed: {card.get('player')}")
+                frame.wait_for_timeout(int(max(0.05, delay_sec * 0.5) * 1000))
+
+            slip_probe = None
+            try:
+                slip_probe = read_slip(frame, n_legs=clicked, ticket_type="power") or {}
+                slip_txt = _norm(
+                    slip_probe.get("raw_slip_section") or slip_probe.get("raw_text") or ""
+                )
+                if slip_txt:
+                    soft_miss = []
+                    for m in leg_meta:
+                        name = str(m.get("player") or "").strip()
+                        if not name:
+                            continue
+                        parts = [p for p in re.split(r"[^A-Za-z]+", name) if len(p) >= 3]
+                        surname = parts[-1] if parts else name
+                        if _norm(surname) not in slip_txt:
+                            soft_miss.append(name)
+                    if soft_miss:
+                        print(f"  [WARN] surname soft-miss: {', '.join(soft_miss[:3])}")
+                n_sel = slip_probe.get("n_selected")
+                if n_sel is not None and int(n_sel) != int(clicked):
+                    err = f"n_selected_{n_sel}_clicked_{clicked}"
+                    print(f"  [WARN] attempt {attempt}/{max_attempts}: {err}")
+                    if attempt < max_attempts:
+                        clear_slip(frame)
+                        frame.wait_for_timeout(900)
+                        continue
+                    if int(n_sel) != int(n_legs):
+                        rec["error"] = err
+                        rec["legs"] = leg_meta
+                        break
+            except Exception:
+                pass
+
+            rec["legs"] = leg_meta
+            if clicked < n_legs:
+                err = f"clicked_{clicked}_of_{n_legs}"
+                print(f"  [WARN] attempt {attempt}/{max_attempts}: {err}")
+                if attempt < max_attempts:
+                    clear_slip(frame)
+                    frame.wait_for_timeout(800)
+                    continue
+                rec["error"] = err
+                break
+
+            slip = slip_probe or read_slip(frame, n_legs=clicked, ticket_type="power")
+            if not slip:
+                err = "slip_not_detected"
+                if attempt < max_attempts:
+                    clear_slip(frame)
+                    continue
+                rec["error"] = err
+                break
+
+            n_slip = slip.get("n_selected")
+            try:
+                n_slip_i = int(n_slip) if n_slip is not None else int(clicked)
+            except (TypeError, ValueError):
+                n_slip_i = int(clicked)
+            if n_slip_i != int(n_legs):
+                err = f"slip_n_{n_slip_i}_expected_{n_legs}"
+                print(
+                    f"  [WARN] attempt {attempt}/{max_attempts}: {err} "
+                    "(reject contaminated slip)"
+                )
+                clear_slip(frame)
+                frame.wait_for_timeout(900)
+                if attempt < max_attempts:
+                    continue
+                rec["error"] = err
+                rec["legs"] = leg_meta
+                break
+
+            min_x = slip.get("min_guarantee_payout")
+            first_x = slip.get("first_place_payout") or slip.get("displayed_multiplier")
+            rec["min_x"] = min_x
+            rec["first_x"] = first_x
+            rec["power_min_x"] = min_x
+            rec["power_first_x"] = first_x
+            rec["n_legs"] = n_legs
+            if min_x is None:
+                rec["status"] = "partial"
+                rec["error"] = "missing_min_x"
+            else:
+                rec["status"] = "ok"
+                rec["error"] = None
+            print(
+                f"  [RECORDED] legs={n_legs} nG={rec['n_goblin']} "
+                f"avg_dev={rec.get('avg_deviation')} min_x={min_x} first_x={first_x}"
+            )
+            break
+        except Exception as e:
+            print(f"  [ERROR] attempt {attempt}/{max_attempts}: {e}")
+            rec["error"] = str(e)
+            if attempt < max_attempts:
+                try:
+                    clear_slip(frame)
+                except Exception:
+                    pass
+                continue
+    return rec, frame
+
+
+def _cbb_probe_prop_rank(prop: str) -> int:
+    p = str(prop or "").strip().lower()
+    combo = any(tok in p for tok in ("+", "reb+ast", "pts+"))
+    if ("point" in p or p == "pts") and not combo:
+        return 0
+    if ("rebound" in p or p in ("reb", "rebs")) and not combo:
+        return 1
+    return 2
+
+
+def _cbb_pick_unique(pool: list[dict], n: int) -> list[dict] | None:
+    used: set[str] = set()
+    out: list[dict] = []
+    for c in pool:
+        pk = _norm(c.get("player"))
+        if not pk or pk in used:
+            continue
+        used.add(pk)
+        out.append(c)
+        if len(out) == n:
+            return out
+    return None
+
+
+def plan_cbb_probe_mix(cards: list[dict]) -> dict | None:
+    """One CBB mix for N-correct history. Prefer 2 Goblin OVER on Points/Rebounds.
+
+    Demons never. Falls back to 3G, then 2 Standard OVER, so a thin board still
+    records a quote. Does not ticket or write keep gates.
+    """
+    goblins: list[dict] = []
+    standards: list[dict] = []
+    for c in cards or []:
+        if not isinstance(c, dict):
+            continue
+        pt = str(c.get("pick_type") or "").strip().lower()
+        if "demon" in pt:
+            continue
+        player = str(c.get("player") or "").strip()
+        if not player:
+            continue
+        c2 = dict(c)
+        c2["sport"] = "CBB"
+        if "goblin" in pt:
+            goblins.append(c2)
+        elif "standard" in pt:
+            standards.append(c2)
+    goblins.sort(key=lambda c: (_cbb_probe_prop_rank(c.get("prop_type") or ""), _norm(c.get("player"))))
+    standards.sort(
+        key=lambda c: (_cbb_probe_prop_rank(c.get("prop_type") or ""), _norm(c.get("player")))
+    )
+    for label, n, pool, role in (
+        ("2G", 2, goblins, "goblin"),
+        ("3G", 3, goblins, "goblin"),
+        ("2S", 2, standards, "standard"),
+    ):
+        pick = _cbb_pick_unique(pool, n)
+        if not pick:
+            continue
+        return {
+            "type": label,
+            "n_goblin": n if role == "goblin" else 0,
+            "n_standard": n if role == "standard" else 0,
+            "n_legs": n,
+            "dev_bucket": None,
+            "target_deviations": [],
+            "cards": [{"card": c, "direction": "OVER", "role": role} for c in pick],
+        }
+    return None
+
+
+def cbb_probe_already_ok(date_str: str, output_path: Path | None = None) -> bool:
+    """True when this slate already has a live CBB N-correct mix on disk."""
+    date_str = str(date_str or "").strip()[:10]
+    output_path = output_path or (ROOT / "data" / "reports" / f"payout_cbb_probe_{date_str}.json")
+    if output_path.is_file():
+        try:
+            blob = json.loads(output_path.read_text(encoding="utf-8"))
+            summary = blob.get("summary") if isinstance(blob.get("summary"), dict) else {}
+            if int(summary.get("n_ok") or 0) > 0:
+                return True
+            slips = blob.get("slips") if isinstance(blob.get("slips"), list) else []
+            for s in slips:
+                if not isinstance(s, dict):
+                    continue
+                if str(s.get("status") or "").lower() != "ok":
+                    continue
+                try:
+                    if float(s.get("power_min_x") or s.get("min_x") or 0) > 0:
+                        return True
+                except (TypeError, ValueError):
+                    continue
+        except Exception:
+            pass
+    if PAYOUT_LADDER_LIVE_CDP_PATH.is_file():
+        try:
+            blob = json.loads(PAYOUT_LADDER_LIVE_CDP_PATH.read_text(encoding="utf-8"))
+            rows = blob.get("rows") if isinstance(blob.get("rows"), list) else []
+            for r in rows:
+                if not isinstance(r, dict):
+                    continue
+                if str(r.get("date") or "")[:10] != date_str:
+                    continue
+                notes = str(r.get("notes") or "").upper()
+                tid = str(r.get("ticket_id") or "").upper()
+                if "CBB" not in notes and "CBB_PROBE" not in tid:
+                    continue
+                try:
+                    if float(r.get("power_payout_x") or 0) > 0:
+                        return True
+                except (TypeError, ValueError):
+                    continue
+        except Exception:
+            pass
+    return False
+
+
+def run_cbb_probe_capture(
+    *,
+    date_str: str,
+    cdp_url: str,
+    delay_sec: float = 0.5,
+    entry_amount: float = 1.0,
+    output_path: Path | None = None,
+    force: bool = False,
+) -> int:
+    """Capture one CBB Power mix (N-correct / min guarantee) into live_cdp.
+
+    Quote history has to exist before a cell is wired — the promotion bar
+    compares Wilson-low to breakeven at a real scrape. Does not merge into
+    the MLB/WNBA/NBA mix-grid rate card.
+    """
+    from utils.cbb_season import cbb_quote_scrape_enabled
+
+    date_str = str(date_str or "").strip()[:10] or datetime.utcnow().strftime("%Y-%m-%d")
+    output_path = output_path or (ROOT / "data" / "reports" / f"payout_cbb_probe_{date_str}.json")
+    if not cbb_quote_scrape_enabled(date_str):
+        print(f"[cbb-probe] skip — slate {date_str} is before CBB quote resume")
+        return 0
+    if not force and cbb_probe_already_ok(date_str, output_path):
+        print(f"[cbb-probe] already have an ok CBB mix for {date_str} — skip")
+        return 0
+
+    p, browser, context, page = connect_existing_browser(cdp_url)
+    page.wait_for_timeout(500)
+    rec: dict[str, Any] | None = None
+    try:
+        league_id = int(PP_BOARD_LEAGUE_IDS.get("CBB") or 20)
+        url = f"https://app.prizepicks.com/board?league_id={league_id}"
+        print(f"[cbb-probe] navigate CBB -> {url}")
+        try:
+            page.goto(url, wait_until="domcontentloaded", timeout=45_000)
+            page.wait_for_timeout(2500)
+        except Exception as e:
+            print(f"[cbb-probe] navigate failed: {e}")
+            return 1
+        frame = find_prizepicks_frame(page)
+        ensure_popular_filter(frame, page)
+        dismiss_modal(frame, page)
+        cards = expand_card_pool(frame, page)
+        n_g = sum(1 for c in cards if "goblin" in str(c.get("pick_type") or "").lower())
+        n_s = sum(1 for c in cards if "standard" in str(c.get("pick_type") or "").lower())
+        print(f"[cbb-probe] cards={len(cards)} standard={n_s} goblin={n_g}")
+        plan = plan_cbb_probe_mix(cards)
+        if not plan:
+            print("[cbb-probe] no CBB mix on the board (need 2 Goblin OVER, else 2 Standard)")
+            return 1
+        print(
+            f"[cbb-probe] plan {plan['type']} nG={plan['n_goblin']} nS={plan['n_standard']}"
+        )
+        rec, frame = _capture_one_mix_plan(
+            frame, page, plan, delay_sec=float(delay_sec), sport="CBB"
+        )
+        rec["ticket_id"] = f"{date_str}|CBB_PROBE|{plan['type']}|1"
+        rec["captured_at"] = datetime.utcnow().isoformat() + "Z"
+        rec["entry_amount"] = entry_amount
+        for leg in rec.get("legs") or []:
+            if isinstance(leg, dict):
+                leg["sport"] = "CBB"
+        try:
+            clear_slip(frame)
+            _, frame = verify_slip_empty(frame, page)
+            dismiss_modal(frame, page)
+        except Exception:
+            pass
+    finally:
+        try:
+            browser.close()
+        except Exception:
+            pass
+        try:
+            p.stop()
+        except Exception:
+            pass
+
+    captured = [rec] if rec else []
+    n_ok = sum(1 for s in captured if s.get("status") == "ok")
+    payload = {
+        "date": date_str,
+        "generated_at": datetime.utcnow().isoformat() + "Z",
+        "cdp_url": cdp_url,
+        "entry_amount": entry_amount,
+        "primary_field": "power_min_x",
+        "path": str(output_path),
+        "slips": captured,
+        "summary": {
+            "n_planned": len(captured),
+            "n_ok": n_ok,
+            "n_failed": sum(1 for s in captured if s.get("status") == "failed"),
+        },
+        "notes": (
+            "CBB quote probe: Power N-correct (min guarantee / To Win). "
+            "Ignores 1st-place. Not a keep-gate and not published on /tickets."
+        ),
+    }
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"[cbb-probe] Saved -> {output_path} (ok={n_ok}/{len(captured)})")
+    if n_ok > 0:
+        sync_captures_to_payout_ladder_live(captured, date_str=date_str)
+        print("[cbb-probe] upserted into payout_ladder_live_cdp.json")
+    return 0 if n_ok > 0 else 1
+
 def run_mix_grid_capture(
     *,
     date_str: str,
@@ -5036,9 +5476,22 @@ def main():
         ),
     )
     ap.add_argument(
+        "--cbb-probe",
+        action="store_true",
+        help=(
+            "From 11/1: capture one CBB Power mix (N-correct / min guarantee) "
+            "into payout_ladder_live_cdp.json. Not a keep-gate. Skips if already ok."
+        ),
+    )
+    ap.add_argument(
+        "--force-cbb-probe",
+        action="store_true",
+        help="With --cbb-probe: recapture even when this slate already has an ok CBB mix.",
+    )
+    ap.add_argument(
         "--date",
         default="",
-        help="Slate date YYYY-MM-DD for --mix-grid / --tickets patch naming (default: today UTC).",
+        help="Slate date YYYY-MM-DD for --mix-grid / --cbb-probe / --tickets (default: today UTC).",
     )
     ap.add_argument(
         "--max-slips",
@@ -5155,6 +5608,28 @@ def main():
             f"patched={result.get('n_patched')} kept={result.get('n_kept_live')}"
         )
         raise SystemExit(0)
+
+    if bool(getattr(args, "cbb_probe", False)):
+        _acquire_payout_capture_lock(force=bool(getattr(args, "force_lock", False)))
+        date_str = str(args.date or "").strip()[:10] or datetime.utcnow().strftime("%Y-%m-%d")
+        out = (
+            Path(str(args.output).strip())
+            if str(args.output or "").strip()
+            else ROOT / "data" / "reports" / f"payout_cbb_probe_{date_str}.json"
+        )
+        try:
+            raise SystemExit(
+                run_cbb_probe_capture(
+                    date_str=date_str,
+                    cdp_url=args.cdp_url,
+                    delay_sec=float(args.delay_sec),
+                    entry_amount=float(args.entry_amount),
+                    output_path=out,
+                    force=bool(getattr(args, "force_cbb_probe", False)),
+                )
+            )
+        finally:
+            _release_payout_capture_lock()
 
     if bool(getattr(args, "mix_grid", False)):
         _acquire_payout_capture_lock(force=bool(getattr(args, "force_lock", False)))

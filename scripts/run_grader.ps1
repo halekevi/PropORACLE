@@ -353,19 +353,21 @@ if (-not (Test-Path $DateDir)) {
 }
 
 # Off-season / deactivated sports: skip fetch + grade and drop stale graded_* for this date (no phantom void rows).
-# Default: college only (CBB/WCBB). NBA / NBA1H / NBA1Q auto-disabled before $NBA_SEASON_RESUME.
+# CBB/WCBB grade from $CBB_GRADE_RESUME (11/1 opener). Pipeline fetch may start earlier.
 # Re-enable all: set PROPORACLE_GRADER_DISABLED_SPORTS to empty string.
-# Temporarily skip period props: PROPORACLE_GRADER_DISABLED_SPORTS=cbb,wcbb,nba1h,nba1q
+# Temporarily skip period props: PROPORACLE_GRADER_DISABLED_SPORTS=nba1h,nba1q
 # Optional: fail if slate has zero rows for -Date (set PROPORACLE_GRADER_STRICT_SLATE_DATE=1 — enforced in slate_grader.py).
 # Must match run_pipeline.ps1 $NBA_SEASON_RESUME / WNBA All-Star pause.
 $NBA_SEASON_RESUME = "2026-10-01"
+$CBB_GRADE_RESUME = "2026-11-01"
+if ($env:PROPORACLE_CBB_GRADE_RESUME) { $CBB_GRADE_RESUME = $env:PROPORACLE_CBB_GRADE_RESUME.Trim() }
 $WNBA_SEASON_RESUME = "2026-07-28"
 if ($env:WNBA_RESUME_DATE) { $WNBA_SEASON_RESUME = $env:WNBA_RESUME_DATE.Trim() }
 elseif ($env:PROPORACLE_WNBA_RESUME) { $WNBA_SEASON_RESUME = $env:PROPORACLE_WNBA_RESUME.Trim() }
 $WNBA_ALLSTAR_PAUSE_START = "2026-07-19"
 if ($env:WNBA_PAUSE_START) { $WNBA_ALLSTAR_PAUSE_START = $env:WNBA_PAUSE_START.Trim() }
 elseif ($env:PROPORACLE_WNBA_PAUSE_START) { $WNBA_ALLSTAR_PAUSE_START = $env:PROPORACLE_WNBA_PAUSE_START.Trim() }
-$GraderDisabledSports = @('cbb', 'wcbb')
+$GraderDisabledSports = @()
 if ($null -ne $env:PROPORACLE_GRADER_DISABLED_SPORTS) {
     $envRaw = [string]$env:PROPORACLE_GRADER_DISABLED_SPORTS
     if ($envRaw.Trim() -eq '') {
@@ -375,6 +377,14 @@ if ($null -ne $env:PROPORACLE_GRADER_DISABLED_SPORTS) {
         $GraderDisabledSports = @(
             $envRaw.ToLower() -split '[,\s;]+' | Where-Object { $_ }
         ) | Select-Object -Unique
+    }
+}
+$CBBGradingOffSeason = ($Date -lt $CBB_GRADE_RESUME)
+if ($CBBGradingOffSeason) {
+    foreach ($sk in @('cbb', 'wcbb')) {
+        if (@($GraderDisabledSports) -notcontains $sk) {
+            $GraderDisabledSports = @($GraderDisabledSports) + @($sk)
+        }
     }
 }
 $NBAGradingOffSeason = ($Date -lt $NBA_SEASON_RESUME)
@@ -404,6 +414,9 @@ function Remove-StaleGradedWorkbook {
         Remove-Item -LiteralPath $Path -Force -ErrorAction SilentlyContinue
         Write-Host "[GRADER] Removed stale graded workbook ($Label): $(Split-Path $Path -Leaf)" -ForegroundColor DarkYellow
     }
+}
+if ($CBBGradingOffSeason) {
+    Write-Host "[GRADER] CBB/WCBB grade paused until $CBB_GRADE_RESUME (skip fetch + grade for -Date $Date; 11/1 opener is first graded slate)" -ForegroundColor Yellow
 }
 if ($NBAGradingOffSeason) {
     Write-Host "[GRADER] NBA family off-season until $NBA_SEASON_RESUME (skip NBA/NBA1H/NBA1Q fetch + grade for -Date $Date)" -ForegroundColor Yellow
@@ -460,6 +473,7 @@ $boxRefScript = Join-Path $SportsRoot "NBA\scripts\build_boxscore_ref.py"
 if (Test-Path -LiteralPath $boxRefScript) {
     $bfSports = @("soccer")
     if (-not $NBAGradingOffSeason) { $bfSports += "nba" }
+    if (-not $CBBGradingOffSeason) { $bfSports += "cbb" }
     $NHL_SEASON_RESUME = "2026-09-01"
     if ($env:NHL_RESUME_DATE) { $NHL_SEASON_RESUME = $env:NHL_RESUME_DATE.Trim() }
     $nhlOff = $Date -lt $NHL_SEASON_RESUME
@@ -738,8 +752,11 @@ if ($NBASlateFile) {
     Warn-IfSlateFilenameMissingGradeDate -ResolvedPath $NBASlateFile -GradeDate $Date -SportLabel "NBA"
 }
 $CBBSlateXlsx = Resolve-FirstExisting @(
+    (Join-Path $DateDir "cbb\step8_cbb_direction_clean.xlsx"),
+    (Join-Path $DateDir "step8_cbb_direction_clean_$Date.xlsx"),
     (Join-Path $DateDir "cbb\step6_ranked_cbb.xlsx"),
     (Join-Path $DateDir "step6_ranked_cbb_$Date.xlsx"),
+    (Join-Path $SportsRoot "CBB\step8_cbb_direction_clean.xlsx"),
     (Join-Path $SportsRoot "CBB\step6_ranked_cbb.xlsx")
 )
 $CBBSlateCsv = Join-Path $DateDir "cbb_slate_extracted_$Date.csv"
@@ -806,7 +823,11 @@ if ($NBA1QSlateFile) {
     Warn-IfSlateFilenameMissingGradeDate -ResolvedPath $NBA1QSlateFile -GradeDate $Date -SportLabel "NBA1Q"
 }
 $WCBBSlateFile = Resolve-FirstExisting @(
+    (Join-Path $DateDir "wcbb\step8_wcbb_direction_clean.xlsx"),
+    (Join-Path $DateDir "step8_wcbb_direction_clean_$Date.xlsx"),
+    (Join-Path $DateDir "wcbb\step6_ranked_wcbb.xlsx"),
     (Join-Path $DateDir "step6_ranked_wcbb_$Date.xlsx"),
+    (Join-Path $SportsRoot "CBB\step8_wcbb_direction_clean.xlsx"),
     (Join-Path $SportsRoot "CBB\step6_ranked_wcbb.xlsx")
 )
 if ($SoccerSlateFile -and (Test-Path $SoccerSlateFile)) {
@@ -851,16 +872,20 @@ else {
 }
 
 if (Test-GraderSportDisabled 'cbb') {
-    Write-Host "Skipping CBB slate grading (sport disabled: cbb - no live lines this season)." -ForegroundColor Yellow
+    Write-Host "Skipping CBB slate grading (sport disabled: cbb until $CBB_GRADE_RESUME)." -ForegroundColor Yellow
 }
-elseif ((Test-Path $CBBActuals) -and (Test-Path $CBBSlateCsv) -and (Test-Path $CBBFullGraderScript)) {
+elseif ((Test-Path $CBBActuals) -and (Test-Path $CBBFullGraderScript) -and ($CBBSlateXlsx -or (Test-Path $CBBSlateCsv))) {
+    $cbbSlateForFull = if ($CBBSlateXlsx) { $CBBSlateXlsx } else { $CBBSlateCsv }
+    Write-Host "[GRADER] CBB slate: $(Split-Path $cbbSlateForFull -Leaf)" -ForegroundColor Cyan
     Run-Py "Grade CBB Full Slate" $Root $CBBFullGraderScript @(
-        "--slate", $CBBSlateCsv,
+        "--slate", $cbbSlateForFull,
         "--actuals", $CBBActuals,
-        "--out", $CBBGradedFile
+        "--out", $CBBGradedFile,
+        "--date", $Date
     )
 }
 elseif ((Test-Path $CBBActuals) -and (Test-Path $CBBSlateXlsx) -and (Test-Path $SlateGraderScript)) {
+    Write-Host "[GRADER] CBB slate: $(Split-Path $CBBSlateXlsx -Leaf)" -ForegroundColor Cyan
     Run-Py "Grade CBB Slate" $Root $SlateGraderScript @(
         "--sport", "CBB",
         "--slate", $CBBSlateXlsx,
@@ -1230,7 +1255,7 @@ else {
 }
 
 if (Test-GraderSportDisabled 'wcbb') {
-    Write-Host "Skipping WCBB slate grading (sport disabled: wcbb - no live lines this season)." -ForegroundColor Yellow
+    Write-Host "Skipping WCBB slate grading (sport disabled: wcbb until $CBB_GRADE_RESUME)." -ForegroundColor Yellow
 }
 elseif ($WCBBSlateFile -and (Test-Path $WCBBSlateFile) -and (Test-Path $SlateGraderScript)) {
     $WCBBActualsForGrade = if (Test-Path $WCBBActuals) { $WCBBActuals } elseif (Test-Path $CBBActuals) { $CBBActuals } else { $null }
@@ -1935,7 +1960,7 @@ if ($ShouldRetrain) {
         "train_prop_model_nba1h.py"   = ($gradeDate -ge $NBA_SEASON_RESUME)
         "train_prop_model_nba1q.py"   = ($gradeDate -ge $NBA_SEASON_RESUME)
         "train_prop_model_nhl.py"     = ($gradeDate -ge $NHL_SEASON_RESUME)
-        "train_prop_model_cbb.py"     = $false  # men's season ended; re-enable when CBB resumes
+        "train_prop_model_cbb.py"     = $true   # CBB resumed 2026-10-20 (early DI / exhibition)
     }
     $trainScripts = Get-ChildItem -Path (Join-Path $Root "scripts") -Filter "train_prop_model_*.py" | Sort-Object Name
     foreach ($s in $trainScripts) {

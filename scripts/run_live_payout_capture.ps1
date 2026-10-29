@@ -15,6 +15,8 @@
 #    2) Write payout_patch_<date>.json + write-back display_min_x
 #    3) Verify outstanding floors + mix/Δ (optional fill / rate-card rebuild)
 #    Optional: -IncludeMixGrid for once/day calibration (separate from tickets)
+#    From 11/1: one CBB Power mix (N-correct) per slate into live_cdp, even
+#    before a keep cell exists. Later windows skip once that slate has an ok quote.
 #
 #  Usage:
 #    .\scripts\run_live_payout_capture.ps1 -Date 2026-07-12                    # update
@@ -336,6 +338,36 @@ function Repair-WedgedPrizePicksCdp {
     }
 }
 
+function Invoke-CbbProbeCapture {
+    param(
+        [string]$ProbeDate,
+        [switch]$ForceRescrape
+    )
+    if (-not $ProbeDate) { return }
+    if ($ProbeDate -lt "2026-11-01") {
+        Write-Host "  [PAYOUT] CBB mix quote probe skipped (slate $ProbeDate before 2026-11-01)" -ForegroundColor DarkGray
+        return
+    }
+    $probeOut = Join-Path $Root "data\reports\payout_cbb_probe_$ProbeDate.json"
+    Write-Host "  [PAYOUT] CBB mix quote probe for $ProbeDate (N-correct / min guarantee)..." -ForegroundColor Cyan
+    $probeArgs = @(
+        "-3.14", "-X", "utf8", $payoutScript,
+        "--cbb-probe",
+        "--date", $ProbeDate,
+        "--cdp-url", $CdpUrl,
+        "--output", $probeOut
+    )
+    if ($ForceRescrape) { $probeArgs += "--force-cbb-probe" }
+    $pex = Invoke-PyWithTimeout -ArgumentList $probeArgs -TimeoutSec 180 -Label "cbb-probe"
+    if ($pex -eq 0) {
+        Write-Host "  [PAYOUT] CBB mix quote ok -> $probeOut" -ForegroundColor Green
+    } elseif ($pex -eq 124) {
+        Write-Host "  [PAYOUT] WARN: CBB mix quote timed out (non-blocking)" -ForegroundColor Yellow
+    } else {
+        Write-Host "  [PAYOUT] WARN: CBB mix quote exit $pex (non-blocking; later windows retry until ok)" -ForegroundColor Yellow
+    }
+}
+
 function Invoke-PayoutVerify {
     param(
         [string]$VerifyRoot,
@@ -432,6 +464,7 @@ try {
 
     if (-not (Test-Path -LiteralPath $TicketsPath)) {
         Write-Host "  [PAYOUT] WARN: tickets JSON missing -- $TicketsPath" -ForegroundColor Yellow
+        Invoke-CbbProbeCapture -ProbeDate $Date -ForceRescrape:$Force
         if (-not $SkipVerify) {
             Invoke-PayoutVerify -VerifyRoot $Root -VerifyDate $Date -VerifyTickets $TicketsPath `
                 -VerifyCdp $CdpUrl -DoFill:$false -DoRebuild:$RebuildRateCard.IsPresent -DoGentle:$Gentle.IsPresent
@@ -597,6 +630,10 @@ try {
             Write-Host "  [PAYOUT] skip live prune (n_ok=0) — keep dual card" -ForegroundColor DarkGray
         }
     }
+
+    # Quote history has to exist before a CBB cell is wired. Capture one mix
+    # per slate from 11/1 even when tickets skipped CDP (unchanged dual card).
+    Invoke-CbbProbeCapture -ProbeDate $Date -ForceRescrape:$Force
 
     if (-not $SkipVerify) {
         # MAIN / explicit fill: re-scrape gaps in verify. UPDATE: capture already did
