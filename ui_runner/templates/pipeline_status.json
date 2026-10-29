@@ -37,21 +37,21 @@
   "nhl": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-28 05:17:07",
+      "modified": "2026-10-28 13:17:33",
       "no_slate": false
     }
   },
   "soccer": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-28 05:17:07",
+      "modified": "2026-10-28 13:17:33",
       "no_slate": false
     }
   },
   "mlb": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-28 05:17:07",
+      "modified": "2026-10-28 13:17:33",
       "no_slate": false
     }
   },
@@ -65,7 +65,7 @@
   "tennis": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-28 09:15:53",
+      "modified": "2026-10-29 01:18:06",
       "no_slate": false
     }
   },
@@ -100,11 +100,11 @@
   "combined": {
     "slate": {
       "exists": true,
-      "modified": "2026-10-28 05:17:07",
+      "modified": "2026-10-28 13:17:33",
       "no_slate": false
     }
   },
-  "tennis_match_day": "2026-10-28",
+  "tennis_match_day": "2026-10-29",
   "game_day": {
     "tennis": true
   }
