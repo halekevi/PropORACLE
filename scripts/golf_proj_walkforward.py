@@ -4,9 +4,16 @@
 Does not ticket. Use this over the Tour break to check µ/σ calibration
 before a keep-gate scan.
 
-B is earlier *events* at the course, not this week's field. Report priced vs
-held, R1/R2 vs R3/R4, and tail coverage (|z|<1 ~0.68, |z|<2 ~0.95). If z>2
-clearly exceeds z<-2, the high-score tail is underpriced — do not scan Unders.
+B is earlier *events* at the course. S may use this week's earlier rounds
+as form (no lookahead by Saturday). Read priced rows:
+
+  mean_z off 0 by >0.2 — B/S bias; check no_course_history first
+  sd_z well above 1 — σ too tight
+  z>2 clearly above z<-2 — Unders off until σ handles the blow-up tail
+  R3–R4 z worse than R1–R2 — cut-field bias; weekend waits, R1/R2 can scan
+
+All four clean at n>=100: ready for scan_gate_thresholds_oos when the Tour
+returns. Nothing else.
 
   py -3.14 scripts/golf_proj_walkforward.py
   py -3.14 scripts/golf_proj_walkforward.py --cache Sports/Golf/cache/golf_round_cache.csv

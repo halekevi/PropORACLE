@@ -144,11 +144,19 @@ Labels only. No gate changes. Same promotion path as NBA projection.
 ### Backtest
 
 Do not wait for graded props. Walk forward over the cached rounds (~2,588):
-project each round using **only earlier events** for B (not this week's
-field — vs_field is defined against that same average). Skill S may use this
-week's earlier rounds. Check µ/σ on **priced** (unheld) rows, split R1/R2 vs
-R3/R4, and report |z|<1 / |z|<2 plus each tail. When archived PP golf lines
-exist, score against those too.
+project each round using **only earlier events** for B. Skill S may use this
+week's earlier rounds as form (by Saturday those rounds and their field
+averages are already known). Read **priced** rows:
+
+| Check | Fail | What it means |
+|---|---|---|
+| `mean_z` off 0 by >0.2 | B or S biased | Check `no_course_history` first (tour-mean fallback) |
+| `sd_z` well above 1 | σ too tight | Overs and Unders both look too confident |
+| `z>2` clearly above `z<-2` | blow-up tail | Unders stay off the scan until σ is skewed/mixture |
+| R3–R4 z worse than R1–R2 | cut-field bias | Weekend needs a B/S adjustment; R1/R2 can still scan |
+
+All four clean at n≥100: ready for `scan_gate_thresholds_oos` when the Tour
+returns. Nothing else. When archived PP golf lines exist, score against those too.
 
 ---
 

@@ -30,6 +30,14 @@ from utils.stat_distributions import (
 )
 
 SKILL_HOLD_MIN = 8
+# Walk-forward readout (priced rows). Ready for scan_gate_thresholds_oos only
+# when all four pass at n>=READY_MIN_N.
+CAL_MEAN_Z = 0.2
+CAL_SD_Z = 1.2
+CAL_TAIL_GAP = 0.02
+CAL_ROUND_GAP = 0.2
+CAL_FLAG_MIN_N = 50
+CAL_READY_MIN_N = 100
 K_SKILL = 8.0
 K_COURSE = 12.0
 K_SD = 10.0
@@ -557,8 +565,9 @@ def apply_course_baseline(
 def walk_forward_strokes(cache: pd.DataFrame, *, min_prior: int = 0) -> pd.DataFrame:
     """Project every full-18 strokes round using only earlier *events* for B.
 
-    Skill S may use this week's earlier rounds (form). B does not: same-event
-    field averages are this week's setup, and vs_field is defined against them.
+    Skill S may use this week's earlier rounds as form: by Saturday those
+    rounds and their field averages are already known, so there is no lookahead.
+    B does not: same-event field averages are this week's setup.
     Held rows (thin skill window) stay in the frame so calibration can split.
     """
     work = _full18(_ensure_calendar_round_dates(fill_course_ids(cache)))
@@ -610,14 +619,38 @@ def walk_forward_strokes(cache: pd.DataFrame, *, min_prior: int = 0) -> pd.DataF
                 "z": z,
                 "p_over_half": got.get("golf_proj_p_over"),
                 "golf_proj_hold": got.get("golf_proj_hold"),
+                "no_course_history": got.get("no_course_history"),
                 "skill_n": skill_n,
             }
         )
     return pd.DataFrame(rows)
 
 
+def _z_stats(zz: pd.Series) -> dict[str, float] | None:
+    clean = pd.to_numeric(zz, errors="coerce").dropna()
+    if clean.empty:
+        return None
+    sd = float(clean.std(ddof=1)) if len(clean) >= 2 else float("nan")
+    return {
+        "n": float(len(clean)),
+        "mean": float(clean.mean()),
+        "sd": sd,
+        "abs1": float((clean.abs() < 1).mean()),
+        "abs2": float((clean.abs() < 2).mean()),
+        "over_tail": float((clean > 2).mean()),
+        "under_tail": float((clean < -2).mean()),
+    }
+
+
 def print_walkforward_summary(out: pd.DataFrame) -> None:
-    """Priced vs held, weekend split, and tail coverage. Normal: |z|<1 ~0.68, |z|<2 ~0.95, |z|>2 ~0.023 each side."""
+    """Priced vs held, weekend split, tail coverage, and the four scan bars.
+
+    Priced mean_z off 0 by >0.2: B/S bias (check no_course_history first).
+    sd_z well above 1: σ too tight.
+    z>2 clearly above z<-2: blow-up tail; Unders stay off the scan.
+    R3–R4 z worse than R1–R2: cut-field bias; weekend lines wait, R1/R2 can scan.
+    All four clean at n>=100: ready for scan_gate_thresholds_oos when the Tour returns.
+    """
     if out is None or out.empty:
         print("[golf-proj] n=0")
         return
@@ -626,30 +659,82 @@ def print_walkforward_summary(out: pd.DataFrame) -> None:
         out.get("golf_proj_hold", pd.Series(0, index=out.index)), errors="coerce"
     ).fillna(0).astype(bool)
 
-    def _summ(mask: pd.Series, label: str) -> None:
-        zz = z[mask].dropna()
-        if zz.empty:
+    def _summ(mask: pd.Series, label: str) -> dict[str, float] | None:
+        st = _z_stats(z[mask])
+        if st is None:
             print(f"[golf-proj] {label}: n=0")
-            return
-        over_tail = float((zz > 2).mean())
-        under_tail = float((zz < -2).mean())
+            return None
         print(
-            f"[golf-proj] {label}: n={len(zz)} mean_z={zz.mean():.3f} sd_z={zz.std(ddof=1):.3f} "
-            f"|z|<1={float((zz.abs() < 1).mean()):.3f} |z|<2={float((zz.abs() < 2).mean()):.3f} "
-            f"z>2={over_tail:.3f} z<-2={under_tail:.3f}"
+            f"[golf-proj] {label}: n={int(st['n'])} mean_z={st['mean']:.3f} sd_z={st['sd']:.3f} "
+            f"|z|<1={st['abs1']:.3f} |z|<2={st['abs2']:.3f} "
+            f"z>2={st['over_tail']:.3f} z<-2={st['under_tail']:.3f}"
         )
-        if label == "priced" and len(zz) >= 50 and over_tail > under_tail + 0.02:
-            print(
-                "[golf-proj] over-tail exceeds under-tail — "
-                "skewed/mixture σ before scanning Unders"
-            )
+        return st
 
-    _summ(~held, "priced")
+    priced = _summ(~held, "priced")
     _summ(held, "held")
+    r12 = r34 = None
     if "round_num" in out.columns:
         rn = pd.to_numeric(out["round_num"], errors="coerce")
-        _summ(~held & rn.isin([1, 2]), "priced R1-R2")
-        _summ(~held & rn.isin([3, 4]), "priced R3-R4")
+        r12 = _summ(~held & rn.isin([1, 2]), "priced R1-R2")
+        r34 = _summ(~held & rn.isin([3, 4]), "priced R3-R4")
+
+    flags: list[str] = []
+    if priced is not None and priced["n"] >= CAL_FLAG_MIN_N:
+        if abs(priced["mean"]) > CAL_MEAN_Z:
+            flags.append("mean_z")
+            print(
+                "[golf-proj] Priced mean_z off 0 by more than 0.2 — B or S is biased. "
+                "Check no_course_history rows first (tour-mean fallback)."
+            )
+            if "no_course_history" in out.columns:
+                noch = pd.to_numeric(
+                    out.get("no_course_history", pd.Series(0, index=out.index)),
+                    errors="coerce",
+                ).fillna(0).astype(bool)
+                _summ(~held & noch, "priced no_course_history")
+                _summ(~held & ~noch, "priced has_course")
+        if math.isfinite(priced["sd"]) and priced["sd"] > CAL_SD_Z:
+            flags.append("sd_z")
+            print(
+                "[golf-proj] sd_z well above 1 — σ is too tight. "
+                "Overs and Unders will both look more confident than they are."
+            )
+        if priced["over_tail"] > priced["under_tail"] + CAL_TAIL_GAP:
+            flags.append("skew")
+            print(
+                "[golf-proj] z>2 clearly above z<-2 — Unders stay off the scan "
+                "until σ handles the blow-up tail."
+            )
+    if (
+        r12 is not None
+        and r34 is not None
+        and r12["n"] >= CAL_FLAG_MIN_N
+        and r34["n"] >= CAL_FLAG_MIN_N
+        and abs(r34["mean"] - r12["mean"]) > CAL_ROUND_GAP
+    ):
+        flags.append("cut_field")
+        print(
+            "[golf-proj] R3–R4 z worse than R1–R2 — cut-field bias. "
+            "Weekend rounds need a cut-field adjustment to B or S before weekend "
+            "lines get scanned. R1/R2 lines could still be scanned on their own."
+        )
+
+    if priced is None:
+        return
+    if flags:
+        print(f"[golf-proj] bars failed: {', '.join(flags)}")
+        return
+    if priced["n"] >= CAL_READY_MIN_N:
+        print(
+            "[golf-proj] Priced rows clean on all four. "
+            "Golf is ready for scan_gate_thresholds_oos when the Tour returns."
+        )
+        return
+    print(
+        f"[golf-proj] Priced rows look clean but n={int(priced['n'])} "
+        f"< {CAL_READY_MIN_N}; do not declare ready."
+    )
 
 
 __all__ = [
@@ -666,4 +751,7 @@ __all__ = [
     "tour_means",
     "walk_forward_strokes",
     "print_walkforward_summary",
+    "CAL_MEAN_Z",
+    "CAL_SD_Z",
+    "CAL_READY_MIN_N",
 ]

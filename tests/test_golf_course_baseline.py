@@ -149,6 +149,51 @@ def test_b_excludes_same_event_not_just_same_day():
     assert abs(float(clean["B"]) - 71.0) < 1.0
 
 
+def test_walkforward_summary_four_bars(capsys):
+    import numpy as np
+
+    z_sym = np.concatenate([np.linspace(-2.0, 2.0, 60), np.linspace(2.0, -2.0, 60)])
+    n = len(z_sym)
+    clean = pd.DataFrame(
+        {
+            "z": z_sym,
+            "golf_proj_hold": [0] * n,
+            "round_num": [1] * 60 + [3] * 60,
+            "no_course_history": [0] * n,
+        }
+    )
+    print_walkforward_summary(clean)
+    text = capsys.readouterr().out
+    assert "ready for scan_gate_thresholds_oos" in text
+
+    print_walkforward_summary(
+        pd.DataFrame(
+            {
+                "z": [0.6] * 60,
+                "golf_proj_hold": [0] * 60,
+                "round_num": [1] * 60,
+                "no_course_history": [1] * 30 + [0] * 30,
+            }
+        )
+    )
+    biased = capsys.readouterr().out
+    assert "mean_z off 0" in biased
+    assert "no_course_history" in biased
+    assert "ready for scan_gate_thresholds_oos" not in biased
+
+    print_walkforward_summary(
+        pd.DataFrame(
+            {
+                "z": [0.0] * 60 + [0.5] * 60,
+                "golf_proj_hold": [0] * 120,
+                "round_num": [1] * 60 + [3] * 60,
+            }
+        )
+    )
+    cut = capsys.readouterr().out
+    assert "cut-field" in cut
+
+
 def test_walkforward_summary_missing_columns_and_split(capsys):
     print_walkforward_summary(pd.DataFrame({"player_key": ["a"]}))
     out = pd.DataFrame(
