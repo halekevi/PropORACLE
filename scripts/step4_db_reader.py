@@ -251,51 +251,75 @@ _PT_COL = {
 
 def _query_vals(con: sqlite3.Connection, table: str, where_clause: str,
                 stat_expr: str, params: tuple, n: int,
-                max_game_date: str = "") -> List[float]:
+                max_game_date: str = "",
+                *, card_window: bool = False,
+                regular_season_only: bool = False) -> List[float]:
     """
     Generic indexed stat query.
     Returns up to n most-recent non-null values, newest first.
     DNP-zero games (minutes/TOI == 0 or inactive) are voided, not Under hits.
     Missing stats stay missing — never zero-filled.
     Tonight's box stays out via game_date < slate.
+    card_window: keep regular + playoffs, drop preseason (PP card L5).
+    regular_season_only: legacy — prefer card_window (playoffs stay).
     """
+    from datetime import date as _date
+
     from utils.step4_asof import game_date_before_slate_sql
+
     ceil_sql, ceil_params = game_date_before_slate_sql(max_game_date)
     pt = _PT_COL.get(table)
-    extra = max(n * 3, n)
-    if pt:
-        sql = f"""
-            SELECT {stat_expr} AS val, {pt} AS pt
-            FROM {table}
-            WHERE {where_clause}
-              AND {stat_expr} IS NOT NULL
-              {ceil_sql}
-            ORDER BY game_date DESC
-            LIMIT {extra}
-        """
-    else:
-        sql = f"""
-            SELECT {stat_expr} AS val, NULL AS pt
-            FROM {table}
-            WHERE {where_clause}
-              AND {stat_expr} IS NOT NULL
-              {ceil_sql}
-            ORDER BY game_date DESC
-            LIMIT {extra}
-        """
+    filter_windows = card_window or regular_season_only
+    # Extra rows so window / DNP filters still fill L5.
+    extra = max(n * 8, n) if filter_windows else max(n * 3, n)
+    pt_sel = pt if pt else "NULL"
+    sql = f"""
+        SELECT game_date, {stat_expr} AS val, {pt_sel} AS pt
+        FROM {table}
+        WHERE {where_clause}
+          AND {stat_expr} IS NOT NULL
+          {ceil_sql}
+        ORDER BY game_date DESC
+        LIMIT {extra}
+    """
     try:
         rows = con.execute(sql, tuple(params) + tuple(ceil_params)).fetchall()
     except Exception:
         return []
+
+    if card_window:
+        allow = {"regular", "playoffs"}
+    elif regular_season_only:
+        allow = {"regular"}
+    else:
+        allow = None
+
+    classify_game = None
+    if allow is not None:
+        try:
+            from utils.nba_minutes_role import classify_game as _cg
+
+            classify_game = _cg
+        except Exception:
+            # Fail open only if classifier missing — still return newest n.
+            allow = None
+
     out: List[float] = []
     for r in rows:
-        if r[0] is None:
+        gd, raw_val, pt_v = r[0], r[1], r[2] if len(r) > 2 else None
+        if raw_val is None:
             continue
         try:
-            val = float(r[0])
+            val = float(raw_val)
         except (TypeError, ValueError):
             continue
-        pt_v = r[1] if len(r) > 1 else None
+        if allow is not None and classify_game is not None:
+            try:
+                d = _date.fromisoformat(str(gd)[:10])
+            except ValueError:
+                continue
+            if classify_game(d) not in allow:
+                continue
         if is_dnp_zero_actual(val, {"minutes": pt_v, "toi": pt_v}):
             continue
         out.append(val)
@@ -313,20 +337,30 @@ def _nfkd_norm(s: str) -> str:
 
 def get_vals_nba(con: sqlite3.Connection, espn_id: str,
                   prop_norm: str, n: int = 10, player_name: str = "",
-                  max_game_date: str = "") -> List[float]:
+                  max_game_date: str = "",
+                  *, card_window: bool = False,
+                  regular_season_only: bool = False) -> List[float]:
     expr = _resolve_prop(prop_norm, "nba")
     if not expr:
         return []
     # Primary: ESPN athlete ID (exact, unambiguous)
-    vals = _query_vals(con, "nba",
-                       "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n,
-                       max_game_date=max_game_date)
+    vals = _query_vals(
+        con, "nba",
+        "ESPN_ATHLETE_ID = ?", expr, (str(espn_id),), n,
+        max_game_date=max_game_date,
+        card_window=card_window,
+        regular_season_only=regular_season_only,
+    )
     if not vals and player_name:
         # Fallback 1: exact lowercase match (covers DB storing accented names)
         norm = player_name.strip().lower()
-        vals = _query_vals(con, "nba",
-                           "lower(player) = ?", expr, (norm,), n,
-                           max_game_date=max_game_date)
+        vals = _query_vals(
+            con, "nba",
+            "lower(player) = ?", expr, (norm,), n,
+            max_game_date=max_game_date,
+            card_window=card_window,
+            regular_season_only=regular_season_only,
+        )
         # Fallback 2: NFKD-normalized match (covers DB storing ASCII names vs
         #             PrizePicks sending accented names, or vice versa)
         if not vals:
@@ -655,7 +689,15 @@ def attach_stats(
             vals = get_vals_combo(get_fn, con, ids, prop, n, max_game_date=cutoff)
         else:
             player_name = str(row.get("player", "")).strip()
-            if sport in ("nba", "cbb") and player_name:
+            if sport == "nba" and player_name:
+                # PP card L5 = RS + playoffs, never preseason.
+                vals = get_fn(
+                    con, raw_id, prop, n,
+                    player_name=player_name,
+                    max_game_date=cutoff,
+                    card_window=True,
+                )
+            elif sport in ("nba", "cbb") and player_name:
                 vals = get_fn(con, raw_id, prop, n, player_name=player_name, max_game_date=cutoff)
             elif sport == "soccer" and player_name:
                 vals = get_fn(con, raw_id, prop, n, player_name=player_name, max_game_date=cutoff)
@@ -679,6 +721,10 @@ def attach_stats(
         for i in range(1, n + 1):
             v = vals[i - 1] if (i - 1) < len(vals) else np.nan
             slate.at[idx, f"stat_g{i}"] = fmt_num(v)
+        if sport == "nba":
+            if "l5_window" not in slate.columns:
+                slate["l5_window"] = ""
+            slate.at[idx, "l5_window"] = "card_rs_playoffs"
 
         def avg_k(k):
             s = vals[:k] if len(vals) >= k else vals
