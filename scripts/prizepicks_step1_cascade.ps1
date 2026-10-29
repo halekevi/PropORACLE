@@ -304,7 +304,11 @@ function Invoke-PrizePicksStep1Cascade {
         Write-PP "      [$SportLabel] CDP-first at $cdpUrl — skip HTTP 403" "DarkCyan"
     }
     elseif ($cdpReachable) {
-        Write-PP "      [$SportLabel] CDP up at $cdpUrl — fail-fast HTTP then CDP" "DarkCyan"
+        if ($SportLabel -in @("NBA", "NBA1H", "NBA1Q")) {
+            Write-PP "      [$SportLabel] CDP up at $cdpUrl — full HTTP pages (no fail-fast 4-page cap)" "DarkCyan"
+        } else {
+            Write-PP "      [$SportLabel] CDP up at $cdpUrl — fail-fast HTTP then CDP" "DarkCyan"
+        }
     }
 
     Push-Location $WorkDir
@@ -316,7 +320,10 @@ function Invoke-PrizePicksStep1Cascade {
 
         $base = @($HttpArgs | Where-Object { $_ -notin @("--fail-fast", "--fail-fast-403") })
         $http = @($HttpArgs)
-        if ($FailFastFlag -and ($cdpReachable -or $httpOnly)) {
+        $nbaFamily = $SportLabel -in @("NBA", "NBA1H", "NBA1Q")
+        # NBA fail-fast caps pagination at 4 pages (~1k rows). A full slate is
+        # one 3k page today, but a 10k night paginates — keep the 20-page pull.
+        if ($FailFastFlag -and -not $nbaFamily -and ($cdpReachable -or $httpOnly)) {
             if ($http -notcontains $FailFastFlag) { $http += $FailFastFlag }
         }
 

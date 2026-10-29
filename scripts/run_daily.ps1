@@ -2808,7 +2808,7 @@ if ($NowHour -ge 10) {
             Write-Log "[NBA_LATE_FETCH] CATCHUP: slate incomplete; running inline late-fetch"
         }
         Write-Host "[LATE_FETCH] Re-fetching in-season sports (fail-fast HTTP, no off-season boards)..." -ForegroundColor Cyan
-        Write-Log "[NBA_LATE_FETCH] Hour=$NowHour >= 10: late slate refresh (in-season step1 --fail-fast + pipeline -SkipFetch)"
+        Write-Log "[NBA_LATE_FETCH] Hour=$NowHour >= 10: late slate refresh (in-season step1 20-page HTTP + pipeline -SkipFetch)"
 
     if ($Today -ge $NBA_SEASON_RESUME) {
     $NBADir = Join-Path $SportsRoot "NBA"
@@ -2823,7 +2823,6 @@ if ($NowHour -ge 10) {
         "--max_pages", "20",
         "--retries", "2",
         "--sleep", "2.0",
-        "--fail-fast",
         "--append",
         "--date", $Today,
         "--output", (Join-Path $Root "outputs\$Today\nba\step1_pp_props_today.csv")

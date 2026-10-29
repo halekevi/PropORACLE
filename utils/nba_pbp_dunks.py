@@ -6,11 +6,17 @@ OT counts — this is a full-game counting stat, not regulation-only.
 """
 from __future__ import annotations
 
+import os
 import re
+import time
 from collections import Counter
 from typing import Any, Iterable, Mapping
 
 import requests
+
+# Full-season dunk backfill hits ESPN once per game. Keep this well under
+# burst rate; override with NBA_DUNKS_FETCH_SLEEP (seconds).
+_DUNKS_FETCH_SLEEP = max(0.0, float(os.environ.get("NBA_DUNKS_FETCH_SLEEP", "0.6")))
 
 _DUNK_RE = re.compile(r"dunk", re.I)
 _MAKE_RE = re.compile(r"\bmakes\b", re.I)
@@ -100,6 +106,8 @@ def _get_json(url: str, *, session: requests.Session | None, timeout: float) -> 
     getter = session.get if session is not None else requests.get
     r = getter(url, headers=_HEADERS, timeout=timeout)
     r.raise_for_status()
+    if _DUNKS_FETCH_SLEEP:
+        time.sleep(_DUNKS_FETCH_SLEEP)
     payload = r.json() or {}
     return payload if isinstance(payload, dict) else {}
 
