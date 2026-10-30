@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30 01:47:58 UTC",
+  "generated_at": "2026-10-30 05:39:56 UTC",
   "date": "2026-10-30",
   "tennis_date": "2026-10-30",
   "ticket_track": "goblin70",
@@ -19,8 +19,8 @@
   "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
-    "goblin_70": 3,
-    "goblin_70_raw": 3,
+    "goblin_70": 4,
+    "goblin_70_raw": 4,
     "standard_allowlist": 1,
     "standard_allowlist_raw": 1,
     "standard_yolo": 3,
@@ -32,7 +32,7 @@
   "tracks": [
     "goblin70"
   ],
-  "schedule_gate_blocked": 2,
+  "schedule_gate_blocked": 3,
   "slate_exposure_snapshot": {},
   "player_slip_cap": 2
 }
