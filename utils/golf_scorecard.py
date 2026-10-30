@@ -7,19 +7,29 @@ actually **pars**, so the residual was garbage (often 0–6 instead of ~6–15).
 
 Prefer hole-by-hole ``linescores[].linescores[]`` with ``scoreType.displayValue``
 (E / -1 / +1 / …). Fall back to named/positional summary only when the
-scorecard is missing, then range-check.
+scorecard is missing, then consistency-check.
+
+Integrity flags soft per-stat ranges (pars 6–15, birdies ≤10) that marked real
+rounds suspect (Yu 16 pars, Henley 18 pars, Lower 9 birdies, Scheffler 61).
+Use composition + stroke identity instead; keep ranges only for impossible values.
 """
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
-# Hard ranges for a full 18-hole PGA round (PP / ticket props).
-PARS_MIN, PARS_MAX = 6.0, 15.0
-BIRDIES_MIN, BIRDIES_MAX = 0.0, 10.0
-BIRDIES_OR_BETTER_MAX = 12.0
-STROKES_MIN, STROKES_MAX = 60.0, 85.0
 HOLES_FULL = 18
+# Full-18 stroke play: below ~50 or above ~100 is not a real PGA card.
+STROKES_IMPOSSIBLE_LO = 50.0
+STROKES_IMPOSSIBLE_HI = 100.0
+
+# Team / match-play events store hole wins (2–7), not stroke totals.
+MATCH_PLAY_EVENT_RE = re.compile(
+    r"presidents\s*cup|ryder\s*cup|solheim\s*cup|walker\s*cup|"
+    r"curtis\s*cup|match\s*play|olympic\s+games",
+    re.IGNORECASE,
+)
 
 
 def _f(val: object) -> float | None:
@@ -29,6 +39,11 @@ def _f(val: object) -> float | None:
         return float(val)
     except (TypeError, ValueError):
         return None
+
+
+def is_match_play_event(name: object) -> bool:
+    s = str(name or "").strip()
+    return bool(s and MATCH_PLAY_EVENT_RE.search(s))
 
 
 def parse_score_type(raw: object) -> int | None:
@@ -201,51 +216,62 @@ def parse_round_stats(rnd: dict) -> dict[str, float | None]:
 
 
 def integrity_flags(row: dict[str, Any]) -> list[str]:
-    """Return reason codes; empty list means the round is usable for counting props."""
+    """Return reason codes; empty list means the round is usable for counting props.
+
+    Soft ranges on pars/birdies are retired — they flagged real cards. Flag
+    composition failures and impossible values only.
+    """
     flags: list[str] = []
     holes = _f(row.get("holes_played"))
     strokes = _f(row.get("strokes"))
     pars = _f(row.get("pars"))
-    birdies = _f(row.get("birdies"))
     bob = _f(row.get("birdies_or_better"))
-    bogeys = _f(row.get("bogeys"))
     bow = _f(row.get("bogeys_or_worse"))
+    birdies = _f(row.get("birdies"))
+    bogeys = _f(row.get("bogeys"))
     eagles = _f(row.get("eagles"))
     doubles = _f(row.get("doubles"))
     other = _f(row.get("other"))
 
     if strokes is None:
         flags.append("missing_strokes")
-    elif not (STROKES_MIN <= strokes <= STROKES_MAX):
-        flags.append("strokes_out_of_range")
+    elif strokes <= 0:
+        flags.append("strokes_impossible")
+    elif holes is not None and abs(holes - HOLES_FULL) < 0.1:
+        if strokes < STROKES_IMPOSSIBLE_LO or strokes > STROKES_IMPOSSIBLE_HI:
+            flags.append("strokes_impossible")
 
     if holes is None or holes < 9:
         flags.append("missing_holes")
     elif abs(holes - HOLES_FULL) > 0.1 and abs(holes - 9.0) > 0.1:
+        # 17-hole scorecard parse gaps stay flagged here.
         flags.append("holes_not_9_or_18")
 
-    # Counting props need a full 18.
-    full = holes is not None and abs(holes - HOLES_FULL) < 0.1
-    if full:
-        if pars is not None and not (PARS_MIN <= pars <= PARS_MAX):
-            flags.append("pars_out_of_range")
-        if birdies is not None and not (BIRDIES_MIN <= birdies <= BIRDIES_MAX):
-            flags.append("birdies_out_of_range")
-        if bob is not None and bob > BIRDIES_OR_BETTER_MAX:
-            flags.append("birdies_or_better_out_of_range")
+    for label, val in (
+        ("birdies_negative", birdies),
+        ("pars_negative", pars),
+        ("bogeys_negative", bogeys),
+        ("bob_negative", bob),
+        ("bow_negative", bow),
+    ):
+        if val is not None and val < 0:
+            flags.append(label)
 
-        parts = []
-        for v in (birdies, eagles, pars, bogeys, doubles, other):
-            if v is not None:
-                parts.append(v)
-        # Prefer explicit composition when all major buckets exist.
-        if None not in (birdies, pars, bogeys) and eagles is not None:
-            total = (birdies or 0) + (eagles or 0) + (pars or 0) + (bogeys or 0) + (doubles or 0) + (other or 0)
-            if abs(total - HOLES_FULL) > 0.1:
-                flags.append("hole_buckets_not_18")
-        elif bob is not None and bow is not None and pars is not None:
-            if abs((bob + bow + pars) - HOLES_FULL) > 0.1:
-                flags.append("bob_bow_pars_not_18")
+    if holes is not None and holes >= 9:
+        if bob is not None and bow is not None and pars is not None:
+            if abs((bob + bow + pars) - holes) > 0.1:
+                flags.append("bob_bow_pars_ne_holes")
+        elif None not in (birdies, pars, bogeys) and eagles is not None:
+            total = (
+                (birdies or 0)
+                + (eagles or 0)
+                + (pars or 0)
+                + (bogeys or 0)
+                + (doubles or 0)
+                + (other or 0)
+            )
+            if abs(total - holes) > 0.1:
+                flags.append("hole_buckets_ne_holes")
 
         course_par = _f(row.get("course_par"))
         to_par = _f(row.get("to_par"))

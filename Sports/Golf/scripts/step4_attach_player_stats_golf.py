@@ -39,6 +39,7 @@ from utils.eastern_slate_date import eastern_slate_date
 from utils.golf_scorecard import (
     counting_prop_ok,
     integrity_flags,
+    is_match_play_event,
     parse_round_stats,
 )
 from utils.player_name_utils import normalize_player_name
@@ -179,6 +180,9 @@ def _rows_from_events(events: list[dict]) -> list[dict]:
     rows: list[dict] = []
     for ev in events:
         t_name = str(ev.get("name") or "").strip()
+        if is_match_play_event(t_name):
+            # Presidents Cup / Ryder Cup / etc. store hole wins (2–7), not strokes.
+            continue
         t_date = _event_date(ev)
         event_id = str(ev.get("id") or "").strip()
         for comp in ev.get("competitions") or []:
@@ -271,11 +275,25 @@ def _fill_blank_round_dates(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+def _field_eligible_mask(df: pd.DataFrame) -> pd.Series:
+    """Clean full-18 stroke-play rows only. Suspect / WD / match-play stay out."""
+    if df is None or df.empty:
+        return pd.Series(dtype=bool)
+    strokes = pd.to_numeric(df.get("strokes"), errors="coerce")
+    holes = pd.to_numeric(df.get("holes_played"), errors="coerce")
+    suspect = pd.to_numeric(df.get("attach_suspect"), errors="coerce").fillna(0)
+    ok = strokes.notna() & holes.notna() & (holes.sub(18).abs() < 0.1) & suspect.eq(0)
+    if "tournament_name" in df.columns:
+        ok &= ~df["tournament_name"].map(is_match_play_event)
+    return ok.fillna(False)
+
+
 def _attach_vs_field(df: pd.DataFrame) -> pd.DataFrame:
     """vs_field = strokes - field average for that tournament_date + round.
 
-    Field mean uses completed 18-hole rounds only so WD 9-hole scores
-    do not pull the baseline down.
+    Field mean uses clean completed 18-hole rounds only. A 0-stroke parse, a
+    52 on 13 holes, a 9-hole WD, or an attach_suspect card must not move the
+    mean — otherwise every clean round's vs_field shifts for that event-round.
     """
     out = df.copy()
     if out.empty or "strokes" not in out.columns:
@@ -286,10 +304,10 @@ def _attach_vs_field(df: pd.DataFrame) -> pd.DataFrame:
         if k not in out.columns:
             out["vs_field"] = np.nan
             return out
-    holes = pd.to_numeric(out.get("holes_played"), errors="coerce")
-    full = out.dropna(subset=["strokes"]).copy()
-    if holes is not None and holes.notna().any():
-        full = full.loc[holes.reindex(full.index).fillna(18).sub(18).abs() < 0.1]
+    full = out.loc[_field_eligible_mask(out)].copy()
+    if full.empty:
+        out["vs_field"] = np.nan
+        return out
     field = (
         full.groupby(keys, dropna=False)["strokes"]
         .mean()
@@ -298,6 +316,22 @@ def _attach_vs_field(df: pd.DataFrame) -> pd.DataFrame:
     out = out.merge(field, on=keys, how="left")
     out["vs_field"] = out["strokes"] - out["field_avg_strokes"]
     out = out.drop(columns=["field_avg_strokes"], errors="ignore")
+    return out
+
+
+def repair_round_cache_frame(df: pd.DataFrame) -> pd.DataFrame:
+    """Drop match-play, re-key names, recompute integrity + vs_field."""
+    if df is None or df.empty:
+        return df
+    out = df.copy()
+    if "tournament_name" in out.columns:
+        out = out.loc[~out["tournament_name"].map(is_match_play_event)].copy()
+    if "player_name" in out.columns:
+        out["player_key"] = out["player_name"].map(_player_key)
+    out = _backfill_attach_flags(out)
+    out = _fill_blank_course_ids(out)
+    out = _fill_blank_round_dates(out)
+    out = _attach_vs_field(out)
     return out
 
 
@@ -375,7 +409,7 @@ def load_round_cache(cache_path: Path) -> pd.DataFrame:
     for c in CACHE_COLUMNS:
         if c not in df.columns:
             df[c] = ""
-    return _backfill_attach_flags(df)
+    return repair_round_cache_frame(df)
 
 
 def refresh_round_cache(cache_path: Path, weeks_back: int = 12) -> pd.DataFrame:
@@ -419,11 +453,12 @@ def refresh_round_cache(cache_path: Path, weeks_back: int = 12) -> pd.DataFrame:
     merged = pd.concat([old, new_df], ignore_index=True)
     # Normalize date before dedupe — otherwise ISO vs date-only twins survive.
     merged["tournament_date"] = merged["tournament_date"].astype(str).str[:10]
+    if "tournament_name" in merged.columns:
+        merged = merged.loc[~merged["tournament_name"].map(is_match_play_event)].copy()
     merged = _prefer_clean_round_rows(merged)
-    merged = _fill_blank_course_ids(merged)
-    merged = _fill_blank_round_dates(merged)
+    merged = repair_round_cache_frame(merged)
     merged = merged[merged["tournament_date"] >= start_floor.isoformat()].copy()
-    # Recompute vs_field on the merged window so old rows get a field baseline too.
+    # Recompute vs_field after the date window trim.
     merged = _attach_vs_field(merged)
     merged = merged.sort_values(
         ["tournament_date", "round"],

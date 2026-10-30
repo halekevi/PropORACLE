@@ -35,6 +35,11 @@ from utils.golf_course_baseline import (  # noqa: E402
     walk_forward_strokes,
 )
 
+_GOLF_SCRIPTS = _REPO / "Sports" / "Golf" / "scripts"
+if str(_GOLF_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_GOLF_SCRIPTS))
+from step4_attach_player_stats_golf import load_round_cache  # noqa: E402
+
 DEFAULT_CACHE = _REPO / "Sports" / "Golf" / "cache" / "golf_round_cache.csv"
 
 
@@ -50,7 +55,8 @@ def main() -> None:
     if not path.is_file():
         print(f"[golf-proj] no cache at {path}")
         sys.exit(1)
-    cache = pd.read_csv(path, low_memory=False, encoding="utf-8-sig")
+    # load_round_cache repairs integrity, drops match-play, rekeys names, recomputes vs_field.
+    cache = load_round_cache(path)
     out = walk_forward_strokes(cache, min_prior=int(args.min_prior))
     print_walkforward_summary(out)
     if out.empty:

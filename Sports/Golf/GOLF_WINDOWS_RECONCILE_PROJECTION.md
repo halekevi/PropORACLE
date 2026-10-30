@@ -16,6 +16,10 @@ Order: shared windows → #1 PP reconcile → #2 course-baseline projection
 | #1 PP reconcile | `utils/golf_pp_reconcile.py` + manual fixture (scrape has no chart yet) | **landed** |
 | #2 Course-baseline projection + walk-forward | `utils/golf_course_baseline.py`; step8 observe-only | **landed** |
 | Grader WD / missed-cut / integer PUSH → VOID | `golf_actuals.py` + `golf_grader.py` | **landed** |
+| Integrity = composition (not soft pars/birdies ranges) | `utils/golf_scorecard.py` | **landed** |
+| Field avg skips suspect / short / match-play | step4 `_attach_vs_field` | **landed** |
+| Match-play events dropped (Presidents Cup, …) | `is_match_play_event` | **landed** |
+| Name keys transliterate ø/æ/ß | `utils/player_name_utils.py` | **landed** |
 | Tickets | unregistered (CBB rule) until a keep-gate cell exists | **off** |
 
 ---

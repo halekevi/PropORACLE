@@ -7,8 +7,10 @@ from utils.golf_scorecard import (
     counts_from_hole_scorecard,
     counts_from_summary_stats,
     integrity_flags,
+    is_match_play_event,
     parse_round_stats,
 )
+from utils.player_name_utils import normalize_player_name
 
 
 def _hole(strokes: float, to_par_display: str, period: int = 1) -> dict:
@@ -49,27 +51,113 @@ def test_summary_index5_is_pars_not_holes():
     assert got["holes_played"] == 18
     assert got["birdies_or_better"] == 7
     assert got["course_par"] == 71.0
-    assert "pars_out_of_range" not in integrity_flags(got)
+    assert not integrity_flags(got)
 
 
-def test_old_residual_pars_would_fail_integrity():
-    # Simulate the bug: treat pars-slot as holes (7), residual pars = 7-7-4 = -4 → clamped garbage
+def test_real_extreme_rounds_are_not_suspect():
+    # Kevin Yu: 2 birdies + 16 pars for a 68/69
+    yu = {
+        "strokes": 69.0,
+        "birdies": 2.0,
+        "pars": 16.0,
+        "birdies_or_better": 2.0,
+        "bogeys_or_worse": 0.0,
+        "holes_played": 18.0,
+        "course_par": 71.0,
+        "to_par": -2.0,
+    }
+    assert not integrity_flags(yu)
+    # Russell Henley: 18 straight pars for a 70
+    henley = {
+        "strokes": 70.0,
+        "birdies": 0.0,
+        "pars": 18.0,
+        "birdies_or_better": 0.0,
+        "bogeys_or_worse": 0.0,
+        "holes_played": 18.0,
+        "course_par": 70.0,
+        "to_par": 0.0,
+    }
+    assert not integrity_flags(henley)
+    # Justin Lower: 9 birdies, 5 pars, 4 bogeys+
+    lower = {
+        "strokes": 66.0,
+        "birdies": 9.0,
+        "pars": 5.0,
+        "birdies_or_better": 9.0,
+        "bogeys_or_worse": 4.0,
+        "holes_played": 18.0,
+        "course_par": 72.0,
+        "to_par": -6.0,
+    }
+    assert not integrity_flags(lower)
+    # Scheffler 61 with 11 birdies
+    scheffler = {
+        "strokes": 61.0,
+        "birdies": 11.0,
+        "pars": 7.0,
+        "birdies_or_better": 11.0,
+        "bogeys_or_worse": 0.0,
+        "holes_played": 18.0,
+        "course_par": 72.0,
+        "to_par": -11.0,
+    }
+    assert not integrity_flags(scheffler)
+
+
+def test_impossible_and_inconsistent_still_flag():
+    assert "strokes_impossible" in integrity_flags(
+        {"strokes": 0.0, "holes_played": 13.0, "pars": 0.0}
+    )
+    assert "holes_not_9_or_18" in integrity_flags(
+        {
+            "strokes": 71.0,
+            "holes_played": 17.0,
+            "pars": 10.0,
+            "birdies_or_better": 4.0,
+            "bogeys_or_worse": 3.0,
+            "course_par": 71.0,
+            "to_par": 0.0,
+        }
+    )
+    assert "bob_bow_pars_ne_holes" in integrity_flags(
+        {
+            "strokes": 70.0,
+            "holes_played": 18.0,
+            "pars": 10.0,
+            "birdies_or_better": 5.0,
+            "bogeys_or_worse": 1.0,  # 16 != 18
+            "course_par": 72.0,
+            "to_par": -2.0,
+        }
+    )
     bogus = {
         "strokes": 69.0,
         "birdies": 7.0,
-        "pars": 2.0,  # typical corrupted residual
+        "pars": 2.0,
         "bogeys": 3.0,
         "birdies_or_better": 7.0,
         "bogeys_or_worse": 4.0,
         "holes_played": 7.0,
     }
     flags = integrity_flags(bogus)
-    assert (
-        "missing_holes" in flags
-        or "holes_not_9_or_18" in flags
-        or "pars_out_of_range" in flags
-    )
+    assert "missing_holes" in flags or "holes_not_9_or_18" in flags
     assert not counting_prop_ok(bogus)
+
+
+def test_match_play_events_excluded():
+    assert is_match_play_event("Presidents Cup")
+    assert is_match_play_event("2026 Presidents Cup")
+    assert is_match_play_event("Ryder Cup")
+    assert not is_match_play_event("Baycurrent Classic")
+    assert not is_match_play_event("TOUR Championship")
+
+
+def test_name_transliteration_matches_pp():
+    assert normalize_player_name("Rasmus Højgaard").lower() == "rasmus hojgaard"
+    assert normalize_player_name("Thorbjørn Olesen").lower() == "thorbjorn olesen"
+    assert normalize_player_name("Ludvig Åberg").lower() == "ludvig aberg"
+    assert "hjgaard" not in normalize_player_name("Rasmus Højgaard").lower()
 
 
 def test_parse_round_stats_prefers_scorecard():
