@@ -39,6 +39,25 @@
     return d.innerHTML;
   }
 
+  function notesCellHtml(p) {
+    const notes = String(p?.notes || "");
+    if (!notes) return "—";
+    const avoid =
+      String(p?.edge || "").toUpperCase() === "AVOID" || /tight-match/i.test(notes);
+    if (avoid) {
+      return '<span class="me-note-avoid">' + esc(notes) + "</span>";
+    }
+    return esc(notes);
+  }
+
+  function tightBannerHtml(players) {
+    const notes = (players || [])
+      .map((p) => String(p?.notes || ""))
+      .filter((n) => /tight-match/i.test(n));
+    if (!notes.length) return "";
+    return '<div class="me-tight-banner">' + esc(notes[0]) + "</div>";
+  }
+
   function pid(sport, part) {
     const legacy = document.getElementById("wnba-me-team");
     if (sport === "wnba" && legacy) return "wnba-me-" + part;
@@ -98,32 +117,9 @@
     return underSearchPlayers(block).length > 0;
   }
 
-  function resolveSlateData() {
-    if (global.SLATE_DATA && typeof global.SLATE_DATA === "object") return global.SLATE_DATA;
-    try {
-      if (typeof SLATE_DATA !== "undefined" && SLATE_DATA && typeof SLATE_DATA === "object") {
-        global.SLATE_DATA = SLATE_DATA;
-        return SLATE_DATA;
-      }
-    } catch (_) {}
-    return null;
-  }
-
-  function resolveAllSlate() {
-    if (Array.isArray(global.ALL_SLATE)) return global.ALL_SLATE;
-    try {
-      if (typeof ALL_SLATE !== "undefined" && Array.isArray(ALL_SLATE)) {
-        global.ALL_SLATE = ALL_SLATE;
-        return ALL_SLATE;
-      }
-    } catch (_) {}
-    return [];
-  }
-
   function slateRowsForSport(sport) {
     try {
-      const store = resolveSlateData();
-      if (store && Array.isArray(store[sport])) return store[sport];
+      if (global.SLATE_DATA && Array.isArray(global.SLATE_DATA[sport])) return global.SLATE_DATA[sport];
     } catch (_) {}
     return [];
   }
@@ -186,12 +182,12 @@
 
   function leaderSlice(p) {
     const ls = String(p.leader_slice || "").toLowerCase();
-    if (ls === "top" || ls === "bottom" || ls === "mid") return ls;
+    if (ls === "top" || ls === "bottom") return ls;
     const br = p.bottom_rank_on_team;
     const tr = p.rank_on_team;
     if (br != null && br <= LEADER_N && (tr == null || tr > LEADER_N)) return "bottom";
     if (tr != null && tr <= LEADER_N) return "top";
-    return "mid";
+    return "top";
   }
 
   function leaderView(sport) {
@@ -218,13 +214,17 @@
 
   function filteredPlayers(players, view) {
     const list = players || [];
-    if (view === "all") {
-      return list.slice().sort((a, b) => (a.rank_on_team || 999) - (b.rank_on_team || 999));
-    }
+    if (view === "all") return list;
     if (view === "bottom") {
-      return list
+      const bot = list
         .filter((p) => leaderSlice(p) === "bottom")
         .sort((a, b) => (a.bottom_rank_on_team || 99) - (b.bottom_rank_on_team || 99))
+        .slice(0, LEADER_N);
+      if (bot.length) return bot;
+      // Small team lists (<= 5 players): show the lowest producers instead of an empty table.
+      return list
+        .slice()
+        .sort((a, b) => (a.season_avg == null ? 0 : a.season_avg) - (b.season_avg == null ? 0 : b.season_avg))
         .slice(0, LEADER_N);
     }
     return list
@@ -234,11 +234,6 @@
   }
 
   function playerRankBadge(p) {
-    const catLbl = p.category_rank_label
-      ? ' <span class="me-rank-badge me-rank-cat" title="League · team · opp category defense">' +
-        esc(p.category_rank_label) +
-        "</span>"
-      : "";
     const slice = leaderSlice(p);
     if (slice === "bottom") {
       const n = p.bottom_rank_on_team;
@@ -249,11 +244,9 @@
         esc(fade) +
         " #" +
         esc(n != null ? n : "?") +
-        "</span>" +
-        catLbl
+        "</span>"
       );
     }
-    if (catLbl) return catLbl;
     if (p.team_rank_label) {
       return ' <span class="me-rank-badge">' + esc(p.team_rank_label) + "</span>";
     }
@@ -262,9 +255,6 @@
     }
     if (p.rank_on_team != null && p.rank_on_team <= LEADER_N) {
       return ' <span class="me-rank-badge me-rank-top">T' + esc(p.rank_on_team) + "</span>";
-    }
-    if (p.league_rank != null) {
-      return ' <span class="me-rank-badge me-rank-league">L#' + esc(p.league_rank) + "</span>";
     }
     return "";
   }
@@ -345,6 +335,9 @@
       '<div class="me-cards" id="' +
       pid(sport, "cards") +
       '"></div>' +
+      '<div class="me-tight-banner" id="' +
+      pid(sport, "tight-banner") +
+      '" hidden></div>' +
       '<div class="me-table-wrap"><table class="me-table"><thead><tr>' +
       "<th>Player</th><th>Pos</th><th id='" +
       pid(sport, "avg-h") +
@@ -464,7 +457,6 @@
         const o = blocks[k]?.opponent || {};
         if (nonEmptyAbbr(o.slate_abbr) || nonEmptyAbbr(o.name)) return true;
       }
-      // Live board may have tonight's opp even when matchup JSON is blank.
       const fromSlate = opponentFromSlate(sport, ab, data);
       return Boolean(fromSlate.opp);
     };
@@ -474,11 +466,8 @@
       .filter((t) => {
         const ab = normAbbr(t?.slate_abbr || t?.def_key);
         if (!ab) return false;
-        // Prefer clubs that actually have leader blocks (tonight's slate).
         if (teamsWithBlocks.size && !teamsWithBlocks.has(ab)) return false;
         const hasOpp = teamHasOpp(ab);
-        // Orphan / stale board props (empty opp) sort to the top on PP edge and hide
-        // real matchups — drop them whenever any other club has an opponent tonight.
         if (anyMatchupOpp) return hasOpp;
         if (Object.keys(data.matchups || {}).length) return hasOpp;
         return true;
@@ -493,7 +482,6 @@
         if (scoreB.maxPp !== scoreA.maxPp) return scoreB.maxPp - scoreA.maxPp;
         return String(a.name).localeCompare(String(b.name));
       });
-    // If filter wiped everyone, fall back to blocks then matchups-with-opp.
     if (!teams.length && teamsWithBlocks.size) {
       teams = (data.teams || []).filter((t) => teamsWithBlocks.has(normAbbr(t?.slate_abbr || t?.def_key)));
     }
@@ -624,10 +612,9 @@
 
   /** Per-sport slate rows (lazy panel load) with ALL_SLATE fallback. */
   function slateRowsForOpponent(sport) {
-    const store = resolveSlateData();
-    const sportRows = store?.[sport];
+    const sportRows = global.SLATE_DATA?.[sport];
     if (Array.isArray(sportRows) && sportRows.length) return sportRows;
-    const all = resolveAllSlate();
+    const all = global.ALL_SLATE;
     if (!Array.isArray(all) || !all.length) return [];
     const sportKey = String(sport || "").toLowerCase();
     return all.filter((r) => {
@@ -739,40 +726,6 @@
     return { opp, oppName, mu, opponent_def_rank: defRank, opponent_def_tier: defTier };
   }
 
-  function applyOpponentSelect(sport, team) {
-    const data = state[sport]?.data;
-    const oppSel = document.getElementById(pid(sport, "opp"));
-    if (!oppSel || !data || !team) return { opp: "" };
-    const { opp, oppName } = opponentForTeam(sport, team);
-    oppSel.innerHTML = opp
-      ? '<option value="' + esc(opp) + '" selected>' + esc(oppName || opp) + "</option>"
-      : '<option value="">—</option>';
-    // Keep disabled (auto-filled from slate) but show the resolved club.
-    oppSel.disabled = true;
-    return { opp, oppName };
-  }
-
-  async function ensureSlateRowsForOpponent(sport) {
-    if (slateRowsForOpponent(sport).length) return;
-    try {
-      const res = await fetch("/api/slate-sport/" + encodeURIComponent(sport), { cache: "no-store" });
-      if (!res.ok) return;
-      const body = await res.json();
-      const rows = Array.isArray(body?.rows) ? body.rows : Array.isArray(body) ? body : [];
-      if (!rows.length) return;
-      const store = resolveSlateData() || (global.SLATE_DATA = {});
-      if (!Array.isArray(store[sport]) || !store[sport].length) {
-        store[sport] = rows;
-      }
-      // Prefer the page's _setSlateSportRows so explorer + Matchup Edge share one array.
-      if (typeof global._setSlateSportRows === "function") {
-        try {
-          global._setSlateSportRows(sport, rows);
-        } catch (_) {}
-      }
-    } catch (_) {}
-  }
-
   function onTeamChange(sport) {
     const data = state[sport]?.data;
     const team = document.getElementById(pid(sport, "team"))?.value;
@@ -788,15 +741,11 @@
         catSel.value = teamCats[0];
       }
     }
-    const { opp } = applyOpponentSelect(sport, team);
+    const { opp, oppName } = opponentForTeam(sport, team);
+    oppSel.innerHTML = opp
+      ? '<option value="' + esc(opp) + '" selected>' + esc(oppName || opp) + "</option>"
+      : '<option value="">—</option>';
     render(sport);
-    // If matchup JSON still has a blank opp, pull tonight's slate and refill.
-    if (!opp) {
-      ensureSlateRowsForOpponent(sport).then(() => {
-        const again = applyOpponentSelect(sport, team);
-        if (again.opp) render(sport);
-      });
-    }
   }
 
   function currentBlock(sport) {
@@ -883,6 +832,13 @@
       esc(mu.team_def_rank != null ? mu.team_def_rank : "—") +
       "</div></div>";
 
+    const tightEl = document.getElementById(pid(sport, "tight-banner"));
+    if (tightEl) {
+      const banner = tightBannerHtml(displayed);
+      tightEl.innerHTML = banner;
+      tightEl.hidden = !banner;
+    }
+
     if (avgH) avgH.textContent = (catLabel || "Stat").split(" ")[0] + " avg";
 
     updateSliceButtons(sport);
@@ -891,25 +847,17 @@
       .map(
         (p) => {
           const rankBadge = playerRankBadge(p);
-          const shareVal =
+          const share =
             p.share_pct != null && p.share_pct !== ""
               ? esc(p.share_pct) + "%"
-              : "";
-          const teamAvgVal =
-            p.team_avg != null && p.team_avg !== "" ? esc(p.team_avg) : "";
-          let vsLineVal = "";
+              : "—";
+          const teamAvg = p.team_avg != null && p.team_avg !== "" ? esc(p.team_avg) : "—";
+          let vsLine = "—";
           if (p.avg_vs_line != null && p.avg_vs_line !== "") {
             const lean = p.share_lean ? " " + esc(p.share_lean) : "";
             const sign = Number(p.avg_vs_line) > 0 ? "+" : "";
-            vsLineVal = sign + esc(p.avg_vs_line) + lean;
-          } else if (p.pp_edge != null && p.pp_edge !== "") {
-            const sign = Number(p.pp_edge) > 0 ? "+" : "";
-            vsLineVal = sign + esc(p.pp_edge) + " PP";
+            vsLine = sign + esc(p.avg_vs_line) + lean;
           }
-          const gsVal =
-            p.game_score != null && p.game_score !== "" ? esc(p.game_score) : "";
-          const noteText = p.notes ? esc(p.notes) : "—";
-          const emptyCls = (v) => (v ? "" : " me-empty-cell");
           return (
           "<tr><td><strong>" +
           esc(p.player) +
@@ -919,28 +867,20 @@
           esc(p.pos || "—") +
           "</td><td>" +
           esc(p.season_avg) +
-          '</td><td class="' +
-          emptyCls(shareVal) +
-          '">' +
-          (shareVal || "—") +
-          '</td><td class="' +
-          emptyCls(teamAvgVal) +
-          '">' +
-          (teamAvgVal || "—") +
-          '</td><td class="' +
-          emptyCls(vsLineVal) +
-          '">' +
-          (vsLineVal || "—") +
-          '</td><td class="' +
-          emptyCls(gsVal) +
-          '">' +
-          (gsVal || "—") +
+          "</td><td>" +
+          share +
+          "</td><td>" +
+          teamAvg +
+          "</td><td>" +
+          vsLine +
+          "</td><td>" +
+          esc(p.game_score) +
           '</td><td><span class="me-edge ' +
           esc(p.edge) +
           '">' +
           edgeLabel(p.edge) +
           "</span></td><td>" +
-          noteText +
+          notesCellHtml(p) +
           "</td></tr>"
           );
         }
