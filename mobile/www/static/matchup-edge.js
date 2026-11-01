@@ -163,12 +163,12 @@
 
   function leaderSlice(p) {
     const ls = String(p.leader_slice || "").toLowerCase();
-    if (ls === "top" || ls === "bottom" || ls === "mid") return ls;
+    if (ls === "top" || ls === "bottom") return ls;
     const br = p.bottom_rank_on_team;
     const tr = p.rank_on_team;
     if (br != null && br <= LEADER_N && (tr == null || tr > LEADER_N)) return "bottom";
     if (tr != null && tr <= LEADER_N) return "top";
-    return "mid";
+    return "top";
   }
 
   function leaderView(sport) {
@@ -195,13 +195,17 @@
 
   function filteredPlayers(players, view) {
     const list = players || [];
-    if (view === "all") {
-      return list.slice().sort((a, b) => (a.rank_on_team || 999) - (b.rank_on_team || 999));
-    }
+    if (view === "all") return list;
     if (view === "bottom") {
-      return list
+      const bot = list
         .filter((p) => leaderSlice(p) === "bottom")
         .sort((a, b) => (a.bottom_rank_on_team || 99) - (b.bottom_rank_on_team || 99))
+        .slice(0, LEADER_N);
+      if (bot.length) return bot;
+      // Small team lists (<= 5 players): show the lowest producers instead of an empty table.
+      return list
+        .slice()
+        .sort((a, b) => (a.season_avg == null ? 0 : a.season_avg) - (b.season_avg == null ? 0 : b.season_avg))
         .slice(0, LEADER_N);
     }
     return list
@@ -211,11 +215,6 @@
   }
 
   function playerRankBadge(p) {
-    const catLbl = p.category_rank_label
-      ? ' <span class="me-rank-badge me-rank-cat" title="League · team · opp category defense">' +
-        esc(p.category_rank_label) +
-        "</span>"
-      : "";
     const slice = leaderSlice(p);
     if (slice === "bottom") {
       const n = p.bottom_rank_on_team;
@@ -226,11 +225,9 @@
         esc(fade) +
         " #" +
         esc(n != null ? n : "?") +
-        "</span>" +
-        catLbl
+        "</span>"
       );
     }
-    if (catLbl) return catLbl;
     if (p.team_rank_label) {
       return ' <span class="me-rank-badge">' + esc(p.team_rank_label) + "</span>";
     }
@@ -239,9 +236,6 @@
     }
     if (p.rank_on_team != null && p.rank_on_team <= LEADER_N) {
       return ' <span class="me-rank-badge me-rank-top">T' + esc(p.rank_on_team) + "</span>";
-    }
-    if (p.league_rank != null) {
-      return ' <span class="me-rank-badge me-rank-league">L#' + esc(p.league_rank) + "</span>";
     }
     return "";
   }
@@ -829,25 +823,17 @@
       .map(
         (p) => {
           const rankBadge = playerRankBadge(p);
-          const shareVal =
+          const share =
             p.share_pct != null && p.share_pct !== ""
               ? esc(p.share_pct) + "%"
-              : "";
-          const teamAvgVal =
-            p.team_avg != null && p.team_avg !== "" ? esc(p.team_avg) : "";
-          let vsLineVal = "";
+              : "—";
+          const teamAvg = p.team_avg != null && p.team_avg !== "" ? esc(p.team_avg) : "—";
+          let vsLine = "—";
           if (p.avg_vs_line != null && p.avg_vs_line !== "") {
             const lean = p.share_lean ? " " + esc(p.share_lean) : "";
             const sign = Number(p.avg_vs_line) > 0 ? "+" : "";
-            vsLineVal = sign + esc(p.avg_vs_line) + lean;
-          } else if (p.pp_edge != null && p.pp_edge !== "") {
-            const sign = Number(p.pp_edge) > 0 ? "+" : "";
-            vsLineVal = sign + esc(p.pp_edge) + " PP";
+            vsLine = sign + esc(p.avg_vs_line) + lean;
           }
-          const gsVal =
-            p.game_score != null && p.game_score !== "" ? esc(p.game_score) : "";
-          const noteText = p.notes ? esc(p.notes) : "—";
-          const emptyCls = (v) => (v ? "" : " me-empty-cell");
           return (
           "<tr><td><strong>" +
           esc(p.player) +
@@ -857,28 +843,20 @@
           esc(p.pos || "—") +
           "</td><td>" +
           esc(p.season_avg) +
-          '</td><td class="' +
-          emptyCls(shareVal) +
-          '">' +
-          (shareVal || "—") +
-          '</td><td class="' +
-          emptyCls(teamAvgVal) +
-          '">' +
-          (teamAvgVal || "—") +
-          '</td><td class="' +
-          emptyCls(vsLineVal) +
-          '">' +
-          (vsLineVal || "—") +
-          '</td><td class="' +
-          emptyCls(gsVal) +
-          '">' +
-          (gsVal || "—") +
+          "</td><td>" +
+          share +
+          "</td><td>" +
+          teamAvg +
+          "</td><td>" +
+          vsLine +
+          "</td><td>" +
+          esc(p.game_score) +
           '</td><td><span class="me-edge ' +
           esc(p.edge) +
           '">' +
           edgeLabel(p.edge) +
           "</span></td><td>" +
-          noteText +
+          esc(p.notes) +
           "</td></tr>"
           );
         }
