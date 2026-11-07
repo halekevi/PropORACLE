@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-30 05:39:56 UTC",
-  "date": "2026-10-30",
-  "tennis_date": "2026-10-30",
+  "generated_at": "2026-11-07 01:41:47 UTC",
+  "date": "2026-11-07",
+  "tennis_date": "2026-11-07",
   "ticket_track": "goblin70",
   "mode": "goblin70",
   "pool_mode": "goblin70",
@@ -14,17 +14,17 @@
     "min_l5": 5,
     "min_l10": 8,
     "cover_floor": "per-prop unit (PRA 3.7, pass yds 15, else sport floor)",
-    "note": "Keep-file gates only; a sport with no rule is off. Leg p is the shrunk gate-cell hit rate. 2- or 3-leg, Power unless Flex N-correct EV is higher. Stop when the next slip EV is not positive or all-hit payout is under 2x. Goblin and Standard stay separate. Flat $10. N-correct / To Win only."
+    "note": "Keep-file gates only; a sport with no rule is off. Leg p is the shrunk gate-cell hit rate. 2- or 3-leg, Power unless Flex N-correct EV is higher. All-Goblin slips need all-hit payout of at least 1.4x; the dollar test is stored and does not drop them. Mixed and all-Standard slips must clear the dollar test at their own payout. Goblin and Standard stay separate. Flat $10. N-correct / To Win only."
   },
   "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
-    "goblin_70": 4,
-    "goblin_70_raw": 4,
-    "standard_allowlist": 1,
-    "standard_allowlist_raw": 1,
-    "standard_yolo": 3,
-    "standard_yolo_raw": 3,
+    "goblin_70": 0,
+    "goblin_70_raw": 0,
+    "standard_allowlist": 0,
+    "standard_allowlist_raw": 0,
+    "standard_yolo": 0,
+    "standard_yolo_raw": 0,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
@@ -32,7 +32,8 @@
   "tracks": [
     "goblin70"
   ],
-  "schedule_gate_blocked": 3,
+  "schedule_gate_blocked": 0,
+  "dup_player_tickets": 0,
   "slate_exposure_snapshot": {},
   "player_slip_cap": 2
 }
