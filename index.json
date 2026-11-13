@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12 09:18:11 UTC",
+  "generated_at": "2026-11-13 09:21:20 UTC",
   "layout": "graded_props/graded_props_<YYYY-MM-DD>.json",
   "raw_base": "https://raw.githubusercontent.com/halekevi/PropORACLE/graded-data/graded_props",
   "dates": [
@@ -133,7 +133,8 @@
     "2026-11-08",
     "2026-11-09",
     "2026-11-10",
-    "2026-11-11"
+    "2026-11-11",
+    "2026-11-12"
   ],
-  "n": 131
+  "n": 132
 }
