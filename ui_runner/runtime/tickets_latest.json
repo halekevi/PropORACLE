@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-14 01:43:08 UTC",
-  "date": "2026-11-14",
-  "tennis_date": "2026-11-14",
+  "generated_at": "2026-11-15 01:37:00 UTC",
+  "date": "2026-11-15",
+  "tennis_date": "2026-11-15",
   "ticket_track": "goblin70",
   "mode": "goblin70",
   "pool_mode": "goblin70",
@@ -21,10 +21,10 @@
   "pool": {
     "goblin_70": 5,
     "goblin_70_raw": 5,
-    "standard_allowlist": 1,
-    "standard_allowlist_raw": 1,
-    "standard_yolo": 4,
-    "standard_yolo_raw": 4,
+    "standard_allowlist": 0,
+    "standard_allowlist_raw": 0,
+    "standard_yolo": 0,
+    "standard_yolo_raw": 0,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
@@ -32,7 +32,7 @@
   "tracks": [
     "goblin70"
   ],
-  "schedule_gate_blocked": 2,
+  "schedule_gate_blocked": 1,
   "dup_player_tickets": 0,
   "slate_exposure_snapshot": {},
   "player_slip_cap": 2
