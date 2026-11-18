@@ -28,15 +28,13 @@ import numpy as np
 import pandas as pd
 
 
-# ── DB path resolution ────────────────────────────────────────────────────────
-_here = Path(__file__).resolve().parent
-DB_PATH = Path("data/cache/proporacle_ref.db")
-for _ in range(6):
-    candidate = _here / "data" / "cache" / "proporacle_ref.db"
-    if candidate.exists():
-        DB_PATH = candidate
-        break
-    _here = _here.parent
+# ── DB path: canonical full-game box DB (never Sports/NBA period-only cache) ──
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(_REPO_ROOT) not in _sys.path:
+    _sys.path.insert(0, str(_REPO_ROOT))
+from utils.proporacle_ref_db import connect_ref_db, resolve_ref_db  # noqa: E402
+
+DB_PATH = resolve_ref_db()
 
 # ── Prop type/prop_norm → DB column map ──────────────────────────────────────
 PROP_TO_COL = {
@@ -232,7 +230,8 @@ def main() -> None:
     print("╚════════════════════════════════════════════════════════════════════════════╝")
     print()
 
-    db_path = Path(args.db) if args.db else DB_PATH
+    db_path = Path(args.db) if args.db else resolve_ref_db()
+    print(f"[S6d] DB: {db_path}")
 
     print(f"[S6d] Loading: {args.input}")
     try:
@@ -256,10 +255,10 @@ def main() -> None:
         print(f"✅ {args.output} (without H2H stats)")
         return
 
-    con = sqlite3.connect(str(db_path))
+    con = connect_ref_db(db_path) if not args.db else sqlite3.connect(str(db_path))
     try:
         count = con.execute("SELECT COUNT(*) FROM nba").fetchone()[0]
-        print(f"[S6d] DB: {count:,} NBA rows available")
+        print(f"[S6d] nba table: {count:,} rows")
     except Exception as e:
         print(f"⚠️  DB error: {e} — filling with NaN")
         df.to_csv(args.output, index=False)

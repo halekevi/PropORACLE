@@ -288,6 +288,10 @@ $NFLDir    = Join-Path $SportsRoot "NFL"
 # WNBA regular season: include in full parallel runs on/after this date (ISO yyyy-MM-dd).
 # 2026 opener starts May 1, so keep WNBA active for same-day fresh slates.
 $WNBA_SEASON_START = "2026-05-01"
+# After finals / board teardown — keep in sync with run_nba_late_fetch (MM-DD > 11-05).
+$WNBA_SEASON_END = "2026-11-06"
+if ($env:WNBA_SEASON_END) { $WNBA_SEASON_END = $env:WNBA_SEASON_END.Trim() }
+elseif ($env:PROPORACLE_WNBA_SEASON_END) { $WNBA_SEASON_END = $env:PROPORACLE_WNBA_SEASON_END.Trim() }
 # WNBA All-Star mid-season pause: skip [PAUSE_START, RESUME). Resume on/after RESUME.
 # Override: $env:WNBA_RESUME_DATE / $env:WNBA_PAUSE_START (or PROPORACLE_WNBA_*).
 $WNBA_SEASON_RESUME = "2026-07-28"
@@ -296,7 +300,12 @@ elseif ($env:PROPORACLE_WNBA_RESUME) { $WNBA_SEASON_RESUME = $env:PROPORACLE_WNB
 $WNBA_ALLSTAR_PAUSE_START = "2026-07-19"
 if ($env:WNBA_PAUSE_START) { $WNBA_ALLSTAR_PAUSE_START = $env:WNBA_PAUSE_START.Trim() }
 elseif ($env:PROPORACLE_WNBA_PAUSE_START) { $WNBA_ALLSTAR_PAUSE_START = $env:PROPORACLE_WNBA_PAUSE_START.Trim() }
-$WNBAOffSeason = ($Date -ge $WNBA_ALLSTAR_PAUSE_START) -and ($Date -lt $WNBA_SEASON_RESUME)
+# Off before opener, after season end, or during All-Star pause. -ForceWNBA still runs.
+$WNBAOffSeason = (
+    ($Date -lt $WNBA_SEASON_START) -or
+    ($Date -ge $WNBA_SEASON_END) -or
+    (($Date -ge $WNBA_ALLSTAR_PAUSE_START) -and ($Date -lt $WNBA_SEASON_RESUME))
+)
 
 # NBA off-season: pause NBA / NBA1H / NBA1Q until this date (summer ops).
 $NBA_SEASON_RESUME = "2026-10-01"
@@ -2937,11 +2946,15 @@ Invoke-BoxscoreRefBackfill -Sports $bfSports
 Write-Host ""
 
 if (Test-Path (Join-Path $NBADir "RUN_COMPLETE.flag")) { Remove-Item (Join-Path $NBADir "RUN_COMPLETE.flag") -Force }
-$wnbaParallel = ($ForceWNBA.IsPresent -or (($Date -ge $WNBA_SEASON_START) -and -not $WNBAOffSeason))
+$wnbaParallel = ($ForceWNBA.IsPresent -or -not $WNBAOffSeason)
 if ($WNBAOffSeason -and -not $ForceWNBA.IsPresent) {
-    Write-Host "  [WNBA] All-Star pause — skipped until $WNBA_SEASON_RESUME (pause start $WNBA_ALLSTAR_PAUSE_START; use -ForceWNBA)." -ForegroundColor DarkGray
-} elseif (-not $wnbaParallel) {
-    Write-Host "  [WNBA] Parallel job skipped until $WNBA_SEASON_START (use -ForceWNBA to run early)." -ForegroundColor DarkGray
+    if ($Date -ge $WNBA_SEASON_END) {
+        Write-Host "  [WNBA] Off-season — skipped until next opener (season ended $WNBA_SEASON_END; use -ForceWNBA)." -ForegroundColor DarkGray
+    } elseif ($Date -lt $WNBA_SEASON_START) {
+        Write-Host "  [WNBA] Parallel job skipped until $WNBA_SEASON_START (use -ForceWNBA to run early)." -ForegroundColor DarkGray
+    } else {
+        Write-Host "  [WNBA] All-Star pause — skipped until $WNBA_SEASON_RESUME (pause start $WNBA_ALLSTAR_PAUSE_START; use -ForceWNBA)." -ForegroundColor DarkGray
+    }
 }
 
 # Men's + women's CBB: skip Apr 7 through day before resume. Resume 2026-10-20 (use -ForceCBB).
@@ -3790,7 +3803,18 @@ $GolfJob = Start-Job -ScriptBlock {
 } # end GOLF_PARALLEL_ACTIVE
 
 # -- MLB Job ------------------------------------------------------------------
-# MLB activated April 2026
+# MLB regular season roughly Apr–early Nov (same window as late_fetch WNBAMLBOffSeason).
+$MLB_SEASON_START = "2026-03-15"
+$MLB_SEASON_END = "2026-11-06"
+if ($env:PROPORACLE_MLB_SEASON_START) { $MLB_SEASON_START = $env:PROPORACLE_MLB_SEASON_START.Trim() }
+if ($env:PROPORACLE_MLB_SEASON_END) { $MLB_SEASON_END = $env:PROPORACLE_MLB_SEASON_END.Trim() }
+$MLBOffSeason = ($Date -lt $MLB_SEASON_START) -or ($Date -ge $MLB_SEASON_END)
+# Do not let daily -ForceAll re-enable MLB PP pulls in winter; use PROPORACLE_FORCE_ALL_SPORTS=1.
+$MLBForceFetch = ("$($env:PROPORACLE_FORCE_ALL_SPORTS)" -eq "1")
+$MLBJob = $null
+if ($MLBOffSeason -and -not $MLBForceFetch) {
+    Write-Host "  [MLB] Off-season — skipped PrizePicks fetch ($MLB_SEASON_START .. $MLB_SEASON_END; set PROPORACLE_FORCE_ALL_SPORTS=1 to force)." -ForegroundColor DarkGray
+} else {
 Wait-FetchStagger
 $MLBJob = Start-Job -ScriptBlock {
     param($MLBDir, $Date, $SkipFetch, $RepoRoot, $MLBRunOutDir, $MlbSeasonYear)
@@ -4100,6 +4124,7 @@ $MLBJob = Start-Job -ScriptBlock {
     if ($ok) { $ok = Run-Step-Job "MLB Step 8 - Direction Context"  $MLBDir (Join-Path $RepoRoot "Sports\MLB\scripts\step8_add_direction_context_mlb.py")  "--input `"$MLBRunOutDir\step7_mlb_ranked.xlsx`" --output `"$MLBRunOutDir\step8_mlb_direction.csv`" --xlsx `"$MLBRunOutDir\step8_mlb_direction_clean.xlsx`" --date $Date" }
     return $ok
 } -ArgumentList $MLBDir, $Date, $SkipFetch, $Root, $MLBRunOutDir, $MLBSeasonYear
+} # end MLB in-season / -ForceAll
 
 # -- WNBA Job (parallel full run from $WNBA_SEASON_START; optional -ForceWNBA) ---
 $WNBAJob = $null
@@ -4256,8 +4281,12 @@ if (-not $GolfSuccess -and (Test-Step1NoSlate -CsvPath (Join-Path $GolfRunOutDir
     Clear-GolfGeneratedOutputs -BaseDir $GolfRunOutDir
     $GolfSuccess = $true
 }
-$MLBSuccess    = Test-Path (Join-Path $MLBRunOutDir "step8_mlb_direction_clean.xlsx")
 $mlbStep1Path = Join-Path $MLBRunOutDir "step1_mlb_props.csv"
+if ($MLBOffSeason -and -not $MLBForceFetch) {
+    Write-Host "  [MLB] off-season for $Date — not a failure." -ForegroundColor DarkGray
+    $MLBSuccess = $true
+} else {
+$MLBSuccess    = Test-Path (Join-Path $MLBRunOutDir "step8_mlb_direction_clean.xlsx")
 if (-not $MLBSuccess -and (Test-Step1NoSlate -CsvPath $mlbStep1Path -TargetDate $Date)) {
     Write-Host "  [MLB] no slate for $Date — not a failure." -ForegroundColor DarkGray
     Clear-MLBGeneratedOutputs -BaseDir $MLBRunOutDir
@@ -4271,6 +4300,7 @@ if (-not $MLBSuccess -and (Test-Step1NoSlate -CsvPath $mlbStep1Path -TargetDate 
     } else {
         $MLBSuccess = $MLBSuccess -and $true
     }
+}
 }
 $TennisSuccess = Test-Path (Join-Path $TennisRunOutDir "step8_tennis_direction_clean.xlsx")
 $NFLSuccess    = if (-not $NFL_PARALLEL_ACTIVE) { $true } else { Test-Path (Join-Path $NFLRunOutDir "step8_nfl_direction_clean.xlsx") }
@@ -4382,7 +4412,7 @@ $slateStatusSports = @{
     nba1q  = if ($NBAOffSeason) { "off_season" } elseif ($nba1qNoSlate) { "no_slate" } elseif ($NBA1QSuccess) { "complete" } else { "failed" }
     nhl    = if ($NHLOffSeason) { "off_season" } elseif ($nhlNoSlate) { "no_slate" } elseif ($NHLSuccess) { "complete" } else { "failed" }
     soccer = if ($soccerNoSlate) { "no_slate" } elseif ($SoccerSuccess) { "complete" } else { "failed" }
-    mlb    = if ($mlbNoSlate) { "no_slate" } elseif ($MLBSuccess) { "complete" } else { "failed" }
+    mlb    = if ($MLBOffSeason -and -not $MLBForceFetch) { "off_season" } elseif ($mlbNoSlate) { "no_slate" } elseif ($MLBSuccess) { "complete" } else { "failed" }
     tennis = if ($tennisNoSlate) { "no_slate" } elseif ($TennisSuccess) { "complete" } else { "failed" }
     golf   = if (-not $GOLF_PARALLEL_ACTIVE) { "off_season" } elseif ($golfNoSlate) { "no_slate" } elseif ($GolfSuccess) { "complete" } else { "failed" }
     cbb    = if (-not $CBB_PARALLEL_ACTIVE) { "off_season" } elseif ($cbbNoSlate) { "no_slate" } elseif ($CBBSuccess) { "complete" } else { "failed" }
@@ -4411,7 +4441,7 @@ Write-PipelineSlateStatusJson -RunDate $Date -Sports $slateStatusSports
     @{ Name="CFB";    Ok=$CFBSuccess; Skip=(-not $CFB_PARALLEL_ACTIVE); NoSlate=$cfbNoSlate },
     @{ Name="NHL";    Ok=$NHLSuccess; Skip=$NHLOffSeason; NoSlate=$nhlNoSlate },
     @{ Name="Soccer"; Ok=$SoccerSuccess; Skip=$false; NoSlate=$soccerNoSlate },
-    @{ Name="MLB";    Ok=$MLBSuccess; Skip=$false; NoSlate=$mlbNoSlate },
+    @{ Name="MLB";    Ok=$MLBSuccess; Skip=($MLBOffSeason -and -not $MLBForceFetch); NoSlate=$mlbNoSlate },
     @{ Name="Tennis"; Ok=$TennisSuccess; Skip=$false },
     @{ Name="Golf";   Ok=$GolfSuccess; Skip=(-not $GOLF_PARALLEL_ACTIVE); NoSlate=$golfNoSlate },
     @{ Name="NFL";    Ok=$NFLSuccess; Skip=(-not $NFL_PARALLEL_ACTIVE); NoSlate=$nflNoSlate }

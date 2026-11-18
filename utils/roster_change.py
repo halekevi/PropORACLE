@@ -64,15 +64,14 @@ def norm_player(raw: object) -> str:
 
 
 def default_nba_db() -> Path:
-    here = Path(__file__).resolve()
-    candidates = [
-        here.parents[1] / "Sports" / "NBA" / "data" / "cache" / "proporacle_ref.db",
-        here.parents[1] / "data" / "cache" / "proporacle_ref.db",
-    ]
-    for p in candidates:
-        if p.is_file():
-            return p
-    return candidates[0]
+    """Canonical full-game box DB (repo data/cache), never period-only NBA cache."""
+    try:
+        from utils.proporacle_ref_db import resolve_ref_db
+
+        return resolve_ref_db()
+    except Exception:
+        here = Path(__file__).resolve()
+        return here.parents[1] / "data" / "cache" / "proporacle_ref.db"
 
 
 def season_cutover_ymd(slate_date: str) -> str:

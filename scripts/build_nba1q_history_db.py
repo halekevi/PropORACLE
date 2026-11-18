@@ -3,7 +3,10 @@
 build_nba1q_history_db.py
 
 Consolidates outputs/**/period NBA actuals CSVs into the ``nba1q`` table in:
-  NBA/data/cache/proporacle_ref.db
+  Sports/NBA/data/cache/proporacle_ref_nba1q.db
+
+Do NOT write to proporacle_ref.db here — that name is reserved for the
+full-game box DB at data/cache/proporacle_ref.db (step4/6a/6d).
 
 Ingests: 1Q, 2Q, 3Q, 4Q, 1H, 2H (segment column distinguishes them).
 
@@ -19,7 +22,7 @@ from pathlib import Path
 import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DB_PATH = REPO_ROOT / "Sports" / "NBA" / "data" / "cache" / "proporacle_ref.db"
+DB_PATH = REPO_ROOT / "Sports" / "NBA" / "data" / "cache" / "proporacle_ref_nba1q.db"
 ACTUALS_GLOBS = (
     "actuals_nba1q_*.csv",
     "actuals_nba2q_*.csv",

@@ -2876,6 +2876,14 @@ if ($NowHour -ge 10) {
         Write-Log "[NBA_LATE_FETCH] WARN: Soccer step1 exit $LASTEXITCODE"
     }
 
+    # Same calendar gate as run_nba_late_fetch.ps1 — do not hit PP for off-season boards.
+    $MmDdLate = $Today.Substring(5, 5)
+    $WnbaMlbOffSeasonLate = (($MmDdLate -lt "03-15") -or ($MmDdLate -gt "11-05")) -and ("$($env:PROPORACLE_FORCE_ALL_SPORTS)" -ne "1")
+    if ($WnbaMlbOffSeasonLate) {
+        Write-Host "[LATE_FETCH] Skipping MLB fetch (off-season)" -ForegroundColor DarkGray
+        Write-Log "[NBA_LATE_FETCH] SKIP: MLB off-season"
+    }
+    else {
     Write-Host "[MLB] Fetching MLB props (HTTP first, then CDP, then Playwright)..." -ForegroundColor Cyan
     $MLBDir = Join-Path $SportsRoot "MLB"
     $mlbLateOut = Join-Path $Root "outputs\$Today\mlb\step1_mlb_props.csv"
@@ -2931,9 +2939,14 @@ if ($NowHour -ge 10) {
             Write-Log "[NBA_LATE_FETCH][HIGH] MLB step1 exit $LASTEXITCODE with no fallback rows"
         }
     }
+    } # end MLB in-season
 
     $wnbaLatePs1 = Join-Path $Root "scripts\run_wnba_pipeline.ps1"
-    if ((Test-Path -LiteralPath $wnbaLatePs1) -and -not (Test-WnbaAllStarPause -SlateDate $Today)) {
+    if ($WnbaMlbOffSeasonLate) {
+        Write-Host "[LATE_FETCH] Skipping WNBA fetch (off-season)" -ForegroundColor DarkGray
+        Write-Log "[NBA_LATE_FETCH] SKIP: WNBA off-season"
+    }
+    elseif ((Test-Path -LiteralPath $wnbaLatePs1) -and -not (Test-WnbaAllStarPause -SlateDate $Today)) {
         Write-Host "[LATE_FETCH] Fetching WNBA props..." -ForegroundColor Cyan
         & pwsh -NoProfile -File $wnbaLatePs1 -Date $Today -Step1Only
         if ($LASTEXITCODE -ne 0) {

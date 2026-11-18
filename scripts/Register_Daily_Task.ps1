@@ -112,7 +112,17 @@ function Register-PropTask {
         -Argument $psArgs `
         -WorkingDirectory $PipelineRoot
 
+    # Eastern wall-clock: StartBoundary with NO offset / Z so Task Scheduler keeps
+    # local ET time across DST (SynchronizeAcrossTimeZones stays false). A baked
+    # -04:00/-05:00 offset is what made 1AM fire at midnight after the fall-back.
+    $atTs = [TimeSpan]::Parse($At)
     $trigger = New-ScheduledTaskTrigger -Daily -At $At
+    $trigger.StartBoundary = (Get-Date).Date.Add($atTs).ToString("yyyy-MM-ddTHH:mm:ss")
+    try {
+        if ($null -ne $trigger.PSObject.Properties["SynchronizeAcrossTimeZones"]) {
+            $trigger.SynchronizeAcrossTimeZones = $false
+        }
+    } catch { }
     if ($RepetitionInterval -gt [TimeSpan]::Zero) {
         $dur = if ($RepetitionDuration -gt [TimeSpan]::Zero) { $RepetitionDuration } else { (New-TimeSpan -Hours 12) }
         $trigger.Repetition = (New-ScheduledTaskTrigger -Once -At $At `
@@ -162,17 +172,26 @@ Register-PropTask `
 
 Register-PropTask `
     -TaskName "PropOracle - MLB Fill 11PM" `
-    -Description "Overnight MLB board discovery for Eastern tomorrow. Soft-OK if not posted; rebuilds tickets + payout when MLB appears. Opens visible PowerShell." `
+    -Description "Overnight MLB board discovery for Eastern tomorrow. Soft-OK if not posted; rebuilds tickets + payout when MLB appears. Opens visible PowerShell. DISABLED until spring MLB (re-enable ~Mar)." `
     -ScriptPath $ScriptMlbFill `
     -At "23:00" `
     -ExtraArgs "-Window 11PM"
 
 Register-PropTask `
     -TaskName "PropOracle - MLB Fill 12AM" `
-    -Description "Midnight MLB fill for today's Eastern slate. Soft-OK if empty; continues discovery into 1AM. Opens visible PowerShell." `
+    -Description "Midnight MLB fill for today's Eastern slate. Soft-OK if empty; continues discovery into 1AM. Opens visible PowerShell. DISABLED until spring MLB (re-enable ~Mar)." `
     -ScriptPath $ScriptMlbFill `
     -At "00:00" `
     -ExtraArgs "-Window 12AM"
+
+# Winter: no MLB board — keep fills registered (correct ET clocks) but Disabled until spring.
+foreach ($mlbFill in @("PropOracle - MLB Fill 11PM", "PropOracle - MLB Fill 12AM")) {
+    $st = Get-ScheduledTask -TaskName $mlbFill -ErrorAction SilentlyContinue
+    if ($st -and $st.State -ne "Disabled") {
+        Disable-ScheduledTask -TaskName $mlbFill | Out-Null
+        Write-Host "  Disabled until spring: $mlbFill" -ForegroundColor Yellow
+    }
+}
 
 Register-PropTask `
     -TaskName "PropOracle - Daily 1AM" `

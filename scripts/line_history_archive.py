@@ -274,7 +274,7 @@ def diff_snapshots(prev: list[dict], curr: list[dict]) -> list[dict]:
             continue
         alts = [
             r
-            for r in curr_mkt.get(_mkt_key(then), [])
+            for r in curr_mkt.get(_mkt_key(then, prefer_game_id=prefer_game_id), [])
             if r.get("pick_type") != then.get("pick_type")
             and _pick_key(r, prefer_game_id=prefer_game_id) not in prev_pick
         ]

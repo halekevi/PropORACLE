@@ -3,9 +3,18 @@
 Used when HTTP is blocked by DataDome. Attach to an already-warmed Chrome on
 --remote-debugging-port (default 9222), then call api.prizepicks.com via the
 page's authenticated fetch().
+
+DataDome hardening (default ON — do not weaken without Kevin saying so):
+  - Never open a new PP tab from automation (PROPORACLE_PP_ALLOW_NEW_TAB=1 to override).
+  - Never navigate to /board?league_id=… (league hops trip the challenge;
+    PROPORACLE_PP_ALLOW_NAVIGATE=1 to override).
+  - If the "Access is temporarily restricted" page is visible, abort and set a
+    cooldown so other sports stop hammering the same IP.
 """
 from __future__ import annotations
 
+import os
+import time
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +26,119 @@ def connect_over_cdp(playwright: Any, cdp_url: str, *, timeout_ms: int = 30_000)
         raise ValueError("cdp_url is required")
     print(f"🌐 Connecting to existing Chrome via CDP: {cdp} (timeout={timeout_ms}ms)")
     return playwright.chromium.connect_over_cdp(cdp, timeout=int(timeout_ms))
+
+
+def _env_flag(name: str, default: bool = False) -> bool:
+    raw = str(os.environ.get(name, "") or "").strip().lower()
+    if not raw:
+        return default
+    return raw in {"1", "true", "yes", "on"}
+
+
+def allow_pp_new_tab() -> bool:
+    return _env_flag("PROPORACLE_PP_ALLOW_NEW_TAB", False)
+
+
+def allow_pp_navigate() -> bool:
+    return _env_flag("PROPORACLE_PP_ALLOW_NAVIGATE", False)
+
+
+def _datadome_cooldown_path() -> Path:
+    return Path(__file__).resolve().parents[1] / "data" / "cache" / "pp_datadome_cooldown.stamp"
+
+
+def mark_datadome_cooldown(*, minutes: int = 240) -> None:
+    """Stop further PP pulls from this machine for a while after a block.
+
+    Default is hours, not minutes: retries and TLS-profile rotation after a
+    403 were the main traffic burst. Every scheduled task should check
+    ``datadome_cooldown_active`` before any PrizePicks request.
+    """
+    path = _datadome_cooldown_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    until = time.time() + max(5, int(minutes)) * 60
+    path.write_text(str(until), encoding="utf-8")
+    print(
+        f"  [DataDome] cooldown {minutes}m — other sports should skip PP pulls "
+        f"(stamp {path})"
+    )
+
+
+def clear_datadome_cooldown() -> None:
+    path = _datadome_cooldown_path()
+    try:
+        path.unlink(missing_ok=True)
+    except OSError:
+        pass
+
+
+def datadome_cooldown_active() -> tuple[bool, int]:
+    """Return (active, seconds_remaining)."""
+    path = _datadome_cooldown_path()
+    if not path.is_file():
+        return False, 0
+    try:
+        until = float(path.read_text(encoding="utf-8").strip())
+    except (OSError, ValueError):
+        return False, 0
+    left = int(until - time.time())
+    if left <= 0:
+        try:
+            path.unlink(missing_ok=True)
+        except OSError:
+            pass
+        return False, 0
+    return True, left
+
+
+def assert_not_in_datadome_cooldown() -> None:
+    active, left = datadome_cooldown_active()
+    if active:
+        raise RuntimeError(
+            f"DataDome cooldown active ({left}s left). "
+            "Solve 'Access is temporarily restricted' in Chrome, then delete "
+            "data/cache/pp_datadome_cooldown.stamp or wait it out."
+        )
+
+
+def page_looks_datadome_blocked(page: Any) -> bool:
+    """True when the human 'Access is temporarily restricted' interstitial is up."""
+    try:
+        url = (page.url or "").lower()
+    except Exception:
+        url = ""
+    try:
+        title = (page.title() or "").lower()
+    except Exception:
+        title = ""
+    blob = f"{url} {title}"
+    if "access is temporarily restricted" in blob or "datadome" in blob:
+        return True
+    try:
+        # Cheap DOM sniff — avoid full content() on huge boards.
+        txt = page.evaluate(
+            """() => {
+              const t = (document.body && document.body.innerText) || '';
+              return t.slice(0, 800).toLowerCase();
+            }"""
+        )
+    except Exception:
+        return False
+    return (
+        "access is temporarily restricted" in str(txt)
+        or "unusual activity from your device" in str(txt)
+        or "automated (bot) activity" in str(txt)
+    )
+
+
+def raise_if_datadome_blocked(page: Any) -> None:
+    if page_looks_datadome_blocked(page):
+        mark_datadome_cooldown(minutes=240)
+        raise RuntimeError(
+            "DataDome: Access is temporarily restricted on the PrizePicks tab. "
+            "Stop navigating/league-hopping. Solve the challenge manually in Chrome, "
+            "keep one /board tab open, then retry after the cooldown."
+        )
 
 
 def probe_cdp_attach(cdp_url: str, *, timeout_ms: int = 8_000) -> bool:
@@ -353,6 +475,9 @@ def session_fetch_projections(
 
     Pipeline contract: HTTP first (caller), then this with cdp_url, then playwright=True.
     Returns (data, included, http_status).
+
+    Default: CDP requires a human-opened PrizePicks tab already on /board (any
+    league). We pull other leagues via in-page fetch() — no tab open, no league hop.
     """
     from playwright.sync_api import sync_playwright
 
@@ -360,6 +485,8 @@ def session_fetch_projections(
     cdp = (cdp_url or "").strip()
     if not cdp and not playwright:
         raise ValueError("session_fetch_projections requires cdp_url or playwright=True")
+
+    assert_not_in_datadome_cooldown()
 
     with sync_playwright() as p:
         opened_new = False
@@ -373,10 +500,16 @@ def session_fetch_projections(
             page = pick_cdp_warmed_page(context, lid)
             if page is not None:
                 print(f"  Reusing warmed PP tab: {page.url}")
-            else:
+            elif allow_pp_new_tab():
                 page = context.new_page()
                 opened_new = True
-                print("  No warmed PP tab — opened new page (solve DataDome in Chrome if 403).")
+                print("  No warmed PP tab — opened new page (PROPORACLE_PP_ALLOW_NEW_TAB=1).")
+            else:
+                raise RuntimeError(
+                    "No warmed PrizePicks tab. Open app.prizepicks.com/board in the "
+                    "CDP Chrome window (any league), solve any challenge, then retry. "
+                    "Refusing to open a new tab (trips DataDome)."
+                )
         else:
             launched = True
             browser = p.chromium.launch(headless=False)
@@ -387,18 +520,38 @@ def session_fetch_projections(
             print("  [playwright] launched Chromium for PrizePicks board fetch")
 
         page.set_default_timeout(max(30_000, int(request_timeout_ms) + 5_000))
+        raise_if_datadome_blocked(page)
+
         if not cdp_board_ready(page, lid):
-            board_url = f"https://app.prizepicks.com/board?league_id={lid}"
-            page.goto("https://app.prizepicks.com/", wait_until="domcontentloaded", timeout=30_000)
-            page.wait_for_timeout(2000)
-            page.goto(board_url, wait_until="domcontentloaded", timeout=30_000)
-            page.wait_for_timeout(3000)
+            if allow_pp_navigate():
+                # Last resort only — league hops are a known DataDome trigger.
+                board_url = "https://app.prizepicks.com/board"
+                print(
+                    f"  [WARN] navigating to {board_url} (no league_id) — "
+                    "PROPORACLE_PP_ALLOW_NAVIGATE=1"
+                )
+                page.goto(
+                    "https://app.prizepicks.com/",
+                    wait_until="domcontentloaded",
+                    timeout=30_000,
+                )
+                page.wait_for_timeout(2000)
+                page.goto(board_url, wait_until="domcontentloaded", timeout=30_000)
+                page.wait_for_timeout(3000)
+                raise_if_datadome_blocked(page)
+            else:
+                raise RuntimeError(
+                    "PrizePicks tab is not on /board. Click Board in the CDP Chrome "
+                    "(do not automate league_id hops). "
+                    "Refusing navigate to protect DataDome."
+                )
         else:
             try:
                 page.bring_to_front()
             except Exception:
                 pass
             page.wait_for_timeout(800)
+            raise_if_datadome_blocked(page)
 
         data, included, status, url = fetch_projections_inpage(
             page,
@@ -407,6 +560,8 @@ def session_fetch_projections(
             request_timeout_ms=request_timeout_ms,
             max_pages=max_pages,
         )
+        if status in (403, 401, 429):
+            mark_datadome_cooldown(minutes=240)
         print(f"  [PP session] league_id={lid} status={status} rows={len(data)} url={url}")
         if opened_new:
             try:

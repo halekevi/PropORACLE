@@ -43,7 +43,11 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from utils.pp_fetch_stamp import extract_pp_updated_at, now_et_iso, stamp_fetched_at
-from utils.step1_slate_date_filter import apply_game_date_filter, no_props_log_line
+from utils.step1_slate_date_filter import (
+    apply_game_date_filter,
+    eastern_today_ymd,
+    no_props_log_line,
+)
 from utils.allstar_filter import drop_allstar_props
 
 API_URL   = "https://api.prizepicks.com/projections"
@@ -394,16 +398,20 @@ def _in_game_flags() -> List[str]:
     """Which PrizePicks in_game boards to fetch.
 
     FG Made/Attempted, Two Pointers, and Free Throws live on the pregame
-    board (in_game=false). Evening live props need in_game=true. Default is
-    both, merged by projection id. Override with PROPORACLE_WNBA_IN_GAME=
-    true|false|both.
+    board (in_game=false). Evening live props need in_game=true. Always
+    fetch pregame first. PROPORACLE_WNBA_IN_GAME=true still includes false.
     """
     raw = os.environ.get("PROPORACLE_WNBA_IN_GAME", "both").strip().lower()
     if raw in ("0", "false"):
         return ["false"]
     if raw in ("1", "true"):
-        return ["true"]
-    return ["false", "true"]
+        print(
+            "  [WARN] PROPORACLE_WNBA_IN_GAME=true would drop FG/FT/2PT; "
+            "fetching in_game=false then true"
+        )
+    from utils.pp_basketball_markets import BASKETBALL_IN_GAME_FLAGS
+
+    return list(BASKETBALL_IN_GAME_FLAGS)
 
 
 def _page_params(
@@ -469,37 +477,21 @@ def _fetch_one_page(
 
         if r.status_code == 403:
             forbidden_retries += 1
-            if forbidden_retries > max_403_retries:
-                if not _QUIET_403:
-                    print(f"🛑 403 persists on page {page}. Stopping early.")
-                return False, True, cooldowns_used, forbidden_retries, [], []
+            # Polite client: one 403 ends the sport. No TLS rotation / warm retries —
+            # those were the main traffic burst after DataDome blocks.
             try:
-                session.cookies.clear()
-            except Exception:
-                pass
-            # Cap exponential sleep so CDP failover is not delayed 5–15+ minutes.
-            backoff = forbidden_backoff_base * (2 ** (forbidden_retries - 1)) + random.uniform(2, 8)
-            if fail_fast_403:
-                backoff = min(backoff, 12.0)
+                from utils.prizepicks_cdp import mark_datadome_cooldown
+
+                mark_datadome_cooldown(minutes=240)
+            except Exception as _cd_exc:
+                if not _QUIET_403:
+                    print(f"  [DataDome] could not write cooldown stamp: {_cd_exc}")
             if not _QUIET_403:
-                if forbidden_retries >= 2:
-                    print(
-                        f"⏸️ 403 retry {forbidden_retries}/{max_403_retries} (page {page}): "
-                        "rotating TLS-matched browser profile…"
-                    )
-                    _rotate_session_headers(session)
-                else:
-                    print(
-                        f"⏸️ 403 retry {forbidden_retries}/{max_403_retries} (page {page}): "
-                        "same client fingerprint; cookies cleared only"
-                    )
-                print(f"⏸️ sleeping {backoff:.1f}s...")
-            else:
-                if forbidden_retries >= 2:
-                    _rotate_session_headers(session)
-            time.sleep(backoff)
-            _warm_session(session)
-            continue
+                print(
+                    f"🛑 403 on page {page} — stopping immediately "
+                    f"(no retries; 4h shared cooldown)."
+                )
+            return False, True, cooldowns_used, forbidden_retries, [], []
 
         if r.status_code >= 500:
             time.sleep(5.0 * attempt)
@@ -532,9 +524,9 @@ def _fetch_pages_for_in_game(
     jitter_seconds: float,
     in_game: str,
     seen_ids: Set[str],
-    max_403_retries: int = 5,
+    max_403_retries: int = 0,
     forbidden_backoff_base: float = 15.0,
-    first_page_waves: int = 3,
+    first_page_waves: int = 1,
     fail_fast_403: bool = False,
 ) -> Tuple[List[dict], List[dict]]:
     all_data: List[dict] = []
@@ -544,9 +536,9 @@ def _fetch_pages_for_in_game(
     stop_paging = False
 
     session: Any | None = None
-    waves = max(1, int(first_page_waves))
+    # Never multi-wave after a 403 — session waves were re-hammering DataDome.
+    waves = 1 if fail_fast_403 else max(1, int(first_page_waves))
     if fail_fast_403:
-        waves = min(waves, 1)
         forbidden_backoff_base = min(float(forbidden_backoff_base), 6.0)
     page1_ok = False
 
@@ -651,9 +643,9 @@ def fetch_pages(
     cooldown_seconds: float,
     max_cooldowns: int,
     jitter_seconds: float,
-    max_403_retries: int = 5,
+    max_403_retries: int = 0,
     forbidden_backoff_base: float = 15.0,
-    first_page_waves: int = 3,
+    first_page_waves: int = 1,
     fail_fast_403: bool = False,
 ) -> Tuple[List[dict], List[dict]]:
     all_data: List[dict] = []
@@ -914,27 +906,38 @@ def _stamp_fetched_at(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def _apply_wnba_slate_date(df: pd.DataFrame, args: Any) -> pd.DataFrame:
-    """Filter to --date (ET) unless --allow-nearest-future or --no-slate-filter."""
+    """Filter to --date (ET) unless --allow-nearest-future or --no-slate-filter.
+
+    --include-tomorrow keeps tonight plus Eastern tomorrow (day-ahead Standard unders).
+    board_date / line_asof stamp the fetch calendar so gameday line cuts are comparable.
+    """
     if df is None or df.empty:
         return df
     slate = str(args.date).strip()[:10]
     skip_filter = bool(getattr(args, "allow_nearest_future", False)) or bool(
         getattr(args, "no_slate_filter", False)
     )
+    include_tomorrow = bool(getattr(args, "include_tomorrow", True))
+    board_date = str(getattr(args, "board_date", None) or "").strip()[:10] or eastern_today_ymd()
     n0 = len(df)
     filtered, _ = apply_game_date_filter(
         df,
         target_date=slate,
         tz_name="America/New_York",
         allow_nearest_future=skip_filter,
+        include_tomorrow=include_tomorrow,
+        board_date=board_date,
     )
     if not skip_filter and n0 != len(filtered):
+        window = f"{slate}+tomorrow" if include_tomorrow else slate
         print(
-            f"  [slate-date] kept {len(filtered)}/{n0} rows for slate {slate} "
-            f"(start_time ET calendar must match --date)"
+            f"  [slate-date] kept {len(filtered)}/{n0} rows for slate {window} "
+            f"(start_time ET calendar; board_date={board_date})"
         )
     if skip_filter:
         print("  [slate-date] date filter skipped (--allow-nearest-future or --no-slate-filter)")
+    if include_tomorrow and not skip_filter:
+        print("  [slate-date] include-tomorrow: keeping --date and Eastern next day")
     if "game_date" not in filtered.columns:
         cal = _wnba_start_time_to_et_date_str(filtered.get("start_time", pd.Series([], dtype=object)))
         filtered = filtered.copy()
@@ -969,7 +972,13 @@ def main():
     ap.add_argument("--cooldown_seconds", type=float, default=60.0)
     ap.add_argument("--max_cooldowns",    type=int,   default=3)
     ap.add_argument("--jitter_seconds",   type=float, default=10.0)
-    ap.add_argument("--max_403_retries", "--max-retries", type=int, default=5)
+    ap.add_argument(
+        "--max_403_retries",
+        "--max-retries",
+        type=int,
+        default=0,
+        help="Deprecated: any 403 stops immediately and marks the shared 4h cooldown.",
+    )
     ap.add_argument(
         "--quiet-403",
         action="store_true",
@@ -978,17 +987,28 @@ def main():
     ap.add_argument(
         "--first-page-waves",
         type=int,
-        default=3,
-        help="On repeated page-1 403/empty failure, discard session and retry with fresh TLS (NBA-style).",
+        default=1,
+        help="Fresh-session waves on page-1 failure (default 1; kept low to avoid DataDome bursts).",
     )
     ap.add_argument(
         "--fail-fast-403",
         action="store_true",
-        help="Cap 403 backoff and session waves so callers can fail over to CDP quickly.",
+        help="Cap session waves so callers can fail over to CDP quickly (403 never retries).",
     )
     ap.add_argument("--min_rows",         type=int,   default=30)
     ap.add_argument("--min_teams",        type=int,   default=2)
     ap.add_argument("--date",             default=time.strftime("%Y-%m-%d"))
+    ap.add_argument(
+        "--include-tomorrow",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Keep Eastern tomorrow as well as --date (default on). Use --no-include-tomorrow for same-day only.",
+    )
+    ap.add_argument(
+        "--board-date",
+        default="",
+        help="Fetch calendar YYYY-MM-DD for board_date/line_asof (default: Eastern today).",
+    )
     ap.add_argument(
         "--no-slate-filter",
         action="store_true",
@@ -1023,6 +1043,18 @@ def main():
             sport_tag = SPORT_TAG_BY_LEAGUE_ID.get(lid_s, "WNBA")
         except Exception:
             sport_tag = "WNBA"
+    try:
+        from utils.prizepicks_cdp import datadome_cooldown_active
+
+        _cd_active, _cd_secs = datadome_cooldown_active()
+        if _cd_active:
+            print(
+                f"🛑 DataDome cooldown active (~{_cd_secs}s left) — skipping "
+                f"{sport_tag} PrizePicks fetch."
+            )
+            sys.exit(2)
+    except Exception:
+        pass
     print(f"📡 Fetching PrizePicks {sport_tag} | league_id={lid_s}")
 
     data: List[dict] = []
@@ -1194,10 +1226,22 @@ def main():
     rows_n = len(df)
     if rows_n == 0:
         print(no_props_log_line(sport_tag, str(args.date).strip()[:10]))
+        try:
+            from utils.step1_board_reconcile import run_step1_reconcile
+
+            run_step1_reconcile(
+                sport=sport_tag,
+                df=pd.DataFrame(),
+                out_dir=out_path.parent,
+                fetched_n=0,
+                fetch_failed=False,
+            )
+        except Exception as _rec_exc:
+            print(f"  [WARN] category reconcile skipped: {_rec_exc}")
         empty_cols = [
             "projection_id", "pp_projection_id", "player_id", "pp_game_id", "start_time",
             "player", "pos", "team", "opp_team", "prop_type", "line", "pick_type", "game_date",
-            "fetched_at", "pp_updated_at", "sport",
+            "board_date", "line_asof", "fetched_at", "pp_updated_at", "sport", "ticketable",
         ]
         pd.DataFrame(columns=empty_cols).to_csv(out_path, index=False, encoding="utf-8-sig")
         sys.exit(0)
@@ -1205,6 +1249,18 @@ def main():
     teams_n = df["team"].astype(str).nunique()
 
     if rows_n < args.min_rows or teams_n < args.min_teams:
+        try:
+            from utils.step1_board_reconcile import run_step1_reconcile
+
+            run_step1_reconcile(
+                sport=sport_tag,
+                df=pd.DataFrame(),
+                out_dir=out_path.parent,
+                fetched_n=int(rows_n),
+                fetch_failed=True,
+            )
+        except Exception as _rec_exc:
+            print(f"  [WARN] category reconcile skipped: {_rec_exc}")
         print(
             f"❌ FETCH_FAILED: BOARD_TOO_SMALL after slate filter "
             f"(rows={rows_n}, teams={teams_n}; need min_rows={args.min_rows}, min_teams={args.min_teams}). "
@@ -1215,17 +1271,33 @@ def main():
     df = _stamp_fetched_at(df)
     df["sport"] = sport_tag
     try:
-        from utils.pp_basketball_markets import log_shooting_coverage
-        from utils.prop_norm import report_unmapped_props
+        from utils.step1_board_reconcile import run_step1_reconcile
 
-        pts = int(df["prop_type"].astype(str).str.lower().str.contains("points").sum())
-        log_shooting_coverage(df["prop_type"], sport=sport_tag, n_points=pts)
-        report_unmapped_props(df["prop_type"], sport=sport_tag, fail_gated=True)
+        df, _ = run_step1_reconcile(
+            sport=sport_tag,
+            df=df,
+            out_dir=out_path.parent,
+            fetched_n=int(rows_n),
+        )
     except RuntimeError as _cov_exc:
         print(f"❌ {_cov_exc}")
         raise SystemExit(2) from _cov_exc
-    except Exception as _sc_exc:
-        print(f"  [WARN] shooting coverage log skipped: {_sc_exc}")
+    except Exception as _rec_exc:
+        print(f"  [WARN] category reconcile skipped: {_rec_exc}")
+    if sport_tag == "WNBA":
+        try:
+            from utils.pp_basketball_markets import log_shooting_coverage
+
+            pts = int(df["prop_type"].astype(str).str.lower().str.contains("points").sum())
+            log_shooting_coverage(df["prop_type"], sport=sport_tag, n_points=pts)
+            from utils.prop_norm import report_unmapped_props
+
+            report_unmapped_props(df["prop_type"], sport=sport_tag, fail_gated=True)
+        except RuntimeError as _cov_exc:
+            print(f"❌ {_cov_exc}")
+            raise SystemExit(2) from _cov_exc
+        except Exception as _sc_exc:
+            print(f"  [WARN] shooting coverage log skipped: {_sc_exc}")
     df.to_csv(out_path, index=False, encoding="utf-8-sig")
     from utils.pick_type_persist import assert_pick_type_persisted
 
