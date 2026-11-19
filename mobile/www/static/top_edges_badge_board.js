@@ -109,7 +109,7 @@
     const over = rec.side === "OVER";
     const l5 = over ? rec.l5_over : rec.l5_under;
     const checks = {};
-    checks.L5 = l5 == null ? null : l5 >= 4;
+    checks.L5 = l5 == null ? null : l5 >= 5;
     if (rec.cover == null) checks.Cover = null;
     else if (over) checks.Cover = rec.cover > 0;
     else if (rec.side === "UNDER") checks.Cover = rec.cover < 0;
@@ -207,11 +207,11 @@
     const gob = [];
     recs.forEach((r) => {
       if (r.sport !== sport) return;
-      if (r.pick_type === "Standard" && r.side === "OVER" && (r.l5_over || 0) >= 4 && overDOk(sport, r.def)) {
+      if (r.pick_type === "Standard" && r.side === "OVER" && (r.l5_over || 0) >= 5 && overDOk(sport, r.def)) {
         stdO.push(r);
-      } else if (r.pick_type === "Standard" && r.side === "UNDER" && (r.l5_under || 0) >= 4 && underDOk(sport, r.def)) {
+      } else if (r.pick_type === "Standard" && r.side === "UNDER" && (r.l5_under || 0) >= 5 && underDOk(sport, r.def)) {
         stdU.push(r);
-      } else if (r.pick_type === "Goblin" && r.side === "OVER" && (r.l5_over || 0) >= 4 && overDOk(sport, r.def)) {
+      } else if (r.pick_type === "Goblin" && r.side === "OVER" && (r.l5_over || 0) >= 5 && overDOk(sport, r.def)) {
         gob.push(r);
       }
     });

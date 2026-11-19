@@ -39,6 +39,25 @@
     return d.innerHTML;
   }
 
+  function notesCellHtml(p) {
+    const notes = String(p?.notes || "");
+    if (!notes) return "—";
+    const avoid =
+      String(p?.edge || "").toUpperCase() === "AVOID" || /tight-match/i.test(notes);
+    if (avoid) {
+      return '<span class="me-note-avoid">' + esc(notes) + "</span>";
+    }
+    return esc(notes);
+  }
+
+  function tightBannerHtml(players) {
+    const notes = (players || [])
+      .map((p) => String(p?.notes || ""))
+      .filter((n) => /tight-match/i.test(n));
+    if (!notes.length) return "";
+    return '<div class="me-tight-banner">' + esc(notes[0]) + "</div>";
+  }
+
   function pid(sport, part) {
     const legacy = document.getElementById("wnba-me-team");
     if (sport === "wnba" && legacy) return "wnba-me-" + part;
@@ -316,6 +335,9 @@
       '<div class="me-cards" id="' +
       pid(sport, "cards") +
       '"></div>' +
+      '<div class="me-tight-banner" id="' +
+      pid(sport, "tight-banner") +
+      '" hidden></div>' +
       '<div class="me-table-wrap"><table class="me-table"><thead><tr>' +
       "<th>Player</th><th>Pos</th><th id='" +
       pid(sport, "avg-h") +
@@ -435,7 +457,6 @@
         const o = blocks[k]?.opponent || {};
         if (nonEmptyAbbr(o.slate_abbr) || nonEmptyAbbr(o.name)) return true;
       }
-      // Live board may have tonight's opp even when matchup JSON is blank.
       const fromSlate = opponentFromSlate(sport, ab, data);
       return Boolean(fromSlate.opp);
     };
@@ -445,11 +466,8 @@
       .filter((t) => {
         const ab = normAbbr(t?.slate_abbr || t?.def_key);
         if (!ab) return false;
-        // Prefer clubs that actually have leader blocks (tonight's slate).
         if (teamsWithBlocks.size && !teamsWithBlocks.has(ab)) return false;
         const hasOpp = teamHasOpp(ab);
-        // Orphan / stale board props (empty opp) sort to the top on PP edge and hide
-        // real matchups — drop them whenever any other club has an opponent tonight.
         if (anyMatchupOpp) return hasOpp;
         if (Object.keys(data.matchups || {}).length) return hasOpp;
         return true;
@@ -464,7 +482,6 @@
         if (scoreB.maxPp !== scoreA.maxPp) return scoreB.maxPp - scoreA.maxPp;
         return String(a.name).localeCompare(String(b.name));
       });
-    // If filter wiped everyone, fall back to blocks then matchups-with-opp.
     if (!teams.length && teamsWithBlocks.size) {
       teams = (data.teams || []).filter((t) => teamsWithBlocks.has(normAbbr(t?.slate_abbr || t?.def_key)));
     }
@@ -815,6 +832,13 @@
       esc(mu.team_def_rank != null ? mu.team_def_rank : "—") +
       "</div></div>";
 
+    const tightEl = document.getElementById(pid(sport, "tight-banner"));
+    if (tightEl) {
+      const banner = tightBannerHtml(displayed);
+      tightEl.innerHTML = banner;
+      tightEl.hidden = !banner;
+    }
+
     if (avgH) avgH.textContent = (catLabel || "Stat").split(" ")[0] + " avg";
 
     updateSliceButtons(sport);
@@ -856,7 +880,7 @@
           '">' +
           edgeLabel(p.edge) +
           "</span></td><td>" +
-          esc(p.notes) +
+          notesCellHtml(p) +
           "</td></tr>"
           );
         }

@@ -1,74 +1,37 @@
 {
-  "date": "2026-10-24",
-  "window": "4:30",
-  "generated_at": "2026-10-24T16:31:55-04:00",
-  "n_pulls_this_window": 6,
+  "date": "2026-11-19",
+  "window": "other",
+  "generated_at": "2026-11-19T01:35:55-05:00",
+  "n_pulls_this_window": 1,
   "n_moved_this_window": 0,
   "n_moved_from_initial": 3,
   "is_initial_stamp": false,
   "force_payout": false,
   "rebuild_tickets": false,
   "new_by_sport": {
-    "NBA": {
-      "new_rows": 6181,
-      "new_prop_types": [
-        "3-PT Attempted",
-        "3-PT Made",
-        "3-PT Made (Combo)",
-        "Assists",
-        "Assists (Combo)",
-        "Blks+Stls",
-        "Blocked Shots",
-        "Defensive Rebounds",
-        "Double-Double",
-        "Dunks",
-        "FG Attempted",
-        "FG Made",
-        "Fantasy Score",
-        "Free Throws Attempted",
-        "Free Throws Made",
-        "Offensive Rebounds",
-        "Personal Fouls",
-        "Points",
-        "Points (Combo)",
-        "Pts+Asts",
-        "Pts+Rebs",
-        "Pts+Rebs+Asts",
-        "Rebounds",
-        "Rebounds (Combo)",
-        "Rebs+Asts",
-        "Steals",
-        "Triple-Double",
-        "Turnovers",
-        "Two Pointers Attempted",
-        "Two Pointers Made"
-      ]
-    },
     "NHL": {
-      "new_rows": 211,
+      "new_rows": 2361,
       "new_prop_types": [
-        "Goals (Combo)",
-        "Shots On Goal (Combo)"
+        "Assists",
+        "Blocked Shots",
+        "Faceoffs Won",
+        "Goals",
+        "Hits",
+        "Plus/Minus",
+        "Points",
+        "Power Play Points",
+        "Shots On Goal",
+        "Time On Ice"
       ]
-    },
-    "SOCCER": {
-      "new_rows": 312,
-      "new_prop_types": []
-    },
-    "MLB": {
-      "new_rows": 1,
-      "new_prop_types": []
     }
   },
   "sport_rebuild_triggered": [
-    "NBA",
-    "NHL",
-    "SOCCER"
+    "NHL"
   ],
   "sport_rebuild_enabled": [
     "TENNIS"
   ],
   "rebuild_sports": [],
-  "latest_fetched_at": "2026-10-24T16:31:30-04:00",
-  "initial_fetched_at": "2026-10-23T01:06:10-04:00"
+  "latest_fetched_at": "2026-11-19T01:07:30-05:00",
+  "initial_fetched_at": "2026-11-18T00:22:28-05:00"
 }
