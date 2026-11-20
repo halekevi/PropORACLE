@@ -1115,7 +1115,7 @@ body > nav.snav.glass-card {
       <div class="hero-chips" id="hero-live-chips" aria-label="Live sports today"></div>
       <div class="hero-cta-row">
         <a class="hero-btn hero-btn-gold" href="/tickets">Open tickets</a>
-        <a class="hero-btn hero-btn-ghost" href="#top-edges">Jump to top edges</a>
+        <a class="hero-btn hero-btn-ghost" href="#props-board">Jump to props board</a>
       </div>
     </div>
   </div>
@@ -2629,25 +2629,6 @@ body > nav.snav.glass-card {
     </div>
   </details>
     
-  <!-- TOP EDGES — open by default so home cards are visible on first paint -->
-  <details class="home-cat" id="top-edges" open>
-    <summary><span class="home-cat-title">Top <span>Edges</span></span></summary>
-    <div class="home-cat-body">
-  <div class="home-cat-flat" style="margin-bottom:12px;">
-    <div class="sec-header">
-      <div class="sec-line"></div>
-      <a href="/tickets" class="edges-see-all">See All Picks ↗</a>
-    </div>
-    <div id="top-edges-debug" hidden aria-hidden="true"></div>
-    <div class="te-legend">L5 = 5/5 on the play side (active slate sports only). WNBA/MLB: Weak D overs, Elite D unders. Soccer: Weak/Below Avg overs, Elite/Above Avg unders. Tennis: opponent ATP/WTA rank (same tiers), no prop preference.</div>
-    <div id="top-edges-board"></div>
-    <div id="over-edges-standard" class="edge-grid" hidden></div>
-    <div id="over-edges-goblin" class="edge-grid" hidden></div>
-    <div id="under-edges-standard" class="edge-grid edge-grid--under" hidden></div>
-  </div>
-    </div>
-  </details>
-
   <!-- L5 STREAKS -->
   <details class="home-cat" id="l5-streaks-cat">
     <summary><span class="home-cat-title">L5 <span>Streaks</span></span></summary>
@@ -2721,7 +2702,7 @@ body > nav.snav.glass-card {
     <span class="my-slip-count" id="my-slip-count">0 / 6</span>
   </div>
   <div class="my-slip-body">
-    <p class="my-slip-note">Tap + on a Top Edges card or a slate row. Copy into PrizePicks yourself — this only tracks P&amp;L. Use N-correct / To Win, never 1st place.</p>
+    <p class="my-slip-note">Tap + on a slate row. Copy into PrizePicks yourself — this only tracks P&amp;L. Use N-correct / To Win, never 1st place.</p>
     <ul class="my-slip-legs" id="my-slip-legs"></ul>
     <div class="my-slip-row">
       <label>Product
@@ -6600,9 +6581,9 @@ function sortSlateDynamic(sport, key) {
     const params = new URLSearchParams(window.location.search);
     const edgesDeepLink = params.get("section") === "edges";
     /* Keep primary home data sections open — collapsing them made Hot Players /
-       Top Edges / L5 look empty even when cards had already loaded. */
-    const keepOpen = new Set(["slate-explorer", "props-board", "hot-players-cat", "top-edges", "l5-streaks-cat"]);
-    if (edgesDeepLink) keepOpen.add("top-edges");
+       Props Board / L5 look empty even when cards had already loaded. */
+    const keepOpen = new Set(["slate-explorer", "props-board", "hot-players-cat", "l5-streaks-cat"]);
+    if (edgesDeepLink) keepOpen.add("props-board");
     document.querySelectorAll("details.home-cat").forEach((det) => {
       if (keepOpen.has(det.id)) {
         det.setAttribute("open", "");
@@ -6757,8 +6738,8 @@ function sortSlateDynamic(sport, key) {
   function collapseHomeCatsOnMobile() {
     if (!mqMobile()) return;
     const params = new URLSearchParams(window.location.search);
-    const keepOpen = new Set(["slate-explorer", "props-board", "top-edges"]);
-    if (params.get("section") === "edges") keepOpen.add("top-edges");
+    const keepOpen = new Set(["slate-explorer", "props-board"]);
+    if (params.get("section") === "edges") keepOpen.add("props-board");
     document.querySelectorAll("details.home-cat").forEach(function (d) {
       if (keepOpen.has(d.id)) return;
       d.removeAttribute("open");
@@ -6786,7 +6767,7 @@ function sortSlateDynamic(sport, key) {
     if (!sport || !VALID.has(sport)) return;
     document.getElementById("slate-explorer")?.setAttribute("open", "");
     if (params.get("section") === "edges") {
-      document.getElementById("top-edges")?.setAttribute("open", "");
+      document.getElementById("props-board")?.setAttribute("open", "");
     }
     setTimeout(() => {
       if (typeof toggleSlatePanel === "function") toggleSlatePanel(sport);
