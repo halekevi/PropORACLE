@@ -600,21 +600,33 @@ NHL_API_BOX_URL      = "https://api-web.nhle.com/v1/gamecenter/{game_id}/boxscor
 SOCCER_LEAGUES = [
     # FIFA World Cup — PrizePicks WORLDCUP / WORLDCUP1H / WORLDCUP2H boards (Jun 2026+).
     ("fifa.world", "FIFA World Cup"),
+    ("fifa.friendly", "FIFA Friendlies"),
+    ("fifa.worldq.uefa", "FIFA World Cup Qualifying - UEFA"),
+    ("fifa.worldq.conmebol", "FIFA World Cup Qualifying - CONMEBOL"),
+    ("fifa.worldq.concacaf", "FIFA World Cup Qualifying - CONCACAF"),
     ("eng.1",  "EPL"),
     ("eng.2",  "EFL Championship"),
+    ("eng.league_cup", "EFL Cup"),
     ("esp.1",  "La Liga"),
     ("ger.1",  "Bundesliga"),
     ("ita.1",  "Serie A"),
+    ("ita.2",  "Serie B"),
+    ("ita.coppa_italia", "Coppa Italia"),
     ("fra.1",  "Ligue 1"),
     ("usa.1",  "MLS"),
     ("usa.nwsl", "NWSL"),
     ("arg.1",  "Argentina"),
     ("mex.1",  "Liga MX"),
+    ("ned.1",  "Eredivisie"),
+    ("por.1",  "Primeira Liga"),
+    ("sco.1",  "Scottish Premiership"),
+    ("col.1",  "Primera A"),
+    ("ecu.1",  "LigaPro Serie A"),
+    ("ksa.1",  "Saudi Pro League"),
     ("concacaf.leagues.cup", "Leagues Cup"),
     ("concacaf.champions", "Concacaf Champions Cup"),
     # Brazilian Série A — frequent on PP soccer boards (Corinthians, Botafogo, etc.).
     ("bra.1",  "Brazil Serie A"),
-    # sau.1 (Saudi Pro League): ESPN scoreboard/summary often 400 — skip; no reliable boxscore.
     ("aus.1",  "A-League"),
     # CONMEBOL club competitions — needed for South American clubs appearing on PP boards.
     ("conmebol.libertadores", "CONMEBOL Libertadores"),
@@ -625,6 +637,7 @@ SOCCER_LEAGUES = [
     ("bra.copa_do_brazil", "Copa do Brasil"),
     ("uefa.champions", "UCL"),
     ("uefa.europa",    "UEL"),
+    ("uefa.nations", "UEFA Nations League"),
 ]
 SOCCER_SCOREBOARD_BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer/{league}/scoreboard?dates={date_espn}"
 SOCCER_SUMMARY_BASE    = "https://site.api.espn.com/apis/site/v2/sports/soccer/{league}/summary?event={event_id}"
@@ -1620,6 +1633,15 @@ def _get_soccer_stat(label_map: dict, key: str):
     return None
 
 
+def _norm_soccer_league_id(league_id: str) -> str:
+    try:
+        from utils.soccer_league_normalize import normalize_soccer_league
+
+        return normalize_soccer_league(league_id) or str(league_id or "").strip()
+    except Exception:
+        return str(league_id or "").strip()
+
+
 def _emit_soccer_rows(name: str, t_abbr: str, label_map: dict, league_id: str,
                       espn_id: str = "") -> list:
     """Given a player's label_map, extract all soccer props and return row list."""
@@ -1654,6 +1676,7 @@ def _emit_soccer_rows(name: str, t_abbr: str, label_map: dict, league_id: str,
     raw = {"SOT": sot, "SH": sh, "G": g, "A": ast,
            "SV": sv,  "PA": pa, "KP": kp, "TK": tk}
 
+    league_norm = _norm_soccer_league_id(league_id)
     out = []
     for prop_type, actual in prop_map.items():
         if actual is not None:
@@ -1662,7 +1685,7 @@ def _emit_soccer_rows(name: str, t_abbr: str, label_map: dict, league_id: str,
                 "team":            t_abbr,
                 "prop_type":       prop_type,
                 "actual":          round(float(actual), 1),
-                "league":          league_id,
+                "league":          league_norm,
                 "espn_player_id":  espn_id,
             }
             for col, val in raw.items():

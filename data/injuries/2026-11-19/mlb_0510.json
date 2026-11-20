@@ -1,0 +1,1349 @@
+{
+  "sport": "MLB",
+  "date": "2026-11-19",
+  "captured_at": "2026-11-19T10:10:41Z",
+  "n": 148,
+  "meta": {
+    "sport": "MLB",
+    "sources": {
+      "espn": {
+        "n": 148
+      }
+    },
+    "n": 148
+  },
+  "rows": [
+    {
+      "player": "Jordan Lawlar",
+      "team": "Arizona Diamondbacks",
+      "status": "OUT",
+      "injury": "Lawlar recent underwent surgery to repair the UCL in his right elbow, Steve Gilbert of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Corbin Carroll",
+      "team": "Arizona Diamondbacks",
+      "status": "OUT",
+      "injury": "Carroll went 1-for-4 with a triple and two RBI in Wednesday's 5-3 win over Colorado.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Cristian Mena",
+      "team": "Arizona Diamondbacks",
+      "status": "OUT",
+      "injury": "Diamondbacks manager Torey Lovullo told reporters Monday that Mena underwent surgery on his right shoulder and will be sidelined for the rest of the season, Jack Sommers of SI.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Andrew Saalfrank",
+      "team": "Arizona Diamondbacks",
+      "status": "OUT",
+      "injury": "Saalfrank (shoulder) has begun a throwing program, Alex Weiner of Arizona Sports reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Gunnar Hoglund",
+      "team": "Athletics",
+      "status": "OUT",
+      "injury": "Hoglund (knee/back) will be sidelined for the rest of the 2026 season after undergoing surgery on his left hip Monday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Justin Sterner",
+      "team": "Athletics",
+      "status": "OUT",
+      "injury": "The Athletics transferred Sterner (knee) from the 15-day injured list to the 60-day IL on Sunday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jacob Wilson",
+      "team": "Athletics",
+      "status": "OUT",
+      "injury": "Wilson underwent left shoulder labral surgery Wednesday, Martin Gallegos of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Tyler Soderstrom",
+      "team": "Athletics",
+      "status": "OUT",
+      "injury": "The Athletics transferred Soderstrom (hip) to the 60-day injured list Thursday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Brent Rooker",
+      "team": "Athletics",
+      "status": "OUT",
+      "injury": "Rooker (knee) was cleared to begin a hitting progression Wednesday, Martin Gallegos of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Max Muncy",
+      "team": "Athletics",
+      "status": "OUT",
+      "injury": "Muncy underwent debridement surgery Friday to repair cartilage damage under the medial patella in his left knee.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Seth Johnson",
+      "team": "Athletics",
+      "status": "OUT",
+      "injury": "Johnson underwent arthroscopic left knee surgery Monday, Martin Gallegos of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Cameron Foster",
+      "team": "Atlanta Braves",
+      "status": "OUT",
+      "injury": "Atlanta claimed Foster (shoulder) off waivers from the Orioles on Tuesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Spencer Schwellenbach",
+      "team": "Atlanta Braves",
+      "status": "OUT",
+      "injury": "Atlanta president of baseball operations Alex Anthopoulos said Tuesday on \"The Show\" podcast from the New York Post that it's possible Schwellenbach (elbow) is ready for spring training.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jurickson Profar",
+      "team": "Atlanta Braves",
+      "status": "OUT",
+      "injury": "Atlanta president of baseball operations Alex Anthopoulos said Wednesday that the club hasn't \"come to any conclusions\" regarding the status of Profar (suspension) for 2027, Mark Bowman of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Spencer Strider",
+      "team": "Atlanta Braves",
+      "status": "OUT",
+      "injury": "Atlanta president of baseball operations Alex Anthopoulos said Tuesday that Strider (elbow) is on track to be ready for the beginning of spring training and the regular season, Chad Bishop of The Atlanta Journal-Constitution reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Mitchell Parker",
+      "team": "Atlanta Braves",
+      "status": "OUT",
+      "injury": "Atlanta claimed Parker (elbow) off waivers from the Nationals on Monday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Joey Wentz",
+      "team": "Atlanta Braves",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Hurston Waldrep",
+      "team": "Atlanta Braves",
+      "status": "OUT",
+      "injury": "Atlanta recalled Waldrep (elbow) from Triple-A Gwinnett on Thursday and placed him on the 60-day injured list.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jordan Westburg",
+      "team": "Baltimore Orioles",
+      "status": "OUT",
+      "injury": "Westburg (elbow) indicated Wednesday he expects to be ready to play third base Opening Day, Annie Klaff of MASNsports reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Levi Wells",
+      "team": "Baltimore Orioles",
+      "status": "OUT",
+      "injury": "The Orioles selected Wells' (abdomen) contract from Triple-A Norfolk on Tuesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Braxton Bragg",
+      "team": "Baltimore Orioles",
+      "status": "OUT",
+      "injury": "Surgery",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Ryan Helsley",
+      "team": "Baltimore Orioles",
+      "status": "OUT",
+      "injury": "Helsley (elbow) will exercise his $14 million player option for 2027, Andy Kostka of TheBanner.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Kyle Bradish",
+      "team": "Baltimore Orioles",
+      "status": "OUT",
+      "injury": "Orioles president of baseball operations Mike Elias said Monday that Bradish will undergo surgery Tuesday to repair a sports hernia, Andy Kostka of TheBanner.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jackson Holliday",
+      "team": "Baltimore Orioles",
+      "status": "OUT",
+      "injury": "Holliday will undergo left wrist surgery next week, Jake Rill of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Cade Povich",
+      "team": "Baltimore Orioles",
+      "status": "OUT",
+      "injury": "Povich underwent surgery Wednesday to remove loose bodies from his left elbow, Matt Weyrich of The Baltimore Sun reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Reed Trimble",
+      "team": "Baltimore Orioles",
+      "status": "GTD",
+      "injury": "Triple-A Norfolk placed Trimble on the 7-day injured list Friday due to right hamstring discomfort, Andy Kostka of TheBanner.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Roman Anthony",
+      "team": "Boston Red Sox",
+      "status": "OUT",
+      "injury": "Anthony (finger) will be re-evaluated in a couple weeks, at which point he's likely to begin a range-of-motion and strengthening program, Jen McCaffrey of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Triston Casas",
+      "team": "Boston Red Sox",
+      "status": "OUT",
+      "injury": "General manager Craig Breslow noted Monday that Casas (wrist) could see at-bats in a winter league, Rob Bradford of WEEI.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Romy Gonzalez",
+      "team": "Boston Red Sox",
+      "status": "OUT",
+      "injury": "Red Sox manager Chad Tracy said Tuesday that Gonzalez is still recovering from a hyperextended elbow injury suffered at Triple-A Worcester but is \"very much in play\" for the ALDS roster if Boston advances, Tim Healey of The Boston Globe reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Eli White",
+      "team": "Boston Red Sox",
+      "status": "OUT",
+      "injury": "The Red Sox transferred White (foot) to the 60-day injured list Sunday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Justin Slaten",
+      "team": "Boston Red Sox",
+      "status": "OUT",
+      "injury": "The Red Sox transferred Slaten (elbow) from the 15-day injured list to the 60-day IL on Tuesday, Gabrielle Starr of the Boston Herald reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Kutter Crawford",
+      "team": "Boston Red Sox",
+      "status": "OUT",
+      "injury": "Crawford (forearm) is expected to remain on the injured list for the rest of the season, Jen McCaffrey of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Garrett Whitlock",
+      "team": "Boston Red Sox",
+      "status": "OUT",
+      "injury": "The Red Sox exercised Whitlock's (leg) $8.25 million club option for 2027 on Sunday, Ari Alexander of 7 News Boston reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Caleb Durbin",
+      "team": "Boston Red Sox",
+      "status": "OUT",
+      "injury": "The Red Sox announced Thursday that Durbin (finger) underwent a successful partial excision of the fifth metatarsal base with tendon repair on his right foot, Chris Cotillo of MassLive.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Mickey Gasper",
+      "team": "Boston Red Sox",
+      "status": "OUT",
+      "injury": "Gasper is expected to be sidelined 4-to-6 month after undergoing distal right biceps tendon surgery Friday, Tim Healey of The Boston Globe reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Ben Brown",
+      "team": "Chicago Cubs",
+      "status": "OUT",
+      "injury": "Brown underwent cervical spine surgery Monday, Jesse Rogers of ESPN.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Riley Martin",
+      "team": "Chicago Cubs",
+      "status": "OUT",
+      "injury": "Cubs manager Craig Counsell said Wednesday that Martin (elbow) has been ruled out for the remainder of the season, Meghan Montemurro of the Chicago Tribune reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Cade Horton",
+      "team": "Chicago Cubs",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Justin Steele",
+      "team": "Chicago Cubs",
+      "status": "OUT",
+      "injury": "Steele (elbow) is not on the Cubs' roster for their wild-card series versus the Padres, Meghan Montemurro of the Chicago Tribune reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Porter Hodge",
+      "team": "Chicago Cubs",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Phil Maton",
+      "team": "Chicago Cubs",
+      "status": "OUT",
+      "injury": "The Cubs transferred Maton (knee) to the 60-day injured list Wednesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Shelby Miller",
+      "team": "Chicago Cubs",
+      "status": "OUT",
+      "injury": "Manager Craig Counsell said Tuesday that the Cubs have shut down Miller's (elbow) rehab, Meghan Montemurro of the Chicago Tribune reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Tyler Austin",
+      "team": "Chicago Cubs",
+      "status": "OUT",
+      "injury": "Austin (knee) was outrighted to Triple-A Iowa on Monday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Mike Vasil",
+      "team": "Chicago White Sox",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Tanner Murray",
+      "team": "Chicago White Sox",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Prelander Berroa",
+      "team": "Chicago White Sox",
+      "status": "OUT",
+      "injury": "Berroa (elbow) is scheduled to begin throwing off a mound next week, Scott Merkin of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Brooks Baldwin",
+      "team": "Chicago White Sox",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Blake Dunn",
+      "team": "Cincinnati Reds",
+      "status": "OUT",
+      "injury": "Dunn will have ulnar nerve transposition surgery on his right elbow Wednesday, Charlie Goldsmith of Fox 19 Now Cincinnati reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Spencer Steer",
+      "team": "Cincinnati Reds",
+      "status": "OUT",
+      "injury": "Steer recently underwent successful surgery on his right wrist, Mike Petraglia of CLNS Media reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Hunter Greene",
+      "team": "Cincinnati Reds",
+      "status": "OUT",
+      "injury": "Greene (elbow) will be out for 12-to-18 months after undergoing his second Tommy John surgery Wednesday, Gordon Wittenmyer of The Cincinnati Enquirer reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Tony Santillan",
+      "team": "Cincinnati Reds",
+      "status": "OUT",
+      "injury": "Santillan will undergo surgery Thursday to repair a left hip labral tear, Gordon Wittenmyer of The Cincinnati Enquirer reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Julian Garcia",
+      "team": "Cincinnati Reds",
+      "status": "OUT",
+      "injury": "The Reds placed Garcia on the 15-day injured list Friday with loose bodies in his right elbow.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Dane Myers",
+      "team": "Cincinnati Reds",
+      "status": "OUT",
+      "injury": "Reds president of baseball operations Nick Krall revealed Thursday that Myers recently underwent arthroscopic surgery to repair the AC joint in his left shoulder, Mike Petraglia of CLNSCincy.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Colin Holderman",
+      "team": "Cleveland Guardians",
+      "status": "OUT",
+      "injury": "Holderman underwent surgery Wednesday to relieve recurring tendinitis in his right wrist, Zack Meisel of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Kahlil Watson",
+      "team": "Cleveland Guardians",
+      "status": "OUT",
+      "injury": "Watson underwent sports hernia surgery Tuesday and will be sidelined 8-to-12 weeks.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Andrew Walters",
+      "team": "Cleveland Guardians",
+      "status": "OUT",
+      "injury": "Walters underwent a right elbow UCL repair with an internal brace Wednesday, Tim Stebbins of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Kris Bryant",
+      "team": "Colorado Rockies",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Welinton Herrera",
+      "team": "Colorado Rockies",
+      "status": "OUT",
+      "injury": "Rockies manager Warren Schaeffer announced Monday that Herrera (elbow) has been diagnosed with a torn UCL and will miss the remainder of the season, Jack Janes of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "McCade Brown",
+      "team": "Colorado Rockies",
+      "status": "OUT",
+      "injury": "Brown (shoulder) had been scheduled to throw a live bullpen session this weekend, MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Chase Dollander",
+      "team": "Colorado Rockies",
+      "status": "OUT",
+      "injury": "Dollander underwent an internal brace procedure on his right elbow Monday, Kevin Henry of The Denver Gazette reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Will Vest",
+      "team": "Detroit Tigers",
+      "status": "OUT",
+      "injury": "Vest (elbow) underwent hip surgery Tuesday, Chris McCosky of The Detroit News reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Wenceel Perez",
+      "team": "Detroit Tigers",
+      "status": "OUT",
+      "injury": "Tigers manager A.J. Hinch said Friday that Perez (orbital) is \"most likely\" done for the season, Cody Stavenhagen of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Reese Olson",
+      "team": "Detroit Tigers",
+      "status": "OUT",
+      "injury": "Olson (shoulder) is taking part in a throwing progression and is expected to be ready for spring training, MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Kerry Carpenter",
+      "team": "Detroit Tigers",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Carlos Correa",
+      "team": "Houston Astros",
+      "status": "OUT",
+      "injury": "Medical imaging on Correa's surgically repaired left ankle revealed inflammation Thursday, Chandler Rome of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Brandon Walter",
+      "team": "Houston Astros",
+      "status": "OUT",
+      "injury": "The Astros announced Friday that Walter (elbow) is in the midst of a throwing progression at the team's complex in West Palm Beach, Fla., Chandler Rome of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Logan Evans",
+      "team": "Kansas City Royals",
+      "status": "OUT",
+      "injury": "The Royals acquired Evans (elbow), Bryce Miller and Jose Ferrer from the Mariners on Wednesday in exchange for Maikel Garcia, James McArthur and L.P. Langevin, Jeff Passan of ESPN.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Nick Mears",
+      "team": "Kansas City Royals",
+      "status": "OUT",
+      "injury": "The Royals designated Mears (shoulder) for assignment Tuesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Ryan Bergert",
+      "team": "Kansas City Royals",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Mitch Spence",
+      "team": "Kansas City Royals",
+      "status": "OUT",
+      "injury": "Triple-A Omaha placed Spence on its 7-day injured list Monday due to an unspecified injury.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Luinder Avila",
+      "team": "Kansas City Royals",
+      "status": "OUT",
+      "injury": "The Royals transferred Avila (elbow) to the 60-day injured list Thursday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Stephen Kolek",
+      "team": "Kansas City Royals",
+      "status": "OUT",
+      "injury": "Manager Matt Quatraro announced that Kolek is scheduled to undergo Tommy John surgery on his right elbow Wednesday, Joel Goldberg of Bally Sports Kansas City reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Cole Ragans",
+      "team": "Kansas City Royals",
+      "status": "OUT",
+      "injury": "Ragans underwent UCL repair surgery on his left elbow Wednesday, Anne Rogers of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jack Kochanowicz",
+      "team": "Los Angeles Angels",
+      "status": "OUT",
+      "injury": "Kochanowicz's Tommy John surgery on his right elbow was deemed \"successful,\" per MLB.com.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Seth Halvorsen",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT",
+      "injury": "The Dodgers optioned Halvorsen to Triple-A Oklahoma City on Sunday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Gavin Stone",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT",
+      "injury": "Stone (shoulder/biceps) resumed his rehab assignment with Triple-A Oklahoma City on Wednesday, allowing three runs over two-thirds of an inning.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Ben Casparius",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT",
+      "injury": "Casparius (shoulder) experienced arm fatigue while on a minor-league rehab assignment and has been shut down from throwing, MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Will Klein",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT",
+      "injury": "Klein underwent surgery to remove bone chips in his right elbow Wednesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Dalton Rushing",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT",
+      "injury": "Rushing will undergo a hybrid internal brace procedure on his right elbow Wednesday, Maddie Lee of the Los Angeles Times reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Andrew Nardi",
+      "team": "Miami Marlins",
+      "status": "OUT",
+      "injury": "Nardi (elbow) is slated to undergo season-ending surgery Friday, Christina De Nicola of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Adam Mazur",
+      "team": "Miami Marlins",
+      "status": "OUT",
+      "injury": "Marlins president of baseball operations Peter Bendix said Tuesday that Mazur (elbow) should be ready to pitch in games by April or May of next season, Isaac Azout of FishOnFirst.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Robby Snelling",
+      "team": "Miami Marlins",
+      "status": "OUT",
+      "injury": "Marlins president of baseball operations Peter Bendix said Tuesday that Snelling (elbow) is expected to be throwing off a mound during spring training and should be game-ready by May or June, Isaac Azout of FishOnFirst.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Ronny Henriquez",
+      "team": "Miami Marlins",
+      "status": "OUT",
+      "injury": "Henriquez (elbow) began playing catch from 60 feet out Friday, Christina De Nicola of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "William Kempner",
+      "team": "Miami Marlins",
+      "status": "OUT",
+      "injury": "The Marlins transferred Kempner (elbow) to the 60-day injured list Friday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Anthony Bender",
+      "team": "Miami Marlins",
+      "status": "OUT",
+      "injury": "Bender will undergo surgery to address the stress reaction in his right shin, Christina De Nicola of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jakob Marsee",
+      "team": "Miami Marlins",
+      "status": "OUT",
+      "injury": "Marsee underwent an internal brace procedure on Monday to repair his left elbow UCL, FishOnFirst.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Brian Fitzpatrick",
+      "team": "Milwaukee Brewers",
+      "status": "OUT",
+      "injury": "Fitzpatrick (elbow) underwent Tommy John surgery over the past week, Curt Hogg of the Milwaukee Journal Sentinel reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Quinn Priester",
+      "team": "Milwaukee Brewers",
+      "status": "OUT",
+      "injury": "Priester will undergo thoracic outlet compression surgery on Monday and is expected to be sidelined 8-to-10 months, Curt Hogg of the Milwaukee Journal Sentinel reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Angel Zerpa",
+      "team": "Milwaukee Brewers",
+      "status": "OUT",
+      "injury": "The Brewers transferred Zerpa (elbow) to the 60-day injured list Sunday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Pablo Lopez",
+      "team": "Minnesota Twins",
+      "status": "OUT",
+      "injury": "Lopez (elbow) threw a bullpen session Tuesday, Dan Hayes of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Trevor Larnach",
+      "team": "Minnesota Twins",
+      "status": "OUT",
+      "injury": "Larnach underwent surgery on his left wrist Friday, Dan Hayes of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Cole Sands",
+      "team": "Minnesota Twins",
+      "status": "OUT",
+      "injury": "The Twins transferred Sands (elbow) to the 60-day injured list Friday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "David Festa",
+      "team": "Minnesota Twins",
+      "status": "OUT",
+      "injury": "Festa (shoulder) will undergo a season-ending double surgery Wednesday, Dan Hayes of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Mick Abel",
+      "team": "Minnesota Twins",
+      "status": "OUT",
+      "injury": "The Twins plan to re-evaluate Abel (elbow) on Sept. 1, Dan Hayes of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Anthony Banda",
+      "team": "Minnesota Twins",
+      "status": "OUT",
+      "injury": "The Twins outrighted Banda (lat) to Triple-A St. Paul on Thursday, Dan Hayes of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jeff Hoffman",
+      "team": "Minnesota Twins",
+      "status": "OUT",
+      "injury": "Hoffman recently underwent arthroscopic surgery and a debridement procedure to remove a bone chip from his right elbow, Dan Hayes of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Byron Buxton",
+      "team": "Minnesota Twins",
+      "status": "OUT",
+      "injury": "Buxton had the stitches removed from his surgically repaired right hip earlier this week and has begun the rehab process, Dan Hayes of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Walker Jenkins",
+      "team": "Minnesota Twins",
+      "status": "OUT",
+      "injury": "Jenkins underwent right elbow debridement surgery Wednesday, Bobby Nightengale of the Minneapolis Star-Tribune reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jorge Polanco",
+      "team": "New York Mets",
+      "status": "OUT",
+      "injury": "The Mets transferred Polanco (ankle) to the 60-day injured list Friday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Tylor Megill",
+      "team": "New York Mets",
+      "status": "OUT",
+      "injury": "Mets president of baseball operations David Stearns said Monday that he expects Megill (elbow) to be 100 percent for the start of spring training, Michael Mayer of MetsmerizedOnline.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Reed Garrett",
+      "team": "New York Mets",
+      "status": "OUT",
+      "injury": "Mets president of baseball operations David Stearns said Monday that he expects Garrett (elbow) to be a full participant in spring training, Michael Mayer of MetsmerizedOnline.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Pierson Ohl",
+      "team": "New York Mets",
+      "status": "OUT",
+      "injury": "The Mets claimed Ohl (elbow) off waivers from the Rockies on Monday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jared Young",
+      "team": "New York Mets",
+      "status": "OUT",
+      "injury": "Young (concussion) is expected to have a relatively normal offseason and be ready for the start of spring training, Anthony DiComo of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Max Fried",
+      "team": "New York Yankees",
+      "status": "OUT",
+      "injury": "Yankees general manager Brian Cashman revealed Tuesday that Fried underwent surgery recently to have a bone spur removed from his left elbow, Brendan Kuty of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Kervin Castro",
+      "team": "New York Yankees",
+      "status": "OUT",
+      "injury": "The Yankees transferred Castro (elbow) from the 15-day injured list to the 60-day IL on Wednesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Fernando Cruz",
+      "team": "New York Yankees",
+      "status": "OUT",
+      "injury": "The Yankees transferred Cruz (elbow) to the 60-day injured list Friday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Brandon Marsh",
+      "team": "Philadelphia Phillies",
+      "status": "OUT",
+      "injury": "Marsh underwent surgery after the season on his left hand, just above the wrist, Matt Gelb of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Johan Rojas",
+      "team": "Philadelphia Phillies",
+      "status": "OUT",
+      "injury": "The Phillies reinstated Rojas (elbow) from the restricted list Thursday and placed him on the 60-day injured list.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Felix Reyes",
+      "team": "Philadelphia Phillies",
+      "status": "OUT",
+      "injury": "The Phillies recalled Reyes from Triple-A Lehigh Valley on Thursday and placed him on the 60-day injured list with a right wrist fracture.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Brad Keller",
+      "team": "Philadelphia Phillies",
+      "status": "OUT",
+      "injury": "Keller underwent right elbow UCL reconstruction surgery with internal brace and flexor tendon repair Tuesday, Lochlahn March of The Philadelphia Inquirer reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Endy Rodriguez",
+      "team": "Pittsburgh Pirates",
+      "status": "OUT",
+      "injury": "The Pirates transferred Rodriguez (hip) to the 60-day injured list Tuesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Luis Gutierrez",
+      "team": "San Diego Padres",
+      "status": "OUT",
+      "injury": "Gutierrez (undisclosed) was selected to the major-league roster Monday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Bryan Hoeing",
+      "team": "San Diego Padres",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Harrison Bader",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "The Giants and Bader (foot) have reached a contract resolution, and he is expected to remain in the organization, Alex Pavlovic of NBC Sports Bay Area reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Randy Rodriguez",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "Giants general manager Zack Minasian said Monday of Rodriguez's (elbow) showing in the Arizona Fall League that he was \"really encouraged by how he looked,\" Justice delos Santos of The Mercury News reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Matt Chapman",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "The Giants transferred Chapman (abdomen) to the 60-day injured list Thursday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Rafael Devers",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "Devers (abdomen) is expected to undergo season-ending surgery Tuesday, Alex Pavlovic of NBC Sports Bay Area reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Hayden Birdsong",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Casey Schmitt",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "The Giants transferred Schmitt (knee) to the 60-day injured list Saturday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Trevor McDonald",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "The Giants transferred McDonald (elbow) to the 60-day injured list Thursday, Alex Pavlovic of NBC Sports Bay Area reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Daniel Susac",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "The Giants transferred Susac (knee) from the 10-day injured list to the 60-day injured list Wednesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Carson Whisenhunt",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "Whisenhunt will undergo Tommy John surgery Sept. 16, Maria I. Guardado of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Blade Tidwell",
+      "team": "San Francisco Giants",
+      "status": "OUT",
+      "injury": "Tidwell will undergo a right elbow UCL repair in mid-October, Justice delos Santos of The San Jose Mercury Newsreports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Nick Davila",
+      "team": "Seattle Mariners",
+      "status": "OUT",
+      "injury": "The Mariners transferred Davila (shoulder) from the 15-day injured list to the 60-day IL on Sunday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Matt Brash",
+      "team": "Seattle Mariners",
+      "status": "OUT",
+      "injury": "Brash has been shut down from throwing for eight weeks after an MRI revealed more inflammation in his lat, Ryan Divish of The Seattle Times reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Colt Emerson",
+      "team": "Seattle Mariners",
+      "status": "OUT",
+      "injury": "The Mariners transferred Emerson (wrist) from the 10-day injured list to the 60-day IL on Monday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Michael Arroyo",
+      "team": "Seattle Mariners",
+      "status": "OUT",
+      "injury": "Arroyo underwent right elbow surgery Wednesday to clean up cartilage and brace a chronic injury to his UCL.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Josh Naylor",
+      "team": "Seattle Mariners",
+      "status": "OUT",
+      "injury": "Naylor underwent surgery Saturday to repair the triangular fibrocartilage complex in his right wrist.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Cal Raleigh",
+      "team": "Seattle Mariners",
+      "status": "OUT",
+      "injury": "Raleigh underwent debridement surgery Saturday on the AC joint in his left shoulder.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Michael Toglia",
+      "team": "Seattle Mariners",
+      "status": "OUT",
+      "injury": "The Mariners claimed Toglia (shoulder) off waivers from the Reds on Friday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Richard Fitts",
+      "team": "St. Louis Cardinals",
+      "status": "OUT",
+      "injury": "Cardinals president of baseball operations Chaim Bloom said Monday that Fitts (lat) is on track to be ready at the start of spring training but will have his workload monitored, Derrick Goold of the St. Louis Post-Dispatch reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Hunter Dobbins",
+      "team": "St. Louis Cardinals",
+      "status": "OUT",
+      "injury": "Dobbins underwent reconstructive surgery on his right elbow Wednesday and is expected to require a 12-month recovery, Derrick Goold of the St. Louis Post-Dispatch reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Edwin Uceta",
+      "team": "Tampa Bay Rays",
+      "status": "OUT",
+      "injury": "Rays president of baseball operations Erik Neander said Tuesday that Uceta underwent arthroscopic right shoulder surgery in October and will be shelved for at least the first couple months of next season, Marc Topkin of the Tampa Bay Times reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Ryan Pepiot",
+      "team": "Tampa Bay Rays",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Shane McClanahan",
+      "team": "Tampa Bay Rays",
+      "status": "OUT",
+      "injury": "McClanahan (forearm) won't be available to pitch during the rest of the postseason, Marc Topkin of the Tampa Bay Times reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Cole Winn",
+      "team": "Texas Rangers",
+      "status": "OUT",
+      "injury": "The Rangers transferred Winn (shoulder) to the 60-day injured list Friday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jose Corniell",
+      "team": "Texas Rangers",
+      "status": "OUT",
+      "injury": "The Rangers transferred  Corniell (elbow) from the 15-day injured list to the 60-day IL on Wednesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jose Butto",
+      "team": "Texas Rangers",
+      "status": "OUT",
+      "injury": "The Rangers claimed Butto (arm) off waivers from the Giants on Monday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Evan Carter",
+      "team": "Texas Rangers",
+      "status": "OUT",
+      "injury": "Rangers president of baseball operations Chris Young said Monday that Carter will not be ready for Opening Day next season after undergoing arthroscopic surgery on his right hip last week to address a labral injury and a hip impingement, Kennedi Landry of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Corey Seager",
+      "team": "Texas Rangers",
+      "status": "OUT",
+      "injury": "Seager underwent surgery Tuesday to remove a bone spur from his right elbow, Kennedi Landry of MLB.com reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Anthony Santander",
+      "team": "Toronto Blue Jays",
+      "status": "OUT",
+      "injury": "Santander (shoulder) will not be returning to the Blue Jays this season, Arden Zwelling of Sportsnet.ca reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Cody Ponce",
+      "team": "Toronto Blue Jays",
+      "status": "OUT",
+      "injury": "Manager John Schneider said that Ponce (knee) would be a candidate to return from the 60-day injured list only if the Blue Jays make the postseason and advanced deep into October, Arden Zwelling of Sportsnet.ca reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Bowden Francis",
+      "team": "Toronto Blue Jays",
+      "status": "OUT",
+      "injury": "no",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Addison Barger",
+      "team": "Toronto Blue Jays",
+      "status": "OUT",
+      "injury": "Barger is expected to be sidelined six months following surgery Monday to repair his right elbow UCL, Shi Davidi of Sportsnet.ca reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Jose Berrios",
+      "team": "Toronto Blue Jays",
+      "status": "OUT",
+      "injury": "The Blue Jays transferred Berrios (elbow) from the 15-day injured list to the 60-day IL on Wednesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Alejandro Rosario",
+      "team": "Washington Nationals",
+      "status": "OUT",
+      "injury": "The Nationals selected Rosario's (elbow) contract from Double-A Harrisburg on Tuesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Travis Sykora",
+      "team": "Washington Nationals",
+      "status": "OUT",
+      "injury": "The Nationals selected Sykora's (elbow) contract from Double-A Harrisburg on Tuesday.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    },
+    {
+      "player": "Drew Millas",
+      "team": "Washington Nationals",
+      "status": "OUT",
+      "injury": "Millas will undergo surgery Friday on his fractured left index finger, Spencer Nusbaum of The Athletic reports.",
+      "source": "espn_mlb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "MLB"
+    }
+  ]
+}

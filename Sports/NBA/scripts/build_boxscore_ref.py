@@ -131,6 +131,11 @@ SOCCER_LEAGUES = [
     ("fra.1",          "Ligue 1"),
     ("usa.1",          "MLS"),
     ("usa.nwsl",       "NWSL"),
+    ("ned.1",          "Eredivisie"),
+    ("por.1",          "Primeira Liga"),
+    ("sco.1",          "Scottish Premiership"),
+    ("col.1",          "Primera A"),
+    ("ecu.1",          "LigaPro Serie A"),
     ("uefa.champions", "UCL"),
     ("uefa.europa",    "UEL"),
     ("uefa.nations",   "UEFA Nations League"),
@@ -143,6 +148,14 @@ SOCCER_LEAGUES = [
     ("bra.1",          "Brasileirao"),
     ("mex.1",          "Liga MX"),
     ("ksa.1",          "Saudi Pro League"),
+    ("aus.1",          "A-League"),
+    ("concacaf.leagues.cup", "Leagues Cup"),
+    ("concacaf.champions", "Concacaf Champions Cup"),
+    ("conmebol.libertadores", "CONMEBOL Libertadores"),
+    ("conmebol.sudamericana", "CONMEBOL Sudamericana"),
+    ("conmebol.recopa", "CONMEBOL Recopa"),
+    ("arg.copa", "Copa Argentina"),
+    ("bra.copa_do_brazil", "Copa do Brasil"),
 ]
 
 # CBB conference group IDs (same as fetch_actuals.py)
@@ -892,9 +905,15 @@ def _parse_soccer_boxscore(box: dict, event_id: str, game_date: str,
         mins = _soc_stat(lmap, "min")
         if all(x is None for x in [sh, sog, g, a, sv, pa]):
             return
+        try:
+            from utils.soccer_league_normalize import normalize_soccer_league
+
+            _league = normalize_soccer_league(league_id) or league_id
+        except Exception:
+            _league = league_id
         rows.append({
             "game_date": game_date, "event_id": event_id,
-            "league": league_id, "home_team": home, "away_team": away,
+            "league": _league, "home_team": home, "away_team": away,
             "player": name, "team": t_abbr, "espn_player_id": espn_id,
             "sh": sh, "sog": sog, "g": g, "a": a,
             "sv": sv, "pa": pa, "kp": kp, "tk": tk,

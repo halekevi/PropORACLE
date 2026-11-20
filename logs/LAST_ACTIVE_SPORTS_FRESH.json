@@ -1,73 +1,114 @@
 {
   "ok": false,
-  "today_et": "2026-09-11",
+  "today_et": "2026-11-19",
   "slate_path": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\slate_latest.json",
-  "slate_date": "2026-09-11",
-  "slate_generated_at": "2026-09-11 21:30:54 UTC",
+  "slate_date": "2026-11-19",
+  "slate_generated_at": "2026-11-19 06:23:20 UTC",
   "pipeline_status": {
-    "cbb": "off_season",
+    "cbb": "no_slate",
     "cfb": "no_slate",
     "cfb1h": "no_slate",
     "golf": "no_slate",
-    "mlb": "complete",
-    "nba": "off_season",
-    "nba1h": "off_season",
-    "nba1q": "off_season",
-    "nfl": "no_slate",
+    "mlb": "off_season",
+    "nba": "no_slate",
+    "nba1h": "no_slate",
+    "nba1q": "no_slate",
+    "nfl": "complete",
     "nhl": "no_slate",
     "soccer": "complete",
-    "tennis": "complete",
-    "wcbb": "off_season",
-    "wnba": "no_slate",
-    "wnba1h": "no_slate",
-    "wnba1q": "no_slate"
+    "tennis": "no_slate",
+    "wcbb": "no_slate",
+    "wnba": "off_season",
+    "wnba1h": "off_season",
+    "wnba1q": "off_season"
   },
   "expected": [
-    "mlb",
     "soccer",
     "tennis",
-    "wnba",
-    "nhl"
+    "nhl",
+    "nfl"
   ],
-  "skipped": [],
+  "skipped": [
+    {
+      "sport": "mlb",
+      "reason": "off_season"
+    },
+    {
+      "sport": "wnba",
+      "reason": "off_season"
+    },
+    {
+      "sport": "nba",
+      "reason": "no_slate (empty PP board after fetch)"
+    },
+    {
+      "sport": "nba1h",
+      "reason": "no_slate (empty PP board after fetch)"
+    },
+    {
+      "sport": "nba1q",
+      "reason": "no_slate (empty PP board after fetch)"
+    }
+  ],
   "failed_pipeline": [],
   "sports": {
     "mlb": {
-      "badge": "FRESH",
-      "rows": 9183,
-      "modified_et": "2026-09-11",
-      "modified_utc": "2026-09-11 21:30:54",
-      "game_day_target": "2026-09-11",
-      "game_day": true
+      "badge": "SKIP",
+      "reason": "off_season"
+    },
+    "wnba": {
+      "badge": "SKIP",
+      "reason": "off_season"
+    },
+    "nba": {
+      "badge": "SKIP",
+      "reason": "no_slate (empty PP board after fetch)"
+    },
+    "nba1h": {
+      "badge": "SKIP",
+      "reason": "no_slate (empty PP board after fetch)"
+    },
+    "nba1q": {
+      "badge": "SKIP",
+      "reason": "no_slate (empty PP board after fetch)"
     },
     "soccer": {
       "badge": "FRESH",
-      "rows": 6468,
-      "modified_et": "2026-09-11",
-      "modified_utc": "2026-09-11 21:30:54",
-      "game_day_target": "2026-09-11",
+      "rows": 789,
+      "modified_et": "2026-11-19",
+      "modified_utc": "2026-11-19 06:23:20",
+      "game_day_target": "2026-11-19",
       "game_day": true
     },
     "tennis": {
       "badge": "FRESH",
-      "rows": 196,
-      "modified_et": "2026-09-11",
-      "modified_utc": "2026-09-11 21:30:54",
-      "game_day_target": "2026-09-11",
+      "rows": 6,
+      "modified_et": "2026-11-19",
+      "modified_utc": "2026-11-19 06:23:20",
+      "game_day_target": "2026-11-19",
       "game_day": true
     },
-    "wnba": {
-      "badge": "PENDING",
-      "rows": 0
-    },
     "nhl": {
-      "badge": "PENDING",
-      "rows": 0
+      "badge": "FRESH",
+      "rows": 2188,
+      "modified_et": "2026-11-19",
+      "modified_utc": "2026-11-19 06:23:20",
+      "game_day_target": "2026-11-19",
+      "game_day": true
+    },
+    "nfl": {
+      "badge": "FRESH",
+      "rows": 486,
+      "modified_et": "2026-11-19",
+      "modified_utc": "2026-11-19 06:23:20",
+      "game_day_target": "2026-11-19",
+      "game_day": true
     }
   },
-  "bad": [
-    "wnba",
-    "nhl"
-  ],
-  "message": "BAD: expected sports not FRESH: wnba, nhl"
+  "bad": [],
+  "fresh_count": 4,
+  "total_active": 4,
+  "min_fresh": 3,
+  "slip_count": 0,
+  "message": "BAD: 4/4 fresh but combined slate has 0 slips"
 }

@@ -1,0 +1,7385 @@
+{
+  "date": "2026-11-19",
+  "rows": [
+    {
+      "sport": "CFB",
+      "player": "Kahleil Jackson",
+      "team": "Florida Gators",
+      "status": "OUT"
+    },
+    {
+      "sport": "CFB",
+      "player": "Braylen Walker",
+      "team": "Rice Owls",
+      "status": "GTD"
+    },
+    {
+      "sport": "CFB",
+      "player": "Will Bettridge",
+      "team": "Virginia Cavaliers",
+      "status": "GTD"
+    },
+    {
+      "sport": "MLB",
+      "player": "Andrew Saalfrank",
+      "team": "Arizona Diamondbacks",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Corbin Carroll",
+      "team": "Arizona Diamondbacks",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Cristian Mena",
+      "team": "Arizona Diamondbacks",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jordan Lawlar",
+      "team": "Arizona Diamondbacks",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Brent Rooker",
+      "team": "Athletics",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Gunnar Hoglund",
+      "team": "Athletics",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jacob Wilson",
+      "team": "Athletics",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Justin Sterner",
+      "team": "Athletics",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Max Muncy",
+      "team": "Athletics",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Seth Johnson",
+      "team": "Athletics",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Tyler Soderstrom",
+      "team": "Athletics",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Cameron Foster",
+      "team": "Atlanta Braves",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Hurston Waldrep",
+      "team": "Atlanta Braves",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Joey Wentz",
+      "team": "Atlanta Braves",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jurickson Profar",
+      "team": "Atlanta Braves",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Mitchell Parker",
+      "team": "Atlanta Braves",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Spencer Schwellenbach",
+      "team": "Atlanta Braves",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Spencer Strider",
+      "team": "Atlanta Braves",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Braxton Bragg",
+      "team": "Baltimore Orioles",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Cade Povich",
+      "team": "Baltimore Orioles",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jackson Holliday",
+      "team": "Baltimore Orioles",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jordan Westburg",
+      "team": "Baltimore Orioles",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Kyle Bradish",
+      "team": "Baltimore Orioles",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Levi Wells",
+      "team": "Baltimore Orioles",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Reed Trimble",
+      "team": "Baltimore Orioles",
+      "status": "GTD"
+    },
+    {
+      "sport": "MLB",
+      "player": "Ryan Helsley",
+      "team": "Baltimore Orioles",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Caleb Durbin",
+      "team": "Boston Red Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Eli White",
+      "team": "Boston Red Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Garrett Whitlock",
+      "team": "Boston Red Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Justin Slaten",
+      "team": "Boston Red Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Kutter Crawford",
+      "team": "Boston Red Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Mickey Gasper",
+      "team": "Boston Red Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Roman Anthony",
+      "team": "Boston Red Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Romy Gonzalez",
+      "team": "Boston Red Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Triston Casas",
+      "team": "Boston Red Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Ben Brown",
+      "team": "Chicago Cubs",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Cade Horton",
+      "team": "Chicago Cubs",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Justin Steele",
+      "team": "Chicago Cubs",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Phil Maton",
+      "team": "Chicago Cubs",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Porter Hodge",
+      "team": "Chicago Cubs",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Riley Martin",
+      "team": "Chicago Cubs",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Shelby Miller",
+      "team": "Chicago Cubs",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Tyler Austin",
+      "team": "Chicago Cubs",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Brooks Baldwin",
+      "team": "Chicago White Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Mike Vasil",
+      "team": "Chicago White Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Prelander Berroa",
+      "team": "Chicago White Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Tanner Murray",
+      "team": "Chicago White Sox",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Blake Dunn",
+      "team": "Cincinnati Reds",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Dane Myers",
+      "team": "Cincinnati Reds",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Hunter Greene",
+      "team": "Cincinnati Reds",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Julian Garcia",
+      "team": "Cincinnati Reds",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Spencer Steer",
+      "team": "Cincinnati Reds",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Tony Santillan",
+      "team": "Cincinnati Reds",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Andrew Walters",
+      "team": "Cleveland Guardians",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Colin Holderman",
+      "team": "Cleveland Guardians",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Kahlil Watson",
+      "team": "Cleveland Guardians",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Chase Dollander",
+      "team": "Colorado Rockies",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Kris Bryant",
+      "team": "Colorado Rockies",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "McCade Brown",
+      "team": "Colorado Rockies",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Welinton Herrera",
+      "team": "Colorado Rockies",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Kerry Carpenter",
+      "team": "Detroit Tigers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Reese Olson",
+      "team": "Detroit Tigers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Wenceel Perez",
+      "team": "Detroit Tigers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Will Vest",
+      "team": "Detroit Tigers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Brandon Walter",
+      "team": "Houston Astros",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Carlos Correa",
+      "team": "Houston Astros",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Cole Ragans",
+      "team": "Kansas City Royals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Logan Evans",
+      "team": "Kansas City Royals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Luinder Avila",
+      "team": "Kansas City Royals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Mitch Spence",
+      "team": "Kansas City Royals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Nick Mears",
+      "team": "Kansas City Royals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Ryan Bergert",
+      "team": "Kansas City Royals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Stephen Kolek",
+      "team": "Kansas City Royals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jack Kochanowicz",
+      "team": "Los Angeles Angels",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Ben Casparius",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Dalton Rushing",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Gavin Stone",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Seth Halvorsen",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Will Klein",
+      "team": "Los Angeles Dodgers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Adam Mazur",
+      "team": "Miami Marlins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Andrew Nardi",
+      "team": "Miami Marlins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Anthony Bender",
+      "team": "Miami Marlins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jakob Marsee",
+      "team": "Miami Marlins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Robby Snelling",
+      "team": "Miami Marlins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Ronny Henriquez",
+      "team": "Miami Marlins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "William Kempner",
+      "team": "Miami Marlins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Angel Zerpa",
+      "team": "Milwaukee Brewers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Brian Fitzpatrick",
+      "team": "Milwaukee Brewers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Quinn Priester",
+      "team": "Milwaukee Brewers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Anthony Banda",
+      "team": "Minnesota Twins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Byron Buxton",
+      "team": "Minnesota Twins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Cole Sands",
+      "team": "Minnesota Twins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "David Festa",
+      "team": "Minnesota Twins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jeff Hoffman",
+      "team": "Minnesota Twins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Mick Abel",
+      "team": "Minnesota Twins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Pablo Lopez",
+      "team": "Minnesota Twins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Trevor Larnach",
+      "team": "Minnesota Twins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Walker Jenkins",
+      "team": "Minnesota Twins",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jared Young",
+      "team": "New York Mets",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jorge Polanco",
+      "team": "New York Mets",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Pierson Ohl",
+      "team": "New York Mets",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Reed Garrett",
+      "team": "New York Mets",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Tylor Megill",
+      "team": "New York Mets",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Fernando Cruz",
+      "team": "New York Yankees",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Kervin Castro",
+      "team": "New York Yankees",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Max Fried",
+      "team": "New York Yankees",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Brad Keller",
+      "team": "Philadelphia Phillies",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Brandon Marsh",
+      "team": "Philadelphia Phillies",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Felix Reyes",
+      "team": "Philadelphia Phillies",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Johan Rojas",
+      "team": "Philadelphia Phillies",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Endy Rodriguez",
+      "team": "Pittsburgh Pirates",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Bryan Hoeing",
+      "team": "San Diego Padres",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Luis Gutierrez",
+      "team": "San Diego Padres",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Blade Tidwell",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Carson Whisenhunt",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Casey Schmitt",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Daniel Susac",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Harrison Bader",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Hayden Birdsong",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Matt Chapman",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Rafael Devers",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Randy Rodriguez",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Trevor McDonald",
+      "team": "San Francisco Giants",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Cal Raleigh",
+      "team": "Seattle Mariners",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Colt Emerson",
+      "team": "Seattle Mariners",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Josh Naylor",
+      "team": "Seattle Mariners",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Matt Brash",
+      "team": "Seattle Mariners",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Michael Arroyo",
+      "team": "Seattle Mariners",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Michael Toglia",
+      "team": "Seattle Mariners",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Nick Davila",
+      "team": "Seattle Mariners",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Hunter Dobbins",
+      "team": "St. Louis Cardinals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Richard Fitts",
+      "team": "St. Louis Cardinals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Edwin Uceta",
+      "team": "Tampa Bay Rays",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Ryan Pepiot",
+      "team": "Tampa Bay Rays",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Shane McClanahan",
+      "team": "Tampa Bay Rays",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Cole Winn",
+      "team": "Texas Rangers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Corey Seager",
+      "team": "Texas Rangers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Evan Carter",
+      "team": "Texas Rangers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jose Butto",
+      "team": "Texas Rangers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jose Corniell",
+      "team": "Texas Rangers",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Addison Barger",
+      "team": "Toronto Blue Jays",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Anthony Santander",
+      "team": "Toronto Blue Jays",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Bowden Francis",
+      "team": "Toronto Blue Jays",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Cody Ponce",
+      "team": "Toronto Blue Jays",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Jose Berrios",
+      "team": "Toronto Blue Jays",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Alejandro Rosario",
+      "team": "Washington Nationals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Drew Millas",
+      "team": "Washington Nationals",
+      "status": "OUT"
+    },
+    {
+      "sport": "MLB",
+      "player": "Travis Sykora",
+      "team": "Washington Nationals",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Asa Newell",
+      "team": "Atlanta Hawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "CJ McCollum",
+      "team": "Atlanta Hawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Henri Veesaar",
+      "team": "Atlanta Hawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jock Landale",
+      "team": "Atlanta Hawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Kingston Flemings",
+      "team": "Atlanta Hawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Mouhamed Gueye",
+      "team": "Atlanta Hawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Dennis Schroder",
+      "team": "Charlotte Hornets",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Grayson Allen",
+      "team": "Charlotte Hornets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NBA",
+      "player": "Kon Knueppel",
+      "team": "Charlotte Hornets",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Caleb Wilson",
+      "team": "Chicago Bulls",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Tobe Awaka",
+      "team": "Chicago Bulls",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Evan Mobley",
+      "team": "Cleveland Cavaliers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jaylon Tyson",
+      "team": "Cleveland Cavaliers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Nae'Qwan Tomlin",
+      "team": "Cleveland Cavaliers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Peyton Watson",
+      "team": "Cleveland Cavaliers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Dereck Lively II",
+      "team": "Dallas Mavericks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Sergio de Larrea",
+      "team": "Dallas Mavericks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Tarik Biberovic",
+      "team": "Dallas Mavericks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Tobi Lawal",
+      "team": "Dallas Mavericks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Julian Strawther",
+      "team": "Denver Nuggets",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Cade Cunningham",
+      "team": "Detroit Pistons",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Duncan Robinson",
+      "team": "Detroit Pistons",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jalen Duren",
+      "team": "Detroit Pistons",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ronald Holland II",
+      "team": "Detroit Pistons",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Taurean Prince",
+      "team": "Detroit Pistons",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Al Horford",
+      "team": "Golden State Warriors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Brandon Williams",
+      "team": "Golden State Warriors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jimmy Butler III",
+      "team": "Golden State Warriors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Kristaps Porzingis",
+      "team": "Golden State Warriors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Moses Moody",
+      "team": "Golden State Warriors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Stephen Curry",
+      "team": "Golden State Warriors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Alperen Sengun",
+      "team": "Houston Rockets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NBA",
+      "player": "Clint Capela",
+      "team": "Houston Rockets",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Andrew Nembhard",
+      "team": "Indiana Pacers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ben Sheppard",
+      "team": "Indiana Pacers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Braden Smith",
+      "team": "Indiana Pacers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NBA",
+      "player": "Johnny Furphy",
+      "team": "Indiana Pacers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Tyrese Haliburton",
+      "team": "Indiana Pacers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Bradley Beal",
+      "team": "LA Clippers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Brandon Ingram",
+      "team": "LA Clippers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jordan Miller",
+      "team": "LA Clippers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Bradley Beal",
+      "team": "LAC",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Brandon Ingram",
+      "team": "LAC",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jordan Miller",
+      "team": "LAC",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Nick Martinelli",
+      "team": "LAC",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Austin Reaves",
+      "team": "Los Angeles Lakers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Anthony Edwards",
+      "team": "MIN",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Donte DiVincenzo",
+      "team": "MIN",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jaylen Clark",
+      "team": "MIN",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Joan Beringer",
+      "team": "MIN",
+      "status": "Probable"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jonathan Kuminga",
+      "team": "MIN",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NBA",
+      "player": "Zyon Pullin",
+      "team": "MIN",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NBA",
+      "player": "GG Jackson",
+      "team": "Memphis Grizzlies",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Isaiah Stewart",
+      "team": "Memphis Grizzlies",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Richie Saunders",
+      "team": "Memphis Grizzlies",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Scotty Pippen Jr.",
+      "team": "Memphis Grizzlies",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ty Jerome",
+      "team": "Memphis Grizzlies",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Myron Gardner",
+      "team": "Miami Heat",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ousmane Dieng",
+      "team": "Milwaukee Bucks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ryan Rollins",
+      "team": "Milwaukee Bucks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Anthony Edwards",
+      "team": "Minnesota Timberwolves",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Donte DiVincenzo",
+      "team": "Minnesota Timberwolves",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jaylen Clark",
+      "team": "Minnesota Timberwolves",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jonathan Kuminga",
+      "team": "Minnesota Timberwolves",
+      "status": "GTD"
+    },
+    {
+      "sport": "NBA",
+      "player": "Zyon Pullin",
+      "team": "Minnesota Timberwolves",
+      "status": "GTD"
+    },
+    {
+      "sport": "NBA",
+      "player": "Bennedict Mathurin",
+      "team": "New Orleans Pelicans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Bryce McGowens",
+      "team": "New Orleans Pelicans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Dejounte Murray",
+      "team": "New Orleans Pelicans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Trendon Watford",
+      "team": "New Orleans Pelicans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Trey Murphy III",
+      "team": "New Orleans Pelicans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Alex Caruso",
+      "team": "Oklahoma City Thunder",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Cason Wallace",
+      "team": "Oklahoma City Thunder",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Chet Holmgren",
+      "team": "Oklahoma City Thunder",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jalen Williams",
+      "team": "Oklahoma City Thunder",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Thomas Sorber",
+      "team": "Oklahoma City Thunder",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Izaiyah Nelson",
+      "team": "Orlando Magic",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jonathan Isaac",
+      "team": "Orlando Magic",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Noah Penda",
+      "team": "Orlando Magic",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Paolo Banchero",
+      "team": "Orlando Magic",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Branden Carlson",
+      "team": "POR",
+      "status": "Probable"
+    },
+    {
+      "sport": "NBA",
+      "player": "Chris Youngblood",
+      "team": "POR",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Deni Avdija",
+      "team": "POR",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ja Morant",
+      "team": "POR",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Robert WilliamsIII",
+      "team": "POR",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Shaedon Sharpe",
+      "team": "POR",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Toumani Camara",
+      "team": "POR",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NBA",
+      "player": "Vit Krejci",
+      "team": "POR",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Adem Bona",
+      "team": "Philadelphia 76ers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ariel Hukporti",
+      "team": "Philadelphia 76ers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Dean Wade",
+      "team": "Philadelphia 76ers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Dominick Barlow",
+      "team": "Philadelphia 76ers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jaylen Brown",
+      "team": "Philadelphia 76ers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Tyrese Maxey",
+      "team": "Philadelphia 76ers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Mark Williams",
+      "team": "Phoenix Suns",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Chris Youngblood",
+      "team": "Portland Trail Blazers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Deni Avdija",
+      "team": "Portland Trail Blazers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ja Morant",
+      "team": "Portland Trail Blazers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Robert Williams III",
+      "team": "Portland Trail Blazers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Shaedon Sharpe",
+      "team": "Portland Trail Blazers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Toumani Camara",
+      "team": "Portland Trail Blazers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NBA",
+      "player": "Vit Krejci",
+      "team": "Portland Trail Blazers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Dylan Harper",
+      "team": "SAS",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ja'Kobi Gillespie",
+      "team": "SAS",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jayden Quaintance",
+      "team": "SAS",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Maliq Brown",
+      "team": "SAS",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Tobias Harris",
+      "team": "SAS",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Ben Simmons",
+      "team": "Sacramento Kings",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Maxime Raynaud",
+      "team": "Sacramento Kings",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Dylan Harper",
+      "team": "San Antonio Spurs",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jayden Quaintance",
+      "team": "San Antonio Spurs",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Tobias Harris",
+      "team": "San Antonio Spurs",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Collin Murray-Boyles",
+      "team": "Toronto Raptors",
+      "status": "GTD"
+    },
+    {
+      "sport": "NBA",
+      "player": "Kawhi Leonard",
+      "team": "Toronto Raptors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Nate Bittle",
+      "team": "Toronto Raptors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "RJ Barrett",
+      "team": "Toronto Raptors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Scottie Barnes",
+      "team": "Toronto Raptors",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jaren Jackson Jr.",
+      "team": "Utah Jazz",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jusuf Nurkic",
+      "team": "Utah Jazz",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Lauri Markkanen",
+      "team": "Utah Jazz",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Felix Okpara",
+      "team": "Washington Wizards",
+      "status": "GTD"
+    },
+    {
+      "sport": "NBA",
+      "player": "Jamir Watkins",
+      "team": "Washington Wizards",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Justin Champagnie",
+      "team": "Washington Wizards",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Reece Beekman",
+      "team": "Washington Wizards",
+      "status": "OUT"
+    },
+    {
+      "sport": "NBA",
+      "player": "Tristan Vukcevic",
+      "team": "Washington Wizards",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Andrew Wingard",
+      "team": "Arizona Cardinals",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bam Knight",
+      "team": "Arizona Cardinals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Budda Baker",
+      "team": "Arizona Cardinals",
+      "status": "Baker Posted Six Tackles (Two Solo) During The Cardinals' 34-6 Loss To The Rams In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "Carson Beck",
+      "team": "Arizona Cardinals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chad Ryland",
+      "team": "Arizona Cardinals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cody Simon",
+      "team": "Arizona Cardinals",
+      "status": "Simon Recorded Six Tackles (Four Solo) And An Interception During The Cardinals' 34-6 Loss To The Rams In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "Devin Duvernay",
+      "team": "Arizona Cardinals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Eku Leota",
+      "team": "Arizona Cardinals",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Elijah Higgins",
+      "team": "Arizona Cardinals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Gardner Minshew II",
+      "team": "Arizona Cardinals",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Harrison Wallace III",
+      "team": "Arizona Cardinals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Hjalte Froholdt",
+      "team": "Arizona Cardinals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "James Conner",
+      "team": "Arizona Cardinals",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jayden Williams",
+      "team": "Arizona Cardinals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jon Gaines II",
+      "team": "Arizona Cardinals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordan Burch",
+      "team": "Arizona Cardinals",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mack Wilson Sr.",
+      "team": "Arizona Cardinals",
+      "status": "Wilson Registered 10 Tackles (Six Solo) During The Cardinals' 34-6 Loss To The Rams In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "Max Melton",
+      "team": "Arizona Cardinals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Reggie Virgil",
+      "team": "Arizona Cardinals",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Roy Lopez",
+      "team": "Arizona Cardinals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Simi Fehoko",
+      "team": "Arizona Cardinals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Starling Thomas V",
+      "team": "Arizona Cardinals",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Trey McBride",
+      "team": "Arizona Cardinals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Allgeier",
+      "team": "Arizona Cardinals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Walter Nolen III",
+      "team": "Arizona Cardinals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Andrew Vorhees",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Andy Dalton",
+      "team": "Atlanta Falcons",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Austin Hooper",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Avieon Terrell",
+      "team": "Atlanta Falcons",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Bijan Robinson",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Billy Bowman Jr.",
+      "team": "Atlanta Falcons",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "C.J. Henderson",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cameron Thomas",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cameron Williams",
+      "team": "Atlanta Falcons",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "DeMarcco Hellams",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Divine Deablo",
+      "team": "Atlanta Falcons",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Drake London",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Gervon Dexter Sr.",
+      "team": "Atlanta Falcons",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jack Strand",
+      "team": "Atlanta Falcons",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jahan Dotson",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jake Moody",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "James Pearce Jr.",
+      "team": "Atlanta Falcons",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Josh Woods",
+      "team": "Atlanta Falcons",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Kendal Daniels",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Khalil Herbert",
+      "team": "Atlanta Falcons",
+      "status": "Herbert Caught Two Of His Three Targets For Seven Yards During Sunday'S 35-13 Loss Versus The Chiefs. He Also Returned Six Kickoffs For 168 Yards."
+    },
+    {
+      "sport": "NFL",
+      "player": "Kyle Pitts Sr.",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Michael Penix Jr.",
+      "team": "Atlanta Falcons",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Olamide Zaccheaus",
+      "team": "Atlanta Falcons",
+      "status": "Zaccheaus Caught Two Of His Four Targets For 17 Yards And Returned Five Punts For 81 Yards During Atlanta'S Loss Sunday Versus The Chiefs."
+    },
+    {
+      "sport": "NFL",
+      "player": "Robert Longerbeam",
+      "team": "Atlanta Falcons",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Zachariah Branch",
+      "team": "Atlanta Falcons",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Adam Randall",
+      "team": "Baltimore Ravens",
+      "status": "The Ravens Reinstated Randall (Neck/Hamstring) From Injured Reserve Wednesday, Ryan Mink Of The Team'S Official Site Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Aeneas Peebles",
+      "team": "Baltimore Ravens",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Chandler Rivers",
+      "team": "Baltimore Ravens",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Derrick Henry",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Elijah Sarratt",
+      "team": "Baltimore Ravens",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Emery Jones Jr.",
+      "team": "Baltimore Ravens",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Ja'Kobi Lane",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jacoby Brissett",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylinn Hawkins",
+      "team": "Baltimore Ravens",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Josh Cuevas",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Justice Hill",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kedon Slovis",
+      "team": "Baltimore Ravens",
+      "status": "Slovis (Coach'S Decision) Is Inactive But Serving As The Ravens' Emergency No. 3 Quarterback Monday Night Versus The Chargers."
+    },
+    {
+      "sport": "NFL",
+      "player": "Kyle Hamilton",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Lamar Jackson",
+      "team": "Baltimore Ravens",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mark Andrews",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mike Green",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Nate Wiggins",
+      "team": "Baltimore Ravens",
+      "status": "Wiggins (Illness) Was A Full Participant In Thursday'S Practice."
+    },
+    {
+      "sport": "NFL",
+      "player": "Nnamdi Madubuike",
+      "team": "Baltimore Ravens",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Olaivavega Ioane",
+      "team": "Baltimore Ravens",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Rasheen Ali",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Rashod Bateman",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Riley Patterson",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Roquan Smith",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ryan Neuzil",
+      "team": "Baltimore Ravens",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Zay Flowers",
+      "team": "Baltimore Ravens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Amani Hooker",
+      "team": "Buffalo Bills",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ar'maj Reed-Adams",
+      "team": "Buffalo Bills",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Christian Benford",
+      "team": "Buffalo Bills",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cole Bishop",
+      "team": "Buffalo Bills",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "DJ Moore",
+      "team": "Buffalo Bills",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dalton Kincaid",
+      "team": "Buffalo Bills",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Damar Hamlin",
+      "team": "Buffalo Bills",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dawson Knox",
+      "team": "Buffalo Bills",
+      "status": "Knox Caught One Of His Three Targets For Seven Yards In The Bills' 31-12 Win Over The Jets On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Dee Alford",
+      "team": "Buffalo Bills",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dorian Williams",
+      "team": "Buffalo Bills",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Greg Gaines",
+      "team": "Buffalo Bills",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jackson Hawes",
+      "team": "Buffalo Bills",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalon Kilgore",
+      "team": "Buffalo Bills",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "James Cook III",
+      "team": "Buffalo Bills",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Josh Allen",
+      "team": "Buffalo Bills",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jude Bowry",
+      "team": "Buffalo Bills",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Keon Coleman",
+      "team": "Buffalo Bills",
+      "status": "Coleman Caught One Of Three Targets For 11 Yards During Sunday'S 31-12 Win Over The Jets."
+    },
+    {
+      "sport": "NFL",
+      "player": "Khalil Shakir",
+      "team": "Buffalo Bills",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mike Danna",
+      "team": "Buffalo Bills",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Ray Davis",
+      "team": "Buffalo Bills",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Spencer Brown",
+      "team": "Buffalo Bills",
+      "status": "Brown (Ankle) Is Active For Sunday'S Game Against The Jets."
+    },
+    {
+      "sport": "NFL",
+      "player": "TJ Parker",
+      "team": "Buffalo Bills",
+      "status": "Parker Accumulated Five Tackles (Three Solo), Including 2.0 Sacks, In The Bills' 31-12 Win Over The Jets On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Ty Johnson",
+      "team": "Buffalo Bills",
+      "status": "Johnson Caught His Only Target For Four Yards In A 31-12 Win Over The Jets On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Bass",
+      "team": "Buffalo Bills",
+      "status": "Bass Made His Sole Field-Goal Attempt And All Four Pats In The Bills' 31-12 Win Over The Jets On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyrell Shavers",
+      "team": "Buffalo Bills",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "AJ Dillon",
+      "team": "Carolina Panthers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Bobby Okereke",
+      "team": "Carolina Panthers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brady Christensen",
+      "team": "Carolina Panthers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bryce Young",
+      "team": "Carolina Panthers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chuba Hubbard",
+      "team": "Carolina Panthers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Darren Waller",
+      "team": "Carolina Panthers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Devin Lloyd",
+      "team": "Carolina Panthers",
+      "status": "Lloyd Registered Nine Tackles (Five Solo) And An Interception In Sunday'S 20-17 Win Over New Orleans."
+    },
+    {
+      "sport": "NFL",
+      "player": "Haynes King",
+      "team": "Carolina Panthers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Isaiah Simmons",
+      "team": "Carolina Panthers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ja'Tavion Sanders",
+      "team": "Carolina Panthers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaelan Phillips",
+      "team": "Carolina Panthers",
+      "status": "Phillips (Hamstring) Is Active Against The Saints On Sunday, Darin Gantt Of The Panthers' Official Site Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen Coker",
+      "team": "Carolina Panthers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "John Metchie III",
+      "team": "Carolina Panthers",
+      "status": "Metchie Caught His Only Target For Four Yards Sunday In A 20-17 Win Against New Orleans."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jonathon Brooks",
+      "team": "Carolina Panthers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Marco Wilson",
+      "team": "Carolina Panthers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mike Jackson",
+      "team": "Carolina Panthers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ryan Fitzgerald",
+      "team": "Carolina Panthers",
+      "status": "Fitzgerald Made Two Of His Three Field-Goal Attempts And Both Pats In The Panthers' 20-17 Win Over The Saints On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Sam Hecht",
+      "team": "Carolina Panthers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "TeRah Edwards",
+      "team": "Carolina Panthers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Tetairoa McMillan",
+      "team": "Carolina Panthers",
+      "status": "Mcmillan Caught Three Of Seven Targets For 35 Yards In Sunday'S 20-17 Win Over New Orleans."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tommy Tremble",
+      "team": "Carolina Panthers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Trevor Etienne",
+      "team": "Carolina Panthers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyrel Dodson",
+      "team": "Carolina Panthers",
+      "status": "Dodson Logged Seven Tackles (Two Solo) Sunday In A 20-17 Win Over New Orleans."
+    },
+    {
+      "sport": "NFL",
+      "player": "Will Lee III",
+      "team": "Carolina Panthers",
+      "status": "Lee (Hamstring) Was A Full Participant In Wednesday'S Practice."
+    },
+    {
+      "sport": "NFL",
+      "player": "Xavier Legette",
+      "team": "Carolina Panthers",
+      "status": "Legette Didn'T Produce Any Output In The Boxscore During Carolina'S Win Over The Saints On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Cairo Santos",
+      "team": "Chicago Bears",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Caleb Williams",
+      "team": "Chicago Bears",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cam Lewis",
+      "team": "Chicago Bears",
+      "status": "Lewis Produced Six Tackles (Three Solo) And One Interception During The Bears' 27-24 Win Over The Buccaneers In Week 9."
+    },
+    {
+      "sport": "NFL",
+      "player": "Case Keenum",
+      "team": "Chicago Bears",
+      "status": "Keenum (Coach'S Decision) Is Inactive But Serving As The Bears' Emergency No. 3 Quarterback For Sunday Night Football Versus The Buccaneers."
+    },
+    {
+      "sport": "NFL",
+      "player": "Colston Loveland",
+      "team": "Chicago Bears",
+      "status": "Loveland Caught Four Of Six Targets For 54 Yards In Sunday'S 27-24 Win Over The Buccaneers."
+    },
+    {
+      "sport": "NFL",
+      "player": "D'Andre Swift",
+      "team": "Chicago Bears",
+      "status": "Swift Rushed 12 Times For 31 Yards And Didn'T Catch His Lone Target In Sunday'S 27-24 Win Over The Buccaneers."
+    },
+    {
+      "sport": "NFL",
+      "player": "D'Marco Jackson",
+      "team": "Chicago Bears",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Grady Jarrett",
+      "team": "Chicago Bears",
+      "status": "Jarrett (Groin) Does Not Carry An Official Injury Designation Ahead Of Sunday'S Game Versus The Buccaneers."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jayden Loving",
+      "team": "Chicago Bears",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylon Johnson",
+      "team": "Chicago Bears",
+      "status": "Johnson Recorded Three Tackles (One Solo) And A Pick-Six During The Bears' 27-24 Win Over The Buccaneers In Week 9."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jeffery Simmons",
+      "team": "Chicago Bears",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kalif Raymond",
+      "team": "Chicago Bears",
+      "status": "Raymond Caught Four Passes For 32 Yards On Seven Targets In Sunday Night'S 27-24 Win Over The Bucs."
+    },
+    {
+      "sport": "NFL",
+      "player": "Kentavius Street",
+      "team": "Chicago Bears",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Keyshaun Elliott",
+      "team": "Chicago Bears",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Kyle Monangai",
+      "team": "Chicago Bears",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kyler Gordon",
+      "team": "Chicago Bears",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Luther Burden III",
+      "team": "Chicago Bears",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Malik Muhammad II",
+      "team": "Chicago Bears",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Rome Odunze",
+      "team": "Chicago Bears",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Roschon Johnson",
+      "team": "Chicago Bears",
+      "status": "Johnson Recorded Two Tackles On Special Teams During The Bears' 27-24 Win Over The Buccaneers On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Sam Roush",
+      "team": "Chicago Bears",
+      "status": "Roush Caught Both Of His Two Targets For 23 Yards During Sunday'S 27-24 Win Versus The Buccaneers."
+    },
+    {
+      "sport": "NFL",
+      "player": "Theo Benedet",
+      "team": "Chicago Bears",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyrique Stevenson Sr.",
+      "team": "Chicago Bears",
+      "status": "Stevenson (Hand) Was Not Listed On The Bears' Estimated Injury Report Wednesday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Zavier Scott",
+      "team": "Chicago Bears",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Zavion Thomas",
+      "team": "Chicago Bears",
+      "status": "Thomas Hauled In One Of His Two Targets For 13 Yards And Returned Three Kicks For 88 Yards During Chicago'S Win Versus Tampa Bay On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Andrei Iosivas",
+      "team": "Cincinnati Bengals",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Barrett Carter",
+      "team": "Cincinnati Bengals",
+      "status": "Carter Posted Six Tackles (Two Solo) And A Defensed Pass In Sunday'S 38-18 Win Over Pittsburgh."
+    },
+    {
+      "sport": "NFL",
+      "player": "Brian Parker II",
+      "team": "Cincinnati Bengals",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chase Brown",
+      "team": "Cincinnati Bengals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Connor Lew",
+      "team": "Cincinnati Bengals",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "DJ Turner II",
+      "team": "Cincinnati Bengals",
+      "status": "Turner (Ankle) Was A Full Participant At Practice Thursday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Dalton Risner",
+      "team": "Cincinnati Bengals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Demetrius Knight Jr.",
+      "team": "Cincinnati Bengals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dohnte Meyers",
+      "team": "Cincinnati Bengals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Drew Sample",
+      "team": "Cincinnati Bengals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dylan Fairchild",
+      "team": "Cincinnati Bengals",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Evan McPherson",
+      "team": "Cincinnati Bengals",
+      "status": "Mcpherson Made One Of His Two Field-Goal Attempts And All Five Pats In The Bengals' 38-18 Win Over The Steelers On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Ja'Marr Chase",
+      "team": "Cincinnati Bengals",
+      "status": "Chase Brought In 11 Of 14 Targets For 231 Yards In The Bengals' 38-18 Win Over The Steelers On Sunday Night. He Also Committed A Fumble That Stayed With Cincinnati."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen Davis",
+      "team": "Cincinnati Bengals",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Joe Burrow",
+      "team": "Cincinnati Bengals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Joe Flacco",
+      "team": "Cincinnati Bengals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordan Battle",
+      "team": "Cincinnati Bengals",
+      "status": "Battle Finished Sunday'S 38-18 Win Over Pittsburgh With Six Tackles (Four Solo), One Defensed Pass And One Forced Fumble."
+    },
+    {
+      "sport": "NFL",
+      "player": "Kyle Dugger",
+      "team": "Cincinnati Bengals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Landon Robinson",
+      "team": "Cincinnati Bengals",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Mike Gesicki",
+      "team": "Cincinnati Bengals",
+      "status": "Gesicki Caught One Pass For Nine Yards In Sunday Night'S 38-18 Win Over The Steelers."
+    },
+    {
+      "sport": "NFL",
+      "player": "Myles Hinton",
+      "team": "Cincinnati Bengals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Oren Burks",
+      "team": "Cincinnati Bengals",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Samaje Perine",
+      "team": "Cincinnati Bengals",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tahj Brooks",
+      "team": "Cincinnati Bengals",
+      "status": "Brooks Carried Three Times For 12 Yards While Taking The Field For Three Of The Bengals' 66 Offensive Snaps In Sunday'S 38-18 Win Over The Steelers."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tee Higgins",
+      "team": "Cincinnati Bengals",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Andre Szmyt",
+      "team": "Cleveland Browns",
+      "status": "Szmyt Made Two Of His Three Field-Goal Attempts And All Three Of His Pats In The Browns' 27-24 Win Over The Texans On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Carson Schwesinger",
+      "team": "Cleveland Browns",
+      "status": "Schwesinger Logged 13 Tackles (Eight Solo) In The Browns' 27-24 Win Over The Texans On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Denzel Boston",
+      "team": "Cleveland Browns",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Denzel Ward",
+      "team": "Cleveland Browns",
+      "status": "Ward (Quadriceps) Does Not Have An Injury Designation For Sunday'S Game Against The Texans."
+    },
+    {
+      "sport": "NFL",
+      "player": "Derek Barnett",
+      "team": "Cleveland Browns",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Deshaun Watson",
+      "team": "Cleveland Browns",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dillon Gabriel",
+      "team": "Cleveland Browns",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Dylan Sampson",
+      "team": "Cleveland Browns",
+      "status": "Sampson Rushed Four Times For Six Yards And Caught Four Of Six Targets For 31 Yards In Sunday'S 27-24 Win Over The Texans."
+    },
+    {
+      "sport": "NFL",
+      "player": "Elgton Jenkins",
+      "team": "Cleveland Browns",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Harold Fannin Jr.",
+      "team": "Cleveland Browns",
+      "status": "Fannin Brought In Seven Of Nine Targets For 91 Yards In The Browns' 27-24 Win Over The Texans On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaleel McLaughlin",
+      "team": "Cleveland Browns",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jerry Jeudy",
+      "team": "Cleveland Browns",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Justin Jefferson",
+      "team": "Cleveland Browns",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "KC Concepcion",
+      "team": "Cleveland Browns",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Malachi Corley",
+      "team": "Cleveland Browns",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Michael Burton",
+      "team": "Cleveland Browns",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Noah Igbinoghene",
+      "team": "Cleveland Browns",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Parker Brailsford",
+      "team": "Cleveland Browns",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Quincy Williams",
+      "team": "Cleveland Browns",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Quinshon Judkins",
+      "team": "Cleveland Browns",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ronnie Hickman",
+      "team": "Cleveland Browns",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Taylen Green",
+      "team": "Cleveland Browns",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Tylan Wallace",
+      "team": "Cleveland Browns",
+      "status": "Wallace Caught Both Of His Two Targets For Nine Yards During Sunday'S 27-24 Win Versus The Texans. He Also Recorded One Tackle In Kick Coverage."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyson Campbell",
+      "team": "Cleveland Browns",
+      "status": "Campbell Logged Five Tackles (One Solo) And Three Passes Defensed, Including One Interception, In The Browns' 27-24 Win Over The Texans On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tytus Howard",
+      "team": "Cleveland Browns",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Alijah Clark",
+      "team": "Dallas Cowboys",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Brandon Aubrey",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brevyn Spann-Ford",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "CeeDee Lamb",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "DaRon Bland",
+      "team": "Dallas Cowboys",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dak Prescott",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Derion Kendrick",
+      "team": "Dallas Cowboys",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Donovan Ezeiruaku",
+      "team": "Dallas Cowboys",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "George Pickens",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Israel Abanikanda",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jake Ferguson",
+      "team": "Dallas Cowboys",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen Thompson",
+      "team": "Dallas Cowboys",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "James Mitchell",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Javonte Williams",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Joey Porter Jr.",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jonathan Bullard",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jonathan Mingo",
+      "team": "Dallas Cowboys",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Juanyeh Thomas",
+      "team": "Dallas Cowboys",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "KaVontae Turpin",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Luke Schoonmaker",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Otito Ogbonnia",
+      "team": "Dallas Cowboys",
+      "status": "Ogbonnia (Finger) Has Re-Entered Sunday'S Matchup Against San Francisco, Joe Hoyt Of The Dallas Morning News Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "P.J. Locke",
+      "team": "Dallas Cowboys",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ryan Flournoy",
+      "team": "Dallas Cowboys",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Booker",
+      "team": "Dallas Cowboys",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Goodson",
+      "team": "Dallas Cowboys",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Adam Prentice",
+      "team": "Denver Broncos",
+      "status": "Prentice (Concussion) Was A Full Participant In Wednesday'S Practice."
+    },
+    {
+      "sport": "NFL",
+      "player": "Adam Trautman",
+      "team": "Denver Broncos",
+      "status": "Trautman Caught Two Of Three Passes For 15 Yards During The Broncos' 26-21 Win Over The Panthers On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Alex Singleton",
+      "team": "Denver Broncos",
+      "status": "Singleton Recorded Six Tackles (Two Solo) During The Broncos' 26-21 Win Over The Panthers In Week 9."
+    },
+    {
+      "sport": "NFL",
+      "player": "Bo Nix",
+      "team": "Denver Broncos",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brandon Jones",
+      "team": "Denver Broncos",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Caleb Lohner",
+      "team": "Denver Broncos",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Courtland Sutton",
+      "team": "Denver Broncos",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dallen Bentley",
+      "team": "Denver Broncos",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Dondrea Tillman",
+      "team": "Denver Broncos",
+      "status": "Tillman Is Active For Sunday'S Game Against The Panthers, Aric Dilalla Of The Team'S Official Site Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Evan Engram",
+      "team": "Denver Broncos",
+      "status": "Engram Caught Four Of Five Targets For 33 Yards In Sunday'S 26-21 Win Over The Panthers."
+    },
+    {
+      "sport": "NFL",
+      "player": "Eyioma Uwazurike",
+      "team": "Denver Broncos",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Gavin Ortega",
+      "team": "Denver Broncos",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "J.K. Dobbins",
+      "team": "Denver Broncos",
+      "status": "Dobbins Rushed Four Times For 18 Yards And Caught His Only Target For Four Yards During Sunday'S 26-21 Win Over Carolina."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylen Waddle",
+      "team": "Denver Broncos",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jonah Coleman",
+      "team": "Denver Broncos",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kage Casey",
+      "team": "Denver Broncos",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Kris Abrams-Draine",
+      "team": "Denver Broncos",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Lil'Jordan Humphrey",
+      "team": "Denver Broncos",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Marvin Mims Jr.",
+      "team": "Denver Broncos",
+      "status": "Mims Caught One Of Two Targets For Zero Yards, Added A Five-Yard Carry And Returned Three Punts For 22 Yards During The Broncos' 26-21 Win Over The Panthers On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Pat Bryant",
+      "team": "Denver Broncos",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Riley Moss",
+      "team": "Denver Broncos",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Sam Ehlinger",
+      "team": "Denver Broncos",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Talanoa Hufanga",
+      "team": "Denver Broncos",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Troy Franklin",
+      "team": "Denver Broncos",
+      "status": "Franklin Brought In Three Of Four Targets For 31 Yards During The Broncos' 26-21 Win Over The Panthers On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Wil Lutz",
+      "team": "Denver Broncos",
+      "status": "Lutz Went 2-For-2 On Both His Field-Goal Attempts And Extra-Point Tries During Denver'S Win Over Carolina On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Ahmed Hassanein",
+      "team": "Detroit Lions",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Aidan Hutchinson",
+      "team": "Detroit Lions",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Amen Ogbongbemiga",
+      "team": "Detroit Lions",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Amon-Ra St. Brown",
+      "team": "Detroit Lions",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brock Wright",
+      "team": "Detroit Lions",
+      "status": "Wright Caught Both Of His Targets For 11 Yards During The Lions' 35-10 Win Over The Patriots On Sunday In Munich."
+    },
+    {
+      "sport": "NFL",
+      "player": "Cade Mays",
+      "team": "Detroit Lions",
+      "status": "Doubtful"
+    },
+    {
+      "sport": "NFL",
+      "player": "D.J. Reed",
+      "team": "Detroit Lions",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "DJ Wonnum",
+      "team": "Detroit Lions",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ennis Rakestraw Jr.",
+      "team": "Detroit Lions",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Isaac TeSlaa",
+      "team": "Detroit Lions",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jacob Saylors",
+      "team": "Detroit Lions",
+      "status": "Saylors Rushed Twice For Nine Yards While Adding 26 Yards As A Kick Returner During Sunday'S 35-10 Win Over The Patriots."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jahmyr Gibbs",
+      "team": "Detroit Lions",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jake Bates",
+      "team": "Detroit Lions",
+      "status": "Bates Made All Five Of His Pats In The Lions' 35-10 Win Over The Patriots On Sunday In Munich."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jameson Williams",
+      "team": "Detroit Lions",
+      "status": "Williams Caught Four Of Seven Targets For 50 Yards In Sunday'S 35-10 Win Over The Patriots In Munich."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jared Goff",
+      "team": "Detroit Lions",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Joe Bachie",
+      "team": "Detroit Lions",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Keith Abney II",
+      "team": "Detroit Lions",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Kerby Joseph",
+      "team": "Detroit Lions",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Khalil Dorsey",
+      "team": "Detroit Lions",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mekhi Wingo",
+      "team": "Detroit Lions",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Roger McCreary",
+      "team": "Detroit Lions",
+      "status": "Mccreary Recorded Six Tackles (Four Solo) And Two Pass Defenses (Including An Interception) During The Lions' 35-10 Win Over The Patriots In Week 10 In Munich."
+    },
+    {
+      "sport": "NFL",
+      "player": "Sam LaPorta",
+      "team": "Detroit Lions",
+      "status": "Laporta Caught One Of Four Targets For 16 Yards In Sunday'S 35-10 Win Over The Patriots In Munch."
+    },
+    {
+      "sport": "NFL",
+      "player": "Sione Vaki",
+      "team": "Detroit Lions",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Conklin",
+      "team": "Detroit Lions",
+      "status": "Conklin Went Without A Target While Playing 22 Of The Lions' 71 Offensive Snaps In Sunday'S 35-10 Win Over The Patriots In Munich."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Lacy",
+      "team": "Detroit Lions",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bo Melton",
+      "team": "Green Bay Packers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brandon Cisse",
+      "team": "Green Bay Packers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chris Brooks",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Christian Watson",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Donovan Jennings",
+      "team": "Green Bay Packers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Evan Williams",
+      "team": "Green Bay Packers",
+      "status": "Williams Logged Eight Tackles (Two Solo) And A Pass Defense During The Packers' 30-10 Loss To The Vikings In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "J. Michael Sturdivant",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordan Love",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Josh Jacobs",
+      "team": "Green Bay Packers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kaleb Johnson",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kevin Zeitler",
+      "team": "Green Bay Packers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Lukas Van Ness",
+      "team": "Green Bay Packers",
+      "status": "Van Ness (Back) Is Active For Sunday'S Game Against The Vikings."
+    },
+    {
+      "sport": "NFL",
+      "player": "MarShawn Lloyd",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Matthew Golden",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Micah Parsons",
+      "team": "Green Bay Packers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Pierre Strong Jr.",
+      "team": "Green Bay Packers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Savion Williams",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Sean Rhyan",
+      "team": "Green Bay Packers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Skyy Moore",
+      "team": "Green Bay Packers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Travis Glover",
+      "team": "Green Bay Packers",
+      "status": "Glover (Knee) Is Active For Sunday'S Game Against The Vikings, Mike Spofford Of The Packers' Official Site Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Trey Smack",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tucker Kraft",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyrod Taylor",
+      "team": "Green Bay Packers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Xavier McKinney",
+      "team": "Green Bay Packers",
+      "status": "Mckinney Registered Six Tackles (Three Solo) And An Interception During The Packers' 30-10 Loss To The Vikings In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "Zaire Franklin",
+      "team": "Green Bay Packers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Azeez Al-Shaair",
+      "team": "Houston Texans",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Braden Smith",
+      "team": "Houston Texans",
+      "status": "Smith (Illness) Is Active For Sunday'S Game Against The Browns."
+    },
+    {
+      "sport": "NFL",
+      "player": "Brevin Jordan",
+      "team": "Houston Texans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "C.J. Stroud",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dalton Schultz",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Danielle Hunter",
+      "team": "Houston Texans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dare Ogunbowale",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "David Montgomery",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Emari Demercado",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Henry To'oTo'o",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jake Hansen",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jake Hummel",
+      "team": "Houston Texans",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylin Smith",
+      "team": "Houston Texans",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ka'imi Fairbairn",
+      "team": "Houston Texans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kamari Lassiter",
+      "team": "Houston Texans",
+      "status": "Lassiter (Wrist) Does Not Have Any Injury Designation Ahead Of Thursday Night'S Game Against The Colts."
+    },
+    {
+      "sport": "NFL",
+      "player": "Kayshon Boutte",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Keylan Rutledge",
+      "team": "Houston Texans",
+      "status": "Rutledge (Neck) Was A Full Participant In Monday'S Walkthrough Practice."
+    },
+    {
+      "sport": "NFL",
+      "player": "M.J. Stewart",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Marvin Harrison Jr.",
+      "team": "Houston Texans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Nico Collins",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tank Dell",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Will Anderson Jr.",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Woody Marks",
+      "team": "Houston Texans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Wyatt Teller",
+      "team": "Houston Texans",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Xavier Hutchinson",
+      "team": "Houston Texans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Akeem Davis-Gaither",
+      "team": "Indianapolis Colts",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Anthony Gould",
+      "team": "Indianapolis Colts",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Arden Key",
+      "team": "Indianapolis Colts",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ashton Dulin",
+      "team": "Indianapolis Colts",
+      "status": "Dulin Caught One Of Two Targets For 30 Yards And Returned Three Kickoffs For 77 Yards During The Colts' 24-22 Win Over The Dolphins On Sunday. He Also Recorded Two Tackles On Special Teams."
+    },
+    {
+      "sport": "NFL",
+      "player": "Bernhard Raimann",
+      "team": "Indianapolis Colts",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "CJ Allen",
+      "team": "Indianapolis Colts",
+      "status": "Allen Posted Nine Tackles (Three Solo), Including 1.0 Sacks, And One Pass Defense During The Colts' 24-22 Win Over The Dolphins On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Charvarius Ward",
+      "team": "Indianapolis Colts",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "DJ Giddens",
+      "team": "Indianapolis Colts",
+      "status": "Giddens Played Two Offensive Snaps And Didn'T Show Up On The Box Score Otherwise During The Colts' 24-22 Win Over The Dolphins On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Daniel Jones",
+      "team": "Indianapolis Colts",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Deion Burks",
+      "team": "Indianapolis Colts",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen Travis",
+      "team": "Indianapolis Colts",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylon Carlies",
+      "team": "Indianapolis Colts",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jerry Tillery",
+      "team": "Indianapolis Colts",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jonathan Taylor",
+      "team": "Indianapolis Colts",
+      "status": "Taylor Rushed 16 Times For 83 Yards And Brought In Two Of Four Targets For 20 Yards In The Colts' 24-22 Win Over The Dolphins On Sunday. He Also Committed A Fumble That Stayed With Indianapolis."
+    },
+    {
+      "sport": "NFL",
+      "player": "Justin Walley",
+      "team": "Indianapolis Colts",
+      "status": "Walley Registered Five Tackles, A Sack, A Forced Fumble And Two Pass Breakups In Sunday'S 24-22 Win Over The Dolphins."
+    },
+    {
+      "sport": "NFL",
+      "player": "Laquon Treadwell",
+      "team": "Indianapolis Colts",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Luke Rhodes",
+      "team": "Indianapolis Colts",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mo Alie-Cox",
+      "team": "Indianapolis Colts",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Quez Watkins",
+      "team": "Indianapolis Colts",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Riley Leonard",
+      "team": "Indianapolis Colts",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Sauce Gardner",
+      "team": "Indianapolis Colts",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Seth McGowan",
+      "team": "Indianapolis Colts",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Spencer Shrader",
+      "team": "Indianapolis Colts",
+      "status": "Shrader Made His Sole Field-Goal Attempt And Converted All Three Pats In The Colts' 24-22 Win Over The Dolphins On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Warren",
+      "team": "Indianapolis Colts",
+      "status": "Warren Rushed Once For Three Yards And Brought In Two Of Three Targets For One Yard In The Colts' 24-22 Win Over The Dolphins On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Will Mallory",
+      "team": "Indianapolis Colts",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Albert Regis",
+      "team": "Jacksonville Jaguars",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Antonio Johnson",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "B.J. Green II",
+      "team": "Jacksonville Jaguars",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bhayshul Tuten",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brenton Strange",
+      "team": "Jacksonville Jaguars",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brian Thomas Jr.",
+      "team": "Jacksonville Jaguars",
+      "status": "Thomas Caught Three Of Four Targets For 29 Yards In Sunday'S 40-23 Win Over The Titans."
+    },
+    {
+      "sport": "NFL",
+      "player": "CJ Williams",
+      "team": "Jacksonville Jaguars",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Cam Little",
+      "team": "Jacksonville Jaguars",
+      "status": "Little Went 4-For-4 On Field-Goal Attempts And Made All Four Of His Pats During Sunday'S 40-23 Win Over The Titans."
+    },
+    {
+      "sport": "NFL",
+      "player": "Cam'Ron Silmon-Craig",
+      "team": "Jacksonville Jaguars",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Chris Rodriguez Jr.",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Danny Striggow",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Foyesade Oluokun",
+      "team": "Jacksonville Jaguars",
+      "status": "Oluokun Finished Sunday'S 40-23 Win Over The Titans With 10 Tackles (Nine Solo)."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jakobi Meyers",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen McLeod",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jessie Bates III",
+      "team": "Jacksonville Jaguars",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jonah Monheim",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Josh Cameron",
+      "team": "Jacksonville Jaguars",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "LeQuint Allen Jr.",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Matt Dickerson",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Parker Washington",
+      "team": "Jacksonville Jaguars",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Robert Hainsey",
+      "team": "Jacksonville Jaguars",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Travis Hunter",
+      "team": "Jacksonville Jaguars",
+      "status": "Hunter Caught Both Of His Targets For 16 Yards, Recorded A Three-Yard Carry And Contributed Five Tackles (Three Solo) And An Interception During The Jaguars' 40-23 Win Over The Titans On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Travon Walker",
+      "team": "Jacksonville Jaguars",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Trevor Lawrence",
+      "team": "Jacksonville Jaguars",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Wesley Williams",
+      "team": "Jacksonville Jaguars",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Andrew Armstrong",
+      "team": "Kansas City Chiefs",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ben VanSumeren",
+      "team": "Kansas City Chiefs",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Cyrus Allen",
+      "team": "Kansas City Chiefs",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Drue Tranquill",
+      "team": "Kansas City Chiefs",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Emmett Johnson",
+      "team": "Kansas City Chiefs",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Garrett Nussmeier",
+      "team": "Kansas City Chiefs",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Harrison Butker",
+      "team": "Kansas City Chiefs",
+      "status": "Butker Made All Five Pats In The Chiefs' 35-13 Win Over The Falcons On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jake Briningstool",
+      "team": "Kansas City Chiefs",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jared Wiley",
+      "team": "Kansas City Chiefs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaydn Ott",
+      "team": "Kansas City Chiefs",
+      "status": "Ott (Hamstring) Was A Full Participant In Wednesday'S Practice."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylon Moore",
+      "team": "Kansas City Chiefs",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Josh Downs",
+      "team": "Kansas City Chiefs",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kenneth Walker III",
+      "team": "Kansas City Chiefs",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mansoor Delane",
+      "team": "Kansas City Chiefs",
+      "status": "Delane (Shoulder) Is Active For Sunday'S Game Against The Falcons, Matt Mcmullen Of The Chiefs' Official Site Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Melvin Smith Jr.",
+      "team": "Kansas City Chiefs",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Nick Bolton",
+      "team": "Kansas City Chiefs",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Noah Gray",
+      "team": "Kansas City Chiefs",
+      "status": "Gray Caught One Of Three Targets For Six Yards During Sunday'S 35-13 Win Over The Falcons."
+    },
+    {
+      "sport": "NFL",
+      "player": "Nohl Williams",
+      "team": "Kansas City Chiefs",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Omarr Norman-Lott",
+      "team": "Kansas City Chiefs",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Patrick Mahomes",
+      "team": "Kansas City Chiefs",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Peter Woods",
+      "team": "Kansas City Chiefs",
+      "status": "Woods (Neck) Was A Full Participant In Wednesday'S Practice."
+    },
+    {
+      "sport": "NFL",
+      "player": "Rashee Rice",
+      "team": "Kansas City Chiefs",
+      "status": "Rice Brought In Five Of Six Targets For 82 Yards In The Chiefs' 35-13 Win Over The Falcons On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Travis Kelce",
+      "team": "Kansas City Chiefs",
+      "status": "Kelce Was A Full Participant In Wednesday'S Practice Despite Being Listed With Ankle And Calf Injuries."
+    },
+    {
+      "sport": "NFL",
+      "player": "Trey Smith",
+      "team": "Kansas City Chiefs",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Xavier Worthy",
+      "team": "Kansas City Chiefs",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ashton Jeanty",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brock Bowers",
+      "team": "Las Vegas Raiders",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bryce Cabeldue",
+      "team": "Las Vegas Raiders",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Dalton Johnson",
+      "team": "Las Vegas Raiders",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Dareke Young",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dont'e Thornton Jr.",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dylan Laube",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Fernando Mendoza",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Folorunso Fatukasi",
+      "team": "Las Vegas Raiders",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jack Bech",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen Nailor",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jeremy Chinn",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kwity Paye",
+      "team": "Las Vegas Raiders",
+      "status": "Paye (Neck) Was Not Listed On The Raiders' Injury Report Wednesday, Sam Warren Of The Athletic Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Malik Benson",
+      "team": "Las Vegas Raiders",
+      "status": "Benson (Coach'S Decision) Is Inactive For Sunday'S Game Against The Seahawks."
+    },
+    {
+      "sport": "NFL",
+      "player": "Matt Gay",
+      "team": "Las Vegas Raiders",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Maxx Crosby",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Michael Mayer",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mike Washington Jr.",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Nakobe Dean",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Quay Walker",
+      "team": "Las Vegas Raiders",
+      "status": "Walker Posted Eight Tackles (Four Solo) And Recovered A Fumble Against Seattle In Sunday'S Week 10 Loss."
+    },
+    {
+      "sport": "NFL",
+      "player": "Thomas Booker IV",
+      "team": "Las Vegas Raiders",
+      "status": "Booker (Ankle) Was A Full Participant In Wednesday'S Practice, Sam Warren Of The Athletic Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tonka Hemingway",
+      "team": "Las Vegas Raiders",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tre Tucker",
+      "team": "Las Vegas Raiders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Trey Zuhn III",
+      "team": "Las Vegas Raiders",
+      "status": "Zuhn (Concussion) Does Not Have Any Injury Designation Ahead Of Sunday'S Game Against The Seahawks, Ryan Mcfadden Of Espn.Com Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tristin McCollum",
+      "team": "Las Vegas Raiders",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Branson Taylor",
+      "team": "Los Angeles Chargers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brenen Thompson",
+      "team": "Los Angeles Chargers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bud Dupree",
+      "team": "Los Angeles Chargers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Cameron Dicker",
+      "team": "Los Angeles Chargers",
+      "status": "Dicker Made All Three Of His Field-Goal Tries And Converted Both Of His Extra-Point Attempts During Monday'S 23-20 Win At Baltimore."
+    },
+    {
+      "sport": "NFL",
+      "player": "Charlie Kolar",
+      "team": "Los Angeles Chargers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Daiyan Henley",
+      "team": "Los Angeles Chargers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dalvin Tomlinson",
+      "team": "Los Angeles Chargers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "David Njoku",
+      "team": "Los Angeles Chargers",
+      "status": "Njoku Played 19 Offensive Snaps But Didn'T Get A Target During Monday'S 23-20 Win Over The Ravens On Monday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Del'Shawn Phillips",
+      "team": "Los Angeles Chargers",
+      "status": "Phillips Recorded Nine Tackles (Four Solo) And An Interception During Monday'S 23-20 Win At Baltimore."
+    },
+    {
+      "sport": "NFL",
+      "player": "Denzel Perryman",
+      "team": "Los Angeles Chargers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Donte Jackson",
+      "team": "Los Angeles Chargers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Isas Waxter",
+      "team": "Los Angeles Chargers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Justin Eboigbe",
+      "team": "Los Angeles Chargers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Justin Herbert",
+      "team": "Los Angeles Chargers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kayode Awosika",
+      "team": "Los Angeles Chargers",
+      "status": "Awosika (Fibula) Is Active For Monday'S Game Against The Ravens."
+    },
+    {
+      "sport": "NFL",
+      "player": "Keaton Mitchell",
+      "team": "Los Angeles Chargers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kendall Williamson",
+      "team": "Los Angeles Chargers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kimani Vidal",
+      "team": "Los Angeles Chargers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ladd McConkey",
+      "team": "Los Angeles Chargers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Omarion Hampton",
+      "team": "Los Angeles Chargers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Oronde Gadsden",
+      "team": "Los Angeles Chargers",
+      "status": "Gadsden Hauled In His Lone Target For Seven Yards In Monday'S 23-20 Win Over Baltimore."
+    },
+    {
+      "sport": "NFL",
+      "player": "Quentin Johnston",
+      "team": "Los Angeles Chargers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Rodney Shelley",
+      "team": "Los Angeles Chargers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tre' Harris",
+      "team": "Los Angeles Chargers",
+      "status": "Harris Secured All Five Targets For 86 Yards In The Chargers' 23-20 Win Over The Ravens On Monday Night."
+    },
+    {
+      "sport": "NFL",
+      "player": "Trey Pipkins III",
+      "team": "Los Angeles Chargers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Blake Corum",
+      "team": "Los Angeles Rams",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brandon McManus",
+      "team": "Los Angeles Rams",
+      "status": "Mcmanus Made Both Of His Field-Goal Attempts And All Four Pats In The Rams' 34-6 Win Over The Cardinals On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "CJ Daniels",
+      "team": "Los Angeles Rams",
+      "status": "Daniels Caught One Of Two Targets For 22 Yards In Sunday'S 34-6 Win Over The Cardinals."
+    },
+    {
+      "sport": "NFL",
+      "player": "Colby Parkinson",
+      "team": "Los Angeles Rams",
+      "status": "Parkinson Caught Both Of His Targets For 11 Yards During The Rams' 34-6 Win Over The Cardinals On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Coleman Shelton",
+      "team": "Los Angeles Rams",
+      "status": "Doubtful"
+    },
+    {
+      "sport": "NFL",
+      "player": "Darryl Peterson III",
+      "team": "Los Angeles Rams",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Davis Allen",
+      "team": "Los Angeles Rams",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Desjuan Johnson",
+      "team": "Los Angeles Rams",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Dylan McMahon",
+      "team": "Los Angeles Rams",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Joe Cardona",
+      "team": "Los Angeles Rams",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kam Curl",
+      "team": "Los Angeles Rams",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Keagen Trost",
+      "team": "Los Angeles Rams",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Konata Mumpfield",
+      "team": "Los Angeles Rams",
+      "status": "Mumpfield Brought In Three Of Four Targets For 81 Yards In The Rams' 34-6 Win Over The Cardinals On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Kyren Williams",
+      "team": "Los Angeles Rams",
+      "status": "Williams Rushed 12 Times For 23 Yards And Brought In Two Of Five Targets For Nine Yards In The Rams' 34-6 Win Over The Cardinals On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Matthew Stafford",
+      "team": "Los Angeles Rams",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Max Klare",
+      "team": "Los Angeles Rams",
+      "status": "Klare Went Without A Target While Playing Four Of The Rams' 76 Offensive Snaps In Sunday'S 34-6 Win Over The Cardinals."
+    },
+    {
+      "sport": "NFL",
+      "player": "Maximus Pulley",
+      "team": "Los Angeles Rams",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Myles Garrett",
+      "team": "Los Angeles Rams",
+      "status": "Garrett Played 17 Defensive Snaps But Did Not Show Up On The Box Score Otherwise During The Rams' 34-6 Win Over The Cardinals In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "Quentin Lake",
+      "team": "Los Angeles Rams",
+      "status": "Lake Posted Two Tackles (One Solo) During The Rams' 34-6 Win Over The Cardinals In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "Ronnie Rivers",
+      "team": "Los Angeles Rams",
+      "status": "Rivers Rushed 15 Times For 81 Yards In Sunday'S 34-6 Win Over The Cardinals."
+    },
+    {
+      "sport": "NFL",
+      "player": "Steve Avila",
+      "team": "Los Angeles Rams",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Trent McDuffie",
+      "team": "Los Angeles Rams",
+      "status": "Mcduffie (Back) Is Active For Sunday'S Game Against The Cardinals."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tutu Atwell",
+      "team": "Los Angeles Rams",
+      "status": "Atwell Caught One Of Two Targets For 31 Yards In Sunday'S 34-6 Win Over The Cardinals."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Higbee",
+      "team": "Los Angeles Rams",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Xavier Smith",
+      "team": "Los Angeles Rams",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Aaron Brewer",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Andrew Meyer",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bradley Pinion",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brady Cook",
+      "team": "Miami Dolphins",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Caedan Wallace",
+      "team": "Miami Dolphins",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Caleb Douglas",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chris Bell",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chris Johnson",
+      "team": "Miami Dolphins",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dante Trader Jr.",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Darrell Baker Jr.",
+      "team": "Miami Dolphins",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jacob Rodriguez",
+      "team": "Miami Dolphins",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jared Wayne",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylen Wright",
+      "team": "Miami Dolphins",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylin Simpson",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordan Phillips",
+      "team": "Miami Dolphins",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordyn Brooks",
+      "team": "Miami Dolphins",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "JuJu Brents",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Justin Joly",
+      "team": "Miami Dolphins",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Kaytron Allen",
+      "team": "Miami Dolphins",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kevin Coleman Jr.",
+      "team": "Miami Dolphins",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Malik Willis",
+      "team": "Miami Dolphins",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Marcellas Dial Jr.",
+      "team": "Miami Dolphins",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Michael Taaffe",
+      "team": "Miami Dolphins",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tucker Addington",
+      "team": "Miami Dolphins",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Zeek Biggers",
+      "team": "Miami Dolphins",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Aaron Jones Sr.",
+      "team": "Minnesota Vikings",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Andrew Van Ginkel",
+      "team": "Minnesota Vikings",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Blake Cashman",
+      "team": "Minnesota Vikings",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bo Richter",
+      "team": "Minnesota Vikings",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Caleb Banks",
+      "team": "Minnesota Vikings",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Carson Wentz",
+      "team": "Minnesota Vikings",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "DeeJay Dallas",
+      "team": "Minnesota Vikings",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Eric Wilson",
+      "team": "Minnesota Vikings",
+      "status": "Wilson Recorded Seven Tackles (Six Solo), Including 1.0 Sacks, During The Vikings' 30-10 Win Over The Packers In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "Gavin Bartholomew",
+      "team": "Minnesota Vikings",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jauan Jennings",
+      "team": "Minnesota Vikings",
+      "status": "Jennings (Calf) Practiced In Full Wednesday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jay Ward",
+      "team": "Minnesota Vikings",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jeshaun Jones",
+      "team": "Minnesota Vikings",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordan Addison",
+      "team": "Minnesota Vikings",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordan Mason",
+      "team": "Minnesota Vikings",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Joshua Metellus",
+      "team": "Minnesota Vikings",
+      "status": "Metellus (Shoulder) Is Active For Sunday'S Game Against The Packers."
+    },
+    {
+      "sport": "NFL",
+      "player": "Justin Jefferson",
+      "team": "Minnesota Vikings",
+      "status": "Jefferson Caught Nine Of 13 Targets For 74 Yards In Sunday'S 30-10 Win Over The Packers."
+    },
+    {
+      "sport": "NFL",
+      "player": "Kirk Cousins",
+      "team": "Minnesota Vikings",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kyle Van Noy",
+      "team": "Minnesota Vikings",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kyler Murray",
+      "team": "Minnesota Vikings",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Max Brosmer",
+      "team": "Minnesota Vikings",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Myles Price",
+      "team": "Minnesota Vikings",
+      "status": "Price Is Set For An Increase In Offensive Workload With Jordan Addison (Thumb) Sidelined, Kevin Seifert Of Espn.Com Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "T.J. Hockenson",
+      "team": "Minnesota Vikings",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tai Felton",
+      "team": "Minnesota Vikings",
+      "status": "Felton Is On Track To Operate In A More Prominent Role In Week 11 Versus The 49Ers, Kevin Seifert Of Espn.Com Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyrion Ingram-Dawkins",
+      "team": "Minnesota Vikings",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Will Reichard",
+      "team": "Minnesota Vikings",
+      "status": "Reichard Made All Three Of His Field-Goal Attempts And All Three Pats In The Vikings' 30-10 Win Over The Packers On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "A.J. Brown",
+      "team": "New England Patriots",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Andy Borregales",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Behren Morton",
+      "team": "New England Patriots",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Ben Brown",
+      "team": "New England Patriots",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brenden Schooler",
+      "team": "New England Patriots",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Carlton Davis III",
+      "team": "New England Patriots",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Christian Elliss",
+      "team": "New England Patriots",
+      "status": "Elliss Logged 10 Tackles (Three Solo) During The Patriots' 35-10 Loss To The Lions In Week 10 In Munich."
+    },
+    {
+      "sport": "NFL",
+      "player": "Corey Kiner",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dametrious Crownover",
+      "team": "New England Patriots",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "DeMario Douglas",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Drake Maye",
+      "team": "New England Patriots",
+      "status": "Doubtful"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dre'Mont Jones",
+      "team": "New England Patriots",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Efton Chism III",
+      "team": "New England Patriots",
+      "status": "Chism Did Not Catch His Only Target During The Patriots' 35-10 Loss Against The Lions In Munich In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "Eli Raridon",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Greg Van Roten",
+      "team": "New England Patriots",
+      "status": "Van Roten (Hamstring) Is Active For Sunday'S Game Against The Lions In Munich."
+    },
+    {
+      "sport": "NFL",
+      "player": "Hunter Henry",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kevin Byard",
+      "team": "New England Patriots",
+      "status": "Byard Registered 10 Tackles (Three Solo) And Two Pass Defenses (Including An Interception) During The Patriots' 35-10 Loss To The Lions In Week 10 In Munich."
+    },
+    {
+      "sport": "NFL",
+      "player": "Kyle Williams",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Lan Larison",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mack Hollins",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Morgan Moses",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Rhamondre Stevenson",
+      "team": "New England Patriots",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Robert Spillane",
+      "team": "New England Patriots",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tommy DeVito",
+      "team": "New England Patriots",
+      "status": "Mike Reiss Of Espn.Com Notes Via Espn'S Adam Schefter That There Are Fears  Devito'S Teammate, Drake Maye, May Have Sustained A Fractured Ankle During Week 10 Action."
+    },
+    {
+      "sport": "NFL",
+      "player": "Walter Rouse",
+      "team": "New England Patriots",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Alvin Kamara",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Asim Richards",
+      "team": "New Orleans Saints",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Audric Estime",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bryce Lance",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "CJ Donaldson",
+      "team": "New Orleans Saints",
+      "status": "Donaldson (Shoulder) Was A Full Participant In Wednesday'S Practice."
+    },
+    {
+      "sport": "NFL",
+      "player": "Charlie Smyth",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chris Olave",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Christen Miller",
+      "team": "New Orleans Saints",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "David Edwards",
+      "team": "New Orleans Saints",
+      "status": "Edwards (Knee) Does Not Have An Injury Designation Against The Panthers On Sunday, Ross Jackson Of Wwl-Tv Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Decamerion Richardson",
+      "team": "New Orleans Saints",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Devaughn Vele",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Erik McCoy",
+      "team": "New Orleans Saints",
+      "status": "Doubtful"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylan Ford",
+      "team": "New Orleans Saints",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordyn Tyson",
+      "team": "New Orleans Saints",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Juwan Johnson",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kaden Elliss",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kelvin Banks Jr.",
+      "team": "New Orleans Saints",
+      "status": "Banks (Ankle) Does Not Have An Injury Designation For Sunday'S Game Against The Panthers, Ross Jackson Of Wwl-Tv Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Martin Emerson Jr.",
+      "team": "New Orleans Saints",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mike Reid",
+      "team": "New Orleans Saints",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Noah Fant",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Pete Werner",
+      "team": "New Orleans Saints",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Taliese Fuaga",
+      "team": "New Orleans Saints",
+      "status": "Doubtful"
+    },
+    {
+      "sport": "NFL",
+      "player": "Travis Etienne Jr.",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Shough",
+      "team": "New Orleans Saints",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Zach Wilson",
+      "team": "New Orleans Saints",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Ar'Darius Washington",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Arvell Reese",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bryan Hudson",
+      "team": "New York Giants",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "CJ Okoye",
+      "team": "New York Giants",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Cam Skattebo",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Darnell Mooney",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Devin Singletary",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dominic Zvada",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Isaiah Likely",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "J.C. Davis",
+      "team": "New York Giants",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "J.J. McCarthy",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jameis Winston",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jevon Holland",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Josh Sills",
+      "team": "New York Giants",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Malachi Fields",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Malik Harrison",
+      "team": "New York Giants",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Malik Nabers",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Micah McFadden",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Nic Jones",
+      "team": "New York Giants",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Nikko Reed",
+      "team": "New York Giants",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Paulson Adebo",
+      "team": "New York Giants",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Theo Johnson",
+      "team": "New York Giants",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Thomas Fidone II",
+      "team": "New York Giants",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyrone Tracy Jr.",
+      "team": "New York Giants",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Xavier Gipson",
+      "team": "New York Giants",
+      "status": "Gipson Was Signed By The Giants Off Of Philadelphia'S Practice Squad Monday, Pat Leonard Of The New York Daily News Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Adonai Mitchell",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Braelon Allen",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Breece Hall",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cade Klubnik",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dane Belton",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "David Onyemata",
+      "team": "New York Jets",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Demario Davis",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dylan Parham",
+      "team": "New York Jets",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Garrett Wilson",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Geno Smith",
+      "team": "New York Jets",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Harrison Phillips",
+      "team": "New York Jets",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Isaiah Davis",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Isaiah Williams",
+      "team": "New York Jets",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jamien Sherwood",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jarvis Brownlee Jr.",
+      "team": "New York Jets",
+      "status": "Brownlee (Illness) Was A Full Participant In Wednesday'S Walkthrough Practice, Rich Cimini Of Espn.Com Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jason Sanders",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jelani Woods",
+      "team": "New York Jets",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Joseph Ossai",
+      "team": "New York Jets",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kenyon Sadiq",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mason Taylor",
+      "team": "New York Jets",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Nate Lynn",
+      "team": "New York Jets",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Omar Cooper Jr.",
+      "team": "New York Jets",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tim Patrick",
+      "team": "New York Jets",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Trevin Wallace",
+      "team": "New York Jets",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "VJ Payne",
+      "team": "New York Jets",
+      "status": "Payne (Knee) Is Active For Sunday'S Game Against Buffalo."
+    },
+    {
+      "sport": "NFL",
+      "player": "Arnold Ebiketie",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Britain Covey",
+      "team": "Philadelphia Eagles",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dallas Goedert",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Darius Cooper",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "DeVonta Smith",
+      "team": "Philadelphia Eagles",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Dontayvion Wicks",
+      "team": "Philadelphia Eagles",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Eli Stowers",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Elijah Mitchell",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Elijah Moore",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jake Elliott",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalyx Hunt",
+      "team": "Philadelphia Eagles",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaydon Blue",
+      "team": "Philadelphia Eagles",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jeremiah Trotter Jr.",
+      "team": "Philadelphia Eagles",
+      "status": "Trotter Recorded 11 Tackles (Five Solo) And One Forced Fumble During The Eagles' 19-11 Loss To The Giants In Week 9."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jihaad Campbell",
+      "team": "Philadelphia Eagles",
+      "status": "Campbell (Hamstring/Quadriceps) Was A Full Participant In Wednesday'S Practice."
+    },
+    {
+      "sport": "NFL",
+      "player": "Joe Milton",
+      "team": "Philadelphia Eagles",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jonathan Greenard",
+      "team": "Philadelphia Eagles",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jonathan Jones",
+      "team": "Philadelphia Eagles",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Makai Lemon",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Michael Carter II",
+      "team": "Philadelphia Eagles",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Nolan Smith Jr.",
+      "team": "Philadelphia Eagles",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Saquon Barkley",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tanner McKee",
+      "team": "Philadelphia Eagles",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Will Shipley",
+      "team": "Philadelphia Eagles",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Zach Ertz",
+      "team": "Philadelphia Eagles",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Zack Baun",
+      "team": "Philadelphia Eagles",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Aaron Rodgers",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brandin Echols",
+      "team": "Pittsburgh Steelers",
+      "status": "Echols (Hamstring) Was A Full Participant At Practice Wednesday, Teresa Varley Of The Steelers' Official Site Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Brandon Smith",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chris Boswell",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "DK Metcalf",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Darnell Washington",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "DeShon Elliott",
+      "team": "Pittsburgh Steelers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Derrick Harmon",
+      "team": "Pittsburgh Steelers",
+      "status": "Harmon (Foot) Is Active For Sunday'S Week 10 Clash Against Cincinnati."
+    },
+    {
+      "sport": "NFL",
+      "player": "Drew Allar",
+      "team": "Pittsburgh Steelers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Eli Heidenreich",
+      "team": "Pittsburgh Steelers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Gennings Dunker",
+      "team": "Pittsburgh Steelers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Germie Bernard",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaquan Brisker",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylen Warren",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mason McCormick",
+      "team": "Pittsburgh Steelers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mason Rudolph",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Michael Pittman Jr.",
+      "team": "Pittsburgh Steelers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Nick Herbig",
+      "team": "Pittsburgh Steelers",
+      "status": "Doubtful"
+    },
+    {
+      "sport": "NFL",
+      "player": "Pat Freiermuth",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Patrick Queen",
+      "team": "Pittsburgh Steelers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Payton Wilson",
+      "team": "Pittsburgh Steelers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Rico Dowdle",
+      "team": "Pittsburgh Steelers",
+      "status": "Dowdle Rushed Five Times For 26 Yards And Caught Both Of His Targets For Eight Yards During Sunday'S 38-18 Defeat At Cincinnati."
+    },
+    {
+      "sport": "NFL",
+      "player": "Roman Wilson",
+      "team": "Pittsburgh Steelers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Sean Murphy-Bunting",
+      "team": "Pittsburgh Steelers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Will Howard",
+      "team": "Pittsburgh Steelers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brandon Aiyuk",
+      "team": "San Francisco 49ers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brock Purdy",
+      "team": "San Francisco 49ers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Christian McCaffrey",
+      "team": "San Francisco 49ers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "De'Zhaun Stribling",
+      "team": "San Francisco 49ers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Deebo Samuel Sr.",
+      "team": "San Francisco 49ers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Demarcus Robinson",
+      "team": "San Francisco 49ers",
+      "status": "Robinson Played 21 Of 65 Offensive Snaps (32.3 Percent) But Didn'T Show Up On The Box Score Otherwise During The 49Ers' 46-40 Win Over The Cowboys On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Dre Greenlaw",
+      "team": "San Francisco 49ers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Eddy Pineiro",
+      "team": "San Francisco 49ers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Enrique Cruz Jr.",
+      "team": "San Francisco 49ers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Fred Warner",
+      "team": "San Francisco 49ers",
+      "status": "Warner Tallied 11 Tackles (Two Solo) During San Francisco'S Win Over The Cowboys On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "George Kittle",
+      "team": "San Francisco 49ers",
+      "status": "Kittle Brought In Six Of Nine Targets For 74 Yards In The 49Ers' 46-40 Win Over The Cowboys On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jacob Cowing",
+      "team": "San Francisco 49ers",
+      "status": "Cowing Did Not Draw Any Targets During Sunday'S 46-40 Win At Dallas."
+    },
+    {
+      "sport": "NFL",
+      "player": "Ji'Ayir Brown",
+      "team": "San Francisco 49ers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordan James",
+      "team": "San Francisco 49ers",
+      "status": "James Returned Five Kickoffs For 101 Yards During The 49Ers' 46-40 Win Over The Cowboys On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jordan Watkins",
+      "team": "San Francisco 49ers",
+      "status": "Watkins Caught Two Passes For 49 Yards On Three Targets In Sunday'S 46-40 Win Over The Cowboys."
+    },
+    {
+      "sport": "NFL",
+      "player": "Keenan Allen",
+      "team": "San Francisco 49ers",
+      "status": "Allen Brought In Five Of Seven Targets For 61 Yards In The 49Ers' 46-40 Win Over The Cowboys On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Khalid Kareem",
+      "team": "San Francisco 49ers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kurtis Rourke",
+      "team": "San Francisco 49ers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Luke Gifford",
+      "team": "San Francisco 49ers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mac Jones",
+      "team": "San Francisco 49ers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Mike Evans",
+      "team": "San Francisco 49ers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Renardo Green",
+      "team": "San Francisco 49ers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Siran Neal",
+      "team": "San Francisco 49ers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tatum Bethune",
+      "team": "San Francisco 49ers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Upton Stout",
+      "team": "San Francisco 49ers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "AJ Barner",
+      "team": "Seattle Seahawks",
+      "status": "Barner Caught All Three Targets For 19 Yards In Sunday'S 21-13 Win Over The Raiders."
+    },
+    {
+      "sport": "NFL",
+      "player": "Abraham Lucas",
+      "team": "Seattle Seahawks",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Avery Smith",
+      "team": "Seattle Seahawks",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Brandon Pili",
+      "team": "Seattle Seahawks",
+      "status": "Pili (Back) Does Not Have An Injury Designation For Sunday'S Game Against The Raiders, John Boyle Of The Seahawks' Official Site Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Charles Cross",
+      "team": "Seattle Seahawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cooper Kupp",
+      "team": "Seattle Seahawks",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Derick Hall",
+      "team": "Seattle Seahawks",
+      "status": "Hall (Back) Does Not Have An Injury Designation For Sunday'S Game Against The Raiders, John Boyle Of The Seahawks' Official Site Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Deven Eastern",
+      "team": "Seattle Seahawks",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Devon Witherspoon",
+      "team": "Seattle Seahawks",
+      "status": "Witherspoon Logged Four Solo Tackles, Including 2.0 Sacks, In The Seahawks' 21-13 Win Over The Raiders On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Drew Lock",
+      "team": "Seattle Seahawks",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Emanuel Wilson",
+      "team": "Seattle Seahawks",
+      "status": "Wilson (Coach'S Decision) Is Inactive For Sunday'S Game At Arizona."
+    },
+    {
+      "sport": "NFL",
+      "player": "Ernest Jones IV",
+      "team": "Seattle Seahawks",
+      "status": "Jones Logged 10 Tackles (Five Solo) In The Seahawks' 21-13 Win Over The Raiders On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "George Holani",
+      "team": "Seattle Seahawks",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jadarian Price",
+      "team": "Seattle Seahawks",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jarran Reed",
+      "team": "Seattle Seahawks",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jason Myers",
+      "team": "Seattle Seahawks",
+      "status": "Myers Missed His Sole Field-Goal Attempt And Made Three Pats In The Seahawks' 21-13 Win Over The Raiders On Sunday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaxon Smith-Njigba",
+      "team": "Seattle Seahawks",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Leonard Williams",
+      "team": "Seattle Seahawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Patrick O'Connell",
+      "team": "Seattle Seahawks",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Quenton Nelson",
+      "team": "Seattle Seahawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Rashid Shaheed",
+      "team": "Seattle Seahawks",
+      "status": "Shaheed Caught One Pass For Eight Yards On Two Targets In Sunday'S 21-13 Win Over The Raiders."
+    },
+    {
+      "sport": "NFL",
+      "player": "Sam Darnold",
+      "team": "Seattle Seahawks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tory Horton",
+      "team": "Seattle Seahawks",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Uchenna Nwosu",
+      "team": "Seattle Seahawks",
+      "status": "Nwosu (Ankle) Does Not Have An Injury Designation Against The Raiders On Sunday, John Boyle Of The Seahawks' Official Site Reports."
+    },
+    {
+      "sport": "NFL",
+      "player": "Zach Charbonnet",
+      "team": "Seattle Seahawks",
+      "status": "Charbonnet Churned Out 94 Yards On 20 Carries During Sunday'S 21-13 Win In Las Vegas."
+    },
+    {
+      "sport": "NFL",
+      "player": "Alex Anzalone",
+      "team": "Tampa Bay Buccaneers",
+      "status": "Anzalone Posted Two Solo Tackles And An Interception During The Buccaneers' 27-24 Loss To The Bears In Week 9."
+    },
+    {
+      "sport": "NFL",
+      "player": "Antoine Winfield Jr.",
+      "team": "Tampa Bay Buccaneers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ayden Garnes",
+      "team": "Tampa Bay Buccaneers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Baker Mayfield",
+      "team": "Tampa Bay Buccaneers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Billy Schrauth",
+      "team": "Tampa Bay Buccaneers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Bucky Irving",
+      "team": "Tampa Bay Buccaneers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cade Otton",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chase McLaughlin",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chris Godwin Jr.",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "DeMonte Capehart",
+      "team": "Tampa Bay Buccaneers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Easton Stick",
+      "team": "Tampa Bay Buccaneers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Emeka Egbuka",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen McMillan",
+      "team": "Tampa Bay Buccaneers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalon Daniels",
+      "team": "Tampa Bay Buccaneers",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Josh Hayes",
+      "team": "Tampa Bay Buccaneers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Josiah Trotter",
+      "team": "Tampa Bay Buccaneers",
+      "status": "Trotter Recorded Eight Tackles (Five Solo) During The Buccaneers' 27-24 Loss To The Bears In Week 9."
+    },
+    {
+      "sport": "NFL",
+      "player": "Kameron Johnson",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kenny Gainwell",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Sean Tucker",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Ted Hurst III",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tez Johnson",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Trevor Keegan",
+      "team": "Tampa Bay Buccaneers",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Tykee Smith",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Yaya Diaby",
+      "team": "Tampa Bay Buccaneers",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Zyon McCollum",
+      "team": "Tampa Bay Buccaneers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Anthony Hill Jr.",
+      "team": "Tennessee Titans",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Brandon Crenshaw-Dickson",
+      "team": "Tennessee Titans",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Calvin Ridley",
+      "team": "Tennessee Titans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cam Ward",
+      "team": "Tennessee Titans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Carnell Tate",
+      "team": "Tennessee Titans",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cedric Gray",
+      "team": "Tennessee Titans",
+      "status": "Gray Posted Nine Tackles (Eight Solo) And Two Pass Defenses (Including An Interception) During The Titans' 40-23 Loss To The Jaguars In Week 10."
+    },
+    {
+      "sport": "NFL",
+      "player": "Chandler Zavala",
+      "team": "Tennessee Titans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chimere Dike",
+      "team": "Tennessee Titans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Cody Barton",
+      "team": "Tennessee Titans",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Daniel Bellinger",
+      "team": "Tennessee Titans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Elic Ayomanor",
+      "team": "Tennessee Titans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Fernando Carmona",
+      "team": "Tennessee Titans",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Gunnar Helm",
+      "team": "Tennessee Titans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Isaiah Oliver",
+      "team": "Tennessee Titans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jackie Marshall",
+      "team": "Tennessee Titans",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jaylon Jones",
+      "team": "Tennessee Titans",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Joey Slye",
+      "team": "Tennessee Titans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "John Franklin-Myers",
+      "team": "Tennessee Titans",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Julius Chestnut",
+      "team": "Tennessee Titans",
+      "status": "Chestnut Played All 25 Of His Snaps On Special Teams In Sunday'S 40-23 Win Over The Jaguars."
+    },
+    {
+      "sport": "NFL",
+      "player": "Nicholas Singleton",
+      "team": "Tennessee Titans",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Tony Adams",
+      "team": "Tennessee Titans",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tony Pollard",
+      "team": "Tennessee Titans",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyjae Spears",
+      "team": "Tennessee Titans",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Wan'Dale Robinson",
+      "team": "Tennessee Titans",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Xavier Restrepo",
+      "team": "Tennessee Titans",
+      "status": "OUT"
+    },
+    {
+      "sport": "NFL",
+      "player": "Antonio Williams",
+      "team": "Washington Commanders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Athan Kaliakmanis",
+      "team": "Washington Commanders",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Austin Ekeler",
+      "team": "Washington Commanders",
+      "status": "Ekeler Rushed Nine Times For 26 Yards And Brought In All Four Targets For 26 Yards In The Commanders' 24-21 Win Over The Giants On Thursday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Ben Sinnott",
+      "team": "Washington Commanders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Chig Okonkwo",
+      "team": "Washington Commanders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Colson Yankoff",
+      "team": "Washington Commanders",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Drew Stevens",
+      "team": "Washington Commanders",
+      "status": "Stevens Made His Only Field-Goal Attempt And Was Successful On All Three Of His Extra-Point Tries In Thursday'S 24-21 Win Over The Giants."
+    },
+    {
+      "sport": "NFL",
+      "player": "Fabian Moreau",
+      "team": "Washington Commanders",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Frankie Luvu",
+      "team": "Washington Commanders",
+      "status": "Luvu Recorded Six Tackles (Two Solo) And A Forced Fumble During The Commanders' 24-21 Win Over The Giants On Thursday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Isaac Yiadom",
+      "team": "Washington Commanders",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Jacory Croskey-Merritt",
+      "team": "Washington Commanders",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jayden Daniels",
+      "team": "Washington Commanders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jeremy Reaves",
+      "team": "Washington Commanders",
+      "status": "Reaves Recorded Nine Tackles (Seven Solo), One Pass Defense And One Fumble Recovery During The Commanders' 24-21 Win Over The Giants On Thursday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Laremy Tunsil",
+      "team": "Washington Commanders",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NFL",
+      "player": "Lucas Patrick",
+      "team": "Washington Commanders",
+      "status": "Questionable"
+    },
+    {
+      "sport": "NFL",
+      "player": "Luke McCaffrey",
+      "team": "Washington Commanders",
+      "status": "Mccaffrey Returned Two Punts For 13 Yards And Three Kickoffs For 58 Yards In Thursday'S 24-21 Win Over The Giants."
+    },
+    {
+      "sport": "NFL",
+      "player": "Nick Cross",
+      "team": "Washington Commanders",
+      "status": "Cross Finished Thursday'S 24-21 Win Over The Giants With Six Tackles (One Solo)."
+    },
+    {
+      "sport": "NFL",
+      "player": "Rachaad White",
+      "team": "Washington Commanders",
+      "status": "White Rushed 11 Times For 47 Yards And Brought In One Of Two Targets For Five Yards In The Commanders' 24-21 Win Over The Giants On Thursday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Ricky Barber",
+      "team": "Washington Commanders",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Shy Tuttle",
+      "team": "Washington Commanders",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Sonny Styles",
+      "team": "Washington Commanders",
+      "status": "Styles Recorded 13 Tackles (Five Solo) During The Commanders' 24-21 Win Over The Giants On Thursday."
+    },
+    {
+      "sport": "NFL",
+      "player": "Stefon Diggs",
+      "team": "Washington Commanders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tanoa Togiai",
+      "team": "Washington Commanders",
+      "status": ""
+    },
+    {
+      "sport": "NFL",
+      "player": "Treylon Burks",
+      "team": "Washington Commanders",
+      "status": "Burks Caught Two Of Three Targets For 27 Yards Thursday In A 24-21 Win Over The Giants."
+    },
+    {
+      "sport": "NFL",
+      "player": "Van Jefferson",
+      "team": "Washington Commanders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "A.J. Greer",
+      "team": "Anaheim Ducks",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Beckett Sennecke",
+      "team": "Anaheim Ducks",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Ryan Poehling",
+      "team": "Anaheim Ducks",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "James Hagens",
+      "team": "Boston Bruins",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Justin Danforth",
+      "team": "Buffalo Sabres",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Konsta Helenius",
+      "team": "Buffalo Sabres",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Matt Grzelcyk",
+      "team": "Buffalo Sabres",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Connor Zary",
+      "team": "Calgary Flames",
+      "status": "OUT"
+    },
+    {
+      "sport": "NHL",
+      "player": "Jonathan Huberdeau",
+      "team": "Calgary Flames",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Kevin Bahl",
+      "team": "Calgary Flames",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Bowen Byram",
+      "team": "Chicago Blackhawks",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Connor Bedard",
+      "team": "Chicago Blackhawks",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Cale Makar",
+      "team": "Colorado Avalanche",
+      "status": "OUT"
+    },
+    {
+      "sport": "NHL",
+      "player": "Gavin Brindley",
+      "team": "Colorado Avalanche",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Josh Manson",
+      "team": "Colorado Avalanche",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Nathan MacKinnon",
+      "team": "Colorado Avalanche",
+      "status": "OUT"
+    },
+    {
+      "sport": "NHL",
+      "player": "Zachary L'Heureux",
+      "team": "Colorado Avalanche",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Sean Monahan",
+      "team": "Columbus Blue Jackets",
+      "status": "OUT"
+    },
+    {
+      "sport": "NHL",
+      "player": "Kyle Capobianco",
+      "team": "Dallas Stars",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Lian Bichsel",
+      "team": "Dallas Stars",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Matt Duchene",
+      "team": "Dallas Stars",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Oskar Back",
+      "team": "Dallas Stars",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Tyler Myers",
+      "team": "Dallas Stars",
+      "status": "OUT"
+    },
+    {
+      "sport": "NHL",
+      "player": "Albert Johansson",
+      "team": "Detroit Red Wings",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Dylan Larkin",
+      "team": "Detroit Red Wings",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Simon Edvinsson",
+      "team": "Detroit Red Wings",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "William Wallinder",
+      "team": "Detroit Red Wings",
+      "status": "OUT"
+    },
+    {
+      "sport": "NHL",
+      "player": "Alec Regula",
+      "team": "Edmonton Oilers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Frederik Andersen",
+      "team": "Edmonton Oilers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Matt Savoie",
+      "team": "Edmonton Oilers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Mattias Janmark",
+      "team": "Edmonton Oilers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Ryan Nugent-Hopkins",
+      "team": "Edmonton Oilers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Aleksander Barkov",
+      "team": "Florida Panthers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Brad Marchand",
+      "team": "Florida Panthers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Jonah Gadjovich",
+      "team": "Florida Panthers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Artemi Panarin",
+      "team": "Los Angeles Kings",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Jakub Dvorak",
+      "team": "Los Angeles Kings",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Filip Gustavsson",
+      "team": "Minnesota Wild",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Olli Maatta",
+      "team": "Minnesota Wild",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Bryce Pickford",
+      "team": "Montreal Canadiens",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Chris Kreider",
+      "team": "Montreal Canadiens",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Ivan Demidov",
+      "team": "Montreal Canadiens",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Josh Anderson",
+      "team": "Montreal Canadiens",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Lucas Condotta",
+      "team": "Montreal Canadiens",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Mike Matheson",
+      "team": "Montreal Canadiens",
+      "status": "OUT"
+    },
+    {
+      "sport": "NHL",
+      "player": "Sam Montembeault",
+      "team": "Montreal Canadiens",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Zack Bolduc",
+      "team": "Montreal Canadiens",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Anthony Mantha",
+      "team": "New Jersey Devils",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Johnathan Kovacevic",
+      "team": "New Jersey Devils",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Seamus Casey",
+      "team": "New Jersey Devils",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Alexander Romanov",
+      "team": "New York Islanders",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Jean-Gabriel Pageau",
+      "team": "New York Islanders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Logan Stanley",
+      "team": "New York Islanders",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Adam Sykora",
+      "team": "New York Rangers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Aidan Thompson",
+      "team": "New York Rangers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Alberts Smits",
+      "team": "New York Rangers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Igor Shesterkin",
+      "team": "New York Rangers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Joe Veleno",
+      "team": "New York Rangers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Pavel Dorofeyev",
+      "team": "New York Rangers",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Sean Durzi",
+      "team": "New York Rangers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Andre Burakovsky",
+      "team": "Ottawa Senators",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Hayden Hodgson",
+      "team": "Ottawa Senators",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Nick Cousins",
+      "team": "Ottawa Senators",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Thomas Chabot",
+      "team": "Ottawa Senators",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Warren Foegele",
+      "team": "Ottawa Senators",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "William Eklund",
+      "team": "Ottawa Senators",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Nikita Grebenkin",
+      "team": "Philadelphia Flyers",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Bryan Rust",
+      "team": "Pittsburgh Penguins",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Elmer Soderblom",
+      "team": "Pittsburgh Penguins",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Ryan Graves",
+      "team": "Pittsburgh Penguins",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Igor Chernyshov",
+      "team": "San Jose Sharks",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Kiefer Sherwood",
+      "team": "San Jose Sharks",
+      "status": "OUT"
+    },
+    {
+      "sport": "NHL",
+      "player": "Kyle Keyser",
+      "team": "San Jose Sharks",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Quentin Musty",
+      "team": "San Jose Sharks",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Curtis Douglas",
+      "team": "Seattle Kraken",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Jacob Melanson",
+      "team": "Seattle Kraken",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Jake O'Brien",
+      "team": "Seattle Kraken",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Jared McCann",
+      "team": "Seattle Kraken",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Nikke Kokko",
+      "team": "Seattle Kraken",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Dillon Dube",
+      "team": "St. Louis Blues",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Ross Johnston",
+      "team": "St. Louis Blues",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Torey Krug",
+      "team": "St. Louis Blues",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Tyler Tucker",
+      "team": "St. Louis Blues",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Brandon Hagel",
+      "team": "Tampa Bay Lightning",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Conor Geekie",
+      "team": "Tampa Bay Lightning",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Zemgus Girgensons",
+      "team": "Tampa Bay Lightning",
+      "status": "GTD"
+    },
+    {
+      "sport": "NHL",
+      "player": "Cade Webber",
+      "team": "Toronto Maple Leafs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Colton Sissons",
+      "team": "Toronto Maple Leafs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Elvis Merzlikins",
+      "team": "Toronto Maple Leafs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Kirill Marchenko",
+      "team": "Toronto Maple Leafs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Marshall Rifai",
+      "team": "Toronto Maple Leafs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Max Domi",
+      "team": "Toronto Maple Leafs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Miles Wood",
+      "team": "Toronto Maple Leafs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Nick Blankenburg",
+      "team": "Toronto Maple Leafs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "William Villeneuve",
+      "team": "Toronto Maple Leafs",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Dylan Guenther",
+      "team": "Utah Mammoth",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "John Marino",
+      "team": "Utah Mammoth",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Maveric Lamoureux",
+      "team": "Utah Mammoth",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Nate Schmidt",
+      "team": "Utah Mammoth",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Nick Schmaltz",
+      "team": "Utah Mammoth",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Guillaume Brisebois",
+      "team": "Vancouver Canucks",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Mackenzie MacEachern",
+      "team": "Vancouver Canucks",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Thatcher Demko",
+      "team": "Vancouver Canucks",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Noah Hanifin",
+      "team": "Vegas Golden Knights",
+      "status": "OUT"
+    },
+    {
+      "sport": "NHL",
+      "player": "Rasmus Sandin",
+      "team": "Washington Capitals",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Vincent Desharnais",
+      "team": "Washington Capitals",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Dylan DeMelo",
+      "team": "Winnipeg Jets",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Elias Salomonsson",
+      "team": "Winnipeg Jets",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Isak Rosen",
+      "team": "Winnipeg Jets",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Nick Bjugstad",
+      "team": "Winnipeg Jets",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "NHL",
+      "player": "Vladislav Namestnikov",
+      "team": "Winnipeg Jets",
+      "status": "Injured Reserve"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Brionna Jones",
+      "team": "Atlanta Dream",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Matilde Villa",
+      "team": "Atlanta Dream",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Aicha Coulibaly",
+      "team": "Chicago Sky",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Azura Stevens",
+      "team": "Chicago Sky",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "DiJonai Carrington",
+      "team": "Chicago Sky",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Natasha Cloud",
+      "team": "Chicago Sky",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Rickea Jackson",
+      "team": "Chicago Sky",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Skylar Diggins",
+      "team": "Chicago Sky",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Alanna Smith",
+      "team": "Dallas Wings",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Azzi Fudd",
+      "team": "Dallas Wings",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Costanza Verona",
+      "team": "Dallas Wings",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Iliana Rupert",
+      "team": "Golden State Valkyries",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Aliyah Boston",
+      "team": "Indiana Fever",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Tyasha Harris",
+      "team": "Indiana Fever",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "NaLyssa Smith",
+      "team": "Las Vegas Aces",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Aaliyah Nye",
+      "team": "Los Angeles Sparks",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Cameron Brink",
+      "team": "Los Angeles Sparks",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Ndjakalenga Mwenentanda",
+      "team": "Los Angeles Sparks",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Shyanne Sellers",
+      "team": "Los Angeles Sparks",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Anastasiia Olairi Kosu",
+      "team": "Minnesota Lynx",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Elena Buenavida",
+      "team": "Minnesota Lynx",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Elizabeth Balogun",
+      "team": "New York Liberty",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Satou Sabally",
+      "team": "New York Liberty",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Jovana Nogic",
+      "team": "Phoenix Mercury",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kara Dunn",
+      "team": "Phoenix Mercury",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kelsey Plum",
+      "team": "Phoenix Mercury",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Holly Winterburn",
+      "team": "Portland Fire",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Luisa Geiselsoder",
+      "team": "Portland Fire",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Nyadiew Puoch",
+      "team": "Portland Fire",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Sania Feagin",
+      "team": "Portland Fire",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Sarah Ashlee Barker",
+      "team": "Portland Fire",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Teja Oblak",
+      "team": "Portland Fire",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Ezi Magbegor",
+      "team": "Seattle Storm",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Katie Lou Samuelson",
+      "team": "Seattle Storm",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Taina Mair",
+      "team": "Seattle Storm",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Zia Cooke",
+      "team": "Seattle Storm",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Aneesah Morrow",
+      "team": "Toronto Tempo",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Brittney Sykes",
+      "team": "Toronto Tempo",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Kamila Borkowska",
+      "team": "Toronto Tempo",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Maria Conde",
+      "team": "Toronto Tempo",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Maria Gakdeng",
+      "team": "Toronto Tempo",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Marina Mabrey",
+      "team": "Toronto Tempo",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Nyara Sabally",
+      "team": "Toronto Tempo",
+      "status": "OUT"
+    },
+    {
+      "sport": "WNBA",
+      "player": "Temi Fagbenle",
+      "team": "Toronto Tempo",
+      "status": "OUT"
+    }
+  ]
+}

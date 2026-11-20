@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-19",
+  "generated_at": "2026-11-19T10:26:15.249714+00:00",
+  "tickets_path": "H:\\PropORACLE_main_cp\\ui_runner\\templates\\tickets_latest.json",
+  "live_cdp_path": "H:\\PropORACLE_main_cp\\ui_runner\\data\\payout_ladder_live_cdp.json",
+  "rate_card_path": "H:\\PropORACLE_main_cp\\ui_runner\\data\\sg_delta_payout_rate_card_latest.json",
+  "summary": {
+    "n_tickets": 0,
+    "n_with_live_cdp": 0,
+    "n_missing_live_cdp": 0,
+    "n_outstanding_rates": 0,
+    "n_covered": 0
+  },
+  "recipe_counts": {},
+  "missing_live_cdp": [],
+  "outstanding_rates": [],
+  "covered_sample": [],
+  "actions": [
+    {
+      "action": "fill_missing_tickets",
+      "skipped": "none_missing"
+    },
+    {
+      "action": "rebuild_rate_card",
+      "exit_code": 0
+    }
+  ]
+}

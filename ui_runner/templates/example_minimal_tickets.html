@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PropORACLE — example (minimal)</title>
+<style>
+  :root {
+    --bg: #0b0b0b;
+    --fg: #eceae6;
+    --muted: #8a8780;
+    --line: #242422;
+    --accent: #c4a574;
+    --ok: #8fbc8f;
+    --max: 720px;
+    --pad: clamp(20px, 4vw, 40px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg); color: var(--fg); }
+  body {
+    min-height: 100vh;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: var(--pad);
+    padding-bottom: 80px;
+  }
+  header {
+    padding: 8px 0 48px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+  .nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+  .brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .brand span { color: var(--accent); }
+  .links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  .links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .links a[aria-current="page"] { color: var(--fg); }
+  .links a:hover { color: var(--fg); }
+  .lede {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 28em;
+  }
+  .meta {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .meta strong { color: var(--fg); font-weight: 500; }
+
+  section + section { margin-top: 48px; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .slip {
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+  .slip:last-child { border-bottom: 1px solid var(--line); }
+  .slip-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .slip-kind {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .slip-pay {
+    font-variant-numeric: tabular-nums;
+    font-size: 18px;
+    color: var(--fg);
+  }
+  .slip-pay small {
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: 6px;
+  }
+  .legs { list-style: none; }
+  .leg {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 16px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+  .leg + .leg { border-top: 1px solid transparent; }
+  .who { color: var(--fg); }
+  .what {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .side {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .side .dir { color: var(--ok); font-size: 12px; letter-spacing: 0.06em; }
+  .side .line { color: var(--fg); }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-bottom: 8px;
+  }
+  .filters button {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+  }
+  .filters button[aria-pressed="true"] {
+    color: var(--fg);
+    box-shadow: inset 0 -1px 0 var(--accent);
+  }
+  .note {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="nav">
+        <div class="brand">Prop<span>Oracle</span></div>
+        <ul class="links">
+          <li><a href="#" aria-current="page">Tickets</a></li>
+          <li><a href="#">Slate</a></li>
+          <li><a href="#">Grades</a></li>
+        </ul>
+      </div>
+      <p class="lede">Tonight’s board, ranked for hit rate — Goblin-70 first, mixer under.</p>
+      <p class="meta"><strong>Nov 19, 2026</strong> · Eastern · refreshed 6:40 PM</p>
+    </header>
+
+    <div class="filters" role="group" aria-label="Sport">
+      <button type="button" aria-pressed="true">All</button>
+      <button type="button" aria-pressed="false">NBA</button>
+      <button type="button" aria-pressed="false">Soccer</button>
+      <button type="button" aria-pressed="false">Golf</button>
+    </div>
+
+    <section>
+      <h2 class="section-label">Goblin-70</h2>
+
+      <article class="slip">
+        <div class="slip-head">
+          <span class="slip-kind">Power 3 · Goblin</span>
+          <span class="slip-pay">2.30× <small>$20</small></span>
+        </div>
+        <ul class="legs">
+          <li class="leg">
+            <div>
+              <div class="who">Shai Gilgeous-Alexander</div>
+              <div class="what">Points · NBA</div>
+            </div>
+            <div class="side">
+              <div class="dir">OVER</div>
+              <div class="line">22.5</div>
+            </div>
+          </li>
+          <li class="leg">
+            <div>
+              <div class="who">Jalen Brunson</div>
+              <div class="what">Assists · NBA</div>
+            </div>
+            <div class="side">
+              <div class="dir">OVER</div>
+              <div class="line">5.5</div>
+            </div>
+          </li>
+          <li class="leg">
+            <div>
+              <div class="who">Estêvão</div>
+              <div class="what">Shots · Soccer</div>
+            </div>
+            <div class="side">
+              <div class="dir">OVER</div>
+              <div class="line">1.5</div>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="slip">
+        <div class="slip-head">
+          <span class="slip-kind">Power 2 · Goblin</span>
+          <span class="slip-pay">1.85× <small>$20</small></span>
+        </div>
+        <ul class="legs">
+          <li class="leg">
+            <div>
+              <div class="who">Anthony Edwards</div>
+              <div class="what">Points · NBA</div>
+            </div>
+            <div class="side">
+              <div class="dir">OVER</div>
+              <div class="line">24.5</div>
+            </div>
+          </li>
+          <li class="leg">
+            <div>
+              <div class="who">Scottie Scheffler</div>
+              <div class="what">Birdies or better · Golf</div>
+            </div>
+            <div class="side">
+              <div class="dir">OVER</div>
+              <div class="line">3.5</div>
+            </div>
+          </li>
+        </ul>
+      </article>
+    </section>
+
+    <section>
+      <h2 class="section-label">Mixer</h2>
+      <article class="slip">
+        <div class="slip-head">
+          <span class="slip-kind">Power 3 · Mixed</span>
+          <span class="slip-pay">3.25× <small>$20</small></span>
+        </div>
+        <ul class="legs">
+          <li class="leg">
+            <div>
+              <div class="who">Karl-Anthony Towns</div>
+              <div class="what">Rebounds · NBA · Standard</div>
+            </div>
+            <div class="side">
+              <div class="dir">UNDER</div>
+              <div class="line">10.5</div>
+            </div>
+          </li>
+          <li class="leg">
+            <div>
+              <div class="who">Alperen Şengün</div>
+              <div class="what">Pts+Reb+Ast · NBA · Goblin</div>
+            </div>
+            <div class="side">
+              <div class="dir">OVER</div>
+              <div class="line">28.5</div>
+            </div>
+          </li>
+          <li class="leg">
+            <div>
+              <div class="who">Vasco da Gama GK</div>
+              <div class="what">Saves · Soccer · Goblin</div>
+            </div>
+            <div class="side">
+              <div class="dir">OVER</div>
+              <div class="line">2.5</div>
+            </div>
+          </li>
+        </ul>
+      </article>
+    </section>
+
+    <p class="note">Local example only — not the live Railway board. Open this file in a browser to feel the direction.</p>
+  </div>
+  <script>
+    document.querySelectorAll(".filters button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".filters button").forEach(function (b) {
+          b.setAttribute("aria-pressed", "false");
+        });
+        btn.setAttribute("aria-pressed", "true");
+      });
+    });
+  </script>
+</body>
+</html>

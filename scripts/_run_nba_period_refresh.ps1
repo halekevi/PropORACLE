@@ -67,10 +67,24 @@ function Run-NBAPeriodOnly {
 
     Push-Location $NBADir
     try {
-        & py -3 ".\scripts\step1_fetch_prizepicks_api.py" `
-            --league_id $LeagueId --game_mode pickem --per_page 250 --max_pages 5 `
-            --sleep 2.0 --cooldown_seconds 90 --max_cooldowns 3 --jitter_seconds 10.0 `
-            --replace --output $step1 --date $Date
+        $periodArgs = @(
+            ".\scripts\step1_fetch_prizepicks_api.py",
+            "--league_id", $LeagueId, "--game_mode", "pickem",
+            "--per_page", "250", "--max_pages", "20",
+            "--sleep", "2.0", "--cooldown_seconds", "90", "--max_cooldowns", "3",
+            "--jitter_seconds", "10.0", "--replace", "--no-preseason",
+            "--output", $step1, "--date", $Date
+        )
+        $cdpUp = $false
+        try {
+            $tcp = New-Object System.Net.Sockets.TcpClient
+            $iar = $tcp.BeginConnect("127.0.0.1", 9222, $null, $null)
+            $cdpUp = $iar.AsyncWaitHandle.WaitOne(400) -and $tcp.Connected
+            $tcp.Close()
+        } catch { $cdpUp = $false }
+        if ($cdpUp) { $periodArgs += @("--cdp", "http://127.0.0.1:9222") }
+        else { $periodArgs += "--fail-fast" }
+        & py -3.14 @periodArgs
         if ($LASTEXITCODE -ne 0) { throw "step1 failed (exit $LASTEXITCODE)" }
     } finally {
         Pop-Location

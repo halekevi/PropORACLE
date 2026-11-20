@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-19",
+  "runs": [
+    {
+      "run_id": "20261120_003539_027462",
+      "generated_at": "2026-11-20 00:35:37 UTC",
+      "archived_at": "2026-11-20T00:35:39.029195+00:00",
+      "source": "combined_slate_tickets",
+      "n_slips": 11,
+      "n_strong": 9,
+      "path": "ui_runner/data/ticket_runs/2026-11-19/20261120_003539_027462/tickets.json"
+    }
+  ],
+  "latest_run_id": "20261120_003539_027462",
+  "updated_at": "2026-11-20T00:35:39.033047+00:00"
+}

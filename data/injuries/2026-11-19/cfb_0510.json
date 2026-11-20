@@ -1,0 +1,44 @@
+{
+  "sport": "CFB",
+  "date": "2026-11-19",
+  "captured_at": "2026-11-19T10:10:41Z",
+  "n": 3,
+  "meta": {
+    "sport": "CFB",
+    "sources": {
+      "espn": {
+        "n": 3
+      }
+    },
+    "n": 3
+  },
+  "rows": [
+    {
+      "player": "Kahleil Jackson",
+      "team": "Florida Gators",
+      "status": "OUT",
+      "injury": "Jackson (undisclosed) is inactive for Saturday's game against Vanderbilt, G. Allan Taylor of The Athletic reports.",
+      "source": "espn_cfb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "CFB"
+    },
+    {
+      "player": "Braylen Walker",
+      "team": "Rice Owls",
+      "status": "GTD",
+      "injury": "Walker caught four passes for 77 yards and a touchdown versus UNT on Saturday.",
+      "source": "espn_cfb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "CFB"
+    },
+    {
+      "player": "Will Bettridge",
+      "team": "Virginia Cavaliers",
+      "status": "GTD",
+      "injury": "Bettridge made four field goals in Saturday's 14-12 victory over Miami.",
+      "source": "espn_cfb",
+      "captured_at": "2026-11-19T10:10:41Z",
+      "sport": "CFB"
+    }
+  ]
+}

@@ -16739,10 +16739,15 @@ def filter_eligible(
         else pd.Series("", index=df.index)
     )
     nba_fam = sport_s.isin(NBA_FAMILY_SPORTS)
-    rs_n = pd.to_numeric(df.get("current_season_rs_n"), errors="coerce")
-    if (rs_n is None or rs_n.isna().all()) and "Current Season RS N" in df.columns:
-        rs_n = pd.to_numeric(df["Current Season RS N"], errors="coerce")
-    if rs_n is None:
+    # df.get(missing) is None; pd.to_numeric(None) returns a scalar nan (no .isna()).
+    rs_col = None
+    if "current_season_rs_n" in df.columns:
+        rs_col = "current_season_rs_n"
+    elif "Current Season RS N" in df.columns:
+        rs_col = "Current Season RS N"
+    if rs_col is not None:
+        rs_n = pd.to_numeric(df[rs_col], errors="coerce")
+    else:
         rs_n = pd.Series(np.nan, index=df.index)
     thin_rs = nba_fam & (rs_n.isna() | (rs_n < NBA_THIN_RS_MIN))
     _apply_gate(~thin_rs, "nba_thin_current_rs", "after_nba_thin_current_rs")

@@ -1,0 +1,136 @@
+{
+  "date": "2026-11-19",
+  "captured_at": "2026-11-19T06:03:17Z",
+  "hhmm": "0103",
+  "sports": {
+    "NBA": {
+      "n": 124,
+      "path": "data\\injuries\\2026-11-19\\nba_0103.json",
+      "meta": {
+        "sport": "NBA",
+        "sources": {
+          "nba_official_pdf": {
+            "ok": true,
+            "url": "https://ak-static.cms.nba.com/referee/injury/Injury-Report_2026-11-19_12_45AM.pdf",
+            "slot": "12_45AM",
+            "n": 23,
+            "pdf": "H:\\PropORACLE_main_cp\\data\\injuries\\2026-11-19\\raw\\nba_official_2026-11-19_12_45AM.pdf"
+          },
+          "espn": {
+            "n": 101
+          }
+        },
+        "n": 124
+      }
+    },
+    "NFL": {
+      "n": 800,
+      "path": "data\\injuries\\2026-11-19\\nfl_0103.json",
+      "meta": {
+        "sport": "NFL",
+        "sources": {
+          "nflverse": {
+            "n": 0
+          },
+          "espn": {
+            "n": 800
+          }
+        },
+        "n": 800
+      }
+    },
+    "NHL": {
+      "n": 111,
+      "path": "data\\injuries\\2026-11-19\\nhl_0103.json",
+      "meta": {
+        "sport": "NHL",
+        "sources": {
+          "espn": {
+            "n": 111
+          }
+        },
+        "n": 111
+      }
+    },
+    "CFB": {
+      "n": 3,
+      "path": "data\\injuries\\2026-11-19\\cfb_0103.json",
+      "meta": {
+        "sport": "CFB",
+        "sources": {
+          "espn": {
+            "n": 3
+          }
+        },
+        "n": 3
+      }
+    },
+    "CBB": {
+      "n": 0,
+      "path": "data\\injuries\\2026-11-19\\cbb_0103.json",
+      "meta": {
+        "sport": "CBB",
+        "sources": {
+          "espn": {
+            "n": 0
+          }
+        },
+        "n": 0
+      }
+    },
+    "SOCCER": {
+      "n": 0,
+      "path": "data\\injuries\\2026-11-19\\soccer_0103.json",
+      "meta": {
+        "sport": "SOCCER",
+        "sources": {
+          "espn": {
+            "n": 0
+          }
+        },
+        "n": 0
+      }
+    },
+    "TENNIS": {
+      "n": 0,
+      "path": "data\\injuries\\2026-11-19\\tennis_0103.json",
+      "meta": {
+        "sport": "TENNIS",
+        "sources": {
+          "espn_draw": {
+            "n": 0
+          }
+        },
+        "n": 0
+      }
+    },
+    "WNBA": {
+      "n": 44,
+      "path": "data\\injuries\\2026-11-19\\wnba_0103.json",
+      "meta": {
+        "sport": "WNBA",
+        "sources": {
+          "espn": {
+            "n": 44
+          }
+        },
+        "n": 44
+      }
+    },
+    "MLB": {
+      "n": 148,
+      "path": "data\\injuries\\2026-11-19\\mlb_0103.json",
+      "meta": {
+        "sport": "MLB",
+        "sources": {
+          "espn": {
+            "n": 148
+          }
+        },
+        "n": 148
+      }
+    }
+  },
+  "latest_csv": "data\\injuries\\injuries_latest.csv",
+  "n_total": 1230
+}

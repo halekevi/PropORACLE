@@ -1043,17 +1043,31 @@ function Run-NBAPeriodPipeline {
             $argList = @(
                 ".\scripts\step1_fetch_prizepicks_api.py",
                 "--league_id", "$LeagueId", "--game_mode", "pickem",
-                "--per_page", "250", "--max_pages", "5",
+                "--per_page", "250", "--max_pages", "20",
                 "--sleep", "2.0", "--cooldown_seconds", "90", "--max_cooldowns", "3",
-                "--jitter_seconds", "10.0", "--replace", "--output", $step1, "--date", $Date
+                "--jitter_seconds", "10.0", "--replace", "--output", $step1, "--date", $Date,
+                "--no-preseason"
             )
+            $cdpUrl = if ($env:PROPORACLE_CDP_URL) { "$($env:PROPORACLE_CDP_URL)".Trim() } else { "http://127.0.0.1:9222" }
+            $cdpUp = $false
+            try {
+                $tcp = New-Object System.Net.Sockets.TcpClient
+                $iar = $tcp.BeginConnect("127.0.0.1", 9222, $null, $null)
+                $cdpUp = $iar.AsyncWaitHandle.WaitOne(400) -and $tcp.Connected
+                $tcp.Close()
+            } catch { $cdpUp = $false }
+            if ($cdpUp) {
+                $argList += @("--cdp", $cdpUrl)
+            } else {
+                $argList += "--fail-fast"
+            }
             Write-Host "        CMD: py -3.14 $($argList -join ' ')" -ForegroundColor DarkGray
             $out = & py -3.14 @argList 2>&1
             $exit = $LASTEXITCODE
             foreach ($line in $out) { Write-Host "        $line" -ForegroundColor DarkGray }
             if ($exit -ne 0) {
                 $joined = ($out | Out-String)
-                if ($joined -match "No projections returned") {
+                if ($joined -match "No projections returned|BOARD_EMPTY|0 projections|survived=0") {
                     Write-Host "      No live $tagLower board right now — clearing stale period files and skipping." -ForegroundColor DarkGray
                     foreach ($stale in @($step2, $step3, $step4, $step5, $step6, $step7, $step8Csv, $step8Xlsx)) {
                         Remove-Item $stale -Force -ErrorAction SilentlyContinue
@@ -1069,6 +1083,16 @@ function Run-NBAPeriodPipeline {
         }
     } else {
         Write-Host "  [$tagLower] Skipping step1 fetch -- using existing $step1" -ForegroundColor DarkGray
+    }
+
+    # Empty period board is normal (posts later than full-game); do not run steps 2-8.
+    if (Test-Step1NoSlate -CsvPath $step1 -TargetDate $Date) {
+        Write-Host "  [$tagLower] No slate today — skipping steps 2-8." -ForegroundColor DarkGray
+        foreach ($stale in @($step2, $step3, $step4, $step5, $step6, $step7, $step8Csv, $step8Xlsx)) {
+            Remove-Item $stale -Force -ErrorAction SilentlyContinue
+        }
+        Remove-Item $datedOut -Force -ErrorAction SilentlyContinue
+        return $true
     }
 
     if ($ok) { $ok = Run-Step "${tagLower} Step 2 - Attach Pick Types"      $NBADir ".\scripts\step2_attach_picktypes.py"               "--input $step1 --output $step2" }
@@ -1440,13 +1464,14 @@ function Invoke-PropOracleStep7b {
             $step7bExit = [int]$LASTEXITCODE
             foreach ($line in $output) { Write-Host "        $line" -ForegroundColor DarkGray }
             if ($step7bExit -ne 0) {
-                Write-Host "  FAILED: [$SportLabel] step7b (exit $step7bExit)" -ForegroundColor Red
+                # Soft-fail: missing proporacle package / model must not block step8.
+                Write-Host "  WARN: [$SportLabel] step7b exit $step7bExit — continuing to step8" -ForegroundColor Yellow
             } else {
                 Write-Host "  [$SportLabel] step7b: OK" -ForegroundColor Green
             }
         }
     } catch {
-        Write-Host "  FAILED: [$SportLabel] step7b EXCEPTION: $_" -ForegroundColor Red
+        Write-Host "  WARN: [$SportLabel] step7b EXCEPTION: $_ — continuing" -ForegroundColor Yellow
         $step7bExit = 1
     } finally {
         Pop-Location
@@ -1455,7 +1480,6 @@ function Invoke-PropOracleStep7b {
         Write-Host "  FAILED: [$SportLabel] step7 xlsx missing after step7b: $Step7Xlsx" -ForegroundColor Red
         return $false
     }
-    if ($step7bExit -ne 0) { return $false }
     return $true
 }
 
@@ -2797,9 +2821,14 @@ if ($NBAOnly) {
         }
     }
     if ($ok -and (Test-Step1NoSlate -CsvPath $nbaStep1Solo -TargetDate $Date)) {
-        Write-Host "  [NBA] No slate today — skipping steps 2-8." -ForegroundColor DarkGray
+        Write-Host "  [NBA] No slate today — skipping full-game steps 2-8." -ForegroundColor DarkGray
         Clear-NBAGeneratedOutputs -BaseDir $NBARunOutDir
-        Write-PipelineSlateStatusJson -RunDate $Date -Sports @{ nba = "no_slate"; nba1h = "no_slate"; nba1q = "no_slate" }
+        # Period boards post on their own schedule — still try 1H/1Q (do not stamp them no_slate blindly).
+        $p1h = Run-NBAPeriodPipeline -Tag "nba1h" -LeagueId "84" -SkipFetchStep:$SkipFetch
+        $p1q = Run-NBAPeriodPipeline -Tag "nba1q" -LeagueId "192" -SkipFetchStep:$SkipFetch
+        $nba1hStatus = if (-not $p1h) { "failed" } elseif (Test-Path (Join-Path $OutDir "nba1h\step8_nba1h_direction_clean.xlsx")) { "complete" } else { "no_slate" }
+        $nba1qStatus = if (-not $p1q) { "failed" } elseif (Test-Path (Join-Path $OutDir "nba1q\step8_nba1q_direction_clean.xlsx")) { "complete" } else { "no_slate" }
+        Write-PipelineSlateStatusJson -RunDate $Date -Sports @{ nba = "no_slate"; nba1h = $nba1hStatus; nba1q = $nba1qStatus }
         Run-Combined "after NBA (no slate)"
         Print-Done
         exit 0
@@ -4334,10 +4363,11 @@ if ($NBAOffSeason) {
     Write-Host "  [NBA] no slate for $Date — not a failure." -ForegroundColor DarkGray
     Clear-NBAGeneratedOutputs -BaseDir $NBARunOutDir
     $NBASuccess = $true
-    $NBA1HSuccess = $true
-    $NBA1QSuccess = $true
-    $nba1hNoSlate = $true
-    $nba1qNoSlate = $true
+    # Period boards are independent of full-game — still fetch/build 1H/1Q.
+    $NBA1HSuccess = Run-NBAPeriodPipeline -Tag "nba1h" -LeagueId "84" -SkipFetchStep:$SkipFetch
+    $NBA1QSuccess = Run-NBAPeriodPipeline -Tag "nba1q" -LeagueId "192" -SkipFetchStep:$SkipFetch
+    $nba1hNoSlate = $NBA1HSuccess -and -not (Test-Path (Join-Path $OutDir "nba1h\step8_nba1h_direction_clean.xlsx"))
+    $nba1qNoSlate = $NBA1QSuccess -and -not (Test-Path (Join-Path $OutDir "nba1q\step8_nba1q_direction_clean.xlsx"))
 } else {
     $nbaStep1Health = Get-NBAStep1DateHealth -CsvPath $nbaStep1Path -TargetDate $Date
     if (-not $nbaStep1Health.ok) {

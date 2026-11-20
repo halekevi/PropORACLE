@@ -19,7 +19,9 @@
 # CDP payout scrape runs after MLB fill (when board appears), 1AM / 5AM, and each 8AM+ refresh.
 # Standalone 11:00 / 15:00 Payout CDP tasks are retired (use refresh path or manual).
 #
-# Each task opens ONE visible PowerShell console (direct pwsh.exe action).
+# Each task opens ONE visible PowerShell on a NON-primary monitor via
+# Launch_Scheduled_OnSecondary.ps1 (keeps gaming/primary display clear).
+# Interactive logon so CDP/Chrome still work.
 # Do NOT wrap with cmd.exe "start /wait" — that leaves an empty cmd.exe window
 # plus a second titled window. Requires "Run only when user is logged on".
 #
@@ -42,7 +44,7 @@ if (-not $PowerShellExe) {
     exit 1
 }
 Write-Host "Registering tasks with: $PowerShellExe" -ForegroundColor Cyan
-Write-Host "Windows: one visible console (pwsh.exe directly; no cmd start wrapper)" -ForegroundColor Cyan
+Write-Host "Windows: visible console on secondary monitor (Launch_Scheduled_OnSecondary)" -ForegroundColor Cyan
 
 $ScriptDayAhead = Join-Path $PipelineRoot "scripts\run_daily_day_ahead.ps1"
 $ScriptMlbFill = Join-Path $PipelineRoot "scripts\run_mlb_day_ahead_fill.ps1"
@@ -101,11 +103,12 @@ function Register-PropTask {
         [TimeSpan]$ExecutionTimeLimit = (New-TimeSpan -Hours 4)
     )
 
-    # One console only: Task Scheduler runs pwsh.exe with Interactive logon.
-    # (cmd.exe + "start /wait" used to leave an empty cmd window + a second titled window.)
+    # Visible console parked on a non-primary monitor (not the gaming display).
+    $launcher = Join-Path $PipelineRoot "scripts\Launch_Scheduled_OnSecondary.ps1"
     $extra = $ExtraArgs.Trim()
-    $psArgs = "-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`""
-    if ($extra) { $psArgs = "$psArgs $extra" }
+    $title = $TaskName
+    $psArgs = "-NoProfile -ExecutionPolicy Bypass -File `"$launcher`" -File `"$ScriptPath`" -WindowTitle `"$title`""
+    if ($extra) { $psArgs = "$psArgs -ExtraArgs `"$extra`"" }
 
     $action = New-ScheduledTaskAction `
         -Execute $PowerShellExe `
@@ -139,7 +142,7 @@ function Register-PropTask {
         -DontStopIfGoingOnBatteries `
         -MultipleInstances IgnoreNew
 
-    # Interactive = show UI when user is logged on (required for visible window).
+    # Interactive = run in the logged-on user session (needed for CDP / local Chrome).
     $principal = New-ScheduledTaskPrincipal `
         -UserId $env:USERNAME `
         -LogonType Interactive `
@@ -161,7 +164,7 @@ function Register-PropTask {
         -Principal $principal `
         -Force | Out-Null
 
-    Write-Host "  Registered: $TaskName @ $At (visible window)" -ForegroundColor DarkGray
+    Write-Host "  Registered: $TaskName @ $At (visible on secondary monitor)" -ForegroundColor DarkGray
 }
 
 Register-PropTask `

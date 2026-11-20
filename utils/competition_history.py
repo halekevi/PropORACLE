@@ -80,6 +80,16 @@ def normalize_competition_key(sport: object, league: object) -> str:
     raw = re.sub(r"\s+", "", raw)
     if not raw or raw in {"NAN", "NONE", "NULL", "—", "-"}:
         return ""
+    # Soccer: fold display names (MLS, LaLiga) onto ESPN slugs (usa.1, esp.1).
+    if sp == "SOCCER":
+        try:
+            from utils.soccer_league_normalize import competition_key_league
+
+            folded = competition_key_league(league)
+            if folded:
+                raw = folded
+        except Exception:
+            pass
     # Board tags sometimes embed sport; strip.
     for prefix in ("SOCCER", "MLS", "EPL"):
         if raw.startswith(prefix) and raw != prefix:

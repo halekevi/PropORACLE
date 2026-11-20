@@ -438,6 +438,51 @@ else {
     else {
         Write-Host "[LATE_FETCH] NBA: no games on $PipeDate — empty slate kept (morning file not restored)" -ForegroundColor Yellow
     }
+
+    # NBA period boards (1H / 1Q) — post on their own schedule; never skip just because full-game was empty.
+    foreach ($period in @(
+        @{ Tag = "nba1h"; LeagueId = "84"; File = "step1_nba1h_props.csv" },
+        @{ Tag = "nba1q"; LeagueId = "192"; File = "step1_nba1q_props.csv" }
+    )) {
+        Write-Host "[LATE_FETCH] Fetching $($period.Tag) props (league_id=$($period.LeagueId))..." -ForegroundColor Cyan
+        $periodOut = Ensure-RunOutDir -SportTag $period.Tag
+        $periodStep1 = Join-Path $periodOut $period.File
+        $periodArgs = @(
+            "--league_id", $period.LeagueId,
+            "--game_mode", "pickem",
+            "--per_page", "250",
+            "--max_pages", "20",
+            "--retries", "$MaxRetries",
+            "--sleep", "2.0",
+            "--cooldown_seconds", "180",
+            "--max_cooldowns", "4",
+            "--jitter_seconds", "14.0",
+            "--replace",
+            "--no-preseason",
+            "--date", $PipeDate,
+            "--output", $periodStep1
+        )
+        if ($CdpReachable) {
+            $periodArgs += @("--cdp", $CdpUrl)
+        } else {
+            $periodArgs += "--fail-fast"
+        }
+        Push-Location $NBADir
+        try {
+            & py -3.14 ".\scripts\step1_fetch_prizepicks_api.py" @periodArgs
+        } finally {
+            Pop-Location
+        }
+        $periodRows = Get-CsvDataRowCount -CsvPath $periodStep1
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "[LATE_FETCH] $($period.Tag): fetch exit $LASTEXITCODE (rows=$periodRows) — continuing" -ForegroundColor Yellow
+        } elseif ($periodRows -le 0) {
+            Write-Host "[LATE_FETCH] $($period.Tag): no board on $PipeDate (empty is OK)" -ForegroundColor DarkGray
+        } else {
+            Write-Host "[LATE_FETCH] $($period.Tag): $periodRows props" -ForegroundColor Green
+            Copy-Step1Mirror -Source $periodStep1 -MirrorPath (Join-Path $NBADir "data\outputs\$($period.File)")
+        }
+    }
 }
 
 # WNBA — full step1 fetch into dated folder (pipeline -SkipFetch reads this path)

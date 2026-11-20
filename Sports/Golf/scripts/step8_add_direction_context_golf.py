@@ -78,11 +78,21 @@ def write_sheet(wb: Workbook, name: str, df: pd.DataFrame) -> None:
     tier_col = headers.index("Tier") + 1 if "Tier" in headers else None
     for ri, row in enumerate(df.itertuples(index=False), 2):
         for ci, val in enumerate(row, 1):
-            cell = ws.cell(row=ri, column=ci, value=val)
+            if val is None or (isinstance(val, float) and pd.isna(val)):
+                excel_val = None
+            else:
+                try:
+                    excel_val = None if pd.isna(val) else val
+                except (TypeError, ValueError):
+                    excel_val = val
+            # pandas <NA> / NAType is not Excel-safe
+            if type(excel_val).__name__ in {"NAType", "NaTType"}:
+                excel_val = None
+            cell = ws.cell(row=ri, column=ci, value=excel_val)
             cell.border = border
             cell.font = Font(name="Arial", size=9)
             if tier_col and ci == tier_col:
-                tier = str(val or "").strip().upper()
+                tier = str(excel_val or "").strip().upper()
                 bg, fg = TIER_COLORS.get(tier, ("FFFFFF", "000000"))
                 cell.fill = PatternFill("solid", start_color=bg)
                 cell.font = Font(bold=True, color=fg, name="Arial", size=9)

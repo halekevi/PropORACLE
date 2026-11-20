@@ -1,0 +1,258 @@
+{
+  "n_board": 3488,
+  "n_matched": 425,
+  "n_unmatched_log": 3063,
+  "n_out": 10,
+  "n_soft_flag": 387,
+  "n_stale": 3063,
+  "n_minutes_opp": 647,
+  "injuries_csv": "H:\\PropORACLE_main_cp\\data\\injuries\\injuries_latest.csv",
+  "unmatched_sample": [
+    {
+      "sport": "NFL",
+      "player": "Jadeveon Clowney",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Daniel Jones + C.J. Stroud",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Spencer Shrader + Ka'imi Fairbairn",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Tyler Warren + Nico Collins",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jonathan Taylor + David Montgomery",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Spencer Shrader + Ka'imi Fairbairn",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Seth McGowan + Emari Demercado",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Spencer Shrader + Ka'imi Fairbairn",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Spencer Shrader + Ka'imi Fairbairn",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Spencer Shrader + Ka'imi Fairbairn",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Spencer Shrader + Ka'imi Fairbairn",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "A.J. Haulcy",
+      "team": "IND",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bryce Boettcher",
+      "team": "IND",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Calen Bullock",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen Pitre",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Rigoberto Sanchez + Kai Kroeger",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Calen Bullock",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Calen Bullock",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen Pitre",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Derek Stingley Jr.",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Rigoberto Sanchez",
+      "team": "IND",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Calen Bullock",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "A.J. Haulcy",
+      "team": "IND",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Laiatu Latu",
+      "team": "IND",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Adetomiwa Adebawore",
+      "team": "IND",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Bryce Boettcher",
+      "team": "IND",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen Pitre",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Kai Kroeger",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Spencer Shrader + Ka'imi Fairbairn",
+      "team": "IND/HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Calen Bullock",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jalen Pitre",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Jadeveon Clowney",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    },
+    {
+      "sport": "NFL",
+      "player": "Sheldon Rankins",
+      "team": "HOU",
+      "reason": "no_injury_row"
+    }
+  ],
+  "sources": {
+    "NFL": "outputs\\2026-11-19\\nfl\\step8_nfl_direction_clean.xlsx",
+    "NHL": "outputs\\2026-11-19\\step8_nhl_direction_clean_2026-11-19.xlsx",
+    "SOCCER": "outputs\\2026-11-19\\soccer\\step8_soccer_direction_clean.xlsx"
+  },
+  "date": "2026-11-19"
+}

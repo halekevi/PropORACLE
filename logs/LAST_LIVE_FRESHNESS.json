@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-11-20 00:30:02 UTC",
+  "et_now": "2026-11-19 19:30 ET",
+  "url": "https://web-production-f280f.up.railway.app/api/tickets-latest",
+  "expected_dates": [
+    "2026-11-19"
+  ],
+  "ok": false,
+  "level": "FAIL",
+  "reason": "served slate date 2026-11-17 but /tickets should show 2026-11-19; served card generated 62.6h ago (limit 7h at this hour) - publish windows are not landing; served card has no groups",
+  "warnings": [
+    "served mode is 'goblin70', not the dual card"
+  ],
+  "served_date": "2026-11-17",
+  "served_generated_at": "2026-11-17 09:55:10 UTC",
+  "served_mode": "goblin70",
+  "served_groups": 0,
+  "served_tickets": 0,
+  "holds_applied": [],
+  "served_age_hours": 62.58,
+  "max_age_hours": 7.0,
+  "served_has_goblin70": false,
+  "served_has_mixer": false,
+  "origin_main": {
+    "date": "2026-11-17",
+    "generated_at": "2026-11-17 09:55:10 UTC",
+    "mode": "goblin70"
+  },
+  "last_push_at": "2026-11-20 00:30:02 UTC",
+  "push": "error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1081)>; error: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1081)>"
+}
