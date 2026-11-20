@@ -220,9 +220,10 @@ body::after{content:none;display:none;}
   width:100%;
   border:1px solid rgba(255,255,255,.08);
   border-radius:16px;
-  background:rgba(255,255,255,.02);
-  backdrop-filter:blur(16px) saturate(170%);
-  -webkit-backdrop-filter:blur(16px) saturate(170%);
+  background:rgba(12,12,14,.92);
+  /* No backdrop-filter here — it frosts/blurs the slate iframe in Chrome. */
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
   box-shadow:0 6px 24px rgba(0,0,0,.24);
   overflow:hidden;
   box-sizing:border-box;
@@ -1667,7 +1668,7 @@ select option,
 <link rel="stylesheet" href="static/nav-mobile-shared.css?v=20260430schemapage"/>
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
-<link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass3"/>
+<link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -1681,12 +1682,53 @@ select option,
   .empty-title,.props-kpi strong,.hero-title,h1,h2{
     font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;letter-spacing:.08em!important;
   }
-  .snav,.glass-card,.grades-kpi-card,.edge-card,.scard{
+  /* Nav only — never put backdrop-filter on hub/iframe ancestors (frosts slate). */
+  .snav.glass-card,.snav{
+    background:rgba(18,18,18,.72)!important;
+    border-color:rgba(212,175,55,.16)!important;
+    backdrop-filter:blur(22px) saturate(160%)!important;
+    -webkit-backdrop-filter:blur(22px) saturate(160%)!important;
+    box-shadow:0 8px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05)!important;
+  }
+  .grades-kpi-card,.edge-card,.scard{
     background:rgba(255,255,255,.045)!important;
     border-color:rgba(255,255,255,.1)!important;
-    backdrop-filter:blur(16px) saturate(140%)!important;
-    -webkit-backdrop-filter:blur(16px) saturate(140%)!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
     box-shadow:0 4px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.05)!important;
+  }
+  .grades-hub-shell,
+  .iframe-shell,
+  .iframe-shell-stage,
+  .iframe-shell-toolbar,
+  .grades-body,
+  .grades-page,
+  .shell{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+    filter:none!important;
+  }
+  .grades-hub-shell{
+    background:rgba(12,12,14,.92)!important;
+  }
+  .iframe-shell-stage > iframe.grade-frame,
+  iframe.grade-frame{
+    filter:none!important;
+    opacity:1!important;
+    background:#0b0b0b!important;
+  }
+  .empty-state[hidden],
+  #empty-state[hidden],
+  #ticket-empty-state[hidden],
+  .load-overlay.hidden,
+  #load-overlay.hidden{
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+    pointer-events:none!important;
+    z-index:-999!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
   }
   .nav-accent{height:1px!important;opacity:.55!important;background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)!important;}
 </style>

@@ -142,7 +142,7 @@ nav.snav .nav-accent {
   filter: none !important;
 }
 
-/* Glass panels / cards */
+/* Glass panels / cards — avoid generic .card/.panel (hits slate_eval sport-view-panel etc.) */
 .glass-card,
 .stat-card,
 .rd-kpi-card,
@@ -150,14 +150,31 @@ nav.snav .nav-accent {
 .ticket-card,
 .slip-card,
 .mesh-card,
-.rate-card,
-.card,
-.panel {
+.rate-card {
   background: rgba(255, 255, 255, 0.045) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(16px) saturate(140%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+}
+
+/* Grades hub: never frost the slate/ticket iframe */
+body.page-grades .grades-hub-shell,
+body.page-grades .iframe-shell,
+body.page-grades .iframe-shell-stage,
+body.page-grades .iframe-shell-toolbar,
+body.page-grades .shell,
+body.page-grades .grades-body {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+body.page-grades .grades-hub-shell {
+  background: rgba(12, 12, 14, 0.92) !important;
+}
+body.page-grades iframe.grade-frame {
+  filter: none !important;
+  opacity: 1 !important;
 }
 
 /* Soften neon filter chips */
