@@ -95,6 +95,23 @@ def main() -> None:
     work = attach_hit_tracking_columns(df.copy(), sport)
     work["sport"] = sport
     reconcile_signed_edge_abs_dataframe(work)
+    try:
+        from utils.cbb_opp_fill import fill_cbb_opponents
+
+        work, opp_stats = fill_cbb_opponents(
+            work,
+            slate_date=str(args.date or "").strip() or None,
+            league=(
+                "womens-college-basketball" if sport == "WCBB" else "mens-college-basketball"
+            ),
+        )
+        if opp_stats.get("filled"):
+            print(
+                f"[CBB step8] ESPN opp fill +{opp_stats['filled']} "
+                f"(still blank {opp_stats.get('still_blank', 0)})"
+            )
+    except Exception as exc:
+        print(f"[CBB step8] WARN opp fill skipped: {exc}")
     sheets = {"ALL": work}
     if "tier" in work.columns:
         tier = work["tier"].astype(str).str.strip().str.upper()

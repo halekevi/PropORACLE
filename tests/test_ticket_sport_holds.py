@@ -93,10 +93,13 @@ def test_nhl_mixer_held_by_default():
     assert nhl_mixer_tickets_held(env={"PROPORACLE_NHL_MIXER_TICKETS": "1"}) is False
 
 
-def test_cbb_held_until_opening_board_clears():
+def test_cbb_live_by_default_after_opening_board():
+    from utils.ticket_keep_registry import rule_for
     from utils.ticket_sport_holds import CBB_HOLD_REASON, cbb_tickets_held
 
-    assert cbb_tickets_held(env={}) is True
-    assert "opening night" in CBB_HOLD_REASON
-    assert cbb_tickets_held(env={"PROPORACLE_CBB_TICKETS": "1"}) is False
+    assert cbb_tickets_held(env={}) is False
+    assert "PROPORACLE_CBB_TICKETS=0" in CBB_HOLD_REASON
     assert cbb_tickets_held(env={"PROPORACLE_CBB_TICKETS": "0"}) is True
+    assert cbb_tickets_held(env={"PROPORACLE_CBB_TICKETS": "1"}) is False
+    assert rule_for("CBB") is not None
+    assert rule_for("WCBB") is not None

@@ -101,12 +101,25 @@ TICKET_SPORTS = frozenset(
         "NBA1Q",
         "NBA1H",
         "NFL",
+        "NFL1H",
+        "NFL1Q",
         "CFB",
         "CFB1H",
         "CBB",
         "WCBB",
         "Golf",
         "NHL",
+    }
+)
+# NFL / CFB (incl. period boards): ticket floor is directional L5 >= 4.
+# Other sports stay at L5 = 5 on the hard ticket stack.
+TICKET_L5_MIN_GE4 = frozenset(
+    {
+        "NFL",
+        "NFL1H",
+        "NFL1Q",
+        "CFB",
+        "CFB1H",
     }
 )
 TENNIS_SPORTS = frozenset({"Tennis", "TENNIS"})
@@ -188,22 +201,33 @@ def directional_l5(r: dict[str, Any]) -> float | None:
     return _l5(r)
 
 
-def ticket_l5_at_least_5(r: dict[str, Any]) -> bool:
-    """Ticket selection floor. Keep gates rank the pool; L5 must still be 5.
+def ticket_l5_min_for_row(r: dict[str, Any]) -> int:
+    """Minimum directional L5 hits for the ticket stack.
 
-    Five real boxes. INSUFFICIENT_GAMES / NO_DATA / NO_ID fail even if a
-    leftover last5_over looks like 5. NBA uses ``l5_current_season_n``,
-    never a last-season ``l5_window_n``.
+    NFL / CFB (and their 1H/1Q boards) clear at L5 >= 4. Everyone else stays
+    at L5 = 5.
+    """
+    return 4 if _sport(r) in TICKET_L5_MIN_GE4 else 5
+
+
+def ticket_l5_at_least_5(r: dict[str, Any]) -> bool:
+    """Ticket selection floor. Keep gates rank the pool; L5 must still clear.
+
+    Default floor is 5 real boxes. NFL/CFB (incl. period boards) allow L5 >= 4.
+    INSUFFICIENT_GAMES / NO_DATA / NO_ID fail even if a leftover last5_over
+    looks filled. NBA uses ``l5_current_season_n``, never a last-season
+    ``l5_window_n``.
     """
     from utils.stat_attach_guard import attach_status_blocks_l5, l5_box_n
 
     if attach_status_blocks_l5(r.get("stat_status") or r.get("Stat Status")):
         return False
+    need = ticket_l5_min_for_row(r)
     n = l5_box_n(r)
-    if n is not None and n < 5:
+    if n is not None and n < need:
         return False
     l5 = directional_l5(r)
-    return l5 is not None and l5 >= 5
+    return l5 is not None and l5 >= need
 
 
 def _l10(r: dict[str, Any]) -> float | None:
@@ -506,19 +530,19 @@ def ticket_gate_passes(r: dict[str, Any]) -> bool:
     if sport in {"CFB", "CFB1H"} and cfb_ticket_fade(r):
         return False
     # NFL receiving_yards UNDER: L5=5 is anti-edge (W1+W2 4/10 vs base 75/120).
-    # Skip L5=5 only; still require L10>=8 + D below.
-    skip_l5 = sport == "NFL" and nfl_std_under_skips_l5_eq5(r)
+    # Skip L5 floor only; still require L10>=8 + D below.
+    skip_l5 = sport in {"NFL", "NFL1H", "NFL1Q"} and nfl_std_under_skips_l5_eq5(r)
     if not skip_l5 and not ticket_l5_at_least_5(r):
         return False
     from utils.nba_minutes_role import ticket_minutes_fail_closed
     if ticket_minutes_fail_closed(r):
         return False
-    # NFL: PRIOR_SEASON_FILL can make face L5=5; tickets need an assembled
-    # 5-row window (ALLOW_CROSS_SEASON_L5) or current-season n>=5.
-    if sport == "NFL" and not skip_l5 and not nfl_current_season_l5_ok(r):
+    # NFL: PRIOR_SEASON_FILL can make face L5 look full; tickets need an
+    # assembled window (ALLOW_CROSS_SEASON_L5) or current-season n>=floor.
+    if sport in {"NFL", "NFL1H", "NFL1Q"} and not skip_l5 and not nfl_current_season_l5_ok(r):
         return False
     # CFB/CFB1H: step5b PRIOR_SEASON_FILL (weeks 0–5) pads face L5/L10 from
-    # this player's last-year boxes. Tickets use that face L5 (=5) — they do
+    # this player's last-year boxes. Tickets use that face L5 (>=4) — they do
     # not also require l5_sample_n>=5 (that stays current-season for honesty).
     # Diamond/Platinum stay capped on PRIOR_* in the ranker.
     l10 = _l10(r)
@@ -582,8 +606,8 @@ def goblin_70_eligible(r: dict[str, Any]) -> bool:
         return False
     sport = _sport(r)
     prop = _prop(r)
-    # NFL Goblin OVER held until tagged unique-game ledger answers keep questions.
-    if sport == "NFL":
+    # NFL Goblin OVER (full + period boards) uses wave-1 keep props.
+    if sport in {"NFL", "NFL1H", "NFL1Q"}:
         if not NFL_GOBLIN_TICKETS_ENABLED:
             return False
         if not nfl_goblin_ticket_eligible(r):

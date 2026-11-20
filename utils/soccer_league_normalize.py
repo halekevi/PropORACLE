@@ -26,6 +26,7 @@ NAME_TO_SLUG: dict[str, str] = {
     "LALIGAHYPERMOTION": "esp.2",
     "SERIEA": "ita.1",
     "SERIEB": "ita.2",
+    # Liga MX / MLS already mapped below; display names fold via _fold_label.
     "BUNDESLIGA": "ger.1",
     "2.BUNDESLIGA": "ger.2",
     "2BUNDESLIGA": "ger.2",

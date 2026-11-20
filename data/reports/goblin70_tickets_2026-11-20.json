@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-20",
+  "built_at": "2026-11-20T15:23:21-05:00",
+  "step8_root": "H:\\PropORACLE_main_cp",
+  "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
+  "pool": {
+    "goblin_70": 0,
+    "goblin_70_raw": 0,
+    "standard_allowlist": 0,
+    "standard_allowlist_raw": 0,
+    "standard_yolo": 0,
+    "standard_yolo_raw": 0,
+    "nflp_goblin": 0,
+    "nflp_goblin_raw": 0
+  },
+  "goblin_pool": [],
+  "standard_pool": [],
+  "standard_yolo_pool": [],
+  "nflp_pool": [],
+  "tickets": [],
+  "pra_off_observe": {
+    "n": 0,
+    "n_already_live": 0,
+    "n_proposed": 0
+  },
+  "threes_vol_observe": {
+    "n": 0,
+    "n_already_live": 0,
+    "n_proposed": 0
+  },
+  "std_under_watch": {
+    "n": 0,
+    "decided": 0,
+    "hr": null,
+    "wilson_lo": null
+  },
+  "nfl_std_under_shadow": {
+    "track": "nfl_std_under_shadow",
+    "placed": false,
+    "face_verified_board": false,
+    "n_legs": 0,
+    "n_rule4_blocked": 0,
+    "n_slips": {
+      "rule4_applied": 0,
+      "rule4_waived": 0
+    },
+    "skipped": {},
+    "legs": []
+  }
+}

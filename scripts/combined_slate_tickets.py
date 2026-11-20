@@ -704,8 +704,13 @@ def apply_default_sport_inputs(args: argparse.Namespace) -> None:
         )
 
     if not str(args.cbb).strip():
+        # Prefer step8 (NBA-parity clean board); fall back to ranked step6.
         args.cbb = _required_placeholder(
+            os.path.join(out, "cbb", "step8_cbb_direction_clean.xlsx"),
+            os.path.join(out, "cbb", f"step8_cbb_direction_clean_{d}.xlsx"),
+            os.path.join(out, f"step8_cbb_direction_clean_{d}.xlsx"),
             os.path.join(out, "cbb", "step6_ranked_cbb.xlsx"),
+            os.path.join(REPO_ROOT, "Sports", "CBB", "step8_cbb_direction_clean.xlsx"),
             os.path.join(REPO_ROOT, "Sports", "CBB", "step6_ranked_cbb.xlsx"),
             os.path.join(REPO_ROOT, "CBB", "step6_ranked_cbb.xlsx"),
         )
@@ -4992,6 +4997,11 @@ def _sport_ticket_gated(sport: str) -> tuple[bool, str]:
 
         if nba_mixer_tickets_held():
             return True, NBA_MIXER_HOLD_REASON
+    if su in {"CBB", "WCBB"}:
+        from utils.ticket_sport_holds import CBB_HOLD_REASON, cbb_tickets_held
+
+        if cbb_tickets_held():
+            return True, CBB_HOLD_REASON
     if su == "NHL":
         from utils.ticket_sport_holds import NHL_MIXER_HOLD_REASON, nhl_mixer_tickets_held
 
@@ -13945,8 +13955,12 @@ def load_nba(path: str) -> pd.DataFrame:
 
 # ── Load & normalize CBB ───────────────────────────────────────────────────────
 def load_cbb(path: str) -> pd.DataFrame:
-    path = resolve_input_path(path, fallback_filename="step6_ranked_cbb.xlsx")
-    df = _read_pipeline_table(path, sheet_order=("ELIGIBLE", "ALL"))
+    # Prefer the step8 clean board (same role as NBA step8); step6 is fallback.
+    resolved = resolve_input_path(path, fallback_filename="step8_cbb_direction_clean.xlsx")
+    if not resolved or not os.path.isfile(str(resolved)):
+        resolved = resolve_input_path(path, fallback_filename="step6_ranked_cbb.xlsx")
+    path = resolved or path
+    df = _read_pipeline_table(path, sheet_order=("ALL", "ELIGIBLE"))
 
     df = df.rename(
         columns={
@@ -14038,6 +14052,21 @@ def load_cbb(path: str) -> pd.DataFrame:
         df["is_tournament_game"] = ((_ts.notna()) & (_ts > 0)) | ((_os.notna()) & (_os > 0))
     else:
         df["is_tournament_game"] = False
+
+    # ESPN scoreboard fill when PP only posted one side (NBA-parity opp context).
+    try:
+        from utils.cbb_opp_fill import fill_cbb_opponents
+
+        slate = str(_COMBINED_SLATE_DATE or "").strip()[:10]
+        df, _opp_stats = fill_cbb_opponents(df, slate_date=slate or None)
+        if _opp_stats.get("filled"):
+            print(
+                f"[load_cbb] ESPN opp fill +{_opp_stats['filled']} "
+                f"(still blank {_opp_stats.get('still_blank', 0)}; "
+                f"events={_opp_stats.get('events', 0)})"
+            )
+    except Exception as exc:
+        print(f"[load_cbb] WARN opp fill skipped: {exc}")
 
     return df
 

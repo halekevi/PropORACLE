@@ -1,11 +1,12 @@
 """Which sports have a ticket rule, and whether it replaces L5/L10/D.
 
-A sport with no entry is off. NHL, CBB, and WCBB stay unregistered. NHL
-Shots On Goal still has no cell to ticket from. NBA full-game and NBA1H
-stay unregistered: the default L5=5+L10>=8+D stack is -EV in the Goblin
-backtest (0.668 vs ~0.737 breakeven). Mixer/Standard NBA is held until
-step7b scores. See ``utils.ticket_sport_holds``. Holds (thin competitions
-such as a World Cup) are applied by the caller before this lookup.
+A sport with no entry is off. NHL stays unregistered (no keep cell yet).
+NBA full-game and NBA1H stay unregistered: the default L5=5+L10>=8+D stack
+is -EV in the Goblin backtest (0.668 vs ~0.737 breakeven). Mixer/Standard
+NBA is held until step7b scores. CBB / WCBB use the default stack once the
+board clears opening-night checks. See ``utils.ticket_sport_holds``. Holds
+(thin competitions such as a World Cup) are applied by the caller before
+this lookup.
 """
 from __future__ import annotations
 
@@ -51,8 +52,12 @@ SPORT_RULES: dict[str, tuple[str, RuleFn | None]] = {
     "GOLF": ("replace", golf_ticket_eligible),
     "PGA": ("replace", golf_ticket_eligible),
     # Keep-list props, then the default stack (some Unders skip L5=5).
+    # Period boards share the same NFL keep list; ticket L5 floor is >=4.
     "NFL": ("add", nfl_keep_allows),
+    "NFL1H": ("add", nfl_keep_allows),
+    "NFL1Q": ("add", nfl_keep_allows),
     # Default stack, then fade player TDs, rec-yards Under, rush att, kick pts.
+    # Ticket L5 floor is >=4 for CFB / CFB1H.
     "CFB": ("add", lambda r: not cfb_ticket_fade(r)),
     "CFB1H": ("add", lambda r: not cfb_ticket_fade(r)),
     # Default stack. WNBA line cuts (assists, rebounds, PRA, cover) stay in
@@ -60,6 +65,9 @@ SPORT_RULES: dict[str, tuple[str, RuleFn | None]] = {
     "WNBA": ("add", None),
     "WNBA1Q": ("add", None),
     "WNBA1H": ("add", None),
+    # Default L5=5 + L10>=8 + directional D (same stack shape as WNBA).
+    "CBB": ("add", None),
+    "WCBB": ("add", None),
 }
 
 
