@@ -551,28 +551,40 @@ def main():
         prop = str(row.get(prop_col,        "")).strip()
         line = row.get("line", None)
 
-        # When team_id is missing, fall through to ID-only then name-only matching.
-        # Handles CBB props where ESPN team_id was never resolved by step5a,
-        # and also covers slates processed by attach_cbb_athlete_ids (espn_id present
-        # but team_id blank).
-        if not tid:
-            games = []
-            # Strategy A: espn_athlete_id across all teams (fastest, most accurate)
-            if aid:
-                for (t, a), g in hist_aid.items():
-                    if a == aid:
-                        games.extend(g)
-            # Strategy B: player_norm across all teams (name-only fallback)
-            if not games and pn:
-                for (t, p), g in hist_name.items():
-                    if p == pn:
-                        games.extend(g)
-            if not games:
-                stat_status.append("NO_BOX_HISTORY"); out_rows.append({}); continue
-        else:
+        # Prefer athlete_id across ALL teams (transfers: Duke→Indiana keeps same
+        # espn_athlete_id but team_id changes). Stale map team_id alone would
+        # otherwise attach last-school bench minutes and wipe L5.
+        games = []
+        if aid:
+            for (_t, a), g in hist_aid.items():
+                if a == aid:
+                    games.extend(g)
+        if not games and tid:
             games = (hist_aid.get((tid, aid), []) if aid else []) or hist_name.get((tid, pn), [])
+        if not games and pn:
+            for (_t, p), g in hist_name.items():
+                if p == pn:
+                    games.extend(g)
         if not games:
             stat_status.append("NO_BOX_HISTORY"); out_rows.append({}); continue
+        # Newest-first + dedupe event_id when merging transfer history.
+        try:
+            games = sorted(
+                games,
+                key=lambda g: str(g.get("game_date") or ""),
+                reverse=True,
+            )
+            seen_e, deduped = set(), []
+            for g in games:
+                eid = str(g.get("event_id") or "")
+                if eid and eid in seen_e:
+                    continue
+                if eid:
+                    seen_e.add(eid)
+                deduped.append(g)
+            games = deduped
+        except Exception:
+            pass
 
         played = [g for g in games if float(g.get("MIN", 0) or 0) > 0]
         vals = [float(v) for g in played

@@ -192,6 +192,8 @@ pp_player_id,espn_athlete_id,team_id,player_name,team_abbr,source,updated_at
 280069,5311928,2628,xavier edmonds,TCU,name_team,2026-03-16
 280076,5243212,61,kanon catchings,UGA,name_team,2026-03-16
 280086,5105527,96,denzel aberdeen,UK,name_team,2026-03-20
+280107,4873219,30,jacob cofie,USC,name_team,2026-11-19
+280108,4684634,30,rodney rice,USC,name_team,2026-11-19
 280129,5105445,228,dillon hunter,CLEM,name_team,2026-03-16
 280136,5176232,258,sam lewis,UVA,name_team,2026-03-16
 280140,4565698,2599,bryce hopkins,SJU,name_team,2026-03-16
@@ -308,6 +310,7 @@ pp_player_id,espn_athlete_id,team_id,player_name,team_abbr,source,updated_at
 297665,5144166,142,t o barrett,MIZZ,name_only,2026-03-20
 298406,5254340,167,uriah tenette,UNM,name_team,2026-03-21
 299262,5238200,57,urban klavzar,FLA,name_team,2026-03-21
+299640,5144495,30,alijah arenas,USC,name_team,2026-11-19
 300001,5041937,150,cayden boozer,DUKE,name_team,2026-03-20
 300012,5236333,2603,austin williford,JOES,name_team,2026-03-21
 300723,5105859,193,antwone woolfolk,M-OH,name_team,2026-03-20
@@ -402,6 +405,24 @@ pp_player_id,espn_athlete_id,team_id,player_name,team_abbr,source,updated_at
 310701,5196914,2633,amari evans,TENN,name_team,2026-03-29
 310702,5142710,2633,dewayne brown,TENN,name_team,2026-03-29
 310703,5311527,2633,ethan burg,TENN,name_team,2026-03-29
+360290,4873093,99,dedan thomas,HOU,name_only,2026-11-19
+360293,5108093,2309,delrecco gillespie,HOU,name_only,2026-11-19
+360315,5101660,248,chase mccarty,HOU,name_team,2026-11-19
+360838,4873184,84,aiden sherrell,IU,map_transfer,2026-11-20
+360839,5060730,84,jaeden mustaf,IU,map_transfer,2026-11-20
+361542,5313054,265,ace glass,VAN,name_only,2026-11-19
+361543,5174982,158,berke buyuktuncel,VAN,name_only,2026-11-19
+361544,5095154,2,sebastian williams adams,VAN,name_only,2026-11-19
+361731,5144111,2509,antione west,PUR,name_team,2026-11-20
+362477,5101664,221,nojus indrusaitis,CAL,name_only,2026-11-19
+362667,4873107,84,darren harris,IU,map_transfer,2026-11-20
+362668,5101623,84,markus burton,IU,map_transfer,2026-11-20
+363041,4897438,2509,trey kaufman renn,KU,name_only,2026-11-19
+365337,5142609,154,juke harris,TENN,name_only,2026-11-19
+365339,5174609,2350,miles rubin,TENN,name_only,2026-11-19
+365349,5314225,2649,leroy blyden,KU,name_only,2026-11-19
+366263,5312425,324,tristan thompson,CCAR,name_only,2026-11-19
+366264,5313368,193,trey perry,CCAR,name_only,2026-11-19
 88130,5105837,194,bruce thornton,OSU,name_team,2026-03-16
 88238,5105853,2509,fletcher loyer,PUR,name_team,2026-03-15
 88458,4698719,8,trevon brazile,ARK,name_team,2026-03-15

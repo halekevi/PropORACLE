@@ -80,6 +80,8 @@ PROP_NORM_MAP = {
 TEAM_ALIASES = {
     "GCU": "GC", "NEVADA": "NEV", "SDST": "SDSU",
     "MIZ": "MIZZ", "NCSU": "NCST", "GTECH": "GT",
+    # PrizePicks uses IND; ESPN master uses IU for Indiana Hoosiers.
+    "IND": "IU",
 }
 
 

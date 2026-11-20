@@ -57,6 +57,8 @@ TEAM_ALIASES: Dict[str, str] = {
     "MIZ":   "MIZZ",
     "NCSU":  "NCST",
     "GTECH": "GT",
+    # PrizePicks uses IND; ESPN master uses IU for Indiana Hoosiers.
+    "IND":   "IU",
     "":      "",
 }
 

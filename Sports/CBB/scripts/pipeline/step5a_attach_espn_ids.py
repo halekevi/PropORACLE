@@ -66,6 +66,17 @@ HEADERS      = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 PP_MAP_COLS  = ["pp_player_id", "espn_athlete_id", "team_id",
                 "player_name", "team_abbr", "source", "updated_at"]
 
+# PrizePicks vs ESPN master abbr mismatches (keep in sync with step2 TEAM_ALIASES).
+TEAM_ABBR_ALIASES = {
+    "IND": "IU",
+    "IU": "IU",
+}
+
+
+def canon_team_abbr(s: str) -> str:
+    t = str(s or "").strip().upper()
+    return TEAM_ABBR_ALIASES.get(t, t)
+
 
 # ── Normalizer (must match step2 + step5b exactly) ───────────────────────────
 
@@ -249,7 +260,7 @@ def main():
     for _, row in df.iterrows():
         raw_pid  = str(row.get(pid_col, "")).strip()   if pid_col  else ""
         raw_name = str(row.get(player_col, "")).strip()
-        raw_team = str(row.get(team_col, "")).strip().upper() if team_col else ""
+        raw_team = canon_team_abbr(str(row.get(team_col, "")).strip().upper() if team_col else "")
         n = norm_name(raw_name)
 
         # ── Bouncer (row-level): keep row, don't poison downstream ────────────
@@ -264,9 +275,28 @@ def main():
         # ── Strategy 1: PP ID map lookup (collision-safe) ────────────────────
         if raw_pid and raw_pid in pp_map:
             entry = pp_map[raw_pid]
-            team_ids.append(entry["team_id"])
-            athlete_ids.append(entry["espn_athlete_id"])
-            statuses.append("OK_MAP")
+            aid = str(entry.get("espn_athlete_id") or "").strip()
+            tid = str(entry.get("team_id") or "").strip()
+            map_abbr = str(entry.get("team_abbr") or "").strip().upper()
+            # Transfer / IND↔IU: keep athlete_id, refresh team_id to tonight's club.
+            if raw_team and map_abbr and raw_team != map_abbr:
+                hit = map_name_team.get((n, raw_team))
+                if hit:
+                    tid, aid = hit[0], hit[1] or aid
+                else:
+                    # Same athlete on a new abbr — take team_id from any master row
+                    # with this abbr (first athlete on that roster is fine for tid).
+                    for (nn, tt), (t2, _a2) in map_name_team.items():
+                        if tt == raw_team and t2:
+                            tid = t2
+                            break
+                add_to_pp_map(pp_map, raw_pid, aid, tid, raw_name, raw_team, "map_transfer")
+                map_updated = True
+                statuses.append("OK_MAP_TRANSFER")
+            else:
+                statuses.append("OK_MAP")
+            team_ids.append(tid)
+            athlete_ids.append(aid)
             continue
 
         # ── Strategy 2a: name + team from master ─────────────────────────────
@@ -283,16 +313,27 @@ def main():
             continue
 
         # ── Strategy 2b: name-only from master ───────────────────────────────
+        # Only accept when master team matches slate team (or master has no team).
+        # Otherwise transfers (Darren Harris Duke→Indiana) poison IND with Duke boxes.
         result = map_name_only.get(n)
         if result:
             tid, aid = result
-            team_ids.append(tid)
-            athlete_ids.append(aid)
-            statuses.append("OK_NAME")
-            if raw_pid:
-                add_to_pp_map(pp_map, raw_pid, aid, tid, raw_name, raw_team, "name_only")
-                map_updated = True
-            continue
+            master_abbr = ""
+            for (nn, tt), (t2, a2) in map_name_team.items():
+                if a2 == aid:
+                    master_abbr = tt
+                    break
+            if raw_team and master_abbr and raw_team != master_abbr:
+                # Wrong school — fall through to ESPN search.
+                pass
+            else:
+                team_ids.append(tid)
+                athlete_ids.append(aid)
+                statuses.append("OK_NAME")
+                if raw_pid:
+                    add_to_pp_map(pp_map, raw_pid, aid, tid, raw_name, raw_team, "name_only")
+                    map_updated = True
+                continue
 
         # ── Strategy 3: ESPN live search ─────────────────────────────────────
         if not args.no_espn and raw_name:

@@ -12158,8 +12158,9 @@ def dataframe_to_slate_sport_rows(df: Optional[pd.DataFrame]) -> List[dict]:
             if l5a is not None:
                 row["projection"] = l5a
 
-        # Gap = line − L5 avg (Props Board). Prefer avg_vs_line when step8 already has it.
-        gap_v = g("avg_vs_line") or g("l5_gap") or g("gap")
+        # Gap = line − L5 avg (Props Board). Do NOT use avg_vs_line here — on CBB
+        # that field is often a ratio (~0.8), not a point gap.
+        gap_v = g("l5_gap") or g("gap")
         if gap_v is None:
             try:
                 line_v = float(row.get("line")) if row.get("line") is not None else None
