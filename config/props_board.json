@@ -1,0 +1,609 @@
+{
+  "version": 1,
+  "as_of": "2026-11-20",
+  "notes": "Props Board groups per sport. Period boards are separate keys. Sport selector uses config/active_sports.json.",
+  "columns": [
+    "side",
+    "player",
+    "team",
+    "prop",
+    "line",
+    "l5_avg",
+    "gap",
+    "sd",
+    "l10",
+    "l20",
+    "games_played"
+  ],
+  "missing_display": "n/a",
+  "sports": {
+    "nba": {
+      "key": "nba",
+      "props_catalog": [
+        "Points",
+        "Pts+Rebs+Asts",
+        "Pts+Rebs",
+        "Rebounds",
+        "Pts+Asts",
+        "Rebs+Asts",
+        "Assists",
+        "3-PT Made",
+        "Steals",
+        "Blocked Shots",
+        "Turnovers",
+        "Two Pointers Made",
+        "Free Throws Attempted",
+        "Personal Fouls",
+        "Two Pointers Attempted",
+        "Blks+Stls",
+        "FG Attempted",
+        "Free Throws Made",
+        "Fantasy Score",
+        "3-PT Attempted",
+        "FG Made",
+        "Dunks",
+        "Double-Double",
+        "Points (Combo)",
+        "Offensive Rebounds",
+        "3-PT Made (Combo)",
+        "Rebounds (Combo)",
+        "Assists (Combo)",
+        "Triple-Double"
+      ],
+      "groups": [
+        {
+          "name": "Scoring combos",
+          "props": [
+            "Points",
+            "Pts+Rebs",
+            "Pts+Asts",
+            "Pts+Rebs+Asts"
+          ]
+        },
+        {
+          "name": "Other props",
+          "props": [
+            "Rebounds",
+            "Rebs+Asts",
+            "Assists",
+            "3-PT Made",
+            "Steals",
+            "Blocked Shots",
+            "Turnovers",
+            "Two Pointers Made",
+            "Free Throws Attempted",
+            "Personal Fouls",
+            "Two Pointers Attempted",
+            "Blks+Stls",
+            "FG Attempted",
+            "Free Throws Made",
+            "Fantasy Score",
+            "3-PT Attempted",
+            "FG Made",
+            "Dunks",
+            "Double-Double",
+            "Points (Combo)",
+            "Offensive Rebounds",
+            "3-PT Made (Combo)",
+            "Rebounds (Combo)",
+            "Assists (Combo)",
+            "Triple-Double"
+          ]
+        }
+      ]
+    },
+    "nba1h": {
+      "key": "nba1h",
+      "props_catalog": [
+        "Fantasy Score",
+        "Points",
+        "Pts+Rebs+Asts"
+      ],
+      "groups": [
+        {
+          "name": "Scoring combos",
+          "props": [
+            "Points",
+            "Pts+Rebs",
+            "Pts+Asts",
+            "Pts+Rebs+Asts"
+          ]
+        },
+        {
+          "name": "Other props",
+          "props": [
+            "Fantasy Score"
+          ]
+        }
+      ],
+      "period": true
+    },
+    "nba1q": {
+      "key": "nba1q",
+      "props_catalog": [
+        "Assists",
+        "Points",
+        "Rebounds"
+      ],
+      "groups": [
+        {
+          "name": "Scoring combos",
+          "props": [
+            "Points",
+            "Pts+Rebs",
+            "Pts+Asts",
+            "Pts+Rebs+Asts"
+          ]
+        },
+        {
+          "name": "Other props",
+          "props": [
+            "Assists",
+            "Rebounds"
+          ]
+        }
+      ],
+      "period": true
+    },
+    "cbb": {
+      "key": "cbb",
+      "props_catalog": [
+        "Points",
+        "Pts+Rebs+Asts",
+        "Pts+Rebs",
+        "Rebounds",
+        "Pts+Asts",
+        "Assists",
+        "3-PT Made",
+        "Steals",
+        "Rebs+Asts",
+        "Blocked Shots",
+        "Turnovers"
+      ],
+      "groups": [
+        {
+          "name": "Scoring combos",
+          "props": [
+            "Points",
+            "Pts+Rebs",
+            "Pts+Asts",
+            "Pts+Rebs+Asts"
+          ]
+        },
+        {
+          "name": "Other props",
+          "props": [
+            "Rebounds",
+            "Assists",
+            "3-PT Made",
+            "Steals",
+            "Rebs+Asts",
+            "Blocked Shots",
+            "Turnovers"
+          ]
+        }
+      ]
+    },
+    "wcbb": {
+      "key": "wcbb",
+      "props_catalog": [
+        "Points"
+      ],
+      "groups": [
+        {
+          "name": "Scoring combos",
+          "props": [
+            "Points",
+            "Pts+Rebs",
+            "Pts+Asts",
+            "Pts+Rebs+Asts"
+          ]
+        },
+        {
+          "name": "Other props",
+          "props": []
+        }
+      ]
+    },
+    "nhl": {
+      "key": "nhl",
+      "props_catalog": [
+        "Assists",
+        "Blocked Shots",
+        "Faceoffs Won",
+        "Goals",
+        "Hits",
+        "Plus/Minus",
+        "Points",
+        "Power Play Points",
+        "Shots On Goal",
+        "Time On Ice"
+      ],
+      "groups": [
+        {
+          "name": "Points + Goals",
+          "props": [
+            "Points",
+            "Goals"
+          ]
+        },
+        {
+          "name": "Other props",
+          "props": [
+            "Assists",
+            "Blocked Shots",
+            "Faceoffs Won",
+            "Hits",
+            "Plus/Minus",
+            "Power Play Points",
+            "Shots On Goal",
+            "Time On Ice"
+          ]
+        }
+      ]
+    },
+    "nhl1p": {
+      "key": "nhl1p",
+      "props_catalog": [
+        "Assists",
+        "Goals",
+        "Points",
+        "Shots On Goal"
+      ],
+      "groups": [
+        {
+          "name": "Points + Goals",
+          "props": [
+            "Points",
+            "Goals"
+          ]
+        },
+        {
+          "name": "Other props",
+          "props": [
+            "Assists",
+            "Shots On Goal"
+          ]
+        }
+      ],
+      "period": true
+    },
+    "nfl": {
+      "key": "nfl",
+      "props_catalog": [
+        "anytime_tds",
+        "anytime_tds_combo",
+        "completion_percentage",
+        "completions_in_first_10_pass_attempts",
+        "consecutive_pass_completions",
+        "fantasy_score",
+        "fg_made",
+        "fg_made_combo",
+        "field_goal_yards_combo",
+        "first_fg_distance_combo",
+        "halves_with_25_receiving_yards",
+        "halves_with_25_rush_yards",
+        "halves_with_40_receiving_yards",
+        "int",
+        "kicking_points",
+        "kicking_points_combo",
+        "last_fg_distance_combo",
+        "longest_completion",
+        "longest_fg_made_yds_combo",
+        "longest_reception",
+        "longest_rush",
+        "pass_attempts",
+        "pass_completions",
+        "pass_rush_yds",
+        "pass_yards_combo",
+        "passer_rating",
+        "passing_tds",
+        "passing_yards",
+        "punt_touchbacks_combo",
+        "punts",
+        "punts_combo",
+        "punts_inside_20",
+        "quarters_with_1_reception",
+        "quarters_with_5_receiving_yards",
+        "quarters_with_5_rush_yards",
+        "rec_targets",
+        "receiving_yards",
+        "receiving_yards_combo",
+        "receptions",
+        "rush_attempts",
+        "rush_rec_yds",
+        "rush_tds",
+        "rush_yards_combo",
+        "rushing_yards",
+        "sacks",
+        "sacks_taken",
+        "shortest_fg_made_yds_combo",
+        "tackles_ast"
+      ],
+      "groups": [
+        {
+          "name": "All props",
+          "props": [
+            "anytime_tds",
+            "anytime_tds_combo",
+            "completion_percentage",
+            "completions_in_first_10_pass_attempts",
+            "consecutive_pass_completions",
+            "fantasy_score",
+            "fg_made",
+            "fg_made_combo",
+            "field_goal_yards_combo",
+            "first_fg_distance_combo",
+            "halves_with_25_receiving_yards",
+            "halves_with_25_rush_yards",
+            "halves_with_40_receiving_yards",
+            "int",
+            "kicking_points",
+            "kicking_points_combo",
+            "last_fg_distance_combo",
+            "longest_completion",
+            "longest_fg_made_yds_combo",
+            "longest_reception",
+            "longest_rush",
+            "pass_attempts",
+            "pass_completions",
+            "pass_rush_yds",
+            "pass_yards_combo",
+            "passer_rating",
+            "passing_tds",
+            "passing_yards",
+            "punt_touchbacks_combo",
+            "punts",
+            "punts_combo",
+            "punts_inside_20",
+            "quarters_with_1_reception",
+            "quarters_with_5_receiving_yards",
+            "quarters_with_5_rush_yards",
+            "rec_targets",
+            "receiving_yards",
+            "receiving_yards_combo",
+            "receptions",
+            "rush_attempts",
+            "rush_rec_yds",
+            "rush_tds",
+            "rush_yards_combo",
+            "rushing_yards",
+            "sacks",
+            "sacks_taken",
+            "shortest_fg_made_yds_combo",
+            "tackles_ast"
+          ],
+          "todo": "Choose group splits"
+        }
+      ]
+    },
+    "nfl1q": {
+      "key": "nfl1q",
+      "props_catalog": [
+        "anytime_tds",
+        "fantasy_score",
+        "fg_made_combo",
+        "int",
+        "pass_attempts",
+        "pass_completions",
+        "passing_tds",
+        "passing_yards",
+        "receiving_yards",
+        "receptions",
+        "rushing_yards"
+      ],
+      "groups": [
+        {
+          "name": "All props",
+          "props": [
+            "anytime_tds",
+            "fantasy_score",
+            "fg_made_combo",
+            "int",
+            "pass_attempts",
+            "pass_completions",
+            "passing_tds",
+            "passing_yards",
+            "receiving_yards",
+            "receptions",
+            "rushing_yards"
+          ],
+          "todo": "Choose group splits"
+        }
+      ],
+      "period": true
+    },
+    "nfl1h": {
+      "key": "nfl1h",
+      "props_catalog": [
+        "anytime_tds",
+        "fantasy_score",
+        "fg_made",
+        "fg_made_combo",
+        "passing_tds",
+        "passing_yards",
+        "receiving_yards",
+        "rushing_yards"
+      ],
+      "groups": [
+        {
+          "name": "All props",
+          "props": [
+            "anytime_tds",
+            "fantasy_score",
+            "fg_made",
+            "fg_made_combo",
+            "passing_tds",
+            "passing_yards",
+            "receiving_yards",
+            "rushing_yards"
+          ],
+          "todo": "Choose group splits"
+        }
+      ],
+      "period": true
+    },
+    "soccer": {
+      "key": "soccer",
+      "props_catalog": [
+        "Shots On Target",
+        "Shots",
+        "Goals",
+        "Passes Attempted",
+        "Goalie Saves",
+        "Clearances",
+        "Crosses",
+        "Shots Assisted"
+      ],
+      "groups": [
+        {
+          "name": "All props",
+          "props": [
+            "Shots On Target",
+            "Shots",
+            "Goals",
+            "Passes Attempted",
+            "Goalie Saves",
+            "Clearances",
+            "Crosses",
+            "Shots Assisted"
+          ],
+          "todo": "Choose group splits"
+        }
+      ]
+    },
+    "tennis": {
+      "key": "tennis",
+      "props_catalog": [
+        "1st Set Total Games",
+        "Total Games",
+        "Aces",
+        "Break Points Won",
+        "Total Games Won",
+        "1st Set Total Games Won",
+        "Total Sets",
+        "Total Tie Breaks",
+        "2nd Set Total Games",
+        "Matches Won"
+      ],
+      "groups": [
+        {
+          "name": "All props",
+          "props": [
+            "1st Set Total Games",
+            "Total Games",
+            "Aces",
+            "Break Points Won",
+            "Total Games Won",
+            "1st Set Total Games Won",
+            "Total Sets",
+            "Total Tie Breaks",
+            "2nd Set Total Games",
+            "Matches Won"
+          ],
+          "todo": "Choose group splits"
+        }
+      ]
+    },
+    "golf": {
+      "key": "golf",
+      "props_catalog": [
+        "Strokes",
+        "Birdies Or Better",
+        "Pars",
+        "Greens In Regulation"
+      ],
+      "groups": [
+        {
+          "name": "All props",
+          "props": [
+            "Strokes",
+            "Birdies Or Better",
+            "Pars",
+            "Greens In Regulation"
+          ],
+          "todo": "Choose group splits"
+        }
+      ]
+    },
+    "cfb": {
+      "key": "cfb",
+      "props_catalog": [
+        "Receiving Yards",
+        "Rush Yards",
+        "Receptions",
+        "Pass Yards",
+        "Longest Reception",
+        "Anytime TDs",
+        "Rush Attempts",
+        "Rush+Rec Yds",
+        "Longest Rush",
+        "Pass TDs",
+        "Pass+Rush Yds",
+        "Pass Attempts",
+        "Pass Completions",
+        "Longest Completion",
+        "Kicking Points",
+        "INT",
+        "Rush TDs",
+        "PAT Made",
+        "FG Made",
+        "Receiving Yards (Combo)",
+        "Rec TDs",
+        "Rush Yards (Combo)",
+        "Pass Yards (Combo)"
+      ],
+      "groups": [
+        {
+          "name": "All props",
+          "props": [
+            "Receiving Yards",
+            "Rush Yards",
+            "Receptions",
+            "Pass Yards",
+            "Longest Reception",
+            "Anytime TDs",
+            "Rush Attempts",
+            "Rush+Rec Yds",
+            "Longest Rush",
+            "Pass TDs",
+            "Pass+Rush Yds",
+            "Pass Attempts",
+            "Pass Completions",
+            "Longest Completion",
+            "Kicking Points",
+            "INT",
+            "Rush TDs",
+            "PAT Made",
+            "FG Made",
+            "Receiving Yards (Combo)",
+            "Rec TDs",
+            "Rush Yards (Combo)",
+            "Pass Yards (Combo)"
+          ],
+          "todo": "Choose group splits"
+        }
+      ]
+    },
+    "cfb1h": {
+      "key": "cfb1h",
+      "props_catalog": [
+        "Pass Yards",
+        "Receiving Yards",
+        "Rush Yards"
+      ],
+      "groups": [
+        {
+          "name": "All props",
+          "props": [
+            "Pass Yards",
+            "Receiving Yards",
+            "Rush Yards"
+          ],
+          "todo": "Choose group splits"
+        }
+      ],
+      "period": true
+    }
+  }
+}
