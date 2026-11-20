@@ -2626,6 +2626,82 @@ body > nav.snav.glass-card {
     </div>
   </details>
 
+  <!-- PROPS BOARD (config-driven; does not replace Prop Explorer) -->
+  <details class="home-cat" open id="props-board">
+    <summary><span class="home-cat-title">Props <span>Board</span></span></summary>
+    <div class="home-cat-body">
+      <style>
+        #props-board .pb-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px;}
+        #props-board .pb-toolbar label{font-size:12px;opacity:.85;display:flex;align-items:center;gap:6px;}
+        #props-board .pb-toolbar select,#props-board .pb-toolbar button{
+          background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:inherit;
+          border-radius:8px;padding:7px 10px;font:inherit;font-size:13px;
+        }
+        #props-board .pb-tabs{display:flex;gap:6px;margin:0 0 10px;}
+        #props-board .pb-tab{
+          border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+          border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px;
+        }
+        #props-board .pb-tab.active{background:rgba(240,165,0,.18);border-color:rgba(240,165,0,.45);}
+        #props-board .pb-groups{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;}
+        #props-board .pb-group{
+          border:1px solid rgba(255,255,255,.12);background:transparent;border-radius:8px;
+          padding:5px 10px;font-size:12px;cursor:pointer;color:inherit;
+        }
+        #props-board .pb-group.active{border-color:rgba(240,165,0,.5);background:rgba(240,165,0,.12);}
+        #props-board .pb-filters{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 10px;font-size:12px;}
+        #props-board .pb-meta{font-size:12px;opacity:.75;margin:0 0 8px;}
+        #props-board .pb-table-wrap{overflow:auto;max-height:70vh;border:1px solid rgba(255,255,255,.08);border-radius:10px;}
+        #props-board table.pb-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:720px;}
+        #props-board table.pb-table th,#props-board table.pb-table td{padding:7px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);white-space:nowrap;}
+        #props-board table.pb-table th{position:sticky;top:0;background:#141820;z-index:1;font-weight:600;cursor:pointer;user-select:none;}
+        #props-board table.pb-table th.pb-sort-active{color:#f0a500;}
+        #props-board table.pb-table tr.pb-flag-thin{background:rgba(255,180,60,.06);}
+        #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:11px;}
+        #props-board .pb-na{opacity:.45;font-style:italic;}
+      </style>
+      <div class="pb-toolbar">
+        <label>Sport
+          <select id="pb-sport"></select>
+        </label>
+        <button type="button" id="pb-export">Export all props</button>
+        <span class="pb-meta" id="pb-count"></span>
+      </div>
+      <div class="pb-tabs" role="tablist" aria-label="Pick type">
+        <button type="button" class="pb-tab active" data-tab="Goblin">Goblin</button>
+        <button type="button" class="pb-tab" data-tab="Demon">Demon</button>
+        <button type="button" class="pb-tab" data-tab="Standard">Standard</button>
+      </div>
+      <div class="pb-groups" id="pb-groups"></div>
+      <div class="pb-filters">
+        <label><input type="checkbox" id="pb-l5-5" checked> L5 = 5/5</label>
+        <label><input type="checkbox" id="pb-l5-4"> L5 = 4/5</label>
+        <label><input type="checkbox" id="pb-flag-thin" checked> Flag &lt;15 games</label>
+        <label><input type="checkbox" id="pb-flag-multi" checked> Flag multi-line players</label>
+      </div>
+      <div class="pb-table-wrap">
+        <table class="pb-table" id="pb-table">
+          <thead>
+            <tr>
+              <th data-sort="side">Side</th>
+              <th data-sort="player">Player</th>
+              <th data-sort="team">Team</th>
+              <th data-sort="prop">Prop</th>
+              <th data-sort="line">Line</th>
+              <th data-sort="l5_avg">L5 avg</th>
+              <th data-sort="gap">Gap</th>
+              <th data-sort="sd">SD</th>
+              <th data-sort="l10">L10</th>
+              <th data-sort="l20">L20</th>
+              <th data-sort="games_played">GP</th>
+            </tr>
+          </thead>
+          <tbody id="pb-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
   <!-- HOT PLAYERS — consistency leaders on today's slate -->
   <details class="home-cat" id="hot-players-cat">
     <summary><span class="home-cat-title">Hot <span>Players</span></span></summary>
@@ -2891,82 +2967,6 @@ body > nav.snav.glass-card {
     </div>
   </details>
 
-  <!-- PROPS BOARD (config-driven; does not replace Prop Explorer) -->
-  <details class="home-cat" open id="props-board">
-    <summary><span class="home-cat-title">Props <span>Board</span></span></summary>
-    <div class="home-cat-body">
-      <style>
-        #props-board .pb-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px;}
-        #props-board .pb-toolbar label{font-size:12px;opacity:.85;display:flex;align-items:center;gap:6px;}
-        #props-board .pb-toolbar select,#props-board .pb-toolbar button{
-          background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:inherit;
-          border-radius:8px;padding:7px 10px;font:inherit;font-size:13px;
-        }
-        #props-board .pb-tabs{display:flex;gap:6px;margin:0 0 10px;}
-        #props-board .pb-tab{
-          border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
-          border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px;
-        }
-        #props-board .pb-tab.active{background:rgba(240,165,0,.18);border-color:rgba(240,165,0,.45);}
-        #props-board .pb-groups{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;}
-        #props-board .pb-group{
-          border:1px solid rgba(255,255,255,.12);background:transparent;border-radius:8px;
-          padding:5px 10px;font-size:12px;cursor:pointer;color:inherit;
-        }
-        #props-board .pb-group.active{border-color:rgba(240,165,0,.5);background:rgba(240,165,0,.12);}
-        #props-board .pb-filters{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 10px;font-size:12px;}
-        #props-board .pb-meta{font-size:12px;opacity:.75;margin:0 0 8px;}
-        #props-board .pb-table-wrap{overflow:auto;max-height:70vh;border:1px solid rgba(255,255,255,.08);border-radius:10px;}
-        #props-board table.pb-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:720px;}
-        #props-board table.pb-table th,#props-board table.pb-table td{padding:7px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);white-space:nowrap;}
-        #props-board table.pb-table th{position:sticky;top:0;background:#141820;z-index:1;font-weight:600;cursor:pointer;user-select:none;}
-        #props-board table.pb-table th.pb-sort-active{color:#f0a500;}
-        #props-board table.pb-table tr.pb-flag-thin{background:rgba(255,180,60,.06);}
-        #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:11px;}
-        #props-board .pb-na{opacity:.45;font-style:italic;}
-      </style>
-      <div class="pb-toolbar">
-        <label>Sport
-          <select id="pb-sport"></select>
-        </label>
-        <button type="button" id="pb-export">Export all props</button>
-        <span class="pb-meta" id="pb-count"></span>
-      </div>
-      <div class="pb-tabs" role="tablist" aria-label="Pick type">
-        <button type="button" class="pb-tab active" data-tab="Goblin">Goblin</button>
-        <button type="button" class="pb-tab" data-tab="Demon">Demon</button>
-        <button type="button" class="pb-tab" data-tab="Standard">Standard</button>
-      </div>
-      <div class="pb-groups" id="pb-groups"></div>
-      <div class="pb-filters">
-        <label><input type="checkbox" id="pb-l5-5" checked> L5 = 5/5</label>
-        <label><input type="checkbox" id="pb-l5-4"> L5 = 4/5</label>
-        <label><input type="checkbox" id="pb-flag-thin" checked> Flag &lt;15 games</label>
-        <label><input type="checkbox" id="pb-flag-multi" checked> Flag multi-line players</label>
-      </div>
-      <div class="pb-table-wrap">
-        <table class="pb-table" id="pb-table">
-          <thead>
-            <tr>
-              <th data-sort="side">Side</th>
-              <th data-sort="player">Player</th>
-              <th data-sort="team">Team</th>
-              <th data-sort="prop">Prop</th>
-              <th data-sort="line">Line</th>
-              <th data-sort="l5_avg">L5 avg</th>
-              <th data-sort="gap">Gap</th>
-              <th data-sort="sd">SD</th>
-              <th data-sort="l10">L10</th>
-              <th data-sort="l20">L20</th>
-              <th data-sort="games_played">GP</th>
-            </tr>
-          </thead>
-          <tbody id="pb-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </details>
-    
   <!-- TOP EDGES — open by default so home cards are visible on first paint -->
   <details class="home-cat" id="top-edges" open>
     <summary><span class="home-cat-title">Top <span>Edges</span></span></summary>
