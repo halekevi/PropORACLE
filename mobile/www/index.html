@@ -49,8 +49,8 @@ async function fetch_smart(localPath) {
   --bg:#05050f;--bg2:rgba(255,255,255,0.03);--bg3:rgba(255,255,255,0.05);
   --border:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.14);
   --text:rgba(255,255,255,0.92);--muted:rgba(255,255,255,0.95);--muted2:rgba(255,255,255,0.92);
-  --accent:#d4af37;--cyan:#7fc7d9;
-  --green:#9fd8a7;--amber:#c89a4a;--red:#d07a78;--purple:#8f7ab8;--blue:#7fc7d9;
+  --accent:#d4af37;--cyan:#9eb8c4;
+  --green:#9fd8a7;--amber:#c4a574;--red:#d07a78;--purple:#b8a99a;--blue:#9eb8c4;
   /* Glass system */
   --glass:rgba(255,255,255,0.03);
   --glass-mid:rgba(255,255,255,0.055);
@@ -85,29 +85,16 @@ html{
   scrollbar-gutter: stable;
   -webkit-overflow-scrolling: touch;
 }
-body{font-family:'Inter',sans-serif;background:var(--bg-main);color:var(--text-primary);min-height:100%;padding-bottom:clamp(48px,12vw,80px);overflow-x:hidden;overflow-y:visible;line-height:1.55;-webkit-font-smoothing:antialiased;}
-/* Deep space background */
+body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg-main);color:var(--text-primary);min-height:100%;padding-bottom:clamp(48px,12vw,80px);overflow-x:hidden;overflow-y:visible;line-height:1.55;-webkit-font-smoothing:antialiased;}
+/* Quiet glass backdrop */
 body::before{content:'';position:fixed;inset:0;
   background:
-    radial-gradient(ellipse at 12% 8%, rgba(127,199,217,0.18) 0%, transparent 38%),
-    radial-gradient(ellipse at 88% 6%, rgba(212,175,55,0.13) 0%, transparent 36%),
-    radial-gradient(ellipse at 50% 55%, rgba(183,168,255,0.07) 0%, transparent 50%),
-    radial-gradient(ellipse at 20% 85%, rgba(212,175,55,0.06) 0%, transparent 35%),
-    radial-gradient(ellipse at 80% 80%, rgba(127,199,217,0.08) 0%, transparent 32%),
-    linear-gradient(180deg,#040404 0%,#090909 50%,#111111 100%);
+    radial-gradient(ellipse at 14% 10%, rgba(212,175,55,0.12) 0%, transparent 42%),
+    radial-gradient(ellipse at 88% 8%, rgba(158,184,196,0.08) 0%, transparent 40%),
+    linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%);
   pointer-events:none;z-index:0;}
-/* Subtle star-field noise */
-body::after{content:'';position:fixed;inset:0;
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 60% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    linear-gradient(rgba(212,175,55,.012) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(212,175,55,.012) 1px,transparent 1px);
-  background-size:auto,auto,auto,auto,auto,52px 52px,52px 52px;
-  pointer-events:none;z-index:0;mix-blend-mode:screen;opacity:.6;}
+/* No star-field / grid — glass-minimal */
+body::after{content:none;display:none;}
 
 /* brain logo */
 .brain-wrap{position:relative;width:46px;height:46px;flex-shrink:0;}
@@ -244,7 +231,7 @@ body::after{content:'';position:fixed;inset:0;
 .hero{width:100%;max-width:100%;box-sizing:border-box;display:flex;align-items:flex-start;flex-direction:row;flex-wrap:wrap;gap:16px 28px;margin-bottom:18px;padding:clamp(20px,3vw,32px) clamp(18px,3vw,34px);background:rgba(255,255,255,0.03);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(255,255,255,0.09);border-radius:20px;box-shadow:var(--glass-shadow-lg);position:relative;overflow:hidden;isolation:isolate;}
 .hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--cyan),var(--purple));}
 .hero-eyebrow{font-size:11px;font-family:"Inter",sans-serif;font-weight:500;color:var(--muted);letter-spacing:2px;margin-bottom:12px;text-transform:uppercase;}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:72px;letter-spacing:6px;line-height:.95;color:var(--text);}
+.hero-title{font-family:Georgia,"Times New Roman",serif;font-size:64px;letter-spacing:.1em;font-weight:400;line-height:.95;color:var(--text);text-transform:none;}
 .hero-title .ht2{color:var(--accent);}
 .hero-title .prop-hero-prefix{text-transform:none;}
 .hero-copy{min-width:0;flex:1 1 280px;}
@@ -963,31 +950,9 @@ nav.snav .live-pill .live-pill-brand {
   );
 }
 
-/* Static mesh aurora (see .mesh-bg below — rotation removed for GPU/scroll performance). */
+/* Glass-minimal: kill aurora mesh (was the purple/gold diagonal wash). */
 .mesh-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  contain: strict;
-  transform: translateZ(0);
-  background:
-    conic-gradient(from 210deg at 20% 15%,
-      rgba(127,199,217,0.12) 0deg,
-      transparent 60deg,
-      transparent 300deg,
-      rgba(127,199,217,0.08) 360deg),
-    conic-gradient(from 140deg at 80% 20%,
-      rgba(212,175,55,0.10) 0deg,
-      transparent 60deg,
-      transparent 300deg,
-      rgba(212,175,55,0.06) 360deg),
-    conic-gradient(from 320deg at 50% 75%,
-      rgba(183,168,255,0.08) 0deg,
-      transparent 90deg,
-      transparent 270deg,
-      rgba(127,199,217,0.05) 360deg);
-  filter: blur(28px);
+  display: none !important;
 }
 [data-theme="light"] .mesh-bg {
   background:
@@ -1027,16 +992,16 @@ nav.snav .live-pill .live-pill-brand {
   box-sizing:border-box;
 }
 :root{
-  --accent-gold:#e1bc65;
+  --accent-gold:#d4af37;
+  --accent:#d4af37;
+  --cyan:#9eb8c4;
+  --purple:#b8a99a;
 }
 body::before{
   background:
-    radial-gradient(ellipse at 12% 8%, rgba(160,198,255,0.08) 0%, transparent 38%),
-    radial-gradient(ellipse at 88% 6%, rgba(225,188,101,0.18) 0%, transparent 36%),
-    radial-gradient(ellipse at 50% 55%, rgba(179,157,255,0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 18% 86%, rgba(225,188,101,0.10) 0%, transparent 34%),
-    radial-gradient(ellipse at 82% 82%, rgba(159,204,255,0.10) 0%, transparent 30%),
-    linear-gradient(180deg,#050507 0%,#0d0b12 46%,#141017 100%);
+    radial-gradient(ellipse at 14% 10%, rgba(212,175,55,0.12) 0%, transparent 42%),
+    radial-gradient(ellipse at 88% 8%, rgba(158,184,196,0.08) 0%, transparent 40%),
+    linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%) !important;
 }
 [data-theme="light"] .hero,
 [data-theme="light"] .scard,
@@ -1125,19 +1090,35 @@ body > nav.snav.glass-card {
 <link rel="stylesheet" href="static/matchup-edge.css?v=20261021oppauto"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/player-consistency.css?v=20260525hotprop"/>
+<link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
+<style id="proporacle-glass-critical">
+  /* Critical glass-minimal — must win even if external CSS is cached/404 */
+  .mesh-bg,.grain-layer,.po-orb{display:none!important;}
+  body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
+  body::before{
+    background-image:
+      radial-gradient(ellipse at 14% 10%,rgba(212,175,55,.12) 0%,transparent 42%),
+      radial-gradient(ellipse at 88% 8%,rgba(158,184,196,.08) 0%,transparent 40%),
+      linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%)!important;
+  }
+  body::after{display:none!important;content:none!important;}
+  .hero-title{font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;letter-spacing:.1em!important;}
+  .snav,.hero,.scard,.edge-card,.home-cat,.glass-card{
+    background:rgba(255,255,255,.045)!important;
+    border-color:rgba(255,255,255,.1)!important;
+    backdrop-filter:blur(16px) saturate(140%)!important;
+    -webkit-backdrop-filter:blur(16px) saturate(140%)!important;
+    box-shadow:0 4px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.05)!important;
+  }
+  .nav-accent{height:1px!important;opacity:.55!important;background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)!important;}
+</style>
 </head>
 <body>
 
-<!-- Ambient orbs — static (drift + huge blur removed; was costly during scroll/composite). -->
-<div class="po-orb" style="top:-15%;left:-8%;width:min(520px,85vw);height:min(520px,85vw);background:radial-gradient(circle,rgba(127,199,217,0.16) 0%,transparent 70%);filter:blur(72px);"></div>
-<div class="po-orb" style="top:18%;right:-10%;width:min(560px,90vw);height:min(560px,90vw);background:radial-gradient(circle,rgba(212,175,55,0.09) 0%,transparent 70%);filter:blur(72px);"></div>
-<div class="po-orb" style="bottom:4%;left:28%;width:min(480px,80vw);height:min(480px,80vw);background:radial-gradient(circle,rgba(183,168,255,0.07) 0%,transparent 70%);filter:blur(64px);"></div>
-<style>
-.po-orb{position:fixed;z-index:0;pointer-events:none;contain:strict;transform:translateZ(0);}
-</style>
-<!-- Advanced optical layers -->
-<div class="mesh-bg" aria-hidden="true"></div>
-<div class="grain-layer" aria-hidden="true"></div>
+<!-- Ambient orbs / mesh disabled for glass-minimal (kept as no-op hooks). -->
+<div class="po-orb" hidden aria-hidden="true"></div>
+<div class="mesh-bg" hidden aria-hidden="true"></div>
+<div class="grain-layer" hidden aria-hidden="true"></div>
 
 
 
@@ -1676,7 +1657,7 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-nba1q-val">Checking...</div>
       </div>
 
-      <div class="scard loading inactive-sport" id="sc-cbb" data-offseason-resume="2026-11-01" onclick="toggleSlatePanel('cbb')">
+      <div class="scard loading" id="sc-cbb" onclick="toggleSlatePanel('cbb')">
         <div class="scard-head">
           <div class="scard-icon cbb">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#7fc7d9" stroke-width="1.5">
@@ -1691,7 +1672,22 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-cbb-val">Checking...</div>
       </div>
 
-      <div class="scard loading inactive-sport" id="sc-cfb" data-offseason-resume="2026-08-27" onclick="toggleSlatePanel('cfb')">
+      <div class="scard loading" id="sc-wcbb" onclick="toggleSlatePanel('wcbb')">
+        <div class="scard-head">
+          <div class="scard-icon cbb">
+            <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#7fc7d9" stroke-width="1.5">
+              <ellipse cx="12" cy="6" rx="9" ry="3"/><path d="M3 6v4c0 1.66 4.03 3 9 3s9-1.34 9-3V6"/><path d="M3 10v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+              <path d="M3 14v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+            </svg>
+          </div>
+          <div class="scard-title">WCBB SLATE</div>
+          <span class="sbadge loading" id="sc-wcbb-badge">—</span>
+          <span class="scard-toggle">▾</span>
+        </div>
+        <div class="scard-val" id="sc-wcbb-val">Checking...</div>
+      </div>
+
+      <div class="scard loading" id="sc-cfb" onclick="toggleSlatePanel('cfb')">
         <div class="scard-head">
           <div class="scard-icon cfb">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#e8c88a" stroke-width="1.5">
@@ -1704,6 +1700,21 @@ body > nav.snav.glass-card {
           <span class="scard-toggle">▾</span>
         </div>
         <div class="scard-val" id="sc-cfb-val">Checking...</div>
+      </div>
+
+      <div class="scard loading" id="sc-cfb1h" onclick="toggleSlatePanel('cfb1h')">
+        <div class="scard-head">
+          <div class="scard-icon cfb">
+            <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#e8c88a" stroke-width="1.5">
+              <ellipse cx="12" cy="6" rx="9" ry="3"/><path d="M3 6v4c0 1.66 4.03 3 9 3s9-1.34 9-3V6"/><path d="M3 10v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+              <path d="M3 14v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+            </svg>
+          </div>
+          <div class="scard-title">CFB 1H SLATE</div>
+          <span class="sbadge loading" id="sc-cfb1h-badge">—</span>
+          <span class="scard-toggle">▾</span>
+        </div>
+        <div class="scard-val" id="sc-cfb1h-val">Checking...</div>
       </div>
 
       <div class="scard loading" id="sc-nhl" data-offseason-resume="2026-09-01" onclick="toggleSlatePanel('nhl')">
@@ -1721,6 +1732,21 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-nhl-val">Checking...</div>
       </div>
 
+      <div class="scard loading" id="sc-nhl1p" onclick="toggleSlatePanel('nhl1p')">
+        <div class="scard-head">
+          <div class="scard-icon nhl">
+            <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5">
+              <ellipse cx="12" cy="6" rx="9" ry="3"/><path d="M3 6v4c0 1.66 4.03 3 9 3s9-1.34 9-3V6"/><path d="M3 10v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+              <path d="M3 14v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+            </svg>
+          </div>
+          <div class="scard-title">NHL 1P SLATE</div>
+          <span class="sbadge loading" id="sc-nhl1p-badge">—</span>
+          <span class="scard-toggle">▾</span>
+        </div>
+        <div class="scard-val" id="sc-nhl1p-val">Checking...</div>
+      </div>
+
       <div class="scard loading" id="sc-soccer" onclick="toggleSlatePanel('soccer')">
         <div class="scard-head">
           <div class="scard-icon soccer">
@@ -1736,7 +1762,7 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-soccer-val">Checking...</div>
       </div>
 
-      <div class="scard loading" id="sc-mlb" onclick="toggleSlatePanel('mlb')">
+      <div class="scard loading inactive-sport" id="sc-mlb" onclick="toggleSlatePanel('mlb')">
         <div class="scard-head">
           <div class="scard-icon mlb">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#ff8c8c" stroke-width="1.5">
@@ -1751,7 +1777,7 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-mlb-val">Checking...</div>
       </div>
 
-      <div class="scard loading inactive-sport" id="sc-nfl" data-offseason-resume="2026-09-09" onclick="toggleSlatePanel('nfl')">
+      <div class="scard loading" id="sc-nfl" onclick="toggleSlatePanel('nfl')">
         <div class="scard-head">
           <div class="scard-icon nfl">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#00c896" stroke-width="1.5">
@@ -1764,6 +1790,36 @@ body > nav.snav.glass-card {
           <span class="scard-toggle">▾</span>
         </div>
         <div class="scard-val" id="sc-nfl-val">Checking...</div>
+      </div>
+
+      <div class="scard loading" id="sc-nfl1q" onclick="toggleSlatePanel('nfl1q')">
+        <div class="scard-head">
+          <div class="scard-icon nfl">
+            <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#00c896" stroke-width="1.5">
+              <ellipse cx="12" cy="6" rx="9" ry="3"/><path d="M3 6v4c0 1.66 4.03 3 9 3s9-1.34 9-3V6"/><path d="M3 10v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+              <path d="M3 14v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+            </svg>
+          </div>
+          <div class="scard-title">NFL 1Q SLATE</div>
+          <span class="sbadge loading" id="sc-nfl1q-badge">—</span>
+          <span class="scard-toggle">▾</span>
+        </div>
+        <div class="scard-val" id="sc-nfl1q-val">Checking...</div>
+      </div>
+
+      <div class="scard loading" id="sc-nfl1h" onclick="toggleSlatePanel('nfl1h')">
+        <div class="scard-head">
+          <div class="scard-icon nfl">
+            <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#00c896" stroke-width="1.5">
+              <ellipse cx="12" cy="6" rx="9" ry="3"/><path d="M3 6v4c0 1.66 4.03 3 9 3s9-1.34 9-3V6"/><path d="M3 10v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+              <path d="M3 14v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+            </svg>
+          </div>
+          <div class="scard-title">NFL 1H SLATE</div>
+          <span class="sbadge loading" id="sc-nfl1h-badge">—</span>
+          <span class="scard-toggle">▾</span>
+        </div>
+        <div class="scard-val" id="sc-nfl1h-val">Checking...</div>
       </div>
 
       <div class="scard loading" id="sc-tennis" onclick="toggleSlatePanel('tennis')">
@@ -1781,7 +1837,22 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-tennis-val">Checking...</div>
       </div>
 
-      <div class="scard loading" id="sc-wnba" data-offseason-resume="2026-07-28" onclick="toggleSlatePanel('wnba')">
+      <div class="scard loading" id="sc-golf" onclick="toggleSlatePanel('golf')">
+        <div class="scard-head">
+          <div class="scard-icon tennis">
+            <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#7dffcb" stroke-width="1.5">
+              <ellipse cx="12" cy="6" rx="9" ry="3"/><path d="M3 6v4c0 1.66 4.03 3 9 3s9-1.34 9-3V6"/><path d="M3 10v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+              <path d="M3 14v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+            </svg>
+          </div>
+          <div class="scard-title">GOLF / PGA</div>
+          <span class="sbadge loading" id="sc-golf-badge">—</span>
+          <span class="scard-toggle">▾</span>
+        </div>
+        <div class="scard-val" id="sc-golf-val">Checking...</div>
+      </div>
+
+      <div class="scard loading inactive-sport" id="sc-wnba" onclick="toggleSlatePanel('wnba')">
         <div class="scard-head">
           <div class="scard-icon wnba">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#ff69b4" stroke-width="1.5">
@@ -1796,7 +1867,7 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-wnba-val">Checking...</div>
       </div>
 
-      <div class="scard loading" id="sc-wnba1h" data-offseason-resume="2026-07-28" onclick="toggleSlatePanel('wnba1h')">
+      <div class="scard loading inactive-sport" id="sc-wnba1h" onclick="toggleSlatePanel('wnba1h')">
         <div class="scard-head">
           <div class="scard-icon wnba1h">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#e85aa0" stroke-width="1.5">
@@ -1811,7 +1882,7 @@ body > nav.snav.glass-card {
         <div class="scard-val" id="sc-wnba1h-val">Checking...</div>
       </div>
 
-      <div class="scard loading" id="sc-wnba1q" data-offseason-resume="2026-07-28" onclick="toggleSlatePanel('wnba1q')">
+      <div class="scard loading inactive-sport" id="sc-wnba1q" onclick="toggleSlatePanel('wnba1q')">
         <div class="scard-head">
           <div class="scard-icon wnba1q">
             <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="#ff8cbe" stroke-width="1.5">
@@ -2217,6 +2288,126 @@ body > nav.snav.glass-card {
           <th onclick="sortSlate('nfl','game_time')">TIME</th>
         </tr></thead>
         <tbody id="stb-nfl"></tbody>
+      </table></div>
+    </div>
+
+    <div class="slate-expand" id="sp-nfl1q">
+      <div class="slate-toolbar">
+        <input class="slate-filter-input" type="text" placeholder="Filter player / prop…" oninput="filterSlate('nfl1q',this.value)" id="sf-nfl1q"/>
+        <span class="slate-row-count" id="src-nfl1q"></span>
+      </div>
+      <div class="slate-table-wrap"><table class="slate-table" id="st-nfl1q">
+        <thead><tr>
+          <th onclick="sortSlate('nfl1q','tier')">TIER</th>
+          <th onclick="sortSlate('nfl1q','rank_score')">RANK</th>
+          <th onclick="sortSlate('nfl1q','player')">PLAYER</th>
+          <th onclick="sortSlate('nfl1q','team')">TEAM</th>
+          <th onclick="sortSlate('nfl1q','opp')">OPP</th>
+          <th onclick="sortSlate('nfl1q','prop')">PROP</th>
+          <th onclick="sortSlate('nfl1q','pick_type')">TYPE</th>
+          <th onclick="sortSlate('nfl1q','line')">LINE</th>
+          <th onclick="sortSlate('nfl1q','dir')">DIR</th>
+          <th onclick="sortSlate('nfl1q','edge')">EDGE</th>
+          <th onclick="sortSlate('nfl1q','hit_rate')">HIT%</th>
+          <th onclick="sortSlate('nfl1q','l5_over')">L5 O</th>
+          <th onclick="sortSlate('nfl1q','l5_under')">L5 U</th>
+          <th onclick="sortSlate('nfl1q','game_time')">TIME</th>
+        </tr></thead>
+        <tbody id="stb-nfl1q"></tbody>
+      </table></div>
+    </div>
+
+    <div class="slate-expand" id="sp-nfl1h">
+      <div class="slate-toolbar">
+        <input class="slate-filter-input" type="text" placeholder="Filter player / prop…" oninput="filterSlate('nfl1h',this.value)" id="sf-nfl1h"/>
+        <span class="slate-row-count" id="src-nfl1h"></span>
+      </div>
+      <div class="slate-table-wrap"><table class="slate-table" id="st-nfl1h">
+        <thead><tr>
+          <th onclick="sortSlate('nfl1h','tier')">TIER</th>
+          <th onclick="sortSlate('nfl1h','rank_score')">RANK</th>
+          <th onclick="sortSlate('nfl1h','player')">PLAYER</th>
+          <th onclick="sortSlate('nfl1h','team')">TEAM</th>
+          <th onclick="sortSlate('nfl1h','opp')">OPP</th>
+          <th onclick="sortSlate('nfl1h','prop')">PROP</th>
+          <th onclick="sortSlate('nfl1h','pick_type')">TYPE</th>
+          <th onclick="sortSlate('nfl1h','line')">LINE</th>
+          <th onclick="sortSlate('nfl1h','dir')">DIR</th>
+          <th onclick="sortSlate('nfl1h','edge')">EDGE</th>
+          <th onclick="sortSlate('nfl1h','hit_rate')">HIT%</th>
+          <th onclick="sortSlate('nfl1h','l5_over')">L5 O</th>
+          <th onclick="sortSlate('nfl1h','l5_under')">L5 U</th>
+          <th onclick="sortSlate('nfl1h','game_time')">TIME</th>
+        </tr></thead>
+        <tbody id="stb-nfl1h"></tbody>
+      </table></div>
+    </div>
+
+    <div class="slate-expand" id="sp-cfb1h">
+      <div class="slate-toolbar">
+        <input class="slate-filter-input" type="text" placeholder="Filter player / prop…" oninput="filterSlate('cfb1h',this.value)" id="sf-cfb1h"/>
+        <span class="slate-row-count" id="src-cfb1h"></span>
+      </div>
+      <div class="slate-table-wrap"><table class="slate-table" id="st-cfb1h">
+        <thead><tr>
+          <th onclick="sortSlate('cfb1h','player')">PLAYER</th>
+          <th onclick="sortSlate('cfb1h','prop')">PROP</th>
+          <th onclick="sortSlate('cfb1h','line')">LINE</th>
+          <th onclick="sortSlate('cfb1h','dir')">DIR</th>
+          <th onclick="sortSlate('cfb1h','game_time')">TIME</th>
+        </tr></thead>
+        <tbody id="stb-cfb1h"></tbody>
+      </table></div>
+    </div>
+
+    <div class="slate-expand" id="sp-nhl1p">
+      <div class="slate-toolbar">
+        <input class="slate-filter-input" type="text" placeholder="Filter player / prop…" oninput="filterSlate('nhl1p',this.value)" id="sf-nhl1p"/>
+        <span class="slate-row-count" id="src-nhl1p"></span>
+      </div>
+      <div class="slate-table-wrap"><table class="slate-table" id="st-nhl1p">
+        <thead><tr>
+          <th onclick="sortSlate('nhl1p','player')">PLAYER</th>
+          <th onclick="sortSlate('nhl1p','prop')">PROP</th>
+          <th onclick="sortSlate('nhl1p','line')">LINE</th>
+          <th onclick="sortSlate('nhl1p','dir')">DIR</th>
+          <th onclick="sortSlate('nhl1p','game_time')">TIME</th>
+        </tr></thead>
+        <tbody id="stb-nhl1p"></tbody>
+      </table></div>
+    </div>
+
+    <div class="slate-expand" id="sp-golf">
+      <div class="slate-toolbar">
+        <input class="slate-filter-input" type="text" placeholder="Filter player / prop…" oninput="filterSlate('golf',this.value)" id="sf-golf"/>
+        <span class="slate-row-count" id="src-golf"></span>
+      </div>
+      <div class="slate-table-wrap"><table class="slate-table" id="st-golf">
+        <thead><tr>
+          <th onclick="sortSlate('golf','player')">PLAYER</th>
+          <th onclick="sortSlate('golf','prop')">PROP</th>
+          <th onclick="sortSlate('golf','line')">LINE</th>
+          <th onclick="sortSlate('golf','dir')">DIR</th>
+          <th onclick="sortSlate('golf','game_time')">TIME</th>
+        </tr></thead>
+        <tbody id="stb-golf"></tbody>
+      </table></div>
+    </div>
+
+    <div class="slate-expand" id="sp-wcbb">
+      <div class="slate-toolbar">
+        <input class="slate-filter-input" type="text" placeholder="Filter player / prop…" oninput="filterSlate('wcbb',this.value)" id="sf-wcbb"/>
+        <span class="slate-row-count" id="src-wcbb"></span>
+      </div>
+      <div class="slate-table-wrap"><table class="slate-table" id="st-wcbb">
+        <thead><tr>
+          <th onclick="sortSlate('wcbb','player')">PLAYER</th>
+          <th onclick="sortSlate('wcbb','prop')">PROP</th>
+          <th onclick="sortSlate('wcbb','line')">LINE</th>
+          <th onclick="sortSlate('wcbb','dir')">DIR</th>
+          <th onclick="sortSlate('wcbb','game_time')">TIME</th>
+        </tr></thead>
+        <tbody id="stb-wcbb"></tbody>
       </table></div>
     </div>
 
@@ -2700,6 +2891,81 @@ body > nav.snav.glass-card {
     </div>
   </details>
 
+  <!-- PROPS BOARD (config-driven; does not replace Prop Explorer) -->
+  <details class="home-cat" open id="props-board">
+    <summary><span class="home-cat-title">Props <span>Board</span></span></summary>
+    <div class="home-cat-body">
+      <style>
+        #props-board .pb-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px;}
+        #props-board .pb-toolbar label{font-size:12px;opacity:.85;display:flex;align-items:center;gap:6px;}
+        #props-board .pb-toolbar select,#props-board .pb-toolbar button{
+          background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:inherit;
+          border-radius:8px;padding:7px 10px;font:inherit;font-size:13px;
+        }
+        #props-board .pb-tabs{display:flex;gap:6px;margin:0 0 10px;}
+        #props-board .pb-tab{
+          border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+          border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px;
+        }
+        #props-board .pb-tab.active{background:rgba(240,165,0,.18);border-color:rgba(240,165,0,.45);}
+        #props-board .pb-groups{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;}
+        #props-board .pb-group{
+          border:1px solid rgba(255,255,255,.12);background:transparent;border-radius:8px;
+          padding:5px 10px;font-size:12px;cursor:pointer;color:inherit;
+        }
+        #props-board .pb-group.active{border-color:rgba(240,165,0,.5);background:rgba(240,165,0,.12);}
+        #props-board .pb-filters{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 10px;font-size:12px;}
+        #props-board .pb-meta{font-size:12px;opacity:.75;margin:0 0 8px;}
+        #props-board .pb-table-wrap{overflow:auto;max-height:70vh;border:1px solid rgba(255,255,255,.08);border-radius:10px;}
+        #props-board table.pb-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:720px;}
+        #props-board table.pb-table th,#props-board table.pb-table td{padding:7px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);white-space:nowrap;}
+        #props-board table.pb-table th{position:sticky;top:0;background:#141820;z-index:1;font-weight:600;cursor:pointer;}
+        #props-board table.pb-table tr.pb-flag-thin{background:rgba(255,180,60,.06);}
+        #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:11px;}
+        #props-board .pb-na{opacity:.45;font-style:italic;}
+      </style>
+      <div class="pb-toolbar">
+        <label>Sport
+          <select id="pb-sport"></select>
+        </label>
+        <button type="button" id="pb-export">Export all props</button>
+        <span class="pb-meta" id="pb-count"></span>
+      </div>
+      <div class="pb-tabs" role="tablist" aria-label="Pick type">
+        <button type="button" class="pb-tab active" data-tab="Goblin">Goblin</button>
+        <button type="button" class="pb-tab" data-tab="Demon">Demon</button>
+        <button type="button" class="pb-tab" data-tab="Standard">Standard</button>
+      </div>
+      <div class="pb-groups" id="pb-groups"></div>
+      <div class="pb-filters">
+        <label><input type="checkbox" id="pb-l5-5" checked> L5 = 5/5</label>
+        <label><input type="checkbox" id="pb-l5-4"> L5 = 4/5</label>
+        <label><input type="checkbox" id="pb-flag-thin" checked> Flag &lt;15 games</label>
+        <label><input type="checkbox" id="pb-flag-multi" checked> Flag multi-line players</label>
+      </div>
+      <div class="pb-table-wrap">
+        <table class="pb-table" id="pb-table">
+          <thead>
+            <tr>
+              <th data-sort="side">Side</th>
+              <th data-sort="player">Player</th>
+              <th data-sort="team">Team</th>
+              <th data-sort="prop">Prop</th>
+              <th data-sort="line">Line</th>
+              <th data-sort="l5_avg">L5 avg</th>
+              <th data-sort="gap">Gap</th>
+              <th data-sort="sd">SD</th>
+              <th data-sort="l10">L10</th>
+              <th data-sort="l20">L20</th>
+              <th data-sort="games_played">GP</th>
+            </tr>
+          </thead>
+          <tbody id="pb-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+    
   <!-- TOP EDGES — open by default so home cards are visible on first paint -->
   <details class="home-cat" id="top-edges" open>
     <summary><span class="home-cat-title">Top <span>Edges</span></span></summary>
@@ -4356,11 +4622,24 @@ function syncHeroLiveChips() {
   }
 }
 
-function applyOffseasonSportCards() {
+function applyOffseasonSportCards(statusPayload) {
+  const inactive = (statusPayload && Array.isArray(statusPayload.inactive_sports))
+    ? new Set(statusPayload.inactive_sports.map((s) => String(s || "").trim().toUpperCase()).filter(Boolean))
+    : (window.HOME_INACTIVE_SPORTS instanceof Set ? window.HOME_INACTIVE_SPORTS : null);
+  const active = (statusPayload && Array.isArray(statusPayload.active_sports))
+    ? new Set(statusPayload.active_sports.map((s) => String(s || "").trim().toUpperCase()).filter(Boolean))
+    : (window.HOME_ACTIVE_SPORTS instanceof Set ? window.HOME_ACTIVE_SPORTS : null);
   const today = ymdInEastern(new Date());
   document.querySelectorAll("#slate-panel-header-row .scard[id^='sc-']").forEach((el) => {
     const id = String(el.id || "").replace(/^sc-/, "");
     if (!id || id === "combined") return;
+    const key = id.toUpperCase();
+    if (inactive && inactive.size) {
+      if (inactive.has(key)) el.classList.add("inactive-sport");
+      else if (active && active.size && active.has(key)) el.classList.remove("inactive-sport");
+      else if (active && active.size) el.classList.add("inactive-sport");
+      return;
+    }
     const resume =
       String(el.getAttribute("data-offseason-resume") || "").trim() ||
       SPORT_SEASON_RESUME[id] ||
@@ -4391,7 +4670,10 @@ function parsePipelineModifiedAsUtc(s) {
 }
 
 /** Sports where FRESH requires at least one prop on today's ET calendar day (not tomorrow's board). */
-const SLATE_STRICT_GAME_DAY_SPORTS = new Set(["nhl", "nfl", "mlb", "nba1h", "nba1q", "soccer", "wnba", "wnba1h", "wnba1q"]);
+const SLATE_STRICT_GAME_DAY_SPORTS = new Set([
+  "nhl", "nhl1p", "nfl", "nfl1q", "nfl1h", "mlb",
+  "nba1h", "nba1q", "soccer", "wnba", "wnba1h", "wnba1q", "cfb1h",
+]);
 
 function slateRowsFromPayload(data) {
   if (!data) return [];
@@ -4502,14 +4784,24 @@ async function refreshStatus() {
       if (r2.ok) d = await r2.json();
     } catch (e2) {}
   }
-  const statusIds = ["nba", "nba1h", "nba1q", "cbb", "cfb", "nhl", "soccer", "mlb", "nfl", "tennis", "wnba", "wnba1h", "wnba1q", "combined"];
+  const statusIds = [
+    "nba", "nba1h", "nba1q", "cbb", "wcbb", "cfb", "cfb1h",
+    "nhl", "nhl1p", "soccer", "mlb", "nfl", "nfl1q", "nfl1h",
+    "tennis", "golf", "wnba", "wnba1h", "wnba1q", "combined",
+  ];
   if (!d) {
     for (const id of statusIds) applyStatusCard(id, { exists: false, modified: "" }, "");
-    applyOffseasonSportCards();
+    applyOffseasonSportCards(d);
     return;
   }
   // Prefer server-side game_day flags (avoids N× /api/slate-sport fan-out every minute).
   const gameDay = (d.game_day && typeof d.game_day === "object") ? d.game_day : {};
+  window.HOME_ACTIVE_SPORTS = Array.isArray(d.active_sports)
+    ? new Set(d.active_sports.map((s) => String(s || "").trim().toUpperCase()).filter(Boolean))
+    : window.HOME_ACTIVE_SPORTS;
+  window.HOME_INACTIVE_SPORTS = Array.isArray(d.inactive_sports)
+    ? new Set(d.inactive_sports.map((s) => String(s || "").trim().toUpperCase()).filter(Boolean))
+    : window.HOME_INACTIVE_SPORTS;
   const statusOpts = (sid) => {
     if (sid === "tennis") {
       return { requireTodayGames: true, hasTodayGames: gameDay.tennis };
@@ -4523,15 +4815,21 @@ async function refreshStatus() {
   applyStatusCard("nba1h",    d.nba1h?.slate,    "NBA 1H Slate", statusOpts("nba1h"));
   applyStatusCard("nba1q",    d.nba1q?.slate,    "NBA 1Q Slate", statusOpts("nba1q"));
   applyStatusCard("cbb",      d.cbb?.slate,      "CBB Slate");
+  applyStatusCard("wcbb",     d.wcbb?.slate,     "WCBB Slate");
   applyStatusCard("cfb",      d.cfb?.slate,      "CFB Slate");
+  applyStatusCard("cfb1h",    d.cfb1h?.slate,    "CFB 1H Slate", statusOpts("cfb1h"));
   applyStatusCard("nhl",      d.nhl?.slate,      "NHL Slate", statusOpts("nhl"));
+  applyStatusCard("nhl1p",    d.nhl1p?.slate,    "NHL 1P Slate", statusOpts("nhl1p"));
   applyStatusCard("soccer",   d.soccer?.slate,   "Soccer Slate", statusOpts("soccer"));
   const soccerVal = document.getElementById("sc-soccer-val");
   const soccerMd = d.soccer_match_day;
   if (soccerVal && soccerMd && d.soccer?.slate?.exists) soccerVal.textContent = soccerMd;
   applyStatusCard("mlb",      d.mlb?.slate,      "MLB Slate", statusOpts("mlb"));
   applyStatusCard("nfl",      d.nfl?.slate,      "NFL Slate", statusOpts("nfl"));
+  applyStatusCard("nfl1q",    d.nfl1q?.slate,    "NFL 1Q Slate", statusOpts("nfl1q"));
+  applyStatusCard("nfl1h",    d.nfl1h?.slate,    "NFL 1H Slate", statusOpts("nfl1h"));
   applyStatusCard("tennis",   d.tennis?.slate,   "Tennis Slate", statusOpts("tennis"));
+  applyStatusCard("golf",     d.golf?.slate,     "Golf Slate");
   const tennisVal = document.getElementById("sc-tennis-val");
   const tennisMd = d.tennis_match_day || tennisMatchDayEt();
   if (tennisVal && tennisMd) tennisVal.textContent = tennisMd;
@@ -4542,7 +4840,7 @@ async function refreshStatus() {
   applyStatusCard("wnba1h",   d.wnba1h?.slate,   "WNBA 1H Slate", statusOpts("wnba1h"));
   applyStatusCard("wnba1q",   d.wnba1q?.slate,   "WNBA 1Q Slate", statusOpts("wnba1q"));
   applyStatusCard("combined", d.combined?.slate, "Combined Tickets");
-  applyOffseasonSportCards();
+  applyOffseasonSportCards(d);
   if (typeof window.applyHomeSkewBanner === "function") {
     window.applyHomeSkewBanner(d);
   }
@@ -5525,7 +5823,7 @@ const RENDER_TOKEN = {};
 const MOBILE_TABLE_QUERY = window.matchMedia('(max-width: 900px)');
 const L5_FILTER_MIN_HITS = 4;
 
-const SPORTS = ['nba','nba1h','nba1q','cbb','cfb','nhl','soccer','mlb','nfl','tennis','wnba','wnba1h','wnba1q'];
+const SPORTS = ['nba','nba1h','nba1q','cbb','wcbb','cfb','cfb1h','nhl','nhl1p','soccer','mlb','nfl','nfl1q','nfl1h','tennis','golf','wnba','wnba1h','wnba1q'];
 SPORTS.forEach(s => {
   SLATE_STATE[s] = { sortKey: 'abs_edge', sortDir: -1, search: '', dir: null, pick: null, tier: null, l5: null, platform: null };
 });
@@ -6640,7 +6938,7 @@ function sortSlateDynamic(sport, key) {
     const edgesDeepLink = params.get("section") === "edges";
     /* Keep primary home data sections open — collapsing them made Hot Players /
        Top Edges / L5 look empty even when cards had already loaded. */
-    const keepOpen = new Set(["slate-explorer", "hot-players-cat", "top-edges", "l5-streaks-cat"]);
+    const keepOpen = new Set(["slate-explorer", "props-board", "hot-players-cat", "top-edges", "l5-streaks-cat"]);
     if (edgesDeepLink) keepOpen.add("top-edges");
     document.querySelectorAll("details.home-cat").forEach((det) => {
       if (keepOpen.has(det.id)) {
@@ -6796,7 +7094,7 @@ function sortSlateDynamic(sport, key) {
   function collapseHomeCatsOnMobile() {
     if (!mqMobile()) return;
     const params = new URLSearchParams(window.location.search);
-    const keepOpen = new Set(["slate-explorer"]);
+    const keepOpen = new Set(["slate-explorer", "props-board", "top-edges"]);
     if (params.get("section") === "edges") keepOpen.add("top-edges");
     document.querySelectorAll("details.home-cat").forEach(function (d) {
       if (keepOpen.has(d.id)) return;
@@ -6836,5 +7134,6 @@ function sortSlateDynamic(sport, key) {
 
 <script src="static/my-slip.js?v=20260828myslip1"></script>
 
+<script src="/static/props-board.js?v=20261120pb1"></script>
 </body>
 </html>
