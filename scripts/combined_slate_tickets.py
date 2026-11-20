@@ -821,6 +821,23 @@ def apply_default_sport_inputs(args: argparse.Namespace) -> None:
             os.path.join(REPO_ROOT, "CFB", "step6_ranked_cfb.xlsx"),
         )
 
+    if not str(getattr(args, "nfl1q", "") or "").strip():
+        args.nfl1q = _first_existing_path(
+            os.path.join(out, "nfl1q", "step8_nfl1q_direction_clean.xlsx"),
+            os.path.join(out, "nfl1q", f"step8_nfl1q_direction_clean_{d}.xlsx"),
+        )
+    if not str(getattr(args, "nfl1h", "") or "").strip():
+        args.nfl1h = _first_existing_path(
+            os.path.join(out, "nfl1h", "step8_nfl1h_direction_clean.xlsx"),
+            os.path.join(out, "nfl1h", f"step8_nfl1h_direction_clean_{d}.xlsx"),
+        )
+    if not str(getattr(args, "nhl1p", "") or "").strip():
+        args.nhl1p = _first_existing_path(
+            os.path.join(out, "nhl1p", "step8_nhl1p_direction_clean.xlsx"),
+            os.path.join(out, "nhl1p", f"step8_nhl1p_direction_clean_{d}.xlsx"),
+            os.path.join(out, "nhl1p", "step8_nhl_direction_clean.xlsx"),
+        )
+
     if not str(getattr(args, "cfb1h", "") or "").strip():
         args.cfb1h = _first_existing_path(
             os.path.join(out, "cfb1h", "step8_cfb1h_direction_clean.xlsx"),
@@ -5414,7 +5431,14 @@ def _apply_tier_defense_pool_gate(df: pd.DataFrame, sport: str) -> pd.DataFrame:
     return out
 
 # Pipelines that emit step8 boards into combined slate (reference for docs / tooling).
-ACTIVE_SPORTS = ("NBA", "NHL", "SOCCER", "TENNIS", "WNBA", "WNBA1H", "WNBA1Q", "MLB", "NBA1H", "NBA1Q", "WCBB", "NFL", "CFB", "CFB1H", "GOLF")
+ACTIVE_SPORTS = (
+    "NBA", "NBA1H", "NBA1Q",
+    "NFL", "NFL1H", "NFL1Q",
+    "NHL", "NHL1P",
+    "CBB", "WCBB", "CFB", "CFB1H",
+    "SOCCER", "TENNIS", "GOLF",
+    "WNBA", "WNBA1H", "WNBA1Q", "MLB",
+)
 # NFL regular season + CFB ticket from step8. Grades land in graded_props via GRADED_JSON_SPORTS.
 # NFL — scaffold gate stays on until season resume (MAIN calendar also excludes until Kickoff).
 # Regular-season NFL stays gated until MAIN resume. NFLP preseason is live
@@ -12313,7 +12337,7 @@ def publish_wnba_slate_merge_into_web(
 def write_slate_json(nba, cbb, nhl, soccer, date_str, outdir,
                      wcbb=None, mlb=None, nba1q=None, nba1h=None, tennis=None, golf=None, nfl=None, wnba=None, cfb=None,
                      tennis_date=None, soccer_date=None, wnba_date=None, mlb_date=None,
-                     wnba1h=None, wnba1q=None, cfb1h=None):
+                     wnba1h=None, wnba1q=None, cfb1h=None, nfl1q=None, nfl1h=None, nhl1p=None):
     """Write full per-sport ranked slate to slate_latest.json for the web UI.
 
     Sport keys in ``sports`` are lowercase (nba, nfl, …) so /api/slate-sport and the
@@ -12328,6 +12352,7 @@ def write_slate_json(nba, cbb, nhl, soccer, date_str, outdir,
             "cfb":    dataframe_to_slate_sport_rows(cfb),
             "cfb1h":  dataframe_to_slate_sport_rows(cfb1h),
             "nhl":    dataframe_to_slate_sport_rows(nhl),
+            "nhl1p":  dataframe_to_slate_sport_rows(nhl1p),
             "soccer": dataframe_to_slate_sport_rows(soccer),
             "tennis": dataframe_to_slate_sport_rows(tennis),
             "golf":   dataframe_to_slate_sport_rows(golf),
@@ -12336,6 +12361,8 @@ def write_slate_json(nba, cbb, nhl, soccer, date_str, outdir,
             "nba1q":  dataframe_to_slate_sport_rows(nba1q),
             "nba1h":  dataframe_to_slate_sport_rows(nba1h),
             "nfl":    dataframe_to_slate_sport_rows(nfl),
+            "nfl1q":  dataframe_to_slate_sport_rows(nfl1q),
+            "nfl1h":  dataframe_to_slate_sport_rows(nfl1h),
             "wnba":   dataframe_to_slate_sport_rows(wnba),
             "wnba1h": dataframe_to_slate_sport_rows(wnba1h),
             "wnba1q": dataframe_to_slate_sport_rows(wnba1q),
@@ -15230,6 +15257,39 @@ def load_nfl(path: str) -> pd.DataFrame:
         sheet_order=("NFL", "ALL"),
         sport="NFL",
         log_prefix="load_nfl",
+    )
+
+
+def load_nfl1q(path: str) -> pd.DataFrame:
+    """NFL 1st-quarter step8 direction clean workbook."""
+    return _load_step8_board_like(
+        path,
+        fallback_filename="step8_nfl1q_direction_clean.xlsx",
+        sheet_order=("NFL1Q", "NFL", "ALL"),
+        sport="NFL1Q",
+        log_prefix="load_nfl1q",
+    )
+
+
+def load_nfl1h(path: str) -> pd.DataFrame:
+    """NFL 1st-half step8 direction clean workbook."""
+    return _load_step8_board_like(
+        path,
+        fallback_filename="step8_nfl1h_direction_clean.xlsx",
+        sheet_order=("NFL1H", "NFL", "ALL"),
+        sport="NFL1H",
+        log_prefix="load_nfl1h",
+    )
+
+
+def load_nhl1p(path: str) -> pd.DataFrame:
+    """NHL 1st-period step8 direction clean workbook."""
+    return _load_step8_board_like(
+        path,
+        fallback_filename="step8_nhl1p_direction_clean.xlsx",
+        sheet_order=("NHL1P", "NHL", "ALL"),
+        sport="NHL1P",
+        log_prefix="load_nhl1p",
     )
 
 
@@ -21178,6 +21238,9 @@ def main():
         default="",
         help="CFB 1st Half step8 (separate board; first-half PBP L5). Optional.",
     )
+    ap.add_argument("--nfl1q", default="", help="NFL 1st Quarter step8 direction clean xlsx (optional)")
+    ap.add_argument("--nfl1h", default="", help="NFL 1st Half step8 direction clean xlsx (optional)")
+    ap.add_argument("--nhl1p", default="", help="NHL 1st Period step8 direction clean xlsx (optional)")
     ap.add_argument("--output", default="")
     ap.add_argument(
         "--date",
@@ -22081,6 +22144,57 @@ def main():
     else:
         print("  [CFB1H] skipped (empty --cfb1h / no default file)")
 
+    nfl1q = None
+    nfl1q_path = str(getattr(args, "nfl1q", "") or "").strip()
+    if nfl1q_path:
+        try:
+            nfl1q = load_nfl1q(nfl1q_path)
+            nfl1q = enforce_target_date(
+                nfl1q, "NFL1Q", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+            )
+            nfl1q = attach_standard_refs(nfl1q)
+            print(f"  {len(nfl1q)} NFL1Q props loaded")
+            _load_audit_row("NFL1Q", nfl1q_path, nfl1q)
+        except Exception as e:
+            print(f"  WARNING: Could not load NFL1Q file: {e}")
+            nfl1q = None
+    else:
+        print("  [NFL1Q] skipped (empty --nfl1q / no default file)")
+
+    nfl1h = None
+    nfl1h_path = str(getattr(args, "nfl1h", "") or "").strip()
+    if nfl1h_path:
+        try:
+            nfl1h = load_nfl1h(nfl1h_path)
+            nfl1h = enforce_target_date(
+                nfl1h, "NFL1H", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+            )
+            nfl1h = attach_standard_refs(nfl1h)
+            print(f"  {len(nfl1h)} NFL1H props loaded")
+            _load_audit_row("NFL1H", nfl1h_path, nfl1h)
+        except Exception as e:
+            print(f"  WARNING: Could not load NFL1H file: {e}")
+            nfl1h = None
+    else:
+        print("  [NFL1H] skipped (empty --nfl1h / no default file)")
+
+    nhl1p = None
+    nhl1p_path = str(getattr(args, "nhl1p", "") or "").strip()
+    if nhl1p_path:
+        try:
+            nhl1p = load_nhl1p(nhl1p_path)
+            nhl1p = enforce_target_date(
+                nhl1p, "NHL1P", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+            )
+            nhl1p = attach_standard_refs(nhl1p)
+            print(f"  {len(nhl1p)} NHL1P props loaded")
+            _load_audit_row("NHL1P", nhl1p_path, nhl1p)
+        except Exception as e:
+            print(f"  WARNING: Could not load NHL1P file: {e}")
+            nhl1p = None
+    else:
+        print("  [NHL1P] skipped (empty --nhl1p / no default file)")
+
     # ✅ Attach Standard sibling refs AFTER normalized columns exist
     nba = attach_standard_refs(nba)
     cbb = attach_standard_refs(cbb)
@@ -22262,6 +22376,21 @@ def main():
         allow_cross_date_fallback=_date_fb,
         extra_dates=extra_match_dates_for_sport("NFL", args),
     )
+    nfl1q = drop_stale_rows(
+        nfl1q, args.date, "NFL1Q",
+        allow_cross_date_fallback=_date_fb,
+        extra_dates=extra_match_dates_for_sport("NFL", args),
+    )
+    nfl1h = drop_stale_rows(
+        nfl1h, args.date, "NFL1H",
+        allow_cross_date_fallback=_date_fb,
+        extra_dates=extra_match_dates_for_sport("NFL", args),
+    )
+    nhl1p = drop_stale_rows(
+        nhl1p, args.date, "NHL1P",
+        allow_cross_date_fallback=_date_fb,
+        extra_dates=extra_match_dates_for_sport("NHL", args),
+    )
     cfb = drop_stale_rows(cfb, args.date, "CFB", allow_cross_date_fallback=_date_fb)
     cfb1h = drop_stale_rows(cfb1h, args.date, "CFB1H", allow_cross_date_fallback=_date_fb)
 
@@ -22295,6 +22424,9 @@ def main():
     nba1q = drop_demon_over_rows(nba1q, "NBA1Q")
     nba1h = drop_demon_over_rows(nba1h, "NBA1H")
     nfl = drop_demon_over_rows(nfl, "NFL")
+    nfl1q = drop_demon_over_rows(nfl1q, "NFL1Q")
+    nfl1h = drop_demon_over_rows(nfl1h, "NFL1H")
+    nhl1p = drop_demon_over_rows(nhl1p, "NHL1P")
     cfb = drop_demon_over_rows(cfb, "CFB")
     cfb1h = drop_demon_over_rows(cfb1h, "CFB1H")
 
@@ -22313,6 +22445,9 @@ def main():
             tennis=tennis,
             golf=golf,
             nfl=nfl,
+            nfl1q=nfl1q,
+            nfl1h=nfl1h,
+            nhl1p=nhl1p,
             wnba=wnba,
             wnba1h=wnba1h,
             wnba1q=wnba1q,
@@ -24490,7 +24625,8 @@ def main():
         )
         write_slate_json(nba, cbb, nhl, soccer, args.date, args.web_outdir,
                          wcbb=wcbb, mlb=mlb, nba1q=nba1q, nba1h=nba1h, tennis=tennis, golf=golf,
-                         nfl=nfl, wnba=wnba, wnba1h=wnba1h, wnba1q=wnba1q, cfb=cfb, cfb1h=cfb1h,
+                         nfl=nfl, nfl1q=nfl1q, nfl1h=nfl1h, nhl1p=nhl1p,
+                         wnba=wnba, wnba1h=wnba1h, wnba1q=wnba1q, cfb=cfb, cfb1h=cfb1h,
                          tennis_date=getattr(args, "tennis_date", None),
                          soccer_date=getattr(args, "soccer_date", None),
                          wnba_date=getattr(args, "wnba_date", None),

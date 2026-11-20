@@ -1,0 +1,38 @@
+{
+  "as_of": "2026-11-19",
+  "notes": "Single source for fetch schedule, /api/pipeline/status game_day, home sport cards, X-sports count, and Hide Off-Season. Keys are PropORACLE sport tags; league_id is PrizePicks. GOLF maps to PP name PGA.",
+  "active": [
+    {"key": "NBA", "league_id": "7", "pp_name": "NBA", "card": true},
+    {"key": "NBA1Q", "league_id": "192", "pp_name": "NBA1Q", "card": true},
+    {"key": "NBA1H", "league_id": "84", "pp_name": "NBA1H", "card": true},
+    {"key": "NFL", "league_id": "9", "pp_name": "NFL", "card": true},
+    {"key": "NFL1Q", "league_id": "245", "pp_name": "NFL1Q", "card": true},
+    {"key": "NFL1H", "league_id": "35", "pp_name": "NFL1H", "card": true},
+    {"key": "NHL", "league_id": "8", "pp_name": "NHL", "card": true},
+    {"key": "NHL1P", "league_id": "227", "pp_name": "NHL1P", "card": true},
+    {"key": "CBB", "league_id": "20", "pp_name": "CBB", "card": true},
+    {"key": "WCBB", "league_id": "176", "pp_name": "WCBB", "card": true},
+    {"key": "CFB", "league_id": "15", "pp_name": "CFB", "card": true},
+    {"key": "CFB1H", "league_id": "184", "pp_name": "CFB1H", "card": true},
+    {"key": "SOCCER", "league_id": "82", "pp_name": "SOCCER", "card": true, "fetch_only_if_no_league_boards": false},
+    {"key": "EPL", "league_id": "14", "pp_name": "EPL", "card": false, "parent": "SOCCER"},
+    {"key": "LALIGA", "league_id": "531", "pp_name": "La Liga", "card": false, "parent": "SOCCER"},
+    {"key": "SERIE_A", "league_id": "534", "pp_name": "Serie A", "card": false, "parent": "SOCCER"},
+    {"key": "MLS", "league_id": "6", "pp_name": "MLS", "card": false, "parent": "SOCCER"},
+    {"key": "LIGA_MX", "league_id": "536", "pp_name": "Liga MX", "card": false, "parent": "SOCCER"},
+    {"key": "LIGUE_1", "league_id": "535", "pp_name": "Ligue 1", "card": false, "parent": "SOCCER"},
+    {"key": "TENNIS", "league_id": "5", "pp_name": "TENNIS", "card": true},
+    {"key": "GOLF", "league_id": "1", "pp_name": "PGA", "card": true}
+  ],
+  "inactive": [
+    {"key": "MLB", "league_id": "2", "pp_name": "MLB", "card": true},
+    {"key": "WNBA", "league_id": "3", "pp_name": "WNBA", "card": true},
+    {"key": "WNBA1H", "league_id": "193", "pp_name": "WNBA1H", "card": true},
+    {"key": "WNBA1Q", "league_id": "308", "pp_name": "WNBA1Q", "card": true}
+  ],
+  "board_only_not_wired": [
+    {"key": "UFC", "league_id": "12", "pp_name": "UFC"},
+    {"key": "F1", "league_id": "125", "pp_name": "F1"},
+    {"key": "BOXING", "league_id": "42", "pp_name": "BOXING"}
+  ]
+}

@@ -43,7 +43,8 @@ except ImportError:
     subprocess.check_call([sys.executable, "-m", "pip", "install", "tqdm", "--break-system-packages", "-q"])
     from tqdm import tqdm as _tqdm
 
-NHL_LEAGUE_ID = 8
+NHL_LEAGUE_ID = "8"
+NHL1P_LEAGUE_ID = "227"
 PER_PAGE = 250
 # PrizePicks occasionally paginates deep on busy slates; stop only after an empty page.
 MAX_PAGES = 40
@@ -268,15 +269,17 @@ def _merge_projection_boards(primary: list, secondary: list) -> list:
 
 def fetch_via_direct_api(
     *,
+    league_id: str = NHL_LEAGUE_ID,
     per_page: int = PER_PAGE,
     max_pages: int = MAX_PAGES,
     retries: int = 5,
     first_page_waves: int = 3,
     fail_fast: bool = False,
 ) -> list:
-    """curl_cffi HTTP fetch (league_id=8) — same stack as WNBA/MLB."""
+    """curl_cffi HTTP fetch (NHL=8, NHL1P=227) — same stack as WNBA/MLB."""
+    lid = str(league_id or NHL_LEAGUE_ID).strip() or str(NHL_LEAGUE_ID)
     print(
-        f"  [NHL] HTTP fetch | league_id={NHL_LEAGUE_ID} | "
+        f"  [NHL] HTTP fetch | league_id={lid} | "
         f"per_page={per_page} max_pages={max_pages} retries={retries} waves={first_page_waves}"
     )
     try:
@@ -294,7 +297,7 @@ def fetch_via_direct_api(
                 inter_page_delay=(0.4, 1.0),
                 wave_gap_seconds=(0.5, 1.0),
             )
-        data, included = fetch_pp_projections(str(NHL_LEAGUE_ID), **kw)
+        data, included = fetch_pp_projections(str(lid), **kw)
     except Exception as e:
         print(f"  ✗ HTTP fetch failed: {type(e).__name__}: {e}")
         return []
@@ -303,13 +306,14 @@ def fetch_via_direct_api(
         print("  ✗ HTTP returned non-NHL data — discarding")
         return []
     if rows:
-        print(f"  ✓ HTTP: {len(rows)} NHL props")
+        print(f"  ✓ HTTP: {len(rows)} NHL props (league_id={lid})")
     return rows
 
 
-def fetch_via_requests(game_mode: str) -> list:
+def fetch_via_requests(game_mode: str, league_id: str = NHL_LEAGUE_ID) -> list:
     """Try plain requests — works if the endpoint isn't bot-protected."""
-    print(f"  Trying requests ({game_mode} mode)...")
+    lid = str(league_id or NHL_LEAGUE_ID).strip() or str(NHL_LEAGUE_ID)
+    print(f"  Trying requests ({game_mode} mode, league_id={lid})...")
     session = requests.Session()
     session.headers.update(HEADERS)
 
@@ -319,7 +323,7 @@ def fetch_via_requests(game_mode: str) -> list:
     page_bar = _tqdm(range(1, MAX_PAGES + 1), desc=f"  Fetching pages ({game_mode})", unit="page", leave=True)
     for page in page_bar:
         params = {
-            "league_id": NHL_LEAGUE_ID,
+            "league_id": lid,
             "game_mode": game_mode,
             "per_page": PER_PAGE,
             "page": page,
@@ -543,6 +547,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="outputs/step1_nhl_props.csv")
     parser.add_argument(
+        "--league_id",
+        default="",
+        help=f"PrizePicks league id (default {NHL_LEAGUE_ID}; NHL1P={NHL1P_LEAGUE_ID}).",
+    )
+    parser.add_argument(
         "--append",
         action="store_true",
         help="Append this fetch after existing CSV rows, then dedupe (keep='last').",
@@ -572,21 +581,23 @@ def main():
     parser.add_argument("--playwright", action="store_true", help="Launch Chromium for in-page fetch.")
     args = parser.parse_args()
     out_path = Path(args.output)
+    league_id = str(args.league_id or "").strip() or str(NHL_LEAGUE_ID)
+    sport_tag = "NHL1P" if league_id == str(NHL1P_LEAGUE_ID) else "NHL"
 
     cdp_url = str(args.cdp or "").strip()
     if cdp_url:
-        print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (CDP {cdp_url})")
+        print(f"📡 Fetching PrizePicks {sport_tag} | league_id={league_id} (CDP {cdp_url})")
     elif args.playwright:
-        print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (playwright)")
+        print(f"📡 Fetching PrizePicks {sport_tag} | league_id={league_id} (playwright)")
     else:
-        print(f"📡 Fetching PrizePicks NHL | league_id={NHL_LEAGUE_ID} (HTTP first)")
+        print(f"📡 Fetching PrizePicks {sport_tag} | league_id={league_id} (HTTP first)")
 
     rows: list = []
     if cdp_url or args.playwright:
         from utils.prizepicks_cdp import session_fetch_projections
 
         data, included, _st = session_fetch_projections(
-            str(NHL_LEAGUE_ID),
+            str(league_id),
             cdp_url=cdp_url,
             playwright=bool(args.playwright) and not cdp_url,
             per_page=int(args.per_page),
@@ -596,6 +607,7 @@ def main():
     else:
         waves = 1 if args.fail_fast else int(args.api_session_waves)
         rows = fetch_via_direct_api(
+            league_id=str(league_id),
             per_page=int(args.per_page),
             max_pages=min(4, int(args.max_pages)) if args.fail_fast else int(args.max_pages),
             retries=min(2, int(args.api_retries)) if args.fail_fast else int(args.api_retries),
@@ -605,8 +617,8 @@ def main():
 
         if not rows and not args.fail_fast:
             print("  [NHL] HTTP empty — trying plain requests (prizepools + pickem)...")
-            rows_pp = fetch_via_requests("prizepools")
-            rows_pk = fetch_via_requests("pickem")
+            rows_pp = fetch_via_requests("prizepools", league_id=str(league_id))
+            rows_pk = fetch_via_requests("pickem", league_id=str(league_id))
             rows = _merge_projection_boards(rows_pp or [], rows_pk or [])
 
         if not rows and not args.fail_fast:
@@ -649,6 +661,12 @@ def main():
         _write_empty_nhl(out_path)
         sys.exit(0)
     rows = filtered.to_dict("records")
+    for r in rows:
+        if isinstance(r, dict):
+            r["league_id"] = str(league_id)
+            r["league"] = sport_tag
+            if not str(r.get("sport") or "").strip():
+                r["sport"] = sport_tag
 
     rows, n_missing_std = enrich_standard_lines(rows)
     if n_missing_std:

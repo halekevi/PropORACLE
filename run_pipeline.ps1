@@ -2684,7 +2684,7 @@ if ($CFBOnly) {
         $ok1h = Invoke-PrizePicksStep1Cascade -SportLabel "CFB1H" -WorkDir $CFBDir `
             -ScriptRel ".\scripts\pipeline\step1_pp_cfb_scraper.py" `
             -OutputPath "$CFB1HRunOutDir\step1_cfb1h.csv" -PipelineDate $Date `
-            -HttpArgs @("--board", "cfb1h", "--out", "$CFB1HRunOutDir\step1_cfb1h.csv") `
+            -HttpArgs @("--league_id", "184", "--out", "$CFB1HRunOutDir\step1_cfb1h.csv") `
             -SkipDateHealth
     } else { Write-Host "  [CFB1H] Skipping step1 fetch -- using existing $CFB1HRunOutDir\step1_cfb1h.csv" -ForegroundColor DarkGray }
     if ($ok1h -and (Test-Step1NoSlate -CsvPath "$CFB1HRunOutDir\step1_cfb1h.csv" -TargetDate $Date -DateWindowDays 7)) {
@@ -3391,7 +3391,7 @@ $CFBJob = Start-Job -ScriptBlock {
         $ok1h = Invoke-PrizePicksStep1Cascade -AsJobOutput -SportLabel "CFB1H" -WorkDir $CFBDir `
             -ScriptRel ".\scripts\pipeline\step1_pp_cfb_scraper.py" `
             -OutputPath $cfb1h1 -PipelineDate $Date `
-            -HttpArgs @("--board", "cfb1h", "--out", $cfb1h1) `
+            -HttpArgs @("--league_id", "184", "--out", $cfb1h1) `
             -SkipDateHealth
     } else { Write-Output "[CFB1H] Skipping step1 fetch" }
     if ($ok1h -and (Test-Step1NoSlate-Job -CsvPath $cfb1h1)) {

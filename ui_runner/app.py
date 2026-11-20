@@ -4255,6 +4255,30 @@ def api_pipeline_status():
         NFL_SLATE,
         NFL_DIR / "outputs" / "step8_nfl_direction_clean.xlsx",
     )
+    nfl1q_slate_p = _resolve_outputs_artifact(
+        days,
+        ["nfl1q/step8_nfl1q_direction_clean.xlsx", "step8_nfl1q_direction_clean_{d}.xlsx"],
+    )
+    nfl1h_slate_p = _resolve_outputs_artifact(
+        days,
+        ["nfl1h/step8_nfl1h_direction_clean.xlsx", "step8_nfl1h_direction_clean_{d}.xlsx"],
+    )
+    cfb1h_slate_p = _resolve_outputs_artifact(
+        days,
+        ["cfb1h/step8_cfb1h_direction_clean.xlsx", "step8_cfb1h_direction_clean_{d}.xlsx"],
+    )
+    nhl1p_slate_p = _resolve_outputs_artifact(
+        days,
+        ["nhl1p/step8_nhl1p_direction_clean.xlsx", "step8_nhl1p_direction_clean_{d}.xlsx"],
+    )
+    golf_slate_p = _resolve_outputs_artifact(
+        days,
+        [
+            "golf/step8_golf_direction_clean.xlsx",
+            "golf/step8_golf_direction_clean_{d}.xlsx",
+            "step8_golf_direction_clean_{d}.xlsx",
+        ],
+    )
     udq_p = _resolve_outputs_artifact(days, "upstream_data_quality_{d}.csv")
 
     combined_candidates: list[Path] = []
@@ -4295,7 +4319,10 @@ def api_pipeline_status():
         wnba_override_date = None
     wnba_match_day = wnba_override_date or et_today
     # Strict game-day sports (matches index.html SLATE_STRICT_GAME_DAY_SPORTS + tennis).
-    _game_day_sports = ("nhl", "nfl", "mlb", "nba1h", "nba1q", "soccer", "wnba", "wnba1h", "wnba1q", "tennis")
+    _game_day_sports = (
+        "nhl", "nhl1p", "nfl", "nfl1q", "nfl1h", "mlb",
+        "nba1h", "nba1q", "soccer", "wnba", "wnba1h", "wnba1q", "tennis", "cfb1h",
+    )
     game_day: dict[str, bool | None] = {}
     for sid in _game_day_sports:
         if sid == "tennis":
@@ -4308,6 +4335,17 @@ def api_pipeline_status():
             target = et_today
         game_day[sid] = _sport_rows_have_game_on_ymd(slate_payload, sid, target)
     board_meta = _home_board_display_meta(tickets_payload, slate_payload)
+
+    active_keys: list[str] = []
+    inactive_keys: list[str] = []
+    try:
+        from utils.active_sports import active_keys as _as_active
+        from utils.active_sports import inactive_keys as _as_inactive
+
+        active_keys = _as_active(cards_only=True, upper=True)
+        inactive_keys = _as_inactive(cards_only=True, upper=True)
+    except Exception:
+        pass
 
     return jsonify({
         "nba": {
@@ -4329,12 +4367,18 @@ def api_pipeline_status():
         "cfb": {
             "slate": _sport_slate_status(cfb_slate_p, "cfb", slate_counts, slate_disk_info, status_js_ts, card_disp),
         },
+        "cfb1h": {
+            "slate": _sport_slate_status(cfb1h_slate_p, "cfb1h", slate_counts, slate_disk_info, status_js_ts, card_disp),
+        },
         "wcbb": {
             "slate": _sport_slate_status(wcbb_slate_p, "wcbb", slate_counts, slate_disk_info, status_js_ts, card_disp),
         },
         "nhl": {
             "slate":   _sport_slate_status(nhl_slate_p, "nhl", slate_counts, slate_disk_info, status_js_ts, card_disp),
             "tickets": _file_info(NHL_TICKETS),
+        },
+        "nhl1p": {
+            "slate": _sport_slate_status(nhl1p_slate_p, "nhl1p", slate_counts, slate_disk_info, status_js_ts, card_disp),
         },
         "soccer": {
             "slate":   _sport_slate_status(soccer_slate_p, "soccer", slate_counts, slate_disk_info, status_js_ts, card_disp),
@@ -4349,6 +4393,9 @@ def api_pipeline_status():
                 tennis_slate_p, "tennis", slate_counts, slate_disk_info, status_js_ts, tennis_card_disp
             ),
         },
+        "golf": {
+            "slate": _sport_slate_status(golf_slate_p, "golf", slate_counts, slate_disk_info, status_js_ts, card_disp),
+        },
         "wnba": {
             "slate": _sport_slate_status(wnba_slate_p, "wnba", slate_counts, slate_disk_info, status_js_ts, card_disp),
         },
@@ -4361,9 +4408,17 @@ def api_pipeline_status():
         "nfl": {
             "slate": _sport_slate_status(nfl_slate_p, "nfl", slate_counts, slate_disk_info, status_js_ts, card_disp),
         },
+        "nfl1q": {
+            "slate": _sport_slate_status(nfl1q_slate_p, "nfl1q", slate_counts, slate_disk_info, status_js_ts, card_disp),
+        },
+        "nfl1h": {
+            "slate": _sport_slate_status(nfl1h_slate_p, "nfl1h", slate_counts, slate_disk_info, status_js_ts, card_disp),
+        },
         "combined": {
             "slate": combined_slate,
         },
+        "active_sports": active_keys,
+        "inactive_sports": inactive_keys,
         "pipeline_outputs_date": days[0] if days else None,
         "upstream_data_quality": _file_info(udq_p),
         "as_of": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),

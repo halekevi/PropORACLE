@@ -546,6 +546,24 @@ else {
     elseif ((Get-CsvDataRowCount -CsvPath $nhlStep1) -gt 0) {
         Copy-Step1Mirror -Source $nhlStep1 -MirrorPath (Join-Path $NHLDir "outputs\step1_nhl_props.csv")
     }
+
+    # NHL1P — 1st-period board (227); keep separate from full-game NHL.
+    Write-Host "[LATE_FETCH] Fetching NHL1P props (league_id=227)..."
+    $nhl1pRunOut = Ensure-RunOutDir -SportTag "nhl1p"
+    $nhl1pStep1 = Join-Path $nhl1pRunOut "step1_nhl1p_props.csv"
+    $nhl1pArgs = @(
+        "-3.14", ".\scripts\step1_fetch_prizepicks_nhl.py",
+        "--league_id", "227",
+        "--date", "$PipeDate",
+        "--output", $nhl1pStep1
+    )
+    if ($CdpReachable) { $nhl1pArgs += @("--cdp", $CdpUrl) }
+    $nhl1pExit = Invoke-TimedCommand -Label "NHL1P step1" -FilePath "py" -ArgumentList $nhl1pArgs -WorkingDirectory $NHLDir -TimeoutSec $(if ($CdpReachable) { 240 } else { 150 })
+    if (($nhl1pExit -ne 0) -or ((Get-CsvDataRowCount -CsvPath $nhl1pStep1) -eq 0)) {
+        Write-Host "[LATE_FETCH] WARNING: NHL1P step1 empty/failed (exit $nhl1pExit)" -ForegroundColor Yellow
+    } else {
+        Write-Host "[LATE_FETCH] NHL1P step1 rows=$((Get-CsvDataRowCount -CsvPath $nhl1pStep1))" -ForegroundColor DarkGray
+    }
 }
 
 # Soccer — CDP when available; otherwise fail-fast HTTP (never multi-board 90s cooldown stacks)
@@ -665,6 +683,36 @@ else {
     if ((Get-CsvDataRowCount -CsvPath $nflStep1) -gt 0) {
         Invoke-NFLStep8RebuildIfNeeded -Step1Path $nflStep1
     }
+
+    # Period boards (NFL1Q / NFL1H) — dedicated outdirs so home cards stay separate from NFL.
+    $nflPs1 = Join-Path $Root "scripts\run_nfl_pipeline.ps1"
+    foreach ($period in @(
+        @{ Tag = "nfl1q"; LeagueId = "245" },
+        @{ Tag = "nfl1h"; LeagueId = "35" }
+    )) {
+        $tag = [string]$period.Tag
+        $lid = [string]$period.LeagueId
+        Write-Host "[LATE_FETCH] Fetching $($tag.ToUpper()) (league_id=$lid)..."
+        if (Test-Path -LiteralPath $nflPs1) {
+            $pExit = Invoke-TimedCommand -Label "$($tag.ToUpper()) pipeline" -FilePath "pwsh" -ArgumentList @(
+                "-NoProfile", "-File", $nflPs1,
+                "-Date", $PipeDate, "-PeriodTag", $tag, "-LeagueId", $lid
+            ) -WorkingDirectory $Root -TimeoutSec 1800
+            if ($pExit -ne 0) {
+                Write-Host "[LATE_FETCH] WARNING: $($tag.ToUpper()) pipeline exit $pExit" -ForegroundColor Yellow
+            }
+        } else {
+            $pOut = Ensure-RunOutDir -SportTag $tag
+            $pStep1 = Join-Path $pOut "step1_pp_props_today.csv"
+            $pArgs = @(
+                "-3.14", ".\scripts\step1_fetch_prizepicks_nfl.py",
+                "--output", $pStep1, "--date", "$PipeDate", "--replace", "--fail-fast",
+                "--league_id", $lid, "--no-preseason", "--no-season"
+            )
+            if ($CdpReachable) { $pArgs += @("--cdp", $CdpUrl) }
+            [void](Invoke-TimedCommand -Label "$($tag.ToUpper()) step1" -FilePath "py" -ArgumentList $pArgs -WorkingDirectory $NFLDir -TimeoutSec 240)
+        }
+    }
 }
 
 # CFB — Week 1+ boards move all morning; without this, 8AM/9AM refreshes keep overnight lines.
@@ -699,6 +747,23 @@ else {
     # Daily CFB board: step1 alone looks like "no CFB" in G70 until step8 exists.
     if ((Get-CsvDataRowCount -CsvPath $cfbStep1) -gt 0) {
         Invoke-CFBStep8RebuildIfNeeded -Step1Path $cfbStep1
+    }
+
+    # CFB1H — separate PrizePicks board (184); was missing from late-fetch entirely.
+    Write-Host "[LATE_FETCH] Fetching CFB1H props (league_id=184)..."
+    $cfb1hRunOut = Ensure-RunOutDir -SportTag "cfb1h"
+    $cfb1hStep1 = Join-Path $cfb1hRunOut "step1_cfb1h.csv"
+    $cfb1hArgs = @(
+        "-3.14", ".\scripts\pipeline\step1_pp_cfb_scraper.py",
+        "--league_id", "184",
+        "--out", $cfb1hStep1,
+        "--fail-fast"
+    )
+    $cfb1hExit = Invoke-TimedCommand -Label "CFB1H step1" -FilePath "py" -ArgumentList $cfb1hArgs -WorkingDirectory $CFBDir -TimeoutSec 150
+    if (($cfb1hExit -ne 0) -or ((Get-CsvDataRowCount -CsvPath $cfb1hStep1) -eq 0)) {
+        Write-Host "[LATE_FETCH] WARNING: CFB1H step1 empty/failed (exit $cfb1hExit)" -ForegroundColor Yellow
+    } else {
+        Write-Host "[LATE_FETCH] CFB1H step1 rows=$((Get-CsvDataRowCount -CsvPath $cfb1hStep1))" -ForegroundColor DarkGray
     }
 }
 

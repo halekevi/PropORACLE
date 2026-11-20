@@ -685,7 +685,13 @@ def main() -> int:
         boards.update(PERIOD_BOARDS)
     single = str(args.league_id or "").strip()
     if single:
-        boards = {single: boards.get(single, f"NFL_{single}")}
+        name = (
+            PERIOD_BOARDS.get(single)
+            or DEFAULT_NFL_BOARDS.get(single)
+            or boards.get(single)
+            or f"NFL_{single}"
+        )
+        boards = {single: name}
 
     cdp_url = str(args.cdp or "").strip()
     if cdp_url and not single:

@@ -3,7 +3,10 @@
 # step1 → step2_clean → step4_defense → step3_merge → step6 → step7 → step8
 param(
     [string]$Date = "",
-    [switch]$SkipFetch
+    [switch]$SkipFetch,
+    # Period boards: nfl1q (245) / nfl1h (35). Empty = full-game NFL+NFLP.
+    [string]$PeriodTag = "",
+    [string]$LeagueId = ""
 )
 
 $ErrorActionPreference = "Continue"
@@ -14,9 +17,16 @@ $Root = Split-Path -Parent $ScriptDir
 $NFLDir = Join-Path $Root "Sports\NFL"
 
 if (-not $Date) { $Date = Get-Date -Format "yyyy-MM-dd" }
-$OutDir = Join-Path $Root "outputs\$Date\nfl"
+$period = ("$PeriodTag").Trim().ToLower()
+$league = ("$LeagueId").Trim()
+if ($period -and -not $league) {
+    if ($period -eq "nfl1q") { $league = "245" }
+    elseif ($period -eq "nfl1h") { $league = "35" }
+}
+$sportFolder = if ($period) { $period } else { "nfl" }
+$OutDir = Join-Path $Root "outputs\$Date\$sportFolder"
 $SportOutDir = Join-Path $NFLDir "outputs"
-$DataOutDir = Join-Path $NFLDir "data\outputs"
+$DataOutDir = if ($period) { Join-Path $OutDir "work" } else { Join-Path $NFLDir "data\outputs" }
 if (-not (Test-Path $OutDir)) { New-Item -ItemType Directory -Force -Path $OutDir | Out-Null }
 if (-not (Test-Path $SportOutDir)) { New-Item -ItemType Directory -Force -Path $SportOutDir | Out-Null }
 if (-not (Test-Path $DataOutDir)) { New-Item -ItemType Directory -Force -Path $DataOutDir | Out-Null }
@@ -38,7 +48,8 @@ if (Test-Path "$Root\.venv\Scripts\Activate.ps1") {
 
 Write-Host ""
 Write-Host "======================================================" -ForegroundColor Cyan
-Write-Host "  NFL PIPELINE  |  $Date  |  $OutDir" -ForegroundColor Cyan
+$pipeLabel = if ($period) { "NFL PERIOD $($period.ToUpper()) league_id=$league" } else { "NFL" }
+Write-Host "  $pipeLabel PIPELINE  |  $Date  |  $OutDir" -ForegroundColor Cyan
 Write-Host "======================================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -109,17 +120,24 @@ $s3 = Join-Path $DataOutDir "step3_nfl_with_defense.csv"
 $s3dated = Join-Path $OutDir "step3_nfl_with_defense.csv"
 $s5 = Join-Path $DataOutDir "step5_nfl_with_stats.csv"
 $s6 = Join-Path $DataOutDir "step6_hit_rates.csv"
-$s7 = Join-Path $OutDir "step7_nfl_ranked.xlsx"
-$s8 = Join-Path $OutDir "step8_nfl_direction_clean.xlsx"
+$s7Name = if ($period) { "step7_${period}_ranked.xlsx" } else { "step7_nfl_ranked.xlsx" }
+$s8Name = if ($period) { "step8_${period}_direction_clean.xlsx" } else { "step8_nfl_direction_clean.xlsx" }
+$s7 = Join-Path $OutDir $s7Name
+$s8 = Join-Path $OutDir $s8Name
 
 $ok = $true
 
 if (-not $SkipFetch) {
     if ($ok) {
-        $ok = Invoke-PrizePicksStep1Cascade -SportLabel "NFL" -WorkDir $NFLDir `
+        $httpArgs = @("--output", $s1, "--date", $Date, "--replace")
+        if ($league) {
+            $httpArgs += @("--league_id", $league, "--no-preseason", "--no-season")
+        }
+        $label = if ($period) { $period.ToUpper() } else { "NFL" }
+        $ok = Invoke-PrizePicksStep1Cascade -SportLabel $label -WorkDir $NFLDir `
             -ScriptRel ".\scripts\step1_fetch_prizepicks_nfl.py" `
             -OutputPath $s1 -PipelineDate $Date `
-            -HttpArgs @("--output", $s1, "--date", $Date) `
+            -HttpArgs $httpArgs `
             -SkipDateHealth
     }
 } else {
@@ -183,17 +201,34 @@ if ($ok) {
     $ok = Run-Step "NFL Step 8 - Direction Context" $NFLDir ".\scripts\step8_add_direction_context_nfl.py" --input $s7 --output $s8 --date $Date
 }
 
-if ($ok -and (Test-Path -LiteralPath $s7)) {
+if ($ok -and -not $period -and (Test-Path -LiteralPath $s7)) {
     Copy-Item -LiteralPath $s7 -Destination (Join-Path $SportOutDir "step7_nfl_ranked.xlsx") -Force
 }
-if ($ok -and (Test-Path -LiteralPath $s8)) {
+if ($ok -and -not $period -and (Test-Path -LiteralPath $s8)) {
     Copy-Item -LiteralPath $s8 -Destination (Join-Path $SportOutDir "step8_nfl_direction_clean.xlsx") -Force
+}
+if ($ok -and $period -and (Test-Path -LiteralPath $s8)) {
+    # Stamp sport column so combined/slate keep NFL1Q/NFL1H separate from NFL.
+    & py -3.14 -c @"
+import pandas as pd
+from pathlib import Path
+p = Path(r'$s8')
+tag = '$($period.ToUpper())'
+df = pd.read_excel(p)
+for c in ('sport', 'Sport', 'League', 'league'):
+    if c in df.columns:
+        df[c] = tag
+if 'sport' not in df.columns:
+    df['sport'] = tag
+df.to_excel(p, index=False)
+print(f'stamped sport={tag} rows={len(df)} -> {p}')
+"@
 }
 
 Write-Host ""
 if ($ok) {
-    Write-Host "  NFL pipeline complete -> $s8" -ForegroundColor Green
+    Write-Host "  $pipeLabel pipeline complete -> $s8" -ForegroundColor Green
     exit 0
 }
-Write-Host "  NFL pipeline FAILED." -ForegroundColor Red
+Write-Host "  $pipeLabel pipeline FAILED." -ForegroundColor Red
 exit 1
