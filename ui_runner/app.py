@@ -1281,6 +1281,12 @@ _SLATE_SPORT_UI_KEYS = frozenset(
         "l10_over",
         "l10_under",
         "l10_games_played",
+        "l20_over",
+        "l20_under",
+        "l20_games_played",
+        "gap",
+        "sd",
+        "games_played",
         "season_avg",
         "ml_prob",
         "def_tier",
@@ -4127,6 +4133,19 @@ def api_grade_history():
     r.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
     r.headers["Pragma"] = "no-cache"
     return r
+
+
+@app.get("/api/props-board/config")
+def api_props_board_config():
+    """Per-sport Props Board groups + column catalog (config/props_board.json)."""
+    path = BASE_DIR / "config" / "props_board.json"
+    if not path.is_file():
+        return jsonify({"error": "props_board.json missing", "sports": {}}), 404
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return jsonify({"error": str(exc), "sports": {}}), 500
+    return jsonify(payload)
 
 
 # ──────────────────────────────────────────────────────────────────────────────

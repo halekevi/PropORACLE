@@ -12012,6 +12012,23 @@ def dataframe_to_slate_sport_rows(df: Optional[pd.DataFrame]) -> List[dict]:
             "l10_over":   g("l10_over"),
             "l10_under":  g("l10_under"),
             "l10_games_played": g("l10_games_played"),
+            # Props Board (Option A): pass through existing step8 fields; do not model.
+            "l5_avg": (
+                g("l5_avg")
+                or g("Last 5 Avg")
+                or g("last5_avg")
+                or g("stat_last5_avg")
+                or g("avg_L5")
+            ),
+            "sd": g("distribution_std") or g("stat_std") or g("l5_std") or g("std_dev") or g("sd"),
+            "games_played": (
+                g("games_used")
+                or g("games_played")
+                or g("l10_games_played")
+                or g("l5_games_played")
+                or g("distribution_n")
+                or g("sample_n")
+            ),
             "season_avg": g("season_avg") or g("szn_avg") or g("stat_season_avg"),
             "ml_prob":    g("ml_prob"),
             "def_tier":   g("def_tier") if g("def_tier") else g("Def Tier") or g("DEF_TIER"),
@@ -12137,9 +12154,40 @@ def dataframe_to_slate_sport_rows(df: Optional[pd.DataFrame]) -> List[dict]:
         if b2b is not None:
             row["back_to_back"] = str(b2b).strip().lower() in ("1", "true", "yes", "y")
         if row.get("projection") is None:
-            l5a = g("l5_avg")
+            l5a = row.get("l5_avg") if row.get("l5_avg") is not None else g("l5_avg")
             if l5a is not None:
                 row["projection"] = l5a
+
+        # Gap = line − L5 avg (Props Board). Prefer avg_vs_line when step8 already has it.
+        gap_v = g("avg_vs_line") or g("l5_gap") or g("gap")
+        if gap_v is None:
+            try:
+                line_v = float(row.get("line")) if row.get("line") is not None else None
+                l5a = float(row.get("l5_avg")) if row.get("l5_avg") is not None else None
+                if line_v is not None and l5a is not None:
+                    gap_v = line_v - l5a
+            except (TypeError, ValueError):
+                gap_v = None
+        if gap_v is not None:
+            try:
+                row["gap"] = round(float(gap_v), 4)
+            except (TypeError, ValueError):
+                pass
+        if row.get("sd") is not None:
+            try:
+                row["sd"] = round(float(row["sd"]), 4)
+            except (TypeError, ValueError):
+                pass
+        if row.get("l5_avg") is not None:
+            try:
+                row["l5_avg"] = round(float(row["l5_avg"]), 4)
+            except (TypeError, ValueError):
+                pass
+        if row.get("games_played") is not None:
+            try:
+                row["games_played"] = float(row["games_played"])
+            except (TypeError, ValueError):
+                pass
 
         try:
             from prop_hit_tiers import stamp_prop_tier_on_slate_row
@@ -22055,9 +22103,11 @@ def main():
     nba1q = None
     from utils.ticket_sport_holds import NBA1Q_HOLD_REASON, nba1q_tickets_held
 
+    # Ticket hold must not wipe the explorer/Props Board slate. Still load rows;
+    # ticket builders check nba1q_tickets_held() separately.
     if nba1q_tickets_held():
         print(f"  [NBA1Q] {NBA1Q_HOLD_REASON}")
-    elif _nba_family_off_season(args.date):
+    if _nba_family_off_season(args.date):
         print("  [NBA1Q] Off-season — skipped until 2026-10-01")
     else:
         nba1q_path = str(args.nba1q or "").strip()
