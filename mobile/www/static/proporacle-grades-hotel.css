@@ -1,14 +1,14 @@
 /**
- * Grades hotel theme (hub + slate/ticket iframes).
- * Opaque glass panels, gold accent, no backdrop-filter (frosts iframes / tables).
- * Load LAST on indexGrades and on slate_eval / ticket_eval embeds.
+ * Grades hotel layout — fresh frame structure.
+ * One open page surface (like Tickets/Home). No nested chrome cards.
+ * Load LAST on indexGrades and slate/ticket eval embeds.
  */
 :root {
   --bg: #0b0b0b !important;
   --bg-main: #0b0b0b !important;
-  --glass: rgba(18, 18, 20, 0.96) !important;
-  --glass-bg: rgba(18, 18, 20, 0.96) !important;
-  --glass-panel: rgba(255, 255, 255, 0.04) !important;
+  --glass: transparent !important;
+  --glass-bg: rgba(18, 18, 18, 0.72) !important;
+  --glass-panel: transparent !important;
   --glass-bd: rgba(255, 255, 255, 0.1) !important;
   --glass-panel-border: rgba(255, 255, 255, 0.1) !important;
   --glass-border: rgba(212, 175, 55, 0.18) !important;
@@ -25,16 +25,20 @@
   --red: #d07a78 !important;
   --amber: #c4a574 !important;
   --purple: #b8a99a !important;
+  --hotel-rule: rgba(255, 255, 255, 0.1);
+  --hotel-rule-soft: rgba(255, 255, 255, 0.06);
+  --hotel-ink: rgba(255, 255, 255, 0.92);
+  --hotel-muted: rgba(255, 255, 255, 0.55);
 }
 
 html,
 body {
   background: #0b0b0b !important;
-  color: var(--text) !important;
+  color: var(--hotel-ink) !important;
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif !important;
 }
 
-/* Critical: backdrop-filter on panels frosts table text in Chrome */
+/* Never frost iframe tables / nested panels */
 *,
 *::before,
 *::after {
@@ -42,7 +46,7 @@ body {
   -webkit-backdrop-filter: none !important;
 }
 
-/* Nav on hub may keep a light blur via more specific rule below */
+/* Nav alone may soft-blur (outside the iframe) */
 body.page-grades nav.snav,
 body.page-grades .snav {
   backdrop-filter: blur(22px) saturate(160%) !important;
@@ -68,52 +72,67 @@ h1, h2, h3 {
   text-transform: none !important;
 }
 
-.table-wrap,
-.stat-card,
-.grades-sport-bucket,
-.sport-collapsible,
-.matrix-collapsible,
-.insight-card,
-.date-badge,
-.alert,
-.slate-day-glance,
-.sport-view-tabs,
-.pbw-control,
-.grades-hub-shell,
-.date-bar,
-.tabs-bar,
-.ticket-track-bar,
-.glass-insights,
-.empty-hint {
-  background: rgba(18, 18, 20, 0.96) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-  filter: none !important;
-}
-
+/* ── Hub: kill the outer card. Content sits on page bg. ── */
 body.page-grades .grades-hub-shell,
+.grades-hub-shell {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+body.page-grades .grades-hub-shell .iframe-shell-toolbar,
+.iframe-shell-toolbar {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 body.page-grades .iframe-shell,
+.iframe-shell {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
 body.page-grades .iframe-shell-stage,
-body.page-grades .iframe-shell-toolbar {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+.iframe-shell-stage {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   filter: none !important;
 }
 
-body.page-grades .grades-hub-shell {
-  background: rgba(12, 12, 14, 0.96) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 16px !important;
-}
-
-body.page-grades iframe.grade-frame {
+body.page-grades iframe.grade-frame,
+iframe.grade-frame {
   filter: none !important;
   opacity: 1 !important;
   background: #0b0b0b !important;
 }
 
+/* Date / tabs: open rows with a hairline, not nested panels */
+body.page-grades .date-bar,
+body.page-grades .tabs-bar,
+body.page-grades .ticket-track-bar,
+.date-bar,
+.tabs-bar,
+.ticket-track-bar {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--hotel-rule) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.page-grades .dpill.active,
+body.page-grades .tab-btn.active,
 .dpill.active,
-.sport-view-tab.active,
 .tab-btn.active {
   color: #d4af37 !important;
   border-color: rgba(212, 175, 55, 0.45) !important;
@@ -121,9 +140,114 @@ body.page-grades iframe.grade-frame {
   box-shadow: none !important;
 }
 
+/* ── Slate / ticket embeds: flatten chrome ── */
+
+/* Hub already has report date — drop iframe date badge */
+body > .date-badge,
+.date-badge {
+  display: none !important;
+}
+
+body > h1,
+h1.page-title,
+.page-title {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em !important;
+  font-size: clamp(18px, 2.2vw, 26px) !important;
+  color: #d4af37 !important;
+  margin: 4px 0 14px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.slate-day-glance,
+.sport-view-tabs,
+.pbw-control,
+.glass-insights,
+.empty-hint,
+.alert {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.slate-day-glance {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: baseline !important;
+  gap: 10px 18px !important;
+  margin: 0 0 16px !important;
+  padding: 0 0 14px !important;
+  border-bottom: 1px solid var(--hotel-rule) !important;
+}
+
+.sport-view-tabs {
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+  gap: 6px !important;
+  border-bottom: 1px solid var(--hotel-rule-soft) !important;
+  background: transparent !important;
+}
+
 .sport-view-tab.active {
   color: #0b0b0b !important;
   background: #d4af37 !important;
+  border-color: #d4af37 !important;
+  box-shadow: none !important;
+}
+
+/* Sport sections = divider accordion, not stacked cards */
+.grades-sport-bucket,
+.sport-collapsible,
+.matrix-collapsible,
+details.grades-sport-bucket,
+details.sport-collapsible {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--hotel-rule) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.grades-sport-bucket > summary,
+.sport-collapsible > summary,
+.matrix-collapsible > summary {
+  padding: 16px 2px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #d4af37 !important;
+}
+
+.grades-sport-bucket-body,
+.sport-collapsible-body {
+  padding: 0 0 18px !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Tables: one light surface only when needed */
+.table-wrap,
+.stat-card,
+.insight-card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid var(--hotel-rule-soft) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.stat-card {
+  background: transparent !important;
+  border: 1px solid var(--hotel-rule-soft) !important;
 }
 
 .empty-state[hidden],
@@ -136,4 +260,12 @@ body.page-grades iframe.grade-frame {
   opacity: 0 !important;
   pointer-events: none !important;
   z-index: -999 !important;
+}
+
+.empty-state,
+#empty-state,
+#ticket-empty-state {
+  background: rgba(8, 8, 10, 0.92) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }

@@ -4206,7 +4206,7 @@ def _build_html(
         f'<link rel="stylesheet" href="/static/nav-mobile-shared.css?v={_TICKET_EVAL_NAV_MOBILE_VER}"/>',
         f'<link rel="stylesheet" href="/static/mobile-content-width.css?v={_TICKET_EVAL_MOBILE_WIDTH_VER}"/>',
         f'<link rel="stylesheet" href="/static/site-nav-datetime.css?v={_TICKET_EVAL_NAV_DATETIME_VER}"/>',
-        '<link rel="stylesheet" href="/static/proporacle-grades-hotel.css?v=20261120hotel1"/>',
+        '<link rel="stylesheet" href="/static/proporacle-grades-hotel.css?v=20261120hotel2"/>',
         "<style>",
         _TICKET_EVAL_PAGE_WRAP_CSS,
         "h1,h2,h3,h4,h5,h6{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;}",
