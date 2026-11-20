@@ -15,27 +15,27 @@
 <link rel="stylesheet" href="static/player-consistency.css?v=20260714pe"/>
 <style>
 :root{
-  --bg-main:#050505;
-  --glass-bg:rgba(20,20,20,0.6);
-  --glass-border:rgba(212,175,55,0.15);
-  --glass-panel:rgba(255,255,255,0.03);
-  --glass-panel-border:rgba(255,255,255,0.08);
-  --text-primary:#ffffff;
+  --bg-main:#0b0b0b;
+  --glass-bg:rgba(18,18,20,0.96);
+  --glass-border:rgba(212,175,55,0.18);
+  --glass-panel:rgba(255,255,255,0.04);
+  --glass-panel-border:rgba(255,255,255,0.1);
+  --text-primary:rgba(255,255,255,0.92);
   --accent-gold:#d4af37;
   --accent:#d4af37;
-  --f0a500:#f0a500;
+  --f0a500:#d4af37;
   --cyan:#9eb8c4;
   --green:#9fd8a7;
   --red:#d07a78;
-  --amber:#c89a4a;
-  --purple:#8f7ab8;
+  --amber:#c4a574;
+  --purple:#b8a99a;
   --text:rgba(255,255,255,0.92);
-  --muted:rgba(255,255,255,0.95);
-  --muted2:rgba(255,255,255,0.92);
-  --border:rgba(255,255,255,0.08);
-  --bd2:rgba(255,255,255,0.14);
-  --glass-shadow:0 8px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.06) inset;
-  --glass-shadow-lg:0 20px 60px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.07) inset;
+  --muted:rgba(255,255,255,0.55);
+  --muted2:rgba(255,255,255,0.72);
+  --border:rgba(255,255,255,0.1);
+  --bd2:rgba(255,255,255,0.16);
+  --glass-shadow:0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+  --glass-shadow-lg:0 20px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07);
   --po-page-edge:5%;
   --po-content-width:100%;
   --po-content-max:min(98vw,2400px);
@@ -49,7 +49,7 @@ html{
   -webkit-overflow-scrolling:touch;
 }
 body{
-  font-family:'Inter',sans-serif;
+  font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
   background:var(--bg-main);
   color:var(--text-primary);
   min-height:100%;
@@ -326,8 +326,8 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 /* date bar — glass pill */
 .date-bar{
   flex-shrink:0;margin:6px 0 0;padding:7px 12px;min-height:40px;height:auto;display:flex;align-items:center;gap:8px;position:relative;z-index:100;
-  font-family:'Inter',sans-serif;
-  background:var(--glass-panel);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  font-family:"Segoe UI",system-ui,sans-serif;
+  background:rgba(18,18,20,0.96);backdrop-filter:none;-webkit-backdrop-filter:none;
   border:1px solid var(--glass-panel-border);border-radius:14px;box-shadow:var(--glass-shadow);
 }
 .date-bar-label{flex-shrink:0;font-size:11px;letter-spacing:1.05px;color:var(--muted2);white-space:nowrap;}
@@ -397,7 +397,7 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 .iframe-shell-head{align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
 .iframe-shell-head-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
 .ist-title{
-  font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1.2px;
+  font-family:Georgia,"Times New Roman",serif;font-size:15px;letter-spacing:.08em;font-weight:400;
   color:var(--accent-gold);line-height:1.1;
 }
 .gc-live{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.6px;color:var(--cyan);opacity:.92;}
@@ -1669,6 +1669,7 @@ select option,
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261120hotel1"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -1679,58 +1680,7 @@ select option,
       linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%)!important;
   }
   body::after{display:none!important;content:none!important;}
-  .empty-title,.props-kpi strong,.hero-title,h1,h2{
-    font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;letter-spacing:.08em!important;
-  }
-  /* Nav only — never put backdrop-filter on hub/iframe ancestors (frosts slate). */
-  .snav.glass-card,.snav{
-    background:rgba(18,18,18,.72)!important;
-    border-color:rgba(212,175,55,.16)!important;
-    backdrop-filter:blur(22px) saturate(160%)!important;
-    -webkit-backdrop-filter:blur(22px) saturate(160%)!important;
-    box-shadow:0 8px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05)!important;
-  }
-  .grades-kpi-card,.edge-card,.scard{
-    background:rgba(255,255,255,.045)!important;
-    border-color:rgba(255,255,255,.1)!important;
-    backdrop-filter:none!important;
-    -webkit-backdrop-filter:none!important;
-    box-shadow:0 4px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.05)!important;
-  }
-  .grades-hub-shell,
-  .iframe-shell,
-  .iframe-shell-stage,
-  .iframe-shell-toolbar,
-  .grades-body,
-  .grades-page,
-  .shell{
-    backdrop-filter:none!important;
-    -webkit-backdrop-filter:none!important;
-    filter:none!important;
-  }
-  .grades-hub-shell{
-    background:rgba(12,12,14,.92)!important;
-  }
-  .iframe-shell-stage > iframe.grade-frame,
-  iframe.grade-frame{
-    filter:none!important;
-    opacity:1!important;
-    background:#0b0b0b!important;
-  }
-  .empty-state[hidden],
-  #empty-state[hidden],
-  #ticket-empty-state[hidden],
-  .load-overlay.hidden,
-  #load-overlay.hidden{
-    display:none!important;
-    visibility:hidden!important;
-    opacity:0!important;
-    pointer-events:none!important;
-    z-index:-999!important;
-    backdrop-filter:none!important;
-    -webkit-backdrop-filter:none!important;
-  }
-  .nav-accent{height:1px!important;opacity:.55!important;background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)!important;}
+  .nav-accent{height:1px!important;opacity:.55!important;background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)!important;animation:none!important;filter:none!important;}
 </style>
 </head>
 <body class="page-grades" data-latest-with-tickets="{{ latest_with_tickets|default('', true) }}">

@@ -500,7 +500,7 @@ def build_html(df: pd.DataFrame, date_str: str) -> str:
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/static/global-scrollbar.css?v=20260517platform"/>
 <style>{CSS}</style>
-<link rel="stylesheet" href="/static/proporacle-glass-minimal.css?v=20261119glass2"/>
+<link rel="stylesheet" href="/static/proporacle-grades-hotel.css?v=20261120hotel1"/>
 </head>
 <body>
 <header>

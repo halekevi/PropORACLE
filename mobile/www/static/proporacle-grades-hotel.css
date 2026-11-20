@@ -1,0 +1,139 @@
+/**
+ * Grades hotel theme (hub + slate/ticket iframes).
+ * Opaque glass panels, gold accent, no backdrop-filter (frosts iframes / tables).
+ * Load LAST on indexGrades and on slate_eval / ticket_eval embeds.
+ */
+:root {
+  --bg: #0b0b0b !important;
+  --bg-main: #0b0b0b !important;
+  --glass: rgba(18, 18, 20, 0.96) !important;
+  --glass-bg: rgba(18, 18, 20, 0.96) !important;
+  --glass-panel: rgba(255, 255, 255, 0.04) !important;
+  --glass-bd: rgba(255, 255, 255, 0.1) !important;
+  --glass-panel-border: rgba(255, 255, 255, 0.1) !important;
+  --glass-border: rgba(212, 175, 55, 0.18) !important;
+  --text: rgba(255, 255, 255, 0.92) !important;
+  --text-primary: rgba(255, 255, 255, 0.92) !important;
+  --muted: rgba(255, 255, 255, 0.55) !important;
+  --muted2: rgba(255, 255, 255, 0.72) !important;
+  --accent: #d4af37 !important;
+  --accent-gold: #d4af37 !important;
+  --gold: #d4af37 !important;
+  --gold2: #d4af37 !important;
+  --cyan: #9eb8c4 !important;
+  --green: #9fd8a7 !important;
+  --red: #d07a78 !important;
+  --amber: #c4a574 !important;
+  --purple: #b8a99a !important;
+}
+
+html,
+body {
+  background: #0b0b0b !important;
+  color: var(--text) !important;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif !important;
+}
+
+/* Critical: backdrop-filter on panels frosts table text in Chrome */
+*,
+*::before,
+*::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Nav on hub may keep a light blur via more specific rule below */
+body.page-grades nav.snav,
+body.page-grades .snav {
+  backdrop-filter: blur(22px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+  background: rgba(18, 18, 18, 0.72) !important;
+  border-color: rgba(212, 175, 55, 0.16) !important;
+}
+
+.logo-title,
+.sport-label,
+.ist-title,
+.empty-title,
+.slate-day-glance-kicker,
+.grades-sport-bucket > summary,
+.matrix-collapsible > summary,
+.pbw-tab-btn,
+.pbw-pt-header,
+.sport-view-tab,
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: none !important;
+}
+
+.table-wrap,
+.stat-card,
+.grades-sport-bucket,
+.sport-collapsible,
+.matrix-collapsible,
+.insight-card,
+.date-badge,
+.alert,
+.slate-day-glance,
+.sport-view-tabs,
+.pbw-control,
+.grades-hub-shell,
+.date-bar,
+.tabs-bar,
+.ticket-track-bar,
+.glass-insights,
+.empty-hint {
+  background: rgba(18, 18, 20, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  filter: none !important;
+}
+
+body.page-grades .grades-hub-shell,
+body.page-grades .iframe-shell,
+body.page-grades .iframe-shell-stage,
+body.page-grades .iframe-shell-toolbar {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+
+body.page-grades .grades-hub-shell {
+  background: rgba(12, 12, 14, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+}
+
+body.page-grades iframe.grade-frame {
+  filter: none !important;
+  opacity: 1 !important;
+  background: #0b0b0b !important;
+}
+
+.dpill.active,
+.sport-view-tab.active,
+.tab-btn.active {
+  color: #d4af37 !important;
+  border-color: rgba(212, 175, 55, 0.45) !important;
+  background: rgba(212, 175, 55, 0.12) !important;
+  box-shadow: none !important;
+}
+
+.sport-view-tab.active {
+  color: #0b0b0b !important;
+  background: #d4af37 !important;
+}
+
+.empty-state[hidden],
+#empty-state[hidden],
+#ticket-empty-state[hidden],
+.load-overlay.hidden,
+#load-overlay.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -999 !important;
+}
