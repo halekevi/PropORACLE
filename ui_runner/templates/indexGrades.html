@@ -204,7 +204,7 @@ body::before{
   background:
     radial-gradient(ellipse at 14% 10%, rgba(212,175,55,0.12) 0%, transparent 42%),
     radial-gradient(ellipse at 88% 8%, rgba(158,184,196,0.08) 0%, transparent 40%),
-    linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%);
+    linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%) !important;
 }
 body::after{content:none;display:none;}
 .grades-page{position:relative;z-index:1;display:block;width:100%;min-height:0;}
@@ -1504,30 +1504,9 @@ select option,
 @keyframes meshR2 { to { --mesh-r2: -360deg; } }
 @keyframes meshR3 { to { --mesh-r3: 360deg; } }
 
+/* Glass-minimal: kill aurora mesh */
 .mesh-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  contain: strict;
-  transform: translateZ(0);
-  background:
-    conic-gradient(from 210deg at 20% 15%,
-      rgba(127,199,217,0.12) 0deg,
-      transparent 60deg,
-      transparent 300deg,
-      rgba(127,199,217,0.08) 360deg),
-    conic-gradient(from 140deg at 80% 20%,
-      rgba(212,175,55,0.10) 0deg,
-      transparent 60deg,
-      transparent 300deg,
-      rgba(212,175,55,0.06) 360deg),
-    conic-gradient(from 320deg at 50% 75%,
-      rgba(183,168,255,0.08) 0deg,
-      transparent 90deg,
-      transparent 270deg,
-      rgba(127,199,217,0.05) 360deg);
-  filter: blur(28px);
+  display: none !important;
 }
 [data-theme="light"] .mesh-bg {
   background:
@@ -1688,18 +1667,35 @@ select option,
 <link rel="stylesheet" href="static/nav-mobile-shared.css?v=20260430schemapage"/>
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
-<link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass2"/>
+<link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass3"/>
+<style id="proporacle-glass-critical">
+  .mesh-bg,.grain-layer,.po-orb{display:none!important;}
+  body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
+  body::before{
+    background-image:
+      radial-gradient(ellipse at 14% 10%,rgba(212,175,55,.12) 0%,transparent 42%),
+      radial-gradient(ellipse at 88% 8%,rgba(158,184,196,.08) 0%,transparent 40%),
+      linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%)!important;
+  }
+  body::after{display:none!important;content:none!important;}
+  .empty-title,.props-kpi strong,.hero-title,h1,h2{
+    font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important;letter-spacing:.08em!important;
+  }
+  .snav,.glass-card,.grades-kpi-card,.edge-card,.scard{
+    background:rgba(255,255,255,.045)!important;
+    border-color:rgba(255,255,255,.1)!important;
+    backdrop-filter:blur(16px) saturate(140%)!important;
+    -webkit-backdrop-filter:blur(16px) saturate(140%)!important;
+    box-shadow:0 4px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.05)!important;
+  }
+  .nav-accent{height:1px!important;opacity:.55!important;background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)!important;}
+</style>
 </head>
 <body class="page-grades" data-latest-with-tickets="{{ latest_with_tickets|default('', true) }}">
-<!-- Ambient orbs — match Home (static, no drift animation) -->
-<div class="po-orb" style="top:-15%;left:-8%;width:min(520px,85vw);height:min(520px,85vw);background:radial-gradient(circle,rgba(127,199,217,0.16) 0%,transparent 70%);filter:blur(72px);"></div>
-<div class="po-orb" style="top:18%;right:-10%;width:min(560px,90vw);height:min(560px,90vw);background:radial-gradient(circle,rgba(212,175,55,0.09) 0%,transparent 70%);filter:blur(72px);"></div>
-<div class="po-orb" style="bottom:4%;left:28%;width:min(480px,80vw);height:min(480px,80vw);background:radial-gradient(circle,rgba(183,168,255,0.07) 0%,transparent 70%);filter:blur(64px);"></div>
-<style>
-.po-orb{position:fixed;z-index:0;pointer-events:none;contain:strict;transform:translateZ(0);}
-</style>
-<div class="mesh-bg" aria-hidden="true"></div>
-<div class="grain-layer" aria-hidden="true"></div>
+<!-- Ambient orbs / mesh disabled for glass-minimal -->
+<div class="po-orb" hidden aria-hidden="true"></div>
+<div class="mesh-bg" hidden aria-hidden="true"></div>
+<div class="grain-layer" hidden aria-hidden="true"></div>
 
 
 
