@@ -1,4 +1,3 @@
-/* Props Board home section */
 /* Props Board — config/props_board.json + /api/slate-sport; missing cells = n/a */
 (function initPropsBoard() {
   const NA = "n/a";
@@ -10,6 +9,20 @@
     rows: [],
     sortKey: "gap",
     sortDir: "desc",
+  };
+
+  const SORT_LABELS = {
+    side: "Side",
+    player: "Player",
+    team: "Team",
+    prop: "Prop",
+    line: "Line",
+    l5_avg: "L5 avg",
+    gap: "Gap",
+    sd: "SD",
+    l10: "L10",
+    l20: "L20",
+    games_played: "GP",
   };
 
   function activeSportKeys() {
@@ -54,7 +67,7 @@
     else if (side === "UNDER") hits = under;
     else hits = over;
     if (hits == null || gp == null) return null;
-    return { hits, gp, text: Math.round(hits) + "/" + Math.round(gp) };
+    return { hits, gp, text: Math.round(hits) + "/" + Math.round(gp), rate: gp > 0 ? hits / gp : null };
   }
 
   function l5Hits(r) {
@@ -84,6 +97,69 @@
     return want.has(String(prop || "").toLowerCase());
   }
 
+  function sortValue(r, key) {
+    switch (key) {
+      case "side":
+        return sideOf(r);
+      case "player":
+        return String(r.player || "").toLowerCase();
+      case "team":
+        return String(r.team || "").toLowerCase();
+      case "prop":
+        return String(r.prop || r.prop_type || "").toLowerCase();
+      case "line":
+        return num(r.line);
+      case "l5_avg":
+        return num(r.l5_avg);
+      case "gap":
+        return gapOf(r);
+      case "sd":
+        return num(r.sd);
+      case "l10": {
+        const h = hitsFrac(r, "l10");
+        return h ? h.rate : null;
+      }
+      case "l20": {
+        const h = hitsFrac(r, "l20");
+        return h ? h.rate : null;
+      }
+      case "games_played":
+        return gamesPlayed(r);
+      default:
+        return null;
+    }
+  }
+
+  function cmpSort(a, b) {
+    const key = state.sortKey || "gap";
+    const va = sortValue(a, key);
+    const vb = sortValue(b, key);
+    const aMiss = va == null || va === "";
+    const bMiss = vb == null || vb === "";
+    if (aMiss !== bMiss) return aMiss ? 1 : -1;
+    let primary = 0;
+    if (typeof va === "number" && typeof vb === "number") {
+      primary = va - vb;
+    } else {
+      primary = String(va).localeCompare(String(vb), undefined, { sensitivity: "base" });
+    }
+    if (primary !== 0) {
+      return state.sortDir === "asc" ? primary : -primary;
+    }
+    // Tie-break: Gap desc magnitude, then SD asc, then player.
+    if (key !== "gap") {
+      const ga = gapOf(a);
+      const gb = gapOf(b);
+      if (ga != null && gb != null && ga !== gb) return gb - ga;
+    }
+    if (key !== "sd") {
+      const sa = num(a.sd);
+      const sb = num(b.sd);
+      if (sa != null && sb != null && sa !== sb) return sa - sb;
+    }
+    return String(a.player || "").localeCompare(String(b.player || ""));
+  }
+
   function fillSportSelect() {
     const sel = document.getElementById("pb-sport");
     if (!sel || !state.cfg) return;
@@ -102,15 +178,33 @@
     const sportCfg = state.cfg.sports[state.sport] || {};
     const groups = sportCfg.groups || [{ name: "All props", props: sportCfg.props_catalog || [] }];
     if (state.groupIdx >= groups.length) state.groupIdx = 0;
-    host.innerHTML = groups.map((g, i) =>
-      `<button type="button" class="pb-group${i === state.groupIdx ? " active" : ""}" data-gi="${i}">${g.name}</button>`
-    ).join("");
+    host.innerHTML = groups
+      .map(
+        (g, i) =>
+          `<button type="button" class="pb-group${i === state.groupIdx ? " active" : ""}" data-gi="${i}">${g.name}</button>`
+      )
+      .join("");
     host.querySelectorAll(".pb-group").forEach((btn) => {
       btn.addEventListener("click", () => {
         state.groupIdx = Number(btn.getAttribute("data-gi") || 0);
         fillGroups();
         render();
       });
+    });
+  }
+
+  function updateSortHeaders() {
+    document.querySelectorAll("#props-board th[data-sort]").forEach((th) => {
+      const key = th.getAttribute("data-sort");
+      const label = SORT_LABELS[key] || key;
+      const active = key === state.sortKey;
+      const arrow = active ? (state.sortDir === "asc" ? " ▲" : " ▼") : "";
+      th.textContent = label + arrow;
+      th.setAttribute("aria-sort", active ? (state.sortDir === "asc" ? "ascending" : "descending") : "none");
+      th.title = active
+        ? `Sorted ${state.sortDir === "asc" ? "ascending" : "descending"} — click to reverse`
+        : `Sort by ${label}`;
+      th.classList.toggle("pb-sort-active", active);
     });
   }
 
@@ -168,20 +262,7 @@
     }
     for (const [p, n] of Object.entries(byPlayer)) if (n > 1) multi.add(p);
 
-    out.sort((a, b) => {
-      const ga = gapOf(a);
-      const gb = gapOf(b);
-      const aMiss = ga == null;
-      const bMiss = gb == null;
-      if (aMiss !== bMiss) return aMiss ? 1 : -1;
-      if (ga != null && gb != null && ga !== gb) {
-        return state.sortDir === "asc" ? ga - gb : gb - ga;
-      }
-      const sa = num(a.sd);
-      const sb = num(b.sd);
-      if (sa != null && sb != null && sa !== sb) return sa - sb;
-      return String(a.player || "").localeCompare(String(b.player || ""));
-    });
+    out.sort(cmpSort);
     return { rows: out, multi };
   }
 
@@ -192,16 +273,22 @@
     const flagThin = document.getElementById("pb-flag-thin")?.checked;
     const flagMulti = document.getElementById("pb-flag-multi")?.checked;
     const { rows, multi } = filtered();
-    if (countEl) countEl.textContent = `${rows.length} rows · ${state.tab} · ${state.sport.toUpperCase()}`;
-    tbody.innerHTML = rows.map((r) => {
-      const gp = gamesPlayed(r);
-      const thin = flagThin && gp != null && gp < 15;
-      const isMulti = flagMulti && multi.has(String(r.player || ""));
-      const l10 = hitsFrac(r, "l10");
-      const l20 = hitsFrac(r, "l20");
-      const cls = [thin ? "pb-flag-thin" : "", isMulti ? "pb-flag-multi" : ""].filter(Boolean).join(" ");
-      const cell = (txt, missing) => missing ? `<span class="pb-na">${NA}</span>` : txt;
-      return `<tr class="${cls}">
+    if (countEl) {
+      countEl.textContent =
+        `${rows.length} rows · ${state.tab} · ${state.sport.toUpperCase()}` +
+        ` · sort ${SORT_LABELS[state.sortKey] || state.sortKey} ${state.sortDir === "asc" ? "↑" : "↓"}`;
+    }
+    updateSortHeaders();
+    tbody.innerHTML = rows
+      .map((r) => {
+        const gp = gamesPlayed(r);
+        const thin = flagThin && gp != null && gp < 15;
+        const isMulti = flagMulti && multi.has(String(r.player || ""));
+        const l10 = hitsFrac(r, "l10");
+        const l20 = hitsFrac(r, "l20");
+        const cls = [thin ? "pb-flag-thin" : "", isMulti ? "pb-flag-multi" : ""].filter(Boolean).join(" ");
+        const cell = (txt, missing) => (missing ? `<span class="pb-na">${NA}</span>` : txt);
+        return `<tr class="${cls}">
         <td>${sideOf(r)}</td>
         <td class="pb-player">${r.player || NA}</td>
         <td>${r.team || NA}</td>
@@ -214,12 +301,13 @@
         <td>${l20 ? l20.text : cell(NA, true)}</td>
         <td>${gp != null ? fmt2(gp) : cell(NA, true)}</td>
       </tr>`;
-    }).join("");
+      })
+      .join("");
   }
 
   function exportCsv() {
     const { rows } = filtered();
-    const headers = ["side","player","team","prop","line","l5_avg","gap","sd","l10","l20","games_played"];
+    const headers = ["side", "player", "team", "prop", "line", "l5_avg", "gap", "sd", "l10", "l20", "games_played"];
     const lines = [headers.join(",")];
     for (const r of rows) {
       const l10 = hitsFrac(r, "l10");
@@ -235,7 +323,10 @@
         fmt2(r.sd),
         l10 ? l10.text : NA,
         l20 ? l20.text : NA,
-        (() => { const g = gamesPlayed(r); return g == null ? NA : fmt2(g); })(),
+        (() => {
+          const g = gamesPlayed(r);
+          return g == null ? NA : fmt2(g);
+        })(),
       ].map((v) => `"${String(v).replace(/"/g, '""')}"`);
       lines.push(vals.join(","));
     }
@@ -245,6 +336,24 @@
     a.download = `props_board_${state.sport}_${state.tab.toLowerCase()}_${(state.cfg && state.cfg.as_of) || "slate"}.csv`;
     a.click();
     URL.revokeObjectURL(a.href);
+  }
+
+  function bindSortHeaders() {
+    document.querySelectorAll("#props-board th[data-sort]").forEach((th) => {
+      th.addEventListener("click", () => {
+        const key = th.getAttribute("data-sort");
+        if (!key) return;
+        if (state.sortKey === key) {
+          state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+        } else {
+          state.sortKey = key;
+          // Text / rate columns default largest-first; names A→Z.
+          const textKeys = new Set(["side", "player", "team", "prop"]);
+          state.sortDir = textKeys.has(key) ? "asc" : "desc";
+        }
+        render();
+      });
+    });
   }
 
   async function boot() {
@@ -259,6 +368,7 @@
     }
     fillSportSelect();
     fillGroups();
+    bindSortHeaders();
     document.getElementById("pb-sport")?.addEventListener("change", async (ev) => {
       state.sport = String(ev.target.value || "").toLowerCase();
       state.groupIdx = 0;
@@ -289,4 +399,3 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();
 })();
-

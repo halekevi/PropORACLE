@@ -2919,7 +2919,8 @@ body > nav.snav.glass-card {
         #props-board .pb-table-wrap{overflow:auto;max-height:70vh;border:1px solid rgba(255,255,255,.08);border-radius:10px;}
         #props-board table.pb-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:720px;}
         #props-board table.pb-table th,#props-board table.pb-table td{padding:7px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);white-space:nowrap;}
-        #props-board table.pb-table th{position:sticky;top:0;background:#141820;z-index:1;font-weight:600;cursor:pointer;}
+        #props-board table.pb-table th{position:sticky;top:0;background:#141820;z-index:1;font-weight:600;cursor:pointer;user-select:none;}
+        #props-board table.pb-table th.pb-sort-active{color:#f0a500;}
         #props-board table.pb-table tr.pb-flag-thin{background:rgba(255,180,60,.06);}
         #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:11px;}
         #props-board .pb-na{opacity:.45;font-style:italic;}
@@ -7134,6 +7135,7 @@ function sortSlateDynamic(sport, key) {
 
 <script src="static/my-slip.js?v=20260828myslip1"></script>
 
-<script src="/static/props-board.js?v=20261120pb1"></script>
+<script src="/static/props-board.js?v=20261120pb2"></script>
 </body>
 </html>
+
