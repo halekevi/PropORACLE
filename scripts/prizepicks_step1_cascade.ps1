@@ -291,13 +291,14 @@ function Invoke-PrizePicksStep1Cascade {
 
     $cdpUrl = Get-PrizePicksCdpUrl
     $cdpReachable = Test-PrizePicksCdpReachable -CdpUrl $cdpUrl
-    # CFB prizepools + combos: CDP in-page pickem returns 0 rows and would
-    # keep overnight lines. Tennis/soccer HTTP almost always 403 — CDP first.
-    $httpOnly = $HttpOnly.IsPresent -or ($SportLabel -eq "CFB")
+    # CFB prefers HTTP prizepools (combos), but CDP pickem is a valid fallback
+    # when HTTP 403s — live boards often have thousands of pickem rows.
+    # Tennis/soccer HTTP almost always 403 — CDP first.
+    $httpOnly = $HttpOnly.IsPresent
     $cdpFirst = -not $httpOnly -and $cdpReachable -and ($SportLabel -in @("Tennis", "Soccer"))
     Write-PP "  --> $SportLabel Step 1 - Fetch PrizePicks (HTTP first, then CDP, then Playwright)" "Yellow"
     if ($httpOnly) {
-        Write-PP "      [$SportLabel] HTTP prizepools only — not CDP pickem" "DarkCyan"
+        Write-PP "      [$SportLabel] HTTP only — CDP/Playwright disabled" "DarkCyan"
         $cdpReachable = $false
     }
     elseif ($cdpFirst) {

@@ -118,6 +118,146 @@ def _backfill_opponents(rows: list, game_teams: dict) -> list:
                 r["pp_opp_team"] = next(iter(others))
     return rows
 
+
+def rows_from_api_payload(
+    data: List[Dict[str, Any]],
+    included: List[Dict[str, Any]],
+    league_id: int,
+) -> List[Dict[str, Any]]:
+    """Build step1 rows from a full projections payload (HTTP page or CDP dump)."""
+    players: Dict[str, Dict[str, Any]] = {}
+    games: Dict[str, Dict[str, Any]] = {}
+    name_to_abbr: Dict[str, str] = {}
+    durations: Dict[str, str] = {}
+    for obj in included or []:
+        otype = obj.get("type", "")
+        oid = str(obj.get("id", ""))
+        attrs = obj.get("attributes") or {}
+        if otype in ("new_player", "player", "players"):
+            players[oid] = attrs
+        elif otype in ("game", "games", "new_game"):
+            games[oid] = attrs
+        elif otype == "duration":
+            durations[oid] = str(attrs.get("name", "")).strip()
+        elif otype == "team":
+            abbr = norm_team(attrs.get("abbreviation") or "")
+            if abbr:
+                for key in (attrs.get("name", ""), attrs.get("market", ""), attrs.get("abbreviation", "")):
+                    k = str(key).strip().upper()
+                    if k:
+                        name_to_abbr[k] = abbr
+
+    def resolve_team(raw: str) -> str:
+        if not raw:
+            return ""
+        direct = norm_team(raw)
+        if len(direct) <= 5 and direct.isalpha():
+            return direct
+        return name_to_abbr.get(str(raw).strip().upper(), direct)
+
+    game_teams: Dict[str, set] = {}
+    for proj in data or []:
+        rel = proj.get("relationships") or {}
+        pid_data = (rel.get("new_player") or rel.get("player") or {}).get("data") or {}
+        pid = str(pid_data.get("id", ""))
+        p = players.get(pid, {})
+        team = resolve_team(p.get("team") or p.get("team_abbreviation") or "")
+        game_rel = (rel.get("game") or rel.get("new_game") or {}).get("data") or {}
+        gid = str(game_rel.get("id", "")) if isinstance(game_rel, dict) else ""
+        if gid and team:
+            game_teams.setdefault(gid, set()).add(team)
+
+    rows: List[Dict[str, Any]] = []
+    seen_proj_ids: set = set()
+    bounced_blank_player = 0
+    bounced_blank_team = 0
+    for proj in data or []:
+        proj_id = str(proj.get("id", ""))
+        if not proj_id or proj_id in seen_proj_ids:
+            continue
+        seen_proj_ids.add(proj_id)
+
+        attr = proj.get("attributes") or {}
+        rel = proj.get("relationships") or {}
+        pid_data = (rel.get("new_player") or rel.get("player") or {}).get("data") or {}
+        pid = str(pid_data.get("id", ""))
+        p = players.get(pid, {})
+
+        player_name = (
+            p.get("display_name")
+            or p.get("name")
+            or p.get("full_name")
+            or p.get("fullName")
+            or p.get("short_name")
+            or p.get("shortName")
+            or ""
+        )
+        if not player_name:
+            first = str(p.get("first_name") or p.get("firstName") or "").strip()
+            last = str(p.get("last_name") or p.get("lastName") or "").strip()
+            if first or last:
+                player_name = f"{first} {last}".strip()
+        pp_team = resolve_team(p.get("team") or p.get("team_abbreviation") or "")
+
+        if not str(player_name).strip():
+            bounced_blank_player += 1
+            continue
+        if not str(pp_team).strip():
+            bounced_blank_team += 1
+            continue
+
+        pp_opp_team = ""
+        game_rel = (rel.get("game") or rel.get("new_game") or {}).get("data") or {}
+        if isinstance(game_rel, dict):
+            gid = str(game_rel.get("id", ""))
+            others = game_teams.get(gid, set()) - {pp_team}
+            if others:
+                pp_opp_team = next(iter(others))
+            if not pp_opp_team:
+                home, away = extract_home_away(games.get(gid, {}))
+                if pp_team and home and away:
+                    pp_opp_team = away if pp_team == home else (home if pp_team == away else "")
+
+        stat_type = attr.get("stat_type") or attr.get("display_stat_type") or ""
+        line = attr.get("line_score") if attr.get("line_score") is not None else attr.get("line")
+        odds_type = str(attr.get("odds_type") or "standard")
+        start_time = attr.get("start_time") or ""
+        dur_rel = (rel.get("duration") or {}).get("data") or {}
+        dur_id = str(dur_rel.get("id", "")) if isinstance(dur_rel, dict) else ""
+        duration = durations.get(dur_id, "Full Game") if dur_id else "Full Game"
+
+        rows.append({
+            "proj_id": proj_id,
+            "player_id": pid,
+            "player": player_name,
+            "team": p.get("team") or "",
+            "pp_team": pp_team,
+            "pp_opp_team": pp_opp_team,
+            "pp_game_id": game_rel.get("id", "") if isinstance(game_rel, dict) else "",
+            "pos": p.get("position") or "",
+            "stat_type": stat_type,
+            "line": line,
+            "odds_type": _norm_pick_type(odds_type),
+            "start_time": start_time,
+            "league_id": league_id,
+            "duration": duration,
+            "pp_updated_at": extract_pp_updated_at(attr),
+        })
+
+    if bounced_blank_player or bounced_blank_team:
+        log_pipeline_health(
+            "cfb.step1_pp_cfb_scraper",
+            "bouncer_blank_identity",
+            extra={
+                "bounced_blank_player": bounced_blank_player,
+                "bounced_blank_team": bounced_blank_team,
+            },
+            start=Path(__file__),
+        )
+    _backfill_opponents(rows, game_teams)
+    return rows
+
+
 def fetch_cfb_projections(
     league_id: int,
     per_page: int,
@@ -380,20 +520,49 @@ def main():
     ap.add_argument("--out_json",       default="")
     ap.add_argument("--fail-fast",      action="store_true",
                     help="One HTTP attempt. A 403 returns whatever was already parsed.")
+    ap.add_argument("--cdp", default="", help="Chrome DevTools URL for in-page fetch.")
+    ap.add_argument("--playwright", action="store_true", help="Launch Chromium and fetch in-page.")
     args = ap.parse_args()
 
     single_stat = args.single_stat and not args.include_combos
+    cdp_url = str(args.cdp or "").strip()
+    use_browser = bool(cdp_url) or bool(args.playwright)
+    max_pages = args.max_pages
+    if max_pages is None:
+        max_pages = 20 if use_browser else None
+    if args.fail_fast and not use_browser and max_pages is None:
+        max_pages = 4
 
-    print(f"📡 Fetching PrizePicks | league_id={args.league_id} | per_page={args.per_page} | single_stat={single_stat}")
-    df = fetch_cfb_projections(
-        league_id=args.league_id,
-        per_page=args.per_page,
-        single_stat=single_stat,
-        game_mode=args.game_mode,
-        sleep_s=args.sleep,
-        max_pages=args.max_pages,
-        fail_fast=bool(args.fail_fast),
-    )
+    if use_browser:
+        via = f"CDP {cdp_url}" if cdp_url else "playwright"
+        print(
+            f"📡 Fetching PrizePicks | league_id={args.league_id} | per_page={args.per_page} "
+            f"| in-page ({via})"
+        )
+        from utils.prizepicks_cdp import session_fetch_projections
+
+        data, included, _st = session_fetch_projections(
+            str(args.league_id),
+            cdp_url=cdp_url,
+            playwright=bool(args.playwright) and not cdp_url,
+            per_page=int(args.per_page),
+            max_pages=int(max_pages or 20),
+        )
+        df = pd.DataFrame(rows_from_api_payload(data or [], included or [], int(args.league_id)))
+    else:
+        print(
+            f"📡 Fetching PrizePicks | league_id={args.league_id} | per_page={args.per_page} "
+            f"| single_stat={single_stat}"
+        )
+        df = fetch_cfb_projections(
+            league_id=args.league_id,
+            per_page=args.per_page,
+            single_stat=single_stat,
+            game_mode=args.game_mode,
+            sleep_s=args.sleep,
+            max_pages=max_pages,
+            fail_fast=bool(args.fail_fast),
+        )
 
     if df.empty:
         if args.fail_fast:

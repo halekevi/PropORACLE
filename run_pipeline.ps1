@@ -841,7 +841,7 @@ function Invoke-WcbbPipeline {
         $ok = Invoke-PrizePicksStep1Cascade -SportLabel "WCBB" -WorkDir $CBBDir `
             -ScriptRel ".\scripts\pipeline\step1_pp_cbb_scraper.py" `
             -OutputPath $step1 -PipelineDate $Date `
-            -HttpArgs @("--board", "wcbb", "--out", $step1) `
+            -HttpArgs @("--league_id", "176", "--out", $step1) `
             -SkipDateHealth
     } else {
         Write-Host "  [WCBB] Skipping step1 fetch -- using existing $step1" -ForegroundColor DarkGray
@@ -2732,7 +2732,7 @@ if ($CBBOnly) {
             $ok = Invoke-PrizePicksStep1Cascade -SportLabel "CBB" -WorkDir $CBBDir `
                 -ScriptRel ".\scripts\pipeline\step1_pp_cbb_scraper.py" `
                 -OutputPath "$CBBRunOutDir\step1_cbb.csv" -PipelineDate $Date `
-                -HttpArgs @("--board", "cbb", "--out", "$CBBRunOutDir\step1_cbb.csv") `
+                -HttpArgs @("--league_id", "20", "--out", "$CBBRunOutDir\step1_cbb.csv") `
                 -SkipDateHealth
         }
     } else { Write-Host "  [CBB] Skipping step1 fetch -- using existing $CBBRunOutDir\step1_cbb.csv" -ForegroundColor DarkGray }
@@ -3274,7 +3274,7 @@ $CBBJob = Start-Job -ScriptBlock {
             $ok = Invoke-PrizePicksStep1Cascade -AsJobOutput -SportLabel "CBB" -WorkDir $CBBDir `
                 -ScriptRel ".\scripts\pipeline\step1_pp_cbb_scraper.py" `
                 -OutputPath "$CBBRunOutDir\step1_cbb.csv" -PipelineDate $Date `
-                -HttpArgs @("--board", "cbb", "--out", "$CBBRunOutDir\step1_cbb.csv") `
+                -HttpArgs @("--league_id", "20", "--out", "$CBBRunOutDir\step1_cbb.csv") `
                 -SkipDateHealth
         }
     } else { Write-Output "[CBB] Skipping step1 fetch" }
@@ -3296,7 +3296,7 @@ $CBBJob = Start-Job -ScriptBlock {
         $wcbbOk = Invoke-PrizePicksStep1Cascade -AsJobOutput -SportLabel "WCBB" -WorkDir $CBBDir `
             -ScriptRel ".\scripts\pipeline\step1_pp_cbb_scraper.py" `
             -OutputPath $wcbb1 -PipelineDate $Date `
-            -HttpArgs @("--board", "wcbb", "--out", $wcbb1) `
+            -HttpArgs @("--league_id", "176", "--out", $wcbb1) `
             -SkipDateHealth
     } else { Write-Output "[WCBB] Skipping step1 fetch" }
     if ($wcbbOk -and (Test-Step1NoSlate-Job -CsvPath $wcbb1)) {

@@ -760,16 +760,28 @@ def main():
     if "start_time" in df.columns:
         target_date = slate_game_date
         total = len(df)
-        start_dt = pd.to_datetime(df["start_time"], errors="coerce")
-        start_dates = start_dt.dt.strftime("%Y-%m-%d")
-        keep_mask = start_dates.eq(target_date)
+        start_dt = pd.to_datetime(df["start_time"], errors="coerce", utc=True)
+        try:
+            start_et = start_dt.dt.tz_convert("America/New_York")
+        except Exception:
+            start_et = start_dt
+        start_dates = start_et.dt.strftime("%Y-%m-%d")
+        # CFB midweek boards are mostly Fri/Sat tips. Keep ET today..+2 so a
+        # thin Thursday (locked tips / demons-only) does not wipe the weekend card.
+        target_dt = pd.to_datetime(target_date, errors="coerce")
+        if pd.notna(target_dt):
+            window_dates = {
+                (target_dt + pd.Timedelta(days=i)).strftime("%Y-%m-%d") for i in range(3)
+            }
+        else:
+            window_dates = {target_date}
+        keep_mask = start_dates.isin(window_dates)
         kept = int(keep_mask.sum())
         if kept == 0:
             counts = start_dates.value_counts(dropna=True)
             avail = [str(d) for d in counts.index.tolist() if str(d)]
             if avail:
                 candidate_dates = [d for d in avail if d >= target_date] or avail
-                target_dt = pd.to_datetime(target_date, errors="coerce")
 
                 def _sort_key(d: str):
                     # Prefer largest slate first; break ties by nearest date.
@@ -785,15 +797,17 @@ def main():
                 keep_mask = start_dates.eq(fallback_date)
                 kept = int(keep_mask.sum())
                 print(
-                    f"[DateFilter] No rows for {target_date}; "
+                    f"[DateFilter] No rows for {target_date}..+2; "
                     f"falling back to largest available slate date {fallback_date} "
                     f"({kept} rows)."
                 )
         df = df.loc[keep_mask].copy()
-        picked_date = target_date if kept and target_date in set(start_dates[keep_mask].dropna()) else (
-            start_dates[keep_mask].dropna().iloc[0] if kept else target_date
+        picked_dates = sorted({str(d) for d in start_dates[keep_mask].dropna().tolist() if str(d)})
+        picked_label = ",".join(picked_dates) if picked_dates else target_date
+        print(
+            f"[DateFilter] Kept {kept}/{total} rows for {picked_label} "
+            f"(window {sorted(window_dates)}; dropped {total - kept} rows)"
         )
-        print(f"[DateFilter] Kept {kept}/{total} rows for {picked_date} (dropped {total - kept} rows)")
         if df.empty:
             print("⚠️ Date filter returned no rows; writing empty outputs.")
             # Graceful no-slate day: produce empty artifacts and exit 0 so

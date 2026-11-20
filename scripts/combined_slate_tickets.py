@@ -166,6 +166,17 @@ def extra_match_dates_for_sport(sport: str, args) -> list[str]:
         nxt = default_day_ahead_match_date(target)
         if nxt and nxt != target and nxt not in extras:
             extras.append(nxt)
+    # CFB midweek boards are mostly Fri/Sat tips; keep today..+2 like step6.
+    if su in {"CFB", "CFB1H"} and target:
+        try:
+            base = datetime.strptime(target, "%Y-%m-%d").date()
+        except ValueError:
+            base = None
+        if base is not None:
+            for i in (1, 2):
+                nxt = (base + timedelta(days=i)).strftime("%Y-%m-%d")
+                if nxt not in extras:
+                    extras.append(nxt)
     return extras
 
 
@@ -15349,6 +15360,7 @@ def load_wcbb(path: str) -> pd.DataFrame:
         "def_rank":           "def_rank",
         "prop_score":         "rank_score",
         "game_start":         "game_time",
+        "start_time":         "game_time",
         "opponent":           "opp",
         "line_hit_rate_over_ou_5":  "hit_rate",
         "line_hit_rate_over_ou_10": "_soccer_hit10",
@@ -22112,7 +22124,11 @@ def main():
         try:
             cfb = load_cfb(cfb_path)
             cfb = enforce_target_date(
-                cfb, "CFB", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+                cfb,
+                "CFB",
+                args.date,
+                allow_cross_date_fallback=args.allow_cross_date_fallback,
+                extra_dates=extra_match_dates_for_sport("CFB", args),
             )
             cfb = attach_standard_refs(cfb)
             print(f"  {len(cfb)} CFB props loaded")
@@ -22130,7 +22146,11 @@ def main():
             cfb1h = load_cfb1h(cfb1h_path)
             if cfb1h is not None and len(cfb1h) > 0:
                 cfb1h = enforce_target_date(
-                    cfb1h, "CFB1H", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+                    cfb1h,
+                    "CFB1H",
+                    args.date,
+                    allow_cross_date_fallback=args.allow_cross_date_fallback,
+                    extra_dates=extra_match_dates_for_sport("CFB1H", args),
                 )
                 cfb1h = attach_standard_refs(cfb1h)
                 print(f"  {len(cfb1h)} CFB1H props loaded")
@@ -22255,10 +22275,7 @@ def main():
         keep_extra = {str(d).strip()[:10] for d in (extra_dates or []) if str(d).strip()[:10]}
         keep_extra.discard("")
         # WNBA / MLB day-ahead: keep --date plus --wnba-date / --mlb-date (typically Eastern tomorrow).
-        if sport_label in ("WNBA", "MLB") and keep_extra:
-            keep = {td} | keep_extra
-            stale = dated & ~gd_str.isin(keep)
-        elif sport_label == "NFL" and keep_extra:
+        if sport_label in ("WNBA", "MLB", "NFL", "CFB", "CFB1H") and keep_extra:
             keep = {td} | keep_extra
             stale = dated & ~gd_str.isin(keep)
         # NBA boards (full + period) can be posted ahead of the run date.
@@ -22391,8 +22408,16 @@ def main():
         allow_cross_date_fallback=_date_fb,
         extra_dates=extra_match_dates_for_sport("NHL", args),
     )
-    cfb = drop_stale_rows(cfb, args.date, "CFB", allow_cross_date_fallback=_date_fb)
-    cfb1h = drop_stale_rows(cfb1h, args.date, "CFB1H", allow_cross_date_fallback=_date_fb)
+    cfb = drop_stale_rows(
+        cfb, args.date, "CFB",
+        allow_cross_date_fallback=_date_fb,
+        extra_dates=extra_match_dates_for_sport("CFB", args),
+    )
+    cfb1h = drop_stale_rows(
+        cfb1h, args.date, "CFB1H",
+        allow_cross_date_fallback=_date_fb,
+        extra_dates=extra_match_dates_for_sport("CFB1H", args),
+    )
 
     # Apply teammate-absence usage redistribution before ticket eligibility filtering.
     nba = apply_usage_redistribution(nba, "NBA", args.date, REPO_ROOT)

@@ -715,6 +715,40 @@ else {
     }
 }
 
+# CBB / WCBB — in-season boards move morning/afternoon; late-fetch used to skip them.
+$CBB_SEASON_RESUME = "2026-10-20"
+if ($env:PROPORACLE_CBB_RESUME) { $CBB_SEASON_RESUME = $env:PROPORACLE_CBB_RESUME.Trim() }
+$CBBOffSeason = ($PipeDate -lt $CBB_SEASON_RESUME)
+if ($CBBOffSeason) {
+    Write-Host "[LATE_FETCH] Skipping CBB/WCBB fetch (off-season until $CBB_SEASON_RESUME)" -ForegroundColor DarkGray
+}
+else {
+    $CBBDir = Join-Path $SportsRoot "CBB"
+    foreach ($board in @(
+        @{ Tag = "cbb"; LeagueId = "20"; File = "step1_cbb.csv"; Label = "CBB" },
+        @{ Tag = "wcbb"; LeagueId = "176"; File = "step1_wcbb.csv"; Label = "WCBB" }
+    )) {
+        $tag = [string]$board.Tag
+        $lid = [string]$board.LeagueId
+        $label = [string]$board.Label
+        $runOut = Ensure-RunOutDir -SportTag $tag
+        $step1 = Join-Path $runOut $board.File
+        Write-Host "[LATE_FETCH] Fetching $label props (league_id=$lid)..."
+        $cbbArgs = @(
+            "-3.14", ".\scripts\pipeline\step1_pp_cbb_scraper.py",
+            "--league_id", $lid, "--out", $step1, "--fail-fast"
+        )
+        if ($CdpReachable) { $cbbArgs += @("--cdp", $CdpUrl) }
+        $cbbTimeout = if ($CdpReachable) { 240 } else { 150 }
+        $cbbExit = Invoke-TimedCommand -Label "$label step1" -FilePath "py" -ArgumentList $cbbArgs -WorkingDirectory $CBBDir -TimeoutSec $cbbTimeout
+        if (($cbbExit -ne 0) -or ((Get-CsvDataRowCount -CsvPath $step1) -eq 0)) {
+            Write-Host "[LATE_FETCH] WARNING: $label step1 empty/failed (exit $cbbExit)" -ForegroundColor Yellow
+        } else {
+            Write-Host "[LATE_FETCH] $label step1 rows=$((Get-CsvDataRowCount -CsvPath $step1))" -ForegroundColor DarkGray
+        }
+    }
+}
+
 # CFB — Week 1+ boards move all morning; without this, 8AM/9AM refreshes keep overnight lines.
 $CFB_SEASON_RESUME = "2026-08-18"
 $CFBOffSeason = ($PipeDate -lt $CFB_SEASON_RESUME)
@@ -731,12 +765,21 @@ else {
         "--out", $cfbStep1,
         "--fail-fast"
     )
-    # HTTP only: CFB is prizepools + combos. CDP in-page fetch is pickem/single_stat
-    # and returns 0 rows, which would keep overnight lines via morning fallback.
-    Write-Host "[LATE_FETCH] CFB: HTTP (prizepools) — not CDP pickem" -ForegroundColor DarkGray
+    # Prefer HTTP prizepools (combos). If 403/empty and CDP is up, fall back to
+    # pickem — live boards often have thousands of pickem rows.
+    Write-Host "[LATE_FETCH] CFB: HTTP prizepools first; CDP pickem on fail" -ForegroundColor DarkGray
     $cfbTimeout = 150
     $cfbExit = Invoke-TimedCommand -Label "CFB step1" -FilePath "py" -ArgumentList $cfbArgs -WorkingDirectory $CFBDir -TimeoutSec $cfbTimeout
     $cfbFailed = ($cfbExit -ne 0) -or ((Get-CsvDataRowCount -CsvPath $cfbStep1) -eq 0)
+    if ($cfbFailed -and $CdpReachable) {
+        Write-Host "[LATE_FETCH] CFB HTTP empty/failed — CDP pickem fallback" -ForegroundColor Yellow
+        $cfbCdpArgs = @(
+            "-3.14", ".\scripts\pipeline\step1_pp_cfb_scraper.py",
+            "--out", $cfbStep1, "--cdp", $CdpUrl
+        )
+        $cfbExit = Invoke-TimedCommand -Label "CFB step1 CDP" -FilePath "py" -ArgumentList $cfbCdpArgs -WorkingDirectory $CFBDir -TimeoutSec 240
+        $cfbFailed = ($cfbExit -ne 0) -or ((Get-CsvDataRowCount -CsvPath $cfbStep1) -eq 0)
+    }
     if ($cfbFailed) {
         [void](Resolve-Step1MorningFallback -Sport "CFB" -Step1Path $cfbStep1 -MaxRetries $MaxRetries -FetchFailed $true)
         [void](Copy-SiblingDatedStep1 -Sport "CFB" -SportTag "cfb" -FileName "step1_cfb.csv" -Step1Path $cfbStep1)
