@@ -24,7 +24,7 @@
          Use -PollHistoricalActuals to re-run fetch_historical_actuals.py every 90 min (4 passes) after 21:00 ET (see -PollSkip9pmWait).
          -WeeklyAnalysis runs synthetic + full consistency rebuild after analyze_grader.
          -MonthlyRetrain after STEP E runs all four prop ML trainers + full consistency rebuild (logs OK/FAILED, continues on failure).
-  NCAA 2026: WCBB slate not required from 2026-04-06; men's CBB not required from 2026-04-07 (see Get-MissingTodaySlateOutputs).
+  NCAA 2026: CBB/WCBB not required from season end through $CBB_SEASON_RESUME (2026-10-20); CFB required from $CFB_SEASON_RESUME (see Get-MissingTodaySlateOutputs).
   $Root = parent of scripts\ (repo root).
   STEP C calls repo-root run_pipeline.ps1; step 8 Python entrypoints live under each sport's scripts\ folder (see run_pipeline.ps1 for Join-Path $Root "<Sport>\scripts\step8_*.py").
 #>
@@ -90,6 +90,12 @@ elseif ($env:PROPORACLE_WNBA_PAUSE_START) { $WNBA_ALLSTAR_PAUSE_START = $env:PRO
 # NBA / NBA1H / NBA1Q grading: must match run_pipeline.ps1 $NBA_SEASON_RESUME.
 $NBA_SEASON_RESUME = "2026-10-01"
 $NHL_SEASON_RESUME = "2026-09-01"
+# CBB/WCBB / CFB: must match run_pipeline.ps1 resume gates (daily catchup + late-fetch).
+$CBB_SEASON_RESUME = "2026-10-20"
+if ($env:PROPORACLE_CBB_RESUME) { $CBB_SEASON_RESUME = $env:PROPORACLE_CBB_RESUME.Trim() }
+$CBB_SEASON_END = "2026-04-07"
+$CFB_SEASON_RESUME = "2026-08-18"
+if ($env:PROPORACLE_CFB_RESUME) { $CFB_SEASON_RESUME = $env:PROPORACLE_CFB_RESUME.Trim() }
 
 function Test-WnbaAllStarPause {
     param([string]$SlateDate)
@@ -360,6 +366,9 @@ function Get-MissingTodaySlateOutputs {
         "step8_tennis_direction_clean_$tennisDated.xlsx" = @{ key = "tennis"; step1 = (Join-Path $outDir "tennis\step1_tennis_props.csv") }
         "step8_golf_direction_clean_$RunDate.xlsx" = @{ key = "golf"; step1 = (Join-Path $outDir "golf\step1_golf_props.csv") }
         "step8_wnba_direction_clean_$RunDate.xlsx"    = @{ key = "wnba";   step1 = (Join-Path $outDir "wnba\step1_wnba_props.csv") }
+        "step8_cbb_direction_clean_$RunDate.xlsx"     = @{ key = "cbb";    step1 = (Join-Path $outDir "cbb\step1_cbb.csv") }
+        "step8_wcbb_direction_clean_$RunDate.xlsx"    = @{ key = "wcbb";   step1 = (Join-Path $outDir "wcbb\step1_wcbb.csv") }
+        "step8_cfb_direction_clean_$RunDate.xlsx"     = @{ key = "cfb";    step1 = (Join-Path $outDir "cfb\step1_cfb.csv") }
         "step6_ranked_cbb_$RunDate.xlsx"              = @{ key = "cbb";    step1 = (Join-Path $outDir "cbb\step1_cbb.csv") }
         "step6_ranked_wcbb_$RunDate.xlsx"             = @{ key = "wcbb";   step1 = (Join-Path $outDir "wcbb\step1_wcbb.csv") }
     }
@@ -377,7 +386,7 @@ function Get-MissingTodaySlateOutputs {
             "step8_nba1q_direction_clean_$RunDate.xlsx"
         ) + @($required)
     }
-    if ($RunDate -ge "2026-09-01") {
+    if ($RunDate -ge $NHL_SEASON_RESUME) {
         $required = @("step8_nhl_direction_clean_$RunDate.xlsx") + @($required)
     }
     # WNBA: run_wnba_pipeline.ps1 publishes outputs/<date>/step8_wnba_direction_clean_<date>.xlsx
@@ -385,13 +394,16 @@ function Get-MissingTodaySlateOutputs {
     if (($RunDate -ge $WNBA_SEASON_START) -and -not (Test-WnbaAllStarPause -SlateDate $RunDate)) {
         $required = @($required) + @("step8_wnba_direction_clean_$RunDate.xlsx")
     }
-    # 2026 NCAA: WCBB title Sun Apr 5; men's title Mon Apr 6. No slate Apr 6/7 through Oct 31.
-    # Resume 2026-11-01 (DI tipoff window).
-    if ($RunDate -lt "2026-04-07" -or $RunDate -ge "2026-11-01") {
-        $required = @($required) + @("step6_ranked_cbb_$RunDate.xlsx")
+    # CBB/WCBB: same resume as run_pipeline.ps1 (early DI 2026-10-20). Required through season end.
+    if ($RunDate -lt $CBB_SEASON_END -or $RunDate -ge $CBB_SEASON_RESUME) {
+        $required = @($required) + @(
+            "step8_cbb_direction_clean_$RunDate.xlsx",
+            "step8_wcbb_direction_clean_$RunDate.xlsx"
+        )
     }
-    if ($RunDate -lt "2026-04-06" -or $RunDate -ge "2026-11-01") {
-        $required = @($required) + @("step6_ranked_wcbb_$RunDate.xlsx")
+    # CFB: Week 0+ boards — was missing from daily completeness, so catchup never fetched it.
+    if ($RunDate -ge $CFB_SEASON_RESUME) {
+        $required = @($required) + @("step8_cfb_direction_clean_$RunDate.xlsx")
     }
     # Some sports can intentionally skip writing dated copies while still producing
     # valid root clean files used by combined + Railway.
@@ -436,6 +448,27 @@ function Get-MissingTodaySlateOutputs {
         "step8_wnba_direction_clean_$RunDate.xlsx" = @(
             (Join-Path $SportsRoot "WNBA\step8_wnba_direction_clean.xlsx"),
             (Join-Path $SportsRoot "WNBA\outputs\step8_wnba_direction_clean.xlsx")
+        )
+        "step8_cbb_direction_clean_$RunDate.xlsx" = @(
+            (Join-Path $outDir "cbb\step8_cbb_direction_clean.xlsx"),
+            (Join-Path $outDir "cbb\step8_cbb_direction_clean_$RunDate.xlsx"),
+            (Join-Path $outDir "cbb\step6_ranked_cbb.xlsx"),
+            (Join-Path $SportsRoot "CBB\step8_cbb_direction_clean.xlsx"),
+            (Join-Path $SportsRoot "CBB\step6_ranked_cbb.xlsx")
+        )
+        "step8_wcbb_direction_clean_$RunDate.xlsx" = @(
+            (Join-Path $outDir "wcbb\step8_wcbb_direction_clean.xlsx"),
+            (Join-Path $outDir "wcbb\step8_wcbb_direction_clean_$RunDate.xlsx"),
+            (Join-Path $outDir "wcbb\step6_ranked_wcbb.xlsx"),
+            (Join-Path $SportsRoot "CBB\step8_wcbb_direction_clean.xlsx"),
+            (Join-Path $SportsRoot "CBB\step6_ranked_wcbb.xlsx")
+        )
+        "step8_cfb_direction_clean_$RunDate.xlsx" = @(
+            (Join-Path $outDir "cfb\step8_cfb_direction_clean.xlsx"),
+            (Join-Path $outDir "cfb\step8_cfb_direction_clean_$RunDate.xlsx"),
+            (Join-Path $outDir "cfb\step6_ranked_cfb.xlsx"),
+            (Join-Path $SportsRoot "CFB\step8_cfb_direction_clean.xlsx"),
+            (Join-Path $SportsRoot "CFB\step6_ranked_cfb.xlsx")
         )
         "step6_ranked_cbb_$RunDate.xlsx" = @(
             (Join-Path $outDir "cbb\step6_ranked_cbb.xlsx"),

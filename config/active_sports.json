@@ -1,6 +1,6 @@
 {
   "as_of": "2026-11-19",
-  "notes": "Single source for fetch schedule, /api/pipeline/status game_day, home sport cards, X-sports count, and Hide Off-Season. Keys are PropORACLE sport tags; league_id is PrizePicks. GOLF maps to PP name PGA.",
+  "notes": "Single source for fetch schedule, /api/pipeline/status game_day, home sport cards, X-sports count, and Hide Off-Season. Keys are PropORACLE sport tags; league_id is PrizePicks. GOLF maps to PP name PGA. CBB/WCBB/CFB/CFB1H are in-season: daily parallel pipeline + late-fetch + Get-MissingTodaySlateOutputs must include them (resume CBB 2026-10-20, CFB 2026-08-18).",
   "active": [
     {"key": "NBA", "league_id": "7", "pp_name": "NBA", "card": true},
     {"key": "NBA1Q", "league_id": "192", "pp_name": "NBA1Q", "card": true},

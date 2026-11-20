@@ -391,10 +391,9 @@ _MAIN_SEASON_RESUME_DEFAULTS: dict[str, str] = {
     "NFL": "2026-09-09",
     # 2026 CFB Week Zero
     "CFB": "2026-08-27",
-    # 2026-27 NCAA DI men's tipoff window
-    "CBB": "2026-11-01",
-    # Women's DI basketball tipoff (align with men's weekend)
-    "WCBB": "2026-11-01",
+    # Match run_pipeline.ps1 $CBB_SEASON_RESUME (early DI / exhibition boards).
+    "CBB": "2026-10-20",
+    "WCBB": "2026-10-20",
 }
 # Golf is year-round when a slate exists — exclude only via env hard-list if needed.
 

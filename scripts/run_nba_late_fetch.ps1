@@ -221,6 +221,44 @@ function Invoke-CFBStep8RebuildIfNeeded {
     Write-FootballStep8MissingWarn -Sport "CFB" -Step1Path $Step1Path -Step8Path $step8
 }
 
+function Invoke-CBBStep8RebuildIfNeeded {
+    param(
+        [string]$CbbStep1Path,
+        [string]$WcbbStep1Path
+    )
+    $cbbRows = Get-CsvDataRowCount -CsvPath $CbbStep1Path
+    $wcbbRows = Get-CsvDataRowCount -CsvPath $WcbbStep1Path
+    if ($cbbRows -le 0 -and $wcbbRows -le 0) { return }
+    $cbbStep8 = Join-Path $Root "outputs\$PipeDate\cbb\step8_cbb_direction_clean.xlsx"
+    $wcbbStep8 = Join-Path $Root "outputs\$PipeDate\wcbb\step8_wcbb_direction_clean.xlsx"
+    $needCbb = ($cbbRows -gt 0) -and (
+        -not (Test-Path -LiteralPath $cbbStep8) -or
+        ((Get-Item -LiteralPath $CbbStep1Path).LastWriteTimeUtc -gt (Get-Item -LiteralPath $cbbStep8).LastWriteTimeUtc)
+    )
+    $needWcbb = ($wcbbRows -gt 0) -and (
+        -not (Test-Path -LiteralPath $wcbbStep8) -or
+        ((Get-Item -LiteralPath $WcbbStep1Path).LastWriteTimeUtc -gt (Get-Item -LiteralPath $wcbbStep8).LastWriteTimeUtc)
+    )
+    if (-not $needCbb -and -not $needWcbb) {
+        Write-Host "[LATE_FETCH] CBB/WCBB step8 already newer than step1 — skip rebuild" -ForegroundColor DarkGray
+        return
+    }
+    Write-Host "[LATE_FETCH] CBB/WCBB step1 rows cbb=$cbbRows wcbb=$wcbbRows — rebuilding via -CBBOnly -SkipFetch..." -ForegroundColor Cyan
+    $pipeScript = Join-Path $Root "run_pipeline.ps1"
+    if (-not (Test-Path -LiteralPath $pipeScript)) {
+        Write-Host "[LATE_FETCH] WARNING: missing $pipeScript — cannot attach CBB/WCBB L5" -ForegroundColor Yellow
+        return
+    }
+    $exit = Invoke-TimedCommand -Label "CBB/WCBB step2-8" -FilePath "pwsh" -ArgumentList @(
+        "-NoProfile", "-File", $pipeScript,
+        "-CBBOnly", "-SkipFetch", "-SkipCombined", "-SkipLivePayoutCapture",
+        "-Date", $PipeDate
+    ) -WorkingDirectory $Root -TimeoutSec 2400
+    if ($exit -ne 0) {
+        Write-Host "[LATE_FETCH] WARNING: CBB/WCBB step8 rebuild exit $exit" -ForegroundColor Yellow
+    }
+}
+
 function Resolve-LateFetchMaxRetries {
     param([string]$Label)
     $lbl = "$Label".Trim()
@@ -747,6 +785,9 @@ else {
             Write-Host "[LATE_FETCH] $label step1 rows=$((Get-CsvDataRowCount -CsvPath $step1))" -ForegroundColor DarkGray
         }
     }
+    $cbbStep1Final = Join-Path (Join-Path $Root "outputs\$PipeDate\cbb") "step1_cbb.csv"
+    $wcbbStep1Final = Join-Path (Join-Path $Root "outputs\$PipeDate\wcbb") "step1_wcbb.csv"
+    Invoke-CBBStep8RebuildIfNeeded -CbbStep1Path $cbbStep1Final -WcbbStep1Path $wcbbStep1Final
 }
 
 # CFB — Week 1+ boards move all morning; without this, 8AM/9AM refreshes keep overnight lines.
@@ -894,7 +935,12 @@ $logSportPy = Join-Path $Root "scripts\log_sport_rebuild.py"
 $rebuildTickets = $true
 # Per-sport rebuild: a sport that gained >= 25 new props (or any new prop type) while lines did not
 # move runs only that sport's steps 2-8 + Combined. Flag: PROPORACLE_LATE_SPORT_REBUILD (default TENNIS).
-$sportRebuildSwitch = @{ TENNIS = "-TennisOnly" }
+$sportRebuildSwitch = @{
+    TENNIS = "-TennisOnly"
+    CBB    = "-CBBOnly"
+    WCBB   = "-CBBOnly"
+    CFB    = "-CFBOnly"
+}
 $rebuildSportsReq = @()
 $pipeScopes = @("")
 $rebuildMode = "full"
@@ -962,6 +1008,11 @@ if (-not $rebuildTickets) {
     }
     if (-not $CFBOffSeason -and (Get-CsvDataRowCount -CsvPath $cfbStep1Final) -gt 0) {
         Invoke-CFBStep8RebuildIfNeeded -Step1Path $cfbStep1Final
+    }
+    if (-not $CBBOffSeason) {
+        $cbbStep1Final = Join-Path $Root "outputs\$PipeDate\cbb\step1_cbb.csv"
+        $wcbbStep1Final = Join-Path $Root "outputs\$PipeDate\wcbb\step1_wcbb.csv"
+        Invoke-CBBStep8RebuildIfNeeded -CbbStep1Path $cbbStep1Final -WcbbStep1Path $wcbbStep1Final
     }
 }
 else {
