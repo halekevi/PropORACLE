@@ -1544,24 +1544,30 @@ def _winrate_best_leg_label(leg: dict) -> str:
     return "—"
 
 
-def _winrate_best_panel_html(winrate_payload: dict | None = None) -> str:
-    """Pinned panel: top 5 win-rate tickets (sorted by est_win_prob, bench legs filtered)."""
-    _placeholder = (
-        '<motionless class="winrate-best-panel" id="winrate-best-panel" aria-live="polite">'
-        '<motionless class="winrate-best-title">⚡ HIGH LEG HR</motionless>'
-        '<motionless class="winrate-best-sub">High-leg-HR tickets generating…</motionless>'
-        "</motionless>"
-    ).replace("motionless", "div")
+def _winrate_best_panel_html(
+    winrate_payload: dict | None = None,
+    *,
+    slate_date: str | None = None,
+) -> str:
+    """Pinned panel: top 5 win-rate tickets (sorted by est_win_prob, bench legs filtered).
+
+    Hidden when empty or when the winrate JSON slate date does not match today's
+    playable card (avoids a stale HIGH LEG HR block from a prior day).
+    """
     data = winrate_payload
     if data is None:
         path = Path(REPO_ROOT) / "ui_runner" / "templates" / "tickets_winrate_latest.json"
         if not path.is_file():
-            return _placeholder
+            return ""
         try:
             with open(path, "r", encoding="utf-8") as f:
                 data = json.load(f)
         except Exception:
-            return _placeholder
+            return ""
+    wr_date = str((data or {}).get("date") or (data or {}).get("slate_date") or "").strip()[:10]
+    card_date = str(slate_date or "").strip()[:10]
+    if card_date and wr_date and wr_date != card_date:
+        return ""
     generated_at = str((data or {}).get("generated_at") or "")
     flat: list[tuple[float, dict, str]] = []
     for g in (data or {}).get("groups") or []:
@@ -1577,14 +1583,7 @@ def _winrate_best_panel_html(winrate_payload: dict | None = None) -> str:
     flat.sort(key=lambda x: -x[0])
     top = flat[:5]
     if not top:
-        return (
-            '<div class="winrate-best-panel" id="winrate-best-panel">'
-            '<div class="winrate-best-title">⚡ HIGH LEG HR</div>'
-            '<div class="winrate-best-sub">No qualifying high-leg-HR tickets for this slate '
-            '(deep-bench SUPPORT legs and same-game bench stacks are excluded). '
-            'These legs can still appear on graded main. Rebuild after the next ticket run.</div>'
-            "</div>"
-        )
+        return ""
     rows: list[str] = []
     for i, (rank_score, t, gn) in enumerate(top, start=1):
         legs = t.get("legs") or []
@@ -1918,7 +1917,12 @@ def render_tickets_body_html(
         parts.append("</div>")
         return "".join(parts), page_title
 
-    parts.append(_winrate_best_panel_html(winrate_payload))
+    parts.append(
+        _winrate_best_panel_html(
+            winrate_payload,
+            slate_date=date_declared or date_str,
+        )
+    )
 
     # ── Groups ────────────────────────────────────────────────────────────────
     leg_graph_uid = 0
