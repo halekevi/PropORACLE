@@ -66,6 +66,11 @@ SPORT_RULES: dict[str, tuple[str, RuleFn | None]] = {
     "WNBA1Q": ("add", None),
     "WNBA1H": ("add", None),
     # Default L5=5 + L10>=8 + directional D (same stack shape as WNBA).
+    # Do NOT add cbb_keep_gates.py from last-season (Feb–Apr) cells yet.
+    # 2026-11 re-test (Nov 2–19, n≥40): only Goblin 3-PT Made L10≥80%
+    # held (~68.5% n=73, +6 vs ungated) — watch-only until season HR fills.
+    # Pts+Reb Under L20≥70% failed this season (46.5% vs 55% ungated).
+    # Season-gap / season≥65% Goblin cells are still too thin (0–6 props).
     "CBB": ("add", None),
     "WCBB": ("add", None),
 }
