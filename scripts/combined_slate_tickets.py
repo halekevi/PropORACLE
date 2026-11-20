@@ -12580,22 +12580,22 @@ def render_tickets_html(payload: dict) -> str:
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Inter:wght@400;500;600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#050505;--surface:rgba(20,20,20,0.60);--card:rgba(20,20,20,0.60);--border:rgba(212,175,55,0.15);
-  --accent:#d4af37;--cyan:#00F2FF;--muted:#ffffff;--muted2:#f0f0f0;--text:#e8e8f0;
+  --bg:#0b0b0b;--surface:rgba(20,20,20,0.55);--card:rgba(20,20,20,0.55);--border:rgba(255,255,255,0.1);
+  --accent:#d4af37;--cyan:#9eb8c4;--muted:rgba(255,255,255,0.55);--muted2:rgba(255,255,255,0.72);--text:rgba(255,255,255,0.92);
 }
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,-apple-system,sans-serif;min-height:100vh;overflow-x:hidden;}
 
 body::before{
   content:'';position:fixed;inset:0;
   background:
-    radial-gradient(1200px 760px at -8% -18%, rgba(0,242,255,.12) 0%, transparent 56%),
-    radial-gradient(980px 620px at 108% -8%, rgba(212,175,55,.18) 0%, transparent 54%),
-    linear-gradient(180deg,#050505 0%,#080808 52%,#0f0f0f 100%);
+    radial-gradient(ellipse at 14% 10%, rgba(212,175,55,0.12) 0%, transparent 42%),
+    radial-gradient(ellipse at 88% 8%, rgba(158,184,196,0.08) 0%, transparent 40%),
+    linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%);
   pointer-events:none;z-index:0;
 }
 
-/* scanlines */
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;}
+/* glass-minimal: no scanlines / grid */
+body::after{content:none;display:none;}
 
 #app{position:relative;z-index:1;width:100%;max-width:min(1920px,98vw);margin:0 auto;padding:0 clamp(10px,2.5vw,28px) 24px;box-sizing:border-box;}
 

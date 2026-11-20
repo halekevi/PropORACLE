@@ -24,7 +24,7 @@
   --accent-gold:#d4af37;
   --accent:#d4af37;
   --f0a500:#f0a500;
-  --cyan:#7fc7d9;
+  --cyan:#9eb8c4;
   --green:#9fd8a7;
   --red:#d07a78;
   --amber:#c89a4a;
@@ -202,29 +202,11 @@ body::before{
   z-index:0;
   pointer-events:none;
   background:
-    radial-gradient(ellipse at 12% 8%, rgba(160,198,255,0.08) 0%, transparent 38%),
-    radial-gradient(ellipse at 88% 6%, rgba(225,188,101,0.18) 0%, transparent 36%),
-    radial-gradient(ellipse at 50% 55%, rgba(179,157,255,0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 18% 86%, rgba(225,188,101,0.10) 0%, transparent 34%),
-    radial-gradient(ellipse at 82% 82%, rgba(159,204,255,0.10) 0%, transparent 30%),
-    linear-gradient(180deg,#050507 0%,#0d0b12 46%,#141017 100%);
+    radial-gradient(ellipse at 14% 10%, rgba(212,175,55,0.12) 0%, transparent 42%),
+    radial-gradient(ellipse at 88% 8%, rgba(158,184,196,0.08) 0%, transparent 40%),
+    linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%);
 }
-body::after{
-  content:'';
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.45) 0%, transparent 100%),
-    radial-gradient(1px 1px at 60% 15%, rgba(255,255,255,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.25) 0%, transparent 100%),
-    linear-gradient(rgba(212,160,23,.015) 1px, transparent 1px),
-    linear-gradient(90deg,rgba(212,160,23,.015) 1px, transparent 1px);
-  background-size:auto,auto,auto,52px 52px,52px 52px;
-  mix-blend-mode:screen;
-  opacity:.55;
-}
+body::after{content:none;display:none;}
 .grades-page{position:relative;z-index:1;display:block;width:100%;min-height:0;}
 .grades-body{display:block;width:100%;min-height:0;}
 .shell{
@@ -1706,6 +1688,7 @@ select option,
 <link rel="stylesheet" href="static/nav-mobile-shared.css?v=20260430schemapage"/>
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
+<link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass2"/>
 </head>
 <body class="page-grades" data-latest-with-tickets="{{ latest_with_tickets|default('', true) }}">
 <!-- Ambient orbs — match Home (static, no drift animation) -->

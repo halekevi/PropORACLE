@@ -1,8 +1,29 @@
 /**
  * Shared site nav: slate date, local date/time, hamburger, theme, scroll-hide.
+ * Also injects glass-minimal CSS last so every page that loads this script inherits the look.
  */
 (function () {
   "use strict";
+
+  (function injectGlassMinimal() {
+    if (typeof document === "undefined" || !document.head) return;
+    if (document.getElementById("proporacle-glass-minimal")) return;
+    var scripts = document.getElementsByTagName("script");
+    var base = "/static/";
+    for (var i = 0; i < scripts.length; i++) {
+      var src = scripts[i].src || "";
+      var m = src.match(/^(.*\/)(?:js\/)?site-nav-chrome\.js/i);
+      if (m) {
+        base = m[1].replace(/\/js\/$/, "/");
+        break;
+      }
+    }
+    var link = document.createElement("link");
+    link.id = "proporacle-glass-minimal";
+    link.rel = "stylesheet";
+    link.href = base + "proporacle-glass-minimal.css?v=20261119glass1";
+    document.head.appendChild(link);
+  })();
 
   function formatSlateDateDisplay(isoYmd) {
     let dt;

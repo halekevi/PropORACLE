@@ -1,0 +1,185 @@
+/**
+ * Shared site nav: slate date, local date/time, hamburger, theme, scroll-hide.
+ * Also injects glass-minimal CSS last so every page that loads this script inherits the look.
+ */
+(function () {
+  "use strict";
+
+  (function injectGlassMinimal() {
+    if (typeof document === "undefined" || !document.head) return;
+    if (document.getElementById("proporacle-glass-minimal")) return;
+    var scripts = document.getElementsByTagName("script");
+    var base = "/static/";
+    for (var i = 0; i < scripts.length; i++) {
+      var src = scripts[i].src || "";
+      var m = src.match(/^(.*\/)(?:js\/)?site-nav-chrome\.js/i);
+      if (m) {
+        base = m[1].replace(/\/js\/$/, "/");
+        break;
+      }
+    }
+    var link = document.createElement("link");
+    link.id = "proporacle-glass-minimal";
+    link.rel = "stylesheet";
+    link.href = base + "proporacle-glass-minimal.css?v=20261119glass1";
+    document.head.appendChild(link);
+  })();
+
+  function formatSlateDateDisplay(isoYmd) {
+    let dt;
+    if (isoYmd && typeof isoYmd === "string" && isoYmd.length >= 10) {
+      const parts = isoYmd.slice(0, 10).split("-").map(Number);
+      dt = new Date(parts[0], parts[1] - 1, parts[2]);
+    } else {
+      dt = new Date();
+    }
+    return dt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  }
+
+  async function applyHeroSlateDate() {
+    const el = document.getElementById("slate-date");
+    // Always show a sensible top line immediately (critical for bundled/mobile where API may be unavailable).
+    if (el) el.textContent = formatSlateDateDisplay("");
+    try {
+      let j = null;
+      try {
+        const res = await fetch("/api/slate-display-date", { cache: "no-store" });
+        if (res.ok) j = await res.json();
+      } catch (e) {}
+      if (!j || !j.date) {
+        try {
+          const fb = await fetch("slate_display_date.json", { cache: "no-store" });
+          if (fb.ok) j = await fb.json();
+        } catch (e2) {}
+      }
+      if (!j || !j.date) return;
+      if (el) el.textContent = formatSlateDateDisplay(j.date);
+    } catch (e) {}
+  }
+  // Backwards-compat: some page scripts call this directly.
+  window.applyHeroSlateDate = applyHeroSlateDate;
+
+  function formatLocalDateTime(now) {
+    const dt = now || new Date();
+    // Force consistent navbar format: "Fri, Apr 24, 2026, 11:24:49 PM"
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }).format(dt);
+  }
+
+  function initLocalDateTime() {
+    const el = document.getElementById("nav-local-datetime");
+    if (!el) return;
+    const tick = () => {
+      el.textContent = formatLocalDateTime(new Date());
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  window.ProporacleNav = {
+    /** @deprecated Nav no longer shows pipeline last sync; kept so older inline callers do not throw. */
+    updateLastSyncFromPipelineStatus: function () {},
+    refreshNavSync: async function () {},
+  };
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.classList.toggle("light-theme", theme === "light");
+    if (document.body) document.body.classList.toggle("light-mode", theme === "light");
+    try {
+      localStorage.setItem("proporacle-theme", theme);
+      localStorage.setItem("theme", theme);
+    } catch (e) {}
+    const moon = document.getElementById("theme-toggle")?.querySelector(".tt-moon");
+    const sun = document.getElementById("theme-toggle")?.querySelector(".tt-sun");
+    if (moon) moon.style.display = theme === "dark" ? "" : "none";
+    if (sun) sun.style.display = theme === "dark" ? "none" : "";
+  }
+
+  window.applyTheme = applyTheme;
+  window.toggleTheme = function () {
+    const curr = document.documentElement.getAttribute("data-theme") || "dark";
+    applyTheme(curr === "dark" ? "light" : "dark");
+  };
+
+  function bindHamburger() {
+    const ham = document.getElementById("hamburger");
+    const mob = document.getElementById("mobile-menu");
+    const nl = document.getElementById("nav-links");
+    if (!ham || !mob) return;
+    const syncNavLinksOpen = () => {
+      if (!nl) return;
+      nl.classList.toggle("open", ham.classList.contains("open"));
+    };
+    ham.addEventListener("click", () => {
+      ham.classList.toggle("open");
+      mob.classList.toggle("open");
+      syncNavLinksOpen();
+    });
+    document.addEventListener("click", (e) => {
+      if (!ham.contains(e.target) && !mob.contains(e.target)) {
+        ham.classList.remove("open");
+        mob.classList.remove("open");
+        syncNavLinksOpen();
+      }
+    });
+  }
+
+  function bindNavScrollHide() {
+    const nav = document.querySelector(".snav");
+    if (!nav) return;
+    const mq = window.matchMedia("(max-width: 900px), (pointer: coarse)");
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+    const hideAfter = 140;
+    const minDelta = 8;
+    const update = () => {
+      ticking = false;
+      if (mq.matches) {
+        nav.classList.remove("nav-hidden");
+        lastY = window.scrollY || 0;
+        return;
+      }
+      const y = window.scrollY || 0;
+      const delta = y - lastY;
+      if (y < hideAfter || delta < -minDelta) nav.classList.remove("nav-hidden");
+      else if (delta > minDelta) nav.classList.add("nav-hidden");
+      lastY = y;
+    };
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          ticking = true;
+          window.requestAnimationFrame(update);
+        }
+      },
+      { passive: true }
+    );
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  function init() {
+    const saved = localStorage.getItem("proporacle-theme") || "dark";
+    applyTheme(saved);
+    bindHamburger();
+    bindNavScrollHide();
+    applyHeroSlateDate();
+    initLocalDateTime();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();

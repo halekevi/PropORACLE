@@ -2283,25 +2283,26 @@ NAV_HTML = ""
 
 CSS = """
 :root{
-  --glass:rgba(255,255,255,0.03);
-  --glass-bd:rgba(255,255,255,0.08);
+  --glass:rgba(255,255,255,0.04);
+  --glass-bd:rgba(255,255,255,0.1);
   --bg:transparent;
-  --text:rgba(232,236,255,0.95);
-  --muted:#94a3b8;
+  --text:rgba(255,255,255,0.92);
+  --muted:rgba(255,255,255,0.55);
   --muted2:rgba(255,255,255,0.48);
-  --gold:#f0a500;
-  --gold2:#d4a017;
-  --cyan:#00e5ff;
-  --green:#39ff6e;
-  --amber:#e8b84a;
-  --red:#ff4d4d;
-  --purple:#c4a5ff;
+  --gold:#d4af37;
+  --gold2:#d4af37;
+  --cyan:#9eb8c4;
+  --green:#9fd8a7;
+  --amber:#c4a574;
+  --red:#d07a78;
+  --purple:#b8a99a;
   --pending:#666;
+  --accent:#d4af37;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{min-height:0;height:auto;max-height:none;overflow-x:hidden;overflow-y:visible;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch;background:#0a0a14}
-body{font-family:'Inter',sans-serif;background:#0a0a14;color:var(--text);min-height:0;height:auto;max-height:none;margin:0;overflow-x:hidden;overflow-y:visible;padding-bottom:max(10px, env(safe-area-inset-bottom, 0px));font-size:clamp(14px,1.02vw,16px);line-height:1.45}
-h1,h2,h3,h4,h5,h6{font-family:'Bebas Neue',sans-serif}
+html{min-height:0;height:auto;max-height:none;overflow-x:hidden;overflow-y:visible;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch;background:#0b0b0b}
+body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:#0b0b0b;color:var(--text);min-height:0;height:auto;max-height:none;margin:0;overflow-x:hidden;overflow-y:visible;padding-bottom:max(10px, env(safe-area-inset-bottom, 0px));font-size:clamp(14px,1.02vw,16px);line-height:1.45}
+h1,h2,h3,h4,h5,h6{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:.06em}
 header,.main{position:relative;z-index:1}
 
 header{background:transparent;border:none;border-radius:0;padding:12px 20px 0;display:flex;flex-direction:column;align-items:stretch;gap:0;box-shadow:none}
@@ -2317,7 +2318,7 @@ border:1px solid var(--glass-bd);border-radius:999px;padding:8px 14px;letter-spa
 .main{max-width:none;width:100%;margin:0;padding:24px 20px;box-sizing:border-box}
 @media(max-width:768px){.main{padding:8px 12px 16px}}
 .sport-header{display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap;min-width:0}
-.sport-label{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:4px;line-height:1;color:var(--gold);text-shadow:0 0 28px rgba(240,165,0,.18)}
+.sport-label{font-family:Georgia,"Times New Roman",serif;font-size:28px;letter-spacing:.08em;font-weight:400;line-height:1;color:var(--gold);text-shadow:none}
 .sport-header-line{flex:1;min-width:80px;height:1px;background:rgba(255,255,255,0.08)}
 .sport-meta-count{font-family:'Inter',sans-serif;font-size:12px;color:var(--muted2);display:inline-flex;align-items:center;gap:0;flex-wrap:wrap}
 .sport-meta-rate{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.4px;margin-left:8px;padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,0.12)}
@@ -3066,6 +3067,7 @@ def build_html(date_str: str, nba_rows: list[dict], cbb_rows: list[dict],
 <link rel="stylesheet" href="/static/light-theme-dim-overrides.css?v=20260419perf2"/>
 <link rel="stylesheet" href="/static/proporacle-mobile-schema.css?v=20260430schemapage"/>
 <style>{CSS}</style>
+<link rel="stylesheet" href="/static/proporacle-glass-minimal.css?v=20261119glass2"/>
 </head>
 <body>
 <header>

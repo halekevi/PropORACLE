@@ -6,20 +6,21 @@
 <title>PropOracle — Tickets FEB 24, 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/static/global-scrollbar.css?v=20260517platform"/>
+<link rel="stylesheet" href="/static/proporacle-glass-minimal.css?v=20261119glass2"/>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap');
 :root{
-  --bg:#05050f;--bg2:#0d0d1f;--bg3:#111128;--border:#1e1e3a;--bd2:#2a2a4a;
-  --text:#e8e8f0;--muted:rgba(255,255,255,0.95);--muted2:rgba(255,255,255,0.88);
-  --accent:#c8ff00;--cyan:#00e5ff;
-  --green:#39ff6e;--amber:#f0a500;--red:#ff4d4d;--purple:#a78bfa;--blue:#00e5ff;
+  --bg:#0b0b0b;--bg2:rgba(255,255,255,0.04);--bg3:rgba(255,255,255,0.07);--border:rgba(255,255,255,0.1);--bd2:rgba(255,255,255,0.16);
+  --text:rgba(255,255,255,0.92);--muted:rgba(255,255,255,0.55);--muted2:rgba(255,255,255,0.72);
+  --accent:#d4af37;--cyan:#9eb8c4;
+  --green:#9fd8a7;--amber:#c4a574;--red:#d07a78;--purple:#b8a99a;--blue:#9eb8c4;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden;overflow-y:scroll;scrollbar-gutter:stable;height:100%}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(200,255,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,255,0,.03) 1px,transparent 1px);background-size:40px 40px;animation:gridScroll 20s linear infinite;pointer-events:none;z-index:0;}
+body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 14% 10%,rgba(212,175,55,0.12) 0%,transparent 42%),radial-gradient(ellipse at 88% 8%,rgba(158,184,196,0.08) 0%,transparent 40%),linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%);pointer-events:none;z-index:0;}
 @keyframes gridScroll{from{background-position:0 0;}to{background-position:0 40px;}}
-body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.15) 2px,rgba(0,0,0,.15) 4px);pointer-events:none;z-index:0;}
+body::after{content:none;display:none;}
 
 /* ── UNIFIED NAV ── */
 @import url('/static/css/site-nav-unified.css');
@@ -29,7 +30,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 
 /* ── PAGE HEADER ── */
 .page-header{position:relative;z-index:1;padding:20px 20px 0;max-width:none;width:100%;margin:0 auto;box-sizing:border-box;}
-.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,42px);letter-spacing:.08em;color:var(--accent);line-height:1;}
+.page-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,4vw,42px);letter-spacing:.08em;font-weight:400;color:var(--accent);line-height:1;}
 .page-subtitle{font-size:10px;color:var(--muted);letter-spacing:2.5px;margin-top:4px;}
 .page-meta{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;}
 .date-chip{font-size:10px;color:var(--muted);background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 12px;letter-spacing:1px;}

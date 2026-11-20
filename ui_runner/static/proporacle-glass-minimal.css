@@ -1,0 +1,275 @@
+/**
+ * PropORACLE glass-minimal theme
+ * Quiet glass + gold accent. Overrides neon HUD / grid / Bebas shout.
+ * Load LAST after page-shell, nav, tickets-redesign, home CSS.
+ */
+:root {
+  --bg: #0b0b0b !important;
+  --bg-main: #0b0b0b !important;
+  --bg2: rgba(255, 255, 255, 0.04) !important;
+  --bg3: rgba(255, 255, 255, 0.07) !important;
+  --border: rgba(255, 255, 255, 0.1) !important;
+  --bd2: rgba(255, 255, 255, 0.16) !important;
+  --text: rgba(255, 255, 255, 0.92) !important;
+  --text-primary: rgba(255, 255, 255, 0.92) !important;
+  --muted: rgba(255, 255, 255, 0.55) !important;
+  --muted2: rgba(255, 255, 255, 0.72) !important;
+  --accent: #d4af37 !important;
+  --accent-gold: #d4af37 !important;
+  --cyan: #9eb8c4 !important;
+  --blue: #9eb8c4 !important;
+  --green: #9fd8a7 !important;
+  --goblin: #9fd8a7 !important;
+  --amber: #c4a574 !important;
+  --red: #d07a78 !important;
+  --demon: #d07a78 !important;
+  --purple: #b8a99a !important;
+  --std: #9eb8c4 !important;
+  --glass: rgba(255, 255, 255, 0.04) !important;
+  --glass-hi: rgba(255, 255, 255, 0.07) !important;
+  --glass-mid: rgba(255, 255, 255, 0.055) !important;
+  --glass-bg: rgba(20, 20, 20, 0.55) !important;
+  --glass-border: rgba(212, 175, 55, 0.18) !important;
+  --glass-border-soft: rgba(255, 255, 255, 0.1) !important;
+  --glass-border-hi: rgba(255, 255, 255, 0.14) !important;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  --card-bg: rgba(255, 255, 255, 0.04) !important;
+  --card-bg-hover: rgba(255, 255, 255, 0.08) !important;
+  --surface: rgba(20, 20, 20, 0.55) !important;
+  --card: rgba(20, 20, 20, 0.55) !important;
+}
+
+html,
+body {
+  background: #0b0b0b !important;
+  color: var(--text) !important;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Kill neon grid / scanlines / star-field loops */
+body::before {
+  animation: none !important;
+  background-image:
+    radial-gradient(ellipse at 14% 10%, rgba(212, 175, 55, 0.12) 0%, transparent 42%),
+    radial-gradient(ellipse at 88% 8%, rgba(158, 184, 196, 0.08) 0%, transparent 40%),
+    linear-gradient(180deg, #040404 0%, #0a0a0a 55%, #101010 100%) !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+body::after {
+  display: none !important;
+  animation: none !important;
+  content: none !important;
+}
+
+/* Quiet headings — stop Bebas shout */
+.page-title,
+.hero h1,
+.brand,
+.card-title,
+.rate-card-title,
+.sport-label,
+.rd-kpi-val,
+.stat-val,
+.big-input,
+.result-val,
+.prob-val,
+.pp-legs,
+.pp-power,
+h1, h2 {
+  font-family: Georgia, "Times New Roman", "Segoe UI", serif !important;
+  letter-spacing: 0.06em !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+}
+.page-title,
+.hero h1,
+.brand {
+  color: var(--accent) !important;
+}
+
+/* Nav: glass, no rainbow accent animation */
+.snav,
+nav.snav {
+  background: rgba(18, 18, 18, 0.72) !important;
+  backdrop-filter: blur(22px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+  border-color: rgba(212, 175, 55, 0.16) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+.snav .nav-accent,
+nav.snav .nav-accent {
+  animation: none !important;
+  height: 1px !important;
+  opacity: 0.55 !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.55) 30%,
+    rgba(212, 175, 55, 0.2) 70%,
+    transparent 100%
+  ) !important;
+  filter: none !important;
+}
+.snav-links li a.active,
+.nav-links a.active {
+  color: var(--accent) !important;
+  border-bottom-color: var(--accent) !important;
+  background: rgba(212, 175, 55, 0.08) !important;
+  box-shadow: none !important;
+}
+.snav-links li a.active::after {
+  box-shadow: none !important;
+  background: var(--accent) !important;
+  width: 4px !important;
+  height: 4px !important;
+}
+.snav-account.active {
+  color: var(--accent) !important;
+  border-color: rgba(212, 175, 55, 0.45) !important;
+}
+.snav-links li a:hover,
+.snav-links li:nth-child(n) a:hover {
+  color: var(--text) !important;
+}
+.live-pill {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(212, 175, 55, 0.2) !important;
+  box-shadow: none !important;
+}
+.logo-icon {
+  filter: none !important;
+}
+
+/* Glass panels / cards */
+.glass-card,
+.stat-card,
+.rd-kpi-card,
+.rd-hero-card,
+.ticket-card,
+.slip-card,
+.mesh-card,
+.rate-card,
+.card,
+.panel {
+  background: rgba(255, 255, 255, 0.045) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+}
+
+/* Soften neon filter chips */
+.sf-btn,
+.pt-seg-btn,
+.filter-chip,
+.sport-chip {
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: var(--muted) !important;
+}
+.sf-btn.active,
+.sf-btn.sf-all.active,
+.sf-btn.sf-nba.active,
+.sf-btn.sf-cbb.active,
+.sf-btn.sf-nhl.active,
+.sf-btn.sf-soc.active,
+.pt-seg-btn.active {
+  color: var(--fg, var(--text)) !important;
+  border-color: rgba(212, 175, 55, 0.45) !important;
+  background: rgba(212, 175, 55, 0.1) !important;
+}
+
+/* Tickets page: quieter header / filter */
+.filter-bar {
+  background: rgba(11, 11, 11, 0.88) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+}
+.search-box {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+.search-box:focus-within {
+  border-color: rgba(212, 175, 55, 0.45) !important;
+}
+.date-chip {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Home orbs / grain / aurora — gone */
+.orb-1,
+.orb-2,
+.po-orb,
+.grain-layer,
+.mesh-bg {
+  display: none !important;
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+/* Soften neon brain / lime leftovers */
+.brain-slate,
+.brain-slate::before,
+.brain-svg-el,
+.bpr,
+.bsp,
+.brain-pulse-ring {
+  animation: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  opacity: 0.55 !important;
+}
+.bsp.lg,
+.bsp.md,
+.bspark.lg {
+  background: var(--accent) !important;
+  box-shadow: none !important;
+}
+
+/* Tickets lime → gold */
+.sf-btn.sf-nba.active,
+.sport-chip.active,
+.rd-kpi-val,
+.gstat-val {
+  color: var(--accent) !important;
+}
+.filter-bar {
+  background: rgba(11, 11, 11, 0.88) !important;
+}
+
+/* Buttons */
+.btn,
+.btn-glass-sm,
+.add-leg-btn {
+  font-family: "Segoe UI", system-ui, sans-serif !important;
+  letter-spacing: 0.06em !important;
+  text-transform: none !important;
+}
+
+/* Light theme keep readable */
+[data-theme="light"] body,
+html[data-theme="light"] body,
+body.light-mode {
+  background: #e8eef4 !important;
+  color: #1d1d1f !important;
+}
+[data-theme="light"] body::before {
+  background: linear-gradient(180deg, #e8eef4 0%, #dbe6f0 100%) !important;
+}
+[data-theme="light"] .snav,
+[data-theme="light"] nav.snav {
+  background: rgba(248, 252, 255, 0.9) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

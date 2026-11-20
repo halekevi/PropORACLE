@@ -9,7 +9,7 @@
   --bg:#05050f;--bg2:rgba(255,255,255,0.03);--bg3:rgba(255,255,255,0.05);
   --border:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.14);
   --text:rgba(255,255,255,0.92);--muted:rgba(255,255,255,0.95);--muted2:rgba(255,255,255,0.92);
-  --accent:#d4af37;--cyan:#7fc7d9;
+  --accent:#d4af37;--cyan:#9eb8c4;
   --green:#9fd8a7;--amber:#c89a4a;--red:#d07a78;--purple:#8f7ab8;--blue:#7fc7d9;
   /* Glass system */
   --glass:rgba(255,255,255,0.03);
@@ -45,29 +45,16 @@ html{
   scrollbar-gutter: stable;
   -webkit-overflow-scrolling: touch;
 }
-body{font-family:'Inter',sans-serif;background:var(--bg-main);color:var(--text-primary);min-height:100%;padding-bottom:clamp(48px,12vw,80px);overflow-x:hidden;overflow-y:visible;line-height:1.55;-webkit-font-smoothing:antialiased;}
-/* Deep space background */
+body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg-main);color:var(--text-primary);min-height:100%;padding-bottom:clamp(48px,12vw,80px);overflow-x:hidden;overflow-y:visible;line-height:1.55;-webkit-font-smoothing:antialiased;}
+/* Quiet glass backdrop */
 body::before{content:'';position:fixed;inset:0;
   background:
-    radial-gradient(ellipse at 12% 8%, rgba(127,199,217,0.18) 0%, transparent 38%),
-    radial-gradient(ellipse at 88% 6%, rgba(212,175,55,0.13) 0%, transparent 36%),
-    radial-gradient(ellipse at 50% 55%, rgba(183,168,255,0.07) 0%, transparent 50%),
-    radial-gradient(ellipse at 20% 85%, rgba(212,175,55,0.06) 0%, transparent 35%),
-    radial-gradient(ellipse at 80% 80%, rgba(127,199,217,0.08) 0%, transparent 32%),
-    linear-gradient(180deg,#040404 0%,#090909 50%,#111111 100%);
+    radial-gradient(ellipse at 14% 10%, rgba(212,175,55,0.12) 0%, transparent 42%),
+    radial-gradient(ellipse at 88% 8%, rgba(158,184,196,0.08) 0%, transparent 40%),
+    linear-gradient(180deg,#040404 0%,#0a0a0a 55%,#101010 100%);
   pointer-events:none;z-index:0;}
-/* Subtle star-field noise */
-body::after{content:'';position:fixed;inset:0;
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 60% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    linear-gradient(rgba(212,175,55,.012) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(212,175,55,.012) 1px,transparent 1px);
-  background-size:auto,auto,auto,auto,auto,52px 52px,52px 52px;
-  pointer-events:none;z-index:0;mix-blend-mode:screen;opacity:.6;}
+/* No star-field / grid on home */
+body::after{content:none;display:none;}
 
 /* brain logo */
 .brain-wrap{position:relative;width:46px;height:46px;flex-shrink:0;}
