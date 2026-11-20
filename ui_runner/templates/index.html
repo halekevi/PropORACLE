@@ -6816,6 +6816,11 @@ function sortSlateDynamic(sport, key) {
   }
 
   function hitsFrac(r, window) {
+    // CFB seasons are ~16 games — L20 is permanently n/a (use prior-year for averages).
+    const neverL20 = new Set((state.cfg && state.cfg.l20_never) || ["cfb", "cfb1h"]);
+    if (window === "l20" && neverL20.has(String(state.sport || "").toLowerCase())) {
+      return null;
+    }
     const side = sideOf(r);
     const over = num(r[window + "_over"] != null ? r[window + "_over"] : r["last" + window.slice(1) + "_over"]);
     const under = num(r[window + "_under"] != null ? r[window + "_under"] : r["last" + window.slice(1) + "_under"]);

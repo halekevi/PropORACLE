@@ -1,7 +1,7 @@
 {
   "version": 1,
   "as_of": "2026-11-20",
-  "notes": "Props Board groups per sport. Period boards are separate keys. Sport selector uses config/active_sports.json.",
+  "notes": "Props Board groups per sport. Period boards are separate keys. Sport selector uses config/active_sports.json. CFB/CFB1H never get L20 (~16-game seasons); averages may include last-year boxes. Golf L20 still pending Option B.",
   "columns": [
     "side",
     "player",
@@ -16,6 +16,7 @@
     "games_played"
   ],
   "missing_display": "n/a",
+  "l20_never": ["cfb", "cfb1h"],
   "sports": {
     "nba": {
       "key": "nba",
@@ -528,6 +529,8 @@
     },
     "cfb": {
       "key": "cfb",
+      "l20": "never",
+      "avg_fill": "prior_season_boxes",
       "props_catalog": [
         "Receiving Yards",
         "Rush Yards",

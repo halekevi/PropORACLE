@@ -453,8 +453,9 @@ def _compute_distribution_std(df: pd.DataFrame) -> pd.DataFrame:
         if "distribution_n" in out.columns
         else pd.Series(np.nan, index=out.index)
     )
-    # Preserve step8 pre-computed std (n>=2); skip enrichment recompute noise (0.0, n<2).
-    keep_step8 = existing_std.notna() & (existing_n >= 2)
+    # Preserve step8 pre-computed std. Require n>=2 when n is known; if n is
+    # missing (CFB step8 ships Distribution Std without distribution_n), keep std.
+    keep_step8 = existing_std.notna() & (existing_n.isna() | (existing_n >= 2))
     stat_cols = [f"stat_g{i}" for i in range(1, 11) if f"stat_g{i}" in out.columns]
     if not stat_cols:
         stat_cols = sorted(
@@ -474,12 +475,9 @@ def _compute_distribution_std(df: pd.DataFrame) -> pd.DataFrame:
         out["distribution_n"] = existing_n.where(keep_step8, computed_n)
     else:
         out = out.copy()
-        if not keep_step8.any():
-            out["distribution_std"] = np.nan
-            out["distribution_n"] = 0
-        else:
-            out["distribution_std"] = existing_std
-            out["distribution_n"] = existing_n.fillna(0).astype(int)
+        # No game columns to recompute from — never wipe a step8 std.
+        out["distribution_std"] = existing_std
+        out["distribution_n"] = existing_n.where(existing_n.notna(), 0).astype(int)
     return out
 
 

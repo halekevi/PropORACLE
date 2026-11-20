@@ -932,8 +932,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--input",    required=True)
     ap.add_argument("--output",   default="step5b_with_stats_cfb.csv")
-    ap.add_argument("--days",     type=int, default=180,
-                    help="Days of history to scan backward from --date (default 180 for cross-season L5)")
+    ap.add_argument("--days",     type=int, default=400,
+                    help="Days of history to scan backward from --date "
+                         "(default 400 so CFB averages can pad from last season; "
+                         "~16-game seasons never support L20)")
     ap.add_argument("--date",     default="",
                     help="Anchor date YYYY-MM-DD for scoreboard scan (default: today)")
     ap.add_argument("--n",        type=int, default=10)
@@ -1157,7 +1159,24 @@ def main():
             raw_vals, prop, line, role=role, min_games=5, games=kept_games
         )
         if vals is None or attach_st != "OK":
+            # Hit-rate attach stays fail-closed, but Props Board averages can
+            # still use whatever boxes we have (incl. last season in lookback).
+            # CFB seasons are ~16 games — never L20; prior-year pads L5 avg/SD.
             extra = {"games_used": len(raw_vals)} if raw_vals else {}
+            if raw_vals:
+                last5 = raw_vals[:5]
+                last10 = raw_vals[:10]
+                extra["stat_last5_avg"] = round(sum(last5) / len(last5), 3)
+                extra["stat_last10_avg"] = round(sum(last10) / len(last10), 3)
+                extra["stat_season_avg"] = round(sum(raw_vals) / len(raw_vals), 3)
+                if len(last5) >= 2:
+                    mean5 = sum(last5) / len(last5)
+                    extra["distribution_std"] = round(
+                        (sum((x - mean5) ** 2 for x in last5) / len(last5)) ** 0.5, 3
+                    )
+                for k in range(1, min(args.n, len(raw_vals)) + 1):
+                    extra[f"stat_g{k}"] = raw_vals[k - 1]
+                extra["avg_fill_flag"] = "PRIOR_SEASON_AVG_FILL"
             stat_status.append(attach_st)
             out_rows.append(extra)
             continue
@@ -1178,6 +1197,11 @@ def main():
         o["stat_last5_avg"]  = round(sum(last5)       / len(last5),       3) if last5       else ""
         o["stat_last10_avg"] = round(sum(last10)      / len(last10),      3) if last10      else ""
         o["stat_season_avg"] = round(sum(season_vals) / len(season_vals), 3) if season_vals else ""
+        if len(last5) >= 2:
+            mean5 = sum(last5) / len(last5)
+            o["distribution_std"] = round(
+                (sum((x - mean5) ** 2 for x in last5) / len(last5)) ** 0.5, 3
+            )
 
         # minutes averages (CFB: participation flag only)
         min_vals = [float(g.get("MIN", 1) or 1) for g in played]

@@ -90,6 +90,28 @@ def main() -> None:
     edge = pd.to_numeric(_col(work, "edge"), errors="coerce")
     direction = _col(work, "final_bet_direction", "bet_direction").astype(str).str.upper().str.strip()
 
+    # Props Board averages: step5b already mixes prior-season boxes into the
+    # lookback (~16-game seasons never support L20). Do not drop these here.
+    l5_avg = pd.to_numeric(_col(work, "stat_last5_avg", "Last 5 Avg", "l5_avg"), errors="coerce")
+    season_avg = pd.to_numeric(
+        _col(work, "stat_season_avg", "Season Avg", "season_avg"), errors="coerce"
+    )
+    games_used = pd.to_numeric(_col(work, "games_used", "Games Played"), errors="coerce")
+    dist_std = pd.to_numeric(
+        _col(work, "distribution_std", "Distribution Std", "stat_std"), errors="coerce"
+    )
+    gmat = pd.DataFrame(
+        {
+            f"g{i}": pd.to_numeric(work.get(f"stat_g{i}"), errors="coerce")
+            for i in range(1, 6)
+            if f"stat_g{i}" in work.columns
+        },
+        index=work.index,
+    )
+    if not gmat.empty:
+        derived_sd = gmat.std(axis=1, ddof=0)
+        dist_std = dist_std.where(dist_std.notna(), derived_sd)
+
     clean = pd.DataFrame(
         {
             "Tier": tier,
@@ -105,6 +127,10 @@ def main() -> None:
             "Direction": direction,
             "Edge": edge.round(2),
             "Projection": proj.round(2),
+            "Last 5 Avg": l5_avg.round(2),
+            "Season Avg": season_avg.round(2),
+            "Distribution Std": dist_std.round(2),
+            "Games Played": games_used,
             "Hit Rate": pd.to_numeric(work.get("hit_rate"), errors="coerce"),
             "Hit Rate L5": pd.to_numeric(work.get("hit_rate_l5"), errors="coerce"),
             "Hit Rate L10": pd.to_numeric(work.get("hit_rate_l10"), errors="coerce"),

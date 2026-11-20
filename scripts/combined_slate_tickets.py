@@ -14076,6 +14076,15 @@ def load_cfb(path: str) -> pd.DataFrame:
         "Edge": "edge",
         "Projection": "projection",
         "Pos": "pos",
+        "Last 5 Avg": "l5_avg",
+        "Season Avg": "season_avg",
+        "Distribution Std": "distribution_std",
+        "Games Played": "games_used",
+        "L5 Over": "l5_over",
+        "L5 Under": "l5_under",
+        "L10 Over": "l10_over",
+        "L10 Under": "l10_under",
+        "Def Tier": "def_tier",
     }
     df = df.rename(
         columns={
