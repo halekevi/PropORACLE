@@ -2699,12 +2699,13 @@ body > nav.snav.glass-card {
         <label><input type="checkbox" id="pb-flag-multi" checked> Flag multi-line players</label>
       </div>
       <div class="pb-actions">
+        <button type="button" id="pb-open-pp" disabled>Open slip in PrizePicks</button>
         <button type="button" id="pb-add-slip" disabled>Add selected to My slip</button>
-        <button type="button" id="pb-copy-pp" disabled>Copy for PrizePicks</button>
-        <button type="button" id="pb-open-pp">Open PrizePicks</button>
+        <button type="button" id="pb-copy-pp" disabled>Copy legs</button>
+        <button type="button" id="pb-open-pp-board">Empty PP board</button>
         <span class="pb-meta" id="pb-sel-count"></span>
       </div>
-      <p class="pb-note">PrizePicks has no public link that pre-fills a slip. Select legs here → copy or send to My slip, then enter them on the PP board yourself.</p>
+      <p class="pb-note">Select up to 6 legs → Open slip in PrizePicks loads them on the PP slip via deep link. You still confirm and submit inside PrizePicks (we cannot place the wager for you).</p>
       <p class="pb-action-msg" id="pb-action-msg" aria-live="polite"></p>
       <div class="pb-table-wrap">
         <table class="pb-table" id="pb-table">
@@ -7120,7 +7121,7 @@ function sortSlateDynamic(sport, key) {
 })();
 </script>
 
-<script src="static/props-board.js?v=20261121pbside"></script>
+<script src="static/props-board.js?v=20261121ppslip"></script>
 
 <script>
 (function initHomeDeepLink() {

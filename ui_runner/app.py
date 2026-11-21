@@ -1292,6 +1292,8 @@ _SLATE_SPORT_UI_KEYS = frozenset(
         "def_tier",
         "standard_line",
         "standard_projection",
+        "projection_id",
+        "pp_projection_id",
         "opponent_def_rank",
         "opponent_rank",
         "last5_over",
@@ -6054,7 +6056,7 @@ def api_slate_sport():
         return jsonify({"error": str(e), "sports": {}}), 404
     try:
         return _gz_json_response(
-            f"slate-sport-slim-v5:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-slim-v6:{_explorer_json_gz_bust_token()}",
             lambda: _slim_slate_sport_payload(_selected_slate_sport_payload()),
             ttl=_PIPELINE_JSON_TTL,
         )
@@ -6142,7 +6144,7 @@ def api_slate_sport_single(sport: str):
 
     try:
         return _gz_json_response(
-            f"slate-sport-single-v3:{sport_key}:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-single-v4:{sport_key}:{_explorer_json_gz_bust_token()}",
             _build,
             ttl=60.0,
         )

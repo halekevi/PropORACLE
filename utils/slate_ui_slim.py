@@ -43,6 +43,8 @@ _LIST_KEYS = frozenset(
         "def_matchup_signal",
         "standard_line",
         "standard_projection",
+        "projection_id",
+        "pp_projection_id",
         "opponent_def_rank",
         "stat_def_rank",
         "stat_def_tier",

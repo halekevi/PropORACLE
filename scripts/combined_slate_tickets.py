@@ -12054,6 +12054,9 @@ def dataframe_to_slate_sport_rows(df: Optional[pd.DataFrame]) -> List[dict]:
             "standard_line": g("standard_line"),
             "standard_projection": g("standard_projection"),
             "projection": g("projection") or g("intel_projection"),
+            # PrizePicks deep-link tokens (app.prizepicks.com/?projections={id}-o|{u}-{line})
+            "projection_id": g("projection_id") or g("pp_projection_id"),
+            "pp_projection_id": g("pp_projection_id") or g("projection_id"),
             "game_time":  str(g("game_time") or "") or None,
         }
         if "pick_platform" in df.columns and g("pick_platform") is not None:

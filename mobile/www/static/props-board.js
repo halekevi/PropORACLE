@@ -2,6 +2,7 @@
 (function initPropsBoard() {
   const NA = "n/a";
   const PP_BOARD = "https://app.prizepicks.com/board";
+  const PP_ENTRY = "https://app.prizepicks.com/";
   const state = {
     cfg: null,
     sport: "nba",
@@ -307,8 +308,10 @@
     if (countEl) countEl.textContent = n ? `${n} selected` : "";
     const addBtn = document.getElementById("pb-add-slip");
     const copyBtn = document.getElementById("pb-copy-pp");
+    const openBtn = document.getElementById("pb-open-pp");
     if (addBtn) addBtn.disabled = n === 0;
     if (copyBtn) copyBtn.disabled = n === 0;
+    if (openBtn) openBtn.disabled = n === 0;
     const master = document.getElementById("pb-check-all");
     if (master) {
       const keys = visibleRows.map(rowKey);
@@ -325,6 +328,46 @@
     const prop = r.prop || r.prop_type || "";
     const pick = r.pick_type || state.tab || "";
     return `${r.player} · ${side} ${line} ${prop}${pick ? " · " + pick : ""}`;
+  }
+
+  function projectionIdOf(r) {
+    const raw = r.pp_projection_id != null ? r.pp_projection_id : r.projection_id;
+    if (raw == null || raw === "") return null;
+    const n = Number(raw);
+    if (Number.isFinite(n) && n > 0) return String(Math.trunc(n));
+    const s = String(raw).trim();
+    return s && s.toLowerCase() !== "nan" ? s : null;
+  }
+
+  function lineToken(v) {
+    const n = num(v);
+    if (n == null) return "";
+    return Number.isInteger(n) ? String(n) : String(n);
+  }
+
+  /** PrizePicks share/entry URL: ?projections={id}-o|{u}-{line}, comma-joined. */
+  function buildPrizePicksSlipUrl(rows) {
+    const parts = [];
+    const missing = [];
+    for (const r of rows) {
+      const pid = projectionIdOf(r);
+      const line = lineToken(r.line);
+      const side = sideOf(r);
+      if (!pid || !line || (side !== "OVER" && side !== "UNDER")) {
+        missing.push(formatLegLine(r));
+        continue;
+      }
+      const ou = side === "UNDER" ? "u" : "o";
+      parts.push(`${pid}-${ou}-${line}`);
+    }
+    if (!parts.length) {
+      return { url: null, missing, parts: [] };
+    }
+    return {
+      url: PP_ENTRY + "?projections=" + parts.join(","),
+      missing,
+      parts,
+    };
   }
 
   function setActionMsg(msg, ok) {
@@ -381,9 +424,37 @@
     }
   }
 
-  function openPrizePicks() {
+  function openPrizePicksSlip() {
+    const rows = selectedRows();
+    if (!rows.length) {
+      setActionMsg("Select at least one prop first.", false);
+      return;
+    }
+    if (rows.length > 6) {
+      setActionMsg("PrizePicks max is 6 legs — deselect some first.", false);
+      return;
+    }
+    const built = buildPrizePicksSlipUrl(rows);
+    if (!built.url) {
+      setActionMsg(
+        "Missing PrizePicks projection IDs on these rows (slate needs a refresh with IDs). Use Copy / My slip for now.",
+        false
+      );
+      return;
+    }
+    window.open(built.url, "_blank", "noopener,noreferrer");
+    const missNote = built.missing.length
+      ? ` Skipped ${built.missing.length} without an ID.`
+      : "";
+    setActionMsg(
+      `Opened PrizePicks with ${built.parts.length} leg${built.parts.length === 1 ? "" : "s"} on the slip — confirm and submit in the app.${missNote}`,
+      true
+    );
+  }
+
+  function openPrizePicksBoard() {
     window.open(PP_BOARD, "_blank", "noopener,noreferrer");
-    setActionMsg("Opened PrizePicks board. Build the slip there from your selected / copied legs.", true);
+    setActionMsg("Opened PrizePicks board (empty).", true);
   }
 
   function render() {
@@ -545,7 +616,8 @@
     document.getElementById("pb-copy-pp")?.addEventListener("click", () => {
       copySelectedForPp();
     });
-    document.getElementById("pb-open-pp")?.addEventListener("click", openPrizePicks);
+    document.getElementById("pb-open-pp")?.addEventListener("click", openPrizePicksSlip);
+    document.getElementById("pb-open-pp-board")?.addEventListener("click", openPrizePicksBoard);
     document.getElementById("pb-check-all")?.addEventListener("change", (ev) => {
       const on = !!ev.target.checked;
       const { rows } = filtered();
