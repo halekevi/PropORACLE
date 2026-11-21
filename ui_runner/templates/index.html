@@ -2089,14 +2089,22 @@ body > nav.snav.glass-card {
           gap:8px!important;
           margin:0 0 10px;
         }
-        #props-board .pb-filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;align-items:center;}
+        /* L5 pair on row 1, both Flag filters side-by-side on row 2 */
+        #props-board .pb-filters{
+          display:grid!important;
+          grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+          gap:8px!important;
+          margin:0 0 10px;
+          align-items:stretch;
+        }
         #props-board .pb-filters label{
           display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;
-          font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
-          padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
+          font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+          padding:6px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
           background:rgba(255,255,255,.03);color:var(--muted);
           transition:background .15s,border-color .15s,color .15s;
           backdrop-filter:blur(8px) saturate(180%);
+          width:100%;box-sizing:border-box;min-width:0;line-height:1.2;
         }
         #props-board .pb-filters label:hover{border-color:rgba(212,175,55,.28);color:var(--accent);}
         #props-board .pb-filters label:has(input:checked){
