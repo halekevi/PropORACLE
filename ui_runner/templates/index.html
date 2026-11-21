@@ -2047,7 +2047,40 @@ body > nav.snav.glass-card {
           background:rgba(212,175,55,.1);border-color:rgba(212,175,55,.3);color:var(--accent);
         }
         #props-board .pb-groups{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;}
-        #props-board .pb-filters{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 10px;font-size:12px;}
+        #props-board .pb-filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;align-items:center;}
+        #props-board .pb-filters label{
+          display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;
+          font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+          padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
+          background:rgba(255,255,255,.03);color:var(--muted);
+          transition:background .15s,border-color .15s,color .15s;
+          backdrop-filter:blur(8px) saturate(180%);
+        }
+        #props-board .pb-filters label:hover{border-color:rgba(212,175,55,.28);color:var(--accent);}
+        #props-board .pb-filters label:has(input:checked){
+          background:rgba(212,175,55,.1);border-color:rgba(212,175,55,.3);color:var(--accent);
+        }
+        #props-board input[type="checkbox"]{
+          -webkit-appearance:none!important;appearance:none!important;
+          width:14px;height:14px;margin:0;flex-shrink:0;
+          border-radius:4px;border:1px solid rgba(255,255,255,.22)!important;
+          background:rgba(255,255,255,.04)!important;color:transparent;
+          display:inline-grid;place-content:center;cursor:pointer;
+          transition:background .15s,border-color .15s;
+        }
+        #props-board input[type="checkbox"]::before{
+          content:"";width:8px;height:8px;
+          transform:scale(0);transition:transform .12s ease-in-out;
+          box-shadow:inset 1em 1em #0b0d10;
+          clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0,43% 62%);
+        }
+        #props-board input[type="checkbox"]:checked{
+          background:rgba(212,175,55,.9)!important;border-color:rgba(212,175,55,.95)!important;
+        }
+        #props-board input[type="checkbox"]:checked::before{transform:scale(1);}
+        #props-board input[type="checkbox"]:focus-visible{
+          outline:2px solid rgba(212,175,55,.45);outline-offset:2px;
+        }
         #props-board .pb-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px;}
         #props-board .pb-actions button:disabled{opacity:.4;cursor:not-allowed;}
         #props-board .pb-action-msg{font-size:12px;opacity:.8;margin:0 0 8px;min-height:1.2em;}
@@ -2085,8 +2118,8 @@ body > nav.snav.glass-card {
       <div class="pb-filters">
         <label><input type="checkbox" id="pb-l5-5" checked> L5 = 5/5</label>
         <label><input type="checkbox" id="pb-l5-4"> L5 = 4/5</label>
-        <label><input type="checkbox" id="pb-flag-thin" checked> Flag &lt;15 games</label>
-        <label><input type="checkbox" id="pb-flag-multi" checked> Flag multi-line players</label>
+        <label><input type="checkbox" id="pb-flag-thin"> Flag &lt;15 games</label>
+        <label><input type="checkbox" id="pb-flag-multi"> Flag multi-line players</label>
       </div>
       <div class="pb-actions">
         <button type="button" class="hero-btn hero-btn-gold" id="pb-open-pp" disabled>Open slip in PrizePicks</button>
@@ -6284,7 +6317,7 @@ function sortSlateDynamic(sport, key) {
 })();
 </script>
 
-<script src="/static/props-board.js?v=20261121ppslip5"></script>
+<script src="/static/props-board.js?v=20261121ppslip6"></script>
 
 <script>
 (function initHomeDeepLink() {
