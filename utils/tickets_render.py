@@ -1848,20 +1848,11 @@ def render_tickets_body_html(
     else:
         counts_line = f"{n_groups} groups &nbsp;·&nbsp; {n_slips} slips"
     counts_line += _ui_cap_note
-    _track = str(payload.get("ticket_track") or payload.get("mode") or "").lower()
-    _hero_eyebrow = "Today&rsquo;s Picks"
-    if "goblin70" in _track and "graded_main" in _track:
-        _hero_eyebrow = "Goblin-70 + Graded Main"
-    elif _track in ("graded_main", "main"):
-        _hero_eyebrow = "Graded Main Slate"
-    elif "goblin70" in _track:
-        _hero_eyebrow = "Goblin-70 + Graded Main" if payload.get("tracks") else "Goblin-70"
     parts.append(f'''
 <div class="hero tickets-hero" style="margin-bottom:24px;">
   <div class="hero-copy">
-    <div class="hero-eyebrow" style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">{_hero_eyebrow}</div>
     <h1 class="hero-title" style="font-family:Georgia,'Times New Roman',serif;font-size:clamp(28px,4.5vw,48px);letter-spacing:0.04em;line-height:1.05;color:var(--text);margin:0;text-transform:none;font-weight:400;">
-      Proporacle tickets
+      Prop Oracle Tickets
     </h1>
   </div>
   <div class="hero-meta-row" role="group" aria-label="Slate summary">

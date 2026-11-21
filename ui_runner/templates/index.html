@@ -2236,14 +2236,14 @@ body > nav.snav.glass-card {
           <label><input type="checkbox" id="pb-flag-multi"> Flag multi-line</label>
         </div>
       </div>
-      <div class="pb-actions">
-        <div class="pb-actions-row">
-          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-add-slip" disabled>Add selected to My slip</button>
-          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-open-pp-board">Empty PP board</button>
+      <div class="pb-actions" style="display:flex;flex-direction:column;gap:8px;margin:0 0 10px;">
+        <div class="pb-actions-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
+          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-add-slip" disabled style="width:100%;">Add selected to My slip</button>
+          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-open-pp-board" style="width:100%;">Empty PP board</button>
         </div>
-        <div class="pb-actions-row">
-          <button type="button" class="hero-btn hero-btn-gold" id="pb-open-pp" disabled>Open slip in PrizePicks</button>
-          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-copy-pp" disabled>Copy legs</button>
+        <div class="pb-actions-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
+          <button type="button" class="hero-btn hero-btn-gold" id="pb-open-pp" disabled style="width:100%;">Open slip in PrizePicks</button>
+          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-copy-pp" disabled style="width:100%;">Copy legs</button>
         </div>
         <span class="pb-meta" id="pb-sel-count"></span>
       </div>
