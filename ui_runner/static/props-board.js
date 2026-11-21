@@ -199,7 +199,7 @@
     host.innerHTML = groups
       .map(
         (g, i) =>
-          `<button type="button" class="pb-group${i === state.groupIdx ? " active" : ""}" data-gi="${i}">${g.name}</button>`
+          `<button type="button" class="pb-group slate-filter-btn${i === state.groupIdx ? " active on" : ""}" data-gi="${i}">${g.name}</button>`
       )
       .join("");
     host.querySelectorAll(".pb-group").forEach((btn) => {
@@ -214,7 +214,9 @@
   function syncSideButtons() {
     document.querySelectorAll("#props-board .pb-side").forEach((btn) => {
       const side = String(btn.getAttribute("data-side") || "").toUpperCase();
-      btn.classList.toggle("active", state.side === side);
+      const on = state.side === side;
+      btn.classList.toggle("active", on);
+      btn.classList.toggle("on", on);
     });
   }
 
@@ -660,8 +662,10 @@
     });
     document.querySelectorAll("#props-board .pb-tab").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll("#props-board .pb-tab").forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
+        document.querySelectorAll("#props-board .pb-tab").forEach((b) => {
+          b.classList.remove("active", "on");
+        });
+        btn.classList.add("active", "on");
         state.tab = btn.getAttribute("data-tab") || "Goblin";
         state.selected.clear();
         render();

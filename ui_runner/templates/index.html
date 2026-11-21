@@ -1993,15 +1993,44 @@ body > nav.snav.glass-card {
           border-radius:10px;padding:6px 12px;font-family:'Inter',sans-serif;font-size:12px;outline:none;cursor:pointer;
         }
         #props-board .pb-toolbar button,
-        #props-board .pb-actions button{
-          font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
-          padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
-          background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer;transition:all .15s;
+        #props-board .pb-actions button,
+        #props-board .pb-actions .hero-btn{
+          -webkit-appearance:none!important;appearance:none!important;
+          display:inline-flex!important;align-items:center;justify-content:center;
+          font-family:'Inter',sans-serif!important;font-size:11px!important;font-weight:700!important;
+          letter-spacing:1.2px!important;text-transform:uppercase!important;
+          padding:8px 16px!important;border-radius:999px!important;
+          border:1px solid rgba(212,175,55,.35)!important;
+          background:rgba(212,175,55,.1)!important;color:var(--accent)!important;
+          box-shadow:none!important;cursor:pointer;
+          transition:background .15s,border-color .15s,opacity .15s;
           backdrop-filter:blur(8px) saturate(180%);
         }
         #props-board .pb-toolbar button:hover,
-        #props-board .pb-actions button:hover{
-          border-color:rgba(212,175,55,.28);color:var(--accent);
+        #props-board .pb-actions button:hover:not(:disabled),
+        #props-board .pb-actions .hero-btn:hover:not(:disabled){
+          background:rgba(212,175,55,.18)!important;border-color:rgba(212,175,55,.5)!important;
+        }
+        #props-board .pb-actions button.pb-btn-ghost,
+        #props-board .pb-actions .hero-btn-ghost{
+          border-color:rgba(255,255,255,.14)!important;
+          background:rgba(255,255,255,.03)!important;
+          color:var(--text)!important;
+        }
+        #props-board .pb-actions button.pb-btn-ghost:hover:not(:disabled),
+        #props-board .pb-actions .hero-btn-ghost:hover:not(:disabled){
+          border-color:rgba(255,255,255,.28)!important;
+          background:rgba(255,255,255,.06)!important;
+          color:var(--text)!important;
+        }
+        #props-board .pb-toolbar #pb-export{
+          border-color:rgba(255,255,255,.09)!important;
+          background:rgba(255,255,255,.03)!important;
+          color:var(--muted)!important;
+        }
+        #props-board .pb-toolbar #pb-export:hover{
+          border-color:rgba(212,175,55,.28)!important;color:var(--accent)!important;
+          background:rgba(255,255,255,.05)!important;
         }
         #props-board .pb-tabs{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap;align-items:center;}
         #props-board .pb-tab,
@@ -2042,15 +2071,15 @@ body > nav.snav.glass-card {
         <label>Sport
           <select id="pb-sport"></select>
         </label>
-        <button type="button" id="pb-export">Export all props</button>
+        <button type="button" class="hero-btn hero-btn-ghost" id="pb-export">Export all props</button>
         <span class="pb-meta" id="pb-count"></span>
       </div>
       <div class="pb-tabs" role="tablist" aria-label="Pick type and side">
-        <button type="button" class="pb-tab active" data-tab="Goblin">Goblin</button>
-        <button type="button" class="pb-tab" data-tab="Demon">Demon</button>
-        <button type="button" class="pb-tab" data-tab="Standard">Standard</button>
-        <button type="button" class="pb-side" data-side="OVER">▲ OVER</button>
-        <button type="button" class="pb-side" data-side="UNDER">▼ UNDER</button>
+        <button type="button" class="pb-tab slate-filter-btn active on" data-tab="Goblin">Goblin</button>
+        <button type="button" class="pb-tab slate-filter-btn" data-tab="Demon">Demon</button>
+        <button type="button" class="pb-tab slate-filter-btn" data-tab="Standard">Standard</button>
+        <button type="button" class="pb-side slate-filter-btn" data-side="OVER">▲ OVER</button>
+        <button type="button" class="pb-side slate-filter-btn" data-side="UNDER">▼ UNDER</button>
       </div>
       <div class="pb-groups" id="pb-groups"></div>
       <div class="pb-filters">
@@ -2060,10 +2089,10 @@ body > nav.snav.glass-card {
         <label><input type="checkbox" id="pb-flag-multi" checked> Flag multi-line players</label>
       </div>
       <div class="pb-actions">
-        <button type="button" id="pb-open-pp" disabled>Open slip in PrizePicks</button>
-        <button type="button" id="pb-add-slip" disabled>Add selected to My slip</button>
-        <button type="button" id="pb-copy-pp" disabled>Copy legs</button>
-        <button type="button" id="pb-open-pp-board">Empty PP board</button>
+        <button type="button" class="hero-btn hero-btn-gold" id="pb-open-pp" disabled>Open slip in PrizePicks</button>
+        <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-add-slip" disabled>Add selected to My slip</button>
+        <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-copy-pp" disabled>Copy legs</button>
+        <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-open-pp-board">Empty PP board</button>
         <span class="pb-meta" id="pb-sel-count"></span>
       </div>
       <p class="pb-note">Select up to 6 legs → Open slip in PrizePicks opens the app/site with those picks already on the slip.</p>
@@ -6255,7 +6284,7 @@ function sortSlateDynamic(sport, key) {
 })();
 </script>
 
-<script src="/static/props-board.js?v=20261121ppslip4"></script>
+<script src="/static/props-board.js?v=20261121ppslip5"></script>
 
 <script>
 (function initHomeDeepLink() {
