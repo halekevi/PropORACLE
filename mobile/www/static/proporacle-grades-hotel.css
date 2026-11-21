@@ -117,12 +117,23 @@ body.page-grades .grades-hub-shell,
 }
 
 body.page-grades .grades-hub-shell .iframe-shell-toolbar,
-.iframe-shell-toolbar {
+.iframe-shell-toolbar,
+#iframe-shell-toolbar {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+body.page-grades #iframe-shell-toolbar.ca-border::before,
+body.page-grades #iframe-shell-toolbar.mouse-glow::after,
+body.page-grades .date-bar.ca-border::before,
+body.page-grades .tabs-bar.ca-border::before,
+body.page-grades .date-bar.mouse-glow::after,
+body.page-grades .tabs-bar.mouse-glow::after {
+  display: none !important;
+  content: none !important;
 }
 
 body.page-grades .iframe-shell,

@@ -370,10 +370,27 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 }
 .iframe-shell-toolbar{
   position:sticky;top:0;z-index:60;
-  flex-shrink:0;padding:6px 10px 8px;border-bottom:none;
-  display:flex;flex-direction:column;gap:4px;
-  background:transparent;
+  flex-shrink:0;padding:0;border:none;border-radius:0;
+  display:flex;flex-direction:column;gap:0;
+  background:transparent;box-shadow:none;overflow:visible;
   transition:padding .28s ease;
+}
+/* Kill decorative card chrome on the grades hub controls */
+#iframe-shell-toolbar.ca-border::before,
+.iframe-shell-toolbar.ca-border::before,
+.date-bar.ca-border::before,
+.tabs-bar.ca-border::before,
+#iframe-shell-toolbar.mouse-glow::after,
+.iframe-shell-toolbar.mouse-glow::after,
+.date-bar.mouse-glow::after,
+.tabs-bar.mouse-glow::after{
+  display:none!important;content:none!important;opacity:0!important;
+}
+#iframe-shell-toolbar.ca-border,
+.iframe-shell-toolbar.ca-border,
+#iframe-shell-toolbar.mouse-glow,
+.iframe-shell-toolbar.mouse-glow{
+  border:none!important;box-shadow:none!important;background:transparent!important;
 }
 /* Mode tabs already name the view — hide redundant title row until bars collapse on scroll. */
 .iframe-shell-head{display:none;}
@@ -1700,7 +1717,7 @@ select option,
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121hubchrome6"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121nobox7"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -6802,8 +6819,8 @@ window.addEventListener('resize', () => {
   const SELECTORS = [
     '.ticket', '.card', '.group', '.edge-card',
     '.scard', '.qcard', '.hero-stat', '.streak-card',
-    '.result-item', '.pp-cell', '.stat-mini', '.leg-card',
-    '.date-bar', '.tabs-bar', '.iframe-shell', '.iframe-shell-toolbar'
+    '.result-item', '.pp-cell', '.stat-mini', '.leg-card'
+    /* No grades hub chrome — date pills / tabs stay open on the page, not in a glow card */
   ];
   function attachGlow(el) {
     if (el.dataset.glowBound === '1') return;
@@ -6815,10 +6832,21 @@ window.addEventListener('resize', () => {
       el.style.setProperty('--mouse-y', (e.clientY - r.top)  + 'px');
     });
   }
+  function stripGradesToolbarGlow() {
+    document.querySelectorAll(
+      '#iframe-shell-toolbar, .iframe-shell-toolbar, .date-bar, .tabs-bar, .iframe-shell'
+    ).forEach(function (el) {
+      el.classList.remove('mouse-glow', 'ca-border');
+      el.removeAttribute('data-glow-bound');
+      el.style.removeProperty('--mouse-x');
+      el.style.removeProperty('--mouse-y');
+    });
+  }
   function initGlow() {
     SELECTORS.forEach(sel =>
       document.querySelectorAll(sel).forEach(attachGlow)
     );
+    stripGradesToolbarGlow();
   }
   // Run on load + after dynamic content
   if (document.readyState === 'loading') {
@@ -6849,14 +6877,26 @@ window.addEventListener('resize', () => {
   const CA_SELS = [
     '.ticket', '.card', '.group', '.hero',
     '.edge-card', '.qcard',
-    '.hero-stat', '.result-item', '.date-bar', '.tabs-bar', '.iframe-shell', '.iframe-shell-toolbar'
+    '.hero-stat', '.result-item'
+    /* Grades date/tabs toolbar stays borderless — ca-border was boxing off the page */
   ];
+  function stripGradesChromeFx() {
+    document.querySelectorAll(
+      '#iframe-shell-toolbar, .iframe-shell-toolbar, .date-bar, .tabs-bar, .iframe-shell'
+    ).forEach(function (el) {
+      el.classList.remove('ca-border', 'mouse-glow');
+      el.removeAttribute('data-glow-bound');
+      el.style.removeProperty('--mouse-x');
+      el.style.removeProperty('--mouse-y');
+    });
+  }
   function initCA() {
     CA_SELS.forEach(sel =>
       document.querySelectorAll(sel).forEach(el => {
         el.classList.add('ca-border');
       })
     );
+    stripGradesChromeFx();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initCA);
