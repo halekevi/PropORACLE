@@ -1195,82 +1195,160 @@
     return byId ? byId.id : cats[0].id;
   }
 
-  function pickTeamOptionValue(teamSel, data, teamAbbr) {
+  function ensureTeamOption(teamSel, data, teamAbbr) {
     if (!teamSel) return "";
-    const want = canonicalizeTeamAbbr(data, teamAbbr) || String(teamAbbr || "").toUpperCase();
+    const want = canonicalizeTeamAbbr(data, teamAbbr) || String(teamAbbr || "").trim().toUpperCase();
+    if (!want) return "";
     const aliases = teamAliasSet(data, want);
     for (const opt of teamSel.options) {
       const v = String(opt.value || "").toUpperCase();
       if (v === want || aliases.has(v)) return opt.value;
     }
+    // Team filtered out of the dropdown — still force it in so the click can switch.
+    const label = teamDisplayName(data, want) || want;
+    const opt = document.createElement("option");
+    opt.value = want;
+    opt.textContent = label;
+    teamSel.appendChild(opt);
     return want;
   }
 
   function highlightPlayerInTable(sport, playerName) {
     const tbody = document.getElementById(pid(sport, "tbody"));
-    if (!tbody) return;
+    if (!tbody) return false;
     const q = String(playerName || "")
       .trim()
       .toLowerCase();
+    let found = false;
     tbody.querySelectorAll("tr").forEach((tr) => {
       const name = String(tr.querySelector("td strong")?.textContent || "")
         .trim()
         .toLowerCase();
       const on = Boolean(q) && (name === q || name.includes(q) || q.includes(name));
       tr.classList.toggle("me-player-hl", on);
-      if (on) tr.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (on) {
+        found = true;
+        tr.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
     });
+    return found;
+  }
+
+  function openSportShell(sport) {
+    const sp = document.getElementById("sp-" + sport);
+    if (sp && !sp.classList.contains("open") && typeof global.toggleSlatePanel === "function") {
+      try {
+        global.toggleSlatePanel(sport);
+      } catch (_e) {}
+    }
+    if (typeof global.syncPropsBoardWithSlate === "function") {
+      try {
+        global.syncPropsBoardWithSlate(sport);
+      } catch (_e) {}
+    }
   }
 
   async function applyFromBoard(opts) {
     const sport = String(opts?.sport || "")
       .trim()
       .toLowerCase();
-    if (!sport || SKIP.has(sport) || !ME_SPORTS.includes(sport)) return false;
+    if (!sport || SKIP.has(sport) || !ME_SPORTS.includes(sport)) {
+      console.warn("MatchupEdge.applyFromBoard: unsupported sport", sport);
+      return false;
+    }
     const teamIn = String(opts?.team || "").trim();
     const propIn = String(opts?.prop || "").trim();
     const playerIn = String(opts?.player || "").trim();
-    if (!teamIn) return false;
+    if (!teamIn) {
+      console.warn("MatchupEdge.applyFromBoard: missing team", opts);
+      return false;
+    }
 
+    openSportShell(sport);
     const panel = ensurePanel(sport);
-    if (!panel) return false;
+    if (!panel) {
+      console.warn("MatchupEdge.applyFromBoard: no panel for", sport);
+      return false;
+    }
     panel.open = true;
     syncSlateCollapseWithMatchup(panel);
 
-    if (!state[sport]?.ready) await init(sport);
-    else if (!state[sport]?.data) await init(sport);
+    try {
+      if (!state[sport]?.ready || !state[sport]?.data) await init(sport);
+    } catch (e) {
+      console.warn("MatchupEdge.applyFromBoard: init failed", sport, e);
+      return false;
+    }
     const data = state[sport]?.data;
     if (!data) return false;
 
     const teamSel = document.getElementById(pid(sport, "team"));
     const catSel = document.getElementById(pid(sport, "cat"));
-    if (!teamSel || !catSel) return false;
+    if (!teamSel || !catSel) {
+      console.warn("MatchupEdge.applyFromBoard: missing selectors", pid(sport, "team"));
+      return false;
+    }
 
-    // Ensure options exist (panel may have been empty before init).
     if (!teamSel.options.length || !catSel.options.length) populateSelectors(sport);
 
-    const teamVal = pickTeamOptionValue(teamSel, data, teamIn);
-    if (teamVal) teamSel.value = teamVal;
-    if (![...teamSel.options].some((o) => o.value === teamSel.value) && teamSel.options.length) {
-      // Team not in tonight's ME list — keep current; still try category + status.
-      setFindStatus(sport, "No Matchup Edge block for " + teamIn);
+    const teamVal = ensureTeamOption(teamSel, data, teamIn);
+    if (!teamVal) return false;
+    teamSel.value = teamVal;
+    // Re-assert after populate/onTeamChange side effects.
+    if (teamSel.value !== teamVal) {
+      ensureTeamOption(teamSel, data, teamIn);
+      teamSel.value = teamVal;
     }
 
     const catId = resolveCategoryId(data, propIn);
-    if (catId && [...catSel.options].some((o) => o.value === catId)) catSel.value = catId;
+    if (catId) {
+      if (![...catSel.options].some((o) => o.value === catId)) {
+        const label =
+          (data.categories || []).find((c) => c.id === catId)?.label || catId;
+        const opt = document.createElement("option");
+        opt.value = catId;
+        opt.textContent = label;
+        catSel.appendChild(opt);
+      }
+      catSel.value = catId;
+    }
 
-    // Show full roster so the clicked player is visible even outside Top 5.
     state[sport] = state[sport] || {};
     state[sport].leaderView = "all";
     updateSliceButtons(sport);
     onTeamChange(sport);
-    highlightPlayerInTable(sport, playerIn);
+    // onTeamChange can rewrite category when team lacks that block — re-apply preferred cat.
+    if (catId && [...catSel.options].some((o) => o.value === catId)) {
+      catSel.value = catId;
+      render(sport);
+    }
+    if (teamSel.value !== teamVal) {
+      teamSel.value = teamVal;
+      onTeamChange(sport);
+      if (catId && [...catSel.options].some((o) => o.value === catId)) {
+        catSel.value = catId;
+        render(sport);
+      }
+    }
+
+    const highlighted = highlightPlayerInTable(sport, playerIn);
+    const opp = document.getElementById(pid(sport, "opp"))?.value || "";
     setFindStatus(
       sport,
-      playerIn
-        ? "From Props Board · " + playerIn + (propIn ? " · " + propIn : "")
-        : "From Props Board"
+      [
+        "Props Board",
+        teamVal + (opp ? " vs " + opp : ""),
+        catSel.value || propIn,
+        playerIn,
+        highlighted ? "" : playerIn ? "(player not in this category list)" : "",
+      ]
+        .filter(Boolean)
+        .join(" · ")
     );
+    panel.classList.remove("me-flash");
+    // Force reflow so the flash animation restarts on every click.
+    void panel.offsetWidth;
+    panel.classList.add("me-flash");
     panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
     return true;
   }

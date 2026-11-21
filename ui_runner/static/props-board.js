@@ -528,10 +528,12 @@
         const cell = (txt, missing) => (missing ? `<span class="pb-na">${NA}</span>` : txt);
         const checked = state.selected.has(key) ? " checked" : "";
         const playerName = String(r.player || "").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+        const teamAttr = String(r.team || "").replace(/"/g, "&quot;");
+        const propAttr = String(r.prop || r.prop_type || "").replace(/"/g, "&quot;");
         const playerBtn = r.player
-          ? `<button type="button" class="pb-player-link" data-pb-key="${key.replace(/"/g, "&quot;")}" title="Open Matchup Edge for this player">${playerName}</button>`
+          ? `<button type="button" class="pb-player-link" data-pb-key="${key.replace(/"/g, "&quot;")}" data-pb-team="${teamAttr}" data-pb-prop="${propAttr}" data-pb-player="${playerName}" data-pb-sport="${String(state.sport || "").replace(/"/g, "&quot;")}" title="Load Matchup Edge for this player">${playerName}</button>`
           : NA;
-        return `<tr class="${cls}" data-pb-key="${key.replace(/"/g, "&quot;")}">
+        return `<tr class="${cls}" data-pb-key="${key.replace(/"/g, "&quot;")}" data-pb-team="${teamAttr}" data-pb-prop="${propAttr}" data-pb-player="${playerName}">
         <td class="pb-check-cell"><input type="checkbox" class="pb-row-check" data-key="${key.replace(/"/g, "&quot;")}"${checked} aria-label="Select ${String(r.player || "prop").replace(/"/g, "&quot;")}"></td>
         <td>${sideOf(r)}</td>
         <td class="pb-player">${playerBtn}</td>
@@ -559,25 +561,66 @@
         updateActionBar(rows);
       });
     });
-    tbody.querySelectorAll(".pb-player-link").forEach((btn) => {
-      btn.addEventListener("click", (ev) => {
-        ev.preventDefault();
-        ev.stopPropagation();
-        const k = btn.getAttribute("data-pb-key") || "";
-        const r = state.rowByKey[k];
-        if (!r) return;
-        const me = window.MatchupEdge;
-        if (!me || typeof me.applyFromBoard !== "function") return;
-        me.applyFromBoard({
-          sport: state.sport,
-          team: r.team,
-          prop: r.prop || r.prop_type,
-          player: r.player,
-          side: sideOf(r),
-        });
+    updateActionBar(rows);
+  }
+
+  async function openMatchupFromRow(payload) {
+    const sport = String(payload?.sport || state.sport || "").toLowerCase();
+    const team = String(payload?.team || "").trim();
+    const prop = String(payload?.prop || "").trim();
+    const player = String(payload?.player || "").trim();
+    if (!team && !player) {
+      setActionMsg("Missing team/player for Matchup Edge.", false);
+      return;
+    }
+    const me = window.MatchupEdge;
+    if (!me || typeof me.applyFromBoard !== "function") {
+      setActionMsg("Matchup Edge script not loaded — hard-refresh the page.", false);
+      return;
+    }
+    setActionMsg(`Loading Matchup Edge · ${player || team}…`, true);
+    try {
+      const ok = await me.applyFromBoard({ sport, team, prop, player });
+      if (ok) {
+        setActionMsg(
+          `Matchup Edge → ${team || "?"}${prop ? " · " + prop : ""}${player ? " · " + player : ""}`,
+          true
+        );
+      } else {
+        setActionMsg(
+          `Could not load Matchup Edge for ${team || player || "that row"} (no panel/data).`,
+          false
+        );
+      }
+    } catch (e) {
+      console.warn("Props Board → Matchup Edge failed", e);
+      setActionMsg("Matchup Edge update failed — see console.", false);
+    }
+  }
+
+  function bindPlayerClicks() {
+    const root = document.getElementById("props-board");
+    if (!root || root.dataset.pbMeClickBound) return;
+    root.dataset.pbMeClickBound = "1";
+    root.addEventListener("click", (ev) => {
+      const btn = ev.target.closest(".pb-player-link");
+      const cell = ev.target.closest("td.pb-player");
+      const tr = ev.target.closest("tr[data-pb-team]");
+      if (!btn && !cell) return;
+      if (ev.target.closest("input,a,button:not(.pb-player-link)")) return;
+      ev.preventDefault();
+      ev.stopPropagation();
+      const src = btn || tr || cell?.closest("tr");
+      if (!src) return;
+      const k = src.getAttribute("data-pb-key") || btn?.getAttribute("data-pb-key") || "";
+      const r = k ? state.rowByKey[k] : null;
+      openMatchupFromRow({
+        sport: btn?.getAttribute("data-pb-sport") || state.sport,
+        team: r?.team || src.getAttribute("data-pb-team") || "",
+        prop: r?.prop || r?.prop_type || src.getAttribute("data-pb-prop") || "",
+        player: r?.player || src.getAttribute("data-pb-player") || "",
       });
     });
-    updateActionBar(rows);
   }
 
   function exportCsv() {
@@ -669,6 +712,7 @@
     fillSportSelect();
     fillGroups();
     bindSortHeaders();
+    bindPlayerClicks();
     syncSideButtons();
     document.getElementById("pb-sport")?.addEventListener("change", async (ev) => {
       await setSport(String(ev.target.value || "").toLowerCase(), { silent: true });
