@@ -367,10 +367,7 @@
       "<th>Edge vs opp</th><th>Notes</th>" +
       "</tr></thead><tbody id='" +
       pid(sport, "tbody") +
-      "'></tbody></table></div>" +
-      '<div class="me-legend" id="' +
-      pid(sport, "legend") +
-      '"></div></div></div>';
+      "'></tbody></table></div></div></div>";
 
     const toolbar = sp.querySelector(".slate-toolbar");
     if (toolbar) sp.insertBefore(panel, toolbar);
@@ -796,7 +793,6 @@
     const cards = document.getElementById(pid(sport, "cards"));
     const tbody = document.getElementById(pid(sport, "tbody"));
     const avgH = document.getElementById(pid(sport, "avg-h"));
-    const legend = document.getElementById(pid(sport, "legend"));
     if (!block || !cards || !tbody || !data) return;
 
     const oppMeta = opponentForTeam(sport, team);
@@ -943,13 +939,6 @@
       }
     }
 
-    if (legend && data.edge_legend) {
-      legend.innerHTML =
-        "<strong>Edge logic:</strong> " +
-        Object.entries(data.edge_legend)
-          .map(([k, v]) => "<strong>" + k.replace(/_/g, " ") + ":</strong> " + esc(v))
-          .join(" · ");
-    }
   }
 
   function applySlatePickFilter(sport, pickType) {

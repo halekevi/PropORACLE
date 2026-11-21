@@ -511,3 +511,5 @@
     content: "Avg ";
   }
 }
+
+.me-legend,.wnba-me-legend{display:none!important;}

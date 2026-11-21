@@ -69,9 +69,7 @@
       "<th>Player</th><th>Pos</th><th id='wnba-me-avg-h'>Avg</th><th>Game score</th>" +
       "<th>Edge vs opp</th><th>Notes</th>" +
       "</tr></thead><tbody id='wnba-me-tbody'></tbody></table>" +
-      "</div>" +
-      '<div class="wnba-me-legend" id="wnba-me-legend"></div>' +
-      "</div></div>";
+      "</div></div></div>";
     const toolbar = sp.querySelector(".slate-toolbar");
     if (toolbar) sp.insertBefore(details, toolbar);
     else sp.prepend(details);
@@ -188,7 +186,6 @@
     const cards = document.getElementById("wnba-me-cards");
     const tbody = document.getElementById("wnba-me-tbody");
     const avgH = document.getElementById("wnba-me-avg-h");
-    const legend = document.getElementById("wnba-me-legend");
     if (!block || !cards || !tbody) return;
 
     const mu = (data.matchups || {})[team] || {};
@@ -277,13 +274,6 @@
       if (sum) sum.textContent = "Matchup Edge — " + title;
     }
 
-    if (legend && data.edge_legend) {
-      legend.innerHTML =
-        "<strong>Edge logic:</strong> " +
-        Object.entries(data.edge_legend)
-          .map(([k, v]) => "<strong>" + k.replace("_", " ") + ":</strong> " + esc(v))
-          .join(" · ");
-    }
   }
 
   function findProps(direction) {
