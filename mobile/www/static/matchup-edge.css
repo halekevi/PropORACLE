@@ -57,8 +57,8 @@
 }
 .me-controls,
 .wnba-me-controls {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 8px;
   align-items: end;
   margin-bottom: 12px;
@@ -68,7 +68,9 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  min-width: 0;
+  min-width: 0 !important;
+  width: auto !important;
+  flex: unset !important;
 }
 .me-field label,
 .wnba-me-field label {
@@ -199,6 +201,7 @@
   gap: 6px;
   margin-top: 8px;
   width: 100%;
+  grid-column: 1 / -1;
 }
 .me-slice-label {
   font-size: 10px;
@@ -385,7 +388,7 @@
 @media (max-width: 520px) {
   .me-controls,
   .wnba-me-controls {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 10px;
   }
 }

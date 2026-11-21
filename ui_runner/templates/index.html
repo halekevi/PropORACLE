@@ -1066,7 +1066,7 @@ body > nav.snav.glass-card {
 </style>
 <link rel="stylesheet" href="/static/nav-mobile-shared.css?v=20260430schemapage"/>
 <link rel="stylesheet" href="/static/mobile-content-width.css?v=20261020halfrows"/>
-<link rel="stylesheet" href="/static/matchup-edge.css?v=20261121merow1"/>
+<link rel="stylesheet" href="/static/matchup-edge.css?v=20261121merow2"/>
 <link rel="stylesheet" href="/static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="/static/player-consistency.css?v=20261120hphd"/>
 <link rel="stylesheet" href="/static/proporacle-glass-minimal.css?v=20261119glass4"/>
@@ -1242,6 +1242,39 @@ body > nav.snav.glass-card {
   }
   #props-board.slate-props-board.is-sport-open{display:block;}
   #props-board.slate-props-board.me-slate-collapsed{display:none!important;}
+  /* Matchup Edge: Team/Category/Opponent stay one row (inline !important beats stale /static CSS) */
+  .matchup-edge-panel .me-controls,
+  .wnba-me-panel .wnba-me-controls,
+  .me-controls,
+  .wnba-me-controls{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+    align-items:end!important;
+  }
+  .matchup-edge-panel .me-field,
+  .wnba-me-panel .wnba-me-field,
+  .me-field,
+  .wnba-me-field{
+    min-width:0!important;
+    width:auto!important;
+    flex:unset!important;
+  }
+  .matchup-edge-panel .me-find-row,
+  .matchup-edge-panel .me-slice-row,
+  .wnba-me-panel .wnba-me-find-row,
+  .me-find-row,
+  .me-slice-row,
+  .wnba-me-find-row{
+    grid-column:1/-1!important;
+    width:100%!important;
+  }
+  @media (max-width:520px){
+    .matchup-edge-panel .me-controls,
+    .wnba-me-panel .wnba-me-controls,
+    .me-controls,
+    .wnba-me-controls{grid-template-columns:1fr!important;}
+  }
   #props-board .pb-section-label{
     margin:0 0 12px;
     font-family:'Bebas Neue',sans-serif;
