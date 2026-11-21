@@ -262,18 +262,20 @@ details.sport-collapsible {
   z-index: -999 !important;
 }
 
-/* Never let ticket-empty cover slate/props/players (even if JS clears [hidden]). */
-.iframe-shell-stage:not([data-grades-tab="tickets"]) #ticket-empty-state,
-body.page-grades:not([data-grades-active-tab="tickets"]) #ticket-empty-state {
+/* Default OFF — only tickets+missing rule in indexGrades may show this. */
+#ticket-empty-state {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
   z-index: -999 !important;
-  height: 0 !important;
-  max-height: 0 !important;
-  overflow: hidden !important;
-  background: transparent !important;
+}
+.iframe-shell-stage[data-grades-tab="tickets"].ticket-eval-missing #ticket-empty-state {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  z-index: 8 !important;
 }
 
 .empty-state,

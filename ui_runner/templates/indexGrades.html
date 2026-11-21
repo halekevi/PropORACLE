@@ -636,23 +636,16 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 .empty-state[hidden],
 #empty-state[hidden],
 #ticket-empty-state[hidden]{display:none !important;visibility:hidden !important;pointer-events:none !important;z-index:-1 !important;}
-/* Ticket empty overlay is tickets-tab only — never cover slate/props/players. */
-.iframe-shell-stage:not([data-grades-tab="tickets"]) #ticket-empty-state,
-.iframe-shell-stage[data-grades-tab="slate"] #ticket-empty-state,
-.iframe-shell-stage[data-grades-tab="props"] #ticket-empty-state,
-.iframe-shell-stage[data-grades-tab="players"] #ticket-empty-state,
-body.page-grades:not([data-grades-active-tab="tickets"]) #ticket-empty-state{
+/*
+ * #ticket-empty-state defaults OFF. Only tickets tab + missing report may show it.
+ * Prefetch from loadDate used to un-hide this on Slate and veil the real report.
+ */
+#ticket-empty-state{
   display:none !important;
   visibility:hidden !important;
   pointer-events:none !important;
   opacity:0 !important;
   z-index:-999 !important;
-  height:0 !important;
-  max-height:0 !important;
-  overflow:hidden !important;
-  inset:auto !important;
-  width:0 !important;
-  background:transparent !important;
 }
 #props-eval-panel[hidden]{display:none !important;visibility:hidden !important;pointer-events:none !important;}
 #player-evaluator-panel[hidden]{display:none !important;visibility:hidden !important;pointer-events:none !important;}
@@ -775,6 +768,7 @@ html.page-grades-root body.page-grades .iframe-shell-stage[data-grades-tab="tick
   background:rgba(6,8,20,0.72)!important;
   position:absolute!important;
   inset:0!important;
+  width:auto!important;
 }
 .iframe-shell-stage[data-grades-tab="slate"] #grade-frame,
 .iframe-shell-stage[data-grades-tab="slate"] #grade-frame-inline{
@@ -1687,7 +1681,7 @@ select option,
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121ticketempty3"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121ticketempty4"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -5325,11 +5319,61 @@ function markTicketEvalLoaded() {
   }
 }
 
+/** Prefetch ticket iframe for the selected date without ever showing #ticket-empty-state on Slate. */
+async function softPrefetchTicketEval(dateStr) {
+  if (!dateStr) return;
+  const tf = document.getElementById('ticket-frame');
+  const tEmpty = document.getElementById('ticket-empty-state');
+  if (tEmpty) {
+    tEmpty.hidden = true;
+    tEmpty.classList.add('hidden');
+    tEmpty.setAttribute('aria-hidden', 'true');
+    tEmpty.style.setProperty('display', 'none', 'important');
+  }
+  const stage = document.querySelector('.iframe-shell-stage');
+  try {
+    const resolved = await resolveTicketEvalLoadDate(dateStr);
+    ticketEvalFallbackNotice = resolved.fallback;
+    if (!resolved.load) {
+      if (stage) {
+        stage.classList.add('ticket-eval-missing');
+        stage.classList.remove('ticket-eval-loaded');
+      }
+      if (tf) {
+        tf.onload = null;
+        tf.src = 'about:blank';
+      }
+      if (dateStr) syncEmptyStateDateHints(dateStr);
+      return;
+    }
+    if (stage) {
+      stage.classList.remove('ticket-eval-missing');
+      stage.classList.add('ticket-eval-loaded');
+    }
+    if (!tf) return;
+    const url = ticketEvalUrl(resolved.load);
+    // Warm the iframe quietly; keep it hidden until Ticket tab activates.
+    tf.onload = null;
+    if (String(tf.getAttribute('src') || '') !== url) {
+      tf.src = url;
+    }
+    tf.style.setProperty('display', 'none', 'important');
+    tf.style.setProperty('visibility', 'hidden', 'important');
+  } catch (_eSoft) {
+    /* ignore prefetch errors — Ticket tab will load for real */
+  }
+}
+
 async function loadTicketEval(dateStr) {
   if (!dateStr) return;
   const tf = document.getElementById('ticket-frame');
   const tEmpty = document.getElementById('ticket-empty-state');
   if (!tf || !tEmpty) return;
+  // Guard: never run the full ticket-missing UI path off the Ticket tab.
+  if (activeTab !== 'tickets') {
+    await softPrefetchTicketEval(dateStr);
+    return;
+  }
   const resolved = await resolveTicketEvalLoadDate(dateStr);
   ticketEvalFallbackNotice = resolved.fallback;
   refreshControlsSummary();
@@ -6371,8 +6415,13 @@ function loadDate(dateStr){
   const dj = gradesEl('date-jump');
   if (dj) dj.value = dateStr;
 
-  /* Prefetch ticket eval with the date so Ticket tab never opens on about:blank. */
-  loadTicketEval(dateStr);
+  /* Ticket eval: only drive the missing/loaded overlay on the Ticket tab.
+     On Slate/Props/Players, soft-prefetch the iframe when a report exists — never markTicketEvalMissing UI. */
+  if (activeTab === 'tickets') {
+    loadTicketEval(dateStr);
+  } else {
+    softPrefetchTicketEval(dateStr);
+  }
   if (activeTab === 'props') {
     loadGradesProps(dateStr);
   }
