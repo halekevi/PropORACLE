@@ -1669,7 +1669,7 @@ select option,
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261120hotel2"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121btnsfont5"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -1683,7 +1683,7 @@ select option,
   .nav-accent{height:1px!important;opacity:.55!important;background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)!important;animation:none!important;filter:none!important;}
 </style>
 </head>
-<body class="page-grades" data-latest-with-tickets="">
+<body class="page-grades" data-latest-with-tickets="{{ latest_with_tickets|default('', true) }}">
 <!-- Ambient orbs / mesh disabled for glass-minimal -->
 <div class="po-orb" hidden aria-hidden="true"></div>
 <div class="mesh-bg" hidden aria-hidden="true"></div>
@@ -1694,7 +1694,7 @@ select option,
 
 
 
-
+{# Flask routes (/income, /payout, …). Mobile bundle rewrites these to *.html. #}
 <nav class="snav glass-card">
   <div class="nav-accent"></div>
   <a class="snav-brand" href="index.html">
@@ -2136,12 +2136,12 @@ select option,
 //
 /* Absolute /grades/… paths: page URL is /grades (no trailing slash), so relative
    slate_eval_….html resolves to /slate_eval_….html (404) instead of /grades/…. */
-const REPORT_URL_TEMPLATE = 'slate_eval_{date}.html';
+const REPORT_URL_TEMPLATE = '/grades/slate_eval_{date}.html';
 /** Every load gets a unique URL so iframe/browsers/CDNs cannot serve a stale slate_eval after deploy. */
 function slateEvalUrl(dateStr) {
   return REPORT_URL_TEMPLATE.replace('{date}', dateStr) + '?cb=' + Date.now();
 }
-const TICKET_EVAL_URL_TEMPLATE = 'ticket_eval_{date}.html';
+const TICKET_EVAL_URL_TEMPLATE = '/grades/ticket_eval_{date}.html';
 const TICKET_EVAL_LONG_PARLAY_URL_TEMPLATE = '/grades/ticket_eval_long_parlay_{date}.html';
 /** Keep ticket iframe fresh too (prevents stale/blank cache edge-cases after deploy). */
 function ticketEvalPathForDate(dateStr) {
@@ -6926,73 +6926,6 @@ window.addEventListener('resize', () => {
         const live = await _origFetch(input, init);
         if (live && live.ok) return live;
       } catch (_eProps) {}
-      const ds = _dateParamFrom(urlStr);
-      const j = await _loadGradedPropsByDate(ds);
-      const props = Array.isArray(j && j.props) ? j.props : [];
-      let nHit = 0, nMiss = 0;
-      props.forEach((p) => {
-        const ru = String((p && p.result) || '').toUpperCase();
-        if (ru === 'HIT') nHit += 1;
-        else if (ru === 'MISS') nMiss += 1;
-      });
-      return _jsonResp({ ok: true, props: props, n_hit: nHit, n_miss: nMiss, n: props.length, n_returned: props.length, truncated: false });
-    }
-    return _origFetch(input, init);
-  };
-})();
-</script>
-
-
-<script>
-(function () {
-  const _origFetch = window.fetch.bind(window);
-  function _jsonResp(obj) {
-    return new Response(JSON.stringify(obj), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
-  function _dateParamFrom(urlStr) {
-    try {
-      const u = new URL(urlStr, window.location.href);
-      return u.searchParams.get('date') || '';
-    } catch (_e) { return ''; }
-  }
-  function _extractDate(raw) {
-    const m = String(raw || '').match(/\d{4}-\d{2}-\d{2}/);
-    return m ? m[0] : '';
-  }
-  async function _loadGradedPropsByDate(ds) {
-    const d = _extractDate(ds);
-    if (!d) return null;
-    const file = `graded_props_${d}.json`;
-    const r = await _origFetch(file, { cache: 'no-store' });
-    if (!r.ok) return null;
-    return r.json();
-  }
-  window.fetch = async function (input, init) {
-    const urlStr = (typeof input === 'string') ? input : (input && input.url ? input.url : String(input || ''));
-    const path = urlStr.replace(window.location.origin, '');
-
-    if (path.includes('/api/grades/report_dates')) {
-      return _origFetch('grades_report_dates.json', init);
-    }
-    if (path.includes('/api/grades/insights')) {
-      return _jsonResp({ calibration: [], clv_by_sport: [], edge_bucket_hit_rate: [], clv_by_prop_type: [], clv_by_tier: [] });
-    }
-    if (path.includes('/api/grades/archive_dates')) {
-      return _origFetch('grades_archive_dates.json', init);
-    }
-    if (path.includes('/api/grade-history')) {
-      return _origFetch('data/grade_history.json', init);
-    }
-    if (path.includes('/api/graded-props')) {
-      const ds = _dateParamFrom(urlStr);
-      const j = await _loadGradedPropsByDate(ds);
-      if (j) return _jsonResp(j);
-      return _jsonResp({ ok: true, date: _extractDate(ds), props: [], source: 'mobile_bundle_missing' });
-    }
-    if (path.includes('/api/grades/props')) {
       const ds = _dateParamFrom(urlStr);
       const j = await _loadGradedPropsByDate(ds);
       const props = Array.isArray(j && j.props) ? j.props : [];

@@ -3067,7 +3067,7 @@ def build_html(date_str: str, nba_rows: list[dict], cbb_rows: list[dict],
 <link rel="stylesheet" href="/static/light-theme-dim-overrides.css?v=20260419perf2"/>
 <link rel="stylesheet" href="/static/proporacle-mobile-schema.css?v=20260430schemapage"/>
 <style>{CSS}</style>
-<link rel="stylesheet" href="/static/proporacle-grades-hotel.css?v=20261120hotel2"/>
+<link rel="stylesheet" href="/static/proporacle-grades-hotel.css?v=20261121btnsfont5"/>
 </head>
 <body>
 <header>
