@@ -1315,9 +1315,6 @@ body > nav.snav.glass-card {
   /* expand area */
   .slate-expand{display:none;border-top:1px solid rgba(255,255,255,0.07);background:rgba(0,0,0,0.2);}
   .slate-expand.open{display:block;}
-  /* Props Board replaces the old per-sport prop table under Matchup Edge. */
-  .slate-expand > .slate-toolbar,
-  .slate-expand > .slate-table-wrap{display:none!important;}
   #props-board.slate-props-board{
     display:none;
     margin:12px 0 0;
@@ -1622,7 +1619,37 @@ body > nav.snav.glass-card {
     .slate-table-wrap{max-height:72vh;}
     .slate-table{min-width:0;}
   }
+  /* LAST: Props Board replaces the old Filter / prop-row list under Matchup Edge. */
+  #slate-explorer .slate-toolbar,
+  #slate-explorer .slate-table-wrap,
+  .slate-expand .slate-toolbar,
+  .slate-expand .slate-table-wrap{
+    display:none!important;
+    visibility:hidden!important;
+    height:0!important;
+    max-height:0!important;
+    overflow:hidden!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    pointer-events:none!important;
+  }
   </style>
+  <script>
+  (function killLegacySlateLists() {
+    function wipe() {
+      document.querySelectorAll("#slate-explorer .slate-toolbar, #slate-explorer .slate-table-wrap").forEach(function (el) {
+        el.setAttribute("hidden", "");
+        el.style.setProperty("display", "none", "important");
+        if (el.parentNode) el.parentNode.removeChild(el);
+      });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wipe);
+    else wipe();
+    setTimeout(wipe, 0);
+    setTimeout(wipe, 1200);
+  })();
+  </script>
 
   <div class="slate-panel-wrap">
     <div class="slate-explorer-toolbar">
