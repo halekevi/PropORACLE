@@ -3,7 +3,7 @@
   "display_name": "MLB",
   "matchup_mode": "team",
   "prop_scope": "hitter",
-  "generated_at": "2026-11-19T10:16:08.469241+00:00",
+  "generated_at": "2026-11-21T06:44:22.882587+00:00",
   "error": "No tonight MLB slate matchups (empty or missing board): H:\\PropORACLE_main_cp\\ui_runner\\templates\\slate_sport_mlb.json. Publish slate_sport_mlb.json via MLB pipeline / --write-web.",
   "teams": [],
   "categories": [
