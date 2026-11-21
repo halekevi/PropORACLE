@@ -1087,7 +1087,7 @@ body > nav.snav.glass-card {
 </style>
 <link rel="stylesheet" href="static/nav-mobile-shared.css?v=20260430schemapage"/>
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20261121slate2col"/>
-<link rel="stylesheet" href="static/matchup-edge.css?v=20261121meteamopp"/>
+<link rel="stylesheet" href="static/matchup-edge.css?v=20261121medom1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/player-consistency.css?v=20261120hphd"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
@@ -1323,48 +1323,20 @@ body > nav.snav.glass-card {
   }
   #props-board.slate-props-board.is-sport-open{display:block;}
   #props-board.slate-props-board.me-slate-collapsed{display:none!important;}
-  /* Matchup Edge phone: Team|Opponent row, Category below; 3-across when panel ≥640px */
+  /* Matchup Edge: DOM is Team|Opponent|Category — 2-up then Category full */
   .me-body,.wnba-me-body{container-type:inline-size;container-name:me-panel;}
-  .matchup-edge-panel .me-controls,
-  .wnba-me-panel .wnba-me-controls,
-  .me-controls,
-  .wnba-me-controls{
+  .me-controls,.wnba-me-controls{
     display:grid!important;
     grid-template-columns:repeat(2,minmax(0,1fr))!important;
     gap:8px!important;
     align-items:end!important;
   }
-  .me-controls>.me-field:nth-child(1),
-  .wnba-me-controls>.wnba-me-field:nth-child(1){grid-column:1!important;grid-row:1!important;}
-  .me-controls>.me-field:nth-child(2),
-  .wnba-me-controls>.wnba-me-field:nth-child(2){grid-column:1/-1!important;grid-row:2!important;}
-  .me-controls>.me-field:nth-child(3),
-  .wnba-me-controls>.wnba-me-field:nth-child(3){grid-column:2!important;grid-row:1!important;}
-  .matchup-edge-panel .me-field,
-  .wnba-me-panel .wnba-me-field,
-  .me-field,
-  .wnba-me-field{
-    min-width:0!important;
-    width:auto!important;
-    flex:unset!important;
-  }
-  .matchup-edge-panel .me-find-row,
-  .matchup-edge-panel .me-slice-row,
-  .wnba-me-panel .wnba-me-find-row,
-  .me-find-row,
-  .me-slice-row,
-  .wnba-me-find-row{
-    grid-column:1/-1!important;
-    width:100%!important;
-  }
+  .me-controls>.me-field-cat,.wnba-me-controls>.me-field-cat{grid-column:1/-1!important;}
+  .me-field,.wnba-me-field{min-width:0!important;width:auto!important;flex:unset!important;}
+  .me-find-row,.me-slice-row,.wnba-me-find-row{grid-column:1/-1!important;width:100%!important;}
   @container me-panel (min-width:640px){
     .me-controls,.wnba-me-controls{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
-    .me-controls>.me-field:nth-child(1),
-    .me-controls>.me-field:nth-child(2),
-    .me-controls>.me-field:nth-child(3),
-    .wnba-me-controls>.wnba-me-field:nth-child(1),
-    .wnba-me-controls>.wnba-me-field:nth-child(2),
-    .wnba-me-controls>.wnba-me-field:nth-child(3){grid-column:auto!important;grid-row:auto!important;}
+    .me-controls>.me-field-cat,.wnba-me-controls>.me-field-cat{grid-column:auto!important;}
   }
   }
   #props-board .pb-section-label{
@@ -2086,8 +2058,8 @@ body > nav.snav.glass-card {
           <div id="wnba-me-content" style="display:none">
             <div class="wnba-me-controls">
               <div class="wnba-me-field"><label>Team</label><select id="wnba-me-team"></select></div>
-              <div class="wnba-me-field"><label>Category</label><select id="wnba-me-cat"></select></div>
               <div class="wnba-me-field"><label>Opponent</label><select id="wnba-me-opp" disabled></select></div>
+              <div class="wnba-me-field me-field-cat"><label>Category</label><select id="wnba-me-cat"></select></div>
               <div class="wnba-me-find-row">
                 <button type="button" class="wnba-me-find wnba-me-find-over" id="wnba-me-find-over">Find overs ↗</button>
                 <button type="button" class="wnba-me-find wnba-me-find-under" id="wnba-me-find-under">Find unders ↗</button>
@@ -2655,7 +2627,7 @@ body > nav.snav.glass-card {
 </div>
 
 <script src="static/site-nav-chrome.js?v=20260412" defer></script>
-<script src="static/matchup-edge.js?v=20261121meboard2" defer></script>
+<script src="static/matchup-edge.js?v=20261121medom1" defer></script>
 <script src="static/top_edges_badge_board.js?v=20261020l5eq5b" defer></script>
 <script>
 // ── Real PLAYER_DATA (last 10 games) ──────────────────────

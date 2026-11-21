@@ -60,40 +60,24 @@
 .me-controls,
 .wnba-me-controls {
   display: grid !important;
-  /* Phone / typical panel: Team | Opponent, Category full-width below */
+  /* DOM order is Team, Opponent, Category → 2-up then Category full width */
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 8px;
   align-items: end;
   margin-bottom: 12px;
 }
-.me-controls > .me-field:nth-child(1),
-.wnba-me-controls > .wnba-me-field:nth-child(1) {
-  grid-column: 1;
-  grid-row: 1;
-}
-.me-controls > .me-field:nth-child(2),
-.wnba-me-controls > .wnba-me-field:nth-child(2) {
-  grid-column: 1 / -1;
-  grid-row: 2;
-}
-.me-controls > .me-field:nth-child(3),
-.wnba-me-controls > .wnba-me-field:nth-child(3) {
-  grid-column: 2;
-  grid-row: 1;
+.me-controls > .me-field-cat,
+.wnba-me-controls > .me-field-cat {
+  grid-column: 1 / -1 !important;
 }
 @container me-panel (min-width: 640px) {
   .me-controls,
   .wnba-me-controls {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
-  .me-controls > .me-field:nth-child(1),
-  .me-controls > .me-field:nth-child(2),
-  .me-controls > .me-field:nth-child(3),
-  .wnba-me-controls > .wnba-me-field:nth-child(1),
-  .wnba-me-controls > .wnba-me-field:nth-child(2),
-  .wnba-me-controls > .wnba-me-field:nth-child(3) {
-    grid-column: auto;
-    grid-row: auto;
+  .me-controls > .me-field-cat,
+  .wnba-me-controls > .me-field-cat {
+    grid-column: auto !important;
   }
 }
 .me-field,

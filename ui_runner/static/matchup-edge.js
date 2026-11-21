@@ -331,14 +331,14 @@
       '</label><select id="' +
       pid(sport, "team") +
       '"></select></div>' +
-      '<div class="me-field"><label>Category</label><select id="' +
-      pid(sport, "cat") +
-      '"></select></div>' +
       '<div class="me-field"><label>' +
       oppLbl +
       '</label><select id="' +
       pid(sport, "opp") +
       '" disabled></select></div>' +
+      '<div class="me-field me-field-cat"><label>Category</label><select id="' +
+      pid(sport, "cat") +
+      '"></select></div>' +
       '<div class="me-find-row">' +
       '<button type="button" class="me-find me-find-over" id="' +
       pid(sport, "find-over") +
