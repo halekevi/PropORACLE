@@ -447,7 +447,7 @@
       ? ` Skipped ${built.missing.length} without an ID.`
       : "";
     setActionMsg(
-      `Opened PrizePicks with ${built.parts.length} leg${built.parts.length === 1 ? "" : "s"} on the slip — confirm and submit in the app.${missNote}`,
+      `Opened PrizePicks with ${built.parts.length} leg${built.parts.length === 1 ? "" : "s"} already on the slip.${missNote}`,
       true
     );
   }
