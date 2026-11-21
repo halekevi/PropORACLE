@@ -409,7 +409,7 @@ body::after{content:none;display:none;}
   .status-row{grid-template-columns:1fr!important;}
 }
 @media(max-width:480px){
-  #slate-panel-header-row{grid-template-columns:minmax(0,1fr)!important;}
+  #slate-panel-header-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
   .streak-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
   .edge-grid{grid-template-columns:1fr!important;}
 }
@@ -502,7 +502,7 @@ body{
 }
 @media(max-width:900px) and (orientation:portrait){
   .shell{padding:16px 0 18px;}
-  #slate-panel-header-row{grid-template-columns:minmax(0,1fr)!important;gap:10px!important;padding:0 0 10px 0!important;}
+  #slate-panel-header-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;padding:0 0 10px 0!important;}
 }
 @media(max-width:900px) and (orientation:landscape){
   .shell{padding:12px 0 14px;}

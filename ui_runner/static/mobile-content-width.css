@@ -1062,13 +1062,13 @@ nav.snav .mobile-menu a {
 }
 
 @media (max-width: 480px) {
-  /* Single column on narrow phones — avoids cramped 2-col slate tiles overlapping badges/text */
+  /* Two-up slate tiles on narrow phones — panel width supports it */
   #slate-panel-header-row,
   .slate-cards-grid {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 12px !important;
-    row-gap: 12px !important;
-    column-gap: 12px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    row-gap: 10px !important;
+    column-gap: 10px !important;
   }
 
   .leg-card .pt-grid {
@@ -1382,10 +1382,10 @@ nav.snav .mobile-menu a {
   }
 }
 
-/* Home — Slate Explorer: one column ≤640px so two-up grid never overlaps mid-size phones */
+/* Home — Slate Explorer: keep two-up through phone widths */
 @media (max-width: 640px) {
   #slate-panel-header-row {
-    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 

@@ -463,7 +463,7 @@ body::after{content:none;display:none;}
   .status-row{grid-template-columns:1fr!important;}
 }
 @media(max-width:480px){
-  #slate-panel-header-row{grid-template-columns:minmax(0,1fr)!important;}
+  #slate-panel-header-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
   .streak-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
   .edge-grid{grid-template-columns:1fr!important;}
 }
@@ -556,7 +556,7 @@ body{
 }
 @media(max-width:900px) and (orientation:portrait){
   .shell{padding:16px 0 18px;}
-  #slate-panel-header-row{grid-template-columns:minmax(0,1fr)!important;gap:10px!important;padding:0 0 10px 0!important;}
+  #slate-panel-header-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;padding:0 0 10px 0!important;}
 }
 @media(max-width:900px) and (orientation:landscape){
   .shell{padding:12px 0 14px;}
@@ -1086,7 +1086,7 @@ body > nav.snav.glass-card {
 
 </style>
 <link rel="stylesheet" href="static/nav-mobile-shared.css?v=20260430schemapage"/>
-<link rel="stylesheet" href="static/mobile-content-width.css?v=20261020halfrows"/>
+<link rel="stylesheet" href="static/mobile-content-width.css?v=20261121slate2col"/>
 <link rel="stylesheet" href="static/matchup-edge.css?v=20261121me2col"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/player-consistency.css?v=20261120hphd"/>
@@ -1475,6 +1475,14 @@ body > nav.snav.glass-card {
   #st-tennis td:nth-child(4){width:210px!important;max-width:230px!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   #st-tennis th:nth-child(5),
   #st-tennis td:nth-child(5){width:210px!important;max-width:230px!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+}
+/* Last-wins phone override: Prop Explorer slate tiles stay 2-up (beats mobile-content-width 1-col) */
+@media(max-width:900px){
+  #slate-panel-header-row{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
 }
 @media(max-width:768px){ #slate-panel-header-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;}}
 @media(max-width:640px){ #slate-panel-header-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;}}
