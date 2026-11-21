@@ -129,7 +129,8 @@ $ok = $true
 
 if (-not $SkipFetch) {
     if ($ok) {
-        $httpArgs = @("--output", $s1, "--date", $Date, "--replace")
+        # horizon-days 7: keep Thu/Sun/Mon (and midweek) tips on the current PP week board.
+        $httpArgs = @("--output", $s1, "--date", $Date, "--replace", "--horizon-days", "7")
         if ($league) {
             $httpArgs += @("--league_id", $league, "--no-preseason", "--no-season")
         }

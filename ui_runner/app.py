@@ -4345,6 +4345,17 @@ def api_pipeline_status():
         "nba1h", "nba1q", "soccer", "wnba", "wnba1h", "wnba1q", "tennis", "cfb1h",
     )
     game_day: dict[str, bool | None] = {}
+    # NFL week board tips Thu/Sun/Mon — any tip in the next 7 ET days counts as live.
+    _week_board_ok = frozenset({"nfl", "nfl1q", "nfl1h", "cfb1h"})
+    try:
+        from datetime import date as _date, timedelta as _timedelta
+
+        _et_week = [
+            (_date.fromisoformat(et_today) + _timedelta(days=i)).isoformat()
+            for i in range(0, 8)
+        ]
+    except Exception:
+        _et_week = [et_today] if et_today else []
     for sid in _game_day_sports:
         if sid == "tennis":
             target = tennis_match_day
@@ -4354,7 +4365,15 @@ def api_pipeline_status():
             target = wnba_match_day
         else:
             target = et_today
-        game_day[sid] = _sport_rows_have_game_on_ymd(slate_payload, sid, target)
+        has = _sport_rows_have_game_on_ymd(slate_payload, sid, target)
+        if not has and sid in _week_board_ok:
+            for ymd in _et_week:
+                if ymd == target:
+                    continue
+                if _sport_rows_have_game_on_ymd(slate_payload, sid, ymd):
+                    has = True
+                    break
+        game_day[sid] = has
     board_meta = _home_board_display_meta(tickets_payload, slate_payload)
 
     active_keys: list[str] = []

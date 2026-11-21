@@ -701,6 +701,7 @@ else {
         "--output", $nflStep1,
         "--date", "$PipeDate",
         "--replace",
+        "--horizon-days", "7",
         "--fail-fast"
     )
     if ($CdpReachable) {
@@ -744,7 +745,7 @@ else {
             $pStep1 = Join-Path $pOut "step1_pp_props_today.csv"
             $pArgs = @(
                 "-3.14", ".\scripts\step1_fetch_prizepicks_nfl.py",
-                "--output", $pStep1, "--date", "$PipeDate", "--replace", "--fail-fast",
+                "--output", $pStep1, "--date", "$PipeDate", "--replace", "--horizon-days", "7", "--fail-fast",
                 "--league_id", $lid, "--no-preseason", "--no-season"
             )
             if ($CdpReachable) { $pArgs += @("--cdp", $CdpUrl) }
@@ -848,6 +849,72 @@ else {
         Write-Host "[LATE_FETCH] WARNING: CFB1H step1 empty/failed (exit $cfb1hExit)" -ForegroundColor Yellow
     } else {
         Write-Host "[LATE_FETCH] CFB1H step1 rows=$((Get-CsvDataRowCount -CsvPath $cfb1hStep1))" -ForegroundColor DarkGray
+        # step1 alone leaves Prop Explorer empty-board — rebuild through step8 when rows exist.
+        $cfb1hStep8 = Join-Path $cfb1hRunOut "step8_cfb1h_direction_clean.xlsx"
+        if (-not (Test-Path -LiteralPath $cfb1hStep8)) {
+            Write-Host "[LATE_FETCH] CFB1H step1 has rows — rebuilding through step8..." -ForegroundColor Cyan
+            $cfbSeasonYear = (Get-Date).Year
+            try {
+                $d0 = [datetime]::ParseExact($PipeDate, "yyyy-MM-dd", $null)
+                if ($d0.Month -lt 7) { $cfbSeasonYear = $d0.Year - 1 } else { $cfbSeasonYear = $d0.Year }
+            } catch {}
+            $ok1h = $true
+            if ($ok1h) {
+                $ok1h = (Invoke-TimedCommand -Label "CFB1H step2" -FilePath "py" -ArgumentList @(
+                    "-3.14", ".\scripts\pipeline\step2_normalize.py",
+                    "--input", $cfb1hStep1, "--output", (Join-Path $cfb1hRunOut "step2_cfb1h.csv")
+                ) -WorkingDirectory $CFBDir -TimeoutSec 300) -eq 0
+            }
+            if ($ok1h) {
+                $ok1h = (Invoke-TimedCommand -Label "CFB1H step3b" -FilePath "py" -ArgumentList @(
+                    "-3.14", ".\scripts\pipeline\step3_attach_unit_rankings.py",
+                    "--input", (Join-Path $cfb1hRunOut "step2_cfb1h.csv"),
+                    "--rankings", "data\reference\cfb_team_unit_rankings.csv",
+                    "--season", "$cfbSeasonYear",
+                    "--output", (Join-Path $cfb1hRunOut "step3_with_unit_rankings_cfb1h.csv")
+                ) -WorkingDirectory $CFBDir -TimeoutSec 300) -eq 0
+            }
+            if ($ok1h) {
+                $ok1h = (Invoke-TimedCommand -Label "CFB1H step4" -FilePath "py" -ArgumentList @(
+                    "-3.14", ".\scripts\pipeline\step5a_attach_espn_ids.py",
+                    "--input", (Join-Path $cfb1hRunOut "step3_with_unit_rankings_cfb1h.csv"),
+                    "--output", (Join-Path $cfb1hRunOut "step3_cfb1h.csv"),
+                    "--master", "data/reference/ncaa_football_athletes_master.csv"
+                ) -WorkingDirectory $CFBDir -TimeoutSec 300) -eq 0
+            }
+            if ($ok1h) {
+                $ok1h = (Invoke-TimedCommand -Label "CFB1H step5" -FilePath "py" -ArgumentList @(
+                    "-3.14", ".\scripts\pipeline\step5b_attach_boxscore_stats.py",
+                    "--input", (Join-Path $cfb1hRunOut "step3_cfb1h.csv"),
+                    "--output", (Join-Path $cfb1hRunOut "step5b_cfb1h.csv"),
+                    "--date", $PipeDate, "--days", "200",
+                    "--cache", "data\cache\cfb1h_boxscore_cache.csv",
+                    "--workers", "8"
+                ) -WorkingDirectory $CFBDir -TimeoutSec 1200) -eq 0
+            }
+            if ($ok1h) {
+                $ok1h = (Invoke-TimedCommand -Label "CFB1H step6" -FilePath "py" -ArgumentList @(
+                    "-3.14", ".\scripts\pipeline\step6_rank_props_cfb.py",
+                    "--input", (Join-Path $cfb1hRunOut "step5b_cfb1h.csv"),
+                    "--output", (Join-Path $cfb1hRunOut "step6_ranked_cfb1h.xlsx"),
+                    "--cache", "data\cache\cfb1h_boxscore_cache.csv",
+                    "--date", $PipeDate
+                ) -WorkingDirectory $CFBDir -TimeoutSec 600) -eq 0
+            }
+            if ($ok1h) {
+                $ok1h = (Invoke-TimedCommand -Label "CFB1H step8" -FilePath "py" -ArgumentList @(
+                    "-3.14", ".\scripts\pipeline\step8_add_direction_context_cfb.py",
+                    "--input", (Join-Path $cfb1hRunOut "step6_ranked_cfb1h.xlsx"),
+                    "--output", $cfb1hStep8,
+                    "--date", $PipeDate
+                ) -WorkingDirectory $CFBDir -TimeoutSec 600) -eq 0
+            }
+            if ($ok1h) {
+                Write-Host "[LATE_FETCH] CFB1H step8 ready" -ForegroundColor Green
+            } else {
+                Write-Host "[LATE_FETCH] WARNING: CFB1H step8 rebuild failed" -ForegroundColor Yellow
+            }
+        }
     }
 }
 

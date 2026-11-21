@@ -160,12 +160,23 @@ def extra_match_dates_for_sport(sport: str, args) -> list[str]:
         extra = str(getattr(args, attr, None) or "").strip()[:10]
         if extra and extra != target:
             extras.append(extra)
-    # NFL + NFLP post the night before kickoff. Tennis US Open rest days
-    # (and night-before boards) post tomorrow's matches the same way.
-    if su in {"NFL", "TENNIS"} and target:
+    # Tennis US Open rest days (and night-before boards) post tomorrow's matches.
+    if su in {"TENNIS"} and target:
         nxt = default_day_ahead_match_date(target)
         if nxt and nxt != target and nxt not in extras:
             extras.append(nxt)
+    # NFL week board tips Thu / Sun / Mon (sometimes Tue). Keep a 7-day horizon
+    # so Sat publish does not drop Sunday–Thursday games (NFL / NFL1Q / NFL1H).
+    if su in {"NFL", "NFL1Q", "NFL1H"} and target:
+        try:
+            base = datetime.strptime(target, "%Y-%m-%d").date()
+        except ValueError:
+            base = None
+        if base is not None:
+            for i in range(1, 8):
+                nxt = (base + timedelta(days=i)).strftime("%Y-%m-%d")
+                if nxt not in extras:
+                    extras.append(nxt)
     # CFB midweek boards are mostly Fri/Sat tips; keep today..+2 like step6.
     if su in {"CFB", "CFB1H"} and target:
         try:
@@ -14026,7 +14037,13 @@ def load_cbb(path: str) -> pd.DataFrame:
     if "void_reason" in df.columns:
         if isinstance(df["void_reason"], pd.DataFrame):
             df["void_reason"] = df["void_reason"].iloc[:, 0]
-        df = df[df["void_reason"].isna() | (df["void_reason"].astype(str).str.strip() == "")]
+        # Parquet sidecars often stringify missing as "nan" / "None" — treat as empty.
+        _vr = df["void_reason"]
+        _vr_s = _vr.astype(str).str.strip()
+        _void_empty = _vr.isna() | _vr_s.eq("") | _vr_s.str.lower().isin(
+            {"nan", "none", "nat", "<na>"}
+        )
+        df = df[_void_empty]
 
     if "espn_player_id" in df.columns:
         df["espn_player_id"] = df["espn_player_id"].apply(_clean_id)
@@ -22261,7 +22278,11 @@ def main():
         try:
             nfl1q = load_nfl1q(nfl1q_path)
             nfl1q = enforce_target_date(
-                nfl1q, "NFL1Q", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+                nfl1q,
+                "NFL1Q",
+                args.date,
+                allow_cross_date_fallback=args.allow_cross_date_fallback,
+                extra_dates=extra_match_dates_for_sport("NFL1Q", args),
             )
             nfl1q = attach_standard_refs(nfl1q)
             print(f"  {len(nfl1q)} NFL1Q props loaded")
@@ -22278,7 +22299,11 @@ def main():
         try:
             nfl1h = load_nfl1h(nfl1h_path)
             nfl1h = enforce_target_date(
-                nfl1h, "NFL1H", args.date, allow_cross_date_fallback=args.allow_cross_date_fallback
+                nfl1h,
+                "NFL1H",
+                args.date,
+                allow_cross_date_fallback=args.allow_cross_date_fallback,
+                extra_dates=extra_match_dates_for_sport("NFL1H", args),
             )
             nfl1h = attach_standard_refs(nfl1h)
             print(f"  {len(nfl1h)} NFL1H props loaded")
@@ -22365,13 +22390,13 @@ def main():
         gd_str = df["game_date"].astype(str).str[:10]
         keep_extra = {str(d).strip()[:10] for d in (extra_dates or []) if str(d).strip()[:10]}
         keep_extra.discard("")
-        # WNBA / MLB day-ahead: keep --date plus --wnba-date / --mlb-date (typically Eastern tomorrow).
-        if sport_label in ("WNBA", "MLB", "NFL", "CFB", "CFB1H") and keep_extra:
+        # WNBA/MLB day-ahead + NFL week (Thu/Sun/Mon) + CFB midweek: keep --date plus extras.
+        if sport_label in ("WNBA", "MLB", "NFL", "NFL1Q", "NFL1H", "CFB", "CFB1H") and keep_extra:
             keep = {td} | keep_extra
             stale = dated & ~gd_str.isin(keep)
         # NBA boards (full + period) can be posted ahead of the run date.
         # Keep only the nearest future slate date (or latest available if all are past).
-        elif sport_label in ("NBA", "NFL"):
+        elif sport_label in ("NBA",):
             avail = sorted(gd_str[dated].dropna().unique().tolist())
             if not avail:
                 return df
@@ -22487,12 +22512,12 @@ def main():
     nfl1q = drop_stale_rows(
         nfl1q, args.date, "NFL1Q",
         allow_cross_date_fallback=_date_fb,
-        extra_dates=extra_match_dates_for_sport("NFL", args),
+        extra_dates=extra_match_dates_for_sport("NFL1Q", args),
     )
     nfl1h = drop_stale_rows(
         nfl1h, args.date, "NFL1H",
         allow_cross_date_fallback=_date_fb,
-        extra_dates=extra_match_dates_for_sport("NFL", args),
+        extra_dates=extra_match_dates_for_sport("NFL1H", args),
     )
     nhl1p = drop_stale_rows(
         nhl1p, args.date, "NHL1P",

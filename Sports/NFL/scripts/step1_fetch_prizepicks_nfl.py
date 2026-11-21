@@ -74,6 +74,7 @@ OUTPUT_COLS = [
     "standard_line",
     "pick_type",
     "start_time",
+    "game_date",
     "game_id",
     "position",
     "league",
@@ -648,6 +649,17 @@ def main() -> int:
         help="Skip same-day date filter (keep full API board; explicit opt-in only).",
     )
     ap.add_argument(
+        "--include-tomorrow",
+        action="store_true",
+        help="Also keep Eastern tomorrow (Sat→Sun). Prefer --horizon-days for NFL week boards.",
+    )
+    ap.add_argument(
+        "--horizon-days",
+        type=int,
+        default=0,
+        help="Keep tips from --date through +N Eastern days (NFL week = 7 covers Thu/Sun/Mon).",
+    )
+    ap.add_argument(
         "--allow-standard-only",
         action="store_true",
         help="Allow a step1 CSV with no Goblin/Demon pick_type (skip the Week-1-hole gate).",
@@ -783,16 +795,27 @@ def main() -> int:
     szn_mask = df.get("league_id", pd.Series("", index=df.index)).astype(str).isin(SEASON_BOARD_IDS)
     szn_df = df.loc[szn_mask].copy() if bool(szn_mask.any()) else df.iloc[0:0].copy()
     game_df = df.loc[~szn_mask].copy() if bool((~szn_mask).any()) else df.iloc[0:0].copy()
+    horizon = max(0, int(args.horizon_days or 0))
+    if bool(args.include_tomorrow) and horizon < 1:
+        horizon = 1
     if len(game_df):
         game_df, _fallback = apply_game_date_filter(
             game_df,
             target_date=fetch_date,
             tz_name=str(args.tz).strip() or DEFAULT_TZ,
             allow_nearest_future=bool(args.allow_nearest_future),
+            include_tomorrow=bool(args.include_tomorrow),
+            horizon_days=horizon,
         )
     df = pd.concat([game_df, szn_df], ignore_index=True)
+    if horizon:
+        date_window = f"{fetch_date}..+{horizon}d"
+    elif args.include_tomorrow:
+        date_window = f"{fetch_date}+tomorrow"
+    else:
+        date_window = fetch_date
     print(
-        f"[NFL step1] Date filter {fetch_date}: fetched={fetched_rows} "
+        f"[NFL step1] Date filter {date_window}: fetched={fetched_rows} "
         f"game_survived={len(game_df)} season_kept={len(szn_df)}"
     )
     if len(szn_df):

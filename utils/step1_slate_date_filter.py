@@ -69,6 +69,7 @@ def apply_game_date_filter(
     *,
     start_time_col: str = "start_time",
     include_tomorrow: bool = False,
+    horizon_days: int = 0,
     board_date: str | None = None,
 ) -> tuple[pd.DataFrame, str | None]:
     """
@@ -76,16 +77,22 @@ def apply_game_date_filter(
 
     - allow_nearest_future False: keep rows where date(start_time) == target_date
       (and target_date+1 when include_tomorrow).
+    - horizon_days > 0: also keep target_date .. target_date+horizon_days
+      (NFL week board: Thu / Sun / Mon tips).
     - allow_nearest_future True: skip date filter (full API board; game_date column set).
     Always stamps board_date / line_asof (fetch calendar) vs game_date (tip-day).
     """
     target_date = str(target_date or "").strip()[:10]
     bd = str(board_date or eastern_today_ymd()).strip()[:10]
     keep_dates = {d for d in (target_date,) if d}
-    if include_tomorrow and target_date:
-        nxt = add_calendar_days(target_date, 1)
-        if nxt:
-            keep_dates.add(nxt)
+    span = max(0, int(horizon_days or 0))
+    if include_tomorrow and span < 1:
+        span = 1
+    if span and target_date:
+        for i in range(1, span + 1):
+            nxt = add_calendar_days(target_date, i)
+            if nxt:
+                keep_dates.add(nxt)
 
     if df is None or len(df) == 0:
         out = df.copy() if isinstance(df, pd.DataFrame) else pd.DataFrame()
