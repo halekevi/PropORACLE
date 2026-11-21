@@ -233,30 +233,58 @@
     });
   }
 
-  async function loadRows() {
-    const sport = state.sport;
-    try {
-      if (typeof ensureSlateSportLoaded === "function") {
-        await ensureSlateSportLoaded(sport);
-      } else if (typeof loadSlateSport === "function") {
-        await Promise.resolve(loadSlateSport(sport));
+  async function fetchSportRows(sport) {
+    const res = await fetch("/api/slate-sport/" + encodeURIComponent(sport), { cache: "no-store" });
+    if (!res.ok) return [];
+    const payload = await res.json();
+    const sports = payload.sports || payload;
+    let rows = sports[sport] || payload.rows || [];
+    if (!Array.isArray(rows) && sports && typeof sports === "object") {
+      rows = sports[sport] || [];
+    }
+    return Array.isArray(rows) ? rows : [];
+  }
+
+  function rowsHaveProjectionIds(rows) {
+    if (!Array.isArray(rows) || !rows.length) return false;
+    let seen = 0;
+    for (const r of rows) {
+      if (projectionIdOf(r)) {
+        seen += 1;
+        if (seen >= 3) return true;
       }
-    } catch (_e) {}
-    let rows = (window.SLATE_DATA && window.SLATE_DATA[sport]) || [];
-    if (!rows.length) {
+    }
+    return seen > 0 && seen >= Math.min(3, rows.length);
+  }
+
+  async function loadRows(opts) {
+    const force = !!(opts && opts.force);
+    const sport = state.sport;
+    let rows = [];
+    // Always prefer a fresh API payload for PrizePicks deep links. Home SLATE_DATA
+    // can be an older in-memory load from before projection IDs were backfilled.
+    try {
+      rows = await fetchSportRows(sport);
+    } catch (_e) {
+      rows = [];
+    }
+    if (!rows.length || (!force && !rowsHaveProjectionIds(rows))) {
       try {
-        const res = await fetch("/api/slate-sport/" + encodeURIComponent(sport), { cache: "no-store" });
-        if (res.ok) {
-          const payload = await res.json();
-          const sports = payload.sports || payload;
-          rows = sports[sport] || payload.rows || [];
-          if (!Array.isArray(rows) && sports && typeof sports === "object") {
-            rows = sports[sport] || [];
-          }
+        if (typeof ensureSlateSportLoaded === "function") {
+          await ensureSlateSportLoaded(sport);
+        } else if (typeof loadSlateSport === "function") {
+          await Promise.resolve(loadSlateSport(sport));
         }
       } catch (_e) {}
+      const fallback = (window.SLATE_DATA && window.SLATE_DATA[sport]) || [];
+      if ((!rows.length && fallback.length) || (fallback.length && rowsHaveProjectionIds(fallback) && !rowsHaveProjectionIds(rows))) {
+        rows = fallback;
+      }
     }
     state.rows = Array.isArray(rows) ? rows : [];
+    if (window.SLATE_DATA && state.rows.length && rowsHaveProjectionIds(state.rows)) {
+      window.SLATE_DATA[sport] = state.rows;
+    }
   }
 
   function filtered() {
@@ -424,8 +452,8 @@
     }
   }
 
-  function openPrizePicksSlip() {
-    const rows = selectedRows();
+  async function openPrizePicksSlip() {
+    let rows = selectedRows();
     if (!rows.length) {
       setActionMsg("Select at least one prop first.", false);
       return;
@@ -434,7 +462,16 @@
       setActionMsg("PrizePicks max is 6 legs — deselect some first.", false);
       return;
     }
-    const built = buildPrizePicksSlipUrl(rows);
+    let built = buildPrizePicksSlipUrl(rows);
+    if (!built.url) {
+      setActionMsg("Refreshing slate for PrizePicks IDs…", true);
+      try {
+        await loadRows({ force: true });
+        render();
+        rows = selectedRows();
+        built = buildPrizePicksSlipUrl(rows);
+      } catch (_e) {}
+    }
     if (!built.url) {
       setActionMsg(
         "Missing PrizePicks projection IDs on these rows (slate needs a refresh with IDs). Use Copy / My slip for now.",
