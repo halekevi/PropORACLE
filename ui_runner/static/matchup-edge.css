@@ -57,10 +57,10 @@
 }
 .me-controls,
 .wnba-me-controls {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
-  align-items: flex-end;
+  align-items: end;
   margin-bottom: 12px;
 }
 .me-field,
@@ -68,8 +68,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  min-width: 140px;
-  flex: 1;
+  min-width: 0;
 }
 .me-field label,
 .wnba-me-field label {
@@ -114,7 +113,7 @@
   gap: 8px;
   align-items: stretch;
   width: 100%;
-  flex: 1 1 100%;
+  grid-column: 1 / -1;
   min-width: 0;
   box-sizing: border-box;
 }
@@ -382,20 +381,17 @@
   font-size: 11px;
 }
 
-/* Mobile / tablet / half-screen (≤1600px): stack controls, larger touch targets, card-like leader rows */
-@media (max-width: 1600px) {
+/* Narrow phone only: stack Team / Category / Opponent. Wider panels keep one row. */
+@media (max-width: 520px) {
   .me-controls,
   .wnba-me-controls {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
     gap: 10px;
   }
-  .me-field,
-  .wnba-me-field {
-    min-width: 0;
-    width: 100%;
-    flex: 1 1 auto;
-  }
+}
+
+/* Tablet / half-screen: larger touch targets + card-like leader rows (fields stay 1-row via grid) */
+@media (max-width: 1600px) {
   .me-field select,
   .wnba-me-field select,
   .me-find,
@@ -411,7 +407,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 8px;
-    flex: 1 1 100%;
+    grid-column: 1 / -1;
     min-width: 0;
   }
   .me-find-row .me-find,
