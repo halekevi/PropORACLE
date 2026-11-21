@@ -6580,9 +6580,8 @@ function sortSlateDynamic(sport, key) {
   function collapseNonSlateSections() {
     const params = new URLSearchParams(window.location.search);
     const edgesDeepLink = params.get("section") === "edges";
-    /* Keep primary home data sections open — collapsing them made Hot Players /
-       Props Board / L5 look empty even when cards had already loaded. */
-    const keepOpen = new Set(["slate-explorer", "props-board", "hot-players-cat", "l5-streaks-cat"]);
+    /* Prop Explorer + Props Board stay open; Hot Players / L5 / L10 start collapsed. */
+    const keepOpen = new Set(["slate-explorer", "props-board"]);
     if (edgesDeepLink) keepOpen.add("props-board");
     document.querySelectorAll("details.home-cat").forEach((det) => {
       if (keepOpen.has(det.id)) {
