@@ -405,6 +405,9 @@
   align-items: stretch;
   gap: 14px;
 }
+.tickets-built .hero.tickets-hero .hero-title {
+  text-transform: none !important;
+}
 .tickets-built .hero.tickets-hero .hero-oracle-em {
   color: var(--accent);
 }
