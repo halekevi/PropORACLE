@@ -1066,7 +1066,7 @@ body > nav.snav.glass-card {
 </style>
 <link rel="stylesheet" href="/static/nav-mobile-shared.css?v=20260430schemapage"/>
 <link rel="stylesheet" href="/static/mobile-content-width.css?v=20261020halfrows"/>
-<link rel="stylesheet" href="/static/matchup-edge.css?v=20261121meprops"/>
+<link rel="stylesheet" href="/static/matchup-edge.css?v=20261121meboard1"/>
 <link rel="stylesheet" href="/static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="/static/player-consistency.css?v=20261120hphd"/>
 <link rel="stylesheet" href="/static/proporacle-glass-minimal.css?v=20261119glass4"/>
@@ -2098,6 +2098,12 @@ body > nav.snav.glass-card {
         #props-board table.pb-table tr.pb-selected{background:rgba(240,165,0,.08);}
         #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:11px;}
         #props-board .pb-na{opacity:.45;font-style:italic;}
+        #props-board .pb-player-link{
+          -webkit-appearance:none;appearance:none;background:none;border:0;padding:0;margin:0;
+          font:inherit;color:var(--accent);cursor:pointer;text-align:left;
+          text-decoration:underline;text-decoration-color:rgba(212,175,55,.35);text-underline-offset:2px;
+        }
+        #props-board .pb-player-link:hover{color:#f0d078;text-decoration-color:rgba(240,208,120,.7);}
       </style>
       <div class="pb-section-label">Props <span>Board</span></div>
       <div class="pb-toolbar">
@@ -2260,7 +2266,7 @@ body > nav.snav.glass-card {
 </div>
 
 <script src="/static/site-nav-chrome.js?v=20260412" defer></script>
-<script src="/static/matchup-edge.js?v=20261121meprops" defer></script>
+<script src="/static/matchup-edge.js?v=20261121meboard1" defer></script>
 <script src="/static/top_edges_badge_board.js?v=20261020l5eq5b" defer></script>
 <script>
 // ── Real PLAYER_DATA (last 10 games) ──────────────────────
@@ -6317,7 +6323,7 @@ function sortSlateDynamic(sport, key) {
 })();
 </script>
 
-<script src="/static/props-board.js?v=20261121ppslip6"></script>
+<script src="/static/props-board.js?v=20261121ppslip7"></script>
 
 <script>
 (function initHomeDeepLink() {

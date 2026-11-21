@@ -306,6 +306,15 @@
   padding: 8px 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
+.me-table tr.me-player-hl,
+.wnba-me-table tr.me-player-hl {
+  background: rgba(212, 175, 55, 0.14);
+  outline: 1px solid rgba(212, 175, 55, 0.35);
+}
+.me-table tr.me-player-hl td,
+.wnba-me-table tr.me-player-hl td {
+  border-top-color: rgba(212, 175, 55, 0.2);
+}
 .me-edge,
 .wnba-me-edge {
   display: inline-block;

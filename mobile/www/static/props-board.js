@@ -527,10 +527,14 @@
           .join(" ");
         const cell = (txt, missing) => (missing ? `<span class="pb-na">${NA}</span>` : txt);
         const checked = state.selected.has(key) ? " checked" : "";
+        const playerName = String(r.player || "").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+        const playerBtn = r.player
+          ? `<button type="button" class="pb-player-link" data-pb-key="${key.replace(/"/g, "&quot;")}" title="Open Matchup Edge for this player">${playerName}</button>`
+          : NA;
         return `<tr class="${cls}" data-pb-key="${key.replace(/"/g, "&quot;")}">
         <td class="pb-check-cell"><input type="checkbox" class="pb-row-check" data-key="${key.replace(/"/g, "&quot;")}"${checked} aria-label="Select ${String(r.player || "prop").replace(/"/g, "&quot;")}"></td>
         <td>${sideOf(r)}</td>
-        <td class="pb-player">${r.player || NA}</td>
+        <td class="pb-player">${playerBtn}</td>
         <td>${r.team || NA}</td>
         <td>${r.prop || r.prop_type || NA}</td>
         <td>${fmt2(r.line)}</td>
@@ -553,6 +557,24 @@
         const tr = box.closest("tr");
         if (tr) tr.classList.toggle("pb-selected", box.checked);
         updateActionBar(rows);
+      });
+    });
+    tbody.querySelectorAll(".pb-player-link").forEach((btn) => {
+      btn.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        const k = btn.getAttribute("data-pb-key") || "";
+        const r = state.rowByKey[k];
+        if (!r) return;
+        const me = window.MatchupEdge;
+        if (!me || typeof me.applyFromBoard !== "function") return;
+        me.applyFromBoard({
+          sport: state.sport,
+          team: r.team,
+          prop: r.prop || r.prop_type,
+          player: r.player,
+          side: sideOf(r),
+        });
       });
     });
     updateActionBar(rows);

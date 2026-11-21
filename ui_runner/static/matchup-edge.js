@@ -1098,6 +1098,183 @@
     onTeamChange(sport);
   }
 
+  function normPropKey(s) {
+    return String(s || "")
+      .toLowerCase()
+      .replace(/&/g, " ")
+      .replace(/\+/g, " ")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim()
+      .replace(/\s+/g, " ");
+  }
+
+  const PROP_CAT_ALIASES = {
+    points: "pts",
+    pts: "pts",
+    point: "pts",
+    rebounds: "reb",
+    reb: "reb",
+    rebs: "reb",
+    assists: "ast",
+    ast: "ast",
+    asts: "ast",
+    "3 pointers made": "fg3m",
+    "3 pointers": "fg3m",
+    "3pm": "fg3m",
+    threes: "fg3m",
+    "fg made": "fgm",
+    fgm: "fgm",
+    "fg attempted": "fga",
+    fga: "fga",
+    "two pointers made": "fg2m",
+    "2pm": "fg2m",
+    "two pointers attempted": "fg2a",
+    "2pa": "fg2a",
+    "free throws made": "ftm",
+    ftm: "ftm",
+    "free throws attempted": "fta",
+    fta: "fta",
+    steals: "stl",
+    stl: "stl",
+    blocks: "blk",
+    blk: "blk",
+    stocks: "stocks",
+    "stl blk": "stocks",
+    pra: "pra",
+    "pts reb ast": "pra",
+    "points rebounds assists": "pra",
+    "pts reb": "pr",
+    "pts ast": "pa",
+    "reb ast": "ra",
+    "hits allowed": "hits_allowed",
+    "strikeouts": "strikeouts",
+    "pitcher strikeouts": "pitcher_ks",
+    "total bases": "total_bases",
+    "home runs": "home_runs",
+    "shots on target": "sot",
+    "shots on goal": "sot",
+  };
+
+  function categoryTokens(cat) {
+    const raw = normPropKey((cat && (cat.label || cat.id)) || "");
+    const stop = new Set(["made", "attempted", "the", "and", "on"]);
+    return raw.split(" ").filter((t) => t && !stop.has(t));
+  }
+
+  function resolveCategoryId(data, propName) {
+    const cats = data?.categories || [];
+    if (!cats.length) return "";
+    const propKey = normPropKey(propName);
+    if (!propKey) return cats[0].id;
+    const alias = PROP_CAT_ALIASES[propKey];
+    if (alias && cats.some((c) => c.id === alias)) return alias;
+    for (const c of cats) {
+      if (normPropKey(c.id) === propKey || normPropKey(c.label) === propKey) return c.id;
+    }
+    let best = null;
+    let bestScore = 0;
+    for (const c of cats) {
+      const tokens = categoryTokens(c);
+      if (!tokens.length) continue;
+      const hit = tokens.filter((t) => propKey.includes(t) || propKey.split(" ").includes(t)).length;
+      if (!hit) continue;
+      // Multi-token categories (PRA) need every token present.
+      if (tokens.length > 1 && hit < tokens.length) continue;
+      const score = hit * 10 + (tokens.length === 1 && propKey.split(" ")[0] === tokens[0] ? 3 : 0);
+      if (score > bestScore) {
+        bestScore = score;
+        best = c.id;
+      }
+    }
+    if (best) return best;
+    // Combo leftovers (Pts+Asts): prefer first prop token's alias/id.
+    const first = propKey.split(" ")[0];
+    const firstAlias = PROP_CAT_ALIASES[first];
+    if (firstAlias && cats.some((c) => c.id === firstAlias)) return firstAlias;
+    const byId = cats.find((c) => normPropKey(c.id) === first || categoryTokens(c)[0] === first);
+    return byId ? byId.id : cats[0].id;
+  }
+
+  function pickTeamOptionValue(teamSel, data, teamAbbr) {
+    if (!teamSel) return "";
+    const want = canonicalizeTeamAbbr(data, teamAbbr) || String(teamAbbr || "").toUpperCase();
+    const aliases = teamAliasSet(data, want);
+    for (const opt of teamSel.options) {
+      const v = String(opt.value || "").toUpperCase();
+      if (v === want || aliases.has(v)) return opt.value;
+    }
+    return want;
+  }
+
+  function highlightPlayerInTable(sport, playerName) {
+    const tbody = document.getElementById(pid(sport, "tbody"));
+    if (!tbody) return;
+    const q = String(playerName || "")
+      .trim()
+      .toLowerCase();
+    tbody.querySelectorAll("tr").forEach((tr) => {
+      const name = String(tr.querySelector("td strong")?.textContent || "")
+        .trim()
+        .toLowerCase();
+      const on = Boolean(q) && (name === q || name.includes(q) || q.includes(name));
+      tr.classList.toggle("me-player-hl", on);
+      if (on) tr.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  }
+
+  async function applyFromBoard(opts) {
+    const sport = String(opts?.sport || "")
+      .trim()
+      .toLowerCase();
+    if (!sport || SKIP.has(sport) || !ME_SPORTS.includes(sport)) return false;
+    const teamIn = String(opts?.team || "").trim();
+    const propIn = String(opts?.prop || "").trim();
+    const playerIn = String(opts?.player || "").trim();
+    if (!teamIn) return false;
+
+    const panel = ensurePanel(sport);
+    if (!panel) return false;
+    panel.open = true;
+    syncSlateCollapseWithMatchup(panel);
+
+    if (!state[sport]?.ready) await init(sport);
+    else if (!state[sport]?.data) await init(sport);
+    const data = state[sport]?.data;
+    if (!data) return false;
+
+    const teamSel = document.getElementById(pid(sport, "team"));
+    const catSel = document.getElementById(pid(sport, "cat"));
+    if (!teamSel || !catSel) return false;
+
+    // Ensure options exist (panel may have been empty before init).
+    if (!teamSel.options.length || !catSel.options.length) populateSelectors(sport);
+
+    const teamVal = pickTeamOptionValue(teamSel, data, teamIn);
+    if (teamVal) teamSel.value = teamVal;
+    if (![...teamSel.options].some((o) => o.value === teamSel.value) && teamSel.options.length) {
+      // Team not in tonight's ME list — keep current; still try category + status.
+      setFindStatus(sport, "No Matchup Edge block for " + teamIn);
+    }
+
+    const catId = resolveCategoryId(data, propIn);
+    if (catId && [...catSel.options].some((o) => o.value === catId)) catSel.value = catId;
+
+    // Show full roster so the clicked player is visible even outside Top 5.
+    state[sport] = state[sport] || {};
+    state[sport].leaderView = "all";
+    updateSliceButtons(sport);
+    onTeamChange(sport);
+    highlightPlayerInTable(sport, playerIn);
+    setFindStatus(
+      sport,
+      playerIn
+        ? "From Props Board · " + playerIn + (propIn ? " · " + propIn : "")
+        : "From Props Board"
+    );
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    return true;
+  }
+
   function onPanelOpen(sport) {
     if (SKIP.has(sport)) return;
     // If data already loaded (e.g. panel closed and reopened), skip fetch
@@ -1152,5 +1329,11 @@
     boot();
   }
 
-  global.MatchupEdge = { init: init, render: render, refreshFromSlate: refreshFromSlate, sports: ME_SPORTS };
+  global.MatchupEdge = {
+    init: init,
+    render: render,
+    refreshFromSlate: refreshFromSlate,
+    applyFromBoard: applyFromBoard,
+    sports: ME_SPORTS,
+  };
 })(typeof window !== "undefined" ? window : globalThis);
