@@ -1066,7 +1066,7 @@ body > nav.snav.glass-card {
 </style>
 <link rel="stylesheet" href="/static/nav-mobile-shared.css?v=20260430schemapage"/>
 <link rel="stylesheet" href="/static/mobile-content-width.css?v=20261020halfrows"/>
-<link rel="stylesheet" href="/static/matchup-edge.css?v=20261120mecollapse"/>
+<link rel="stylesheet" href="/static/matchup-edge.css?v=20261121meprops"/>
 <link rel="stylesheet" href="/static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="/static/player-consistency.css?v=20261120hphd"/>
 <link rel="stylesheet" href="/static/proporacle-glass-minimal.css?v=20261119glass4"/>
@@ -1115,7 +1115,7 @@ body > nav.snav.glass-card {
       <div class="hero-chips" id="hero-live-chips" aria-label="Live sports today"></div>
       <div class="hero-cta-row">
         <a class="hero-btn hero-btn-gold" href="/tickets">Open tickets</a>
-        <a class="hero-btn hero-btn-ghost" href="#props-board">Jump to props board</a>
+        <a class="hero-btn hero-btn-ghost" href="#slate-explorer">Jump to props board</a>
       </div>
     </div>
   </div>
@@ -1234,6 +1234,24 @@ body > nav.snav.glass-card {
   /* expand area */
   .slate-expand{display:none;border-top:1px solid rgba(255,255,255,0.07);background:rgba(0,0,0,0.2);}
   .slate-expand.open{display:block;}
+  /* Props Board replaces the old per-sport prop table under Matchup Edge. */
+  .slate-expand > .slate-toolbar,
+  .slate-expand > .slate-table-wrap{display:none!important;}
+  #props-board.slate-props-board{
+    display:none;
+    margin:12px 0 0;
+    padding:12px 0 4px;
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+  #props-board.slate-props-board.is-sport-open{display:block;}
+  #props-board.slate-props-board.me-slate-collapsed{display:none!important;}
+  #props-board .pb-section-label{
+    margin:0 0 10px;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent,#d4af37);
+  }
   /* filter/sort bar */
   .slate-toolbar{display:flex;align-items:center;gap:8px 10px;padding:14px 18px 10px;flex-wrap:wrap;}
   .slate-filter-input{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;padding:9px 14px;outline:none;min-width:0;flex:1 1 200px;max-width:min(100%,380px);transition:border-color .15s;backdrop-filter:blur(10px) saturate(180%);}
@@ -2541,14 +2559,8 @@ body > nav.snav.glass-card {
       </table></div>
     </div>
 
-  </div><!-- /slate-panel-wrap -->
-    </div>
-  </details>
-
-  <!-- PROPS BOARD (config-driven; does not replace Prop Explorer) -->
-  <details class="home-cat" open id="props-board">
-    <summary><span class="home-cat-title">Props <span>Board</span></span></summary>
-    <div class="home-cat-body">
+    <!-- Props Board lives under Matchup Edge (opens with the sport card). -->
+    <div id="props-board" class="slate-props-board">
       <style>
         #props-board .pb-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px;}
         #props-board .pb-toolbar label{font-size:12px;opacity:.85;display:flex;align-items:center;gap:6px;}
@@ -2593,6 +2605,7 @@ body > nav.snav.glass-card {
         #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:11px;}
         #props-board .pb-na{opacity:.45;font-style:italic;}
       </style>
+      <div class="pb-section-label">Props Board</div>
       <div class="pb-toolbar">
         <label>Sport
           <select id="pb-sport"></select>
@@ -2644,6 +2657,9 @@ body > nav.snav.glass-card {
           <tbody id="pb-tbody"></tbody>
         </table>
       </div>
+    </div>
+
+  </div><!-- /slate-panel-wrap -->
     </div>
   </details>
 
@@ -2750,7 +2766,7 @@ body > nav.snav.glass-card {
 </div>
 
 <script src="/static/site-nav-chrome.js?v=20260412" defer></script>
-<script src="/static/matchup-edge.js?v=20261120mecollapse" defer></script>
+<script src="/static/matchup-edge.js?v=20261121meprops" defer></script>
 <script src="/static/top_edges_badge_board.js?v=20261020l5eq5b" defer></script>
 <script>
 // ── Real PLAYER_DATA (last 10 games) ──────────────────────
@@ -5688,6 +5704,29 @@ function scheduleRenderSlateTable(sport) {
   });
 }
 
+function syncPropsBoardWithSlate(sport) {
+  const pb = document.getElementById("props-board");
+  if (!pb) return;
+  if (!sport) {
+    pb.classList.remove("is-sport-open");
+    pb.classList.remove("me-slate-collapsed");
+    return;
+  }
+  pb.classList.add("is-sport-open");
+  const me = document.getElementById("matchup-edge-" + sport)
+    || (sport === "wnba" ? document.getElementById("wnba-matchup-edge-panel") : null);
+  pb.classList.toggle("me-slate-collapsed", !!(me && !me.open));
+  if (window.PropsBoard && typeof PropsBoard.setSport === "function") {
+    PropsBoard.setSport(sport);
+  } else {
+    const sel = document.getElementById("pb-sport");
+    if (sel) {
+      sel.value = sport;
+      sel.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  }
+}
+
 function toggleSlatePanel(sport) {
   const panel = document.getElementById(`sp-${sport}`);
   const card  = document.getElementById(`sc-${sport}`);
@@ -5704,6 +5743,7 @@ function toggleSlatePanel(sport) {
     panel.classList.remove('open');
     card.classList.remove('active');
     openSlatePanel = null;
+    syncPropsBoardWithSlate(null);
   } else {
     panel.classList.add('open');
     card.classList.add('active');
@@ -5713,6 +5753,7 @@ function toggleSlatePanel(sport) {
     if (typeof MatchupEdge !== 'undefined' && MatchupEdge.sports?.includes(sport)) {
       MatchupEdge.init(sport);
     }
+    syncPropsBoardWithSlate(sport);
   }
 }
 
@@ -6608,8 +6649,8 @@ function sortSlateDynamic(sport, key) {
     const params = new URLSearchParams(window.location.search);
     const edgesDeepLink = params.get("section") === "edges";
     /* Prop Explorer + Props Board stay open; Hot Players / L5 / L10 start collapsed. */
-    const keepOpen = new Set(["slate-explorer", "props-board"]);
-    if (edgesDeepLink) keepOpen.add("props-board");
+    const keepOpen = new Set(["slate-explorer"]);
+    if (edgesDeepLink) keepOpen.add("slate-explorer");
     document.querySelectorAll("details.home-cat").forEach((det) => {
       if (keepOpen.has(det.id)) {
         det.setAttribute("open", "");
@@ -6764,8 +6805,8 @@ function sortSlateDynamic(sport, key) {
   function collapseHomeCatsOnMobile() {
     if (!mqMobile()) return;
     const params = new URLSearchParams(window.location.search);
-    const keepOpen = new Set(["slate-explorer", "props-board"]);
-    if (params.get("section") === "edges") keepOpen.add("props-board");
+    const keepOpen = new Set(["slate-explorer"]);
+    if (params.get("section") === "edges") keepOpen.add("slate-explorer");
     document.querySelectorAll("details.home-cat").forEach(function (d) {
       if (keepOpen.has(d.id)) return;
       d.removeAttribute("open");
@@ -6782,7 +6823,7 @@ function sortSlateDynamic(sport, key) {
 })();
 </script>
 
-<script src="/static/props-board.js?v=20261121ppslip3"></script>
+<script src="/static/props-board.js?v=20261121ppslip4"></script>
 
 <script>
 (function initHomeDeepLink() {

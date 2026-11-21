@@ -7,8 +7,11 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.35));
 }
-/* Collapse the sport prop list when Matchup Edge is closed */
+/* Collapse Props Board / legacy slate table when Matchup Edge is closed */
 .slate-expand.me-slate-collapsed > .slate-table-wrap {
+  display: none !important;
+}
+#props-board.slate-props-board.me-slate-collapsed {
   display: none !important;
 }
 .me-sport-wnba,

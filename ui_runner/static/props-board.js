@@ -607,6 +607,31 @@
     });
   }
 
+  async function setSport(sport, opts) {
+    const next = String(sport || "").trim().toLowerCase();
+    if (!next) return;
+    const silent = !!(opts && opts.silent);
+    if (next === state.sport && state.rows.length) {
+      const sel = document.getElementById("pb-sport");
+      if (sel) sel.value = next;
+      return;
+    }
+    state.sport = next;
+    state.groupIdx = 0;
+    state.selected.clear();
+    const sel = document.getElementById("pb-sport");
+    if (sel) sel.value = next;
+    fillGroups();
+    await loadRows({ force: true });
+    render();
+    if (!silent && typeof toggleSlatePanel === "function") {
+      const open = document.getElementById("sp-" + next);
+      if (open && !open.classList.contains("open")) {
+        try { toggleSlatePanel(next); } catch (_e) {}
+      }
+    }
+  }
+
   async function boot() {
     try {
       const res = await fetch("/api/props-board/config", { cache: "no-store" });
@@ -622,12 +647,16 @@
     bindSortHeaders();
     syncSideButtons();
     document.getElementById("pb-sport")?.addEventListener("change", async (ev) => {
-      state.sport = String(ev.target.value || "").toLowerCase();
-      state.groupIdx = 0;
-      state.selected.clear();
-      fillGroups();
-      await loadRows();
-      render();
+      await setSport(String(ev.target.value || "").toLowerCase(), { silent: true });
+      const sport = state.sport;
+      if (typeof toggleSlatePanel === "function") {
+        const open = document.getElementById("sp-" + sport);
+        if (open && !open.classList.contains("open")) {
+          try { toggleSlatePanel(sport); } catch (_e) {}
+        } else if (typeof syncPropsBoardWithSlate === "function") {
+          syncPropsBoardWithSlate(sport);
+        }
+      }
     });
     document.querySelectorAll("#props-board .pb-tab").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -673,6 +702,10 @@
     // Wait briefly for HOME_ACTIVE_SPORTS from pipeline status.
     setTimeout(boot, 600);
   }
+  window.PropsBoard = {
+    setSport: setSport,
+    getSport: function () { return state.sport; },
+  };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();
 })();

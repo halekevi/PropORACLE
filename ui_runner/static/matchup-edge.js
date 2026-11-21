@@ -275,12 +275,16 @@
     return ["/" + rel, "/" + name];
   }
 
-  /** When Matchup Edge collapses, hide that sport's slate prop list too. */
+  /** When Matchup Edge collapses, hide Props Board (replaces the old slate table). */
   function syncSlateCollapseWithMatchup(panel) {
     if (!panel) return;
     const sp = panel.closest(".slate-expand");
     if (!sp) return;
     sp.classList.toggle("me-slate-collapsed", !panel.open);
+    const pb = document.getElementById("props-board");
+    if (pb && sp.classList.contains("open")) {
+      pb.classList.toggle("me-slate-collapsed", !panel.open);
+    }
   }
 
   function bindSlateCollapseSync(panel) {
