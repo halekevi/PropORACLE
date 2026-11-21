@@ -622,7 +622,11 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 [data-theme="light"] .props-eval-scroll{background:rgba(255,255,255,0.55);border-color:rgba(0,0,0,0.08);}
 [data-theme="light"] .prop-eval-row:hover{background:rgba(0,0,0,0.03);}
 .glass-insights{background:var(--glass-panel);border:1px solid var(--glass-panel-border);border-radius:16px;padding:20px 22px;box-shadow:var(--glass-shadow);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);}
-.insights-card-title{font-size:19px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:8px;}
+.insights-card-title{
+  font-family:'Bebas Neue',sans-serif!important;font-size:24px;font-weight:400!important;
+  letter-spacing:2px;text-transform:uppercase;color:var(--text);margin:0 0 8px;line-height:1.1;
+}
+.insights-card-title span{color:var(--accent);}
 .insights-card-sub{font-size:16px;color:var(--muted);margin-bottom:14px;line-height:1.45;}
 .props-eval-intro .insights-card-sub{font-size:14px;line-height:1.35;margin-bottom:0;}
 .insights-table-host table{width:100%;border-collapse:collapse;font-size:clamp(15px,1.02vw,17px);}
@@ -1717,7 +1721,7 @@ select option,
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121nobox7"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121proptitle8"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -1871,8 +1875,7 @@ select option,
       <div class="glass-insights props-eval-intro">
         <div class="props-eval-head">
           <div>
-            <h3 class="insights-card-title">Prop evaluation</h3>
-            <p class="insights-card-sub">Decided props load first. VOIDS hides postponed/canceled games (use POSTPONED to review those).</p>
+            <h3 class="insights-card-title">Prop <span>Evaluation</span></h3>
           </div>
           <div class="props-eval-view-toggle" role="group" aria-label="Display density">
             <button type="button" class="props-view-btn active" id="props-view-list" data-view="list" aria-pressed="true">List</button>

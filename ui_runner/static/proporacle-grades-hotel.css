@@ -194,11 +194,18 @@ body.page-grades .date-go-btn {
   letter-spacing: 1.2px !important;
   text-transform: uppercase !important;
 }
-body.page-grades .ist-title {
+body.page-grades .ist-title,
+body.page-grades .insights-card-title,
+.insights-card-title {
   font-family: "Bebas Neue", sans-serif !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
+  font-weight: 400 !important;
   color: rgba(255, 255, 255, 0.92) !important;
+}
+body.page-grades .insights-card-title span,
+.insights-card-title span {
+  color: #d4af37 !important;
 }
 
 /* ── Slate / ticket embeds: flatten chrome ── */
