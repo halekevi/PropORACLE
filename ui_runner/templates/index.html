@@ -1066,7 +1066,7 @@ body > nav.snav.glass-card {
 </style>
 <link rel="stylesheet" href="/static/nav-mobile-shared.css?v=20260430schemapage"/>
 <link rel="stylesheet" href="/static/mobile-content-width.css?v=20261121slate2col"/>
-<link rel="stylesheet" href="/static/matchup-edge.css?v=20261121me2col"/>
+<link rel="stylesheet" href="/static/matchup-edge.css?v=20261121meteamopp"/>
 <link rel="stylesheet" href="/static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="/static/player-consistency.css?v=20261120hphd"/>
 <link rel="stylesheet" href="/static/proporacle-glass-minimal.css?v=20261119glass4"/>
@@ -1242,7 +1242,7 @@ body > nav.snav.glass-card {
   }
   #props-board.slate-props-board.is-sport-open{display:block;}
   #props-board.slate-props-board.me-slate-collapsed{display:none!important;}
-  /* Matchup Edge: 2-col at typical panel width; 3-col when panel ≥640px */
+  /* Matchup Edge phone: Team|Opponent row, Category below; 3-across when panel ≥640px */
   .me-body,.wnba-me-body{container-type:inline-size;container-name:me-panel;}
   .matchup-edge-panel .me-controls,
   .wnba-me-panel .wnba-me-controls,
@@ -1253,8 +1253,12 @@ body > nav.snav.glass-card {
     gap:8px!important;
     align-items:end!important;
   }
+  .me-controls>.me-field:nth-child(1),
+  .wnba-me-controls>.wnba-me-field:nth-child(1){grid-column:1!important;grid-row:1!important;}
+  .me-controls>.me-field:nth-child(2),
+  .wnba-me-controls>.wnba-me-field:nth-child(2){grid-column:1/-1!important;grid-row:2!important;}
   .me-controls>.me-field:nth-child(3),
-  .wnba-me-controls>.wnba-me-field:nth-child(3){grid-column:1/-1!important;}
+  .wnba-me-controls>.wnba-me-field:nth-child(3){grid-column:2!important;grid-row:1!important;}
   .matchup-edge-panel .me-field,
   .wnba-me-panel .wnba-me-field,
   .me-field,
@@ -1274,11 +1278,12 @@ body > nav.snav.glass-card {
   }
   @container me-panel (min-width:640px){
     .me-controls,.wnba-me-controls{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+    .me-controls>.me-field:nth-child(1),
+    .me-controls>.me-field:nth-child(2),
     .me-controls>.me-field:nth-child(3),
-    .wnba-me-controls>.wnba-me-field:nth-child(3){grid-column:auto!important;}
-  }
-  @container me-panel (max-width:360px){
-    .me-controls,.wnba-me-controls{grid-template-columns:1fr!important;}
+    .wnba-me-controls>.wnba-me-field:nth-child(1),
+    .wnba-me-controls>.wnba-me-field:nth-child(2),
+    .wnba-me-controls>.wnba-me-field:nth-child(3){grid-column:auto!important;grid-row:auto!important;}
   }
   #props-board .pb-section-label{
     margin:0 0 12px;
