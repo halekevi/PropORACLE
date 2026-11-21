@@ -82,13 +82,15 @@
     return num(r.games_played) || num(r.l10_games_played) || num(r.distribution_n) || num(r.l5_games_played);
   }
 
+  /** Play-side cover: OVER = L5−line, UNDER = line−L5. Positive = clearing the play. */
   function gapOf(r) {
-    const g = num(r.gap);
-    if (g != null) return g;
     const line = num(r.line);
     const l5 = num(r.l5_avg);
-    if (line != null && l5 != null) return line - l5;
-    return num(r.avg_vs_line);
+    if (line == null || l5 == null) return num(r.avg_vs_line);
+    const side = sideOf(r);
+    if (side === "UNDER") return line - l5;
+    if (side === "OVER") return l5 - line;
+    return l5 - line;
   }
 
   function propAllowed(prop, group) {
