@@ -2137,7 +2137,21 @@ body > nav.snav.glass-card {
         #props-board input[type="checkbox"]:focus-visible{
           outline:2px solid rgba(212,175,55,.45);outline-offset:2px;
         }
-        #props-board .pb-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px;}
+        #props-board .pb-actions{
+          display:flex!important;flex-direction:column!important;gap:8px!important;margin:0 0 10px;
+        }
+        #props-board .pb-actions-row{
+          display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+          gap:8px!important;width:100%;
+        }
+        #props-board .pb-actions-row .hero-btn,
+        #props-board .pb-actions-row button{
+          width:100%!important;max-width:100%!important;min-width:0!important;
+          box-sizing:border-box;justify-content:center;text-align:center;
+          padding-left:8px!important;padding-right:8px!important;font-size:10px!important;
+          white-space:normal!important;line-height:1.2!important;
+        }
+        #props-board .pb-actions #pb-sel-count{margin:0;}
         #props-board .pb-actions button:disabled{opacity:.4;cursor:not-allowed;}
         #props-board .pb-action-msg{font-size:12px;opacity:.8;margin:0 0 8px;min-height:1.2em;}
         #props-board .pb-action-msg.ok{color:#9fd8a7;}
@@ -2223,10 +2237,14 @@ body > nav.snav.glass-card {
         </div>
       </div>
       <div class="pb-actions">
-        <button type="button" class="hero-btn hero-btn-gold" id="pb-open-pp" disabled>Open slip in PrizePicks</button>
-        <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-add-slip" disabled>Add selected to My slip</button>
-        <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-copy-pp" disabled>Copy legs</button>
-        <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-open-pp-board">Empty PP board</button>
+        <div class="pb-actions-row">
+          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-add-slip" disabled>Add selected to My slip</button>
+          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-open-pp-board">Empty PP board</button>
+        </div>
+        <div class="pb-actions-row">
+          <button type="button" class="hero-btn hero-btn-gold" id="pb-open-pp" disabled>Open slip in PrizePicks</button>
+          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-copy-pp" disabled>Copy legs</button>
+        </div>
         <span class="pb-meta" id="pb-sel-count"></span>
       </div>
       <p class="pb-note">Select up to 6 legs → Open slip in PrizePicks opens the app/site with those picks already on the slip.</p>
