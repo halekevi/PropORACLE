@@ -212,13 +212,7 @@
   border: 1px solid rgba(248, 113, 113, 0.3);
 }
 .me-slice-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-  width: 100%;
-  grid-column: 1 / -1;
+  display: none !important;
 }
 .me-slice-label {
   font-size: 10px;
@@ -300,9 +294,7 @@
 }
 .me-table-wrap,
 .wnba-me-table-wrap {
-  overflow-x: auto;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: none !important;
 }
 .me-table,
 .wnba-me-table {
