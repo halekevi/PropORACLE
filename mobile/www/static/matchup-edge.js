@@ -275,10 +275,28 @@
     return ["/" + rel, "/" + name];
   }
 
+  /** When Matchup Edge collapses, hide that sport's slate prop list too. */
+  function syncSlateCollapseWithMatchup(panel) {
+    if (!panel) return;
+    const sp = panel.closest(".slate-expand");
+    if (!sp) return;
+    sp.classList.toggle("me-slate-collapsed", !panel.open);
+  }
+
+  function bindSlateCollapseSync(panel) {
+    if (!panel || panel.dataset.meCollapseBound) return;
+    panel.dataset.meCollapseBound = "1";
+    panel.addEventListener("toggle", () => syncSlateCollapseWithMatchup(panel));
+    syncSlateCollapseWithMatchup(panel);
+  }
+
   function ensurePanel(sport) {
     const id = panelId(sport);
     let panel = document.getElementById(id);
-    if (panel) return panel;
+    if (panel) {
+      bindSlateCollapseSync(panel);
+      return panel;
+    }
     const sp = document.getElementById("sp-" + sport);
     if (!sp) return null;
 
@@ -354,6 +372,7 @@
     if (toolbar) sp.insertBefore(panel, toolbar);
     else sp.prepend(panel);
     bindEvents(sport);
+    bindSlateCollapseSync(panel);
     return panel;
   }
 
@@ -385,6 +404,7 @@
         btn.addEventListener("click", () => setLeaderView(sport, btn.dataset.slice || "top"));
       });
     }
+    bindSlateCollapseSync(panel);
   }
 
   async function loadData(sport) {
