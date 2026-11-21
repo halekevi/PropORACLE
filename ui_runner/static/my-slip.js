@@ -9,7 +9,7 @@
       const parsed = raw ? JSON.parse(raw) : null;
       if (parsed && Array.isArray(parsed.legs)) return parsed;
     } catch (_e) {}
-    return { legs: [], product: "Power", stake: "", n_correct: {}, min: false };
+    return { legs: [], product: "Power", stake: "", n_correct: {}, min: false, dismissed: false };
   }
   function save(s) {
     try {
@@ -77,9 +77,10 @@
     const s = state();
     const dock = document.getElementById("my-slip-dock");
     if (!dock) return;
-    dock.classList.toggle("is-open", s.legs.length > 0);
+    const show = s.legs.length > 0 && !s.dismissed;
+    dock.classList.toggle("is-open", show);
     dock.classList.toggle("is-min", !!s.min);
-    document.body.classList.toggle("my-slip-padded", s.legs.length > 0);
+    document.body.classList.toggle("my-slip-padded", show);
     const count = document.getElementById("my-slip-count");
     if (count) count.textContent = s.legs.length + " / " + MAX;
     const list = document.getElementById("my-slip-legs");
@@ -188,6 +189,7 @@
     }
     s.legs.push(leg);
     s.min = false;
+    s.dismissed = false;
     save(s);
     openDock();
     render();
@@ -197,9 +199,22 @@
   function openDock() {
     const s = state();
     s.min = false;
+    s.dismissed = false;
     save(s);
     const dock = document.getElementById("my-slip-dock");
     if (dock) dock.classList.add("is-open");
+  }
+
+  function closeDock(ev) {
+    if (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+    }
+    const s = state();
+    s.dismissed = true;
+    s.min = false;
+    save(s);
+    render();
   }
 
   function hint() {
@@ -307,9 +322,12 @@
     const dock = document.getElementById("my-slip-dock");
     if (!dock) return;
     document.addEventListener("click", onClick, true);
+    const closeBtn = document.getElementById("my-slip-close");
+    if (closeBtn) closeBtn.addEventListener("click", closeDock);
     const hd = document.getElementById("my-slip-hd");
     if (hd) {
-      hd.addEventListener("click", function () {
+      hd.addEventListener("click", function (ev) {
+        if (ev.target.closest("#my-slip-close")) return;
         const s = state();
         s.min = !s.min;
         save(s);

@@ -36,7 +36,7 @@ async function fetch_smart(localPath) {
 <link rel="stylesheet" href="static/global-scrollbar.css?v=20260531scroll"/>
 <link rel="stylesheet" href="static/light-theme-dim-overrides.css?v=20260419perf2"/>
 <link rel="stylesheet" href="static/proporacle-mobile-schema.css?v=20260617pillgrid"/>
-<link rel="stylesheet" href="static/my-slip.css?v=20260828myslip1"/>
+<link rel="stylesheet" href="static/my-slip.css?v=20261121myslip2"/>
 <style>
 :root{
   /* Hybrid liquid-glass palette */
@@ -2637,13 +2637,12 @@ body > nav.snav.glass-card {
           background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:inherit;
           border-radius:8px;padding:7px 10px;font:inherit;font-size:13px;
         }
-        #props-board .pb-tabs{display:flex;gap:6px;margin:0 0 10px;}
+        #props-board .pb-tabs{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap;align-items:center;}
         #props-board .pb-tab{
           border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
           border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px;
         }
         #props-board .pb-tab.active{background:rgba(240,165,0,.18);border-color:rgba(240,165,0,.45);}
-        #props-board .pb-side-row{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap;align-items:center;}
         #props-board .pb-side{
           border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
           border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px;color:inherit;
@@ -2682,12 +2681,10 @@ body > nav.snav.glass-card {
         <button type="button" id="pb-export">Export all props</button>
         <span class="pb-meta" id="pb-count"></span>
       </div>
-      <div class="pb-tabs" role="tablist" aria-label="Pick type">
+      <div class="pb-tabs" role="tablist" aria-label="Pick type and side">
         <button type="button" class="pb-tab active" data-tab="Goblin">Goblin</button>
         <button type="button" class="pb-tab" data-tab="Demon">Demon</button>
         <button type="button" class="pb-tab" data-tab="Standard">Standard</button>
-      </div>
-      <div class="pb-side-row" role="group" aria-label="Side filter">
         <button type="button" class="pb-side" data-side="OVER">▲ OVER</button>
         <button type="button" class="pb-side" data-side="UNDER">▼ UNDER</button>
       </div>
@@ -3066,6 +3063,7 @@ body > nav.snav.glass-card {
   <div class="my-slip-dock-hd" id="my-slip-hd">
     <h2>My slip</h2>
     <span class="my-slip-count" id="my-slip-count">0 / 6</span>
+    <button type="button" class="my-slip-close" id="my-slip-close" aria-label="Close My slip" title="Close">×</button>
   </div>
   <div class="my-slip-body">
     <p class="my-slip-note">Tap + on a slate row. Copy into PrizePicks yourself — this only tracks P&amp;L. Use N-correct / To Win, never 1st place.</p>
@@ -7143,7 +7141,7 @@ function sortSlateDynamic(sport, key) {
 })();
 </script>
 
-<script src="static/my-slip.js?v=20260828myslip1"></script>
+<script src="static/my-slip.js?v=20261121myslip2"></script>
 
 </body>
 </html>

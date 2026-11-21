@@ -66,6 +66,22 @@
   font-variant-numeric: tabular-nums;
   color: var(--muted, rgba(255, 255, 255, 0.7));
 }
+.my-slip-close {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted, rgba(255, 255, 255, 0.7));
+  font: 700 18px/1 Inter, system-ui, sans-serif;
+  cursor: pointer;
+  padding: 0;
+}
+.my-slip-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text, rgba(255, 255, 255, 0.92));
+}
 .my-slip-body { padding: 0 12px 12px; }
 .my-slip-dock.is-min .my-slip-body { display: none; }
 .my-slip-legs { list-style: none; margin: 0 0 8px; padding: 0; }

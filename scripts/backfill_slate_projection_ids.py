@@ -59,11 +59,12 @@ def _load_step8_map(sport: str) -> dict[str, dict]:
     elif sport in ("cbb", "wcbb"):
         sports_dir = ROOT / "Sports" / "CBB"
 
+    # Prefer live Sports/ boards (esp. NBA ALL) over stale dated outputs.
     patterns = [
+        "step8_all_direction_clean.xlsx" if sport == "nba" else "",
         f"step8_{sport}_direction_clean.xlsx",
         f"step8_{sport}_direction_clean.csv",
         f"step8_{sport}_direction.csv",
-        "step8_all_direction_clean.xlsx" if sport == "nba" else "",
     ]
     for name in patterns:
         if not name:
@@ -77,13 +78,15 @@ def _load_step8_map(sport: str) -> dict[str, dict]:
                 candidates.append(hit)
 
     out_map: dict[str, dict] = {}
+    # Merge every readable board so an old outputs/*/step8_* CSV cannot hide
+    # today's Sports/.../step8_all_direction_clean.xlsx Goblin IDs.
     for path in candidates:
         try:
             if path.suffix.lower() == ".xlsx":
                 sheet = "ALL" if "all_direction" in path.name.lower() else 0
                 df = pd.read_excel(path, sheet_name=sheet)
             else:
-                df = pd.read_csv(path)
+                df = pd.read_csv(path, low_memory=False)
         except Exception:
             continue
         id_col = next((c for c in ("pp_projection_id", "projection_id") if c in df.columns), None)
@@ -114,47 +117,57 @@ def _load_step8_map(sport: str) -> dict[str, dict]:
             pick = r.get(pick_c) if pick_c else ""
             direction = r.get(dir_c) if dir_c else ""
             payload = {"projection_id": pid_s, "pp_projection_id": pid_s}
-            # Prefer exact pick_type match; also index by player|prop|line for o/u deep links.
-            out_map[_row_key(player, prop, line, pick, direction)] = payload
+            exact = _row_key(player, prop, line, pick, direction)
+            # First candidate wins (Sports ALL / newest clean boards listed first).
+            out_map.setdefault(exact, payload)
             loose = _row_key(player, prop, line, "", "")
             out_map.setdefault(loose, payload)
-        if out_map:
-            break
     return out_map
+
+
+def _fill_rows(sport: str, rows: list, stats: dict, id_map_cache: dict) -> None:
+    if sport not in id_map_cache:
+        id_map_cache[sport] = _load_step8_map(sport)
+    id_map = id_map_cache[sport]
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        stats["rows"] += 1
+        if r.get("pp_projection_id") or r.get("projection_id"):
+            stats["already"] += 1
+            continue
+        player = r.get("player")
+        prop = r.get("prop") or r.get("prop_type")
+        line = r.get("line")
+        pick = r.get("pick_type")
+        direction = r.get("dir")
+        hit = (
+            id_map.get(_row_key(player, prop, line, pick, direction))
+            or id_map.get(_row_key(player, prop, line, pick, ""))
+            or id_map.get(_row_key(player, prop, line, "", ""))
+        )
+        if not hit:
+            stats["miss"] += 1
+            continue
+        r["projection_id"] = hit["projection_id"]
+        r["pp_projection_id"] = hit["pp_projection_id"]
+        stats["filled"] += 1
 
 
 def backfill(path: Path, *, write: bool) -> dict:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    sports = payload.get("sports") or {}
-    stats = {"sports": 0, "rows": 0, "filled": 0, "already": 0, "miss": 0}
-    for sport, rows in list(sports.items()):
-        if not isinstance(rows, list):
-            continue
+    stats = {"sports": 0, "rows": 0, "filled": 0, "already": 0, "miss": 0, "path": str(path)}
+    id_map_cache: dict[str, dict] = {}
+    if isinstance(payload, dict) and isinstance(payload.get("sports"), dict):
+        for sport, rows in list(payload["sports"].items()):
+            if not isinstance(rows, list):
+                continue
+            stats["sports"] += 1
+            _fill_rows(str(sport), rows, stats, id_map_cache)
+    elif isinstance(payload, dict) and isinstance(payload.get("rows"), list):
+        sport = str(payload.get("sport") or path.stem.replace("slate_sport_", "") or "")
         stats["sports"] += 1
-        id_map = _load_step8_map(str(sport))
-        for r in rows:
-            if not isinstance(r, dict):
-                continue
-            stats["rows"] += 1
-            if r.get("pp_projection_id") or r.get("projection_id"):
-                stats["already"] += 1
-                continue
-            player = r.get("player")
-            prop = r.get("prop") or r.get("prop_type")
-            line = r.get("line")
-            pick = r.get("pick_type")
-            direction = r.get("dir")
-            hit = (
-                id_map.get(_row_key(player, prop, line, pick, direction))
-                or id_map.get(_row_key(player, prop, line, pick, ""))
-                or id_map.get(_row_key(player, prop, line, "", ""))
-            )
-            if not hit:
-                stats["miss"] += 1
-                continue
-            r["projection_id"] = hit["projection_id"]
-            r["pp_projection_id"] = hit["pp_projection_id"]
-            stats["filled"] += 1
+        _fill_rows(sport, payload["rows"], stats, id_map_cache)
     if write:
         path.write_text(json.dumps(payload, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     return stats
