@@ -2137,21 +2137,40 @@ body > nav.snav.glass-card {
           border-color:rgba(212,175,55,.28)!important;color:var(--accent)!important;
           background:rgba(255,255,255,.05)!important;
         }
-        #props-board .pb-tabs{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap;align-items:center;}
+        /* Goblin|Demon, Standard full, OVER|UNDER; groups stack below */
+        #props-board .pb-tabs{
+          display:grid!important;
+          grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+          gap:8px!important;
+          margin:0 0 10px;
+          align-items:stretch;
+        }
+        #props-board .pb-tab[data-tab="Goblin"]{grid-column:1;grid-row:1;}
+        #props-board .pb-tab[data-tab="Demon"]{grid-column:2;grid-row:1;}
+        #props-board .pb-tab[data-tab="Standard"]{grid-column:1/-1;grid-row:2;}
+        #props-board .pb-side[data-side="OVER"]{grid-column:1;grid-row:3;}
+        #props-board .pb-side[data-side="UNDER"]{grid-column:2;grid-row:3;}
         #props-board .pb-tab,
         #props-board .pb-side,
         #props-board .pb-group{
           font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;
-          padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
+          padding:10px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
           background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer;transition:all .15s;
           backdrop-filter:blur(8px) saturate(180%);
+          width:100%;box-sizing:border-box;justify-content:center;text-align:center;
+          display:inline-flex;align-items:center;min-width:0;
         }
         #props-board .pb-tab.active,
         #props-board .pb-side.active,
         #props-board .pb-group.active{
           background:rgba(212,175,55,.1);border-color:rgba(212,175,55,.3);color:var(--accent);
         }
-        #props-board .pb-groups{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;}
+        #props-board .pb-groups{
+          display:grid!important;
+          grid-template-columns:minmax(0,1fr)!important;
+          gap:8px!important;
+          margin:0 0 10px;
+        }
         #props-board .pb-filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;align-items:center;}
         #props-board .pb-filters label{
           display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;
