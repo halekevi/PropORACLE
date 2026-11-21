@@ -2562,6 +2562,13 @@ body > nav.snav.glass-card {
           border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px;
         }
         #props-board .pb-tab.active{background:rgba(240,165,0,.18);border-color:rgba(240,165,0,.45);}
+        #props-board .pb-side-row{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap;align-items:center;}
+        #props-board .pb-side{
+          border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+          border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px;color:inherit;
+        }
+        #props-board .pb-side.active{background:rgba(125,255,203,.12);border-color:rgba(125,255,203,.4);}
+        #props-board .pb-side[data-side="UNDER"].active{background:rgba(255,192,107,.12);border-color:rgba(255,192,107,.4);}
         #props-board .pb-groups{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;}
         #props-board .pb-group{
           border:1px solid rgba(255,255,255,.12);background:transparent;border-radius:8px;
@@ -2569,13 +2576,21 @@ body > nav.snav.glass-card {
         }
         #props-board .pb-group.active{border-color:rgba(240,165,0,.5);background:rgba(240,165,0,.12);}
         #props-board .pb-filters{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 10px;font-size:12px;}
+        #props-board .pb-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px;}
+        #props-board .pb-actions button:disabled{opacity:.4;cursor:not-allowed;}
+        #props-board .pb-action-msg{font-size:12px;opacity:.8;margin:0 0 8px;min-height:1.2em;}
+        #props-board .pb-action-msg.ok{color:#9fd8a7;}
+        #props-board .pb-action-msg.err{color:#f0a070;}
         #props-board .pb-meta{font-size:12px;opacity:.75;margin:0 0 8px;}
+        #props-board .pb-note{font-size:11px;opacity:.55;margin:0 0 10px;max-width:70ch;line-height:1.4;}
         #props-board .pb-table-wrap{overflow:auto;max-height:70vh;border:1px solid rgba(255,255,255,.08);border-radius:10px;}
-        #props-board table.pb-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:980px;}
+        #props-board table.pb-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:1020px;}
         #props-board table.pb-table th,#props-board table.pb-table td{padding:7px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);white-space:nowrap;}
         #props-board table.pb-table th{position:sticky;top:0;background:#141820;z-index:1;font-weight:600;cursor:pointer;user-select:none;}
         #props-board table.pb-table th.pb-sort-active{color:#f0a500;}
+        #props-board table.pb-table th.pb-check-col,#props-board table.pb-table td.pb-check-cell{width:28px;cursor:default;}
         #props-board table.pb-table tr.pb-flag-thin{background:rgba(255,180,60,.06);}
+        #props-board table.pb-table tr.pb-selected{background:rgba(240,165,0,.08);}
         #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:11px;}
         #props-board .pb-na{opacity:.45;font-style:italic;}
       </style>
@@ -2591,6 +2606,10 @@ body > nav.snav.glass-card {
         <button type="button" class="pb-tab" data-tab="Demon">Demon</button>
         <button type="button" class="pb-tab" data-tab="Standard">Standard</button>
       </div>
+      <div class="pb-side-row" role="group" aria-label="Side filter">
+        <button type="button" class="pb-side" data-side="OVER">▲ OVER</button>
+        <button type="button" class="pb-side" data-side="UNDER">▼ UNDER</button>
+      </div>
       <div class="pb-groups" id="pb-groups"></div>
       <div class="pb-filters">
         <label><input type="checkbox" id="pb-l5-5" checked> L5 = 5/5</label>
@@ -2598,10 +2617,19 @@ body > nav.snav.glass-card {
         <label><input type="checkbox" id="pb-flag-thin" checked> Flag &lt;15 games</label>
         <label><input type="checkbox" id="pb-flag-multi" checked> Flag multi-line players</label>
       </div>
+      <div class="pb-actions">
+        <button type="button" id="pb-add-slip" disabled>Add selected to My slip</button>
+        <button type="button" id="pb-copy-pp" disabled>Copy for PrizePicks</button>
+        <button type="button" id="pb-open-pp">Open PrizePicks</button>
+        <span class="pb-meta" id="pb-sel-count"></span>
+      </div>
+      <p class="pb-note">PrizePicks has no public link that pre-fills a slip. Select legs here → copy or send to My slip, then enter them on the PP board yourself.</p>
+      <p class="pb-action-msg" id="pb-action-msg" aria-live="polite"></p>
       <div class="pb-table-wrap">
         <table class="pb-table" id="pb-table">
           <thead>
             <tr>
+              <th class="pb-check-col"><input type="checkbox" id="pb-check-all" title="Select all visible" aria-label="Select all visible"></th>
               <th data-sort="side">Side</th>
               <th data-sort="player">Player</th>
               <th data-sort="team">Team</th>
@@ -6755,7 +6783,7 @@ function sortSlateDynamic(sport, key) {
 })();
 </script>
 
-<script src="/static/props-board.js?v=20261120pbgap"></script>
+<script src="/static/props-board.js?v=20261121pbside"></script>
 
 <script>
 (function initHomeDeepLink() {

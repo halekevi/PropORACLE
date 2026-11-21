@@ -1,14 +1,18 @@
 /* Props Board — config/props_board.json + /api/slate-sport; missing cells = n/a */
 (function initPropsBoard() {
   const NA = "n/a";
+  const PP_BOARD = "https://app.prizepicks.com/board";
   const state = {
     cfg: null,
     sport: "nba",
     tab: "Goblin",
+    side: "", // "" | OVER | UNDER
     groupIdx: 0,
     rows: [],
     sortKey: "gap",
     sortDir: "desc",
+    selected: new Set(),
+    rowByKey: {},
   };
 
   const SORT_LABELS = {
@@ -50,6 +54,17 @@
 
   function pickTypeOf(r) {
     return String(r.pick_type || "").trim().toLowerCase();
+  }
+
+  function rowKey(r) {
+    return [
+      String(r.player || "").trim().toLowerCase(),
+      String(r.prop || r.prop_type || "").trim().toLowerCase(),
+      String(r.line ?? ""),
+      sideOf(r),
+      pickTypeOf(r),
+      String(r.sport || state.sport || "").toLowerCase(),
+    ].join("|");
   }
 
   function hitsFrac(r, window) {
@@ -195,6 +210,13 @@
     });
   }
 
+  function syncSideButtons() {
+    document.querySelectorAll("#props-board .pb-side").forEach((btn) => {
+      const side = String(btn.getAttribute("data-side") || "").toUpperCase();
+      btn.classList.toggle("active", state.side === side);
+    });
+  }
+
   function updateSortHeaders() {
     document.querySelectorAll("#props-board th[data-sort]").forEach((th) => {
       const key = th.getAttribute("data-sort");
@@ -247,6 +269,7 @@
     for (const r of state.rows) {
       if (pickTypeOf(r) !== tab) continue;
       if (!propAllowed(r.prop || r.prop_type, group)) continue;
+      if (state.side && sideOf(r) !== state.side) continue;
       const l5 = l5Hits(r);
       if (want5 || want4) {
         let ok = false;
@@ -254,7 +277,8 @@
         if (want4 && l5 != null && Math.round(l5) === 4) ok = true;
         if (!ok) continue;
       }
-      out.push(r);
+      const keyed = { ...r, sport: r.sport || state.sport };
+      out.push(keyed);
     }
     const multi = new Set();
     const byPlayer = {};
@@ -268,6 +292,100 @@
     return { rows: out, multi };
   }
 
+  function selectedRows() {
+    const out = [];
+    for (const k of state.selected) {
+      const r = state.rowByKey[k];
+      if (r) out.push(r);
+    }
+    return out;
+  }
+
+  function updateActionBar(visibleRows) {
+    const n = state.selected.size;
+    const countEl = document.getElementById("pb-sel-count");
+    if (countEl) countEl.textContent = n ? `${n} selected` : "";
+    const addBtn = document.getElementById("pb-add-slip");
+    const copyBtn = document.getElementById("pb-copy-pp");
+    if (addBtn) addBtn.disabled = n === 0;
+    if (copyBtn) copyBtn.disabled = n === 0;
+    const master = document.getElementById("pb-check-all");
+    if (master) {
+      const keys = visibleRows.map(rowKey);
+      const allOn = keys.length > 0 && keys.every((k) => state.selected.has(k));
+      const someOn = keys.some((k) => state.selected.has(k));
+      master.checked = allOn;
+      master.indeterminate = someOn && !allOn;
+    }
+  }
+
+  function formatLegLine(r) {
+    const side = sideOf(r);
+    const line = r.line == null ? "" : r.line;
+    const prop = r.prop || r.prop_type || "";
+    const pick = r.pick_type || state.tab || "";
+    return `${r.player} · ${side} ${line} ${prop}${pick ? " · " + pick : ""}`;
+  }
+
+  function setActionMsg(msg, ok) {
+    const el = document.getElementById("pb-action-msg");
+    if (!el) return;
+    el.textContent = msg || "";
+    el.classList.toggle("ok", !!ok);
+    el.classList.toggle("err", msg && !ok);
+  }
+
+  function addSelectedToSlip() {
+    const rows = selectedRows();
+    if (!rows.length) {
+      setActionMsg("Select at least one prop first.", false);
+      return;
+    }
+    if (!window.MySlip || typeof MySlip.addPick !== "function") {
+      setActionMsg("My slip is not loaded on this page.", false);
+      return;
+    }
+    for (const r of rows) {
+      MySlip.addPick({
+        sport: r.sport || state.sport,
+        player: r.player,
+        prop: r.prop || r.prop_type,
+        prop_type: r.prop || r.prop_type,
+        dir: sideOf(r),
+        direction: sideOf(r),
+        line: r.line,
+        pick: r.pick_type || state.tab,
+        pick_type: r.pick_type || state.tab,
+        standard_line: r.standard_line,
+      });
+    }
+    setActionMsg(
+      `Sent ${rows.length} leg${rows.length === 1 ? "" : "s"} to My slip. Enter them on PrizePicks yourself — PP has no public auto-fill link.`,
+      true
+    );
+    if (typeof MySlip.render === "function") MySlip.render();
+  }
+
+  async function copySelectedForPp() {
+    const rows = selectedRows();
+    if (!rows.length) {
+      setActionMsg("Select at least one prop first.", false);
+      return;
+    }
+    const text = rows.map(formatLegLine).join("\n");
+    try {
+      await navigator.clipboard.writeText(text);
+      setActionMsg(`Copied ${rows.length} leg${rows.length === 1 ? "" : "s"} — paste into notes while you build on PrizePicks.`, true);
+    } catch (_e) {
+      setActionMsg("Clipboard blocked — use Add to My slip instead.", false);
+    }
+  }
+
+  function openPrizePicks() {
+    window.open(PP_BOARD, "_blank", "noopener,noreferrer");
+    setActionMsg("Opened PrizePicks board. Build the slip there from your selected / copied legs.", true);
+  }
+
   function render() {
     const tbody = document.getElementById("pb-tbody");
     const countEl = document.getElementById("pb-count");
@@ -275,22 +393,32 @@
     const flagThin = document.getElementById("pb-flag-thin")?.checked;
     const flagMulti = document.getElementById("pb-flag-multi")?.checked;
     const { rows, multi } = filtered();
+    state.rowByKey = {};
+    for (const r of rows) state.rowByKey[rowKey(r)] = r;
+
+    const sideLbl = state.side ? ` · ${state.side}` : "";
     if (countEl) {
       countEl.textContent =
-        `${rows.length} rows · ${state.tab} · ${state.sport.toUpperCase()}` +
+        `${rows.length} rows · ${state.tab}${sideLbl} · ${state.sport.toUpperCase()}` +
         ` · sort ${SORT_LABELS[state.sortKey] || state.sortKey} ${state.sortDir === "asc" ? "↑" : "↓"}`;
     }
+    syncSideButtons();
     updateSortHeaders();
     tbody.innerHTML = rows
       .map((r) => {
+        const key = rowKey(r);
         const gp = gamesPlayed(r);
         const thin = flagThin && gp != null && gp < 15;
         const isMulti = flagMulti && multi.has(String(r.player || ""));
         const l10 = hitsFrac(r, "l10");
         const l20 = hitsFrac(r, "l20");
-        const cls = [thin ? "pb-flag-thin" : "", isMulti ? "pb-flag-multi" : ""].filter(Boolean).join(" ");
+        const cls = [thin ? "pb-flag-thin" : "", isMulti ? "pb-flag-multi" : "", state.selected.has(key) ? "pb-selected" : ""]
+          .filter(Boolean)
+          .join(" ");
         const cell = (txt, missing) => (missing ? `<span class="pb-na">${NA}</span>` : txt);
-        return `<tr class="${cls}">
+        const checked = state.selected.has(key) ? " checked" : "";
+        return `<tr class="${cls}" data-pb-key="${key.replace(/"/g, "&quot;")}">
+        <td class="pb-check-cell"><input type="checkbox" class="pb-row-check" data-key="${key.replace(/"/g, "&quot;")}"${checked} aria-label="Select ${String(r.player || "prop").replace(/"/g, "&quot;")}"></td>
         <td>${sideOf(r)}</td>
         <td class="pb-player">${r.player || NA}</td>
         <td>${r.team || NA}</td>
@@ -305,6 +433,19 @@
       </tr>`;
       })
       .join("");
+
+    tbody.querySelectorAll(".pb-row-check").forEach((box) => {
+      box.addEventListener("change", () => {
+        const k = box.getAttribute("data-key") || "";
+        if (!k) return;
+        if (box.checked) state.selected.add(k);
+        else state.selected.delete(k);
+        const tr = box.closest("tr");
+        if (tr) tr.classList.toggle("pb-selected", box.checked);
+        updateActionBar(rows);
+      });
+    });
+    updateActionBar(rows);
   }
 
   function exportCsv() {
@@ -371,9 +512,11 @@
     fillSportSelect();
     fillGroups();
     bindSortHeaders();
+    syncSideButtons();
     document.getElementById("pb-sport")?.addEventListener("change", async (ev) => {
       state.sport = String(ev.target.value || "").toLowerCase();
       state.groupIdx = 0;
+      state.selected.clear();
       fillGroups();
       await loadRows();
       render();
@@ -383,6 +526,14 @@
         document.querySelectorAll("#props-board .pb-tab").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         state.tab = btn.getAttribute("data-tab") || "Goblin";
+        state.selected.clear();
+        render();
+      });
+    });
+    document.querySelectorAll("#props-board .pb-side").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const side = String(btn.getAttribute("data-side") || "").toUpperCase();
+        state.side = state.side === side ? "" : side;
         render();
       });
     });
@@ -390,6 +541,21 @@
       document.getElementById(id)?.addEventListener("change", render);
     });
     document.getElementById("pb-export")?.addEventListener("click", exportCsv);
+    document.getElementById("pb-add-slip")?.addEventListener("click", addSelectedToSlip);
+    document.getElementById("pb-copy-pp")?.addEventListener("click", () => {
+      copySelectedForPp();
+    });
+    document.getElementById("pb-open-pp")?.addEventListener("click", openPrizePicks);
+    document.getElementById("pb-check-all")?.addEventListener("change", (ev) => {
+      const on = !!ev.target.checked;
+      const { rows } = filtered();
+      for (const r of rows) {
+        const k = rowKey(r);
+        if (on) state.selected.add(k);
+        else state.selected.delete(k);
+      }
+      render();
+    });
     await loadRows();
     render();
   }
