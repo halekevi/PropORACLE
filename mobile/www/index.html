@@ -2212,22 +2212,50 @@ body > nav.snav.glass-card {
         #props-board .pb-action-msg.err{color:#f0a070;}
         #props-board .pb-meta{font-size:12px;opacity:.75;margin:0 0 8px;}
         #props-board .pb-note{font-size:11px;opacity:.55;margin:0 0 10px;max-width:70ch;line-height:1.4;}
-        #props-board .pb-table-wrap{overflow:auto;max-height:70vh;border:1px solid rgba(255,255,255,.08);border-radius:10px;}
-        #props-board table.pb-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:980px;}
-        #props-board table.pb-table th,#props-board table.pb-table td{padding:7px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);white-space:nowrap;}
-        #props-board table.pb-table th{position:sticky;top:0;background:#141820;z-index:1;font-weight:600;cursor:pointer;user-select:none;}
+        /* Dense wrap table — fit more rows/cols in the viewport */
+        #props-board .pb-table-wrap{overflow:auto;max-height:min(78vh,860px);border:1px solid rgba(255,255,255,.08);border-radius:10px;}
+        #props-board table.pb-table{
+          width:100%;border-collapse:collapse;table-layout:fixed;
+          font-size:11px;line-height:1.2;min-width:0;
+        }
+        #props-board table.pb-table th,#props-board table.pb-table td{
+          padding:3px 4px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);
+          white-space:normal;overflow-wrap:anywhere;word-break:break-word;vertical-align:top;
+        }
+        #props-board table.pb-table th{
+          position:sticky;top:0;background:#141820;z-index:1;font-weight:600;cursor:pointer;user-select:none;
+          font-size:9px;letter-spacing:.04em;line-height:1.15;padding:4px 3px;text-transform:uppercase;
+        }
         #props-board table.pb-table th.pb-sort-active{color:#f0a500;}
-        #props-board table.pb-table th.pb-check-col,#props-board table.pb-table td.pb-check-cell{width:28px;cursor:default;}
+        #props-board table.pb-table th.pb-check-col,#props-board table.pb-table td.pb-check-cell{width:22px;padding:3px 2px;cursor:default;}
+        #props-board table.pb-table th:nth-child(2),#props-board table.pb-table td:nth-child(2){width:38px;}
+        #props-board table.pb-table th:nth-child(3),#props-board table.pb-table td:nth-child(3){width:16%;}
+        #props-board table.pb-table th:nth-child(4),#props-board table.pb-table td:nth-child(4){width:34px;}
+        #props-board table.pb-table th:nth-child(5),#props-board table.pb-table td:nth-child(5){width:15%;}
+        #props-board table.pb-table th:nth-child(6),#props-board table.pb-table td:nth-child(6),
+        #props-board table.pb-table th:nth-child(7),#props-board table.pb-table td:nth-child(7),
+        #props-board table.pb-table th:nth-child(8),#props-board table.pb-table td:nth-child(8),
+        #props-board table.pb-table th:nth-child(9),#props-board table.pb-table td:nth-child(9){width:40px;}
+        #props-board table.pb-table th:nth-child(10),#props-board table.pb-table td:nth-child(10),
+        #props-board table.pb-table th:nth-child(11),#props-board table.pb-table td:nth-child(11){width:36px;}
+        #props-board table.pb-table th:nth-child(12),#props-board table.pb-table td:nth-child(12){width:32px;}
         #props-board table.pb-table tr.pb-flag-thin{background:rgba(255,180,60,.06);}
         #props-board table.pb-table tr.pb-selected{background:rgba(240,165,0,.08);}
-        #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:11px;}
+        #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:9px;}
         #props-board .pb-na{opacity:.45;font-style:italic;}
         #props-board .pb-player-link{
           -webkit-appearance:none;appearance:none;background:none;border:0;padding:0;margin:0;
           font:inherit;color:var(--accent);cursor:pointer;text-align:left;
           text-decoration:underline;text-decoration-color:rgba(212,175,55,.35);text-underline-offset:2px;
+          white-space:normal;line-height:1.2;display:inline;
         }
         #props-board .pb-player-link:hover{color:#f0d078;text-decoration-color:rgba(240,208,120,.7);}
+        @media(max-width:640px){
+          #props-board table.pb-table{font-size:10px;}
+          #props-board table.pb-table th{font-size:8px;padding:3px 2px;}
+          #props-board table.pb-table th,#props-board table.pb-table td{padding:2px 3px;}
+          #props-board .pb-table-wrap{max-height:min(72vh,720px);}
+        }
       </style>
       <div class="pb-section-label">Props <span>Board</span></div>
       <div class="pb-toolbar">
