@@ -535,17 +535,17 @@
           : NA;
         return `<tr class="${cls}" data-pb-key="${key.replace(/"/g, "&quot;")}" data-pb-team="${teamAttr}" data-pb-prop="${propAttr}" data-pb-player="${playerName}">
         <td class="pb-check-cell"><input type="checkbox" class="pb-row-check" data-key="${key.replace(/"/g, "&quot;")}"${checked} aria-label="Select ${String(r.player || "prop").replace(/"/g, "&quot;")}"></td>
-        <td>${sideOf(r)}</td>
+        <td class="pb-side-cell">${sideOf(r)}</td>
         <td class="pb-player">${playerBtn}</td>
-        <td>${r.team || NA}</td>
-        <td>${r.prop || r.prop_type || NA}</td>
-        <td>${fmt2(r.line)}</td>
-        <td>${cell(fmt2(r.l5_avg), num(r.l5_avg) == null)}</td>
-        <td>${cell(fmt2(gapOf(r)), gapOf(r) == null)}</td>
-        <td>${cell(fmt2(r.sd), num(r.sd) == null)}</td>
-        <td>${l10 ? l10.text : cell(NA, true)}</td>
-        <td>${l20 ? l20.text : cell(NA, true)}</td>
-        <td>${gp != null ? fmt2(gp) : cell(NA, true)}</td>
+        <td class="pb-team">${r.team || NA}</td>
+        <td class="pb-prop">${r.prop || r.prop_type || NA}</td>
+        <td class="pb-num">${fmt2(r.line)}</td>
+        <td class="pb-num">${cell(fmt2(r.l5_avg), num(r.l5_avg) == null)}</td>
+        <td class="pb-num">${cell(fmt2(gapOf(r)), gapOf(r) == null)}</td>
+        <td class="pb-num">${cell(fmt2(r.sd), num(r.sd) == null)}</td>
+        <td class="pb-num">${l10 ? l10.text : cell(NA, true)}</td>
+        <td class="pb-num">${l20 ? l20.text : cell(NA, true)}</td>
+        <td class="pb-num">${gp != null ? fmt2(gp) : cell(NA, true)}</td>
       </tr>`;
       })
       .join("");

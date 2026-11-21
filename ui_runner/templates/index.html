@@ -2130,33 +2130,38 @@ body > nav.snav.glass-card {
         #props-board .pb-action-msg.err{color:#f0a070;}
         #props-board .pb-meta{font-size:12px;opacity:.75;margin:0 0 8px;}
         #props-board .pb-note{font-size:11px;opacity:.55;margin:0 0 10px;max-width:70ch;line-height:1.4;}
-        /* Dense wrap table — fit more rows/cols in the viewport */
-        #props-board .pb-table-wrap{overflow:auto;max-height:min(78vh,860px);border:1px solid rgba(255,255,255,.08);border-radius:10px;}
+        /* Dense table: wrap player/prop on words only — never 1-char columns */
+        #props-board .pb-table-wrap{overflow:auto;max-height:min(78vh,860px);border:1px solid rgba(255,255,255,.08);border-radius:10px;-webkit-overflow-scrolling:touch;}
         #props-board table.pb-table{
           width:100%;border-collapse:collapse;table-layout:fixed;
-          font-size:11px;line-height:1.2;min-width:0;
+          font-size:11px;line-height:1.25;min-width:640px;
         }
         #props-board table.pb-table th,#props-board table.pb-table td{
-          padding:3px 4px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);
-          white-space:normal;overflow-wrap:anywhere;word-break:break-word;vertical-align:top;
+          padding:4px 5px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);
+          white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;
         }
         #props-board table.pb-table th{
           position:sticky;top:0;background:#141820;z-index:1;font-weight:600;cursor:pointer;user-select:none;
-          font-size:9px;letter-spacing:.04em;line-height:1.15;padding:4px 3px;text-transform:uppercase;
+          font-size:9px;letter-spacing:.04em;line-height:1.15;padding:5px 4px;text-transform:uppercase;
         }
         #props-board table.pb-table th.pb-sort-active{color:#f0a500;}
-        #props-board table.pb-table th.pb-check-col,#props-board table.pb-table td.pb-check-cell{width:22px;padding:3px 2px;cursor:default;}
-        #props-board table.pb-table th:nth-child(2),#props-board table.pb-table td:nth-child(2){width:38px;} /* Side */
-        #props-board table.pb-table th:nth-child(3),#props-board table.pb-table td:nth-child(3){width:16%;} /* Player */
-        #props-board table.pb-table th:nth-child(4),#props-board table.pb-table td:nth-child(4){width:34px;} /* Team */
-        #props-board table.pb-table th:nth-child(5),#props-board table.pb-table td:nth-child(5){width:15%;} /* Prop */
-        #props-board table.pb-table th:nth-child(6),#props-board table.pb-table td:nth-child(6),
+        #props-board table.pb-table th.pb-check-col,#props-board table.pb-table td.pb-check-cell{width:24px;padding:4px 2px;cursor:default;}
+        #props-board table.pb-table th:nth-child(2),#props-board table.pb-table td.pb-side-cell{width:44px;}
+        #props-board table.pb-table th:nth-child(3),#props-board table.pb-table td.pb-player{width:22%;min-width:88px;}
+        #props-board table.pb-table th:nth-child(4),#props-board table.pb-table td.pb-team{width:40px;}
+        #props-board table.pb-table th:nth-child(5),#props-board table.pb-table td.pb-prop{width:24%;min-width:96px;}
+        #props-board table.pb-table th:nth-child(6),#props-board table.pb-table td.pb-num,
         #props-board table.pb-table th:nth-child(7),#props-board table.pb-table td:nth-child(7),
         #props-board table.pb-table th:nth-child(8),#props-board table.pb-table td:nth-child(8),
-        #props-board table.pb-table th:nth-child(9),#props-board table.pb-table td:nth-child(9){width:40px;} /* line/l5/gap/sd */
+        #props-board table.pb-table th:nth-child(9),#props-board table.pb-table td:nth-child(9){width:44px;}
         #props-board table.pb-table th:nth-child(10),#props-board table.pb-table td:nth-child(10),
-        #props-board table.pb-table th:nth-child(11),#props-board table.pb-table td:nth-child(11){width:36px;} /* L10/L20 */
-        #props-board table.pb-table th:nth-child(12),#props-board table.pb-table td:nth-child(12){width:32px;} /* GP */
+        #props-board table.pb-table th:nth-child(11),#props-board table.pb-table td:nth-child(11){width:40px;}
+        #props-board table.pb-table th:nth-child(12),#props-board table.pb-table td:nth-child(12){width:34px;}
+        #props-board table.pb-table td.pb-player,
+        #props-board table.pb-table td.pb-prop{
+          white-space:normal;overflow:visible;text-overflow:clip;
+          overflow-wrap:break-word;word-break:normal;hyphens:none;vertical-align:top;
+        }
         #props-board table.pb-table tr.pb-flag-thin{background:rgba(255,180,60,.06);}
         #props-board table.pb-table tr.pb-selected{background:rgba(240,165,0,.08);}
         #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:9px;}
@@ -2165,13 +2170,15 @@ body > nav.snav.glass-card {
           -webkit-appearance:none;appearance:none;background:none;border:0;padding:0;margin:0;
           font:inherit;color:var(--accent);cursor:pointer;text-align:left;
           text-decoration:underline;text-decoration-color:rgba(212,175,55,.35);text-underline-offset:2px;
-          white-space:normal;line-height:1.2;display:inline;
+          white-space:normal;line-height:1.25;display:inline;
         }
         #props-board .pb-player-link:hover{color:#f0d078;text-decoration-color:rgba(240,208,120,.7);}
         @media(max-width:640px){
-          #props-board table.pb-table{font-size:10px;}
-          #props-board table.pb-table th{font-size:8px;padding:3px 2px;}
-          #props-board table.pb-table th,#props-board table.pb-table td{padding:2px 3px;}
+          #props-board table.pb-table{font-size:10px;min-width:580px;}
+          #props-board table.pb-table th{font-size:8px;padding:4px 3px;}
+          #props-board table.pb-table th,#props-board table.pb-table td{padding:3px 4px;}
+          #props-board table.pb-table th:nth-child(3),#props-board table.pb-table td.pb-player{width:26%;}
+          #props-board table.pb-table th:nth-child(5),#props-board table.pb-table td.pb-prop{width:28%;}
           #props-board .pb-table-wrap{max-height:min(72vh,720px);}
         }
       </style>
@@ -6393,7 +6400,7 @@ function sortSlateDynamic(sport, key) {
 })();
 </script>
 
-<script src="/static/props-board.js?v=20261121ppslip8"></script>
+<script src="/static/props-board.js?v=20261121pbwrap2"></script>
 
 <script>
 (function initHomeDeepLink() {
