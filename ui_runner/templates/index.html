@@ -1240,6 +1240,11 @@ body > nav.snav.glass-card {
     margin:12px 0 0;
     padding:12px 0 4px;
     border-top:1px solid rgba(255,255,255,.08);
+    container-type:inline-size;
+    container-name:props-board;
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
   }
   #props-board.slate-props-board.is-sport-open{display:block;}
   #props-board.slate-props-board.me-slate-collapsed{display:none!important;}
@@ -2009,11 +2014,18 @@ body > nav.snav.glass-card {
     <!-- Props Board lives under Matchup Edge (opens with the sport card). -->
     <div id="props-board" class="slate-props-board">
       <style>
-        #props-board .pb-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px;}
-        #props-board .pb-toolbar label{font-size:11px;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;}
+        /* Phone-first; @container props-board packs denser as the board widens */
+        #props-board .pb-toolbar{
+          display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px;
+        }
+        #props-board .pb-toolbar label{
+          font-size:11px;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:1.2px;
+          text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;min-width:0;
+        }
         #props-board .pb-toolbar select{
           background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:var(--text);
           border-radius:10px;padding:6px 12px;font-family:'Inter',sans-serif;font-size:12px;outline:none;cursor:pointer;
+          max-width:100%;
         }
         #props-board .pb-toolbar button,
         #props-board .pb-actions button,
@@ -2022,12 +2034,13 @@ body > nav.snav.glass-card {
           display:inline-flex!important;align-items:center;justify-content:center;
           font-family:'Inter',sans-serif!important;font-size:11px!important;font-weight:700!important;
           letter-spacing:1.2px!important;text-transform:uppercase!important;
-          padding:8px 16px!important;border-radius:999px!important;
+          padding:8px 14px!important;border-radius:999px!important;
           border:1px solid rgba(212,175,55,.35)!important;
           background:rgba(212,175,55,.1)!important;color:var(--accent)!important;
           box-shadow:none!important;cursor:pointer;
           transition:background .15s,border-color .15s,opacity .15s;
           backdrop-filter:blur(8px) saturate(180%);
+          white-space:normal!important;line-height:1.2!important;min-width:0;
         }
         #props-board .pb-toolbar button:hover,
         #props-board .pb-actions button:hover:not(:disabled),
@@ -2055,10 +2068,9 @@ body > nav.snav.glass-card {
           border-color:rgba(212,175,55,.28)!important;color:var(--accent)!important;
           background:rgba(255,255,255,.05)!important;
         }
-        /* Goblin|Demon, Standard full, OVER|UNDER; groups stack below */
         #props-board .pb-tabs{
           display:grid!important;
-          grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+          grid-template-columns:repeat(2,minmax(0,1fr))!important;
           gap:8px!important;
           margin:0 0 10px;
           align-items:stretch;
@@ -2072,11 +2084,12 @@ body > nav.snav.glass-card {
         #props-board .pb-side,
         #props-board .pb-group{
           font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;
-          padding:10px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
+          padding:10px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
           background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer;transition:all .15s;
           backdrop-filter:blur(8px) saturate(180%);
           width:100%;box-sizing:border-box;justify-content:center;text-align:center;
           display:inline-flex;align-items:center;min-width:0;
+          white-space:normal;line-height:1.2;
         }
         #props-board .pb-tab.active,
         #props-board .pb-side.active,
@@ -2089,7 +2102,6 @@ body > nav.snav.glass-card {
           gap:8px!important;
           margin:0 0 10px;
         }
-        /* Explicit rows so Flag chips cannot stack full-width */
         #props-board .pb-filters{
           display:flex!important;
           flex-direction:column!important;
@@ -2098,7 +2110,7 @@ body > nav.snav.glass-card {
         }
         #props-board .pb-filters-row{
           display:grid!important;
-          grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+          grid-template-columns:repeat(2,minmax(0,1fr))!important;
           gap:8px!important;
           width:100%;
         }
@@ -2109,7 +2121,8 @@ body > nav.snav.glass-card {
           background:rgba(255,255,255,.03);color:var(--muted);
           transition:background .15s,border-color .15s,color .15s;
           backdrop-filter:blur(8px) saturate(180%);
-          width:100%!important;max-width:100%!important;box-sizing:border-box;min-width:0;line-height:1.2;
+          width:100%!important;max-width:100%!important;box-sizing:border-box;min-width:0;
+          white-space:normal;line-height:1.25;
           flex:unset!important;grid-column:auto!important;
         }
         #props-board .pb-filters label:hover{border-color:rgba(212,175,55,.28);color:var(--accent);}
@@ -2141,7 +2154,8 @@ body > nav.snav.glass-card {
           display:flex!important;flex-direction:column!important;gap:8px!important;margin:0 0 10px;
         }
         #props-board .pb-actions-row{
-          display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+          display:grid!important;
+          grid-template-columns:repeat(2,minmax(0,1fr))!important;
           gap:8px!important;width:100%;
         }
         #props-board .pb-actions-row .hero-btn,
@@ -2149,20 +2163,24 @@ body > nav.snav.glass-card {
           width:100%!important;max-width:100%!important;min-width:0!important;
           box-sizing:border-box;justify-content:center;text-align:center;
           padding-left:8px!important;padding-right:8px!important;font-size:10px!important;
-          white-space:normal!important;line-height:1.2!important;
+          white-space:normal!important;line-height:1.25!important;
         }
         #props-board .pb-actions #pb-sel-count{margin:0;}
         #props-board .pb-actions button:disabled{opacity:.4;cursor:not-allowed;}
         #props-board .pb-action-msg{font-size:12px;opacity:.8;margin:0 0 8px;min-height:1.2em;}
         #props-board .pb-action-msg.ok{color:#9fd8a7;}
         #props-board .pb-action-msg.err{color:#f0a070;}
-        #props-board .pb-meta{font-size:12px;opacity:.75;margin:0 0 8px;}
+        #props-board .pb-meta{font-size:12px;opacity:.75;margin:0 0 8px;min-width:0;overflow-wrap:anywhere;}
         #props-board .pb-note{font-size:11px;opacity:.55;margin:0 0 10px;max-width:70ch;line-height:1.4;}
         /* Dense table: wrap player/prop on words only — never 1-char columns */
-        #props-board .pb-table-wrap{overflow:auto;max-height:min(78vh,860px);border:1px solid rgba(255,255,255,.08);border-radius:10px;-webkit-overflow-scrolling:touch;}
+        #props-board .pb-table-wrap{
+          overflow:auto;max-height:min(78vh,860px);
+          border:1px solid rgba(255,255,255,.08);border-radius:10px;
+          -webkit-overflow-scrolling:touch;width:100%;
+        }
         #props-board table.pb-table{
           width:100%;border-collapse:collapse;table-layout:fixed;
-          font-size:11px;line-height:1.25;min-width:640px;
+          font-size:11px;line-height:1.25;min-width:min(100%,560px);
         }
         #props-board table.pb-table th,#props-board table.pb-table td{
           padding:4px 5px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06);
@@ -2175,9 +2193,9 @@ body > nav.snav.glass-card {
         #props-board table.pb-table th.pb-sort-active{color:#f0a500;}
         #props-board table.pb-table th.pb-check-col,#props-board table.pb-table td.pb-check-cell{width:24px;padding:4px 2px;cursor:default;}
         #props-board table.pb-table th:nth-child(2),#props-board table.pb-table td.pb-side-cell{width:44px;}
-        #props-board table.pb-table th:nth-child(3),#props-board table.pb-table td.pb-player{width:22%;min-width:88px;}
+        #props-board table.pb-table th:nth-child(3),#props-board table.pb-table td.pb-player{width:22%;min-width:72px;}
         #props-board table.pb-table th:nth-child(4),#props-board table.pb-table td.pb-team{width:40px;}
-        #props-board table.pb-table th:nth-child(5),#props-board table.pb-table td.pb-prop{width:24%;min-width:96px;}
+        #props-board table.pb-table th:nth-child(5),#props-board table.pb-table td.pb-prop{width:24%;min-width:80px;}
         #props-board table.pb-table th:nth-child(6),#props-board table.pb-table td.pb-num,
         #props-board table.pb-table th:nth-child(7),#props-board table.pb-table td:nth-child(7),
         #props-board table.pb-table th:nth-child(8),#props-board table.pb-table td:nth-child(8),
@@ -2201,8 +2219,67 @@ body > nav.snav.glass-card {
           white-space:normal;line-height:1.25;display:inline;
         }
         #props-board .pb-player-link:hover{color:#f0d078;text-decoration-color:rgba(240,208,120,.7);}
+
+        /* Mid board (~tablet / half desktop): denser chips, 2-up groups */
+        @container props-board (min-width:560px){
+          #props-board .pb-groups{
+            grid-template-columns:repeat(2,minmax(0,1fr))!important;
+          }
+          #props-board .pb-tab,
+          #props-board .pb-side,
+          #props-board .pb-group{padding:9px 12px;font-size:11px;}
+          #props-board .pb-actions-row .hero-btn,
+          #props-board .pb-actions-row button{font-size:11px!important;padding-left:10px!important;padding-right:10px!important;}
+          #props-board table.pb-table{min-width:640px;font-size:11px;}
+        }
+
+        /* Wide board: pack filters + actions into single rows; tabs 5-up */
+        @container props-board (min-width:820px){
+          #props-board .pb-tabs{
+            grid-template-columns:repeat(6,minmax(0,1fr))!important;
+          }
+          #props-board .pb-tab[data-tab="Goblin"]{grid-column:1;grid-row:1;}
+          #props-board .pb-tab[data-tab="Demon"]{grid-column:2;grid-row:1;}
+          #props-board .pb-tab[data-tab="Standard"]{grid-column:3 / span 2;grid-row:1;}
+          #props-board .pb-side[data-side="OVER"]{grid-column:5;grid-row:1;}
+          #props-board .pb-side[data-side="UNDER"]{grid-column:6;grid-row:1;}
+          /* Flatten both filter rows into one 4-col band */
+          #props-board .pb-filters{
+            display:grid!important;
+            grid-template-columns:repeat(4,minmax(0,1fr))!important;
+            gap:8px!important;
+          }
+          #props-board .pb-filters-row{
+            display:contents!important;
+          }
+          #props-board .pb-actions{
+            display:grid!important;
+            grid-template-columns:repeat(4,minmax(0,1fr))!important;
+            gap:8px!important;
+            align-items:stretch;
+          }
+          #props-board .pb-actions-row{display:contents!important;}
+          #props-board .pb-actions #pb-sel-count{grid-column:1/-1;}
+          #props-board .pb-actions-row .hero-btn,
+          #props-board .pb-actions-row button{
+            font-size:11px!important;
+            padding:8px 10px!important;
+          }
+          #props-board table.pb-table{min-width:0;}
+          #props-board table.pb-table th:nth-child(3),#props-board table.pb-table td.pb-player{width:18%;}
+          #props-board table.pb-table th:nth-child(5),#props-board table.pb-table td.pb-prop{width:18%;}
+        }
+
+        @container props-board (min-width:1100px){
+          #props-board .pb-toolbar{gap:10px 14px;}
+          #props-board table.pb-table{font-size:12px;}
+          #props-board table.pb-table th{font-size:10px;padding:6px 5px;}
+          #props-board table.pb-table th,#props-board table.pb-table td{padding:5px 6px;}
+        }
+
+        /* Viewport fallback when container queries unavailable / very narrow phones */
         @media(max-width:640px){
-          #props-board table.pb-table{font-size:10px;min-width:580px;}
+          #props-board table.pb-table{font-size:10px;min-width:560px;}
           #props-board table.pb-table th{font-size:8px;padding:4px 3px;}
           #props-board table.pb-table th,#props-board table.pb-table td{padding:3px 4px;}
           #props-board table.pb-table th:nth-child(3),#props-board table.pb-table td.pb-player{width:26%;}
@@ -2236,14 +2313,14 @@ body > nav.snav.glass-card {
           <label><input type="checkbox" id="pb-flag-multi"> Flag multi-line</label>
         </div>
       </div>
-      <div class="pb-actions" style="display:flex;flex-direction:column;gap:8px;margin:0 0 10px;">
-        <div class="pb-actions-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
-          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-add-slip" disabled style="width:100%;">Add selected to My slip</button>
-          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-open-pp-board" style="width:100%;">Empty PP board</button>
+      <div class="pb-actions">
+        <div class="pb-actions-row">
+          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-add-slip" disabled>Add selected to My slip</button>
+          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-open-pp-board">Empty PP board</button>
         </div>
-        <div class="pb-actions-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
-          <button type="button" class="hero-btn hero-btn-gold" id="pb-open-pp" disabled style="width:100%;">Open slip in PrizePicks</button>
-          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-copy-pp" disabled style="width:100%;">Copy legs</button>
+        <div class="pb-actions-row">
+          <button type="button" class="hero-btn hero-btn-gold" id="pb-open-pp" disabled>Open slip in PrizePicks</button>
+          <button type="button" class="hero-btn hero-btn-ghost pb-btn-ghost" id="pb-copy-pp" disabled>Copy legs</button>
         </div>
         <span class="pb-meta" id="pb-sel-count"></span>
       </div>
