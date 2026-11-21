@@ -636,6 +636,24 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 .empty-state[hidden],
 #empty-state[hidden],
 #ticket-empty-state[hidden]{display:none !important;visibility:hidden !important;pointer-events:none !important;z-index:-1 !important;}
+/* Ticket empty overlay is tickets-tab only — never cover slate/props/players. */
+.iframe-shell-stage:not([data-grades-tab="tickets"]) #ticket-empty-state,
+.iframe-shell-stage[data-grades-tab="slate"] #ticket-empty-state,
+.iframe-shell-stage[data-grades-tab="props"] #ticket-empty-state,
+.iframe-shell-stage[data-grades-tab="players"] #ticket-empty-state,
+body.page-grades:not([data-grades-active-tab="tickets"]) #ticket-empty-state{
+  display:none !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+  opacity:0 !important;
+  z-index:-999 !important;
+  height:0 !important;
+  max-height:0 !important;
+  overflow:hidden !important;
+  inset:auto !important;
+  width:0 !important;
+  background:transparent !important;
+}
 #props-eval-panel[hidden]{display:none !important;visibility:hidden !important;pointer-events:none !important;}
 #player-evaluator-panel[hidden]{display:none !important;visibility:hidden !important;pointer-events:none !important;}
 /* Tab layer visibility — data-grades-tab on .iframe-shell-stage (set by switchTab) */
@@ -1669,7 +1687,7 @@ select option,
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261120hotel2"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121ticketempty3"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -4911,7 +4929,16 @@ function switchTab(tab) {
     window.PlayerEvaluator.hide();
   }
   const tEmpty = document.getElementById('ticket-empty-state');
-  if (tEmpty && tab !== 'tickets') tEmpty.hidden = true;
+  if (tEmpty && tab !== 'tickets') {
+    tEmpty.hidden = true;
+    tEmpty.classList.add('hidden');
+    tEmpty.setAttribute('aria-hidden', 'true');
+    tEmpty.style.setProperty('display', 'none', 'important');
+    tEmpty.style.setProperty('visibility', 'hidden', 'important');
+    tEmpty.style.setProperty('pointer-events', 'none', 'important');
+    tEmpty.style.setProperty('opacity', '0', 'important');
+    tEmpty.style.setProperty('z-index', '-999', 'important');
+  }
 
   try {
     window.resetGradesBarsScrollState();
@@ -5250,19 +5277,34 @@ function markTicketEvalMissing(dateStr) {
     tf.style.setProperty('min-height', '0', 'important');
   }
   const tEmpty = document.getElementById('ticket-empty-state');
+  const onTicketsTab = (typeof activeTab !== 'undefined' ? activeTab : null) === 'tickets'
+    || (document.body && document.body.dataset && document.body.dataset.gradesActiveTab === 'tickets')
+    || (stage && stage.getAttribute('data-grades-tab') === 'tickets');
   if (tEmpty) {
-    tEmpty.hidden = false;
-    tEmpty.classList.remove('hidden');
-    tEmpty.removeAttribute('aria-hidden');
-    tEmpty.style.removeProperty('display');
-    tEmpty.style.removeProperty('visibility');
-    tEmpty.style.removeProperty('pointer-events');
-    tEmpty.style.removeProperty('height');
-    tEmpty.style.removeProperty('max-height');
-    tEmpty.style.removeProperty('overflow');
-    tEmpty.style.removeProperty('opacity');
-    tEmpty.style.removeProperty('z-index');
-    tEmpty.style.removeProperty('background');
+    if (!onTicketsTab) {
+      // Ticket-missing chrome must not veil slate/props/players.
+      tEmpty.hidden = true;
+      tEmpty.classList.add('hidden');
+      tEmpty.setAttribute('aria-hidden', 'true');
+      tEmpty.style.setProperty('display', 'none', 'important');
+      tEmpty.style.setProperty('visibility', 'hidden', 'important');
+      tEmpty.style.setProperty('pointer-events', 'none', 'important');
+      tEmpty.style.setProperty('opacity', '0', 'important');
+      tEmpty.style.setProperty('z-index', '-999', 'important');
+    } else {
+      tEmpty.hidden = false;
+      tEmpty.classList.remove('hidden');
+      tEmpty.removeAttribute('aria-hidden');
+      tEmpty.style.removeProperty('display');
+      tEmpty.style.removeProperty('visibility');
+      tEmpty.style.removeProperty('pointer-events');
+      tEmpty.style.removeProperty('height');
+      tEmpty.style.removeProperty('max-height');
+      tEmpty.style.removeProperty('overflow');
+      tEmpty.style.removeProperty('opacity');
+      tEmpty.style.removeProperty('z-index');
+      tEmpty.style.removeProperty('background');
+    }
   }
   if (dateStr) syncEmptyStateDateHints(dateStr);
 }
