@@ -169,9 +169,25 @@ body.page-grades .tab-btn.active,
 .dpill.active,
 .tab-btn.active {
   color: #d4af37 !important;
-  border-color: rgba(212, 175, 55, 0.45) !important;
-  background: rgba(212, 175, 55, 0.12) !important;
+  border-color: rgba(212, 175, 55, 0.3) !important;
+  background: rgba(212, 175, 55, 0.1) !important;
   box-shadow: none !important;
+}
+
+/* Hub chrome: force Home filter-pill language over older toolbar CSS */
+body.page-grades .dpill,
+body.page-grades .tab-btn,
+body.page-grades .date-go-btn {
+  font-family: "Inter", system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+}
+body.page-grades .ist-title {
+  font-family: "Bebas Neue", sans-serif !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.92) !important;
 }
 
 /* ── Slate / ticket embeds: flatten chrome ── */

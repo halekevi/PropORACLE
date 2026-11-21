@@ -151,46 +151,50 @@ header:has(.grades-hub-toolbar-host) .grades-hub-toolbar-host {
 }
 
 .dpill {
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  padding: 6px 11px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.42);
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted, rgba(255, 255, 255, 0.55));
   cursor: pointer;
   transition: all 0.15s;
   white-space: nowrap;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: "Inter", sans-serif;
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
 }
 
 .dpill:hover {
   color: var(--text, rgba(255, 255, 255, 0.95));
-  border-color: rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .dpill.active {
-  color: var(--gold, #f0a500);
-  border-color: rgba(212, 160, 23, 0.55);
-  background: rgba(212, 160, 23, 0.15);
-  box-shadow: 0 0 16px rgba(212, 160, 23, 0.12);
+  color: var(--accent, #d4af37);
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: none;
 }
 
 .dpill .dpill-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--gold, #f0a500);
+  background: var(--accent, #d4af37);
   display: none;
 }
 
 .dpill.active .dpill-dot {
   display: block;
-  box-shadow: 0 0 8px rgba(240, 165, 0, 0.55);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.45);
 }
 
 .date-sep {
@@ -266,19 +270,21 @@ header:has(.grades-hub-toolbar-host) .grades-hub-toolbar-host {
 .date-go-btn {
   font-family: "Inter", sans-serif;
   font-size: 11px;
-  letter-spacing: 0.7px;
-  padding: 6px 11px;
-  border-radius: 10px;
-  border: 1px solid rgba(212, 160, 23, 0.35);
-  background: rgba(212, 160, 23, 0.1);
-  color: var(--gold, #f0a500);
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: rgba(212, 175, 55, 0.16);
+  color: var(--accent, #d4af37);
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .date-go-btn:hover {
-  background: rgba(212, 160, 23, 0.18);
-  border-color: rgba(240, 165, 0, 0.55);
+  background: rgba(212, 175, 55, 0.24);
+  border-color: rgba(212, 175, 55, 0.55);
 }
 
 .tabs-bar {
@@ -288,66 +294,73 @@ header:has(.grades-hub-toolbar-host) .grades-hub-toolbar-host {
   max-width: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding: 10px 14px;
-  min-height: 52px;
+  padding: 8px 0 12px;
+  min-height: 40px;
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
   justify-content: flex-start;
   z-index: 2;
   position: relative;
   font-family: "Inter", sans-serif;
-  background: var(--glass, rgba(255, 255, 255, 0.03));
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--glass-bd, rgba(255, 255, 255, 0.08));
-  border-radius: 14px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .tab-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 13px;
-  letter-spacing: 0.55px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--muted2, rgba(255, 255, 255, 0.48));
+  color: var(--muted, rgba(255, 255, 255, 0.55));
   background: rgba(255, 255, 255, 0.03);
-  border: 2px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.09);
   cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  transition: all 0.15s;
   white-space: nowrap;
   font-family: "Inter", sans-serif;
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
 }
 
 .tab-btn:hover {
   color: var(--text, #fff);
   background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
 .tab-btn.active {
-  color: var(--gold, #f0a500);
-  border-color: rgba(212, 160, 23, 0.55);
-  background: rgba(212, 160, 23, 0.12);
-  box-shadow: 0 0 22px rgba(212, 160, 23, 0.15), inset 0 -2px 0 var(--gold2, #d4a017);
+  color: var(--accent, #d4af37);
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: none;
 }
 
 .tab-icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
+  font-size: 12px;
+  opacity: 0.9;
 }
 
 .tab-btn.active .tab-icon {
-  filter: drop-shadow(0 0 8px rgba(240, 165, 0, 0.45));
+  filter: none;
+  opacity: 1;
 }
 
 .grades-hub-toolbar-host {
