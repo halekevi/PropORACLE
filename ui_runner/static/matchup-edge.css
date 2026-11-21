@@ -54,14 +54,37 @@
 .me-body,
 .wnba-me-body {
   padding: 0 12px 14px;
+  container-type: inline-size;
+  container-name: me-panel;
 }
 .me-controls,
 .wnba-me-controls {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  /* Typical Matchup Edge panel width → 2 cols (Team|Category, Opponent full) */
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 8px;
   align-items: end;
   margin-bottom: 12px;
+}
+.me-controls > .me-field:nth-child(3),
+.wnba-me-controls > .wnba-me-field:nth-child(3) {
+  grid-column: 1 / -1;
+}
+@container me-panel (min-width: 640px) {
+  .me-controls,
+  .wnba-me-controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .me-controls > .me-field:nth-child(3),
+  .wnba-me-controls > .wnba-me-field:nth-child(3) {
+    grid-column: auto;
+  }
+}
+@container me-panel (max-width: 360px) {
+  .me-controls,
+  .wnba-me-controls {
+    grid-template-columns: 1fr !important;
+  }
 }
 .me-field,
 .wnba-me-field {
@@ -384,16 +407,7 @@
   font-size: 11px;
 }
 
-/* Narrow phone only: stack Team / Category / Opponent. Wider panels keep one row. */
-@media (max-width: 520px) {
-  .me-controls,
-  .wnba-me-controls {
-    grid-template-columns: 1fr !important;
-    gap: 10px;
-  }
-}
-
-/* Tablet / half-screen: larger touch targets + card-like leader rows (fields stay 1-row via grid) */
+/* Tablet / half-screen: larger touch targets + card-like leader rows */
 @media (max-width: 1600px) {
   .me-field select,
   .wnba-me-field select,
