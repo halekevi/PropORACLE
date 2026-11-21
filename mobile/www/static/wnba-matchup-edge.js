@@ -36,10 +36,15 @@
     return String(edge || "NEUTRAL").replace("_", " ");
   }
 
+  function stripLegend(root) {
+    (root || document).querySelectorAll(".wnba-me-legend, #wnba-me-legend").forEach((el) => el.remove());
+  }
+
   function ensurePanel() {
     const existing = document.getElementById("wnba-matchup-edge-panel");
     if (existing) {
       panelEl = existing;
+      stripLegend(existing);
       bindPanelEvents();
       return existing;
     }
@@ -186,6 +191,7 @@
     const cards = document.getElementById("wnba-me-cards");
     const tbody = document.getElementById("wnba-me-tbody");
     const avgH = document.getElementById("wnba-me-avg-h");
+    stripLegend(panelEl || document);
     if (!block || !cards || !tbody) return;
 
     const mu = (data.matchups || {})[team] || {};

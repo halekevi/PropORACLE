@@ -294,10 +294,18 @@
     syncSlateCollapseWithMatchup(panel);
   }
 
+  function stripEdgeLegendNodes(root) {
+    const scope = root && root.querySelectorAll ? root : document;
+    scope
+      .querySelectorAll(".me-legend, .wnba-me-legend, [id^='me-'][id$='-legend'], #wnba-me-legend")
+      .forEach((el) => el.remove());
+  }
+
   function ensurePanel(sport) {
     const id = panelId(sport);
     let panel = document.getElementById(id);
     if (panel) {
+      stripEdgeLegendNodes(panel);
       bindSlateCollapseSync(panel);
       return panel;
     }
@@ -793,6 +801,7 @@
     const cards = document.getElementById(pid(sport, "cards"));
     const tbody = document.getElementById(pid(sport, "tbody"));
     const avgH = document.getElementById(pid(sport, "avg-h"));
+    stripEdgeLegendNodes(document.getElementById(panelId(sport)) || document);
     if (!block || !cards || !tbody || !data) return;
 
     const oppMeta = opponentForTeam(sport, team);
@@ -1391,8 +1400,12 @@
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
+    document.addEventListener("DOMContentLoaded", () => {
+      stripEdgeLegendNodes(document);
+      boot();
+    });
   } else {
+    stripEdgeLegendNodes(document);
     boot();
   }
 
