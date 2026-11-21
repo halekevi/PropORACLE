@@ -1987,29 +1987,37 @@ body > nav.snav.glass-card {
     <div id="props-board" class="slate-props-board">
       <style>
         #props-board .pb-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px;}
-        #props-board .pb-toolbar label{font-size:12px;opacity:.85;display:flex;align-items:center;gap:6px;}
-        #props-board .pb-toolbar select,#props-board .pb-toolbar button{
-          background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:inherit;
-          border-radius:8px;padding:7px 10px;font:inherit;font-size:13px;
+        #props-board .pb-toolbar label{font-size:11px;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;}
+        #props-board .pb-toolbar select{
+          background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:var(--text);
+          border-radius:10px;padding:6px 12px;font-family:'Inter',sans-serif;font-size:12px;outline:none;cursor:pointer;
+        }
+        #props-board .pb-toolbar button,
+        #props-board .pb-actions button{
+          font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+          padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
+          background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer;transition:all .15s;
+          backdrop-filter:blur(8px) saturate(180%);
+        }
+        #props-board .pb-toolbar button:hover,
+        #props-board .pb-actions button:hover{
+          border-color:rgba(212,175,55,.28);color:var(--accent);
         }
         #props-board .pb-tabs{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap;align-items:center;}
-        #props-board .pb-tab{
-          border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
-          border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px;
-        }
-        #props-board .pb-tab.active{background:rgba(240,165,0,.18);border-color:rgba(240,165,0,.45);}
-        #props-board .pb-side{
-          border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
-          border-radius:999px;padding:6px 14px;cursor:pointer;font-size:13px;color:inherit;
-        }
-        #props-board .pb-side.active{background:rgba(125,255,203,.12);border-color:rgba(125,255,203,.4);}
-        #props-board .pb-side[data-side="UNDER"].active{background:rgba(255,192,107,.12);border-color:rgba(255,192,107,.4);}
-        #props-board .pb-groups{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;}
+        #props-board .pb-tab,
+        #props-board .pb-side,
         #props-board .pb-group{
-          border:1px solid rgba(255,255,255,.12);background:transparent;border-radius:8px;
-          padding:5px 10px;font-size:12px;cursor:pointer;color:inherit;
+          font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;
+          padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.09);
+          background:rgba(255,255,255,.03);color:var(--muted);cursor:pointer;transition:all .15s;
+          backdrop-filter:blur(8px) saturate(180%);
         }
-        #props-board .pb-group.active{border-color:rgba(240,165,0,.5);background:rgba(240,165,0,.12);}
+        #props-board .pb-tab.active,
+        #props-board .pb-side.active,
+        #props-board .pb-group.active{
+          background:rgba(212,175,55,.1);border-color:rgba(212,175,55,.3);color:var(--accent);
+        }
+        #props-board .pb-groups{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;}
         #props-board .pb-filters{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 10px;font-size:12px;}
         #props-board .pb-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px;}
         #props-board .pb-actions button:disabled{opacity:.4;cursor:not-allowed;}
