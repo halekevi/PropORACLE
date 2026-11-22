@@ -88,6 +88,12 @@ h1, h2 {
 .brand {
   color: var(--accent) !important;
 }
+.hero h1.hero-title {
+  color: var(--text) !important;
+}
+.hero h1.hero-title .ht2 {
+  color: var(--accent) !important;
+}
 
 /* Nav: glass, no rainbow accent animation */
 .snav,

@@ -22,7 +22,7 @@
     var link = document.createElement("link");
     link.id = "proporacle-glass-minimal";
     link.rel = "stylesheet";
-    link.href = base + "proporacle-glass-minimal.css?v=20261119glass1";
+    link.href = base + "proporacle-glass-minimal.css?v=20261121herotitle1";
     document.head.appendChild(link);
   })();
 
