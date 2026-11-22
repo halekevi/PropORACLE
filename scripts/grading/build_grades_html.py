@@ -181,10 +181,12 @@ def _sheet_header_has_margin(ws) -> bool:
 
 
 # Rollup / dashboard sheets from slate_grader — not per-prop rows (loading them yields 0-prop sport sections).
+# "Decided Only" is a filtered copy of Box Raw (CBB/WCBB grade_cbb_full_slate) — never load with Box Raw.
 _ROLLUP_SHEET_NAMES = frozenset({
     "summary",
     "by pick type",
     "by tier",
+    "by model tier",
     "prop type x direction",
     "by direction",
     "by minutes tier",
@@ -194,7 +196,12 @@ _ROLLUP_SHEET_NAMES = frozenset({
     "by opp def tier",
     "performance matrix",
     "def tier x performance",
+    "def tier x pick type",
+    "def tier x model tier",
     "by shot role",
+    "decided only",
+    "void reasons",
+    "match methods",
 })
 
 
@@ -299,28 +306,18 @@ def load_graded(path: Path, sport: str = "") -> list[dict]:
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
     rows: list[dict] = []
     try:
-        if "Box Raw" in wb.sheetnames and _sheet_header_has_margin(wb["Box Raw"]):
+        # Prefer Box Raw whenever it has prop rows. CBB/WCBB write Box Raw without a margin
+        # column and also a "Decided Only" twin; requiring margin used to fall through and
+        # load both sheets → exact 2x duplicates on /grades.
+        if "Box Raw" in wb.sheetnames:
             br_rows = read_sheet(wb["Box Raw"])
             if len(br_rows) > 0:
                 rows = br_rows
-            # Empty Box Raw: no per-prop grades yet — do not load Summary/rollup sheets (they show as 0-prop NBA).
+            # Empty Box Raw: no per-prop grades yet — do not load Summary/rollup sheets.
         else:
-            # Tennis (and similar) writes the same rows to **graded** and **Box Raw** with no margin column.
-            # Loading both doubles counts and breaks Slate Evaluation rollups.
-            if (
-                "graded" in wb.sheetnames
-                and "Box Raw" in wb.sheetnames
-                and not _sheet_header_has_margin(wb["Box Raw"])
-            ):
-                g_rows = read_sheet(wb["graded"])
-                br_rows = read_sheet(wb["Box Raw"])
-                if len(g_rows) == len(br_rows) and len(g_rows) > 0:
-                    rows = g_rows
-                else:
-                    for shname in wb.sheetnames:
-                        if _is_rollup_sheet(shname):
-                            continue
-                        rows.extend(read_sheet(wb[shname]))
+            # Tennis (and similar) may use a **graded** sheet only.
+            if "graded" in wb.sheetnames:
+                rows = read_sheet(wb["graded"])
             else:
                 for shname in wb.sheetnames:
                     if _is_rollup_sheet(shname):
