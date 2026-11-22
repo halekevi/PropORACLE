@@ -296,6 +296,7 @@
     const tab = String(state.tab || "").toLowerCase();
     const want5 = document.getElementById("pb-l5-5")?.checked;
     const want4 = document.getElementById("pb-l5-4")?.checked;
+    const wantL10_8 = document.getElementById("pb-l10-8")?.checked;
     const out = [];
     for (const r of state.rows) {
       if (pickTypeOf(r) !== tab) continue;
@@ -307,6 +308,10 @@
         if (want5 && l5 != null && Math.round(l5) === 5) ok = true;
         if (want4 && l5 != null && Math.round(l5) === 4) ok = true;
         if (!ok) continue;
+      }
+      if (wantL10_8) {
+        const l10 = hitsFrac(r, "l10");
+        if (!l10 || l10.hits == null || Math.round(l10.hits) < 8) continue;
       }
       const keyed = { ...r, sport: r.sport || state.sport };
       out.push(keyed);
@@ -744,7 +749,7 @@
         render();
       });
     });
-    ["pb-l5-5", "pb-l5-4", "pb-flag-thin", "pb-flag-multi"].forEach((id) => {
+    ["pb-l5-5", "pb-l5-4", "pb-l10-8", "pb-flag-thin", "pb-flag-multi"].forEach((id) => {
       document.getElementById(id)?.addEventListener("change", render);
     });
     document.getElementById("pb-export")?.addEventListener("click", exportCsv);
