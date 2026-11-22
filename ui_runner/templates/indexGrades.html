@@ -62,8 +62,7 @@ body{
   -webkit-font-smoothing:antialiased;
   position:relative;
 }
-html.page-grades-root,
-html.page-grades-root body.page-grades{
+html.page-grades-root{
   display:block!important;
   height:auto!important;
   min-height:0!important;
@@ -72,7 +71,15 @@ html.page-grades-root body.page-grades{
   overflow-y:scroll!important;
   scrollbar-gutter:stable;
   -webkit-overflow-scrolling:touch!important;
-  overscroll-behavior-y:contain;
+}
+/* Body must not be its own scroller: overflow-y:scroll here drew a second, dead scrollbar track. */
+html.page-grades-root body.page-grades{
+  display:block!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow-x:clip!important;
+  overflow-y:visible!important;
 }
 /* Android WebView can stall scroll when html+body both have overflow-y:auto with height locks.
    On mobile (≤900px) let the WINDOW scroll naturally: html/body grow to content height with
@@ -500,7 +507,7 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
   max-height:min(72vh, 920px);
   overflow-x:hidden;
   overflow-y:auto;
-  overscroll-behavior:contain;
+  overscroll-behavior:auto;
   -webkit-overflow-scrolling:touch;
   border:1px solid rgba(255,255,255,0.08);
   border-radius:12px;
@@ -1873,7 +1880,7 @@ select option,
     <div class="empty-hint">Looking for ticket_eval_<span id="ticket-empty-date-file"></span>.html</div>
   </div>
   <iframe class="grade-frame" id="grade-frame" src="about:blank" title="Grade Report"></iframe>
-  <iframe class="grade-frame" id="ticket-frame" src="about:blank" title="Ticket Evaluation" scrolling="yes" style="display:none;"></iframe>
+  <iframe class="grade-frame" id="ticket-frame" src="about:blank" title="Ticket Evaluation" scrolling="no" style="display:none;"></iframe>
   <div id="props-eval-panel" class="grades-analytics-wrap grades-props-wrap" hidden aria-label="Graded props by report date">
     <div class="grades-props-inner">
       <div class="glass-insights props-eval-intro">
@@ -2711,7 +2718,7 @@ function gradesEl(id) {
   return gradesToolbarPickEl(id);
 }
 
-const GRADES_EMBED_THEME_HREF = 'static/grades-embed-theme.css?v=20261121foundation1';
+const GRADES_EMBED_THEME_HREF = 'static/grades-embed-theme.css?v=20261121scroll1';
 
 /** Slate iframe lives under /grades/ — resolve against the hub so the link is not /grades/static/… (404). */
 function ensureGradesEmbedTheme(doc) {
@@ -5064,7 +5071,7 @@ function applyTicketEvalGradesEmbed(doc) {
   }
   st.setAttribute('data-from', 'grades-hub');
   st.textContent =
-    'html.ticket-eval-embed-grades,html.ticket-eval-embed-grades body{min-height:100%!important;height:auto!important;overflow-x:hidden!important;overflow-y:visible!important;-webkit-overflow-scrolling:auto!important;}' +
+    'html.ticket-eval-embed-grades,html.ticket-eval-embed-grades body{min-height:0!important;height:auto!important;overflow-x:clip!important;overflow-y:visible!important;overscroll-behavior:auto!important;-webkit-overflow-scrolling:auto!important;}' +
     'html.ticket-eval-embed-grades body{padding-top:0!important;padding-bottom:max(0px, env(safe-area-inset-bottom, 0px))!important;}' +
     'html.ticket-eval-embed-grades .snav,' +
     'html.ticket-eval-embed-grades #mobile-menu{display:none!important;}' +
@@ -5183,7 +5190,7 @@ function injectTicketEvalHeightReporter(doc) {
     'if(wrap){bump(wrap);Array.prototype.forEach.call(wrap.children,bump);' +
     'Array.prototype.forEach.call(wrap.querySelectorAll("details.grades-sport-bucket,details.ticket-bucket,.ticket-sections-wrap"),bump);' +
     'Array.prototype.forEach.call(wrap.querySelectorAll("section.sec,article.ticket-card"),bump);}' +
-    'var scrollH=Math.max(body.scrollHeight||0,docEl.scrollHeight||0,body.offsetHeight||0,docEl.offsetHeight||0);' +
+    'var scrollH=Math.max(body.scrollHeight||0,body.offsetHeight||0,docEl.offsetHeight||0);' +
     'var h=Math.ceil(Math.max(maxBottom+32,scrollH));' +
     'try{parent.postMessage({type:"resizeRequest",source:"ticketEval",height:h},"*");}catch(_e2){}' +
     '}' +
@@ -6120,9 +6127,9 @@ function measureGradesIframeDocHeight(doc, frame, explicitHeight) {
       void body.offsetHeight;
     }
   } catch (_prep) {}
+  // html.scrollHeight never drops below the iframe viewport, so it ratchets the frame taller.
   let h = Math.max(
     body.scrollHeight || 0,
-    html.scrollHeight || 0,
     html.offsetHeight || 0,
     body.offsetHeight || 0
   );

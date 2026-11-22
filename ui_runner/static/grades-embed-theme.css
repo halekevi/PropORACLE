@@ -27,8 +27,9 @@ body {
   height: auto !important;
   min-height: 0 !important;
   max-height: none !important;
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
   overflow-y: visible !important;
+  overscroll-behavior: auto !important;
 }
 body {
   margin: 0 !important;
