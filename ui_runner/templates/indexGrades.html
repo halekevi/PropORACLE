@@ -38,7 +38,9 @@
   --glass-shadow-lg:0 20px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07);
   --po-page-edge:5%;
   --po-content-width:100%;
-  --po-content-max:min(98vw,2400px);
+  /* Grades reads as a full page — do not sit in the Home 98% capped band */
+  --po-content-max:100%;
+  --po-grades-pad-x:clamp(12px,2.2vw,28px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{
@@ -211,14 +213,16 @@ body::after{content:none;display:none;}
 .grades-body{display:block;width:100%;min-height:0;}
 .shell{
   position:relative;z-index:1;
-  width:var(--po-content-width);max-width:var(--po-content-max);
-  margin:0 auto;
-  padding:clamp(12px,2.5vw,28px) 0;
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:clamp(12px,2.5vw,28px) var(--po-grades-pad-x,16px);
   box-sizing:border-box;
 }
 /* Hotel: open surface — no outer card wrapping toolbar + iframe */
 .grades-hub-shell{
   width:100%;
+  max-width:none;
   border:none;
   border-radius:0;
   background:transparent;
@@ -1718,10 +1722,10 @@ select option,
 </style>
 <link rel="stylesheet" href="static/site-nav-unified.css?v=20260720halfnav1"/>
 <link rel="stylesheet" href="static/nav-mobile-shared.css?v=20260430schemapage"/>
-<link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
+<link rel="stylesheet" href="static/mobile-content-width.css?v=20261121fullbleed9"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121proptitle8"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121fullbleed9"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}

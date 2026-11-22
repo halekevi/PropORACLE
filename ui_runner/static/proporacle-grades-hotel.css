@@ -106,14 +106,52 @@ button,
   letter-spacing: 1.2px !important;
 }
 
-/* ── Hub: kill the outer card. Content sits on page bg. ── */
+/* ── Hub: full-bleed page surface (no 98% capped shell / gutters) ── */
+html.page-grades-root,
+html.page-grades-root body.page-grades {
+  width: 100% !important;
+  max-width: none !important;
+  background: #0b0b0b !important;
+}
+html.page-grades-root body.page-grades::before {
+  inset: 0 !important;
+  width: 100vw !important;
+  min-height: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+body.page-grades .shell,
+body.page-grades div.shell {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: clamp(12px, 2.2vw, 28px) !important;
+  padding-right: clamp(12px, 2.2vw, 28px) !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
 body.page-grades .grades-hub-shell,
 .grades-hub-shell {
+  width: 100% !important;
+  max-width: none !important;
   background: transparent !important;
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   overflow: visible !important;
+}
+body.page-grades .grades-page,
+body.page-grades .grades-body,
+body.page-grades .iframe-shell,
+body.page-grades .grades-analytics-wrap,
+body.page-grades .grades-props-inner {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
 }
 
 body.page-grades .grades-hub-shell .iframe-shell-toolbar,
