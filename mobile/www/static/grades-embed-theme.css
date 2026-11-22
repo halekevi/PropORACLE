@@ -1,0 +1,665 @@
+/**
+ * Grades hub — theme for the embedded slate_eval iframe.
+ * Injected by indexGrades (ensureFrameCollapseCss) on every slate load, after the hub's
+ * inline collapse CSS. Replaces grades-iframe-toolbar.css (its relative URL 404'd under /grades/).
+ * Type: Bebas Neue for titles, Inter for everything else (same as Home).
+ */
+
+:root {
+  --ge-gold: #d4af37;
+  --ge-ink: rgba(255, 255, 255, 0.92);
+  --ge-muted: rgba(255, 255, 255, 0.55);
+  --ge-muted2: rgba(255, 255, 255, 0.72);
+  --ge-rule: rgba(255, 255, 255, 0.08);
+  --ge-rule-strong: rgba(255, 255, 255, 0.12);
+  --ge-surface: rgba(255, 255, 255, 0.03);
+  --ge-surface-hover: rgba(255, 255, 255, 0.05);
+  --ge-title: "Bebas Neue", "Inter", sans-serif;
+  --ge-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ── Page surface: transparent so the hub background runs edge to edge ── */
+html,
+body {
+  background: transparent !important;
+  color: var(--ge-ink) !important;
+  font-family: var(--ge-ui) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+body {
+  margin: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+}
+body::before,
+body::after {
+  display: none !important;
+  content: none !important;
+}
+*,
+*::before,
+*::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body > header {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+body > header .slate-header-top,
+.date-badge {
+  display: none !important;
+}
+body > .main,
+.main {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 16px 0 24px !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+}
+
+/* ── Typography ── */
+body,
+td,
+button,
+input,
+select,
+.sport-meta-count,
+.slate-day-glance-stat,
+.slate-day-glance-hint,
+.sport-expand-hint,
+.insight-body,
+.stat-sub,
+.muted-note,
+td.mono,
+.rate-num {
+  font-family: var(--ge-ui) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+.logo-title,
+.sport-label,
+.grades-sport-bucket > summary,
+.grades-sport-bucket > summary > span:first-child,
+.sport-collapsible > summary .sport-label,
+.matrix-collapsible > summary,
+.section-label,
+.slate-day-glance-kicker,
+.slate-sport-jump-label,
+.pbw-pt-header,
+.pbw-tier-title,
+.pbw-panel-title,
+.insight-title,
+.alert-title,
+.stat-label,
+.stat-val,
+.ist-title,
+th {
+  font-family: var(--ge-title) !important;
+  font-weight: 400 !important;
+  text-transform: uppercase !important;
+}
+
+.sport-label {
+  font-size: clamp(24px, 2.4vw, 34px) !important;
+  letter-spacing: 2px !important;
+  color: var(--ge-gold) !important;
+  line-height: 1 !important;
+  text-shadow: none !important;
+}
+.section-label {
+  font-size: 15px !important;
+  letter-spacing: 2px !important;
+  color: var(--ge-muted) !important;
+}
+.slate-day-glance-kicker {
+  font-size: 13px !important;
+  letter-spacing: 2px !important;
+  color: var(--ge-muted) !important;
+}
+.slate-day-glance-stat strong,
+.stat-val {
+  font-family: var(--ge-title) !important;
+  color: var(--ge-gold) !important;
+  letter-spacing: 1px !important;
+}
+th {
+  font-size: 14px !important;
+  letter-spacing: 1.6px !important;
+  color: var(--ge-muted) !important;
+  background: transparent !important;
+  border-bottom: 1px solid var(--ge-rule-strong) !important;
+  white-space: nowrap !important;
+}
+td {
+  font-size: 13px !important;
+  border-bottom: 1px solid var(--ge-rule) !important;
+}
+
+/* ── Hub toolbar (adopted into this document on desktop) ── */
+.grades-hub-toolbar-host {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+.iframe-shell-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.iframe-shell-toolbar--embedded .iframe-shell-head {
+  display: none !important;
+}
+.iframe-shell-head {
+  display: none;
+}
+.iframe-shell-toolbar.bars-collapsed .iframe-shell-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.ist-title {
+  font-size: 22px !important;
+  letter-spacing: 2px !important;
+  color: var(--ge-ink) !important;
+}
+.gc-live {
+  font-size: 12px;
+  color: var(--ge-muted);
+}
+
+.grades-scroll-hide-wrap {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.3s ease, opacity 0.25s ease;
+}
+.grades-scroll-hide-inner {
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.iframe-shell-toolbar.bars-collapsed .grades-scroll-hide-wrap {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.date-bar,
+.tabs-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--ge-rule) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.date-bar {
+  padding: 4px 0 12px !important;
+  flex-wrap: nowrap !important;
+}
+.tabs-bar {
+  padding: 2px 0 12px !important;
+  flex-wrap: wrap !important;
+}
+.date-bar-label,
+.date-input-label {
+  flex-shrink: 0;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  color: var(--ge-muted) !important;
+  white-space: nowrap;
+}
+.date-pills {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.date-pills::-webkit-scrollbar {
+  display: none;
+}
+.date-sep {
+  flex-shrink: 0;
+  width: 1px;
+  height: 22px;
+  background: var(--ge-rule-strong);
+}
+.date-bar-right {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.date-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Pills — one shape for date pills, tabs, sport jump, GO */
+.dpill,
+.tab-btn,
+.date-go-btn,
+.slate-sport-jump-btn {
+  appearance: none;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 7px 14px !important;
+  min-height: 32px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: var(--ge-surface) !important;
+  color: var(--ge-muted) !important;
+  font-family: var(--ge-ui) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.dpill:hover,
+.tab-btn:hover,
+.slate-sport-jump-btn:hover {
+  color: var(--ge-ink) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  background: var(--ge-surface-hover) !important;
+}
+.dpill.active,
+.tab-btn.active,
+.slate-sport-jump-btn.active {
+  color: var(--ge-gold) !important;
+  border-color: rgba(212, 175, 55, 0.35) !important;
+  background: rgba(212, 175, 55, 0.1) !important;
+}
+.dpill .dpill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ge-gold);
+  display: none;
+}
+.dpill.active .dpill-dot {
+  display: block;
+}
+.date-go-btn {
+  color: var(--ge-gold) !important;
+  border-color: rgba(212, 175, 55, 0.4) !important;
+  background: rgba(212, 175, 55, 0.14) !important;
+}
+.date-nav-btn {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--ge-surface);
+  color: var(--ge-muted);
+  font-size: 16px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.date-nav-btn:hover {
+  color: var(--ge-ink);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.date-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.date-input {
+  font-family: var(--ge-ui) !important;
+  font-size: 12px !important;
+  color: var(--ge-ink) !important;
+  background: var(--ge-surface) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 999px !important;
+  padding: 6px 12px !important;
+  width: 150px;
+  outline: none;
+  color-scheme: dark;
+}
+.tab-icon {
+  font-size: 12px;
+  line-height: 1;
+}
+.tab-label-full {
+  display: inline;
+}
+.tab-label-short {
+  display: none;
+}
+
+/* ── Day snapshot + sport jump strip ── */
+.slate-day-glance {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: baseline !important;
+  gap: 8px 18px !important;
+  margin: 4px 0 14px !important;
+  padding: 0 0 14px !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--ge-rule) !important;
+}
+.slate-sport-jump {
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 6px 0 12px !important;
+  margin: 0 0 6px !important;
+  background: #0b0b0b !important;
+  border: none !important;
+  border-bottom: 1px solid var(--ge-rule) !important;
+  overflow: visible !important;
+}
+.slate-sport-jump-btn .sj-meta {
+  opacity: 0.7;
+  font-weight: 600;
+}
+
+/* ── Sport accordions: divider rows, not cards ── */
+.grades-sport-bucket,
+details.grades-sport-bucket,
+.sport-collapsible,
+details.sport-collapsible,
+.matrix-collapsible {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--ge-rule) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+.grades-sport-bucket > summary,
+.sport-collapsible > summary {
+  padding: 16px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  color: var(--ge-gold) !important;
+  font-size: clamp(24px, 2.4vw, 34px) !important;
+  letter-spacing: 2px !important;
+}
+.grades-sport-bucket > summary:hover,
+.sport-collapsible > summary:hover {
+  transform: none !important;
+  border: none !important;
+}
+.grades-sport-bucket > summary .grades-sport-meta,
+.sport-meta-count {
+  font-family: var(--ge-ui) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: var(--ge-muted2) !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.sport-meta-rate {
+  font-family: var(--ge-ui) !important;
+  font-weight: 700 !important;
+}
+.sport-header-line {
+  background: var(--ge-rule) !important;
+}
+.sport-expand-hint {
+  font-size: 11px !important;
+  color: rgba(255, 255, 255, 0.38) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: none !important;
+}
+.matrix-collapsible > summary {
+  padding: 14px 0 !important;
+  font-size: 16px !important;
+  letter-spacing: 1.6px !important;
+  color: var(--ge-muted2) !important;
+}
+.grades-sport-bucket-body,
+.sport-section-body {
+  padding: 4px 0 20px !important;
+  background: transparent !important;
+}
+
+/* View tabs inside a sport (Overview / Matrix / Def tier / Prop types) */
+.sport-view-tabs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 0 0 12px !important;
+  margin: 0 0 14px !important;
+  background: #0b0b0b !important;
+  border: none !important;
+  border-bottom: 1px solid var(--ge-rule) !important;
+  border-radius: 0 !important;
+}
+.sport-view-tab,
+.pbw-tab-btn {
+  flex: 0 0 auto !important;
+  padding: 8px 16px !important;
+  min-height: 32px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: var(--ge-surface) !important;
+  color: var(--ge-muted) !important;
+  font-family: var(--ge-ui) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+  box-shadow: none !important;
+}
+.sport-view-tab.active,
+.pbw-tab-btn.active {
+  color: var(--ge-gold) !important;
+  border-color: rgba(212, 175, 55, 0.35) !important;
+  background: rgba(212, 175, 55, 0.1) !important;
+}
+
+/* ── Surfaces ── */
+.table-wrap,
+.stat-card,
+.insight-card,
+.pbw-heatmap-wrap {
+  background: var(--ge-surface) !important;
+  border: 1px solid var(--ge-rule) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+.table-wrap {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  max-width: 100% !important;
+}
+.alert {
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+/* ── Layout: columns stack when they would squeeze the tables ── */
+.two-col {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr)) !important;
+  gap: 20px !important;
+}
+.three-col,
+.insight-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)) !important;
+  gap: 14px !important;
+}
+.insight-grid > .insight-card:last-child:nth-child(3n + 1) {
+  grid-column: auto !important;
+}
+.two-col > *,
+.three-col > *,
+.insight-grid > * {
+  min-width: 0 !important;
+}
+
+.table-wrap table {
+  width: 100% !important;
+  min-width: 0 !important;
+  table-layout: auto !important;
+}
+.rate-cell {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 120px;
+}
+.rate-bar-bg {
+  min-width: 48px;
+}
+.rate-num {
+  min-width: 44px !important;
+  flex-shrink: 0 !important;
+  text-align: right !important;
+}
+
+/* Top / Cold player cards (slate switches these tables to grid rows at ≤960px) */
+@media (max-width: 960px) {
+  .player-record-table table tr,
+  .two-col > div > .table-wrap table tbody tr {
+    grid-template-columns: auto auto auto auto minmax(0, 1fr) minmax(130px, 38%) !important;
+    grid-template-areas:
+      "name name name name name rate"
+      "team props dec hits misses rate" !important;
+    gap: 4px 12px !important;
+    padding: 10px 14px !important;
+    border-left: 3px solid rgba(212, 175, 55, 0.35) !important;
+  }
+  .player-record-table table td:nth-child(6),
+  .two-col > div > .table-wrap table td:nth-child(6) {
+    justify-self: start;
+  }
+  .player-record-table table td:nth-child(4)::before,
+  .two-col > div > .table-wrap table td:nth-child(4)::before {
+    content: "Dec ";
+  }
+  .player-record-table table td:nth-child(5)::before,
+  .two-col > div > .table-wrap table td:nth-child(5)::before {
+    content: "H ";
+  }
+  .player-record-table table td:nth-child(6)::before,
+  .two-col > div > .table-wrap table td:nth-child(6)::before {
+    content: "M ";
+  }
+  .player-record-table table td:nth-child(n + 4):nth-child(-n + 6)::before,
+  .two-col > div > .table-wrap table td:nth-child(n + 4):nth-child(-n + 6)::before {
+    color: var(--ge-muted);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .player-record-table table td:nth-child(7),
+  .two-col > div > .table-wrap table td:nth-child(7) {
+    align-self: center;
+  }
+  .player-record-table .rate-num,
+  .two-col > div > .table-wrap .rate-num {
+    display: inline-block !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* ── Phones (toolbar stays in the hub there; this is slate content only) ── */
+@media (max-width: 900px), (pointer: coarse) {
+  .tab-label-full {
+    display: none;
+  }
+  .tab-label-short {
+    display: inline;
+  }
+  .date-bar-label,
+  .date-bar-right {
+    display: none !important;
+  }
+  .main {
+    padding: 8px 0 16px !important;
+  }
+  .slate-sport-jump,
+  .sport-view-tabs {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scrollbar-width: none;
+  }
+  .slate-sport-jump::-webkit-scrollbar,
+  .sport-view-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .two-col,
+  .three-col,
+  .insight-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Light theme ── */
+[data-theme="light"] html,
+[data-theme="light"] body {
+  color: #14202e !important;
+}
+[data-theme="light"] .slate-sport-jump,
+[data-theme="light"] .sport-view-tabs {
+  background: #f4f6fa !important;
+}
+[data-theme="light"] .table-wrap,
+[data-theme="light"] .stat-card,
+[data-theme="light"] .insight-card {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}

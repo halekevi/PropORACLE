@@ -1722,10 +1722,10 @@ select option,
 </style>
 <link rel="stylesheet" href="static/site-nav-unified.css?v=20260720halfnav1"/>
 <link rel="stylesheet" href="static/nav-mobile-shared.css?v=20260430schemapage"/>
-<link rel="stylesheet" href="static/mobile-content-width.css?v=20261121fullbleed9"/>
+<link rel="stylesheet" href="static/mobile-content-width.css?v=20261121embedtheme1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261119glass4"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121fullbleed9"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121embedtheme1"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -2721,15 +2721,25 @@ function getOrCreateToolbarHost(doc) {
   return host;
 }
 
+const GRADES_EMBED_THEME_HREF = 'static/grades-embed-theme.css?v=20261121embedtheme1';
+
+/** Slate iframe lives under /grades/ — resolve against the hub so the link is not /grades/static/… (404). */
+function ensureGradesEmbedTheme(doc) {
+  if (!doc || !doc.head) return;
+  const href = new URL(GRADES_EMBED_THEME_HREF, document.baseURI).href;
+  let link = doc.getElementById('grades-embed-theme-link');
+  if (!link) {
+    link = doc.createElement('link');
+    link.id = 'grades-embed-theme-link';
+    link.rel = 'stylesheet';
+  }
+  if (link.href !== href) link.href = href;
+  doc.head.appendChild(link);
+}
+
 function ensureGradesToolbarStylesInFrame(doc) {
   if (!doc) return;
-  if (!doc.getElementById('grades-iframe-toolbar-link')) {
-    const link = doc.createElement('link');
-    link.id = 'grades-iframe-toolbar-link';
-    link.rel = 'stylesheet';
-    link.href = 'static/grades-iframe-toolbar.css?v=20261121hubchrome6';
-    doc.head.appendChild(link);
-  }
+  ensureGradesEmbedTheme(doc);
   // Inline critical labels/chrome so missing/cached CSS cannot show double tab text.
   if (!doc.getElementById('grades-iframe-toolbar-critical')) {
     const style = doc.createElement('style');
@@ -3982,6 +3992,7 @@ function collapseSportsInSlateFrame(frame) {
   const doc = frame?.contentDocument;
   if (!doc) return;
   ensureFrameCollapseCss(doc);
+  ensureGradesEmbedTheme(doc);
   hydrateStackedRateBarsInDoc(doc);
   brightenDefTierSubgridInDoc(doc);
   unwrapDoubleWrappedNativeSports(doc);
