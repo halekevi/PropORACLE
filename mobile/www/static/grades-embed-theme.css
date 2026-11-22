@@ -393,7 +393,8 @@ td {
   gap: 8px !important;
   padding: 6px 0 12px !important;
   margin: 0 0 6px !important;
-  background: #0b0b0b !important;
+  background: transparent !important;
+  position: static !important;
   border: none !important;
   border-bottom: 1px solid var(--ge-rule) !important;
   overflow: visible !important;
@@ -479,7 +480,8 @@ details.sport-collapsible,
   gap: 8px !important;
   padding: 0 0 12px !important;
   margin: 0 0 14px !important;
-  background: #0b0b0b !important;
+  background: transparent !important;
+  position: static !important;
   border: none !important;
   border-bottom: 1px solid var(--ge-rule) !important;
   border-radius: 0 !important;
@@ -652,10 +654,6 @@ details.sport-collapsible,
 [data-theme="light"] html,
 [data-theme="light"] body {
   color: #14202e !important;
-}
-[data-theme="light"] .slate-sport-jump,
-[data-theme="light"] .sport-view-tabs {
-  background: #f4f6fa !important;
 }
 [data-theme="light"] .table-wrap,
 [data-theme="light"] .stat-card,

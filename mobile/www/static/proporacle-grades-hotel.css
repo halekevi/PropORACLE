@@ -106,7 +106,7 @@ button,
   letter-spacing: 1.2px !important;
 }
 
-/* ── Hub: full-bleed page surface (no 98% capped shell / gutters) ── */
+/* ── Hub: page background runs edge to edge; content sits in Home's 98% band ── */
 html.page-grades-root,
 html.page-grades-root body.page-grades {
   width: 100% !important;
@@ -122,12 +122,11 @@ html.page-grades-root body.page-grades::before {
 }
 body.page-grades .grades-hub-shell,
 .grades-hub-shell {
-  width: 100% !important;
-  max-width: none !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: clamp(12px, 2.2vw, 28px) !important;
-  padding-right: clamp(12px, 2.2vw, 28px) !important;
+  width: 98% !important;
+  max-width: min(98vw, 2400px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: clamp(18px, 3vw, 28px) 0 24px !important;
   box-sizing: border-box !important;
   background: transparent !important;
   border: none !important;
@@ -171,6 +170,140 @@ body.page-grades .iframe-shell,
   border: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
+}
+
+/* ── Hero card (same build as Home .hero): title + report date + tabs ── */
+body.page-grades .grades-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0 0 18px;
+  padding: clamp(20px, 3vw, 32px) clamp(18px, 3vw, 34px);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+body.page-grades .grades-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #d4af37, #9eb8c4, #b8a99a);
+}
+body.page-grades .grades-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 82% 24%, rgba(127, 199, 217, 0.15), transparent 24%),
+    radial-gradient(circle at 18% 88%, rgba(212, 175, 55, 0.08), transparent 26%);
+}
+body.page-grades .grades-hero .hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+body.page-grades .grades-hero .hero-title {
+  margin: 0 0 18px !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(2.2rem, 3.6vw + 1rem, 4.5rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: clamp(2px, 0.35vw, 6px) !important;
+  line-height: 0.95 !important;
+  text-transform: none !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 0 40px rgba(212, 175, 55, 0.08);
+}
+body.page-grades .grades-hero .hero-title .ht2 {
+  color: #d4af37;
+}
+/* Controls sit in the hero and scroll away with it — no sticky bar, no collapse-on-scroll */
+body.page-grades .grades-hero .iframe-shell-toolbar {
+  position: static !important;
+}
+body.page-grades .grades-hero .iframe-shell-head {
+  display: none !important;
+}
+body.page-grades .grades-hero .iframe-shell-toolbar.bars-collapsed .grades-scroll-hide-wrap {
+  grid-template-rows: 1fr !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+body.page-grades .grades-hero .tabs-bar {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+/* ── Section panel (same build as Home .home-cat) around the active tab ── */
+body.page-grades .grades-panel {
+  box-sizing: border-box;
+  margin: 0 0 14px;
+  padding: 0 clamp(10px, 2.5vw, 18px) clamp(14px, 2.5vw, 20px);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+body.page-grades .grades-panel-head {
+  padding: 12px 0 10px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+body.page-grades .grades-panel-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.92);
+}
+body.page-grades .grades-panel-title span {
+  color: #d4af37;
+}
+
+/* Panel header already names the tab — drop the inner duplicate title + card padding */
+body.page-grades .grades-panel #props-eval-panel .insights-card-title,
+body.page-grades .grades-panel #player-evaluator-panel .pe-title {
+  display: none !important;
+}
+body.page-grades .grades-panel .props-eval-intro {
+  padding: 12px 0 !important;
+}
+
+@media (max-width: 720px) {
+  body.page-grades .grades-hero {
+    padding: 18px 14px 16px;
+    border-radius: 18px;
+  }
+  body.page-grades .grades-hero .hero-title {
+    font-size: 38px !important;
+    letter-spacing: 1px !important;
+  }
+}
+
+[data-theme="light"] body.page-grades .grades-hero,
+[data-theme="light"] body.page-grades .grades-panel {
+  background: rgba(205, 218, 236, 0.92);
+  border-color: rgba(70, 100, 130, 0.18);
+  box-shadow: 0 4px 20px rgba(15, 45, 80, 0.1);
+}
+[data-theme="light"] body.page-grades .grades-hero .hero-title,
+[data-theme="light"] body.page-grades .grades-panel-title {
+  color: rgba(0, 0, 0, 0.82) !important;
 }
 
 body.page-grades .iframe-shell-stage,

@@ -1720,7 +1720,7 @@ select option,
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20261121embedtheme1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261121glass5"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121noshell1"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121foundation1"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -1794,6 +1794,9 @@ select option,
 <div class="grades-body">
 <!-- ═══════════════════════ IFRAME SHELL ═══════════════════════ -->
 <div class="iframe-shell" id="grades-iframe-shell">
+  <section class="grades-hero" aria-label="Grades">
+    <div class="hero-eyebrow" id="grades-hero-eyebrow">Graded results</div>
+    <h1 class="hero-title"><span class="ht1">Prop</span> <span class="ht2">Grades</span></h1>
   <div id="grades-toolbar-parent-slot" class="grades-toolbar-parent-slot">
     <div class="iframe-shell-toolbar" id="iframe-shell-toolbar">
       <div class="iframe-shell-head">
@@ -1842,6 +1845,9 @@ select option,
       </div>
     </div>
   </div>
+  </section>
+  <section class="grades-panel">
+  <div class="grades-panel-head"><span class="grades-panel-title" id="grades-panel-title">Slate <span>Evaluation</span></span></div>
   <div class="iframe-shell-stage" data-grades-tab="slate">
   <div class="load-overlay hidden" id="load-overlay" aria-hidden="true">
     <div class="load-spinner"></div>
@@ -2166,6 +2172,7 @@ select option,
 </script>
 
   </div><!-- /.iframe-shell-stage -->
+  </section><!-- /.grades-panel -->
 </div>
 </div><!-- /.grades-body -->
 </div><!-- /.grades-page -->
@@ -2259,7 +2266,7 @@ function ticketIframeDocLooksReady(doc) {
   return false;
 }
 
-/** Open sport buckets that have tickets; keep Manual Ticket Builder closed. */
+/** Open sport buckets that have tickets; drop the Manual Ticket Builder still baked into older reports. */
 function enforceTicketEvalBucketsDefaultOpen(doc) {
   if (!doc) return;
   doc.querySelectorAll('details.ticket-bucket, details.grades-sport-bucket').forEach((el) => {
@@ -2268,12 +2275,15 @@ function enforceTicketEvalBucketsDefaultOpen(doc) {
       summary.includes('manual ticket') ||
       summary.includes('ticket builder') ||
       el.classList.contains('manual-ticket-builder') ||
+      el.classList.contains('manual-tb') ||
       !!el.querySelector('#builder, .utp-panel, .manual-builder');
     const cardCount = el.querySelectorAll('article.ticket-card, .ticket-card').length;
     const ticketMeta = (summary.match(/(\d+)\s*tickets?/) || [])[1];
     const metaTickets = ticketMeta != null ? parseInt(ticketMeta, 10) : 0;
     const hasTickets = cardCount > 0 || metaTickets > 0;
-    if (isBuilder || !hasTickets) {
+    if (isBuilder) {
+      el.remove();
+    } else if (!hasTickets) {
       el.removeAttribute('open');
       el.open = false;
     } else {
@@ -2701,20 +2711,7 @@ function gradesEl(id) {
   return gradesToolbarPickEl(id);
 }
 
-function getOrCreateToolbarHost(doc) {
-  if (!doc) return null;
-  let host = doc.getElementById('proporacle-grades-toolbar-host');
-  if (host) return host;
-  const hdr = doc.querySelector('header');
-  if (!hdr) return null;
-  host = doc.createElement('div');
-  host.id = 'proporacle-grades-toolbar-host';
-  host.className = 'grades-hub-toolbar-host';
-  hdr.appendChild(host);
-  return host;
-}
-
-const GRADES_EMBED_THEME_HREF = 'static/grades-embed-theme.css?v=20261121embedtheme1';
+const GRADES_EMBED_THEME_HREF = 'static/grades-embed-theme.css?v=20261121foundation1';
 
 /** Slate iframe lives under /grades/ — resolve against the hub so the link is not /grades/static/… (404). */
 function ensureGradesEmbedTheme(doc) {
@@ -2728,29 +2725,6 @@ function ensureGradesEmbedTheme(doc) {
   }
   if (link.href !== href) link.href = href;
   doc.head.appendChild(link);
-}
-
-function ensureGradesToolbarStylesInFrame(doc) {
-  if (!doc) return;
-  ensureGradesEmbedTheme(doc);
-  // Inline critical labels/chrome so missing/cached CSS cannot show double tab text.
-  if (!doc.getElementById('grades-iframe-toolbar-critical')) {
-    const style = doc.createElement('style');
-    style.id = 'grades-iframe-toolbar-critical';
-    style.textContent = [
-      '.tab-label-full{display:inline}',
-      '.tab-label-short{display:none}',
-      '@media (max-width:1100px){.tab-label-full{display:none!important}.tab-label-short{display:inline!important}}',
-      '@media (max-width:900px),(pointer:coarse){',
-      '.tab-label-full{display:none!important}.tab-label-short{display:inline!important}',
-      '.date-bar-right,.date-bar-label{display:none!important}',
-      '.date-bar{overflow-x:hidden!important;flex-wrap:nowrap!important}',
-      '.date-pills{min-width:0!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch;flex-wrap:nowrap!important;gap:6px;padding-bottom:8px;scrollbar-width:none}',
-      '.date-pills .dpill{flex:0 0 auto!important;flex-shrink:0!important;white-space:nowrap!important;min-width:max-content!important;overflow:visible!important;text-overflow:clip!important}',
-      '}',
-    ].join('');
-    doc.head.appendChild(style);
-  }
 }
 
 function syncToolbarParentSlot() {
@@ -2783,72 +2757,14 @@ function restoreGradesToolbarToParent() {
   } catch (_e1) {}
 }
 
-function bridgeGradesToolbarActionsToParent(frame) {
-  const win = frame?.contentWindow;
-  if (!win || win === window) return;
-  try {
-    win.switchTab = function (tab) {
-      try { window.switchTab(tab); } catch (_e) {}
-    };
-    win.stepDate = function (delta) {
-      try { window.stepDate(delta); } catch (_e2) {}
-    };
-    win.jumpToDate = function () {
-      try { window.jumpToDate(); } catch (_e3) {}
-    };
-  } catch (_e4) {}
-}
-
 function embedGradesToolbarInSlate(frame) {
   if (activeTab !== 'slate') return;
-  // Mobile: keep chrome in the parent hub so labels/Jump-To/date-pill CSS cannot drift
-  // when the toolbar is adopted into the slate iframe (also avoids double-label bugs).
-  if (gradesFrameMobileLayout()) {
-    restoreGradesToolbarToParent();
-    syncToolbarParentSlot();
-    try {
-      window.setupGradesBarsScrollHide();
-    } catch (_em) {}
-    return;
-  }
-  const doc = frame?.contentDocument;
-  if (!doc || !doc.body) return;
-  bridgeGradesToolbarActionsToParent(frame);
-  const host = getOrCreateToolbarHost(doc);
-  if (!host) {
-    syncToolbarParentSlot();
-    try {
-      window.setupGradesBarsScrollHide();
-    } catch (_eh) {}
-    return;
-  }
-  ensureGradesToolbarStylesInFrame(doc);
-  const toolbar = gradesEl('iframe-shell-toolbar');
-  const slot = document.getElementById('grades-toolbar-parent-slot');
-  if (!toolbar || !slot) return;
-  if (toolbar.parentElement === host) {
-    toolbar.classList.add('iframe-shell-toolbar--embedded');
-    syncToolbarParentSlot();
-    try {
-      window.setupGradesBarsScrollHide();
-    } catch (_eh2) {}
-    return;
-  }
-  try {
-    doc.adoptNode(toolbar);
-    host.appendChild(toolbar);
-    toolbar.classList.add('iframe-shell-toolbar--embedded');
-  } catch (_e) {
-    try {
-      document.adoptNode(toolbar);
-      slot.appendChild(toolbar);
-      toolbar.classList.remove('iframe-shell-toolbar--embedded');
-    } catch (_e2) {}
-  }
+  // Toolbar lives in the hub hero card on every viewport; never adopt it into the slate iframe.
+  restoreGradesToolbarToParent();
   syncToolbarParentSlot();
   try {
     window.setupGradesBarsScrollHide();
-  } catch (_e3) {}
+  } catch (_em) {}
 }
 
 function ensureFrameCollapseCss(doc) {
@@ -4823,6 +4739,26 @@ function refreshControlsSummary() {
     } else if (activeTab === 'props') titleEl.textContent = 'Prop evaluation';
     else titleEl.textContent = 'Slate evaluation';
   }
+  const panelTitle = document.getElementById('grades-panel-title');
+  if (panelTitle) {
+    const lead =
+      activeTab === 'tickets'
+        ? (ticketEvalTrack === 'long_parlay' ? 'Long parlay' : 'Ticket')
+        : activeTab === 'props'
+          ? 'Prop'
+          : activeTab === 'players'
+            ? 'Player'
+            : 'Slate';
+    panelTitle.innerHTML = lead + ' <span>Evaluation</span>';
+  }
+  const eyebrow = document.getElementById('grades-hero-eyebrow');
+  const ymd = currentDateStr || '';
+  if (eyebrow && /^\d{4}-\d{2}-\d{2}$/.test(ymd)) {
+    const [y, m, d] = ymd.split('-').map(Number);
+    eyebrow.textContent =
+      'Graded results · ' +
+      new Date(y, m - 1, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
   if (!el) return;
   const ds = currentDateStr || gradesEl('date-jump')?.value || '';
   let tab = 'Slate';
@@ -5151,6 +5087,7 @@ function applyTicketEvalGradesEmbed(doc) {
     'html.ticket-eval-embed-grades .grades-sport-bucket-body section.sec,' +
     'html.ticket-eval-embed-grades .grades-sport-bucket-body article.ticket-card{display:block!important;visibility:visible!important;}' +
     'html.ticket-eval-embed-grades .ticket-sections-wrap{overflow:visible!important;min-height:0!important;}' +
+    'html.ticket-eval-embed-grades details.manual-tb{display:none!important;}' +
     /* Sport buckets → glass buttons (covers older baked HTML without rebuild). */
     'html.ticket-eval-embed-grades details.ticket-bucket:not(.manual-tb),' +
     'html.ticket-eval-embed-grades details.grades-sport-bucket{margin:0 0 12px!important;border:none!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;}' +
