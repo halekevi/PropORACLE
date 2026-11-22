@@ -74,6 +74,9 @@ L5_CLEAR_COLS = (
     "stat_last5_avg",
     "stat_last10_avg",
     "stat_season_avg",
+    "stat_last5_median",
+    "stat_last10_median",
+    "stat_season_median",
     "last5_over",
     "last5_under",
     "last5_push",
@@ -300,6 +303,8 @@ def l5_hits_without_games(row: Any) -> bool:
         hits = max(hits, under)
     if hits <= 0:
         return False
+    # CFB clean step8 uses "Last 5 Avg" / "Games Played" (main_cp writer);
+    # richer trees also emit "L5 Avg" / "Games Used" / "L5 Sample N".
     avg = _num(
         _get(
             row,
@@ -308,14 +313,26 @@ def l5_hits_without_games(row: Any) -> bool:
             "avg_L5",
             "l5_avg",
             "L5 Avg",
+            "Last 5 Avg",
             "last5_avg",
             "avg",
             "stat_season_avg",
             "avg_season",
             "season_avg",
+            "Season Avg",
         )
     )
-    games = _num(_get(row, "games_used", "l5_sample_n", "Games Used", "L5 Sample N"))
+    games = _num(
+        _get(
+            row,
+            "games_used",
+            "l5_sample_n",
+            "Games Used",
+            "L5 Sample N",
+            "Games Played",
+            "games_played",
+        )
+    )
     if avg is not None:
         return False
     if games is not None and games > 0:
@@ -396,7 +413,18 @@ def row_qualifies_for_list(row: Any) -> tuple[bool, str]:
         return False, "l5_hits_no_games"
     line = _num(_get(row, "line", "Line", "line_score"))
     avg = _num(
-        _get(row, "stat_last5_avg", "avg_l5", "avg_L5", "l5_avg", "L5 Avg", "stat_season_avg", "avg_season")
+        _get(
+            row,
+            "stat_last5_avg",
+            "avg_l5",
+            "avg_L5",
+            "l5_avg",
+            "L5 Avg",
+            "Last 5 Avg",
+            "stat_season_avg",
+            "avg_season",
+            "Season Avg",
+        )
     )
     why = implausible_l5_vs_line(prop, avg, line)
     if why:

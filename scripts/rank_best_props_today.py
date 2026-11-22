@@ -98,6 +98,7 @@ from utils.cfb_keep_gates import (  # noqa: E402
 from utils.tennis_keep_gates import tennis_list_eligible  # noqa: E402
 from utils.l5_push_aware import is_clean_l5_five  # noqa: E402
 from utils.stat_attach_guard import row_qualifies_for_list  # noqa: E402
+from utils.season_prop_leaders import annotate_rows as annotate_season_leaders  # noqa: E402
 from utils.l5_recency_policy import WNBA_L5_MIN, is_wnba_family  # noqa: E402
 from utils.pp_board_prop_map import is_ou_ranker_prop  # noqa: E402
 from utils.ticket_70_pool import skip_combo_player  # noqa: E402
@@ -1270,14 +1271,20 @@ def load_wnba1h(root: Path, date: str) -> pd.DataFrame:
     return _load_folder_step8(root, date, "WNBA1H", "wnba1h", ("Sports", "WNBA"))
 
 
-def recs(df: pd.DataFrame) -> list[dict]:
+def recs(df: pd.DataFrame, *, as_of: str | None = None) -> list[dict]:
     out = []
     n_teams = _n_teams(df)
+    attach_drop: dict[str, int] = {}
+    n_in = 0
     for _, r in df.iterrows():
+        n_in += 1
         if str(r.get("sport") or "").upper() == "TENNIS" and tennis_bo5_graded_on_bo3_tape(r):
             continue
         ok_attach, _why_attach = row_qualifies_for_list(r)
         if not ok_attach:
+            sport = str(r.get("sport") or r.get("Sport") or "?").strip().upper() or "?"
+            key = f"{sport}:{_why_attach or 'attach'}"
+            attach_drop[key] = attach_drop.get(key, 0) + 1
             continue
         prop = str(r.get("prop_type") or r.get("prop") or r.get("Prop") or "").strip()
         if prop.lower() in SKIP_PROPS:
@@ -1323,8 +1330,12 @@ def recs(df: pd.DataFrame) -> list[dict]:
             "season_l5_flag": _clean(
                 r.get("season_l5_flag") or r.get("Season L5 Flag")
             ),
-            "games_used": _num(r.get("games_used") or r.get("Games Used")),
-            "l5_sample_n": _num(r.get("l5_sample_n") or r.get("L5 Sample N")),
+            "games_used": _num(
+                r.get("games_used") or r.get("Games Used") or r.get("Games Played")
+            ),
+            "l5_sample_n": _num(
+                r.get("l5_sample_n") or r.get("L5 Sample N") or r.get("Games Played")
+            ),
             "l5_window_n": _num(r.get("l5_window_n") or r.get("L5 Window N")),
             "current_season_rs_n": _num(
                 r.get("current_season_rs_n")
@@ -1556,6 +1567,22 @@ def recs(df: pd.DataFrame) -> list[dict]:
                 f"{rec['matchup_note']} {extra}".strip() if rec.get("matchup_note") else extra
             )
         out.append(rec)
+    # Loud when a sport loses most L5-bearing rows to attach (silent CFB outage
+    # Oct 25–Nov 21: step8 "Last 5 Avg"/"Games Played" missed the guard aliases).
+    n_drop = sum(attach_drop.values())
+    if n_in and n_drop * 2 >= n_in:
+        top = sorted(attach_drop.items(), key=lambda kv: -kv[1])[:6]
+        detail = ", ".join(f"{k}={v}" for k, v in top)
+        print(
+            f"WARN: attach guard dropped {n_drop}/{n_in} board rows "
+            f"({100 * n_drop / n_in:.0f}%): {detail}",
+            flush=True,
+        )
+    if as_of and out:
+        n_lead = annotate_season_leaders(out, as_of=str(as_of)[:10])
+        if n_lead:
+            sport0 = str(out[0].get("sport") or "").strip() or "?"
+            print(f"  [season leaders] {sport0}: tagged {n_lead} row(s)", flush=True)
     return out
 
 
@@ -1715,10 +1742,13 @@ def _fmt(r: dict, side: str) -> str:
             roster_s = "  roster_changed"
         if mates and mates not in roster_s:
             roster_s += f"  new:{mates}"
+    lead = str(r.get("season_leader_tag") or "").strip()
+    lead_s = f"  {lead}" if lead else ""
     return (
         f"  {tag:12} {r['player']:24} {r['prop']:24} {prefix}{line}  "
         f"L5 {l5}  L5avg {l5a_s}  L10avg {l10a_s}  szn {avg_s}  cov {cov_s}  "
-        f"{d_s:12}{miss_s}{note_s}{pol_s}{l8_s}{roster_s}  {r.get('matchup') or ''}"
+        f"{d_s:12}{miss_s}{note_s}{pol_s}{l8_s}{roster_s}{lead_s}  "
+        f"{r.get('matchup') or ''}"
     )
 
 
@@ -1742,6 +1772,18 @@ def _row_for_xlsx(r: dict, category: str) -> dict:
         "Promote_reason": r.get("prop_promote_reason") or "",
         "Badge": r.get("badge") or "",
         "Promo": r.get("promo") or r.get("badge") or "",
+        "Season_leader_flag": r.get("season_leader_flag") or "",
+        "Season_prop_rank": r.get("season_prop_rank"),
+        "Season_prop_pool": r.get("season_prop_pool"),
+        "Season_prop_avg": r.get("season_prop_avg"),
+        "Season_line_hit_rate": (
+            None
+            if r.get("season_line_hit_rate") is None
+            else round(100 * float(r["season_line_hit_rate"]), 1)
+        ),
+        "Season_line_n": r.get("season_line_n"),
+        "Season_consistent": bool(r.get("season_consistent")),
+        "Season_leader_tag": r.get("season_leader_tag") or "",
         "L10": r.get("l10"),
         "Season_HR": None if r.get("season_hr") is None else round(100 * r["season_hr"], 1),
         "Season_N": r.get("season_n") or 0,
@@ -1964,7 +2006,7 @@ def main() -> int:
             print(step8_empty_reason(root, date, sport, folder, fname))
             by_sport[sport] = []
             continue
-        all_rows.extend(recs(df))
+        all_rows.extend(recs(df, as_of=date))
         so, su, gob = bucket(all_rows, sport)
         print_sport(sport, so, su, gob)
         by_sport[sport] = sport_rows_for_xlsx(sport, so, su, gob, all_rows)
@@ -1978,7 +2020,7 @@ def main() -> int:
         )
         by_sport["NFL"] = []
     else:
-        all_rows.extend(recs(df_nfl))
+        all_rows.extend(recs(df_nfl, as_of=date))
         so, su, gob = bucket(all_rows, "NFL")
         print_sport("NFL", so, su, gob)
         by_sport["NFL"] = sport_rows_for_xlsx("NFL", so, su, gob, all_rows)
@@ -1997,7 +2039,7 @@ def main() -> int:
             "  [WARN] NHL: re-check SOG/Blocks lines vs PrizePicks card "
             "(shots log historically drifted); L5 alignment not auto-verified."
         )
-        all_rows.extend(recs(df_nhl))
+        all_rows.extend(recs(df_nhl, as_of=date))
         so, su, gob = bucket(all_rows, "NHL")
         print_sport("NHL", so, su, gob)
         by_sport["NHL"] = sport_rows_for_xlsx("NHL", so, su, gob, all_rows)
@@ -2011,7 +2053,7 @@ def main() -> int:
         )
         by_sport["CFB"] = []
     else:
-        all_rows.extend(recs(df_cfb))
+        all_rows.extend(recs(df_cfb, as_of=date))
         so, su, gob = bucket(all_rows, "CFB")
         print_sport("CFB", so, su, gob, n_o=20, n_u=20, n_g=20)
         by_sport["CFB"] = sport_rows_for_xlsx("CFB", so, su, gob, all_rows)
@@ -2025,7 +2067,7 @@ def main() -> int:
         )
         by_sport["CFB1H"] = []
     else:
-        all_rows.extend(recs(df_cfb1h))
+        all_rows.extend(recs(df_cfb1h, as_of=date))
         so, su, gob = bucket(all_rows, "CFB1H")
         print_sport("CFB1H", so, su, gob, n_o=20, n_u=20, n_g=20)
         by_sport["CFB1H"] = sport_rows_for_xlsx("CFB1H", so, su, gob, all_rows)
@@ -2039,7 +2081,7 @@ def main() -> int:
         )
         by_sport["GOLF"] = []
     else:
-        all_rows.extend(recs(df_golf))
+        all_rows.extend(recs(df_golf, as_of=date))
         so, su, gob = bucket(all_rows, "GOLF")
         print_sport("GOLF", so, su, gob)
         by_sport["GOLF"] = sport_rows_for_xlsx("GOLF", so, su, gob, all_rows)
@@ -2079,7 +2121,7 @@ def main() -> int:
             )
             by_sport[sport] = []
             continue
-        all_rows.extend(recs(df_x))
+        all_rows.extend(recs(df_x, as_of=date))
         so, su, gob = bucket(all_rows, sport)
         print_sport(sport, so, su, gob)
         by_sport[sport] = sport_rows_for_xlsx(sport, so, su, gob, all_rows)
