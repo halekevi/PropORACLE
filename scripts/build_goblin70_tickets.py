@@ -233,6 +233,30 @@ def tennis_match_key(mu: object) -> str:
     return fold_name(s)
 
 
+def drop_rows_before_slate(rows: list[dict], date: str) -> list[dict]:
+    """Drop legs whose game already tipped on an earlier ET day.
+
+    A day-ahead fetch on Saturday night still sees Saturday's CFB board; those legs built
+    whole slips that the schedule gate then discarded, leaving no Goblin-70 groups.
+    Only ISO start times (local offset = ET) are judged; later dates stay for the gate.
+    """
+    import re
+
+    kept: list[dict] = []
+    dropped: dict[str, int] = {}
+    for r in rows:
+        m = re.match(r"(\d{4}-\d{2}-\d{2})T", str(r.get("start_time") or ""))
+        if m and m.group(1) < date:
+            sp = str(r.get("sport") or "").upper()
+            dropped[sp] = dropped.get(sp, 0) + 1
+            continue
+        kept.append(r)
+    if dropped:
+        detail = ", ".join(f"{k}={v}" for k, v in sorted(dropped.items()))
+        print(f"  [slate-date] dropped {sum(dropped.values())} board row(s) before {date}: {detail}", flush=True)
+    return kept
+
+
 def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     candidates = [_REPO]
     sibling = _REPO.parent / "PropORACLE_main_cp"
@@ -298,6 +322,7 @@ def load_today_board(date: str, *, skip_golf: bool = False) -> list[dict]:
     if drop_golf:
         rows = [r for r in rows if str(r.get("sport") or "").upper() != "GOLF"]
         print(golf_skip_warning(rows), flush=True)
+    rows = drop_rows_before_slate(rows, date)
     from utils.ticket_sport_holds import (
         CBB_HOLD_REASON,
         NBA1Q_HOLD_REASON,
