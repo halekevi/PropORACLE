@@ -49,6 +49,10 @@ _FETCH_LOCK = threading.Lock()
 # volume (PROPORACLE_PERSISTENT_DATA_DIR) can raise the budget to hold everything.
 DISK_BUDGET_MB_DEFAULT = 300
 DISK_FREE_MARGIN_BYTES = 150 * 1024 * 1024
+# Re-download this many newest dates on every boot sync even when a volume copy exists.
+# Without this, a regrade published to graded-data never replaces the stale Railway file
+# (sync skipped on is_file), so Soccer DNP voids stay MISS on /grades.
+REFRESH_NEWEST_DEFAULT = 21
 
 
 def _on_railway() -> bool:
@@ -155,6 +159,17 @@ def disk_budget_bytes() -> int | None:
             mb = DISK_BUDGET_MB_DEFAULT
         return None if mb <= 0 else int(mb * 1024 * 1024)
     return DISK_BUDGET_MB_DEFAULT * 1024 * 1024 if _on_railway() else None
+
+
+def refresh_newest_n() -> int:
+    """How many newest graded dates to re-fetch on sync even when already on disk."""
+    raw = (os.environ.get("PROPORACLE_GRADED_REFRESH_NEWEST") or "").strip()
+    if raw:
+        try:
+            return max(0, int(float(raw)))
+        except ValueError:
+            pass
+    return REFRESH_NEWEST_DEFAULT
 
 
 def _graded_files_in(d: Path) -> list[Path]:
@@ -291,17 +306,24 @@ def sync_newest_first(dest_dir: Path, *, timeout: int = 120, budget: int | None 
 
     This is the Railway boot path: the writable layer cannot hold the whole branch, and the
     grades pages people open are the recent ones. Older dates are still served on demand (with
-    eviction of the oldest cached date). Returns a report dict.
+    eviction of the oldest cached date).
+
+    The newest ``refresh_newest_n()`` dates are always re-downloaded so a regrade on
+    ``graded-data`` replaces a stale volume copy (DNP void fixes, late actuals, etc.).
+    Dates beyond that window still skip when present.
     """
     dest_dir = Path(dest_dir)
     dest_dir.mkdir(parents=True, exist_ok=True)
     if budget is None:
         budget = disk_budget_bytes()
+    refresh_n = refresh_newest_n()
     report = {
         "mode": "newest_first",
         "dest": str(dest_dir),
         "budget_mb": None if budget is None else round(budget / 1048576),
+        "refresh_newest": refresh_n,
         "written": 0,
+        "refreshed": 0,
         "skipped": 0,
         "stopped_at": "",
         "ok": False,
@@ -319,25 +341,36 @@ def sync_newest_first(dest_dir: Path, *, timeout: int = 120, budget: int | None 
     except OSError:
         pass
     used = sum((p.stat().st_size for p in _graded_files_in(dest_dir)), 0)
-    for d in dates:
+    for i, d in enumerate(dates):
         fname = f"graded_props_{d}.json"
         dest = dest_dir / fname
-        if dest.is_file():
+        exists = dest.is_file()
+        if exists and i >= refresh_n:
             report["skipped"] += 1
             continue
+        old_sz = dest.stat().st_size if exists else 0
         # Do not evict newer files to make room for an older one: stop at the budget instead.
+        # Existing refresh targets already occupy space; make_room=False keeps the newest window.
         status = _download_to(f"{raw_base()}/{fname}", dest, timeout=timeout, make_room=False)
         if status == "ok":
-            report["written"] += 1
-            used += dest.stat().st_size
-            if budget is not None and used >= budget:
-                report["stopped_at"] = d
-                break
+            new_sz = dest.stat().st_size
+            used += new_sz - old_sz
+            if exists:
+                report["refreshed"] += 1
+            else:
+                report["written"] += 1
+                # Only stop the walk for *new* dates past budget; refreshes replace in place.
+                if budget is not None and used >= budget:
+                    report["stopped_at"] = d
+                    break
         elif status == "noroom":
             report["stopped_at"] = d
             break
         elif status == "error":
             report["error"] = f"fetch error at {d}"
+            # Keep going for other dates in the refresh window when one fetch flakes.
+            if i >= refresh_n:
+                break
     report["ok"] = not report["error"]
     report["seconds"] = round(time.monotonic() - t0, 1)
     try:
@@ -446,6 +479,7 @@ __all__ = [
     "sync_newest_first",
     "ensure_room",
     "disk_budget_bytes",
+    "refresh_newest_n",
     "read_index",
     "fetch_enabled",
     "raw_base",

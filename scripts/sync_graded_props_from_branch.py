@@ -45,7 +45,9 @@ def main() -> int:
         print(f"[graded-sync] newest-first {store.raw_base()} -> {dest} (budget {store.disk_budget_bytes()})", flush=True)
         rep = store.sync_newest_first(dest, timeout=a.timeout)
         print(
-            f"[graded-sync] ok={rep['ok']} written={rep['written']} skipped={rep['skipped']} "
+            f"[graded-sync] ok={rep['ok']} written={rep['written']} "
+            f"refreshed={rep.get('refreshed', 0)} skipped={rep['skipped']} "
+            f"refresh_newest={rep.get('refresh_newest', '-')} "
             f"stopped_at={rep.get('stopped_at') or '-'} {rep.get('seconds')}s {rep.get('error') or ''}",
             flush=True,
         )
