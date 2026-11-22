@@ -2262,7 +2262,7 @@ function ticketIframeDocLooksReady(doc) {
   return false;
 }
 
-/** Open sport buckets that have tickets; drop the Manual Ticket Builder still baked into older reports. */
+/** Keep sport/ticket slate buckets collapsed on load; drop Manual Ticket Builder from older reports. */
 function enforceTicketEvalBucketsDefaultOpen(doc) {
   if (!doc) return;
   doc.querySelectorAll('details.ticket-bucket, details.grades-sport-bucket').forEach((el) => {
@@ -2273,19 +2273,12 @@ function enforceTicketEvalBucketsDefaultOpen(doc) {
       el.classList.contains('manual-ticket-builder') ||
       el.classList.contains('manual-tb') ||
       !!el.querySelector('#builder, .utp-panel, .manual-builder');
-    const cardCount = el.querySelectorAll('article.ticket-card, .ticket-card').length;
-    const ticketMeta = (summary.match(/(\d+)\s*tickets?/) || [])[1];
-    const metaTickets = ticketMeta != null ? parseInt(ticketMeta, 10) : 0;
-    const hasTickets = cardCount > 0 || metaTickets > 0;
     if (isBuilder) {
       el.remove();
-    } else if (!hasTickets) {
-      el.removeAttribute('open');
-      el.open = false;
-    } else {
-      el.setAttribute('open', '');
-      el.open = true;
+      return;
     }
+    el.removeAttribute('open');
+    el.open = false;
   });
 }
 
