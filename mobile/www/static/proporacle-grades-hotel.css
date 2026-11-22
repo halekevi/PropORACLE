@@ -120,8 +120,8 @@ html.page-grades-root body.page-grades::before {
   left: 0 !important;
   right: 0 !important;
 }
-body.page-grades .shell,
-body.page-grades div.shell {
+body.page-grades .grades-hub-shell,
+.grades-hub-shell {
   width: 100% !important;
   max-width: none !important;
   margin-left: 0 !important;
@@ -129,15 +129,6 @@ body.page-grades div.shell {
   padding-left: clamp(12px, 2.2vw, 28px) !important;
   padding-right: clamp(12px, 2.2vw, 28px) !important;
   box-sizing: border-box !important;
-  border: none !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-body.page-grades .grades-hub-shell,
-.grades-hub-shell {
-  width: 100% !important;
-  max-width: none !important;
   background: transparent !important;
   border: none !important;
   border-radius: 0 !important;

@@ -211,16 +211,11 @@ body::before{
 body::after{content:none;display:none;}
 .grades-page{position:relative;z-index:1;display:block;width:100%;min-height:0;}
 .grades-body{display:block;width:100%;min-height:0;}
-.shell{
-  position:relative;z-index:1;
-  width:100%;
-  max-width:none;
-  margin:0;
-  padding:clamp(12px,2.5vw,28px) var(--po-grades-pad-x,16px);
-  box-sizing:border-box;
-}
 /* Hotel: open surface — no outer card wrapping toolbar + iframe */
 .grades-hub-shell{
+  position:relative;z-index:1;
+  margin:0;
+  padding:clamp(12px,2.5vw,28px) var(--po-grades-pad-x,16px);
   width:100%;
   max-width:none;
   border:none;
@@ -1725,7 +1720,7 @@ select option,
 <link rel="stylesheet" href="static/mobile-content-width.css?v=20261121embedtheme1"/>
 <link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261121glass5"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121embedtheme1"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121noshell1"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -1793,7 +1788,6 @@ select option,
 </div>
 
 
-<div class="shell">
 <div class="grades-hub-shell">
 <div class="grades-page">
 
@@ -2176,7 +2170,6 @@ select option,
 </div><!-- /.grades-body -->
 </div><!-- /.grades-page -->
 </div><!-- /.grades-hub-shell -->
-</div><!-- /.shell -->
 
 <script>
 // ─── CONFIG ──────────────────────────────────────────────────────────────────

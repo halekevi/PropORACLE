@@ -209,15 +209,11 @@ body::before{
 body::after{content:none;display:none;}
 .grades-page{position:relative;z-index:1;display:block;width:100%;min-height:0;}
 .grades-body{display:block;width:100%;min-height:0;}
-.shell{
-  position:relative;z-index:1;
-  width:var(--po-content-width);max-width:var(--po-content-max);
-  margin:0 auto;
-  padding:clamp(12px,2.5vw,28px) 0;
-  box-sizing:border-box;
-}
 /* Hotel: open surface — no outer card wrapping toolbar + iframe */
 .grades-hub-shell{
+  position:relative;z-index:1;
+  margin:0;
+  padding:clamp(12px,2.5vw,28px) clamp(12px,2.2vw,28px);
   width:100%;
   border:none;
   border-radius:0;
@@ -1737,7 +1733,6 @@ select option,
 </div>
 
 
-<div class="shell">
 <div class="grades-hub-shell">
 <div class="grades-page">
 
@@ -2121,7 +2116,6 @@ select option,
 </div><!-- /.grades-body -->
 </div><!-- /.grades-page -->
 </div><!-- /.grades-hub-shell -->
-</div><!-- /.shell -->
 
 <script>
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
