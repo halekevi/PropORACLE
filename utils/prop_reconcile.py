@@ -55,6 +55,9 @@ def reconcile_props_history_dict(row: dict[str, Any]) -> dict[str, Any]:
     """
     Apply box-score reconciliation to one props_history / API row (mutates a shallow copy).
     Expects keys: actual_value, line, direction, result, margin (optional).
+
+    Keeps grader VOID rows with a non-PUSH void reason (DNP, scratch, etc.). DNP zeros are
+    often stored as actual_value=0.0; re-grading those as OVER misses understates Soccer.
     """
     out = dict(row)
     res = str(out.get("result") or "").strip().upper()
@@ -70,6 +73,10 @@ def reconcile_props_history_dict(row: dict[str, Any]) -> dict[str, Any]:
             out["void_reason_grade"] = ""
         out["result"] = res
         out["margin"] = 0.0 if out.get("margin") in (None, "") else out.get("margin")
+    elif res == "VOID" and vr:
+        # DNP / inactive / scratch: do not re-grade placeholder zeros as MISS.
+        out["result"] = "VOID"
+        return out
     d = str(out.get("direction") or "").strip().upper()
     if d not in ("OVER", "UNDER"):
         return out
