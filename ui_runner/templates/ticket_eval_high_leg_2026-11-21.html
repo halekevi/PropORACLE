@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-ticket-track="high_leg_hr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"/>
+<script>(function(){try{var t=localStorage.getItem('proporacle-theme')||localStorage.getItem('theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.add('light-theme');}}catch(e){}})();</script>
+<meta name="theme-color" content="#050505"/>
+<title>High Leg HR Ticket Eval — 2026-11-21</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/global-scrollbar.css?v=20260517platform"/>
+<link rel="stylesheet" href="/static/proporacle-page-shell.css?v=20260418nav"/>
+<link rel="stylesheet" href="/static/site-nav-unified.css?v=20260408"/>
+<link rel="stylesheet" href="/static/nav-mobile-shared.css?v=20260418nav"/>
+<link rel="stylesheet" href="/static/mobile-content-width.css?v=20260423navcenter"/>
+<link rel="stylesheet" href="/static/site-nav-datetime.css?v=20260408"/>
+<link rel="stylesheet" href="/static/proporacle-grades-hotel.css?v=20261121btnsfont5"/>
+<style>
+
+body.ticket-eval-page{
+  font-family:'Inter',system-ui,sans-serif !important;
+  color:var(--text, rgba(255,255,255,0.92));
+}
+body.ticket-eval-page{
+  --glass: var(--card-bg, rgba(26,26,46,0.92));
+  --glass-bd: var(--border, rgba(255,255,255,0.08));
+  --gold: var(--accent, #d4af37);
+  --gold2: #d4a017;
+  --pending: #888;
+}
+/* Sport ticket groups: glassmorphism button (not bare text disclosure). */
+details.ticket-bucket:not(.manual-tb){
+  margin:0 0 12px;
+  border:none;
+  background:transparent;
+  box-shadow:none;
+}
+details.ticket-bucket:not(.manual-tb) > summary{
+  list-style:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px 16px;
+  flex-wrap:wrap;
+  width:100%;
+  box-sizing:border-box;
+  margin:0;
+  padding:14px 18px;
+  border-radius:16px;
+  border:1px solid rgba(212,160,23,0.35);
+  background:
+    linear-gradient(135deg, rgba(212,160,23,0.18), rgba(255,255,255,0.06) 42%, rgba(255,255,255,0.02)),
+    rgba(22,22,36,0.92);
+  backdrop-filter:blur(22px) saturate(190%);
+  -webkit-backdrop-filter:blur(22px) saturate(190%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 3px 0 0 rgba(212,160,23,0.85),
+    0 10px 36px rgba(0,0,0,0.45);
+  color:rgba(255,255,255,0.95);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(22px,2.4vw,30px);
+  letter-spacing:2px;
+  line-height:1.1;
+  transition:border-color .18s ease, box-shadow .18s ease, background .18s ease, transform .15s ease;
+}
+details.ticket-bucket:not(.manual-tb) > summary::-webkit-details-marker{display:none;}
+details.ticket-bucket:not(.manual-tb) > summary::marker{display:none;content:'';}
+details.ticket-bucket:not(.manual-tb) > summary > span:first-child,
+details.ticket-bucket:not(.manual-tb) > summary .ticket-bucket-title{
+  flex:0 1 auto;
+  min-width:0;
+  color:var(--gold, #d4af37);
+  text-shadow:0 0 18px rgba(212,160,23,0.22);
+}
+details.ticket-bucket:not(.manual-tb) > summary .ticket-bucket-meta{
+  flex:0 1 auto;
+  margin-left:auto;
+  text-align:right;
+  white-space:nowrap;
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.7px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.78);
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.16);
+  background:rgba(0,0,0,0.28);
+}
+details.ticket-bucket:not(.manual-tb) > summary::after{
+  content:'▸';
+  flex:0 0 auto;
+  font-size:16px;
+  color:rgba(212,160,23,0.85);
+  opacity:.85;
+  transition:transform .2s ease;
+}
+details.ticket-bucket:not(.manual-tb)[open] > summary{
+  border-color:rgba(212,160,23,0.65);
+  background:
+    linear-gradient(135deg, rgba(212,160,23,0.28), rgba(255,255,255,0.07) 45%, rgba(255,255,255,0.03)),
+    rgba(28,24,18,0.95);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    inset 3px 0 0 rgba(240,185,40,1),
+    0 0 0 1px rgba(212,160,23,0.2),
+    0 12px 40px rgba(0,0,0,0.5);
+}
+details.ticket-bucket:not(.manual-tb)[open] > summary::after{transform:rotate(90deg);}
+details.ticket-bucket:not(.manual-tb) > summary:hover{
+  border-color:rgba(255,255,255,0.28);
+  transform:translateY(-1px);
+}
+details.ticket-bucket:not(.manual-tb) > .ticket-bucket-body{
+  margin-top:10px;
+}
+:is([data-theme='light'], html.light-theme) .ticket-bucket{
+  background:rgba(255,255,255,0.52);
+  border-color:rgba(0,0,0,0.1);
+  box-shadow:0 2px 16px rgba(0,0,0,0.06);
+}
+:is([data-theme='light'], html.light-theme) details.ticket-bucket:not(.manual-tb) > summary{
+  color:#1a1a1a;
+  background:rgba(255,255,255,0.72);
+  border-color:rgba(0,0,0,0.12);
+  box-shadow:0 2px 14px rgba(0,0,0,0.06);
+}
+:is([data-theme='light'], html.light-theme) .ticket-bucket > summary{color:#b8860b;}
+:is([data-theme='light'], html.light-theme) .ticket-bucket-meta{color:rgba(0,0,0,0.45);}
+:is([data-theme='light'], html.light-theme) .ticket-bucket.sb-default{border-left-color:rgba(0,0,0,0.15);}
+
+h1,h2,h3,h4,h5,h6{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;}
+.bebas{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;}
+.stats-bar{position:-webkit-sticky;position:sticky;top:72px;z-index:175;margin:0 auto 8px;width:100%;max-width:min(1920px,98vw);padding:14px clamp(16px,2.5vw,28px);transition:top .28s ease,box-shadow .22s ease;background:linear-gradient(180deg,rgba(10,10,18,.92),rgba(8,8,14,.88)),var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--glass-bd);border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.35);}body.ticket-eval-page .grade-eval-summary:has(+ .stats-bar){margin-bottom:0;padding-bottom:8px;border-bottom:none;border-radius:16px 16px 0 0;box-shadow:none;}body.ticket-eval-page .grade-eval-summary:has(+ .stats-bar)+.stats-bar{margin-top:-1px;border-top:none;border-radius:0 0 18px 18px;padding-top:11px;box-shadow:0 8px 32px rgba(0,0,0,.35);}
+.sum-row{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-start;justify-content:flex-start;}
+.sum-row + .sum-row{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);}
+.sum-row-label{flex:0 0 100%;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 2px;opacity:.85;}
+.sum-item{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:76px;}
+.sum-item-pending-sport{cursor:help;}
+.sum-lab-badge{display:block;font-size:9px;line-height:1.15;color:var(--pending);opacity:.96;margin-top:3px;font-weight:600;text-transform:none;letter-spacing:0;}
+.sum-val{font-family:'Inter',sans-serif;font-size:clamp(20px,2.4vw,28px);font-weight:700;color:var(--gold);text-shadow:0 0 20px rgba(240,165,0,.25);}
+.sum-val.green{color:var(--green);text-shadow:0 0 14px rgba(57,255,110,.35);}
+.sum-val.red{color:var(--red);text-shadow:0 0 14px rgba(255,77,77,.35);}
+.sum-val.pend{color:var(--pending);text-shadow:none;}
+.sum-val.void{color:var(--gold2);text-shadow:none;}
+.sum-val-sm{font-size:clamp(17px,2vw,22px)!important;}
+.sum-lab{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.2px;color:var(--muted);text-align:left;line-height:1.25;max-width:12em;font-weight:600;text-transform:none;}
+.ges-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-size:12px;font-weight:600;}
+.ges-win{color:var(--green);border-color:rgba(57,255,110,.25);}
+.ges-guar{color:#7ec8ff;border-color:rgba(126,200,255,.25);}
+.ges-loss{color:var(--red);border-color:rgba(255,77,77,.25);}
+.ges-rate,.ges-ev{color:rgba(255,255,255,.82);}
+.grade-eval-help{margin:4px 0 10px;}
+.grade-eval-help>summary{cursor:pointer;color:var(--muted);font-size:12px;font-weight:600;list-style:none;}
+.grade-eval-help>summary::-webkit-details-marker{display:none;}
+.grade-eval-help[open]>summary{margin-bottom:6px;color:rgba(255,255,255,.75);}
+.grade-eval-help .meta-muted{margin:0;line-height:1.55;font-size:12px;}
+.wrap.ticket-eval-main{width:100%;max-width:min(1920px,98vw);margin:0 auto;padding:2px clamp(14px,2.5vw,32px) 0;}
+.ticket-sections-wrap{padding-top:2px;}
+details.ticket-bucket{margin:0 0 10px;}
+.ticket-sections-wrap > details.ticket-bucket:first-child{margin-top:0;}
+.sec{margin-top:22px;}
+.ticket-sections-wrap > section.sec:first-of-type,.ticket-bucket-body > section.sec:first-of-type{margin-top:8px;}
+.ticket-eval-main > details:not(.ticket-bucket):not(.grades-sport-bucket){display:none!important;}
+.ticket-eval-main > summary{display:none!important;}
+.ticket-sections-wrap ~ details.ticket-bucket:not(.manual-tb){display:none!important;}
+.sec-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,3.2vw,40px);color:var(--gold);margin-bottom:8px;padding-bottom:14px;border-bottom:1px solid var(--glass-bd);letter-spacing:3px;text-shadow:0 0 24px rgba(240,165,0,.2);}
+.ticket-card{background:var(--glass);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-bd);border-radius:14px;margin-bottom:22px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.35);}
+.ticket-card.card-warning{border-color:rgba(240,165,0,.55);box-shadow:0 0 0 1px rgba(240,165,0,.22),0 8px 32px rgba(0,0,0,.35);}
+.ticket-warning-note{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.4px;color:#ffd87a;background:rgba(240,165,0,.08);border-top:1px solid rgba(240,165,0,.3);padding:8px 14px;}
+.ticket-card.all-hit{background:rgba(57,255,110,0.06);border-color:rgba(57,255,110,.42);box-shadow:0 0 28px rgba(57,255,110,.14),0 8px 32px rgba(0,0,0,.3);}
+.ticket-card.card-missed{background:rgba(255,77,77,0.06);border:1px solid rgba(255,77,77,0.35);box-shadow:0 0 24px rgba(255,77,77,0.12),0 0 1px rgba(255,77,77,0.4),0 8px 32px rgba(0,0,0,.28);position:relative;}
+.ticket-card.card-missed::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#ff4d4d;box-shadow:0 0 14px rgba(255,77,77,0.45);z-index:2;border-radius:14px 14px 0 0;pointer-events:none;}
+.thdr{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding:18px clamp(14px,2vw,24px);border-bottom:1px solid var(--glass-bd);background:rgba(0,0,0,.18);backdrop-filter:blur(12px);}
+.thdr .tn{font-size:clamp(24px,2.8vw,32px);font-family:'Bebas Neue',sans-serif;letter-spacing:2px;color:var(--gold);}
+.thdr .tg{font-family:'Inter',sans-serif;font-size:clamp(12px,1.35vw,15px);color:var(--muted);letter-spacing:0.5px;line-height:1.35;}
+.payout{font-family:'Inter',sans-serif;font-size:clamp(13px,1.4vw,16px);color:var(--cyan);}
+.banner{font-family:'Bebas Neue',sans-serif;font-size:clamp(11px,1.2vw,13px);letter-spacing:2px;padding:8px 18px;border-radius:999px;font-weight:700;background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);border:1px solid var(--glass-bd);}
+.banner.hit{color:var(--green);border-color:rgba(57,255,110,.45);box-shadow:0 0 16px rgba(57,255,110,.15);}
+.banner.miss{color:var(--red);border-color:rgba(255,77,77,.5);box-shadow:0 0 16px rgba(255,77,77,.12);}
+.banner.pend{color:var(--pending);border-color:rgba(255,255,255,.12);}
+.banner.void{color:var(--gold2);border-color:rgba(240,165,0,.35);}
+.legrow{font-family:'Inter',sans-serif;display:grid;grid-template-columns:56px 92px minmax(120px,1fr) 44px minmax(240px,1.45fr) minmax(108px,1fr) minmax(96px,1fr) minmax(76px,.85fr);gap:12px;align-items:center;padding:14px clamp(14px,2vw,22px);font-size:clamp(13px,1.45vw,16px);line-height:1.35;border-bottom:1px solid rgba(255,255,255,.06);border-left:3px solid transparent;}
+.leg-head{font-family:'Bebas Neue',sans-serif;display:grid;grid-template-columns:56px 92px minmax(120px,1fr) 44px minmax(240px,1.45fr) minmax(108px,1fr) minmax(96px,1fr) minmax(76px,.85fr);gap:12px;align-items:end;padding:6px clamp(14px,2vw,22px) 8px;font-size:10px;letter-spacing:2px;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.12);}
+.leg-head-lab{line-height:1.2;}
+.legrow:last-child{border-bottom:none;}
+.legrow.leg-hit{background:rgba(57,255,110,0.04);border-left-color:var(--green);}
+.legrow.leg-miss{background:rgba(255,77,77,0.10);border-left:4px solid #ff4d4d;box-shadow:0 0 0 1px rgba(255,77,77,0.4),inset 0 0 20px rgba(255,77,77,0.06);}
+.legrow.leg-miss .pl-miss{color:#ff4d4d;font-weight:700;text-shadow:0 0 8px rgba(255,77,77,0.35);}
+.legrow.leg-miss .pl-line{display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.miss-tag{font-family:'Bebas Neue',sans-serif;display:inline-flex;align-items:center;background:rgba(255,77,77,0.15);border:1px solid #ff4d4d;color:#ff4d4d;font-size:9px;letter-spacing:2px;padding:2px 8px;border-radius:20px;line-height:1;vertical-align:middle;}
+.legrow.leg-miss .badge.miss{width:44px;height:44px;min-width:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:clamp(22px,2.5vw,28px);line-height:1;background:rgba(255,77,77,0.25);border:2px solid #ff4d4d;box-shadow:0 0 12px rgba(255,77,77,0.6);color:#ff4d4d;text-shadow:none;}
+.legrow.leg-miss .leg-extra.val-miss{color:#ff4d4d;font-weight:700;}
+.legrow.leg-miss .miss-leg-cell{color:#ff5c5c!important;font-weight:700;}
+.legrow.leg-miss .leg-prop-col.miss-leg-cell > div:first-child{color:#ff7a7a!important;font-weight:800;}
+.legrow.leg-miss .leg-prop-col .meta-muted{color:rgba(255,170,170,.95)!important;font-weight:600;}
+.legrow.leg-miss .miss-leg-cell .dir-over,.legrow.leg-miss .miss-leg-cell .dir-under{color:#ffc9c9!important;font-weight:800;}
+.legrow.leg-miss > div:nth-child(2) .pill{box-shadow:0 0 0 1px rgba(255,90,90,.55),0 0 12px rgba(255,60,60,.2);}
+.legrow.leg-pend{background:transparent;border-left-color:transparent;}
+.legrow.leg-pend .pl-pend,.legrow.leg-pend .meta-muted{color:var(--pending)!important;}
+.legrow.leg-pend .pill{background:rgba(255,255,255,0.04)!important;border-color:rgba(255,255,255,0.1)!important;color:var(--pending)!important;}
+.legrow.leg-void{background:rgba(240,165,0,0.04);border-left-color:rgba(240,165,0,.55);}
+.legrow.leg-void .pl-void,.legrow.leg-void .meta-muted{color:var(--gold2)!important;}
+.legrow.leg-void .pill{background:rgba(240,165,0,0.07)!important;border-color:rgba(240,165,0,0.28)!important;color:var(--gold2)!important;}
+.badge{font-size:clamp(28px,3.2vw,36px);line-height:1;text-align:center;}
+.badge.hit{color:var(--green);text-shadow:0 0 14px rgba(57,255,110,.6);}
+.badge.miss{color:var(--red);text-shadow:0 0 14px rgba(255,77,77,.55);}
+.badge.pend{color:var(--pending);text-shadow:none;}
+.badge.void{color:var(--gold2);text-shadow:none;}
+.pill{font-family:'Bebas Neue',sans-serif;font-size:clamp(10px,1.1vw,12px);letter-spacing:1.2px;padding:5px 12px;border-radius:999px;text-transform:uppercase;}
+
+.sport-nba{background:rgba(212,160,23,.12);color:#f0a500;border:1px solid rgba(212,160,23,.35);}
+.sport-nba1h{background:rgba(255,155,86,.12);color:#ffb27d;border:1px solid rgba(255,155,86,.32);}
+.sport-nba1q{background:rgba(255,214,102,.12);color:#ffd87a;border:1px solid rgba(255,214,102,.32);}
+.sport-wnba{background:rgba(255,138,198,.12);color:#ffb0dd;border:1px solid rgba(255,138,198,.32);}
+.sport-cbb{background:rgba(0,229,255,.10);color:#00e5ff;border:1px solid rgba(0,229,255,.32);}
+.sport-wcbb{background:rgba(127,199,217,.10);color:#9fd8e8;border:1px solid rgba(127,199,217,.32);}
+.sport-nhl{background:rgba(186,130,255,.12);color:#c4a5ff;border:1px solid rgba(186,130,255,.38);}
+.sport-soccer{background:rgba(240,165,0,.10);color:#e8b84a;border:1px solid rgba(240,165,0,.34);}
+.sport-mlb{background:rgba(255,121,121,.12);color:#ff9a9a;border:1px solid rgba(255,121,121,.32);}
+.sport-cfb{background:rgba(200,120,60,.12);color:#e8a86a;border:1px solid rgba(200,120,60,.34);}
+.sport-nfl{background:rgba(120,180,255,.12);color:#9ec5ff;border:1px solid rgba(120,180,255,.34);}
+.sport-tennis{background:rgba(243,156,18,.12);color:#f5b041;border:1px solid rgba(243,156,18,.34);}
+.sport-golf{background:rgba(80,180,110,.12);color:#7dcc8f;border:1px solid rgba(80,180,110,.34);}
+.sport-wnba1q{background:rgba(255,138,198,.10);color:#ffc4e6;border:1px solid rgba(255,138,198,.28);}
+.sport-wnba1h{background:rgba(255,138,198,.10);color:#ffc4e6;border:1px solid rgba(255,138,198,.28);}
+.sport-default{background:rgba(255,255,255,.04);color:#888;border:1px solid rgba(255,255,255,.1);}
+
+.tier{font-family:'Bebas Neue',sans-serif;width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:clamp(13px,1.4vw,15px);letter-spacing:0;background:rgba(255,255,255,0.05);color:var(--gold);border:1px solid var(--glass-bd);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);}
+.pl-hit{color:var(--green);text-shadow:0 0 8px rgba(57,255,110,.4);}
+.pl-miss{color:var(--red);}
+.pl-pend{color:var(--pending);}
+.pl-void{color:var(--gold2);}
+.dir-over{color:var(--cyan);font-weight:700;}
+.dir-under{color:var(--gold);font-weight:700;}
+.meta-muted{font-family:'Inter',sans-serif;color:var(--muted);font-size:clamp(11px,1.2vw,13px);margin-top:3px;}
+.slate-kicker{font-family:'Inter',sans-serif;font-size:clamp(11px,1.2vw,13px);letter-spacing:3px;color:var(--muted);margin:0 0 6px;}
+.pl-hit,.pl-pend{font-size:1em;font-weight:600;}
+.warning-chip{display:inline-flex;align-items:center;margin-left:8px;padding:2px 8px;border-radius:999px;border:1px solid rgba(240,165,0,.4);background:rgba(240,165,0,.12);color:#ffd87a;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.6px;cursor:help;}
+.grade-eval-summary{max-width:min(1920px,98vw);margin:0 auto 8px;padding:10px 16px;border-radius:16px;border:1px solid var(--glass-bd);background:rgba(0,0,0,.22);font-family:'Inter',sans-serif;font-size:13px;line-height:1.55;color:var(--text);}
+.grade-eval-summary-empty{color:var(--muted);font-size:12px;}
+.grade-eval-summary-line1{font-weight:700;color:var(--gold);margin-bottom:6px;}
+.grade-eval-summary-line2{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.grade-eval-subnote{color:var(--muted);font-size:11px;}
+.grade-eval-summary-line3{color:var(--muted);margin-bottom:4px;}
+.grade-eval-summary-line4{color:var(--cyan);font-weight:600;}
+.ticket-grade-payout{margin:0;padding:14px clamp(14px,2vw,22px) 16px;border-top:1px solid var(--glass-bd);background:rgba(0,0,0,.12);}
+.grade-result{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:clamp(16px,1.8vw,20px);padding:10px 14px;border-radius:10px;margin-bottom:6px;display:inline-block;}
+.grade-result-sub{font-size:11px;color:var(--muted);margin:-2px 0 10px;font-family:'Inter',sans-serif;}
+.grade-result-sweep{background:gold;color:#000;}
+.grade-result-win{background:#00ff88;color:#000;}
+.grade-result-min_guarantee{background:#88ccff;color:#000;}
+.grade-result-loss{background:#ff4444;color:#fff;}
+.grade-result-void{background:rgba(140,140,150,.35);color:#f2f2f4;border:1px solid rgba(255,255,255,.12);}
+.grade-result-void_loss{background:rgba(240,165,0,.2);color:#ffe6a8;border:1px solid rgba(240,165,0,.45);}
+.grade-payout-table{width:100%;border-collapse:collapse;font-size:clamp(12px,1.25vw,14px);margin-bottom:10px;}
+.grade-payout-table th,.grade-payout-table td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;}
+.grade-payout-table th{color:var(--muted);font-weight:600;font-size:11px;letter-spacing:1px;}
+.grade-entry-line{font-size:12px;color:var(--gold2);font-family:'Inter',sans-serif;}
+.grade-payout-pending{font-size:12px;color:var(--pending);padding:8px 0;}
+.grade-ticket-result{font-family:'Inter',sans-serif;font-size:clamp(11px,1.2vw,13px);letter-spacing:.3px;}
+.grade-ticket-result.won{color:var(--green);}
+.grade-ticket-result.lost{color:var(--red);}
+.grade-ticket-result.void-slip{color:var(--gold2);}
+.grade-ticket-result.void-loss{color:#ffd87a;}
+.grade-ticket-result-label{opacity:.85;font-weight:600;}
+html.ticket-eval-embed-grades,html.ticket-eval-embed-grades body{min-height:100%!important;height:auto!important;overflow-x:hidden!important;overflow-y:visible!important;}html.ticket-eval-embed-grades body{padding-top:0!important;padding-bottom:36px!important;}html.ticket-eval-embed-grades .snav,html.ticket-eval-embed-grades #mobile-menu{display:none!important;}html.ticket-eval-embed-grades body > .grade-eval-summary{margin-top:0!important;}html.ticket-eval-embed-grades .stats-bar{position:relative!important;top:auto!important;overflow:visible!important;height:auto!important;max-height:none!important;}html.ticket-eval-embed-grades .stats-bar .sum-row{display:flex!important;flex-wrap:wrap!important;align-content:flex-start!important;gap:12px 20px!important;height:auto!important;overflow:visible!important;}html.ticket-eval-embed-grades .stats-bar .sum-item{display:flex!important;flex-direction:column!important;flex:0 0 auto!important;min-width:72px!important;max-width:11em!important;}html.ticket-eval-embed-grades .grade-eval-summary:has(+ .stats-bar)+.stats-bar{top:auto!important;margin-top:-1px!important;border-top:none!important;padding-top:9px!important;}html.ticket-eval-embed-grades .wrap.ticket-eval-main{position:relative!important;overflow:visible!important;height:auto!important;min-height:0!important;max-width:100%!important;}html.ticket-eval-embed-grades .wrap.ticket-eval-main > details.grades-sport-bucket{display:block!important;}html.ticket-eval-embed-grades .ticket-sections-wrap{overflow:visible!important;min-height:0!important;}
+</style>
+<script>try{if(window.self!==window.top)document.documentElement.classList.add("ticket-eval-embed-grades");}catch(e){}</script>
+</head>
+<body class="ticket-eval-page">
+<nav class="snav glass-card">
+  <style>
+    .snav-account {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: inherit;
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.28);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .snav-account.active { color: #c8ff00; border-color: rgba(200,255,0,0.45); }
+  </style>
+  <div class="nav-accent"></div>
+  <a class="snav-brand" href="/">
+    <div class="hybrid-logo">
+      <img src="{{ url_for('static', filename='proporacle-logo-v3.png') }}?v=20260404b" alt="PropOracle" class="logo-icon" loading="lazy">
+      <span class="nav-brand brand-wordmark"><span class="wb-first">Prop</span><span class="oracle-word gold-shimmer">Oracle</span></span>
+    </div>
+  </a>
+  <ul class="snav-links nav-links" id="nav-links">
+    <li><a href="/" class=""><span class="ni ni-ctrl"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L1 5.5V13h4V9h4v4h4V5.5L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/></svg></span> Home</a></li>
+    <li><a href="/tickets" class=""><span class="ni ni-tick"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 6h11" stroke="currentColor" stroke-width="1" stroke-dasharray="2 1.5"/><circle cx="4" cy="9" r="1" fill="currentColor"/><circle cx="7" cy="9" r="1" fill="currentColor"/><circle cx="10" cy="9" r="1" fill="currentColor"/></svg></span> Tickets</a></li>
+    <li><a href="/grades" class="active" title="Ticket evaluation hub"><span class="ni ni-grade"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 10.5L5.5 7l2.5 2.5L11 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></span> Grades</a></li>
+    <li><a href="/income" class=""><span class="ni ni-income"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 11V5M5 11V2M8 11V7M11 11V4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span> Income</a></li>
+    <li><a href="/payout" class=""><span class="ni ni-pay"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M7 3.5v7M5 5.5c0-.8.9-1.5 2-1.5s2 .7 2 1.5-1 1.3-2 1.5-2 .7-2 1.5.9 1.5 2 1.5 2-.7 2-1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span> Payouts</a></li>
+  </ul>
+  <div class="snav-right">
+    <a class="snav-account " href="/account" title="{{ account_email|default('') if account_logged_in|default(false) else 'Account' }}">{% if account_logged_in|default(false) and account_email %}{{ account_email.split('@')[0] }}{% else %}Account{% endif %}</a>
+    <button class="theme-toggle theme-switch" type="button" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
+      <span class="tt-icon tt-moon">🌙</span>
+      <span class="tt-icon tt-sun" style="display:none">☀️</span>
+    </button>
+    <div class="nav-live-cluster">
+      <div class="live-pill"><div class="live-dot"></div><span class="live-pill-brand">PropOracle</span><span class="live-pill-sep">&nbsp;·&nbsp;</span>LIVE</div>
+      <div class="nav-datetime-block" title="Slate date (top) and your device date & time (updates every second)">
+        <div class="nav-slate-date" id="slate-date">—</div>
+        <div class="nav-sync-line">
+          <span id="nav-local-datetime" class="nav-local-datetime">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="hamburger" type="button" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/" class="">🏠 Home</a>
+  <a href="/tickets" class="">🎟 Tickets</a>
+  <a href="/grades" class="active" title="Ticket evaluation hub">✏️ Grades</a>
+  <a href="/income" class="">📈 Income</a>
+  <a href="/payout" class="">💰 Payouts</a>
+  <a href="/account" class="">👤 Account</a>
+</div>
+<div class="grade-eval-summary grade-eval-summary-empty"><div>Date: 2026-11-21 · High Leg HR · No fully graded tickets for payout summary (ungraded, all-void, or none).</div></div>
+<div class="stats-bar">
+<div class="sum-row sum-row-results">
+<div class="sum-row-label">Results</div>
+<div class="sum-item"><div class="sum-val">0.0%</div><div class="sum-lab">Hit rate</div></div>
+<div class="sum-item"><div class="sum-val green">0</div><div class="sum-lab">Paid</div></div>
+<div class="sum-item"><div class="sum-val red">0</div><div class="sum-lab">No payout</div></div>
+<div class="sum-item"><div class="sum-val">0</div><div class="sum-lab">Perfect</div></div>
+<div class="sum-item"><div class="sum-val sum-val-sm pend">—</div><div class="sum-lab">Net @ $10</div></div>
+<div class="sum-item"><div class="sum-val sum-val-sm pend">—</div><div class="sum-lab">ROI</div></div>
+</div>
+<div class="sum-row sum-row-legs">
+<div class="sum-row-label">Legs</div>
+<div class="sum-item"><div class="sum-val green">0</div><div class="sum-lab">Hits</div></div>
+<div class="sum-item"><div class="sum-val red">0</div><div class="sum-lab">Misses</div></div>
+<div class="sum-item"><div class="sum-val void">0</div><div class="sum-lab">Void / push</div></div>
+<div class="sum-item"><div class="sum-val pend">0</div><div class="sum-lab">Ungraded</div></div>
+<div class="sum-item"><div class="sum-val sum-val-sm">0</div><div class="sum-lab">Total legs</div></div>
+</div></div>
+<div class="wrap ticket-eval-main">
+<p class="slate-kicker">SLATE DATE · 2026-11-21</p>
+<details class="grade-eval-help"><summary>How these grades work</summary>
+<p class="meta-muted">Each leg: <strong>Line</strong> + side · <strong>Actual</strong> (box-score stat; — if none exists yet, e.g. rainout/postponed) · <strong>Edge</strong> (model edge, not the result). Graded exports: <code>outputs/2026-11-21/graded_*.xlsx</code>. <strong>Hit rate</strong> = paid ÷ (paid + no payout) among fully graded tickets (all-void slips excluded). Sheets with <strong>Flex</strong> in the title (3+ legs) use flex cash rules: at least n−1 hits and at most one miss.</p></details>
+<div class="ticket-sections-wrap">
+</div>
+</div>
+<script src="/static/site-nav-chrome.js?v=20260412" defer></script>
+<script>(function(){function c(){document.querySelectorAll('details.ticket-bucket,details.grades-sport-bucket').forEach(function(d){d.removeAttribute('open');d.open=false;});}c();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',c);})();</script>
+</body></html>
