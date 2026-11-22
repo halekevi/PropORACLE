@@ -601,22 +601,38 @@ def hit_rates(vals: List[float], line: float, n: int):
     return over, under, push, hr_over, hr_under, hr_over_ou, hr_under_ou
 
 
+def _summary_completed(summ: dict) -> bool:
+    try:
+        comp = (summ.get("header") or {}).get("competitions", [{}])[0]
+        return bool(((comp.get("status") or {}).get("type") or {}).get("completed"))
+    except Exception:
+        return False
+
+
 def _fetch_one_event_cfb(
     eid: str,
     t1: str,
     t2: str,
     slate_ids: set,
     date_str: str = "",   # FIX: was missing, causing TypeError
-) -> Tuple[str, List[dict]]:
-    """Fetch and parse a single CFB ESPN event. Returns (eid, player_rows)."""
+) -> Tuple[str, List[dict], str]:
+    """Fetch and parse a single ESPN event.
+
+    Returns (eid, player_rows, state) with state in final | not_final | skipped | error.
+    Only final box scores are usable: a summary pulled mid-game is a partial line.
+    """
     if slate_ids and t1 not in slate_ids and t2 not in slate_ids:
-        return eid, []
+        return eid, [], "skipped"
     try:
         time.sleep(random.uniform(0.05, 0.25))
         summ = pull_summary(eid)
+        if not summ:
+            return eid, [], "error"
+        if not _summary_completed(summ):
+            return eid, [], "not_final"
         return eid, parse_players(
             summ, game_date=date_str, event_id=eid, team_ids=(str(t1), str(t2))
-        )
+        ), "final"
     except Exception as e:
         print(f"  [WARN] CFB summary failed event={eid}: {e}")
         log_pipeline_health(
@@ -625,12 +641,18 @@ def _fetch_one_event_cfb(
             extra={"event_id": eid, "error": f"{type(e).__name__}: {e}"},
             start=Path(__file__),
         )
-        return eid, []
+        return eid, [], "error"
 
 
 def _events_cache_path(cache_path: str) -> str:
     p = Path(cache_path)
     return str(p.with_name(p.stem + "_events.csv"))
+
+
+def _final_events_path(cache_path: str) -> str:
+    """Event ids whose cached rows came from a completed (final) ESPN summary."""
+    p = Path(cache_path)
+    return str(p.with_name(p.stem + "_final_events.txt"))
 
 
 def _load_scoreboard_events(path: str) -> List[Tuple[str, str, str, str]]:
@@ -809,6 +831,19 @@ def build_player_histories(
                 if ev[0] not in seen_eids:
                     seen_eids.add(ev[0])
                     all_events.append(ev)
+    # Night games can sit in the box cache under a date whose scoreboard list lacks them;
+    # without this they are never re-checked for finality.
+    window_start = min(dates) if dates else ""
+    n_orphans = 0
+    for ev in _seed_events_from_box_rows(cached_rows):
+        if ev[0] in seen_eids or (window_start and ev[3] < window_start):
+            continue
+        seen_eids.add(ev[0])
+        all_events.append(ev)
+        by_date.setdefault(ev[3], []).append(ev)
+        n_orphans += 1
+    if n_orphans:
+        print(f"  [CACHE] Re-attached {n_orphans} cached events missing from scoreboard lists")
     if dates_path:
         _save_scanned_dates(dates_path, scanned_dates)
     if events_path:
@@ -851,14 +886,23 @@ def build_player_histories(
         all_events = [(e, t1, t2, ds) for e, t1, t2, ds in all_events
                       if t1 in slate_ids or t2 in slate_ids]
 
+    # Rows cached before a game went final are partial lines (a mid-game pull froze
+    # e.g. 70 rush yards on a 101-yard day). Re-pull every event not yet confirmed final.
+    final_path = _final_events_path(cache_path) if cache_path else ""
+    final_eids = _load_scanned_dates(final_path)
+    today_str = dt.date.today().strftime("%Y%m%d")
     pending = [(eid, t1, t2, ds) for eid, t1, t2, ds in all_events
-               if eid not in cached_eids]
+               if eid not in final_eids and ds <= today_str]
+    n_recheck = sum(1 for eid, *_ in pending if eid in cached_eids)
 
     print(f"-> {len(all_events)} total | {len(cached_eids)} cached | "
-          f"{len(pending)} new ({workers} workers)...")
+          f"{len(final_eids)} final-verified | {len(pending)} to fetch "
+          f"({n_recheck} cached but not final-verified; {workers} workers)...")
 
     # Phase 2: parallel fetch
     new_rows: List[dict] = []
+    replaced_eids: set = set()
+    n_not_final = 0
     if pending:
         from concurrent.futures import ThreadPoolExecutor, as_completed as _ac
         with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -869,14 +913,26 @@ def build_player_histories(
             fetched = 0
             with _tqdm(total=len(pending), desc="Fetching games", unit="game") as pbar:
                 for future in _ac(futures):
-                    eid, rows = future.result()
-                    if rows:
-                        fetched += 1
-                        new_rows.extend(rows)
+                    eid, rows, state = future.result()
+                    if state == "final":
+                        final_eids.add(eid)
+                        replaced_eids.add(eid)
+                        if rows:
+                            fetched += 1
+                            new_rows.extend(rows)
+                    elif state == "not_final":
+                        n_not_final += 1
+                        replaced_eids.add(eid)
                     pbar.update(1)
-        print(f"  [FETCH] Got {fetched} new games with player data")
+        print(f"  [FETCH] Got {fetched} final games with player data; "
+              f"{n_not_final} not final yet (partial rows dropped)")
 
     # Phase 3: update cache
+    if replaced_eids:
+        cached_rows = [rr for rr in cached_rows
+                       if str(rr.get("event_id", "")) not in replaced_eids]
+    if final_path and pending:
+        _save_scanned_dates(final_path, final_eids)
     all_rows = cached_rows + new_rows
     # Resolve opp_team_id -> opp_team_abbr using slate map (for H2H matching in step6)
     if tid_to_abbr:
@@ -884,7 +940,7 @@ def build_player_histories(
             if not rr.get("opp_team_abbr"):
                 opp_id = str(rr.get("opp_team_id", "")).strip()
                 rr["opp_team_abbr"] = tid_to_abbr.get(opp_id, opp_id)
-    if cache_path and (new_rows or filled_opp):
+    if cache_path and (new_rows or filled_opp or replaced_eids):
         try:
             pd.DataFrame(all_rows).to_csv(cache_path, index=False)
             print(f"  [CACHE] Saved {len(all_rows)} rows -> {cache_path}")

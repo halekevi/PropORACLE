@@ -209,6 +209,16 @@ def main() -> None:
         np.where(has_pl.to_numpy(), from_side, d_prev.to_numpy()),
     )
 
+    # Upstream hit rates follow the upstream side; Direction above can differ (Goblin/Demon
+    # are OVER-only), so restate L5/L10 hit rate for the final Direction from the counts.
+    is_over = clean["Direction"].astype(str).str.upper().eq("OVER")
+    for win in ("L5", "L10"):
+        o = pd.to_numeric(clean[f"{win} Over"], errors="coerce")
+        u = pd.to_numeric(clean[f"{win} Under"], errors="coerce")
+        n = o + u
+        side_rate = (o.where(is_over, u) / n).where(n > 0)
+        clean[f"Hit Rate {win}"] = side_rate.round(3).combine_first(clean[f"Hit Rate {win}"])
+
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with pd.ExcelWriter(out_path, engine="openpyxl") as w:
