@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="static/global-scrollbar.css?v=20260517platform"/>
 <link rel="stylesheet" href="static/light-theme-dim-overrides.css?v=20260719gradeshub"/>
 <link rel="stylesheet" href="static/proporacle-mobile-schema.css?v=20260719alllanes1"/>
-<link rel="stylesheet" href="static/player-consistency.css?v=20260714pe"/>
+<link rel="stylesheet" href="static/player-consistency.css?v=20261121noslices"/>
 <style>
 :root{
   --bg-main:#0b0b0b;
@@ -1991,7 +1991,6 @@ select option,
             <th class="sortable" data-sort="hit_rate">Hit Rate</th>
             <th>Record</th>
             <th>Best prop</th>
-            <th>More slices</th>
             <th>OVER %</th>
             <th>UNDER %</th>
             <th class="sortable" data-sort="balance_score">Balance</th>
@@ -2064,15 +2063,6 @@ select option,
       '<span style="color:var(--muted2);font-size:10px">(' + (bp.hits || 0) + '/' + (bp.total || 0) + ')</span>' +
       '</span>';
   }
-  function moreSlicesCell(p) {
-    const list = (p.best_props || []).slice(1, 3);
-    if (!list.length) return '—';
-    return '<span class="pe-more-slices">' + list.map(function (s) {
-      return '<span style="display:block;font-size:10px;color:var(--muted)">' +
-        (s.prop_type || '') + ' ' + (s.direction || '') + ' ' + fmtPct(s.hit_rate) + ' (' + (s.total || 0) + ')</span>';
-    }).join('') + '</span>';
-  }
-
   function renderStats(players) {
     if (!statsBar) return;
     if (!players.length) {
@@ -2115,7 +2105,6 @@ select option,
         '<td data-label="Hit rate"><span class="pe-hit-rate ' + rateClass(p.hit_rate) + '" style="font-weight:700">' + fmtPct(p.hit_rate) + '</span></td>' +
         '<td data-label="Record" style="color:var(--muted)">' + p.hits + '/' + p.total + '</td>' +
         '<td data-label="Best prop">' + bestPropCell(p) + '</td>' +
-        '<td data-label="More slices">' + moreSlicesCell(p) + '</td>' +
         '<td data-label="Over %">' + fmtPct(p.over_rate) + '</td>' +
         '<td data-label="Under %">' + fmtPct(p.under_rate) + '</td>' +
         '<td data-label="Balance">' + balanceCell + '</td>' +
