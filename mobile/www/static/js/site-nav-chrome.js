@@ -8,6 +8,7 @@
   (function injectGlassMinimal() {
     if (typeof document === "undefined" || !document.head) return;
     if (document.getElementById("proporacle-glass-minimal")) return;
+    if (document.querySelector('link[href*="proporacle-glass-minimal.css"]')) return;
     var scripts = document.getElementsByTagName("script");
     var base = "/static/";
     for (var i = 0; i < scripts.length; i++) {

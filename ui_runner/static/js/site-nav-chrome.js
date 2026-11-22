@@ -8,6 +8,7 @@
   (function injectGlassMinimal() {
     if (typeof document === "undefined" || !document.head) return;
     if (document.getElementById("proporacle-glass-minimal")) return;
+    if (document.querySelector('link[href*="proporacle-glass-minimal.css"]')) return;
     var scripts = document.getElementsByTagName("script");
     var base = "/static/";
     for (var i = 0; i < scripts.length; i++) {
@@ -21,7 +22,7 @@
     var link = document.createElement("link");
     link.id = "proporacle-glass-minimal";
     link.rel = "stylesheet";
-    link.href = base + "proporacle-glass-minimal.css?v=20261119glass1";
+    link.href = base + "proporacle-glass-minimal.css?v=20261121glass5";
     document.head.appendChild(link);
   })();
 

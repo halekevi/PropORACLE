@@ -170,7 +170,9 @@ body.page-grades .grades-body {
   filter: none !important;
 }
 body.page-grades .grades-hub-shell {
-  background: rgba(12, 12, 14, 0.92) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 body.page-grades iframe.grade-frame {
   filter: none !important;
