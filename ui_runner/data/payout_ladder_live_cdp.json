@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-11",
-  "generated_at": "2026-09-11T21:58:22.850964Z",
+  "date": "2026-11-23",
+  "generated_at": "2026-11-23T02:43:38.026100Z",
   "rows": [
     {
       "date": "2026-07-12",
@@ -3921,6 +3921,64 @@
       "_dedupe_key": "2026-07-13|allisha gray|points|over|19.500||nneka ogwumike|points|over|17.500|2.6"
     },
     {
+      "date": "2026-11-23",
+      "n_legs": "2",
+      "leg_composition": "1S+1G+0D",
+      "goblin_deltas": [
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "2.8",
+      "flex_payout_x": "2.8",
+      "flex_n_correct": {
+        "2": 2.8
+      },
+      "legs": [
+        {
+          "player": "Rudy Gobert",
+          "prop": "Pts+Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 19.5,
+          "standard_line": 20.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Amen Thompson",
+          "prop": "Rebounds",
+          "sport": "NBA",
+          "pick_type": "Standard",
+          "direction": "OVER",
+          "line": 6.5,
+          "standard_line": 6.5,
+          "gap": 0.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-01; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-01",
+      "captured_at": "2026-11-22T21:41:13-05:00",
+      "first_captured_at": "2026-11-22T21:41:13-05:00",
+      "last_captured_at": "2026-11-22T21:41:13-05:00",
+      "window": "9PM",
+      "_dedupe_key": "2026-11-23|amen thompson|rebounds|over|6.500||rudy gobert|pts+rebs+asts|over|19.500|2.8",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
+    },
+    {
       "date": "2026-07-13",
       "n_legs": "2",
       "leg_composition": "1S+1G+0D",
@@ -3932,6 +3990,64 @@
       "notes": "ticket_id=2026-07-13|LADDER_VAL|discover|30; sports=WNBA; CDP power_min_x Min Guarantee",
       "ticket_id": "2026-07-13|LADDER_VAL|discover|30",
       "_dedupe_key": "2026-07-13|alyssa thomas|assists|over|6.500||nneka ogwumike|points|over|17.500|2.1"
+    },
+    {
+      "date": "2026-11-23",
+      "n_legs": "2",
+      "leg_composition": "1S+1G+0D",
+      "goblin_deltas": [
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "2.4",
+      "flex_payout_x": "2.4",
+      "flex_n_correct": {
+        "2": 2.4
+      },
+      "legs": [
+        {
+          "player": "Alperen Şengün",
+          "prop": "Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 14.5,
+          "standard_line": 16.0,
+          "gap": 1.5,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Brook Lopez",
+          "prop": "Pts+Rebs",
+          "sport": "NBA",
+          "pick_type": "Standard",
+          "direction": "OVER",
+          "line": 17.0,
+          "standard_line": 17.0,
+          "gap": 0.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-03; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-03",
+      "captured_at": "2026-11-22T21:43:35-05:00",
+      "first_captured_at": "2026-11-22T21:43:35-05:00",
+      "last_captured_at": "2026-11-22T21:43:35-05:00",
+      "window": "9PM",
+      "_dedupe_key": "2026-11-23|alperen şengün|rebs+asts|over|14.500||brook lopez|pts+rebs|over|17.000|2.4",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
     },
     {
       "date": "2026-07-13",

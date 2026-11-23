@@ -443,21 +443,21 @@ if (-not (Test-PlaywrightCdpAttach -Url $CdpUrl)) {
 Push-Location $Root
 try {
     $doMixGrid = $IncludeMixGrid -and -not $SkipMixGrid
-    if ($doMixGrid -and -not (Test-Path -LiteralPath $mixGridOut)) {
-        Write-Host "  [PAYOUT-GRID] Capturing mix-grid calibration -> $mixGridOut" -ForegroundColor Cyan
-        & py -3.14 -X utf8 $payoutScript `
-            --mix-grid `
+    $ladderFillOut = Join-Path $Root "data\reports\payout_ladder_fill_$Date.json"
+    if ($doMixGrid -and -not (Test-Path -LiteralPath $ladderFillOut)) {
+        # Ladder fill: every S/G/D mix × gap bucket, sibling-verified gaps, fewest-samples-first.
+        Write-Host "  [PAYOUT-GRID] Ladder fill probes -> payout_ladder_live_cdp.json" -ForegroundColor Cyan
+        & py -3.14 -X utf8 (Join-Path $Root "scripts\ladder_fill_capture.py") `
             --date $Date `
             --cdp-url $CdpUrl `
-            --max-slips 24 `
-            --output $mixGridOut
-        if ($LASTEXITCODE -eq 0 -and (Test-Path -LiteralPath $mixGridOut)) {
-            Write-Host "  [PAYOUT-GRID] OK (rate card -> $rateCardOut)" -ForegroundColor Green
+            --max-slips 25
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "  [PAYOUT-GRID] ladder fill done (see logs\LAST_LADDER_FILL.json)" -ForegroundColor Green
         } else {
-            Write-Host "  [PAYOUT-GRID] WARN: mix-grid failed (non-blocking)" -ForegroundColor Yellow
+            Write-Host "  [PAYOUT-GRID] WARN: ladder fill failed (non-blocking)" -ForegroundColor Yellow
         }
-    } elseif ($doMixGrid -and (Test-Path -LiteralPath $mixGridOut)) {
-        Write-Host "  [PAYOUT-GRID] already have $mixGridOut -- skip" -ForegroundColor DarkGray
+    } elseif ($doMixGrid -and (Test-Path -LiteralPath $ladderFillOut)) {
+        Write-Host "  [PAYOUT-GRID] already ran ladder fill for $Date -- skip" -ForegroundColor DarkGray
     } else {
         Write-Host "  [PAYOUT] ticket-only mode (generated MAIN/STRONG slips) — mix-grid skipped" -ForegroundColor DarkGray
     }

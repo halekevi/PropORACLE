@@ -2123,9 +2123,60 @@ def _ticket_prob_from_leg_hit(leg_hit_rate: float, n_legs: int) -> float:
     return p**n
 
 
+LADDER_MIN_SAMPLES = 5
+
+
+def _ladder_gap_bucket(gap: float) -> str | None:
+    """Same buckets as scripts/ladder_fill_capture.py (1.0 / 1.5 / 2.0+)."""
+    if 0.75 <= gap < 1.25:
+        return "1.0"
+    if 1.25 <= gap < 1.75:
+        return "1.5"
+    if gap >= 1.75:
+        return "2.0+"
+    return None
+
+
+def _ladder_live_quotes(comp: str, bucket: str) -> list[float]:
+    """Live CDP N-correct payouts for one composition whose Goblin/Demon gaps share one bucket."""
+    vals: list[float] = []
+    for r in _read_payout_ladder_rows():
+        if str(r.get("source") or "").strip().lower() != "live_cdp":
+            continue
+        if str(r.get("leg_composition") or "").strip() != comp:
+            continue
+        if _ladder_row_has_invalid_distance(r):
+            continue
+        gaps: list[float] = []
+        for k in ("goblin_deltas", "demon_deltas"):
+            raw = r.get(k)
+            items = raw if isinstance(raw, list) else [
+                x for x in re.split(r"[+,\s]+", str(raw or "")) if x.strip()
+            ]
+            for x in items:
+                v = _safe_float(x, float("nan"))
+                if math.isfinite(v):
+                    gaps.append(v)
+        # One gap per Goblin/Demon leg — July rows stored a single "2" for two Goblins.
+        _, n_g, n_d = _parse_sgd_counts(comp)
+        if len(gaps) != n_g + n_d:
+            continue
+        buckets = {_ladder_gap_bucket(g) for g in gaps}
+        if len(buckets) != 1 or buckets != {bucket}:
+            continue
+        v = _safe_float(r.get("power_payout_x"), float("nan"))
+        if math.isfinite(v) and v > 0:
+            vals.append(v)
+    return vals
+
+
 def predict_payout(legs: list[dict[str, Any]]) -> dict[str, Any]:
     """
-    Estimate payout multiplier from leg composition (Standard / Goblin / Demon).
+    Payout for a leg composition from the live ladder log (Power N-correct scrapes).
+
+    All-Standard uses the fixed PrizePicks table. Any Goblin/Demon mix needs
+    LADDER_MIN_SAMPLES live scrapes for that composition with every Goblin/Demon gap in
+    one bucket (1.0 / 1.5 / 2.0+); otherwise the reply is insufficient_data with no number.
     """
     n = len(legs)
     if n < 2 or n > 6:
@@ -2135,46 +2186,99 @@ def predict_payout(legs: list[dict[str, Any]]) -> dict[str, Any]:
         raise ValueError("Unsupported leg count for PrizePicks power baseline.")
 
     leg_breakdown: list[dict[str, Any]] = []
-    composite_factor = 1.0
+    s = g = d = 0
+    buckets: set[str | None] = set()
     for i, leg in enumerate(legs, start=1):
         pt = _normalize_leg_pick_type(leg.get("pick_type"))
         delta = abs(_safe_float(leg.get("delta"), 0.0))
         direction = str(leg.get("direction") or "OVER").strip().upper()
         if direction not in {"OVER", "UNDER"}:
             direction = "OVER"
+        bucket = None
         if pt == "Goblin":
-            factor = max(0.2, 1.0 - 0.110 * delta)
+            g += 1
+            bucket = _ladder_gap_bucket(delta)
+            buckets.add(bucket)
         elif pt == "Demon":
-            factor = max(1.0, 1.0 + 0.1782 * (delta ** 1.287))
+            d += 1
+            bucket = _ladder_gap_bucket(delta)
+            buckets.add(bucket)
         else:
-            factor = 1.0
-        composite_factor *= factor
+            s += 1
         leg_breakdown.append(
             {
                 "leg": i,
                 "pick_type": pt,
                 "direction": direction,
                 "delta": round(delta, 4),
-                "factor": round(factor, 4),
+                "gap_bucket": bucket,
             }
         )
+    comp = f"{s}S+{g}G+{d}D"
 
-    estimated_multiplier = round(base_mult * composite_factor, 4)
+    out: dict[str, Any] = {
+        "leg_breakdown": leg_breakdown,
+        "base_multiplier_standard": base_mult,
+        "n_legs": n,
+        "leg_composition": comp,
+        "min_samples": LADDER_MIN_SAMPLES,
+    }
+
+    if g == 0 and d == 0:
+        mult = base_mult
+        out.update(rate_source="standard_table", samples=None, gap_bucket=None)
+    else:
+        if None in buckets or len(buckets) != 1:
+            out.update(
+                insufficient_data=True,
+                estimated_multiplier=None,
+                samples=0,
+                gap_bucket=None,
+                message=(
+                    "Not enough data — Goblin/Demon gaps must all sit in one bucket "
+                    "(about 1, 1.5, or 2+ points off Standard) to read the ladder log."
+                ),
+                ev_at_65pct=None,
+                ev_at_75pct=None,
+                ev_at_85pct=None,
+            )
+            return out
+        bucket = next(iter(buckets))
+        quotes = _ladder_live_quotes(comp, bucket)
+        out.update(gap_bucket=bucket, samples=len(quotes))
+        if len(quotes) < LADDER_MIN_SAMPLES:
+            out.update(
+                insufficient_data=True,
+                estimated_multiplier=None,
+                message=(
+                    f"Not enough data — {len(quotes)} of {LADDER_MIN_SAMPLES} live scrapes "
+                    f"for {comp} at gap {bucket}. The nightly ladder fill is collecting it."
+                ),
+                ev_at_65pct=None,
+                ev_at_75pct=None,
+                ev_at_85pct=None,
+            )
+            return out
+        mult = float(statistics.median(quotes))
+        out.update(
+            rate_source="live_cdp",
+            min_payout_x=round(min(quotes), 4),
+            max_payout_x=round(max(quotes), 4),
+        )
 
     def _ev_for_leg_hit(p_leg: float) -> float:
         p_ticket = _ticket_prob_from_leg_hit(p_leg, n)
         # EV per $1 stake.
-        return (p_ticket * (estimated_multiplier - 1.0)) - (1.0 - p_ticket)
+        return (p_ticket * (mult - 1.0)) - (1.0 - p_ticket)
 
-    return {
-        "estimated_multiplier": estimated_multiplier,
-        "ev_at_65pct": round(_ev_for_leg_hit(0.65), 4),
-        "ev_at_75pct": round(_ev_for_leg_hit(0.75), 4),
-        "ev_at_85pct": round(_ev_for_leg_hit(0.85), 4),
-        "leg_breakdown": leg_breakdown,
-        "base_multiplier_standard": base_mult,
-        "n_legs": n,
-    }
+    out.update(
+        insufficient_data=False,
+        estimated_multiplier=round(mult, 4),
+        ev_at_65pct=round(_ev_for_leg_hit(0.65), 4),
+        ev_at_75pct=round(_ev_for_leg_hit(0.75), 4),
+        ev_at_85pct=round(_ev_for_leg_hit(0.85), 4),
+    )
+    return out
 
 
 def _extract_json_object(text: str) -> dict[str, Any]:
@@ -2569,7 +2673,12 @@ def _normalize_delta_signature(raw: object) -> str:
         return f"{f:g}" if f > 0 else ""
     if isinstance(raw, list):
         # Character-sploded joined string → rejoin then parse.
-        if raw and all(isinstance(x, str) and len(x) <= 1 for x in raw):
+        # ['2', '2'] is two whole-point gaps, not "22"; only rejoin when separators/decimals are present.
+        if (
+            raw
+            and all(isinstance(x, str) and len(x) <= 1 for x in raw)
+            and any(x in {",", "+", " ", "."} for x in raw)
+        ):
             return _normalize_delta_signature("".join(raw))
         vals: list[float] = []
         for x in raw:
@@ -2799,8 +2908,8 @@ def _read_payout_ladder_rows() -> list[dict[str, Any]]:
                         "date": str(row.get("date") or ""),
                         "n_legs": str(row.get("n_legs") or ""),
                         "leg_composition": str(row.get("leg_composition") or ""),
-                        "goblin_deltas": str(row.get("goblin_deltas") or ""),
-                        "demon_deltas": str(row.get("demon_deltas") or ""),
+                        "goblin_deltas": _normalize_delta_signature(row.get("goblin_deltas")).replace("+", ","),
+                        "demon_deltas": _normalize_delta_signature(row.get("demon_deltas")).replace("+", ","),
                         "power_payout_x": str(row.get("power_payout_x") or ""),
                         "flex_payout_x": str(row.get("flex_payout_x") or ""),
                         "source": str(row.get("source") or "live_cdp"),

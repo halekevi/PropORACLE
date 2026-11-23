@@ -215,6 +215,43 @@ def _norm(s: Any) -> str:
     return text.strip()
 
 
+# Board cards show short prop labels (PRA, 3PTM); tickets use long ones (Pts+Rebs+Asts, 3-PT Made).
+_PROP_ALIASES: dict[str, str] = {
+    "pra": "ptsrebsasts",
+    "ptsrebast": "ptsrebsasts",
+    "ptsrebasts": "ptsrebsasts",
+    "pointsreboundsassists": "ptsrebsasts",
+    "pr": "ptsrebs",
+    "pointsrebounds": "ptsrebs",
+    "pa": "ptsasts",
+    "pointsassists": "ptsasts",
+    "ra": "rebsasts",
+    "rebasts": "rebsasts",
+    "reboundsassists": "rebsasts",
+    "3ptm": "3ptmade",
+    "3pm": "3ptmade",
+    "threes": "3ptmade",
+    "3pointersmade": "3ptmade",
+    "blocks": "blockedshots",
+    "blk": "blockedshots",
+    "blkstls": "blksstls",
+    "stocks": "blksstls",
+    "fs": "fantasyscore",
+}
+
+
+def _prop_key(s: Any) -> str:
+    k = re.sub(r"[^a-z0-9]", "", str(s or "").lower())
+    return _PROP_ALIASES.get(k, k)
+
+
+def _props_match(a: Any, b: Any, *, exact: bool = False) -> bool:
+    ka, kb = _prop_key(a), _prop_key(b)
+    if not ka or not kb:
+        return False
+    return ka == kb or (not exact and (ka in kb or kb in ka))
+
+
 def _norm_player_display(s: Any) -> str:
     """Strip role suffixes from board player labels without lowercasing for logs."""
     text = re.sub(r"\s+", " ", str(s or "").strip())
@@ -489,23 +526,28 @@ def prop_type_to_board_filter(prop: str) -> str:
         "points": "Points",
         "assists": "Assists",
         "rebounds": "Rebounds",
+        # NBA board chip labels as of 2026-11 (Pts+Rebs+Asts / Rebs+Asts / Blocked Shots).
         "steals": "Steals",
-        "blocks": "Blocks",
-        "blockedshots": "Blocks",
+        "blocks": "Blocked Shots",
+        "blockedshots": "Blocked Shots",
+        "blks+stls": "Blks+Stls",
         "turnovers": "Turnovers",
         "3-ptmade": "3-PT Made",
         "3ptmade": "3-PT Made",
+        "3ptm": "3-PT Made",
         "threes": "3-PT Made",
         "pts+rebs": "Pts+Rebs",
         "points+rebounds": "Pts+Rebs",
         "pts+asts": "Pts+Asts",
         "points+assists": "Pts+Asts",
-        "rebs+asts": "Reb+Asts",
-        "rebounds+assists": "Reb+Asts",
-        "pts+reb+ast": "Pts+Reb+Ast",
-        "pts+reb+asts": "Pts+Reb+Ast",
-        "pra": "Pts+Reb+Ast",
-        "points+rebounds+assists": "Pts+Reb+Ast",
+        "rebs+asts": "Rebs+Asts",
+        "reb+asts": "Rebs+Asts",
+        "rebounds+assists": "Rebs+Asts",
+        "pts+rebs+asts": "Pts+Rebs+Asts",
+        "pts+reb+ast": "Pts+Rebs+Asts",
+        "pts+reb+asts": "Pts+Rebs+Asts",
+        "pra": "Pts+Rebs+Asts",
+        "points+rebounds+assists": "Pts+Rebs+Asts",
         "fantasyscore": "Fantasy Score",
         "hitterfs": "Hitter Fantasy Score",
         "hitterfantasyscore": "Hitter Fantasy Score",
@@ -583,13 +625,11 @@ def _resolve_ticket_leg_card(
     if not pool:
         return None
 
-    # Require prop match when we know it.
+    # Require prop match when we know it (exact canonical first so PR never stands in for PRA).
     if np:
-        prop_pool = [
-            c
-            for c in pool
-            if (cp := _norm(c.get("prop_type"))) and (np == cp or np in cp or cp in np)
-        ]
+        prop_pool = [c for c in pool if _props_match(prop, c.get("prop_type"), exact=True)]
+        if not prop_pool:
+            prop_pool = [c for c in pool if _props_match(prop, c.get("prop_type"))]
         if prop_pool:
             pool = prop_pool
         elif strict:
@@ -625,8 +665,7 @@ def _resolve_ticket_leg_card(
     ranked: list[tuple[int, dict]] = []
     for c in pool:
         score = 0
-        cp = _norm(c.get("prop_type"))
-        if np and (np == cp or np in cp or cp in np):
+        if np and _props_match(prop, c.get("prop_type")):
             score += 5
         if str(c.get("pick_type") or "").lower() == pt:
             score += 4
@@ -920,15 +959,15 @@ def _rebind_more_btn(frame, player: str, prop: str):
     nt = _norm(player)
     np = _norm(prop)
     cards = get_all_cards(frame)
-    for c in cards:
-        if nt not in _norm(c.get("player")) and _norm(c.get("player")) not in nt:
-            continue
-        if np and _norm(c.get("prop_type")) not in (np,) and np not in _norm(c.get("prop_type") or ""):
-            # allow loose prop containment
-            cp = _norm(c.get("prop_type"))
-            if not (np == cp or np in cp or cp in np):
+    named = [
+        c for c in cards
+        if nt in _norm(c.get("player")) or _norm(c.get("player")) in nt
+    ]
+    for exact in (True, False):
+        for c in named:
+            if np and not _props_match(prop, c.get("prop_type"), exact=exact):
                 continue
-        return c.get("more_btn"), c
+            return c.get("more_btn"), c
     # Name-only fallback is unsafe when a prop was requested: it binds the wrong
     # face (e.g. 3PTM 0.5 Goblin while probing Points) and poisons Δ catalog.
     if not np:
@@ -1867,9 +1906,7 @@ def add_leg(
                         c.get("player")
                     ) not in _norm(player):
                         continue
-                    cp = _norm(c.get("prop_type"))
-                    np = _norm(prop)
-                    if np and not (np == cp or np in cp or cp in np):
+                    if prop and not _props_match(prop, c.get("prop_type")):
                         continue
                     sibling = c
                     break

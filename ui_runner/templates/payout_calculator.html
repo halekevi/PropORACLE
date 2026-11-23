@@ -1368,55 +1368,29 @@ async function runComposerPredict(){
     return;
   }
   if(msg)msg.textContent='Predicting...';
-  const localPredict = () => {
-    const base={2:3,3:6,4:10,5:20,6:37.5}[composerLegs.length]||0;
-    if(!base)return null;
-    let f=1;
-    const bd=[];
-    composerLegs.forEach((leg,idx)=>{
-      const pt=String(leg.pick_type||'Standard');
-      const d=Math.abs(Number(leg.delta||0));
-      let lf=1;
-      if(pt==='Goblin') lf=Math.max(0.2,1-(GOBLIN_DISCOUNT_PER_UNIT*d));
-      else if(pt==='Demon') lf=Math.max(1,1+(0.1782*Math.pow(d,1.287)));
-      f*=lf;
-      bd.push({leg:idx+1,pick_type:pt,direction:String(leg.direction||'OVER'),delta:d,factor:Number(lf.toFixed(4))});
-    });
-    const mult=Number((base*f).toFixed(4));
-    const tev=(p)=>Number((((Math.pow(p,composerLegs.length)*(mult-1))-(1-Math.pow(p,composerLegs.length))).toFixed(4)));
-    return {estimated_multiplier:mult,ev_at_65pct:tev(0.65),ev_at_75pct:tev(0.75),ev_at_85pct:tev(0.85),leg_breakdown:bd};
-  };
   try{
     const r=await fetch('/payout/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({legs:composerLegs})});
     const j=await r.json();
     if(!r.ok)throw new Error(j.error||('HTTP '+r.status));
     const out=document.getElementById('composer-results');
     if(out)out.style.display='block';
-    document.getElementById('composer-est-mult').textContent=(j.estimated_multiplier??'—')+'x';
-    document.getElementById('composer-ev-65').textContent=String(j.ev_at_65pct??'—');
-    document.getElementById('composer-ev-75').textContent=String(j.ev_at_75pct??'—');
-    document.getElementById('composer-ev-85').textContent=String(j.ev_at_85pct??'—');
+    const fmt=(v)=>(v===null||v===undefined)?'—':String(v);
+    document.getElementById('composer-est-mult').textContent=
+      j.insufficient_data?'Not enough data':(fmt(j.estimated_multiplier)+'x');
+    document.getElementById('composer-ev-65').textContent=fmt(j.ev_at_65pct);
+    document.getElementById('composer-ev-75').textContent=fmt(j.ev_at_75pct);
+    document.getElementById('composer-ev-85').textContent=fmt(j.ev_at_85pct);
     const bd=Array.isArray(j.leg_breakdown)?j.leg_breakdown:[];
     document.getElementById('composer-breakdown').innerHTML=bd.map((x)=>
-      'Leg '+x.leg+': '+x.pick_type+' '+x.direction+' Δ '+x.delta+' → factor '+x.factor
+      'Leg '+x.leg+': '+x.pick_type+' '+x.direction+' Δ '+x.delta+(x.gap_bucket?' (gap '+x.gap_bucket+')':'')
     ).join('<br>');
-    if(msg)msg.textContent='Prediction complete.';
+    let note;
+    if(j.insufficient_data) note=j.message||'Not enough data.';
+    else if(j.rate_source==='standard_table') note='All-Standard: fixed PrizePicks Power table.';
+    else note='Median of '+j.samples+' live scrapes for '+j.leg_composition+' at gap '+j.gap_bucket+
+      ' (range '+j.min_payout_x+'x–'+j.max_payout_x+'x).';
+    if(msg)msg.textContent=note;
   }catch(e){
-    const j=localPredict();
-    if(j){
-      const out=document.getElementById('composer-results');
-      if(out)out.style.display='block';
-      document.getElementById('composer-est-mult').textContent=(j.estimated_multiplier??'—')+'x';
-      document.getElementById('composer-ev-65').textContent=String(j.ev_at_65pct??'—');
-      document.getElementById('composer-ev-75').textContent=String(j.ev_at_75pct??'—');
-      document.getElementById('composer-ev-85').textContent=String(j.ev_at_85pct??'—');
-      const bd=Array.isArray(j.leg_breakdown)?j.leg_breakdown:[];
-      document.getElementById('composer-breakdown').innerHTML=bd.map((x)=>
-        'Leg '+x.leg+': '+x.pick_type+' '+x.direction+' Δ '+x.delta+' → factor '+x.factor
-      ).join('<br>');
-      if(msg)msg.textContent='Prediction complete (local fallback).';
-      return;
-    }
     if(msg)msg.textContent='Predict failed: '+(e&&e.message?e.message:String(e));
   }
 }
