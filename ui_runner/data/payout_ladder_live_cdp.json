@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-11-23",
-  "generated_at": "2026-11-23T02:43:38.026100Z",
+  "generated_at": "2026-11-23T22:48:17.429962Z",
   "rows": [
     {
       "date": "2026-07-12",
@@ -404,6 +404,65 @@
       "last_captured_at": "2026-09-09T22:05:48",
       "window": "22:05",
       "_dedupe_key": "2026-09-10|jacob degrom|walks allowed|over|0.500||logan gilbert|walks allowed|over|0.500|1.3"
+    },
+    {
+      "date": "2026-11-23",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.6",
+      "flex_payout_x": "1.6",
+      "flex_n_correct": {
+        "2": 1.6
+      },
+      "legs": [
+        {
+          "player": "Jaylen Brown",
+          "prop": "Blks+Stls",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 0.5,
+          "standard_line": 1.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Collin Murray-Boyles",
+          "prop": "Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 7.5,
+          "standard_line": 8.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-01; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-01",
+      "captured_at": "2026-11-23T17:02:50-05:00",
+      "first_captured_at": "2026-11-23T17:02:50-05:00",
+      "last_captured_at": "2026-11-23T17:02:50-05:00",
+      "window": "4:30",
+      "_dedupe_key": "2026-11-23|collin murray-boyles|rebs+asts|over|7.500||jaylen brown|blks+stls|over|0.500|1.6",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
     },
     {
       "date": "2026-08-08",
@@ -1777,6 +1836,65 @@
       "_dedupe_key": "2026-09-11|jackson chourio|hits+runs+rbis|over|0.500||yandy díaz|hits+runs+rbis|over|0.500|1.4"
     },
     {
+      "date": "2026-11-23",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "1.6",
+      "flex_payout_x": "1.6",
+      "flex_n_correct": {
+        "2": 1.6
+      },
+      "legs": [
+        {
+          "player": "Ayo Dosunmu",
+          "prop": "Assists",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 2.5,
+          "standard_line": 4.0,
+          "gap": 1.5,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Julian Champagnie",
+          "prop": "Pts+Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 17.5,
+          "standard_line": 19.0,
+          "gap": 1.5,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-02; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-02",
+      "captured_at": "2026-11-23T17:04:14-05:00",
+      "first_captured_at": "2026-11-23T17:04:14-05:00",
+      "last_captured_at": "2026-11-23T17:04:14-05:00",
+      "window": "4:30",
+      "_dedupe_key": "2026-11-23|ayo dosunmu|assists|over|2.500||julian champagnie|pts+rebs+asts|over|17.500|1.6",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
+    },
+    {
       "date": "2026-08-08",
       "n_legs": "2",
       "leg_composition": "0S+2G+0D",
@@ -2808,6 +2926,65 @@
       "_dedupe_key": "2026-08-27|gabriel hughes|hits allowed|over|3.500||sean manaea|earned runs allowed|over|0.500|1.3"
     },
     {
+      "date": "2026-11-23",
+      "n_legs": "2",
+      "leg_composition": "0S+2G+0D",
+      "goblin_deltas": [
+        "2",
+        "2"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "2.3",
+      "flex_payout_x": "2.3",
+      "flex_n_correct": {
+        "2": 2.3
+      },
+      "legs": [
+        {
+          "player": "Luka Dončić",
+          "prop": "Points",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 33.5,
+          "standard_line": 35.5,
+          "gap": 2.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Darius Garland",
+          "prop": "Pts+Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 25.5,
+          "standard_line": 27.5,
+          "gap": 2.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-04; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-04",
+      "captured_at": "2026-11-23T17:06:57-05:00",
+      "first_captured_at": "2026-11-23T17:06:57-05:00",
+      "last_captured_at": "2026-11-23T17:06:57-05:00",
+      "window": "4:30",
+      "_dedupe_key": "2026-11-23|darius garland|pts+rebs+asts|over|25.500||luka dončić|points|over|33.500|2.3",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
+    },
+    {
       "date": "2026-08-10",
       "n_legs": "2",
       "leg_composition": "0S+2G+0D",
@@ -2945,6 +3122,84 @@
       "_dedupe_key": "2026-07-12|ariel atkins|assists|over|1.500||dearica hamby|assists|over|2.500||olivia miles|points|over|19.500|4.25"
     },
     {
+      "date": "2026-11-23",
+      "n_legs": "3",
+      "leg_composition": "0S+2G+1D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [
+        "1"
+      ],
+      "power_payout_x": "5.0",
+      "flex_payout_x": "3.0",
+      "flex_n_correct": {
+        "3": 3.0,
+        "2": 1.0
+      },
+      "legs": [
+        {
+          "player": "Ivica Zubac",
+          "prop": "Pts+Asts",
+          "sport": "NBA",
+          "pick_type": "Demon",
+          "direction": "OVER",
+          "line": 14.5,
+          "standard_line": 13.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Jake LaRavia",
+          "prop": "Pts+Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 10.5,
+          "standard_line": 11.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Matas Buzelis",
+          "prop": "Pts+Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 23.5,
+          "standard_line": 24.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-25; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-25",
+      "captured_at": "2026-11-23T17:48:13-05:00",
+      "first_captured_at": "2026-11-23T17:48:13-05:00",
+      "last_captured_at": "2026-11-23T17:48:13-05:00",
+      "window": "17:48",
+      "_dedupe_key": "2026-11-23|ivica zubac|pts+asts|over|14.500||jake laravia|pts+rebs+asts|over|10.500||matas buzelis|pts+rebs+asts|over|23.500|5.0",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
+    },
+    {
       "date": "2026-07-13",
       "n_legs": "3",
       "leg_composition": "0S+2G+1D",
@@ -3072,6 +3327,83 @@
       "notes": "ticket_id=2026-08-25|MLB 3-Leg Goblin OVER|1; sports=MLB; CDP power_min_x Min Guarantee",
       "ticket_id": "2026-08-25|MLB 3-Leg Goblin OVER|1",
       "_dedupe_key": "2026-08-25|alec burleson|total bases|over|0.500||connor norby|hits+runs+rbis|over|0.500||luke keaschall|total bases|over|0.500|2.4"
+    },
+    {
+      "date": "2026-11-23",
+      "n_legs": "3",
+      "leg_composition": "0S+3G+0D",
+      "goblin_deltas": [
+        "1",
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "3.5",
+      "flex_payout_x": "3.0",
+      "flex_n_correct": {
+        "3": 3.0,
+        "2": 0.5
+      },
+      "legs": [
+        {
+          "player": "Kyle Kuzma",
+          "prop": "Pts+Rebs",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 14.5,
+          "standard_line": 15.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Amen Thompson",
+          "prop": "Rebounds",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 5.5,
+          "standard_line": 6.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Jaime Jaquez Jr.",
+          "prop": "Pts+Asts",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 13.5,
+          "standard_line": 14.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-16; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-16",
+      "captured_at": "2026-11-23T17:28:08-05:00",
+      "first_captured_at": "2026-11-23T17:28:08-05:00",
+      "last_captured_at": "2026-11-23T17:28:08-05:00",
+      "window": "17:28",
+      "_dedupe_key": "2026-11-23|amen thompson|rebounds|over|5.500||jaime jaquez jr.|pts+asts|over|13.500||kyle kuzma|pts+rebs|over|14.500|3.5",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
     },
     {
       "date": "2026-08-08",
@@ -4063,6 +4395,64 @@
       "_dedupe_key": "2026-07-13|alyssa thomas|points|over|11.500||olivia miles|points|over|18.500|2.3"
     },
     {
+      "date": "2026-11-23",
+      "n_legs": "2",
+      "leg_composition": "1S+1G+0D",
+      "goblin_deltas": [
+        "2"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "2.0",
+      "flex_payout_x": "2.0",
+      "flex_n_correct": {
+        "2": 2.0
+      },
+      "legs": [
+        {
+          "player": "Jonathan Kuminga",
+          "prop": "Rebounds",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 3.5,
+          "standard_line": 5.5,
+          "gap": 2.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Oso Ighodaro",
+          "prop": "Pts+Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Standard",
+          "direction": "OVER",
+          "line": 16.5,
+          "standard_line": 16.5,
+          "gap": 0.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-03; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-03",
+      "captured_at": "2026-11-23T17:05:31-05:00",
+      "first_captured_at": "2026-11-23T17:05:31-05:00",
+      "last_captured_at": "2026-11-23T17:05:31-05:00",
+      "window": "4:30",
+      "_dedupe_key": "2026-11-23|jonathan kuminga|rebounds|over|3.500||oso ighodaro|pts+rebs+asts|over|16.500|2.0",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
+    },
+    {
       "date": "2026-07-13",
       "n_legs": "2",
       "leg_composition": "1S+1G+0D",
@@ -4193,6 +4583,82 @@
       "_dedupe_key": "2026-07-12|dearica hamby|assists|over|2.500||erica wheeler|assists|over|5.500||nneka ogwumike|points|over|17.500|3.75"
     },
     {
+      "date": "2026-11-23",
+      "n_legs": "3",
+      "leg_composition": "1S+2G+0D",
+      "goblin_deltas": [
+        "1",
+        "1"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "4.0",
+      "flex_payout_x": "3.0",
+      "flex_n_correct": {
+        "3": 3.0,
+        "2": 0.75
+      },
+      "legs": [
+        {
+          "player": "Immanuel Quickley",
+          "prop": "Points",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 17.5,
+          "standard_line": 18.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Darryn Peterson",
+          "prop": "Assists",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 3.5,
+          "standard_line": 4.5,
+          "gap": 1.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Deni Avdija",
+          "prop": "Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Standard",
+          "direction": "OVER",
+          "line": 12.5,
+          "standard_line": 12.5,
+          "gap": 0.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-15; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-15",
+      "captured_at": "2026-11-23T17:26:08-05:00",
+      "first_captured_at": "2026-11-23T17:26:08-05:00",
+      "last_captured_at": "2026-11-23T17:26:08-05:00",
+      "window": "17:26",
+      "_dedupe_key": "2026-11-23|darryn peterson|assists|over|3.500||deni avdija|rebs+asts|over|12.500||immanuel quickley|points|over|17.500|4.0",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
+    },
+    {
       "date": "2026-07-13",
       "n_legs": "3",
       "leg_composition": "1S+2G+0D",
@@ -4217,6 +4683,158 @@
       "notes": "ticket_id=2026-07-13|LADDER_VAL|discover|9; sports=WNBA; CDP power_min_x Min Guarantee",
       "ticket_id": "2026-07-13|LADDER_VAL|discover|9",
       "_dedupe_key": "2026-07-13|allisha gray|points|over|19.500||ariel atkins|points|over|9.500||dewanna bonner|points|over|9.500|4.25"
+    },
+    {
+      "date": "2026-11-23",
+      "n_legs": "3",
+      "leg_composition": "1S+2G+0D",
+      "goblin_deltas": [
+        "1.5",
+        "1.5"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "3.5",
+      "flex_payout_x": "3.0",
+      "flex_n_correct": {
+        "3": 3.0,
+        "2": 0.5
+      },
+      "legs": [
+        {
+          "player": "Tyrese Maxey",
+          "prop": "Pts+Rebs",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 27.5,
+          "standard_line": 29.0,
+          "gap": 1.5,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Stephon Castle",
+          "prop": "Assists",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 5.5,
+          "standard_line": 7.0,
+          "gap": 1.5,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "LaMelo Ball",
+          "prop": "FG Attempted",
+          "sport": "NBA",
+          "pick_type": "Standard",
+          "direction": "OVER",
+          "line": 16.0,
+          "standard_line": 16.0,
+          "gap": 0.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-18; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-18",
+      "captured_at": "2026-11-23T17:31:48-05:00",
+      "first_captured_at": "2026-11-23T17:31:48-05:00",
+      "last_captured_at": "2026-11-23T17:31:48-05:00",
+      "window": "17:31",
+      "_dedupe_key": "2026-11-23|lamelo ball|fg attempted|over|16.000||stephon castle|assists|over|5.500||tyrese maxey|pts+rebs|over|27.500|3.5",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
+    },
+    {
+      "date": "2026-11-23",
+      "n_legs": "3",
+      "leg_composition": "1S+2G+0D",
+      "goblin_deltas": [
+        "2",
+        "2"
+      ],
+      "demon_deltas": [],
+      "power_payout_x": "3.25",
+      "flex_payout_x": "2.25",
+      "flex_n_correct": {
+        "3": 2.25,
+        "2": 0.75
+      },
+      "legs": [
+        {
+          "player": "Coby White",
+          "prop": "Pts+Asts",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 19.5,
+          "standard_line": 21.5,
+          "gap": 2.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Jarrett Allen",
+          "prop": "Rebounds",
+          "sport": "NBA",
+          "pick_type": "Goblin",
+          "direction": "OVER",
+          "line": 7.5,
+          "standard_line": 9.5,
+          "gap": 2.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Sion James",
+          "prop": "Pts+Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Standard",
+          "direction": "OVER",
+          "line": 14.5,
+          "standard_line": 14.5,
+          "gap": 0.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-23-21; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-23-21",
+      "captured_at": "2026-11-23T17:37:51-05:00",
+      "first_captured_at": "2026-11-23T17:37:51-05:00",
+      "last_captured_at": "2026-11-23T17:37:51-05:00",
+      "window": "17:37",
+      "_dedupe_key": "2026-11-23|coby white|pts+asts|over|19.500||jarrett allen|rebounds|over|7.500||sion james|pts+rebs+asts|over|14.500|3.25",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
     },
     {
       "date": "2026-07-12",
