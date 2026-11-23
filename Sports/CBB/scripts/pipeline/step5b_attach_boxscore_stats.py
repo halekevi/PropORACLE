@@ -85,6 +85,15 @@ def pull_scoreboard(d: str) -> dict:
                         sleep=0.10) or {}
 
 
+def _event_completed(*nodes: dict) -> bool:
+    """True when any ESPN status node says the game is final (in-progress boxes must not be cached)."""
+    for node in nodes:
+        st = ((node or {}).get("status") or {}).get("type") or {}
+        if st.get("completed") is True or str(st.get("state", "")).lower() == "post":
+            return True
+    return False
+
+
 def extract_events(sb: dict) -> List[Tuple[str, str, str, str]]:
     """Return list of (eid, team1_id, team2_id, date_str YYYYMMDD)."""
     out = []
@@ -95,6 +104,8 @@ def extract_events(sb: dict) -> List[Tuple[str, str, str, str]]:
         date_str = str(ev.get("date", ""))[:10].replace("-", "")
         comps = ev.get("competitions", []) or []
         if not comps:
+            continue
+        if not _event_completed(ev, comps[0]):
             continue
         competitors = comps[0].get("competitors", []) or []
         tids = []
@@ -272,7 +283,13 @@ def _fetch_one_event_cbb(
     try:
         time.sleep(random.uniform(0.05, 0.25))
         summ = pull_summary(eid)
-        return eid, parse_players(summ, game_date=date_str, event_id=eid)
+        comps = ((summ.get("header") or {}).get("competitions") or [{}])
+        if not _event_completed(comps[0]):
+            return eid, []
+        rows = parse_players(summ, game_date=date_str, event_id=eid)
+        for r in rows:
+            r["final"] = "1"
+        return eid, rows
     except Exception as e:
         print(f"  [WARN] CBB summary failed event={eid}: {e}")
         log_pipeline_health(
@@ -345,8 +362,13 @@ def build_player_histories(
         all_events = [(e, t1, t2, ds) for e, t1, t2, ds in all_events
                       if t1 in slate_ids or t2 in slate_ids]
 
+    # Rows cached before the final-only rule may be mid-game snapshots; refetch them once.
+    unverified_eids = {
+        str(rr.get("event_id", "")) for rr in cached_rows
+        if str(rr.get("final", "")).strip() not in ("1", "1.0")
+    }
     pending = [(eid, t1, t2, ds) for eid, t1, t2, ds in all_events
-               if eid not in cached_eids]
+               if eid not in cached_eids or eid in unverified_eids]
 
     print(f"-> {len(all_events)} total | {len(cached_eids)} cached | "
           f"{len(pending)} new ({workers} workers)...")
@@ -370,8 +392,9 @@ def build_player_histories(
                     pbar.update(1)
         print(f"  [FETCH] Got {fetched} new games with player data")
 
-    # Phase 3: update cache
-    all_rows = cached_rows + new_rows
+    # Phase 3: update cache (refetched events replace their old rows)
+    refetched = {str(r.get("event_id", "")) for r in new_rows}
+    all_rows = [rr for rr in cached_rows if str(rr.get("event_id", "")) not in refetched] + new_rows
     # Resolve opp_team_id -> opp_team_abbr using slate map (for H2H matching in step6)
     if tid_to_abbr:
         for rr in all_rows:
