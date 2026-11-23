@@ -14045,10 +14045,14 @@ def load_cbb(path: str) -> pd.DataFrame:
         # Parquet sidecars often stringify missing as "nan" / "None" — treat as empty.
         _vr = df["void_reason"]
         _vr_s = _vr.astype(str).str.strip()
-        _void_empty = _vr.isna() | _vr_s.eq("") | _vr_s.str.lower().isin(
-            {"nan", "none", "nat", "<na>"}
+        _vr_l = _vr_s.str.lower()
+        # Tier/model voids (VOID_TIER_D, …) stay on the board like NBA/WCBB; ticket pools gate them.
+        _hard_void = (
+            _vr_l.str.contains("postpon", na=False)
+            | _vr_l.str.contains("cancel", na=False)
+            | _vr_l.str.contains("no_projection", na=False)
         )
-        df = df[_void_empty]
+        df = df[~_hard_void]
 
     if "espn_player_id" in df.columns:
         df["espn_player_id"] = df["espn_player_id"].apply(_clean_id)
