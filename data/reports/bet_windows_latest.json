@@ -1,62 +1,66 @@
 {
-  "date": "2026-11-22",
-  "generated_at": "2026-11-22T07:50:30-05:00",
+  "date": "2026-11-23",
+  "generated_at": "2026-11-22T22:52:17-05:00",
   "line_pulls": [
     {
       "fetched_at": "2026-11-21T07:48:33-05:00",
       "window": "8AM",
-      "n_props": 6367,
+      "n_props": 492,
       "n_moved": 0
     },
     {
       "fetched_at": "2026-11-21T22:55:32-05:00",
       "window": "22:55",
-      "n_props": 7043,
-      "n_moved": 502
+      "n_props": 595,
+      "n_moved": 41
     },
     {
       "fetched_at": "2026-11-21T23:41:21-05:00",
       "window": "23:41",
-      "n_props": 7054,
-      "n_moved": 38
-    },
-    {
-      "fetched_at": "2026-11-22T01:08:09-05:00",
-      "window": "1AM",
-      "n_props": 2527,
-      "n_moved": 0
-    },
-    {
-      "fetched_at": "2026-11-22T01:22:29-05:00",
-      "window": "1AM",
-      "n_props": 97,
-      "n_moved": 0
+      "n_props": 595,
+      "n_moved": 2
     },
     {
       "fetched_at": "2026-11-22T01:26:45-05:00",
       "window": "1AM",
-      "n_props": 7875,
-      "n_moved": 65
-    },
-    {
-      "fetched_at": "2026-11-22T05:07:57-05:00",
-      "window": "5AM",
-      "n_props": 4580,
-      "n_moved": 244
-    },
-    {
-      "fetched_at": "2026-11-22T05:28:46-05:00",
-      "window": "5AM",
-      "n_props": 97,
-      "n_moved": 0
+      "n_props": 596,
+      "n_moved": 2
     },
     {
       "fetched_at": "2026-11-22T05:29:14-05:00",
       "window": "5AM",
-      "n_props": 7933,
-      "n_moved": 135
+      "n_props": 599,
+      "n_moved": 11
+    },
+    {
+      "fetched_at": "2026-11-22T20:47:36-05:00",
+      "window": "9PM",
+      "n_props": 2411,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-22T21:28:36-05:00",
+      "window": "9PM",
+      "n_props": 2601,
+      "n_moved": 20
+    },
+    {
+      "fetched_at": "2026-11-22T21:39:46-05:00",
+      "window": "9PM",
+      "n_props": 2602,
+      "n_moved": 6
     }
   ],
-  "payout_scrapes": [],
+  "payout_scrapes": [
+    {
+      "window": "9PM",
+      "n_scrapes": 2,
+      "median_power_x": 2.8,
+      "min_power_x": 2.4,
+      "max_power_x": 2.8,
+      "first_captured_at": "2026-11-22T21:41:13-05:00",
+      "last_captured_at": "2026-11-22T21:43:35-05:00"
+    }
+  ],
   "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
 }

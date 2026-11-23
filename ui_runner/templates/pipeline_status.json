@@ -2,50 +2,50 @@
   "nba": {
     "slate": {
       "exists": true,
-      "modified": "2026-11-22 11:54:05",
+      "modified": "2026-11-23 03:33:46",
       "no_slate": false
     }
   },
   "nba1h": {
     "slate": {
-      "exists": true,
-      "modified": "2026-11-22 11:54:05",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "nba1q": {
     "slate": {
-      "exists": true,
-      "modified": "2026-11-22 11:54:05",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "cbb": {
     "slate": {
-      "exists": true,
-      "modified": "2026-11-22 11:54:05",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "cfb": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-11-23 03:33:46",
+      "no_slate": false
     }
   },
   "nhl": {
     "slate": {
       "exists": true,
-      "modified": "2026-11-22 11:54:05",
+      "modified": "2026-11-23 03:33:46",
       "no_slate": false
     }
   },
   "soccer": {
     "slate": {
-      "exists": false,
-      "modified": "",
-      "no_slate": true
+      "exists": true,
+      "modified": "2026-11-23 03:33:46",
+      "no_slate": false
     }
   },
   "mlb": {
@@ -58,22 +58,22 @@
   "nfl": {
     "slate": {
       "exists": true,
-      "modified": "2026-11-22 11:54:05",
+      "modified": "2026-11-23 03:33:46",
       "no_slate": false
     }
   },
   "tennis": {
     "slate": {
       "exists": true,
-      "modified": "2026-11-22 11:54:05",
+      "modified": "2026-11-23 03:33:46",
       "no_slate": false
     }
   },
   "golf": {
     "slate": {
-      "exists": true,
-      "modified": "2026-11-22 11:54:05",
-      "no_slate": false
+      "exists": false,
+      "modified": "",
+      "no_slate": true
     }
   },
   "wnba": {
@@ -100,7 +100,7 @@
   "combined": {
     "slate": {
       "exists": true,
-      "modified": "2026-11-22 11:54:05",
+      "modified": "2026-11-23 03:33:46",
       "no_slate": false
     }
   }
