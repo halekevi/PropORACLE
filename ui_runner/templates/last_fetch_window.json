@@ -1,50 +1,19 @@
 {
-  "date": "2026-11-22",
-  "window": "1AM",
-  "generated_at": "2026-11-22T02:12:44-05:00",
-  "n_pulls_this_window": 3,
-  "n_moved_this_window": 65,
-  "n_moved_from_initial": 605,
-  "is_initial_stamp": false,
+  "date": "2026-11-23",
+  "window": "8AM",
+  "generated_at": "2026-11-23T08:20:42-05:00",
+  "n_pulls_this_window": 2,
+  "n_moved_this_window": 267,
+  "n_moved_from_initial": 0,
+  "is_initial_stamp": true,
   "force_payout": true,
   "rebuild_tickets": true,
-  "new_by_sport": {
-    "NBA": {
-      "new_rows": 2527,
-      "new_prop_types": [
-        "3-PT Made",
-        "3-PT Made (Combo)",
-        "Assists",
-        "Assists (Combo)",
-        "Blks+Stls",
-        "Blocked Shots",
-        "Double-Double",
-        "Points",
-        "Points (Combo)",
-        "Pts+Asts",
-        "Pts+Rebs",
-        "Pts+Rebs+Asts",
-        "Rebounds",
-        "Rebounds (Combo)",
-        "Rebs+Asts",
-        "Steals",
-        "Triple-Double",
-        "Turnovers"
-      ]
-    },
-    "NFL": {
-      "new_rows": 71,
-      "new_prop_types": []
-    }
-  },
-  "sport_rebuild_triggered": [
-    "NBA",
-    "NFL"
-  ],
+  "new_by_sport": {},
+  "sport_rebuild_triggered": [],
   "sport_rebuild_enabled": [
     "TENNIS"
   ],
   "rebuild_sports": [],
-  "latest_fetched_at": "2026-11-22T01:26:45-05:00",
+  "latest_fetched_at": "2026-11-23T08:00:38-05:00",
   "initial_fetched_at": "2026-11-21T07:48:33-05:00"
 }
