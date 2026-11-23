@@ -1,9 +1,9 @@
 """Stages 2–6: shrunk gate-cell p, rate-card price, EV slips.
 
 model_prob is a tie break only. Goblin and Standard may share a slip.
-The pool is every high-hit-rate leg. Each round takes the best-EV 2- or
-3-leg, not the first names in p order. Stop when nothing left clears
-EV > 0 and an all-hit payout of at least 1.4x. Stake is $20.
+The pool is every high-hit-rate leg. Slips pack from the biggest
+directional L5-avg − line gap down; a slip must still clear EV > 0 and
+an all-hit payout of at least 1.4x. Stake is $20.
 One player-prop once: the same player can add a different prop.
 """
 from __future__ import annotations
@@ -271,13 +271,18 @@ def build_ev_slips(
     fold: Callable[[object], str],
     family: str | None = None,
 ) -> list[dict[str, Any]]:
-    """Best-EV 2- or 3-leg from the whole pool. Goblin and Standard may share a slip.
+    """2- or 3-leg slips packed from the biggest directional L5-avg − line gap down.
 
-    Same game is allowed. One player-prop once, so one player can contribute
-    two props. ``taken`` stores those player|prop ids. Pass ``family`` only
-    to force a pure pool. MLB construction ban runs before ranking. Stop when
-    no remaining group clears EV > 0 and a 1.4x all-hit payout.
+    The open leg with the biggest gap anchors each slip; its partners are the
+    next-biggest gaps that still clear EV > 0 and a 1.4x all-hit payout. EV
+    only picks 2 vs 3 legs for that anchor. An anchor that cannot clear is
+    skipped. Goblin and Standard may share a slip. Same game is allowed. One
+    player-prop once, so one player can contribute two props. ``taken``
+    stores those player|prop ids. Pass ``family`` only to force a pure pool.
+    MLB construction ban runs before ranking.
     """
+    from utils.l5_gap import l5_gap_sort_key
+
     best_by: dict[str, dict[str, Any]] = {}
     for r in pool:
         if r.get("p") is None:
@@ -290,24 +295,30 @@ def build_ev_slips(
         prev = best_by.get(lid)
         if prev is None or float(r["p"]) > float(prev["p"]):
             best_by[lid] = r
-    rows = list(best_by.values())
+    rows = sorted(best_by.values(), key=l5_gap_sort_key)
     out: list[dict[str, Any]] = []
+    skipped: set[str] = set()
     while True:
-        open_rows = [r for r in rows if leg_id(r, fold) not in taken]
+        open_rows = [
+            r for r in rows if leg_id(r, fold) not in taken and leg_id(r, fold) not in skipped
+        ]
         if len(open_rows) < 2:
             return out
+        anchor, rest = open_rows[0], open_rows[1:]
         best: dict[str, Any] | None = None
-        for n in (2, 3):
-            if len(open_rows) < n:
+        for n in (3, 2):
+            if len(rest) < n - 1:
                 continue
-            for combo in combinations(open_rows, n):
-                scored = score_slip(list(combo), family=family)
+            for partners in combinations(rest, n - 1):
+                scored = score_slip([anchor, *partners], family=family)
                 if scored is None:
                     continue
                 if best is None or scored["ev"] > best["ev"]:
                     best = scored
+                break
         if best is None:
-            return out
+            skipped.add(leg_id(anchor, fold))
+            continue
         for leg in best["legs"]:
             taken.add(leg_id(leg, fold))
         out.append(best)

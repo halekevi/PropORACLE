@@ -5738,6 +5738,7 @@ def _attach_ticket_pick_order(
     Add __ts_pri / __ts_sec for descending sort when assembling tickets.
     rank: primary = rank_score; ml: primary = ml_prob (missing last);
     blend: 0.5*ml + 0.5*sigmoid(rank), with missing ml falling back to sigmoid(rank) only.
+    l5_gap: primary = directional L5 avg − line (biggest first); winrate breaks ties.
     rule: user ruleset (L5, L10/season consistency, defense, minutes, role, H2H, edge),
     with Demon legs deprioritized.
     hot_hr: directional L10/L5 + composite HR (ignore edge) — preferred for MLB Goblin.
@@ -5767,8 +5768,12 @@ def _attach_ticket_pick_order(
     ml = pd.to_numeric(out["ml_prob"], errors="coerce") if "ml_prob" in out.columns else pd.Series(np.nan, index=out.index)
     rs_p = rs.map(_scalar_rank_to_prob_for_sort)
     m = (mode or "rank").strip().lower()
-    if m not in ("rank", "ml", "blend", "rule", "hot_hr", "winrate"):
+    if m not in ("rank", "ml", "blend", "rule", "hot_hr", "winrate", "l5_gap"):
         m = "rank"
+    if m == "l5_gap":
+        out["__ts_pri"] = _directional_l5_gap_series(out).fillna(-1e9)
+        out["__ts_sec"] = _winrate_priority_series(out)
+        return out
     if m == "winrate":
         out["__ts_pri"] = _winrate_priority_series(out)
         cat = pd.to_numeric(out.get("category_hr"), errors="coerce")
@@ -16549,6 +16554,20 @@ def _directional_edge_series(df: pd.DataFrame) -> pd.Series:
     return pd.Series(np.where(direction.eq("UNDER"), -edge, edge), index=df.index)
 
 
+def _directional_l5_gap_series(df: pd.DataFrame) -> pd.Series:
+    """L5 avg − line (OVER) / line − L5 avg (UNDER); bigger is better. NaN when no L5 avg."""
+    if df is None or len(df) == 0:
+        return pd.Series(dtype=float)
+    nan_s = pd.Series(np.nan, index=df.index)
+    l5 = pd.to_numeric(df.get("l5_avg", nan_s), errors="coerce")
+    if "avg_l5" in df.columns:
+        l5 = l5.combine_first(pd.to_numeric(df["avg_l5"], errors="coerce"))
+    line = pd.to_numeric(df.get("line", nan_s), errors="coerce")
+    gap = l5 - line
+    direction = df.get("direction", pd.Series("", index=df.index)).astype(str).str.upper().str.strip()
+    return pd.Series(np.where(direction.eq("UNDER"), -gap, gap), index=df.index)
+
+
 PROP_QUALITY_MIN_BY_SPORT: dict[str, dict[str, float] | float] = {
     "NBA": {"over": 0.60, "under": 0.35},
     "NBA1Q": {"over": 0.60, "under": 0.35},
@@ -17505,7 +17524,7 @@ def build_single_structure_ticket(
         counters["total_eligible_count"] += int(len(cand))
 
     cand = _attach_ticket_pick_order(cand, ticket_sort_mode)
-    cand["__dir_edge"] = _directional_edge_series(cand).fillna(0.0)
+    cand["__dir_edge"] = _directional_l5_gap_series(cand).fillna(-1e9)
     bonus = cand["prop_type"].apply(_prop_priority_bonus) if "prop_type" in cand.columns else 0.0
     cand["__score_adj"] = cand["__ts_pri"] + bonus
     if flow == "standard":
@@ -17701,7 +17720,7 @@ def build_structure_ticket_variants(
         counters["total_eligible_count"] += int(len(cand))
 
     cand = _attach_ticket_pick_order(cand, ticket_sort_mode)
-    cand["__dir_edge"] = _directional_edge_series(cand).fillna(0.0)
+    cand["__dir_edge"] = _directional_l5_gap_series(cand).fillna(-1e9)
     bonus = cand["prop_type"].apply(_prop_priority_bonus) if "prop_type" in cand.columns else 0.0
     cand["__score_adj"] = cand["__ts_pri"] + bonus
     if flow == "standard":
@@ -21422,11 +21441,12 @@ def main():
     )
     ap.add_argument(
         "--ticket-candidate-sort",
-        choices=("rank", "ml", "blend", "rule", "hot_hr", "winrate"),
-        default="winrate",
+        choices=("rank", "ml", "blend", "rule", "hot_hr", "winrate", "l5_gap"),
+        default="l5_gap",
         dest="ticket_candidate_sort",
         help=(
             "Order slate rows when choosing ticket legs. "
+            "l5_gap=biggest directional L5 avg − line first (default); "
             "winrate=category_hr + recent form + model + defense + HOT (fantasy banned); "
             "rule=L5/L10/defense/minutes/role/H2H/edge + category_hr; "
             "rank=rank_score; ml=ml_prob; blend=ml+rank+context+category; hot_hr=L10/L5 HR. "

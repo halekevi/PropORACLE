@@ -42,6 +42,7 @@ from utils.ticket_ev_build import attach_leg_p, build_ev_slips  # noqa: E402
 from utils.ticket_keep_registry import rule_for  # noqa: E402
 from utils.ui_live_json import write_paths as live_json_write_paths  # noqa: E402
 from utils.prop_norm import canon_prop  # noqa: E402
+from utils.l5_gap import l5_gap_sort_key  # noqa: E402
 from utils.ticket_70_pool import (  # noqa: E402
     directional_l5,
     goblin_70_eligible,
@@ -52,8 +53,6 @@ from utils.ticket_70_pool import (  # noqa: E402
     nflp_std_over_eligible,
     nflp_ticket_eligible,
     nflp_ticket_p,
-    premium_goblin_eligible,
-    premium_goblin_sort_key,
     standard_flex_kind,
     standard_power3_eligible,
     standard_sort_key,
@@ -578,8 +577,8 @@ def drain_power3(
 ) -> list[list[dict]]:
     """3-leg Power slips until the pool cannot fill another. No preset count.
 
-    ``pool`` must already be best-hit-rate first. Sports are not mixed ahead
-    of a higher-rate leg. Same-game caps in ``can_add`` still apply.
+    ``pool`` must already be biggest L5-avg − line gap first. Sports are not
+    mixed ahead of a bigger-gap leg. Same-game caps in ``can_add`` still apply.
     """
     used = taken if taken is not None else set()
     out: list[list[dict]] = []
@@ -650,30 +649,21 @@ def pack_yolo(
     Own taken set so Power 3 / Flex 4 keep their legs.
 
     Standard mix-ins must already be ``standard_yolo_eligible`` (validated
-    keep, not gap-sort / not a sport quota). Prefer stacking multiple
-    cleared Standards before Goblin fill — never invent a Standard to hit
-    a count. Premium WNBA Goblin sleeve still seeds the Goblin half first.
+    keep, not a sport quota) — never invent a Standard to hit a count.
+    Goblins and cleared Standards pack together from the biggest directional
+    L5-avg − line gap down.
     """
     taken: set[str] = set()
     out: list[list[dict]] = []
     # Gate-cleared Standards only for YOLO mix (caller should pre-filter).
-    std_pool = list(std or [])
-    premium = sorted(
-        (r for r in gob if premium_goblin_eligible(r)),
-        key=premium_goblin_sort_key,
-    )
-    rest = [r for r in gob if not premium_goblin_eligible(r)]
-    ordered_gob = premium + rest
+    ordered = sorted(list(std or []) + list(gob or []), key=l5_gap_sort_key)
     for n in YOLO_PREF_LEGS:
         if len(out) >= max(0, int(max_tickets)):
             break
-        seeds: list[dict] = []
-        # All cleared Standards first (no one-per-sport cap), then Goblins.
-        for s in std_pool:
-            pn = fold_name(s.get("player"))
-            if pn and pn not in taken:
-                seeds.append(s)
-        seeds.extend(r for r in ordered_gob if fold_name(r.get("player")) not in taken)
+        seeds = [
+            r for r in ordered
+            if fold_name(r.get("player")) and fold_name(r.get("player")) not in taken
+        ]
         combo = pack(seeds, n, taken, mix_sports=True, wnba_cap=1)
         if len(combo) != n:
             combo = pack(seeds, n, taken, mix_sports=True, wnba_cap=2)
@@ -694,9 +684,9 @@ def pack_standard_yolo(
 
     No per-sport quota. Combine whatever cleared that day; if fewer than
     STANDARD_YOLO_MIN_LEGS survive, return empty (sit out / fold elsewhere).
-    Pack order is ``standard_sort_key`` among keep survivors — never gap-sort.
+    Pack order is biggest directional L5-avg − line gap first among keep survivors.
     """
-    ordered = sorted(std or [], key=standard_sort_key)
+    ordered = sorted(std or [], key=l5_gap_sort_key)
     if len(ordered) < STANDARD_YOLO_MIN_LEGS:
         return []
     taken: set[str] = set()
@@ -1797,7 +1787,9 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         by_sport.setdefault(str(r.get("sport") or ""), []).append(r)
     sp3_i = 1
     for sport in sorted(by_sport):
-        ordered = order_by_gate_hr(by_sport[sport], standard_sort_key)
+        ordered = sorted(
+            order_by_gate_hr(by_sport[sport], standard_sort_key), key=l5_gap_sort_key
+        )
         for combo in drain_power3(ordered, taken, wnba_cap=2):
             slip = _ticket(
                 f"SP3-{sp3_i}",
@@ -1822,7 +1814,10 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         nfl_family = "nflp_std"
     for r in nfl_raw:
         r["p"] = nflp_ticket_p(r)
-    nfl = order_by_gate_hr(unique_by_player(nfl_raw, goblin_sort_key), goblin_sort_key)
+    nfl = sorted(
+        order_by_gate_hr(unique_by_player(nfl_raw, goblin_sort_key), goblin_sort_key),
+        key=l5_gap_sort_key,
+    )
     nfl_taken: set[str] = set()
     i = 1
     while True:

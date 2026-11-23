@@ -1886,7 +1886,7 @@ function Run-Combined {
     Write-Host "  [combined] ticket-gen-starts=$ticketStarts" -ForegroundColor DarkGray
     # --allow-cross-date-fallback is tennis/soccer overnight only (capped at 3 days
     # in combined_slate_tickets). It must not load March CBB / May WNBA / May NBA1Q.
-    $CombinedArgs += " --date $Date --tennis-date $TennisDate --soccer-date $Date --wnba-date $WnbaMlbExtraDate --mlb-date $WnbaMlbExtraDate --allow-cross-date-fallback --output `"$CombinedOut`" --tiers A,B --min-hit-rate 0.65 --min-edge -0.25 --max-tickets 15 --max-ticket-legs 4 --ticket-gen-starts $ticketStarts --nba-structured-variants 8 --ticket-candidate-sort rule --prioritize-ticket-hit --write-web --merge-web-latest --web-outdir `"$WebOutDir`" --max-legs 4 --min-leg-prob 0.62"
+    $CombinedArgs += " --date $Date --tennis-date $TennisDate --soccer-date $Date --wnba-date $WnbaMlbExtraDate --mlb-date $WnbaMlbExtraDate --allow-cross-date-fallback --output `"$CombinedOut`" --tiers A,B --min-hit-rate 0.65 --min-edge -0.25 --max-tickets 15 --max-ticket-legs 4 --ticket-gen-starts $ticketStarts --nba-structured-variants 8 --ticket-candidate-sort l5_gap --prioritize-ticket-hit --write-web --merge-web-latest --web-outdir `"$WebOutDir`" --max-legs 4 --min-leg-prob 0.62"
     $middayRebuild = ($TicketGenStarts -gt 0 -and $TicketGenStarts -le 32)
     $skipWinRate = $middayRebuild -or ("$($env:SKIP_TICKET_SIDECARS)".Trim() -in @("1", "true", "yes"))
     if ($skipWinRate) {
