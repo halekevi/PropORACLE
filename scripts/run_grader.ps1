@@ -5,8 +5,8 @@ param(
 )
 
 $Root = Split-Path $PSScriptRoot -Parent
-# Fail before any grade fetch if live-tree utils are missing (role_from_snap class).
-& (Join-Path $Root "scripts\Invoke-SmokeImport.ps1") -Root $Root -Label "smoke-import/grader"
+# Grading only reads actuals; a pipeline-script import miss must not cost a night of grades.
+& (Join-Path $Root "scripts\Invoke-SmokeImport.ps1") -Root $Root -Label "smoke-import/grader" -WarnOnly
 $SportsRoot = Join-Path $Root "Sports"
 $DateDir = Join-Path $Root "outputs\$Date"
 $CanonicalDateDir = Join-Path $DateDir "canonical"
@@ -1806,7 +1806,14 @@ if ($env:PROPORACLE_SKIP_GRADES_GIT_PUSH -ne "1") {
     $TeLongHtml = Join-Path $TemplatesDir "ticket_eval_long_parlay_$Date.html"
     $TeHighHtml = Join-Path $TemplatesDir "ticket_eval_high_leg_$Date.html"
     $SeHtml = Join-Path $TemplatesDir "slate_eval_$Date.html"
-    if ((Test-Path $TeHtml) -or (Test-Path $TeLongHtml) -or (Test-Path $TeHighHtml) -or (Test-Path $SeHtml)) {
+    # build_ticket_eval appends data/grade_history.json only; /income reads the templates copy.
+    $SyncGradeHistoryScript = Join-Path $Root "scripts\sync_grade_history_to_templates.py"
+    if (Test-Path -LiteralPath $SyncGradeHistoryScript) {
+        Run-Py "Sync grade_history -> templates" $Root $SyncGradeHistoryScript @()
+    }
+    $GhJson = Join-Path $TemplatesDir "grade_history.json"
+    $GpJson = Join-Path $TemplatesDir "graded_props_$Date.json"
+    if ((Test-Path $TeHtml) -or (Test-Path $TeLongHtml) -or (Test-Path $TeHighHtml) -or (Test-Path $SeHtml) -or (Test-Path $GhJson)) {
         Push-Location $Root
         try {
             $env:GIT_TERMINAL_PROMPT = "0"
@@ -1819,9 +1826,11 @@ if ($env:PROPORACLE_SKIP_GRADES_GIT_PUSH -ne "1") {
             if (Test-Path $TeLongHtml) { git add -f -- $teLongRel 2>$null | Out-Null; $evalStaged += $teLongRel }
             if (Test-Path $TeHighHtml) { git add -f -- $teHighRel 2>$null | Out-Null; $evalStaged += $teHighRel }
             if (Test-Path $SeHtml) { git add -f -- $seRel 2>$null | Out-Null; $evalStaged += $seRel }
+            if (Test-Path $GhJson) { git add -f -- "ui_runner/templates/grade_history.json" 2>$null | Out-Null }
+            if (Test-Path $GpJson) { git add -f -- "ui_runner/templates/graded_props_$Date.json" 2>$null | Out-Null }
             git diff --cached --quiet
             if ($LASTEXITCODE -ne 0) {
-                git commit -m "data: ticket eval + slate eval grades $Date"
+                git commit -m "data: ticket eval + slate eval + grade_history $Date"
                 if ($LASTEXITCODE -eq 0) {
                     if (Push-PropOracleToMainIfOnMain -Context "ticket/slate eval") {
                         Write-Host "[GRADER] Grades ticket/slate HTML pushed for $Date" -ForegroundColor Green
@@ -1984,4 +1993,10 @@ if ($script:CfbWorkbookMissing) {
     Write-Host "[GRADER] FAILED: CFB step8 existed and graded_cfb was not written." -ForegroundColor Red
     exit 1
 }
+# run_grader_evening.ps1 catch-up re-grades recent dates that lack this stamp.
+try {
+    $okDir = Join-Path $Root "data\cache"
+    if (-not (Test-Path -LiteralPath $okDir)) { New-Item -ItemType Directory -Path $okDir -Force | Out-Null }
+    Set-Content -LiteralPath (Join-Path $okDir "grader_ok_$Date.flag") -Value ("ok {0:o}" -f (Get-Date)) -Encoding utf8
+} catch { }
 exit 0

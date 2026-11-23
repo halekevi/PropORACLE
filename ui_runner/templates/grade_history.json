@@ -9126,18 +9126,18 @@
   {
     "date": "2026-11-19",
     "track": "high_prob_std_gob",
-    "n_tickets": 3,
-    "wins": 2,
+    "n_tickets": 11,
+    "wins": 6,
     "guarantees": 0,
-    "losses": 1,
+    "losses": 5,
     "void_loss_ct": 0,
-    "win_rate": 0.6667,
-    "avg_ev_predicted": 0.9513,
-    "net_per_10": -3.0,
-    "roi_pct": -30.0,
+    "win_rate": 0.5455,
+    "avg_ev_predicted": 0.4551,
+    "net_per_10": -3.35,
+    "roi_pct": -33.48,
     "strong_tickets": {
-      "count": 2,
-      "wins": 2
+      "count": 10,
+      "wins": 6
     },
     "ok_tickets": {
       "count": 0,
@@ -9190,7 +9190,7 @@
     "losses": 1,
     "void_loss_ct": 0,
     "win_rate": 0.5,
-    "avg_ev_predicted": 0.2861,
+    "avg_ev_predicted": 0.2679,
     "net_per_10": -2.5,
     "roi_pct": -25.0,
     "strong_tickets": {
@@ -9208,8 +9208,7 @@
     "skip_tickets": {
       "count": 0,
       "wins": 0
-    },
-    "note": "Mara/Dybantsa/Proctor slip hand-graded MISS (Proctor Pts 5 vs 7.5); Dybantsa Reb 3.5 line absent from graded pool"
+    }
   },
   {
     "date": "2026-11-20",

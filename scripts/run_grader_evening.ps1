@@ -13,7 +13,9 @@
   then Daily 5AM (pipeline/publish; skips grader + A1 when overnight outputs/stamp exist).
 #>
 param(
-    [int]$A1TimeoutMinutes = 30
+    [int]$A1TimeoutMinutes = 30,
+    # Re-grade up to this many earlier slate dates that never wrote data/cache/grader_ok_<date>.flag.
+    [int]$CatchUpDays = 4
 )
 
 $ErrorActionPreference = "Continue"
@@ -144,7 +146,23 @@ Write-Host "[EVENING GRADER] Running run_grader.ps1 -Date $gradeDate" -Foregroun
 & $Grader -Date $gradeDate
 $graderExit = $LASTEXITCODE
 if ($graderExit -ne 0) {
-    Write-Host "[EVENING GRADER] run_grader failed (exit $graderExit)" -ForegroundColor Red
+    Write-Host "[EVENING GRADER] run_grader failed (exit $graderExit) — still running catch-up" -ForegroundColor Red
+}
+
+# Catch-up: a failed night (smoke import, pull conflict, crash) must not leave a hole in /income.
+for ($i = 2; $i -le ($CatchUpDays + 1); $i++) {
+    $d = (Get-Date).AddDays(-$i).ToString("yyyy-MM-dd")
+    $okFlag = Join-Path $Root "data\cache\grader_ok_$d.flag"
+    if (Test-Path -LiteralPath $okFlag) { continue }
+    if (-not (Test-Path -LiteralPath (Join-Path $Root "outputs\$d"))) { continue }
+    Write-Host "[EVENING GRADER] Catch-up: no grader_ok stamp for $d — running run_grader.ps1 -Date $d" -ForegroundColor Yellow
+    & $Grader -Date $d
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[EVENING GRADER] Catch-up $d failed (exit $LASTEXITCODE)" -ForegroundColor Red
+    }
+}
+
+if ($graderExit -ne 0) {
     try { Stop-Transcript | Out-Null } catch { }
     exit $graderExit
 }

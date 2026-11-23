@@ -2703,19 +2703,64 @@ def _xlsx_has_ticket_tabs(path: Path) -> bool:
         return False
 
 
+TICKET_RUNS_DIR = REPO_ROOT / "ui_runner" / "data" / "ticket_runs"
+
+
+def find_archived_live_ticket_card(arg_date: str) -> Path | None:
+    """Newest non-empty /tickets snapshot archived for ``arg_date`` (ticket_runs/<date>/index.json)."""
+    idx = TICKET_RUNS_DIR / arg_date / "index.json"
+    if not idx.is_file():
+        return None
+    try:
+        runs = json.loads(idx.read_text(encoding="utf-8")).get("runs") or []
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return None
+    for run in sorted(runs, key=lambda r: str(r.get("archived_at") or r.get("run_id") or ""), reverse=True):
+        try:
+            if int(run.get("n_slips") or 0) <= 0:
+                continue
+        except (TypeError, ValueError):
+            continue
+        rel = str(run.get("path") or "").strip()
+        p = (REPO_ROOT / rel) if rel else (TICKET_RUNS_DIR / arg_date / str(run.get("run_id")) / "tickets.json")
+        if p.is_file() and _ticket_json_has_ticket_groups(p):
+            return p
+    return None
+
+
+def is_issued_ticket_card(path: Path) -> bool:
+    """Archived or live /tickets card — grade the slips exactly as issued."""
+    try:
+        rp = path.resolve()
+    except OSError:
+        return False
+    if rp.name == "tickets_latest.json":
+        return True
+    try:
+        rp.relative_to(TICKET_RUNS_DIR.resolve())
+        return True
+    except ValueError:
+        return False
+
+
 def find_ticket_payload_path(
     arg_date: str, override: Path | None = None
 ) -> Path | None:
     """Resolve combined slate for Grades ticket eval.
 
-    Prefer the issued ``combined_slate_tickets_{date}.xlsx`` when it still has
-    N-Leg ticket tabs. After ~Sep 2026 those workbooks are often sport-slate
+    Prefer the newest non-empty archived /tickets card (``ticket_runs/<date>``) —
+    that is what was published. Else the issued ``combined_slate_tickets_{date}.xlsx``
+    when it still has N-Leg ticket tabs. After ~Sep 2026 those workbooks are often sport-slate
     only (Full Slate / NBA Slate / …); using them yields 0 tickets and skips
     the dated JSON that still has the issued card. Fall through to JSON then.
     """
     if override is not None:
         p = override.expanduser().resolve()
         return p if p.is_file() else None
+    archived = find_archived_live_ticket_card(arg_date)
+    if archived is not None:
+        print(f"[ticket_eval] using archived live /tickets card {archived}", flush=True)
+        return archived
     wb = find_ticket_json(arg_date, override=None)
     if wb is not None:
         if wb.suffix.lower() in {".xlsx", ".xlsm"}:
@@ -3539,6 +3584,7 @@ def _filter_payload_groups(
     debug: bool = False,
     *,
     drop_duplicate_players: bool = True,
+    leg_hygiene: bool = True,
 ) -> dict[str, Any]:
     pool_mode = _payload_pool_mode(payload)
     out_groups: list[dict[str, Any]] = []
@@ -3561,7 +3607,7 @@ def _filter_payload_groups(
         for t in g.get("tickets") or []:
             legs: list[dict[str, Any]] = []
             for leg in (t.get("legs") or []):
-                reason = _leg_drop_reason(gname, leg)
+                reason = _leg_drop_reason(gname, leg) if leg_hygiene else None
                 if reason is not None:
                     if debug:
                         print(
@@ -4855,10 +4901,12 @@ def main() -> int:
         except Exception as exc:
             print(f"[ticket_eval] WARN: tier calibration skipped: {exc}")
         _print_ml_prob_diagnostics(payload, arg_date)
+        issued = is_issued_ticket_card(tpath)
         payload = _filter_payload_groups(
             payload,
             debug=bool(args.debug),
-            drop_duplicate_players=not bool(args.keep_duplicate_players),
+            drop_duplicate_players=not (bool(args.keep_duplicate_players) or issued),
+            leg_hygiene=not issued,
         )
     except Exception as e:
         print(f"ERROR: Failed to read ticket file: {e}")
