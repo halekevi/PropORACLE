@@ -110,6 +110,13 @@ Run-Step "step7" ".\scripts\step7_rank_props.py" @("--input", $rankIn, "--output
 Run-Step "step8" ".\scripts\step8_add_direction_context.py" @(
     "--input", $s7, "--sheet", "ALL", "--output", $s8csv, "--xlsx", $s8xlsx, "--date", $Date
 )
+try {
+    Run-Step "step8b" ".\scripts\step8b_attach_tracking.py" @(
+        "--input", $s8csv, "--output", $s8csv, "--date", $Date
+    )
+} catch {
+    Write-Host "  WARN step8b tracking failed; step8 csv left without trk_* columns" -ForegroundColor Yellow
+}
 
 # Mirror into Sports/NBA/data/outputs and main_cp (skip locked Excel targets)
 $legacyOut = Join-Path $NBADir "data\outputs"

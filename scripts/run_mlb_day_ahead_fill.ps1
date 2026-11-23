@@ -184,9 +184,33 @@ if ($pipeExit -ne 0) {
 $goblin70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
 if (Test-Path -LiteralPath $goblin70) {
     Write-Host "[MLB FILL $Window] Rebuilding Goblin-70 + mixer dual card..." -ForegroundColor Cyan
-    & py -3.14 $goblin70 --date $SlateDate --write-web
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "[MLB FILL $Window] WARN: Goblin-70 exit $LASTEXITCODE" -ForegroundColor Yellow
+    $loggedHelper = Join-Path $PSScriptRoot "Invoke-LoggedPwsh.ps1"
+    if (-not (Test-Path -LiteralPath $loggedHelper)) { $loggedHelper = Join-Path $Root "scripts\Invoke-LoggedPwsh.ps1" }
+    $g70Log = Join-Path $LogsDir ("g70_writeweb_mlb_fill_{0}_{1}_{2:yyyyMMdd_HHmmss}.log" -f ($Window -replace '\s',''), $SlateDate, (Get-Date))
+    $g70Exit = 1
+    if (Test-Path -LiteralPath $loggedHelper) {
+        . $loggedHelper
+        $g70Exit = Invoke-G70WriteWebStandalone -ScriptPath $goblin70 -Date $SlateDate -LogPath $g70Log -WorkingDirectory $Root
+    }
+    else {
+        Write-Host "[MLB FILL $Window] WARN: Invoke-LoggedPwsh.ps1 missing — falling back to Tee-Object for --write-web" -ForegroundColor Yellow
+        & py -3.14 -u -X utf8 $goblin70 --date $SlateDate --write-web 2>&1 | Tee-Object -FilePath $g70Log
+        $g70Exit = $LASTEXITCODE
+        Write-Host "write-web exit code: $g70Exit"
+    }
+    if ($g70Exit -ne 0) {
+        Write-Host "[MLB FILL $Window] WARN: Goblin-70 exit $g70Exit" -ForegroundColor Yellow
+    }
+}
+
+$bookLines = Join-Path $Root "scripts\run_book_line_capture.ps1"
+if (Test-Path -LiteralPath $bookLines) {
+    Write-Host "[MLB FILL $Window] Book line capture (FD/DK/UD, non-blocking)..." -ForegroundColor Cyan
+    try {
+        & pwsh -NoProfile -File $bookLines -Date $SlateDate -Root $Root -Window $Window
+        Write-Host "[MLB FILL $Window] Book line capture exit $LASTEXITCODE" -ForegroundColor DarkGray
+    } catch {
+        Write-Host "[MLB FILL $Window] WARN: book line capture failed (non-blocking): $($_.Exception.Message)" -ForegroundColor Yellow
     }
 }
 

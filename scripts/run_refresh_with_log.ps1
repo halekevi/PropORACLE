@@ -1,7 +1,8 @@
 #requires -Version 5.1
 <#
-  Line-move refresh (8 AM morning update, 9:00, 9:45, 10:30, 1 PM, 4:30 PM).
+  Line-move refresh (8 AM morning update, 9:00, 10:30, 1 PM, 4:30 PM).
   Initial scrape + live publish is 9PM day-ahead; 1AM / 8AM+ are updates.
+  945AM retired — it collided with 9AM when windows ran long.
   Every window: fetch + line timestamps + live publish.
   Payout Force timestamps only when lines moved vs the previous/initial stamp.
   Wait for refresh.lock instead of skipping (9AM/10:30 must still stamp + publish).
@@ -9,20 +10,12 @@
   while 8AM still owned PrizePicks Chrome, tickets JSON, and git publish.
 #>
 param(
-    [string]$RunLabel = "945AM"
+    [string]$RunLabel = "9AM"
 )
 
 $ErrorActionPreference = "Continue"
 try { $Host.UI.RawUI.WindowTitle = "PropOracle - Refresh $RunLabel" } catch { }
-$env:PROPORACLE_RUN_LABEL = $RunLabel
 $Root = Split-Path $PSScriptRoot -Parent
-# Fail before lock/fetch if live-tree utils are missing (cfb_l8_bonus / role_from_snap class).
-# `& script.ps1` does not stop this parent when the child `exit`s — check the code.
-& (Join-Path $Root "scripts\Invoke-SmokeImport.ps1") -Root $Root -Label "smoke-import/refresh"
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "[REFRESH $RunLabel] smoke-import failed (exit $LASTEXITCODE) — stopping before lock/fetch. Not publishing." -ForegroundColor Red
-    exit $LASTEXITCODE
-}
 $LateFetch = Join-Path $Root "scripts\run_nba_late_fetch.ps1"
 $Snapshot = Join-Path $Root "scripts\log_prop_snapshot.ps1"
 $LockDir = Join-Path $Root "data\cache"
@@ -218,24 +211,31 @@ function Publish-RefreshWindow {
         $g70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
         if (Test-Path -LiteralPath $g70) {
             Write-Host "[REFRESH $Label] Ensuring Goblin-70 dual card before publish..." -ForegroundColor Cyan
-            & py -3.14 $g70 --date $Date --write-web
-            if ($LASTEXITCODE -ne 0) {
-                Write-Host "[REFRESH $Label] WARN: Goblin-70 rebuild exit $LASTEXITCODE" -ForegroundColor Yellow
+            $loggedHelper = Join-Path $PSScriptRoot "Invoke-LoggedPwsh.ps1"
+            if (-not (Test-Path -LiteralPath $loggedHelper)) { $loggedHelper = Join-Path $Root "scripts\Invoke-LoggedPwsh.ps1" }
+            $g70Log = Join-Path $LogsDir ("g70_writeweb_refresh_{0}_{1}_{2:yyyyMMdd_HHmmss}.log" -f $Label, $Date, (Get-Date))
+            $g70Exit = 1
+            if (Test-Path -LiteralPath $loggedHelper) {
+                . $loggedHelper
+                $g70Exit = Invoke-G70WriteWebStandalone -ScriptPath $g70 -Date $Date -LogPath $g70Log -WorkingDirectory $Root
+            }
+            else {
+                Write-Host "[REFRESH $Label] WARN: Invoke-LoggedPwsh.ps1 missing — falling back to Tee-Object for --write-web" -ForegroundColor Yellow
+                & py -3.14 -u -X utf8 $g70 --date $Date --write-web 2>&1 | Tee-Object -FilePath $g70Log
+                $g70Exit = $LASTEXITCODE
+                Write-Host "write-web exit code: $g70Exit"
+            }
+            if ($g70Exit -ne 0) {
+                Write-Host "[REFRESH $Label] WARN: Goblin-70 rebuild exit $g70Exit" -ForegroundColor Yellow
             }
         }
     }
     $msg = "chore: live tickets/slate $Date $Label"
     if ($Suffix) { $msg = "$msg $Suffix" }
     Write-Host "[REFRESH $Label] Publishing live site JSON to origin/main..." -ForegroundColor Cyan
-    $pubOut = & pwsh -NoProfile -File $publish -RepoRoot $Root -CommitMessage $msg 2>&1
-    $pubExit = $LASTEXITCODE
-    foreach ($line in $pubOut) { Write-Host "  $line" }
-    if ($pubExit -ne 0) {
-        Write-Host "[REFRESH $Label] LIVE SITE PUBLISH FAILED (exit $pubExit)" -ForegroundColor Red
-        $assertHint = ($pubOut | Out-String)
-        if ($assertHint -match 'mixer_only|goblin70_only|assert-live|FAILED') {
-            Write-Host "[REFRESH $Label] publish reason (see lines above): assert-live / dual-card guard" -ForegroundColor Yellow
-        }
+    & pwsh -NoProfile -File $publish -RepoRoot $Root -CommitMessage $msg
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[REFRESH $Label] LIVE SITE PUBLISH FAILED (exit $LASTEXITCODE)" -ForegroundColor Red
     }
 }
 
@@ -264,22 +264,22 @@ try {
         if (Test-Path -LiteralPath $stampPy) {
             & py -3.14 $stampPy --date $todayEt --window $RunLabel --write-stamp
         }
+        # Still snapshot FD/DK/UD ladders — independent of PP fetch stacking.
+        $bookLines = Join-Path $Root "scripts\run_book_line_capture.ps1"
+        if (Test-Path -LiteralPath $bookLines) {
+            Write-Host "[REFRESH $RunLabel] Book line capture still runs (queued window)" -ForegroundColor Cyan
+            try {
+                & pwsh -NoProfile -File $bookLines -Date $todayEt -Root $Root -Window $RunLabel
+            } catch {
+                Write-Host "[REFRESH $RunLabel] WARN: book line capture failed: $($_.Exception.Message)" -ForegroundColor Yellow
+            }
+        }
         Publish-RefreshWindow -Date $todayEt -Label $RunLabel -Suffix "queued"
     }
     else {
         & pwsh -NoProfile -File $Snapshot -Label "$RunLabel PRE" -WriteState
         if ($LASTEXITCODE -ne 0) {
             Write-Host "[REFRESH $RunLabel] PRE snapshot logging failed (continuing)" -ForegroundColor Yellow
-        }
-
-        # Injury collect + OUT hard-drop feed (5AM / 10:30 / 4:30 required; all refreshes OK).
-        $Injuries = Join-Path $Root "scripts\run_injuries.ps1"
-        if (Test-Path -LiteralPath $Injuries) {
-            Write-Host "[REFRESH $RunLabel] Injuries collect/attach..." -ForegroundColor Cyan
-            & pwsh -NoProfile -File $Injuries -Date $todayEt -Window $RunLabel
-            if ($LASTEXITCODE -ne 0) {
-                Write-Host "[REFRESH $RunLabel] WARN: injuries exit $LASTEXITCODE (continuing)" -ForegroundColor Yellow
-            }
         }
 
         $loggedHelper = Join-Path $PSScriptRoot "Invoke-LoggedPwsh.ps1"
@@ -347,6 +347,17 @@ try {
                     $delta.window, $delta.n_moved_this_window, $delta.n_moved_from_initial, $forcePayout) -ForegroundColor DarkGray
             } catch { }
         }
+        $bookLines = Join-Path $Root "scripts\run_book_line_capture.ps1"
+        if (Test-Path -LiteralPath $bookLines) {
+            Write-Host "[REFRESH $RunLabel] Book line capture (FD/DK/UD, non-blocking)" -ForegroundColor Cyan
+            try {
+                & pwsh -NoProfile -File $bookLines -Date $todayEt -Root $Root -Window $RunLabel
+                Write-Host "[REFRESH $RunLabel] Book line capture exit $LASTEXITCODE" -ForegroundColor DarkGray
+            } catch {
+                Write-Host "[REFRESH $RunLabel] WARN: book line capture failed: $($_.Exception.Message)" -ForegroundColor Yellow
+            }
+        }
+
         $livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
         if (Test-Path -LiteralPath $livePayScript) {
             # Auto: missing live_cdp + slips whose lines/types moved. Force only when stamp says so.
@@ -378,14 +389,6 @@ try {
     }
 }
 finally {
-    # One ntfy digest of this window's routine WARNs (utils/pipeline_alerts.py spools them).
-    try {
-        $flushPy = Join-Path $Root "scripts\flush_pipeline_alerts.py"
-        if (Test-Path -LiteralPath $flushPy) {
-            $digestOut = & py -3.14 -X utf8 $flushPy --label $RunLabel 2>&1 | Out-String
-            Write-Host ("[REFRESH $RunLabel] " + $digestOut.Trim()) -ForegroundColor DarkGray
-        }
-    } catch { }
     if (Test-Path -LiteralPath $LockFile) {
         $currentLock = (Get-Content -LiteralPath $LockFile -ErrorAction SilentlyContinue | Select-Object -First 1)
         if ("$currentLock" -like "*PID $PID*") {

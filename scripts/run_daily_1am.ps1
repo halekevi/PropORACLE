@@ -4,20 +4,18 @@
   Scheduled 1:00 AM update fetch: git pull main, pipeline + publish (no grader).
 
 .NOTES
-  Initial scrape + live publish is 9PM day-ahead (soccer/tennis/etc.).
-  MLB Fill 11PM / 12AM discover tomorrow's MLB when PrizePicks posts it.
+  Initial scrape + live publish is 9PM day-ahead (run_daily_day_ahead.ps1).
   This job is the overnight **update** + payout CDP republish of that slate.
   Grader + A1 historical actuals run separately at 3AM (unchanged).
   Always -SkipGrader -SkipHistoricalActuals. Live CDP runs after publish (same
   STEP D-payout as 8AM+), so 1AM writes payout_patch / rate cards for that board.
-  Empty MLB at 9PM is normal; 11PM/12AM/1AM/5AM keep filling as the board appears.
+  Empty no_slate at 1AM is normal (MLB/soccer/WNBA often post later); 5AM/8AM keep updating.
   Registered by scripts\Register_Daily_Task.ps1 as "PropOracle - Daily 1AM".
 #>
 param()
 
 $ErrorActionPreference = "Continue"
 try { $Host.UI.RawUI.WindowTitle = "PropOracle - Daily 1AM" } catch { }
-$env:PROPORACLE_RUN_LABEL = "1AM"  # digest label for utils/pipeline_alerts.py
 $Root = Split-Path $PSScriptRoot -Parent
 $Daily = Join-Path $Root "scripts\run_daily.ps1"
 $Snapshot = Join-Path $Root "scripts\log_prop_snapshot.ps1"
@@ -104,8 +102,10 @@ Write-Host ("[1AM DAILY] Running run_daily.ps1 {0} (all-sport fetch + live payou
 $loggedHelper = Join-Path $PSScriptRoot "Invoke-LoggedPwsh.ps1"
 if (-not (Test-Path -LiteralPath $loggedHelper)) { $loggedHelper = Join-Path $Root "scripts\Invoke-LoggedPwsh.ps1" }
 $childLog = Join-Path $LogsDir ("run_daily_child_1am_{0:yyyy-MM-dd_HHmmss}.log" -f (Get-Date))
+$loggedHelperLoaded = $false
 if (Test-Path -LiteralPath $loggedHelper) {
     . $loggedHelper
+    $loggedHelperLoaded = $true
     $dailyExit = Invoke-LoggedPwsh -File $Daily -ArgumentList $dailyArgs -LogPath $childLog -WorkingDirectory $Root
 } else {
     Write-Host "[1AM DAILY] WARN: Invoke-LoggedPwsh.ps1 missing — child output may not be logged" -ForegroundColor Yellow
@@ -144,11 +144,32 @@ if (Test-Path -LiteralPath $stampPy) {
 $goblin70 = Join-Path $Root "scripts\build_goblin70_tickets.py"
 if (Test-Path -LiteralPath $goblin70) {
     Write-Host "[1AM DAILY] Goblin-70 + mixer dual card for $Today..." -ForegroundColor Cyan
-    & py -3.14 $goblin70 --date $Today --write-web
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "[1AM DAILY] WARN: Goblin-70 dual card exit $LASTEXITCODE" -ForegroundColor Yellow
+    $g70Log = Join-Path $LogsDir ("g70_writeweb_1am_{0}_{1:yyyyMMdd_HHmmss}.log" -f $Today, (Get-Date))
+    $g70Exit = 1
+    if ($loggedHelperLoaded -and (Get-Command Invoke-G70WriteWebStandalone -ErrorAction SilentlyContinue)) {
+        $g70Exit = Invoke-G70WriteWebStandalone -ScriptPath $goblin70 -Date $Today -LogPath $g70Log -WorkingDirectory $Root
+    }
+    else {
+        Write-Host "[1AM DAILY] WARN: Invoke-LoggedPwsh.ps1 missing — falling back to Tee-Object for --write-web" -ForegroundColor Yellow
+        & py -3.14 -u -X utf8 $goblin70 --date $Today --write-web 2>&1 | Tee-Object -FilePath $g70Log
+        $g70Exit = $LASTEXITCODE
+        Write-Host "write-web exit code: $g70Exit"
+    }
+    if ($g70Exit -ne 0) {
+        Write-Host "[1AM DAILY] WARN: Goblin-70 dual card exit $g70Exit" -ForegroundColor Yellow
     }
 }
+$bookLines = Join-Path $Root "scripts\run_book_line_capture.ps1"
+if (Test-Path -LiteralPath $bookLines) {
+    Write-Host "[1AM DAILY] Book line capture (FD/DK/UD, non-blocking)..." -ForegroundColor Cyan
+    try {
+        & pwsh -NoProfile -File $bookLines -Date $Today -Root $Root -Window "1AM"
+        Write-Host "[1AM DAILY] Book line capture exit $LASTEXITCODE" -ForegroundColor DarkGray
+    } catch {
+        Write-Host "[1AM DAILY] WARN: book line capture failed (non-blocking): $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+}
+
 $livePayScript = Join-Path $Root "scripts\run_live_payout_capture.ps1"
 $dualTickets = Join-Path $Root "ui_runner\templates\tickets_latest.json"
 if (Test-Path -LiteralPath $livePayScript) {
