@@ -51,52 +51,62 @@
       max-width: 72ch;
     }
     .summary-grid {
-      display: grid;
-      grid-template-columns: 1.35fr repeat(4, minmax(100px, 1fr));
-      gap: 8px;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: baseline;
+      gap: 0;
       margin-bottom: 12px;
-    }
-    .sum-card {
+      padding: 10px 14px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.035);
-      padding: 12px 12px 10px;
-      min-height: 72px;
-      transition: border-color .15s, background .15s;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sum-card {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 6px;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      padding: 0 14px;
+      min-height: 0;
+      white-space: nowrap;
+    }
+    .sum-card + .sum-card {
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
     }
     .sum-card.featured {
-      border-color: rgba(69, 211, 136, 0.28);
-      background:
-        linear-gradient(160deg, rgba(69, 211, 136, 0.1), transparent 55%),
-        rgba(255, 255, 255, 0.04);
+      border-color: transparent;
+      background: transparent;
+      padding-left: 0;
     }
     .sum-card.featured.sum-card-neg {
-      border-color: rgba(255, 127, 127, 0.28);
-      background:
-        linear-gradient(160deg, rgba(255, 127, 127, 0.1), transparent 55%),
-        rgba(255, 255, 255, 0.04);
+      border-color: transparent;
+      background: transparent;
     }
     .sum-label {
       font-size: 10px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--muted, rgba(255, 255, 255, 0.7));
-      margin-bottom: 4px;
+      margin-bottom: 0;
     }
     .sum-value {
-      font-size: clamp(16px, 2.1vw, 22px);
+      font-size: clamp(14px, 1.6vw, 18px);
       font-weight: 700;
       line-height: 1.15;
       font-variant-numeric: tabular-nums;
     }
     .sum-card.featured .sum-value {
-      font-size: clamp(22px, 2.8vw, 30px);
+      font-size: clamp(16px, 1.9vw, 20px);
       letter-spacing: -0.02em;
     }
     .sum-sub {
-      margin-top: 2px;
-      font-size: 10px;
-      color: var(--muted, rgba(255, 255, 255, 0.65));
+      display: none;
     }
     .sum-pos { color: #45d388; }
     .sum-neg { color: #ff7f7f; }
@@ -356,11 +366,6 @@
     }
     @media (max-width: 1100px) {
       .layout-split { grid-template-columns: 1fr; }
-      .summary-grid { grid-template-columns: 1fr 1fr; }
-      .sum-card.featured { grid-column: 1 / -1; }
-    }
-    @media (max-width: 560px) {
-      .summary-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -384,15 +389,15 @@
       </p>
     </section>
 
-    <section class="summary-grid" id="income-summary">
+    <section class="summary-grid" id="income-summary" aria-label="P and L summary">
       <div class="sum-card featured {{ 'sum-card-neg' if summary.net_pnl < 0 else '' }}">
-        <div class="sum-label">Net P&amp;L</div>
+        <div class="sum-label">Net</div>
         <div class="sum-value {{ 'sum-pos' if summary.net_pnl >= 0 else 'sum-neg' }}" data-k="net">${{ '%.2f'|format(summary.net_pnl) }}</div>
         <div class="sum-sub">ROI {{ '%.1f%%'|format(summary.roi_pct) }} · {{ summary.total_tickets }} tickets</div>
       </div>
       <div class="sum-card">
-        <div class="sum-label">Win Rate</div>
-        <div class="sum-value" data-k="winrate">{{ '%.1f%%'|format((summary.win_rate or 0) * 100) if summary.decided_tickets > 0 else '—' }}</div>
+        <div class="sum-label">Win</div>
+        <div class="sum-value" data-k="winrate">{% if summary.decided_tickets > 0 %}{{ '%.1f%%'|format((summary.win_rate or 0) * 100) }} ({{ summary.paid_tickets }}/{{ summary.decided_tickets }}){% else %}—{% endif %}</div>
         <div class="sum-sub" data-k="winrate-sub">{% if summary.decided_tickets > 0 %}{{ summary.paid_tickets }}/{{ summary.decided_tickets }}{% endif %}</div>
       </div>
       <div class="sum-card">
@@ -972,19 +977,13 @@
         const featured = document.querySelector('.sum-card.featured');
         if (featured) featured.classList.toggle('sum-card-neg', net < 0);
         set('net', money(net), numCls(net).replace('num-', 'sum-'));
-        set('winrate', winRate == null ? '—' : winRate.toFixed(1) + '%');
+        const wrText = winRate == null ? '—' : (winRate.toFixed(1) + '%' + (decided > 0 ? ' (' + paid + '/' + decided + ')' : ''));
+        set('winrate', wrText);
         const sub = document.querySelector('[data-k="winrate-sub"]');
         if (sub) sub.textContent = decided > 0 ? (paid + '/' + decided) : '';
         set('tickets', String(tickets));
         set('roi', pct(roi), numCls(roi).replace('num-', 'sum-'));
         set('streak', streak);
-        const netSub = document.querySelector('.sum-card.featured .sum-sub');
-        if (netSub) {
-          const scopeLabel = trackScope === 'g70'
-            ? 'G70 era'
-            : (trackScope === 'all' ? 'all tracks' : 'playable card');
-          netSub.textContent = 'ROI ' + pct(roi) + ' · ' + tickets + ' tickets · ' + scopeLabel;
-        }
       }
 
       function refreshView() {
