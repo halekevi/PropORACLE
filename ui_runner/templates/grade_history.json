@@ -9180,5 +9180,180 @@
       "count": 0,
       "wins": 0
     }
+  },
+  {
+    "date": "2026-11-20",
+    "track": "high_prob_std_gob",
+    "n_tickets": 2,
+    "wins": 1,
+    "guarantees": 0,
+    "losses": 1,
+    "void_loss_ct": 0,
+    "win_rate": 0.5,
+    "avg_ev_predicted": 0.2861,
+    "net_per_10": -2.5,
+    "roi_pct": -25.0,
+    "strong_tickets": {
+      "count": 2,
+      "wins": 1
+    },
+    "ok_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "marginal_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "skip_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "note": "Mara/Dybantsa/Proctor slip hand-graded MISS (Proctor Pts 5 vs 7.5); Dybantsa Reb 3.5 line absent from graded pool"
+  },
+  {
+    "date": "2026-11-20",
+    "track": "long_parlay",
+    "n_tickets": 3,
+    "wins": 0,
+    "guarantees": 0,
+    "losses": 3,
+    "void_loss_ct": 0,
+    "win_rate": 0.0,
+    "avg_ev_predicted": 3.7624,
+    "net_per_10": -10.0,
+    "roi_pct": -100.0,
+    "strong_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "ok_tickets": {
+      "count": 2,
+      "wins": 0
+    },
+    "marginal_tickets": {
+      "count": 1,
+      "wins": 0
+    },
+    "skip_tickets": {
+      "count": 0,
+      "wins": 0
+    }
+  },
+  {
+    "date": "2026-11-20",
+    "track": "strong_standard_shadow",
+    "n_tickets": 14,
+    "wins": 1,
+    "guarantees": 0,
+    "losses": 13,
+    "void_loss_ct": 0,
+    "win_rate": 0.0714,
+    "avg_ev_predicted": 1.5186,
+    "net_per_10": -7.86,
+    "roi_pct": -78.57,
+    "strong_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "ok_tickets": {
+      "count": 14,
+      "wins": 1
+    },
+    "marginal_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "skip_tickets": {
+      "count": 0,
+      "wins": 0
+    }
+  },
+  {
+    "date": "2026-11-21",
+    "track": "long_parlay",
+    "n_tickets": 4,
+    "wins": 1,
+    "guarantees": 0,
+    "losses": 3,
+    "void_loss_ct": 0,
+    "win_rate": 0.25,
+    "avg_ev_predicted": 3.1413,
+    "net_per_10": -1.89,
+    "roi_pct": -18.93,
+    "strong_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "ok_tickets": {
+      "count": 3,
+      "wins": 1
+    },
+    "marginal_tickets": {
+      "count": 1,
+      "wins": 0
+    },
+    "skip_tickets": {
+      "count": 0,
+      "wins": 0
+    }
+  },
+  {
+    "date": "2026-11-21",
+    "track": "strong_recombo_shadow",
+    "n_tickets": 10,
+    "wins": 1,
+    "guarantees": 0,
+    "losses": 9,
+    "void_loss_ct": 0,
+    "win_rate": 0.1,
+    "avg_ev_predicted": 1.1626,
+    "net_per_10": -9.81,
+    "roi_pct": -98.14,
+    "strong_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "ok_tickets": {
+      "count": 10,
+      "wins": 1
+    },
+    "marginal_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "skip_tickets": {
+      "count": 0,
+      "wins": 0
+    }
+  },
+  {
+    "date": "2026-11-21",
+    "track": "strong_standard_shadow",
+    "n_tickets": 14,
+    "wins": 2,
+    "guarantees": 0,
+    "losses": 12,
+    "void_loss_ct": 0,
+    "win_rate": 0.1429,
+    "avg_ev_predicted": 1.5077,
+    "net_per_10": -5.71,
+    "roi_pct": -57.14,
+    "strong_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "ok_tickets": {
+      "count": 14,
+      "wins": 2
+    },
+    "marginal_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "skip_tickets": {
+      "count": 0,
+      "wins": 0
+    }
   }
 ]

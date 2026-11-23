@@ -70,9 +70,36 @@ def _iter_py_files() -> list[Path]:
     return files
 
 
-def _utils_import_names(tree: ast.AST) -> list[tuple[str, list[str], int]]:
-    """Return (module, [names], lineno) for ``from utils… import …`` anywhere in the tree."""
-    out: list[tuple[str, list[str], int]] = []
+_GUARD_EXC = {"ImportError", "ModuleNotFoundError", "Exception", "BaseException"}
+
+
+def _handler_catches_import(handler: ast.ExceptHandler) -> bool:
+    t = handler.type
+    if t is None:
+        return True
+    elts = t.elts if isinstance(t, ast.Tuple) else [t]
+    return any(isinstance(e, ast.Name) and e.id in _GUARD_EXC for e in elts)
+
+
+def _guarded_import_ids(tree: ast.AST) -> set[int]:
+    """ImportFrom nodes inside a ``try`` body whose handlers swallow ImportError."""
+    guarded: set[int] = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Try):
+            continue
+        if not any(_handler_catches_import(h) for h in node.handlers):
+            continue
+        for stmt in node.body:
+            for sub in ast.walk(stmt):
+                if isinstance(sub, ast.ImportFrom):
+                    guarded.add(id(sub))
+    return guarded
+
+
+def _utils_import_names(tree: ast.AST) -> list[tuple[str, list[str], int, bool]]:
+    """Return (module, [names], lineno, guarded) for ``from utils… import …`` anywhere in the tree."""
+    guarded = _guarded_import_ids(tree)
+    out: list[tuple[str, list[str], int, bool]] = []
     for node in ast.walk(tree):
         if not isinstance(node, ast.ImportFrom):
             continue
@@ -82,7 +109,7 @@ def _utils_import_names(tree: ast.AST) -> list[tuple[str, list[str], int]]:
         names = [a.name for a in node.names if a.name != "*"]
         if not names:
             continue
-        out.append((mod, names, int(getattr(node, "lineno", 0) or 0)))
+        out.append((mod, names, int(getattr(node, "lineno", 0) or 0), id(node) in guarded))
     return out
 
 
@@ -111,7 +138,10 @@ def _module_defines(mod_name: str, attr: str, cache: dict[str, set[str] | None])
 
 
 def ast_scan_utils_imports() -> list[str]:
+    """Unguarded misses are errors. Misses inside try/except ImportError|Exception
+    already fall back at runtime, so they print as warnings and do not block."""
     errors: list[str] = []
+    warnings: list[str] = []
     cache: dict[str, set[str] | None] = {}
     checked = 0
     for path in _iter_py_files():
@@ -124,22 +154,25 @@ def ast_scan_utils_imports() -> list[str]:
         except OSError as exc:
             errors.append(f"read {path.relative_to(ROOT)}: {exc}")
             continue
-        for mod_name, names, lineno in _utils_import_names(tree):
+        for mod_name, names, lineno, is_guarded in _utils_import_names(tree):
+            sink = warnings if is_guarded else errors
             for attr in names:
                 checked += 1
                 ok = _module_defines(mod_name, attr, cache)
                 if ok is None:
-                    errors.append(
+                    sink.append(
                         f"{path.relative_to(ROOT)}:{lineno}: "
                         f"cannot import module {mod_name} (needed for {attr})"
                     )
                 elif not ok:
-                    errors.append(
+                    sink.append(
                         f"{path.relative_to(ROOT)}:{lineno}: "
                         f"from {mod_name} import {attr} — name missing on live tree"
                     )
     n_files = len(_iter_py_files())
     print(f"  OK  ast-scan checked {checked} utils import name(s) across {n_files} files")
+    for w in warnings:
+        print(f"  WARN (guarded, falls back) {w}")
     return errors
 
 
