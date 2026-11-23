@@ -231,7 +231,7 @@ def merge_into_grade_pool(
     for g in pool.get("groups") or []:
         if not isinstance(g, dict):
             continue
-        name = str(g.get("name") or "")
+        name = str(g.get("group_name") or g.get("name") or "")
         group_by_name[name] = g
         for t in g.get("tickets") or []:
             if not isinstance(t, dict):
@@ -245,7 +245,8 @@ def merge_into_grade_pool(
     for g in incoming.get("groups") or []:
         if not isinstance(g, dict):
             continue
-        name = str(g.get("name") or "")
+        # Mixer groups carry group_name only; keying on "name" lumped every run into one group.
+        name = str(g.get("group_name") or g.get("name") or "")
         target = group_by_name.get(name)
         if target is None:
             target = {

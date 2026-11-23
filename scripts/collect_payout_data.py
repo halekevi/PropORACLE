@@ -3279,6 +3279,8 @@ def capture_tickets_from_board(
     gentle: bool = False,
     only_missing_live: bool = False,
     max_runtime_sec: float = 0.0,
+    ticket_ids: list[str] | None = None,
+    window: str = "",
 ) -> int:
     """Build each MAIN/STRONG slip on PrizePicks and capture min/first payouts.
 
@@ -3296,6 +3298,12 @@ def capture_tickets_from_board(
     deadline = (time.monotonic() + float(max_runtime_sec)) if float(max_runtime_sec or 0) > 0 else None
     timed_out = False
     slips = load_main_strong_tickets(tickets_path, only_missing_live=only_missing_live)
+    if ticket_ids:
+        wanted = {str(x).strip() for x in ticket_ids if str(x).strip()}
+        slips = [s for s in slips if str(s.get("ticket_id") or "") in wanted]
+        print(f"[PAYOUT] ticket-ids filter: {len(slips)} of {len(wanted)} requested slips on the card")
+    if window:
+        print(f"[PAYOUT] window={window}")
     fp_info = main_strong_tickets_fingerprint(tickets_path)
     if not slips:
         reason = (
@@ -5558,6 +5566,16 @@ def main():
         help="With --tickets: scrape only slips that do not already have payout_source=live_cdp.",
     )
     ap.add_argument(
+        "--ticket-ids-file",
+        default="",
+        help="With --tickets: JSON file of {ticket_ids:[...]} or a JSON array of ids.",
+    )
+    ap.add_argument(
+        "--window",
+        default="",
+        help="Scheduled job label (1AM / 5AM / 8AM / 9AM / 10:30 / 1PM / 4:30 / 9PM).",
+    )
+    ap.add_argument(
         "--check-unchanged",
         action="store_true",
         help=(
@@ -5712,6 +5730,17 @@ def main():
             raise SystemExit(0)
         _acquire_payout_capture_lock(force=bool(getattr(args, "force_lock", False)))
         try:
+            ticket_ids: list[str] = []
+            ids_file = str(getattr(args, "ticket_ids_file", "") or "").strip()
+            if ids_file:
+                try:
+                    blob = json.loads(Path(ids_file).read_text(encoding="utf-8"))
+                    if isinstance(blob, dict):
+                        blob = blob.get("ticket_ids") or blob.get("ids") or []
+                    if isinstance(blob, list):
+                        ticket_ids.extend(str(x).strip() for x in blob if str(x).strip())
+                except Exception as e:
+                    print(f"[PAYOUT] WARN: ticket-ids-file {ids_file}: {e}")
             raise SystemExit(
                 capture_tickets_from_board(
                     tickets_path=tickets_path,
@@ -5727,6 +5756,8 @@ def main():
                     only_missing_live=bool(getattr(args, "only_missing_live", False)),
                     gentle=bool(getattr(args, "gentle", False)),
                     max_runtime_sec=float(getattr(args, "max_runtime_sec", 0) or 0),
+                    ticket_ids=ticket_ids or None,
+                    window=str(getattr(args, "window", "") or "").strip(),
                 )
             )
         finally:
