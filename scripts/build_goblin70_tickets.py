@@ -55,6 +55,7 @@ from utils.ticket_70_pool import (  # noqa: E402
     premium_goblin_eligible,
     premium_goblin_sort_key,
     standard_flex_kind,
+    standard_power3_eligible,
     standard_sort_key,
     standard_ticket_eligible,
     standard_ticket_p,
@@ -758,8 +759,9 @@ def compact(r: dict, *, std: bool = False) -> dict:
         "pick_type": r.get("pick_type"),
         "l5": l5,
         "l10": l10,
-        "cover": r.get("cover"),
-        "d": r.get("def"),
+        "cover": r.get("cover") if r.get("cover") is not None else r.get("dist_l5"),
+        "d": r.get("def") or r.get("def_tier"),
+        "pace_tier": r.get("pace_tier") or r.get("Pace Tier") or "",
         "badge": r.get("promo") or r.get("badge"),
         "tier": r.get("prop_tier"),
         "matchup": r.get("matchup") or "",
@@ -1771,6 +1773,48 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
         slip["core_recipe"] = "standard_yolo"
         tickets.append(slip)
 
+    # Per-sport Standard Power 3: L5=5 + L10>=8 + D + pace favor + L5 gap.
+    sp3_raw = []
+    for r in board:
+        if not standard_power3_eligible(r):
+            continue
+        if fold_name(r.get("player")) in SKIP_PLAYERS:
+            continue
+        rec = dict(r)
+        rec["std_kind"] = standard_flex_kind(r) or "gate"
+        rec["p"] = standard_ticket_p(rec["std_kind"])
+        sp3_raw.append(rec)
+    for r in sp3_raw:
+        attach_leg_p(r, recipe=_recipe(r), index=hr_index)
+        if r.get("p") is None:
+            r["p"] = standard_ticket_p(r.get("std_kind") or "gate")
+            r["p_source"] = "strict_floor"
+    sp3 = unique_by_player_prop(sp3_raw, standard_sort_key)
+    by_sport: dict[str, list[dict]] = {}
+    for r in sp3:
+        if fold_name(r.get("player")) in taken:
+            continue
+        by_sport.setdefault(str(r.get("sport") or ""), []).append(r)
+    sp3_i = 1
+    for sport in sorted(by_sport):
+        ordered = order_by_gate_hr(by_sport[sport], standard_sort_key)
+        for combo in drain_power3(ordered, taken, wnba_cap=2):
+            slip = _ticket(
+                f"SP3-{sp3_i}",
+                [compact(x, std=True) for x in combo],
+                "Power",
+                "standard",
+                (
+                    "Standard Power 3. Same-sport only. "
+                    "L5=5 + L10>=8 + D + pace favor + favorable L5 gap."
+                ),
+                web_group=f"{sport} Standard Power 3",
+            )
+            slip["ticket_track"] = "standard_power3"
+            slip["core_recipe"] = "standard_power3"
+            tickets.append(slip)
+            sp3_i += 1
+
     nfl_raw = [r for r in board if nflp_ticket_eligible(r)]
     nfl_family = "nflp"
     if not nfl_raw:
@@ -1827,12 +1871,15 @@ def build(date: str, *, l5_eq_5: bool = False, skip_golf: bool = False) -> dict:
             "standard_allowlist_raw": len(std_raw),
             "standard_yolo": len(yolo_std),
             "standard_yolo_raw": len(yolo_std_raw),
+            "standard_power3": len(sp3),
+            "standard_power3_raw": len(sp3_raw),
             "nflp_goblin": len(nfl),
             "nflp_goblin_raw": len(nfl_raw),
         },
         "goblin_pool": [compact(r) for r in gob],
         "standard_pool": [compact(r, std=True) for r in std],
         "standard_yolo_pool": [compact(r, std=True) for r in yolo_std],
+        "standard_power3_pool": [compact(r, std=True) for r in sp3],
         "nflp_pool": [compact(r) for r in nfl],
         "tickets": tickets,
         "_board": board,

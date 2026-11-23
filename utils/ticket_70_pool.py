@@ -802,6 +802,67 @@ def standard_ticket_eligible(r: dict[str, Any]) -> bool:
     return True
 
 
+def _pace_tier(r: dict[str, Any]) -> str:
+    return str(
+        r.get("pace_tier")
+        or r.get("Pace Tier")
+        or r.get("pace")
+        or r.get("Pace")
+        or ""
+    ).strip().upper()
+
+
+def pace_favors(r: dict[str, Any]) -> bool:
+    """OVER wants FAST; UNDER wants NORMAL|SLOW. Missing pace does not block."""
+    pace = _pace_tier(r)
+    if not pace or pace in {"UNKNOWN", "N/A", "NA", "NONE", "NAN", "-"}:
+        return True
+    side = _side(r)
+    if side == "OVER":
+        return pace == "FAST"
+    if side == "UNDER":
+        return pace in {"NORMAL", "SLOW", "SLOWER"}
+    return False
+
+
+def favorable_l5_gap(r: dict[str, Any]) -> bool:
+    """Directional L5 cushion vs line must clear the sport cover floor and be > 0."""
+    gap = _cover_gap(r)
+    if gap is None or gap <= 0:
+        return False
+    side = _side(r)
+    if side not in {"OVER", "UNDER"}:
+        return False
+    if tennis_skip_cover_floor(r) or tennis_standard_under_serve_eligible(r):
+        return True
+    if tennis_standard_games_won_over_eligible(r):
+        return True
+    return bool(cover_clears_floor(_sport(r), gap, side, _prop(r)))
+
+
+def standard_power3_eligible(r: dict[str, Any]) -> bool:
+    """Per-sport Standard Power-3 sleeve: L5=5 + L10>=8 + D + pace + L5 gap.
+
+    Builds on ``standard_ticket_eligible`` (keep + stack + cover), then requires
+    directional L5 == 5 (even when CFB/NFL ticket floor is L5>=4), pace favor
+    when a pace tier is present, and a strictly positive L5 gap that still
+    clears the cover floor. Demons / MLB Standard stay off.
+    """
+    if not standard_ticket_eligible(r):
+        return False
+    l5 = directional_l5(r)
+    if l5 is None or int(l5) != 5:
+        return False
+    l10 = directional_l10(r)
+    if l10 is None or l10 < 8:
+        return False
+    if not pace_favors(r):
+        return False
+    if not favorable_l5_gap(r):
+        return False
+    return True
+
+
 def standard_yolo_kind(r: dict[str, Any]) -> str | None:
     """Label for Standard-YOLO sort / payout p. None = not YOLO-eligible."""
     if _pick(r) != "Standard":
