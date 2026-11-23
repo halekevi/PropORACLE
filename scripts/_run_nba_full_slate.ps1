@@ -137,7 +137,8 @@ Copy-Item -LiteralPath $s8xlsx -Destination $rootDated -Force
 
 $mainCpRoot = Join-Path (Split-Path $Root -Parent) "PropORACLE_main_cp"
 $mainCpOut = Join-Path $mainCpRoot "outputs\$Date\nba"
-if (Test-Path (Split-Path $mainCpOut -Parent)) {
+$runningInMainCp = (Test-Path $mainCpRoot) -and ((Resolve-Path $mainCpRoot).Path -eq $Root)
+if (-not $runningInMainCp -and (Test-Path (Split-Path $mainCpOut -Parent))) {
     New-Item -ItemType Directory -Force -Path $mainCpOut | Out-Null
     Copy-Item $s8csv (Join-Path $mainCpOut "step8_all_direction.csv") -Force
     Copy-Item $s8xlsx (Join-Path $mainCpOut "step8_all_direction_clean.xlsx") -Force
