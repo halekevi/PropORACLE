@@ -354,6 +354,18 @@ function Test-CbbOffSeason {
     return $true
 }
 $CBBOffSeason = Test-CbbOffSeason -PipelineDate $Date -EndYmd $CBB_SEASON_END -ResumeYmd $CBB_SEASON_RESUME -Force:($ForceCBB.IsPresent -or $ForceAll.IsPresent)
+
+# The dates above are one-season fallbacks; config/active_sports.json (ESPN calendar sync) wins.
+. (Join-Path $Root "scripts\_active_sports.ps1")
+Read-ActiveSportsConfig -RepoRoot $Root
+if (Test-ActiveSportsConfigLoaded) {
+    $WNBAOffSeason = (-not (Test-SportOn "WNBA")) -or (($Date -ge $WNBA_ALLSTAR_PAUSE_START) -and ($Date -lt $WNBA_SEASON_RESUME))
+    $NBAOffSeason = (-not $ForceAll.IsPresent) -and (-not (Test-SportOn "NBA"))
+    $NHLOffSeason = (-not $ForceAll.IsPresent) -and (-not (Test-SportOn "NHL"))
+    $NFLOffSeason = (-not ($ForceNFL.IsPresent -or $ForceAll.IsPresent)) -and (-not (Test-SportOn "NFL"))
+    $CFBOffSeason = (-not ($ForceCFB.IsPresent -or $ForceAll.IsPresent)) -and (-not (Test-SportOn "CFB"))
+    $CBBOffSeason = (-not ($ForceCBB.IsPresent -or $ForceAll.IsPresent)) -and (-not (Test-SportOn "CBB"))
+}
 $OutDir    = Join-Path $Root "outputs\$Date"
 $NBARunOutDir = Join-Path $OutDir "nba"
 $NBA1HRunOutDir = Join-Path $OutDir "nba1h"
@@ -1793,6 +1805,10 @@ function Invoke-AltBookFetches {
                 @{ league = "nfl"; name = "dk_props_nfl.csv" },
                 @{ league = "cfb"; name = "dk_props_cfb.csv" }
             )) {
+                if (-not (Test-SportOn $row.league)) {
+                    Write-Host "  [alt-books] SKIP DraftKings $($row.league.ToUpper()) (inactive sport)" -ForegroundColor DarkGray
+                    continue
+                }
                 $part = Join-Path $OutDir $row.name
                 Invoke-AltBookPy "DraftKings $($row.league.ToUpper())" ".\scripts\fetch_draftkings_player_props.py" "--league $($row.league) -o `"$part`""
                 if (Test-Path $part) { [void]$dkFiles.Add($part) }
@@ -1932,6 +1948,7 @@ function Run-Combined {
         if (-not $okMatchupEdge) {
             Write-Host "  [matchup-edge] WARN: full build failed/timed out — retrying active summer sports individually..." -ForegroundColor Yellow
             foreach ($meSport in @("mlb", "wnba", "soccer", "tennis")) {
+                if (-not (Test-SportOn $meSport)) { continue }
                 if ($meSport -eq "wnba" -and $WNBAOffSeason -and -not $ForceWNBA.IsPresent) {
                     Write-Host "  [matchup-edge] SKIP wnba (All-Star pause until $WNBA_SEASON_RESUME)" -ForegroundColor DarkGray
                     continue
@@ -3836,6 +3853,7 @@ $MLB_SEASON_END = "2026-11-06"
 if ($env:PROPORACLE_MLB_SEASON_START) { $MLB_SEASON_START = $env:PROPORACLE_MLB_SEASON_START.Trim() }
 if ($env:PROPORACLE_MLB_SEASON_END) { $MLB_SEASON_END = $env:PROPORACLE_MLB_SEASON_END.Trim() }
 $MLBOffSeason = ($Date -lt $MLB_SEASON_START) -or ($Date -ge $MLB_SEASON_END)
+if (Test-ActiveSportsConfigLoaded) { $MLBOffSeason = -not (Test-SportOn "MLB") }
 # Do not let daily -ForceAll re-enable MLB PP pulls in winter; use PROPORACLE_FORCE_ALL_SPORTS=1.
 $MLBForceFetch = ("$($env:PROPORACLE_FORCE_ALL_SPORTS)" -eq "1")
 $MLBJob = $null

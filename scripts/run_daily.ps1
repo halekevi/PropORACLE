@@ -102,6 +102,10 @@ function Test-WnbaAllStarPause {
     return ($SlateDate -ge $WNBA_ALLSTAR_PAUSE_START) -and ($SlateDate -lt $WNBA_SEASON_RESUME)
 }
 
+# The season dates above are one-season fallbacks; config/active_sports.json (ESPN calendar sync) wins.
+. (Join-Path $Root "scripts\_active_sports.ps1")
+Read-ActiveSportsConfig -RepoRoot $Root
+
 function Test-PpCdpReachable {
     param([string]$CdpBaseUrl = "http://127.0.0.1:9222")
     try {
@@ -374,35 +378,37 @@ function Get-MissingTodaySlateOutputs {
     }
     $required = @(
         "step8_soccer_direction_clean_$RunDate.xlsx",
-        "step8_mlb_direction_clean_$RunDate.xlsx",
         "step8_tennis_direction_clean_$tennisDated.xlsx",
         "step8_golf_direction_clean_$RunDate.xlsx"
     )
+    if (Test-SportOn "MLB") {
+        $required = @($required) + @("step8_mlb_direction_clean_$RunDate.xlsx")
+    }
     # NBA / NHL / period boards: keep exemption wiring, but do not require during off-season.
-    if ($RunDate -ge $NBA_SEASON_RESUME) {
+    if (Test-SportOn "NBA" ($RunDate -ge $NBA_SEASON_RESUME)) {
         $required = @(
             "step8_nba_direction_clean_$RunDate.xlsx",
             "step8_nba1h_direction_clean_$RunDate.xlsx",
             "step8_nba1q_direction_clean_$RunDate.xlsx"
         ) + @($required)
     }
-    if ($RunDate -ge $NHL_SEASON_RESUME) {
+    if (Test-SportOn "NHL" ($RunDate -ge $NHL_SEASON_RESUME)) {
         $required = @("step8_nhl_direction_clean_$RunDate.xlsx") + @($required)
     }
     # WNBA: run_wnba_pipeline.ps1 publishes outputs/<date>/step8_wnba_direction_clean_<date>.xlsx
     # (same basename pattern as other sports' step8_*_direction_clean_<date>.xlsx).
-    if (($RunDate -ge $WNBA_SEASON_START) -and -not (Test-WnbaAllStarPause -SlateDate $RunDate)) {
+    if ((Test-SportOn "WNBA" ($RunDate -ge $WNBA_SEASON_START)) -and -not (Test-WnbaAllStarPause -SlateDate $RunDate)) {
         $required = @($required) + @("step8_wnba_direction_clean_$RunDate.xlsx")
     }
     # CBB/WCBB: same resume as run_pipeline.ps1 (early DI 2026-10-20). Required through season end.
-    if ($RunDate -lt $CBB_SEASON_END -or $RunDate -ge $CBB_SEASON_RESUME) {
+    if (Test-SportOn "CBB" ($RunDate -lt $CBB_SEASON_END -or $RunDate -ge $CBB_SEASON_RESUME)) {
         $required = @($required) + @(
             "step8_cbb_direction_clean_$RunDate.xlsx",
             "step8_wcbb_direction_clean_$RunDate.xlsx"
         )
     }
     # CFB: Week 0+ boards — was missing from daily completeness, so catchup never fetched it.
-    if ($RunDate -ge $CFB_SEASON_RESUME) {
+    if (Test-SportOn "CFB" ($RunDate -ge $CFB_SEASON_RESUME)) {
         $required = @($required) + @("step8_cfb_direction_clean_$RunDate.xlsx")
     }
     # Some sports can intentionally skip writing dated copies while still producing
@@ -1130,9 +1136,11 @@ if (-not $SkipPipeline) {
                 Write-Log "STEP C0a - PP Chrome CDP: SKIP (already running)"
             }
             else {
-                Write-Host "  [C0a] Launching PP Chrome (MLB board) for DataDome bypass..." -ForegroundColor Cyan
-                Write-Log "STEP C0a - PP Chrome CDP: START (launch MLB board)"
-                & pwsh -NoProfile -File $ppChromePs1 -OpenBoard -LeagueId 2
+                $c0aBoard = @(@("MLB", 2), @("NBA", 7), @("NFL", 9), @("NHL", 8), @("CBB", 20)) | Where-Object { Test-SportOn $_[0] } | Select-Object -First 1
+                if (-not $c0aBoard) { $c0aBoard = @("NBA", 7) }
+                Write-Host "  [C0a] Launching PP Chrome ($($c0aBoard[0]) board) for DataDome bypass..." -ForegroundColor Cyan
+                Write-Log "STEP C0a - PP Chrome CDP: START (launch $($c0aBoard[0]) board)"
+                & pwsh -NoProfile -File $ppChromePs1 -OpenBoard -LeagueId $c0aBoard[1]
                 Start-Sleep -Seconds 5
                 if (Test-PpCdpReachable -CdpBaseUrl $ppCdpUrl) {
                     Write-Log "STEP C0a - PP Chrome CDP: OK (CDP ready — solve captcha if board blocked)"
@@ -1179,7 +1187,7 @@ if (-not $SkipPipeline) {
 
     # Rolling 1Q/2Q actuals → nba1q table (PropOracle ref DB). Fills holes if grader was skipped or
     # the machine was offline; skips dates that already have CSVs. Safe with daily grader (idempotent).
-    if ($Today -lt $NBA_SEASON_RESUME) {
+    if (-not (Test-SportOn "NBA" ($Today -ge $NBA_SEASON_RESUME))) {
         Write-Log "STEP C0b - NBA period history sync: SKIP (NBA off-season until $NBA_SEASON_RESUME)"
     }
     elseif (-not $SkipFetch -and -not $SkipPeriodHistorySync -and $PeriodHistoryLookbackDays -gt 0) {
@@ -1285,7 +1293,7 @@ if (-not $SkipPipeline) {
     # as NHL Step 4b-pre after step4 and before step4b — requires step4 board for --slate-input.
     # Skip entirely during NHL off-season (matches run_pipeline $NHL_SEASON_RESUME).
     $NHL_SEASON_RESUME = "2026-09-01"
-    if ($Today -lt $NHL_SEASON_RESUME) {
+    if (-not (Test-SportOn "NHL" ($Today -ge $NHL_SEASON_RESUME))) {
         Write-Host "[NHL] Off-season — skipping NHL PP cache refresh until $NHL_SEASON_RESUME" -ForegroundColor DarkGray
         Write-Log "[NHL] NHL PP cache refresh: SKIP (off-season until $NHL_SEASON_RESUME)"
     }
@@ -2077,6 +2085,7 @@ if (Test-Path $meScript) {
     try {
         $meSports = @("mlb", "soccer", "tennis")
         if (-not (Test-WnbaAllStarPause -SlateDate $Today)) { $meSports = @("mlb", "wnba", "soccer", "tennis") }
+        $meSports = @($meSports | Where-Object { Test-SportOn $_ })
         $meOk = $true
         $meWaitMs = [Math]::Max(30, $MatchupEdgeTimeoutSec) * 1000
         foreach ($meSport in $meSports) {
@@ -2798,6 +2807,7 @@ try {
         $ss = Get-Content -LiteralPath $slateStatusPath -Raw -ErrorAction Stop | ConvertFrom-Json
         $active = @("mlb", "soccer", "tennis", "golf")
         if (-not (Test-WnbaAllStarPause -SlateDate $Today)) { $active = @("mlb", "wnba", "soccer", "tennis", "golf") }
+        $active = @($active | Where-Object { Test-SportOn $_ })
         $completeCount = 0
         foreach ($sk in $active) {
             if ($ss.sports -and "$($ss.sports.$sk)" -eq "complete") { $completeCount++ }
@@ -2843,7 +2853,7 @@ if ($NowHour -ge 10) {
         Write-Host "[LATE_FETCH] Re-fetching in-season sports (fail-fast HTTP, no off-season boards)..." -ForegroundColor Cyan
         Write-Log "[NBA_LATE_FETCH] Hour=$NowHour >= 10: late slate refresh (in-season step1 20-page HTTP + pipeline -SkipFetch)"
 
-    if ($Today -ge $NBA_SEASON_RESUME) {
+    if (Test-SportOn "NBA" ($Today -ge $NBA_SEASON_RESUME)) {
     $NBADir = Join-Path $SportsRoot "NBA"
     $lateNbaOutDir = Join-Path $Root "outputs\$Today\nba"
     if (-not (Test-Path -LiteralPath $lateNbaOutDir)) {
@@ -2877,7 +2887,7 @@ if ($NowHour -ge 10) {
         Write-Log "[NBA_LATE_FETCH] SKIP: NBA off-season until $NBA_SEASON_RESUME"
     }
 
-    if ($Today -ge $NHL_SEASON_RESUME) {
+    if (Test-SportOn "NHL" ($Today -ge $NHL_SEASON_RESUME)) {
     $NHLDir = Join-Path $SportsRoot "NHL"
     Push-Location $NHLDir
     try {
@@ -2912,7 +2922,9 @@ if ($NowHour -ge 10) {
     # Same calendar gate as run_nba_late_fetch.ps1 — do not hit PP for off-season boards.
     $MmDdLate = $Today.Substring(5, 5)
     $WnbaMlbOffSeasonLate = (($MmDdLate -lt "03-15") -or ($MmDdLate -gt "11-05")) -and ("$($env:PROPORACLE_FORCE_ALL_SPORTS)" -ne "1")
-    if ($WnbaMlbOffSeasonLate) {
+    $MlbOffLate = -not (Test-SportOn "MLB" (-not $WnbaMlbOffSeasonLate))
+    $WnbaOffLate = -not (Test-SportOn "WNBA" (-not $WnbaMlbOffSeasonLate))
+    if ($MlbOffLate) {
         Write-Host "[LATE_FETCH] Skipping MLB fetch (off-season)" -ForegroundColor DarkGray
         Write-Log "[NBA_LATE_FETCH] SKIP: MLB off-season"
     }
@@ -2975,7 +2987,7 @@ if ($NowHour -ge 10) {
     } # end MLB in-season
 
     $wnbaLatePs1 = Join-Path $Root "scripts\run_wnba_pipeline.ps1"
-    if ($WnbaMlbOffSeasonLate) {
+    if ($WnbaOffLate) {
         Write-Host "[LATE_FETCH] Skipping WNBA fetch (off-season)" -ForegroundColor DarkGray
         Write-Log "[NBA_LATE_FETCH] SKIP: WNBA off-season"
     }

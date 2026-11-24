@@ -34,6 +34,13 @@ def main() -> int:
     args = ap.parse_args()
 
     sports = list(ENABLED_SPORTS) if args.sport.lower() == "all" else [args.sport.lower().strip()]
+    if args.sport.lower() == "all":
+        from utils.active_sports import inactive_fetch_block
+
+        off = [s for s in sports if inactive_fetch_block(key=s.upper())]
+        if off:
+            print(f"[matchup-edge] skip inactive: {', '.join(off)}")
+        sports = [s for s in sports if s not in off]
     slate = Path(args.slate) if args.slate else None
 
     ok = 0
