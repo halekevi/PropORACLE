@@ -1766,7 +1766,6 @@ function Invoke-AltBookFetches {
     $skipVegas = $SkipVegas -or ($skipVegasEnv -in @("1", "true", "yes"))
     $UdScript    = Join-Path $Root "scripts\fetch_underdog_pickem.py"
     $DkScript    = Join-Path $Root "scripts\fetch_draftkings_player_props.py"
-    $LvScript    = Join-Path $Root "scripts\fetch_vegas_player_props.py"
     $MergeScript = Join-Path $Root "scripts\merge_draftkings_pickem_csvs.py"
     if (-not (Test-Path $OutDir)) { New-Item -ItemType Directory -Force -Path $OutDir | Out-Null }
 
@@ -1797,6 +1796,14 @@ function Invoke-AltBookFetches {
                 $part = Join-Path $OutDir $row.name
                 Invoke-AltBookPy "DraftKings $($row.league.ToUpper())" ".\scripts\fetch_draftkings_player_props.py" "--league $($row.league) -o `"$part`""
                 if (Test-Path $part) { [void]$dkFiles.Add($part) }
+                # One 403 blocks every league; the fetcher writes this marker and later runs skip until it expires.
+                $dkBlock = Join-Path $Root "data\cache\draftkings_blocked.json"
+                $dkUntil = 0
+                if (Test-Path $dkBlock) { try { $dkUntil = [double]((Get-Content $dkBlock -Raw | ConvertFrom-Json).until_epoch) } catch { $dkUntil = 0 } }
+                if ($dkUntil -gt [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()) {
+                    Write-Host "  [alt-books] DraftKings blocked (403) — skipping remaining leagues" -ForegroundColor Yellow
+                    break
+                }
             }
             $DkAll = Join-Path $OutDir "draftkings_props_all.csv"
             if ($dkFiles.Count -gt 0 -and (Test-Path $MergeScript)) {
@@ -1811,17 +1818,6 @@ function Invoke-AltBookFetches {
         }
     }
 
-    # Vegas is the PP-vs-sharp gap archive. Keep it even when UD/DK are skipped.
-    # Snapshot cache means same-day CombinedOnly rebuilds do not burn extra Odds API quota.
-    $LvOut = Join-Path $OutDir "vegas_props.csv"
-    if ($skipVegas) {
-        Write-Host "  [alt-books] Vegas skipped (-SkipVegas or PROPORACLE_SKIP_VEGAS)" -ForegroundColor DarkGray
-    } elseif (Test-Path $LvScript) {
-        Write-Host "  [alt-books] Fetching Vegas / Odds API player props..." -ForegroundColor Cyan
-        Invoke-AltBookPy "Vegas / Odds API player props" ".\scripts\fetch_vegas_player_props.py" "--sports ALL --date $Date -o `"$LvOut`""
-    } else {
-        Write-Host "  [alt-books] WARN missing scripts\fetch_vegas_player_props.py" -ForegroundColor Yellow
-    }
 }
 
 # -- Helper: run combined, auto-detect all sports on disk ---------------------

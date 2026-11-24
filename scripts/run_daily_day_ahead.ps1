@@ -105,6 +105,9 @@ if (Test-Path -LiteralPath $EnsurePull) {
 }
 
 $env:PROPORACLE_BET_WINDOW = "9PM"
+# 64 first-leg seeds took 35+ min on the day-ahead combined; 12 keeps the 9PM publish on time.
+# Env (not -TicketGenStarts) so run_pipeline does not treat this as a mid-day rebuild.
+if (-not ($env:PROPORACLE_TICKET_GEN_STARTS -match '^\d+$')) { $env:PROPORACLE_TICKET_GEN_STARTS = "12" }
 # Skip D-payout inside daily: G70 is rebuilt below, then we scrape that dual card
 # before Publish-LiveSite so Railway gets live N-correct floors (not pending_live).
 $dailyArgs = @(

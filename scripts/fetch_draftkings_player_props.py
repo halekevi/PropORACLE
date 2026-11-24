@@ -142,6 +142,30 @@ def _base_url(site_code: str, event_group_id: str) -> str:
     return f"https://sportsbook.draftkings.com/sites/{site_code}/api/v5/eventgroups/{event_group_id}"
 
 
+class DkBlocked(RuntimeError):
+    """DraftKings returned 403; retrying or moving to the next league only extends the block."""
+
+
+_BLOCK_MARKER = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cache", "draftkings_blocked.json")
+_BLOCK_HOURS = 12.0
+
+
+def _block_active() -> float:
+    try:
+        with open(_BLOCK_MARKER, encoding="utf-8") as f:
+            until = float(json.load(f).get("until_epoch", 0))
+    except (OSError, ValueError, TypeError):
+        return 0.0
+    return until if until > time.time() else 0.0
+
+
+def _mark_blocked(url: str) -> None:
+    os.makedirs(os.path.dirname(_BLOCK_MARKER), exist_ok=True)
+    until = time.time() + _BLOCK_HOURS * 3600
+    with open(_BLOCK_MARKER, "w", encoding="utf-8") as f:
+        json.dump({"until_epoch": until, "until_utc": time.strftime("%Y-%m-%d %H:%M:%SZ", time.gmtime(until)), "url": url}, f)
+
+
 def _get_json(session: requests.Session, url: str, retries: int = 4) -> dict:
     last: Optional[Exception] = None
     for attempt in range(1, retries + 1):
@@ -150,7 +174,7 @@ def _get_json(session: requests.Session, url: str, retries: int = 4) -> dict:
                 time.sleep(random.uniform(0.8, 2.0))
             r = session.get(url, timeout=90)
             if r.status_code == 403:
-                raise RuntimeError(
+                raise DkBlocked(
                     "HTTP 403 Access Denied from DraftKings (often geo/bot filtering). "
                     "Try another network, or --site-code US-NJ-SB / US-PA-SB, or run from home IP."
                 )
@@ -161,6 +185,8 @@ def _get_json(session: requests.Session, url: str, retries: int = 4) -> dict:
                     f"Expected JSON from {url[:80]}..., got content-type={ct!r} body_prefix={r.text[:120]!r}"
                 )
             return r.json()
+        except DkBlocked:
+            raise
         except Exception as e:
             last = e
             time.sleep(min(20.0, 2**attempt))
@@ -479,6 +505,8 @@ def run_fetch(
         print(f"[dk] category {cname!r} ({cid})")
         try:
             cat_json = _get_json(session, cat_url, retries=retries)
+        except DkBlocked:
+            raise
         except Exception as e:
             print(f"[warn] category fetch failed: {e}", file=sys.stderr)
             continue
@@ -502,6 +530,8 @@ def run_fetch(
             sub_url = f"{base}/categories/{cid}/subcategories/{sid}?format=json"
             try:
                 sub_json = _get_json(session, sub_url, retries=retries)
+            except DkBlocked:
+                raise
             except Exception as e:
                 print(f"[warn] subcategory {sname!r} ({sid}): {e}", file=sys.stderr)
                 continue
@@ -585,6 +615,13 @@ def main() -> None:
         auto = True
         all_cats = False
 
+    blocked_until = _block_active()
+    if blocked_until and not args.list_categories:
+        print(f"[dk] skipped: DraftKings returned 403 earlier; blocked until "
+              f"{time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime(blocked_until))} ({_BLOCK_MARKER})")
+        pd.DataFrame(columns=DK_OUTPUT_COLUMNS).to_csv(args.output, index=False, encoding="utf-8-sig")
+        sys.exit(3)
+
     try:
         if all_cats:
             rows, _ncat = run_fetch(
@@ -606,6 +643,11 @@ def main() -> None:
                 retries=args.retries,
                 board_sport=board_sport,
             )
+    except DkBlocked as e:
+        _mark_blocked(str(e))
+        print(f"[err] {e} — skipping DraftKings for {_BLOCK_HOURS:g}h", file=sys.stderr)
+        pd.DataFrame(columns=DK_OUTPUT_COLUMNS).to_csv(args.output, index=False, encoding="utf-8-sig")
+        sys.exit(3)
     except RuntimeError as e:
         print(f"[err] {e}", file=sys.stderr)
         pd.DataFrame(columns=DK_OUTPUT_COLUMNS).to_csv(args.output, index=False, encoding="utf-8-sig")

@@ -64,6 +64,7 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 from typing import Dict, Optional, Tuple
 
 import numpy as np
@@ -183,6 +184,17 @@ def fetch_odds(api_key: str, date_str: str) -> Optional[list]:
     qs = _urlparse.urlencode(params)
     url = f"{ODDS_API_BASE}/sports/{SPORT_KEY}/odds?{qs}"
 
+    # A spent quota stays spent until it resets; one 401 per day is enough (one alert,
+    # no repeat calls from the 1AM/5AM/8AM/period runs).
+    marker = _repo_root() / "data" / "cache" / "odds_api_quota_exhausted.json"
+    today = datetime.now(ZoneInfo("America/New_York")).strftime("%Y-%m-%d")
+    try:
+        if json.loads(marker.read_text(encoding="utf-8")).get("date") == today:
+            print(f"  [6b] Odds API quota exhausted earlier today ({marker.name}) — skipping fetch")
+            return None
+    except (OSError, ValueError):
+        pass
+
     print(f"  [6b] Fetching odds from The Odds API...")
     try:
         req = _urllib.Request(url, headers={"User-Agent": "PropOracle/1.0"})
@@ -201,6 +213,11 @@ def fetch_odds(api_key: str, date_str: str) -> Optional[list]:
         except Exception:
             body = str(e)
         if code in (401, 403) or "OUT_OF_USAGE" in body.upper() or "quota" in body.lower():
+            try:
+                marker.parent.mkdir(parents=True, exist_ok=True)
+                marker.write_text(json.dumps({"date": today, "code": code, "body": body[:200]}), encoding="utf-8")
+            except OSError:
+                pass
             _alert_odds(
                 f"NBA Odds API HTTP {code or '?'} — {body or 'auth/quota failure'}. "
                 "game totals/spreads stay N/A; Game Script defaults to 0.97. "
