@@ -6232,9 +6232,6 @@ def api_slate_sport_single(sport: str):
                 "rows": slim_rows,
             }
         rows = sports.get(sport_key) or []
-        # Match existing UI behavior: CBB card combines cbb + wcbb rows.
-        if sport_key == "cbb":
-            rows = list(rows) + list(sports.get("wcbb") or [])
         if not isinstance(rows, list):
             rows = []
         try:
