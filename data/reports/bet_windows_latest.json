@@ -1,6 +1,6 @@
 {
   "date": "2026-11-24",
-  "generated_at": "2026-11-24T10:29:59-05:00",
+  "generated_at": "2026-11-24T16:49:49-05:00",
   "line_pulls": [
     {
       "fetched_at": "2026-11-24T01:24:55-05:00",
@@ -21,6 +21,24 @@
       "n_moved": 26
     },
     {
+      "fetched_at": "2026-11-24T05:09:43-05:00",
+      "window": "5AM",
+      "n_props": 454,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T05:23:51-05:00",
+      "window": "5AM",
+      "n_props": 3053,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T05:24:09-05:00",
+      "window": "5AM",
+      "n_props": 301,
+      "n_moved": 0
+    },
+    {
       "fetched_at": "2026-11-24T05:24:31-05:00",
       "window": "5AM",
       "n_props": 3519,
@@ -39,6 +57,12 @@
       "n_moved": 117
     },
     {
+      "fetched_at": "2026-11-24T08:00:26-05:00",
+      "window": "8AM",
+      "n_props": 2346,
+      "n_moved": 0
+    },
+    {
       "fetched_at": "2026-11-24T08:04:07-05:00",
       "window": "8AM",
       "n_props": 3399,
@@ -55,8 +79,132 @@
       "window": "9AM",
       "n_props": 5075,
       "n_moved": 133
+    },
+    {
+      "fetched_at": "2026-11-24T14:00:10-05:00",
+      "window": "14:00",
+      "n_props": 2855,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T16:30:31-05:00",
+      "window": "4:30",
+      "n_props": 2843,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T16:31:33-05:00",
+      "window": "4:30",
+      "n_props": 275,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T16:32:28-05:00",
+      "window": "4:30",
+      "n_props": 392,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T16:33:23-05:00",
+      "window": "4:30",
+      "n_props": 78,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T16:34:16-05:00",
+      "window": "4:30",
+      "n_props": 326,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T16:35:09-05:00",
+      "window": "4:30",
+      "n_props": 56,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T16:36:12-05:00",
+      "window": "4:30",
+      "n_props": 5927,
+      "n_moved": 256
+    },
+    {
+      "fetched_at": "2026-11-24T16:38:14-05:00",
+      "window": "4:30",
+      "n_props": 701,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-24T16:39:54-05:00",
+      "window": "4:30",
+      "n_props": 838,
+      "n_moved": 0
     }
   ],
-  "payout_scrapes": [],
+  "payout_scrapes": [
+    {
+      "window": "14:03",
+      "n_scrapes": 1,
+      "median_power_x": 3.0,
+      "min_power_x": 3.0,
+      "max_power_x": 3.0,
+      "first_captured_at": "2026-11-24T14:03:23-05:00",
+      "last_captured_at": "2026-11-24T14:03:23-05:00"
+    },
+    {
+      "window": "14:06",
+      "n_scrapes": 1,
+      "median_power_x": 2.7,
+      "min_power_x": 2.7,
+      "max_power_x": 2.7,
+      "first_captured_at": "2026-11-24T14:06:19-05:00",
+      "last_captured_at": "2026-11-24T14:06:19-05:00"
+    },
+    {
+      "window": "14:11",
+      "n_scrapes": 1,
+      "median_power_x": 5.0,
+      "min_power_x": 5.0,
+      "max_power_x": 5.0,
+      "first_captured_at": "2026-11-24T14:11:25-05:00",
+      "last_captured_at": "2026-11-24T14:11:25-05:00"
+    },
+    {
+      "window": "14:14",
+      "n_scrapes": 1,
+      "median_power_x": 2.7,
+      "min_power_x": 2.7,
+      "max_power_x": 2.7,
+      "first_captured_at": "2026-11-24T14:14:03-05:00",
+      "last_captured_at": "2026-11-24T14:14:03-05:00"
+    },
+    {
+      "window": "14:22",
+      "n_scrapes": 1,
+      "median_power_x": 5.25,
+      "min_power_x": 5.25,
+      "max_power_x": 5.25,
+      "first_captured_at": "2026-11-24T14:22:43-05:00",
+      "last_captured_at": "2026-11-24T14:22:43-05:00"
+    },
+    {
+      "window": "14:26",
+      "n_scrapes": 1,
+      "median_power_x": 4.25,
+      "min_power_x": 4.25,
+      "max_power_x": 4.25,
+      "first_captured_at": "2026-11-24T14:26:55-05:00",
+      "last_captured_at": "2026-11-24T14:26:55-05:00"
+    },
+    {
+      "window": "14:28",
+      "n_scrapes": 1,
+      "median_power_x": 3.5,
+      "min_power_x": 3.5,
+      "max_power_x": 3.5,
+      "first_captured_at": "2026-11-24T14:28:26-05:00",
+      "last_captured_at": "2026-11-24T14:28:26-05:00"
+    }
+  ],
   "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
 }
