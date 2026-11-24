@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24 07:19:38 UTC",
+  "generated_at": "2026-11-24 07:50:57 UTC",
   "date": "2026-11-24",
   "tennis_date": "2026-11-24",
   "filters": {
@@ -477,9 +477,13 @@
             "audit_all_hit_x": 6.0,
             "entry_10_to_win_sweep": 16.0,
             "payout_confidence_score": 0.768,
-            "payout_source": "pending_live",
+            "payout_source": "live_cdp",
             "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "model_min_payout_x": 1.6
+            "model_min_payout_x": 1.6,
+            "power_min_x": 1.6,
+            "display_min_x": 1.6,
+            "power_first_x": 6.0,
+            "captured_at": "2026-11-24T02:23:02-05:00"
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -487,7 +491,8 @@
           "run_id": "20261124_071622_231502",
           "first_seen_run_id": "20261124_071622_231502",
           "run_archived_at": "2026-11-24T07:16:22.237762+00:00",
-          "playable": true
+          "playable": true,
+          "display_min_x": 1.6
         },
         {
           "web_group_name": "STRONG 3-Leg",
@@ -921,25 +926,29 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.6,
-            "min_guarantee": 1.6,
-            "min_payout_x": 1.6,
+            "payout": 1.4,
+            "min_guarantee": 1.4,
+            "min_payout_x": 1.4,
             "min_guarantee_adjustment": 0.2667,
             "payout_adjustment": 1.0,
             "p_all_win": 0.9311,
             "p_miss_1": 0.0678,
-            "ev": 0.4898,
+            "ev": 0.3035,
             "recommendation": "STRONG",
-            "entry_10_to_win_guarantee": 16.0,
-            "entry_20_to_win_guarantee": 32.0,
-            "sweep_payout": 1.6,
-            "sweep_payout_x": 1.6,
+            "entry_10_to_win_guarantee": 14.0,
+            "entry_20_to_win_guarantee": 28.0,
+            "sweep_payout": 1.4,
+            "sweep_payout_x": 1.4,
             "audit_all_hit_x": 6.0,
-            "entry_10_to_win_sweep": 16.0,
+            "entry_10_to_win_sweep": 14.0,
             "payout_confidence_score": 1.4898,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "model_min_payout_x": 1.6
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.40 - 1.0",
+            "model_min_payout_x": 1.6,
+            "power_min_x": 1.4,
+            "display_min_x": 1.4,
+            "power_first_x": 6.0,
+            "captured_at": "2026-11-24T02:24:09-05:00"
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -947,7 +956,8 @@
           "run_id": "20261124_071622_231502",
           "first_seen_run_id": "20261124_071622_231502",
           "run_archived_at": "2026-11-24T07:16:22.237762+00:00",
-          "playable": true
+          "playable": true,
+          "display_min_x": 1.4
         },
         {
           "web_group_name": "STRONG 3-Leg",
@@ -1381,25 +1391,29 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.6,
-            "min_guarantee": 1.6,
-            "min_payout_x": 1.6,
+            "payout": 1.4,
+            "min_guarantee": 1.4,
+            "min_payout_x": 1.4,
             "min_guarantee_adjustment": 0.2667,
             "payout_adjustment": 1.0,
             "p_all_win": 0.8464,
             "p_miss_1": 0.1472,
-            "ev": 0.3543,
+            "ev": 0.185,
             "recommendation": "STRONG",
-            "entry_10_to_win_guarantee": 16.0,
-            "entry_20_to_win_guarantee": 32.0,
-            "sweep_payout": 1.6,
-            "sweep_payout_x": 1.6,
+            "entry_10_to_win_guarantee": 14.0,
+            "entry_20_to_win_guarantee": 28.0,
+            "sweep_payout": 1.4,
+            "sweep_payout_x": 1.4,
             "audit_all_hit_x": 6.0,
-            "entry_10_to_win_sweep": 16.0,
+            "entry_10_to_win_sweep": 14.0,
             "payout_confidence_score": 1.3542,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "model_min_payout_x": 1.6
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.40 - 1.0",
+            "model_min_payout_x": 1.6,
+            "power_min_x": 1.4,
+            "display_min_x": 1.4,
+            "power_first_x": 6.0,
+            "captured_at": "2026-11-24T02:25:16-05:00"
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -1407,7 +1421,8 @@
           "run_id": "20261124_071622_231502",
           "first_seen_run_id": "20261124_071622_231502",
           "run_archived_at": "2026-11-24T07:16:22.237762+00:00",
-          "playable": true
+          "playable": true,
+          "display_min_x": 1.4
         },
         {
           "web_group_name": "STRONG 3-Leg",
@@ -2773,25 +2788,29 @@
           "cold_legs": 0,
           "payout": {
             "ticket_type": "power",
-            "payout": 1.6,
-            "min_guarantee": 1.6,
-            "min_payout_x": 1.6,
+            "payout": 1.4,
+            "min_guarantee": 1.4,
+            "min_payout_x": 1.4,
             "min_guarantee_adjustment": 0.2667,
             "payout_adjustment": 1.0,
             "p_all_win": 0.9311,
             "p_miss_1": 0.0678,
-            "ev": 0.4898,
+            "ev": 0.3035,
             "recommendation": "STRONG",
-            "entry_10_to_win_guarantee": 16.0,
-            "entry_20_to_win_guarantee": 32.0,
-            "sweep_payout": 1.6,
-            "sweep_payout_x": 1.6,
+            "entry_10_to_win_guarantee": 14.0,
+            "entry_20_to_win_guarantee": 28.0,
+            "sweep_payout": 1.4,
+            "sweep_payout_x": 1.4,
             "audit_all_hit_x": 6.0,
-            "entry_10_to_win_sweep": 16.0,
+            "entry_10_to_win_sweep": 14.0,
             "payout_confidence_score": 1.4898,
-            "payout_source": "pending_live",
-            "ev_formula": "EV = P(all)*1.60 - 1.0",
-            "model_min_payout_x": 1.6
+            "payout_source": "live_cdp",
+            "ev_formula": "EV = P(all)*1.40 - 1.0",
+            "model_min_payout_x": 1.6,
+            "power_min_x": 1.4,
+            "display_min_x": 1.4,
+            "power_first_x": 6.0,
+            "captured_at": "2026-11-24T02:28:41-05:00"
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -2799,7 +2818,8 @@
           "run_id": "20261124_071622_231502",
           "first_seen_run_id": "20261124_071622_231502",
           "run_archived_at": "2026-11-24T07:16:22.237762+00:00",
-          "playable": true
+          "playable": true,
+          "display_min_x": 1.4
         },
         {
           "web_group_name": "STRONG 3-Leg",
@@ -4216,20 +4236,15 @@
   "hot_legs": 9,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 1.4,
-    "ok": 1.15,
-    "marginal": 1.0
+    "strong": 1.8255799999999998,
+    "ok": 0.2798,
+    "marginal": 0.02339999999999999
   },
   "tier_ev_thresholds_by_legs": {
-    "2": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
-    },
     "3": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
+      "strong": 1.8255799999999998,
+      "ok": 0.2798,
+      "marginal": 0.02339999999999999
     }
   },
   "tier_ev_percentiles": {
@@ -4252,10 +4267,10 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 0,
+    "legs_checked": 27,
     "failed_goblin": 0,
-    "failed_tier": 0,
-    "failed_streak": 0
+    "failed_tier": 3,
+    "failed_streak": 1
   },
   "max_legs": 3,
   "sort": "p_win",
