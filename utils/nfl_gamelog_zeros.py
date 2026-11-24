@@ -1,4 +1,4 @@
-"""Add NFL games that ESPN box scores leave out (player appeared, recorded nothing).
+"""Add NFL / CFB games that ESPN box scores leave out (player appeared, recorded nothing).
 
 ESPN box scores omit players with no stats, while ESPN's per-player game log and the
 PrizePicks card count those games as 0. Without them L5/L10 skip the zero and averages
@@ -22,8 +22,12 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
-CACHE_DIR = ROOT / "Sports" / "NFL" / "data" / "cache" / "gamelog"
-URL = "https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{aid}/gamelog?season={season}"
+LEAGUES = {
+    "nfl": ("nfl", ROOT / "Sports" / "NFL" / "data" / "cache" / "gamelog"),
+    "cfb": ("college-football", ROOT / "Sports" / "CFB" / "data" / "cache" / "gamelog"),
+}
+URL = "https://site.web.api.espn.com/apis/common/v3/sports/football/{path}/athletes/{aid}/gamelog?season={season}"
+EXTRA_COLS = {"cfb": {"longPassing": "PASS_LONG", "tacklesForLoss": "TFL"}}
 ET = ZoneInfo("America/New_York")
 
 STAT_COLS = (
@@ -66,8 +70,9 @@ def _season_of(game_date: str) -> int:
     return y - 1 if m <= 7 else y
 
 
-def _fetch(aid: str, season: int, ctx: ssl.SSLContext) -> dict | None:
-    req = urllib.request.Request(URL.format(aid=aid, season=season), headers={"User-Agent": "Mozilla/5.0"})
+def _fetch(league: str, aid: str, season: int, ctx: ssl.SSLContext) -> dict | None:
+    url = URL.format(path=LEAGUES[league][0], aid=aid, season=season)
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     for attempt in range(3):
         try:
             with urllib.request.urlopen(req, context=ctx, timeout=30) as r:
@@ -77,8 +82,11 @@ def _fetch(aid: str, season: int, ctx: ssl.SSLContext) -> dict | None:
     return None
 
 
-def _load(aid: str, season: int, newest_box: str, ctx: ssl.SSLContext, current_season: int) -> dict | None:
-    path = CACHE_DIR / f"{aid}_{season}.json"
+def _load(
+    league: str, aid: str, season: int, newest_box: str, ctx: ssl.SSLContext, current_season: int
+) -> dict | None:
+    cache_dir = LEAGUES[league][1]
+    path = cache_dir / f"{aid}_{season}.json"
     if path.is_file():
         try:
             cached = json.loads(path.read_text(encoding="utf-8"))
@@ -87,18 +95,21 @@ def _load(aid: str, season: int, newest_box: str, ctx: ssl.SSLContext, current_s
                 return cached
         except Exception:
             pass
-    data = _fetch(aid, season, ctx)
+    data = _fetch(league, aid, season, ctx)
     if data is None:
         return None
     data["_pulled_date"] = datetime.now(ET).strftime("%Y%m%d")
-    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    cache_dir.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data), encoding="utf-8")
     return data
 
 
-def _rows_from_gamelog(aid: str, data: dict, have: set, player_norm: str, season: int) -> list[dict]:
+def _rows_from_gamelog(
+    league: str, aid: str, data: dict, have: set, player_norm: str, season: int, known_events: set
+) -> list[dict]:
     names = list(data.get("names") or [])
-    mapping = dict(COMMON)
+    extra = EXTRA_COLS.get(league, {})
+    mapping = {**COMMON, **extra}
     if "completions" in names:
         mapping.update({"sacks": "", "interceptions": "PASS_INT"})
     else:
@@ -117,6 +128,9 @@ def _rows_from_gamelog(aid: str, data: dict, have: set, player_norm: str, season
                 eid = str(ev.get("eventId") or "")
                 if not eid or eid in have:
                     continue
+                if league == "cfb" and eid not in known_events:
+                    # FCS / non-scoreboard games: adding them would change prior-season fill.
+                    continue
                 meta = events.get(eid) or {}
                 try:
                     gd = datetime.fromisoformat(str(meta.get("gameDate")).replace("Z", "+00:00"))
@@ -124,7 +138,7 @@ def _rows_from_gamelog(aid: str, data: dict, have: set, player_norm: str, season
                     continue
                 if gd > datetime.now(timezone.utc):
                     continue
-                row = {c: 0.0 for c in STAT_COLS}
+                row = {c: 0.0 for c in (*STAT_COLS, *extra.values())}
                 for name, raw in zip(names, ev.get("stats") or []):
                     col = mapping.get(name)
                     if col:
@@ -153,6 +167,7 @@ def zero_stat_rows(
     board_aids: set[str],
     *,
     end_date: str,
+    league: str = "nfl",
     workers: int = 6,
 ) -> list[dict]:
     """Rows for games in each board athlete's ESPN game log that the box cache lacks."""
@@ -163,6 +178,7 @@ def zero_stat_rows(
     names: dict[str, str] = {}
     seasons: dict[str, set] = {}
     newest_box = ""
+    known_events = {str(r.get("event_id", "")) for r in cached_rows}
     for r in cached_rows:
         gd = str(r.get("game_date", "")).replace("-", "")[:8]
         if len(gd) == 8 and gd > newest_box:
@@ -182,9 +198,11 @@ def zero_stat_rows(
         for season in sorted(seasons.get(aid, set()) | {current}):
             if season < current - 1:
                 continue
-            data = _load(aid, season, newest_box, ctx, current)
+            data = _load(league, aid, season, newest_box, ctx, current)
             if data:
-                rows += _rows_from_gamelog(aid, data, have.setdefault(aid, set()), names.get(aid, ""), season)
+                rows += _rows_from_gamelog(
+                    league, aid, data, have.setdefault(aid, set()), names.get(aid, ""), season, known_events
+                )
         return rows
 
     out: list[dict] = []

@@ -47,7 +47,7 @@ HEADERS = {"User-Agent": "Mozilla/5.0", "Accept": "application/json, text/plain,
 ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/{league}/scoreboard"
 ESPN_SUMMARY_URL    = "https://site.web.api.espn.com/apis/site/v2/sports/football/{league}/summary"
 ESPN_LEAGUE = "college-football"
-# NFL board athletes: ids plus (team_id, player_norm) for rows without an id.
+# NFL / CFB board athletes: ids plus (team_id, player_norm) for rows without an id.
 NFL_BOARD_AIDS: set = set()
 NFL_BOARD_KEYS: set = set()
 
@@ -972,7 +972,10 @@ def build_player_histories(
         _save_scanned_dates(final_path, final_eids)
     all_rows = cached_rows + new_rows
     zero_rows: List[dict] = []
-    if ESPN_LEAGUE == "nfl" and (NFL_BOARD_AIDS or NFL_BOARD_KEYS):
+    gamelog_league = {"nfl": "nfl", "college-football": "cfb"}.get(ESPN_LEAGUE, "")
+    if gamelog_league == "cfb" and os.path.basename(str(cache_path or "")) != "cfb_boxscore_cache.csv":
+        gamelog_league = ""  # CFB1H keeps its own first-half cache
+    if gamelog_league and (NFL_BOARD_AIDS or NFL_BOARD_KEYS):
         try:
             from utils.nfl_gamelog_zeros import zero_stat_rows
 
@@ -982,7 +985,7 @@ def build_player_histories(
                 if key in NFL_BOARD_KEYS:
                     board.add(str(rr.get("espn_athlete_id", "")).strip())
             zero_rows = zero_stat_rows(
-                all_rows, board, end_date=(end_date or dt.date.today()).isoformat()
+                all_rows, board, end_date=(end_date or dt.date.today()).isoformat(), league=gamelog_league
             )
             all_rows += zero_rows
             print(f"  [GAMELOG] {len(zero_rows)} no-stat games added from ESPN game logs ({len(board)} board athletes)")
@@ -1239,7 +1242,7 @@ def main():
     if str(args.date or "").strip():
         end_d = dt.datetime.strptime(str(args.date).strip()[:10], "%Y-%m-%d").date()
 
-    if ESPN_LEAGUE == "nfl":
+    if ESPN_LEAGUE in ("nfl", "college-football"):
         NFL_BOARD_AIDS.update(
             x for x in df.get("espn_athlete_id", pd.Series(dtype=str)).astype(str).str.strip()
             if x and x not in ("nan", "None")
