@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import sqlite3
+import time
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -423,7 +424,9 @@ def archive_lines(
     current = records_from_df(out, sport_u)
     ARCHIVE_DB.parent.mkdir(parents=True, exist_ok=True)
     counts: dict[str, int] = {}
-    with sqlite3.connect(ARCHIVE_DB) as conn:
+    # Sport fetches run in parallel and all append here; wait for the writer lock
+    # instead of failing after sqlite's 5s default (11-24 1AM kept only SOCCER).
+    with sqlite3.connect(ARCHIVE_DB, timeout=_LOCK_WAIT_SEC) as conn:
         _ensure_columns(conn, _EXTRA_COLS)
         prev_ts = _prev_clock(conn, sport_u, pull_ts)
         prev_n = _snapshot_count(conn, sport_u, prev_ts) if prev_ts else 0
@@ -483,6 +486,30 @@ def archive_fresh_board(df: pd.DataFrame, sport: str, *, pull_ts: str | None = N
     try_archive_lines(stamped, sport=sport)
 
 
+_LOCK_WAIT_SEC = 600.0
+
+
+def _alert_archive_skip(sport: str, exc: Exception) -> None:
+    print(f"  [WARN] line_history archive skipped: {exc}")
+    try:
+        from utils.pipeline_alerts import emit_pipeline_alert
+
+        emit_pipeline_alert("line-history", f"{str(sport).upper()} snapshot not archived: {exc}")
+    except Exception:
+        pass
+
+
+def snapshot_archived(sport: str, fetched_at: str) -> bool:
+    """True when line_history already holds rows for this sport + fetch clock."""
+    if not ARCHIVE_DB.is_file():
+        return False
+    try:
+        with sqlite3.connect(f"file:{ARCHIVE_DB}?mode=ro", uri=True, timeout=_LOCK_WAIT_SEC) as conn:
+            return _snapshot_count(conn, str(sport).strip().upper(), str(fetched_at)) > 0
+    except sqlite3.Error:
+        return False
+
+
 def try_archive_lines(
     df: pd.DataFrame,
     sport: str,
@@ -490,19 +517,29 @@ def try_archive_lines(
     fetched_at: str | None = None,
     only_fetched_at: str | None = None,
 ) -> None:
-    try:
-        counts = archive_lines(
-            df,
-            sport=sport,
-            fetched_at=fetched_at,
-            only_fetched_at=only_fetched_at,
-        )
-        if counts:
-            bits = " ".join(f"{k}={v}" for k, v in sorted(counts.items()))
-            print(f"  [line_events] {str(sport).upper()} {bits}")
-    except Exception as exc:
-        print(f"  [WARN] line_history archive skipped: {exc}")
-        return
+    counts: dict[str, int] = {}
+    for attempt in range(1, 4):
+        try:
+            counts = archive_lines(
+                df,
+                sport=sport,
+                fetched_at=fetched_at,
+                only_fetched_at=only_fetched_at,
+            )
+            break
+        except sqlite3.OperationalError as exc:
+            if "locked" in str(exc).lower() and attempt < 3:
+                print(f"  [line_events] {str(sport).upper()} archive locked; retry {attempt}/2 in 30s")
+                time.sleep(30)
+                continue
+            _alert_archive_skip(sport, exc)
+            return
+        except Exception as exc:
+            _alert_archive_skip(sport, exc)
+            return
+    if counts:
+        bits = " ".join(f"{k}={v}" for k, v in sorted(counts.items()))
+        print(f"  [line_events] {str(sport).upper()} {bits}")
     try:
         from utils.bet_windows import rebuild_bet_windows
 

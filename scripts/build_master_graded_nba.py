@@ -396,7 +396,7 @@ def attach_line_moves(df: pd.DataFrame, lh_db: Path) -> pd.DataFrame:
     hist = pd.read_sql(
         f"""
         SELECT projection_id, player, prop_type AS prop, pick_type, game_date,
-               line, fetched_at
+               line, fetched_at, start_time
         FROM line_history
         WHERE sport='NBA' AND game_date IN ({placeholders})
           AND projection_id IS NOT NULL AND TRIM(projection_id) != ''
@@ -411,6 +411,17 @@ def attach_line_moves(df: pd.DataFrame, lh_db: Path) -> pd.DataFrame:
         return df
     hist["projection_id"] = hist["projection_id"].astype(str).str.replace(r"\.0$", "", regex=True)
     hist["pick_type"] = hist["pick_type"].astype(str)
+    # PP re-posts a live in-game line under the same projection_id after tip
+    # (Pritchard PRA Demon 42.5 -> Standard 16.5); that is not a pre-game move.
+    fetched = pd.to_datetime(hist["fetched_at"], errors="coerce", utc=True)
+    tip = pd.to_datetime(hist["start_time"], errors="coerce", utc=True)
+    pre_tip = fetched.notna() & (tip.isna() | (fetched < tip))
+    first_type = hist.groupby("projection_id")["pick_type"].transform("first")
+    n_before = len(hist)
+    hist = hist[pre_tip & (hist["pick_type"] == first_type)].copy()
+    print(f"  line_history pre-tip same-rung rows={len(hist):,} (dropped {n_before - len(hist):,})", flush=True)
+    if hist.empty:
+        return df
     # One rung = one projection_id (lines may still move within that id).
     g = hist.groupby("projection_id", sort=False)
     agg = g.agg(

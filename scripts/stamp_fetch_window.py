@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.line_history_archive import try_archive_lines  # noqa: E402
+from scripts.line_history_archive import snapshot_archived, try_archive_lines  # noqa: E402
 from utils.bet_windows import (  # noqa: E402
     job_window_label,
     rebuild_bet_windows,
@@ -61,6 +61,11 @@ def restamp_dated_step1s(date: str, *, when: str, window: str) -> int:
         if has_fetch_clock:
             n_ok += 1
             sample = str(df["fetched_at"].iloc[0])
+            # The fetch archives itself, but a locked DB used to skip it silently.
+            for clock in sorted({c for c in clocks.unique() if c and c not in ("nan", "None")}):
+                if not snapshot_archived(sport, clock):
+                    print(f"  [stamp] {sport} fetched_at={clock} missing from line_history — archiving")
+                    try_archive_lines(df, sport, only_fetched_at=clock)
             print(
                 f"  [stamp] {sport} kept step1 fetched_at={sample} rows={len(df)} "
                 f"window={window} (no second line_events pass)"
