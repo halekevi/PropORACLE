@@ -36,7 +36,8 @@ def _copy_dated(out_xlsx: Path, slate_date: str) -> None:
     d = (slate_date or "").strip()
     if not d or not out_xlsx.is_file():
         return
-    dated = _REPO / "outputs" / d / "cfb" / f"step8_cfb_direction_clean_{d}.xlsx"
+    tag = "cfb1h" if "cfb1h" in out_xlsx.name.lower() else "cfb"
+    dated = _REPO / "outputs" / d / tag / f"step8_{tag}_direction_clean_{d}.xlsx"
     try:
         dated.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(out_xlsx, dated)
@@ -128,9 +129,14 @@ def main() -> None:
             "Edge": edge.round(2),
             "Projection": proj.round(2),
             "Last 5 Avg": l5_avg.round(2),
+            "L5 Avg": l5_avg.round(2),
             "Season Avg": season_avg.round(2),
             "Distribution Std": dist_std.round(2),
+            # Games Played = historical name on this writer; Games Used / L5 Sample N
+            # are the attach-guard / ticket aliases (same current-season count).
             "Games Played": games_used,
+            "Games Used": games_used,
+            "L5 Sample N": games_used,
             "Hit Rate": pd.to_numeric(work.get("hit_rate"), errors="coerce"),
             "Hit Rate L5": pd.to_numeric(work.get("hit_rate_l5"), errors="coerce"),
             "Hit Rate L10": pd.to_numeric(work.get("hit_rate_l10"), errors="coerce"),
