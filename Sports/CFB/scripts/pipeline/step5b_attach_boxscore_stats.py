@@ -47,6 +47,9 @@ HEADERS = {"User-Agent": "Mozilla/5.0", "Accept": "application/json, text/plain,
 ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/{league}/scoreboard"
 ESPN_SUMMARY_URL    = "https://site.web.api.espn.com/apis/site/v2/sports/football/{league}/summary"
 ESPN_LEAGUE = "college-football"
+# NFL board athletes: ids plus (team_id, player_norm) for rows without an id.
+NFL_BOARD_AIDS: set = set()
+NFL_BOARD_KEYS: set = set()
 
 
 def norm(s: str) -> str:
@@ -968,13 +971,30 @@ def build_player_histories(
     if final_path and pending:
         _save_scanned_dates(final_path, final_eids)
     all_rows = cached_rows + new_rows
+    zero_rows: List[dict] = []
+    if ESPN_LEAGUE == "nfl" and (NFL_BOARD_AIDS or NFL_BOARD_KEYS):
+        try:
+            from utils.nfl_gamelog_zeros import zero_stat_rows
+
+            board = set(NFL_BOARD_AIDS)
+            for rr in all_rows:
+                key = (str(rr.get("team_id", "")).strip(), str(rr.get("player_norm", "")).strip())
+                if key in NFL_BOARD_KEYS:
+                    board.add(str(rr.get("espn_athlete_id", "")).strip())
+            zero_rows = zero_stat_rows(
+                all_rows, board, end_date=(end_date or dt.date.today()).isoformat()
+            )
+            all_rows += zero_rows
+            print(f"  [GAMELOG] {len(zero_rows)} no-stat games added from ESPN game logs ({len(board)} board athletes)")
+        except Exception as e:
+            print(f"  [GAMELOG] skipped: {e}")
     # Resolve opp_team_id -> opp_team_abbr using slate map (for H2H matching in step6)
     if tid_to_abbr:
         for rr in all_rows:
             if not rr.get("opp_team_abbr"):
                 opp_id = str(rr.get("opp_team_id", "")).strip()
                 rr["opp_team_abbr"] = tid_to_abbr.get(opp_id, opp_id)
-    if cache_path and (new_rows or filled_opp or replaced_eids):
+    if cache_path and (new_rows or filled_opp or replaced_eids or zero_rows):
         try:
             pd.DataFrame(all_rows).to_csv(cache_path, index=False)
             print(f"  [CACHE] Saved {len(all_rows)} rows -> {cache_path}")
@@ -1218,6 +1238,16 @@ def main():
     end_d = dt.date.today()
     if str(args.date or "").strip():
         end_d = dt.datetime.strptime(str(args.date).strip()[:10], "%Y-%m-%d").date()
+
+    if ESPN_LEAGUE == "nfl":
+        NFL_BOARD_AIDS.update(
+            x for x in df.get("espn_athlete_id", pd.Series(dtype=str)).astype(str).str.strip()
+            if x and x not in ("nan", "None")
+        )
+        NFL_BOARD_KEYS.update(
+            (str(r.get("team_id", "")).strip(), str(r.get("player_norm", "")).strip())
+            for _, r in df.iterrows()
+        )
 
     # ── Parallelized fetch ────────────────────────────────────────────────────
     hist_aid, hist_name = build_player_histories(
