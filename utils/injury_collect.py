@@ -89,7 +89,11 @@ def _row(
     captured_at: str,
     extra: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    canon = normalize_inj_status(status) or normalize_inj_status(injury) or str(status or "").strip()
+    # The injury text is a news blurb when a status is given ("Active" + game recap);
+    # only read it for a status when the feed left status blank.
+    canon = normalize_inj_status(status) or (
+        "" if str(status or "").strip() else normalize_inj_status(injury)
+    ) or str(status or "").strip()
     out = {
         "player": str(player or "").strip(),
         "team": str(team or "").strip(),

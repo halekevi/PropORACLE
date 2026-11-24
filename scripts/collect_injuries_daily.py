@@ -75,6 +75,7 @@ def main() -> int:
     if args.no_sidecars:
         return 0
     missing = write_slate_sidecars(date_str, root, sports)
+    missing += write_football_sidecars(date_str, root, sports, all_rows)
     return 2 if missing else 0
 
 
@@ -123,6 +124,61 @@ def write_slate_sidecars(date_str: str, root: Path, sports: list[str]) -> list[s
                 "injuries-missing",
                 f"{date_str}: injury sidecar missing or empty for {', '.join(missing)} "
                 f"(outputs/{date_str}/injuries_<sport>_{date_str}.csv).",
+            )
+        except Exception as exc:  # noqa: BLE001
+            print(f"[injuries] alert failed: {exc}")
+    return missing
+
+
+# Football boards span the week, so the sidecar is the league-wide list collected above
+# (ESPN + nflverse for NFL), not a per-date scoreboard pull.
+_FOOTBALL_REQUIRED_MONTHS = {"NFL": {9, 10, 11, 12, 1}}
+
+
+def write_football_sidecars(date_str: str, root: Path, sports: list[str], rows: list[dict]) -> list[str]:
+    import pandas as pd
+
+    month = int(date_str[5:7])
+    missing: list[str] = []
+    for sport in ("NFL", "CFB"):
+        if sport not in sports:
+            continue
+        sub = [r for r in rows if str(r.get("sport", "")).upper() == sport]
+        required = month in _FOOTBALL_REQUIRED_MONTHS.get(sport, set())
+        if not sub and required:
+            print(f"[injuries] {sport} sidecar 0 rows in season; kept previous file")
+            missing.append(sport)
+            continue
+        df = pd.DataFrame(
+            {
+                "date": date_str,
+                "sport": sport,
+                "team": [r.get("team", "") for r in sub],
+                "player": [r.get("player", "") for r in sub],
+                "injury_status": [r.get("status", "") for r in sub],
+                "injury_type": [r.get("injury", "") for r in sub],
+                "injury_type_desc": [r.get("injury", "") for r in sub],
+                "source": [r.get("source", "") for r in sub],
+            },
+            columns=["date", "sport", "team", "player", "injury_status", "injury_type", "injury_type_desc", "source"],
+        ).drop_duplicates(["team", "player"], keep="first")
+        tag = sport.lower()
+        for dest in (
+            root / "outputs" / date_str / f"injuries_{tag}_{date_str}.csv",
+            root / "outputs" / date_str / tag / f"injuries_{tag}_{date_str}.csv",
+        ):
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            tmp = dest.with_suffix(".csv.tmp")
+            df.to_csv(tmp, index=False)
+            tmp.replace(dest)
+        print(f"[injuries] {sport} sidecar -> injuries_{tag}_{date_str}.csv ({len(df)} rows)")
+    if missing:
+        try:
+            from utils.pipeline_alerts import emit_pipeline_alert
+
+            emit_pipeline_alert(
+                "injuries-missing",
+                f"{date_str}: football injury sidecar empty in season for {', '.join(missing)}.",
             )
         except Exception as exc:  # noqa: BLE001
             print(f"[injuries] alert failed: {exc}")

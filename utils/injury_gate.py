@@ -6,6 +6,7 @@ Nothing here promotes teammate or opponent effects onto tickets.
 """
 from __future__ import annotations
 
+import re
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -87,7 +88,7 @@ def normalize_inj_status(raw: object) -> str:
     if token in _PROBABLE:
         return "Probable"
     # NFL practice-report game-status style
-    if any(k in token for k in ("IR", "PUP", "NFI")) and "QUESTION" not in token:
+    if re.search(r"\b(IR|PUP|NFI)\b", token) and "QUESTION" not in token:
         return "OUT"
     if "SUSP" in token:
         return "OUT"
