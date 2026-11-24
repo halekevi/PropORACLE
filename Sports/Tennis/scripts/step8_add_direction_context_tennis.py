@@ -669,12 +669,16 @@ def main() -> None:
         over_from_l5 = tie_mask & l5_under.notna() & l5_over.notna() & (l5_over > l5_under)
         unresolved = tie_mask & ~(under_from_l5 | over_from_l5)
         under_from_hr = unresolved & hr5.notna() & (hr5 < 0.50)
-        over_from_hr = unresolved & ~(under_from_hr)
+        over_from_hr = unresolved & hr5.notna() & (hr5 >= 0.50)
+        # Projection == line with no L5 and no hit rate is no signal, not an OVER.
+        no_signal = unresolved & hr5.isna()
 
         final_dir = final_dir.where(~under_from_l5, "UNDER")
         final_dir = final_dir.where(~over_from_l5, "OVER")
         final_dir = final_dir.where(~under_from_hr, "UNDER")
         final_dir = final_dir.where(~over_from_hr, "OVER")
+        final_dir = final_dir.where(~no_signal, "NO_EDGE")
+        reason = reason.where(~no_signal, "STANDARD_TIE_NO_HISTORY")
 
         reason = reason.where(~under_from_l5, "STANDARD_TIEBREAK_L5_UNDER")
         reason = reason.where(~over_from_l5, "STANDARD_TIEBREAK_L5_OVER")
