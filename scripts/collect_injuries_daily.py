@@ -42,6 +42,11 @@ def main() -> int:
         help="Comma list (default: live sports set)",
     )
     ap.add_argument("--root", default="", help="Repo root override")
+    ap.add_argument(
+        "--no-sidecars",
+        action="store_true",
+        help="Skip outputs/<date>/injuries_<sport>_<date>.csv",
+    )
     args = ap.parse_args()
 
     root = Path(args.root).resolve() if str(args.root).strip() else _REPO
@@ -67,7 +72,61 @@ def main() -> int:
     summary_path = injuries_dir(date_str, root=root) / f"_collect_{stamp}.json"
     summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(f"[injuries] latest -> {latest} ({len(all_rows)} rows across {len(sports)} sports)")
-    return 0
+    if args.no_sidecars:
+        return 0
+    missing = write_slate_sidecars(date_str, root, sports)
+    return 2 if missing else 0
+
+
+# outputs/<date>/injuries_<sport>_<date>.csv is what step7 rankers, combined, and usage
+# redistribution read for the slate. Without it injury flags stay empty all day.
+_SIDECAR_SPORTS = ("NBA", "NHL", "CBB", "WCBB", "WNBA", "MLB")
+# Months a sport's ESPN injury list should never be empty when it has a slate.
+_REQUIRED_MONTHS = {
+    "NBA": {10, 11, 12, 1, 2, 3, 4, 5, 6},
+    "NHL": {10, 11, 12, 1, 2, 3, 4, 5, 6},
+}
+
+
+def write_slate_sidecars(date_str: str, root: Path, sports: list[str]) -> list[str]:
+    from espn_injuries import write_injuries_for_date
+
+    want = [s for s in _SIDECAR_SPORTS if s in sports or (s == "WCBB" and "CBB" in sports)]
+    month = int(date_str[5:7])
+    out_dir = root / "outputs" / date_str
+    out_dir.mkdir(parents=True, exist_ok=True)
+    missing: list[str] = []
+    for sport in want:
+        dest = out_dir / f"injuries_{sport.lower()}_{date_str}.csv"
+        tmp = dest.with_suffix(".csv.tmp")
+        n = -1
+        try:
+            n = write_injuries_for_date(sport, date_str, tmp)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[injuries] {sport} sidecar fetch failed: {exc}")
+        required = month in _REQUIRED_MONTHS.get(sport, set())
+        if n > 0 or (n == 0 and not required):
+            tmp.replace(dest)
+            print(f"[injuries] {sport} sidecar -> {dest.name} ({n} rows)")
+            continue
+        tmp.unlink(missing_ok=True)
+        kept = dest.is_file()
+        why = "fetch failed" if n < 0 else "0 rows in season"
+        print(f"[injuries] {sport} sidecar {why}; {'kept previous file' if kept else 'NO FILE'}")
+        if not kept or n == 0:
+            missing.append(sport)
+    if missing:
+        try:
+            from utils.pipeline_alerts import emit_pipeline_alert
+
+            emit_pipeline_alert(
+                "injuries-missing",
+                f"{date_str}: injury sidecar missing or empty for {', '.join(missing)} "
+                f"(outputs/{date_str}/injuries_<sport>_{date_str}.csv).",
+            )
+        except Exception as exc:  # noqa: BLE001
+            print(f"[injuries] alert failed: {exc}")
+    return missing
 
 
 if __name__ == "__main__":

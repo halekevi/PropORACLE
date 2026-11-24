@@ -55,8 +55,9 @@ $Script5 = Join-Path $PipelineRoot "scripts\run_daily_5am.ps1"
 $Script8 = Join-Path $PipelineRoot "scripts\run_daily_8am.ps1"
 $ScriptRefresh = Join-Path $PipelineRoot "scripts\run_refresh_with_log.ps1"
 $ScriptInjuries = Join-Path $PipelineRoot "scripts\run_injuries.ps1"
+$ScriptInjuryRefresh = Join-Path $PipelineRoot "scripts\run_injury_refresh.ps1"
 
-foreach ($s in @($ScriptDayAhead, $ScriptMlbFill, $Script1, $ScriptGrader, $Script5, $Script8, $ScriptRefresh, $ScriptInjuries, (Join-Path $PipelineRoot "scripts\Publish-LiveSite.ps1"))) {
+foreach ($s in @($ScriptDayAhead, $ScriptMlbFill, $Script1, $ScriptGrader, $Script5, $Script8, $ScriptRefresh, $ScriptInjuries, $ScriptInjuryRefresh, (Join-Path $PipelineRoot "scripts\Publish-LiveSite.ps1"))) {
     if (-not (Test-Path $s)) {
         Write-Error "Required script missing: $s"
         exit 1
@@ -266,6 +267,18 @@ Register-PropTask `
     -RepetitionDuration (New-TimeSpan -Hours 12) `
     -ExecutionTimeLimit (New-TimeSpan -Minutes 20)
 
+# Light injury refresh: no PrizePicks fetch, no full pipeline. Waits for refresh.lock.
+foreach ($inj in @(@{ Name = "PropOracle - Injury Refresh 11PM"; At = "23:00"; Win = "11PM" },
+                   @{ Name = "PropOracle - Injury Refresh 9AM"; At = "09:00"; Win = "9AM" })) {
+    Register-PropTask `
+        -TaskName $inj.Name `
+        -Description "Injury collect + sidecars + board attach + Goblin-70/mixer rebuild from on-disk step8 + publish when slips change. No PP fetch." `
+        -ScriptPath $ScriptInjuryRefresh `
+        -At $inj.At `
+        -ExtraArgs "-Window $($inj.Win)" `
+        -ExecutionTimeLimit (New-TimeSpan -Hours 1)
+}
+
 Write-Host ""
 Write-Host "Scheduler tasks registered (visible PowerShell windows)." -ForegroundColor Green
 Write-Host "  - PropOracle - DayAhead 9PM (soccer/tennis/etc. tomorrow card)"
@@ -281,6 +294,7 @@ Write-Host "  - PropOracle - Refresh 1030AM (PP morning move + ticket patch + pu
 Write-Host "  - PropOracle - Refresh 1PM (afternoon + publish)"
 Write-Host "  - PropOracle - Refresh 430PM (evening 7pm slate + publish)"
 Write-Host "  - PropOracle - Injuries T-60 (every 15m; collect when tip is 50-70 min away)"
+Write-Host "  - PropOracle - Injury Refresh 11PM / 9AM (collect + re-attach + ticket rebuild + publish; no PP fetch)"
 Write-Host ""
 Write-Host "CDP payout scrape: MLB fill (when posted) + 1AM + 5AM + each refresh (no standalone 11AM/3PM tasks)." -ForegroundColor Yellow
 Write-Host "Injuries: also runs inside 5AM daily + each refresh (10:30 / 4:30). OUT hard-drops from tickets." -ForegroundColor Yellow
