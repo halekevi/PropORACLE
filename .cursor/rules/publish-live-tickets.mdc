@@ -9,16 +9,16 @@ The Railway site reads `ui_runner/templates/tickets_latest.json` from **origin/m
 
 **Always both sets.** `/tickets` is Goblin-70 groups first, then the graded-main mixer under them. Never publish Goblin-70-only or mixer-only after combined.
 
-**Payout rates:** first Force scrape of slate **D** is **D-1 9PM** for sports that are posted (`run_daily_day_ahead.ps1`). MLB often posts later — **MLB Fill 11PM / 12AM** discover that board; 1AM+ continue filling. Later windows re-scrape missing `live_cdp` / moved lines. Default capture `-Date` follows `tickets_latest.json`.
+**Payout rates:** first Force scrape of slate **D** is **D-1 9PM** for sports that are posted (`run_daily_day_ahead.ps1`). MLB often posts later — the 5AM window picks it up (there is no separate MLB fill). Later windows (5AM / 10:30 / 4:30) re-scrape missing `live_cdp` / moved lines. Default capture `-Date` follows `tickets_latest.json`.
 
-Order on every slate (9PM day-ahead / 11PM MLB / 12AM MLB / 1AM / 8AM / 9AM / 9:45 / 10:30 / 1PM / 4:30):
+Order on every slate (9PM day-ahead / 5AM / 10:30 / 4:30):
 
 1. Combined writes the mixer
 2. `scripts/build_goblin70_tickets.py --write-web` rebuilds Goblin-70 + merges mixer
 3. CDP / payout engine patches floors (`run_live_payout_capture.ps1`)
 4. `Publish-LiveSite.ps1`
 
-A 9:00 or 10:30 refetch must update live tickets when the board changed. Do not leave 1AM lines on `/tickets` after those jobs.
+A 10:30 or 4:30 refetch must update live tickets when the board changed. Do not leave 5AM lines on `/tickets` after those jobs.
 
 ```powershell
 py -3.14 scripts\build_goblin70_tickets.py --date YYYY-MM-DD --write-web --publish-live

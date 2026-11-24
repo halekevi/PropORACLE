@@ -30,17 +30,15 @@ if (-not (Test-Path -LiteralPath $launcher)) {
 
 # Map task name -> (script relative path, extra args, or py args)
 $map = @{
-    "PropOracle - Daily 1AM"        = @{ File = "scripts\run_daily_1am.ps1" }
     "PropOracle - Daily 5AM"        = @{ File = "scripts\run_daily_5am.ps1" }
-    "PropOracle - Daily 8AM"        = @{ File = "scripts\run_daily_8am.ps1" }
     "PropOracle - DayAhead 9PM"     = @{ File = "scripts\run_daily_day_ahead.ps1" }
     "PropOracle - Grader 3AM"       = @{ File = "scripts\run_grader_evening.ps1" }
+    "PropOracle - Injury Refresh 11PM" = @{ File = "scripts\run_injury_refresh.ps1"; Extra = "-Window 11PM" }
+    "PropOracle - Injury Refresh 6PM"  = @{ File = "scripts\run_injury_refresh.ps1"; Extra = "-Window 6PM" }
+    "PropOracle - Ladder Fill"      = @{ File = "scripts\run_ladder_fill.ps1" }
     "PropOracle - Live Freshness"   = @{ PyArgs = "-3.14 -X utf8 scripts\check_live_tickets_fresh.py" }
     "PropOracle - Refresh 1030AM"   = @{ File = "scripts\run_refresh_with_log.ps1"; Extra = "-RunLabel 1030AM" }
-    "PropOracle - Refresh 1PM"      = @{ File = "scripts\run_refresh_with_log.ps1"; Extra = "-RunLabel 1PM" }
     "PropOracle - Refresh 430PM"    = @{ File = "scripts\run_refresh_with_log.ps1"; Extra = "-RunLabel 430PM" }
-    "PropOracle - Refresh 945AM"    = @{ File = "scripts\run_refresh_with_log.ps1"; Extra = "-RunLabel 945AM" }
-    "PropOracle - Refresh 9AM"      = @{ File = "scripts\run_refresh_with_log.ps1"; Extra = "-RunLabel 9AM" }
 }
 
 Get-ScheduledTask | Where-Object { $_.TaskName -like "PropOracle*" } | ForEach-Object {

@@ -1,21 +1,18 @@
 # ============================================================
 #  Register_Daily_Task.ps1
-#  PropOracle automation scheduler:
-#   - 9:00 PM  INITIAL fetch + live /tickets for Eastern tomorrow (soccer/tennis/etc.)
-#   - 1:00 AM  update fetch of that slate + live payout CDP + publish (NO grader, NO A1)
-#   - 3:00 AM  grader + A1 historical actuals (yesterday) — unchanged
-#   - 5:00 AM  juice-window update + line snapshot + live payout CDP (NO grader when 3AM done)
-#   - 8:00 AM  morning line update (not the first scrape)
-#   - 9:00 AM  first morning refetch — waits for 8AM (fetch+payout); skips stacked fetch if it waited 20+ min
-#   - 9:45 AM  follow-up refetch after a long 8AM (9AM may have stamped without fetching)
-#   - 10:30 AM PrizePicks morning move window (rebuild + patch tickets)
-#   - 1:00 PM  afternoon line-move
-#   - 4:30 PM  evening lock for 7pm WNBA/MLB boards
-#   Retired: Tennis Early 3AM, Grader 1AM (grader moved to 3AM), MLB Fill 11PM/12AM (MLB rides
-#   the regular fetches), Injuries T-60 (injuries run in 5AM, refreshes, and Injury Refresh 9AM/11PM).
+#  PropOracle automation scheduler (four PrizePicks fetches a day):
+#   - 9:00 PM  day-ahead fetch + live /tickets for Eastern tomorrow (look / build tickets the night before)
+#   - 3:00 AM  grader + A1 historical actuals (yesterday's games are final)
+#   - 5:00 AM  early-morning fetch + line snapshot + live payout CDP + publish; season on/off sync
+#   - 10:30 AM fetch before the PrizePicks morning line moves (rebuild + patch tickets)
+#   - 4:30 PM  afternoon line-move pass before the 7pm boards
+#   - 2:00 PM  payout ladder fill (Chrome CDP, between fetches)
+#   - 11:00 PM / 6:00 PM  injury refresh (night, then before evening games; no PP fetch)
+#   Retired: Daily 1AM / 8AM, Refresh 9AM / 945AM / 1PM, MLB Fill 11PM/12AM, Injuries T-60,
+#   Tennis Early 3AM, Grader 1AM. Line changes are archived on every fetch.
 #   Each 9PM+ refresh publishes live tickets/slate JSON to origin/main (site + Railway).
 #
-# CDP payout scrape runs at 1AM / 5AM and each 8AM+ refresh.
+# CDP payout scrape runs at 9PM, 5AM, 10:30 and 4:30.
 # Standalone 11:00 / 15:00 Payout CDP tasks are retired (use refresh path or manual).
 #
 # FD/DK/UD book-line ladder capture (run_book_line_capture.ps1) also runs on those
@@ -174,12 +171,6 @@ Register-PropTask `
     -At "21:00"
 
 Register-PropTask `
-    -TaskName "PropOracle - Daily 1AM" `
-    -Description "Update fetch of last night's slate + live payout CDP + combined slate/web publish. Skips grader/A1 (Grader 3AM). Opens visible PowerShell." `
-    -ScriptPath $Script1 `
-    -At "01:00"
-
-Register-PropTask `
     -TaskName "PropOracle - Grader 3AM" `
     -Description "Overnight A1 historical actuals + grader for yesterday. Split from Daily 1AM so fetch and grade do not share RAM/CPU. Opens visible PowerShell." `
     -ScriptPath $ScriptGrader `
@@ -192,38 +183,11 @@ Register-PropTask `
     -At "05:00"
 
 Register-PropTask `
-    -TaskName "PropOracle - Daily 8AM" `
-    -Description "Morning line update (8AM-10:30). Fetch/refresh + Force CDP + live site publish. First scrape was 9PM day-ahead. Opens visible PowerShell." `
-    -ScriptPath $Script8 `
-    -At "08:00"
-
-Register-PropTask `
-    -TaskName "PropOracle - Refresh 9AM" `
-    -Description "Morning refetch. Waits for 8AM refresh.lock through payout CDP. Skips stacked fetch if it queued 20+ min (9:45 follows up)." `
-    -ScriptPath $ScriptRefresh `
-    -At "09:00" `
-    -ExtraArgs "-RunLabel 9AM"
-
-Register-PropTask `
-    -TaskName "PropOracle - Refresh 945AM" `
-    -Description "Follow-up refetch after a long 8AM. Waits for refresh.lock through payout; fetch/refresh + live site publish." `
-    -ScriptPath $ScriptRefresh `
-    -At "09:45" `
-    -ExtraArgs "-RunLabel 945AM"
-
-Register-PropTask `
     -TaskName "PropOracle - Refresh 1030AM" `
     -Description "PP morning move window (~10:30-11). Fetch/refresh + Force CDP + live site publish." `
     -ScriptPath $ScriptRefresh `
     -At "10:30" `
     -ExtraArgs "-RunLabel 1030AM"
-
-Register-PropTask `
-    -TaskName "PropOracle - Refresh 1PM" `
-    -Description "Afternoon line-move refresh + Force CDP + live site publish." `
-    -ScriptPath $ScriptRefresh `
-    -At "13:00" `
-    -ExtraArgs "-RunLabel 1PM"
 
 Register-PropTask `
     -TaskName "PropOracle - Refresh 430PM" `
@@ -234,7 +198,7 @@ Register-PropTask `
 
 # Light injury refresh: no PrizePicks fetch, no full pipeline. Waits for refresh.lock.
 foreach ($inj in @(@{ Name = "PropOracle - Injury Refresh 11PM"; At = "23:00"; Win = "11PM" },
-                   @{ Name = "PropOracle - Injury Refresh 9AM"; At = "09:00"; Win = "9AM" })) {
+                   @{ Name = "PropOracle - Injury Refresh 6PM"; At = "18:00"; Win = "6PM" })) {
     Register-PropTask `
         -TaskName $inj.Name `
         -Description "Injury collect + sidecars + board attach + Goblin-70/mixer rebuild from on-disk step8 + publish when slips change. No PP fetch." `
@@ -244,7 +208,9 @@ foreach ($inj in @(@{ Name = "PropOracle - Injury Refresh 11PM"; At = "23:00"; W
         -ExecutionTimeLimit (New-TimeSpan -Hours 1)
 }
 
-foreach ($retired in @("PropOracle - MLB Fill 11PM", "PropOracle - MLB Fill 12AM", "PropOracle - Injuries T-60")) {
+foreach ($retired in @("PropOracle - MLB Fill 11PM", "PropOracle - MLB Fill 12AM", "PropOracle - Injuries T-60",
+                      "PropOracle - Daily 1AM", "PropOracle - Daily 8AM", "PropOracle - Refresh 9AM",
+                      "PropOracle - Refresh 945AM", "PropOracle - Refresh 1PM", "PropOracle - Injury Refresh 9AM")) {
     if (Get-ScheduledTask -TaskName $retired -ErrorAction SilentlyContinue) {
         Unregister-ScheduledTask -TaskName $retired -Confirm:$false
         Write-Host "  Removed retired task: $retired" -ForegroundColor Yellow
@@ -254,25 +220,20 @@ foreach ($retired in @("PropOracle - MLB Fill 11PM", "PropOracle - MLB Fill 12AM
 Write-Host ""
 Write-Host "Scheduler tasks registered (visible PowerShell windows)." -ForegroundColor Green
 Write-Host "  - PropOracle - DayAhead 9PM (soccer/tennis/etc. tomorrow card)"
-Write-Host "  - PropOracle - Daily 1AM (update fetch + live payout CDP + publish; no grader)"
 Write-Host "  - PropOracle - Grader 3AM (A1 + yesterday grades; unchanged)"
 Write-Host "  - PropOracle - Daily 5AM (juice-window update + live payout CDP + publish)"
-Write-Host "  - PropOracle - Daily 8AM (morning update + publish)"
-Write-Host "  - PropOracle - Refresh 9AM (morning refetch + ticket patch + publish)"
-Write-Host "  - PropOracle - Refresh 945AM (follow-up lock + publish)"
 Write-Host "  - PropOracle - Refresh 1030AM (PP morning move + ticket patch + publish)"
-Write-Host "  - PropOracle - Refresh 1PM (afternoon + publish)"
 Write-Host "  - PropOracle - Refresh 430PM (evening 7pm slate + publish)"
-Write-Host "  - PropOracle - Injury Refresh 11PM / 9AM (collect + re-attach + ticket rebuild + publish; no PP fetch)"
+Write-Host "  - PropOracle - Injury Refresh 11PM / 6PM (collect + re-attach + ticket rebuild + publish; no PP fetch)"
 Write-Host ""
-Write-Host "CDP payout scrape: 1AM + 5AM + each refresh (no standalone 11AM/3PM tasks)." -ForegroundColor Yellow
+Write-Host "CDP payout scrape: 9PM + 5AM + 10:30 + 4:30 (no standalone 11AM/3PM tasks)." -ForegroundColor Yellow
 Write-Host "Injuries: also runs inside 5AM daily + each refresh (10:30 / 4:30). OUT hard-drops from tickets." -ForegroundColor Yellow
 Write-Host "Removed: Tennis Early 3AM, Grader 1AM (now Grader 3AM), Payout CDP 11AM/3PM, extra graders 7PM–12AM" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "Quick checks:"
 Write-Host "  Get-ScheduledTask | Where-Object TaskName -like 'PropOracle -*' | Select-Object TaskName, State"
-Write-Host "  Get-ScheduledTaskInfo -TaskName 'PropOracle - Daily 1AM' | Select LastRunTime, LastTaskResult, NextRunTime"
-Write-Host "  Get-ScheduledTaskInfo -TaskName 'PropOracle - Daily 1AM' | Select LastRunTime, LastTaskResult, NextRunTime"
+Write-Host "  Get-ScheduledTaskInfo -TaskName 'PropOracle - Daily 5AM' | Select LastRunTime, LastTaskResult, NextRunTime"
+Write-Host "  Get-ScheduledTaskInfo -TaskName 'PropOracle - Daily 5AM' | Select LastRunTime, LastTaskResult, NextRunTime"
 Write-Host "  Get-ScheduledTaskInfo -TaskName 'PropOracle - Grader 3AM' | Select LastRunTime, LastTaskResult, NextRunTime"
 Write-Host ""
 Write-Host "Manual catchup (visible window):  pwsh -File scripts\Launch_Daily_1AM_Visible.ps1" -ForegroundColor Cyan

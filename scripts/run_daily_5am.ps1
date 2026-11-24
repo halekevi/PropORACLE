@@ -97,14 +97,24 @@ if ($pullPrepExit -ne 0) {
     Write-Host "[5AM DAILY] Pull prep warned (exit $pullPrepExit); continuing with local tree." -ForegroundColor Yellow
 }
 
-# Overnight 1AM owns grader + A1. Fall back only if those outputs never landed.
+# Sports go inactive the day after their championship and return the day before their
+# first preseason game (ESPN calendar); inactive sports are never fetched.
+$syncActive = Join-Path $Root "scripts\sync_active_sports.py"
+if (Test-Path -LiteralPath $syncActive) {
+    Write-Host "[5AM DAILY] Syncing active sports from the ESPN season calendar..." -ForegroundColor DarkGray
+    & py -3.14 -X utf8 $syncActive
+}
+. (Join-Path $Root "scripts\_active_sports.ps1")
+Read-ActiveSportsConfig -RepoRoot $Root
+
+# Grader 3AM owns grader + A1. Fall back only if those outputs never landed for an active sport.
 $Today = (Get-Date).ToString("yyyy-MM-dd")
 $Yesterday = (Get-Date).AddDays(-1).ToString("yyyy-MM-dd")
 $gradedProbe = @(
-    (Join-Path $Root "outputs\$Yesterday\graded_mlb_$Yesterday.xlsx"),
-    (Join-Path $Root "outputs\$Yesterday\graded_soccer_$Yesterday.xlsx"),
-    (Join-Path $Root "outputs\$Yesterday\graded_wnba_$Yesterday.xlsx")
-)
+    @("MLB", (Join-Path $Root "outputs\$Yesterday\graded_mlb_$Yesterday.xlsx")),
+    @("SOCCER", (Join-Path $Root "outputs\$Yesterday\graded_soccer_$Yesterday.xlsx")),
+    @("WNBA", (Join-Path $Root "outputs\$Yesterday\graded_wnba_$Yesterday.xlsx"))
+) | Where-Object { Test-SportOn $_[0] } | ForEach-Object { $_[1] }
 $missingOvernight = @($gradedProbe | Where-Object { -not (Test-Path -LiteralPath $_) })
 $a1Stamp = Join-Path $Root "data\cache\historical_actuals_ok_$Today.flag"
 $dailyArgs = @()

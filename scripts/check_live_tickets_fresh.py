@@ -46,16 +46,14 @@ DEFAULT_BASE = "https://web-production-f280f.up.railway.app"
 STATUS_PATH = _REPO / "logs" / "LAST_LIVE_FRESHNESS.json"
 REALERT_MINUTES = 60
 
-# generated_at must be at most this old, by ET hour of day. Windows: 1AM / 5AM / 8AM / 9AM /
-# 10:30 / 1PM / 4:30 / 9PM / 11PM / 12AM, so during the day a card older than ~5h means at
-# least two windows failed to land.
+# generated_at must be at most this old, by ET hour of day. Fetch windows: 9PM day-ahead,
+# 5AM, 10:30, 4:30 (each publishes ~30-90 min after it starts); injury refreshes at 6PM / 11PM
+# publish only when slips change. Daytime gaps run ~6h, overnight 9PM -> 5AM ~9h.
 def max_age_hours(et_now: datetime) -> float:
     h = et_now.hour
-    if 9 <= h < 18:
-        return 5.0
-    if 18 <= h < 24:
-        return 7.0
-    return 9.0  # overnight (1AM / 5AM windows)
+    if 9 <= h < 24:
+        return 7.5
+    return 10.0  # overnight (9PM -> 5AM)
 
 
 def expected_dates(et_now: datetime) -> list[str]:
