@@ -256,6 +256,15 @@ def _enrich_opponents(rows: list[dict], match_cache: dict[str, list[dict[str, An
             row["opp"] = row.get("opp_team", "")
 
 
+def _rank_int(v: Any) -> int | None:
+    """Slate ranks arrive as '', 'N/A', NaN or numbers; anything unparseable is unranked."""
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return None if np.isnan(f) else int(f)
+
+
 def _player_matchups(rows: list[dict], rankings: list[dict[str, Any]]) -> dict[str, dict]:
     out: dict[str, dict] = {}
     for row in rows:
@@ -268,14 +277,12 @@ def _player_matchups(rows: list[dict], rankings: list[dict[str, Any]]) -> dict[s
         pk = _norm_key(player) or player.upper()
         if pk in out:
             continue
-        opp_rank = row.get("opponent_rank")
-        if opp_rank is None or (isinstance(opp_rank, float) and np.isnan(opp_rank)):
-            opp_rank = _resolve_opp_rank(opp, rankings)
-        player_rank = row.get("player_atp_rank")
-        if player_rank is None or (isinstance(player_rank, float) and np.isnan(player_rank)):
-            player_rank = _resolve_player_rank(player, rankings)
-        opp_rank_i = int(float(opp_rank)) if opp_rank is not None else None
-        player_rank_i = int(float(player_rank)) if player_rank is not None else None
+        opp_rank_i = _rank_int(row.get("opponent_rank"))
+        if opp_rank_i is None:
+            opp_rank_i = _rank_int(_resolve_opp_rank(opp, rankings))
+        player_rank_i = _rank_int(row.get("player_atp_rank"))
+        if player_rank_i is None:
+            player_rank_i = _rank_int(_resolve_player_rank(player, rankings))
         out[pk] = {
             "player_name": player,
             "player_key": pk,
