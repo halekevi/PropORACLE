@@ -995,6 +995,17 @@ def main():
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
+    try:
+        from utils.active_sports import inactive_fetch_block
+
+        _blocked = inactive_fetch_block(key="MLB")
+    except Exception:
+        _blocked = None
+    if _blocked:
+        print(f"  [inactive] {_blocked} is inactive in config/active_sports.json — no PrizePicks call")
+        pd.DataFrame(columns=EMPTY_COLS).to_csv(out_path, index=False, encoding="utf-8-sig")
+        sys.exit(0)
+
     # ── Fetch ────────────────────────────────────────────────────────────────
     data: list     = []
     included: list = []

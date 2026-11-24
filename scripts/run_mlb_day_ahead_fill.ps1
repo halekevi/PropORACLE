@@ -24,6 +24,15 @@ try { $Host.UI.RawUI.WindowTitle = "PropOracle - MLB Fill $Window" } catch { }
 $Root = Split-Path $PSScriptRoot -Parent
 Set-Location $Root
 
+try {
+    $activeCfg = Get-Content -LiteralPath (Join-Path $Root "config\active_sports.json") -Raw | ConvertFrom-Json
+    $mlbInactive = @($activeCfg.inactive | ForEach-Object { "$($_.key)".ToUpper() }) -contains "MLB"
+    if ($mlbInactive -and "$($env:PROPORACLE_FORCE_ALL_SPORTS)" -ne "1") {
+        Write-Host "[MLB FILL $Window] MLB is inactive in config\active_sports.json — nothing to do." -ForegroundColor DarkGray
+        exit 0
+    }
+} catch { }
+
 function Get-MainWorktreeRoot {
     param([string]$RepoRoot = $Root)
     $porcelain = git -C $RepoRoot worktree list --porcelain 2>$null

@@ -978,6 +978,20 @@ def main() -> None:
         include_preseason=not bool(args.no_preseason),
         league_id=str(args.league_id or "").strip(),
     )
+    try:
+        from utils.active_sports import inactive_fetch_block
+
+        for _lid in list(boards):
+            _blocked = inactive_fetch_block(league_id=_lid)
+            if _blocked:
+                print(f"  [inactive] {_blocked} (league_id={_lid}) is inactive in config/active_sports.json — no PrizePicks call")
+                boards.pop(_lid)
+    except Exception:
+        pass
+    if not boards:
+        if not (args.append and out_path.is_file()):
+            pd.DataFrame(columns=EMPTY_COLS).to_csv(args.output, index=False, encoding="utf-8-sig")
+        sys.exit(0)
     if use_browser:
         via = f"CDP {cdp_url}" if cdp_url else "playwright"
         print(f"📡 PrizePicks fetch | boards={boards} | in-page ({via})")

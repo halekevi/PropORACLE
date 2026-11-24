@@ -69,6 +69,25 @@ def league_id_for(key: str) -> str | None:
     return None
 
 
+def inactive_fetch_block(*, key: str = "", league_id: str | int = "") -> str | None:
+    """Inactive sport tag for this key / PrizePicks league_id, else None.
+
+    PROPORACLE_FORCE_ALL_SPORTS=1 lifts the block for a deliberate manual pull.
+    """
+    import os
+
+    if str(os.environ.get("PROPORACLE_FORCE_ALL_SPORTS") or "").strip() == "1":
+        return None
+    want_k = str(key or "").strip().upper()
+    want_l = str(league_id or "").strip()
+    for r in inactive_entries():
+        k = str(r.get("key") or "").strip().upper()
+        lid = str(r.get("league_id") or "").strip()
+        if (want_k and k == want_k) or (want_l and lid == want_l):
+            return k
+    return None
+
+
 def fetch_boards() -> list[dict[str, Any]]:
     """Active boards that should be fetched (includes soccer league children)."""
     return active_entries(cards_only=False)

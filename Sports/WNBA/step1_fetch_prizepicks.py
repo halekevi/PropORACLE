@@ -1040,6 +1040,20 @@ def main():
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     lid_s = str(args.league_id).strip()
+    try:
+        from utils.active_sports import inactive_fetch_block
+
+        _blocked = inactive_fetch_block(key=str(args.sport_tag or ""), league_id=lid_s)
+    except Exception:
+        _blocked = None
+    if _blocked:
+        print(f"  [inactive] {_blocked} (league_id={lid_s}) is inactive in config/active_sports.json — no PrizePicks call")
+        pd.DataFrame(columns=[
+            "projection_id", "pp_projection_id", "player_id", "pp_game_id", "start_time",
+            "player", "pos", "team", "opp_team", "prop_type", "line", "pick_type", "game_date",
+            "board_date", "line_asof", "fetched_at", "pp_updated_at", "sport", "ticketable",
+        ]).to_csv(out_path, index=False, encoding="utf-8-sig")
+        sys.exit(0)
     sport_tag = str(args.sport_tag or "").strip().upper()
     if not sport_tag:
         try:
