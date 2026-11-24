@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import os
 import random
 import re
 import sys
@@ -107,6 +108,23 @@ def _nfl_abbr_to_team_id() -> dict[str, str]:
     for k, v in _SLATE.items():
         if v in out and k not in out:
             out[k] = out[v]
+    return out
+
+
+def _cfb_abbr_to_team_id() -> dict[str, str]:
+    """ESPN college-football abbreviation -> team id (PP abbrs mostly match ESPN)."""
+    data = request_json(
+        "https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams",
+        params={"limit": "1000"},
+        sleep=0.05,
+    ) or {}
+    out: dict[str, str] = {}
+    for ent in (data.get("sports") or [{}])[0].get("leagues", [{}])[0].get("teams", []) or []:
+        t = ent.get("team") or {}
+        ab = str(t.get("abbreviation") or "").strip().upper()
+        tid = str(t.get("id") or "").strip()
+        if ab and tid and ab not in out:
+            out[ab] = tid
     return out
 
 
@@ -781,15 +799,10 @@ def build_player_histories(
             newest = gd
     if not newest and stored_events:
         newest = max(ev[3] for ev in stored_events)
-    if newest and not scanned_dates:
-        oldest = min((ev[3] for ev in stored_events), default=newest)
-        for d in dates:
-            if oldest <= d < newest:
-                scanned_dates.add(d)
-        print(
-            f"  [CACHE] Marked {len(scanned_dates)} completed scoreboard days "
-            f"before {newest}; live scan starts at the cache's newest date"
-        )
+    # Box-row seeded events are keyed by UTC date and miss any game not yet cached,
+    # so only a real scoreboard pull marks a day complete.
+    if not scanned_dates:
+        print("  [CACHE] No scanned scoreboard days on disk — scanning the full window once")
     if ESPN_LEAGUE == "nfl" and cached_rows:
         season_start = f"{anchor.year if anchor.month >= 9 else anchor.year - 1}0901"
         n_current = 0
@@ -806,7 +819,7 @@ def build_player_histories(
     live_dates: List[str] = []
     cached_dates = 0
     for d in dates:
-        if newest and d < newest and (d in scanned_dates or by_date.get(d)):
+        if newest and d < newest and d in scanned_dates:
             cached_dates += 1
             for ev in by_date.get(d, []):
                 if ev[0] not in seen_eids:
@@ -893,6 +906,24 @@ def build_player_histories(
     # e.g. 70 rush yards on a 101-yard day). Re-pull every event not yet confirmed final.
     final_path = _final_events_path(cache_path) if cache_path else ""
     final_eids = _load_scanned_dates(final_path)
+    # The final list is gitignored but the CFB cache is tracked: a git restore of the
+    # cache leaves events "final" with no rows. Only trust final ids that still have rows.
+    n_orphan_final = len(final_eids - cached_eids)
+    if n_orphan_final:
+        print(f"  [CACHE] {n_orphan_final} final-verified events have no cached rows — refetching")
+        final_eids &= cached_eids
+    # ESPN posts stat corrections for days after a game (e.g. 92 -> 116 rec yds), so a
+    # "final" box is re-verified for a week. PROPORACLE_BOX_REVERIFY_DAYS widens it once.
+    try:
+        reverify_days = int(os.environ.get("PROPORACLE_BOX_REVERIFY_DAYS", "7"))
+    except ValueError:
+        reverify_days = 7
+    if reverify_days > 0:
+        rv_cut = ((end_date or dt.date.today()) - dt.timedelta(days=reverify_days)).strftime("%Y%m%d")
+        recent = {eid for eid, _t1, _t2, ds in all_events if ds >= rv_cut}
+        if recent & final_eids:
+            print(f"  [CACHE] Re-verifying {len(recent & final_eids)} final events from the last {reverify_days} days")
+        final_eids -= recent
     today_str = dt.date.today().strftime("%Y%m%d")
     pending = [(eid, t1, t2, ds) for eid, t1, t2, ds in all_events
                if eid not in final_eids and ds <= today_str]
@@ -1110,6 +1141,15 @@ def main():
                 pass
     if "team_id" not in df.columns:
         df["team_id"] = ""
+    if ESPN_LEAGUE == "college-football":
+        abbr_src = next((c for c in ("team_abbr", "pp_team", "team") if c in df.columns), None)
+        blank_tid = df["team_id"].astype(str).str.strip().isin(["", "nan", "None"])
+        if abbr_src and blank_tid.any():
+            cfb_map = _cfb_abbr_to_team_id()
+            if cfb_map:
+                fill = df.loc[blank_tid, abbr_src].astype(str).str.strip().str.upper().map(cfb_map)
+                df.loc[blank_tid, "team_id"] = fill.fillna("")
+                print(f"  team_id filled from ESPN abbr for {int(fill.notna().sum())}/{int(blank_tid.sum())} rows")
     if "espn_athlete_id" not in df.columns:
         df["espn_athlete_id"] = ""
 
@@ -1237,11 +1277,16 @@ def main():
                 for (t, a), g in hist_aid.items():
                     if a == aid:
                         games.extend(g)
-            # Strategy B: player_norm across all teams (name-only fallback)
+            # Strategy B: player_norm across all teams, only when that name is one
+            # athlete — otherwise two same-name players would share one history.
             if not games and pn:
-                for (t, p), g in hist_name.items():
-                    if p == pn:
+                hits = [(t, g) for (t, p), g in hist_name.items() if p == pn]
+                ids = {str(x.get("espn_athlete_id", "")).strip() for _, g in hits for x in g}
+                ids.discard("")
+                if len(hits) == 1 or len(ids) == 1:
+                    for _, g in hits:
                         games.extend(g)
+                    games = sorted(games, key=lambda r: r.get("game_date", ""), reverse=True)
             if not games:
                 stat_status.append("NO_BOX_HISTORY"); out_rows.append({}); continue
         else:

@@ -38,6 +38,16 @@ PROP_STATS = {
     "pass_completions": ["completions"],
     "pass_rush_yds": ["passingYards", "rushingYards"],
     "passing_tds": ["passingTouchdowns"],
+    # CFB prop_norm spellings
+    "rec_yds": ["receivingYards"],
+    "rush_yds": ["rushingYards"],
+    "rec": ["receptions"],
+    "pass_yds": ["passingYards"],
+    "rush+rec yds": ["rushingYards", "receivingYards"],
+    "pass+rush yds": ["passingYards", "rushingYards"],
+    "rush attempts": ["rushingAttempts"],
+    "pass_att": ["passingAttempts"],
+    "pass_cmp": ["completions"],
 }
 
 
@@ -108,8 +118,11 @@ def main() -> int:
     slate = date.fromisoformat(args.date[:10])
 
     df = pd.read_csv(args.step5, dtype=str, low_memory=False).fillna("")
-    prop_col = "prop_type_normalized" if "prop_type_normalized" in df.columns else (
-        "prop_norm" if "prop_norm" in df.columns else "prop_type")
+    prop_col = next(
+        (c for c in ("prop_type_normalized", "prop_norm", "prop_type")
+         if c in df.columns and df[c].isin(PROP_STATS).any()),
+        "prop_type",
+    )
     df = df[(df.get("stat_status", "OK") == "OK") & df[prop_col].isin(PROP_STATS)]
     df = df[df["espn_athlete_id"].astype(str).str.strip() != ""]
     if args.players:

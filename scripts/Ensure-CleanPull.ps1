@@ -348,8 +348,25 @@ if ($pullExit -ne 0) {
 
 if ($didStash) {
     Write-PullHost "Restoring stash..." "Cyan"
-    git -C $RepoRoot stash pop 2>&1 | ForEach-Object { Write-PullHost "  stash pop: $_" }
-    $popExit = $LASTEXITCODE
+    # "could not write index" / index.lock: another git process in a sibling worktree.
+    # A failed pop leaves the tree at HEAD (tracked caches silently revert), so retry.
+    $popExit = 1
+    for ($attempt = 1; $attempt -le 6; $attempt++) {
+        $popOut = @(git -C $RepoRoot stash pop 2>&1)
+        $popExit = $LASTEXITCODE
+        $popOut | ForEach-Object { Write-PullHost "  stash pop: $_" }
+        if ($popExit -eq 0) { break }
+        if (($popOut -join "`n") -notmatch "could not write index|index\.lock|Unable to create") { break }
+        Write-PullHost "  index busy; retry $attempt/6 in 10s..." "Yellow"
+        Start-Sleep -Seconds 10
+    }
+    $stillStashed = @(git -C $RepoRoot stash list 2>$null | Where-Object { $_ -match [regex]::Escape($StashMessage) })
+    if ($stillStashed.Count -gt 0 -and @(Get-UnmergedPaths -Root $RepoRoot).Count -eq 0) {
+        Write-PullHost "STASH NOT RESTORED: '$StashMessage' still holds local changes; tracked files are at HEAD." "Red"
+        try {
+            & py -3.14 -c "import sys; sys.path.insert(0, r'$RepoRoot'); from utils.pipeline_alerts import emit_pipeline_alert; emit_pipeline_alert('pre-pull-stash', 'stash pop failed; $StashMessage not restored (tracked caches reverted to HEAD)', critical=True)" 2>&1 | Out-Null
+        } catch { }
+    }
     $unmergedAfter = @(Get-UnmergedPaths -Root $RepoRoot)
     if ($popExit -ne 0 -or $unmergedAfter.Count -gt 0) {
         Write-PullHost "Stash pop conflicts — repairing generated paths..." "Yellow"
@@ -368,7 +385,7 @@ if ($didStash) {
                 exit 2
             }
         }
-        Write-PullHost "Stash conflicts cleared (stash entry may still exist — safe)." "Green"
+        Write-PullHost "Stash conflicts cleared (stash entry may still exist)." "Yellow"
     }
 }
 
