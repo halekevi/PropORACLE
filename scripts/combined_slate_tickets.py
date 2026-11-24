@@ -11995,6 +11995,15 @@ def dataframe_to_slate_sport_rows(df: Optional[pd.DataFrame]) -> List[dict]:
         df = _fill_tennis_opp_rank_from_slate(df)
     df = strip_pitcher_ks_hitter_defense(df)
     df = enrich_read_fields_dataframe(df)
+    try:
+        from utils.pp_projection_ids import attach_projection_ids
+
+        _slate = str(_COMBINED_SLATE_DATE or "").strip()[:10]
+        if not _slate and "game_date" in df.columns:
+            _slate = str(df["game_date"].dropna().astype(str).min() or "")[:10]
+        df = attach_projection_ids(df, _slate)
+    except Exception as exc:
+        print(f"  [pp_ids] WARN projection_id fill skipped: {exc}")
 
     def safe(v):
         if v is None:
