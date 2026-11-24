@@ -307,10 +307,30 @@ def _snapshot_count(conn: sqlite3.Connection, sport: str, fetched_at: str) -> in
     return int((row[0] if row else 0) or 0)
 
 
+def _ensure_partial(conn: sqlite3.Connection) -> None:
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS line_partial_snapshots (
+          sport TEXT NOT NULL,
+          fetched_at TEXT NOT NULL,
+          rows INTEGER,
+          prev_rows INTEGER,
+          PRIMARY KEY (sport, fetched_at)
+        )
+        """
+    )
+
+
 def _prev_clock(conn: sqlite3.Connection, sport: str, current_ts: str) -> str | None:
+    """Latest earlier full pull; partial pulls are stored but never a diff baseline."""
+    _ensure_partial(conn)
     row = conn.execute(
-        "SELECT MAX(fetched_at) FROM line_history WHERE sport = ? AND fetched_at < ?",
-        (sport, current_ts),
+        """
+        SELECT MAX(fetched_at) FROM line_history
+        WHERE sport = ? AND fetched_at < ?
+          AND fetched_at NOT IN (SELECT fetched_at FROM line_partial_snapshots WHERE sport = ?)
+        """,
+        (sport, current_ts, sport),
     ).fetchone()
     ts = (row[0] if row else None) or ""
     return ts or None
@@ -430,13 +450,7 @@ def archive_lines(
         _ensure_columns(conn, _EXTRA_COLS)
         prev_ts = _prev_clock(conn, sport_u, pull_ts)
         prev_n = _snapshot_count(conn, sport_u, prev_ts) if prev_ts else 0
-        if prev_n and len(current) < _PARTIAL_FLOOR * prev_n:
-            print(
-                f"  [line_events] {sport_u} fresh rows={len(current)} "
-                f"below {int(_PARTIAL_FLOOR * 100)}% of previous {prev_n} — "
-                "diff skipped, previous window kept"
-            )
-            return {}
+        partial = bool(prev_n and len(current) < _PARTIAL_FLOOR * prev_n)
         table_cols = {
             r[1] for r in conn.execute("PRAGMA table_info(line_history)").fetchall()
         }
@@ -458,7 +472,20 @@ def archive_lines(
                 conn.execute(ddl)
             except sqlite3.OperationalError:
                 pass
-        counts = record_events_for_pull(conn, sport_u, current, pull_ts)
+        if partial:
+            # Stored for early-vs-late history; no line_events, and later pulls diff past it.
+            conn.execute(
+                "INSERT OR REPLACE INTO line_partial_snapshots (sport, fetched_at, rows, prev_rows) "
+                "VALUES (?, ?, ?, ?)",
+                (sport_u, pull_ts, len(current), prev_n),
+            )
+            print(
+                f"  [line_events] {sport_u} fresh rows={len(current)} "
+                f"below {int(_PARTIAL_FLOOR * 100)}% of previous {prev_n} — "
+                "snapshot stored, diff skipped"
+            )
+        else:
+            counts = record_events_for_pull(conn, sport_u, current, pull_ts)
         conn.commit()
     return counts
 
