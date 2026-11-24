@@ -152,7 +152,18 @@ def _post(hook: str, *, title: str, text: str, priority: str, tags: str) -> str:
                 method="POST",
                 headers={"Content-Type": "application/json"},
             )
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        # The Windows store this box hands Python holds an expired Let's Encrypt chain
+        # cert (ntfy.sh fails "certificate has expired"); certifi's bundle verifies.
+        ctx = None
+        try:
+            import ssl
+
+            import certifi
+
+            ctx = ssl.create_default_context(cafile=certifi.where())
+        except ImportError:
+            pass
+        with urllib.request.urlopen(req, timeout=10, context=ctx) as resp:
             return f"{'ntfy' if 'ntfy.' in hook else 'webhook'} {getattr(resp, 'status', 200)}"
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         return f"error: {exc}"
