@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24 07:50:57 UTC",
+  "generated_at": "2026-11-24 08:53:54 UTC",
   "date": "2026-11-24",
   "tennis_date": "2026-11-24",
   "filters": {
@@ -16,6 +16,161 @@
   "ticket_track": "goblin70",
   "mode": "goblin70+graded_main",
   "groups": [
+    {
+      "group_name": "X-Sport Goblin-70 Power 3",
+      "n_legs": 3,
+      "power_payout": 2.3,
+      "flex_payout": null,
+      "tickets": [
+        {
+          "web_group_name": "X-Sport Goblin-70 Power 3",
+          "ticket_id": "2026-11-24|X-Sport Goblin-70 Power 3|1",
+          "ticket_no": 1,
+          "ticket_track": "goblin70",
+          "mode": "goblin70",
+          "exclude_from_winrate": false,
+          "avg_hit_rate": 1.0,
+          "est_win_prob": 0.444,
+          "est_flex_cash_prob": null,
+          "base_power_payout": 2.3,
+          "ev_power": 0.022,
+          "core_build": true,
+          "core_recipe": "goblin70",
+          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
+            {
+              "ticket_id": "2026-11-24|X-Sport Goblin-70 Power 3|1",
+              "ticket_track": "goblin70",
+              "sport": "Soccer",
+              "player": "Adam Armstrong",
+              "team": "WOLVES",
+              "opp": "DERBY",
+              "prop_type": "Shots On Target",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 0.5,
+              "edge": 0.6,
+              "abs_edge": 0.6,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.3,
+              "standard_line": 1.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 0.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "A",
+              "def_tier": "Below Avg",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_c802adf3e01adeb90fa3",
+              "game_date": "2026-11-24",
+              "badge": "Platinum",
+              "cover": 0.6,
+              "matchup": "WOLVES vs DERBY (SOCCER)"
+            },
+            {
+              "ticket_id": "2026-11-24|X-Sport Goblin-70 Power 3|1",
+              "ticket_track": "goblin70",
+              "sport": "CBB",
+              "player": "Juke Harris",
+              "team": "TENN",
+              "opp": "MD",
+              "prop_type": "Assists",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 1.5,
+              "edge": 0.52,
+              "abs_edge": 0.52,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.7435702085494995,
+              "standard_line": null,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 1.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "C",
+              "def_tier": "Below Avg",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_ad239f6840b86b989e42",
+              "game_date": "2026-11-24",
+              "badge": "Diamond",
+              "cover": 0.52,
+              "matchup": "TENN vs MD"
+            },
+            {
+              "ticket_id": "2026-11-24|X-Sport Goblin-70 Power 3|1",
+              "ticket_track": "goblin70",
+              "sport": "Soccer",
+              "player": "Mohammed Fuseini",
+              "team": "DERBY",
+              "opp": "WOLVES",
+              "prop_type": "Shots",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 0.5,
+              "edge": 1.0,
+              "abs_edge": 1.0,
+              "pick_platform": "prizepicks",
+              "hit_rate": 1.0,
+              "ml_prob": 0.3,
+              "standard_line": 1.5,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 0.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "A",
+              "def_tier": "Above Avg",
+              "l5_over": 5.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 1.0,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_edcad5b561e930faa4e8",
+              "game_date": "2026-11-24",
+              "badge": "Bronze",
+              "cover": 1.0,
+              "matchup": "DERBY vs WOLVES (SOCCER)"
+            }
+          ],
+          "n_legs": 3,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "p_all_win": 0.444,
+            "p_miss_1": 0.0,
+            "ev": 0.022,
+            "recommendation": "HOLD",
+            "entry_10_to_win_guarantee": 23.0,
+            "entry_20_to_win_guarantee": 46.0,
+            "audit_all_hit_x": 2.3,
+            "payout_source": "pending_live",
+            "payout_note": "Power all-hit 2.3x from goblin_3. EV = expected N-correct multiple - 1.",
+            "n_correct": {
+              "3": 2.3
+            },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": null
+          }
+        }
+      ]
+    },
     {
       "group_name": "STRONG 3-Leg",
       "n_legs": 3,
@@ -4333,6 +4488,13 @@
         "aaron gordon::points::OVER"
       ]
     },
+    "adam armstrong": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
+      "props": [
+        "adam armstrong::shots on target::OVER"
+      ]
+    },
     "aj dybantsa": {
       "anchor_tickets": 0,
       "nonanchor_tickets": 1,
@@ -4425,6 +4587,13 @@
         "john collins::points::OVER"
       ]
     },
+    "juke harris": {
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
+      "props": [
+        "juke harris::assists::OVER"
+      ]
+    },
     "kevin huerter": {
       "anchor_tickets": 1,
       "nonanchor_tickets": 0,
@@ -4451,6 +4620,13 @@
       "nonanchor_tickets": 1,
       "props": [
         "matthew turner::goalie saves::OVER"
+      ]
+    },
+    "mohammed fuseini": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
+      "props": [
+        "mohammed fuseini::shots::OVER"
       ]
     },
     "naji marshall": {
@@ -4522,12 +4698,12 @@
   "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
-    "goblin_70": 8,
-    "goblin_70_raw": 8,
-    "standard_allowlist": 3,
-    "standard_allowlist_raw": 3,
-    "standard_yolo": 1,
-    "standard_yolo_raw": 2,
+    "goblin_70": 10,
+    "goblin_70_raw": 10,
+    "standard_allowlist": 4,
+    "standard_allowlist_raw": 4,
+    "standard_yolo": 2,
+    "standard_yolo_raw": 3,
     "standard_power3": 0,
     "standard_power3_raw": 0,
     "nflp_goblin": 0,
