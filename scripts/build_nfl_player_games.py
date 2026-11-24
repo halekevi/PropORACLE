@@ -52,7 +52,7 @@ def main() -> int:
 
     c = pd.read_csv(args.cache, dtype=str, low_memory=False).fillna("")
     c = c[c["espn_athlete_id"].str.strip() != ""].copy()
-    c["game_date"] = pd.to_datetime(c["game_date"].str[:8], format="%Y%m%d", errors="coerce")
+    c["game_date"] = pd.to_datetime(c["game_date"].str.replace("-", "").str[:8], format="%Y%m%d", errors="coerce")
     c = c[c["game_date"].notna()]
     c = c.drop_duplicates(["espn_athlete_id", "event_id"], keep="last")
     for s in STATS:
