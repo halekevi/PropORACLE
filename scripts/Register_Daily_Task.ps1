@@ -7,7 +7,7 @@
 #   - 10:30 AM fetch before the PrizePicks morning line moves (rebuild + patch tickets)
 #   - 4:30 PM  afternoon line-move pass before the 7pm boards
 #   - 2:00 PM  payout ladder fill (Chrome CDP, between fetches)
-#   - 11:00 PM / 6:00 PM  injury refresh (night, then before evening games; no PP fetch)
+#   - 11:00 PM / 9:00 AM / 6:00 PM  injury refresh (night, morning before 10:30 + early games, before evening games; no PP fetch)
 #   Retired: Daily 1AM / 8AM, Refresh 9AM / 945AM / 1PM, MLB Fill 11PM/12AM, Injuries T-60,
 #   Tennis Early 3AM, Grader 1AM. Line changes are archived on every fetch.
 #   Each 9PM+ refresh publishes live tickets/slate JSON to origin/main (site + Railway).
@@ -198,6 +198,7 @@ Register-PropTask `
 
 # Light injury refresh: no PrizePicks fetch, no full pipeline. Waits for refresh.lock.
 foreach ($inj in @(@{ Name = "PropOracle - Injury Refresh 11PM"; At = "23:00"; Win = "11PM" },
+                   @{ Name = "PropOracle - Injury Refresh 9AM"; At = "09:00"; Win = "9AM" },
                    @{ Name = "PropOracle - Injury Refresh 6PM"; At = "18:00"; Win = "6PM" })) {
     Register-PropTask `
         -TaskName $inj.Name `
@@ -210,7 +211,7 @@ foreach ($inj in @(@{ Name = "PropOracle - Injury Refresh 11PM"; At = "23:00"; W
 
 foreach ($retired in @("PropOracle - MLB Fill 11PM", "PropOracle - MLB Fill 12AM", "PropOracle - Injuries T-60",
                       "PropOracle - Daily 1AM", "PropOracle - Daily 8AM", "PropOracle - Refresh 9AM",
-                      "PropOracle - Refresh 945AM", "PropOracle - Refresh 1PM", "PropOracle - Injury Refresh 9AM")) {
+                      "PropOracle - Refresh 945AM", "PropOracle - Refresh 1PM")) {
     if (Get-ScheduledTask -TaskName $retired -ErrorAction SilentlyContinue) {
         Unregister-ScheduledTask -TaskName $retired -Confirm:$false
         Write-Host "  Removed retired task: $retired" -ForegroundColor Yellow
@@ -224,7 +225,7 @@ Write-Host "  - PropOracle - Grader 3AM (A1 + yesterday grades; unchanged)"
 Write-Host "  - PropOracle - Daily 5AM (juice-window update + live payout CDP + publish)"
 Write-Host "  - PropOracle - Refresh 1030AM (PP morning move + ticket patch + publish)"
 Write-Host "  - PropOracle - Refresh 430PM (evening 7pm slate + publish)"
-Write-Host "  - PropOracle - Injury Refresh 11PM / 6PM (collect + re-attach + ticket rebuild + publish; no PP fetch)"
+Write-Host "  - PropOracle - Injury Refresh 11PM / 9AM / 6PM (collect + re-attach + ticket rebuild + publish; no PP fetch)"
 Write-Host ""
 Write-Host "CDP payout scrape: 9PM + 5AM + 10:30 + 4:30 (no standalone 11AM/3PM tasks)." -ForegroundColor Yellow
 Write-Host "Injuries: also runs inside 5AM daily + each refresh (10:30 / 4:30). OUT hard-drops from tickets." -ForegroundColor Yellow

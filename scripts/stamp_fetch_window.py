@@ -40,6 +40,30 @@ STEP1_FILES: tuple[tuple[str, str], ...] = (
 )
 
 
+def archive_missing_step1s(date: str) -> int:
+    """Archive any dated step1 fetch clock that never reached line_history (no restamp)."""
+    n = 0
+    day = ROOT / "outputs" / date
+    for sport, rel in STEP1_FILES:
+        path = day / rel.replace("/", os.sep)
+        if not path.is_file():
+            continue
+        try:
+            df = pd.read_csv(path)
+        except Exception as exc:
+            print(f"  [archive] skip {sport}: {exc}")
+            continue
+        if df is None or df.empty or "fetched_at" not in df.columns:
+            continue
+        clocks = df["fetched_at"].astype(str).str.strip()
+        for clock in sorted({c for c in clocks.unique() if c and c not in ("nan", "None")}):
+            if not snapshot_archived(sport, clock):
+                print(f"  [archive] {sport} fetched_at={clock} missing from line_history — archiving")
+                try_archive_lines(df, sport, only_fetched_at=clock)
+                n += 1
+    return n
+
+
 def restamp_dated_step1s(date: str, *, when: str, window: str) -> int:
     n_ok = 0
     day = ROOT / "outputs" / date
@@ -85,6 +109,7 @@ def main() -> int:
     ap.add_argument("--window", default="")
     ap.add_argument("--write-stamp", action="store_true")
     ap.add_argument("--restamp-csvs", action="store_true")
+    ap.add_argument("--archive-missing", action="store_true")
     args = ap.parse_args()
     from datetime import datetime
     from zoneinfo import ZoneInfo
@@ -97,6 +122,8 @@ def main() -> int:
     if args.restamp_csvs:
         restamp_dated_step1s(date_s, when=when, window=job_window_label(when, explicit=win))
         rebuild_bet_windows(date_s)
+    elif args.archive_missing:
+        archive_missing_step1s(date_s)
     summary = summarize_fetch_window(date_s, win or None)
     if args.write_stamp:
         write_fetch_window_stamp(summary)

@@ -226,7 +226,7 @@ if (Test-Path -LiteralPath $watchlist) {
 $stampPy = Join-Path $Root "scripts\stamp_fetch_window.py"
 if (Test-Path -LiteralPath $stampPy) {
     $stampArgs = @("-3.14", $stampPy, "--date", $SlateDate, "--window", "9PM", "--write-stamp")
-    if ($dailyExit -ne 0 -and (Test-Path -LiteralPath $aheadDir)) { $stampArgs += "--restamp-csvs" }
+    if ($dailyExit -ne 0 -and (Test-Path -LiteralPath $aheadDir)) { $stampArgs += "--restamp-csvs" } else { $stampArgs += "--archive-missing" }
     & py @stampArgs
 }
 

@@ -156,6 +156,12 @@ if ($LASTEXITCODE -ne 0) {
     Write-Host "[5AM DAILY] Snapshot logging failed" -ForegroundColor Yellow
 }
 
+# Fetches archive themselves; this saves any board a locked line_history.db skipped.
+$stampPy = Join-Path $Root "scripts\stamp_fetch_window.py"
+if (Test-Path -LiteralPath $stampPy) {
+    & py -3.14 -X utf8 $stampPy --date $Today --window "5AM" --archive-missing | Out-Null
+}
+
 $Health = Join-Path $Root "scripts\Write-DailyRunHealth.ps1"
 $healthExit = 0
 if (Test-Path -LiteralPath $Health) {

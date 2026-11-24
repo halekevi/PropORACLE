@@ -34,6 +34,7 @@ $map = @{
     "PropOracle - DayAhead 9PM"     = @{ File = "scripts\run_daily_day_ahead.ps1" }
     "PropOracle - Grader 3AM"       = @{ File = "scripts\run_grader_evening.ps1" }
     "PropOracle - Injury Refresh 11PM" = @{ File = "scripts\run_injury_refresh.ps1"; Extra = "-Window 11PM" }
+    "PropOracle - Injury Refresh 9AM"  = @{ File = "scripts\run_injury_refresh.ps1"; Extra = "-Window 9AM" }
     "PropOracle - Injury Refresh 6PM"  = @{ File = "scripts\run_injury_refresh.ps1"; Extra = "-Window 6PM" }
     "PropOracle - Ladder Fill"      = @{ File = "scripts\run_ladder_fill.ps1" }
     "PropOracle - Live Freshness"   = @{ PyArgs = "-3.14 -X utf8 scripts\check_live_tickets_fresh.py" }
