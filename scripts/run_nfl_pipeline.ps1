@@ -192,6 +192,10 @@ if ($ok -and (Test-Path -LiteralPath $refDef)) {
 if ($ok) {
         $ok = Run-Step "NFL Step 5 - Boxscore Stats" $NFLDir ".\scripts\step5_attach_boxscore_stats_nfl.py" --input $s3 --output $s5 --date $Date --cache data\cache\nfl_boxscore_cache.csv --days 400
 }
+if ($ok -and -not $period) {
+    # Player game log for claude_nfl builders; non-fatal.
+    $null = Run-Step "NFL Player Game Log (by athlete id)" $Root ".\scripts\build_nfl_player_games.py"
+}
 if ($ok) {
     $ok = Run-Step "NFL Step 6 - Hit Rates" $NFLDir ".\scripts\step6_historical_hit_rates.py" --input $s5 --output $s6
 }

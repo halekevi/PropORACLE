@@ -337,6 +337,9 @@ def parse_players(
                         row["SACK"] = _f(st[sack])
                     if dint is not None and dint < len(st):
                         row["DEF_INT"] = _f(st[dint])
+                elif cat in ("kickreturns", "puntreturns"):
+                    # Returner-only games are games played (card shows 0 rec/rush yds).
+                    row["RET_APPEAR"] = 1.0
                 elif cat == "kicking":
                     pts = idx("PTS")
                     fg = idx("FG")
@@ -374,11 +377,11 @@ def parse_players(
         "PASS_YDS", "RUSH_YDS", "REC_YDS", "REC", "PASS_TD", "RUSH_TD", "REC_TD",
         "PASS_CMP", "PASS_ATT", "PASS_INT", "PASS_SACKS", "SACK", "TACK_TOT",
         "KICK_PTS", "KICK_FG", "KICK_XP", "DEF_INT",
-        "PASS_LONG", "RUSH_LONG", "REC_LONG", "REC_TGT", "RUSH_ATT",
+        "PASS_LONG", "RUSH_LONG", "REC_LONG", "REC_TGT", "RUSH_ATT", "RET_APPEAR",
     )
     _optional_absent = {
         "PASS_LONG", "RUSH_LONG", "REC_LONG", "REC_TGT", "RUSH_ATT",
-        "PASS_ATT", "PASS_CMP", "PASS_SACKS", "KICK_FG", "KICK_XP",
+        "PASS_ATT", "PASS_CMP", "PASS_SACKS", "KICK_FG", "KICK_XP", "RET_APPEAR",
     }
     rows: List[dict] = []
     for row in by_ath.values():
@@ -977,6 +980,53 @@ def build_player_histories(
     return hist_aid, hist_name
 
 
+def _nfl_preseason_box(game_date: str) -> bool:
+    """NFL preseason runs early August through the first days of September."""
+    ds = str(game_date or "").replace("-", "")[:8]
+    if len(ds) != 8 or not ds.isdigit():
+        return False
+    month, day = int(ds[4:6]), int(ds[6:8])
+    return month == 8 or (month == 9 and day <= 5)
+
+
+def _nfl_past_week4(slate: dt.date) -> bool:
+    """Weeks 1-4 assemble cross-season L5 downstream (utils.nfl_cross_season_l5)."""
+    if slate.month in (1, 2, 3, 4, 5, 6, 7, 8):
+        return slate.month <= 2
+    return slate >= dt.date(slate.year, 10, 8)
+
+
+def _histories_by_athlete(
+    hist_aid: Dict[Tuple[str, str], List[dict]],
+) -> Tuple[Dict[str, List[dict]], Dict[Tuple[str, str], str]]:
+    """All games per athlete id across teams, plus a (team_id, player_norm) -> id lookup.
+
+    The lookup only keeps pairs that resolve to exactly one athlete, so two players with
+    the same name on one roster never share a history.
+    """
+    by_aid: Dict[str, List[dict]] = {}
+    name_ids: Dict[Tuple[str, str], set] = {}
+    for (tid, aid), games in hist_aid.items():
+        by_aid.setdefault(aid, []).extend(games)
+        for g in games:
+            pn = str(g.get("player_norm", "")).strip()
+            if pn:
+                name_ids.setdefault((tid, pn), set()).add(aid)
+    merged: Dict[str, List[dict]] = {}
+    for aid, games in by_aid.items():
+        seen, out = set(), []
+        for g in sorted(games, key=lambda r: r.get("game_date", ""), reverse=True):
+            eid = str(g.get("event_id", ""))
+            if eid and eid in seen:
+                continue
+            if eid:
+                seen.add(eid)
+            out.append(g)
+        merged[aid] = out
+    lookup = {k: next(iter(v)) for k, v in name_ids.items() if len(v) == 1}
+    return merged, lookup
+
+
 def main():
     try:
         from tqdm import tqdm as _tqdm
@@ -1147,11 +1197,21 @@ def main():
         )
 
     out_rows, stat_status = [], []
+    hist_by_aid, aid_lookup = _histories_by_athlete(hist_aid)
+    drop_nfl_preseason = ESPN_LEAGUE == "nfl" and _nfl_past_week4(end_d)
+    resolved_aids: List[str] = []
+    match_keys: List[str] = []
 
     for _, row in _tqdm(df.iterrows(), total=len(df), desc="Attaching stats", unit="prop"):
         tid  = str(row.get("team_id",       "")).strip()
         pn   = str(row.get("player_norm",   "")).strip()
         aid  = str(row.get("espn_athlete_id","")).strip()
+        if aid in ("nan", "None"):
+            aid = ""
+        if not aid and tid and pn:
+            aid = aid_lookup.get((tid, pn), "")
+        resolved_aids.append(aid)
+        match_keys.append("athlete_id" if aid and aid in hist_by_aid else ("name" if pn else ""))
         prop = str(row.get(prop_col,        "")).strip()
         line = row.get("line", None)
 
@@ -1185,7 +1245,9 @@ def main():
             if not games:
                 stat_status.append("NO_BOX_HISTORY"); out_rows.append({}); continue
         else:
-            games = (hist_aid.get((tid, aid), []) if aid else []) or hist_name.get((tid, pn), [])
+            games = (hist_by_aid.get(aid, []) if aid else []) or hist_name.get((tid, pn), [])
+        if drop_nfl_preseason:
+            games = [g for g in games if not _nfl_preseason_box(g.get("game_date", ""))]
         if not games:
             stat_status.append("NO_BOX_HISTORY"); out_rows.append({}); continue
 
@@ -1294,6 +1356,9 @@ def main():
 
     stats_df = pd.DataFrame(out_rows).fillna("")
     df["stat_status"] = stat_status
+    df["espn_athlete_id"] = resolved_aids
+    df["box_match_key"] = match_keys
+    print("box match key:", pd.Series(match_keys).value_counts().to_dict())
     out = pd.concat([df.reset_index(drop=True), stats_df], axis=1)
 
     # Re-attach the 2H rows (they carry UNSUPPORTED_2H status, no stat columns)
