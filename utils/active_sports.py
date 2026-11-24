@@ -85,6 +85,24 @@ def inactive_fetch_block(*, key: str = "", league_id: str | int = "") -> str | N
         lid = str(r.get("league_id") or "").strip()
         if (want_k and k == want_k) or (want_l and lid == want_l):
             return k
+    if not want_k and want_l:
+        want_k = next(
+            (
+                str(r.get("key") or "").strip().upper()
+                for r in active_entries()
+                if str(r.get("league_id") or "").strip() == want_l
+            ),
+            "",
+        )
+    # Between a championship and the next first preseason game the board stays off
+    # even if the config sync has not run yet today.
+    try:
+        from utils.season_calendar import board_off_season
+
+        if want_k and board_off_season(want_k):
+            return want_k
+    except Exception:
+        pass
     return None
 
 

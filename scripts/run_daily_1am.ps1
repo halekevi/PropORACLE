@@ -94,6 +94,14 @@ if ($pullPrepExit -ne 0) {
     Write-Host "[1AM DAILY] Pull prep warned (exit $pullPrepExit); continuing with local tree." -ForegroundColor Yellow
 }
 
+# Sports go inactive the day after their championship and return the day before their
+# first preseason game (ESPN calendar); inactive sports are never fetched.
+$syncActive = Join-Path $Root "scripts\sync_active_sports.py"
+if (Test-Path -LiteralPath $syncActive) {
+    Write-Host "[1AM DAILY] Syncing active sports from the ESPN season calendar..." -ForegroundColor DarkGray
+    & py -3.14 -X utf8 $syncActive
+}
+
     $Today = (Get-Date).ToString("yyyy-MM-dd")
 # 3AM Grader owns A1 + yesterday's grades so this job stays on fetch + payout CDP.
 $dailyArgs = @("-SkipGrader", "-SkipHistoricalActuals")

@@ -104,6 +104,14 @@ if (Test-Path -LiteralPath $EnsurePull) {
     }
 }
 
+# Sports go inactive the day after their championship and return the day before their
+# first preseason game (ESPN calendar); inactive sports are never fetched.
+$syncActive = Join-Path $Root "scripts\sync_active_sports.py"
+if (Test-Path -LiteralPath $syncActive) {
+    Write-Host "[DAY-AHEAD] Syncing active sports from the ESPN season calendar..." -ForegroundColor DarkGray
+    & py -3.14 -X utf8 $syncActive
+}
+
 $env:PROPORACLE_BET_WINDOW = "9PM"
 # 64 first-leg seeds took 35+ min on the day-ahead combined; 12 keeps the 9PM publish on time.
 # Env (not -TicketGenStarts) so run_pipeline does not treat this as a mid-day rebuild.
