@@ -690,6 +690,9 @@ def fetch_pages(
 # The in-page fetch() inherits the authenticated session and DataDome trust
 # from the open tab — closing or relaunching Chrome resets that trust.
 
+_PW_PROJECTIONS_STATUS = 0
+
+
 def fetch_via_playwright_session(league_id: str, timeout_s: int, cdp_url: str = "") -> Tuple[List[dict], List[dict], List[dict]]:
     from playwright.sync_api import sync_playwright
 
@@ -877,6 +880,11 @@ def fetch_via_playwright_session(league_id: str, timeout_s: int, cdp_url: str = 
             context.close()
 
     league_rows = list((leagues or {}).get("data") or [])
+    global _PW_PROJECTIONS_STATUS
+    try:
+        _PW_PROJECTIONS_STATUS = int((payload or {}).get("status", 200) or 0)
+    except (TypeError, ValueError):
+        _PW_PROJECTIONS_STATUS = 0
     print(f"  [playwright] leagues_status={(leagues or {}).get('status', 200)} rows={len(league_rows)}")
     print(
         f"  [playwright] projections_status={(payload or {}).get('status', 200)} "
@@ -1118,6 +1126,17 @@ def main():
                 "Do not use stale on-disk step1 in production."
             )
             sys.exit(1)
+
+    if not data and _PW_PROJECTIONS_STATUS == 200:
+        # The browser reached PrizePicks and the board is simply empty (off-season or
+        # not posted yet). Exiting 1 here made runners fall back to HTTP and trip DataDome.
+        print(f"  [no board] league_id={lid_s} projections_status=200 rows=0 — writing empty step1 (not a 403)")
+        pd.DataFrame(columns=[
+            "projection_id", "pp_projection_id", "player_id", "pp_game_id", "start_time",
+            "player", "pos", "team", "opp_team", "prop_type", "line", "pick_type", "game_date",
+            "board_date", "line_asof", "fetched_at", "pp_updated_at", "sport", "ticketable",
+        ]).to_csv(out_path, index=False, encoding="utf-8-sig")
+        sys.exit(0)
 
     if not data:
         print(

@@ -85,6 +85,17 @@ $NHL_SEASON_RESUME = "2026-09-01"
 $NBAOffSeason = ([datetime]::ParseExact($PipeDate, "yyyy-MM-dd", $null) -lt [datetime]::ParseExact($NBA_SEASON_RESUME, "yyyy-MM-dd", $null))
 $NHLOffSeason = ([datetime]::ParseExact($PipeDate, "yyyy-MM-dd", $null) -lt [datetime]::ParseExact($NHL_SEASON_RESUME, "yyyy-MM-dd", $null))
 
+# config/active_sports.json "inactive" sports are not fetched. An off-season board
+# fetch returns nothing, and the HTTP fallback after it trips DataDome for every sport.
+$InactiveSports = @()
+try {
+    $activeCfg = Get-Content -LiteralPath (Join-Path $Root "config\active_sports.json") -Raw | ConvertFrom-Json
+    $InactiveSports = @($activeCfg.inactive | ForEach-Object { "$($_.key)".ToUpper() })
+} catch {
+    Write-Host "[LATE_FETCH] WARN: could not read config\active_sports.json ($($_.Exception.Message))" -ForegroundColor Yellow
+}
+function Test-SportInactive([string]$Key) { return ($InactiveSports -contains $Key.ToUpper()) }
+
 function Get-VersionedPath([string]$Path) {
     $dir = Split-Path -Parent $Path
     # Never drop *.bak_* next to live templates (Flask/OneDrive thrash).
@@ -523,32 +534,37 @@ else {
     }
 }
 
-# WNBA — full step1 fetch into dated folder (pipeline -SkipFetch reads this path)
-Write-Host "[LATE_FETCH] Fetching WNBA props..."
-$wnbaPs1 = Join-Path $Root "scripts\run_wnba_pipeline.ps1"
-$wnbaStep1 = Join-Path (Ensure-RunOutDir -SportTag "wnba") "step1_wnba_props.csv"
-if (Test-Path -LiteralPath $wnbaPs1) {
-    $wnbaArgs = @("-NoProfile", "-File", $wnbaPs1, "-Date", $PipeDate, "-Step1Only", "-Max403Retries", "$MaxRetries")
-    if ($Quiet403) { $wnbaArgs += "-Quiet403" }
-    # Prefer CDP whenever Chrome is listening — not only MANUAL_CDP labels.
-    # HTTP-first with high retries was hanging refreshes on DataDome.
-    if ($CdpReachable) {
-        $wnbaArgs += "-CdpWhenListening"
-        Write-Host "[LATE_FETCH] WNBA: CDP reachable — browser-first" -ForegroundColor DarkGray
-    }
-    $wnbaTimeout = if ($CdpReachable) { 240 } else { 180 }
-    $wnbaExit = Invoke-TimedCommand -Label "WNBA step1" -FilePath "pwsh" -ArgumentList $wnbaArgs -WorkingDirectory $Root -TimeoutSec $wnbaTimeout
-    $wnbaRows = Get-CsvDataRowCount -CsvPath $wnbaStep1
-    if ($wnbaExit -eq 0 -and $wnbaRows -eq 0) {
-        Write-Host "[LATE_FETCH] WNBA: no games on $PipeDate (playoff board can be a later day) — not a failure" -ForegroundColor DarkGray
-    }
-    elseif ($wnbaExit -ne 0) {
-        [void](Resolve-Step1MorningFallback -Sport "WNBA" -Step1Path $wnbaStep1 -MaxRetries $MaxRetries -FetchFailed $true -Reason "fetch")
-        [void](Copy-SiblingDatedStep1 -Sport "WNBA" -SportTag "wnba" -FileName "step1_wnba_props.csv" -Step1Path $wnbaStep1)
-    }
+if (Test-SportInactive "WNBA") {
+    Write-Host "[LATE_FETCH] Skipping WNBA fetch (inactive in config\active_sports.json)" -ForegroundColor DarkGray
 }
 else {
-    Write-Host "[LATE_FETCH] WARN: missing $wnbaPs1 — skipping WNBA fetch" -ForegroundColor Yellow
+    # WNBA — full step1 fetch into dated folder (pipeline -SkipFetch reads this path)
+    Write-Host "[LATE_FETCH] Fetching WNBA props..."
+    $wnbaPs1 = Join-Path $Root "scripts\run_wnba_pipeline.ps1"
+    $wnbaStep1 = Join-Path (Ensure-RunOutDir -SportTag "wnba") "step1_wnba_props.csv"
+    if (Test-Path -LiteralPath $wnbaPs1) {
+        $wnbaArgs = @("-NoProfile", "-File", $wnbaPs1, "-Date", $PipeDate, "-Step1Only", "-Max403Retries", "$MaxRetries")
+        if ($Quiet403) { $wnbaArgs += "-Quiet403" }
+        # Prefer CDP whenever Chrome is listening — not only MANUAL_CDP labels.
+        # HTTP-first with high retries was hanging refreshes on DataDome.
+        if ($CdpReachable) {
+            $wnbaArgs += "-CdpWhenListening"
+            Write-Host "[LATE_FETCH] WNBA: CDP reachable — browser-first" -ForegroundColor DarkGray
+        }
+        $wnbaTimeout = if ($CdpReachable) { 240 } else { 180 }
+        $wnbaExit = Invoke-TimedCommand -Label "WNBA step1" -FilePath "pwsh" -ArgumentList $wnbaArgs -WorkingDirectory $Root -TimeoutSec $wnbaTimeout
+        $wnbaRows = Get-CsvDataRowCount -CsvPath $wnbaStep1
+        if ($wnbaExit -eq 0 -and $wnbaRows -eq 0) {
+            Write-Host "[LATE_FETCH] WNBA: no games on $PipeDate (playoff board can be a later day) — not a failure" -ForegroundColor DarkGray
+        }
+        elseif ($wnbaExit -ne 0) {
+            [void](Resolve-Step1MorningFallback -Sport "WNBA" -Step1Path $wnbaStep1 -MaxRetries $MaxRetries -FetchFailed $true -Reason "fetch")
+            [void](Copy-SiblingDatedStep1 -Sport "WNBA" -SportTag "wnba" -FileName "step1_wnba_props.csv" -Step1Path $wnbaStep1)
+        }
+    }
+    else {
+        Write-Host "[LATE_FETCH] WARN: missing $wnbaPs1 — skipping WNBA fetch" -ForegroundColor Yellow
+    }
 }
 
 # NHL — append
@@ -918,83 +934,139 @@ else {
     }
 }
 
-# MLB — CDP-first when Chrome is listening (same DataDome pattern as WNBA).
-# HTTP full waves only when CDP is down; never burn 20–40 min of 403 stacks with CDP already up.
-Write-Host "[LATE_FETCH] Fetching MLB props (append)..." -ForegroundColor Cyan
-$MLBDir = Join-Path $SportsRoot "MLB"
-$mlbRunOut = Ensure-RunOutDir -SportTag "mlb"
-$mlbStep1 = Join-Path $mlbRunOut "step1_mlb_props.csv"
-$env:PROPORACLE_CURL_IMPERSONATE = "chrome131"
-$mlbHttpArgs = @(
-    "--date", "$PipeDate",
-    "--output", $mlbStep1,
-    "--per-page", "250",
-    "--max-pages", "10",
-    "--max-retries", "$MaxRetries",
-    "--api-session-waves", "3",
-    "--api-403-cooldown-after", "$([Math]::Max(2, $MaxRetries + 1))",
-    "--api-403-cooldown-seconds", "90",
-    "--api-403-cooldown-jitter-min", "12",
-    "--api-403-cooldown-jitter-max", "40",
-    "--append"
-)
-$mlbCdpUrl = if ($env:PROPORACLE_MLB_CDP_URL) { "$($env:PROPORACLE_MLB_CDP_URL)".Trim() } else { $CdpUrl }
-$mlbCdpReachable = $CdpReachable
-if (-not $mlbCdpReachable) {
-    try {
-        $mlbCdpProbe = Invoke-RestMethod -Uri "$mlbCdpUrl/json/version" -TimeoutSec 2 -ErrorAction Stop
-        if ($mlbCdpProbe) { $mlbCdpReachable = $true }
+# CBB / WCBB — refresh step1 (was 1AM-only, so later-posted boards and line moves never landed).
+# Writes to a temp file first: a failed or empty refresh keeps the earlier board.
+foreach ($cb in @(
+    @{ Key = "CBB";  League = "20";  File = "step1_cbb.csv" },
+    @{ Key = "WCBB"; League = "176"; File = "step1_wcbb.csv" }
+)) {
+    if (Test-SportInactive $cb.Key) {
+        Write-Host "[LATE_FETCH] Skipping $($cb.Key) fetch (inactive in config\active_sports.json)" -ForegroundColor DarkGray
+        continue
     }
-    catch { $mlbCdpReachable = $false }
-}
-
-Push-Location $MLBDir
-try {
-    if ($mlbCdpReachable) {
-        Write-Host "[LATE_FETCH] MLB: CDP reachable — browser-first ($mlbCdpUrl)" -ForegroundColor DarkGray
-        & py -3.14 -u ".\scripts\step1_fetch_prizepicks_mlb.py" `
-            "--cdp" $mlbCdpUrl `
-            "--timeout" "120" `
-            "--retries" "1" `
-            "--retry_delay" "5" `
-            "--append" `
-            "--date" "$PipeDate" `
-            "--output" $mlbStep1
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "[LATE_FETCH] MLB CDP failed (exit $LASTEXITCODE) — HTTP fallback (full 403 backoff)" -ForegroundColor Yellow
-            & py -3.14 -u ".\scripts\step1_fetch_prizepicks_mlb.py" @mlbHttpArgs
-        }
+    Write-Host "[LATE_FETCH] Fetching $($cb.Key) props (league_id=$($cb.League))..."
+    $CBBDir = Join-Path $SportsRoot "CBB"
+    $cbStep1 = Join-Path (Ensure-RunOutDir -SportTag $cb.Key.ToLower()) $cb.File
+    $cbTmp = "$cbStep1.refresh.csv"
+    Remove-Item -LiteralPath $cbTmp -Force -ErrorAction SilentlyContinue
+    # The CBB scraper does not read the DataDome stamp; never send plain HTTP while it is active.
+    $ddUntil = 0.0
+    $ddStamp = Join-Path $Root "data\cache\pp_datadome_cooldown.stamp"
+    if (Test-Path -LiteralPath $ddStamp) { [void][double]::TryParse((Get-Content -LiteralPath $ddStamp -Raw).Trim(), [ref]$ddUntil) }
+    $ddActive = $ddUntil -gt [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+    $cbExit = 1
+    $cbRows = 0
+    if ($ddActive) {
+        Write-Host "[LATE_FETCH] $($cb.Key): DataDome cooldown active — skipping HTTP" -ForegroundColor DarkGray
     }
     else {
-        Write-Host "[LATE_FETCH] MLB: CDP down — HTTP first (full 403 backoff)" -ForegroundColor DarkGray
-        & py -3.14 -u ".\scripts\step1_fetch_prizepicks_mlb.py" @mlbHttpArgs
+        $cbExit = Invoke-TimedCommand -Label "$($cb.Key) step1" -FilePath "py" -ArgumentList @(
+            "-3.14", ".\scripts\pipeline\step1_pp_cbb_scraper.py",
+            "--league_id", $cb.League, "--out", $cbTmp, "--fail-fast"
+        ) -WorkingDirectory $CBBDir -TimeoutSec 150
+        $cbRows = Get-CsvDataRowCount -CsvPath $cbTmp
+    }
+    if ((($cbExit -ne 0) -or ($cbRows -eq 0)) -and $CdpReachable) {
+        Write-Host "[LATE_FETCH] $($cb.Key) HTTP empty/failed — CDP fallback" -ForegroundColor Yellow
+        $cbExit = Invoke-TimedCommand -Label "$($cb.Key) step1 CDP" -FilePath "py" -ArgumentList @(
+            "-3.14", ".\scripts\pipeline\step1_pp_cbb_scraper.py",
+            "--league_id", $cb.League, "--out", $cbTmp, "--cdp", $CdpUrl
+        ) -WorkingDirectory $CBBDir -TimeoutSec 240
+        $cbRows = Get-CsvDataRowCount -CsvPath $cbTmp
+    }
+    if (($cbExit -eq 0) -and ($cbRows -gt 0)) {
+        Move-Item -LiteralPath $cbTmp -Destination $cbStep1 -Force
+        Write-Host "[LATE_FETCH] $($cb.Key): $cbRows props" -ForegroundColor Green
+    }
+    else {
+        Remove-Item -LiteralPath $cbTmp -Force -ErrorAction SilentlyContinue
+        $kept = Get-CsvDataRowCount -CsvPath $cbStep1
+        Write-Host "[LATE_FETCH] $($cb.Key): refresh empty/failed (exit $cbExit) — keeping earlier step1 ($kept rows)" -ForegroundColor DarkGray
+    }
+}
+
+if (Test-SportInactive "MLB") {
+    Write-Host "[LATE_FETCH] Skipping MLB fetch (inactive in config\active_sports.json)" -ForegroundColor DarkGray
+}
+else {
+    # MLB — CDP-first when Chrome is listening (same DataDome pattern as WNBA).
+    # HTTP full waves only when CDP is down; never burn 20–40 min of 403 stacks with CDP already up.
+    Write-Host "[LATE_FETCH] Fetching MLB props (append)..." -ForegroundColor Cyan
+    $MLBDir = Join-Path $SportsRoot "MLB"
+    $mlbRunOut = Ensure-RunOutDir -SportTag "mlb"
+    $mlbStep1 = Join-Path $mlbRunOut "step1_mlb_props.csv"
+    $env:PROPORACLE_CURL_IMPERSONATE = "chrome131"
+    $mlbHttpArgs = @(
+        "--date", "$PipeDate",
+        "--output", $mlbStep1,
+        "--per-page", "250",
+        "--max-pages", "10",
+        "--max-retries", "$MaxRetries",
+        "--api-session-waves", "3",
+        "--api-403-cooldown-after", "$([Math]::Max(2, $MaxRetries + 1))",
+        "--api-403-cooldown-seconds", "90",
+        "--api-403-cooldown-jitter-min", "12",
+        "--api-403-cooldown-jitter-max", "40",
+        "--append"
+    )
+    $mlbCdpUrl = if ($env:PROPORACLE_MLB_CDP_URL) { "$($env:PROPORACLE_MLB_CDP_URL)".Trim() } else { $CdpUrl }
+    $mlbCdpReachable = $CdpReachable
+    if (-not $mlbCdpReachable) {
+        try {
+            $mlbCdpProbe = Invoke-RestMethod -Uri "$mlbCdpUrl/json/version" -TimeoutSec 2 -ErrorAction Stop
+            if ($mlbCdpProbe) { $mlbCdpReachable = $true }
+        }
+        catch { $mlbCdpReachable = $false }
+    }
+
+    Push-Location $MLBDir
+    try {
+        if ($mlbCdpReachable) {
+            Write-Host "[LATE_FETCH] MLB: CDP reachable — browser-first ($mlbCdpUrl)" -ForegroundColor DarkGray
+            & py -3.14 -u ".\scripts\step1_fetch_prizepicks_mlb.py" `
+                "--cdp" $mlbCdpUrl `
+                "--timeout" "120" `
+                "--retries" "1" `
+                "--retry_delay" "5" `
+                "--append" `
+                "--date" "$PipeDate" `
+                "--output" $mlbStep1
+            if ($LASTEXITCODE -ne 0) {
+                Write-Host "[LATE_FETCH] MLB CDP failed (exit $LASTEXITCODE) — HTTP fallback (full 403 backoff)" -ForegroundColor Yellow
+                & py -3.14 -u ".\scripts\step1_fetch_prizepicks_mlb.py" @mlbHttpArgs
+            }
+        }
+        else {
+            Write-Host "[LATE_FETCH] MLB: CDP down — HTTP first (full 403 backoff)" -ForegroundColor DarkGray
+            & py -3.14 -u ".\scripts\step1_fetch_prizepicks_mlb.py" @mlbHttpArgs
+        }
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "[LATE_FETCH] MLB falling back to Playwright" -ForegroundColor Yellow
+            & py -3.14 -u ".\scripts\step1_fetch_prizepicks_mlb.py" `
+                "--playwright" `
+                "--timeout" "240" `
+                "--retries" "1" `
+                "--retry_delay" "5" `
+                "--append" `
+                "--date" "$PipeDate" `
+                "--output" $mlbStep1
+        }
+    }
+    finally {
+        Pop-Location
     }
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "[LATE_FETCH] MLB falling back to Playwright" -ForegroundColor Yellow
-        & py -3.14 -u ".\scripts\step1_fetch_prizepicks_mlb.py" `
-            "--playwright" `
-            "--timeout" "240" `
-            "--retries" "1" `
-            "--retry_delay" "5" `
-            "--append" `
-            "--date" "$PipeDate" `
-            "--output" $mlbStep1
+        $mlbRows = Get-CsvDataRowCount -CsvPath $mlbStep1
+        if (-not (Resolve-Step1MorningFallback -Sport "MLB" -Step1Path $mlbStep1 -MaxRetries $MaxRetries -FetchFailed $true)) {
+            Write-Host "[LATE_FETCH][HIGH] MLB step1 failed and no fallback rows are available. Continuing pipeline for other sports." -ForegroundColor Red
+        }
     }
-}
-finally {
-    Pop-Location
-}
-if ($LASTEXITCODE -ne 0) {
-    $mlbRows = Get-CsvDataRowCount -CsvPath $mlbStep1
-    if (-not (Resolve-Step1MorningFallback -Sport "MLB" -Step1Path $mlbStep1 -MaxRetries $MaxRetries -FetchFailed $true)) {
-        Write-Host "[LATE_FETCH][HIGH] MLB step1 failed and no fallback rows are available. Continuing pipeline for other sports." -ForegroundColor Red
+    elseif ((Get-CsvDataRowCount -CsvPath $mlbStep1) -gt 0) {
+        Copy-Step1Mirror -Source $mlbStep1 -MirrorPath (Join-Path $MLBDir "data\outputs\step1_mlb_props.csv")
     }
-}
-elseif ((Get-CsvDataRowCount -CsvPath $mlbStep1) -gt 0) {
-    Copy-Step1Mirror -Source $mlbStep1 -MirrorPath (Join-Path $MLBDir "data\outputs\step1_mlb_props.csv")
-}
-if ((Get-CsvDataRowCount -CsvPath $mlbStep1) -eq 0) {
-    [void](Copy-SiblingDatedStep1 -Sport "MLB" -SportTag "mlb" -FileName "step1_mlb_props.csv" -Step1Path $mlbStep1)
+    if ((Get-CsvDataRowCount -CsvPath $mlbStep1) -eq 0) {
+        [void](Copy-SiblingDatedStep1 -Sport "MLB" -SportTag "mlb" -FileName "step1_mlb_props.csv" -Step1Path $mlbStep1)
+    }
 }
 
 $stampPy = Join-Path $Root "scripts\stamp_fetch_window.py"
