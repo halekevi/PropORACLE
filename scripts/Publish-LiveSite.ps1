@@ -362,6 +362,8 @@ Get-ChildItem -LiteralPath (Join-Path $Root "ui_runner\runtime") -Filter "slate_
     ForEach-Object { $liveRel += ("ui_runner/runtime/" + $_.Name) }
 Get-ChildItem -LiteralPath (Join-Path $Root "ui_runner\templates") -Filter "slate_sport_*.json" -ErrorAction SilentlyContinue |
     ForEach-Object { $liveRel += ("ui_runner/templates/" + $_.Name) }
+Get-ChildItem -LiteralPath (Join-Path $Root "ui_runner\templates") -Filter "*_matchup_edge.json" -ErrorAction SilentlyContinue |
+    ForEach-Object { $liveRel += ("ui_runner/templates/" + $_.Name) }
 
 $toPublish = @()
 foreach ($rel in $liveRel) {
