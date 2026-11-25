@@ -2199,8 +2199,21 @@ else {
             "ui_runner/runtime/slate_latest.json",
             "ui_runner/templates/slate_latest.json",
             "ui_runner/runtime/pipeline_status.json",
-            "ui_runner/templates/pipeline_status.json"
+            "ui_runner/templates/pipeline_status.json",
+            "ui_runner/runtime/slate_display_date.json",
+            "ui_runner/templates/slate_display_date.json"
         )
+        # The stash below also takes per-sport boards and matchup edges off the tree before
+        # the commit; snapshot them too or Railway keeps serving yesterday's sport files.
+        foreach ($dirRel in @("ui_runner/runtime", "ui_runner/templates")) {
+            $dirFull = Join-Path $Root ($dirRel -replace "/", "\")
+            if (-not (Test-Path -LiteralPath $dirFull)) { continue }
+            foreach ($pat in @("slate_sport_*.json", "*_matchup_edge.json")) {
+                Get-ChildItem -LiteralPath $dirFull -Filter $pat -File -ErrorAction SilentlyContinue | ForEach-Object {
+                    $stepELiveRels += "$dirRel/$($_.Name)"
+                }
+            }
+        }
         # Snapshot live tickets from the daily run workspace before main-side staging.
         $stepELiveSnap = Join-Path $env:TEMP ("proporacle_step_e_live_" + [guid]::NewGuid().ToString("N"))
         New-Item -ItemType Directory -Path $stepELiveSnap -Force | Out-Null

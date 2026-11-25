@@ -63,7 +63,11 @@ function Invoke-LoggedPwsh {
         -WorkingDirectory $wd `
         -RedirectStandardOutput $outLog `
         -RedirectStandardError $errLog `
-        -Wait -PassThru -NoNewWindow
+        -PassThru -NoNewWindow
+    # Start-Process -Wait also waits on every descendant. A child that (re)launches the
+    # PrizePicks debug Chrome then never returns. Wait on the child process only.
+    $null = $proc.Handle
+    $proc.WaitForExit()
 
     $chunks = @()
     foreach ($f in @($outLog, $errLog)) {
@@ -151,7 +155,11 @@ function Invoke-LoggedPy {
         -WorkingDirectory $wd `
         -RedirectStandardOutput $outLog `
         -RedirectStandardError $errLog `
-        -Wait -PassThru -NoNewWindow
+        -PassThru -NoNewWindow
+    # Start-Process -Wait also waits on every descendant. A child that (re)launches the
+    # PrizePicks debug Chrome then never returns. Wait on the child process only.
+    $null = $proc.Handle
+    $proc.WaitForExit()
 
     $chunks = @()
     foreach ($f in @($outLog, $errLog)) {
