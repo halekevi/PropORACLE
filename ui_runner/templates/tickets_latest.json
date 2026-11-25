@@ -473,7 +473,8 @@
             "model_min_payout_x": 1.6,
             "power_min_x": 1.4,
             "display_min_x": 1.4,
-            "captured_at": "2026-11-24T23:47:47-05:00"
+            "captured_at": "2026-11-24T23:47:47-05:00",
+            "power_first_x": 6.0
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -1397,7 +1398,8 @@
             "model_min_payout_x": 1.6,
             "power_min_x": 1.4,
             "display_min_x": 1.4,
-            "captured_at": "2026-11-24T23:51:31-05:00"
+            "captured_at": "2026-11-24T23:51:31-05:00",
+            "power_first_x": 6.0
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -1861,7 +1863,8 @@
             "model_min_payout_x": 1.6,
             "power_min_x": 1.5,
             "display_min_x": 1.5,
-            "captured_at": "2026-11-24T23:53:26-05:00"
+            "captured_at": "2026-11-24T23:53:26-05:00",
+            "power_first_x": 6.0
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -2325,7 +2328,8 @@
             "model_min_payout_x": 1.6,
             "power_min_x": 1.5,
             "display_min_x": 1.5,
-            "captured_at": "2026-11-25T00:06:52-05:00"
+            "captured_at": "2026-11-25T00:06:52-05:00",
+            "power_first_x": 6.0
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -2789,7 +2793,8 @@
             "model_min_payout_x": 1.6,
             "power_min_x": 1.4,
             "display_min_x": 1.4,
-            "captured_at": "2026-11-24T23:57:14-05:00"
+            "captured_at": "2026-11-24T23:57:14-05:00",
+            "power_first_x": 6.0
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -3256,7 +3261,8 @@
             "model_min_payout_x": 1.6,
             "power_min_x": 1.6,
             "display_min_x": 1.6,
-            "captured_at": "2026-11-24T23:58:47-05:00"
+            "captured_at": "2026-11-24T23:58:47-05:00",
+            "power_first_x": 6.0
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -3720,7 +3726,8 @@
             "model_min_payout_x": 1.6,
             "power_min_x": 1.6,
             "display_min_x": 1.6,
-            "captured_at": "2026-11-25T00:00:24-05:00"
+            "captured_at": "2026-11-25T00:00:24-05:00",
+            "power_first_x": 6.0
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -4069,7 +4076,8 @@
             "model_min_payout_x": 1.7,
             "power_min_x": 1.5,
             "display_min_x": 1.5,
-            "captured_at": "2026-11-24T23:46:18-05:00"
+            "captured_at": "2026-11-24T23:46:18-05:00",
+            "power_first_x": 3.0
           },
           "p_win": 0.5184,
           "expected_wins_per_100": 51.8,
@@ -4530,7 +4538,7 @@
             "payout_adjustment": 0.4928,
             "p_all_win": 0.8821,
             "p_miss_1": 0.1158,
-            "ev": 0.6127,
+            "ev": 5.4642,
             "recommendation": "STRONG",
             "entry_10_to_win_guarantee": 15.0,
             "entry_20_to_win_guarantee": 30.0,
@@ -4540,11 +4548,12 @@
             "entry_10_to_win_sweep": 5.0,
             "payout_confidence_score": 0.441,
             "payout_source": "live_cdp",
-            "ev_formula": "EV = P(all)*0.50 + P(miss-1)*1.50 - 1.0",
+            "ev_formula": "EV = P(all)*6.00 + P(miss-1)*1.50 - 1.0",
             "model_min_payout_x": 0.5,
             "power_min_x": 1.5,
             "display_min_x": 1.5,
-            "captured_at": "2026-11-25T00:02:01-05:00"
+            "captured_at": "2026-11-25T00:02:01-05:00",
+            "power_first_x": 6.0
           },
           "p_win": 0.373248,
           "expected_wins_per_100": 37.3,
@@ -4563,15 +4572,20 @@
   "hot_legs": 2,
   "cold_legs": 0,
   "tier_ev_thresholds": {
-    "strong": 1.4,
-    "ok": 1.15,
-    "marginal": 1.0
+    "strong": 0.36711,
+    "ok": 0.3035,
+    "marginal": 0.257085
   },
   "tier_ev_thresholds_by_legs": {
     "2": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
+      "strong": 0.36711,
+      "ok": 0.3035,
+      "marginal": 0.257085
+    },
+    "3": {
+      "strong": 0.36912,
+      "ok": 0.3035,
+      "marginal": 0.28952
     }
   },
   "tier_ev_percentiles": {
@@ -4594,7 +4608,7 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 0,
+    "legs_checked": 29,
     "failed_goblin": 0,
     "failed_tier": 0,
     "failed_streak": 0
