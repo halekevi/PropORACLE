@@ -285,8 +285,19 @@ def _refresh_slate_web_templates(root_dir: Path, templates_dir: Path, slate_date
     return True
 
 
+def _slate_target_ymd(templates_dir: Path) -> str:
+    """ET today, or the published slate date when a day-ahead run already moved it to tomorrow."""
+    today = _today_et_ymd()
+    published = _read_template_json_date(templates_dir)
+    if published and published > today:
+        horizon = (datetime.strptime(today, "%Y-%m-%d") + timedelta(days=2)).strftime("%Y-%m-%d")
+        if published <= horizon:
+            return published
+    return today
+
+
 def _ensure_fresh_slate_templates(root_dir: Path, templates_dir: Path) -> None:
-    today_et = _today_et_ymd()
+    today_et = _slate_target_ymd(templates_dir)
     needs, reason = _slate_templates_need_refresh(templates_dir, today_et)
     if not needs:
         return
@@ -1147,7 +1158,7 @@ async function fetch_smart(localPath) {
         )
 
         # Static replacement for /api/pipeline/status (used by home status cards).
-        slate_date = _today_et_ymd() or _read_template_json_date(TEMPLATES_DIR) or str(
+        slate_date = _slate_target_ymd(TEMPLATES_DIR) or _read_template_json_date(TEMPLATES_DIR) or str(
             (slate_payload.get("date") if isinstance(slate_payload, dict) else "") or ""
         ).strip()[:10]
         modified_default = f"{slate_date} 12:00:00" if slate_date else ""

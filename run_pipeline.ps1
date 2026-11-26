@@ -873,7 +873,7 @@ function Invoke-WcbbPipeline {
     if ($ok) { $ok = Run-Step "WCBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py" "--input `"$OutDir\step2_wcbb.csv`" --defense data\reference\cbb_def_rankings.csv --output `"$OutDir\step3b_with_def_rankings_wcbb.csv`"" }
     if ($ok) { $ok = Run-Step "WCBB Step 4 - Attach ESPN IDs" $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py" "--input `"$OutDir\step3b_with_def_rankings_wcbb.csv`" --output `"$OutDir\step3_wcbb.csv`" --master $masterRel" }
     if ($ok) { $ok = Run-Step "WCBB Step 5 - Boxscore Stats" $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py" "--input `"$OutDir\step3_wcbb.csv`" --output `"$OutDir\step5b_wcbb.csv`" --cache data\cache\wcbb_boxscore_cache.csv --days 90 --league womens-college-basketball" }
-    if ($ok) { $ok = Run-Step "WCBB Step 6 - Rank Props" $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py" "--input `"$OutDir\step5b_wcbb.csv`" --output `"$OutDir\step6_ranked_wcbb.xlsx`" --cache data\cache\wcbb_boxscore_cache.csv" }
+    if ($ok) { $ok = Run-Step "WCBB Step 6 - Rank Props" $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py" "--input `"$OutDir\step5b_wcbb.csv`" --output `"$OutDir\step6_ranked_wcbb.xlsx`" --cache data\cache\wcbb_boxscore_cache.csv --date $Date" }
     if ($ok) { $ok = Invoke-PropOracleStep7b "WCBB" "$OutDir\step6_ranked_wcbb.xlsx" }
     if ($ok) { $ok = Run-Step "WCBB Step 8 - Direction Context" $CBBDir ".\scripts\pipeline\step8_add_direction_context_cbb.py" "--input `"$OutDir\step6_ranked_wcbb.xlsx`" --output `"$OutDir\step8_wcbb_direction_clean.xlsx`" --date $Date --sport WCBB" }
     if ($ok) {
@@ -2758,7 +2758,7 @@ if ($CBBOnly) {
         if ($ok) { $ok = Run-Step "CBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py"                 "--input `"$CBBRunOutDir\step2_cbb.csv`" --defense data\reference\cbb_def_rankings.csv --output `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`"" }
         if ($ok) { $ok = Run-Step "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`" --output `"$CBBRunOutDir\step3_cbb.csv`" --master data/reference/ncaa_mbb_athletes_master.csv" }
         if ($ok) { $ok = Run-Step "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CBBRunOutDir\step3_cbb.csv`" --output `"$CBBRunOutDir\step5b_cbb.csv`"" }
-        if ($ok) { $ok = Run-Step "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`"" }
+        if ($ok) { $ok = Run-Step "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`" --date $Date" }
         if ($ok) { $ok = Invoke-PropOracleStep7b "CBB" "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
         if ($ok) { $ok = Run-Step "CBB Step 8 - Direction Context"       $CBBDir ".\scripts\pipeline\step8_add_direction_context_cbb.py"          "--input `"$CBBRunOutDir\step6_ranked_cbb.xlsx`" --output `"$CBBRunOutDir\step8_cbb_direction_clean.xlsx`" --date $Date --sport CBB" }
         if ($ok) {
@@ -3299,7 +3299,7 @@ $CBBJob = Start-Job -ScriptBlock {
         if ($ok) { $ok = Run-Step-Job "CBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py"                 "--input `"$CBBRunOutDir\step2_cbb.csv`" --defense data\reference\cbb_def_rankings.csv --output `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`"" }
         if ($ok) { $ok = Run-Step-Job "CBB Step 4 - Attach ESPN IDs"         $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py"                     "--input `"$CBBRunOutDir\step3b_with_def_rankings_cbb.csv`" --output `"$CBBRunOutDir\step3_cbb.csv`" --master data/reference/ncaa_mbb_athletes_master.csv" }
         if ($ok) { $ok = Run-Step-Job "CBB Step 5 - Boxscore Stats"          $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py"               "--input `"$CBBRunOutDir\step3_cbb.csv`" --output `"$CBBRunOutDir\step5b_cbb.csv`"" }
-        if ($ok) { $ok = Run-Step-Job "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`"" }
+        if ($ok) { $ok = Run-Step-Job "CBB Step 6 - Rank Props"              $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py"                       "--input `"$CBBRunOutDir\step5b_cbb.csv`" --output `"$CBBRunOutDir\step6_ranked_cbb.xlsx`" --date $Date" }
         if ($ok) { $ok = Invoke-Step7b-Job "CBB" $RepoRoot "$CBBRunOutDir\step6_ranked_cbb.xlsx" }
         if ($ok) { $ok = Run-Step-Job "CBB Step 8 - Direction Context"       $CBBDir ".\scripts\pipeline\step8_add_direction_context_cbb.py"          "--input `"$CBBRunOutDir\step6_ranked_cbb.xlsx`" --output `"$CBBRunOutDir\step8_cbb_direction_clean.xlsx`" --date $Date --sport CBB" }
     }
@@ -3322,7 +3322,7 @@ $CBBJob = Start-Job -ScriptBlock {
         if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 3 - Attach Defense Rankings" $CBBDir ".\scripts\pipeline\step3b_attach_def_rankings.py" "--input `"$WCBBRunOutDir\step2_wcbb.csv`" --defense data\reference\cbb_def_rankings.csv --output `"$WCBBRunOutDir\step3b_with_def_rankings_wcbb.csv`"" }
         if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 4 - Attach ESPN IDs" $CBBDir ".\scripts\pipeline\step5a_attach_espn_ids.py" "--input `"$WCBBRunOutDir\step3b_with_def_rankings_wcbb.csv`" --output `"$WCBBRunOutDir\step3_wcbb.csv`" --master $masterRel" }
         if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 5 - Boxscore Stats" $CBBDir ".\scripts\pipeline\step5b_attach_boxscore_stats.py" "--input `"$WCBBRunOutDir\step3_wcbb.csv`" --output `"$WCBBRunOutDir\step5b_wcbb.csv`" --cache data\cache\wcbb_boxscore_cache.csv --days 90 --league womens-college-basketball" }
-        if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 6 - Rank Props" $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py" "--input `"$WCBBRunOutDir\step5b_wcbb.csv`" --output `"$WCBBRunOutDir\step6_ranked_wcbb.xlsx`" --cache data\cache\wcbb_boxscore_cache.csv" }
+        if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 6 - Rank Props" $CBBDir ".\scripts\pipeline\step6_rank_props_cbb.py" "--input `"$WCBBRunOutDir\step5b_wcbb.csv`" --output `"$WCBBRunOutDir\step6_ranked_wcbb.xlsx`" --cache data\cache\wcbb_boxscore_cache.csv --date $Date" }
         if ($wcbbOk) { $wcbbOk = Invoke-Step7b-Job "WCBB" $RepoRoot "$WCBBRunOutDir\step6_ranked_wcbb.xlsx" }
         if ($wcbbOk) { $wcbbOk = Run-Step-Job "WCBB Step 8 - Direction Context" $CBBDir ".\scripts\pipeline\step8_add_direction_context_cbb.py" "--input `"$WCBBRunOutDir\step6_ranked_wcbb.xlsx`" --output `"$WCBBRunOutDir\step8_wcbb_direction_clean.xlsx`" --date $Date --sport WCBB" }
     }
