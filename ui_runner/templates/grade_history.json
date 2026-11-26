@@ -9499,5 +9499,34 @@
       "count": 0,
       "wins": 0
     }
+  },
+  {
+    "date": "2026-11-25",
+    "track": "strong_standard_shadow",
+    "n_tickets": 18,
+    "wins": 3,
+    "guarantees": 0,
+    "losses": 15,
+    "void_loss_ct": 3,
+    "win_rate": 0.1667,
+    "avg_ev_predicted": 1.7617,
+    "net_per_10": -5.0,
+    "roi_pct": -50.0,
+    "strong_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "ok_tickets": {
+      "count": 18,
+      "wins": 3
+    },
+    "marginal_tickets": {
+      "count": 0,
+      "wins": 0
+    },
+    "skip_tickets": {
+      "count": 0,
+      "wins": 0
+    }
   }
 ]
