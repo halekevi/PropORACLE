@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26 00:12:26 UTC",
+  "generated_at": "2026-11-26 01:01:09 UTC",
   "date": "2026-11-26",
   "tennis_date": "2026-11-26",
   "filters": {
@@ -16,6 +16,126 @@
   "ticket_track": "goblin70",
   "mode": "goblin70+graded_main",
   "groups": [
+    {
+      "group_name": "CFB Goblin-70 Mix Power 2",
+      "n_legs": 2,
+      "power_payout": 2.0,
+      "flex_payout": null,
+      "tickets": [
+        {
+          "web_group_name": "CFB Goblin-70 Mix Power 2",
+          "ticket_id": "2026-11-26|CFB Goblin-70 Mix Power 2|16",
+          "ticket_no": 16,
+          "ticket_track": "mixed_ev",
+          "mode": "goblin70",
+          "exclude_from_winrate": false,
+          "avg_hit_rate": 0.8,
+          "est_win_prob": 0.535,
+          "est_flex_cash_prob": null,
+          "base_power_payout": 2.0,
+          "ev_power": 0.068,
+          "core_build": true,
+          "core_recipe": "goblin70",
+          "core_label": "Goblin-70 (L5=5 + L10>=8 + D + cover; Platinum preferred)",
+          "pool_policy": "goblin70",
+          "strong_builder": false,
+          "legs": [
+            {
+              "ticket_id": "2026-11-26|CFB Goblin-70 Mix Power 2|16",
+              "ticket_track": "mixed_ev",
+              "sport": "CFB",
+              "player": "Kari Ashley",
+              "team": "TCU",
+              "opp": "TTU",
+              "prop_type": "Receptions",
+              "pick_type": "Goblin",
+              "direction": "OVER",
+              "line": 3.5,
+              "edge": 2.04,
+              "abs_edge": 2.04,
+              "pick_platform": "prizepicks",
+              "hit_rate": 0.8,
+              "ml_prob": null,
+              "standard_line": null,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 3.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "C",
+              "def_tier": "Weak",
+              "l5_over": 4.0,
+              "l5_under": null,
+              "l5_side_hit_rate": 0.8,
+              "leg_prob_used": 0.763,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_ac30620a91992d4f759d",
+              "game_date": "2026-11-26",
+              "badge": "Diamond",
+              "cover": 2.04,
+              "matchup": "TCU vs TTU"
+            },
+            {
+              "ticket_id": "2026-11-26|CFB Goblin-70 Mix Power 2|16",
+              "ticket_track": "mixed_ev",
+              "sport": "CFB",
+              "player": "J'Koby Williams",
+              "team": "TTU",
+              "opp": "TCU",
+              "prop_type": "Rush Attempts",
+              "pick_type": "Standard",
+              "direction": "UNDER",
+              "line": 19.5,
+              "edge": -5.04,
+              "abs_edge": 5.04,
+              "pick_platform": "prizepicks",
+              "hit_rate": 0.8,
+              "ml_prob": null,
+              "standard_line": null,
+              "line_underdog": null,
+              "line_draftkings": null,
+              "line_vegas": null,
+              "best_cross_book": "PP",
+              "best_cross_line": 19.5,
+              "cross_edge_vs_pp": 0.0,
+              "tier": "D",
+              "def_tier": "Elite",
+              "l5_over": null,
+              "l5_under": 4.0,
+              "l5_side_hit_rate": 0.8,
+              "leg_prob_used": 0.7,
+              "leg_prob_source": "goblin70_hist",
+              "canonical_leg_id": "leg_38c76591a0373958ceb4",
+              "game_date": "2026-11-26",
+              "badge": "Silver",
+              "cover": -5.04,
+              "matchup": "TTU vs TCU"
+            }
+          ],
+          "n_legs": 2,
+          "play": "Power",
+          "payout": {
+            "ticket_type": "power",
+            "p_all_win": 0.535,
+            "p_miss_1": 0.0,
+            "ev": 0.068,
+            "recommendation": "SKIP",
+            "entry_10_to_win_guarantee": 20.0,
+            "entry_20_to_win_guarantee": 40.0,
+            "audit_all_hit_x": 2.0,
+            "payout_source": "pending_live",
+            "payout_note": "Power all-hit 2.0x from mix_floor. EV = expected N-correct multiple - 1.",
+            "n_correct": {
+              "2": 2.0
+            },
+            "ev_formula": "E[N-correct] - 1",
+            "captured_at": null
+          },
+          "empirical_recommendation": "SKIP"
+        }
+      ]
+    },
     {
       "group_name": "SOCCER Core Standard 2 #1",
       "n_legs": 2,
@@ -374,11 +494,6 @@
       "strong": 1.4,
       "ok": 1.15,
       "marginal": 1.0
-    },
-    "3": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
     }
   },
   "tier_ev_percentiles": {
@@ -401,9 +516,9 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 5,
+    "legs_checked": 2,
     "failed_goblin": 2,
-    "failed_tier": 3,
+    "failed_tier": 0,
     "failed_streak": 0
   },
   "max_legs": 3,
@@ -444,6 +559,20 @@
   ],
   "player_slip_cap_dropped": 5,
   "slate_exposure_snapshot": {
+    "j'koby williams": {
+      "anchor_tickets": 0,
+      "nonanchor_tickets": 1,
+      "props": [
+        "j'koby williams::rush attempts::UNDER"
+      ]
+    },
+    "kari ashley": {
+      "anchor_tickets": 1,
+      "nonanchor_tickets": 0,
+      "props": [
+        "kari ashley::receptions::OVER"
+      ]
+    },
     "nick woltemade": {
       "anchor_tickets": 0,
       "nonanchor_tickets": 1,
@@ -471,14 +600,14 @@
   "payout_note": "N-correct / To Win only. Ignore 1st place. Rates from PrizePicks CDP scrapes (Goblin-Δ), then mix_by_delta.",
   "step8_root": "H:\\PropORACLE_main_cp",
   "pool": {
-    "goblin_70": 41,
-    "goblin_70_raw": 41,
-    "standard_allowlist": 20,
-    "standard_allowlist_raw": 20,
+    "goblin_70": 47,
+    "goblin_70_raw": 47,
+    "standard_allowlist": 24,
+    "standard_allowlist_raw": 24,
     "standard_yolo": 17,
-    "standard_yolo_raw": 23,
-    "standard_power3": 3,
-    "standard_power3_raw": 3,
+    "standard_yolo_raw": 24,
+    "standard_power3": 2,
+    "standard_power3_raw": 2,
     "nflp_goblin": 0,
     "nflp_goblin_raw": 0
   },
@@ -486,5 +615,5 @@
     "goblin70",
     "graded_main"
   ],
-  "schedule_gate_blocked": 28
+  "schedule_gate_blocked": 32
 }

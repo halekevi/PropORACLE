@@ -1,10 +1,10 @@
 {
   "date": "2026-11-25",
   "window": "other",
-  "generated_at": "2026-11-25T11:19:46-05:00",
+  "generated_at": "2026-11-25T17:04:30-05:00",
   "n_pulls_this_window": 1,
   "n_moved_this_window": 0,
-  "n_moved_from_initial": 1741,
+  "n_moved_from_initial": 3407,
   "is_initial_stamp": false,
   "force_payout": false,
   "rebuild_tickets": false,
@@ -14,6 +14,6 @@
     "TENNIS"
   ],
   "rebuild_sports": [],
-  "latest_fetched_at": "2026-11-25T11:15:45-05:00",
+  "latest_fetched_at": "2026-11-25T16:52:49-05:00",
   "initial_fetched_at": "2026-11-21T07:48:33-05:00"
 }
