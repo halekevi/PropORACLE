@@ -1,19 +1,19 @@
 {
-  "date": "2026-11-25",
+  "date": "2026-11-27",
   "window": "other",
-  "generated_at": "2026-11-25T17:04:30-05:00",
+  "generated_at": "2026-11-27T11:07:24-05:00",
   "n_pulls_this_window": 1,
-  "n_moved_this_window": 0,
-  "n_moved_from_initial": 3407,
+  "n_moved_this_window": 3,
+  "n_moved_from_initial": 2683,
   "is_initial_stamp": false,
-  "force_payout": false,
-  "rebuild_tickets": false,
+  "force_payout": true,
+  "rebuild_tickets": true,
   "new_by_sport": {},
   "sport_rebuild_triggered": [],
   "sport_rebuild_enabled": [
     "TENNIS"
   ],
   "rebuild_sports": [],
-  "latest_fetched_at": "2026-11-25T16:52:49-05:00",
-  "initial_fetched_at": "2026-11-21T07:48:33-05:00"
+  "latest_fetched_at": "2026-11-27T11:03:07-05:00",
+  "initial_fetched_at": "2026-11-24T01:28:08-05:00"
 }
