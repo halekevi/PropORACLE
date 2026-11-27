@@ -55,7 +55,7 @@ _PERIOD_OVERRIDES_CACHE: dict[tuple[str, str, str], List[float]] | None = None
 
 
 # Sports/NBA cache holds nba1q only; ATTACH it so period tables still resolve.
-NBA1Q_DB_PATH = _HERE.parent / "data" / "cache" / "proporacle_ref.db"
+NBA1Q_DB_PATH = _HERE.parent / "data" / "cache" / "proporacle_ref_nba1q.db"
 REPO_DB_PATH = DB_PATH
 
 
@@ -520,6 +520,39 @@ def _norm_nba1q_prop(prop_norm: str) -> str:
     return mapping.get(p, p)
 
 
+_NBA1Q_TABLE_CACHE: dict[int, str] = {}
+
+
+def _nba1q_table(con: sqlite3.Connection) -> str:
+    """Qualified name of the freshest nba1q table among main + ATTACHed DBs.
+
+    The repo ref DB carries a frozen nba1q copy; the nightly period sync writes
+    proporacle_ref_nba1q.db. An unqualified `nba1q` resolves to main (stale).
+    """
+    key = id(con)
+    if key in _NBA1Q_TABLE_CACHE:
+        return _NBA1Q_TABLE_CACHE[key]
+    best, best_max = "nba1q", ""
+    try:
+        schemas = [r[1] for r in con.execute("PRAGMA database_list").fetchall()]
+    except sqlite3.Error:
+        schemas = ["main"]
+    for schema in schemas:
+        try:
+            has = con.execute(
+                f"SELECT 1 FROM {schema}.sqlite_master WHERE type='table' AND name='nba1q'"
+            ).fetchone()
+            if not has:
+                continue
+            mx = con.execute(f"SELECT MAX(game_date) FROM {schema}.nba1q").fetchone()[0] or ""
+        except sqlite3.Error:
+            continue
+        if str(mx) > best_max:
+            best, best_max = f"{schema}.nba1q", str(mx)
+    _NBA1Q_TABLE_CACHE[key] = best
+    return best
+
+
 def get_vals_nba_period(
     con: sqlite3.Connection,
     espn_id: str,
@@ -544,7 +577,7 @@ def get_vals_nba_period(
             rows = con.execute(
                 f"""
                 SELECT actual
-                FROM nba1q
+                FROM {_nba1q_table(con)}
                 WHERE espn_player_id = ?
                   AND lower(prop_type) = ?
                   AND segment = ?
@@ -560,7 +593,7 @@ def get_vals_nba_period(
             rows = con.execute(
                 f"""
                 SELECT actual
-                FROM nba1q
+                FROM {_nba1q_table(con)}
                 WHERE lower(player) = ?
                   AND lower(prop_type) = ?
                   AND segment = ?
@@ -645,9 +678,9 @@ def get_vals_nba1h(
         # 3) Final fallback: sum 1Q + 2Q, but only when both are present.
         if not vals and str(espn_id or "").strip():
             rows = con.execute(
-                """
+                f"""
                 SELECT game_date, SUM(actual) AS first_half_actual
-                FROM nba1q
+                FROM {_nba1q_table(con)}
                 WHERE espn_player_id = ?
                   AND lower(prop_type) = ?
                   AND segment IN ('1Q', '2Q')
@@ -664,9 +697,9 @@ def get_vals_nba1h(
 
         if not vals and player_name:
             rows = con.execute(
-                """
+                f"""
                 SELECT game_date, SUM(actual) AS first_half_actual
-                FROM nba1q
+                FROM {_nba1q_table(con)}
                 WHERE lower(player) = ?
                   AND lower(prop_type) = ?
                   AND segment IN ('1Q', '2Q')
