@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-11-26",
-  "generated_at": "2026-11-26T16:33:57.587278Z",
+  "date": "2026-11-27",
+  "generated_at": "2026-11-27T19:42:01.783809Z",
   "rows": [
     {
       "date": "2026-11-24",
@@ -5356,6 +5356,81 @@
       "notes": "ticket_id=2026-07-13|LADDER_VAL|discover|1; sports=WNBA; CDP power_min_x Min Guarantee",
       "ticket_id": "2026-07-13|LADDER_VAL|discover|1",
       "_dedupe_key": "2026-07-13|allisha gray|points|over|20.500||alyssa thomas|points|over|13.500|3.0"
+    },
+    {
+      "date": "2026-11-27",
+      "n_legs": "3",
+      "leg_composition": "2S+0G+1D",
+      "goblin_deltas": [],
+      "demon_deltas": [
+        "2"
+      ],
+      "power_payout_x": "5.75",
+      "flex_payout_x": "3.8",
+      "flex_n_correct": {
+        "3": 3.8,
+        "2": 1.0
+      },
+      "legs": [
+        {
+          "player": "Scottie Barnes",
+          "prop": "Pts+Rebs+Asts",
+          "sport": "NBA",
+          "pick_type": "Demon",
+          "direction": "OVER",
+          "line": 40.5,
+          "standard_line": 38.5,
+          "gap": 2.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Jusuf Nurkić",
+          "prop": "Pts+Rebs",
+          "sport": "NBA",
+          "pick_type": "Standard",
+          "direction": "OVER",
+          "line": 14.5,
+          "standard_line": 14.5,
+          "gap": 0.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        },
+        {
+          "player": "Jakob Poeltl",
+          "prop": "Fantasy Score",
+          "sport": "NBA",
+          "pick_type": "Standard",
+          "direction": "OVER",
+          "line": 26.5,
+          "standard_line": 26.5,
+          "gap": 0.0,
+          "l5": null,
+          "l10": null,
+          "def_tier": "",
+          "role_tier": "",
+          "count_gate": null,
+          "goblin70": null
+        }
+      ],
+      "source": "live_cdp",
+      "notes": "ladder_fill probe (never submitted); ticket_id=LF-2026-11-27-19; sports=NBA; CDP power_min_x Min Guarantee",
+      "ticket_id": "LF-2026-11-27-19",
+      "captured_at": "2026-11-27T14:31:39-05:00",
+      "first_captured_at": "2026-11-27T14:31:39-05:00",
+      "last_captured_at": "2026-11-27T14:31:39-05:00",
+      "window": "14:31",
+      "_dedupe_key": "2026-11-27|jakob poeltl|fantasy score|over|26.500||jusuf nurkić|pts+rebs|over|14.500||scottie barnes|pts+rebs+asts|over|40.500|5.75",
+      "probe": "ladder_fill",
+      "standard_line_source": "sibling"
     },
     {
       "date": "2026-07-12",
