@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26 11:27:49 UTC",
+  "generated_at": "2026-11-26 11:37:29 UTC",
   "date": "2026-11-26",
   "tennis_date": "2026-11-26",
   "filters": {
@@ -374,11 +374,6 @@
       "strong": 1.4,
       "ok": 1.15,
       "marginal": 1.0
-    },
-    "3": {
-      "strong": 1.4,
-      "ok": 1.15,
-      "marginal": 1.0
     }
   },
   "tier_ev_percentiles": {
@@ -401,9 +396,9 @@
     "require_hot_streak": true
   },
   "strong_gate_stats": {
-    "legs_checked": 5,
+    "legs_checked": 2,
     "failed_goblin": 2,
-    "failed_tier": 3,
+    "failed_tier": 0,
     "failed_streak": 0
   },
   "max_legs": 3,
