@@ -1,6 +1,6 @@
 {
   "date": "2026-11-27",
-  "generated_at": "2026-11-27T12:10:24-05:00",
+  "generated_at": "2026-11-27T17:06:15-05:00",
   "line_pulls": [
     {
       "fetched_at": "2026-11-24T01:28:08-05:00",
@@ -409,8 +409,114 @@
       "window": "11:34",
       "n_props": 5690,
       "n_moved": 75
+    },
+    {
+      "fetched_at": "2026-11-27T14:00:18-05:00",
+      "window": "14:00",
+      "n_props": 10426,
+      "n_moved": 914
+    },
+    {
+      "fetched_at": "2026-11-27T16:30:51-05:00",
+      "window": "4:30",
+      "n_props": 10643,
+      "n_moved": 649
+    },
+    {
+      "fetched_at": "2026-11-27T16:31:45-05:00",
+      "window": "4:30",
+      "n_props": 507,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-27T16:32:38-05:00",
+      "window": "4:30",
+      "n_props": 977,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-27T16:33:32-05:00",
+      "window": "4:30",
+      "n_props": 1545,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-27T16:34:24-05:00",
+      "window": "4:30",
+      "n_props": 270,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-27T16:35:22-05:00",
+      "window": "4:30",
+      "n_props": 6032,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-27T16:36:15-05:00",
+      "window": "4:30",
+      "n_props": 29,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-27T16:37:16-05:00",
+      "window": "4:30",
+      "n_props": 5557,
+      "n_moved": 358
+    },
+    {
+      "fetched_at": "2026-11-27T16:39:10-05:00",
+      "window": "4:30",
+      "n_props": 925,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-27T16:40:40-05:00",
+      "window": "4:30",
+      "n_props": 1080,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-27T16:42:10-05:00",
+      "window": "4:30",
+      "n_props": 3480,
+      "n_moved": 85
+    },
+    {
+      "fetched_at": "2026-11-27T16:43:02-05:00",
+      "window": "4:30",
+      "n_props": 19,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-27T16:54:56-05:00",
+      "window": "4:30",
+      "n_props": 7514,
+      "n_moved": 411
+    },
+    {
+      "fetched_at": "2026-11-27T17:03:18-05:00",
+      "window": "4:30",
+      "n_props": 2711,
+      "n_moved": 8
+    },
+    {
+      "fetched_at": "2026-11-27T17:05:20-05:00",
+      "window": "4:30",
+      "n_props": 13,
+      "n_moved": 2
     }
   ],
-  "payout_scrapes": [],
+  "payout_scrapes": [
+    {
+      "window": "14:31",
+      "n_scrapes": 1,
+      "median_power_x": 5.75,
+      "min_power_x": 5.75,
+      "max_power_x": 5.75,
+      "first_captured_at": "2026-11-27T14:31:39-05:00",
+      "last_captured_at": "2026-11-27T14:31:39-05:00"
+    }
+  ],
   "note": "N-correct / To Win only. Line pulls from line_history.db; payouts from CDP jsonl."
 }
