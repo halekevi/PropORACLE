@@ -31,8 +31,10 @@ Soccer also adds:
 
 from __future__ import annotations
 
+import os
 import sqlite3
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
@@ -52,6 +54,7 @@ DB_PATH = resolve_ref_db(allow_missing=True)
 MIN_SAMPLE_FOR_TICKET = 4
 PERIOD_OVERRIDES_PATH = _HERE.parent / "data" / "reference" / "period_actual_overrides.csv"
 _PERIOD_OVERRIDES_CACHE: dict[tuple[str, str, str], List[float]] | None = None
+PERIOD_OVERRIDE_MAX_AGE_DAYS = 14
 
 
 # Sports/NBA cache holds nba1q only; ATTACH it so period tables still resolve.
@@ -96,8 +99,10 @@ def _load_period_overrides() -> dict[tuple[str, str, str], List[float]]:
     """
     Optional manual correction file for period-history values.
     CSV schema:
-      sport,player,prop_norm,vals
+      sport,player,prop_norm,vals,as_of[,notes]
     where vals is newest-first pipe list (e.g. "20|16|17|27|9").
+    Rows without as_of, or older than PERIOD_OVERRIDE_MAX_AGE_DAYS, are ignored:
+    an override is a card snapshot and goes stale as soon as the player plays again.
     """
     global _PERIOD_OVERRIDES_CACHE
     if _PERIOD_OVERRIDES_CACHE is not None:
@@ -119,12 +124,19 @@ def _load_period_overrides() -> dict[tuple[str, str, str], List[float]]:
         _PERIOD_OVERRIDES_CACHE = out
         return out
 
+    today = datetime.now().date()
     for _, r in df.iterrows():
         sport = _norm_key_text(r.get("sport", ""))
         player = _norm_key_text(r.get("player", ""))
         prop = _norm_key_text(r.get("prop_norm", ""))
         vals_raw = str(r.get("vals", "")).strip()
         if not (sport and player and prop and vals_raw):
+            continue
+        try:
+            as_of = datetime.strptime(str(r.get("as_of", "")).strip()[:10], "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if (today - as_of).days > PERIOD_OVERRIDE_MAX_AGE_DAYS:
             continue
         vals: List[float] = []
         for tok in vals_raw.split("|"):
@@ -553,6 +565,44 @@ def _nba1q_table(con: sqlite3.Connection) -> str:
     return best
 
 
+PERIOD_MAX_LAG_DAYS = int(os.environ.get("PROPORACLE_NBA_PERIOD_MAX_LAG_DAYS", "3"))
+
+
+class StalePeriodHistory(RuntimeError):
+    pass
+
+
+def assert_period_history_fresh(con: sqlite3.Connection, sport: str) -> str:
+    """Fail NBA1Q/NBA1H step4 when period history lags the full-game box DB.
+
+    A stale period table silently turns L5 into last season's games, so a
+    missing board is the safer outcome. Off-days do not trip this because the
+    full-game box stalls on the same days.
+    """
+    table = _nba1q_table(con)
+    try:
+        period_max = str(con.execute(f"SELECT MAX(game_date) FROM {table}").fetchone()[0] or "")
+    except sqlite3.Error:
+        period_max = ""
+    try:
+        box_max = str(con.execute("SELECT MAX(game_date) FROM nba").fetchone()[0] or "")
+    except sqlite3.Error:
+        box_max = ""
+    print(f"  [{sport.upper()} period] table={table} max={period_max or '-'} nba_box_max={box_max or '-'}")
+    if not box_max:
+        return table
+    if not period_max:
+        raise StalePeriodHistory(f"{sport.upper()}: no period history in {table}")
+    lag = (datetime.strptime(box_max[:10], "%Y-%m-%d") - datetime.strptime(period_max[:10], "%Y-%m-%d")).days
+    if lag > PERIOD_MAX_LAG_DAYS:
+        raise StalePeriodHistory(
+            f"{sport.upper()}: period history {table} ends {period_max}, {lag}d behind full-game box "
+            f"({box_max}); run scripts/fetch_nba_period_actuals.py + build_nba1q_history_db.py "
+            f"(limit PROPORACLE_NBA_PERIOD_MAX_LAG_DAYS={PERIOD_MAX_LAG_DAYS})"
+        )
+    return table
+
+
 def get_vals_nba_period(
     con: sqlite3.Connection,
     espn_id: str,
@@ -874,6 +924,8 @@ def attach_stats(
     get_fn = _get_fns.get(sport)
     if get_fn is None:
         raise ValueError(f"Unknown sport: {sport}. Must be one of: nba, nba1q, nba1h, cbb, nhl, soccer")
+    if sport in ("nba1q", "nba1h"):
+        assert_period_history_fresh(con, sport)
 
     # Ensure output columns exist
     stat_cols = [f"stat_g{i}" for i in range(1, n + 1)]
