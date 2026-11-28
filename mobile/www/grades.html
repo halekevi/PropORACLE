@@ -38,7 +38,9 @@
   --glass-shadow-lg:0 20px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07);
   --po-page-edge:5%;
   --po-content-width:100%;
-  --po-content-max:min(98vw,2400px);
+  /* Grades reads as a full page — do not sit in the Home 98% capped band */
+  --po-content-max:100%;
+  --po-grades-pad-x:clamp(12px,2.2vw,28px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{
@@ -220,8 +222,9 @@ body::after{content:none;display:none;}
 .grades-hub-shell{
   position:relative;z-index:1;
   margin:0;
-  padding:clamp(12px,2.5vw,28px) clamp(12px,2.2vw,28px);
+  padding:clamp(12px,2.5vw,28px) var(--po-grades-pad-x,16px);
   width:100%;
+  max-width:none;
   border:none;
   border-radius:0;
   background:transparent;
@@ -266,7 +269,7 @@ body::after{content:none;display:none;}
 .nav-accent{position:absolute;top:0;left:0;right:0;height:2px;border-radius:0;background:linear-gradient(90deg,transparent 0%,#c6ff00 15%,var(--cyan) 40%,var(--purple) 65%,#c6ff00 85%,transparent 100%);opacity:.75;animation:accentShift 6s ease-in-out infinite alternate;}
 @keyframes accentShift{from{opacity:.5;filter:hue-rotate(0deg);}to{opacity:.9;filter:hue-rotate(18deg);}}
 .hybrid-logo{display:flex;align-items:center;gap:10px;}
-.logo-icon{width:48px;height:48px;object-fit:contain;display:block;filter:drop-shadow(0 0 8px rgba(212,160,23,0.5));}
+.logo-icon{width:44px;height:44px;object-fit:contain;display:block;filter:drop-shadow(0 0 8px rgba(212,160,23,0.5));}
 .nav-brand{font-family:'Inter',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.5px;line-height:1;color:var(--text-primary);display:flex;align-items:baseline;}
 .nav-brand .p-lower{text-transform:lowercase;}
 .nav-brand .brand-wordmark .wb-first{text-transform:none !important;font-variant:normal;}
@@ -329,29 +332,40 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 /* date bar — open hotel row (not a nested card) */
 .date-bar{
   flex-shrink:0;margin:6px 0 0;padding:10px 0 12px;min-height:40px;height:auto;display:flex;align-items:center;gap:8px;position:relative;z-index:100;
-  font-family:"Segoe UI",system-ui,sans-serif;
+  font-family:'Inter',system-ui,sans-serif;
   background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;
-  border:none;border-bottom:1px solid rgba(255,255,255,0.1);border-radius:0;box-shadow:none;
+  border:none;border-bottom:1px solid rgba(255,255,255,0.09);border-radius:0;box-shadow:none;
 }
-.date-bar-label{flex-shrink:0;font-size:11px;letter-spacing:1.05px;color:var(--muted2);white-space:nowrap;}
-.date-pills{flex:1 1 0;min-width:0;display:flex;gap:10px;align-items:center;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.date-bar-label{flex-shrink:0;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.date-pills{flex:1 1 0;min-width:0;display:flex;gap:8px;align-items:center;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .date-pills::-webkit-scrollbar{display:none;}
-.dpill{font-size:12px;letter-spacing:.5px;padding:6px 11px;border-radius:999px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.42);cursor:pointer;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:5px;}
-.dpill:hover{color:var(--text);border-color:var(--bd2);background:rgba(255,255,255,0.07);}
-.dpill.active{color:var(--accent-gold);border-color:rgba(212,160,23,0.55);background:rgba(212,160,23,0.15);box-shadow:0 0 18px rgba(212,160,23,0.14);}
-.dpill .dpill-dot{width:7px;height:7px;border-radius:50%;background:var(--accent-gold);display:none;}
-.dpill.active .dpill-dot{display:block;box-shadow:0 0 8px rgba(212,160,23,.55);}
-.date-sep{width:1px;height:24px;background:rgba(255,255,255,0.1);flex-shrink:0;}
-.date-nav-btn{flex-shrink:0;width:34px;height:34px;border-radius:10px;border:1px solid var(--glass-panel-border);background:rgba(255,255,255,0.04);backdrop-filter:blur(12px);color:rgba(255,255,255,0.45);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .15s;}
-.date-nav-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.18);background:rgba(255,255,255,0.08);}
+/* Match Home .slate-filter-btn pills */
+.dpill{
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.03);
+  color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;
+  backdrop-filter:blur(8px) saturate(180%);
+}
+.dpill:hover{color:var(--text);border-color:rgba(255,255,255,0.18);background:rgba(255,255,255,0.05);}
+.dpill.active{color:var(--accent);border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.1);box-shadow:none;}
+.dpill .dpill-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:none;}
+.dpill.active .dpill-dot{display:block;box-shadow:0 0 8px rgba(212,175,55,.45);}
+.date-sep{width:1px;height:22px;background:rgba(255,255,255,0.1);flex-shrink:0;}
+.date-nav-btn{flex-shrink:0;width:34px;height:34px;border-radius:999px;border:1px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.45);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .15s;}
+.date-nav-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);}
 .date-nav-btn:disabled{opacity:.3;cursor:default;}
 .date-bar-right{flex-shrink:0;margin-left:auto;display:flex;align-items:center;gap:10px;}
 .date-input-wrap{display:flex;align-items:center;gap:6px;}
-.date-input-label{font-size:11px;letter-spacing:.7px;color:var(--muted2);}
-.date-input{background:rgba(255,255,255,0.04);backdrop-filter:blur(10px);border:1px solid var(--glass-panel-border);border-radius:10px;color:var(--text);font-size:12px;padding:6px 10px;outline:none;transition:border-color .15s;width:132px;font-family:'Inter',sans-serif;}
-.date-input:focus{border-color:rgba(212,160,23,0.45);}
-.date-go-btn{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.7px;padding:6px 11px;border-radius:10px;border:1px solid rgba(212,160,23,.35);background:rgba(212,160,23,.1);color:var(--accent-gold);cursor:pointer;transition:all .15s;}
-.date-go-btn:hover{background:rgba(212,160,23,.18);border-color:rgba(240,165,0,.55);}
+.date-input-label{font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+.date-input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;color:var(--text);font-size:12px;padding:6px 12px;outline:none;transition:border-color .15s;width:132px;font-family:'Inter',sans-serif;}
+.date-input:focus{border-color:rgba(212,175,55,0.45);}
+/* Match Home .hero-btn-gold */
+.date-go-btn{
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  padding:8px 16px;border-radius:999px;border:1px solid rgba(212,175,55,.45);
+  background:rgba(212,175,55,.16);color:var(--accent);cursor:pointer;transition:all .15s;
+}
+.date-go-btn:hover{background:rgba(212,175,55,.24);border-color:rgba(212,175,55,.55);}
 
 /* iframe shell: layout only — no outer “card” so slate header is the sole chrome */
 .iframe-shell{
@@ -362,10 +376,27 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 }
 .iframe-shell-toolbar{
   position:sticky;top:0;z-index:60;
-  flex-shrink:0;padding:6px 10px 8px;border-bottom:none;
-  display:flex;flex-direction:column;gap:4px;
-  background:transparent;
+  flex-shrink:0;padding:0;border:none;border-radius:0;
+  display:flex;flex-direction:column;gap:0;
+  background:transparent;box-shadow:none;overflow:visible;
   transition:padding .28s ease;
+}
+/* Kill decorative card chrome on the grades hub controls */
+#iframe-shell-toolbar.ca-border::before,
+.iframe-shell-toolbar.ca-border::before,
+.date-bar.ca-border::before,
+.tabs-bar.ca-border::before,
+#iframe-shell-toolbar.mouse-glow::after,
+.iframe-shell-toolbar.mouse-glow::after,
+.date-bar.mouse-glow::after,
+.tabs-bar.mouse-glow::after{
+  display:none!important;content:none!important;opacity:0!important;
+}
+#iframe-shell-toolbar.ca-border,
+.iframe-shell-toolbar.ca-border,
+#iframe-shell-toolbar.mouse-glow,
+.iframe-shell-toolbar.mouse-glow{
+  border:none!important;box-shadow:none!important;background:transparent!important;
 }
 /* Mode tabs already name the view — hide redundant title row until bars collapse on scroll. */
 .iframe-shell-head{display:none;}
@@ -400,9 +431,10 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 .iframe-shell-head{align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
 .iframe-shell-head-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
 .ist-title{
-  font-family:Georgia,"Times New Roman",serif;font-size:15px;letter-spacing:.08em;font-weight:400;
-  color:var(--accent-gold);line-height:1.1;
+  font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;font-weight:400;
+  color:var(--text);line-height:1.1;text-transform:uppercase;
 }
+.ist-title span{color:var(--accent);}
 .gc-live{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.6px;color:var(--cyan);opacity:.92;}
 .iframe-shell-toolbar .date-bar,.iframe-shell-toolbar .tabs-bar{margin:0;width:100%;box-sizing:border-box;}
 .grades-toolbar-parent-slot{flex-shrink:0}
@@ -596,7 +628,11 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 [data-theme="light"] .props-eval-scroll{background:rgba(255,255,255,0.55);border-color:rgba(0,0,0,0.08);}
 [data-theme="light"] .prop-eval-row:hover{background:rgba(0,0,0,0.03);}
 .glass-insights{background:var(--glass-panel);border:1px solid var(--glass-panel-border);border-radius:16px;padding:20px 22px;box-shadow:var(--glass-shadow);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);}
-.insights-card-title{font-size:19px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:8px;}
+.insights-card-title{
+  font-family:'Bebas Neue',sans-serif!important;font-size:24px;font-weight:400!important;
+  letter-spacing:2px;text-transform:uppercase;color:var(--text);margin:0 0 8px;line-height:1.1;
+}
+.insights-card-title span{color:var(--accent);}
 .insights-card-sub{font-size:16px;color:var(--muted);margin-bottom:14px;line-height:1.45;}
 .props-eval-intro .insights-card-sub{font-size:14px;line-height:1.35;margin-bottom:0;}
 .insights-table-host table{width:100%;border-collapse:collapse;font-size:clamp(15px,1.02vw,17px);}
@@ -639,6 +675,17 @@ nav.snav .live-pill,nav.snav .live-pill .live-pill-brand{text-transform:none !im
 .empty-state[hidden],
 #empty-state[hidden],
 #ticket-empty-state[hidden]{display:none !important;visibility:hidden !important;pointer-events:none !important;z-index:-1 !important;}
+/*
+ * #ticket-empty-state defaults OFF. Only tickets tab + missing report may show it.
+ * Prefetch from loadDate used to un-hide this on Slate and veil the real report.
+ */
+#ticket-empty-state{
+  display:none !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+  opacity:0 !important;
+  z-index:-999 !important;
+}
 #props-eval-panel[hidden]{display:none !important;visibility:hidden !important;pointer-events:none !important;}
 #player-evaluator-panel[hidden]{display:none !important;visibility:hidden !important;pointer-events:none !important;}
 /* Tab layer visibility — data-grades-tab on .iframe-shell-stage (set by switchTab) */
@@ -760,6 +807,7 @@ html.page-grades-root body.page-grades .iframe-shell-stage[data-grades-tab="tick
   background:rgba(6,8,20,0.72)!important;
   position:absolute!important;
   inset:0!important;
+  width:auto!important;
 }
 .iframe-shell-stage[data-grades-tab="slate"] #grade-frame,
 .iframe-shell-stage[data-grades-tab="slate"] #grade-frame-inline{
@@ -880,24 +928,31 @@ html.page-grades-root body.page-grades .iframe-shell-stage[data-grades-tab="tick
   [data-theme="light"] .load-overlay:not(.hidden){background:rgba(235,240,250,0.96)!important;}
   [data-theme="light"] .empty-state{background:rgba(245,248,255,0.96)!important;}
 }
-/* tabs — glass, gold active */
+/* tabs — same language as Home slate-filter / nav chips */
 .tabs-bar{
-  flex-shrink:0;margin:2px 0 0;padding:8px 0 12px;display:flex;gap:4px;align-items:center;min-height:40px;z-index:90;position:relative;
-  font-family:'Inter',sans-serif;
+  flex-shrink:0;margin:2px 0 0;padding:8px 0 12px;display:flex;gap:8px;align-items:center;min-height:40px;z-index:90;position:relative;
+  font-family:'Inter',sans-serif;flex-wrap:wrap;
   background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;
-  border:none;border-bottom:1px solid rgba(255,255,255,0.1);border-radius:0;box-shadow:none;
+  border:none;border-bottom:1px solid rgba(255,255,255,0.09);border-radius:0;box-shadow:none;
 }
-.tab-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 12px;border-radius:10px;font-size:12px;letter-spacing:.55px;text-transform:uppercase;color:var(--muted2);background:transparent;border:2px solid transparent;cursor:pointer;transition:color .2s,border-color .2s,box-shadow .2s,background .2s;white-space:nowrap;flex:1 1 0;min-width:0;}
-.tab-btn:hover{color:var(--text);background:rgba(255,255,255,0.05);}
-.tab-btn:focus-visible{outline:2px solid rgba(240,165,0,0.55);outline-offset:2px;}
+.tab-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:8px 16px;border-radius:20px;
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--muted);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);
+  cursor:pointer;transition:all .15s;white-space:nowrap;flex:0 1 auto;min-width:0;
+  backdrop-filter:blur(8px) saturate(180%);
+}
+.tab-btn:hover{color:var(--text);background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.16);}
+.tab-btn:focus-visible{outline:2px solid rgba(212,175,55,0.45);outline-offset:2px;}
 .tab-btn.active{
-  color:var(--accent-gold);
-  border-color:rgba(212,160,23,0.45);
-  background:rgba(212,160,23,0.12);
-  box-shadow:inset 0 -2px 0 var(--accent-gold);
+  color:var(--accent);
+  border-color:rgba(212,175,55,0.3);
+  background:rgba(212,175,55,0.1);
+  box-shadow:none;
 }
-.tab-icon{width:16px;height:16px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;}
-.tab-btn.active .tab-icon{filter:drop-shadow(0 0 8px rgba(240,165,0,0.45));}
+.tab-icon{width:14px;height:14px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;opacity:.9;}
+.tab-btn.active .tab-icon{filter:none;opacity:1;}
 .tab-label-full{display:inline;}
 .tab-label-short{display:none;}
 @media (max-width:1100px){
@@ -1667,12 +1722,12 @@ select option,
 }
 
 </style>
-<link rel="stylesheet" href="static/site-nav-unified.css?v=20260720halfnav1"/>
+<link rel="stylesheet" href="static/site-nav-unified.css?v=20261124navlock"/>
 <link rel="stylesheet" href="static/nav-mobile-shared.css?v=20260430schemapage"/>
-<link rel="stylesheet" href="static/mobile-content-width.css?v=20260924phone1"/>
-<link rel="stylesheet" href="static/site-nav-datetime.css?v=20260924phone1"/>
+<link rel="stylesheet" href="static/mobile-content-width.css?v=20261121embedtheme1"/>
+<link rel="stylesheet" href="static/site-nav-datetime.css?v=20261124navlock"/>
 <link rel="stylesheet" href="static/proporacle-glass-minimal.css?v=20261121herotitle1"/>
-<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121nobox7"/>
+<link rel="stylesheet" href="static/proporacle-grades-hotel.css?v=20261121foundation1"/>
 <style id="proporacle-glass-critical">
   .mesh-bg,.grain-layer,.po-orb{display:none!important;}
   body.page-grades,body{background:#0b0b0b!important;font-family:"Segoe UI",system-ui,sans-serif!important;}
@@ -1686,7 +1741,7 @@ select option,
   .nav-accent{height:1px!important;opacity:.55!important;background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)!important;animation:none!important;filter:none!important;}
 </style>
 </head>
-<body class="page-grades" data-latest-with-tickets="{{ latest_with_tickets|default('', true) }}">
+<body class="page-grades" data-latest-with-tickets="">
 <!-- Ambient orbs / mesh disabled for glass-minimal -->
 <div class="po-orb" hidden aria-hidden="true"></div>
 <div class="mesh-bg" hidden aria-hidden="true"></div>
@@ -1697,8 +1752,76 @@ select option,
 
 
 
-{# Flask routes (/income, /payout, …). Mobile bundle rewrites these to *.html. #}
+
+
+
+
+
+<link rel="stylesheet" href="static/site-nav-unified.css?v=20261124navlock"/>
 <nav class="snav glass-card">
+  <style>
+    /* Last-word lock: same header type on every page. Phone bottom tabs stay icon-only. */
+    @media (min-width: 769px) {
+      nav.snav,
+      nav.snav.glass-card {
+        height: 56px !important;
+        min-height: 56px !important;
+        max-height: 56px !important;
+      }
+      nav.snav .nav-brand,
+      nav.snav .brand-wordmark {
+        font-family: Inter, system-ui, sans-serif !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.5px !important;
+        line-height: 1 !important;
+      }
+      nav.snav .snav-links li a,
+      nav.snav ul#nav-links li a,
+      nav.snav .snav-links a {
+        font-family: Inter, system-ui, sans-serif !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        line-height: 1 !important;
+      }
+      nav.snav .snav-account {
+        font-family: Inter, system-ui, sans-serif !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        line-height: 1 !important;
+      }
+      nav.snav .live-pill {
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1.5px !important;
+      }
+      nav.snav .nav-slate-date,
+      nav.snav .nav-sync-line,
+      nav.snav .nav-local-datetime {
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+      }
+    }
+    .snav-account {
+      font-family: Inter, system-ui, sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      letter-spacing: 1.5px !important;
+      text-transform: uppercase;
+      color: inherit;
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.28);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .snav-account.active { color: #c8ff00; border-color: rgba(200,255,0,0.45); }
+  </style>
   <div class="nav-accent"></div>
   <a class="snav-brand" href="index.html">
     <div class="hybrid-logo">
@@ -1709,17 +1832,18 @@ select option,
   <ul class="snav-links nav-links" id="nav-links">
     <li><a href="index.html" class=""><span class="ni ni-ctrl"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L1 5.5V13h4V9h4v4h4V5.5L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/></svg></span> Home</a></li>
     <li><a href="tickets.html" class=""><span class="ni ni-tick"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 6h11" stroke="currentColor" stroke-width="1" stroke-dasharray="2 1.5"/><circle cx="4" cy="9" r="1" fill="currentColor"/><circle cx="7" cy="9" r="1" fill="currentColor"/><circle cx="10" cy="9" r="1" fill="currentColor"/></svg></span> Tickets</a></li>
-    <li><a href="grades.html" class="active" title="Ticket evaluation hub"><span class="ni ni-grade"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 10.5L5.5 7l2.5 2.5L11 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></span> Grades</a></li>
+    <li><a href="grades.html" class="" title="Ticket evaluation hub"><span class="ni ni-grade"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 10.5L5.5 7l2.5 2.5L11 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></span> Grades</a></li>
     <li><a href="income.html" class=""><span class="ni ni-income"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 11V5M5 11V2M8 11V7M11 11V4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span> Income</a></li>
     <li><a href="payout.html" class=""><span class="ni ni-pay"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M7 3.5v7M5 5.5c0-.8.9-1.5 2-1.5s2 .7 2 1.5-1 1.3-2 1.5-2 .7-2 1.5.9 1.5 2 1.5 2-.7 2-1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span> Payouts</a></li>
   </ul>
   <div class="snav-right">
+    <a class="snav-account " href="/account" title="">Account</a>
     <button class="theme-toggle theme-switch" type="button" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle theme">
       <span class="tt-icon tt-moon">🌙</span>
       <span class="tt-icon tt-sun" style="display:none">☀️</span>
     </button>
     <div class="nav-live-cluster">
-      <div class="live-pill"><div class="live-dot"></div><span class="live-pill-brand">PropOracle</span> &nbsp;·&nbsp; </div>
+      <div class="live-pill"><div class="live-dot"></div><span class="live-pill-brand">PropOracle</span><span class="live-pill-sep">&nbsp;·&nbsp;</span></div>
       <div class="nav-datetime-block" title="Slate date (top) and your device date & time (updates every second)">
         <div class="nav-slate-date" id="slate-date">—</div>
         <div class="nav-sync-line">
@@ -1734,9 +1858,10 @@ select option,
 <div class="mobile-menu" id="mobile-menu">
   <a href="index.html" class="">🏠 Home</a>
   <a href="tickets.html" class="">🎟 Tickets</a>
-  <a href="grades.html" class="active" title="Ticket evaluation hub">✏️ Grades</a>
+  <a href="grades.html" class="" title="Ticket evaluation hub">✏️ Grades</a>
   <a href="income.html" class="">📈 Income</a>
   <a href="payout.html" class="">💰 Payouts</a>
+  <a href="/account" class="">👤 Account</a>
 </div>
 
 
@@ -1746,6 +1871,9 @@ select option,
 <div class="grades-body">
 <!-- ═══════════════════════ IFRAME SHELL ═══════════════════════ -->
 <div class="iframe-shell" id="grades-iframe-shell">
+  <section class="grades-hero" aria-label="Grades">
+    <div class="hero-eyebrow" id="grades-hero-eyebrow">Graded results</div>
+    <h1 class="hero-title"><span class="ht1">Prop</span> <span class="ht2">Grades</span></h1>
   <div id="grades-toolbar-parent-slot" class="grades-toolbar-parent-slot">
     <div class="iframe-shell-toolbar" id="iframe-shell-toolbar">
       <div class="iframe-shell-head">
@@ -1794,6 +1922,9 @@ select option,
       </div>
     </div>
   </div>
+  </section>
+  <section class="grades-panel">
+  <div class="grades-panel-head"><span class="grades-panel-title" id="grades-panel-title">Slate <span>Evaluation</span></span></div>
   <div class="iframe-shell-stage" data-grades-tab="slate">
   <div class="load-overlay hidden" id="load-overlay" aria-hidden="true">
     <div class="load-spinner"></div>
@@ -1825,8 +1956,7 @@ select option,
       <div class="glass-insights props-eval-intro">
         <div class="props-eval-head">
           <div>
-            <h3 class="insights-card-title">Prop evaluation</h3>
-            <p class="insights-card-sub">Decided props load first. VOIDS hides postponed/canceled games (use POSTPONED to review those).</p>
+            <h3 class="insights-card-title">Prop <span>Evaluation</span></h3>
           </div>
           <div class="props-eval-view-toggle" role="group" aria-label="Display density">
             <button type="button" class="props-view-btn active" id="props-view-list" data-view="list" aria-pressed="true">List</button>
@@ -2108,6 +2238,7 @@ select option,
 </script>
 
   </div><!-- /.iframe-shell-stage -->
+  </section><!-- /.grades-panel -->
 </div>
 </div><!-- /.grades-body -->
 </div><!-- /.grades-page -->
@@ -2126,12 +2257,12 @@ select option,
 //
 /* Absolute /grades/… paths: page URL is /grades (no trailing slash), so relative
    slate_eval_….html resolves to /slate_eval_….html (404) instead of /grades/…. */
-const REPORT_URL_TEMPLATE = '/grades/slate_eval_{date}.html';
+const REPORT_URL_TEMPLATE = 'slate_eval_{date}.html';
 /** Every load gets a unique URL so iframe/browsers/CDNs cannot serve a stale slate_eval after deploy. */
 function slateEvalUrl(dateStr) {
   return REPORT_URL_TEMPLATE.replace('{date}', dateStr) + '?cb=' + Date.now();
 }
-const TICKET_EVAL_URL_TEMPLATE = '/grades/ticket_eval_{date}.html';
+const TICKET_EVAL_URL_TEMPLATE = 'ticket_eval_{date}.html';
 const TICKET_EVAL_LONG_PARLAY_URL_TEMPLATE = '/grades/ticket_eval_long_parlay_{date}.html';
 /** Keep ticket iframe fresh too (prevents stale/blank cache edge-cases after deploy). */
 function ticketEvalPathForDate(dateStr) {
@@ -2201,7 +2332,7 @@ function ticketIframeDocLooksReady(doc) {
   return false;
 }
 
-/** Open sport buckets that have tickets; keep Manual Ticket Builder closed. */
+/** Keep sport/ticket slate buckets collapsed on load; drop Manual Ticket Builder from older reports. */
 function enforceTicketEvalBucketsDefaultOpen(doc) {
   if (!doc) return;
   doc.querySelectorAll('details.ticket-bucket, details.grades-sport-bucket').forEach((el) => {
@@ -2210,18 +2341,14 @@ function enforceTicketEvalBucketsDefaultOpen(doc) {
       summary.includes('manual ticket') ||
       summary.includes('ticket builder') ||
       el.classList.contains('manual-ticket-builder') ||
+      el.classList.contains('manual-tb') ||
       !!el.querySelector('#builder, .utp-panel, .manual-builder');
-    const cardCount = el.querySelectorAll('article.ticket-card, .ticket-card').length;
-    const ticketMeta = (summary.match(/(\d+)\s*tickets?/) || [])[1];
-    const metaTickets = ticketMeta != null ? parseInt(ticketMeta, 10) : 0;
-    const hasTickets = cardCount > 0 || metaTickets > 0;
-    if (isBuilder || !hasTickets) {
-      el.removeAttribute('open');
-      el.open = false;
-    } else {
-      el.setAttribute('open', '');
-      el.open = true;
+    if (isBuilder) {
+      el.remove();
+      return;
     }
+    el.removeAttribute('open');
+    el.open = false;
   });
 }
 
@@ -2643,20 +2770,7 @@ function gradesEl(id) {
   return gradesToolbarPickEl(id);
 }
 
-function getOrCreateToolbarHost(doc) {
-  if (!doc) return null;
-  let host = doc.getElementById('proporacle-grades-toolbar-host');
-  if (host) return host;
-  const hdr = doc.querySelector('header');
-  if (!hdr) return null;
-  host = doc.createElement('div');
-  host.id = 'proporacle-grades-toolbar-host';
-  host.className = 'grades-hub-toolbar-host';
-  hdr.appendChild(host);
-  return host;
-}
-
-const GRADES_EMBED_THEME_HREF = 'static/grades-embed-theme.css?v=20261121embedtheme1';
+const GRADES_EMBED_THEME_HREF = 'static/grades-embed-theme.css?v=20261121scroll1';
 
 /** Slate iframe lives under /grades/ — resolve against the hub so the link is not /grades/static/… (404). */
 function ensureGradesEmbedTheme(doc) {
@@ -2670,29 +2784,6 @@ function ensureGradesEmbedTheme(doc) {
   }
   if (link.href !== href) link.href = href;
   doc.head.appendChild(link);
-}
-
-function ensureGradesToolbarStylesInFrame(doc) {
-  if (!doc) return;
-  ensureGradesEmbedTheme(doc);
-  // Inline critical labels/chrome so missing/cached CSS cannot show double tab text.
-  if (!doc.getElementById('grades-iframe-toolbar-critical')) {
-    const style = doc.createElement('style');
-    style.id = 'grades-iframe-toolbar-critical';
-    style.textContent = [
-      '.tab-label-full{display:inline}',
-      '.tab-label-short{display:none}',
-      '@media (max-width:1100px){.tab-label-full{display:none!important}.tab-label-short{display:inline!important}}',
-      '@media (max-width:900px),(pointer:coarse){',
-      '.tab-label-full{display:none!important}.tab-label-short{display:inline!important}',
-      '.date-bar-right,.date-bar-label{display:none!important}',
-      '.date-bar{overflow-x:hidden!important;flex-wrap:nowrap!important}',
-      '.date-pills{min-width:0!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch;flex-wrap:nowrap!important;gap:6px;padding-bottom:8px;scrollbar-width:none}',
-      '.date-pills .dpill{flex:0 0 auto!important;flex-shrink:0!important;white-space:nowrap!important;min-width:max-content!important;overflow:visible!important;text-overflow:clip!important}',
-      '}',
-    ].join('');
-    doc.head.appendChild(style);
-  }
 }
 
 function syncToolbarParentSlot() {
@@ -2725,72 +2816,14 @@ function restoreGradesToolbarToParent() {
   } catch (_e1) {}
 }
 
-function bridgeGradesToolbarActionsToParent(frame) {
-  const win = frame?.contentWindow;
-  if (!win || win === window) return;
-  try {
-    win.switchTab = function (tab) {
-      try { window.switchTab(tab); } catch (_e) {}
-    };
-    win.stepDate = function (delta) {
-      try { window.stepDate(delta); } catch (_e2) {}
-    };
-    win.jumpToDate = function () {
-      try { window.jumpToDate(); } catch (_e3) {}
-    };
-  } catch (_e4) {}
-}
-
 function embedGradesToolbarInSlate(frame) {
   if (activeTab !== 'slate') return;
-  // Mobile: keep chrome in the parent hub so labels/Jump-To/date-pill CSS cannot drift
-  // when the toolbar is adopted into the slate iframe (also avoids double-label bugs).
-  if (gradesFrameMobileLayout()) {
-    restoreGradesToolbarToParent();
-    syncToolbarParentSlot();
-    try {
-      window.setupGradesBarsScrollHide();
-    } catch (_em) {}
-    return;
-  }
-  const doc = frame?.contentDocument;
-  if (!doc || !doc.body) return;
-  bridgeGradesToolbarActionsToParent(frame);
-  const host = getOrCreateToolbarHost(doc);
-  if (!host) {
-    syncToolbarParentSlot();
-    try {
-      window.setupGradesBarsScrollHide();
-    } catch (_eh) {}
-    return;
-  }
-  ensureGradesToolbarStylesInFrame(doc);
-  const toolbar = gradesEl('iframe-shell-toolbar');
-  const slot = document.getElementById('grades-toolbar-parent-slot');
-  if (!toolbar || !slot) return;
-  if (toolbar.parentElement === host) {
-    toolbar.classList.add('iframe-shell-toolbar--embedded');
-    syncToolbarParentSlot();
-    try {
-      window.setupGradesBarsScrollHide();
-    } catch (_eh2) {}
-    return;
-  }
-  try {
-    doc.adoptNode(toolbar);
-    host.appendChild(toolbar);
-    toolbar.classList.add('iframe-shell-toolbar--embedded');
-  } catch (_e) {
-    try {
-      document.adoptNode(toolbar);
-      slot.appendChild(toolbar);
-      toolbar.classList.remove('iframe-shell-toolbar--embedded');
-    } catch (_e2) {}
-  }
+  // Toolbar lives in the hub hero card on every viewport; never adopt it into the slate iframe.
+  restoreGradesToolbarToParent();
   syncToolbarParentSlot();
   try {
     window.setupGradesBarsScrollHide();
-  } catch (_e3) {}
+  } catch (_em) {}
 }
 
 function ensureFrameCollapseCss(doc) {
@@ -4765,6 +4798,26 @@ function refreshControlsSummary() {
     } else if (activeTab === 'props') titleEl.textContent = 'Prop evaluation';
     else titleEl.textContent = 'Slate evaluation';
   }
+  const panelTitle = document.getElementById('grades-panel-title');
+  if (panelTitle) {
+    const lead =
+      activeTab === 'tickets'
+        ? (ticketEvalTrack === 'long_parlay' ? 'Long parlay' : 'Ticket')
+        : activeTab === 'props'
+          ? 'Prop'
+          : activeTab === 'players'
+            ? 'Player'
+            : 'Slate';
+    panelTitle.innerHTML = lead + ' <span>Evaluation</span>';
+  }
+  const eyebrow = document.getElementById('grades-hero-eyebrow');
+  const ymd = currentDateStr || '';
+  if (eyebrow && /^\d{4}-\d{2}-\d{2}$/.test(ymd)) {
+    const [y, m, d] = ymd.split('-').map(Number);
+    eyebrow.textContent =
+      'Graded results · ' +
+      new Date(y, m - 1, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
   if (!el) return;
   const ds = currentDateStr || gradesEl('date-jump')?.value || '';
   let tab = 'Slate';
@@ -4912,7 +4965,16 @@ function switchTab(tab) {
     window.PlayerEvaluator.hide();
   }
   const tEmpty = document.getElementById('ticket-empty-state');
-  if (tEmpty && tab !== 'tickets') tEmpty.hidden = true;
+  if (tEmpty && tab !== 'tickets') {
+    tEmpty.hidden = true;
+    tEmpty.classList.add('hidden');
+    tEmpty.setAttribute('aria-hidden', 'true');
+    tEmpty.style.setProperty('display', 'none', 'important');
+    tEmpty.style.setProperty('visibility', 'hidden', 'important');
+    tEmpty.style.setProperty('pointer-events', 'none', 'important');
+    tEmpty.style.setProperty('opacity', '0', 'important');
+    tEmpty.style.setProperty('z-index', '-999', 'important');
+  }
 
   try {
     window.resetGradesBarsScrollState();
@@ -5084,6 +5146,7 @@ function applyTicketEvalGradesEmbed(doc) {
     'html.ticket-eval-embed-grades .grades-sport-bucket-body section.sec,' +
     'html.ticket-eval-embed-grades .grades-sport-bucket-body article.ticket-card{display:block!important;visibility:visible!important;}' +
     'html.ticket-eval-embed-grades .ticket-sections-wrap{overflow:visible!important;min-height:0!important;}' +
+    'html.ticket-eval-embed-grades details.manual-tb{display:none!important;}' +
     /* Sport buckets → glass buttons (covers older baked HTML without rebuild). */
     'html.ticket-eval-embed-grades details.ticket-bucket:not(.manual-tb),' +
     'html.ticket-eval-embed-grades details.grades-sport-bucket{margin:0 0 12px!important;border:none!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;}' +
@@ -5251,19 +5314,34 @@ function markTicketEvalMissing(dateStr) {
     tf.style.setProperty('min-height', '0', 'important');
   }
   const tEmpty = document.getElementById('ticket-empty-state');
+  const onTicketsTab = (typeof activeTab !== 'undefined' ? activeTab : null) === 'tickets'
+    || (document.body && document.body.dataset && document.body.dataset.gradesActiveTab === 'tickets')
+    || (stage && stage.getAttribute('data-grades-tab') === 'tickets');
   if (tEmpty) {
-    tEmpty.hidden = false;
-    tEmpty.classList.remove('hidden');
-    tEmpty.removeAttribute('aria-hidden');
-    tEmpty.style.removeProperty('display');
-    tEmpty.style.removeProperty('visibility');
-    tEmpty.style.removeProperty('pointer-events');
-    tEmpty.style.removeProperty('height');
-    tEmpty.style.removeProperty('max-height');
-    tEmpty.style.removeProperty('overflow');
-    tEmpty.style.removeProperty('opacity');
-    tEmpty.style.removeProperty('z-index');
-    tEmpty.style.removeProperty('background');
+    if (!onTicketsTab) {
+      // Ticket-missing chrome must not veil slate/props/players.
+      tEmpty.hidden = true;
+      tEmpty.classList.add('hidden');
+      tEmpty.setAttribute('aria-hidden', 'true');
+      tEmpty.style.setProperty('display', 'none', 'important');
+      tEmpty.style.setProperty('visibility', 'hidden', 'important');
+      tEmpty.style.setProperty('pointer-events', 'none', 'important');
+      tEmpty.style.setProperty('opacity', '0', 'important');
+      tEmpty.style.setProperty('z-index', '-999', 'important');
+    } else {
+      tEmpty.hidden = false;
+      tEmpty.classList.remove('hidden');
+      tEmpty.removeAttribute('aria-hidden');
+      tEmpty.style.removeProperty('display');
+      tEmpty.style.removeProperty('visibility');
+      tEmpty.style.removeProperty('pointer-events');
+      tEmpty.style.removeProperty('height');
+      tEmpty.style.removeProperty('max-height');
+      tEmpty.style.removeProperty('overflow');
+      tEmpty.style.removeProperty('opacity');
+      tEmpty.style.removeProperty('z-index');
+      tEmpty.style.removeProperty('background');
+    }
   }
   if (dateStr) syncEmptyStateDateHints(dateStr);
 }
@@ -5284,11 +5362,61 @@ function markTicketEvalLoaded() {
   }
 }
 
+/** Prefetch ticket iframe for the selected date without ever showing #ticket-empty-state on Slate. */
+async function softPrefetchTicketEval(dateStr) {
+  if (!dateStr) return;
+  const tf = document.getElementById('ticket-frame');
+  const tEmpty = document.getElementById('ticket-empty-state');
+  if (tEmpty) {
+    tEmpty.hidden = true;
+    tEmpty.classList.add('hidden');
+    tEmpty.setAttribute('aria-hidden', 'true');
+    tEmpty.style.setProperty('display', 'none', 'important');
+  }
+  const stage = document.querySelector('.iframe-shell-stage');
+  try {
+    const resolved = await resolveTicketEvalLoadDate(dateStr);
+    ticketEvalFallbackNotice = resolved.fallback;
+    if (!resolved.load) {
+      if (stage) {
+        stage.classList.add('ticket-eval-missing');
+        stage.classList.remove('ticket-eval-loaded');
+      }
+      if (tf) {
+        tf.onload = null;
+        tf.src = 'about:blank';
+      }
+      if (dateStr) syncEmptyStateDateHints(dateStr);
+      return;
+    }
+    if (stage) {
+      stage.classList.remove('ticket-eval-missing');
+      stage.classList.add('ticket-eval-loaded');
+    }
+    if (!tf) return;
+    const url = ticketEvalUrl(resolved.load);
+    // Warm the iframe quietly; keep it hidden until Ticket tab activates.
+    tf.onload = null;
+    if (String(tf.getAttribute('src') || '') !== url) {
+      tf.src = url;
+    }
+    tf.style.setProperty('display', 'none', 'important');
+    tf.style.setProperty('visibility', 'hidden', 'important');
+  } catch (_eSoft) {
+    /* ignore prefetch errors — Ticket tab will load for real */
+  }
+}
+
 async function loadTicketEval(dateStr) {
   if (!dateStr) return;
   const tf = document.getElementById('ticket-frame');
   const tEmpty = document.getElementById('ticket-empty-state');
   if (!tf || !tEmpty) return;
+  // Guard: never run the full ticket-missing UI path off the Ticket tab.
+  if (activeTab !== 'tickets') {
+    await softPrefetchTicketEval(dateStr);
+    return;
+  }
   const resolved = await resolveTicketEvalLoadDate(dateStr);
   ticketEvalFallbackNotice = resolved.fallback;
   refreshControlsSummary();
@@ -6330,8 +6458,13 @@ function loadDate(dateStr){
   const dj = gradesEl('date-jump');
   if (dj) dj.value = dateStr;
 
-  /* Prefetch ticket eval with the date so Ticket tab never opens on about:blank. */
-  loadTicketEval(dateStr);
+  /* Ticket eval: only drive the missing/loaded overlay on the Ticket tab.
+     On Slate/Props/Players, soft-prefetch the iframe when a report exists — never markTicketEvalMissing UI. */
+  if (activeTab === 'tickets') {
+    loadTicketEval(dateStr);
+  } else {
+    softPrefetchTicketEval(dateStr);
+  }
   if (activeTab === 'props') {
     loadGradesProps(dateStr);
   }
@@ -6693,8 +6826,8 @@ window.addEventListener('resize', () => {
   const SELECTORS = [
     '.ticket', '.card', '.group', '.edge-card',
     '.scard', '.qcard', '.hero-stat', '.streak-card',
-    '.result-item', '.pp-cell', '.stat-mini', '.leg-card',
-    '.date-bar', '.tabs-bar', '.iframe-shell', '.iframe-shell-toolbar'
+    '.result-item', '.pp-cell', '.stat-mini', '.leg-card'
+    /* No grades hub chrome — date pills / tabs stay open on the page, not in a glow card */
   ];
   function attachGlow(el) {
     if (el.dataset.glowBound === '1') return;
@@ -6706,10 +6839,21 @@ window.addEventListener('resize', () => {
       el.style.setProperty('--mouse-y', (e.clientY - r.top)  + 'px');
     });
   }
+  function stripGradesToolbarGlow() {
+    document.querySelectorAll(
+      '#iframe-shell-toolbar, .iframe-shell-toolbar, .date-bar, .tabs-bar, .iframe-shell'
+    ).forEach(function (el) {
+      el.classList.remove('mouse-glow', 'ca-border');
+      el.removeAttribute('data-glow-bound');
+      el.style.removeProperty('--mouse-x');
+      el.style.removeProperty('--mouse-y');
+    });
+  }
   function initGlow() {
     SELECTORS.forEach(sel =>
       document.querySelectorAll(sel).forEach(attachGlow)
     );
+    stripGradesToolbarGlow();
   }
   // Run on load + after dynamic content
   if (document.readyState === 'loading') {
@@ -6740,14 +6884,26 @@ window.addEventListener('resize', () => {
   const CA_SELS = [
     '.ticket', '.card', '.group', '.hero',
     '.edge-card', '.qcard',
-    '.hero-stat', '.result-item', '.date-bar', '.tabs-bar', '.iframe-shell', '.iframe-shell-toolbar'
+    '.hero-stat', '.result-item'
+    /* Grades date/tabs toolbar stays borderless — ca-border was boxing off the page */
   ];
+  function stripGradesChromeFx() {
+    document.querySelectorAll(
+      '#iframe-shell-toolbar, .iframe-shell-toolbar, .date-bar, .tabs-bar, .iframe-shell'
+    ).forEach(function (el) {
+      el.classList.remove('ca-border', 'mouse-glow');
+      el.removeAttribute('data-glow-bound');
+      el.style.removeProperty('--mouse-x');
+      el.style.removeProperty('--mouse-y');
+    });
+  }
   function initCA() {
     CA_SELS.forEach(sel =>
       document.querySelectorAll(sel).forEach(el => {
         el.classList.add('ca-border');
       })
     );
+    stripGradesChromeFx();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initCA);
@@ -6927,6 +7083,73 @@ window.addEventListener('resize', () => {
         const live = await _origFetch(input, init);
         if (live && live.ok) return live;
       } catch (_eProps) {}
+      const ds = _dateParamFrom(urlStr);
+      const j = await _loadGradedPropsByDate(ds);
+      const props = Array.isArray(j && j.props) ? j.props : [];
+      let nHit = 0, nMiss = 0;
+      props.forEach((p) => {
+        const ru = String((p && p.result) || '').toUpperCase();
+        if (ru === 'HIT') nHit += 1;
+        else if (ru === 'MISS') nMiss += 1;
+      });
+      return _jsonResp({ ok: true, props: props, n_hit: nHit, n_miss: nMiss, n: props.length, n_returned: props.length, truncated: false });
+    }
+    return _origFetch(input, init);
+  };
+})();
+</script>
+
+
+<script>
+(function () {
+  const _origFetch = window.fetch.bind(window);
+  function _jsonResp(obj) {
+    return new Response(JSON.stringify(obj), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  function _dateParamFrom(urlStr) {
+    try {
+      const u = new URL(urlStr, window.location.href);
+      return u.searchParams.get('date') || '';
+    } catch (_e) { return ''; }
+  }
+  function _extractDate(raw) {
+    const m = String(raw || '').match(/\d{4}-\d{2}-\d{2}/);
+    return m ? m[0] : '';
+  }
+  async function _loadGradedPropsByDate(ds) {
+    const d = _extractDate(ds);
+    if (!d) return null;
+    const file = `graded_props_${d}.json`;
+    const r = await _origFetch(file, { cache: 'no-store' });
+    if (!r.ok) return null;
+    return r.json();
+  }
+  window.fetch = async function (input, init) {
+    const urlStr = (typeof input === 'string') ? input : (input && input.url ? input.url : String(input || ''));
+    const path = urlStr.replace(window.location.origin, '');
+
+    if (path.includes('/api/grades/report_dates')) {
+      return _origFetch('grades_report_dates.json', init);
+    }
+    if (path.includes('/api/grades/insights')) {
+      return _jsonResp({ calibration: [], clv_by_sport: [], edge_bucket_hit_rate: [], clv_by_prop_type: [], clv_by_tier: [] });
+    }
+    if (path.includes('/api/grades/archive_dates')) {
+      return _origFetch('grades_archive_dates.json', init);
+    }
+    if (path.includes('/api/grade-history')) {
+      return _origFetch('data/grade_history.json', init);
+    }
+    if (path.includes('/api/graded-props')) {
+      const ds = _dateParamFrom(urlStr);
+      const j = await _loadGradedPropsByDate(ds);
+      if (j) return _jsonResp(j);
+      return _jsonResp({ ok: true, date: _extractDate(ds), props: [], source: 'mobile_bundle_missing' });
+    }
+    if (path.includes('/api/grades/props')) {
       const ds = _dateParamFrom(urlStr);
       const j = await _loadGradedPropsByDate(ds);
       const props = Array.isArray(j && j.props) ? j.props : [];

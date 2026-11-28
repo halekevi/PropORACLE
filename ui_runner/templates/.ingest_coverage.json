@@ -1,12 +1,12 @@
 {
   "n_local": 1,
-  "min_date": "2026-11-19",
-  "max_date": "2026-11-19",
+  "min_date": "2026-11-27",
+  "max_date": "2026-11-27",
   "n_available": null,
   "partial": false,
-  "ingested_at": "2026-11-20 08:46:10 UTC",
+  "ingested_at": "2026-11-28 08:59:43 UTC",
   "dates_ingested": [
-    "2026-11-19"
+    "2026-11-27"
   ],
-  "rows": 4371
+  "rows": 13107
 }

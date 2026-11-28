@@ -3214,7 +3214,6 @@ function _fallbackSlateRowsFromTickets(sport) {
   return ALL_SLATE
     .filter(p => {
       const sp = _sportKeyNorm(p.sport);
-      if (sport === 'cbb') return sp === 'cbb' || sp === 'wcbb';
       return sp === sport;
     })
     .map(p => ({

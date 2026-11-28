@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-11-21T06:42:50.587475+00:00",
+  "generated_at": "2026-11-28T11:33:03.318810+00:00",
   "examples": [
     {
       "composition": "1S+1G+0D",
       "goblin_delta": 0.5,
       "legs": [
         {
-          "player": "Bones Hyland",
+          "player": "Jalen Smith",
           "prop_type": "Points",
-          "line": 4.5,
-          "standard_line": 9.5,
+          "line": 9.5,
+          "standard_line": 15.5,
           "pick_type": "Standard",
           "delta": 0.0,
           "direction": "OVER",
-          "hit_rate": 0.95
+          "hit_rate": 0.9
         },
         {
-          "player": "VJ Edgecombe",
-          "prop_type": "Assists",
-          "line": 2.5,
-          "standard_line": 4.0,
+          "player": "Myles Turner",
+          "prop_type": "Rebounds",
+          "line": 3.5,
+          "standard_line": 5.0,
           "pick_type": "Goblin",
           "delta": 0.5,
           "direction": "OVER",
@@ -32,20 +32,20 @@
       "goblin_delta": 1.0,
       "legs": [
         {
-          "player": "Bones Hyland",
+          "player": "Jalen Smith",
           "prop_type": "Points",
-          "line": 4.5,
-          "standard_line": 9.5,
+          "line": 9.5,
+          "standard_line": 15.5,
           "pick_type": "Standard",
           "delta": 0.0,
           "direction": "OVER",
-          "hit_rate": 0.95
+          "hit_rate": 0.9
         },
         {
-          "player": "VJ Edgecombe",
-          "prop_type": "Assists",
-          "line": 2.5,
-          "standard_line": 4.0,
+          "player": "Myles Turner",
+          "prop_type": "Rebounds",
+          "line": 3.5,
+          "standard_line": 5.0,
           "pick_type": "Goblin",
           "delta": 1.0,
           "direction": "OVER",
@@ -58,20 +58,20 @@
       "goblin_delta": 1.5,
       "legs": [
         {
-          "player": "Bones Hyland",
+          "player": "Jalen Smith",
           "prop_type": "Points",
-          "line": 4.5,
-          "standard_line": 9.5,
+          "line": 9.5,
+          "standard_line": 15.5,
           "pick_type": "Standard",
           "delta": 0.0,
           "direction": "OVER",
-          "hit_rate": 0.95
+          "hit_rate": 0.9
         },
         {
-          "player": "VJ Edgecombe",
-          "prop_type": "Assists",
-          "line": 2.5,
-          "standard_line": 4.0,
+          "player": "Myles Turner",
+          "prop_type": "Rebounds",
+          "line": 3.5,
+          "standard_line": 5.0,
           "pick_type": "Goblin",
           "delta": 1.5,
           "direction": "OVER",
@@ -84,20 +84,20 @@
       "goblin_delta": 2.0,
       "legs": [
         {
-          "player": "Bones Hyland",
+          "player": "Jalen Smith",
           "prop_type": "Points",
-          "line": 4.5,
-          "standard_line": 9.5,
+          "line": 9.5,
+          "standard_line": 15.5,
           "pick_type": "Standard",
           "delta": 0.0,
           "direction": "OVER",
-          "hit_rate": 0.95
+          "hit_rate": 0.9
         },
         {
-          "player": "VJ Edgecombe",
-          "prop_type": "Assists",
-          "line": 2.5,
-          "standard_line": 4.0,
+          "player": "Myles Turner",
+          "prop_type": "Rebounds",
+          "line": 3.5,
+          "standard_line": 5.0,
           "pick_type": "Goblin",
           "delta": 2.0,
           "direction": "OVER",
@@ -110,20 +110,20 @@
       "goblin_delta": 2.5,
       "legs": [
         {
-          "player": "Bones Hyland",
+          "player": "Jalen Smith",
           "prop_type": "Points",
-          "line": 4.5,
-          "standard_line": 9.5,
+          "line": 9.5,
+          "standard_line": 15.5,
           "pick_type": "Standard",
           "delta": 0.0,
           "direction": "OVER",
-          "hit_rate": 0.95
+          "hit_rate": 0.9
         },
         {
-          "player": "VJ Edgecombe",
-          "prop_type": "Assists",
-          "line": 2.5,
-          "standard_line": 4.0,
+          "player": "Myles Turner",
+          "prop_type": "Rebounds",
+          "line": 3.5,
+          "standard_line": 5.0,
           "pick_type": "Goblin",
           "delta": 2.5,
           "direction": "OVER",
@@ -136,20 +136,20 @@
       "goblin_delta": 3.0,
       "legs": [
         {
-          "player": "Bones Hyland",
+          "player": "Jalen Smith",
           "prop_type": "Points",
-          "line": 4.5,
-          "standard_line": 9.5,
+          "line": 9.5,
+          "standard_line": 15.5,
           "pick_type": "Standard",
           "delta": 0.0,
           "direction": "OVER",
-          "hit_rate": 0.95
+          "hit_rate": 0.9
         },
         {
-          "player": "VJ Edgecombe",
-          "prop_type": "Assists",
-          "line": 2.5,
-          "standard_line": 4.0,
+          "player": "Myles Turner",
+          "prop_type": "Rebounds",
+          "line": 3.5,
+          "standard_line": 5.0,
           "pick_type": "Goblin",
           "delta": 3.0,
           "direction": "OVER",
@@ -162,24 +162,24 @@
       "goblin_delta": null,
       "legs": [
         {
-          "player": "Bones Hyland",
+          "player": "Jalen Smith",
           "prop_type": "Points",
-          "line": 4.5,
-          "standard_line": 9.5,
+          "line": 9.5,
+          "standard_line": 15.5,
           "pick_type": "Standard",
           "delta": 0.0,
           "direction": "OVER",
-          "hit_rate": 0.95
+          "hit_rate": 0.9
         },
         {
-          "player": "Derrick Jones Jr.",
+          "player": "Kenrich Williams",
           "prop_type": "Points",
           "line": 4.5,
           "standard_line": 8.5,
           "pick_type": "Demon",
           "delta": 4.0,
           "direction": "OVER",
-          "hit_rate": 1.0
+          "hit_rate": 0.95
         }
       ]
     },
@@ -188,34 +188,34 @@
       "goblin_delta": 2.0,
       "legs": [
         {
-          "player": "Bones Hyland",
+          "player": "Jalen Smith",
           "prop_type": "Points",
-          "line": 4.5,
-          "standard_line": 9.5,
+          "line": 9.5,
+          "standard_line": 15.5,
           "pick_type": "Standard",
           "delta": 0.0,
           "direction": "OVER",
-          "hit_rate": 0.95
+          "hit_rate": 0.9
         },
         {
-          "player": "VJ Edgecombe",
-          "prop_type": "Assists",
-          "line": 2.5,
-          "standard_line": 4.0,
+          "player": "Myles Turner",
+          "prop_type": "Rebounds",
+          "line": 3.5,
+          "standard_line": 5.0,
           "pick_type": "Goblin",
           "delta": 2.0,
           "direction": "OVER",
           "hit_rate": 0.95
         },
         {
-          "player": "Jaime Jaquez Jr.",
-          "prop_type": "Assists",
-          "line": 1.5,
-          "standard_line": 3.0,
+          "player": "Moussa Diabaté",
+          "prop_type": "Rebounds",
+          "line": 7.5,
+          "standard_line": 9.0,
           "pick_type": "Goblin",
           "delta": 2.0,
           "direction": "OVER",
-          "hit_rate": 1.0
+          "hit_rate": 0.95
         }
       ]
     },
@@ -224,34 +224,34 @@
       "goblin_delta": 1.5,
       "legs": [
         {
-          "player": "Bones Hyland",
+          "player": "Jalen Smith",
           "prop_type": "Points",
-          "line": 4.5,
-          "standard_line": 9.5,
+          "line": 9.5,
+          "standard_line": 15.5,
           "pick_type": "Standard",
           "delta": 0.0,
           "direction": "OVER",
-          "hit_rate": 0.95
+          "hit_rate": 0.9
         },
         {
-          "player": "VJ Edgecombe",
-          "prop_type": "Assists",
-          "line": 2.5,
-          "standard_line": 4.0,
+          "player": "Myles Turner",
+          "prop_type": "Rebounds",
+          "line": 3.5,
+          "standard_line": 5.0,
           "pick_type": "Goblin",
           "delta": 1.5,
           "direction": "OVER",
           "hit_rate": 0.95
         },
         {
-          "player": "Derrick Jones Jr.",
+          "player": "Kenrich Williams",
           "prop_type": "Points",
           "line": 4.5,
           "standard_line": 8.5,
           "pick_type": "Demon",
           "delta": 4.0,
           "direction": "OVER",
-          "hit_rate": 1.0
+          "hit_rate": 0.95
         }
       ]
     }

@@ -1,0 +1,2423 @@
+{
+ "date": "2026-11-28",
+ "generated_at": "2026-11-28 11:16:44 UTC",
+ "info_only": true,
+ "note": "Info only \u2014 no picks. In the walk-forward backtest the model was less accurate than the closing line in every sport, and no betting rule held up on the 2026-27 holdout.",
+ "sports": {
+  "NBA": {
+   "games": [
+    {
+     "event_id": "401910046",
+     "start_utc": "2026-11-28T22:00Z",
+     "state": "pre",
+     "away": "ORL",
+     "home": "WSH",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 3.5,
+      "home_spread_price": -109.0,
+      "away_spread_price": -111.0,
+      "total": 220.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": 140.0,
+      "away_ml": -167.0,
+      "home_win_pct_no_vig": 40.0
+     },
+     "model": {
+      "home_margin": -2.3,
+      "home_spread_equiv": 2.3,
+      "total": 227.7,
+      "home_win_pct": 41.7
+     },
+     "model_minus_market": {
+      "spread_pts": -1.2,
+      "total_pts": 7.2,
+      "home_win_pct": 1.7
+     }
+    },
+    {
+     "event_id": "401910047",
+     "start_utc": "2026-11-28T23:00Z",
+     "state": "pre",
+     "away": "BKN",
+     "home": "CHA",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -5.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 213.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": -238.0,
+      "away_ml": 197.0,
+      "home_win_pct_no_vig": 67.7
+     },
+     "model": {
+      "home_margin": 6.2,
+      "home_spread_equiv": -6.2,
+      "total": 218.1,
+      "home_win_pct": 69.8
+     },
+     "model_minus_market": {
+      "spread_pts": -0.7,
+      "total_pts": 4.6,
+      "home_win_pct": 2.1
+     }
+    },
+    {
+     "event_id": "401910048",
+     "start_utc": "2026-11-29T01:00Z",
+     "state": "pre",
+     "away": "IND",
+     "home": "CHI",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -2.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 234.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": -142.0,
+      "away_ml": 120.0,
+      "home_win_pct_no_vig": 56.3
+     },
+     "model": {
+      "home_margin": 2.1,
+      "home_spread_equiv": -2.1,
+      "total": 238.6,
+      "home_win_pct": 56.7
+     },
+     "model_minus_market": {
+      "spread_pts": 0.4,
+      "total_pts": 4.1,
+      "home_win_pct": 0.4
+     }
+    },
+    {
+     "event_id": "401910049",
+     "start_utc": "2026-11-29T01:00Z",
+     "state": "pre",
+     "away": "OKC",
+     "home": "MIL",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 11.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 228.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": 420.0,
+      "away_ml": -561.0,
+      "home_win_pct_no_vig": 18.5
+     },
+     "model": {
+      "home_margin": -11.2,
+      "home_spread_equiv": 11.2,
+      "total": 225.0,
+      "home_win_pct": 17.3
+     },
+     "model_minus_market": {
+      "spread_pts": -0.3,
+      "total_pts": -3.5,
+      "home_win_pct": -1.1
+     }
+    },
+    {
+     "event_id": "401910050",
+     "start_utc": "2026-11-29T01:30Z",
+     "state": "pre",
+     "away": "PHI",
+     "home": "HOU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -12.5,
+      "home_spread_price": -106.0,
+      "away_spread_price": -114.0,
+      "total": 220.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": -518.0,
+      "away_ml": 394.0,
+      "home_win_pct_no_vig": 80.5
+     },
+     "model": {
+      "home_margin": 6.4,
+      "home_spread_equiv": -6.4,
+      "total": 226.6,
+      "home_win_pct": 70.2
+     },
+     "model_minus_market": {
+      "spread_pts": 6.1,
+      "total_pts": 6.1,
+      "home_win_pct": -10.4
+     }
+    }
+   ],
+   "backtest": {
+    "holdout_games": 281,
+    "model_margin_mae": 11.154,
+    "line_margin_mae": 10.746,
+    "model_total_mae": 15.146,
+    "line_total_mae": 14.45,
+    "model_brier": 0.2133,
+    "market_brier": 0.1979,
+    "markets": {
+     "spread": {
+      "n": 281,
+      "win_rate": 0.4911,
+      "roi": -0.0636,
+      "train_profitable_rule": false,
+      "rule_holdout_roi": null
+     },
+     "total": {
+      "n": 281,
+      "win_rate": 0.4698,
+      "roi": -0.1044,
+      "train_profitable_rule": false,
+      "rule_holdout_roi": null
+     },
+     "moneyline": {
+      "n": 219,
+      "win_rate": 0.411,
+      "roi": -0.2202,
+      "train_profitable_rule": false,
+      "rule_holdout_roi": null
+     }
+    }
+   }
+  },
+  "NFL": {
+   "games": [],
+   "backtest": {
+    "holdout_games": 168,
+    "model_margin_mae": 9.845,
+    "line_margin_mae": 9.432,
+    "model_total_mae": 11.351,
+    "line_total_mae": 10.56,
+    "model_brier": 0.2211,
+    "market_brier": 0.2133,
+    "markets": {
+     "spread": {
+      "n": 163,
+      "win_rate": 0.4785,
+      "roi": -0.0815,
+      "train_profitable_rule": false,
+      "rule_holdout_roi": null
+     },
+     "total": {
+      "n": 168,
+      "win_rate": 0.5119,
+      "roi": -0.024,
+      "train_profitable_rule": true,
+      "rule_holdout_roi": -0.0704
+     },
+     "moneyline": {
+      "n": 137,
+      "win_rate": 0.4161,
+      "roi": -0.0036,
+      "train_profitable_rule": false,
+      "rule_holdout_roi": null
+     }
+    }
+   }
+  },
+  "CFB": {
+   "games": [
+    {
+     "event_id": "401866474",
+     "start_utc": "2026-11-28T17:00Z",
+     "state": "pre",
+     "away": "CMU",
+     "home": "BALL",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 3.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 50.5,
+      "over_price": -118.0,
+      "under_price": -102.0,
+      "home_ml": 150.0,
+      "away_ml": -180.0,
+      "home_win_pct_no_vig": 38.4
+     },
+     "model": {
+      "home_margin": -1.2,
+      "home_spread_equiv": 1.2,
+      "total": 50.8,
+      "home_win_pct": 36.3
+     },
+     "model_minus_market": {
+      "spread_pts": -2.3,
+      "total_pts": 0.3,
+      "home_win_pct": -2.1
+     }
+    },
+    {
+     "event_id": "401862842",
+     "start_utc": "2026-11-28T17:00Z",
+     "state": "pre",
+     "away": "NAVY",
+     "home": "CLT",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 16.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 53.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": 550.0,
+      "away_ml": -800.0,
+      "home_win_pct_no_vig": 14.8
+     },
+     "model": {
+      "home_margin": -11.5,
+      "home_spread_equiv": 11.5,
+      "total": 56.5,
+      "home_win_pct": 15.0
+     },
+     "model_minus_market": {
+      "spread_pts": -5.0,
+      "total_pts": 3.0,
+      "home_win_pct": 0.3
+     }
+    },
+    {
+     "event_id": "401869954",
+     "start_utc": "2026-11-28T17:00Z",
+     "state": "pre",
+     "away": "LT",
+     "home": "GASO",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 52.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": -120.0,
+      "away_ml": 100.0,
+      "home_win_pct_no_vig": 52.2
+     },
+     "model": {
+      "home_margin": 2.1,
+      "home_spread_equiv": -2.1,
+      "total": 54.4,
+      "home_win_pct": 45.4
+     },
+     "model_minus_market": {
+      "spread_pts": -0.6,
+      "total_pts": 1.9,
+      "home_win_pct": -6.8
+     }
+    },
+    {
+     "event_id": "401858311",
+     "start_utc": "2026-11-28T17:00Z",
+     "state": "pre",
+     "away": "BC",
+     "home": "MIA",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -24.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 54.5,
+      "over_price": -118.0,
+      "under_price": -102.0,
+      "home_ml": -2800.0,
+      "away_ml": 1300.0,
+      "home_win_pct_no_vig": 93.1
+     },
+     "model": {
+      "home_margin": 31.0,
+      "home_spread_equiv": -31.0,
+      "total": 54.0,
+      "home_win_pct": 95.8
+     },
+     "model_minus_market": {
+      "spread_pts": -6.5,
+      "total_pts": -0.5,
+      "home_win_pct": 2.7
+     }
+    },
+    {
+     "event_id": "401858540",
+     "start_utc": "2026-11-28T17:00Z",
+     "state": "pre",
+     "away": "MICH",
+     "home": "OSU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -10.5,
+      "home_spread_price": -105.0,
+      "away_spread_price": -115.0,
+      "total": 37.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": -425.0,
+      "away_ml": 330.0,
+      "home_win_pct_no_vig": 77.7
+     },
+     "model": {
+      "home_margin": 20.5,
+      "home_spread_equiv": -20.5,
+      "total": 43.2,
+      "home_win_pct": 87.2
+     },
+     "model_minus_market": {
+      "spread_pts": -10.0,
+      "total_pts": 5.7,
+      "home_win_pct": 9.5
+     }
+    },
+    {
+     "event_id": "401858314",
+     "start_utc": "2026-11-28T17:00Z",
+     "state": "pre",
+     "away": "ND",
+     "home": "SYR",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 25.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 53.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": 1300.0,
+      "away_ml": -2800.0,
+      "home_win_pct_no_vig": 6.9
+     },
+     "model": {
+      "home_margin": -16.2,
+      "home_spread_equiv": 16.2,
+      "total": 55.5,
+      "home_win_pct": 9.3
+     },
+     "model_minus_market": {
+      "spread_pts": -9.3,
+      "total_pts": 2.0,
+      "home_win_pct": 2.4
+     }
+    },
+    {
+     "event_id": "401856761",
+     "start_utc": "2026-11-28T17:00Z",
+     "state": "pre",
+     "away": "LOU",
+     "home": "UK",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 3.0,
+      "home_spread_price": -118.0,
+      "away_spread_price": -102.0,
+      "total": 53.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": 120.0,
+      "away_ml": -142.0,
+      "home_win_pct_no_vig": 43.7
+     },
+     "model": {
+      "home_margin": -1.6,
+      "home_spread_equiv": 1.6,
+      "total": 56.5,
+      "home_win_pct": 35.5
+     },
+     "model_minus_market": {
+      "spread_pts": -1.4,
+      "total_pts": 3.0,
+      "home_win_pct": -8.2
+     }
+    },
+    {
+     "event_id": "401858313",
+     "start_utc": "2026-11-28T17:00Z",
+     "state": "pre",
+     "away": "NCSU",
+     "home": "UNC",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -5.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 53.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": -225.0,
+      "away_ml": 185.0,
+      "home_win_pct_no_vig": 66.4
+     },
+     "model": {
+      "home_margin": 7.6,
+      "home_spread_equiv": -7.6,
+      "total": 51.5,
+      "home_win_pct": 61.0
+     },
+     "model_minus_market": {
+      "spread_pts": -2.1,
+      "total_pts": -2.0,
+      "home_win_pct": -5.3
+     }
+    },
+    {
+     "event_id": "401861969",
+     "start_utc": "2026-11-28T17:00Z",
+     "state": "pre",
+     "away": "CONN",
+     "home": "WYO",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 3.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 44.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": 142.0,
+      "away_ml": -170.0,
+      "home_win_pct_no_vig": 39.6
+     },
+     "model": {
+      "home_margin": -0.3,
+      "home_spread_equiv": 0.3,
+      "total": 50.0,
+      "home_win_pct": 38.7
+     },
+     "model_minus_market": {
+      "spread_pts": -3.2,
+      "total_pts": 5.5,
+      "home_win_pct": -0.9
+     }
+    },
+    {
+     "event_id": "401858537",
+     "start_utc": "2026-11-28T17:30Z",
+     "state": "pre",
+     "away": "ILL",
+     "home": "NU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -3.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 48.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": -166.0,
+      "away_ml": 140.0,
+      "home_win_pct_no_vig": 60.0
+     },
+     "model": {
+      "home_margin": 9.2,
+      "home_spread_equiv": -9.2,
+      "total": 48.6,
+      "home_win_pct": 65.3
+     },
+     "model_minus_market": {
+      "spread_pts": -5.7,
+      "total_pts": 0.1,
+      "home_win_pct": 5.3
+     }
+    },
+    {
+     "event_id": "401856758",
+     "start_utc": "2026-11-28T17:45Z",
+     "state": "pre",
+     "away": "LSU",
+     "home": "ARK",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 14.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 49.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": 455.0,
+      "away_ml": -625.0,
+      "home_win_pct_no_vig": 17.3
+     },
+     "model": {
+      "home_margin": -6.1,
+      "home_spread_equiv": 6.1,
+      "total": 50.1,
+      "home_win_pct": 24.7
+     },
+     "model_minus_market": {
+      "spread_pts": -8.4,
+      "total_pts": 0.6,
+      "home_win_pct": 7.4
+     }
+    },
+    {
+     "event_id": "401862837",
+     "start_utc": "2026-11-28T18:00Z",
+     "state": "pre",
+     "away": "FAU",
+     "home": "ECU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 58.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": -118.0,
+      "away_ml": -102.0,
+      "home_win_pct_no_vig": 51.7
+     },
+     "model": {
+      "home_margin": 8.2,
+      "home_spread_equiv": -8.2,
+      "total": 60.5,
+      "home_win_pct": 62.7
+     },
+     "model_minus_market": {
+      "spread_pts": -6.7,
+      "total_pts": 2.0,
+      "home_win_pct": 10.9
+     }
+    },
+    {
+     "event_id": "401871103",
+     "start_utc": "2026-11-28T18:00Z",
+     "state": "pre",
+     "away": "USM",
+     "home": "ODU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -5.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 49.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": -218.0,
+      "away_ml": 180.0,
+      "home_win_pct_no_vig": 65.7
+     },
+     "model": {
+      "home_margin": 11.7,
+      "home_spread_equiv": -11.7,
+      "total": 53.9,
+      "home_win_pct": 71.3
+     },
+     "model_minus_market": {
+      "spread_pts": -6.2,
+      "total_pts": 4.4,
+      "home_win_pct": 5.6
+     }
+    },
+    {
+     "event_id": "401871102",
+     "start_utc": "2026-11-28T18:00Z",
+     "state": "pre",
+     "away": "MRSH",
+     "home": "ULM",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 6.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 51.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": 190.0,
+      "away_ml": -230.0,
+      "home_win_pct_no_vig": 33.1
+     },
+     "model": {
+      "home_margin": -1.7,
+      "home_spread_equiv": 1.7,
+      "total": 51.1,
+      "home_win_pct": 35.2
+     },
+     "model_minus_market": {
+      "spread_pts": -4.8,
+      "total_pts": -0.4,
+      "home_win_pct": 2.1
+     }
+    },
+    {
+     "event_id": "401870804",
+     "start_utc": "2026-11-28T18:00Z",
+     "state": "pre",
+     "away": "KENN",
+     "home": "WKU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 3.5,
+      "home_spread_price": -112.0,
+      "away_spread_price": -108.0,
+      "total": 54.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": 142.0,
+      "away_ml": -170.0,
+      "home_win_pct_no_vig": 39.6
+     },
+     "model": {
+      "home_margin": 2.6,
+      "home_spread_equiv": -2.6,
+      "total": 55.5,
+      "home_win_pct": 46.8
+     },
+     "model_minus_market": {
+      "spread_pts": -6.1,
+      "total_pts": 1.0,
+      "home_win_pct": 7.2
+     }
+    },
+    {
+     "event_id": "401856875",
+     "start_utc": "2026-11-28T19:00Z",
+     "state": "pre",
+     "away": "UCF",
+     "home": "COLO",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -2.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 47.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": -130.0,
+      "away_ml": 110.0,
+      "home_win_pct_no_vig": 54.3
+     },
+     "model": {
+      "home_margin": -0.4,
+      "home_spread_equiv": 0.4,
+      "total": 49.8,
+      "home_win_pct": 38.6
+     },
+     "model_minus_market": {
+      "spread_pts": 2.9,
+      "total_pts": 2.3,
+      "home_win_pct": -15.7
+     }
+    },
+    {
+     "event_id": "401871082",
+     "start_utc": "2026-11-28T19:00Z",
+     "state": "pre",
+     "away": "SHSU",
+     "home": "FIU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -11.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 41.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": -470.0,
+      "away_ml": 360.0,
+      "home_win_pct_no_vig": 79.1
+     },
+     "model": {
+      "home_margin": 15.9,
+      "home_spread_equiv": -15.9,
+      "total": 41.7,
+      "home_win_pct": 80.1
+     },
+     "model_minus_market": {
+      "spread_pts": -4.4,
+      "total_pts": 0.2,
+      "home_win_pct": 1.0
+     }
+    },
+    {
+     "event_id": "401869959",
+     "start_utc": "2026-11-28T19:00Z",
+     "state": "pre",
+     "away": "UL",
+     "home": "GAST",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 4.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 55.5,
+      "over_price": 100.0,
+      "under_price": -120.0,
+      "home_ml": 164.0,
+      "away_ml": -198.0,
+      "home_win_pct_no_vig": 36.3
+     },
+     "model": {
+      "home_margin": 2.2,
+      "home_spread_equiv": -2.2,
+      "total": 58.8,
+      "home_win_pct": 45.9
+     },
+     "model_minus_market": {
+      "spread_pts": -6.7,
+      "total_pts": 3.3,
+      "home_win_pct": 9.6
+     }
+    },
+    {
+     "event_id": "401856878",
+     "start_utc": "2026-11-28T19:00Z",
+     "state": "pre",
+     "away": "KSU",
+     "home": "ISU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -4.0,
+      "home_spread_price": -118.0,
+      "away_spread_price": -102.0,
+      "total": 52.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": -192.0,
+      "away_ml": 160.0,
+      "home_win_pct_no_vig": 63.1
+     },
+     "model": {
+      "home_margin": 8.9,
+      "home_spread_equiv": -8.9,
+      "total": 57.7,
+      "home_win_pct": 64.5
+     },
+     "model_minus_market": {
+      "spread_pts": -4.9,
+      "total_pts": 5.2,
+      "home_win_pct": 1.4
+     }
+    },
+    {
+     "event_id": "401869947",
+     "start_utc": "2026-11-28T19:00Z",
+     "state": "pre",
+     "away": "CCU",
+     "home": "JMU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -17.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 54.5,
+      "over_price": -115.0,
+      "under_price": -105.0,
+      "home_ml": -950.0,
+      "away_ml": 625.0,
+      "home_win_pct_no_vig": 86.8
+     },
+     "model": {
+      "home_margin": 23.8,
+      "home_spread_equiv": -23.8,
+      "total": 57.8,
+      "home_win_pct": 90.8
+     },
+     "model_minus_market": {
+      "spread_pts": -6.3,
+      "total_pts": 3.3,
+      "home_win_pct": 4.1
+     }
+    },
+    {
+     "event_id": "401871063",
+     "start_utc": "2026-11-28T19:00Z",
+     "state": "pre",
+     "away": "LIB",
+     "home": "MOST",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 18.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 52.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": 650.0,
+      "away_ml": -1000.0,
+      "home_win_pct_no_vig": 12.8
+     },
+     "model": {
+      "home_margin": -8.7,
+      "home_spread_equiv": 8.7,
+      "total": 51.0,
+      "home_win_pct": 19.6
+     },
+     "model_minus_market": {
+      "spread_pts": -9.8,
+      "total_pts": -1.5,
+      "home_win_pct": 6.8
+     }
+    },
+    {
+     "event_id": "401871083",
+     "start_utc": "2026-11-28T19:00Z",
+     "state": "pre",
+     "away": "NMSU",
+     "home": "MTSU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -3.0,
+      "home_spread_price": -120.0,
+      "away_spread_price": 100.0,
+      "total": 51.5,
+      "over_price": -102.0,
+      "under_price": -118.0,
+      "home_ml": -166.0,
+      "away_ml": 140.0,
+      "home_win_pct_no_vig": 60.0
+     },
+     "model": {
+      "home_margin": 7.7,
+      "home_spread_equiv": -7.7,
+      "total": 55.1,
+      "home_win_pct": 61.2
+     },
+     "model_minus_market": {
+      "spread_pts": -4.7,
+      "total_pts": 3.6,
+      "home_win_pct": 1.2
+     }
+    },
+    {
+     "event_id": "401862841",
+     "start_utc": "2026-11-28T19:00Z",
+     "state": "pre",
+     "away": "ARMY",
+     "home": "RICE",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 4.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 46.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": 164.0,
+      "away_ml": -198.0,
+      "home_win_pct_no_vig": 36.3
+     },
+     "model": {
+      "home_margin": -5.7,
+      "home_spread_equiv": 5.7,
+      "total": 49.3,
+      "home_win_pct": 25.4
+     },
+     "model_minus_market": {
+      "spread_pts": 1.2,
+      "total_pts": 2.8,
+      "home_win_pct": -10.9
+     }
+    },
+    {
+     "event_id": "401869939",
+     "start_utc": "2026-11-28T20:00Z",
+     "state": "pre",
+     "away": "TROY",
+     "home": "ARST",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -3.5,
+      "home_spread_price": -112.0,
+      "away_spread_price": -108.0,
+      "total": 46.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": -185.0,
+      "away_ml": 154.0,
+      "home_win_pct_no_vig": 62.2
+     },
+     "model": {
+      "home_margin": 7.4,
+      "home_spread_equiv": -7.4,
+      "total": 46.3,
+      "home_win_pct": 60.6
+     },
+     "model_minus_market": {
+      "spread_pts": -3.9,
+      "total_pts": -0.2,
+      "home_win_pct": -1.7
+     }
+    },
+    {
+     "event_id": "401856764",
+     "start_utc": "2026-11-28T20:00Z",
+     "state": "pre",
+     "away": "SC",
+     "home": "CLEM",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 6.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 42.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": 205.0,
+      "away_ml": -250.0,
+      "home_win_pct_no_vig": 31.5
+     },
+     "model": {
+      "home_margin": 4.7,
+      "home_spread_equiv": -4.7,
+      "total": 44.6,
+      "home_win_pct": 52.9
+     },
+     "model_minus_market": {
+      "spread_pts": -11.2,
+      "total_pts": 2.1,
+      "home_win_pct": 21.4
+     }
+    },
+    {
+     "event_id": "401858317",
+     "start_utc": "2026-11-28T20:00Z",
+     "state": "pre",
+     "away": "UVA",
+     "home": "VT",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -2.5,
+      "home_spread_price": -122.0,
+      "away_spread_price": 102.0,
+      "total": 50.5,
+      "over_price": -115.0,
+      "under_price": -105.0,
+      "home_ml": -148.0,
+      "away_ml": 124.0,
+      "home_win_pct_no_vig": 57.2
+     },
+     "model": {
+      "home_margin": 1.4,
+      "home_spread_equiv": -1.4,
+      "total": 51.7,
+      "home_win_pct": 43.4
+     },
+     "model_minus_market": {
+      "spread_pts": 1.1,
+      "total_pts": 1.2,
+      "home_win_pct": -13.8
+     }
+    },
+    {
+     "event_id": "401866475",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "MASS",
+     "home": "BGSU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -3.0,
+      "home_spread_price": -120.0,
+      "away_spread_price": 100.0,
+      "total": 41.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": -162.0,
+      "away_ml": 136.0,
+      "home_win_pct_no_vig": 59.3
+     },
+     "model": {
+      "home_margin": 8.0,
+      "home_spread_equiv": -8.0,
+      "total": 44.9,
+      "home_win_pct": 62.1
+     },
+     "model_minus_market": {
+      "spread_pts": -5.0,
+      "total_pts": 3.4,
+      "home_win_pct": 2.8
+     }
+    },
+    {
+     "event_id": "401856876",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "CIN",
+     "home": "BYU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -16.5,
+      "home_spread_price": -112.0,
+      "away_spread_price": -108.0,
+      "total": 55.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": -800.0,
+      "away_ml": 550.0,
+      "home_win_pct_no_vig": 85.2
+     },
+     "model": {
+      "home_margin": 16.5,
+      "home_spread_equiv": -16.5,
+      "total": 53.8,
+      "home_win_pct": 81.3
+     },
+     "model_minus_market": {
+      "spread_pts": -0.0,
+      "total_pts": -1.7,
+      "home_win_pct": -4.0
+     }
+    },
+    {
+     "event_id": "401871062",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "JXST",
+     "home": "DEL",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -2.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 57.5,
+      "over_price": -118.0,
+      "under_price": -102.0,
+      "home_ml": -142.0,
+      "away_ml": 120.0,
+      "home_win_pct_no_vig": 56.3
+     },
+     "model": {
+      "home_margin": 4.2,
+      "home_spread_equiv": -4.2,
+      "total": 57.3,
+      "home_win_pct": 51.5
+     },
+     "model_minus_market": {
+      "spread_pts": -1.7,
+      "total_pts": -0.2,
+      "home_win_pct": -4.8
+     }
+    },
+    {
+     "event_id": "401858539",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "PSU",
+     "home": "MD",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 7.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 48.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": 235.0,
+      "away_ml": -290.0,
+      "home_win_pct_no_vig": 28.6
+     },
+     "model": {
+      "home_margin": -4.9,
+      "home_spread_equiv": 4.9,
+      "total": 54.8,
+      "home_win_pct": 27.3
+     },
+     "model_minus_market": {
+      "spread_pts": -2.6,
+      "total_pts": 6.3,
+      "home_win_pct": -1.3
+     }
+    },
+    {
+     "event_id": "401864550",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "UTEP",
+     "home": "NIU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -4.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 50.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": -192.0,
+      "away_ml": 160.0,
+      "home_win_pct_no_vig": 63.1
+     },
+     "model": {
+      "home_margin": 10.5,
+      "home_spread_equiv": -10.5,
+      "total": 52.6,
+      "home_win_pct": 68.6
+     },
+     "model_minus_market": {
+      "spread_pts": -6.0,
+      "total_pts": 2.1,
+      "home_win_pct": 5.5
+     }
+    },
+    {
+     "event_id": "401858316",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "SMU",
+     "home": "STAN",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 7.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 60.5,
+      "over_price": -115.0,
+      "under_price": -105.0,
+      "home_ml": 230.0,
+      "away_ml": -285.0,
+      "home_win_pct_no_vig": 29.0
+     },
+     "model": {
+      "home_margin": -5.0,
+      "home_spread_equiv": 5.0,
+      "total": 57.6,
+      "home_win_pct": 27.0
+     },
+     "model_minus_market": {
+      "spread_pts": -2.5,
+      "total_pts": -2.9,
+      "home_win_pct": -2.1
+     }
+    },
+    {
+     "event_id": "401858543",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "USC",
+     "home": "UCLA",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 5.5,
+      "home_spread_price": -112.0,
+      "away_spread_price": -108.0,
+      "total": 46.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": 170.0,
+      "away_ml": -205.0,
+      "home_win_pct_no_vig": 35.5
+     },
+     "model": {
+      "home_margin": 4.6,
+      "home_spread_equiv": -4.6,
+      "total": 53.1,
+      "home_win_pct": 52.5
+     },
+     "model_minus_market": {
+      "spread_pts": -10.1,
+      "total_pts": 6.6,
+      "home_win_pct": 17.0
+     }
+    },
+    {
+     "event_id": "401856760",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "GT",
+     "home": "UGA",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -35.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 55.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": -8000.0,
+      "away_ml": 2200.0,
+      "home_win_pct_no_vig": 95.8
+     },
+     "model": {
+      "home_margin": 31.3,
+      "home_spread_equiv": -31.3,
+      "total": 56.8,
+      "home_win_pct": 95.9
+     },
+     "model_minus_market": {
+      "spread_pts": 4.2,
+      "total_pts": 1.3,
+      "home_win_pct": 0.1
+     }
+    },
+    {
+     "event_id": "401862839",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "TULN",
+     "home": "USF",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -7.0,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 44.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": -270.0,
+      "away_ml": 220.0,
+      "home_win_pct_no_vig": 70.0
+     },
+     "model": {
+      "home_margin": 13.5,
+      "home_spread_equiv": -13.5,
+      "total": 45.1,
+      "home_win_pct": 75.4
+     },
+     "model_minus_market": {
+      "spread_pts": -6.5,
+      "total_pts": 0.6,
+      "home_win_pct": 5.4
+     }
+    },
+    {
+     "event_id": "401858312",
+     "start_utc": "2026-11-28T20:30Z",
+     "state": "pre",
+     "away": "DUKE",
+     "home": "WAKE",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -14.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 55.5,
+      "over_price": -102.0,
+      "under_price": -118.0,
+      "home_ml": -650.0,
+      "away_ml": 470.0,
+      "home_win_pct_no_vig": 83.2
+     },
+     "model": {
+      "home_margin": 15.2,
+      "home_spread_equiv": -15.2,
+      "total": 55.7,
+      "home_win_pct": 78.8
+     },
+     "model_minus_market": {
+      "spread_pts": -0.7,
+      "total_pts": 0.2,
+      "home_win_pct": -4.3
+     }
+    },
+    {
+     "event_id": "401862843",
+     "start_utc": "2026-11-28T21:00Z",
+     "state": "pre",
+     "away": "UAB",
+     "home": "UNT",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -2.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 44.5,
+      "over_price": -115.0,
+      "under_price": -105.0,
+      "home_ml": -135.0,
+      "away_ml": 114.0,
+      "home_win_pct_no_vig": 55.1
+     },
+     "model": {
+      "home_margin": 18.5,
+      "home_spread_equiv": -18.5,
+      "total": 63.3,
+      "home_win_pct": 84.5
+     },
+     "model_minus_market": {
+      "spread_pts": -16.0,
+      "total_pts": 18.8,
+      "home_win_pct": 29.3
+     }
+    },
+    {
+     "event_id": "401856763",
+     "start_utc": "2026-11-28T21:15Z",
+     "state": "pre",
+     "away": "OU",
+     "home": "MIZ",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 41.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": -125.0,
+      "away_ml": 105.0,
+      "home_win_pct_no_vig": 53.2
+     },
+     "model": {
+      "home_margin": 5.8,
+      "home_spread_equiv": -5.8,
+      "total": 42.7,
+      "home_win_pct": 56.1
+     },
+     "model_minus_market": {
+      "spread_pts": -4.3,
+      "total_pts": 1.2,
+      "home_win_pct": 2.8
+     }
+    },
+    {
+     "event_id": "401858542",
+     "start_utc": "2026-11-28T21:15Z",
+     "state": "pre",
+     "away": "MSU",
+     "home": "RUTG",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 2.5,
+      "home_spread_price": -105.0,
+      "away_spread_price": -115.0,
+      "total": 45.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": 114.0,
+      "away_ml": -135.0,
+      "home_win_pct_no_vig": 44.9
+     },
+     "model": {
+      "home_margin": 3.2,
+      "home_spread_equiv": -3.2,
+      "total": 53.7,
+      "home_win_pct": 48.7
+     },
+     "model_minus_market": {
+      "spread_pts": -5.7,
+      "total_pts": 8.2,
+      "home_win_pct": 3.9
+     }
+    },
+    {
+     "event_id": "401860926",
+     "start_utc": "2026-11-28T23:00Z",
+     "state": "pre",
+     "away": "BOIS",
+     "home": "CSU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 21.0,
+      "home_spread_price": -102.0,
+      "away_spread_price": -118.0,
+      "total": 76.5,
+      "over_price": -115.0,
+      "under_price": -105.0,
+      "home_ml": 1000.0,
+      "away_ml": -1800.0,
+      "home_win_pct_no_vig": 8.8
+     },
+     "model": {
+      "home_margin": -14.5,
+      "home_spread_equiv": 14.5,
+      "total": 78.3,
+      "home_win_pct": 11.1
+     },
+     "model_minus_market": {
+      "spread_pts": -6.5,
+      "total_pts": 1.8,
+      "home_win_pct": 2.3
+     }
+    },
+    {
+     "event_id": "401856877",
+     "start_utc": "2026-11-28T23:15Z",
+     "state": "pre",
+     "away": "KU",
+     "home": "OKST",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -6.0,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 64.5,
+      "over_price": -118.0,
+      "under_price": -102.0,
+      "home_ml": -225.0,
+      "away_ml": 185.0,
+      "home_win_pct_no_vig": 66.4
+     },
+     "model": {
+      "home_margin": 7.2,
+      "home_spread_equiv": -7.2,
+      "total": 63.2,
+      "home_win_pct": 60.0
+     },
+     "model_minus_market": {
+      "spread_pts": -1.2,
+      "total_pts": -1.3,
+      "home_win_pct": -6.3
+     }
+    },
+    {
+     "event_id": "401860929",
+     "start_utc": "2026-11-28T23:30Z",
+     "state": "pre",
+     "away": "SDSU",
+     "home": "WSU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -3.0,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 46.5,
+      "over_price": -118.0,
+      "under_price": -102.0,
+      "home_ml": -148.0,
+      "away_ml": 124.0,
+      "home_win_pct_no_vig": 57.2
+     },
+     "model": {
+      "home_margin": 7.4,
+      "home_spread_equiv": -7.4,
+      "total": 45.3,
+      "home_win_pct": 60.5
+     },
+     "model_minus_market": {
+      "spread_pts": -4.4,
+      "total_pts": -1.2,
+      "home_win_pct": 3.3
+     }
+    },
+    {
+     "event_id": "401858538",
+     "start_utc": "2026-11-29T00:00Z",
+     "state": "pre",
+     "away": "PUR",
+     "home": "IU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -23.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 52.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": -2400.0,
+      "away_ml": 1200.0,
+      "home_win_pct_no_vig": 92.6
+     },
+     "model": {
+      "home_margin": 30.2,
+      "home_spread_equiv": -30.2,
+      "total": 52.8,
+      "home_win_pct": 95.4
+     },
+     "model_minus_market": {
+      "spread_pts": -6.7,
+      "total_pts": 0.3,
+      "home_win_pct": 2.8
+     }
+    },
+    {
+     "event_id": "401856765",
+     "start_utc": "2026-11-29T00:00Z",
+     "state": "pre",
+     "away": "TENN",
+     "home": "VAN",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 13.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 43.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": 410.0,
+      "away_ml": -550.0,
+      "home_win_pct_no_vig": 18.8
+     },
+     "model": {
+      "home_margin": -5.9,
+      "home_spread_equiv": 5.9,
+      "total": 52.4,
+      "home_win_pct": 25.0
+     },
+     "model_minus_market": {
+      "spread_pts": -7.6,
+      "total_pts": 8.9,
+      "home_win_pct": 6.2
+     }
+    },
+    {
+     "event_id": "401856757",
+     "start_utc": "2026-11-29T00:30Z",
+     "state": "pre",
+     "away": "AUB",
+     "home": "ALA",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -14.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 50.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": -675.0,
+      "away_ml": 490.0,
+      "home_win_pct_no_vig": 83.7
+     },
+     "model": {
+      "home_margin": 17.4,
+      "home_spread_equiv": -17.4,
+      "total": 52.3,
+      "home_win_pct": 82.7
+     },
+     "model_minus_market": {
+      "spread_pts": -2.9,
+      "total_pts": 1.8,
+      "home_win_pct": -1.0
+     }
+    },
+    {
+     "event_id": "401858315",
+     "start_utc": "2026-11-29T00:30Z",
+     "state": "pre",
+     "away": "PITT",
+     "home": "CAL",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 9.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 47.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": 280.0,
+      "away_ml": -355.0,
+      "home_win_pct_no_vig": 25.2
+     },
+     "model": {
+      "home_margin": -7.4,
+      "home_spread_equiv": 7.4,
+      "total": 51.7,
+      "home_win_pct": 21.9
+     },
+     "model_minus_market": {
+      "spread_pts": -2.1,
+      "total_pts": 4.2,
+      "home_win_pct": -3.3
+     }
+    },
+    {
+     "event_id": "401858541",
+     "start_utc": "2026-11-29T00:30Z",
+     "state": "pre",
+     "away": "WASH",
+     "home": "ORE",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -13.5,
+      "home_spread_price": -112.0,
+      "away_spread_price": -108.0,
+      "total": 51.5,
+      "over_price": -102.0,
+      "under_price": -118.0,
+      "home_ml": -625.0,
+      "away_ml": 455.0,
+      "home_win_pct_no_vig": 82.7
+     },
+     "model": {
+      "home_margin": 16.4,
+      "home_spread_equiv": -16.4,
+      "total": 52.0,
+      "home_win_pct": 81.0
+     },
+     "model_minus_market": {
+      "spread_pts": -2.9,
+      "total_pts": 0.5,
+      "home_win_pct": -1.7
+     }
+    },
+    {
+     "event_id": "401856873",
+     "start_utc": "2026-11-29T02:00Z",
+     "state": "pre",
+     "away": "ASU",
+     "home": "ARIZ",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -9.5,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 53.5,
+      "over_price": -115.0,
+      "under_price": -105.0,
+      "home_ml": -310.0,
+      "away_ml": 250.0,
+      "home_win_pct_no_vig": 72.6
+     },
+     "model": {
+      "home_margin": 15.1,
+      "home_spread_equiv": -15.1,
+      "total": 54.8,
+      "home_win_pct": 78.7
+     },
+     "model_minus_market": {
+      "spread_pts": -5.6,
+      "total_pts": 1.3,
+      "home_win_pct": 6.2
+     }
+    },
+    {
+     "event_id": "401864548",
+     "start_utc": "2026-11-29T02:00Z",
+     "state": "pre",
+     "away": "NEV",
+     "home": "UNLV",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -5.5,
+      "home_spread_price": -110.0,
+      "away_spread_price": -110.0,
+      "total": 44.5,
+      "over_price": -110.0,
+      "under_price": -110.0,
+      "home_ml": -225.0,
+      "away_ml": 185.0,
+      "home_win_pct_no_vig": 66.4
+     },
+     "model": {
+      "home_margin": 11.5,
+      "home_spread_equiv": -11.5,
+      "total": 46.1,
+      "home_win_pct": 71.0
+     },
+     "model_minus_market": {
+      "spread_pts": -6.0,
+      "total_pts": 1.6,
+      "home_win_pct": 4.7
+     }
+    },
+    {
+     "event_id": "401856874",
+     "start_utc": "2026-11-29T02:30Z",
+     "state": "pre",
+     "away": "BAY",
+     "home": "HOU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -3.5,
+      "home_spread_price": -105.0,
+      "away_spread_price": -115.0,
+      "total": 56.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": -175.0,
+      "away_ml": 145.0,
+      "home_win_pct_no_vig": 60.9
+     },
+     "model": {
+      "home_margin": 8.3,
+      "home_spread_equiv": -8.3,
+      "total": 51.7,
+      "home_win_pct": 63.0
+     },
+     "model_minus_market": {
+      "spread_pts": -4.8,
+      "total_pts": -4.8,
+      "home_win_pct": 2.0
+     }
+    },
+    {
+     "event_id": "401860928",
+     "start_utc": "2026-11-29T02:30Z",
+     "state": "pre",
+     "away": "TXST",
+     "home": "USU",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 7.5,
+      "home_spread_price": -115.0,
+      "away_spread_price": -105.0,
+      "total": 52.5,
+      "over_price": -108.0,
+      "under_price": -112.0,
+      "home_ml": 245.0,
+      "away_ml": -305.0,
+      "home_win_pct_no_vig": 27.8
+     },
+     "model": {
+      "home_margin": -1.3,
+      "home_spread_equiv": 1.3,
+      "total": 55.1,
+      "home_win_pct": 36.2
+     },
+     "model_minus_market": {
+      "spread_pts": -6.2,
+      "total_pts": 2.6,
+      "home_win_pct": 8.4
+     }
+    },
+    {
+     "event_id": "401860927",
+     "start_utc": "2026-11-29T03:00Z",
+     "state": "pre",
+     "away": "ORST",
+     "home": "FRES",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -3.0,
+      "home_spread_price": -108.0,
+      "away_spread_price": -112.0,
+      "total": 58.5,
+      "over_price": -115.0,
+      "under_price": -105.0,
+      "home_ml": -148.0,
+      "away_ml": 124.0,
+      "home_win_pct_no_vig": 57.2
+     },
+     "model": {
+      "home_margin": 6.1,
+      "home_spread_equiv": -6.1,
+      "total": 56.9,
+      "home_win_pct": 57.0
+     },
+     "model_minus_market": {
+      "spread_pts": -3.1,
+      "total_pts": -1.6,
+      "home_win_pct": -0.2
+     }
+    },
+    {
+     "event_id": "401864547",
+     "start_utc": "2026-11-29T04:00Z",
+     "state": "pre",
+     "away": "SAC",
+     "home": "HAW",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -13.5,
+      "home_spread_price": -112.0,
+      "away_spread_price": -108.0,
+      "total": 39.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": -575.0,
+      "away_ml": 425.0,
+      "home_win_pct_no_vig": 81.7
+     },
+     "model": {
+      "home_margin": 15.9,
+      "home_spread_equiv": -15.9,
+      "total": 44.0,
+      "home_win_pct": 80.1
+     },
+     "model_minus_market": {
+      "spread_pts": -2.4,
+      "total_pts": 4.5,
+      "home_win_pct": -1.6
+     }
+    }
+   ],
+   "backtest": {
+    "holdout_games": 838,
+    "model_margin_mae": 13.552,
+    "line_margin_mae": 11.634,
+    "model_total_mae": 13.196,
+    "line_total_mae": 12.337,
+    "model_brier": 0.1963,
+    "market_brier": 0.1755,
+    "markets": {
+     "spread": {
+      "n": 719,
+      "win_rate": 0.5076,
+      "roi": -0.0324,
+      "train_profitable_rule": true,
+      "rule_holdout_roi": -0.0401
+     },
+     "total": {
+      "n": 730,
+      "win_rate": 0.4658,
+      "roi": -0.1098,
+      "train_profitable_rule": false,
+      "rule_holdout_roi": null
+     },
+     "moneyline": {
+      "n": 589,
+      "win_rate": 0.4058,
+      "roi": -0.1103,
+      "train_profitable_rule": true,
+      "rule_holdout_roi": -0.134
+     }
+    }
+   }
+  },
+  "NHL": {
+   "games": [
+    {
+     "event_id": "401892810",
+     "start_utc": "2026-11-28T21:00Z",
+     "state": "pre",
+     "away": "MTL",
+     "home": "VGK",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": 205.0,
+      "away_spread_price": -250.0,
+      "total": 6.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": -118.0,
+      "away_ml": -102.0,
+      "home_win_pct_no_vig": 51.7
+     },
+     "model": {
+      "home_margin": 0.1,
+      "home_spread_equiv": -0.1,
+      "total": 6.1,
+      "home_win_pct": 53.4
+     },
+     "model_minus_market": {
+      "spread_pts": 1.4,
+      "total_pts": -0.4,
+      "home_win_pct": 1.7
+     }
+    },
+    {
+     "event_id": "401892811",
+     "start_utc": "2026-11-28T23:00Z",
+     "state": "pre",
+     "away": "TB",
+     "home": "FLA",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": 215.0,
+      "away_spread_price": -265.0,
+      "total": 6.5,
+      "over_price": 105.0,
+      "under_price": -125.0,
+      "home_ml": -115.0,
+      "away_ml": -105.0,
+      "home_win_pct_no_vig": 51.1
+     },
+     "model": {
+      "home_margin": -0.2,
+      "home_spread_equiv": 0.2,
+      "total": 6.4,
+      "home_win_pct": 48.6
+     },
+     "model_minus_market": {
+      "spread_pts": 1.7,
+      "total_pts": -0.1,
+      "home_win_pct": -2.5
+     }
+    },
+    {
+     "event_id": "401892816",
+     "start_utc": "2026-11-29T00:00Z",
+     "state": "pre",
+     "away": "OTT",
+     "home": "CAR",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": -102.0,
+      "away_spread_price": -118.0,
+      "total": 6.5,
+      "over_price": 105.0,
+      "under_price": -125.0,
+      "home_ml": -265.0,
+      "away_ml": 215.0,
+      "home_win_pct_no_vig": 69.6
+     },
+     "model": {
+      "home_margin": 0.8,
+      "home_spread_equiv": -0.8,
+      "total": 6.2,
+      "home_win_pct": 61.6
+     },
+     "model_minus_market": {
+      "spread_pts": 0.7,
+      "total_pts": -0.3,
+      "home_win_pct": -8.0
+     }
+    },
+    {
+     "event_id": "401892812",
+     "start_utc": "2026-11-29T00:00Z",
+     "state": "pre",
+     "away": "NSH",
+     "home": "DET",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": 230.0,
+      "away_spread_price": -285.0,
+      "total": 5.5,
+      "over_price": -130.0,
+      "under_price": 110.0,
+      "home_ml": -112.0,
+      "away_ml": -108.0,
+      "home_win_pct_no_vig": 50.4
+     },
+     "model": {
+      "home_margin": -0.2,
+      "home_spread_equiv": 0.2,
+      "total": 5.8,
+      "home_win_pct": 48.9
+     },
+     "model_minus_market": {
+      "spread_pts": 1.7,
+      "total_pts": 0.3,
+      "home_win_pct": -1.6
+     }
+    },
+    {
+     "event_id": "401892813",
+     "start_utc": "2026-11-29T00:00Z",
+     "state": "pre",
+     "away": "WPG",
+     "home": "NJ",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": 120.0,
+      "away_spread_price": -142.0,
+      "total": 6.5,
+      "over_price": 100.0,
+      "under_price": -120.0,
+      "home_ml": -205.0,
+      "away_ml": 170.0,
+      "home_win_pct_no_vig": 64.5
+     },
+     "model": {
+      "home_margin": 0.4,
+      "home_spread_equiv": -0.4,
+      "total": 6.5,
+      "home_win_pct": 56.6
+     },
+     "model_minus_market": {
+      "spread_pts": 1.1,
+      "total_pts": 0.0,
+      "home_win_pct": -7.9
+     }
+    },
+    {
+     "event_id": "401892814",
+     "start_utc": "2026-11-29T00:00Z",
+     "state": "pre",
+     "away": "CGY",
+     "home": "NYR",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": 142.0,
+      "away_spread_price": -170.0,
+      "total": 5.5,
+      "over_price": -125.0,
+      "under_price": 105.0,
+      "home_ml": -185.0,
+      "away_ml": 154.0,
+      "home_win_pct_no_vig": 62.2
+     },
+     "model": {
+      "home_margin": 0.6,
+      "home_spread_equiv": -0.6,
+      "total": 5.6,
+      "home_win_pct": 58.9
+     },
+     "model_minus_market": {
+      "spread_pts": 0.9,
+      "total_pts": 0.1,
+      "home_win_pct": -3.3
+     }
+    },
+    {
+     "event_id": "401892815",
+     "start_utc": "2026-11-29T00:00Z",
+     "state": "pre",
+     "away": "TOR",
+     "home": "PIT",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": 195.0,
+      "away_spread_price": -238.0,
+      "total": 6.5,
+      "over_price": -135.0,
+      "under_price": 114.0,
+      "home_ml": -118.0,
+      "away_ml": -102.0,
+      "home_win_pct_no_vig": 51.7
+     },
+     "model": {
+      "home_margin": 0.3,
+      "home_spread_equiv": -0.3,
+      "total": 6.9,
+      "home_win_pct": 54.7
+     },
+     "model_minus_market": {
+      "spread_pts": 1.2,
+      "total_pts": 0.4,
+      "home_win_pct": 3.0
+     }
+    },
+    {
+     "event_id": "401892817",
+     "start_utc": "2026-11-29T00:00Z",
+     "state": "pre",
+     "away": "WSH",
+     "home": "STL",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": 230.0,
+      "away_spread_price": -285.0,
+      "total": 6.5,
+      "over_price": -148.0,
+      "under_price": 124.0,
+      "home_ml": -108.0,
+      "away_ml": -112.0,
+      "home_win_pct_no_vig": 49.6
+     },
+     "model": {
+      "home_margin": 0.3,
+      "home_spread_equiv": -0.3,
+      "total": 7.0,
+      "home_win_pct": 55.7
+     },
+     "model_minus_market": {
+      "spread_pts": 1.2,
+      "total_pts": 0.5,
+      "home_win_pct": 6.1
+     }
+    },
+    {
+     "event_id": "401892818",
+     "start_utc": "2026-11-29T00:30Z",
+     "state": "pre",
+     "away": "NYI",
+     "home": "PHI",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 1.5,
+      "home_spread_price": -270.0,
+      "away_spread_price": 220.0,
+      "total": 5.5,
+      "over_price": -130.0,
+      "under_price": 110.0,
+      "home_ml": -102.0,
+      "away_ml": -118.0,
+      "home_win_pct_no_vig": 48.3
+     },
+     "model": {
+      "home_margin": -0.2,
+      "home_spread_equiv": 0.2,
+      "total": 5.7,
+      "home_win_pct": 49.7
+     },
+     "model_minus_market": {
+      "spread_pts": -1.3,
+      "total_pts": 0.2,
+      "home_win_pct": 1.4
+     }
+    },
+    {
+     "event_id": "401892819",
+     "start_utc": "2026-11-29T01:00Z",
+     "state": "pre",
+     "away": "UTA",
+     "home": "DAL",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": 170.0,
+      "away_spread_price": -205.0,
+      "total": 5.5,
+      "over_price": -130.0,
+      "under_price": 110.0,
+      "home_ml": -155.0,
+      "away_ml": 130.0,
+      "home_win_pct_no_vig": 58.3
+     },
+     "model": {
+      "home_margin": 0.3,
+      "home_spread_equiv": -0.3,
+      "total": 6.1,
+      "home_win_pct": 55.4
+     },
+     "model_minus_market": {
+      "spread_pts": 1.2,
+      "total_pts": 0.6,
+      "home_win_pct": -2.9
+     }
+    },
+    {
+     "event_id": "401892820",
+     "start_utc": "2026-11-29T02:00Z",
+     "state": "pre",
+     "away": "SJ",
+     "home": "COL",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": -102.0,
+      "away_spread_price": -118.0,
+      "total": 6.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": -258.0,
+      "away_ml": 210.0,
+      "home_win_pct_no_vig": 69.1
+     },
+     "model": {
+      "home_margin": 1.6,
+      "home_spread_equiv": -1.6,
+      "total": 6.6,
+      "home_win_pct": 69.8
+     },
+     "model_minus_market": {
+      "spread_pts": -0.1,
+      "total_pts": 0.1,
+      "home_win_pct": 0.7
+     }
+    },
+    {
+     "event_id": "401892821",
+     "start_utc": "2026-11-29T02:00Z",
+     "state": "pre",
+     "away": "ANA",
+     "home": "LA",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": -1.5,
+      "home_spread_price": 170.0,
+      "away_spread_price": -205.0,
+      "total": 6.5,
+      "over_price": -105.0,
+      "under_price": -115.0,
+      "home_ml": -142.0,
+      "away_ml": 120.0,
+      "home_win_pct_no_vig": 56.3
+     },
+     "model": {
+      "home_margin": -0.0,
+      "home_spread_equiv": 0.0,
+      "total": 6.6,
+      "home_win_pct": 51.4
+     },
+     "model_minus_market": {
+      "spread_pts": 1.5,
+      "total_pts": 0.1,
+      "home_win_pct": -5.0
+     }
+    },
+    {
+     "event_id": "401892822",
+     "start_utc": "2026-11-29T03:00Z",
+     "state": "pre",
+     "away": "EDM",
+     "home": "SEA",
+     "neutral_site": 0,
+     "odds_status": "ok",
+     "provider": "DraftKings",
+     "market": {
+      "home_spread": 1.5,
+      "home_spread_price": -175.0,
+      "away_spread_price": 145.0,
+      "total": 6.5,
+      "over_price": -112.0,
+      "under_price": -108.0,
+      "home_ml": 142.0,
+      "away_ml": -170.0,
+      "home_win_pct_no_vig": 39.6
+     },
+     "model": {
+      "home_margin": -0.5,
+      "home_spread_equiv": 0.5,
+      "total": 6.7,
+      "home_win_pct": 45.3
+     },
+     "model_minus_market": {
+      "spread_pts": -1.0,
+      "total_pts": 0.2,
+      "home_win_pct": 5.7
+     }
+    }
+   ],
+   "backtest": {
+    "holdout_games": 414,
+    "model_margin_mae": 2.146,
+    "line_margin_mae": 2.162,
+    "model_total_mae": 1.845,
+    "line_total_mae": 1.831,
+    "model_brier": 0.2424,
+    "market_brier": 0.234,
+    "markets": {
+     "spread": {
+      "n": 414,
+      "win_rate": 0.6232,
+      "roi": -0.0581,
+      "train_profitable_rule": false,
+      "rule_holdout_roi": null
+     },
+     "total": {
+      "n": 414,
+      "win_rate": 0.5145,
+      "roi": -0.0606,
+      "train_profitable_rule": false,
+      "rule_holdout_roi": null
+     },
+     "moneyline": {
+      "n": 315,
+      "win_rate": 0.3556,
+      "roi": -0.1863,
+      "train_profitable_rule": false,
+      "rule_holdout_roi": null
+     }
+    }
+   }
+  }
+ }
+}
