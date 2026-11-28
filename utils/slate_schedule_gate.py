@@ -111,8 +111,18 @@ def _fold_team_token(raw: object) -> str:
     s = str(raw or "").strip()
     if not s or s.upper() in {"NAN", "NONE", "NAT", "TBD", "NULL"}:
         return ""
-    s = s.replace("@", " ").replace("VS.", " ").replace("VS", " ")
+    s = s.replace("@", " ")
+    s = re.sub(r"\bvs\.?(?=\s|$)", " ", s, flags=re.I)
     return " ".join(s.split())
+
+
+# PrizePicks CFB codes that ESPN abbreviates differently.
+_CFB_PP_TO_ESPN: dict[str, str] = {
+    "NW": "NU",
+    "BSU": "BOIS",
+    "ULL": "UL",
+    "JVST": "JXST",
+}
 
 
 def canon_team(raw: object, sport: str = "") -> str:
@@ -128,6 +138,8 @@ def canon_team(raw: object, sport: str = "") -> str:
     if sp == "SOCCER":
         key = tok.upper()
         return _soccer_alias_map().get(key, key)
+    if sp == "CFB":
+        tok = _CFB_PP_TO_ESPN.get(tok.upper(), tok)
     try:
         from espn_injuries import canon_team_abbr
 
