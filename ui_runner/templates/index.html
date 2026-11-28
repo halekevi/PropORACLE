@@ -369,6 +369,10 @@ body::after{content:none;display:none;}
 .l10-streak-badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;margin-left:6px;vertical-align:middle;white-space:nowrap;}
 .l10-streak-badge.l10-hot{background:rgba(125,255,203,.12);color:var(--green);border:1px solid rgba(125,255,203,.35);}
 .l10-streak-badge.l10-cold{background:rgba(100,180,255,.12);color:#7eb8ff;border:1px solid rgba(100,180,255,.35);}
+.max-gate-badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;margin-left:6px;vertical-align:middle;white-space:nowrap;background:rgba(125,255,203,.14);color:var(--green);border:1px solid rgba(125,255,203,.5);cursor:help;}
+tr.max-gate-row > td{background:rgba(125,255,203,.07);}
+tr.max-gate-row > td:first-child{box-shadow:inset 3px 0 0 var(--green);}
+[data-theme="light"] tr.max-gate-row > td{background:rgba(0,150,90,.08);}
 .cons-line-badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;margin-left:6px;vertical-align:middle;white-space:nowrap;background:rgba(212,175,55,.12);color:var(--accent-gold,#d4af37);border:1px solid rgba(212,175,55,.4);}
 .cons-line-badge.cons-gob{background:rgba(212,175,55,.14);border-color:rgba(212,175,55,.5);}
 .cons-line-badge.cons-std{background:rgba(212,175,55,.10);border-color:rgba(212,175,55,.35);}
@@ -2210,6 +2214,8 @@ body > nav.snav.glass-card {
         }
         #props-board table.pb-table tr.pb-flag-thin{background:rgba(255,180,60,.06);}
         #props-board table.pb-table tr.pb-selected{background:rgba(240,165,0,.08);}
+        #props-board table.pb-table tr.pb-max-gate > td{background:rgba(125,255,203,.07);}
+        #props-board table.pb-table tr.pb-max-gate > td:first-child{box-shadow:inset 3px 0 0 var(--green);}
         #props-board table.pb-table tr.pb-flag-multi td.pb-player::after{content:" · multi";opacity:.55;font-size:9px;}
         #props-board .pb-na{opacity:.45;font-style:italic;}
         #props-board .pb-player-link{
@@ -3005,6 +3011,16 @@ function streakHits(raw, n) {
 }
 
 /** HOT/COLD L10 badge for edge cards and slate rows (NEUTRAL → nothing). */
+function maxGateChipHtml(p) {
+  const g = p && p.max_gate;
+  if (!g) return "";
+  const hit = Number(g.hit);
+  const pct = Number.isFinite(hit) ? Math.round(hit) + "%" : "";
+  const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+  const title = `Passes the best gate for this prop: ${g.gate || ""}. Held ${pct} on ${g.n || "?"} later-season legs (observe-only).`;
+  return `<span class="max-gate-badge" title="${esc(title)}">MAX ${pct}</span>`;
+}
+
 function l10StreakBadgeHtml(p) {
   const streak = String(p?.l10_streak || "").trim().toUpperCase();
   if (streak !== "HOT" && streak !== "COLD") return "";
@@ -5866,10 +5882,11 @@ function renderSlateTable(sport) {
     const tightNote = window.TopEdgesBadgeBoard && TopEdgesBadgeBoard.tightMatchNote ? TopEdgesBadgeBoard.tightMatchNote(r) : "";
     const tightChip = window.TopEdgesBadgeBoard && TopEdgesBadgeBoard.tightMatchChipHtml ? TopEdgesBadgeBoard.tightMatchChipHtml(tightNote) : "";
     const oppTitle = tightNote ? tightNote : (r.opp || "");
-    return `<tr class="slate-row-clickable" data-slate-idx="${rowIdx}">
+    const maxGateCls = r.max_gate ? ' max-gate-row' : '';
+    return `<tr class="slate-row-clickable${maxGateCls}" data-slate-idx="${rowIdx}">
       <td class="scol-tier"><span class="tier-badge ${tierCls}">${displayTier}</span>${confDotHtml(r)}</td>
       <td class="scol-rank slate-rank-cell">${rankStr}</td>
-      <td class="scol-player" style="color:var(--text);font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;" data-my-slip-leg="${mySlipLegAttr(r)}"><button type="button" class="my-slip-add" title="Add to my slip">+</button>${r.player || '—'}${l10StreakBadgeHtml(r)}${consLineBadgeHtml(r)}</td>
+      <td class="scol-player" style="color:var(--text);font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;" data-my-slip-leg="${mySlipLegAttr(r)}"><button type="button" class="my-slip-add" title="Add to my slip">+</button>${r.player || '—'}${maxGateChipHtml(r)}${l10StreakBadgeHtml(r)}${consLineBadgeHtml(r)}</td>
       <td class="scol-team" style="color:var(--muted);" title="${r.team || ''}">${r.team || '—'}</td>
       <td class="scol-opp" style="color:var(--muted);" title="${oppTitle}">${r.opp || '—'}${tightChip}</td>
       <td class="scol-prop" style="color:var(--text);">${r.prop || '—'}</td>

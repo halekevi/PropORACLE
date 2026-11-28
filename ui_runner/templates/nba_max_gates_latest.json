@@ -1,0 +1,346 @@
+{
+ "slate": "2026-11-28",
+ "generated_at": "2026-11-28 02:45:46 UTC",
+ "legs": [
+  {
+   "player": "Desmond Bane",
+   "prop": "Pts+Rebs+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 19.5,
+   "hold_hit": 79.0,
+   "hold_n": 124,
+   "gate": "L5 5/5 \u00b7 L10 7+ \u00b7 season avg 10%+ past line \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Jalen Smith",
+   "prop": "Pts+Rebs+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 19.5,
+   "hold_hit": 79.0,
+   "hold_n": 124,
+   "gate": "L5 5/5 \u00b7 L10 7+ \u00b7 season avg 10%+ past line \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Tre Jones",
+   "prop": "Pts+Rebs+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 14.5,
+   "hold_hit": 79.0,
+   "hold_n": 124,
+   "gate": "L5 5/5 \u00b7 L10 7+ \u00b7 season avg 10%+ past line \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Shai Gilgeous-Alexander",
+   "prop": "Pts+Rebs+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 34.5,
+   "hold_hit": 79.0,
+   "hold_n": 124,
+   "gate": "L5 5/5 \u00b7 L10 7+ \u00b7 season avg 10%+ past line \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Wendell Carter Jr.",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 6.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Franz Wagner",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 5.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Wendell Carter Jr.",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 5.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Franz Wagner",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 4.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Jalen Suggs",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 2.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Matas Buzelis",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 4.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Nic Claxton",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 3.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Matas Buzelis",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 3.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Isaac Okoro",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 1.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Isaiah Hartenstein",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 8.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Shai Gilgeous-Alexander",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 2.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Ajay Mitchell",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 2.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Alex Caruso",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 1.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Jared McCain",
+   "prop": "Rebounds",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 1.5,
+   "hold_hit": 78.9,
+   "hold_n": 337,
+   "gate": "L10 8+ \u00b7 season avg on side \u00b7 opp weak vs stat"
+  },
+  {
+   "player": "Franz Wagner",
+   "prop": "Assists",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 5.5,
+   "hold_hit": 77.6,
+   "hold_n": 58,
+   "gate": "L5 5/5 \u00b7 L10 9+ \u00b7 opp weak vs stat \u00b7 minutes steady"
+  },
+  {
+   "player": "Isaiah Hartenstein",
+   "prop": "Assists",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 2.5,
+   "hold_hit": 77.6,
+   "hold_n": 58,
+   "gate": "L5 5/5 \u00b7 L10 9+ \u00b7 opp weak vs stat \u00b7 minutes steady"
+  },
+  {
+   "player": "Ajay Mitchell",
+   "prop": "Assists",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 2.5,
+   "hold_hit": 77.6,
+   "hold_n": 58,
+   "gate": "L5 5/5 \u00b7 L10 9+ \u00b7 opp weak vs stat \u00b7 minutes steady"
+  },
+  {
+   "player": "Anthony Davis",
+   "prop": "Pts+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 19.5,
+   "hold_hit": 76.5,
+   "hold_n": 85,
+   "gate": "L5 5/5 \u00b7 L10 8+ \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "AJ Dybantsa",
+   "prop": "Pts+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 14.5,
+   "hold_hit": 76.5,
+   "hold_n": 85,
+   "gate": "L5 5/5 \u00b7 L10 8+ \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Kyshawn George",
+   "prop": "Pts+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 14.5,
+   "hold_hit": 76.5,
+   "hold_n": 85,
+   "gate": "L5 5/5 \u00b7 L10 8+ \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Wendell Carter Jr.",
+   "prop": "Pts+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 9.5,
+   "hold_hit": 76.5,
+   "hold_n": 85,
+   "gate": "L5 5/5 \u00b7 L10 8+ \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Jalen Smith",
+   "prop": "Pts+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 14.5,
+   "hold_hit": 76.5,
+   "hold_n": 85,
+   "gate": "L5 5/5 \u00b7 L10 8+ \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Isaac Okoro",
+   "prop": "Pts+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 9.5,
+   "hold_hit": 76.5,
+   "hold_n": 85,
+   "gate": "L5 5/5 \u00b7 L10 8+ \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Shai Gilgeous-Alexander",
+   "prop": "Pts+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 29.5,
+   "hold_hit": 76.5,
+   "hold_n": 85,
+   "gate": "L5 5/5 \u00b7 L10 8+ \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Kenrich Williams",
+   "prop": "Pts+Asts",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 9.5,
+   "hold_hit": 76.5,
+   "hold_n": 85,
+   "gate": "L5 5/5 \u00b7 L10 8+ \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Wendell Carter Jr.",
+   "prop": "Pts+Rebs",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 14.5,
+   "hold_hit": 75.7,
+   "hold_n": 103,
+   "gate": "L10 9+ \u00b7 season avg 10%+ past line \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Tristan da Silva",
+   "prop": "Pts+Rebs",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 9.5,
+   "hold_hit": 75.7,
+   "hold_n": 103,
+   "gate": "L10 9+ \u00b7 season avg 10%+ past line \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Isaac Okoro",
+   "prop": "Pts+Rebs",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 9.5,
+   "hold_hit": 75.7,
+   "hold_n": 103,
+   "gate": "L10 9+ \u00b7 season avg 10%+ past line \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Shai Gilgeous-Alexander",
+   "prop": "Pts+Rebs",
+   "pick_type": "Goblin",
+   "side": "OVER",
+   "line": 29.5,
+   "hold_hit": 75.7,
+   "hold_n": 103,
+   "gate": "L10 9+ \u00b7 season avg 10%+ past line \u00b7 opp not strong vs stat"
+  },
+  {
+   "player": "Anthony Black",
+   "prop": "3-PT Made",
+   "pick_type": "Standard",
+   "side": "OVER",
+   "line": 1.5,
+   "hold_hit": 60.7,
+   "hold_n": 28,
+   "gate": "L5 4+ \u00b7 team strong at stat"
+  }
+ ]
+}

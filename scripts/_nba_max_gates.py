@@ -40,6 +40,28 @@ MIN_HOLD_N = 15
 # Standard: 2-pick Power at 3x. Goblin bar is below the ~84.5% 2-leg 1.4x break-even; Goblin gates are a ranking aid.
 BREAK_EVEN = {"Standard": 57.7, "Goblin": 75.0}
 REPORT = ROOT / "data" / "reports" / "nba_max_gates.json"
+WEB_JSON = ROOT / "ui_runner" / "templates" / "nba_max_gates_latest.json"
+PROP_DISPLAY = {
+    "pts": "Points", "reb": "Rebounds", "ast": "Assists", "pra": "Pts+Rebs+Asts", "pr": "Pts+Rebs",
+    "pa": "Pts+Asts", "ra": "Rebs+Asts", "fga": "FG Attempted", "fgm": "FG Made",
+    "3ptattempted": "3-PT Attempted", "3ptmade": "3-PT Made", "freethrowsattempted": "Free Throws Attempted",
+    "freethrowsmade": "Free Throws Made", "twopointersattempted": "Two Pointers Attempted",
+    "twopointersmade": "Two Pointers Made", "stl": "Steals", "blk": "Blocked Shots", "stocks": "Blks+Stls",
+    "tov": "Turnovers", "personalfouls": "Personal Fouls", "offensiverebounds": "Offensive Rebounds",
+    "defensiverebounds": "Defensive Rebounds", "fantasy": "Fantasy Score", "dunks": "Dunks",
+}
+GATE_TEXT = {
+    "l5": {">=4": "L5 4+", "=5": "L5 5/5"},
+    "l10": {">=7": "L10 7+", ">=8": "L10 8+", ">=9": "L10 9+"},
+    "season": {"right side": "season avg on side", ">=5%": "season avg 5%+ past line", ">=10%": "season avg 10%+ past line"},
+    "off": {"favorable": "team strong at stat", "not unfavorable": "team not weak at stat"},
+    "def": {"favorable": "opp weak vs stat", "not unfavorable": "opp not strong vs stat"},
+    "min": {"not down 2+": "minutes steady", "down 2+": "minutes down 2+"},
+}
+
+
+def gate_text(gate: dict) -> str:
+    return " · ".join(GATE_TEXT[k][v] for k, v in gate.items() if v != "any") or "no filter"
 FAV_OFF = {"OVER": ("Elite", "Above"), "UNDER": ("Below", "Weak")}
 FAV_DEF = {"OVER": ("Below", "Weak"), "UNDER": ("Elite", "Above")}
 
@@ -162,8 +184,17 @@ def slate_legs(slate: str) -> pd.DataFrame:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--slate", default="2026-11-28")
+    ap.add_argument("--slate", default="", help="default: date of the published slate_latest.json")
     args = ap.parse_args()
+    if not args.slate:
+        for p in (ROOT / "ui_runner" / "runtime" / "slate_latest.json", WEB_JSON.parent / "slate_latest.json"):
+            if p.is_file():
+                args.slate = str(json.loads(p.read_text(encoding="utf-8")).get("date") or "")[:10]
+                break
+    if not (ROOT / "outputs" / args.slate / "nba" / "step4_with_stats.csv").is_file():
+        WEB_JSON.write_text(json.dumps({"slate": args.slate, "legs": []}), encoding="utf-8")
+        print(f"No NBA step4 for {args.slate!r}; wrote empty {WEB_JSON.name}")
+        return
     gates = []
     for book in ("Goblin", "Standard"):
         legs = load_legs(book)
@@ -193,6 +224,7 @@ def main() -> None:
         for r in sub[m].itertuples(index=False):
             passing.append({
                 "book": g["book"], "player": r.player, "team": r.team_n, "opp": r.opp_n, "prop": r.prop,
+                "prop_display": PROP_DISPLAY.get(r.prop, r.prop), "gate_text": gate_text(g["gate"]),
                 "side": g["side"], "line": r.line, "season_avg": r.season_avg,
                 "l5": r.l5_over if g["side"] == "OVER" else r.l5_under,
                 "l10": r.l10_over if g["side"] == "OVER" else r.l10_under,
@@ -212,6 +244,16 @@ def main() -> None:
     REPORT.write_text(json.dumps({"slate": args.slate, "train_end": TRAIN_END, "break_even": BREAK_EVEN,
                                   "gates": gates, "passing": passing}, indent=1, default=str), encoding="utf-8")
     print(f"Saved -> {REPORT}")
+    web = {
+        "slate": args.slate,
+        "generated_at": pd.Timestamp.now(tz="UTC").strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "legs": [{
+            "player": x["player"], "prop": x["prop_display"], "pick_type": x["book"], "side": x["side"],
+            "line": x["line"], "hold_hit": x["gate_hold_hit"], "hold_n": x["gate_hold_n"], "gate": x["gate_text"],
+        } for x in passing],
+    }
+    WEB_JSON.write_text(json.dumps(web, indent=1, default=str), encoding="utf-8")
+    print(f"Saved -> {WEB_JSON} ({len(passing)} legs)")
 
 
 if __name__ == "__main__":

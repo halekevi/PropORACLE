@@ -571,6 +571,9 @@ if not os.environ.get("DISABLE_AUTO_GITHUB_JSON", "").strip() and _running_on_ra
         _TICKET_EVAL_SLATE_JSON_URL = f"{_base}/ticket_eval_slate_latest.json"
     if not _TICKET_EV_JSON_URL:
         _TICKET_EV_JSON_URL = f"{_root_base}/outputs/ticket_ev_latest.json"
+    _NBA_MAX_GATES_JSON_URL = f"{_base}/nba_max_gates_latest.json"
+else:
+    _NBA_MAX_GATES_JSON_URL = ""
 
 _GRADES_HTML_RAW_BASE = ""
 if not os.environ.get("DISABLE_AUTO_GITHUB_JSON", "").strip() and _running_on_railway():
@@ -587,6 +590,8 @@ if _TICKET_EVAL_SLATE_JSON_URL:
     _DATA_FILE_URL_MAP["ticket_eval_slate_latest.json"] = _TICKET_EVAL_SLATE_JSON_URL
 if _TICKET_EV_JSON_URL:
     _DATA_FILE_URL_MAP["ticket_ev_latest.json"] = _TICKET_EV_JSON_URL
+if _NBA_MAX_GATES_JSON_URL:
+    _DATA_FILE_URL_MAP["nba_max_gates_latest.json"] = _NBA_MAX_GATES_JSON_URL
 if _GRADES_HTML_RAW_BASE:
     _DATA_FILE_URL_MAP["grades_report_dates.json"] = (
         f"{_GRADES_HTML_RAW_BASE}/grades_report_dates.json"
@@ -1532,6 +1537,54 @@ def _slim_slate_sport_row(r: dict) -> dict:
             continue
         slim[kk] = cv
     return slim
+
+
+def _max_gate_key(player: Any, prop: Any, pick_type: Any, side: Any, line: Any) -> str:
+    try:
+        ln = f"{float(line):g}"
+    except (TypeError, ValueError):
+        ln = str(line or "")
+    return "|".join(
+        str(x or "").strip().lower() for x in (player, prop, pick_type, side)
+    ) + "|" + ln
+
+
+def _nba_max_gate_index() -> tuple[str, dict[str, dict]]:
+    """(slate date, key -> gate info) from nba_max_gates_latest.json (scripts/_nba_max_gates.py)."""
+    if not _template_json_available("nba_max_gates_latest.json"):
+        return "", {}
+    try:
+        j = read_json_cached(TEMPLATES_DIR / "nba_max_gates_latest.json")
+    except Exception:
+        return "", {}
+    if not isinstance(j, dict):
+        return "", {}
+    idx: dict[str, dict] = {}
+    for leg in j.get("legs") or []:
+        if not isinstance(leg, dict):
+            continue
+        k = _max_gate_key(leg.get("player"), leg.get("prop"), leg.get("pick_type"), leg.get("side"), leg.get("line"))
+        idx[k] = {
+            "hit": leg.get("hold_hit"),
+            "n": leg.get("hold_n"),
+            "gate": leg.get("gate"),
+        }
+    return str(j.get("slate") or "")[:10], idx
+
+
+def _stamp_nba_max_gates(rows: list[Any]) -> None:
+    """Mark NBA slate rows that pass their prop's max gate (row['max_gate'] = {hit, n, gate})."""
+    slate, idx = _nba_max_gate_index()
+    if not idx:
+        return
+    for r in rows:
+        if not isinstance(r, dict) or str(r.get("sport") or "").upper() != "NBA":
+            continue
+        if str(r.get("game_date") or "")[:10] != slate:
+            continue
+        hit = idx.get(_max_gate_key(r.get("player"), r.get("prop"), r.get("pick_type"), r.get("dir"), r.get("line")))
+        if hit:
+            r["max_gate"] = hit
 
 
 def _filter_invalid_demon_slate_rows(rows: list[Any]) -> list[Any]:
@@ -6225,6 +6278,7 @@ def api_slate_sport_single(sport: str):
         sports = (payload or {}).get("sports") or {}
         if sport_key == "combined":
             slim_rows = _merged_combined_slim_rows(payload)
+            _stamp_nba_max_gates(slim_rows)
             return {
                 "date": payload.get("date"),
                 "generated_at": payload.get("generated_at"),
@@ -6260,6 +6314,8 @@ def api_slate_sport_single(sport: str):
         if not slim_rows and sport_key == "wnba":
             slim_rows = _wnba_slate_rows_from_step8_fallback()
         slim_rows = _filter_slate_explorer_rows(slim_rows)
+        if sport_key == "nba":
+            _stamp_nba_max_gates(slim_rows)
         return {
             "date": payload.get("date"),
             "generated_at": payload.get("generated_at"),
@@ -6269,7 +6325,7 @@ def api_slate_sport_single(sport: str):
 
     try:
         return _gz_json_response(
-            f"slate-sport-single-v4:{sport_key}:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-single-v5:{sport_key}:{_explorer_json_gz_bust_token()}",
             _build,
             ttl=60.0,
         )

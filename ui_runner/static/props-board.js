@@ -527,7 +527,7 @@
         const isMulti = flagMulti && multi.has(String(r.player || ""));
         const l10 = hitsFrac(r, "l10");
         const l20 = hitsFrac(r, "l20");
-        const cls = [thin ? "pb-flag-thin" : "", isMulti ? "pb-flag-multi" : "", state.selected.has(key) ? "pb-selected" : ""]
+        const cls = [r.max_gate ? "pb-max-gate" : "", thin ? "pb-flag-thin" : "", isMulti ? "pb-flag-multi" : "", state.selected.has(key) ? "pb-selected" : ""]
           .filter(Boolean)
           .join(" ");
         const cell = (txt, missing) => (missing ? `<span class="pb-na">${NA}</span>` : txt);
@@ -541,7 +541,7 @@
         return `<tr class="${cls}" data-pb-key="${key.replace(/"/g, "&quot;")}" data-pb-team="${teamAttr}" data-pb-prop="${propAttr}" data-pb-player="${playerName}">
         <td class="pb-check-cell"><input type="checkbox" class="pb-row-check" data-key="${key.replace(/"/g, "&quot;")}"${checked} aria-label="Select ${String(r.player || "prop").replace(/"/g, "&quot;")}"></td>
         <td class="pb-side-cell">${sideOf(r)}</td>
-        <td class="pb-player">${playerBtn}</td>
+        <td class="pb-player">${playerBtn}${typeof window.maxGateChipHtml === "function" ? window.maxGateChipHtml(r) : ""}</td>
         <td class="pb-team">${r.team || NA}</td>
         <td class="pb-prop">${r.prop || r.prop_type || NA}</td>
         <td class="pb-num">${fmt2(r.line)}</td>
