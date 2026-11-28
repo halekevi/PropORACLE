@@ -1,0 +1,125 @@
+{
+ "sport": "tennis",
+ "researched_at": "2026-11-27T22:31:37.029837-05:00",
+ "train_end": "2026-11-02",
+ "graded_legs": 2412,
+ "graded_slates": 65,
+ "gates": [
+  {
+   "book": "Goblin",
+   "prop": "totalgames",
+   "side": "OVER",
+   "gate": {
+    "l5": "any",
+    "l10": ">=8",
+    "season": "any",
+    "off": "favorable",
+    "def": "not unfavorable"
+   },
+   "gate_text": "L10 8+ \u00b7 player strong at stat \u00b7 opp not strong vs stat",
+   "train_n": 67,
+   "train_hit": 80.6,
+   "train_low": 69.6,
+   "hold_n": 33,
+   "hold_hit": 72.7,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "totalgameswon",
+   "side": "OVER",
+   "gate": {
+    "l5": ">=4",
+    "l10": ">=7",
+    "season": "any",
+    "off": "favorable",
+    "def": "any"
+   },
+   "gate_text": "L5 4+ \u00b7 L10 7+ \u00b7 player strong at stat",
+   "train_n": 82,
+   "train_hit": 69.5,
+   "train_low": 58.9,
+   "hold_n": 46,
+   "hold_hit": 69.6,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "totalgames",
+   "side": "OVER",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "season": ">=10%",
+    "off": "favorable",
+    "def": "not unfavorable"
+   },
+   "gate_text": "season avg 10%+ past line \u00b7 player strong at stat \u00b7 opp not strong vs stat",
+   "train_n": 104,
+   "train_hit": 61.5,
+   "train_low": 51.9,
+   "hold_n": 46,
+   "hold_hit": 45.7,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "totalgames",
+   "side": "UNDER",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "season": "right side",
+    "off": "favorable",
+    "def": "any"
+   },
+   "gate_text": "L10 7+ \u00b7 season avg on side \u00b7 player strong at stat",
+   "train_n": 25,
+   "train_hit": 76.0,
+   "train_low": 56.6,
+   "hold_n": 19,
+   "hold_hit": 42.1,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "totalgameswon",
+   "side": "OVER",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "season": "any",
+    "off": "any",
+    "def": "favorable"
+   },
+   "gate_text": "opp weak vs stat",
+   "train_n": 72,
+   "train_hit": 63.9,
+   "train_low": 52.4,
+   "hold_n": 34,
+   "hold_hit": 50.0,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "totalgameswon",
+   "side": "UNDER",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable"
+   },
+   "gate_text": "opp not strong vs stat",
+   "train_n": 195,
+   "train_hit": 52.8,
+   "train_low": 45.8,
+   "hold_n": 82,
+   "hold_hit": 52.4,
+   "holds": false
+  }
+ ],
+ "legs": [],
+ "team_map_size": 244
+}

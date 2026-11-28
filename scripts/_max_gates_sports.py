@@ -1,4 +1,7 @@
-"""Team prop ranks + per-prop "max gates" for NHL, CBB, NFL, CFB and Soccer (NBA: _nba_max_gates.py).
+"""Team prop ranks + per-prop "max gates" for NHL, CBB, NFL, CFB, Soccer and Tennis (NBA: _nba_max_gates.py).
+
+Tennis ranks each player as their own "team" within tour: offense = what the player produces per match,
+defense = what their opponents produce against them. Keyed off prop_type (1st Set props are excluded).
 
 For each sport:
   1. Team prop ranks from the box data: per-game production of each prop stat (offense, rank 1 = most)
@@ -12,7 +15,7 @@ For each sport:
   4. Board legs for upcoming games that pass a holding gate -> ui_runner/templates/max_gates_latest.json
      (site highlight). Observe-only: tickets are unchanged.
 
-  py -3.14 scripts/_max_gates_sports.py [--sports nhl,cbb,nfl,cfb,soccer] [--research]
+  py -3.14 scripts/_max_gates_sports.py [--sports nhl,cbb,nfl,cfb,soccer,tennis] [--research]
 """
 from __future__ import annotations
 
@@ -144,6 +147,10 @@ SOCCER = {"shots": _sum("sh"), "shotsontarget": _sum("sog"), "goals": _sum("g"),
           "clearances": _sum("clearances"), "crosses": _sum("crosses"), "attempteddribbles": _sum("dribble_attempts")}
 
 
+TENNIS = {"totalgames": _sum("match_total_games"), "totalgameswon": _sum("games_won"),
+          "totalsets": _sum("total_sets"), "totaltiebreaks": _sum("total_tie_breaks")}
+
+
 def load_box_sql(table: str, cols: dict, since: str) -> pd.DataFrame:
     con = sqlite3.connect(DB)
     b = pd.read_sql(f"SELECT * FROM {table} WHERE game_date >= ?", con, params=(since,))
@@ -182,6 +189,32 @@ def box_football(path: str) -> pd.DataFrame:
     b["player"] = b.player_norm
     b["played"] = pd.to_numeric(b.MIN, errors="coerce").fillna(0) > 0
     return b.rename(columns={"event_id": "event"})
+
+
+def box_tennis() -> pd.DataFrame:
+    """ESPN singles match logs; each player is their own "team" (ranks within tour)."""
+    j = json.loads((ROOT / "Sports" / "Tennis" / "cache" / "tennis_match_games.json").read_text(encoding="utf-8"))
+    b = pd.DataFrame([m for v in j.values() for m in (v or []) if isinstance(m, dict)])
+    b = b[~b.is_doubles_match.fillna(False).astype(bool)]
+    b["team"] = b.player.map(name_norm)
+    b = b.drop_duplicates(["team", "competition_id"])
+    ts = pd.to_datetime(b.match_date_utc, utc=True, errors="coerce")
+    b["game_date"] = ts.dt.tz_convert(ET).dt.strftime("%Y-%m-%d").fillna("")
+    b["pid"] = ""
+    b["played"] = True
+    return b.rename(columns={"competition_id": "event", "tour": "group"})
+
+
+def boards_tennis() -> pd.DataFrame:
+    b = boards("tennis", "step4_tennis_with_stats.csv", {"player": "player", "opp": "opp_team", "desc": "pp_description",
+               "prop": "prop_type", "line": "line", "book": "pick_type", "date": "start_time"}, date_from_start=True)
+    if b.empty:
+        return b
+    b = b[~b.player.astype(str).str.contains("/", na=False)]
+    desc = b.desc.astype(str).str.replace(r"\s+1st Set$", "", regex=True) if "desc" in b.columns else ""
+    b["opp"] = np.where(b.opp.astype(str) != "", b.opp, np.where(desc.isin(["nan", "None"]), "", desc))
+    b["team"] = b.nname
+    return b
 
 
 def boards(sport_dir: str, fname: str, cols: dict, date_from_start: bool = False) -> pd.DataFrame:
@@ -249,6 +282,8 @@ SPORTS = {
                                         "opp": "opp_team", "prop": "prop_norm", "prop_label": "prop_type",
                                         "line": "line", "book": "pick_type", "date": "game_date",
                                         "pid": "espn_player_id"})),
+    "tennis": dict(label="TENNIS", dir="Sports/Tennis", box=box_tennis, specs=TENNIS, season="2026-01-01", l10=True,
+                   minutes=False, fuzzy_days=1, min_gp=5, individual=True, board=boards_tennis),
 }
 
 
@@ -466,7 +501,14 @@ def masks(d: pd.DataFrame, side: str, levels: dict) -> dict:
     return out
 
 
-def search(d: pd.DataFrame, side: str, book: str, levels: dict, train_end: str) -> dict | None:
+def gate_text(gate: dict, individual: bool = False) -> str:
+    parts = [GATE_TEXT[k][v] for k, v in gate.items() if v != "any"]
+    if individual:
+        parts = [p.replace("team ", "player ") for p in parts]
+    return " · ".join(parts) or "no filter"
+
+
+def search(d: pd.DataFrame, side: str, book: str, levels: dict, train_end: str, individual: bool = False) -> dict | None:
     hit = (d.over_hit if side == "OVER" else d.under_hit).values.astype(int)
     tr = (d.slate <= train_end).values
     mk = masks(d, side, levels)
@@ -488,7 +530,7 @@ def search(d: pd.DataFrame, side: str, book: str, levels: dict, train_end: str) 
     mh = m & ~tr
     hn = int(mh.sum())
     hh = round(100 * hit[mh].mean(), 1) if hn else None
-    return {"gate": gate, "gate_text": " · ".join(GATE_TEXT[k][v] for k, v in gate.items() if v != "any") or "no filter",
+    return {"gate": gate, "gate_text": gate_text(gate, individual),
             "train_n": n, "train_hit": round(th, 1), "train_low": round(100 * lo, 1), "hold_n": hn, "hold_hit": hh,
             "holds": bool(hn >= MIN_HOLD_N and hh is not None and hh >= BREAK_EVEN[book] and th >= BREAK_EVEN[book])}
 
@@ -512,8 +554,10 @@ def run_sport(name: str, research: bool) -> dict:
     today = datetime.now(ET).strftime("%Y-%m-%d")
     latest = ranks_asof(tg, cfg["specs"], "9999-12-31", cfg["min_gp"])
     out_dir = ROOT / cfg["dir"] / "data" / "cache"
-    if not latest.empty and out_dir.is_dir():
-        latest.assign(through=tg.game_date.max()).drop(columns=["slate"]).to_csv(out_dir / "team_prop_ranks.csv", index=False)
+    if not latest.empty and out_dir.parent.is_dir():
+        out_dir.mkdir(exist_ok=True)
+        fname = "player_prop_ranks.csv" if cfg.get("individual") else "team_prop_ranks.csv"
+        latest.assign(through=tg.game_date.max()).drop(columns=["slate"]).to_csv(out_dir / fname, index=False)
 
     board = cfg["board"]()
     if board.empty:
@@ -537,7 +581,7 @@ def run_sport(name: str, research: bool) -> dict:
         if train_end:
             for (book, prop), grp in graded.groupby(["book", "prop_key"]):
                 for side in (["OVER"] if book == "Goblin" else ["OVER", "UNDER"]):
-                    g = search(grp.reset_index(drop=True), side, book, levels, train_end)
+                    g = search(grp.reset_index(drop=True), side, book, levels, train_end, bool(cfg.get("individual")))
                     if g:
                         gates.append({"book": book, "prop": prop, "side": side, **g})
         researched_at = datetime.now(ET).isoformat()
@@ -553,8 +597,12 @@ def run_sport(name: str, research: bool) -> dict:
     if not upcoming.empty and gates:
         cur = build_legs(cfg, box, upcoming, idx, graded=False)
         if not cur.empty:
-            cur["team_n"] = [tmap.get(bt) or bl for bt, bl in zip(cur.board_team, cur.box_team_last)]
-            cur["opp_n"] = cur.board_opp.map(lambda o: tmap.get(o, ""))
+            if cfg.get("individual"):
+                cur["team_n"] = cur.box_team_last
+                cur["opp_n"] = cur.board_opp.map(name_norm)
+            else:
+                cur["team_n"] = [tmap.get(bt) or bl for bt, bl in zip(cur.board_team, cur.box_team_last)]
+                cur["opp_n"] = cur.board_opp.map(lambda o: tmap.get(o, ""))
             cur = attach_ranks(cur, tg, cfg)
         for g in (x for x in gates if x["holds"]):
             sub = cur[(cur.book == g["book"]) & (cur.prop_key == g["prop"])].reset_index(drop=True) if not cur.empty else cur
