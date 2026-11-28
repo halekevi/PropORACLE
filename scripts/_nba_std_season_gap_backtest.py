@@ -110,6 +110,7 @@ def build(start: str, end: str, min_games: int, pick_type: str = "Standard") -> 
             "min_l5": round(float(mins.iloc[:5].mean()), 1), "min_season": round(float(min_season), 1),
             "def_tier": r.DEF_TIER, "def_rank": r.OVERALL_DEF_RANK,
             "standard_line": pd.to_numeric(r.standard_line, errors="coerce"),
+            "team": r.team, "opp": r.opp_team,
         })
     return pd.DataFrame(rows)
 
