@@ -49,7 +49,7 @@ def load_box() -> pd.DataFrame:
     return box.drop_duplicates(["espn_athlete_id", "game_date"])
 
 
-def load_boards(start: str, end: str) -> pd.DataFrame:
+def load_boards(start: str, end: str, pick_type: str = "Standard") -> pd.DataFrame:
     frames = []
     for d in sorted((ROOT / "outputs").glob("2026-*")):
         if not (start <= d.name <= end):
@@ -59,11 +59,11 @@ def load_boards(start: str, end: str) -> pd.DataFrame:
             continue
         b = pd.read_csv(f, low_memory=False, usecols=lambda c: c in {
             "player", "prop_norm", "line", "pick_type", "ESPN_ATHLETE_ID", "game_date", "is_combo_player",
-            "DEF_TIER", "OVERALL_DEF_RANK", "team", "opp_team"})
-        for c in ("DEF_TIER", "OVERALL_DEF_RANK"):
+            "DEF_TIER", "OVERALL_DEF_RANK", "team", "opp_team", "standard_line"})
+        for c in ("DEF_TIER", "OVERALL_DEF_RANK", "standard_line"):
             if c not in b.columns:
                 b[c] = None
-        b = b[(b["pick_type"].astype(str) == "Standard") & b["prop_norm"].isin(PROP_COL)]
+        b = b[(b["pick_type"].astype(str) == pick_type) & b["prop_norm"].isin(PROP_COL)]
         if "is_combo_player" in b:
             b = b[pd.to_numeric(b["is_combo_player"], errors="coerce").fillna(0).astype(int) == 0]
         b["slate"] = b["game_date"].astype(str).str[:10]
@@ -75,9 +75,9 @@ def load_boards(start: str, end: str) -> pd.DataFrame:
     return out.dropna(subset=["line"]).drop_duplicates(["slate", "espn", "prop_norm", "line"])
 
 
-def build(start: str, end: str, min_games: int) -> pd.DataFrame:
+def build(start: str, end: str, min_games: int, pick_type: str = "Standard") -> pd.DataFrame:
     box = load_box()
-    boards = load_boards(start, end)
+    boards = load_boards(start, end, pick_type)
     by_player = {k: g.sort_values("game_date") for k, g in box.groupby("espn_athlete_id")}
     rows = []
     for r in boards.itertuples(index=False):
@@ -109,6 +109,7 @@ def build(start: str, end: str, min_games: int) -> pd.DataFrame:
             "l5_avg": round(float(l5.mean()), 2), "l10_avg": round(float(l10.mean()), 2),
             "min_l5": round(float(mins.iloc[:5].mean()), 1), "min_season": round(float(min_season), 1),
             "def_tier": r.DEF_TIER, "def_rank": r.OVERALL_DEF_RANK,
+            "standard_line": pd.to_numeric(r.standard_line, errors="coerce"),
         })
     return pd.DataFrame(rows)
 
@@ -126,10 +127,11 @@ def main() -> None:
     ap.add_argument("--start", default="2026-10-21")
     ap.add_argument("--end", default="2026-11-25")
     ap.add_argument("--min-games", type=int, default=3)
+    ap.add_argument("--pick-type", default="Standard", choices=["Standard", "Goblin"])
     args = ap.parse_args()
-    df = build(args.start, args.end, args.min_games)
+    df = build(args.start, args.end, args.min_games, args.pick_type)
     df["rel_bin"] = pd.cut(df["rel_gap"], REL_BINS, labels=REL_LABELS)
-    print(f"Standard legs graded: {len(df)}  slates: {df['slate'].nunique()}  ({df['slate'].min()} .. {df['slate'].max()})")
+    print(f"{args.pick_type} legs graded: {len(df)}  slates: {df['slate'].nunique()}  ({df['slate'].min()} .. {df['slate'].max()})")
     print(f"Baseline: Over {df['over_hit'].mean():.1%}  Under {df['under_hit'].mean():.1%}  push {df['push'].mean():.1%}\n")
     print("Season avg vs line (relative gap) — all Standard props")
     print(table(df, "rel_bin").to_string(), "\n")
@@ -139,7 +141,8 @@ def main() -> None:
             continue
         print(f"{grp} (n={len(sub)})")
         print(table(sub, "rel_bin").to_string(), "\n")
-    out = ROOT / "data" / "reports" / "nba_std_season_gap_backtest.json"
+    stem = "nba_std_season_gap_backtest" if args.pick_type == "Standard" else "nba_goblin_season_gap_backtest"
+    out = ROOT / "data" / "reports" / f"{stem}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
         "range": [args.start, args.end], "n": len(df),
