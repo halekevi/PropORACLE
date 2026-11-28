@@ -271,15 +271,64 @@ html.ticket-eval-embed-grades,html.ticket-eval-embed-grades body{min-height:100%
 <script>try{if(window.self!==window.top)document.documentElement.classList.add("ticket-eval-embed-grades");}catch(e){}</script>
 </head>
 <body class="ticket-eval-page">
+<link rel="stylesheet" href="/static/site-nav-unified.css?v=20261124navlock"/>
 <nav class="snav glass-card">
   <style>
+    /* Last-word lock: same header type on every page. Phone bottom tabs stay icon-only. */
+    @media (min-width: 769px) {
+      nav.snav,
+      nav.snav.glass-card {
+        height: 56px !important;
+        min-height: 56px !important;
+        max-height: 56px !important;
+      }
+      nav.snav .nav-brand,
+      nav.snav .brand-wordmark {
+        font-family: Inter, system-ui, sans-serif !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.5px !important;
+        line-height: 1 !important;
+      }
+      nav.snav .snav-links li a,
+      nav.snav ul#nav-links li a,
+      nav.snav .snav-links a {
+        font-family: Inter, system-ui, sans-serif !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        line-height: 1 !important;
+      }
+      nav.snav .snav-account {
+        font-family: Inter, system-ui, sans-serif !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        line-height: 1 !important;
+      }
+      nav.snav .live-pill {
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1.5px !important;
+      }
+      nav.snav .nav-slate-date,
+      nav.snav .nav-sync-line,
+      nav.snav .nav-local-datetime {
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+      }
+    }
     .snav-account {
-      font-size: 10px;
-      letter-spacing: 0.08em;
+      font-family: Inter, system-ui, sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      letter-spacing: 1.5px !important;
       text-transform: uppercase;
       color: inherit;
       text-decoration: none;
-      padding: 4px 8px;
+      padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid rgba(212,175,55,0.28);
       white-space: nowrap;
