@@ -16,17 +16,17 @@
   /* Single-row shell nav — never wrap (half-screen / split view). */
   .snav,.legacy-nav{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 20px;background:rgba(20,20,20,.92);border-bottom:1px solid rgba(212,175,55,.2);min-width:0;}
   .snav-links,.nav-links{display:flex;list-style:none;margin:0;padding:0;gap:4px;flex-wrap:nowrap;min-width:0;}
-  .snav-links a,.nav-links a,.mobile-menu a{color:#e8e8f0;text-decoration:none;padding:8px 12px;font-size:12px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
+  .snav-links a,.nav-links a,.mobile-menu a{color:#e8e8f0;text-decoration:none;padding:8px 12px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;}
   .snav-links a.active,.nav-links a.active{color:#c8ff00;border-bottom:2px solid #c8ff00;}
   .mobile-menu{display:none;}
   .logo-icon{height:36px;width:auto;display:inline-block;}
   .mesh-bg,.grain-layer,.orb-1,.orb-2{pointer-events:none;}
 </style>
-<link rel="stylesheet" href="/static/proporacle-page-shell.css?v=20260720halfnav2"/>
+<link rel="stylesheet" href="/static/proporacle-page-shell.css?v=20261124navlock"/>
 <link rel="stylesheet" href="/static/light-theme-dim-overrides.css?v=20260714theme1"/>
-<link rel="stylesheet" href="/static/site-nav-unified.css?v=20260720halfnav2"/>
+<link rel="stylesheet" href="/static/site-nav-unified.css?v=20261124navlock"/>
 <link rel="stylesheet" href="/static/nav-mobile-shared.css?v=20260714theme1"/>
-<link rel="stylesheet" href="/static/site-nav-datetime.css?v=20260720halfnav2"/>
+<link rel="stylesheet" href="/static/site-nav-datetime.css?v=20261124navlock"/>
 <link rel="stylesheet" href="/static/tickets-built-content.css?v=20260913ticketpaint"/>
 <link rel="stylesheet" href="/static/mobile-content-width.css?v=20261008filterscroll"/>
 <link rel="stylesheet" href="/static/tickets-redesign.css?v=20260714theme1"/>
@@ -106,8 +106,8 @@
     min-height: 56px !important;
     max-height: 56px !important;
     padding: 0 10px !important;
-    font-size: 10px !important;
-    letter-spacing: 0.08em !important;
+    font-size: 11px !important;
+    letter-spacing: 1.5px !important;
     white-space: nowrap !important;
     flex-direction: row !important;
     gap: 6px !important;
@@ -138,7 +138,7 @@
     flex-shrink: 0 !important;
     white-space: nowrap !important;
     padding: 4px 10px !important;
-    font-size: 9px !important;
+    font-size: 10px !important;
   }
   nav.snav .nav-datetime-block,
   .snav .nav-datetime-block {
