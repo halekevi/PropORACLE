@@ -42,8 +42,8 @@ def load_box() -> pd.DataFrame:
     cols = sorted(set(PROP_COL.values()))
     box = pd.read_sql(
         f"SELECT game_date, espn_athlete_id, minutes, {', '.join(cols)} FROM nba "
-        "WHERE season_window IS NULL AND game_date >= ?",
-        con, params=(SEASON_START,),
+        "WHERE season_window IS NULL",
+        con,
     )
     box["espn_athlete_id"] = box["espn_athlete_id"].astype(str).str.replace(r"\.0$", "", regex=True)
     return box.drop_duplicates(["espn_athlete_id", "game_date"])
@@ -84,10 +84,13 @@ def build(start: str, end: str, min_games: int) -> pd.DataFrame:
         today = g[g["game_date"] == r.slate]
         if today.empty or not (pd.to_numeric(today["minutes"], errors="coerce").fillna(0) > 0).any():
             continue
-        prior = g[(g["game_date"] < r.slate) & (pd.to_numeric(g["minutes"], errors="coerce").fillna(0) > 0)]
-        prior_vals = pd.to_numeric(prior[col], errors="coerce").dropna()
+        played = g[(g["game_date"] < r.slate) & (pd.to_numeric(g["minutes"], errors="coerce").fillna(0) > 0)]
+        prior_vals = pd.to_numeric(played.loc[played["game_date"] >= SEASON_START, col], errors="coerce").dropna()
         if len(prior_vals) < min_games:
             continue
+        # Card window: newest RS + playoff games across seasons (preseason excluded at load).
+        recent = pd.to_numeric(played[col], errors="coerce").dropna().iloc[::-1]
+        l5, l10 = recent.iloc[:5], recent.iloc[:10]
         actual = float(pd.to_numeric(today[col], errors="coerce").iloc[0])
         season = float(prior_vals.mean())
         rows.append({
@@ -95,6 +98,8 @@ def build(start: str, end: str, min_games: int) -> pd.DataFrame:
             "line": r.line, "season_avg": round(season, 2), "games": len(prior_vals), "actual": actual,
             "gap": season - r.line, "rel_gap": (season - r.line) / r.line if r.line else 0.0,
             "over_hit": int(actual > r.line), "under_hit": int(actual < r.line), "push": int(actual == r.line),
+            "l5_n": len(l5), "l5_over": int((l5 > r.line).sum()), "l5_under": int((l5 < r.line).sum()),
+            "l10_n": len(l10), "l10_over": int((l10 > r.line).sum()), "l10_under": int((l10 < r.line).sum()),
         })
     return pd.DataFrame(rows)
 
