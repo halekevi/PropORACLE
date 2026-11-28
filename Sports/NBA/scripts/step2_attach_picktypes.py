@@ -145,6 +145,47 @@ def split_combo_team(team_str: str) -> Tuple[str, str]:
 
 # ---------------- OPP TEAM (pp_game_id inference) ---------------- #
 
+ESPN_SCOREBOARD = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"
+ESPN_TO_PP = {"GS": "GSW", "NY": "NYK", "NO": "NOP", "SA": "SAS", "UTAH": "UTA", "WSH": "WAS", "PHO": "PHX", "BRK": "BKN"}
+
+
+def _pp_abbr(abbr: str) -> str:
+    a = str(abbr).strip().upper()
+    return ESPN_TO_PP.get(a, a)
+
+
+def _et_date(start_time: str) -> str:
+    try:
+        ts = pd.to_datetime(start_time, utc=True)
+    except (ValueError, TypeError):
+        return ""
+    if pd.isna(ts):
+        return ""
+    return ts.tz_convert("America/New_York").strftime("%Y-%m-%d")
+
+
+def _espn_opponents(date_str: str) -> Optional[Dict[str, str]]:
+    """{team: opponent} in PrizePicks abbreviations for an ET date; None if the fetch fails."""
+    import json
+    import urllib.request
+
+    url = f"{ESPN_SCOREBOARD}?dates={date_str.replace('-', '')}&limit=40"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "PropOracle/1.0"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+    except Exception as e:  # noqa: BLE001
+        print(f"  ⚠️ opp_team: ESPN scoreboard fetch failed for {date_str}: {e}")
+        return None
+    out: Dict[str, str] = {}
+    for ev in data.get("events", []):
+        comps = (ev.get("competitions") or [{}])[0].get("competitors", [])
+        abbrs = [_pp_abbr(c.get("team", {}).get("abbreviation", "")) for c in comps]
+        if len(abbrs) == 2 and all(abbrs):
+            out[abbrs[0]] = abbrs[1]
+            out[abbrs[1]] = abbrs[0]
+    return out
+
 def build_opp_team_from_gameid(df: pd.DataFrame) -> pd.Series:
     """
     Build opponent using pp_game_id + team values.
@@ -204,6 +245,37 @@ def build_opp_team_from_gameid(df: pd.DataFrame) -> pd.Series:
                 t1, t2 = top2
                 opp_map[(gid, t1)] = t2
                 opp_map[(gid, t2)] = t1
+
+    # Fallback: PrizePicks sometimes gives each side of one game its own pp_game_id
+    # (2026-11-28 CHI 200452 / OKC 200453 — CHI played IND, OKC played MIL, same tip time).
+    # Resolve orphan teams from the ESPN scoreboard; never pair orphans by start_time.
+    if "start_time" in df2.columns:
+        singles_all = df2[(df2["is_combo_player"] == 0) & (df2["team"].str.strip() != "") & (~df2["team"].str.contains("/"))]
+        orphans = (
+            singles_all[[(str(g), str(t)) not in opp_map for g, t in zip(singles_all["pp_game_id"], singles_all["team"])]]
+            [["pp_game_id", "team", "start_time"]].drop_duplicates()
+        )
+        if not orphans.empty:
+            et_dates = sorted({_et_date(s) for s in orphans["start_time"] if _et_date(s)})
+            espn_opp: Dict[str, str] = {}
+            espn_ok = False
+            for d in et_dates:
+                got = _espn_opponents(d)
+                if got is not None:
+                    espn_ok = True
+                    espn_opp.update(got)
+            for st, g in orphans.groupby("start_time"):
+                teams = list(g["team"].unique())
+                if espn_ok:
+                    for gid, t in zip(g["pp_game_id"], g["team"]):
+                        o = espn_opp.get(_pp_abbr(t))
+                        if o:
+                            opp_map[(str(gid), t)] = o
+                            print(f"  opp_team: {t} (pp_game_id {gid}) vs {o} from ESPN scoreboard")
+                        else:
+                            print(f"  ⚠️ opp_team: {t} (pp_game_id {gid}) not on ESPN scoreboard {_et_date(st)} (left blank)")
+                else:
+                    print(f"  ⚠️ opp_team: ESPN unavailable; {len(teams)} unpaired team(s) at {st}: {sorted(teams)} (left blank)")
 
     # Apply map row-by-row
     out = []
