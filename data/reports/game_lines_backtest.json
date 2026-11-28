@@ -1,0 +1,2353 @@
+{
+  "holdout_start": "2026-07-01",
+  "min_train_bets": 100,
+  "break_even_at_minus110": 0.5238,
+  "sports": {
+    "NBA": {
+      "win_prob_brier": {
+        "train": {
+          "games": 2559,
+          "model": 0.2084,
+          "market_no_vig": 0.1982
+        },
+        "holdout": {
+          "games": 281,
+          "model": 0.2133,
+          "market_no_vig": 0.1979
+        }
+      },
+      "games": 2926,
+      "date_range": [
+        "2024-10-22",
+        "2026-11-27"
+      ],
+      "holdout_games": 281,
+      "accuracy": {
+        "train": {
+          "games_margin": 2563,
+          "model_margin_mae": 11.377,
+          "line_margin_mae": 10.843,
+          "games_total": 2564,
+          "model_total_mae": 14.946,
+          "line_total_mae": 14.315
+        },
+        "holdout": {
+          "games_margin": 281,
+          "model_margin_mae": 11.154,
+          "line_margin_mae": 10.746,
+          "games_total": 281,
+          "model_total_mae": 15.146,
+          "line_total_mae": 14.45
+        }
+      },
+      "spread": {
+        "rows": [
+          {
+            "threshold": 0,
+            "train": {
+              "n": 2563,
+              "wins": 1265,
+              "pushes": 0,
+              "win_rate": 0.4936,
+              "wilson_lo": 0.4742,
+              "wilson_hi": 0.5129,
+              "roi": -0.0579,
+              "units": -148.29,
+              "avg_price": -102.5
+            },
+            "holdout": {
+              "n": 281,
+              "wins": 138,
+              "pushes": 0,
+              "win_rate": 0.4911,
+              "wilson_lo": 0.4332,
+              "wilson_hi": 0.5493,
+              "roi": -0.0636,
+              "units": -17.88,
+              "avg_price": -110.1
+            }
+          },
+          {
+            "threshold": 1,
+            "train": {
+              "n": 2000,
+              "wins": 975,
+              "pushes": 0,
+              "win_rate": 0.4875,
+              "wilson_lo": 0.4656,
+              "wilson_hi": 0.5094,
+              "roi": -0.0694,
+              "units": -138.7,
+              "avg_price": -102.1
+            },
+            "holdout": {
+              "n": 197,
+              "wins": 93,
+              "pushes": 0,
+              "win_rate": 0.4721,
+              "wilson_lo": 0.4036,
+              "wilson_hi": 0.5417,
+              "roi": -0.1007,
+              "units": -19.83,
+              "avg_price": -110.3
+            }
+          },
+          {
+            "threshold": 2,
+            "train": {
+              "n": 1511,
+              "wins": 737,
+              "pushes": 0,
+              "win_rate": 0.4878,
+              "wilson_lo": 0.4626,
+              "wilson_hi": 0.513,
+              "roi": -0.0694,
+              "units": -104.9,
+              "avg_price": -102.0
+            },
+            "holdout": {
+              "n": 150,
+              "wins": 71,
+              "pushes": 0,
+              "win_rate": 0.4733,
+              "wilson_lo": 0.3951,
+              "wilson_hi": 0.5529,
+              "roi": -0.098,
+              "units": -14.69,
+              "avg_price": -110.4
+            }
+          },
+          {
+            "threshold": 3,
+            "train": {
+              "n": 1105,
+              "wins": 553,
+              "pushes": 0,
+              "win_rate": 0.5005,
+              "wilson_lo": 0.471,
+              "wilson_hi": 0.5299,
+              "roi": -0.045,
+              "units": -49.73,
+              "avg_price": -101.4
+            },
+            "holdout": {
+              "n": 93,
+              "wins": 51,
+              "pushes": 0,
+              "win_rate": 0.5484,
+              "wilson_lo": 0.4473,
+              "wilson_hi": 0.6456,
+              "roi": 0.0464,
+              "units": 4.32,
+              "avg_price": -110.0
+            }
+          },
+          {
+            "threshold": 4,
+            "train": {
+              "n": 763,
+              "wins": 383,
+              "pushes": 0,
+              "win_rate": 0.502,
+              "wilson_lo": 0.4666,
+              "wilson_hi": 0.5373,
+              "roi": -0.0417,
+              "units": -31.81,
+              "avg_price": -101.0
+            },
+            "holdout": {
+              "n": 55,
+              "wins": 30,
+              "pushes": 0,
+              "win_rate": 0.5455,
+              "wilson_lo": 0.4152,
+              "wilson_hi": 0.6697,
+              "roi": 0.0389,
+              "units": 2.14,
+              "avg_price": -109.9
+            }
+          },
+          {
+            "threshold": 5,
+            "train": {
+              "n": 503,
+              "wins": 239,
+              "pushes": 0,
+              "win_rate": 0.4751,
+              "wilson_lo": 0.4319,
+              "wilson_hi": 0.5188,
+              "roi": -0.093,
+              "units": -46.8,
+              "avg_price": -101.3
+            },
+            "holdout": {
+              "n": 36,
+              "wins": 18,
+              "pushes": 0,
+              "win_rate": 0.5,
+              "wilson_lo": 0.3447,
+              "wilson_hi": 0.6553,
+              "roi": -0.045,
+              "units": -1.62,
+              "avg_price": -109.1
+            }
+          },
+          {
+            "threshold": 6,
+            "train": {
+              "n": 308,
+              "wins": 154,
+              "pushes": 0,
+              "win_rate": 0.5,
+              "wilson_lo": 0.4445,
+              "wilson_hi": 0.5555,
+              "roi": -0.0462,
+              "units": -14.24,
+              "avg_price": -101.0
+            },
+            "holdout": {
+              "n": 22,
+              "wins": 15,
+              "pushes": 0,
+              "win_rate": 0.6818,
+              "wilson_lo": 0.4732,
+              "wilson_hi": 0.8364,
+              "roi": 0.3044,
+              "units": 6.7,
+              "avg_price": -109.5
+            }
+          }
+        ],
+        "chosen_threshold": null,
+        "chosen_holdout": null,
+        "chosen_train": null
+      },
+      "total": {
+        "rows": [
+          {
+            "threshold": 0,
+            "train": {
+              "n": 2564,
+              "wins": 1243,
+              "pushes": 0,
+              "win_rate": 0.4848,
+              "wilson_lo": 0.4655,
+              "wilson_hi": 0.5041,
+              "roi": -0.0747,
+              "units": -191.62,
+              "avg_price": -108.1
+            },
+            "holdout": {
+              "n": 281,
+              "wins": 132,
+              "pushes": 0,
+              "win_rate": 0.4698,
+              "wilson_lo": 0.4122,
+              "wilson_hi": 0.5281,
+              "roi": -0.1044,
+              "units": -29.33,
+              "avg_price": -110.3
+            }
+          },
+          {
+            "threshold": 1,
+            "train": {
+              "n": 2134,
+              "wins": 1041,
+              "pushes": 0,
+              "win_rate": 0.4878,
+              "wilson_lo": 0.4666,
+              "wilson_hi": 0.509,
+              "roi": -0.069,
+              "units": -147.34,
+              "avg_price": -108.2
+            },
+            "holdout": {
+              "n": 229,
+              "wins": 107,
+              "pushes": 0,
+              "win_rate": 0.4672,
+              "wilson_lo": 0.4037,
+              "wilson_hi": 0.5319,
+              "roi": -0.1092,
+              "units": -25.01,
+              "avg_price": -110.3
+            }
+          },
+          {
+            "threshold": 2,
+            "train": {
+              "n": 1732,
+              "wins": 838,
+              "pushes": 0,
+              "win_rate": 0.4838,
+              "wilson_lo": 0.4604,
+              "wilson_hi": 0.5074,
+              "roi": -0.077,
+              "units": -133.41,
+              "avg_price": -108.1
+            },
+            "holdout": {
+              "n": 191,
+              "wins": 87,
+              "pushes": 0,
+              "win_rate": 0.4555,
+              "wilson_lo": 0.3864,
+              "wilson_hi": 0.5263,
+              "roi": -0.1319,
+              "units": -25.2,
+              "avg_price": -110.4
+            }
+          },
+          {
+            "threshold": 3,
+            "train": {
+              "n": 1393,
+              "wins": 680,
+              "pushes": 0,
+              "win_rate": 0.4882,
+              "wilson_lo": 0.462,
+              "wilson_hi": 0.5144,
+              "roi": -0.0689,
+              "units": -96.0,
+              "avg_price": -108.9
+            },
+            "holdout": {
+              "n": 140,
+              "wins": 63,
+              "pushes": 0,
+              "win_rate": 0.45,
+              "wilson_lo": 0.37,
+              "wilson_hi": 0.5326,
+              "roi": -0.142,
+              "units": -19.87,
+              "avg_price": -110.2
+            }
+          },
+          {
+            "threshold": 4,
+            "train": {
+              "n": 1091,
+              "wins": 530,
+              "pushes": 0,
+              "win_rate": 0.4858,
+              "wilson_lo": 0.4562,
+              "wilson_hi": 0.5154,
+              "roi": -0.0733,
+              "units": -80.02,
+              "avg_price": -108.5
+            },
+            "holdout": {
+              "n": 97,
+              "wins": 44,
+              "pushes": 0,
+              "win_rate": 0.4536,
+              "wilson_lo": 0.3582,
+              "wilson_hi": 0.5526,
+              "roi": -0.1357,
+              "units": -13.16,
+              "avg_price": -110.5
+            }
+          },
+          {
+            "threshold": 5,
+            "train": {
+              "n": 828,
+              "wins": 407,
+              "pushes": 0,
+              "win_rate": 0.4915,
+              "wilson_lo": 0.4576,
+              "wilson_hi": 0.5256,
+              "roi": -0.0621,
+              "units": -51.42,
+              "avg_price": -108.9
+            },
+            "holdout": {
+              "n": 64,
+              "wins": 25,
+              "pushes": 0,
+              "win_rate": 0.3906,
+              "wilson_lo": 0.2806,
+              "wilson_hi": 0.5131,
+              "roi": -0.2545,
+              "units": -16.29,
+              "avg_price": -110.4
+            }
+          },
+          {
+            "threshold": 6,
+            "train": {
+              "n": 625,
+              "wins": 304,
+              "pushes": 0,
+              "win_rate": 0.4864,
+              "wilson_lo": 0.4474,
+              "wilson_hi": 0.5255,
+              "roi": -0.0722,
+              "units": -45.14,
+              "avg_price": -109.1
+            },
+            "holdout": {
+              "n": 39,
+              "wins": 14,
+              "pushes": 0,
+              "win_rate": 0.359,
+              "wilson_lo": 0.2274,
+              "wilson_hi": 0.5158,
+              "roi": -0.3153,
+              "units": -12.3,
+              "avg_price": -110.4
+            }
+          }
+        ],
+        "chosen_threshold": null,
+        "chosen_holdout": null,
+        "chosen_train": null
+      },
+      "moneyline": {
+        "rows": [
+          {
+            "threshold": 0.0,
+            "train": {
+              "n": 2095,
+              "wins": 787,
+              "pushes": 0,
+              "win_rate": 0.3757,
+              "wilson_lo": 0.3552,
+              "wilson_hi": 0.3966,
+              "roi": -0.1095,
+              "units": -229.39,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 219,
+              "wins": 90,
+              "pushes": 0,
+              "win_rate": 0.411,
+              "wilson_lo": 0.3479,
+              "wilson_hi": 0.4771,
+              "roi": -0.2202,
+              "units": -48.22,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.02,
+            "train": {
+              "n": 1925,
+              "wins": 689,
+              "pushes": 0,
+              "win_rate": 0.3579,
+              "wilson_lo": 0.3368,
+              "wilson_hi": 0.3796,
+              "roi": -0.1241,
+              "units": -238.94,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 195,
+              "wins": 79,
+              "pushes": 0,
+              "win_rate": 0.4051,
+              "wilson_lo": 0.3387,
+              "wilson_hi": 0.4752,
+              "roi": -0.2095,
+              "units": -40.86,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.04,
+            "train": {
+              "n": 1752,
+              "wins": 601,
+              "pushes": 0,
+              "win_rate": 0.343,
+              "wilson_lo": 0.3212,
+              "wilson_hi": 0.3656,
+              "roi": -0.1344,
+              "units": -235.54,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 175,
+              "wins": 66,
+              "pushes": 0,
+              "win_rate": 0.3771,
+              "wilson_lo": 0.3087,
+              "wilson_hi": 0.4509,
+              "roi": -0.2297,
+              "units": -40.19,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.06,
+            "train": {
+              "n": 1584,
+              "wins": 516,
+              "pushes": 0,
+              "win_rate": 0.3258,
+              "wilson_lo": 0.3031,
+              "wilson_hi": 0.3492,
+              "roi": -0.1416,
+              "units": -224.23,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 154,
+              "wins": 55,
+              "pushes": 0,
+              "win_rate": 0.3571,
+              "wilson_lo": 0.2858,
+              "wilson_hi": 0.4355,
+              "roi": -0.2312,
+              "units": -35.61,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.08,
+            "train": {
+              "n": 1463,
+              "wins": 459,
+              "pushes": 0,
+              "win_rate": 0.3137,
+              "wilson_lo": 0.2905,
+              "wilson_hi": 0.338,
+              "roi": -0.1451,
+              "units": -212.35,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 132,
+              "wins": 48,
+              "pushes": 0,
+              "win_rate": 0.3636,
+              "wilson_lo": 0.2865,
+              "wilson_hi": 0.4485,
+              "roi": -0.1942,
+              "units": -25.63,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.1,
+            "train": {
+              "n": 1349,
+              "wins": 424,
+              "pushes": 0,
+              "win_rate": 0.3143,
+              "wilson_lo": 0.2901,
+              "wilson_hi": 0.3396,
+              "roi": -0.123,
+              "units": -165.92,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 112,
+              "wins": 39,
+              "pushes": 0,
+              "win_rate": 0.3482,
+              "wilson_lo": 0.2663,
+              "wilson_hi": 0.4401,
+              "roi": -0.1729,
+              "units": -19.37,
+              "avg_price": null
+            }
+          }
+        ],
+        "chosen_threshold": null,
+        "chosen_holdout": null,
+        "chosen_train": null
+      },
+      "win_prob_logistic": {
+        "a": -0.0041,
+        "b": 0.1392
+      },
+      "baselines_holdout": {
+        "always_home_ats": {
+          "n": 281,
+          "wins": 133,
+          "pushes": 0,
+          "win_rate": 0.4733,
+          "wilson_lo": 0.4157,
+          "wilson_hi": 0.5317,
+          "roi": -0.0981,
+          "units": -27.56,
+          "avg_price": -110.2
+        },
+        "always_favorite_ats": {
+          "n": 281,
+          "wins": 142,
+          "pushes": 0,
+          "win_rate": 0.5053,
+          "wilson_lo": 0.4472,
+          "wilson_hi": 0.5633,
+          "roi": -0.0346,
+          "units": -9.71,
+          "avg_price": -109.0
+        },
+        "always_under": {
+          "n": 281,
+          "wins": 151,
+          "pushes": 0,
+          "win_rate": 0.5374,
+          "wilson_lo": 0.479,
+          "wilson_hi": 0.5948,
+          "roi": 0.0267,
+          "units": 7.49,
+          "avg_price": -109.9
+        },
+        "always_favorite_ml": {
+          "n": 281,
+          "wins": 193,
+          "pushes": 0,
+          "win_rate": 0.6868,
+          "wilson_lo": 0.6304,
+          "wilson_hi": 0.7382,
+          "roi": -0.0258,
+          "units": -7.26,
+          "avg_price": -319.6
+        }
+      }
+    },
+    "NFL": {
+      "win_prob_brier": {
+        "train": {
+          "games": 468,
+          "model": 0.2147,
+          "market_no_vig": 0.1984
+        },
+        "holdout": {
+          "games": 167,
+          "model": 0.2211,
+          "market_no_vig": 0.2133
+        }
+      },
+      "games": 712,
+      "date_range": [
+        "2024-09-08",
+        "2026-11-27"
+      ],
+      "holdout_games": 168,
+      "accuracy": {
+        "train": {
+          "games_margin": 480,
+          "model_margin_mae": 10.379,
+          "line_margin_mae": 9.625,
+          "games_total": 481,
+          "model_total_mae": 10.675,
+          "line_total_mae": 10.242
+        },
+        "holdout": {
+          "games_margin": 168,
+          "model_margin_mae": 9.845,
+          "line_margin_mae": 9.432,
+          "games_total": 168,
+          "model_total_mae": 11.351,
+          "line_total_mae": 10.56
+        }
+      },
+      "spread": {
+        "rows": [
+          {
+            "threshold": 0,
+            "train": {
+              "n": 480,
+              "wins": 228,
+              "pushes": 0,
+              "win_rate": 0.475,
+              "wilson_lo": 0.4307,
+              "wilson_hi": 0.5197,
+              "roi": -0.0945,
+              "units": -45.34,
+              "avg_price": -75.8
+            },
+            "holdout": {
+              "n": 163,
+              "wins": 78,
+              "pushes": 5,
+              "win_rate": 0.4785,
+              "wilson_lo": 0.4032,
+              "wilson_hi": 0.5548,
+              "roi": -0.0815,
+              "units": -13.29,
+              "avg_price": -97.3
+            }
+          },
+          {
+            "threshold": 1,
+            "train": {
+              "n": 376,
+              "wins": 178,
+              "pushes": 0,
+              "win_rate": 0.4734,
+              "wilson_lo": 0.4235,
+              "wilson_hi": 0.5239,
+              "roi": -0.1006,
+              "units": -37.82,
+              "avg_price": -80.3
+            },
+            "holdout": {
+              "n": 122,
+              "wins": 60,
+              "pushes": 3,
+              "win_rate": 0.4918,
+              "wilson_lo": 0.4047,
+              "wilson_hi": 0.5794,
+              "roi": -0.0568,
+              "units": -6.92,
+              "avg_price": -96.3
+            }
+          },
+          {
+            "threshold": 2,
+            "train": {
+              "n": 276,
+              "wins": 133,
+              "pushes": 0,
+              "win_rate": 0.4819,
+              "wilson_lo": 0.4236,
+              "wilson_hi": 0.5407,
+              "roi": -0.0846,
+              "units": -23.36,
+              "avg_price": -80.3
+            },
+            "holdout": {
+              "n": 88,
+              "wins": 38,
+              "pushes": 3,
+              "win_rate": 0.4318,
+              "wilson_lo": 0.3333,
+              "wilson_hi": 0.536,
+              "roi": -0.1738,
+              "units": -15.29,
+              "avg_price": -105.1
+            }
+          },
+          {
+            "threshold": 3,
+            "train": {
+              "n": 197,
+              "wins": 97,
+              "pushes": 0,
+              "win_rate": 0.4924,
+              "wilson_lo": 0.4234,
+              "wilson_hi": 0.5617,
+              "roi": -0.0651,
+              "units": -12.83,
+              "avg_price": -83.5
+            },
+            "holdout": {
+              "n": 61,
+              "wins": 30,
+              "pushes": 2,
+              "win_rate": 0.4918,
+              "wilson_lo": 0.3706,
+              "wilson_hi": 0.614,
+              "roi": -0.061,
+              "units": -3.72,
+              "avg_price": -106.5
+            }
+          },
+          {
+            "threshold": 4,
+            "train": {
+              "n": 130,
+              "wins": 62,
+              "pushes": 0,
+              "win_rate": 0.4769,
+              "wilson_lo": 0.393,
+              "wilson_hi": 0.5622,
+              "roi": -0.0935,
+              "units": -12.16,
+              "avg_price": -86.5
+            },
+            "holdout": {
+              "n": 37,
+              "wins": 18,
+              "pushes": 1,
+              "win_rate": 0.4865,
+              "wilson_lo": 0.3345,
+              "wilson_hi": 0.6411,
+              "roi": -0.071,
+              "units": -2.63,
+              "avg_price": -110.1
+            }
+          },
+          {
+            "threshold": 5,
+            "train": {
+              "n": 76,
+              "wins": 34,
+              "pushes": 0,
+              "win_rate": 0.4474,
+              "wilson_lo": 0.3408,
+              "wilson_hi": 0.559,
+              "roi": -0.1487,
+              "units": -11.3,
+              "avg_price": -81.3
+            },
+            "holdout": {
+              "n": 22,
+              "wins": 9,
+              "pushes": 1,
+              "win_rate": 0.4091,
+              "wilson_lo": 0.2326,
+              "wilson_hi": 0.6127,
+              "roi": -0.2143,
+              "units": -4.71,
+              "avg_price": -109.0
+            }
+          }
+        ],
+        "chosen_threshold": null,
+        "chosen_holdout": null,
+        "chosen_train": null
+      },
+      "total": {
+        "rows": [
+          {
+            "threshold": 0,
+            "train": {
+              "n": 481,
+              "wins": 256,
+              "pushes": 0,
+              "win_rate": 0.5322,
+              "wilson_lo": 0.4876,
+              "wilson_hi": 0.5764,
+              "roi": 0.0154,
+              "units": 7.38,
+              "avg_price": -98.2
+            },
+            "holdout": {
+              "n": 168,
+              "wins": 86,
+              "pushes": 0,
+              "win_rate": 0.5119,
+              "wilson_lo": 0.4369,
+              "wilson_hi": 0.5864,
+              "roi": -0.024,
+              "units": -4.03,
+              "avg_price": -109.4
+            }
+          },
+          {
+            "threshold": 1,
+            "train": {
+              "n": 382,
+              "wins": 197,
+              "pushes": 0,
+              "win_rate": 0.5157,
+              "wilson_lo": 0.4657,
+              "wilson_hi": 0.5654,
+              "roi": -0.0156,
+              "units": -5.95,
+              "avg_price": -100.4
+            },
+            "holdout": {
+              "n": 124,
+              "wins": 62,
+              "pushes": 0,
+              "win_rate": 0.5,
+              "wilson_lo": 0.4133,
+              "wilson_hi": 0.5867,
+              "roi": -0.0468,
+              "units": -5.8,
+              "avg_price": -108.9
+            }
+          },
+          {
+            "threshold": 2,
+            "train": {
+              "n": 289,
+              "wins": 146,
+              "pushes": 0,
+              "win_rate": 0.5052,
+              "wilson_lo": 0.4479,
+              "wilson_hi": 0.5624,
+              "roi": -0.0363,
+              "units": -10.49,
+              "avg_price": -101.5
+            },
+            "holdout": {
+              "n": 86,
+              "wins": 37,
+              "pushes": 0,
+              "win_rate": 0.4302,
+              "wilson_lo": 0.3308,
+              "wilson_hi": 0.5356,
+              "roi": -0.181,
+              "units": -15.57,
+              "avg_price": -108.3
+            }
+          },
+          {
+            "threshold": 3,
+            "train": {
+              "n": 209,
+              "wins": 104,
+              "pushes": 0,
+              "win_rate": 0.4976,
+              "wilson_lo": 0.4305,
+              "wilson_hi": 0.5648,
+              "roi": -0.0493,
+              "units": -10.3,
+              "avg_price": -98.9
+            },
+            "holdout": {
+              "n": 64,
+              "wins": 31,
+              "pushes": 0,
+              "win_rate": 0.4844,
+              "wilson_lo": 0.3663,
+              "wilson_hi": 0.6042,
+              "roi": -0.0768,
+              "units": -4.91,
+              "avg_price": -106.8
+            }
+          },
+          {
+            "threshold": 4,
+            "train": {
+              "n": 139,
+              "wins": 79,
+              "pushes": 0,
+              "win_rate": 0.5683,
+              "wilson_lo": 0.4853,
+              "wilson_hi": 0.6478,
+              "roi": 0.0851,
+              "units": 11.83,
+              "avg_price": -100.2
+            },
+            "holdout": {
+              "n": 41,
+              "wins": 20,
+              "pushes": 0,
+              "win_rate": 0.4878,
+              "wilson_lo": 0.3425,
+              "wilson_hi": 0.6352,
+              "roi": -0.0704,
+              "units": -2.89,
+              "avg_price": -105.2
+            }
+          },
+          {
+            "threshold": 5,
+            "train": {
+              "n": 99,
+              "wins": 55,
+              "pushes": 0,
+              "win_rate": 0.5556,
+              "wilson_lo": 0.4574,
+              "wilson_hi": 0.6495,
+              "roi": 0.0615,
+              "units": 6.09,
+              "avg_price": -102.2
+            },
+            "holdout": {
+              "n": 30,
+              "wins": 13,
+              "pushes": 0,
+              "win_rate": 0.4333,
+              "wilson_lo": 0.2738,
+              "wilson_hi": 0.608,
+              "roi": -0.1769,
+              "units": -5.31,
+              "avg_price": -103.8
+            }
+          }
+        ],
+        "chosen_threshold": 4,
+        "chosen_holdout": {
+          "n": 41,
+          "wins": 20,
+          "pushes": 0,
+          "win_rate": 0.4878,
+          "wilson_lo": 0.3425,
+          "wilson_hi": 0.6352,
+          "roi": -0.0704,
+          "units": -2.89,
+          "avg_price": -105.2
+        },
+        "chosen_train": {
+          "n": 139,
+          "wins": 79,
+          "pushes": 0,
+          "win_rate": 0.5683,
+          "wilson_lo": 0.4853,
+          "wilson_hi": 0.6478,
+          "roi": 0.0851,
+          "units": 11.83,
+          "avg_price": -100.2
+        }
+      },
+      "moneyline": {
+        "rows": [
+          {
+            "threshold": 0.0,
+            "train": {
+              "n": 387,
+              "wins": 158,
+              "pushes": 0,
+              "win_rate": 0.4083,
+              "wilson_lo": 0.3604,
+              "wilson_hi": 0.4579,
+              "roi": -0.1468,
+              "units": -56.82,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 137,
+              "wins": 57,
+              "pushes": 0,
+              "win_rate": 0.4161,
+              "wilson_lo": 0.3369,
+              "wilson_hi": 0.4998,
+              "roi": -0.0036,
+              "units": -0.5,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.02,
+            "train": {
+              "n": 363,
+              "wins": 143,
+              "pushes": 0,
+              "win_rate": 0.3939,
+              "wilson_lo": 0.345,
+              "wilson_hi": 0.4451,
+              "roi": -0.165,
+              "units": -59.89,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 128,
+              "wins": 51,
+              "pushes": 0,
+              "win_rate": 0.3984,
+              "wilson_lo": 0.3178,
+              "wilson_hi": 0.485,
+              "roi": -0.0046,
+              "units": -0.58,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.04,
+            "train": {
+              "n": 334,
+              "wins": 128,
+              "pushes": 0,
+              "win_rate": 0.3832,
+              "wilson_lo": 0.3327,
+              "wilson_hi": 0.4364,
+              "roi": -0.1736,
+              "units": -57.97,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 116,
+              "wins": 46,
+              "pushes": 0,
+              "win_rate": 0.3966,
+              "wilson_lo": 0.3122,
+              "wilson_hi": 0.4875,
+              "roi": 0.0229,
+              "units": 2.66,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.06,
+            "train": {
+              "n": 301,
+              "wins": 111,
+              "pushes": 0,
+              "win_rate": 0.3688,
+              "wilson_lo": 0.3162,
+              "wilson_hi": 0.4246,
+              "roi": -0.1751,
+              "units": -52.7,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 105,
+              "wins": 40,
+              "pushes": 0,
+              "win_rate": 0.381,
+              "wilson_lo": 0.2938,
+              "wilson_hi": 0.4765,
+              "roi": 0.0394,
+              "units": 4.13,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.08,
+            "train": {
+              "n": 276,
+              "wins": 98,
+              "pushes": 0,
+              "win_rate": 0.3551,
+              "wilson_lo": 0.301,
+              "wilson_hi": 0.4132,
+              "roi": -0.1944,
+              "units": -53.67,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 97,
+              "wins": 36,
+              "pushes": 0,
+              "win_rate": 0.3711,
+              "wilson_lo": 0.2816,
+              "wilson_hi": 0.4705,
+              "roi": 0.048,
+              "units": 4.66,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.1,
+            "train": {
+              "n": 252,
+              "wins": 86,
+              "pushes": 0,
+              "win_rate": 0.3413,
+              "wilson_lo": 0.2855,
+              "wilson_hi": 0.4018,
+              "roi": -0.2025,
+              "units": -51.03,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 86,
+              "wins": 31,
+              "pushes": 0,
+              "win_rate": 0.3605,
+              "wilson_lo": 0.267,
+              "wilson_hi": 0.4659,
+              "roi": 0.0851,
+              "units": 7.32,
+              "avg_price": null
+            }
+          }
+        ],
+        "chosen_threshold": null,
+        "chosen_holdout": null,
+        "chosen_train": null
+      },
+      "win_prob_logistic": {
+        "a": -0.0606,
+        "b": 0.1286
+      },
+      "baselines_holdout": {
+        "always_home_ats": {
+          "n": 163,
+          "wins": 73,
+          "pushes": 5,
+          "win_rate": 0.4479,
+          "wilson_lo": 0.3736,
+          "wilson_hi": 0.5245,
+          "roi": -0.1417,
+          "units": -23.1,
+          "avg_price": -101.4
+        },
+        "always_favorite_ats": {
+          "n": 163,
+          "wins": 84,
+          "pushes": 5,
+          "win_rate": 0.5153,
+          "wilson_lo": 0.4391,
+          "wilson_hi": 0.5908,
+          "roi": -0.0145,
+          "units": -2.36,
+          "avg_price": -103.0
+        },
+        "always_under": {
+          "n": 168,
+          "wins": 80,
+          "pushes": 0,
+          "win_rate": 0.4762,
+          "wilson_lo": 0.402,
+          "wilson_hi": 0.5514,
+          "roi": -0.0874,
+          "units": -14.69,
+          "avg_price": -104.6
+        },
+        "always_favorite_ml": {
+          "n": 167,
+          "wins": 112,
+          "pushes": 0,
+          "win_rate": 0.6707,
+          "wilson_lo": 0.5962,
+          "wilson_hi": 0.7374,
+          "roi": -0.0229,
+          "units": -3.83,
+          "avg_price": -277.1
+        }
+      }
+    },
+    "CFB": {
+      "win_prob_brier": {
+        "train": {
+          "games": 1313,
+          "model": 0.1941,
+          "market_no_vig": 0.1853
+        },
+        "holdout": {
+          "games": 702,
+          "model": 0.1963,
+          "market_no_vig": 0.1755
+        }
+      },
+      "games": 2658,
+      "date_range": [
+        "2024-09-01",
+        "2026-11-27"
+      ],
+      "holdout_games": 838,
+      "accuracy": {
+        "train": {
+          "games_margin": 1402,
+          "model_margin_mae": 12.947,
+          "line_margin_mae": 11.821,
+          "games_total": 1398,
+          "model_total_mae": 13.202,
+          "line_total_mae": 12.773
+        },
+        "holdout": {
+          "games_margin": 730,
+          "model_margin_mae": 13.552,
+          "line_margin_mae": 11.634,
+          "games_total": 730,
+          "model_total_mae": 13.196,
+          "line_total_mae": 12.337
+        }
+      },
+      "spread": {
+        "rows": [
+          {
+            "threshold": 0,
+            "train": {
+              "n": 1399,
+              "wins": 730,
+              "pushes": 3,
+              "win_rate": 0.5218,
+              "wilson_lo": 0.4956,
+              "wilson_hi": 0.5479,
+              "roi": -0.0033,
+              "units": -4.6,
+              "avg_price": -82.6
+            },
+            "holdout": {
+              "n": 719,
+              "wins": 365,
+              "pushes": 11,
+              "win_rate": 0.5076,
+              "wilson_lo": 0.4712,
+              "wilson_hi": 0.5441,
+              "roi": -0.0324,
+              "units": -23.29,
+              "avg_price": -107.2
+            }
+          },
+          {
+            "threshold": 2,
+            "train": {
+              "n": 1114,
+              "wins": 593,
+              "pushes": 2,
+              "win_rate": 0.5323,
+              "wilson_lo": 0.503,
+              "wilson_hi": 0.5615,
+              "roi": 0.0172,
+              "units": 19.21,
+              "avg_price": -81.5
+            },
+            "holdout": {
+              "n": 597,
+              "wins": 302,
+              "pushes": 9,
+              "win_rate": 0.5059,
+              "wilson_lo": 0.4658,
+              "wilson_hi": 0.5458,
+              "roi": -0.0357,
+              "units": -21.29,
+              "avg_price": -106.9
+            }
+          },
+          {
+            "threshold": 4,
+            "train": {
+              "n": 854,
+              "wins": 456,
+              "pushes": 1,
+              "win_rate": 0.534,
+              "wilson_lo": 0.5004,
+              "wilson_hi": 0.5672,
+              "roi": 0.0203,
+              "units": 17.36,
+              "avg_price": -81.1
+            },
+            "holdout": {
+              "n": 472,
+              "wins": 230,
+              "pushes": 9,
+              "win_rate": 0.4873,
+              "wilson_lo": 0.4425,
+              "wilson_hi": 0.5323,
+              "roi": -0.0714,
+              "units": -33.71,
+              "avg_price": -107.1
+            }
+          },
+          {
+            "threshold": 6,
+            "train": {
+              "n": 592,
+              "wins": 308,
+              "pushes": 0,
+              "win_rate": 0.5203,
+              "wilson_lo": 0.48,
+              "wilson_hi": 0.5603,
+              "roi": -0.0063,
+              "units": -3.74,
+              "avg_price": -81.4
+            },
+            "holdout": {
+              "n": 348,
+              "wins": 174,
+              "pushes": 8,
+              "win_rate": 0.5,
+              "wilson_lo": 0.4478,
+              "wilson_hi": 0.5522,
+              "roi": -0.0463,
+              "units": -16.12,
+              "avg_price": -108.1
+            }
+          },
+          {
+            "threshold": 8,
+            "train": {
+              "n": 370,
+              "wins": 198,
+              "pushes": 0,
+              "win_rate": 0.5351,
+              "wilson_lo": 0.4842,
+              "wilson_hi": 0.5853,
+              "roi": 0.0217,
+              "units": 8.03,
+              "avg_price": -78.7
+            },
+            "holdout": {
+              "n": 239,
+              "wins": 124,
+              "pushes": 6,
+              "win_rate": 0.5188,
+              "wilson_lo": 0.4557,
+              "wilson_hi": 0.5814,
+              "roi": -0.009,
+              "units": -2.14,
+              "avg_price": -108.8
+            }
+          },
+          {
+            "threshold": 10,
+            "train": {
+              "n": 240,
+              "wins": 132,
+              "pushes": 0,
+              "win_rate": 0.55,
+              "wilson_lo": 0.4868,
+              "wilson_hi": 0.6117,
+              "roi": 0.052,
+              "units": 12.47,
+              "avg_price": -74.0
+            },
+            "holdout": {
+              "n": 161,
+              "wins": 81,
+              "pushes": 5,
+              "win_rate": 0.5031,
+              "wilson_lo": 0.4267,
+              "wilson_hi": 0.5794,
+              "roi": -0.0401,
+              "units": -6.46,
+              "avg_price": -109.4
+            }
+          }
+        ],
+        "chosen_threshold": 10,
+        "chosen_holdout": {
+          "n": 161,
+          "wins": 81,
+          "pushes": 5,
+          "win_rate": 0.5031,
+          "wilson_lo": 0.4267,
+          "wilson_hi": 0.5794,
+          "roi": -0.0401,
+          "units": -6.46,
+          "avg_price": -109.4
+        },
+        "chosen_train": {
+          "n": 240,
+          "wins": 132,
+          "pushes": 0,
+          "win_rate": 0.55,
+          "wilson_lo": 0.4868,
+          "wilson_hi": 0.6117,
+          "roi": 0.052,
+          "units": 12.47,
+          "avg_price": -74.0
+        }
+      },
+      "total": {
+        "rows": [
+          {
+            "threshold": 0,
+            "train": {
+              "n": 1398,
+              "wins": 717,
+              "pushes": 0,
+              "win_rate": 0.5129,
+              "wilson_lo": 0.4867,
+              "wilson_hi": 0.539,
+              "roi": -0.0226,
+              "units": -31.63,
+              "avg_price": -94.2
+            },
+            "holdout": {
+              "n": 730,
+              "wins": 340,
+              "pushes": 0,
+              "win_rate": 0.4658,
+              "wilson_lo": 0.4298,
+              "wilson_hi": 0.502,
+              "roi": -0.1098,
+              "units": -80.15,
+              "avg_price": -109.5
+            }
+          },
+          {
+            "threshold": 2,
+            "train": {
+              "n": 907,
+              "wins": 470,
+              "pushes": 0,
+              "win_rate": 0.5182,
+              "wilson_lo": 0.4857,
+              "wilson_hi": 0.5506,
+              "roi": -0.0143,
+              "units": -13.01,
+              "avg_price": -97.6
+            },
+            "holdout": {
+              "n": 445,
+              "wins": 196,
+              "pushes": 0,
+              "win_rate": 0.4404,
+              "wilson_lo": 0.395,
+              "wilson_hi": 0.4869,
+              "roi": -0.1586,
+              "units": -70.58,
+              "avg_price": -109.4
+            }
+          },
+          {
+            "threshold": 4,
+            "train": {
+              "n": 517,
+              "wins": 263,
+              "pushes": 0,
+              "win_rate": 0.5087,
+              "wilson_lo": 0.4657,
+              "wilson_hi": 0.5516,
+              "roi": -0.0343,
+              "units": -17.74,
+              "avg_price": -100.2
+            },
+            "holdout": {
+              "n": 231,
+              "wins": 97,
+              "pushes": 0,
+              "win_rate": 0.4199,
+              "wilson_lo": 0.3581,
+              "wilson_hi": 0.4844,
+              "roi": -0.1978,
+              "units": -45.68,
+              "avg_price": -108.1
+            }
+          },
+          {
+            "threshold": 6,
+            "train": {
+              "n": 265,
+              "wins": 137,
+              "pushes": 0,
+              "win_rate": 0.517,
+              "wilson_lo": 0.457,
+              "wilson_hi": 0.5765,
+              "roi": -0.0178,
+              "units": -4.7,
+              "avg_price": -103.5
+            },
+            "holdout": {
+              "n": 112,
+              "wins": 53,
+              "pushes": 0,
+              "win_rate": 0.4732,
+              "wilson_lo": 0.3832,
+              "wilson_hi": 0.565,
+              "roi": -0.094,
+              "units": -10.53,
+              "avg_price": -106.1
+            }
+          },
+          {
+            "threshold": 8,
+            "train": {
+              "n": 116,
+              "wins": 59,
+              "pushes": 0,
+              "win_rate": 0.5086,
+              "wilson_lo": 0.4188,
+              "wilson_hi": 0.5979,
+              "roi": -0.0358,
+              "units": -4.16,
+              "avg_price": -100.9
+            },
+            "holdout": {
+              "n": 45,
+              "wins": 18,
+              "pushes": 0,
+              "win_rate": 0.4,
+              "wilson_lo": 0.2702,
+              "wilson_hi": 0.5455,
+              "roi": -0.2335,
+              "units": -10.51,
+              "avg_price": -100.5
+            }
+          },
+          {
+            "threshold": 10,
+            "train": {
+              "n": 53,
+              "wins": 24,
+              "pushes": 0,
+              "win_rate": 0.4528,
+              "wilson_lo": 0.3266,
+              "wilson_hi": 0.5855,
+              "roi": -0.139,
+              "units": -7.37,
+              "avg_price": -100.9
+            },
+            "holdout": {
+              "n": 21,
+              "wins": 9,
+              "pushes": 0,
+              "win_rate": 0.4286,
+              "wilson_lo": 0.2447,
+              "wilson_hi": 0.6345,
+              "roi": -0.1782,
+              "units": -3.74,
+              "avg_price": -89.7
+            }
+          }
+        ],
+        "chosen_threshold": null,
+        "chosen_holdout": null,
+        "chosen_train": null
+      },
+      "moneyline": {
+        "rows": [
+          {
+            "threshold": 0.0,
+            "train": {
+              "n": 1121,
+              "wins": 503,
+              "pushes": 0,
+              "win_rate": 0.4487,
+              "wilson_lo": 0.4198,
+              "wilson_hi": 0.4779,
+              "roi": 0.0249,
+              "units": 27.94,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 589,
+              "wins": 239,
+              "pushes": 0,
+              "win_rate": 0.4058,
+              "wilson_lo": 0.3669,
+              "wilson_hi": 0.4459,
+              "roi": -0.1103,
+              "units": -64.98,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.02,
+            "train": {
+              "n": 1030,
+              "wins": 440,
+              "pushes": 0,
+              "win_rate": 0.4272,
+              "wilson_lo": 0.3973,
+              "wilson_hi": 0.4576,
+              "roi": 0.02,
+              "units": 20.56,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 548,
+              "wins": 213,
+              "pushes": 0,
+              "win_rate": 0.3887,
+              "wilson_lo": 0.3488,
+              "wilson_hi": 0.4301,
+              "roi": -0.1165,
+              "units": -63.86,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.04,
+            "train": {
+              "n": 956,
+              "wins": 400,
+              "pushes": 0,
+              "win_rate": 0.4184,
+              "wilson_lo": 0.3875,
+              "wilson_hi": 0.4499,
+              "roi": 0.0275,
+              "units": 26.3,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 493,
+              "wins": 181,
+              "pushes": 0,
+              "win_rate": 0.3671,
+              "wilson_lo": 0.3258,
+              "wilson_hi": 0.4106,
+              "roi": -0.1176,
+              "units": -57.96,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.06,
+            "train": {
+              "n": 881,
+              "wins": 356,
+              "pushes": 0,
+              "win_rate": 0.4041,
+              "wilson_lo": 0.3722,
+              "wilson_hi": 0.4368,
+              "roi": 0.0325,
+              "units": 28.6,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 455,
+              "wins": 157,
+              "pushes": 0,
+              "win_rate": 0.3451,
+              "wilson_lo": 0.3028,
+              "wilson_hi": 0.3899,
+              "roi": -0.123,
+              "units": -55.99,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.08,
+            "train": {
+              "n": 816,
+              "wins": 321,
+              "pushes": 0,
+              "win_rate": 0.3934,
+              "wilson_lo": 0.3604,
+              "wilson_hi": 0.4273,
+              "roi": 0.0245,
+              "units": 20.01,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 423,
+              "wins": 137,
+              "pushes": 0,
+              "win_rate": 0.3239,
+              "wilson_lo": 0.281,
+              "wilson_hi": 0.3699,
+              "roi": -0.141,
+              "units": -59.64,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.1,
+            "train": {
+              "n": 752,
+              "wins": 290,
+              "pushes": 0,
+              "win_rate": 0.3856,
+              "wilson_lo": 0.3515,
+              "wilson_hi": 0.4209,
+              "roi": 0.0387,
+              "units": 29.11,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 395,
+              "wins": 123,
+              "pushes": 0,
+              "win_rate": 0.3114,
+              "wilson_lo": 0.2677,
+              "wilson_hi": 0.3587,
+              "roi": -0.134,
+              "units": -52.93,
+              "avg_price": null
+            }
+          }
+        ],
+        "chosen_threshold": 0.1,
+        "chosen_holdout": {
+          "n": 395,
+          "wins": 123,
+          "pushes": 0,
+          "win_rate": 0.3114,
+          "wilson_lo": 0.2677,
+          "wilson_hi": 0.3587,
+          "roi": -0.134,
+          "units": -52.93,
+          "avg_price": null
+        },
+        "chosen_train": {
+          "n": 752,
+          "wins": 290,
+          "pushes": 0,
+          "win_rate": 0.3856,
+          "wilson_lo": 0.3515,
+          "wilson_hi": 0.4209,
+          "roi": 0.0387,
+          "units": 29.11,
+          "avg_price": null
+        }
+      },
+      "win_prob_logistic": {
+        "a": -0.3774,
+        "b": 0.1173
+      },
+      "baselines_holdout": {
+        "always_home_ats": {
+          "n": 827,
+          "wins": 443,
+          "pushes": 11,
+          "win_rate": 0.5357,
+          "wilson_lo": 0.5016,
+          "wilson_hi": 0.5694,
+          "roi": 0.0213,
+          "units": 17.64,
+          "avg_price": -107.4
+        },
+        "always_favorite_ats": {
+          "n": 827,
+          "wins": 423,
+          "pushes": 11,
+          "win_rate": 0.5115,
+          "wilson_lo": 0.4774,
+          "wilson_hi": 0.5454,
+          "roi": -0.0244,
+          "units": -20.2,
+          "avg_price": -107.1
+        },
+        "always_under": {
+          "n": 838,
+          "wins": 418,
+          "pushes": 0,
+          "win_rate": 0.4988,
+          "wilson_lo": 0.465,
+          "wilson_hi": 0.5326,
+          "roi": -0.0455,
+          "units": -38.15,
+          "avg_price": -108.0
+        },
+        "always_favorite_ml": {
+          "n": 762,
+          "wins": 578,
+          "pushes": 0,
+          "win_rate": 0.7585,
+          "wilson_lo": 0.7269,
+          "wilson_hi": 0.7876,
+          "roi": -0.011,
+          "units": -8.36,
+          "avg_price": -2271.3
+        }
+      }
+    },
+    "NHL": {
+      "win_prob_brier": {
+        "train": {
+          "games": 2705,
+          "model": 0.2438,
+          "market_no_vig": 0.2381
+        },
+        "holdout": {
+          "games": 414,
+          "model": 0.2424,
+          "market_no_vig": 0.234
+        }
+      },
+      "games": 3213,
+      "date_range": [
+        "2024-10-04",
+        "2026-11-27"
+      ],
+      "holdout_games": 414,
+      "accuracy": {
+        "train": {
+          "games_margin": 2702,
+          "model_margin_mae": 2.158,
+          "line_margin_mae": 2.228,
+          "games_total": 2702,
+          "model_total_mae": 1.858,
+          "line_total_mae": 1.855
+        },
+        "holdout": {
+          "games_margin": 414,
+          "model_margin_mae": 2.146,
+          "line_margin_mae": 2.162,
+          "games_total": 414,
+          "model_total_mae": 1.845,
+          "line_total_mae": 1.831
+        }
+      },
+      "spread": {
+        "rows": [
+          {
+            "threshold": 0,
+            "train": {
+              "n": 2702,
+              "wins": 1736,
+              "pushes": 0,
+              "win_rate": 0.6425,
+              "wilson_lo": 0.6242,
+              "wilson_hi": 0.6603,
+              "roi": -0.02,
+              "units": -54.0,
+              "avg_price": -194.9
+            },
+            "holdout": {
+              "n": 414,
+              "wins": 258,
+              "pushes": 0,
+              "win_rate": 0.6232,
+              "wilson_lo": 0.5756,
+              "wilson_hi": 0.6685,
+              "roi": -0.0581,
+              "units": -24.06,
+              "avg_price": -196.4
+            }
+          },
+          {
+            "threshold": 0.1,
+            "train": {
+              "n": 2660,
+              "wins": 1715,
+              "pushes": 0,
+              "win_rate": 0.6447,
+              "wilson_lo": 0.6264,
+              "wilson_hi": 0.6627,
+              "roi": -0.019,
+              "units": -50.55,
+              "avg_price": -196.8
+            },
+            "holdout": {
+              "n": 405,
+              "wins": 255,
+              "pushes": 0,
+              "win_rate": 0.6296,
+              "wilson_lo": 0.5816,
+              "wilson_hi": 0.6752,
+              "roi": -0.0497,
+              "units": -20.13,
+              "avg_price": -199.7
+            }
+          },
+          {
+            "threshold": 0.2,
+            "train": {
+              "n": 2623,
+              "wins": 1697,
+              "pushes": 0,
+              "win_rate": 0.647,
+              "wilson_lo": 0.6285,
+              "wilson_hi": 0.665,
+              "roi": -0.0175,
+              "units": -45.91,
+              "avg_price": -198.6
+            },
+            "holdout": {
+              "n": 396,
+              "wins": 253,
+              "pushes": 0,
+              "win_rate": 0.6389,
+              "wilson_lo": 0.5905,
+              "wilson_hi": 0.6847,
+              "roi": -0.0367,
+              "units": -14.55,
+              "avg_price": -202.5
+            }
+          },
+          {
+            "threshold": 0.3,
+            "train": {
+              "n": 2566,
+              "wins": 1665,
+              "pushes": 0,
+              "win_rate": 0.6489,
+              "wilson_lo": 0.6302,
+              "wilson_hi": 0.6671,
+              "roi": -0.0177,
+              "units": -45.42,
+              "avg_price": -200.8
+            },
+            "holdout": {
+              "n": 391,
+              "wins": 252,
+              "pushes": 0,
+              "win_rate": 0.6445,
+              "wilson_lo": 0.5959,
+              "wilson_hi": 0.6903,
+              "roi": -0.0291,
+              "units": -11.37,
+              "avg_price": -204.0
+            }
+          },
+          {
+            "threshold": 0.4,
+            "train": {
+              "n": 2510,
+              "wins": 1637,
+              "pushes": 0,
+              "win_rate": 0.6522,
+              "wilson_lo": 0.6333,
+              "wilson_hi": 0.6706,
+              "roi": -0.0149,
+              "units": -37.46,
+              "avg_price": -202.8
+            },
+            "holdout": {
+              "n": 387,
+              "wins": 249,
+              "pushes": 0,
+              "win_rate": 0.6434,
+              "wilson_lo": 0.5945,
+              "wilson_hi": 0.6895,
+              "roi": -0.0343,
+              "units": -13.27,
+              "avg_price": -205.5
+            }
+          },
+          {
+            "threshold": 0.5,
+            "train": {
+              "n": 2434,
+              "wins": 1592,
+              "pushes": 0,
+              "win_rate": 0.6541,
+              "wilson_lo": 0.6349,
+              "wilson_hi": 0.6727,
+              "roi": -0.0151,
+              "units": -36.69,
+              "avg_price": -205.2
+            },
+            "holdout": {
+              "n": 376,
+              "wins": 242,
+              "pushes": 0,
+              "win_rate": 0.6436,
+              "wilson_lo": 0.594,
+              "wilson_hi": 0.6904,
+              "roi": -0.0378,
+              "units": -14.2,
+              "avg_price": -207.7
+            }
+          }
+        ],
+        "chosen_threshold": null,
+        "chosen_holdout": null,
+        "chosen_train": null
+      },
+      "total": {
+        "rows": [
+          {
+            "threshold": 0,
+            "train": {
+              "n": 2702,
+              "wins": 1379,
+              "pushes": 0,
+              "win_rate": 0.5104,
+              "wilson_lo": 0.4915,
+              "wilson_hi": 0.5292,
+              "roi": -0.0582,
+              "units": -157.31,
+              "avg_price": -93.5
+            },
+            "holdout": {
+              "n": 414,
+              "wins": 213,
+              "pushes": 0,
+              "win_rate": 0.5145,
+              "wilson_lo": 0.4664,
+              "wilson_hi": 0.5623,
+              "roi": -0.0606,
+              "units": -25.07,
+              "avg_price": -111.4
+            }
+          },
+          {
+            "threshold": 0.1,
+            "train": {
+              "n": 2257,
+              "wins": 1151,
+              "pushes": 0,
+              "win_rate": 0.51,
+              "wilson_lo": 0.4893,
+              "wilson_hi": 0.5306,
+              "roi": -0.0652,
+              "units": -147.22,
+              "avg_price": -101.4
+            },
+            "holdout": {
+              "n": 341,
+              "wins": 168,
+              "pushes": 0,
+              "win_rate": 0.4927,
+              "wilson_lo": 0.44,
+              "wilson_hi": 0.5455,
+              "roi": -0.1086,
+              "units": -37.04,
+              "avg_price": -118.7
+            }
+          },
+          {
+            "threshold": 0.2,
+            "train": {
+              "n": 1844,
+              "wins": 934,
+              "pushes": 0,
+              "win_rate": 0.5065,
+              "wilson_lo": 0.4837,
+              "wilson_hi": 0.5293,
+              "roi": -0.0756,
+              "units": -139.34,
+              "avg_price": -106.4
+            },
+            "holdout": {
+              "n": 270,
+              "wins": 134,
+              "pushes": 0,
+              "win_rate": 0.4963,
+              "wilson_lo": 0.4371,
+              "wilson_hi": 0.5556,
+              "roi": -0.1065,
+              "units": -28.76,
+              "avg_price": -122.8
+            }
+          },
+          {
+            "threshold": 0.3,
+            "train": {
+              "n": 1469,
+              "wins": 753,
+              "pushes": 0,
+              "win_rate": 0.5126,
+              "wilson_lo": 0.487,
+              "wilson_hi": 0.5381,
+              "roi": -0.0689,
+              "units": -101.18,
+              "avg_price": -111.5
+            },
+            "holdout": {
+              "n": 195,
+              "wins": 91,
+              "pushes": 0,
+              "win_rate": 0.4667,
+              "wilson_lo": 0.398,
+              "wilson_hi": 0.5367,
+              "roi": -0.1685,
+              "units": -32.86,
+              "avg_price": -126.9
+            }
+          },
+          {
+            "threshold": 0.4,
+            "train": {
+              "n": 1095,
+              "wins": 572,
+              "pushes": 0,
+              "win_rate": 0.5224,
+              "wilson_lo": 0.4928,
+              "wilson_hi": 0.5518,
+              "roi": -0.0547,
+              "units": -59.84,
+              "avg_price": -115.0
+            },
+            "holdout": {
+              "n": 130,
+              "wins": 61,
+              "pushes": 0,
+              "win_rate": 0.4692,
+              "wilson_lo": 0.3856,
+              "wilson_hi": 0.5547,
+              "roi": -0.1692,
+              "units": -22.0,
+              "avg_price": -129.6
+            }
+          },
+          {
+            "threshold": 0.5,
+            "train": {
+              "n": 778,
+              "wins": 403,
+              "pushes": 0,
+              "win_rate": 0.518,
+              "wilson_lo": 0.4829,
+              "wilson_hi": 0.5529,
+              "roi": -0.0656,
+              "units": -51.0,
+              "avg_price": -117.5
+            },
+            "holdout": {
+              "n": 86,
+              "wins": 37,
+              "pushes": 0,
+              "win_rate": 0.4302,
+              "wilson_lo": 0.3308,
+              "wilson_hi": 0.5356,
+              "roi": -0.2439,
+              "units": -20.97,
+              "avg_price": -131.6
+            }
+          }
+        ],
+        "chosen_threshold": null,
+        "chosen_holdout": null,
+        "chosen_train": null
+      },
+      "moneyline": {
+        "rows": [
+          {
+            "threshold": 0.0,
+            "train": {
+              "n": 2019,
+              "wins": 826,
+              "pushes": 0,
+              "win_rate": 0.4091,
+              "wilson_lo": 0.3879,
+              "wilson_hi": 0.4307,
+              "roi": -0.0552,
+              "units": -111.49,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 315,
+              "wins": 112,
+              "pushes": 0,
+              "win_rate": 0.3556,
+              "wilson_lo": 0.3047,
+              "wilson_hi": 0.4099,
+              "roi": -0.1863,
+              "units": -58.67,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.02,
+            "train": {
+              "n": 1733,
+              "wins": 680,
+              "pushes": 0,
+              "win_rate": 0.3924,
+              "wilson_lo": 0.3697,
+              "wilson_hi": 0.4156,
+              "roi": -0.0704,
+              "units": -122.0,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 255,
+              "wins": 89,
+              "pushes": 0,
+              "win_rate": 0.349,
+              "wilson_lo": 0.2931,
+              "wilson_hi": 0.4094,
+              "roi": -0.1789,
+              "units": -45.62,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.04,
+            "train": {
+              "n": 1493,
+              "wins": 578,
+              "pushes": 0,
+              "win_rate": 0.3871,
+              "wilson_lo": 0.3628,
+              "wilson_hi": 0.4121,
+              "roi": -0.064,
+              "units": -95.55,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 220,
+              "wins": 73,
+              "pushes": 0,
+              "win_rate": 0.3318,
+              "wilson_lo": 0.273,
+              "wilson_hi": 0.3965,
+              "roi": -0.1992,
+              "units": -43.82,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.06,
+            "train": {
+              "n": 1284,
+              "wins": 489,
+              "pushes": 0,
+              "win_rate": 0.3808,
+              "wilson_lo": 0.3547,
+              "wilson_hi": 0.4077,
+              "roi": -0.0627,
+              "units": -80.45,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 189,
+              "wins": 62,
+              "pushes": 0,
+              "win_rate": 0.328,
+              "wilson_lo": 0.2651,
+              "wilson_hi": 0.3978,
+              "roi": -0.1907,
+              "units": -36.05,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.08,
+            "train": {
+              "n": 1131,
+              "wins": 418,
+              "pushes": 0,
+              "win_rate": 0.3696,
+              "wilson_lo": 0.3419,
+              "wilson_hi": 0.3981,
+              "roi": -0.0713,
+              "units": -80.69,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 156,
+              "wins": 51,
+              "pushes": 0,
+              "win_rate": 0.3269,
+              "wilson_lo": 0.2582,
+              "wilson_hi": 0.4039,
+              "roi": -0.1725,
+              "units": -26.92,
+              "avg_price": null
+            }
+          },
+          {
+            "threshold": 0.1,
+            "train": {
+              "n": 959,
+              "wins": 344,
+              "pushes": 0,
+              "win_rate": 0.3587,
+              "wilson_lo": 0.329,
+              "wilson_hi": 0.3896,
+              "roi": -0.0839,
+              "units": -80.45,
+              "avg_price": null
+            },
+            "holdout": {
+              "n": 117,
+              "wins": 38,
+              "pushes": 0,
+              "win_rate": 0.3248,
+              "wilson_lo": 0.2467,
+              "wilson_hi": 0.414,
+              "roi": -0.1515,
+              "units": -17.73,
+              "avg_price": null
+            }
+          }
+        ],
+        "chosen_threshold": null,
+        "chosen_holdout": null,
+        "chosen_train": null
+      },
+      "win_prob_logistic": {
+        "a": 0.0767,
+        "b": 0.4699
+      },
+      "baselines_holdout": {
+        "always_home_ats": {
+          "n": 414,
+          "wins": 182,
+          "pushes": 0,
+          "win_rate": 0.4396,
+          "wilson_lo": 0.3926,
+          "wilson_hi": 0.4878,
+          "roi": -0.1251,
+          "units": -51.78,
+          "avg_price": 13.0
+        },
+        "always_favorite_ats": {
+          "n": 414,
+          "wins": 157,
+          "pushes": 0,
+          "win_rate": 0.3792,
+          "wilson_lo": 0.3338,
+          "wilson_hi": 0.4269,
+          "roi": -0.0287,
+          "units": -11.89,
+          "avg_price": 152.3
+        },
+        "always_under": {
+          "n": 414,
+          "wins": 201,
+          "pushes": 0,
+          "win_rate": 0.4855,
+          "wilson_lo": 0.4377,
+          "wilson_hi": 0.5336,
+          "roi": -0.0633,
+          "units": -26.23,
+          "avg_price": -33.7
+        },
+        "always_favorite_ml": {
+          "n": 414,
+          "wins": 250,
+          "pushes": 0,
+          "win_rate": 0.6039,
+          "wilson_lo": 0.556,
+          "wilson_hi": 0.6498,
+          "roi": -0.01,
+          "units": -4.13,
+          "avg_price": -165.0
+        }
+      }
+    }
+  }
+}
