@@ -1,0 +1,634 @@
+{
+ "STANDARD_OVER": {
+  "rows": {
+   "all legs": {
+    "n": 20798,
+    "hit": 48.1,
+    "low": 47.4,
+    "early": 46.1,
+    "early_n": 11176,
+    "late": 50.4,
+    "late_n": 9622
+   },
+   "L5 5/5 + L10 8+ + season": {
+    "n": 170,
+    "hit": 47.1,
+    "low": 39.7,
+    "early": 44.3,
+    "early_n": 88,
+    "late": 50.0,
+    "late_n": 82
+   },
+   "  L5 5/5 + L10 8+ + season + overall-rank favorable": {
+    "n": 37,
+    "hit": 56.8,
+    "low": 40.9,
+    "early": 50.0,
+    "early_n": 18,
+    "late": 63.2,
+    "late_n": 19
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank favorable": {
+    "n": 33,
+    "hit": 60.6,
+    "low": 43.7,
+    "early": 65.0,
+    "early_n": 20,
+    "late": 53.8,
+    "late_n": 13
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank defense only": {
+    "n": 54,
+    "hit": 51.9,
+    "low": 38.9,
+    "early": 55.2,
+    "early_n": 29,
+    "late": 48.0,
+    "late_n": 25
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank neutral": {
+    "n": 108,
+    "hit": 49.1,
+    "low": 39.8,
+    "early": 45.1,
+    "early_n": 51,
+    "late": 52.6,
+    "late_n": 57
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank UNfavorable": {
+    "n": 29,
+    "hit": 24.1,
+    "low": 12.2,
+    "early": 17.6,
+    "early_n": 17,
+    "late": 33.3,
+    "late_n": 12
+   },
+   "  L5 5/5 + L10 8+ + season + PROP fav, scoring": {
+    "n": 27,
+    "hit": 63.0,
+    "low": 44.2,
+    "early": 66.7,
+    "early_n": 18,
+    "late": 55.6,
+    "late_n": 9
+   },
+   "  L5 5/5 + L10 8+ + season + PROP fav, non-scoring": {
+    "n": 6,
+    "hit": 50.0,
+    "low": 18.8,
+    "early": 50.0,
+    "early_n": 2,
+    "late": 50.0,
+    "late_n": 4
+   },
+   "L10 8+ + season (no L5)": {
+    "n": 711,
+    "hit": 50.4,
+    "low": 46.7,
+    "early": 49.7,
+    "early_n": 398,
+    "late": 51.1,
+    "late_n": 313
+   },
+   "  L10 8+ + season (no L5) + overall-rank favorable": {
+    "n": 136,
+    "hit": 56.6,
+    "low": 48.2,
+    "early": 56.6,
+    "early_n": 76,
+    "late": 56.7,
+    "late_n": 60
+   },
+   "  L10 8+ + season (no L5) + PROP-rank favorable": {
+    "n": 107,
+    "hit": 59.8,
+    "low": 50.3,
+    "early": 65.2,
+    "early_n": 66,
+    "late": 51.2,
+    "late_n": 41
+   },
+   "  L10 8+ + season (no L5) + PROP-rank defense only": {
+    "n": 202,
+    "hit": 53.0,
+    "low": 46.1,
+    "early": 52.0,
+    "early_n": 125,
+    "late": 54.5,
+    "late_n": 77
+   },
+   "  L10 8+ + season (no L5) + PROP-rank neutral": {
+    "n": 464,
+    "hit": 51.5,
+    "low": 47.0,
+    "early": 48.8,
+    "early_n": 256,
+    "late": 54.8,
+    "late_n": 208
+   },
+   "  L10 8+ + season (no L5) + PROP-rank UNfavorable": {
+    "n": 140,
+    "hit": 39.3,
+    "low": 31.6,
+    "early": 39.5,
+    "early_n": 76,
+    "late": 39.1,
+    "late_n": 64
+   },
+   "  L10 8+ + season (no L5) + PROP fav, scoring": {
+    "n": 81,
+    "hit": 61.7,
+    "low": 50.8,
+    "early": 65.4,
+    "early_n": 52,
+    "late": 55.2,
+    "late_n": 29
+   },
+   "  L10 8+ + season (no L5) + PROP fav, non-scoring": {
+    "n": 26,
+    "hit": 53.8,
+    "low": 35.5,
+    "early": 64.3,
+    "early_n": 14,
+    "late": 41.7,
+    "late_n": 12
+   }
+  },
+  "by_prop_no_l5_fav": {},
+  "legs": 20798
+ },
+ "STANDARD_UNDER": {
+  "rows": {
+   "all legs": {
+    "n": 20798,
+    "hit": 51.9,
+    "low": 51.2,
+    "early": 53.9,
+    "early_n": 11176,
+    "late": 49.6,
+    "late_n": 9622
+   },
+   "L5 5/5 + L10 8+ + season": {
+    "n": 269,
+    "hit": 47.2,
+    "low": 41.3,
+    "early": 49.5,
+    "early_n": 186,
+    "late": 42.2,
+    "late_n": 83
+   },
+   "  L5 5/5 + L10 8+ + season + overall-rank favorable": {
+    "n": 49,
+    "hit": 55.1,
+    "low": 41.3,
+    "early": 52.4,
+    "early_n": 42,
+    "late": 71.4,
+    "late_n": 7
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank favorable": {
+    "n": 29,
+    "hit": 65.5,
+    "low": 47.3,
+    "early": 63.6,
+    "early_n": 22,
+    "late": 71.4,
+    "late_n": 7
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank defense only": {
+    "n": 72,
+    "hit": 55.6,
+    "low": 44.1,
+    "early": 59.3,
+    "early_n": 54,
+    "late": 44.4,
+    "late_n": 18
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank neutral": {
+    "n": 184,
+    "hit": 45.1,
+    "low": 38.1,
+    "early": 49.6,
+    "early_n": 131,
+    "late": 34.0,
+    "late_n": 53
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank UNfavorable": {
+    "n": 56,
+    "hit": 44.6,
+    "low": 32.4,
+    "early": 39.4,
+    "early_n": 33,
+    "late": 52.2,
+    "late_n": 23
+   },
+   "  L5 5/5 + L10 8+ + season + PROP fav, scoring": {
+    "n": 20,
+    "hit": 75.0,
+    "low": 53.1,
+    "early": 80.0,
+    "early_n": 15,
+    "late": 60.0,
+    "late_n": 5
+   },
+   "  L5 5/5 + L10 8+ + season + PROP fav, non-scoring": {
+    "n": 9,
+    "hit": 44.4,
+    "low": 18.9,
+    "early": 28.6,
+    "early_n": 7,
+    "late": 100.0,
+    "late_n": 2
+   },
+   "L10 8+ + season (no L5)": {
+    "n": 1282,
+    "hit": 52.9,
+    "low": 50.1,
+    "early": 54.8,
+    "early_n": 818,
+    "late": 49.6,
+    "late_n": 464
+   },
+   "  L10 8+ + season (no L5) + overall-rank favorable": {
+    "n": 239,
+    "hit": 59.0,
+    "low": 52.7,
+    "early": 59.2,
+    "early_n": 196,
+    "late": 58.1,
+    "late_n": 43
+   },
+   "  L10 8+ + season (no L5) + PROP-rank favorable": {
+    "n": 186,
+    "hit": 55.4,
+    "low": 48.2,
+    "early": 54.1,
+    "early_n": 148,
+    "late": 60.5,
+    "late_n": 38
+   },
+   "  L10 8+ + season (no L5) + PROP-rank defense only": {
+    "n": 375,
+    "hit": 55.2,
+    "low": 50.1,
+    "early": 54.0,
+    "early_n": 265,
+    "late": 58.2,
+    "late_n": 110
+   },
+   "  L10 8+ + season (no L5) + PROP-rank neutral": {
+    "n": 791,
+    "hit": 53.9,
+    "low": 50.4,
+    "early": 55.5,
+    "early_n": 488,
+    "late": 51.2,
+    "late_n": 303
+   },
+   "  L10 8+ + season (no L5) + PROP-rank UNfavorable": {
+    "n": 305,
+    "hit": 48.9,
+    "low": 43.3,
+    "early": 53.3,
+    "early_n": 182,
+    "late": 42.3,
+    "late_n": 123
+   },
+   "  L10 8+ + season (no L5) + PROP fav, scoring": {
+    "n": 136,
+    "hit": 56.6,
+    "low": 48.2,
+    "early": 57.7,
+    "early_n": 111,
+    "late": 52.0,
+    "late_n": 25
+   },
+   "  L10 8+ + season (no L5) + PROP fav, non-scoring": {
+    "n": 50,
+    "hit": 52.0,
+    "low": 38.5,
+    "early": 43.2,
+    "early_n": 37,
+    "late": 76.9,
+    "late_n": 13
+   }
+  },
+  "by_prop_no_l5_fav": {
+   "fga": {
+    "n": 20,
+    "hit": 70.0,
+    "low": 48.1,
+    "early": 69.2,
+    "early_n": 13,
+    "late": 71.4,
+    "late_n": 7
+   },
+   "pa": {
+    "n": 19,
+    "hit": 52.6,
+    "low": 31.7,
+    "early": 55.6,
+    "early_n": 18,
+    "late": 0.0,
+    "late_n": 1
+   },
+   "pr": {
+    "n": 17,
+    "hit": 47.1,
+    "low": 26.2,
+    "early": 50.0,
+    "early_n": 16,
+    "late": 0.0,
+    "late_n": 1
+   },
+   "pra": {
+    "n": 17,
+    "hit": 64.7,
+    "low": 41.3,
+    "early": 64.7,
+    "early_n": 17,
+    "late": null,
+    "late_n": 0
+   }
+  },
+  "legs": 20798
+ },
+ "GOBLIN_OVER": {
+  "rows": {
+   "all legs": {
+    "n": 41821,
+    "hit": 64.5,
+    "low": 64.0,
+    "early": 63.0,
+    "early_n": 23053,
+    "late": 66.3,
+    "late_n": 18768
+   },
+   "L5 5/5 + L10 8+ + season": {
+    "n": 4853,
+    "hit": 73.4,
+    "low": 72.2,
+    "early": 71.6,
+    "early_n": 2581,
+    "late": 75.6,
+    "late_n": 2272
+   },
+   "  L5 5/5 + L10 8+ + season + overall-rank favorable": {
+    "n": 861,
+    "hit": 76.7,
+    "low": 73.7,
+    "early": 76.8,
+    "early_n": 479,
+    "late": 76.4,
+    "late_n": 382
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank favorable": {
+    "n": 863,
+    "hit": 78.2,
+    "low": 75.3,
+    "early": 80.4,
+    "early_n": 504,
+    "late": 75.2,
+    "late_n": 359
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank defense only": {
+    "n": 1664,
+    "hit": 77.3,
+    "low": 75.2,
+    "early": 78.0,
+    "early_n": 896,
+    "late": 76.4,
+    "late_n": 768
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank neutral": {
+    "n": 3264,
+    "hit": 73.5,
+    "low": 72.0,
+    "early": 70.6,
+    "early_n": 1747,
+    "late": 76.9,
+    "late_n": 1517
+   },
+   "  L5 5/5 + L10 8+ + season + PROP-rank UNfavorable": {
+    "n": 726,
+    "hit": 67.5,
+    "low": 64.0,
+    "early": 63.3,
+    "early_n": 330,
+    "late": 71.0,
+    "late_n": 396
+   },
+   "  L5 5/5 + L10 8+ + season + PROP fav, scoring": {
+    "n": 536,
+    "hit": 79.7,
+    "low": 76.1,
+    "early": 81.9,
+    "early_n": 321,
+    "late": 76.3,
+    "late_n": 215
+   },
+   "  L5 5/5 + L10 8+ + season + PROP fav, non-scoring": {
+    "n": 327,
+    "hit": 75.8,
+    "low": 70.9,
+    "early": 77.6,
+    "early_n": 183,
+    "late": 73.6,
+    "late_n": 144
+   },
+   "L10 8+ + season (no L5)": {
+    "n": 12195,
+    "hit": 72.5,
+    "low": 71.7,
+    "early": 71.5,
+    "early_n": 6617,
+    "late": 73.6,
+    "late_n": 5578
+   },
+   "  L10 8+ + season (no L5) + overall-rank favorable": {
+    "n": 2277,
+    "hit": 74.0,
+    "low": 72.2,
+    "early": 73.5,
+    "early_n": 1298,
+    "late": 74.8,
+    "late_n": 979
+   },
+   "  L10 8+ + season (no L5) + PROP-rank favorable": {
+    "n": 2157,
+    "hit": 74.7,
+    "low": 72.9,
+    "early": 75.7,
+    "early_n": 1241,
+    "late": 73.5,
+    "late_n": 916
+   },
+   "  L10 8+ + season (no L5) + PROP-rank defense only": {
+    "n": 4345,
+    "hit": 74.8,
+    "low": 73.5,
+    "early": 75.0,
+    "early_n": 2408,
+    "late": 74.7,
+    "late_n": 1937
+   },
+   "  L10 8+ + season (no L5) + PROP-rank neutral": {
+    "n": 8097,
+    "hit": 72.6,
+    "low": 71.7,
+    "early": 71.4,
+    "early_n": 4474,
+    "late": 74.1,
+    "late_n": 3623
+   },
+   "  L10 8+ + season (no L5) + PROP-rank UNfavorable": {
+    "n": 1941,
+    "hit": 69.4,
+    "low": 67.3,
+    "early": 66.3,
+    "early_n": 902,
+    "late": 72.1,
+    "late_n": 1039
+   },
+   "  L10 8+ + season (no L5) + PROP fav, scoring": {
+    "n": 1301,
+    "hit": 75.0,
+    "low": 72.6,
+    "early": 75.4,
+    "early_n": 781,
+    "late": 74.4,
+    "late_n": 520
+   },
+   "  L10 8+ + season (no L5) + PROP fav, non-scoring": {
+    "n": 856,
+    "hit": 74.3,
+    "low": 71.3,
+    "early": 76.1,
+    "early_n": 460,
+    "late": 72.2,
+    "late_n": 396
+   }
+  },
+  "by_prop_no_l5_fav": {
+   "3ptmade": {
+    "n": 176,
+    "hit": 79.0,
+    "low": 72.4,
+    "early": 83.5,
+    "early_n": 103,
+    "late": 72.6,
+    "late_n": 73
+   },
+   "ast": {
+    "n": 196,
+    "hit": 77.0,
+    "low": 70.7,
+    "early": 83.5,
+    "early_n": 109,
+    "late": 69.0,
+    "late_n": 87
+   },
+   "blk": {
+    "n": 36,
+    "hit": 66.7,
+    "low": 50.3,
+    "early": 60.9,
+    "early_n": 23,
+    "late": 76.9,
+    "late_n": 13
+   },
+   "fantasy": {
+    "n": 24,
+    "hit": 70.8,
+    "low": 50.8,
+    "early": 88.9,
+    "early_n": 9,
+    "late": 60.0,
+    "late_n": 15
+   },
+   "pa": {
+    "n": 158,
+    "hit": 73.4,
+    "low": 66.0,
+    "early": 71.3,
+    "early_n": 101,
+    "late": 77.2,
+    "late_n": 57
+   },
+   "pr": {
+    "n": 231,
+    "hit": 75.8,
+    "low": 69.8,
+    "early": 75.0,
+    "early_n": 140,
+    "late": 76.9,
+    "late_n": 91
+   },
+   "pra": {
+    "n": 192,
+    "hit": 73.4,
+    "low": 66.8,
+    "early": 68.5,
+    "early_n": 111,
+    "late": 80.2,
+    "late_n": 81
+   },
+   "pts": {
+    "n": 473,
+    "hit": 75.9,
+    "low": 71.8,
+    "early": 79.4,
+    "early_n": 281,
+    "late": 70.8,
+    "late_n": 192
+   },
+   "ra": {
+    "n": 157,
+    "hit": 68.2,
+    "low": 60.5,
+    "early": 69.1,
+    "early_n": 68,
+    "late": 67.4,
+    "late_n": 89
+   },
+   "reb": {
+    "n": 319,
+    "hit": 78.1,
+    "low": 73.2,
+    "early": 76.9,
+    "early_n": 173,
+    "late": 79.5,
+    "late_n": 146
+   },
+   "stl": {
+    "n": 89,
+    "hit": 76.4,
+    "low": 66.6,
+    "early": 77.4,
+    "early_n": 53,
+    "late": 75.0,
+    "late_n": 36
+   },
+   "stocks": {
+    "n": 25,
+    "hit": 68.0,
+    "low": 48.4,
+    "early": 73.7,
+    "early_n": 19,
+    "late": 50.0,
+    "late_n": 6
+   },
+   "tov": {
+    "n": 22,
+    "hit": 59.1,
+    "low": 38.7,
+    "early": 66.7,
+    "early_n": 9,
+    "late": 53.8,
+    "late_n": 13
+   }
+  },
+  "legs": 41821
+ }
+}
