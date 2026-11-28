@@ -336,7 +336,8 @@ function Invoke-PrizePicksStep1Cascade {
         if ($exit -eq 0) {
             $h = Get-PrizePicksStep1Health -CsvPath $OutputPath -TargetDate $PipelineDate -SkipDateMatch:$SkipDateHealth
             if ($h.ok) { Write-PP "      OK (HTTP)" "Green"; return $true }
-            if (-not $cdpReachable -and $h.reason -in @("empty_file", "missing_file")) {
+            $httpBlocked = [bool](($output | Out-String) -match '403|Forbidden')
+            if (-not $cdpReachable -and -not $httpBlocked -and $h.reason -in @("empty_file", "missing_file")) {
                 Write-PP "      OK (HTTP, 0 props — no slate)" "DarkGray"
                 return $true
             }
@@ -387,7 +388,8 @@ function Invoke-PrizePicksStep1Cascade {
         }
         $h = Get-PrizePicksStep1Health -CsvPath $OutputPath -TargetDate $PipelineDate -SkipDateMatch:$SkipDateHealth
         if (-not $h.ok) {
-            if ($h.reason -in @("empty_file", "missing_file")) {
+            $pwBlocked = [bool](($output | Out-String) -match '403|Forbidden|DataDome|step1 failed')
+            if (-not $pwBlocked -and $h.reason -in @("empty_file", "missing_file")) {
                 Write-PP "      OK (0 props — no slate)" "DarkGray"
                 return $true
             }
