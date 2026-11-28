@@ -2854,6 +2854,8 @@ if ($NBAOnly) {
     }
     if ($ok) { $ok = Run-Step "NBA Step 2 - Attach Pick Types"       $NBADir ".\scripts\step2_attach_picktypes.py"               "--input `"$nbaStep1Solo`" --output `"$NBARunOutDir\step2_with_picktypes.csv`"" }
     if (-not $ok) { Write-Host "  [NBA] STOPPED after step 2 — steps 3-8 will not run" -ForegroundColor Red; }
+    # Soft refresh: current-season defense from the nightly box DB (stats.nba.com blocks/time-outs left this frozen at Aug 23).
+    if ($ok -and -not $SkipDefenseRefresh) { $null = Run-Step "NBA Defense Refresh (box DB)" $NBADir ".\scripts\defense_report.py" "--from-box-db --out data\cache\defense_team_summary.csv --top 0" }
     if ($ok) { $ok = Run-Step "NBA Step 3 - Attach Defense"          $NBADir ".\scripts\step3_attach_defense.py"                 "--input `"$NBARunOutDir\step2_with_picktypes.csv`" --defense data\cache\defense_team_summary.csv --output `"$NBARunOutDir\step3_with_defense.csv`"" }
     if (-not $ok) { Write-Host "  [NBA] STOPPED after step 3 — steps 4-8 will not run" -ForegroundColor Red; }
     if ($ok) { $ok = Run-Step "NBA Step 4 - Player Stats (ESPN)"     $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate `"$NBARunOutDir\step3_with_defense.csv`" --out `"$NBARunOutDir\step4_with_stats.csv`"" }
@@ -3188,6 +3190,8 @@ $NBAJob = Start-Job -ScriptBlock {
         return $false
     }
     if ($ok) { $ok = Run-Step-Job "NBA Step 2 - Attach Pick Types"       $NBADir ".\scripts\step2_attach_picktypes.py"               "--input `"$nbaStep1`" --output `"$NBARunOutDir\step2_with_picktypes.csv`"" }
+    # Soft refresh: current-season defense from the nightly box DB (stats.nba.com blocks/time-outs left this frozen at Aug 23).
+    if ($ok -and -not $SkipDefenseRefresh) { $null = Run-Step-Job "NBA Defense Refresh (box DB)" $NBADir ".\scripts\defense_report.py" "--from-box-db --out data\cache\defense_team_summary.csv --top 0" }
     if ($ok) { $ok = Run-Step-Job "NBA Step 3 - Attach Defense"          $NBADir ".\scripts\step3_attach_defense.py"                 "--input `"$NBARunOutDir\step2_with_picktypes.csv`" --defense data\cache\defense_team_summary.csv --output `"$NBARunOutDir\step3_with_defense.csv`"" }
     if ($ok) { $ok = Run-Step-Job "NBA Step 4 - Player Stats (ESPN)"     $NBADir ".\scripts\step4_attach_player_stats_espn_cache.py" "--slate `"$NBARunOutDir\step3_with_defense.csv`" --out `"$NBARunOutDir\step4_with_stats.csv`"" }
     if ($ok) { $ok = Run-Step-Job "NBA Step 4b - Usage/Pace Context"    $NBADir ".\scripts\step4b_attach_nba_context.py"              "--input `"$NBARunOutDir\step4_with_stats.csv`" --output `"$NBARunOutDir\step4_with_stats.csv`" --season $NbaStatsSeason" }

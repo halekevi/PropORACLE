@@ -44,7 +44,64 @@ TEAM_ALIAS_FIX = {
     "NOR": "NOP",
     "NY": "NYK",
     "SA": "SAS",
+    "PHO": "PHX",
+    "WSH": "WAS",
+    "UTAH": "UTA",
 }
+
+
+def current_season_label(today: datetime | None = None) -> str:
+    """NBA season label for a date: Oct-Dec -> 'YYYY-YY+1', Jan-Sep -> 'YYYY-1-YY'."""
+    d = today or datetime.now()
+    start = d.year if d.month >= 10 else d.year - 1
+    return f"{start}-{str(start + 1)[-2:]}"
+
+
+def pull_from_box_db(season: str, db_path: Path | None = None, min_games: int = 3) -> pd.DataFrame:
+    """Per-game allowed / scored team stats from the nightly ESPN box DB (no stats.nba.com).
+
+    Regular season only (preseason rows are tagged season_window='preseason').
+    """
+    import sqlite3
+
+    start_year = int(season[:4])
+    db = db_path or (_ROOT / "data" / "cache" / "proporacle_ref.db")
+    con = sqlite3.connect(str(db))
+    box = pd.read_sql(
+        "SELECT game_date, event_id, home_team, away_team, team, pts, fgm, fga, fg3m, fg3a, ftm, fta, tov, oreb "
+        "FROM nba WHERE season_window IS NULL AND game_date >= ? AND game_date < ?",
+        con, params=(f"{start_year}-10-01", f"{start_year + 1}-07-01"),
+    )
+    con.close()
+    if box.empty:
+        raise RuntimeError(f"No regular-season box rows for {season} in {db}")
+    stats = ["pts", "fgm", "fga", "fg3m", "fg3a", "ftm", "fta", "tov", "oreb"]
+    t = box.groupby(["event_id", "home_team", "away_team", "team"], as_index=False)[stats].sum()
+    t["opp"] = np.where(t["team"] == t["home_team"], t["away_team"], t["home_team"])
+    m = t.merge(t[["event_id", "team"] + stats], left_on=["event_id", "opp"], right_on=["event_id", "team"],
+                suffixes=("", "_a"))
+    m["poss"] = m["fga"] + 0.44 * m["fta"] + m["tov"] - m["oreb"]
+    m["poss_a"] = m["fga_a"] + 0.44 * m["fta_a"] + m["tov_a"] - m["oreb_a"]
+    g = m.groupby("team").agg(
+        GP=("event_id", "nunique"),
+        PTS=("pts", "mean"),
+        OPP_PTS=("pts_a", "mean"), OPP_FGA=("fga_a", "mean"), OPP_FGM=("fgm_a", "mean"),
+        OPP_FG3A=("fg3a_a", "mean"), OPP_FG3M=("fg3m_a", "mean"), OPP_FTA=("fta_a", "mean"),
+        OPP_TOV=("tov_a", "mean"),
+        pts_sum=("pts", "sum"), pts_a_sum=("pts_a", "sum"), poss_sum=("poss", "sum"), poss_a_sum=("poss_a", "sum"),
+    ).reset_index()
+    g = g[g["GP"] >= min_games]
+    g["OFF_RATING"] = 100 * g["pts_sum"] / g["poss_sum"]
+    g["DEF_RATING"] = 100 * g["pts_a_sum"] / g["poss_a_sum"]
+    g["PACE"] = (g["poss_sum"] + g["poss_a_sum"]) / (2 * g["GP"])
+    g["OPP_2PA"] = (g["OPP_FGA"] - g["OPP_FG3A"]).clip(lower=0)
+    g["OPP_2PM"] = (g["OPP_FGM"] - g["OPP_FG3M"]).clip(lower=0)
+    g["OPP_2PTS"] = g["OPP_2PM"] * 2
+    g["TEAM_ABBREVIATION"] = g["team"].map(norm_team_abbr)
+    g["SOURCE"] = f"box_db:{season}:{box['game_date'].max()}"
+    keep = ["TEAM_ABBREVIATION", "GP", "PTS", "OFF_RATING", "DEF_RATING", "PACE", "OPP_PTS", "OPP_FGA", "OPP_FGM",
+            "OPP_FG3A", "OPP_FG3M", "OPP_FTA", "OPP_TOV", "OPP_2PA", "OPP_2PM", "OPP_2PTS", "SOURCE"]
+    return g[keep].round(3)
 
 
 def norm_team_abbr(x: Any) -> str:
@@ -153,6 +210,8 @@ def add_ranks_and_tiers(df: pd.DataFrame) -> pd.DataFrame:
     # Overall defense: lower DEF_RATING is better
     if "DEF_RATING" in df.columns:
         df["DEF_RANK"] = rank_series(df["DEF_RATING"], ascending=True)
+    if "OFF_RATING" in df.columns:
+        df["OFF_RANK"] = rank_series(df["OFF_RATING"], ascending=False)  # 1 = best offense
 
     # Pace: provide both slow and fast ranks
     if "PACE" in df.columns:
@@ -226,13 +285,18 @@ def print_leaders(df: pd.DataFrame, topn: int) -> None:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--season", default="2025-26")
+    ap.add_argument("--season", default=current_season_label())
     ap.add_argument("--out", default="defense_team_summary.csv")
     ap.add_argument("--timeout", type=int, default=45)
     ap.add_argument("--top", type=int, default=10)
+    ap.add_argument("--from-box-db", action="store_true",
+                    help="build from data/cache/proporacle_ref.db (nightly ESPN boxes) instead of stats.nba.com")
     args = ap.parse_args()
 
-    df = pull_base_and_opponent(season=args.season, timeout=args.timeout)
+    if args.from_box_db:
+        df = pull_from_box_db(season=args.season)
+    else:
+        df = pull_base_and_opponent(season=args.season, timeout=args.timeout)
     df = add_ranks_and_tiers(df)
 
     # Save output (handles OneDrive/Excel locks by timestamping)
