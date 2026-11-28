@@ -572,8 +572,10 @@ if not os.environ.get("DISABLE_AUTO_GITHUB_JSON", "").strip() and _running_on_ra
     if not _TICKET_EV_JSON_URL:
         _TICKET_EV_JSON_URL = f"{_root_base}/outputs/ticket_ev_latest.json"
     _NBA_MAX_GATES_JSON_URL = f"{_base}/nba_max_gates_latest.json"
+    _SPORTS_MAX_GATES_JSON_URL = f"{_base}/max_gates_latest.json"
 else:
     _NBA_MAX_GATES_JSON_URL = ""
+    _SPORTS_MAX_GATES_JSON_URL = ""
 
 _GRADES_HTML_RAW_BASE = ""
 if not os.environ.get("DISABLE_AUTO_GITHUB_JSON", "").strip() and _running_on_railway():
@@ -592,6 +594,8 @@ if _TICKET_EV_JSON_URL:
     _DATA_FILE_URL_MAP["ticket_ev_latest.json"] = _TICKET_EV_JSON_URL
 if _NBA_MAX_GATES_JSON_URL:
     _DATA_FILE_URL_MAP["nba_max_gates_latest.json"] = _NBA_MAX_GATES_JSON_URL
+if _SPORTS_MAX_GATES_JSON_URL:
+    _DATA_FILE_URL_MAP["max_gates_latest.json"] = _SPORTS_MAX_GATES_JSON_URL
 if _GRADES_HTML_RAW_BASE:
     _DATA_FILE_URL_MAP["grades_report_dates.json"] = (
         f"{_GRADES_HTML_RAW_BASE}/grades_report_dates.json"
@@ -1583,6 +1587,48 @@ def _stamp_nba_max_gates(rows: list[Any]) -> None:
         if str(r.get("game_date") or "")[:10] != slate:
             continue
         hit = idx.get(_max_gate_key(r.get("player"), r.get("prop"), r.get("pick_type"), r.get("dir"), r.get("line")))
+        if hit:
+            r["max_gate"] = hit
+
+
+def _max_gate_prop_key(prop: Any) -> str:
+    return re.sub(r"[^a-z0-9]", "", str(prop or "").lower())
+
+
+def _sports_max_gate_index() -> dict[str, dict]:
+    """key -> gate info from max_gates_latest.json (scripts/_max_gates_sports.py: NHL/CBB/NFL/CFB/Soccer)."""
+    if not _template_json_available("max_gates_latest.json"):
+        return {}
+    try:
+        j = read_json_cached(TEMPLATES_DIR / "max_gates_latest.json")
+    except Exception:
+        return {}
+    if not isinstance(j, dict):
+        return {}
+    idx: dict[str, dict] = {}
+    for leg in j.get("legs") or []:
+        if not isinstance(leg, dict):
+            continue
+        k = "|".join((str(leg.get("sport") or "").upper(), str(leg.get("date") or "")[:10])) + "|" + _max_gate_key(
+            leg.get("player"), _max_gate_prop_key(leg.get("prop")), leg.get("pick_type"), leg.get("side"), leg.get("line")
+        )
+        idx[k] = {"hit": leg.get("hold_hit"), "n": leg.get("hold_n"), "gate": leg.get("gate")}
+    return idx
+
+
+def _stamp_max_gates(rows: list[Any]) -> None:
+    """NBA (nba_max_gates_latest.json) plus NHL/CBB/NFL/CFB/Soccer (max_gates_latest.json) → row['max_gate']."""
+    _stamp_nba_max_gates(rows)
+    idx = _sports_max_gate_index()
+    if not idx:
+        return
+    for r in rows:
+        if not isinstance(r, dict) or r.get("max_gate"):
+            continue
+        k = "|".join((str(r.get("sport") or "").upper(), str(r.get("game_date") or "")[:10])) + "|" + _max_gate_key(
+            r.get("player"), _max_gate_prop_key(r.get("prop")), r.get("pick_type"), r.get("dir"), r.get("line")
+        )
+        hit = idx.get(k)
         if hit:
             r["max_gate"] = hit
 
@@ -6278,7 +6324,7 @@ def api_slate_sport_single(sport: str):
         sports = (payload or {}).get("sports") or {}
         if sport_key == "combined":
             slim_rows = _merged_combined_slim_rows(payload)
-            _stamp_nba_max_gates(slim_rows)
+            _stamp_max_gates(slim_rows)
             return {
                 "date": payload.get("date"),
                 "generated_at": payload.get("generated_at"),
@@ -6314,8 +6360,7 @@ def api_slate_sport_single(sport: str):
         if not slim_rows and sport_key == "wnba":
             slim_rows = _wnba_slate_rows_from_step8_fallback()
         slim_rows = _filter_slate_explorer_rows(slim_rows)
-        if sport_key == "nba":
-            _stamp_nba_max_gates(slim_rows)
+        _stamp_max_gates(slim_rows)
         return {
             "date": payload.get("date"),
             "generated_at": payload.get("generated_at"),
@@ -6325,7 +6370,7 @@ def api_slate_sport_single(sport: str):
 
     try:
         return _gz_json_response(
-            f"slate-sport-single-v5:{sport_key}:{_explorer_json_gz_bust_token()}",
+            f"slate-sport-single-v6:{sport_key}:{_explorer_json_gz_bust_token()}",
             _build,
             ttl=60.0,
         )

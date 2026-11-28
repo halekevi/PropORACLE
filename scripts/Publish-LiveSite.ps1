@@ -345,11 +345,18 @@ if (Test-Path -LiteralPath $maxGatesPy) {
     & py -3.14 $maxGatesPy 2>&1 | Select-String -Pattern 'Slate |No NBA step4|Saved .*nba_max_gates_latest' | ForEach-Object { Write-Host ("  " + $_.Line) }
     if ($LASTEXITCODE -ne 0) { Write-Host '[PUBLISH] max-gate highlights failed (non-fatal); publishing without refresh' -ForegroundColor Yellow }
 }
+$sportsMaxGatesPy = Join-Path $Root "scripts\_max_gates_sports.py"
+if (Test-Path -LiteralPath $sportsMaxGatesPy) {
+    Write-Host '[PUBLISH] NHL/CBB/NFL/CFB/Soccer max-gate highlights (observe-only)' -ForegroundColor DarkGray
+    & py -3.14 $sportsMaxGatesPy 2>&1 | Select-String -Pattern '^\[\w+\] graded|FAILED|Saved .*max_gates_latest' | ForEach-Object { Write-Host ("  " + $_.Line) }
+    if ($LASTEXITCODE -ne 0) { Write-Host '[PUBLISH] sports max-gate highlights failed (non-fatal); publishing without refresh' -ForegroundColor Yellow }
+}
 
 # templates/ = GitHub raw contract (Railway). runtime/ = canonical disk copy.
 # mobile/www is not live (Android loads Railway remotely).
 $liveRel = @(
     "ui_runner/templates/nba_max_gates_latest.json",
+    "ui_runner/templates/max_gates_latest.json",
     "ui_runner/runtime/tickets_latest.json",
     "ui_runner/templates/tickets_latest.json",
     "ui_runner/runtime/slate_latest.json",

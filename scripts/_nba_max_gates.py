@@ -123,7 +123,7 @@ def search(d: pd.DataFrame, side: str, book: str) -> dict | None:
     best["hold_hit"] = round(best["hold_hit"], 1) if best["hold_hit"] is not None else None
     base = hit[tr].mean() * 100
     best["base_train"] = round(base, 1)
-    best["holds"] = bool(hn >= MIN_HOLD_N and best["hold_hit"] >= BREAK_EVEN[book])
+    best["holds"] = bool(hn >= MIN_HOLD_N and best["hold_hit"] >= BREAK_EVEN[book] and best["train_hit"] >= BREAK_EVEN[book])
     return best
 
 

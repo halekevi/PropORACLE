@@ -1,0 +1,220 @@
+{
+ "sport": "soccer",
+ "researched_at": "2026-11-27T22:12:30.710523-05:00",
+ "train_end": "2026-10-21",
+ "graded_legs": 16684,
+ "graded_slates": 79,
+ "gates": [
+  {
+   "book": "Goblin",
+   "prop": "goalassist",
+   "side": "OVER",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "season": "right side",
+    "off": "not unfavorable",
+    "def": "any"
+   },
+   "gate_text": "season avg on side \u00b7 team not weak at stat",
+   "train_n": 181,
+   "train_hit": 56.9,
+   "train_low": 49.6,
+   "hold_n": 72,
+   "hold_hit": 45.8,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "goals",
+   "side": "OVER",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "season": "any",
+    "off": "favorable",
+    "def": "any"
+   },
+   "gate_text": "team strong at stat",
+   "train_n": 42,
+   "train_hit": 57.1,
+   "train_low": 42.2,
+   "hold_n": 19,
+   "hold_hit": 36.8,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "saves",
+   "side": "OVER",
+   "gate": {
+    "l5": "=5",
+    "l10": ">=8",
+    "season": "any",
+    "off": "favorable",
+    "def": "any"
+   },
+   "gate_text": "L5 5/5 \u00b7 L10 8+ \u00b7 team strong at stat",
+   "train_n": 63,
+   "train_hit": 87.3,
+   "train_low": 76.9,
+   "hold_n": 27,
+   "hold_hit": 55.6,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "shots",
+   "side": "OVER",
+   "gate": {
+    "l5": "=5",
+    "l10": ">=9",
+    "season": "any",
+    "off": "favorable",
+    "def": "any"
+   },
+   "gate_text": "L5 5/5 \u00b7 L10 9+ \u00b7 team strong at stat",
+   "train_n": 66,
+   "train_hit": 74.2,
+   "train_low": 62.6,
+   "hold_n": 17,
+   "hold_hit": 76.5,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "shotsontarget",
+   "side": "OVER",
+   "gate": {
+    "l5": ">=4",
+    "l10": ">=7",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable"
+   },
+   "gate_text": "L5 4+ \u00b7 L10 7+ \u00b7 opp not strong vs stat",
+   "train_n": 190,
+   "train_hit": 64.2,
+   "train_low": 57.2,
+   "hold_n": 70,
+   "hold_hit": 62.9,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "saves",
+   "side": "OVER",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "season": "any",
+    "off": "favorable",
+    "def": "any"
+   },
+   "gate_text": "L10 7+ \u00b7 team strong at stat",
+   "train_n": 26,
+   "train_hit": 73.1,
+   "train_low": 53.9,
+   "hold_n": 15,
+   "hold_hit": 46.7,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "saves",
+   "side": "UNDER",
+   "gate": {
+    "l5": "any",
+    "l10": ">=8",
+    "season": ">=10%",
+    "off": "any",
+    "def": "any"
+   },
+   "gate_text": "L10 8+ \u00b7 season avg 10%+ past line",
+   "train_n": 36,
+   "train_hit": 66.7,
+   "train_low": 50.3,
+   "hold_n": 14,
+   "hold_hit": 64.3,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "shots",
+   "side": "OVER",
+   "gate": {
+    "l5": ">=4",
+    "l10": "any",
+    "season": "right side",
+    "off": "not unfavorable",
+    "def": "any"
+   },
+   "gate_text": "L5 4+ \u00b7 season avg on side \u00b7 team not weak at stat",
+   "train_n": 41,
+   "train_hit": 61.0,
+   "train_low": 45.7,
+   "hold_n": 12,
+   "hold_hit": 33.3,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "shots",
+   "side": "UNDER",
+   "gate": {
+    "l5": ">=4",
+    "l10": ">=8",
+    "season": ">=10%",
+    "off": "any",
+    "def": "not unfavorable"
+   },
+   "gate_text": "L5 4+ \u00b7 L10 8+ \u00b7 season avg 10%+ past line \u00b7 opp not strong vs stat",
+   "train_n": 34,
+   "train_hit": 85.3,
+   "train_low": 69.9,
+   "hold_n": 27,
+   "hold_hit": 81.5,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "shotsontarget",
+   "side": "OVER",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "season": "right side",
+    "off": "favorable",
+    "def": "any"
+   },
+   "gate_text": "season avg on side \u00b7 team strong at stat",
+   "train_n": 38,
+   "train_hit": 57.9,
+   "train_low": 42.2,
+   "hold_n": 18,
+   "hold_hit": 38.9,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "shotsontarget",
+   "side": "UNDER",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "season": "any",
+    "off": "not unfavorable",
+    "def": "any"
+   },
+   "gate_text": "team not weak at stat",
+   "train_n": 48,
+   "train_hit": 60.4,
+   "train_low": 46.3,
+   "hold_n": 27,
+   "hold_hit": 59.3,
+   "holds": true
+  }
+ ],
+ "legs": [],
+ "team_map_size": 278
+}
