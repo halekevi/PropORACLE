@@ -58,7 +58,11 @@ def load_boards(start: str, end: str) -> pd.DataFrame:
         if not f.exists():
             continue
         b = pd.read_csv(f, low_memory=False, usecols=lambda c: c in {
-            "player", "prop_norm", "line", "pick_type", "ESPN_ATHLETE_ID", "game_date", "is_combo_player"})
+            "player", "prop_norm", "line", "pick_type", "ESPN_ATHLETE_ID", "game_date", "is_combo_player",
+            "DEF_TIER", "OVERALL_DEF_RANK", "team", "opp_team"})
+        for c in ("DEF_TIER", "OVERALL_DEF_RANK"):
+            if c not in b.columns:
+                b[c] = None
         b = b[(b["pick_type"].astype(str) == "Standard") & b["prop_norm"].isin(PROP_COL)]
         if "is_combo_player" in b:
             b = b[pd.to_numeric(b["is_combo_player"], errors="coerce").fillna(0).astype(int) == 0]
@@ -91,6 +95,8 @@ def build(start: str, end: str, min_games: int) -> pd.DataFrame:
         # Card window: newest RS + playoff games across seasons (preseason excluded at load).
         recent = pd.to_numeric(played[col], errors="coerce").dropna().iloc[::-1]
         l5, l10 = recent.iloc[:5], recent.iloc[:10]
+        mins = pd.to_numeric(played["minutes"], errors="coerce").dropna().iloc[::-1]
+        min_season = pd.to_numeric(played.loc[played["game_date"] >= SEASON_START, "minutes"], errors="coerce").mean()
         actual = float(pd.to_numeric(today[col], errors="coerce").iloc[0])
         season = float(prior_vals.mean())
         rows.append({
@@ -100,6 +106,9 @@ def build(start: str, end: str, min_games: int) -> pd.DataFrame:
             "over_hit": int(actual > r.line), "under_hit": int(actual < r.line), "push": int(actual == r.line),
             "l5_n": len(l5), "l5_over": int((l5 > r.line).sum()), "l5_under": int((l5 < r.line).sum()),
             "l10_n": len(l10), "l10_over": int((l10 > r.line).sum()), "l10_under": int((l10 < r.line).sum()),
+            "l5_avg": round(float(l5.mean()), 2), "l10_avg": round(float(l10.mean()), 2),
+            "min_l5": round(float(mins.iloc[:5].mean()), 1), "min_season": round(float(min_season), 1),
+            "def_tier": r.DEF_TIER, "def_rank": r.OVERALL_DEF_RANK,
         })
     return pd.DataFrame(rows)
 
