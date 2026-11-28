@@ -3,17 +3,17 @@
   "rows": [
     {
       "sport": "NBA",
-      "decided": 58385,
-      "paid": 32660,
-      "win_rate": 0.5593902543461505,
-      "net_dollars": 69350.0
+      "decided": 61560,
+      "paid": 34570,
+      "win_rate": 0.5615659519168291,
+      "net_dollars": 75800.0
     },
     {
       "sport": "CBB",
-      "decided": 13693,
-      "paid": 7753,
-      "win_rate": 0.5662017089023589,
-      "net_dollars": 18130.0
+      "decided": 13930,
+      "paid": 7919,
+      "win_rate": 0.5684852835606604,
+      "net_dollars": 19080.0
     },
     {
       "sport": "CFB",
@@ -69,10 +69,10 @@
     {
       "sport": "NBA",
       "month": "2026-11",
-      "decided": 32021,
-      "paid": 17888,
-      "win_rate": 0.5586333968333281,
-      "net_dollars": 37550.0
+      "decided": 35196,
+      "paid": 19798,
+      "win_rate": 0.5625071030798955,
+      "net_dollars": 44000.0
     },
     {
       "sport": "NBA",
@@ -85,10 +85,10 @@
     {
       "sport": "CBB",
       "month": "2026-11",
-      "decided": 13693,
-      "paid": 7753,
-      "win_rate": 0.5662017089023589,
-      "net_dollars": 18130.0
+      "decided": 13930,
+      "paid": 7919,
+      "win_rate": 0.5684852835606604,
+      "net_dollars": 19080.0
     },
     {
       "sport": "CFB",
@@ -300,6 +300,6 @@
     }
   ],
   "source": "graded_props_json",
-  "signature": "n=149:mt=1795840706830400500",
-  "updated_at": "2026-11-28T04:48:04Z"
+  "signature": "n=149:mt=1795856380759612100",
+  "updated_at": "2026-11-28T10:01:40Z"
 }

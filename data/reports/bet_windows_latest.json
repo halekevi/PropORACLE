@@ -1,6 +1,6 @@
 {
   "date": "2026-11-28",
-  "generated_at": "2026-11-28T02:28:12-05:00",
+  "generated_at": "2026-11-28T05:38:33-05:00",
   "line_pulls": [
     {
       "fetched_at": "2026-11-27T10:35:09-05:00",
@@ -48,6 +48,60 @@
       "fetched_at": "2026-11-28T02:28:12-05:00",
       "window": "02:28",
       "n_props": 215,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-28T05:09:04-05:00",
+      "window": "5AM",
+      "n_props": 3646,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-28T05:16:01-05:00",
+      "window": "5AM",
+      "n_props": 434,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-28T05:21:26-05:00",
+      "window": "5AM",
+      "n_props": 6863,
+      "n_moved": 389
+    },
+    {
+      "fetched_at": "2026-11-28T05:21:45-05:00",
+      "window": "5AM",
+      "n_props": 3204,
+      "n_moved": 33
+    },
+    {
+      "fetched_at": "2026-11-28T05:22:15-05:00",
+      "window": "5AM",
+      "n_props": 8129,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-28T05:22:21-05:00",
+      "window": "5AM",
+      "n_props": 51,
+      "n_moved": 2
+    },
+    {
+      "fetched_at": "2026-11-28T05:24:41-05:00",
+      "window": "5AM",
+      "n_props": 6173,
+      "n_moved": 226
+    },
+    {
+      "fetched_at": "2026-11-28T05:27:42-05:00",
+      "window": "5AM",
+      "n_props": 196,
+      "n_moved": 0
+    },
+    {
+      "fetched_at": "2026-11-28T05:38:33-05:00",
+      "window": "5AM",
+      "n_props": 433,
       "n_moved": 0
     }
   ],
