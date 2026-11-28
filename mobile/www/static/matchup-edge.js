@@ -313,11 +313,29 @@
       .forEach((el) => el.remove());
   }
 
+  function ensureGameLineNode(sport, panel) {
+    if (!panel || !GAME_LINE_SPORTS[sport]) return;
+    const gid = pid(sport, "gameline");
+    if (document.getElementById(gid)) return;
+    const cards = document.getElementById(pid(sport, "cards"));
+    const node = document.createElement("div");
+    node.className = "me-gameline";
+    node.id = gid;
+    node.hidden = true;
+    if (cards && cards.parentNode) {
+      cards.parentNode.insertBefore(node, cards.nextSibling);
+    } else {
+      const body = panel.querySelector(".me-body, .wnba-me-body");
+      if (body) body.appendChild(node);
+    }
+  }
+
   function ensurePanel(sport) {
     const id = panelId(sport);
     let panel = document.getElementById(id);
     if (panel) {
       stripEdgeLegendNodes(panel);
+      ensureGameLineNode(sport, panel);
       bindSlateCollapseSync(panel);
       return panel;
     }
@@ -841,7 +859,6 @@
     const B = String(b || "").trim().toUpperCase();
     if (!B) return false;
     if (A.has(B)) return true;
-    // Also expand b through the same static pairs via a synthetic seed
     const Bset = teamAliasSet(data, B);
     for (const x of A) if (Bset.has(x)) return true;
     return false;
@@ -849,25 +866,46 @@
 
   function findMarketGameLine(sport, team, opp) {
     const key = GAME_LINE_SPORTS[sport];
-    if (!key || !team || !opp) return null;
+    if (!key || !team) return null;
     const data = state[sport]?.data;
     const games = (((gameLinesPayload || {}).sports || {})[key] || {}).games || [];
+    const teamU = String(team || "").trim().toUpperCase();
+    const oppU = String(opp || "").trim().toUpperCase();
     for (let i = 0; i < games.length; i++) {
       const g = games[i];
       const home = g.home;
       const away = g.away;
       const teamIsHome = abbrMatch(team, home, data);
       const teamIsAway = abbrMatch(team, away, data);
-      const oppIsHome = abbrMatch(opp, home, data);
-      const oppIsAway = abbrMatch(opp, away, data);
-      if ((teamIsHome && oppIsAway) || (teamIsAway && oppIsHome)) {
-        return { game: g, teamIsHome: !!teamIsHome, lineSport: key };
+      if (!teamIsHome && !teamIsAway) continue;
+      if (oppU) {
+        const oppIsHome = abbrMatch(opp, home, data);
+        const oppIsAway = abbrMatch(opp, away, data);
+        if ((teamIsHome && oppIsAway) || (teamIsAway && oppIsHome)) {
+          return { game: g, teamIsHome: !!teamIsHome, lineSport: key };
+        }
+        continue;
+      }
+      // Opp blank: still show the team's slate game if unique
+      return { game: g, teamIsHome: !!teamIsHome, lineSport: key };
+    }
+    // Last resort: raw string equality (alias table miss)
+    for (let i = 0; i < games.length; i++) {
+      const g = games[i];
+      const home = String(g.home || "").toUpperCase();
+      const away = String(g.away || "").toUpperCase();
+      if (teamU === home && (!oppU || oppU === away)) {
+        return { game: g, teamIsHome: true, lineSport: key };
+      }
+      if (teamU === away && (!oppU || oppU === home)) {
+        return { game: g, teamIsHome: false, lineSport: key };
       }
     }
     return null;
   }
 
   function renderGameLine(sport) {
+    ensureGameLineNode(sport, document.getElementById(panelId(sport)));
     const el = document.getElementById(pid(sport, "gameline"));
     if (!el) return;
     if (!GAME_LINE_SPORTS[sport]) {
@@ -876,9 +914,11 @@
       return;
     }
     const team = document.getElementById(pid(sport, "team"))?.value;
+    const oppMeta = opponentForTeam(sport, team);
     const opp =
       document.getElementById(pid(sport, "opp"))?.value ||
-      opponentForTeam(sport, team).opp;
+      oppMeta.opp ||
+      "";
     const hit = findMarketGameLine(sport, team, opp);
     if (!hit || !hit.game || !hit.game.market) {
       el.hidden = true;
@@ -982,6 +1022,7 @@
       esc(mu.team_def_rank != null ? mu.team_def_rank : "—") +
       "</div></div>";
 
+    // Always refresh game-line strip (inject node if this panel predated the feature).
     ensureGameLines().then(() => renderGameLine(sport));
 
     const tightEl = document.getElementById(pid(sport, "tight-banner"));
