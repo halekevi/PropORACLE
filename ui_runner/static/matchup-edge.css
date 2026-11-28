@@ -250,6 +250,65 @@
   gap: 8px;
   margin-bottom: 12px;
 }
+/* Market spread / total / ML — context only, never styled as an edge. */
+.me-gameline {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+.me-gameline-head {
+  font-size: 10px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--muted2, #8b8b99);
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.me-gameline-tag {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 180, 120, 0.9);
+  border: 1px solid rgba(255, 180, 120, 0.35);
+  border-radius: 999px;
+  padding: 2px 7px;
+}
+.me-gameline-note {
+  font-size: 10px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted2, #8b8b99);
+}
+.me-gameline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+}
+.me-gameline-cell {
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  padding: 7px 9px;
+  text-align: center;
+}
+.me-gameline-cell .lbl {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted2, #8b8b99);
+  margin-bottom: 3px;
+}
+.me-gameline-cell .val {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  font-variant-numeric: tabular-nums;
+}
 .me-card,
 .wnba-me-card {
   background: rgba(0, 0, 0, 0.35);

@@ -32,6 +32,18 @@
   };
 
   const state = {};
+  /** Info-only market lines (spread/total/ML). Never labeled as edge/pick. */
+  const GAME_LINE_SPORTS = {
+    nba: "NBA",
+    nba1h: "NBA",
+    nba1q: "NBA",
+    nfl: "NFL",
+    cfb: "CFB",
+    nhl: "NHL",
+    cbb: "CBB",
+  };
+  let gameLinesPayload = null;
+  let gameLinesPromise = null;
 
   function esc(s) {
     const d = document.createElement("div");
@@ -365,6 +377,9 @@
       '<div class="me-cards" id="' +
       pid(sport, "cards") +
       '"></div>' +
+      '<div class="me-gameline" id="' +
+      pid(sport, "gameline") +
+      '" hidden></div>' +
       '<div class="me-tight-banner" id="' +
       pid(sport, "tight-banner") +
       '" hidden></div>' +
@@ -792,6 +807,112 @@
     return key ? data.players_by_team_cat[key] : null;
   }
 
+  function ensureGameLines() {
+    if (gameLinesPayload) return Promise.resolve(gameLinesPayload);
+    if (gameLinesPromise) return gameLinesPromise;
+    gameLinesPromise = fetch("/api/game-lines", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => {
+        gameLinesPayload = j && typeof j === "object" ? j : { sports: {} };
+        return gameLinesPayload;
+      })
+      .catch(() => {
+        gameLinesPayload = { sports: {} };
+        return gameLinesPayload;
+      });
+    return gameLinesPromise;
+  }
+
+  function fmtSigned(n, d) {
+    if (n == null || Number.isNaN(Number(n))) return "—";
+    const x = Number(n);
+    const body = x.toFixed(d);
+    return x > 0 ? "+" + body : body;
+  }
+
+  function fmtMl(n) {
+    if (n == null || Number.isNaN(Number(n))) return "—";
+    const x = Math.round(Number(n));
+    return x > 0 ? "+" + x : String(x);
+  }
+
+  function abbrMatch(a, b, data) {
+    const A = teamAliasSet(data, a);
+    const B = String(b || "").trim().toUpperCase();
+    if (!B) return false;
+    if (A.has(B)) return true;
+    // Also expand b through the same static pairs via a synthetic seed
+    const Bset = teamAliasSet(data, B);
+    for (const x of A) if (Bset.has(x)) return true;
+    return false;
+  }
+
+  function findMarketGameLine(sport, team, opp) {
+    const key = GAME_LINE_SPORTS[sport];
+    if (!key || !team || !opp) return null;
+    const data = state[sport]?.data;
+    const games = (((gameLinesPayload || {}).sports || {})[key] || {}).games || [];
+    for (let i = 0; i < games.length; i++) {
+      const g = games[i];
+      const home = g.home;
+      const away = g.away;
+      const teamIsHome = abbrMatch(team, home, data);
+      const teamIsAway = abbrMatch(team, away, data);
+      const oppIsHome = abbrMatch(opp, home, data);
+      const oppIsAway = abbrMatch(opp, away, data);
+      if ((teamIsHome && oppIsAway) || (teamIsAway && oppIsHome)) {
+        return { game: g, teamIsHome: !!teamIsHome, lineSport: key };
+      }
+    }
+    return null;
+  }
+
+  function renderGameLine(sport) {
+    const el = document.getElementById(pid(sport, "gameline"));
+    if (!el) return;
+    if (!GAME_LINE_SPORTS[sport]) {
+      el.hidden = true;
+      el.innerHTML = "";
+      return;
+    }
+    const team = document.getElementById(pid(sport, "team"))?.value;
+    const opp =
+      document.getElementById(pid(sport, "opp"))?.value ||
+      opponentForTeam(sport, team).opp;
+    const hit = findMarketGameLine(sport, team, opp);
+    if (!hit || !hit.game || !hit.game.market) {
+      el.hidden = true;
+      el.innerHTML = "";
+      return;
+    }
+    const m = hit.game.market;
+    const teamSpread = hit.teamIsHome ? m.home_spread : (m.home_spread == null ? null : -Number(m.home_spread));
+    const teamMl = hit.teamIsHome ? m.home_ml : m.away_ml;
+    const periodNote =
+      sport === "nba1h" || sport === "nba1q" ? " · full-game line" : "";
+    el.hidden = false;
+    el.innerHTML =
+      '<div class="me-gameline-head">Game line <span class="me-gameline-tag">info only · not an edge</span>' +
+      (periodNote ? '<span class="me-gameline-note">' + esc(periodNote) + "</span>" : "") +
+      "</div>" +
+      '<div class="me-gameline-grid">' +
+      '<div class="me-gameline-cell"><div class="lbl">Spread (' +
+      esc(String(team || "").toUpperCase()) +
+      ')</div><div class="val">' +
+      esc(fmtSigned(teamSpread, 1)) +
+      "</div></div>" +
+      '<div class="me-gameline-cell"><div class="lbl">Total</div><div class="val">' +
+      esc(m.total == null ? "—" : Number(m.total).toFixed(1)) +
+      "</div></div>" +
+      '<div class="me-gameline-cell"><div class="lbl">Moneyline</div><div class="val">' +
+      esc(fmtMl(teamMl)) +
+      "</div></div>" +
+      '<div class="me-gameline-cell"><div class="lbl">Home win % (no-vig)</div><div class="val">' +
+      esc(m.home_win_pct_no_vig == null ? "—" : Number(m.home_win_pct_no_vig).toFixed(1) + "%") +
+      "</div></div>" +
+      "</div>";
+  }
+
   function render(sport) {
     const data = state[sport]?.data;
     const block = currentBlock(sport);
@@ -860,6 +981,8 @@
       '</div><div class="val">#' +
       esc(mu.team_def_rank != null ? mu.team_def_rank : "—") +
       "</div></div>";
+
+    ensureGameLines().then(() => renderGameLine(sport));
 
     const tightEl = document.getElementById(pid(sport, "tight-banner"));
     if (tightEl) {
