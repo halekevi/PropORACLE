@@ -1,0 +1,12067 @@
+{
+ "train_end": "2026-11-12",
+ "break_even": {
+  "Standard": 57.7,
+  "Goblin": 75.0
+ },
+ "gates": [
+  {
+   "book": "Goblin",
+   "prop": "pr",
+   "prop_display": "Pts+Rebs",
+   "side": "OVER",
+   "gate_text": "L10 hits >=8 \u00b7 L10 avg right side \u00b7 opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=8",
+    "l5avg": "any",
+    "l10avg": "right side",
+    "season": "any",
+    "off": "any",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "favorable"
+   },
+   "train_n": 152,
+   "train_hit": 82.9,
+   "train_low": 76.1,
+   "hold_n": 26,
+   "hold_hit": 80.8,
+   "hold_low": 62.1,
+   "base_train": 63.1,
+   "base_hold": 65.6,
+   "holds": true
+  },
+  {
+   "book": "Goblin",
+   "prop": "reb",
+   "prop_display": "Rebounds",
+   "side": "OVER",
+   "gate_text": "L5 hits >=4 \u00b7 L10 hits >=7 \u00b7 L5 avg right side \u00b7 opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": ">=4",
+    "l10": ">=7",
+    "l5avg": "right side",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 291,
+   "train_hit": 77.7,
+   "train_low": 72.5,
+   "hold_n": 206,
+   "hold_hit": 76.2,
+   "hold_low": 70.0,
+   "base_train": 68.0,
+   "base_hold": 68.8,
+   "holds": true
+  },
+  {
+   "book": "Goblin",
+   "prop": "ast",
+   "prop_display": "Assists",
+   "side": "OVER",
+   "gate_text": "L10 hits >=9 \u00b7 season avg right side \u00b7 team rank not unfavorable \u00b7 opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=9",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "right side",
+    "off": "not unfavorable",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 41,
+   "train_hit": 95.1,
+   "train_low": 83.9,
+   "hold_n": 29,
+   "hold_hit": 75.9,
+   "hold_low": 57.9,
+   "base_train": 66.6,
+   "base_hold": 70.9,
+   "holds": true
+  },
+  {
+   "book": "Goblin",
+   "prop": "twopointersattempted",
+   "prop_display": "Two Pointers Attempted",
+   "side": "OVER",
+   "gate_text": "season avg >=5% \u00b7 minutes not down 2+ \u00b7 pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": ">=5%",
+    "off": "any",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "favorable"
+   },
+   "train_n": 42,
+   "train_hit": 66.7,
+   "train_low": 51.6,
+   "hold_n": 1,
+   "hold_hit": 100.0,
+   "hold_low": 20.7,
+   "base_train": 53.0,
+   "base_hold": 58.5,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "ra",
+   "prop_display": "Rebs+Asts",
+   "side": "OVER",
+   "gate_text": "L5 hits =5 \u00b7 L10 avg >=10% \u00b7 opp rank not unfavorable \u00b7 pace favorable",
+   "gate": {
+    "l5": "=5",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": ">=10%",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "favorable"
+   },
+   "train_n": 57,
+   "train_hit": 87.7,
+   "train_low": 76.8,
+   "hold_n": 10,
+   "hold_hit": 80.0,
+   "hold_low": 49.0,
+   "base_train": 63.4,
+   "base_hold": 66.6,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "pra",
+   "prop_display": "Pts+Rebs+Asts",
+   "side": "OVER",
+   "gate_text": "L10 hits >=9 \u00b7 opp rank not unfavorable \u00b7 minutes not down 2+ \u00b7 pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=9",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "not down 2+",
+    "pace": "favorable"
+   },
+   "train_n": 70,
+   "train_hit": 88.6,
+   "train_low": 79.0,
+   "hold_n": 8,
+   "hold_hit": 75.0,
+   "hold_low": 40.9,
+   "base_train": 61.1,
+   "base_hold": 66.1,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "twopointersmade",
+   "prop_display": "Two Pointers Made",
+   "side": "OVER",
+   "gate_text": "L10 hits >=7 \u00b7 opp rank not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 41,
+   "train_hit": 65.9,
+   "train_low": 50.5,
+   "hold_n": 26,
+   "hold_hit": 73.1,
+   "hold_low": 53.9,
+   "base_train": 49.8,
+   "base_hold": 59.3,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "fantasy",
+   "prop_display": "Fantasy Score",
+   "side": "OVER",
+   "gate_text": "opp rank not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 70,
+   "train_hit": 71.4,
+   "train_low": 59.9,
+   "hold_n": 173,
+   "hold_hit": 72.8,
+   "hold_low": 65.8,
+   "base_train": 62.3,
+   "base_hold": 72.4,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "3ptattempted",
+   "prop_display": "3-PT Attempted",
+   "side": "OVER",
+   "gate_text": "L10 hits >=7 \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 41,
+   "train_hit": 75.6,
+   "train_low": 60.7,
+   "hold_n": 11,
+   "hold_hit": 72.7,
+   "hold_low": 43.4,
+   "base_train": 58.5,
+   "base_hold": 69.2,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "stl",
+   "prop_display": "Steals",
+   "side": "OVER",
+   "gate_text": "L10 hits >=8 \u00b7 season avg right side \u00b7 team rank not unfavorable \u00b7 opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=8",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "right side",
+    "off": "not unfavorable",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 52,
+   "train_hit": 84.6,
+   "train_low": 72.5,
+   "hold_n": 20,
+   "hold_hit": 70.0,
+   "hold_low": 48.1,
+   "base_train": 62.5,
+   "base_hold": 62.1,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "pts",
+   "prop_display": "Points",
+   "side": "OVER",
+   "gate_text": "L5 hits =5 \u00b7 L10 hits >=9 \u00b7 team rank favorable \u00b7 opp rank favorable",
+   "gate": {
+    "l5": "=5",
+    "l10": ">=9",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "favorable",
+    "def": "favorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 91,
+   "train_hit": 87.9,
+   "train_low": 79.6,
+   "hold_n": 39,
+   "hold_hit": 69.2,
+   "hold_low": 53.6,
+   "base_train": 64.7,
+   "base_hold": 68.1,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "pa",
+   "prop_display": "Pts+Asts",
+   "side": "OVER",
+   "gate_text": "L5 hits =5 \u00b7 L10 hits >=7 \u00b7 opp rank not unfavorable \u00b7 pace favorable",
+   "gate": {
+    "l5": "=5",
+    "l10": ">=7",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "favorable"
+   },
+   "train_n": 81,
+   "train_hit": 87.7,
+   "train_low": 78.7,
+   "hold_n": 12,
+   "hold_hit": 66.7,
+   "hold_low": 39.1,
+   "base_train": 61.9,
+   "base_hold": 66.6,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "freethrowsattempted",
+   "prop_display": "Free Throws Attempted",
+   "side": "OVER",
+   "gate_text": "season avg >=10% \u00b7 team rank not unfavorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": ">=10%",
+    "off": "not unfavorable",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 61,
+   "train_hit": 62.3,
+   "train_low": 49.7,
+   "hold_n": 23,
+   "hold_hit": 65.2,
+   "hold_low": 44.9,
+   "base_train": 49.2,
+   "base_hold": 55.8,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "3ptmade",
+   "prop_display": "3-PT Made",
+   "side": "OVER",
+   "gate_text": "L5 hits =5 \u00b7 team rank favorable \u00b7 opp rank not unfavorable \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "=5",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "favorable",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 41,
+   "train_hit": 90.2,
+   "train_low": 77.5,
+   "hold_n": 24,
+   "hold_hit": 62.5,
+   "hold_low": 42.7,
+   "base_train": 67.4,
+   "base_hold": 68.6,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "tov",
+   "prop_display": "Turnovers",
+   "side": "OVER",
+   "gate_text": "L10 avg right side \u00b7 team rank not unfavorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "right side",
+    "season": "any",
+    "off": "not unfavorable",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 128,
+   "train_hit": 67.2,
+   "train_low": 58.7,
+   "hold_n": 96,
+   "hold_hit": 62.5,
+   "hold_low": 52.5,
+   "base_train": 58.5,
+   "base_hold": 63.7,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "fgm",
+   "prop_display": "FG Made",
+   "side": "OVER",
+   "gate_text": "L5 avg >=10% \u00b7 L10 avg right side \u00b7 season avg right side",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": "right side",
+    "season": "right side",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 84,
+   "train_hit": 58.3,
+   "train_low": 47.7,
+   "hold_n": 51,
+   "hold_hit": 60.8,
+   "hold_low": 47.1,
+   "base_train": 52.2,
+   "base_hold": 53.0,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "blk",
+   "prop_display": "Blocked Shots",
+   "side": "OVER",
+   "gate_text": "L5 avg >=10% \u00b7 season avg right side \u00b7 team rank favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": "any",
+    "season": "right side",
+    "off": "favorable",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 172,
+   "train_hit": 62.2,
+   "train_low": 54.8,
+   "hold_n": 116,
+   "hold_hit": 60.3,
+   "hold_low": 51.2,
+   "base_train": 57.1,
+   "base_hold": 62.1,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "offensiverebounds",
+   "prop_display": "Offensive Rebounds",
+   "side": "OVER",
+   "gate_text": "L5 avg >=10% \u00b7 L10 avg right side \u00b7 season avg >=10%",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": "right side",
+    "season": ">=10%",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 48,
+   "train_hit": 58.3,
+   "train_low": 44.3,
+   "hold_n": 40,
+   "hold_hit": 60.0,
+   "hold_low": 44.6,
+   "base_train": 54.2,
+   "base_hold": 56.5,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "freethrowsmade",
+   "prop_display": "Free Throws Made",
+   "side": "OVER",
+   "gate_text": "L10 avg >=10% \u00b7 team rank favorable \u00b7 opp rank not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": ">=10%",
+    "season": "any",
+    "off": "favorable",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 40,
+   "train_hit": 67.5,
+   "train_low": 52.0,
+   "hold_n": 19,
+   "hold_hit": 52.6,
+   "hold_low": 31.7,
+   "base_train": 51.6,
+   "base_hold": 56.9,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "fga",
+   "prop_display": "FG Attempted",
+   "side": "OVER",
+   "gate_text": "L5 avg right side \u00b7 season avg >=5% \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "right side",
+    "l10avg": "any",
+    "season": ">=5%",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 46,
+   "train_hit": 65.2,
+   "train_low": 50.8,
+   "hold_n": 8,
+   "hold_hit": 50.0,
+   "hold_low": 21.5,
+   "base_train": 50.7,
+   "base_hold": 52.8,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "personalfouls",
+   "prop_display": "Personal Fouls",
+   "side": "OVER",
+   "gate_text": "opp rank favorable \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "favorable",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 63,
+   "train_hit": 63.5,
+   "train_low": 51.1,
+   "hold_n": 39,
+   "hold_hit": 43.6,
+   "hold_low": 29.3,
+   "base_train": 53.2,
+   "base_hold": 44.7,
+   "holds": false
+  },
+  {
+   "book": "Goblin",
+   "prop": "stocks",
+   "prop_display": "Blks+Stls",
+   "side": "OVER",
+   "gate_text": "L10 hits >=8 \u00b7 L5 avg right side \u00b7 season avg right side \u00b7 opp rank not unfavorable \u00b7 minutes not down 2+",
+   "gate": {
+    "l5": "any",
+    "l10": ">=8",
+    "l5avg": "right side",
+    "l10avg": "any",
+    "season": "right side",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "not down 2+",
+    "pace": "any"
+   },
+   "train_n": 46,
+   "train_hit": 73.9,
+   "train_low": 59.7,
+   "hold_n": 17,
+   "hold_hit": 41.2,
+   "hold_low": 21.6,
+   "base_train": 53.4,
+   "base_hold": 54.9,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "twopointersmade",
+   "prop_display": "Two Pointers Made",
+   "side": "UNDER",
+   "gate_text": "L5 avg right side \u00b7 season avg >=10% \u00b7 team rank not unfavorable \u00b7 minutes not down 2+",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "right side",
+    "l10avg": "any",
+    "season": ">=10%",
+    "off": "not unfavorable",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "any"
+   },
+   "train_n": 38,
+   "train_hit": 76.3,
+   "train_low": 60.8,
+   "hold_n": 26,
+   "hold_hit": 69.2,
+   "hold_low": 50.0,
+   "base_train": 52.6,
+   "base_hold": 48.0,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "tov",
+   "prop_display": "Turnovers",
+   "side": "UNDER",
+   "gate_text": "L5 avg right side \u00b7 opp rank not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "right side",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 64,
+   "train_hit": 78.1,
+   "train_low": 66.6,
+   "hold_n": 43,
+   "hold_hit": 67.4,
+   "hold_low": 52.5,
+   "base_train": 55.9,
+   "base_hold": 58.4,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "defensiverebounds",
+   "prop_display": "Defensive Rebounds",
+   "side": "UNDER",
+   "gate_text": "L5 avg right side",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "right side",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 25,
+   "train_hit": 76.0,
+   "train_low": 56.6,
+   "hold_n": 17,
+   "hold_hit": 64.7,
+   "hold_low": 41.3,
+   "base_train": 67.4,
+   "base_hold": 50.0,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "personalfouls",
+   "prop_display": "Personal Fouls",
+   "side": "UNDER",
+   "gate_text": "L5 avg right side \u00b7 opp rank favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "right side",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "favorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 30,
+   "train_hit": 73.3,
+   "train_low": 55.6,
+   "hold_n": 25,
+   "hold_hit": 64.0,
+   "hold_low": 44.5,
+   "base_train": 54.8,
+   "base_hold": 50.4,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "3ptattempted",
+   "prop_display": "3-PT Attempted",
+   "side": "OVER",
+   "gate_text": "L10 hits >=7 \u00b7 season avg >=10% \u00b7 minutes not down 2+",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": ">=10%",
+    "off": "any",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "any"
+   },
+   "train_n": 27,
+   "train_hit": 81.5,
+   "train_low": 63.3,
+   "hold_n": 24,
+   "hold_hit": 62.5,
+   "hold_low": 42.7,
+   "base_train": 52.4,
+   "base_hold": 49.0,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "pra",
+   "prop_display": "Pts+Rebs+Asts",
+   "side": "UNDER",
+   "gate_text": "L10 hits >=8 \u00b7 team rank not unfavorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=8",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "not unfavorable",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 42,
+   "train_hit": 76.2,
+   "train_low": 61.5,
+   "hold_n": 24,
+   "hold_hit": 62.5,
+   "hold_low": 42.7,
+   "base_train": 54.8,
+   "base_hold": 49.6,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "3ptmade",
+   "prop_display": "3-PT Made",
+   "side": "OVER",
+   "gate_text": "L5 hits >=4 \u00b7 team rank favorable",
+   "gate": {
+    "l5": ">=4",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "favorable",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 27,
+   "train_hit": 74.1,
+   "train_low": 55.3,
+   "hold_n": 28,
+   "hold_hit": 60.7,
+   "hold_low": 42.4,
+   "base_train": 50.4,
+   "base_hold": 51.0,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "stocks",
+   "prop_display": "Blks+Stls",
+   "side": "UNDER",
+   "gate_text": "season avg >=5% \u00b7 opp rank not unfavorable \u00b7 minutes not down 2+",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": ">=5%",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "not down 2+",
+    "pace": "any"
+   },
+   "train_n": 43,
+   "train_hit": 69.8,
+   "train_low": 54.9,
+   "hold_n": 22,
+   "hold_hit": 59.1,
+   "hold_low": 38.7,
+   "base_train": 57.2,
+   "base_hold": 54.3,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "offensiverebounds",
+   "prop_display": "Offensive Rebounds",
+   "side": "OVER",
+   "gate_text": "opp rank not unfavorable \u00b7 minutes not down 2+",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "not down 2+",
+    "pace": "any"
+   },
+   "train_n": 29,
+   "train_hit": 65.5,
+   "train_low": 47.3,
+   "hold_n": 60,
+   "hold_hit": 58.3,
+   "hold_low": 45.7,
+   "base_train": 62.2,
+   "base_hold": 54.1,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "3ptattempted",
+   "prop_display": "3-PT Attempted",
+   "side": "UNDER",
+   "gate_text": "L5 hits >=4 \u00b7 L5 avg >=10% \u00b7 L10 avg right side",
+   "gate": {
+    "l5": ">=4",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": "right side",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 26,
+   "train_hit": 80.8,
+   "train_low": 62.1,
+   "hold_n": 19,
+   "hold_hit": 57.9,
+   "hold_low": 36.3,
+   "base_train": 47.6,
+   "base_hold": 51.0,
+   "holds": true
+  },
+  {
+   "book": "Standard",
+   "prop": "blk",
+   "prop_display": "Blocked Shots",
+   "side": "UNDER",
+   "gate_text": "L10 hits >=7",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 30,
+   "train_hit": 80.0,
+   "train_low": 62.7,
+   "hold_n": 8,
+   "hold_hit": 62.5,
+   "hold_low": 30.6,
+   "base_train": 54.6,
+   "base_hold": 51.3,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "stl",
+   "prop_display": "Steals",
+   "side": "OVER",
+   "gate_text": "L5 avg right side \u00b7 L10 avg >=10% \u00b7 season avg right side \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "right side",
+    "l10avg": ">=10%",
+    "season": "right side",
+    "off": "any",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 90,
+   "train_hit": 54.4,
+   "train_low": 44.2,
+   "hold_n": 34,
+   "hold_hit": 58.8,
+   "hold_low": 42.2,
+   "base_train": 47.3,
+   "base_hold": 49.8,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "fantasy",
+   "prop_display": "Fantasy Score",
+   "side": "OVER",
+   "gate_text": "opp rank not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 70,
+   "train_hit": 54.3,
+   "train_low": 42.7,
+   "hold_n": 173,
+   "hold_hit": 56.6,
+   "hold_low": 49.2,
+   "base_train": 46.5,
+   "base_hold": 55.6,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "pa",
+   "prop_display": "Pts+Asts",
+   "side": "OVER",
+   "gate_text": "L10 hits >=7 \u00b7 L5 avg right side \u00b7 L10 avg >=10% \u00b7 season avg right side \u00b7 team rank not unfavorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "right side",
+    "l10avg": ">=10%",
+    "season": "right side",
+    "off": "not unfavorable",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 27,
+   "train_hit": 81.5,
+   "train_low": 63.3,
+   "hold_n": 11,
+   "hold_hit": 54.5,
+   "hold_low": 28.0,
+   "base_train": 45.8,
+   "base_hold": 50.4,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "pr",
+   "prop_display": "Pts+Rebs",
+   "side": "UNDER",
+   "gate_text": "L5 avg right side \u00b7 L10 avg >=10% \u00b7 season avg >=5% \u00b7 team rank favorable \u00b7 opp rank not unfavorable \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "right side",
+    "l10avg": ">=10%",
+    "season": ">=5%",
+    "off": "favorable",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 30,
+   "train_hit": 90.0,
+   "train_low": 74.4,
+   "hold_n": 23,
+   "hold_hit": 52.2,
+   "hold_low": 33.0,
+   "base_train": 55.4,
+   "base_hold": 50.3,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "freethrowsattempted",
+   "prop_display": "Free Throws Attempted",
+   "side": "UNDER",
+   "gate_text": "minutes not down 2+ \u00b7 pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "favorable"
+   },
+   "train_n": 106,
+   "train_hit": 69.8,
+   "train_low": 60.5,
+   "hold_n": 186,
+   "hold_hit": 51.6,
+   "hold_low": 44.5,
+   "base_train": 53.8,
+   "base_hold": 52.9,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "ast",
+   "prop_display": "Assists",
+   "side": "OVER",
+   "gate_text": "L10 avg right side \u00b7 season avg >=5% \u00b7 team rank favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "right side",
+    "season": ">=5%",
+    "off": "favorable",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 66,
+   "train_hit": 62.1,
+   "train_low": 50.1,
+   "hold_n": 53,
+   "hold_hit": 50.9,
+   "hold_low": 37.9,
+   "base_train": 43.8,
+   "base_hold": 54.5,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "blk",
+   "prop_display": "Blocked Shots",
+   "side": "OVER",
+   "gate_text": "L5 avg >=10% \u00b7 L10 avg right side",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": "right side",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 79,
+   "train_hit": 54.4,
+   "train_low": 43.5,
+   "hold_n": 85,
+   "hold_hit": 50.6,
+   "hold_low": 40.2,
+   "base_train": 45.4,
+   "base_hold": 48.7,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "pts",
+   "prop_display": "Points",
+   "side": "UNDER",
+   "gate_text": "opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "favorable"
+   },
+   "train_n": 232,
+   "train_hit": 61.6,
+   "train_low": 55.2,
+   "hold_n": 259,
+   "hold_hit": 50.6,
+   "hold_low": 44.5,
+   "base_train": 54.7,
+   "base_hold": 49.7,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "defensiverebounds",
+   "prop_display": "Defensive Rebounds",
+   "side": "OVER",
+   "gate_text": "no filter",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 43,
+   "train_hit": 32.6,
+   "train_low": 20.5,
+   "hold_n": 40,
+   "hold_hit": 50.0,
+   "hold_low": 35.2,
+   "base_train": 32.6,
+   "base_hold": 50.0,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "fga",
+   "prop_display": "FG Attempted",
+   "side": "UNDER",
+   "gate_text": "L10 hits >=8 \u00b7 L5 avg right side \u00b7 season avg right side \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=8",
+    "l5avg": "right side",
+    "l10avg": "any",
+    "season": "right side",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 27,
+   "train_hit": 74.1,
+   "train_low": 55.3,
+   "hold_n": 24,
+   "hold_hit": 50.0,
+   "hold_low": 31.4,
+   "base_train": 51.9,
+   "base_hold": 46.4,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "freethrowsmade",
+   "prop_display": "Free Throws Made",
+   "side": "UNDER",
+   "gate_text": "pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "favorable"
+   },
+   "train_n": 94,
+   "train_hit": 61.7,
+   "train_low": 51.6,
+   "hold_n": 176,
+   "hold_hit": 50.0,
+   "hold_low": 42.7,
+   "base_train": 52.8,
+   "base_hold": 53.6,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "pr",
+   "prop_display": "Pts+Rebs",
+   "side": "OVER",
+   "gate_text": "L10 avg >=10% \u00b7 opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": ">=10%",
+    "season": "any",
+    "off": "any",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "favorable"
+   },
+   "train_n": 38,
+   "train_hit": 65.8,
+   "train_low": 49.9,
+   "hold_n": 8,
+   "hold_hit": 50.0,
+   "hold_low": 21.5,
+   "base_train": 44.6,
+   "base_hold": 49.7,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "ra",
+   "prop_display": "Rebs+Asts",
+   "side": "OVER",
+   "gate_text": "L10 hits >=7 \u00b7 L10 avg >=10% \u00b7 pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "any",
+    "l10avg": ">=10%",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "favorable"
+   },
+   "train_n": 28,
+   "train_hit": 75.0,
+   "train_low": 56.6,
+   "hold_n": 4,
+   "hold_hit": 50.0,
+   "hold_low": 15.0,
+   "base_train": 47.1,
+   "base_hold": 50.3,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "reb",
+   "prop_display": "Rebounds",
+   "side": "OVER",
+   "gate_text": "season avg >=5% \u00b7 minutes down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": ">=5%",
+    "off": "any",
+    "def": "any",
+    "min": "down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 27,
+   "train_hit": 70.4,
+   "train_low": 51.5,
+   "hold_n": 4,
+   "hold_hit": 50.0,
+   "hold_low": 15.0,
+   "base_train": 48.6,
+   "base_hold": 50.8,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "reb",
+   "prop_display": "Rebounds",
+   "side": "UNDER",
+   "gate_text": "L10 hits >=7 \u00b7 L10 avg >=10% \u00b7 season avg right side",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "any",
+    "l10avg": ">=10%",
+    "season": "right side",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 87,
+   "train_hit": 65.5,
+   "train_low": 55.1,
+   "hold_n": 72,
+   "hold_hit": 50.0,
+   "hold_low": 38.7,
+   "base_train": 51.4,
+   "base_hold": 49.2,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "twopointersattempted",
+   "prop_display": "Two Pointers Attempted",
+   "side": "OVER",
+   "gate_text": "L5 hits >=4 \u00b7 L10 avg >=10% \u00b7 team rank not unfavorable",
+   "gate": {
+    "l5": ">=4",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": ">=10%",
+    "season": "any",
+    "off": "not unfavorable",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 25,
+   "train_hit": 72.0,
+   "train_low": 52.4,
+   "hold_n": 20,
+   "hold_hit": 50.0,
+   "hold_low": 29.9,
+   "base_train": 43.8,
+   "base_hold": 51.1,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "fgm",
+   "prop_display": "FG Made",
+   "side": "UNDER",
+   "gate_text": "season avg right side \u00b7 opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "right side",
+    "off": "any",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 33,
+   "train_hit": 72.7,
+   "train_low": 55.8,
+   "hold_n": 46,
+   "hold_hit": 47.8,
+   "hold_low": 34.1,
+   "base_train": 52.8,
+   "base_hold": 48.9,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "tov",
+   "prop_display": "Turnovers",
+   "side": "OVER",
+   "gate_text": "L5 avg >=10% \u00b7 season avg >=10% \u00b7 minutes not down 2+",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": "any",
+    "season": ">=10%",
+    "off": "any",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "any"
+   },
+   "train_n": 95,
+   "train_hit": 54.7,
+   "train_low": 44.7,
+   "hold_n": 63,
+   "hold_hit": 47.6,
+   "hold_low": 35.8,
+   "base_train": 44.1,
+   "base_hold": 41.6,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "pts",
+   "prop_display": "Points",
+   "side": "OVER",
+   "gate_text": "L10 hits >=8 \u00b7 team rank favorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=8",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "favorable",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 27,
+   "train_hit": 70.4,
+   "train_low": 51.5,
+   "hold_n": 19,
+   "hold_hit": 47.4,
+   "hold_low": 27.3,
+   "base_train": 45.3,
+   "base_hold": 50.3,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "twopointersattempted",
+   "prop_display": "Two Pointers Attempted",
+   "side": "UNDER",
+   "gate_text": "opp rank not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 234,
+   "train_hit": 58.5,
+   "train_low": 52.1,
+   "hold_n": 194,
+   "hold_hit": 46.9,
+   "hold_low": 40.0,
+   "base_train": 56.2,
+   "base_hold": 48.9,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "fgm",
+   "prop_display": "FG Made",
+   "side": "OVER",
+   "gate_text": "L10 hits >=7 \u00b7 L10 avg right side \u00b7 season avg right side \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "any",
+    "l10avg": "right side",
+    "season": "right side",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 26,
+   "train_hit": 69.2,
+   "train_low": 50.0,
+   "hold_n": 13,
+   "hold_hit": 46.2,
+   "hold_low": 23.2,
+   "base_train": 47.2,
+   "base_hold": 51.1,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "offensiverebounds",
+   "prop_display": "Offensive Rebounds",
+   "side": "UNDER",
+   "gate_text": "no filter",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 37,
+   "train_hit": 37.8,
+   "train_low": 24.1,
+   "hold_n": 122,
+   "hold_hit": 45.9,
+   "hold_low": 37.3,
+   "base_train": 37.8,
+   "base_hold": 45.9,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "stl",
+   "prop_display": "Steals",
+   "side": "UNDER",
+   "gate_text": "L5 hits >=4 \u00b7 opp rank not unfavorable",
+   "gate": {
+    "l5": ">=4",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 25,
+   "train_hit": 68.0,
+   "train_low": 48.4,
+   "hold_n": 33,
+   "hold_hit": 45.5,
+   "hold_low": 29.8,
+   "base_train": 52.7,
+   "base_hold": 50.2,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "twopointersmade",
+   "prop_display": "Two Pointers Made",
+   "side": "OVER",
+   "gate_text": "team rank favorable \u00b7 opp rank favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "favorable",
+    "def": "favorable",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 55,
+   "train_hit": 65.5,
+   "train_low": 52.3,
+   "hold_n": 33,
+   "hold_hit": 45.5,
+   "hold_low": 29.8,
+   "base_train": 47.4,
+   "base_hold": 52.0,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "freethrowsattempted",
+   "prop_display": "Free Throws Attempted",
+   "side": "OVER",
+   "gate_text": "opp rank not unfavorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "any",
+    "def": "not unfavorable",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 183,
+   "train_hit": 57.4,
+   "train_low": 50.1,
+   "hold_n": 74,
+   "hold_hit": 43.2,
+   "hold_low": 32.6,
+   "base_train": 46.2,
+   "base_hold": 47.1,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "stocks",
+   "prop_display": "Blks+Stls",
+   "side": "OVER",
+   "gate_text": "L5 avg >=10% \u00b7 L10 avg >=10% \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": ">=10%",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 65,
+   "train_hit": 52.3,
+   "train_low": 40.4,
+   "hold_n": 35,
+   "hold_hit": 42.9,
+   "hold_low": 28.0,
+   "base_train": 42.8,
+   "base_hold": 45.7,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "pa",
+   "prop_display": "Pts+Asts",
+   "side": "UNDER",
+   "gate_text": "team rank favorable \u00b7 opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "favorable",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 99,
+   "train_hit": 68.7,
+   "train_low": 59.0,
+   "hold_n": 124,
+   "hold_hit": 41.1,
+   "hold_low": 32.9,
+   "base_train": 54.2,
+   "base_hold": 49.6,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "fantasy",
+   "prop_display": "Fantasy Score",
+   "side": "UNDER",
+   "gate_text": "team rank not unfavorable \u00b7 opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "not unfavorable",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 25,
+   "train_hit": 80.0,
+   "train_low": 60.9,
+   "hold_n": 82,
+   "hold_hit": 40.2,
+   "hold_low": 30.3,
+   "base_train": 53.5,
+   "base_hold": 44.4,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "3ptmade",
+   "prop_display": "3-PT Made",
+   "side": "UNDER",
+   "gate_text": "L10 hits >=7 \u00b7 L10 avg >=10% \u00b7 team rank not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "any",
+    "l10avg": ">=10%",
+    "season": "any",
+    "off": "not unfavorable",
+    "def": "any",
+    "min": "any",
+    "pace": "any"
+   },
+   "train_n": 25,
+   "train_hit": 76.0,
+   "train_low": 56.6,
+   "hold_n": 18,
+   "hold_hit": 38.9,
+   "hold_low": 20.3,
+   "base_train": 49.6,
+   "base_hold": 49.0,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "ast",
+   "prop_display": "Assists",
+   "side": "UNDER",
+   "gate_text": "L5 avg >=10% \u00b7 L10 avg >=10% \u00b7 season avg >=10% \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": ">=10%",
+    "season": ">=10%",
+    "off": "any",
+    "def": "any",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 37,
+   "train_hit": 75.7,
+   "train_low": 59.9,
+   "hold_n": 17,
+   "hold_hit": 35.3,
+   "hold_low": 17.3,
+   "base_train": 56.2,
+   "base_hold": 45.5,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "fga",
+   "prop_display": "FG Attempted",
+   "side": "OVER",
+   "gate_text": "L5 hits >=4 \u00b7 L5 avg >=10% \u00b7 team rank not unfavorable \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": ">=4",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": "any",
+    "season": "any",
+    "off": "not unfavorable",
+    "def": "any",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 40,
+   "train_hit": 77.5,
+   "train_low": 62.5,
+   "hold_n": 9,
+   "hold_hit": 33.3,
+   "hold_low": 12.1,
+   "base_train": 48.1,
+   "base_hold": 53.6,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "personalfouls",
+   "prop_display": "Personal Fouls",
+   "side": "OVER",
+   "gate_text": "team rank favorable \u00b7 opp rank not unfavorable \u00b7 pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "any",
+    "season": "any",
+    "off": "favorable",
+    "def": "not unfavorable",
+    "min": "any",
+    "pace": "favorable"
+   },
+   "train_n": 26,
+   "train_hit": 76.9,
+   "train_low": 57.9,
+   "hold_n": 9,
+   "hold_hit": 33.3,
+   "hold_low": 12.1,
+   "base_train": 45.2,
+   "base_hold": 49.6,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "pra",
+   "prop_display": "Pts+Rebs+Asts",
+   "side": "OVER",
+   "gate_text": "L10 hits >=7 \u00b7 L5 avg right side \u00b7 L10 avg right side \u00b7 minutes not down 2+ \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": ">=7",
+    "l5avg": "right side",
+    "l10avg": "right side",
+    "season": "any",
+    "off": "any",
+    "def": "any",
+    "min": "not down 2+",
+    "pace": "not unfavorable"
+   },
+   "train_n": 103,
+   "train_hit": 56.3,
+   "train_low": 46.7,
+   "hold_n": 29,
+   "hold_hit": 31.0,
+   "hold_low": 17.3,
+   "base_train": 45.2,
+   "base_hold": 50.4,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "ra",
+   "prop_display": "Rebs+Asts",
+   "side": "UNDER",
+   "gate_text": "L5 avg >=10% \u00b7 L10 avg >=10% \u00b7 opp rank favorable \u00b7 pace not unfavorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": ">=10%",
+    "l10avg": ">=10%",
+    "season": "any",
+    "off": "any",
+    "def": "favorable",
+    "min": "any",
+    "pace": "not unfavorable"
+   },
+   "train_n": 29,
+   "train_hit": 75.9,
+   "train_low": 57.9,
+   "hold_n": 8,
+   "hold_hit": 25.0,
+   "hold_low": 7.1,
+   "base_train": 52.9,
+   "base_hold": 49.7,
+   "holds": false
+  },
+  {
+   "book": "Standard",
+   "prop": "freethrowsmade",
+   "prop_display": "Free Throws Made",
+   "side": "OVER",
+   "gate_text": "L10 avg right side \u00b7 team rank not unfavorable \u00b7 opp rank favorable \u00b7 minutes not down 2+ \u00b7 pace favorable",
+   "gate": {
+    "l5": "any",
+    "l10": "any",
+    "l5avg": "any",
+    "l10avg": "right side",
+    "season": "any",
+    "off": "not unfavorable",
+    "def": "favorable",
+    "min": "not down 2+",
+    "pace": "favorable"
+   },
+   "train_n": 34,
+   "train_hit": 67.6,
+   "train_low": 50.8,
+   "hold_n": 6,
+   "hold_hit": 0.0,
+   "hold_low": 0.0,
+   "base_train": 47.2,
+   "base_hold": 46.4,
+   "holds": false
+  }
+ ],
+ "factors": [
+  {
+   "book": "Goblin",
+   "prop": "3ptattempted",
+   "side": "OVER",
+   "n": 332,
+   "base": 62.3,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 332,
+      "hit": 62.3
+     },
+     ">=4": {
+      "n": 102,
+      "hit": 63.7
+     },
+     "=5": {
+      "n": 23,
+      "hit": 65.2
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 332,
+      "hit": 62.3
+     },
+     ">=7": {
+      "n": 93,
+      "hit": 67.7
+     },
+     ">=8": {
+      "n": 43,
+      "hit": 67.4
+     },
+     ">=9": {
+      "n": 10,
+      "hit": 90.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 332,
+      "hit": 62.3
+     },
+     "right side": {
+      "n": 255,
+      "hit": 60.4
+     },
+     ">=10%": {
+      "n": 188,
+      "hit": 59.6
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 332,
+      "hit": 62.3
+     },
+     "right side": {
+      "n": 245,
+      "hit": 63.3
+     },
+     ">=10%": {
+      "n": 182,
+      "hit": 63.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 332,
+      "hit": 62.3
+     },
+     "right side": {
+      "n": 244,
+      "hit": 63.1
+     },
+     ">=5%": {
+      "n": 215,
+      "hit": 65.6
+     },
+     ">=10%": {
+      "n": 182,
+      "hit": 64.3
+     }
+    },
+    "off": {
+     "any": {
+      "n": 332,
+      "hit": 62.3
+     },
+     "favorable": {
+      "n": 120,
+      "hit": 62.5
+     },
+     "not unfavorable": {
+      "n": 187,
+      "hit": 62.6
+     }
+    },
+    "def": {
+     "any": {
+      "n": 332,
+      "hit": 62.3
+     },
+     "favorable": {
+      "n": 147,
+      "hit": 63.3
+     },
+     "not unfavorable": {
+      "n": 205,
+      "hit": 63.4
+     }
+    },
+    "min": {
+     "any": {
+      "n": 332,
+      "hit": 62.3
+     },
+     "not down 2+": {
+      "n": 298,
+      "hit": 62.1
+     },
+     "down 2+": {
+      "n": 34,
+      "hit": 64.7
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 332,
+      "hit": 62.3
+     },
+     "favorable": {
+      "n": 96,
+      "hit": 57.3
+     },
+     "not unfavorable": {
+      "n": 201,
+      "hit": 63.7
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "3ptmade",
+   "side": "OVER",
+   "n": 2357,
+   "base": 68.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 2357,
+      "hit": 68.0
+     },
+     ">=4": {
+      "n": 1222,
+      "hit": 70.8
+     },
+     "=5": {
+      "n": 444,
+      "hit": 73.4
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 2357,
+      "hit": 68.0
+     },
+     ">=7": {
+      "n": 1430,
+      "hit": 72.0
+     },
+     ">=8": {
+      "n": 873,
+      "hit": 73.3
+     },
+     ">=9": {
+      "n": 383,
+      "hit": 74.2
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 2357,
+      "hit": 68.0
+     },
+     "right side": {
+      "n": 2159,
+      "hit": 68.8
+     },
+     ">=10%": {
+      "n": 2076,
+      "hit": 68.9
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 2357,
+      "hit": 68.0
+     },
+     "right side": {
+      "n": 2218,
+      "hit": 68.7
+     },
+     ">=10%": {
+      "n": 2174,
+      "hit": 68.9
+     }
+    },
+    "season": {
+     "any": {
+      "n": 2357,
+      "hit": 68.0
+     },
+     "right side": {
+      "n": 2201,
+      "hit": 68.7
+     },
+     ">=5%": {
+      "n": 2186,
+      "hit": 68.9
+     },
+     ">=10%": {
+      "n": 2153,
+      "hit": 69.3
+     }
+    },
+    "off": {
+     "any": {
+      "n": 2357,
+      "hit": 68.0
+     },
+     "favorable": {
+      "n": 1047,
+      "hit": 68.0
+     },
+     "not unfavorable": {
+      "n": 1513,
+      "hit": 68.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 2357,
+      "hit": 68.0
+     },
+     "favorable": {
+      "n": 895,
+      "hit": 68.3
+     },
+     "not unfavorable": {
+      "n": 1427,
+      "hit": 68.5
+     }
+    },
+    "min": {
+     "any": {
+      "n": 2357,
+      "hit": 68.0
+     },
+     "not down 2+": {
+      "n": 2152,
+      "hit": 68.2
+     },
+     "down 2+": {
+      "n": 205,
+      "hit": 65.4
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 2357,
+      "hit": 68.0
+     },
+     "favorable": {
+      "n": 541,
+      "hit": 66.4
+     },
+     "not unfavorable": {
+      "n": 1267,
+      "hit": 67.6
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "ast",
+   "side": "OVER",
+   "n": 3234,
+   "base": 68.6,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 3234,
+      "hit": 68.6
+     },
+     ">=4": {
+      "n": 1736,
+      "hit": 72.4
+     },
+     "=5": {
+      "n": 584,
+      "hit": 75.3
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 3234,
+      "hit": 68.6
+     },
+     ">=7": {
+      "n": 1887,
+      "hit": 72.9
+     },
+     ">=8": {
+      "n": 1189,
+      "hit": 75.4
+     },
+     ">=9": {
+      "n": 548,
+      "hit": 78.5
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 3234,
+      "hit": 68.6
+     },
+     "right side": {
+      "n": 2841,
+      "hit": 69.9
+     },
+     ">=10%": {
+      "n": 2576,
+      "hit": 71.4
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 3234,
+      "hit": 68.6
+     },
+     "right side": {
+      "n": 2889,
+      "hit": 70.4
+     },
+     ">=10%": {
+      "n": 2643,
+      "hit": 71.6
+     }
+    },
+    "season": {
+     "any": {
+      "n": 3234,
+      "hit": 68.6
+     },
+     "right side": {
+      "n": 2922,
+      "hit": 70.0
+     },
+     ">=5%": {
+      "n": 2821,
+      "hit": 70.4
+     },
+     ">=10%": {
+      "n": 2665,
+      "hit": 71.1
+     }
+    },
+    "off": {
+     "any": {
+      "n": 3234,
+      "hit": 68.6
+     },
+     "favorable": {
+      "n": 1412,
+      "hit": 66.8
+     },
+     "not unfavorable": {
+      "n": 2059,
+      "hit": 67.4
+     }
+    },
+    "def": {
+     "any": {
+      "n": 3234,
+      "hit": 68.6
+     },
+     "favorable": {
+      "n": 1251,
+      "hit": 69.9
+     },
+     "not unfavorable": {
+      "n": 1897,
+      "hit": 70.2
+     }
+    },
+    "min": {
+     "any": {
+      "n": 3234,
+      "hit": 68.6
+     },
+     "not down 2+": {
+      "n": 2939,
+      "hit": 68.5
+     },
+     "down 2+": {
+      "n": 295,
+      "hit": 69.8
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 3234,
+      "hit": 68.6
+     },
+     "favorable": {
+      "n": 750,
+      "hit": 69.6
+     },
+     "not unfavorable": {
+      "n": 1771,
+      "hit": 67.3
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "blk",
+   "side": "OVER",
+   "n": 582,
+   "base": 59.3,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 582,
+      "hit": 59.3
+     },
+     ">=4": {
+      "n": 223,
+      "hit": 58.7
+     },
+     "=5": {
+      "n": 51,
+      "hit": 70.6
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 582,
+      "hit": 59.3
+     },
+     ">=7": {
+      "n": 280,
+      "hit": 59.3
+     },
+     ">=8": {
+      "n": 128,
+      "hit": 61.7
+     },
+     ">=9": {
+      "n": 40,
+      "hit": 80.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 582,
+      "hit": 59.3
+     },
+     "right side": {
+      "n": 530,
+      "hit": 58.7
+     },
+     ">=10%": {
+      "n": 529,
+      "hit": 58.8
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 582,
+      "hit": 59.3
+     },
+     "right side": {
+      "n": 546,
+      "hit": 59.2
+     },
+     ">=10%": {
+      "n": 546,
+      "hit": 59.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 582,
+      "hit": 59.3
+     },
+     "right side": {
+      "n": 546,
+      "hit": 58.6
+     },
+     ">=5%": {
+      "n": 546,
+      "hit": 58.6
+     },
+     ">=10%": {
+      "n": 543,
+      "hit": 58.6
+     }
+    },
+    "off": {
+     "any": {
+      "n": 582,
+      "hit": 59.3
+     },
+     "favorable": {
+      "n": 315,
+      "hit": 60.6
+     },
+     "not unfavorable": {
+      "n": 424,
+      "hit": 60.1
+     }
+    },
+    "def": {
+     "any": {
+      "n": 582,
+      "hit": 59.3
+     },
+     "favorable": {
+      "n": 260,
+      "hit": 61.2
+     },
+     "not unfavorable": {
+      "n": 369,
+      "hit": 61.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 582,
+      "hit": 59.3
+     },
+     "not down 2+": {
+      "n": 530,
+      "hit": 59.1
+     },
+     "down 2+": {
+      "n": 52,
+      "hit": 61.5
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 582,
+      "hit": 59.3
+     },
+     "favorable": {
+      "n": 146,
+      "hit": 62.3
+     },
+     "not unfavorable": {
+      "n": 328,
+      "hit": 60.7
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "defensiverebounds",
+   "side": "OVER",
+   "n": 1,
+   "base": 100.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1,
+      "hit": 100.0
+     },
+     "right side": {
+      "n": 1,
+      "hit": 100.0
+     },
+     ">=10%": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1,
+      "hit": 100.0
+     },
+     "right side": {
+      "n": 1,
+      "hit": 100.0
+     },
+     ">=5%": {
+      "n": 1,
+      "hit": 100.0
+     },
+     ">=10%": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1,
+      "hit": 100.0
+     },
+     "favorable": {
+      "n": 1,
+      "hit": 100.0
+     },
+     "not unfavorable": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1,
+      "hit": 100.0
+     },
+     "down 2+": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1,
+      "hit": 100.0
+     },
+     "favorable": {
+      "n": 1,
+      "hit": 100.0
+     },
+     "not unfavorable": {
+      "n": 1,
+      "hit": 100.0
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "dunks",
+   "side": "OVER",
+   "n": 26,
+   "base": 61.5,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 26,
+      "hit": 61.5
+     },
+     ">=4": {
+      "n": 11,
+      "hit": 72.7
+     },
+     "=5": {
+      "n": 3,
+      "hit": 100.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 26,
+      "hit": 61.5
+     },
+     ">=7": {
+      "n": 19,
+      "hit": 63.2
+     },
+     ">=8": {
+      "n": 9,
+      "hit": 66.7
+     },
+     ">=9": {
+      "n": 3,
+      "hit": 66.7
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 26,
+      "hit": 61.5
+     },
+     "right side": {
+      "n": 24,
+      "hit": 62.5
+     },
+     ">=10%": {
+      "n": 24,
+      "hit": 62.5
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 26,
+      "hit": 61.5
+     },
+     "right side": {
+      "n": 26,
+      "hit": 61.5
+     },
+     ">=10%": {
+      "n": 26,
+      "hit": 61.5
+     }
+    },
+    "season": {
+     "any": {
+      "n": 26,
+      "hit": 61.5
+     },
+     "right side": {
+      "n": 26,
+      "hit": 61.5
+     },
+     ">=5%": {
+      "n": 26,
+      "hit": 61.5
+     },
+     ">=10%": {
+      "n": 26,
+      "hit": 61.5
+     }
+    },
+    "off": {
+     "any": {
+      "n": 26,
+      "hit": 61.5
+     },
+     "favorable": {
+      "n": 17,
+      "hit": 70.6
+     },
+     "not unfavorable": {
+      "n": 23,
+      "hit": 60.9
+     }
+    },
+    "def": {
+     "any": {
+      "n": 26,
+      "hit": 61.5
+     },
+     "favorable": {
+      "n": 15,
+      "hit": 66.7
+     },
+     "not unfavorable": {
+      "n": 19,
+      "hit": 68.4
+     }
+    },
+    "min": {
+     "any": {
+      "n": 26,
+      "hit": 61.5
+     },
+     "not down 2+": {
+      "n": 22,
+      "hit": 59.1
+     },
+     "down 2+": {
+      "n": 4,
+      "hit": 75.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 26,
+      "hit": 61.5
+     },
+     "favorable": {
+      "n": 1,
+      "hit": 0.0
+     },
+     "not unfavorable": {
+      "n": 9,
+      "hit": 55.6
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "fantasy",
+   "side": "OVER",
+   "n": 418,
+   "base": 69.6,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 418,
+      "hit": 69.6
+     },
+     ">=4": {
+      "n": 244,
+      "hit": 70.5
+     },
+     "=5": {
+      "n": 70,
+      "hit": 70.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 418,
+      "hit": 69.6
+     },
+     ">=7": {
+      "n": 268,
+      "hit": 71.3
+     },
+     ">=8": {
+      "n": 156,
+      "hit": 70.5
+     },
+     ">=9": {
+      "n": 58,
+      "hit": 67.2
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 418,
+      "hit": 69.6
+     },
+     "right side": {
+      "n": 394,
+      "hit": 69.5
+     },
+     ">=10%": {
+      "n": 342,
+      "hit": 69.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 418,
+      "hit": 69.6
+     },
+     "right side": {
+      "n": 400,
+      "hit": 69.5
+     },
+     ">=10%": {
+      "n": 347,
+      "hit": 69.5
+     }
+    },
+    "season": {
+     "any": {
+      "n": 418,
+      "hit": 69.6
+     },
+     "right side": {
+      "n": 400,
+      "hit": 69.5
+     },
+     ">=5%": {
+      "n": 380,
+      "hit": 70.0
+     },
+     ">=10%": {
+      "n": 350,
+      "hit": 70.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 418,
+      "hit": 69.6
+     },
+     "favorable": {
+      "n": 162,
+      "hit": 65.4
+     },
+     "not unfavorable": {
+      "n": 262,
+      "hit": 66.8
+     }
+    },
+    "def": {
+     "any": {
+      "n": 418,
+      "hit": 69.6
+     },
+     "favorable": {
+      "n": 172,
+      "hit": 67.4
+     },
+     "not unfavorable": {
+      "n": 243,
+      "hit": 72.4
+     }
+    },
+    "min": {
+     "any": {
+      "n": 418,
+      "hit": 69.6
+     },
+     "not down 2+": {
+      "n": 374,
+      "hit": 69.5
+     },
+     "down 2+": {
+      "n": 44,
+      "hit": 70.5
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 418,
+      "hit": 69.6
+     },
+     "favorable": {
+      "n": 70,
+      "hit": 70.0
+     },
+     "not unfavorable": {
+      "n": 178,
+      "hit": 66.3
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "fga",
+   "side": "OVER",
+   "n": 222,
+   "base": 51.4,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 222,
+      "hit": 51.4
+     },
+     ">=4": {
+      "n": 56,
+      "hit": 60.7
+     },
+     "=5": {
+      "n": 12,
+      "hit": 83.3
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 222,
+      "hit": 51.4
+     },
+     ">=7": {
+      "n": 56,
+      "hit": 55.4
+     },
+     ">=8": {
+      "n": 28,
+      "hit": 64.3
+     },
+     ">=9": {
+      "n": 13,
+      "hit": 61.5
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 222,
+      "hit": 51.4
+     },
+     "right side": {
+      "n": 132,
+      "hit": 56.8
+     },
+     ">=10%": {
+      "n": 82,
+      "hit": 62.2
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 222,
+      "hit": 51.4
+     },
+     "right side": {
+      "n": 134,
+      "hit": 51.5
+     },
+     ">=10%": {
+      "n": 81,
+      "hit": 55.6
+     }
+    },
+    "season": {
+     "any": {
+      "n": 222,
+      "hit": 51.4
+     },
+     "right side": {
+      "n": 122,
+      "hit": 54.9
+     },
+     ">=5%": {
+      "n": 103,
+      "hit": 57.3
+     },
+     ">=10%": {
+      "n": 81,
+      "hit": 58.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 222,
+      "hit": 51.4
+     },
+     "favorable": {
+      "n": 97,
+      "hit": 46.4
+     },
+     "not unfavorable": {
+      "n": 140,
+      "hit": 49.3
+     }
+    },
+    "def": {
+     "any": {
+      "n": 222,
+      "hit": 51.4
+     },
+     "favorable": {
+      "n": 96,
+      "hit": 54.2
+     },
+     "not unfavorable": {
+      "n": 126,
+      "hit": 53.2
+     }
+    },
+    "min": {
+     "any": {
+      "n": 222,
+      "hit": 51.4
+     },
+     "not down 2+": {
+      "n": 196,
+      "hit": 52.6
+     },
+     "down 2+": {
+      "n": 26,
+      "hit": 42.3
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 222,
+      "hit": 51.4
+     },
+     "favorable": {
+      "n": 68,
+      "hit": 55.9
+     },
+     "not unfavorable": {
+      "n": 148,
+      "hit": 48.6
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "fgm",
+   "side": "OVER",
+   "n": 320,
+   "base": 52.5,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 320,
+      "hit": 52.5
+     },
+     ">=4": {
+      "n": 80,
+      "hit": 56.2
+     },
+     "=5": {
+      "n": 21,
+      "hit": 57.1
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 320,
+      "hit": 52.5
+     },
+     ">=7": {
+      "n": 72,
+      "hit": 54.2
+     },
+     ">=8": {
+      "n": 31,
+      "hit": 48.4
+     },
+     ">=9": {
+      "n": 11,
+      "hit": 54.5
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 320,
+      "hit": 52.5
+     },
+     "right side": {
+      "n": 214,
+      "hit": 57.0
+     },
+     ">=10%": {
+      "n": 164,
+      "hit": 57.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 320,
+      "hit": 52.5
+     },
+     "right side": {
+      "n": 219,
+      "hit": 55.3
+     },
+     ">=10%": {
+      "n": 160,
+      "hit": 53.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 320,
+      "hit": 52.5
+     },
+     "right side": {
+      "n": 227,
+      "hit": 55.5
+     },
+     ">=5%": {
+      "n": 188,
+      "hit": 53.2
+     },
+     ">=10%": {
+      "n": 161,
+      "hit": 52.2
+     }
+    },
+    "off": {
+     "any": {
+      "n": 320,
+      "hit": 52.5
+     },
+     "favorable": {
+      "n": 140,
+      "hit": 52.9
+     },
+     "not unfavorable": {
+      "n": 198,
+      "hit": 51.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 320,
+      "hit": 52.5
+     },
+     "favorable": {
+      "n": 135,
+      "hit": 53.3
+     },
+     "not unfavorable": {
+      "n": 201,
+      "hit": 53.7
+     }
+    },
+    "min": {
+     "any": {
+      "n": 320,
+      "hit": 52.5
+     },
+     "not down 2+": {
+      "n": 287,
+      "hit": 51.9
+     },
+     "down 2+": {
+      "n": 33,
+      "hit": 57.6
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 320,
+      "hit": 52.5
+     },
+     "favorable": {
+      "n": 96,
+      "hit": 58.3
+     },
+     "not unfavorable": {
+      "n": 188,
+      "hit": 52.7
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "freethrowsattempted",
+   "side": "OVER",
+   "n": 324,
+   "base": 51.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 324,
+      "hit": 51.9
+     },
+     ">=4": {
+      "n": 102,
+      "hit": 55.9
+     },
+     "=5": {
+      "n": 23,
+      "hit": 52.2
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 324,
+      "hit": 51.9
+     },
+     ">=7": {
+      "n": 80,
+      "hit": 53.8
+     },
+     ">=8": {
+      "n": 33,
+      "hit": 66.7
+     },
+     ">=9": {
+      "n": 15,
+      "hit": 73.3
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 324,
+      "hit": 51.9
+     },
+     "right side": {
+      "n": 229,
+      "hit": 52.0
+     },
+     ">=10%": {
+      "n": 200,
+      "hit": 53.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 324,
+      "hit": 51.9
+     },
+     "right side": {
+      "n": 249,
+      "hit": 53.4
+     },
+     ">=10%": {
+      "n": 211,
+      "hit": 55.5
+     }
+    },
+    "season": {
+     "any": {
+      "n": 324,
+      "hit": 51.9
+     },
+     "right side": {
+      "n": 242,
+      "hit": 53.7
+     },
+     ">=5%": {
+      "n": 237,
+      "hit": 54.0
+     },
+     ">=10%": {
+      "n": 222,
+      "hit": 52.7
+     }
+    },
+    "off": {
+     "any": {
+      "n": 324,
+      "hit": 51.9
+     },
+     "favorable": {
+      "n": 143,
+      "hit": 46.9
+     },
+     "not unfavorable": {
+      "n": 209,
+      "hit": 51.7
+     }
+    },
+    "def": {
+     "any": {
+      "n": 324,
+      "hit": 51.9
+     },
+     "favorable": {
+      "n": 154,
+      "hit": 51.3
+     },
+     "not unfavorable": {
+      "n": 206,
+      "hit": 50.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 324,
+      "hit": 51.9
+     },
+     "not down 2+": {
+      "n": 294,
+      "hit": 52.4
+     },
+     "down 2+": {
+      "n": 30,
+      "hit": 46.7
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 324,
+      "hit": 51.9
+     },
+     "favorable": {
+      "n": 90,
+      "hit": 46.7
+     },
+     "not unfavorable": {
+      "n": 192,
+      "hit": 51.6
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "freethrowsmade",
+   "side": "OVER",
+   "n": 305,
+   "base": 53.8,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 305,
+      "hit": 53.8
+     },
+     ">=4": {
+      "n": 62,
+      "hit": 53.2
+     },
+     "=5": {
+      "n": 17,
+      "hit": 64.7
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 305,
+      "hit": 53.8
+     },
+     ">=7": {
+      "n": 60,
+      "hit": 56.7
+     },
+     ">=8": {
+      "n": 22,
+      "hit": 45.5
+     },
+     ">=9": {
+      "n": 9,
+      "hit": 33.3
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 305,
+      "hit": 53.8
+     },
+     "right side": {
+      "n": 219,
+      "hit": 53.4
+     },
+     ">=10%": {
+      "n": 198,
+      "hit": 56.6
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 305,
+      "hit": 53.8
+     },
+     "right side": {
+      "n": 236,
+      "hit": 55.9
+     },
+     ">=10%": {
+      "n": 223,
+      "hit": 57.4
+     }
+    },
+    "season": {
+     "any": {
+      "n": 305,
+      "hit": 53.8
+     },
+     "right side": {
+      "n": 234,
+      "hit": 56.0
+     },
+     ">=5%": {
+      "n": 226,
+      "hit": 55.8
+     },
+     ">=10%": {
+      "n": 209,
+      "hit": 56.9
+     }
+    },
+    "off": {
+     "any": {
+      "n": 305,
+      "hit": 53.8
+     },
+     "favorable": {
+      "n": 113,
+      "hit": 54.9
+     },
+     "not unfavorable": {
+      "n": 172,
+      "hit": 51.7
+     }
+    },
+    "def": {
+     "any": {
+      "n": 305,
+      "hit": 53.8
+     },
+     "favorable": {
+      "n": 144,
+      "hit": 54.2
+     },
+     "not unfavorable": {
+      "n": 191,
+      "hit": 53.4
+     }
+    },
+    "min": {
+     "any": {
+      "n": 305,
+      "hit": 53.8
+     },
+     "not down 2+": {
+      "n": 271,
+      "hit": 53.5
+     },
+     "down 2+": {
+      "n": 34,
+      "hit": 55.9
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 305,
+      "hit": 53.8
+     },
+     "favorable": {
+      "n": 73,
+      "hit": 43.8
+     },
+     "not unfavorable": {
+      "n": 178,
+      "hit": 52.2
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "offensiverebounds",
+   "side": "OVER",
+   "n": 105,
+   "base": 55.2,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 105,
+      "hit": 55.2
+     },
+     ">=4": {
+      "n": 38,
+      "hit": 63.2
+     },
+     "=5": {
+      "n": 12,
+      "hit": 50.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 105,
+      "hit": 55.2
+     },
+     ">=7": {
+      "n": 44,
+      "hit": 54.5
+     },
+     ">=8": {
+      "n": 16,
+      "hit": 75.0
+     },
+     ">=9": {
+      "n": 2,
+      "hit": 0.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 105,
+      "hit": 55.2
+     },
+     "right side": {
+      "n": 95,
+      "hit": 56.8
+     },
+     ">=10%": {
+      "n": 92,
+      "hit": 56.5
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 105,
+      "hit": 55.2
+     },
+     "right side": {
+      "n": 102,
+      "hit": 55.9
+     },
+     ">=10%": {
+      "n": 101,
+      "hit": 55.4
+     }
+    },
+    "season": {
+     "any": {
+      "n": 105,
+      "hit": 55.2
+     },
+     "right side": {
+      "n": 101,
+      "hit": 55.4
+     },
+     ">=5%": {
+      "n": 101,
+      "hit": 55.4
+     },
+     ">=10%": {
+      "n": 98,
+      "hit": 56.1
+     }
+    },
+    "off": {
+     "any": {
+      "n": 105,
+      "hit": 55.2
+     },
+     "favorable": {
+      "n": 39,
+      "hit": 59.0
+     },
+     "not unfavorable": {
+      "n": 64,
+      "hit": 57.8
+     }
+    },
+    "def": {
+     "any": {
+      "n": 105,
+      "hit": 55.2
+     },
+     "favorable": {
+      "n": 46,
+      "hit": 54.3
+     },
+     "not unfavorable": {
+      "n": 71,
+      "hit": 54.9
+     }
+    },
+    "min": {
+     "any": {
+      "n": 105,
+      "hit": 55.2
+     },
+     "not down 2+": {
+      "n": 90,
+      "hit": 51.1
+     },
+     "down 2+": {
+      "n": 15,
+      "hit": 80.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 105,
+      "hit": 55.2
+     },
+     "favorable": {
+      "n": 32,
+      "hit": 59.4
+     },
+     "not unfavorable": {
+      "n": 52,
+      "hit": 57.7
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "pa",
+   "side": "OVER",
+   "n": 3710,
+   "base": 63.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 3710,
+      "hit": 63.9
+     },
+     ">=4": {
+      "n": 1612,
+      "hit": 69.4
+     },
+     "=5": {
+      "n": 527,
+      "hit": 74.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 3710,
+      "hit": 63.9
+     },
+     ">=7": {
+      "n": 1754,
+      "hit": 70.5
+     },
+     ">=8": {
+      "n": 1052,
+      "hit": 73.7
+     },
+     ">=9": {
+      "n": 453,
+      "hit": 75.7
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 3710,
+      "hit": 63.9
+     },
+     "right side": {
+      "n": 2944,
+      "hit": 66.5
+     },
+     ">=10%": {
+      "n": 2308,
+      "hit": 68.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 3710,
+      "hit": 63.9
+     },
+     "right side": {
+      "n": 2963,
+      "hit": 67.1
+     },
+     ">=10%": {
+      "n": 2280,
+      "hit": 69.5
+     }
+    },
+    "season": {
+     "any": {
+      "n": 3710,
+      "hit": 63.9
+     },
+     "right side": {
+      "n": 2974,
+      "hit": 66.3
+     },
+     ">=5%": {
+      "n": 2647,
+      "hit": 67.1
+     },
+     ">=10%": {
+      "n": 2247,
+      "hit": 68.1
+     }
+    },
+    "off": {
+     "any": {
+      "n": 3710,
+      "hit": 63.9
+     },
+     "favorable": {
+      "n": 1621,
+      "hit": 62.6
+     },
+     "not unfavorable": {
+      "n": 2257,
+      "hit": 63.9
+     }
+    },
+    "def": {
+     "any": {
+      "n": 3710,
+      "hit": 63.9
+     },
+     "favorable": {
+      "n": 1441,
+      "hit": 62.5
+     },
+     "not unfavorable": {
+      "n": 2163,
+      "hit": 64.8
+     }
+    },
+    "min": {
+     "any": {
+      "n": 3710,
+      "hit": 63.9
+     },
+     "not down 2+": {
+      "n": 3334,
+      "hit": 63.9
+     },
+     "down 2+": {
+      "n": 376,
+      "hit": 64.6
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 3710,
+      "hit": 63.9
+     },
+     "favorable": {
+      "n": 960,
+      "hit": 65.8
+     },
+     "not unfavorable": {
+      "n": 2107,
+      "hit": 64.4
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "personalfouls",
+   "side": "OVER",
+   "n": 407,
+   "base": 48.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 407,
+      "hit": 48.9
+     },
+     ">=4": {
+      "n": 100,
+      "hit": 47.0
+     },
+     "=5": {
+      "n": 17,
+      "hit": 58.8
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 407,
+      "hit": 48.9
+     },
+     ">=7": {
+      "n": 113,
+      "hit": 50.4
+     },
+     ">=8": {
+      "n": 42,
+      "hit": 52.4
+     },
+     ">=9": {
+      "n": 16,
+      "hit": 50.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 407,
+      "hit": 48.9
+     },
+     "right side": {
+      "n": 263,
+      "hit": 51.0
+     },
+     ">=10%": {
+      "n": 208,
+      "hit": 51.4
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 407,
+      "hit": 48.9
+     },
+     "right side": {
+      "n": 270,
+      "hit": 51.1
+     },
+     ">=10%": {
+      "n": 218,
+      "hit": 52.3
+     }
+    },
+    "season": {
+     "any": {
+      "n": 407,
+      "hit": 48.9
+     },
+     "right side": {
+      "n": 295,
+      "hit": 47.8
+     },
+     ">=5%": {
+      "n": 270,
+      "hit": 48.5
+     },
+     ">=10%": {
+      "n": 232,
+      "hit": 49.6
+     }
+    },
+    "off": {
+     "any": {
+      "n": 407,
+      "hit": 48.9
+     },
+     "favorable": {
+      "n": 188,
+      "hit": 45.7
+     },
+     "not unfavorable": {
+      "n": 261,
+      "hit": 48.7
+     }
+    },
+    "def": {
+     "any": {
+      "n": 407,
+      "hit": 48.9
+     },
+     "favorable": {
+      "n": 182,
+      "hit": 51.1
+     },
+     "not unfavorable": {
+      "n": 262,
+      "hit": 49.2
+     }
+    },
+    "min": {
+     "any": {
+      "n": 407,
+      "hit": 48.9
+     },
+     "not down 2+": {
+      "n": 356,
+      "hit": 47.8
+     },
+     "down 2+": {
+      "n": 51,
+      "hit": 56.9
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 407,
+      "hit": 48.9
+     },
+     "favorable": {
+      "n": 75,
+      "hit": 52.0
+     },
+     "not unfavorable": {
+      "n": 201,
+      "hit": 50.2
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "pr",
+   "side": "OVER",
+   "n": 4553,
+   "base": 64.2,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 4553,
+      "hit": 64.2
+     },
+     ">=4": {
+      "n": 1974,
+      "hit": 69.6
+     },
+     "=5": {
+      "n": 638,
+      "hit": 71.3
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 4553,
+      "hit": 64.2
+     },
+     ">=7": {
+      "n": 2140,
+      "hit": 70.2
+     },
+     ">=8": {
+      "n": 1254,
+      "hit": 73.1
+     },
+     ">=9": {
+      "n": 573,
+      "hit": 76.1
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 4553,
+      "hit": 64.2
+     },
+     "right side": {
+      "n": 3658,
+      "hit": 66.1
+     },
+     ">=10%": {
+      "n": 2874,
+      "hit": 67.6
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 4553,
+      "hit": 64.2
+     },
+     "right side": {
+      "n": 3706,
+      "hit": 66.5
+     },
+     ">=10%": {
+      "n": 2830,
+      "hit": 68.7
+     }
+    },
+    "season": {
+     "any": {
+      "n": 4553,
+      "hit": 64.2
+     },
+     "right side": {
+      "n": 3718,
+      "hit": 65.6
+     },
+     ">=5%": {
+      "n": 3329,
+      "hit": 66.4
+     },
+     ">=10%": {
+      "n": 2836,
+      "hit": 67.5
+     }
+    },
+    "off": {
+     "any": {
+      "n": 4553,
+      "hit": 64.2
+     },
+     "favorable": {
+      "n": 1976,
+      "hit": 64.0
+     },
+     "not unfavorable": {
+      "n": 2846,
+      "hit": 64.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 4553,
+      "hit": 64.2
+     },
+     "favorable": {
+      "n": 1826,
+      "hit": 63.6
+     },
+     "not unfavorable": {
+      "n": 2696,
+      "hit": 63.9
+     }
+    },
+    "min": {
+     "any": {
+      "n": 4553,
+      "hit": 64.2
+     },
+     "not down 2+": {
+      "n": 4074,
+      "hit": 64.0
+     },
+     "down 2+": {
+      "n": 479,
+      "hit": 65.1
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 4553,
+      "hit": 64.2
+     },
+     "favorable": {
+      "n": 1214,
+      "hit": 66.7
+     },
+     "not unfavorable": {
+      "n": 2627,
+      "hit": 64.9
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "pra",
+   "side": "OVER",
+   "n": 4942,
+   "base": 63.4,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 4942,
+      "hit": 63.4
+     },
+     ">=4": {
+      "n": 2096,
+      "hit": 67.6
+     },
+     "=5": {
+      "n": 593,
+      "hit": 70.7
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 4942,
+      "hit": 63.4
+     },
+     ">=7": {
+      "n": 2266,
+      "hit": 69.0
+     },
+     ">=8": {
+      "n": 1311,
+      "hit": 70.8
+     },
+     ">=9": {
+      "n": 502,
+      "hit": 72.7
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 4942,
+      "hit": 63.4
+     },
+     "right side": {
+      "n": 3875,
+      "hit": 65.0
+     },
+     ">=10%": {
+      "n": 2841,
+      "hit": 67.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 4942,
+      "hit": 63.4
+     },
+     "right side": {
+      "n": 3897,
+      "hit": 65.2
+     },
+     ">=10%": {
+      "n": 2764,
+      "hit": 68.4
+     }
+    },
+    "season": {
+     "any": {
+      "n": 4942,
+      "hit": 63.4
+     },
+     "right side": {
+      "n": 3964,
+      "hit": 64.6
+     },
+     ">=5%": {
+      "n": 3398,
+      "hit": 65.9
+     },
+     ">=10%": {
+      "n": 2786,
+      "hit": 67.3
+     }
+    },
+    "off": {
+     "any": {
+      "n": 4942,
+      "hit": 63.4
+     },
+     "favorable": {
+      "n": 2158,
+      "hit": 62.4
+     },
+     "not unfavorable": {
+      "n": 3053,
+      "hit": 63.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 4942,
+      "hit": 63.4
+     },
+     "favorable": {
+      "n": 1937,
+      "hit": 63.6
+     },
+     "not unfavorable": {
+      "n": 2899,
+      "hit": 64.6
+     }
+    },
+    "min": {
+     "any": {
+      "n": 4942,
+      "hit": 63.4
+     },
+     "not down 2+": {
+      "n": 4429,
+      "hit": 63.4
+     },
+     "down 2+": {
+      "n": 513,
+      "hit": 63.5
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 4942,
+      "hit": 63.4
+     },
+     "favorable": {
+      "n": 1226,
+      "hit": 66.1
+     },
+     "not unfavorable": {
+      "n": 2736,
+      "hit": 63.9
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "pts",
+   "side": "OVER",
+   "n": 7229,
+   "base": 66.2,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 7229,
+      "hit": 66.2
+     },
+     ">=4": {
+      "n": 3515,
+      "hit": 70.4
+     },
+     "=5": {
+      "n": 1256,
+      "hit": 72.6
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 7229,
+      "hit": 66.2
+     },
+     ">=7": {
+      "n": 3980,
+      "hit": 71.0
+     },
+     ">=8": {
+      "n": 2451,
+      "hit": 73.0
+     },
+     ">=9": {
+      "n": 1150,
+      "hit": 77.1
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 7229,
+      "hit": 66.2
+     },
+     "right side": {
+      "n": 6149,
+      "hit": 67.7
+     },
+     ">=10%": {
+      "n": 5377,
+      "hit": 68.7
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 7229,
+      "hit": 66.2
+     },
+     "right side": {
+      "n": 6264,
+      "hit": 68.0
+     },
+     ">=10%": {
+      "n": 5405,
+      "hit": 69.7
+     }
+    },
+    "season": {
+     "any": {
+      "n": 7229,
+      "hit": 66.2
+     },
+     "right side": {
+      "n": 6268,
+      "hit": 67.7
+     },
+     ">=5%": {
+      "n": 5891,
+      "hit": 68.1
+     },
+     ">=10%": {
+      "n": 5400,
+      "hit": 68.9
+     }
+    },
+    "off": {
+     "any": {
+      "n": 7229,
+      "hit": 66.2
+     },
+     "favorable": {
+      "n": 3154,
+      "hit": 66.9
+     },
+     "not unfavorable": {
+      "n": 4446,
+      "hit": 67.1
+     }
+    },
+    "def": {
+     "any": {
+      "n": 7229,
+      "hit": 66.2
+     },
+     "favorable": {
+      "n": 2934,
+      "hit": 65.5
+     },
+     "not unfavorable": {
+      "n": 4383,
+      "hit": 66.4
+     }
+    },
+    "min": {
+     "any": {
+      "n": 7229,
+      "hit": 66.2
+     },
+     "not down 2+": {
+      "n": 6522,
+      "hit": 66.1
+     },
+     "down 2+": {
+      "n": 707,
+      "hit": 67.2
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 7229,
+      "hit": 66.2
+     },
+     "favorable": {
+      "n": 1821,
+      "hit": 67.4
+     },
+     "not unfavorable": {
+      "n": 4046,
+      "hit": 66.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "ra",
+   "side": "OVER",
+   "n": 3655,
+   "base": 64.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 3655,
+      "hit": 64.9
+     },
+     ">=4": {
+      "n": 1601,
+      "hit": 69.4
+     },
+     "=5": {
+      "n": 475,
+      "hit": 70.3
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 3655,
+      "hit": 64.9
+     },
+     ">=7": {
+      "n": 1750,
+      "hit": 69.7
+     },
+     ">=8": {
+      "n": 991,
+      "hit": 72.5
+     },
+     ">=9": {
+      "n": 396,
+      "hit": 71.7
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 3655,
+      "hit": 64.9
+     },
+     "right side": {
+      "n": 3000,
+      "hit": 65.6
+     },
+     ">=10%": {
+      "n": 2417,
+      "hit": 67.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 3655,
+      "hit": 64.9
+     },
+     "right side": {
+      "n": 3073,
+      "hit": 65.9
+     },
+     ">=10%": {
+      "n": 2435,
+      "hit": 68.3
+     }
+    },
+    "season": {
+     "any": {
+      "n": 3655,
+      "hit": 64.9
+     },
+     "right side": {
+      "n": 3148,
+      "hit": 65.9
+     },
+     ">=5%": {
+      "n": 2862,
+      "hit": 66.6
+     },
+     ">=10%": {
+      "n": 2506,
+      "hit": 68.2
+     }
+    },
+    "off": {
+     "any": {
+      "n": 3655,
+      "hit": 64.9
+     },
+     "favorable": {
+      "n": 1629,
+      "hit": 62.9
+     },
+     "not unfavorable": {
+      "n": 2329,
+      "hit": 62.6
+     }
+    },
+    "def": {
+     "any": {
+      "n": 3655,
+      "hit": 64.9
+     },
+     "favorable": {
+      "n": 1454,
+      "hit": 67.4
+     },
+     "not unfavorable": {
+      "n": 2213,
+      "hit": 66.6
+     }
+    },
+    "min": {
+     "any": {
+      "n": 3655,
+      "hit": 64.9
+     },
+     "not down 2+": {
+      "n": 3290,
+      "hit": 65.2
+     },
+     "down 2+": {
+      "n": 365,
+      "hit": 62.2
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 3655,
+      "hit": 64.9
+     },
+     "favorable": {
+      "n": 900,
+      "hit": 66.8
+     },
+     "not unfavorable": {
+      "n": 2022,
+      "hit": 64.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "reb",
+   "side": "OVER",
+   "n": 4964,
+   "base": 68.4,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 4964,
+      "hit": 68.4
+     },
+     ">=4": {
+      "n": 2652,
+      "hit": 72.3
+     },
+     "=5": {
+      "n": 860,
+      "hit": 73.6
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 4964,
+      "hit": 68.4
+     },
+     ">=7": {
+      "n": 2956,
+      "hit": 73.0
+     },
+     ">=8": {
+      "n": 1895,
+      "hit": 74.8
+     },
+     ">=9": {
+      "n": 850,
+      "hit": 74.9
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 4964,
+      "hit": 68.4
+     },
+     "right side": {
+      "n": 4383,
+      "hit": 69.3
+     },
+     ">=10%": {
+      "n": 3936,
+      "hit": 70.4
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 4964,
+      "hit": 68.4
+     },
+     "right side": {
+      "n": 4507,
+      "hit": 69.2
+     },
+     ">=10%": {
+      "n": 4062,
+      "hit": 70.3
+     }
+    },
+    "season": {
+     "any": {
+      "n": 4964,
+      "hit": 68.4
+     },
+     "right side": {
+      "n": 4525,
+      "hit": 69.3
+     },
+     ">=5%": {
+      "n": 4357,
+      "hit": 69.7
+     },
+     ">=10%": {
+      "n": 4125,
+      "hit": 70.2
+     }
+    },
+    "off": {
+     "any": {
+      "n": 4964,
+      "hit": 68.4
+     },
+     "favorable": {
+      "n": 2112,
+      "hit": 67.1
+     },
+     "not unfavorable": {
+      "n": 3151,
+      "hit": 67.6
+     }
+    },
+    "def": {
+     "any": {
+      "n": 4964,
+      "hit": 68.4
+     },
+     "favorable": {
+      "n": 2002,
+      "hit": 69.6
+     },
+     "not unfavorable": {
+      "n": 2975,
+      "hit": 69.5
+     }
+    },
+    "min": {
+     "any": {
+      "n": 4964,
+      "hit": 68.4
+     },
+     "not down 2+": {
+      "n": 4484,
+      "hit": 68.5
+     },
+     "down 2+": {
+      "n": 480,
+      "hit": 67.3
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 4964,
+      "hit": 68.4
+     },
+     "favorable": {
+      "n": 1188,
+      "hit": 70.0
+     },
+     "not unfavorable": {
+      "n": 2703,
+      "hit": 69.6
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "stl",
+   "side": "OVER",
+   "n": 1722,
+   "base": 62.3,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1722,
+      "hit": 62.3
+     },
+     ">=4": {
+      "n": 741,
+      "hit": 64.2
+     },
+     "=5": {
+      "n": 205,
+      "hit": 66.3
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1722,
+      "hit": 62.3
+     },
+     ">=7": {
+      "n": 831,
+      "hit": 65.5
+     },
+     ">=8": {
+      "n": 431,
+      "hit": 69.6
+     },
+     ">=9": {
+      "n": 158,
+      "hit": 72.8
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1722,
+      "hit": 62.3
+     },
+     "right side": {
+      "n": 1531,
+      "hit": 62.4
+     },
+     ">=10%": {
+      "n": 1531,
+      "hit": 62.4
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1722,
+      "hit": 62.3
+     },
+     "right side": {
+      "n": 1571,
+      "hit": 63.1
+     },
+     ">=10%": {
+      "n": 1570,
+      "hit": 63.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1722,
+      "hit": 62.3
+     },
+     "right side": {
+      "n": 1583,
+      "hit": 63.0
+     },
+     ">=5%": {
+      "n": 1583,
+      "hit": 63.0
+     },
+     ">=10%": {
+      "n": 1569,
+      "hit": 63.2
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1722,
+      "hit": 62.3
+     },
+     "favorable": {
+      "n": 745,
+      "hit": 64.6
+     },
+     "not unfavorable": {
+      "n": 1091,
+      "hit": 64.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1722,
+      "hit": 62.3
+     },
+     "favorable": {
+      "n": 738,
+      "hit": 64.5
+     },
+     "not unfavorable": {
+      "n": 1090,
+      "hit": 62.8
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1722,
+      "hit": 62.3
+     },
+     "not down 2+": {
+      "n": 1566,
+      "hit": 62.5
+     },
+     "down 2+": {
+      "n": 156,
+      "hit": 60.3
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1722,
+      "hit": 62.3
+     },
+     "favorable": {
+      "n": 401,
+      "hit": 61.1
+     },
+     "not unfavorable": {
+      "n": 942,
+      "hit": 63.2
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "stocks",
+   "side": "OVER",
+   "n": 779,
+   "base": 54.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 779,
+      "hit": 54.0
+     },
+     ">=4": {
+      "n": 241,
+      "hit": 55.2
+     },
+     "=5": {
+      "n": 51,
+      "hit": 52.9
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 779,
+      "hit": 54.0
+     },
+     ">=7": {
+      "n": 260,
+      "hit": 58.8
+     },
+     ">=8": {
+      "n": 114,
+      "hit": 58.8
+     },
+     ">=9": {
+      "n": 26,
+      "hit": 61.5
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 779,
+      "hit": 54.0
+     },
+     "right side": {
+      "n": 621,
+      "hit": 54.8
+     },
+     ">=10%": {
+      "n": 557,
+      "hit": 54.6
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 779,
+      "hit": 54.0
+     },
+     "right side": {
+      "n": 638,
+      "hit": 55.2
+     },
+     ">=10%": {
+      "n": 596,
+      "hit": 55.9
+     }
+    },
+    "season": {
+     "any": {
+      "n": 779,
+      "hit": 54.0
+     },
+     "right side": {
+      "n": 659,
+      "hit": 53.9
+     },
+     ">=5%": {
+      "n": 651,
+      "hit": 53.9
+     },
+     ">=10%": {
+      "n": 627,
+      "hit": 53.4
+     }
+    },
+    "off": {
+     "any": {
+      "n": 779,
+      "hit": 54.0
+     },
+     "favorable": {
+      "n": 311,
+      "hit": 53.1
+     },
+     "not unfavorable": {
+      "n": 458,
+      "hit": 52.4
+     }
+    },
+    "def": {
+     "any": {
+      "n": 779,
+      "hit": 54.0
+     },
+     "favorable": {
+      "n": 314,
+      "hit": 53.8
+     },
+     "not unfavorable": {
+      "n": 465,
+      "hit": 52.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 779,
+      "hit": 54.0
+     },
+     "not down 2+": {
+      "n": 698,
+      "hit": 53.6
+     },
+     "down 2+": {
+      "n": 81,
+      "hit": 58.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 779,
+      "hit": 54.0
+     },
+     "favorable": {
+      "n": 216,
+      "hit": 54.2
+     },
+     "not unfavorable": {
+      "n": 442,
+      "hit": 53.6
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "tov",
+   "side": "OVER",
+   "n": 852,
+   "base": 61.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 852,
+      "hit": 61.0
+     },
+     ">=4": {
+      "n": 289,
+      "hit": 63.0
+     },
+     "=5": {
+      "n": 73,
+      "hit": 64.4
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 852,
+      "hit": 61.0
+     },
+     ">=7": {
+      "n": 319,
+      "hit": 61.4
+     },
+     ">=8": {
+      "n": 154,
+      "hit": 63.6
+     },
+     ">=9": {
+      "n": 47,
+      "hit": 68.1
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 852,
+      "hit": 61.0
+     },
+     "right side": {
+      "n": 672,
+      "hit": 62.2
+     },
+     ">=10%": {
+      "n": 627,
+      "hit": 61.9
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 852,
+      "hit": 61.0
+     },
+     "right side": {
+      "n": 705,
+      "hit": 63.0
+     },
+     ">=10%": {
+      "n": 664,
+      "hit": 63.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 852,
+      "hit": 61.0
+     },
+     "right side": {
+      "n": 710,
+      "hit": 62.8
+     },
+     ">=5%": {
+      "n": 701,
+      "hit": 62.8
+     },
+     ">=10%": {
+      "n": 677,
+      "hit": 63.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 852,
+      "hit": 61.0
+     },
+     "favorable": {
+      "n": 345,
+      "hit": 62.9
+     },
+     "not unfavorable": {
+      "n": 529,
+      "hit": 63.5
+     }
+    },
+    "def": {
+     "any": {
+      "n": 852,
+      "hit": 61.0
+     },
+     "favorable": {
+      "n": 339,
+      "hit": 61.7
+     },
+     "not unfavorable": {
+      "n": 502,
+      "hit": 59.8
+     }
+    },
+    "min": {
+     "any": {
+      "n": 852,
+      "hit": 61.0
+     },
+     "not down 2+": {
+      "n": 759,
+      "hit": 60.7
+     },
+     "down 2+": {
+      "n": 93,
+      "hit": 63.4
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 852,
+      "hit": 61.0
+     },
+     "favorable": {
+      "n": 213,
+      "hit": 58.2
+     },
+     "not unfavorable": {
+      "n": 467,
+      "hit": 61.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "twopointersattempted",
+   "side": "OVER",
+   "n": 337,
+   "base": 55.2,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 337,
+      "hit": 55.2
+     },
+     ">=4": {
+      "n": 86,
+      "hit": 53.5
+     },
+     "=5": {
+      "n": 23,
+      "hit": 60.9
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 337,
+      "hit": 55.2
+     },
+     ">=7": {
+      "n": 88,
+      "hit": 59.1
+     },
+     ">=8": {
+      "n": 37,
+      "hit": 54.1
+     },
+     ">=9": {
+      "n": 14,
+      "hit": 42.9
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 337,
+      "hit": 55.2
+     },
+     "right side": {
+      "n": 229,
+      "hit": 56.3
+     },
+     ">=10%": {
+      "n": 180,
+      "hit": 53.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 337,
+      "hit": 55.2
+     },
+     "right side": {
+      "n": 228,
+      "hit": 59.2
+     },
+     ">=10%": {
+      "n": 166,
+      "hit": 59.0
+     }
+    },
+    "season": {
+     "any": {
+      "n": 337,
+      "hit": 55.2
+     },
+     "right side": {
+      "n": 218,
+      "hit": 58.3
+     },
+     ">=5%": {
+      "n": 194,
+      "hit": 59.8
+     },
+     ">=10%": {
+      "n": 164,
+      "hit": 59.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 337,
+      "hit": 55.2
+     },
+     "favorable": {
+      "n": 152,
+      "hit": 55.3
+     },
+     "not unfavorable": {
+      "n": 209,
+      "hit": 53.6
+     }
+    },
+    "def": {
+     "any": {
+      "n": 337,
+      "hit": 55.2
+     },
+     "favorable": {
+      "n": 138,
+      "hit": 50.7
+     },
+     "not unfavorable": {
+      "n": 192,
+      "hit": 53.1
+     }
+    },
+    "min": {
+     "any": {
+      "n": 337,
+      "hit": 55.2
+     },
+     "not down 2+": {
+      "n": 310,
+      "hit": 55.8
+     },
+     "down 2+": {
+      "n": 27,
+      "hit": 48.1
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 337,
+      "hit": 55.2
+     },
+     "favorable": {
+      "n": 101,
+      "hit": 54.5
+     },
+     "not unfavorable": {
+      "n": 196,
+      "hit": 51.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Goblin",
+   "prop": "twopointersmade",
+   "side": "OVER",
+   "n": 445,
+   "base": 53.7,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 445,
+      "hit": 53.7
+     },
+     ">=4": {
+      "n": 125,
+      "hit": 56.8
+     },
+     "=5": {
+      "n": 29,
+      "hit": 65.5
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 445,
+      "hit": 53.7
+     },
+     ">=7": {
+      "n": 118,
+      "hit": 59.3
+     },
+     ">=8": {
+      "n": 52,
+      "hit": 65.4
+     },
+     ">=9": {
+      "n": 12,
+      "hit": 75.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 445,
+      "hit": 53.7
+     },
+     "right side": {
+      "n": 315,
+      "hit": 53.3
+     },
+     ">=10%": {
+      "n": 263,
+      "hit": 52.9
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 445,
+      "hit": 53.7
+     },
+     "right side": {
+      "n": 325,
+      "hit": 54.8
+     },
+     ">=10%": {
+      "n": 285,
+      "hit": 57.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 445,
+      "hit": 53.7
+     },
+     "right side": {
+      "n": 329,
+      "hit": 55.6
+     },
+     ">=5%": {
+      "n": 300,
+      "hit": 55.3
+     },
+     ">=10%": {
+      "n": 265,
+      "hit": 56.6
+     }
+    },
+    "off": {
+     "any": {
+      "n": 445,
+      "hit": 53.7
+     },
+     "favorable": {
+      "n": 188,
+      "hit": 56.4
+     },
+     "not unfavorable": {
+      "n": 284,
+      "hit": 55.3
+     }
+    },
+    "def": {
+     "any": {
+      "n": 445,
+      "hit": 53.7
+     },
+     "favorable": {
+      "n": 176,
+      "hit": 56.2
+     },
+     "not unfavorable": {
+      "n": 271,
+      "hit": 55.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 445,
+      "hit": 53.7
+     },
+     "not down 2+": {
+      "n": 408,
+      "hit": 53.9
+     },
+     "down 2+": {
+      "n": 37,
+      "hit": 51.4
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 445,
+      "hit": 53.7
+     },
+     "favorable": {
+      "n": 115,
+      "hit": 54.8
+     },
+     "not unfavorable": {
+      "n": 249,
+      "hit": 52.2
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "3ptattempted",
+   "side": "OVER",
+   "n": 591,
+   "base": 50.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 591,
+      "hit": 50.9
+     },
+     ">=4": {
+      "n": 96,
+      "hit": 54.2
+     },
+     "=5": {
+      "n": 11,
+      "hit": 45.5
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 591,
+      "hit": 50.9
+     },
+     ">=7": {
+      "n": 84,
+      "hit": 67.9
+     },
+     ">=8": {
+      "n": 37,
+      "hit": 67.6
+     },
+     ">=9": {
+      "n": 8,
+      "hit": 75.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 591,
+      "hit": 50.9
+     },
+     "right side": {
+      "n": 314,
+      "hit": 54.5
+     },
+     ">=10%": {
+      "n": 189,
+      "hit": 55.6
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 591,
+      "hit": 50.9
+     },
+     "right side": {
+      "n": 316,
+      "hit": 53.8
+     },
+     ">=10%": {
+      "n": 156,
+      "hit": 59.0
+     }
+    },
+    "season": {
+     "any": {
+      "n": 591,
+      "hit": 50.9
+     },
+     "right side": {
+      "n": 305,
+      "hit": 54.1
+     },
+     ">=5%": {
+      "n": 220,
+      "hit": 55.9
+     },
+     ">=10%": {
+      "n": 146,
+      "hit": 56.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 591,
+      "hit": 50.9
+     },
+     "favorable": {
+      "n": 248,
+      "hit": 48.4
+     },
+     "not unfavorable": {
+      "n": 378,
+      "hit": 50.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 591,
+      "hit": 50.9
+     },
+     "favorable": {
+      "n": 265,
+      "hit": 50.2
+     },
+     "not unfavorable": {
+      "n": 354,
+      "hit": 50.8
+     }
+    },
+    "min": {
+     "any": {
+      "n": 591,
+      "hit": 50.9
+     },
+     "not down 2+": {
+      "n": 539,
+      "hit": 51.2
+     },
+     "down 2+": {
+      "n": 52,
+      "hit": 48.1
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 591,
+      "hit": 50.9
+     },
+     "favorable": {
+      "n": 149,
+      "hit": 51.7
+     },
+     "not unfavorable": {
+      "n": 313,
+      "hit": 52.1
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "3ptattempted",
+   "side": "UNDER",
+   "n": 591,
+   "base": 49.1,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 591,
+      "hit": 49.1
+     },
+     ">=4": {
+      "n": 84,
+      "hit": 65.5
+     },
+     "=5": {
+      "n": 6,
+      "hit": 16.7
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 591,
+      "hit": 49.1
+     },
+     ">=7": {
+      "n": 91,
+      "hit": 59.3
+     },
+     ">=8": {
+      "n": 29,
+      "hit": 58.6
+     },
+     ">=9": {
+      "n": 7,
+      "hit": 42.9
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 591,
+      "hit": 49.1
+     },
+     "right side": {
+      "n": 260,
+      "hit": 53.5
+     },
+     ">=10%": {
+      "n": 127,
+      "hit": 58.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 591,
+      "hit": 49.1
+     },
+     "right side": {
+      "n": 243,
+      "hit": 53.9
+     },
+     ">=10%": {
+      "n": 101,
+      "hit": 59.4
+     }
+    },
+    "season": {
+     "any": {
+      "n": 591,
+      "hit": 49.1
+     },
+     "right side": {
+      "n": 261,
+      "hit": 52.5
+     },
+     ">=5%": {
+      "n": 189,
+      "hit": 50.3
+     },
+     ">=10%": {
+      "n": 114,
+      "hit": 58.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 591,
+      "hit": 49.1
+     },
+     "favorable": {
+      "n": 213,
+      "hit": 47.4
+     },
+     "not unfavorable": {
+      "n": 343,
+      "hit": 47.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 591,
+      "hit": 49.1
+     },
+     "favorable": {
+      "n": 237,
+      "hit": 48.9
+     },
+     "not unfavorable": {
+      "n": 326,
+      "hit": 48.5
+     }
+    },
+    "min": {
+     "any": {
+      "n": 591,
+      "hit": 49.1
+     },
+     "not down 2+": {
+      "n": 539,
+      "hit": 48.8
+     },
+     "down 2+": {
+      "n": 52,
+      "hit": 51.9
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 591,
+      "hit": 49.1
+     },
+     "favorable": {
+      "n": 278,
+      "hit": 50.4
+     },
+     "not unfavorable": {
+      "n": 442,
+      "hit": 49.3
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "3ptmade",
+   "side": "OVER",
+   "n": 519,
+   "base": 50.7,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 519,
+      "hit": 50.7
+     },
+     ">=4": {
+      "n": 114,
+      "hit": 57.9
+     },
+     "=5": {
+      "n": 23,
+      "hit": 52.2
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 519,
+      "hit": 50.7
+     },
+     ">=7": {
+      "n": 82,
+      "hit": 54.9
+     },
+     ">=8": {
+      "n": 29,
+      "hit": 69.0
+     },
+     ">=9": {
+      "n": 7,
+      "hit": 71.4
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 519,
+      "hit": 50.7
+     },
+     "right side": {
+      "n": 316,
+      "hit": 51.6
+     },
+     ">=10%": {
+      "n": 252,
+      "hit": 50.4
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 519,
+      "hit": 50.7
+     },
+     "right side": {
+      "n": 291,
+      "hit": 50.9
+     },
+     ">=10%": {
+      "n": 237,
+      "hit": 51.9
+     }
+    },
+    "season": {
+     "any": {
+      "n": 519,
+      "hit": 50.7
+     },
+     "right side": {
+      "n": 301,
+      "hit": 50.2
+     },
+     ">=5%": {
+      "n": 271,
+      "hit": 49.4
+     },
+     ">=10%": {
+      "n": 243,
+      "hit": 50.6
+     }
+    },
+    "off": {
+     "any": {
+      "n": 519,
+      "hit": 50.7
+     },
+     "favorable": {
+      "n": 211,
+      "hit": 53.1
+     },
+     "not unfavorable": {
+      "n": 313,
+      "hit": 50.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 519,
+      "hit": 50.7
+     },
+     "favorable": {
+      "n": 215,
+      "hit": 55.3
+     },
+     "not unfavorable": {
+      "n": 317,
+      "hit": 53.3
+     }
+    },
+    "min": {
+     "any": {
+      "n": 519,
+      "hit": 50.7
+     },
+     "not down 2+": {
+      "n": 469,
+      "hit": 51.4
+     },
+     "down 2+": {
+      "n": 50,
+      "hit": 44.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 519,
+      "hit": 50.7
+     },
+     "favorable": {
+      "n": 133,
+      "hit": 45.1
+     },
+     "not unfavorable": {
+      "n": 292,
+      "hit": 48.3
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "3ptmade",
+   "side": "UNDER",
+   "n": 519,
+   "base": 49.3,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 519,
+      "hit": 49.3
+     },
+     ">=4": {
+      "n": 94,
+      "hit": 50.0
+     },
+     "=5": {
+      "n": 7,
+      "hit": 28.6
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 519,
+      "hit": 49.3
+     },
+     ">=7": {
+      "n": 93,
+      "hit": 49.5
+     },
+     ">=8": {
+      "n": 24,
+      "hit": 41.7
+     },
+     ">=9": {
+      "n": 7,
+      "hit": 42.9
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 519,
+      "hit": 49.3
+     },
+     "right side": {
+      "n": 203,
+      "hit": 50.7
+     },
+     ">=10%": {
+      "n": 144,
+      "hit": 49.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 519,
+      "hit": 49.3
+     },
+     "right side": {
+      "n": 185,
+      "hit": 49.7
+     },
+     ">=10%": {
+      "n": 122,
+      "hit": 48.4
+     }
+    },
+    "season": {
+     "any": {
+      "n": 519,
+      "hit": 49.3
+     },
+     "right side": {
+      "n": 182,
+      "hit": 50.5
+     },
+     ">=5%": {
+      "n": 158,
+      "hit": 50.0
+     },
+     ">=10%": {
+      "n": 129,
+      "hit": 49.6
+     }
+    },
+    "off": {
+     "any": {
+      "n": 519,
+      "hit": 49.3
+     },
+     "favorable": {
+      "n": 206,
+      "hit": 48.5
+     },
+     "not unfavorable": {
+      "n": 308,
+      "hit": 51.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 519,
+      "hit": 49.3
+     },
+     "favorable": {
+      "n": 202,
+      "hit": 53.5
+     },
+     "not unfavorable": {
+      "n": 304,
+      "hit": 52.6
+     }
+    },
+    "min": {
+     "any": {
+      "n": 519,
+      "hit": 49.3
+     },
+     "not down 2+": {
+      "n": 469,
+      "hit": 48.6
+     },
+     "down 2+": {
+      "n": 50,
+      "hit": 56.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 519,
+      "hit": 49.3
+     },
+     "favorable": {
+      "n": 227,
+      "hit": 46.3
+     },
+     "not unfavorable": {
+      "n": 386,
+      "hit": 47.4
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "ast",
+   "side": "OVER",
+   "n": 741,
+   "base": 48.6,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 741,
+      "hit": 48.6
+     },
+     ">=4": {
+      "n": 114,
+      "hit": 53.5
+     },
+     "=5": {
+      "n": 20,
+      "hit": 65.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 741,
+      "hit": 48.6
+     },
+     ">=7": {
+      "n": 90,
+      "hit": 60.0
+     },
+     ">=8": {
+      "n": 20,
+      "hit": 45.0
+     },
+     ">=9": {
+      "n": 3,
+      "hit": 33.3
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 741,
+      "hit": 48.6
+     },
+     "right side": {
+      "n": 403,
+      "hit": 49.4
+     },
+     ">=10%": {
+      "n": 286,
+      "hit": 50.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 741,
+      "hit": 48.6
+     },
+     "right side": {
+      "n": 402,
+      "hit": 51.0
+     },
+     ">=10%": {
+      "n": 260,
+      "hit": 50.8
+     }
+    },
+    "season": {
+     "any": {
+      "n": 741,
+      "hit": 48.6
+     },
+     "right side": {
+      "n": 394,
+      "hit": 50.3
+     },
+     ">=5%": {
+      "n": 332,
+      "hit": 51.8
+     },
+     ">=10%": {
+      "n": 261,
+      "hit": 51.7
+     }
+    },
+    "off": {
+     "any": {
+      "n": 741,
+      "hit": 48.6
+     },
+     "favorable": {
+      "n": 315,
+      "hit": 49.2
+     },
+     "not unfavorable": {
+      "n": 478,
+      "hit": 49.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 741,
+      "hit": 48.6
+     },
+     "favorable": {
+      "n": 284,
+      "hit": 51.1
+     },
+     "not unfavorable": {
+      "n": 429,
+      "hit": 49.2
+     }
+    },
+    "min": {
+     "any": {
+      "n": 741,
+      "hit": 48.6
+     },
+     "not down 2+": {
+      "n": 673,
+      "hit": 48.6
+     },
+     "down 2+": {
+      "n": 68,
+      "hit": 48.5
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 741,
+      "hit": 48.6
+     },
+     "favorable": {
+      "n": 184,
+      "hit": 45.1
+     },
+     "not unfavorable": {
+      "n": 391,
+      "hit": 46.0
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "ast",
+   "side": "UNDER",
+   "n": 741,
+   "base": 51.4,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 741,
+      "hit": 51.4
+     },
+     ">=4": {
+      "n": 126,
+      "hit": 54.8
+     },
+     "=5": {
+      "n": 24,
+      "hit": 54.2
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 741,
+      "hit": 51.4
+     },
+     ">=7": {
+      "n": 155,
+      "hit": 52.3
+     },
+     ">=8": {
+      "n": 47,
+      "hit": 53.2
+     },
+     ">=9": {
+      "n": 13,
+      "hit": 53.8
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 741,
+      "hit": 51.4
+     },
+     "right side": {
+      "n": 332,
+      "hit": 52.1
+     },
+     ">=10%": {
+      "n": 208,
+      "hit": 55.8
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 741,
+      "hit": 51.4
+     },
+     "right side": {
+      "n": 302,
+      "hit": 54.3
+     },
+     ">=10%": {
+      "n": 177,
+      "hit": 54.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 741,
+      "hit": 51.4
+     },
+     "right side": {
+      "n": 312,
+      "hit": 52.9
+     },
+     ">=5%": {
+      "n": 227,
+      "hit": 52.0
+     },
+     ">=10%": {
+      "n": 168,
+      "hit": 54.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 741,
+      "hit": 51.4
+     },
+     "favorable": {
+      "n": 263,
+      "hit": 52.1
+     },
+     "not unfavorable": {
+      "n": 426,
+      "hit": 51.9
+     }
+    },
+    "def": {
+     "any": {
+      "n": 741,
+      "hit": 51.4
+     },
+     "favorable": {
+      "n": 312,
+      "hit": 52.2
+     },
+     "not unfavorable": {
+      "n": 457,
+      "hit": 53.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 741,
+      "hit": 51.4
+     },
+     "not down 2+": {
+      "n": 673,
+      "hit": 51.4
+     },
+     "down 2+": {
+      "n": 68,
+      "hit": 51.5
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 741,
+      "hit": 51.4
+     },
+     "favorable": {
+      "n": 350,
+      "hit": 48.6
+     },
+     "not unfavorable": {
+      "n": 557,
+      "hit": 50.3
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "blk",
+   "side": "OVER",
+   "n": 258,
+   "base": 46.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 258,
+      "hit": 46.9
+     },
+     ">=4": {
+      "n": 42,
+      "hit": 33.3
+     },
+     "=5": {
+      "n": 3,
+      "hit": 33.3
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 258,
+      "hit": 46.9
+     },
+     ">=7": {
+      "n": 38,
+      "hit": 47.4
+     },
+     ">=8": {
+      "n": 9,
+      "hit": 55.6
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 258,
+      "hit": 46.9
+     },
+     "right side": {
+      "n": 192,
+      "hit": 50.5
+     },
+     ">=10%": {
+      "n": 189,
+      "hit": 50.8
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 258,
+      "hit": 46.9
+     },
+     "right side": {
+      "n": 193,
+      "hit": 51.3
+     },
+     ">=10%": {
+      "n": 192,
+      "hit": 51.6
+     }
+    },
+    "season": {
+     "any": {
+      "n": 258,
+      "hit": 46.9
+     },
+     "right side": {
+      "n": 197,
+      "hit": 50.3
+     },
+     ">=5%": {
+      "n": 197,
+      "hit": 50.3
+     },
+     ">=10%": {
+      "n": 195,
+      "hit": 49.7
+     }
+    },
+    "off": {
+     "any": {
+      "n": 258,
+      "hit": 46.9
+     },
+     "favorable": {
+      "n": 118,
+      "hit": 37.3
+     },
+     "not unfavorable": {
+      "n": 157,
+      "hit": 41.4
+     }
+    },
+    "def": {
+     "any": {
+      "n": 258,
+      "hit": 46.9
+     },
+     "favorable": {
+      "n": 102,
+      "hit": 47.1
+     },
+     "not unfavorable": {
+      "n": 146,
+      "hit": 45.9
+     }
+    },
+    "min": {
+     "any": {
+      "n": 258,
+      "hit": 46.9
+     },
+     "not down 2+": {
+      "n": 228,
+      "hit": 46.1
+     },
+     "down 2+": {
+      "n": 30,
+      "hit": 53.3
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 258,
+      "hit": 46.9
+     },
+     "favorable": {
+      "n": 54,
+      "hit": 40.7
+     },
+     "not unfavorable": {
+      "n": 129,
+      "hit": 46.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "blk",
+   "side": "UNDER",
+   "n": 258,
+   "base": 53.1,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 258,
+      "hit": 53.1
+     },
+     ">=4": {
+      "n": 36,
+      "hit": 61.1
+     },
+     "=5": {
+      "n": 3,
+      "hit": 66.7
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 258,
+      "hit": 53.1
+     },
+     ">=7": {
+      "n": 38,
+      "hit": 76.3
+     },
+     ">=8": {
+      "n": 12,
+      "hit": 83.3
+     },
+     ">=9": {
+      "n": 3,
+      "hit": 100.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 258,
+      "hit": 53.1
+     },
+     "right side": {
+      "n": 66,
+      "hit": 63.6
+     },
+     ">=10%": {
+      "n": 61,
+      "hit": 62.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 258,
+      "hit": 53.1
+     },
+     "right side": {
+      "n": 32,
+      "hit": 78.1
+     },
+     ">=10%": {
+      "n": 32,
+      "hit": 78.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 258,
+      "hit": 53.1
+     },
+     "right side": {
+      "n": 35,
+      "hit": 71.4
+     },
+     ">=5%": {
+      "n": 35,
+      "hit": 71.4
+     },
+     ">=10%": {
+      "n": 31,
+      "hit": 67.7
+     }
+    },
+    "off": {
+     "any": {
+      "n": 258,
+      "hit": 53.1
+     },
+     "favorable": {
+      "n": 101,
+      "hit": 44.6
+     },
+     "not unfavorable": {
+      "n": 140,
+      "hit": 45.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 258,
+      "hit": 53.1
+     },
+     "favorable": {
+      "n": 112,
+      "hit": 51.8
+     },
+     "not unfavorable": {
+      "n": 156,
+      "hit": 53.2
+     }
+    },
+    "min": {
+     "any": {
+      "n": 258,
+      "hit": 53.1
+     },
+     "not down 2+": {
+      "n": 228,
+      "hit": 53.9
+     },
+     "down 2+": {
+      "n": 30,
+      "hit": 46.7
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 258,
+      "hit": 53.1
+     },
+     "favorable": {
+      "n": 129,
+      "hit": 52.7
+     },
+     "not unfavorable": {
+      "n": 204,
+      "hit": 51.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "defensiverebounds",
+   "side": "OVER",
+   "n": 83,
+   "base": 41.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 83,
+      "hit": 41.0
+     },
+     ">=4": {
+      "n": 13,
+      "hit": 61.5
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 83,
+      "hit": 41.0
+     },
+     ">=7": {
+      "n": 9,
+      "hit": 55.6
+     },
+     ">=8": {
+      "n": 5,
+      "hit": 80.0
+     },
+     ">=9": {
+      "n": 2,
+      "hit": 100.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 83,
+      "hit": 41.0
+     },
+     "right side": {
+      "n": 38,
+      "hit": 55.3
+     },
+     ">=10%": {
+      "n": 31,
+      "hit": 58.1
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 83,
+      "hit": 41.0
+     },
+     "right side": {
+      "n": 35,
+      "hit": 54.3
+     },
+     ">=10%": {
+      "n": 17,
+      "hit": 58.8
+     }
+    },
+    "season": {
+     "any": {
+      "n": 83,
+      "hit": 41.0
+     },
+     "right side": {
+      "n": 35,
+      "hit": 51.4
+     },
+     ">=5%": {
+      "n": 29,
+      "hit": 55.2
+     },
+     ">=10%": {
+      "n": 18,
+      "hit": 44.4
+     }
+    },
+    "off": {
+     "any": {
+      "n": 83,
+      "hit": 41.0
+     },
+     "favorable": {
+      "n": 31,
+      "hit": 38.7
+     },
+     "not unfavorable": {
+      "n": 48,
+      "hit": 37.5
+     }
+    },
+    "def": {
+     "any": {
+      "n": 83,
+      "hit": 41.0
+     },
+     "favorable": {
+      "n": 36,
+      "hit": 41.7
+     },
+     "not unfavorable": {
+      "n": 53,
+      "hit": 41.5
+     }
+    },
+    "min": {
+     "any": {
+      "n": 83,
+      "hit": 41.0
+     },
+     "not down 2+": {
+      "n": 72,
+      "hit": 41.7
+     },
+     "down 2+": {
+      "n": 11,
+      "hit": 36.4
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 83,
+      "hit": 41.0
+     },
+     "favorable": {
+      "n": 21,
+      "hit": 28.6
+     },
+     "not unfavorable": {
+      "n": 41,
+      "hit": 43.9
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "defensiverebounds",
+   "side": "UNDER",
+   "n": 83,
+   "base": 59.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 83,
+      "hit": 59.0
+     },
+     ">=4": {
+      "n": 17,
+      "hit": 76.5
+     },
+     "=5": {
+      "n": 7,
+      "hit": 57.1
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 83,
+      "hit": 59.0
+     },
+     ">=7": {
+      "n": 18,
+      "hit": 72.2
+     },
+     ">=8": {
+      "n": 9,
+      "hit": 88.9
+     },
+     ">=9": {
+      "n": 2,
+      "hit": 100.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 83,
+      "hit": 59.0
+     },
+     "right side": {
+      "n": 42,
+      "hit": 71.4
+     },
+     ">=10%": {
+      "n": 25,
+      "hit": 72.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 83,
+      "hit": 59.0
+     },
+     "right side": {
+      "n": 46,
+      "hit": 69.6
+     },
+     ">=10%": {
+      "n": 21,
+      "hit": 76.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 83,
+      "hit": 59.0
+     },
+     "right side": {
+      "n": 44,
+      "hit": 68.2
+     },
+     ">=5%": {
+      "n": 34,
+      "hit": 73.5
+     },
+     ">=10%": {
+      "n": 25,
+      "hit": 72.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 83,
+      "hit": 59.0
+     },
+     "favorable": {
+      "n": 35,
+      "hit": 54.3
+     },
+     "not unfavorable": {
+      "n": 52,
+      "hit": 57.7
+     }
+    },
+    "def": {
+     "any": {
+      "n": 83,
+      "hit": 59.0
+     },
+     "favorable": {
+      "n": 30,
+      "hit": 60.0
+     },
+     "not unfavorable": {
+      "n": 47,
+      "hit": 59.6
+     }
+    },
+    "min": {
+     "any": {
+      "n": 83,
+      "hit": 59.0
+     },
+     "not down 2+": {
+      "n": 72,
+      "hit": 58.3
+     },
+     "down 2+": {
+      "n": 11,
+      "hit": 63.6
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 83,
+      "hit": 59.0
+     },
+     "favorable": {
+      "n": 42,
+      "hit": 61.9
+     },
+     "not unfavorable": {
+      "n": 62,
+      "hit": 54.8
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "dunks",
+   "side": "OVER",
+   "n": 24,
+   "base": 58.3,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 24,
+      "hit": 58.3
+     },
+     ">=4": {
+      "n": 6,
+      "hit": 66.7
+     },
+     "=5": {
+      "n": 2,
+      "hit": 50.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 24,
+      "hit": 58.3
+     },
+     ">=7": {
+      "n": 2,
+      "hit": 100.0
+     },
+     ">=8": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 24,
+      "hit": 58.3
+     },
+     "right side": {
+      "n": 16,
+      "hit": 62.5
+     },
+     ">=10%": {
+      "n": 15,
+      "hit": 66.7
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 24,
+      "hit": 58.3
+     },
+     "right side": {
+      "n": 18,
+      "hit": 72.2
+     },
+     ">=10%": {
+      "n": 18,
+      "hit": 72.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 24,
+      "hit": 58.3
+     },
+     "right side": {
+      "n": 17,
+      "hit": 70.6
+     },
+     ">=5%": {
+      "n": 17,
+      "hit": 70.6
+     },
+     ">=10%": {
+      "n": 17,
+      "hit": 70.6
+     }
+    },
+    "off": {
+     "any": {
+      "n": 24,
+      "hit": 58.3
+     },
+     "favorable": {
+      "n": 20,
+      "hit": 60.0
+     },
+     "not unfavorable": {
+      "n": 23,
+      "hit": 60.9
+     }
+    },
+    "def": {
+     "any": {
+      "n": 24,
+      "hit": 58.3
+     },
+     "favorable": {
+      "n": 12,
+      "hit": 75.0
+     },
+     "not unfavorable": {
+      "n": 15,
+      "hit": 66.7
+     }
+    },
+    "min": {
+     "any": {
+      "n": 24,
+      "hit": 58.3
+     },
+     "not down 2+": {
+      "n": 17,
+      "hit": 47.1
+     },
+     "down 2+": {
+      "n": 7,
+      "hit": 85.7
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 24,
+      "hit": 58.3
+     },
+     "favorable": {
+      "n": 1,
+      "hit": 0.0
+     },
+     "not unfavorable": {
+      "n": 6,
+      "hit": 50.0
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "dunks",
+   "side": "UNDER",
+   "n": 24,
+   "base": 41.7,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 24,
+      "hit": 41.7
+     },
+     ">=4": {
+      "n": 1,
+      "hit": 0.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 24,
+      "hit": 41.7
+     },
+     ">=7": {
+      "n": 1,
+      "hit": 0.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 24,
+      "hit": 41.7
+     },
+     "right side": {
+      "n": 6,
+      "hit": 33.3
+     },
+     ">=10%": {
+      "n": 3,
+      "hit": 66.7
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 24,
+      "hit": 41.7
+     },
+     "right side": {
+      "n": 5,
+      "hit": 80.0
+     },
+     ">=10%": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "season": {
+     "any": {
+      "n": 24,
+      "hit": 41.7
+     },
+     "right side": {
+      "n": 6,
+      "hit": 83.3
+     },
+     ">=5%": {
+      "n": 6,
+      "hit": 83.3
+     },
+     ">=10%": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 24,
+      "hit": 41.7
+     },
+     "favorable": {
+      "n": 1,
+      "hit": 100.0
+     },
+     "not unfavorable": {
+      "n": 4,
+      "hit": 50.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 24,
+      "hit": 41.7
+     },
+     "favorable": {
+      "n": 9,
+      "hit": 55.6
+     },
+     "not unfavorable": {
+      "n": 12,
+      "hit": 58.3
+     }
+    },
+    "min": {
+     "any": {
+      "n": 24,
+      "hit": 41.7
+     },
+     "not down 2+": {
+      "n": 17,
+      "hit": 52.9
+     },
+     "down 2+": {
+      "n": 7,
+      "hit": 14.3
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 24,
+      "hit": 41.7
+     },
+     "favorable": {
+      "n": 18,
+      "hit": 38.9
+     },
+     "not unfavorable": {
+      "n": 23,
+      "hit": 39.1
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "fantasy",
+   "side": "OVER",
+   "n": 418,
+   "base": 53.1,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 418,
+      "hit": 53.1
+     },
+     ">=4": {
+      "n": 75,
+      "hit": 64.0
+     },
+     "=5": {
+      "n": 10,
+      "hit": 90.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 418,
+      "hit": 53.1
+     },
+     ">=7": {
+      "n": 48,
+      "hit": 58.3
+     },
+     ">=8": {
+      "n": 12,
+      "hit": 58.3
+     },
+     ">=9": {
+      "n": 2,
+      "hit": 50.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 418,
+      "hit": 53.1
+     },
+     "right side": {
+      "n": 204,
+      "hit": 52.5
+     },
+     ">=10%": {
+      "n": 107,
+      "hit": 60.7
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 418,
+      "hit": 53.1
+     },
+     "right side": {
+      "n": 187,
+      "hit": 56.1
+     },
+     ">=10%": {
+      "n": 52,
+      "hit": 57.7
+     }
+    },
+    "season": {
+     "any": {
+      "n": 418,
+      "hit": 53.1
+     },
+     "right side": {
+      "n": 181,
+      "hit": 53.0
+     },
+     ">=5%": {
+      "n": 106,
+      "hit": 58.5
+     },
+     ">=10%": {
+      "n": 43,
+      "hit": 62.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 418,
+      "hit": 53.1
+     },
+     "favorable": {
+      "n": 162,
+      "hit": 48.8
+     },
+     "not unfavorable": {
+      "n": 262,
+      "hit": 49.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 418,
+      "hit": 53.1
+     },
+     "favorable": {
+      "n": 172,
+      "hit": 52.3
+     },
+     "not unfavorable": {
+      "n": 243,
+      "hit": 56.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 418,
+      "hit": 53.1
+     },
+     "not down 2+": {
+      "n": 374,
+      "hit": 52.7
+     },
+     "down 2+": {
+      "n": 44,
+      "hit": 56.8
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 418,
+      "hit": 53.1
+     },
+     "favorable": {
+      "n": 70,
+      "hit": 54.3
+     },
+     "not unfavorable": {
+      "n": 178,
+      "hit": 50.6
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "fantasy",
+   "side": "UNDER",
+   "n": 418,
+   "base": 46.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 418,
+      "hit": 46.9
+     },
+     ">=4": {
+      "n": 57,
+      "hit": 40.4
+     },
+     "=5": {
+      "n": 4,
+      "hit": 0.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 418,
+      "hit": 46.9
+     },
+     ">=7": {
+      "n": 67,
+      "hit": 41.8
+     },
+     ">=8": {
+      "n": 17,
+      "hit": 29.4
+     },
+     ">=9": {
+      "n": 1,
+      "hit": 0.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 418,
+      "hit": 46.9
+     },
+     "right side": {
+      "n": 213,
+      "hit": 46.0
+     },
+     ">=10%": {
+      "n": 83,
+      "hit": 44.6
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 418,
+      "hit": 46.9
+     },
+     "right side": {
+      "n": 230,
+      "hit": 49.6
+     },
+     ">=10%": {
+      "n": 70,
+      "hit": 37.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 418,
+      "hit": 46.9
+     },
+     "right side": {
+      "n": 237,
+      "hit": 46.8
+     },
+     ">=5%": {
+      "n": 143,
+      "hit": 46.2
+     },
+     ">=10%": {
+      "n": 76,
+      "hit": 40.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 418,
+      "hit": 46.9
+     },
+     "favorable": {
+      "n": 156,
+      "hit": 40.4
+     },
+     "not unfavorable": {
+      "n": 256,
+      "hit": 44.1
+     }
+    },
+    "def": {
+     "any": {
+      "n": 418,
+      "hit": 46.9
+     },
+     "favorable": {
+      "n": 175,
+      "hit": 50.9
+     },
+     "not unfavorable": {
+      "n": 246,
+      "hit": 46.3
+     }
+    },
+    "min": {
+     "any": {
+      "n": 418,
+      "hit": 46.9
+     },
+     "not down 2+": {
+      "n": 374,
+      "hit": 47.3
+     },
+     "down 2+": {
+      "n": 44,
+      "hit": 43.2
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 418,
+      "hit": 46.9
+     },
+     "favorable": {
+      "n": 240,
+      "hit": 45.0
+     },
+     "not unfavorable": {
+      "n": 348,
+      "hit": 47.1
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "fga",
+   "side": "OVER",
+   "n": 1002,
+   "base": 50.5,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1002,
+      "hit": 50.5
+     },
+     ">=4": {
+      "n": 146,
+      "hit": 63.0
+     },
+     "=5": {
+      "n": 20,
+      "hit": 55.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1002,
+      "hit": 50.5
+     },
+     ">=7": {
+      "n": 127,
+      "hit": 54.3
+     },
+     ">=8": {
+      "n": 40,
+      "hit": 60.0
+     },
+     ">=9": {
+      "n": 13,
+      "hit": 76.9
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1002,
+      "hit": 50.5
+     },
+     "right side": {
+      "n": 494,
+      "hit": 51.4
+     },
+     ">=10%": {
+      "n": 226,
+      "hit": 58.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1002,
+      "hit": 50.5
+     },
+     "right side": {
+      "n": 452,
+      "hit": 51.5
+     },
+     ">=10%": {
+      "n": 183,
+      "hit": 54.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1002,
+      "hit": 50.5
+     },
+     "right side": {
+      "n": 432,
+      "hit": 52.8
+     },
+     ">=5%": {
+      "n": 305,
+      "hit": 53.8
+     },
+     ">=10%": {
+      "n": 178,
+      "hit": 57.9
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1002,
+      "hit": 50.5
+     },
+     "favorable": {
+      "n": 392,
+      "hit": 51.5
+     },
+     "not unfavorable": {
+      "n": 596,
+      "hit": 51.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1002,
+      "hit": 50.5
+     },
+     "favorable": {
+      "n": 423,
+      "hit": 49.6
+     },
+     "not unfavorable": {
+      "n": 600,
+      "hit": 50.3
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1002,
+      "hit": 50.5
+     },
+     "not down 2+": {
+      "n": 901,
+      "hit": 50.4
+     },
+     "down 2+": {
+      "n": 101,
+      "hit": 51.5
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1002,
+      "hit": 50.5
+     },
+     "favorable": {
+      "n": 248,
+      "hit": 48.0
+     },
+     "not unfavorable": {
+      "n": 554,
+      "hit": 49.1
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "fga",
+   "side": "UNDER",
+   "n": 1002,
+   "base": 49.5,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1002,
+      "hit": 49.5
+     },
+     ">=4": {
+      "n": 175,
+      "hit": 43.4
+     },
+     "=5": {
+      "n": 25,
+      "hit": 56.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1002,
+      "hit": 49.5
+     },
+     ">=7": {
+      "n": 217,
+      "hit": 52.1
+     },
+     ">=8": {
+      "n": 83,
+      "hit": 55.4
+     },
+     ">=9": {
+      "n": 21,
+      "hit": 52.4
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1002,
+      "hit": 49.5
+     },
+     "right side": {
+      "n": 499,
+      "hit": 50.3
+     },
+     ">=10%": {
+      "n": 227,
+      "hit": 49.8
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1002,
+      "hit": 49.5
+     },
+     "right side": {
+      "n": 518,
+      "hit": 51.0
+     },
+     ">=10%": {
+      "n": 216,
+      "hit": 55.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1002,
+      "hit": 49.5
+     },
+     "right side": {
+      "n": 553,
+      "hit": 51.5
+     },
+     ">=5%": {
+      "n": 393,
+      "hit": 53.9
+     },
+     ">=10%": {
+      "n": 245,
+      "hit": 55.1
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1002,
+      "hit": 49.5
+     },
+     "favorable": {
+      "n": 406,
+      "hit": 50.2
+     },
+     "not unfavorable": {
+      "n": 610,
+      "hit": 50.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1002,
+      "hit": 49.5
+     },
+     "favorable": {
+      "n": 402,
+      "hit": 49.3
+     },
+     "not unfavorable": {
+      "n": 579,
+      "hit": 48.9
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1002,
+      "hit": 49.5
+     },
+     "not down 2+": {
+      "n": 901,
+      "hit": 49.6
+     },
+     "down 2+": {
+      "n": 101,
+      "hit": 48.5
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1002,
+      "hit": 49.5
+     },
+     "favorable": {
+      "n": 448,
+      "hit": 47.8
+     },
+     "not unfavorable": {
+      "n": 754,
+      "hit": 48.7
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "fgm",
+   "side": "OVER",
+   "n": 670,
+   "base": 49.1,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 670,
+      "hit": 49.1
+     },
+     ">=4": {
+      "n": 85,
+      "hit": 50.6
+     },
+     "=5": {
+      "n": 13,
+      "hit": 53.8
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 670,
+      "hit": 49.1
+     },
+     ">=7": {
+      "n": 79,
+      "hit": 50.6
+     },
+     ">=8": {
+      "n": 23,
+      "hit": 56.5
+     },
+     ">=9": {
+      "n": 4,
+      "hit": 75.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 670,
+      "hit": 49.1
+     },
+     "right side": {
+      "n": 348,
+      "hit": 51.1
+     },
+     ">=10%": {
+      "n": 212,
+      "hit": 53.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 670,
+      "hit": 49.1
+     },
+     "right side": {
+      "n": 333,
+      "hit": 52.3
+     },
+     ">=10%": {
+      "n": 173,
+      "hit": 51.4
+     }
+    },
+    "season": {
+     "any": {
+      "n": 670,
+      "hit": 49.1
+     },
+     "right side": {
+      "n": 323,
+      "hit": 51.7
+     },
+     ">=5%": {
+      "n": 245,
+      "hit": 51.8
+     },
+     ">=10%": {
+      "n": 165,
+      "hit": 48.5
+     }
+    },
+    "off": {
+     "any": {
+      "n": 670,
+      "hit": 49.1
+     },
+     "favorable": {
+      "n": 299,
+      "hit": 49.5
+     },
+     "not unfavorable": {
+      "n": 414,
+      "hit": 47.8
+     }
+    },
+    "def": {
+     "any": {
+      "n": 670,
+      "hit": 49.1
+     },
+     "favorable": {
+      "n": 281,
+      "hit": 47.3
+     },
+     "not unfavorable": {
+      "n": 396,
+      "hit": 49.7
+     }
+    },
+    "min": {
+     "any": {
+      "n": 670,
+      "hit": 49.1
+     },
+     "not down 2+": {
+      "n": 615,
+      "hit": 48.3
+     },
+     "down 2+": {
+      "n": 55,
+      "hit": 58.2
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 670,
+      "hit": 49.1
+     },
+     "favorable": {
+      "n": 157,
+      "hit": 45.9
+     },
+     "not unfavorable": {
+      "n": 365,
+      "hit": 48.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "fgm",
+   "side": "UNDER",
+   "n": 670,
+   "base": 50.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 670,
+      "hit": 50.9
+     },
+     ">=4": {
+      "n": 85,
+      "hit": 48.2
+     },
+     "=5": {
+      "n": 13,
+      "hit": 46.2
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 670,
+      "hit": 50.9
+     },
+     ">=7": {
+      "n": 120,
+      "hit": 54.2
+     },
+     ">=8": {
+      "n": 31,
+      "hit": 51.6
+     },
+     ">=9": {
+      "n": 6,
+      "hit": 33.3
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 670,
+      "hit": 50.9
+     },
+     "right side": {
+      "n": 312,
+      "hit": 52.6
+     },
+     ">=10%": {
+      "n": 170,
+      "hit": 51.2
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 670,
+      "hit": 50.9
+     },
+     "right side": {
+      "n": 301,
+      "hit": 54.5
+     },
+     ">=10%": {
+      "n": 157,
+      "hit": 54.8
+     }
+    },
+    "season": {
+     "any": {
+      "n": 670,
+      "hit": 50.9
+     },
+     "right side": {
+      "n": 329,
+      "hit": 52.9
+     },
+     ">=5%": {
+      "n": 240,
+      "hit": 52.9
+     },
+     ">=10%": {
+      "n": 166,
+      "hit": 53.6
+     }
+    },
+    "off": {
+     "any": {
+      "n": 670,
+      "hit": 50.9
+     },
+     "favorable": {
+      "n": 256,
+      "hit": 48.8
+     },
+     "not unfavorable": {
+      "n": 371,
+      "hit": 51.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 670,
+      "hit": 50.9
+     },
+     "favorable": {
+      "n": 274,
+      "hit": 51.8
+     },
+     "not unfavorable": {
+      "n": 389,
+      "hit": 49.6
+     }
+    },
+    "min": {
+     "any": {
+      "n": 670,
+      "hit": 50.9
+     },
+     "not down 2+": {
+      "n": 615,
+      "hit": 51.7
+     },
+     "down 2+": {
+      "n": 55,
+      "hit": 41.8
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 670,
+      "hit": 50.9
+     },
+     "favorable": {
+      "n": 305,
+      "hit": 50.2
+     },
+     "not unfavorable": {
+      "n": 513,
+      "hit": 49.9
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "freethrowsattempted",
+   "side": "OVER",
+   "n": 695,
+   "base": 46.6,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 695,
+      "hit": 46.6
+     },
+     ">=4": {
+      "n": 101,
+      "hit": 49.5
+     },
+     "=5": {
+      "n": 17,
+      "hit": 47.1
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 695,
+      "hit": 46.6
+     },
+     ">=7": {
+      "n": 82,
+      "hit": 40.2
+     },
+     ">=8": {
+      "n": 25,
+      "hit": 44.0
+     },
+     ">=9": {
+      "n": 3,
+      "hit": 33.3
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 695,
+      "hit": 46.6
+     },
+     "right side": {
+      "n": 406,
+      "hit": 49.5
+     },
+     ">=10%": {
+      "n": 349,
+      "hit": 50.1
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 695,
+      "hit": 46.6
+     },
+     "right side": {
+      "n": 429,
+      "hit": 48.0
+     },
+     ">=10%": {
+      "n": 339,
+      "hit": 48.7
+     }
+    },
+    "season": {
+     "any": {
+      "n": 695,
+      "hit": 46.6
+     },
+     "right side": {
+      "n": 427,
+      "hit": 47.5
+     },
+     ">=5%": {
+      "n": 391,
+      "hit": 49.4
+     },
+     ">=10%": {
+      "n": 353,
+      "hit": 51.3
+     }
+    },
+    "off": {
+     "any": {
+      "n": 695,
+      "hit": 46.6
+     },
+     "favorable": {
+      "n": 320,
+      "hit": 45.9
+     },
+     "not unfavorable": {
+      "n": 425,
+      "hit": 45.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 695,
+      "hit": 46.6
+     },
+     "favorable": {
+      "n": 328,
+      "hit": 47.0
+     },
+     "not unfavorable": {
+      "n": 454,
+      "hit": 48.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 695,
+      "hit": 46.6
+     },
+     "not down 2+": {
+      "n": 632,
+      "hit": 46.8
+     },
+     "down 2+": {
+      "n": 63,
+      "hit": 44.4
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 695,
+      "hit": 46.6
+     },
+     "favorable": {
+      "n": 166,
+      "hit": 50.0
+     },
+     "not unfavorable": {
+      "n": 378,
+      "hit": 49.7
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "freethrowsattempted",
+   "side": "UNDER",
+   "n": 695,
+   "base": 53.4,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 695,
+      "hit": 53.4
+     },
+     ">=4": {
+      "n": 141,
+      "hit": 58.2
+     },
+     "=5": {
+      "n": 36,
+      "hit": 55.6
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 695,
+      "hit": 53.4
+     },
+     ">=7": {
+      "n": 136,
+      "hit": 52.2
+     },
+     ">=8": {
+      "n": 54,
+      "hit": 46.3
+     },
+     ">=9": {
+      "n": 7,
+      "hit": 28.6
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 695,
+      "hit": 53.4
+     },
+     "right side": {
+      "n": 285,
+      "hit": 57.2
+     },
+     ">=10%": {
+      "n": 201,
+      "hit": 55.2
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 695,
+      "hit": 53.4
+     },
+     "right side": {
+      "n": 236,
+      "hit": 56.4
+     },
+     ">=10%": {
+      "n": 157,
+      "hit": 54.8
+     }
+    },
+    "season": {
+     "any": {
+      "n": 695,
+      "hit": 53.4
+     },
+     "right side": {
+      "n": 250,
+      "hit": 54.8
+     },
+     ">=5%": {
+      "n": 214,
+      "hit": 57.0
+     },
+     ">=10%": {
+      "n": 173,
+      "hit": 54.3
+     }
+    },
+    "off": {
+     "any": {
+      "n": 695,
+      "hit": 53.4
+     },
+     "favorable": {
+      "n": 270,
+      "hit": 51.1
+     },
+     "not unfavorable": {
+      "n": 375,
+      "hit": 52.8
+     }
+    },
+    "def": {
+     "any": {
+      "n": 695,
+      "hit": 53.4
+     },
+     "favorable": {
+      "n": 241,
+      "hit": 56.0
+     },
+     "not unfavorable": {
+      "n": 367,
+      "hit": 53.7
+     }
+    },
+    "min": {
+     "any": {
+      "n": 695,
+      "hit": 53.4
+     },
+     "not down 2+": {
+      "n": 632,
+      "hit": 53.2
+     },
+     "down 2+": {
+      "n": 63,
+      "hit": 55.6
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 695,
+      "hit": 53.4
+     },
+     "favorable": {
+      "n": 317,
+      "hit": 57.1
+     },
+     "not unfavorable": {
+      "n": 529,
+      "hit": 54.4
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "freethrowsmade",
+   "side": "OVER",
+   "n": 594,
+   "base": 46.8,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 594,
+      "hit": 46.8
+     },
+     ">=4": {
+      "n": 88,
+      "hit": 46.6
+     },
+     "=5": {
+      "n": 13,
+      "hit": 53.8
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 594,
+      "hit": 46.8
+     },
+     ">=7": {
+      "n": 67,
+      "hit": 50.7
+     },
+     ">=8": {
+      "n": 20,
+      "hit": 50.0
+     },
+     ">=9": {
+      "n": 7,
+      "hit": 42.9
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 594,
+      "hit": 46.8
+     },
+     "right side": {
+      "n": 363,
+      "hit": 46.8
+     },
+     ">=10%": {
+      "n": 301,
+      "hit": 46.8
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 594,
+      "hit": 46.8
+     },
+     "right side": {
+      "n": 374,
+      "hit": 47.9
+     },
+     ">=10%": {
+      "n": 316,
+      "hit": 48.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 594,
+      "hit": 46.8
+     },
+     "right side": {
+      "n": 369,
+      "hit": 47.4
+     },
+     ">=5%": {
+      "n": 342,
+      "hit": 47.1
+     },
+     ">=10%": {
+      "n": 301,
+      "hit": 45.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 594,
+      "hit": 46.8
+     },
+     "favorable": {
+      "n": 270,
+      "hit": 45.9
+     },
+     "not unfavorable": {
+      "n": 393,
+      "hit": 46.3
+     }
+    },
+    "def": {
+     "any": {
+      "n": 594,
+      "hit": 46.8
+     },
+     "favorable": {
+      "n": 266,
+      "hit": 47.7
+     },
+     "not unfavorable": {
+      "n": 385,
+      "hit": 47.8
+     }
+    },
+    "min": {
+     "any": {
+      "n": 594,
+      "hit": 46.8
+     },
+     "not down 2+": {
+      "n": 540,
+      "hit": 47.4
+     },
+     "down 2+": {
+      "n": 54,
+      "hit": 40.7
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 594,
+      "hit": 46.8
+     },
+     "favorable": {
+      "n": 144,
+      "hit": 50.0
+     },
+     "not unfavorable": {
+      "n": 324,
+      "hit": 47.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "freethrowsmade",
+   "side": "UNDER",
+   "n": 594,
+   "base": 53.2,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 594,
+      "hit": 53.2
+     },
+     ">=4": {
+      "n": 100,
+      "hit": 55.0
+     },
+     "=5": {
+      "n": 17,
+      "hit": 58.8
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 594,
+      "hit": 53.2
+     },
+     ">=7": {
+      "n": 124,
+      "hit": 54.8
+     },
+     ">=8": {
+      "n": 41,
+      "hit": 51.2
+     },
+     ">=9": {
+      "n": 8,
+      "hit": 50.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 594,
+      "hit": 53.2
+     },
+     "right side": {
+      "n": 227,
+      "hit": 53.3
+     },
+     ">=10%": {
+      "n": 168,
+      "hit": 53.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 594,
+      "hit": 53.2
+     },
+     "right side": {
+      "n": 191,
+      "hit": 53.4
+     },
+     ">=10%": {
+      "n": 132,
+      "hit": 55.3
+     }
+    },
+    "season": {
+     "any": {
+      "n": 594,
+      "hit": 53.2
+     },
+     "right side": {
+      "n": 208,
+      "hit": 54.3
+     },
+     ">=5%": {
+      "n": 173,
+      "hit": 54.3
+     },
+     ">=10%": {
+      "n": 138,
+      "hit": 53.6
+     }
+    },
+    "off": {
+     "any": {
+      "n": 594,
+      "hit": 53.2
+     },
+     "favorable": {
+      "n": 201,
+      "hit": 52.2
+     },
+     "not unfavorable": {
+      "n": 324,
+      "hit": 52.5
+     }
+    },
+    "def": {
+     "any": {
+      "n": 594,
+      "hit": 53.2
+     },
+     "favorable": {
+      "n": 209,
+      "hit": 55.0
+     },
+     "not unfavorable": {
+      "n": 328,
+      "hit": 54.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 594,
+      "hit": 53.2
+     },
+     "not down 2+": {
+      "n": 540,
+      "hit": 52.6
+     },
+     "down 2+": {
+      "n": 54,
+      "hit": 59.3
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 594,
+      "hit": 53.2
+     },
+     "favorable": {
+      "n": 270,
+      "hit": 54.1
+     },
+     "not unfavorable": {
+      "n": 450,
+      "hit": 54.2
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "offensiverebounds",
+   "side": "OVER",
+   "n": 159,
+   "base": 56.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 159,
+      "hit": 56.0
+     },
+     ">=4": {
+      "n": 14,
+      "hit": 42.9
+     },
+     "=5": {
+      "n": 2,
+      "hit": 50.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 159,
+      "hit": 56.0
+     },
+     ">=7": {
+      "n": 8,
+      "hit": 75.0
+     },
+     ">=8": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 159,
+      "hit": 56.0
+     },
+     "right side": {
+      "n": 102,
+      "hit": 53.9
+     },
+     ">=10%": {
+      "n": 97,
+      "hit": 53.6
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 159,
+      "hit": 56.0
+     },
+     "right side": {
+      "n": 112,
+      "hit": 58.0
+     },
+     ">=10%": {
+      "n": 107,
+      "hit": 58.9
+     }
+    },
+    "season": {
+     "any": {
+      "n": 159,
+      "hit": 56.0
+     },
+     "right side": {
+      "n": 124,
+      "hit": 55.6
+     },
+     ">=5%": {
+      "n": 120,
+      "hit": 55.0
+     },
+     ">=10%": {
+      "n": 105,
+      "hit": 54.3
+     }
+    },
+    "off": {
+     "any": {
+      "n": 159,
+      "hit": 56.0
+     },
+     "favorable": {
+      "n": 71,
+      "hit": 56.3
+     },
+     "not unfavorable": {
+      "n": 99,
+      "hit": 53.5
+     }
+    },
+    "def": {
+     "any": {
+      "n": 159,
+      "hit": 56.0
+     },
+     "favorable": {
+      "n": 66,
+      "hit": 59.1
+     },
+     "not unfavorable": {
+      "n": 97,
+      "hit": 58.8
+     }
+    },
+    "min": {
+     "any": {
+      "n": 159,
+      "hit": 56.0
+     },
+     "not down 2+": {
+      "n": 145,
+      "hit": 56.6
+     },
+     "down 2+": {
+      "n": 14,
+      "hit": 50.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 159,
+      "hit": 56.0
+     },
+     "favorable": {
+      "n": 15,
+      "hit": 53.3
+     },
+     "not unfavorable": {
+      "n": 62,
+      "hit": 51.6
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "offensiverebounds",
+   "side": "UNDER",
+   "n": 159,
+   "base": 44.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 159,
+      "hit": 44.0
+     },
+     ">=4": {
+      "n": 18,
+      "hit": 16.7
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 159,
+      "hit": 44.0
+     },
+     ">=7": {
+      "n": 8,
+      "hit": 25.0
+     },
+     ">=8": {
+      "n": 1,
+      "hit": 0.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 159,
+      "hit": 44.0
+     },
+     "right side": {
+      "n": 55,
+      "hit": 40.0
+     },
+     ">=10%": {
+      "n": 52,
+      "hit": 40.4
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 159,
+      "hit": 44.0
+     },
+     "right side": {
+      "n": 28,
+      "hit": 50.0
+     },
+     ">=10%": {
+      "n": 18,
+      "hit": 44.4
+     }
+    },
+    "season": {
+     "any": {
+      "n": 159,
+      "hit": 44.0
+     },
+     "right side": {
+      "n": 22,
+      "hit": 50.0
+     },
+     ">=5%": {
+      "n": 19,
+      "hit": 42.1
+     },
+     ">=10%": {
+      "n": 12,
+      "hit": 25.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 159,
+      "hit": 44.0
+     },
+     "favorable": {
+      "n": 60,
+      "hit": 40.0
+     },
+     "not unfavorable": {
+      "n": 88,
+      "hit": 44.3
+     }
+    },
+    "def": {
+     "any": {
+      "n": 159,
+      "hit": 44.0
+     },
+     "favorable": {
+      "n": 62,
+      "hit": 48.4
+     },
+     "not unfavorable": {
+      "n": 93,
+      "hit": 46.2
+     }
+    },
+    "min": {
+     "any": {
+      "n": 159,
+      "hit": 44.0
+     },
+     "not down 2+": {
+      "n": 145,
+      "hit": 43.4
+     },
+     "down 2+": {
+      "n": 14,
+      "hit": 50.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 159,
+      "hit": 44.0
+     },
+     "favorable": {
+      "n": 97,
+      "hit": 41.2
+     },
+     "not unfavorable": {
+      "n": 144,
+      "hit": 43.8
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "pa",
+   "side": "OVER",
+   "n": 1892,
+   "base": 47.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1892,
+      "hit": 47.9
+     },
+     ">=4": {
+      "n": 271,
+      "hit": 50.6
+     },
+     "=5": {
+      "n": 40,
+      "hit": 50.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1892,
+      "hit": 47.9
+     },
+     ">=7": {
+      "n": 220,
+      "hit": 49.5
+     },
+     ">=8": {
+      "n": 62,
+      "hit": 48.4
+     },
+     ">=9": {
+      "n": 10,
+      "hit": 70.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1892,
+      "hit": 47.9
+     },
+     "right side": {
+      "n": 883,
+      "hit": 47.9
+     },
+     ">=10%": {
+      "n": 440,
+      "hit": 47.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1892,
+      "hit": 47.9
+     },
+     "right side": {
+      "n": 814,
+      "hit": 49.9
+     },
+     ">=10%": {
+      "n": 323,
+      "hit": 48.3
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1892,
+      "hit": 47.9
+     },
+     "right side": {
+      "n": 823,
+      "hit": 48.4
+     },
+     ">=5%": {
+      "n": 528,
+      "hit": 48.1
+     },
+     ">=10%": {
+      "n": 300,
+      "hit": 49.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1892,
+      "hit": 47.9
+     },
+     "favorable": {
+      "n": 797,
+      "hit": 46.2
+     },
+     "not unfavorable": {
+      "n": 1139,
+      "hit": 48.1
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1892,
+      "hit": 47.9
+     },
+     "favorable": {
+      "n": 739,
+      "hit": 46.1
+     },
+     "not unfavorable": {
+      "n": 1133,
+      "hit": 48.5
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1892,
+      "hit": 47.9
+     },
+     "not down 2+": {
+      "n": 1710,
+      "hit": 47.6
+     },
+     "down 2+": {
+      "n": 182,
+      "hit": 51.1
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1892,
+      "hit": 47.9
+     },
+     "favorable": {
+      "n": 450,
+      "hit": 51.3
+     },
+     "not unfavorable": {
+      "n": 1027,
+      "hit": 48.2
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "pa",
+   "side": "UNDER",
+   "n": 1892,
+   "base": 52.1,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1892,
+      "hit": 52.1
+     },
+     ">=4": {
+      "n": 379,
+      "hit": 50.7
+     },
+     "=5": {
+      "n": 48,
+      "hit": 45.8
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1892,
+      "hit": 52.1
+     },
+     ">=7": {
+      "n": 453,
+      "hit": 53.0
+     },
+     ">=8": {
+      "n": 161,
+      "hit": 52.8
+     },
+     ">=9": {
+      "n": 24,
+      "hit": 45.8
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1892,
+      "hit": 52.1
+     },
+     "right side": {
+      "n": 1009,
+      "hit": 52.0
+     },
+     ">=10%": {
+      "n": 485,
+      "hit": 54.2
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1892,
+      "hit": 52.1
+     },
+     "right side": {
+      "n": 1048,
+      "hit": 53.3
+     },
+     ">=10%": {
+      "n": 453,
+      "hit": 55.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1892,
+      "hit": 52.1
+     },
+     "right side": {
+      "n": 1051,
+      "hit": 52.6
+     },
+     ">=5%": {
+      "n": 746,
+      "hit": 53.9
+     },
+     ">=10%": {
+      "n": 465,
+      "hit": 52.9
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1892,
+      "hit": 52.1
+     },
+     "favorable": {
+      "n": 753,
+      "hit": 52.3
+     },
+     "not unfavorable": {
+      "n": 1095,
+      "hit": 50.8
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1892,
+      "hit": 52.1
+     },
+     "favorable": {
+      "n": 759,
+      "hit": 52.8
+     },
+     "not unfavorable": {
+      "n": 1153,
+      "hit": 50.9
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1892,
+      "hit": 52.1
+     },
+     "not down 2+": {
+      "n": 1710,
+      "hit": 52.4
+     },
+     "down 2+": {
+      "n": 182,
+      "hit": 48.9
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1892,
+      "hit": 52.1
+     },
+     "favorable": {
+      "n": 865,
+      "hit": 52.4
+     },
+     "not unfavorable": {
+      "n": 1442,
+      "hit": 53.1
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "personalfouls",
+   "side": "OVER",
+   "n": 298,
+   "base": 47.3,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 298,
+      "hit": 47.3
+     },
+     ">=4": {
+      "n": 48,
+      "hit": 41.7
+     },
+     "=5": {
+      "n": 8,
+      "hit": 37.5
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 298,
+      "hit": 47.3
+     },
+     ">=7": {
+      "n": 50,
+      "hit": 42.0
+     },
+     ">=8": {
+      "n": 14,
+      "hit": 28.6
+     },
+     ">=9": {
+      "n": 7,
+      "hit": 14.3
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 298,
+      "hit": 47.3
+     },
+     "right side": {
+      "n": 141,
+      "hit": 49.6
+     },
+     ">=10%": {
+      "n": 94,
+      "hit": 53.2
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 298,
+      "hit": 47.3
+     },
+     "right side": {
+      "n": 120,
+      "hit": 51.7
+     },
+     ">=10%": {
+      "n": 82,
+      "hit": 51.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 298,
+      "hit": 47.3
+     },
+     "right side": {
+      "n": 139,
+      "hit": 52.5
+     },
+     ">=5%": {
+      "n": 113,
+      "hit": 52.2
+     },
+     ">=10%": {
+      "n": 98,
+      "hit": 52.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 298,
+      "hit": 47.3
+     },
+     "favorable": {
+      "n": 141,
+      "hit": 47.5
+     },
+     "not unfavorable": {
+      "n": 186,
+      "hit": 47.3
+     }
+    },
+    "def": {
+     "any": {
+      "n": 298,
+      "hit": 47.3
+     },
+     "favorable": {
+      "n": 126,
+      "hit": 49.2
+     },
+     "not unfavorable": {
+      "n": 178,
+      "hit": 50.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 298,
+      "hit": 47.3
+     },
+     "not down 2+": {
+      "n": 277,
+      "hit": 46.9
+     },
+     "down 2+": {
+      "n": 21,
+      "hit": 52.4
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 298,
+      "hit": 47.3
+     },
+     "favorable": {
+      "n": 67,
+      "hit": 53.7
+     },
+     "not unfavorable": {
+      "n": 163,
+      "hit": 46.0
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "personalfouls",
+   "side": "UNDER",
+   "n": 298,
+   "base": 52.7,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 298,
+      "hit": 52.7
+     },
+     ">=4": {
+      "n": 72,
+      "hit": 51.4
+     },
+     "=5": {
+      "n": 17,
+      "hit": 52.9
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 298,
+      "hit": 52.7
+     },
+     ">=7": {
+      "n": 83,
+      "hit": 55.4
+     },
+     ">=8": {
+      "n": 22,
+      "hit": 45.5
+     },
+     ">=9": {
+      "n": 3,
+      "hit": 33.3
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 298,
+      "hit": 52.7
+     },
+     "right side": {
+      "n": 157,
+      "hit": 54.8
+     },
+     ">=10%": {
+      "n": 117,
+      "hit": 53.8
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 298,
+      "hit": 52.7
+     },
+     "right side": {
+      "n": 158,
+      "hit": 53.8
+     },
+     ">=10%": {
+      "n": 109,
+      "hit": 52.3
+     }
+    },
+    "season": {
+     "any": {
+      "n": 298,
+      "hit": 52.7
+     },
+     "right side": {
+      "n": 142,
+      "hit": 58.5
+     },
+     ">=5%": {
+      "n": 112,
+      "hit": 60.7
+     },
+     ">=10%": {
+      "n": 85,
+      "hit": 58.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 298,
+      "hit": 52.7
+     },
+     "favorable": {
+      "n": 112,
+      "hit": 52.7
+     },
+     "not unfavorable": {
+      "n": 157,
+      "hit": 52.9
+     }
+    },
+    "def": {
+     "any": {
+      "n": 298,
+      "hit": 52.7
+     },
+     "favorable": {
+      "n": 120,
+      "hit": 56.7
+     },
+     "not unfavorable": {
+      "n": 172,
+      "hit": 54.1
+     }
+    },
+    "min": {
+     "any": {
+      "n": 298,
+      "hit": 52.7
+     },
+     "not down 2+": {
+      "n": 277,
+      "hit": 53.1
+     },
+     "down 2+": {
+      "n": 21,
+      "hit": 47.6
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 298,
+      "hit": 52.7
+     },
+     "favorable": {
+      "n": 135,
+      "hit": 51.1
+     },
+     "not unfavorable": {
+      "n": 231,
+      "hit": 54.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "pr",
+   "side": "OVER",
+   "n": 2334,
+   "base": 46.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 2334,
+      "hit": 46.9
+     },
+     ">=4": {
+      "n": 283,
+      "hit": 43.5
+     },
+     "=5": {
+      "n": 42,
+      "hit": 47.6
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 2334,
+      "hit": 46.9
+     },
+     ">=7": {
+      "n": 257,
+      "hit": 45.5
+     },
+     ">=8": {
+      "n": 62,
+      "hit": 45.2
+     },
+     ">=9": {
+      "n": 6,
+      "hit": 50.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 2334,
+      "hit": 46.9
+     },
+     "right side": {
+      "n": 1121,
+      "hit": 47.5
+     },
+     ">=10%": {
+      "n": 567,
+      "hit": 45.7
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 2334,
+      "hit": 46.9
+     },
+     "right side": {
+      "n": 1052,
+      "hit": 49.2
+     },
+     ">=10%": {
+      "n": 437,
+      "hit": 46.5
+     }
+    },
+    "season": {
+     "any": {
+      "n": 2334,
+      "hit": 46.9
+     },
+     "right side": {
+      "n": 1053,
+      "hit": 47.0
+     },
+     ">=5%": {
+      "n": 695,
+      "hit": 46.6
+     },
+     ">=10%": {
+      "n": 395,
+      "hit": 44.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 2334,
+      "hit": 46.9
+     },
+     "favorable": {
+      "n": 1004,
+      "hit": 46.6
+     },
+     "not unfavorable": {
+      "n": 1450,
+      "hit": 46.9
+     }
+    },
+    "def": {
+     "any": {
+      "n": 2334,
+      "hit": 46.9
+     },
+     "favorable": {
+      "n": 973,
+      "hit": 46.9
+     },
+     "not unfavorable": {
+      "n": 1415,
+      "hit": 46.2
+     }
+    },
+    "min": {
+     "any": {
+      "n": 2334,
+      "hit": 46.9
+     },
+     "not down 2+": {
+      "n": 2109,
+      "hit": 47.1
+     },
+     "down 2+": {
+      "n": 225,
+      "hit": 45.3
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 2334,
+      "hit": 46.9
+     },
+     "favorable": {
+      "n": 569,
+      "hit": 48.2
+     },
+     "not unfavorable": {
+      "n": 1285,
+      "hit": 46.9
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "pr",
+   "side": "UNDER",
+   "n": 2334,
+   "base": 53.1,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 2334,
+      "hit": 53.1
+     },
+     ">=4": {
+      "n": 433,
+      "hit": 52.4
+     },
+     "=5": {
+      "n": 67,
+      "hit": 53.7
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 2334,
+      "hit": 53.1
+     },
+     ">=7": {
+      "n": 516,
+      "hit": 52.5
+     },
+     ">=8": {
+      "n": 176,
+      "hit": 55.1
+     },
+     ">=9": {
+      "n": 46,
+      "hit": 52.2
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 2334,
+      "hit": 53.1
+     },
+     "right side": {
+      "n": 1211,
+      "hit": 53.6
+     },
+     ">=10%": {
+      "n": 589,
+      "hit": 53.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 2334,
+      "hit": 53.1
+     },
+     "right side": {
+      "n": 1245,
+      "hit": 54.9
+     },
+     ">=10%": {
+      "n": 540,
+      "hit": 55.4
+     }
+    },
+    "season": {
+     "any": {
+      "n": 2334,
+      "hit": 53.1
+     },
+     "right side": {
+      "n": 1258,
+      "hit": 53.2
+     },
+     ">=5%": {
+      "n": 861,
+      "hit": 53.3
+     },
+     ">=10%": {
+      "n": 535,
+      "hit": 51.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 2334,
+      "hit": 53.1
+     },
+     "favorable": {
+      "n": 884,
+      "hit": 53.1
+     },
+     "not unfavorable": {
+      "n": 1330,
+      "hit": 52.9
+     }
+    },
+    "def": {
+     "any": {
+      "n": 2334,
+      "hit": 53.1
+     },
+     "favorable": {
+      "n": 919,
+      "hit": 52.0
+     },
+     "not unfavorable": {
+      "n": 1361,
+      "hit": 53.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 2334,
+      "hit": 53.1
+     },
+     "not down 2+": {
+      "n": 2109,
+      "hit": 52.9
+     },
+     "down 2+": {
+      "n": 225,
+      "hit": 54.7
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 2334,
+      "hit": 53.1
+     },
+     "favorable": {
+      "n": 1049,
+      "hit": 53.1
+     },
+     "not unfavorable": {
+      "n": 1765,
+      "hit": 53.5
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "pra",
+   "side": "OVER",
+   "n": 2565,
+   "base": 47.6,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 2565,
+      "hit": 47.6
+     },
+     ">=4": {
+      "n": 368,
+      "hit": 46.2
+     },
+     "=5": {
+      "n": 59,
+      "hit": 47.5
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 2565,
+      "hit": 47.6
+     },
+     ">=7": {
+      "n": 330,
+      "hit": 46.7
+     },
+     ">=8": {
+      "n": 97,
+      "hit": 43.3
+     },
+     ">=9": {
+      "n": 16,
+      "hit": 43.8
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 2565,
+      "hit": 47.6
+     },
+     "right side": {
+      "n": 1214,
+      "hit": 48.8
+     },
+     ">=10%": {
+      "n": 594,
+      "hit": 48.5
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 2565,
+      "hit": 47.6
+     },
+     "right side": {
+      "n": 1132,
+      "hit": 49.8
+     },
+     ">=10%": {
+      "n": 477,
+      "hit": 48.6
+     }
+    },
+    "season": {
+     "any": {
+      "n": 2565,
+      "hit": 47.6
+     },
+     "right side": {
+      "n": 1139,
+      "hit": 48.2
+     },
+     ">=5%": {
+      "n": 738,
+      "hit": 48.1
+     },
+     ">=10%": {
+      "n": 451,
+      "hit": 47.9
+     }
+    },
+    "off": {
+     "any": {
+      "n": 2565,
+      "hit": 47.6
+     },
+     "favorable": {
+      "n": 1104,
+      "hit": 45.9
+     },
+     "not unfavorable": {
+      "n": 1588,
+      "hit": 47.3
+     }
+    },
+    "def": {
+     "any": {
+      "n": 2565,
+      "hit": 47.6
+     },
+     "favorable": {
+      "n": 1028,
+      "hit": 46.6
+     },
+     "not unfavorable": {
+      "n": 1538,
+      "hit": 47.3
+     }
+    },
+    "min": {
+     "any": {
+      "n": 2565,
+      "hit": 47.6
+     },
+     "not down 2+": {
+      "n": 2307,
+      "hit": 47.5
+     },
+     "down 2+": {
+      "n": 258,
+      "hit": 48.1
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 2565,
+      "hit": 47.6
+     },
+     "favorable": {
+      "n": 622,
+      "hit": 48.6
+     },
+     "not unfavorable": {
+      "n": 1408,
+      "hit": 46.9
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "pra",
+   "side": "UNDER",
+   "n": 2565,
+   "base": 52.4,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 2565,
+      "hit": 52.4
+     },
+     ">=4": {
+      "n": 460,
+      "hit": 50.0
+     },
+     "=5": {
+      "n": 67,
+      "hit": 55.2
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 2565,
+      "hit": 52.4
+     },
+     ">=7": {
+      "n": 585,
+      "hit": 54.0
+     },
+     ">=8": {
+      "n": 198,
+      "hit": 59.6
+     },
+     ">=9": {
+      "n": 47,
+      "hit": 48.9
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 2565,
+      "hit": 52.4
+     },
+     "right side": {
+      "n": 1349,
+      "hit": 53.5
+     },
+     ">=10%": {
+      "n": 608,
+      "hit": 52.8
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 2565,
+      "hit": 52.4
+     },
+     "right side": {
+      "n": 1397,
+      "hit": 54.0
+     },
+     ">=10%": {
+      "n": 581,
+      "hit": 55.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 2565,
+      "hit": 52.4
+     },
+     "right side": {
+      "n": 1406,
+      "hit": 52.9
+     },
+     ">=5%": {
+      "n": 971,
+      "hit": 52.1
+     },
+     ">=10%": {
+      "n": 582,
+      "hit": 52.9
+     }
+    },
+    "off": {
+     "any": {
+      "n": 2565,
+      "hit": 52.4
+     },
+     "favorable": {
+      "n": 977,
+      "hit": 52.0
+     },
+     "not unfavorable": {
+      "n": 1461,
+      "hit": 51.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 2565,
+      "hit": 52.4
+     },
+     "favorable": {
+      "n": 1027,
+      "hit": 52.1
+     },
+     "not unfavorable": {
+      "n": 1537,
+      "hit": 51.8
+     }
+    },
+    "min": {
+     "any": {
+      "n": 2565,
+      "hit": 52.4
+     },
+     "not down 2+": {
+      "n": 2307,
+      "hit": 52.5
+     },
+     "down 2+": {
+      "n": 258,
+      "hit": 51.9
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 2565,
+      "hit": 52.4
+     },
+     "favorable": {
+      "n": 1157,
+      "hit": 51.6
+     },
+     "not unfavorable": {
+      "n": 1943,
+      "hit": 52.8
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "pts",
+   "side": "OVER",
+   "n": 2556,
+   "base": 47.6,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 2556,
+      "hit": 47.6
+     },
+     ">=4": {
+      "n": 364,
+      "hit": 44.5
+     },
+     "=5": {
+      "n": 55,
+      "hit": 50.9
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 2556,
+      "hit": 47.6
+     },
+     ">=7": {
+      "n": 315,
+      "hit": 46.3
+     },
+     ">=8": {
+      "n": 89,
+      "hit": 52.8
+     },
+     ">=9": {
+      "n": 16,
+      "hit": 56.2
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 2556,
+      "hit": 47.6
+     },
+     "right side": {
+      "n": 1316,
+      "hit": 46.4
+     },
+     ">=10%": {
+      "n": 789,
+      "hit": 45.1
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 2556,
+      "hit": 47.6
+     },
+     "right side": {
+      "n": 1262,
+      "hit": 48.7
+     },
+     ">=10%": {
+      "n": 656,
+      "hit": 45.3
+     }
+    },
+    "season": {
+     "any": {
+      "n": 2556,
+      "hit": 47.6
+     },
+     "right side": {
+      "n": 1227,
+      "hit": 47.1
+     },
+     ">=5%": {
+      "n": 880,
+      "hit": 46.7
+     },
+     ">=10%": {
+      "n": 589,
+      "hit": 47.2
+     }
+    },
+    "off": {
+     "any": {
+      "n": 2556,
+      "hit": 47.6
+     },
+     "favorable": {
+      "n": 1120,
+      "hit": 47.1
+     },
+     "not unfavorable": {
+      "n": 1586,
+      "hit": 47.4
+     }
+    },
+    "def": {
+     "any": {
+      "n": 2556,
+      "hit": 47.6
+     },
+     "favorable": {
+      "n": 1032,
+      "hit": 47.2
+     },
+     "not unfavorable": {
+      "n": 1546,
+      "hit": 47.9
+     }
+    },
+    "min": {
+     "any": {
+      "n": 2556,
+      "hit": 47.6
+     },
+     "not down 2+": {
+      "n": 2312,
+      "hit": 47.3
+     },
+     "down 2+": {
+      "n": 244,
+      "hit": 50.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 2556,
+      "hit": 47.6
+     },
+     "favorable": {
+      "n": 608,
+      "hit": 49.2
+     },
+     "not unfavorable": {
+      "n": 1391,
+      "hit": 48.0
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "pts",
+   "side": "UNDER",
+   "n": 2556,
+   "base": 52.4,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 2556,
+      "hit": 52.4
+     },
+     ">=4": {
+      "n": 460,
+      "hit": 49.6
+     },
+     "=5": {
+      "n": 61,
+      "hit": 41.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 2556,
+      "hit": 52.4
+     },
+     ">=7": {
+      "n": 530,
+      "hit": 49.8
+     },
+     ">=8": {
+      "n": 188,
+      "hit": 48.9
+     },
+     ">=9": {
+      "n": 37,
+      "hit": 35.1
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 2556,
+      "hit": 52.4
+     },
+     "right side": {
+      "n": 1238,
+      "hit": 51.2
+     },
+     ">=10%": {
+      "n": 692,
+      "hit": 51.9
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 2556,
+      "hit": 52.4
+     },
+     "right side": {
+      "n": 1244,
+      "hit": 53.2
+     },
+     ">=10%": {
+      "n": 636,
+      "hit": 53.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 2556,
+      "hit": 52.4
+     },
+     "right side": {
+      "n": 1289,
+      "hit": 52.1
+     },
+     ">=5%": {
+      "n": 976,
+      "hit": 51.4
+     },
+     ">=10%": {
+      "n": 628,
+      "hit": 49.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 2556,
+      "hit": 52.4
+     },
+     "favorable": {
+      "n": 970,
+      "hit": 52.2
+     },
+     "not unfavorable": {
+      "n": 1436,
+      "hit": 52.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 2556,
+      "hit": 52.4
+     },
+     "favorable": {
+      "n": 1010,
+      "hit": 53.0
+     },
+     "not unfavorable": {
+      "n": 1524,
+      "hit": 52.2
+     }
+    },
+    "min": {
+     "any": {
+      "n": 2556,
+      "hit": 52.4
+     },
+     "not down 2+": {
+      "n": 2312,
+      "hit": 52.7
+     },
+     "down 2+": {
+      "n": 244,
+      "hit": 50.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 2556,
+      "hit": 52.4
+     },
+     "favorable": {
+      "n": 1165,
+      "hit": 52.9
+     },
+     "not unfavorable": {
+      "n": 1948,
+      "hit": 52.9
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "ra",
+   "side": "OVER",
+   "n": 1420,
+   "base": 48.5,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1420,
+      "hit": 48.5
+     },
+     ">=4": {
+      "n": 229,
+      "hit": 52.8
+     },
+     "=5": {
+      "n": 30,
+      "hit": 60.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1420,
+      "hit": 48.5
+     },
+     ">=7": {
+      "n": 184,
+      "hit": 52.7
+     },
+     ">=8": {
+      "n": 50,
+      "hit": 52.0
+     },
+     ">=9": {
+      "n": 8,
+      "hit": 75.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1420,
+      "hit": 48.5
+     },
+     "right side": {
+      "n": 686,
+      "hit": 49.0
+     },
+     ">=10%": {
+      "n": 385,
+      "hit": 49.9
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1420,
+      "hit": 48.5
+     },
+     "right side": {
+      "n": 650,
+      "hit": 49.7
+     },
+     ">=10%": {
+      "n": 272,
+      "hit": 55.9
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1420,
+      "hit": 48.5
+     },
+     "right side": {
+      "n": 667,
+      "hit": 49.8
+     },
+     ">=5%": {
+      "n": 462,
+      "hit": 50.4
+     },
+     ">=10%": {
+      "n": 291,
+      "hit": 51.9
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1420,
+      "hit": 48.5
+     },
+     "favorable": {
+      "n": 617,
+      "hit": 48.0
+     },
+     "not unfavorable": {
+      "n": 913,
+      "hit": 47.5
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1420,
+      "hit": 48.5
+     },
+     "favorable": {
+      "n": 544,
+      "hit": 46.3
+     },
+     "not unfavorable": {
+      "n": 863,
+      "hit": 48.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1420,
+      "hit": 48.5
+     },
+     "not down 2+": {
+      "n": 1287,
+      "hit": 48.6
+     },
+     "down 2+": {
+      "n": 133,
+      "hit": 48.1
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1420,
+      "hit": 48.5
+     },
+     "favorable": {
+      "n": 348,
+      "hit": 52.6
+     },
+     "not unfavorable": {
+      "n": 781,
+      "hit": 48.1
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "ra",
+   "side": "UNDER",
+   "n": 1420,
+   "base": 51.5,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1420,
+      "hit": 51.5
+     },
+     ">=4": {
+      "n": 253,
+      "hit": 48.2
+     },
+     "=5": {
+      "n": 44,
+      "hit": 59.1
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1420,
+      "hit": 51.5
+     },
+     ">=7": {
+      "n": 309,
+      "hit": 49.5
+     },
+     ">=8": {
+      "n": 96,
+      "hit": 57.3
+     },
+     ">=9": {
+      "n": 20,
+      "hit": 60.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1420,
+      "hit": 51.5
+     },
+     "right side": {
+      "n": 728,
+      "hit": 52.1
+     },
+     ">=10%": {
+      "n": 361,
+      "hit": 51.8
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1420,
+      "hit": 51.5
+     },
+     "right side": {
+      "n": 714,
+      "hit": 52.7
+     },
+     ">=10%": {
+      "n": 320,
+      "hit": 50.0
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1420,
+      "hit": 51.5
+     },
+     "right side": {
+      "n": 726,
+      "hit": 52.9
+     },
+     ">=5%": {
+      "n": 481,
+      "hit": 51.8
+     },
+     ">=10%": {
+      "n": 271,
+      "hit": 52.8
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1420,
+      "hit": 51.5
+     },
+     "favorable": {
+      "n": 507,
+      "hit": 49.7
+     },
+     "not unfavorable": {
+      "n": 803,
+      "hit": 51.1
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1420,
+      "hit": 51.5
+     },
+     "favorable": {
+      "n": 557,
+      "hit": 50.6
+     },
+     "not unfavorable": {
+      "n": 876,
+      "hit": 50.1
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1420,
+      "hit": 51.5
+     },
+     "not down 2+": {
+      "n": 1287,
+      "hit": 51.4
+     },
+     "down 2+": {
+      "n": 133,
+      "hit": 51.9
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1420,
+      "hit": 51.5
+     },
+     "favorable": {
+      "n": 639,
+      "hit": 51.0
+     },
+     "not unfavorable": {
+      "n": 1072,
+      "hit": 52.8
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "reb",
+   "side": "OVER",
+   "n": 1292,
+   "base": 49.6,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1292,
+      "hit": 49.6
+     },
+     ">=4": {
+      "n": 200,
+      "hit": 51.0
+     },
+     "=5": {
+      "n": 27,
+      "hit": 37.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1292,
+      "hit": 49.6
+     },
+     ">=7": {
+      "n": 161,
+      "hit": 53.4
+     },
+     ">=8": {
+      "n": 48,
+      "hit": 54.2
+     },
+     ">=9": {
+      "n": 8,
+      "hit": 75.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1292,
+      "hit": 49.6
+     },
+     "right side": {
+      "n": 690,
+      "hit": 49.3
+     },
+     ">=10%": {
+      "n": 431,
+      "hit": 50.3
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1292,
+      "hit": 49.6
+     },
+     "right side": {
+      "n": 652,
+      "hit": 49.2
+     },
+     ">=10%": {
+      "n": 341,
+      "hit": 52.8
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1292,
+      "hit": 49.6
+     },
+     "right side": {
+      "n": 684,
+      "hit": 50.3
+     },
+     ">=5%": {
+      "n": 533,
+      "hit": 49.3
+     },
+     ">=10%": {
+      "n": 389,
+      "hit": 50.6
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1292,
+      "hit": 49.6
+     },
+     "favorable": {
+      "n": 555,
+      "hit": 44.7
+     },
+     "not unfavorable": {
+      "n": 813,
+      "hit": 48.2
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1292,
+      "hit": 49.6
+     },
+     "favorable": {
+      "n": 550,
+      "hit": 48.7
+     },
+     "not unfavorable": {
+      "n": 798,
+      "hit": 49.1
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1292,
+      "hit": 49.6
+     },
+     "not down 2+": {
+      "n": 1172,
+      "hit": 49.8
+     },
+     "down 2+": {
+      "n": 120,
+      "hit": 47.5
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1292,
+      "hit": 49.6
+     },
+     "favorable": {
+      "n": 312,
+      "hit": 49.7
+     },
+     "not unfavorable": {
+      "n": 711,
+      "hit": 50.1
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "reb",
+   "side": "UNDER",
+   "n": 1292,
+   "base": 50.4,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 1292,
+      "hit": 50.4
+     },
+     ">=4": {
+      "n": 204,
+      "hit": 48.0
+     },
+     "=5": {
+      "n": 36,
+      "hit": 36.1
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 1292,
+      "hit": 50.4
+     },
+     ">=7": {
+      "n": 239,
+      "hit": 55.6
+     },
+     ">=8": {
+      "n": 86,
+      "hit": 55.8
+     },
+     ">=9": {
+      "n": 20,
+      "hit": 50.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 1292,
+      "hit": 50.4
+     },
+     "right side": {
+      "n": 586,
+      "hit": 49.8
+     },
+     ">=10%": {
+      "n": 355,
+      "hit": 48.7
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 1292,
+      "hit": 50.4
+     },
+     "right side": {
+      "n": 588,
+      "hit": 49.1
+     },
+     ">=10%": {
+      "n": 298,
+      "hit": 51.7
+     }
+    },
+    "season": {
+     "any": {
+      "n": 1292,
+      "hit": 50.4
+     },
+     "right side": {
+      "n": 558,
+      "hit": 52.0
+     },
+     ">=5%": {
+      "n": 420,
+      "hit": 52.9
+     },
+     ">=10%": {
+      "n": 273,
+      "hit": 55.7
+     }
+    },
+    "off": {
+     "any": {
+      "n": 1292,
+      "hit": 50.4
+     },
+     "favorable": {
+      "n": 479,
+      "hit": 48.0
+     },
+     "not unfavorable": {
+      "n": 737,
+      "hit": 46.7
+     }
+    },
+    "def": {
+     "any": {
+      "n": 1292,
+      "hit": 50.4
+     },
+     "favorable": {
+      "n": 494,
+      "hit": 49.6
+     },
+     "not unfavorable": {
+      "n": 742,
+      "hit": 49.7
+     }
+    },
+    "min": {
+     "any": {
+      "n": 1292,
+      "hit": 50.4
+     },
+     "not down 2+": {
+      "n": 1172,
+      "hit": 50.2
+     },
+     "down 2+": {
+      "n": 120,
+      "hit": 52.5
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 1292,
+      "hit": 50.4
+     },
+     "favorable": {
+      "n": 581,
+      "hit": 50.9
+     },
+     "not unfavorable": {
+      "n": 980,
+      "hit": 50.4
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "stl",
+   "side": "OVER",
+   "n": 500,
+   "base": 48.4,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 500,
+      "hit": 48.4
+     },
+     ">=4": {
+      "n": 79,
+      "hit": 45.6
+     },
+     "=5": {
+      "n": 13,
+      "hit": 53.8
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 500,
+      "hit": 48.4
+     },
+     ">=7": {
+      "n": 66,
+      "hit": 43.9
+     },
+     ">=8": {
+      "n": 16,
+      "hit": 31.2
+     },
+     ">=9": {
+      "n": 2,
+      "hit": 0.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 500,
+      "hit": 48.4
+     },
+     "right side": {
+      "n": 339,
+      "hit": 49.0
+     },
+     ">=10%": {
+      "n": 328,
+      "hit": 47.9
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 500,
+      "hit": 48.4
+     },
+     "right side": {
+      "n": 327,
+      "hit": 48.3
+     },
+     ">=10%": {
+      "n": 319,
+      "hit": 49.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 500,
+      "hit": 48.4
+     },
+     "right side": {
+      "n": 334,
+      "hit": 48.8
+     },
+     ">=5%": {
+      "n": 333,
+      "hit": 48.6
+     },
+     ">=10%": {
+      "n": 316,
+      "hit": 48.7
+     }
+    },
+    "off": {
+     "any": {
+      "n": 500,
+      "hit": 48.4
+     },
+     "favorable": {
+      "n": 201,
+      "hit": 49.8
+     },
+     "not unfavorable": {
+      "n": 298,
+      "hit": 49.0
+     }
+    },
+    "def": {
+     "any": {
+      "n": 500,
+      "hit": 48.4
+     },
+     "favorable": {
+      "n": 156,
+      "hit": 50.6
+     },
+     "not unfavorable": {
+      "n": 242,
+      "hit": 48.3
+     }
+    },
+    "min": {
+     "any": {
+      "n": 500,
+      "hit": 48.4
+     },
+     "not down 2+": {
+      "n": 445,
+      "hit": 48.1
+     },
+     "down 2+": {
+      "n": 55,
+      "hit": 50.9
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 500,
+      "hit": 48.4
+     },
+     "favorable": {
+      "n": 131,
+      "hit": 47.3
+     },
+     "not unfavorable": {
+      "n": 276,
+      "hit": 49.3
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "stl",
+   "side": "UNDER",
+   "n": 500,
+   "base": 51.6,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 500,
+      "hit": 51.6
+     },
+     ">=4": {
+      "n": 101,
+      "hit": 49.5
+     },
+     "=5": {
+      "n": 14,
+      "hit": 35.7
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 500,
+      "hit": 51.6
+     },
+     ">=7": {
+      "n": 117,
+      "hit": 55.6
+     },
+     ">=8": {
+      "n": 54,
+      "hit": 51.9
+     },
+     ">=9": {
+      "n": 11,
+      "hit": 54.5
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 500,
+      "hit": 51.6
+     },
+     "right side": {
+      "n": 161,
+      "hit": 52.8
+     },
+     ">=10%": {
+      "n": 157,
+      "hit": 51.6
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 500,
+      "hit": 51.6
+     },
+     "right side": {
+      "n": 115,
+      "hit": 47.8
+     },
+     ">=10%": {
+      "n": 110,
+      "hit": 49.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 500,
+      "hit": 51.6
+     },
+     "right side": {
+      "n": 125,
+      "hit": 50.4
+     },
+     ">=5%": {
+      "n": 125,
+      "hit": 50.4
+     },
+     ">=10%": {
+      "n": 112,
+      "hit": 50.9
+     }
+    },
+    "off": {
+     "any": {
+      "n": 500,
+      "hit": 51.6
+     },
+     "favorable": {
+      "n": 202,
+      "hit": 52.5
+     },
+     "not unfavorable": {
+      "n": 299,
+      "hit": 52.5
+     }
+    },
+    "def": {
+     "any": {
+      "n": 500,
+      "hit": 51.6
+     },
+     "favorable": {
+      "n": 258,
+      "hit": 51.6
+     },
+     "not unfavorable": {
+      "n": 344,
+      "hit": 52.6
+     }
+    },
+    "min": {
+     "any": {
+      "n": 500,
+      "hit": 51.6
+     },
+     "not down 2+": {
+      "n": 445,
+      "hit": 51.9
+     },
+     "down 2+": {
+      "n": 55,
+      "hit": 49.1
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 500,
+      "hit": 51.6
+     },
+     "favorable": {
+      "n": 224,
+      "hit": 52.7
+     },
+     "not unfavorable": {
+      "n": 369,
+      "hit": 51.2
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "stocks",
+   "side": "OVER",
+   "n": 474,
+   "base": 44.1,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 474,
+      "hit": 44.1
+     },
+     ">=4": {
+      "n": 74,
+      "hit": 43.2
+     },
+     "=5": {
+      "n": 12,
+      "hit": 33.3
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 474,
+      "hit": 44.1
+     },
+     ">=7": {
+      "n": 73,
+      "hit": 43.8
+     },
+     ">=8": {
+      "n": 25,
+      "hit": 52.0
+     },
+     ">=9": {
+      "n": 3,
+      "hit": 33.3
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 474,
+      "hit": 44.1
+     },
+     "right side": {
+      "n": 303,
+      "hit": 44.2
+     },
+     ">=10%": {
+      "n": 246,
+      "hit": 44.7
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 474,
+      "hit": 44.1
+     },
+     "right side": {
+      "n": 293,
+      "hit": 45.4
+     },
+     ">=10%": {
+      "n": 249,
+      "hit": 46.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 474,
+      "hit": 44.1
+     },
+     "right side": {
+      "n": 308,
+      "hit": 45.5
+     },
+     ">=5%": {
+      "n": 296,
+      "hit": 45.9
+     },
+     ">=10%": {
+      "n": 268,
+      "hit": 45.5
+     }
+    },
+    "off": {
+     "any": {
+      "n": 474,
+      "hit": 44.1
+     },
+     "favorable": {
+      "n": 216,
+      "hit": 40.7
+     },
+     "not unfavorable": {
+      "n": 313,
+      "hit": 43.1
+     }
+    },
+    "def": {
+     "any": {
+      "n": 474,
+      "hit": 44.1
+     },
+     "favorable": {
+      "n": 192,
+      "hit": 45.8
+     },
+     "not unfavorable": {
+      "n": 287,
+      "hit": 44.3
+     }
+    },
+    "min": {
+     "any": {
+      "n": 474,
+      "hit": 44.1
+     },
+     "not down 2+": {
+      "n": 434,
+      "hit": 43.1
+     },
+     "down 2+": {
+      "n": 40,
+      "hit": 55.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 474,
+      "hit": 44.1
+     },
+     "favorable": {
+      "n": 119,
+      "hit": 36.1
+     },
+     "not unfavorable": {
+      "n": 262,
+      "hit": 42.7
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "stocks",
+   "side": "UNDER",
+   "n": 474,
+   "base": 55.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 474,
+      "hit": 55.9
+     },
+     ">=4": {
+      "n": 84,
+      "hit": 57.1
+     },
+     "=5": {
+      "n": 11,
+      "hit": 72.7
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 474,
+      "hit": 55.9
+     },
+     ">=7": {
+      "n": 84,
+      "hit": 59.5
+     },
+     ">=8": {
+      "n": 30,
+      "hit": 60.0
+     },
+     ">=9": {
+      "n": 7,
+      "hit": 85.7
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 474,
+      "hit": 55.9
+     },
+     "right side": {
+      "n": 171,
+      "hit": 56.1
+     },
+     ">=10%": {
+      "n": 125,
+      "hit": 55.2
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 474,
+      "hit": 55.9
+     },
+     "right side": {
+      "n": 144,
+      "hit": 55.6
+     },
+     ">=10%": {
+      "n": 101,
+      "hit": 58.4
+     }
+    },
+    "season": {
+     "any": {
+      "n": 474,
+      "hit": 55.9
+     },
+     "right side": {
+      "n": 144,
+      "hit": 61.1
+     },
+     ">=5%": {
+      "n": 128,
+      "hit": 60.9
+     },
+     ">=10%": {
+      "n": 99,
+      "hit": 65.7
+     }
+    },
+    "off": {
+     "any": {
+      "n": 474,
+      "hit": 55.9
+     },
+     "favorable": {
+      "n": 161,
+      "hit": 54.0
+     },
+     "not unfavorable": {
+      "n": 258,
+      "hit": 53.1
+     }
+    },
+    "def": {
+     "any": {
+      "n": 474,
+      "hit": 55.9
+     },
+     "favorable": {
+      "n": 187,
+      "hit": 56.1
+     },
+     "not unfavorable": {
+      "n": 282,
+      "hit": 57.1
+     }
+    },
+    "min": {
+     "any": {
+      "n": 474,
+      "hit": 55.9
+     },
+     "not down 2+": {
+      "n": 434,
+      "hit": 56.9
+     },
+     "down 2+": {
+      "n": 40,
+      "hit": 45.0
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 474,
+      "hit": 55.9
+     },
+     "favorable": {
+      "n": 212,
+      "hit": 54.2
+     },
+     "not unfavorable": {
+      "n": 355,
+      "hit": 53.2
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "tov",
+   "side": "OVER",
+   "n": 463,
+   "base": 43.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 463,
+      "hit": 43.0
+     },
+     ">=4": {
+      "n": 81,
+      "hit": 40.7
+     },
+     "=5": {
+      "n": 9,
+      "hit": 11.1
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 463,
+      "hit": 43.0
+     },
+     ">=7": {
+      "n": 98,
+      "hit": 40.8
+     },
+     ">=8": {
+      "n": 27,
+      "hit": 48.1
+     },
+     ">=9": {
+      "n": 1,
+      "hit": 100.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 463,
+      "hit": 43.0
+     },
+     "right side": {
+      "n": 274,
+      "hit": 47.1
+     },
+     ">=10%": {
+      "n": 218,
+      "hit": 48.2
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 463,
+      "hit": 43.0
+     },
+     "right side": {
+      "n": 266,
+      "hit": 47.0
+     },
+     ">=10%": {
+      "n": 225,
+      "hit": 47.6
+     }
+    },
+    "season": {
+     "any": {
+      "n": 463,
+      "hit": 43.0
+     },
+     "right side": {
+      "n": 274,
+      "hit": 46.7
+     },
+     ">=5%": {
+      "n": 263,
+      "hit": 46.4
+     },
+     ">=10%": {
+      "n": 237,
+      "hit": 47.3
+     }
+    },
+    "off": {
+     "any": {
+      "n": 463,
+      "hit": 43.0
+     },
+     "favorable": {
+      "n": 204,
+      "hit": 46.1
+     },
+     "not unfavorable": {
+      "n": 293,
+      "hit": 45.1
+     }
+    },
+    "def": {
+     "any": {
+      "n": 463,
+      "hit": 43.0
+     },
+     "favorable": {
+      "n": 176,
+      "hit": 47.7
+     },
+     "not unfavorable": {
+      "n": 281,
+      "hit": 43.1
+     }
+    },
+    "min": {
+     "any": {
+      "n": 463,
+      "hit": 43.0
+     },
+     "not down 2+": {
+      "n": 411,
+      "hit": 44.3
+     },
+     "down 2+": {
+      "n": 52,
+      "hit": 32.7
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 463,
+      "hit": 43.0
+     },
+     "favorable": {
+      "n": 122,
+      "hit": 45.9
+     },
+     "not unfavorable": {
+      "n": 248,
+      "hit": 47.6
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "tov",
+   "side": "UNDER",
+   "n": 463,
+   "base": 57.0,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 463,
+      "hit": 57.0
+     },
+     ">=4": {
+      "n": 79,
+      "hit": 58.2
+     },
+     "=5": {
+      "n": 10,
+      "hit": 70.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 463,
+      "hit": 57.0
+     },
+     ">=7": {
+      "n": 81,
+      "hit": 64.2
+     },
+     ">=8": {
+      "n": 31,
+      "hit": 61.3
+     },
+     ">=9": {
+      "n": 6,
+      "hit": 66.7
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 463,
+      "hit": 57.0
+     },
+     "right side": {
+      "n": 189,
+      "hit": 63.0
+     },
+     ">=10%": {
+      "n": 128,
+      "hit": 60.9
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 463,
+      "hit": 57.0
+     },
+     "right side": {
+      "n": 155,
+      "hit": 60.6
+     },
+     ">=10%": {
+      "n": 104,
+      "hit": 66.3
+     }
+    },
+    "season": {
+     "any": {
+      "n": 463,
+      "hit": 57.0
+     },
+     "right side": {
+      "n": 167,
+      "hit": 63.5
+     },
+     ">=5%": {
+      "n": 143,
+      "hit": 62.9
+     },
+     ">=10%": {
+      "n": 110,
+      "hit": 64.5
+     }
+    },
+    "off": {
+     "any": {
+      "n": 463,
+      "hit": 57.0
+     },
+     "favorable": {
+      "n": 170,
+      "hit": 60.6
+     },
+     "not unfavorable": {
+      "n": 259,
+      "hit": 59.5
+     }
+    },
+    "def": {
+     "any": {
+      "n": 463,
+      "hit": 57.0
+     },
+     "favorable": {
+      "n": 182,
+      "hit": 57.1
+     },
+     "not unfavorable": {
+      "n": 287,
+      "hit": 59.9
+     }
+    },
+    "min": {
+     "any": {
+      "n": 463,
+      "hit": 57.0
+     },
+     "not down 2+": {
+      "n": 411,
+      "hit": 55.7
+     },
+     "down 2+": {
+      "n": 52,
+      "hit": 67.3
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 463,
+      "hit": 57.0
+     },
+     "favorable": {
+      "n": 215,
+      "hit": 62.3
+     },
+     "not unfavorable": {
+      "n": 341,
+      "hit": 58.1
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "twopointersattempted",
+   "side": "OVER",
+   "n": 713,
+   "base": 47.1,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 713,
+      "hit": 47.1
+     },
+     ">=4": {
+      "n": 97,
+      "hit": 49.5
+     },
+     "=5": {
+      "n": 19,
+      "hit": 52.6
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 713,
+      "hit": 47.1
+     },
+     ">=7": {
+      "n": 102,
+      "hit": 46.1
+     },
+     ">=8": {
+      "n": 43,
+      "hit": 53.5
+     },
+     ">=9": {
+      "n": 9,
+      "hit": 66.7
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 713,
+      "hit": 47.1
+     },
+     "right side": {
+      "n": 347,
+      "hit": 45.2
+     },
+     ">=10%": {
+      "n": 207,
+      "hit": 45.9
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 713,
+      "hit": 47.1
+     },
+     "right side": {
+      "n": 334,
+      "hit": 46.7
+     },
+     ">=10%": {
+      "n": 173,
+      "hit": 49.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 713,
+      "hit": 47.1
+     },
+     "right side": {
+      "n": 327,
+      "hit": 45.3
+     },
+     ">=5%": {
+      "n": 220,
+      "hit": 48.2
+     },
+     ">=10%": {
+      "n": 149,
+      "hit": 53.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 713,
+      "hit": 47.1
+     },
+     "favorable": {
+      "n": 312,
+      "hit": 47.8
+     },
+     "not unfavorable": {
+      "n": 468,
+      "hit": 47.6
+     }
+    },
+    "def": {
+     "any": {
+      "n": 713,
+      "hit": 47.1
+     },
+     "favorable": {
+      "n": 285,
+      "hit": 47.7
+     },
+     "not unfavorable": {
+      "n": 427,
+      "hit": 45.0
+     }
+    },
+    "min": {
+     "any": {
+      "n": 713,
+      "hit": 47.1
+     },
+     "not down 2+": {
+      "n": 635,
+      "hit": 47.1
+     },
+     "down 2+": {
+      "n": 78,
+      "hit": 47.4
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 713,
+      "hit": 47.1
+     },
+     "favorable": {
+      "n": 164,
+      "hit": 40.9
+     },
+     "not unfavorable": {
+      "n": 369,
+      "hit": 43.9
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "twopointersattempted",
+   "side": "UNDER",
+   "n": 713,
+   "base": 52.9,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 713,
+      "hit": 52.9
+     },
+     ">=4": {
+      "n": 143,
+      "hit": 45.5
+     },
+     "=5": {
+      "n": 23,
+      "hit": 47.8
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 713,
+      "hit": 52.9
+     },
+     ">=7": {
+      "n": 157,
+      "hit": 52.9
+     },
+     ">=8": {
+      "n": 59,
+      "hit": 42.4
+     },
+     ">=9": {
+      "n": 17,
+      "hit": 47.1
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 713,
+      "hit": 52.9
+     },
+     "right side": {
+      "n": 361,
+      "hit": 51.0
+     },
+     ">=10%": {
+      "n": 201,
+      "hit": 48.8
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 713,
+      "hit": 52.9
+     },
+     "right side": {
+      "n": 347,
+      "hit": 52.2
+     },
+     ">=10%": {
+      "n": 178,
+      "hit": 56.2
+     }
+    },
+    "season": {
+     "any": {
+      "n": 713,
+      "hit": 52.9
+     },
+     "right side": {
+      "n": 366,
+      "hit": 51.1
+     },
+     ">=5%": {
+      "n": 280,
+      "hit": 53.9
+     },
+     ">=10%": {
+      "n": 186,
+      "hit": 55.9
+     }
+    },
+    "off": {
+     "any": {
+      "n": 713,
+      "hit": 52.9
+     },
+     "favorable": {
+      "n": 245,
+      "hit": 53.9
+     },
+     "not unfavorable": {
+      "n": 401,
+      "hit": 53.4
+     }
+    },
+    "def": {
+     "any": {
+      "n": 713,
+      "hit": 52.9
+     },
+     "favorable": {
+      "n": 286,
+      "hit": 49.7
+     },
+     "not unfavorable": {
+      "n": 428,
+      "hit": 53.3
+     }
+    },
+    "min": {
+     "any": {
+      "n": 713,
+      "hit": 52.9
+     },
+     "not down 2+": {
+      "n": 635,
+      "hit": 52.9
+     },
+     "down 2+": {
+      "n": 78,
+      "hit": 52.6
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 713,
+      "hit": 52.9
+     },
+     "favorable": {
+      "n": 344,
+      "hit": 49.4
+     },
+     "not unfavorable": {
+      "n": 549,
+      "hit": 51.0
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "twopointersmade",
+   "side": "OVER",
+   "n": 537,
+   "base": 49.5,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 537,
+      "hit": 49.5
+     },
+     ">=4": {
+      "n": 82,
+      "hit": 50.0
+     },
+     "=5": {
+      "n": 9,
+      "hit": 44.4
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 537,
+      "hit": 49.5
+     },
+     ">=7": {
+      "n": 56,
+      "hit": 48.2
+     },
+     ">=8": {
+      "n": 20,
+      "hit": 40.0
+     },
+     ">=9": {
+      "n": 5,
+      "hit": 60.0
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 537,
+      "hit": 49.5
+     },
+     "right side": {
+      "n": 283,
+      "hit": 51.9
+     },
+     ">=10%": {
+      "n": 192,
+      "hit": 50.0
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 537,
+      "hit": 49.5
+     },
+     "right side": {
+      "n": 261,
+      "hit": 50.6
+     },
+     ">=10%": {
+      "n": 163,
+      "hit": 49.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 537,
+      "hit": 49.5
+     },
+     "right side": {
+      "n": 275,
+      "hit": 51.6
+     },
+     ">=5%": {
+      "n": 215,
+      "hit": 48.8
+     },
+     ">=10%": {
+      "n": 168,
+      "hit": 50.0
+     }
+    },
+    "off": {
+     "any": {
+      "n": 537,
+      "hit": 49.5
+     },
+     "favorable": {
+      "n": 232,
+      "hit": 57.3
+     },
+     "not unfavorable": {
+      "n": 358,
+      "hit": 51.4
+     }
+    },
+    "def": {
+     "any": {
+      "n": 537,
+      "hit": 49.5
+     },
+     "favorable": {
+      "n": 212,
+      "hit": 50.0
+     },
+     "not unfavorable": {
+      "n": 310,
+      "hit": 49.7
+     }
+    },
+    "min": {
+     "any": {
+      "n": 537,
+      "hit": 49.5
+     },
+     "not down 2+": {
+      "n": 488,
+      "hit": 48.6
+     },
+     "down 2+": {
+      "n": 49,
+      "hit": 59.2
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 537,
+      "hit": 49.5
+     },
+     "favorable": {
+      "n": 120,
+      "hit": 47.5
+     },
+     "not unfavorable": {
+      "n": 280,
+      "hit": 48.9
+     }
+    }
+   }
+  },
+  {
+   "book": "Standard",
+   "prop": "twopointersmade",
+   "side": "UNDER",
+   "n": 537,
+   "base": 50.5,
+   "factors": {
+    "l5": {
+     "any": {
+      "n": 537,
+      "hit": 50.5
+     },
+     ">=4": {
+      "n": 110,
+      "hit": 48.2
+     },
+     "=5": {
+      "n": 15,
+      "hit": 40.0
+     }
+    },
+    "l10": {
+     "any": {
+      "n": 537,
+      "hit": 50.5
+     },
+     ">=7": {
+      "n": 120,
+      "hit": 50.0
+     },
+     ">=8": {
+      "n": 41,
+      "hit": 51.2
+     },
+     ">=9": {
+      "n": 7,
+      "hit": 42.9
+     }
+    },
+    "l5avg": {
+     "any": {
+      "n": 537,
+      "hit": 50.5
+     },
+     "right side": {
+      "n": 249,
+      "hit": 52.6
+     },
+     ">=10%": {
+      "n": 164,
+      "hit": 50.6
+     }
+    },
+    "l10avg": {
+     "any": {
+      "n": 537,
+      "hit": 50.5
+     },
+     "right side": {
+      "n": 246,
+      "hit": 53.7
+     },
+     ">=10%": {
+      "n": 133,
+      "hit": 57.1
+     }
+    },
+    "season": {
+     "any": {
+      "n": 537,
+      "hit": 50.5
+     },
+     "right side": {
+      "n": 233,
+      "hit": 53.6
+     },
+     ">=5%": {
+      "n": 183,
+      "hit": 55.2
+     },
+     ">=10%": {
+      "n": 116,
+      "hit": 61.2
+     }
+    },
+    "off": {
+     "any": {
+      "n": 537,
+      "hit": 50.5
+     },
+     "favorable": {
+      "n": 179,
+      "hit": 54.2
+     },
+     "not unfavorable": {
+      "n": 305,
+      "hit": 56.4
+     }
+    },
+    "def": {
+     "any": {
+      "n": 537,
+      "hit": 50.5
+     },
+     "favorable": {
+      "n": 227,
+      "hit": 50.7
+     },
+     "not unfavorable": {
+      "n": 325,
+      "hit": 50.8
+     }
+    },
+    "min": {
+     "any": {
+      "n": 537,
+      "hit": 50.5
+     },
+     "not down 2+": {
+      "n": 488,
+      "hit": 51.4
+     },
+     "down 2+": {
+      "n": 49,
+      "hit": 40.8
+     }
+    },
+    "pace": {
+     "any": {
+      "n": 537,
+      "hit": 50.5
+     },
+     "favorable": {
+      "n": 257,
+      "hit": 49.8
+     },
+     "not unfavorable": {
+      "n": 417,
+      "hit": 49.9
+     }
+    }
+   }
+  }
+ ]
+}
