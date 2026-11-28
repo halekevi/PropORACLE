@@ -1,6 +1,6 @@
 {
  "date": "2026-11-28",
- "generated_at": "2026-11-28 11:16:44 UTC",
+ "generated_at": "2026-11-28 11:48:10 UTC",
  "info_only": true,
  "note": "Info only \u2014 no picks. In the walk-forward backtest the model was less accurate than the closing line in every sport, and no betting rule held up on the 2026-27 holdout.",
  "sports": {
@@ -83,9 +83,9 @@
       "home_spread": -2.5,
       "home_spread_price": -115.0,
       "away_spread_price": -105.0,
-      "total": 234.5,
-      "over_price": -110.0,
-      "under_price": -110.0,
+      "total": 233.5,
+      "over_price": -115.0,
+      "under_price": -106.0,
       "home_ml": -142.0,
       "away_ml": 120.0,
       "home_win_pct_no_vig": 56.3
@@ -98,7 +98,7 @@
      },
      "model_minus_market": {
       "spread_pts": 0.4,
-      "total_pts": 4.1,
+      "total_pts": 5.1,
       "home_win_pct": 0.4
      }
     },
@@ -440,8 +440,8 @@
      "provider": "DraftKings",
      "market": {
       "home_spread": 3.0,
-      "home_spread_price": -118.0,
-      "away_spread_price": -102.0,
+      "home_spread_price": -120.0,
+      "away_spread_price": 100.0,
       "total": 53.5,
       "over_price": -110.0,
       "under_price": -110.0,
@@ -1146,9 +1146,9 @@
       "home_spread": -2.5,
       "home_spread_price": -115.0,
       "away_spread_price": -105.0,
-      "total": 57.5,
-      "over_price": -118.0,
-      "under_price": -102.0,
+      "total": 58.5,
+      "over_price": -102.0,
+      "under_price": -118.0,
       "home_ml": -142.0,
       "away_ml": 120.0,
       "home_win_pct_no_vig": 56.3
@@ -1161,7 +1161,7 @@
      },
      "model_minus_market": {
       "spread_pts": -1.7,
-      "total_pts": -0.2,
+      "total_pts": -1.2,
       "home_win_pct": -4.8
      }
     },
@@ -1592,8 +1592,8 @@
      "provider": "DraftKings",
      "market": {
       "home_spread": -23.5,
-      "home_spread_price": -108.0,
-      "away_spread_price": -112.0,
+      "home_spread_price": -112.0,
+      "away_spread_price": -108.0,
       "total": 52.5,
       "over_price": -110.0,
       "under_price": -110.0,

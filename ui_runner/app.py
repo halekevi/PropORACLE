@@ -573,9 +573,11 @@ if not os.environ.get("DISABLE_AUTO_GITHUB_JSON", "").strip() and _running_on_ra
         _TICKET_EV_JSON_URL = f"{_root_base}/outputs/ticket_ev_latest.json"
     _NBA_MAX_GATES_JSON_URL = f"{_base}/nba_max_gates_latest.json"
     _SPORTS_MAX_GATES_JSON_URL = f"{_base}/max_gates_latest.json"
+    _GAME_LINES_JSON_URL = f"{_base}/game_lines_latest.json"
 else:
     _NBA_MAX_GATES_JSON_URL = ""
     _SPORTS_MAX_GATES_JSON_URL = ""
+    _GAME_LINES_JSON_URL = ""
 
 _GRADES_HTML_RAW_BASE = ""
 if not os.environ.get("DISABLE_AUTO_GITHUB_JSON", "").strip() and _running_on_railway():
@@ -596,6 +598,8 @@ if _NBA_MAX_GATES_JSON_URL:
     _DATA_FILE_URL_MAP["nba_max_gates_latest.json"] = _NBA_MAX_GATES_JSON_URL
 if _SPORTS_MAX_GATES_JSON_URL:
     _DATA_FILE_URL_MAP["max_gates_latest.json"] = _SPORTS_MAX_GATES_JSON_URL
+if _GAME_LINES_JSON_URL:
+    _DATA_FILE_URL_MAP["game_lines_latest.json"] = _GAME_LINES_JSON_URL
 if _GRADES_HTML_RAW_BASE:
     _DATA_FILE_URL_MAP["grades_report_dates.json"] = (
         f"{_GRADES_HTML_RAW_BASE}/grades_report_dates.json"
@@ -3649,6 +3653,23 @@ def page_grades_props_legacy_redirect():
 def page_grades_props_legacy_redirect_date(date_str: str):
     """Legacy URL per date; same redirect as /grades/props."""
     return redirect("/grades", code=302)
+
+
+@app.get("/api/game-lines")
+def api_game_lines():
+    """Info-only game lines board (scripts/game_lines/build_game_lines_board.py). No picks."""
+    if not _template_json_available("game_lines_latest.json"):
+        return _no_store_headers(jsonify({"ok": False, "error": "game_lines_latest.json missing"})), 404
+    try:
+        j = read_json_cached(TEMPLATES_DIR / "game_lines_latest.json")
+    except Exception as e:
+        return _no_store_headers(jsonify({"ok": False, "error": str(e)[:200]})), 500
+    return _no_store_headers(jsonify(j))
+
+
+@app.get("/game-lines")
+def page_game_lines():
+    return _grades_html_response("game_lines.html")
 
 
 @app.get("/grades")

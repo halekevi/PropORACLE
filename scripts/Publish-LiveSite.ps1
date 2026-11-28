@@ -357,6 +357,7 @@ if (Test-Path -LiteralPath $sportsMaxGatesPy) {
 $liveRel = @(
     "ui_runner/templates/nba_max_gates_latest.json",
     "ui_runner/templates/max_gates_latest.json",
+    "ui_runner/templates/game_lines_latest.json",
     "ui_runner/runtime/tickets_latest.json",
     "ui_runner/templates/tickets_latest.json",
     "ui_runner/runtime/slate_latest.json",

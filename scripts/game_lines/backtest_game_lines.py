@@ -98,12 +98,13 @@ def walk_forward(df: pd.DataFrame, cfg: SportCfg) -> pd.DataFrame:
     as_ = df["away_score"].to_numpy(float)
     home_flag = 1.0 - df["neutral_site"].fillna(0).to_numpy(float)
     days = (df["gd"] - df["gd"].min()).dt.days.to_numpy()
+    scored = ~(np.isnan(hs) | np.isnan(as_))
 
     pred_margin = np.full(len(df), np.nan)
     pred_total = np.full(len(df), np.nan)
     for d in np.unique(days):
         cur = np.where(days == d)[0]
-        prior = np.where((days < d) & (days >= d - cfg.window_days))[0]
+        prior = np.where((days < d) & (days >= d - cfg.window_days) & scored)[0]
         if len(prior) < 50:
             continue
         gp = np.bincount(hi[prior], minlength=nt) + np.bincount(ai[prior], minlength=nt)

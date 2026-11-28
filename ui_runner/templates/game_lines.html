@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-ui-build="{{ ui_build_id|default('', true) }}">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<script>(function(){try{var t=localStorage.getItem('proporacle-theme')||localStorage.getItem('theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.add('light-theme');}}catch(e){}})();</script>
+<meta name="theme-color" content="#050505"/>
+<title>PropOracle — Game Lines (info only)</title>
+<link rel="stylesheet" href="/static/global-scrollbar.css?v=20260517platform"/>
+<link rel="stylesheet" href="/static/proporacle-page-shell.css?v=20261124navlock"/>
+<link rel="stylesheet" href="/static/light-theme-dim-overrides.css?v=20260416perf"/>
+<link rel="stylesheet" href="/static/site-nav-datetime.css?v=20261124navlock"/>
+<link rel="stylesheet" href="/static/nav-mobile-shared.css?v=20260418nav"/>
+<link rel="stylesheet" href="/static/mobile-content-width.css?v=20260522gradesframe"/>
+<link rel="stylesheet" href="/static/proporacle-glass-minimal.css?v=20261121herotitle1"/>
+<style>
+  body.page-gl { font-family: Inter, system-ui, sans-serif; color: var(--text, rgba(255,255,255,.92)); }
+  .gl-wrap { max-width: 1100px; margin: 0 auto; padding: 16px 18px 48px; position: relative; z-index: 1; }
+  .gl-hero { margin: 4px 0 14px; padding: 16px 18px; border: 1px solid rgba(212,175,55,.18); border-radius: 14px;
+    background: linear-gradient(135deg, rgba(212,175,55,.07), transparent 42%), rgba(255,255,255,.03); }
+  .gl-hero h1 { margin: 0; font-family: "Bebas Neue", sans-serif; font-size: clamp(28px, 4vw, 40px); letter-spacing: .04em; color: var(--accent, #d4af37); }
+  .gl-hero p { margin: 8px 0 0; font-size: 13px; color: var(--muted, rgba(255,255,255,.72)); line-height: 1.45; max-width: 62ch; }
+  .gl-badge { display: inline-block; margin-top: 10px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px; border: 1px solid rgba(255,127,127,.4); color: #ff9a9a; }
+  .gl-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+  .gl-tab { font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; padding: 7px 12px;
+    border-radius: 999px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); color: var(--muted, rgba(255,255,255,.7)); cursor: pointer; }
+  .gl-tab.active { color: #0b0b0b; background: var(--accent, #d4af37); border-color: transparent; }
+  .gl-meta { font-size: 12px; color: var(--muted, rgba(255,255,255,.6)); margin: 0 0 10px; }
+  .gl-bt { font-size: 12px; color: var(--muted, rgba(255,255,255,.65)); margin: 0 0 14px; line-height: 1.45; }
+  .gl-table-wrap { overflow-x: auto; border: 1px solid rgba(255,255,255,.1); border-radius: 12px; background: rgba(255,255,255,.03); }
+  table.gl { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.gl th { text-align: left; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted, rgba(255,255,255,.55));
+    padding: 10px 10px; border-bottom: 1px solid rgba(255,255,255,.08); white-space: nowrap; }
+  table.gl td { padding: 9px 10px; border-bottom: 1px solid rgba(255,255,255,.06); vertical-align: top; font-variant-numeric: tabular-nums; }
+  table.gl tr:last-child td { border-bottom: 0; }
+  .gl-match { font-weight: 600; color: var(--text, #fff); }
+  .gl-sub { display: block; font-size: 10px; color: var(--muted, rgba(255,255,255,.5)); margin-top: 2px; font-weight: 500; }
+  .gl-empty { padding: 28px 16px; text-align: center; color: var(--muted, rgba(255,255,255,.55)); font-size: 13px; }
+  .gl-diff-pos { color: #9dffb0; }
+  .gl-diff-neg { color: #ffb0b0; }
+</style>
+</head>
+<body class="page-gl">
+{% set nav_active = 'game_lines' %}
+{% include '_site_nav.html' %}
+<div class="gl-wrap">
+  <div class="gl-hero">
+    <h1>Game Lines</h1>
+    <p id="gl-note">Info only. Market spread, total and moneyline next to our ratings model. The walk-forward backtest did not find an edge against the closing line — nothing here is a pick or a ticket.</p>
+    <span class="gl-badge">No edge · observe only</span>
+  </div>
+  <div class="gl-tabs" id="gl-tabs"></div>
+  <p class="gl-meta" id="gl-meta">Loading…</p>
+  <p class="gl-bt" id="gl-bt"></p>
+  <div class="gl-table-wrap">
+    <table class="gl">
+      <thead>
+        <tr>
+          <th>Matchup</th>
+          <th>Market spread</th>
+          <th>Model</th>
+          <th>Market total</th>
+          <th>Model</th>
+          <th>Market ML</th>
+          <th>Model win%</th>
+        </tr>
+      </thead>
+      <tbody id="gl-body"></tbody>
+    </table>
+    <div class="gl-empty" id="gl-empty" hidden>No games for this sport on the slate.</div>
+  </div>
+</div>
+<script>
+(function () {
+  const SPORTS = ["NBA", "CFB", "NHL", "NFL"];
+  let data = null;
+  let sport = "NBA";
+
+  function fmt(n, d) {
+    if (n == null || Number.isNaN(n)) return "—";
+    const x = Number(n);
+    const s = x > 0 ? "+" + x.toFixed(d) : x.toFixed(d);
+    return s;
+  }
+  function pct(n) {
+    if (n == null || Number.isNaN(n)) return "—";
+    return Number(n).toFixed(1) + "%";
+  }
+  function ml(n) {
+    if (n == null || Number.isNaN(n)) return "—";
+    const x = Math.round(Number(n));
+    return x > 0 ? "+" + x : String(x);
+  }
+  function diffClass(n) {
+    if (n == null || Number.isNaN(n)) return "";
+    return Number(n) > 0 ? "gl-diff-pos" : Number(n) < 0 ? "gl-diff-neg" : "";
+  }
+  function when(iso) {
+    if (!iso) return "";
+    try {
+      const dt = new Date(iso);
+      return dt.toLocaleString(undefined, { weekday: "short", hour: "numeric", minute: "2-digit" });
+    } catch (e) { return ""; }
+  }
+  function btLine(sp) {
+    const bt = (((data || {}).sports || {})[sp] || {}).backtest;
+    if (!bt) return "";
+    const m = (bt.markets || {}).spread || {};
+    const t = (bt.markets || {}).total || {};
+    const w = (bt.markets || {}).moneyline || {};
+    return `Holdout record vs close (all games): spread ${m.n ? ((100 * m.win_rate).toFixed(1) + "% / ROI " + (100 * m.roi).toFixed(1) + "%") : "—"}, ` +
+      `total ${t.n ? ((100 * t.win_rate).toFixed(1) + "% / ROI " + (100 * t.roi).toFixed(1) + "%") : "—"}, ` +
+      `ML ${w.n ? ((100 * w.win_rate).toFixed(1) + "% / ROI " + (100 * w.roi).toFixed(1) + "%") : "—"}. ` +
+      `Model margin MAE ${bt.model_margin_mae} vs line ${bt.line_margin_mae}.`;
+  }
+  function renderTabs() {
+    const el = document.getElementById("gl-tabs");
+    el.innerHTML = "";
+    SPORTS.forEach((s) => {
+      const n = ((((data || {}).sports || {})[s] || {}).games || []).length;
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "gl-tab" + (s === sport ? " active" : "");
+      b.textContent = s + " (" + n + ")";
+      b.onclick = () => { sport = s; render(); };
+      el.appendChild(b);
+    });
+  }
+  function render() {
+    renderTabs();
+    const block = ((data || {}).sports || {})[sport] || {};
+    const games = block.games || [];
+    document.getElementById("gl-meta").textContent =
+      (data && data.date ? ("Slate " + data.date) : "—") +
+      (data && data.generated_at ? (" · updated " + data.generated_at) : "") +
+      " · " + games.length + " games";
+    document.getElementById("gl-bt").textContent = btLine(sport);
+    if (data && data.note) document.getElementById("gl-note").textContent = data.note;
+    const body = document.getElementById("gl-body");
+    const empty = document.getElementById("gl-empty");
+    body.innerHTML = "";
+    empty.hidden = games.length > 0;
+    games.forEach((g) => {
+      const m = g.market || {}, mo = g.model || {}, d = g.model_minus_market || {};
+      const tr = document.createElement("tr");
+      tr.innerHTML =
+        `<td><span class="gl-match">${g.away || "?"} @ ${g.home || "?"}</span>` +
+        `<span class="gl-sub">${when(g.start_utc)}${g.provider ? " · " + g.provider : ""}</span></td>` +
+        `<td>${fmt(m.home_spread, 1)} <span class="gl-sub">${ml(m.home_spread_price)}</span></td>` +
+        `<td class="${diffClass(d.spread_pts)}">${fmt(mo.home_spread_equiv, 1)}` +
+        `<span class="gl-sub">Δ ${fmt(d.spread_pts, 1)}</span></td>` +
+        `<td>${fmt(m.total, 1)} <span class="gl-sub">o ${ml(m.over_price)} / u ${ml(m.under_price)}</span></td>` +
+        `<td class="${diffClass(d.total_pts)}">${fmt(mo.total, 1)}` +
+        `<span class="gl-sub">Δ ${fmt(d.total_pts, 1)}</span></td>` +
+        `<td>${ml(m.away_ml)} / ${ml(m.home_ml)}` +
+        `<span class="gl-sub">home ${pct(m.home_win_pct_no_vig)}</span></td>` +
+        `<td class="${diffClass(d.home_win_pct)}">${pct(mo.home_win_pct)}` +
+        `<span class="gl-sub">Δ ${fmt(d.home_win_pct, 1)} pp</span></td>`;
+      body.appendChild(tr);
+    });
+  }
+  fetch("/api/game-lines", { cache: "no-store" })
+    .then((r) => r.json())
+    .then((j) => { data = j; if (SPORTS.indexOf(sport) < 0 || !(((j.sports || {})[sport] || {}).games || []).length) {
+      sport = SPORTS.find((s) => ((((j.sports || {})[s] || {}).games || []).length)) || "NBA";
+    } render(); })
+    .catch((e) => { document.getElementById("gl-meta").textContent = "Failed to load game lines: " + e; });
+})();
+</script>
+</body>
+</html>
