@@ -20,14 +20,36 @@ from defense_report import current_season_label, norm_team_abbr
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "Sports" / "NBA" / "data" / "cache" / "team_prop_ranks.csv"
-STATS = ["pts", "reb", "ast", "fg3m", "fg3a", "fgm", "fga", "ftm", "fta", "fg2m", "fg2a", "stl", "blk", "tov", "oreb", "dreb"]
+BOX_COLS = ["pts", "reb", "ast", "fg3m", "fg3a", "fgm", "fga", "ftm", "fta", "fg2m", "fg2a", "stl", "blk", "tov",
+            "oreb", "dreb", "pf", "fantasy_score", "dunks"]
+STATS = BOX_COLS + ["dd", "td", "q3", "q5"]
+PERIOD_DB = ROOT / "Sports" / "NBA" / "data" / "cache" / "proporacle_ref_nba1q.db"
 PROPS = {
     "pts": "Points", "reb": "Rebounds", "ast": "Assists", "fg3m": "3PT Made", "fg3a": "3PT Attempted",
     "fgm": "FG Made", "fga": "FG Attempted", "ftm": "Free Throws Made", "fta": "Free Throws Attempted",
     "fg2m": "Two Pointers Made", "fg2a": "Two Pointers Attempted", "stl": "Steals", "blk": "Blocked Shots",
     "tov": "Turnovers", "oreb": "Offensive Rebounds", "dreb": "Defensive Rebounds",
     "pra": "Pts+Rebs+Asts", "pr": "Pts+Rebs", "pa": "Pts+Asts", "ra": "Rebs+Asts", "bs": "Blks+Stls",
+    "pf": "Personal Fouls", "fantasy_score": "Fantasy Score", "dunks": "Dunks",
+    "dd": "Double-Double", "td": "Triple-Double",
+    "q3": "Quarters with 3+ Points", "q5": "Quarters with 5+ Points",
 }
+
+
+def _quarter_counts(lo: str, hi: str) -> pd.DataFrame:
+    """Per player-game count of quarters with 3+ / 5+ points (period DB, 1Q-4Q)."""
+    if not PERIOD_DB.exists():
+        return pd.DataFrame(columns=["game_date", "pkey", "q3", "q5"])
+    con = sqlite3.connect(PERIOD_DB)
+    q = pd.read_sql(
+        "SELECT game_date, lower(player) AS pkey, segment, MAX(actual) AS pts FROM nba1q "
+        "WHERE lower(prop_type) = 'points' AND segment IN ('1Q','2Q','3Q','4Q') AND game_date >= ? AND game_date < ? "
+        "GROUP BY game_date, lower(player), segment",
+        con, params=(lo, hi))
+    con.close()
+    q["q3"] = (q["pts"] >= 3).astype(int)
+    q["q5"] = (q["pts"] >= 5).astype(int)
+    return q.groupby(["game_date", "pkey"], as_index=False)[["q3", "q5"]].sum()
 TIERS = ["Elite", "Above Avg", "Avg", "Below Avg", "Weak"]
 
 
@@ -35,11 +57,18 @@ def build(season: str, asof: str = "") -> pd.DataFrame:
     start = int(season[:4])
     hi = asof or f"{start + 1}-07-01"
     con = sqlite3.connect(ROOT / "data" / "cache" / "proporacle_ref.db")
+    lo = f"{start}-10-01"
     b = pd.read_sql(
-        f"SELECT event_id, home_team, away_team, team, {', '.join(STATS)} FROM nba "
+        f"SELECT game_date, lower(player) AS pkey, event_id, home_team, away_team, team, {', '.join(BOX_COLS)} FROM nba "
         "WHERE season_window IS NULL AND game_date >= ? AND game_date < ?",
-        con, params=(f"{start}-10-01", hi))
+        con, params=(lo, hi))
     con.close()
+    b[BOX_COLS] = b[BOX_COLS].apply(pd.to_numeric, errors="coerce").fillna(0)
+    tens = (b[["pts", "reb", "ast", "stl", "blk"]] >= 10).sum(axis=1)
+    b["dd"] = (tens >= 2).astype(int)
+    b["td"] = (tens >= 3).astype(int)
+    b = b.merge(_quarter_counts(lo, hi), on=["game_date", "pkey"], how="left")
+    b[["q3", "q5"]] = b[["q3", "q5"]].fillna(0)
     t = b.groupby(["event_id", "home_team", "away_team", "team"], as_index=False)[STATS].sum()
     t["opp"] = t.apply(lambda r: r.away_team if r.team == r.home_team else r.home_team, axis=1)
     m = t.merge(t[["event_id", "team"] + STATS], left_on=["event_id", "opp"], right_on=["event_id", "team"],
